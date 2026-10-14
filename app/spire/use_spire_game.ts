@@ -26,6 +26,7 @@ import {
   type SpireWeekLocal,
 } from '../../modules/spire/report_queue';
 import { spireBuildRoomRows, spireMyPlace, type SpireRoomRow } from '../../modules/spire/room_rows';
+import { getDevSpireRankByOverride } from '../dev_spire_tier';
 import type { SpireFriendChip } from '../../components/spire/spire_room_types';
 import { spireCurrentWeekKey, spireFloorOfSteps } from '../../components/spire/spire_tower_model';
 import { DebugLogger } from '../debug-logger';
@@ -211,15 +212,17 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   // ── Строки комнаты: чужие из кэша, свои — локальные (мгновенно после ступени) ──
   const room = roomLoad?.room ?? null;
   // зачем (D162, координатор 13.10): один рубильник config/spire_v1.rankBy — из уже кэшируемого конфига (0 чтений); монеты — с недели W43.
-  const rankBy: SpireRankBy = config && room ? spireEffectiveRankBy(config, room.weekId) : 'steps';
+  // Кадры Сверки (14.10): dev_state?spireRankBy подменяет рубильник только для показа; в стор-сборке подмена всегда null.
+  const devRankBy = getDevSpireRankByOverride();
+  const rankBy: SpireRankBy = devRankBy ?? (config && room ? spireEffectiveRankBy(config, room.weekId) : 'steps');
   const rows: readonly SpireRoomRow[] | null = useMemo(() => {
     if (!room || !ids || !config) return null;
     const mine = week && week.weekKey === room.weekId ? week : null;
     return spireBuildRoomRows({
       room, myUid: ids.uid, mySteps: mine?.stepsCleared ?? 0, myReachedAtMs: mine?.reachedAtMs ?? 0,
-      nowMs: Date.now(), tuning: config.residents, rankBy,
+      nowMs: Date.now(), tuning: config.residents, rankBy, fillMissingWeekCoinsForPreview: devRankBy === 'coins',
     });
-  }, [room, ids, config, week, rankBy]);
+  }, [room, ids, config, week, rankBy, devRankBy]);
   const myPlace = rows ? spireMyPlace(rows) : null;
   // зачем (владелец через координатора 13.10, «сперва логи»): на кадре у этажей нет соперников — что реально пришло: откуда комната,
   // сколько живых/ботов, строки и соперники по этажам (без себя). console — журналы кадров Сверки снимают logcat, DebugLogger туда не идёт.

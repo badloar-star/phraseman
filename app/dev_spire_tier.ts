@@ -65,6 +65,32 @@ export function getDevSpireScrollOverride(): DevSpireScroll | null {
   return devAvailable() ? scrollOverride : null;
 }
 
+// ───────────────────── Рубильник D162 для показа ─────────────────────
+// зачем (координатор 14.10, кадры Сверки D162): `dev_state?spireRankBy=coins` — комната Пика по монетам недели без сервера и без
+// config/spire_v1.rankBy в проде; `steps` — по ступеням; `off` — снять (решает конфиг). Только память процесса; в стор-сборке null.
+export type DevSpireRankBy = 'coins' | 'steps';
+let rankByOverride: DevSpireRankBy | null = null;
+
+/** Выставить рубильник для показа ('coins' | 'steps') или снять (null). В стор-сборке — отказ с логом. */
+export function setDevSpireRankByOverride(kind: DevSpireRankBy | null): boolean {
+  if (!devAvailable()) {
+    console.warn('[DEV-STATE] spireRankBy: отклонено — не dev-сборка', { kind }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  if (kind !== null && kind !== 'coins' && kind !== 'steps') {
+    console.warn('[DEV-STATE] spireRankBy: отклонено — допустимо coins, steps или off', { kind }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  rankByOverride = kind;
+  console.log(kind === null ? '[DEV-STATE] spireRankBy override=off' : `[DEV-STATE] spireRankBy override=${kind} (только показ комнаты Пика; итог недели решает сервер)`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+/** Подменённый рубильник или null. В стор-сборке всегда null. */
+export function getDevSpireRankByOverride(): DevSpireRankBy | null {
+  return devAvailable() ? rankByOverride : null;
+}
+
 // ───────────────────── Итог недели для показа ─────────────────────
 export type DevSpireWeekKind = 'up' | 'stay' | 'down' | 'top' | 'marble' | 'obsidian';
 export const DEV_SPIRE_WEEK_KINDS: readonly DevSpireWeekKind[] = ['up', 'stay', 'down', 'top', 'marble', 'obsidian'];
@@ -99,5 +125,8 @@ export function setDevSpireWeekResultOverride(kind: DevSpireWeekKind | null): bo
 /** Подменённый итог недели для карточки или null. В стор-сборке всегда null. */
 export function getDevSpireWeekResultOverride(): SpireWeekResultView | null {
   if (!devAvailable() || weekOverride === null) return null;
-  return { weekId: 'dev-week', lang: 'en', ...WEEK_FIXTURES[weekOverride] }; // зачем (типы, Ядро 13.10): lang — язык ИЗУЧЕНИЯ (en|es|de|fr|it), не язык интерфейса «ru»
+  const fixture = WEEK_FIXTURES[weekOverride];
+  // зачем (D162, кадры Сверки): при spireRankBy=coins карточка показывает монеты недели (ступени × 30 — та же формула показа, что у ботов)
+  const coinsMode = rankByOverride === 'coins';
+  return { weekId: 'dev-week', lang: 'en', ...fixture, rankBy: coinsMode ? 'coins' : 'steps', weekCoins: coinsMode ? fixture.steps * 30 : 0 }; // зачем (типы, Ядро 13.10): lang — язык ИЗУЧЕНИЯ (en|es|de|fr|it), не язык интерфейса «ru»
 }

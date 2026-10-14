@@ -114,6 +114,8 @@ export type DevStateRequest = Readonly<{
   /** Память диалогов без сервера (dialogs-gap-001/004/005/006). */
   dialogMemory?: DevDialogMemory | 'off';
   dialogVoice?: 'spent' | 'off';
+  /** Карточка отзыва итога диалога — «Отзыв отправлен» без реальной отправки (dialogs-044); off — снять. */
+  dialogFeedback?: 'sent' | 'off';
   /** Подставной ход Диалога без ИИ и без Firestore (координатор 12.10, «N/30»): ok / отказы; off — снять. */
   dialogSend?: DevDialogSendMode | 'off';
   dialogsPaused?: 'on' | 'off';
@@ -233,6 +235,8 @@ export type DevStateRequest = Readonly<{
   spireWeek?: 'up' | 'stay' | 'down' | 'top' | 'marble' | 'obsidian' | 'off';
   /** Прокрутка окна башни Пика для ПОКАЗА: top — к началу сцены (конус и навершие в кадре), off — снять (координатор 13.10, №25б). */
   spireScroll?: 'top' | 'off';
+  /** D162: рубильник комнаты Пика для ПОКАЗА — coins (по монетам недели), steps (по ступеням), off — снять (решает config/spire_v1.rankBy). */
+  spireRankBy?: 'coins' | 'steps' | 'off';
   /** Баланс монет для ПОКАЗА (0..10 000 000) на «Монетах» и «Повысить ранг»; при подмене настоящее повышение отказывает до сервера (dev_coin_rank.ts). off — снять. */
   coins?: number | 'off';
   /** hold — тап «Повысить» держит «Проверяем повышение…», сервер не вызывается. */
@@ -369,6 +373,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogCompletion = pick('dev_dialog_completion', [...DEV_DIALOG_COMPLETIONS, 'off'] as const);
   request.dialogMemory = pick('dev_dialog_memory', [...DEV_DIALOG_MEMORY, 'off'] as const);
   request.dialogVoice = pick('dev_dialog_voice', ['spent', 'off'] as const);
+  request.dialogFeedback = pick('dev_dialog_feedback', ['sent', 'off'] as const);
   request.dialogSend = pick('dev_dialog_send', [...DEV_DIALOG_SENDS, 'off'] as const);
   const onOff = (key: string): 'on' | 'off' | undefined => {
     const value = pick(key, ['1', 'on', 'true', '0', 'off', 'false'] as const);
@@ -414,6 +419,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   }
   request.spireWeek = pick('spireWeek', ['up', 'stay', 'down', 'top', 'marble', 'obsidian', 'off'] as const);
   request.spireScroll = pick('spireScroll', ['top', 'off'] as const);
+  request.spireRankBy = pick('spireRankBy', ['coins', 'steps', 'off'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -851,6 +857,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     // зачем (владелец 12.10, п.81, dialogs-028): бейдж PLUS на микрофоне без трёх настоящих записей; только память
     await step('dialogVoice', request.dialogVoice, async () => setDevDialogState({ voiceSpent: request.dialogVoice === 'spent' }));
   }
+  if (request.dialogFeedback !== undefined) {
+    // зачем (координатор 14.10, dialogs-044): экран «Отзыв отправлен» без настоящей отправки отзыва; только память
+    await step('dialogFeedback', request.dialogFeedback, async () => setDevDialogState({ feedbackSent: request.dialogFeedback === 'sent' }));
+  }
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));
   }
@@ -929,6 +939,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('spireScroll', request.spireScroll, async () => {
       const { setDevSpireScrollOverride } = await import('./dev_spire_tier');
       return setDevSpireScrollOverride(request.spireScroll === 'off' ? null : 'top');
+    });
+  }
+  if (request.spireRankBy !== undefined) {
+    await step('spireRankBy', request.spireRankBy, async () => {
+      const { setDevSpireRankByOverride } = await import('./dev_spire_tier');
+      return setDevSpireRankByOverride(request.spireRankBy === 'off' ? null : request.spireRankBy!);
     });
   }
   if (request.coinRank !== undefined) {

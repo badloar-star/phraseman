@@ -6,3 +6,5 @@ export function setDevSpireWeekResultOverride(): boolean { return false; }
 export function getDevSpireWeekResultOverride(): null { return null; }
 export function setDevSpireScrollOverride(): boolean { return false; }
 export function getDevSpireScrollOverride(): null { return null; }
+export function setDevSpireRankByOverride(): boolean { return false; }
+export function getDevSpireRankByOverride(): null { return null; }

@@ -1,0 +1,35 @@
+10-14 20:45:57.463 I/SVERKA  ( 2220): === PCF-2 start 20:45:58 ===
+10-14 20:45:58.212 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=58211 tabs blur
+10-14 20:45:59.231 I/ReactNativeJS( 1919): [TAP-LAT] → dev_state (из (tabs)) · без касания (редирект/таймер) · коммит→кадр 1012.1мс
+10-14 20:45:59.231 I/ReactNativeJS( 1919): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (1012мс) · рендеры: stack 21×(173/120/77/29/5/…мс, всего 6375мс) · tab:lessons 11×(73/23/1/67/8/…мс, всего 574мс) · tab:home 7×(48/67/77/52/56/…мс, все
+10-14 20:45:59.411 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=59410 gate no reason=recent awayDays=0
+10-14 20:45:59.411 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=59411 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 20:46:01.703 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=61702 tabs focus
+10-14 20:46:03.155 I/ReactNativeJS( 1919): [TAP-LAT] → (tabs) (из dev_state) · без касания (редирект/таймер) · коммит→кадр 1828.8мс
+10-14 20:46:03.155 I/ReactNativeJS( 1919): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (1829мс) · рендеры: stack 18×(737/286/304/248/454/…мс, всего 4636мс) · tab:settings 6×(178/56/104/90/91/…мс, всего 592мс) · tab:home 5×(162/47/162/49/27мс, 
+10-14 20:46:14.170 I/ReactNativeJS( 1919): [INFO] [PAYWALL-OPEN]: шапка: ctx=generic source=settings_premium текст=generic контекстная=false выгода=есть lang=ru
+10-14 20:46:14.181 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=74179 sheet mount context=generic source=settings_premium
+10-14 20:46:14.182 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=74181 sheet arbiter active=none
+10-14 20:46:14.186 I/ReactNativeJS( 1919): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"generic","source":"settings_premium","shownContext":"generic","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","rootN
+10-14 20:46:14.188 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=74186 route mount context=generic source=settings_premium
+10-14 20:46:14.191 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=74190 tabs blur
+10-14 20:46:14.670 I/ReactNativeJS( 1919): [TAP-LAT] → premium_modal (из (tabs)) · палец 14.8мс · JS-лаг на отпускании 14.8мс · отпускание→обработчик — · обработчик→коммит 510.9мс · коммит→кадр 475.3мс · ОТ ОТПУСКАНИ�
+10-14 20:46:14.670 I/ReactNativeJS( 1919): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (475мс) · рендеры от касания: stack 3×(1016/1178/5мс, всего 2198мс) · tab:settings 3×(88/65/67мс, всего 220мс) · tab:community 2×(27/2мс, всего 28
+10-14 20:46:21.131 I/SVERKA  ( 2290): === PCF-2 close-tap 20:46:22 ===
+10-14 20:46:25.007 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=85007 sheet close_button
+10-14 20:46:25.014 I/ReactNativeJS( 1919): [PAYWALL-CLOSE] via=x reason=close context=generic source=settings_premium
+10-14 20:46:25.015 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=85015 doClose reason=close context=generic source=settings_premium lockLeftMs=0
+10-14 20:46:25.030 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=85029 dismiss leaving=/premium_modal?attribution_campaign=E0XCsQ45Sf678VrrdFoO&attribution_variant=treatment&context=generic&source=settings_premium candidate=/settings chosen=/settings shouldReplace=false canDismiss=true branch=dismiss(1) stack=/settings
+10-14 20:46:25.035 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=85033 branch=dismiss(1) why: shouldReplace=false candidate=yes canDismiss=true nativePopToBack=true
+10-14 20:46:25.591 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=85590 route UNMOUNT context=generic
+10-14 20:46:25.594 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=85592 sheet UNMOUNT context=generic
+10-14 20:46:25.632 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=85630 tabs focus
+10-14 20:46:27.190 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=87184 +0ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:46:27.192 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=87190 +300ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:46:27.201 I/ReactNativeJS( 1919): [TAP-LAT] → (tabs) (из premium_modal) · палец 42мс · JS-лаг на отпускании 42мс · отпускание→обработчик — · обработчик→коммит 594.4мс · коммит→кадр 1564мс · ОТ ОТПУСКАНИЯ Д�
+10-14 20:46:27.201 I/ReactNativeJS( 1919): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (1564мс) · рендеры от касания: stack 3×(1161/1692/27мс, всего 2881мс) · tab:settings 3×(90/87/385мс, всего 561мс) · tab:community 6×(35/19/24/89/7/…м�
+10-14 20:46:27.205 I/ReactNativeJS( 1919): [WINBACK-FREEZE] t=87205 dismiss +800ms top=/settings stack=/settings
+10-14 20:46:27.207 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=87206 +800ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:46:27.210 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=87208 +1500ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:46:44.023 I/SVERKA  ( 2389): === PCF-2 tab-tap 20:46:45 ===
+10-14 20:46:47.020 I/ReactNativeJS( 1919): [PAYWALL-CLOSE-FREEZE] t=7019 tab_tap requested=1 active=4 page=4

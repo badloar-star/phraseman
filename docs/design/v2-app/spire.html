@@ -80,7 +80,8 @@ svg[data-tower] .celeb { animation: celeb 1.6s ease-in-out infinite; }
 .mrow .sp { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .mrow .sp span { font-size: 13px; color: var(--sec); font-weight: 600; margin-left: 4px; }
 .tourimg::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(180deg, rgba(19,19,21,0), #131315); pointer-events: none; }
-.tourimg { height: 300px; border-radius: 24px; background: #131315; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; margin-top: 18px; }
+/* зачем (закон «пик башни и свет без обрезки»): верхушка тура прижата к верху окна — раньше по центру и срезалась на 17 px, низ гаснет ::after */
+.tourimg { height: 300px; border-radius: 24px; background: #131315; border: 1px solid var(--line); display: flex; align-items: flex-start; justify-content: center; overflow: hidden; position: relative; margin-top: 18px; }
 .dots { display: flex; justify-content: center; gap: 7px; margin-top: 26px; }
 .dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--track); display: block; }
 .dots i.on { background: #fff; width: 22px; border-radius: 4px; }

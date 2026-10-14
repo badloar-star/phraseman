@@ -371,12 +371,12 @@
   const WEEK_TOP_W = 192;
   const WEEK_TOP_H = 342;
   // зачем (закон владельца 14.10 «пик башни и свет ничем не обрезаются»): в коде рамка «Итога недели» top−236 режет ореол навершия
-  // (круг r 88 выходит на 68 ед. выше) — поднимаем рамку на WEEK_TOP_PAD, маску держим в тех же абсолютных координатах.
+  // (круг r 88 выходит на 68 ед. выше, у Алмаза на вершине — на 115) — поднимаем рамку на WEEK_TOP_PAD, маску держим в тех же абсолютных координатах.
   // Тот же сдвиг должен прийти в SpireTowerSvg.tsx (строка Дизайну).
-  const WEEK_TOP_PAD = 80;
+  const WEEK_TOP_PAD = 124; // замер по 12 лигам: выше всех ореол Алмаза на 15 этаже — до −51 ед.; верх рамки −60
   // полная башня: ореол шпиля выходит на 4 ед. выше y=0 — svg не режет по своему краю (overflow visible, геометрия и маркеры
   // страниц не сдвигаются), а окно башни даёт запас сверху TOWER_PAD (маркер и соперники лежат в том же слое и едут вместе).
-  const TOWER_PAD = 14;
+  const TOWER_PAD = 60; // тот же замер для полной башни: ореол навершия до −51 ед. над y=0
 
   /** Башня целиком (SpireTowerSvg со сценой темы — как в приложении сейчас: неба нет, окно = плита темы). */
   function svg(o) {
@@ -487,10 +487,10 @@
       + `<div style="position:relative;width:${o.width}px;height:${f1(GEOM.height * scale)}px;margin-top:${f1(TOWER_PAD * scale)}px">${tower}${layer}</div></div></div>`;
   }
 
-  /** Тур первого входа (SpireTour.TourTower): Оникс без лиги, ни один этаж не горит, ширина 240, сдвиг −32, окно 240×340 — видна верхушка. */
+  /** Тур первого входа (SpireTour.TourTower): Оникс без лиги, ни один этаж не горит, ширина 240, сдвиг −28 (в коде −32 режет ореол на 1 px — строка Дизайну), окно 240×340 — видна верхушка. */
   function tourHtml(o) {
     o = o || {};
-    return `<div style="height:340px;width:240px;overflow:hidden;margin:0 auto;pointer-events:none"><div style="margin-top:-32px;width:240px">${svg({ tier: null, myFloor: null, selected: 0, width: 240, theme: o.theme, scene: o.scene })}</div></div>`;
+    return `<div style="height:340px;width:240px;overflow:hidden;margin:0 auto;pointer-events:none"><div style="margin-top:-28px;width:240px">${svg({ tier: null, myFloor: null, selected: 0, width: 240, theme: o.theme, scene: o.scene })}</div></div>`;
   }
 
   /**

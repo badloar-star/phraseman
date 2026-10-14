@@ -541,7 +541,8 @@ moment({ id: 'm03', num: '03', short: 'Понижение · туман', title:
     why: 'Переносит вину на персонажа и даёт действие «разбудить» — человек сам включает новую неделю.', ref: 'Tamagotchi, Duolingo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 04. Итог недели — карточка (D182) и сторис ---------- */
-const weekCard = () => `<div class="week" data-week><div class="mt">${towerSvg({ tier: 1, myFloor: 15, width: 58, variant: 'weekTop' })}${coin(5, 26, 'coin')}</div><div class="grow"><div class="ov">Итог недели</div><div class="ti">Ты поднимаешься в Базальт</div><div class="su">5 место · 470 монет · +100</div></div></div>`;
+// зачем (закон «пик башни и свет без обрезки»): рамка «Итога недели» выше — башня уменьшена до высоты места 103 px (42 × 102), а не обрезана
+const weekCard = () => `<div class="week" data-week><div class="mt" style="display:flex;justify-content:center">${towerSvg({ tier: 1, myFloor: 15, width: 42, variant: 'weekTop' })}${coin(5, 26, 'coin')}</div><div class="grow"><div class="ov">Итог недели</div><div class="ti">Ты поднимаешься в Базальт</div><div class="su">5 место · 470 монет · +100</div></div></div>`;
 const stories = () => { const S = [['Неделя 41 · Гранит', '<span data-n>0</span> монет', 'за неделю во всех режимах'], ['Комната', '5 место из 30', 'топ-5 — повышение'], ['Лига', 'Базальт', 'новая неделя, все с 1 этажа']];
   return `<div class="full stories" style="padding:62px 24px 36px"><div class="prog">${S.map((_, i) => `<i><b data-prog="${i}"></b></i>`).join('')}</div>
   ${S.map(([k, h, p], i) => `<div data-slide="${i}" style="display:${i ? 'none' : 'block'};text-align:center"><div class="ov" style="margin-top:22px">${k}</div><div class="h-xl" style="margin-top:8px">${h}</div><div class="p" style="margin-top:6px">${p}</div>${i === 2 ? `<div style="display:flex;justify-content:center;margin-top:14px">${towerSvg({ tier: 1, myFloor: null, width: 120, variant: 'weekTop' })}</div>` : ''}</div>`).join('')}
@@ -603,7 +604,7 @@ moment({ id: 'm06', num: '06', short: 'Итог ступени', title: 'Сту�
   ] });
 
 /* ---------- 07. Этаж / Вершина ---------- */
-const floor3 = () => `<div class="full"><div class="body"><div class="ov a-up">Этаж 4 пройден</div><div class="a-up d1" style="margin-top:10px;position:relative" data-tw>${towerSvg({ tier: 0, myFloor: 4, width: 280, h: 240 })}</div>
+const floor3 = () => `<div class="full"><div class="body"><div class="ov a-up">Этаж 4 пройден</div><div class="a-up d1" style="margin-top:10px;position:relative" data-tw>${towerSvg({ tier: 0, myFloor: 4, width: 280, h: 240, focus: 5 })}</div>
   <div class="fl a-up d3" style="margin-top:8px;gap:12px"><div class="sf" style="padding:10px 14px;display:inline-flex;align-items:center;gap:8px">${coin(5, 24)}<span class="h-md">+<span data-c>0</span></span></div><div data-cc>${coinChar(5, 56, { mood: 'idle', shadow: false })}</div></div>
   <div class="h-lg a-up d4" style="margin-top:12px">5 этаж — Страж</div><div class="p a-up d5" style="margin-top:6px">На нём уже Ира и Олег.</div></div><div class="foot a-up d6">${prim('На 5 этаж')}${sec('Передохнуть')}</div></div>`;
 const summit3 = () => `<div class="full"><div class="glowspot" style="top:30%"></div><div class="body"><div class="ov a-up">Вершина</div><div style="margin-top:10px" data-cc>${coinChar(5, 120, { mood: 'idle', glints: true })}</div>
@@ -612,7 +613,7 @@ moment({ id: 'm07', num: '07', short: 'Этаж · Вершина', title: 'Эт
   lead: 'Этаж 4 = 40 монет (правило 10×N), башня SpireTowerRender перерисовывается на 5-й этаж; вершина — +200, три залпа, без карточки шеринга (D76 — только итоги лиги).',
   variants: [
     { k: 'A', label: 'Этаж: +40, окна 5-го', time: '~2,5 с', phone: { under: spireUnder({ li: 0, myFloor: 4, room: ROOM }), over: floor3() }, total: 3,
-      init: (ph) => seq(ph, [[600, () => { ph.querySelector('[data-tw]').innerHTML = towerSvg({ tier: 0, myFloor: 5, width: 280, h: 240, lite: ph.classList.contains('lite') }); }], [1100, () => countUp(ph.querySelector('[data-c]'), 0, 40, 900)], [1300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('peek'); }]]),
+      init: (ph) => seq(ph, [[600, () => { ph.querySelector('[data-tw]').innerHTML = towerSvg({ tier: 0, myFloor: 5, width: 280, h: 240, focus: 5, lite: ph.classList.contains('lite') }); }], [1100, () => countUp(ph.querySelector('[data-c]'), 0, 40, 900)], [1300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('peek'); }]]),
       beats: [{ t: 0.6, w: 'окна 5-го этажа зажигаются цветом темы', h: 'light', snd: 'tick', s: 'fc_tick' }, { t: 1.1, w: 'счётчик +40', snd: 'star', s: 'fc_star' }, { t: 1.3, w: 'монета peek', h: 'success', snd: 'correct', s: 'fc_correct' }],
       why: 'Вертикаль и конкретные люди этажом выше.', ref: 'Clash Royale arena unlock.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'B', label: 'Вершина: 3 залпа, +200', time: '~3 с', phone: { under: spireUnder({ li: 0, myFloor: 15, room: ROOM }), over: summit3() }, total: 3.5,

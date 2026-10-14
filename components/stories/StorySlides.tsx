@@ -142,7 +142,7 @@ function StorySlide(props: StorySlideProps) {
 
 const s = StyleSheet.create({
   // `.ov`: 13/16, капсом с разрядкой не нужен — короткая строка над заголовком
-  overline: { fontSize: 13, lineHeight: 16, fontWeight: '700', textAlign: 'center' },
+  overline: { fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
   // `.h-xl`: 30/36/700
   title: { marginTop: 8, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5, textAlign: 'center' },
   sub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },

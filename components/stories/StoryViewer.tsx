@@ -258,7 +258,7 @@ const s = StyleSheet.create({
   fill: { height: '100%', borderRadius: 2 },
   header: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingTop: 12 },
   headerCopy: { flex: 1, minWidth: 0 },
-  name: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
+  name: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   when: { fontSize: 13, lineHeight: 17 },
   closeBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   // кадр: между шапкой и низом (образец `.sslide`: top 120, bottom 60, поля 28)

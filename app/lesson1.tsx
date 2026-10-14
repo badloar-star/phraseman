@@ -3,7 +3,7 @@ import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   BackHandler,
@@ -159,6 +159,9 @@ import { KIT_MOTION, SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { DebugLogger } from './debug-logger';
 import { traceLessonExit } from './lesson_exit_trace';
+import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
+// зачем (m15, владелец 14.10, за флагом moments_v3): шторка «Выйти из урока?» грузится лениво и только когда флаг включён и человек нажал «назад»
+const LessonExitSheet = lazy(() => import('../components/lesson_exit/LessonExitSheet'));
 const GRAMMAR_HINTS = [
   {
     key: 'grammar_hint_articles',
@@ -2626,6 +2629,31 @@ function LessonScreen() {
     navigateUpFromLessonScreen();
   }, [beginLessonExit, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen]);
 
+  // зачем (m15, координатор 14.10): за флагом moments_v3 «назад» посреди урока сначала спрашивает; «Выйти» зовёт прежний handleLessonHeaderBack (abandon + навигация, двойной тап защищён lessonExitInFlightRef),
+  // «Продолжить»/фон/«назад» закрывают шторку. Флаг выкл, интро-экраны (попытки ещё нет) или выход уже идёт — прежнее поведение без шторки.
+  const momentsV3 = useMomentsV3Enabled();
+  const [exitSheetOpen, setExitSheetOpen] = useState(false);
+  const [exitSheetMounted, setExitSheetMounted] = useState(false);
+  const requestLessonExit = useCallback(() => {
+    if (!momentsV3 || showIntroScreens || lessonExitInFlightRef.current) {
+      traceLessonExit('exitSheet:skip', { lessonId, cellIndex, momentsV3, intro: showIntroScreens, exitInFlight: lessonExitInFlightRef.current });
+      handleLessonHeaderBack();
+      return;
+    }
+    traceLessonExit('exitSheet:open', { lessonId, cellIndex, effectiveTotal });
+    setExitSheetMounted(true);
+    setExitSheetOpen(true);
+  }, [momentsV3, showIntroScreens, handleLessonHeaderBack, lessonId, cellIndex, effectiveTotal]);
+  const closeExitSheet = useCallback(() => {
+    traceLessonExit('exitSheet:continue', { lessonId, cellIndex });
+    setExitSheetOpen(false);
+  }, [lessonId, cellIndex]);
+  const confirmLessonExit = useCallback(() => {
+    traceLessonExit('exitSheet:leave', { lessonId, cellIndex });
+    setExitSheetOpen(false);
+    handleLessonHeaderBack();
+  }, [handleLessonHeaderBack, lessonId, cellIndex]);
+
   const handleIntroDone = useCallback(async () => {
     if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
     await AsyncStorage.setItem(lessonIntroShownKey(lessonId, studyTargetRef.current), 'true').catch(noteSwallowedHandler('lesson1:useCallback.setItem_2'));
@@ -2676,11 +2704,11 @@ function LessonScreen() {
         resetNoEnergyModal();
         return true;
       }
-      handleLessonHeaderBack();
+      requestLessonExit();
       return true;
     });
     return () => sub.remove();
-  }, [lessonRuntimeActive, showNoEnergyModal, handleLessonHeaderBack, resetNoEnergyModal]);
+  }, [lessonRuntimeActive, showNoEnergyModal, requestLessonExit, resetNoEnergyModal]);
 
   useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
@@ -4095,7 +4123,7 @@ function LessonScreen() {
             onPlayReviewAudio={onPlayReviewAudio}
             toastAnim={toastAnim}
             from={from}
-                onHeaderBack={handleLessonHeaderBack}
+                onHeaderBack={requestLessonExit}
                 lessonTheorySupportBlocked={lessonTheorySupportBlocked}
                 lessonHintSupportBlocked={lessonHintSupportBlocked}
                   />
@@ -4126,6 +4154,11 @@ function LessonScreen() {
         )}
       </ScreenGradient>
     </TouchableWithoutFeedback>
+    {momentsV3 && exitSheetMounted ? (
+      <Suspense fallback={null}>
+        <LessonExitSheet lang={lang} visible={exitSheetOpen} energyNote={!testerEnergyDisabled} onContinue={closeExitSheet} onLeave={confirmLessonExit} />
+      </Suspense>
+    ) : null}
     <NoEnergyModal variant="learn"
       visible={showNoEnergyModal}
       activity="classic_lesson"

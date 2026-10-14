@@ -169,6 +169,12 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   useEffect(() => {
     if (!visible) return;
     const startedAt = Date.now();
+    // зачем (координатор 14.10): пока человек вводит слово, поднимаем серверную функцию постановки удаления — ack без
+    // холодного старта ≈9,5 с. Тело прогрева без ключа удаления: поставить удаление им нельзя (app/cloud_sync.ts).
+    void import('../app/cloud_sync').then(
+      ({ warmAccountDeleteEnqueue }) => warmAccountDeleteEnqueue('delete_confirm_modal'),
+      (error: unknown) => console.warn(`[ACCOUNT-DELETE-WARM] import_failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`), // guard-ok: сбой пишет причину
+    );
     void import('../app/phone_state_bootstrap').then(
       () => console.log(`[ACCOUNT-DELETE-UI] phone_state_prewarm ok ms=${Date.now() - startedAt}`), // guard-ok: разовый лог при открытии окна удаления
       (error: unknown) => console.warn(`[ACCOUNT-DELETE-UI] phone_state_prewarm failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`), // guard-ok: сбой пишет причину всегда (правило владельца)

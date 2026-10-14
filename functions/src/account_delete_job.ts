@@ -447,16 +447,32 @@ export async function processAccountDeletionJob(
   nowMs = Date.now(),
 ): Promise<void> {
   const ref = db.collection(ACCOUNT_DELETE_JOBS).doc(jobId);
+  // зачем (координатор 14.10, удаление гостя №3): воркер сработал на запись задачи и вышел за 1,3 с МОЛЧА — задача ждала
+  // grace 14 дней. Каждый ранний выход теперь пишет причину [ACCOUNT-DELETE-JOB] (без uid; транзакция может повториться —
+  // в журнал идёт причина последней попытки).
+  let skip: Record<string, unknown> = { reason: 'unknown' };
   const claimed = await db.runTransaction(async (tx) => {
     const snapshot = await tx.get(ref);
-    if (!snapshot.exists) return null;
+    if (!snapshot.exists) {
+      skip = { reason: 'job_missing' };
+      return null;
+    }
     const data = snapshot.data() ?? {};
     const status = jobStatus(data.status);
     const leaseUntilMs = Number(data.leaseUntilMs ?? 0);
     const nextAttemptAtMs = Number(data.nextAttemptAtMs ?? 0);
-    if (status === 'completed' || status === 'failed') return null;
-    if (status === 'queued' && Number.isFinite(nextAttemptAtMs) && nextAttemptAtMs > nowMs) return null;
-    if (status === 'running' && Number.isFinite(leaseUntilMs) && leaseUntilMs > nowMs) return null;
+    if (status === 'completed' || status === 'failed') {
+      skip = { reason: `terminal_${status}` };
+      return null;
+    }
+    if (status === 'queued' && Number.isFinite(nextAttemptAtMs) && nextAttemptAtMs > nowMs) {
+      skip = { reason: 'not_due', status, msUntilDue: nextAttemptAtMs - nowMs, inGrace: Number(data.graceDeadlineMs ?? 0) > nowMs };
+      return null;
+    }
+    if (status === 'running' && Number.isFinite(leaseUntilMs) && leaseUntilMs > nowMs) {
+      skip = { reason: 'lease_active', status, msUntilLeaseEnd: leaseUntilMs - nowMs };
+      return null;
+    }
 
     const authUid = typeof data.authUid === 'string' ? data.authUid : '';
     const stableUid = typeof data.stableUid === 'string' ? data.stableUid : '';
@@ -477,6 +493,7 @@ export async function processAccountDeletionJob(
     }
     const previousAttempts = Math.max(0, Math.floor(Number(data.attempts) || 0));
     if (previousAttempts >= ACCOUNT_DELETE_JOB_MAX_ATTEMPTS) {
+      skip = { reason: 'max_attempts_marked_failed', attempts: previousAttempts };
       tx.update(ref, {
         status: 'failed',
         leaseUntilMs: admin.firestore.FieldValue.delete(),
@@ -520,7 +537,11 @@ export async function processAccountDeletionJob(
     return { authUid, stableUid, attempts, leaseToken, closureCutoffMs, identityClosure };
   });
 
-  if (!claimed) return;
+  if (!claimed) {
+    console.log(JSON.stringify({ event: 'account_delete_job_skip', tag: '[ACCOUNT-DELETE-JOB]', ...skip }));
+    return;
+  }
+  console.log(JSON.stringify({ event: 'account_delete_job_claimed', tag: '[ACCOUNT-DELETE-JOB]', attempts: claimed.attempts }));
 
   try {
     const stats = await execute(

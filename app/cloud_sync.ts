@@ -2173,6 +2173,43 @@ export function warmAuthSignInCallables(): void {
   }
 }
 
+// ── Прогрев accountDeleteEnqueue с экрана удаления ─────────────────────────────
+let lastAccountDeleteWarmupAtMs = 0;
+const ACCOUNT_DELETE_WARMUP_THROTTLE_MS = 10 * 60_000;
+
+/**
+ * зачем (координатор 14.10, удаление гостя №3): ack постановки удаления занял 17,2 с, из них ≈9,5 с — холодный старт функции.
+ * Человек проводит в окне удаления больше минуты (вводит слово) — за это время инстанс уже поднят.
+ * Безопасность: тело вызова — ТОЛЬКО { warm: true }, без ключа удаления. Новый сервер (выкладка 17.10) отвечает { warm: true }
+ * до любой работы с данными; старый (прод с 01.10) отказывает account_delete_credential_pending до любых чтений и записей —
+ * удаление поставить нельзя ни там, ни там. Троттл 10 мин, сбой прогрева ни на что не влияет. Лог [ACCOUNT-DELETE-WARM].
+ */
+export function warmAccountDeleteEnqueue(source: string): void {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    console.log(`[ACCOUNT-DELETE-WARM] skip source=${source} reason=${IS_EXPO_GO ? 'expo_go' : 'cloud_sync_disabled'}`); // guard-ok: ранний выход
+    return;
+  }
+  const nowMs = Date.now();
+  if (nowMs - lastAccountDeleteWarmupAtMs < ACCOUNT_DELETE_WARMUP_THROTTLE_MS) {
+    console.log(`[ACCOUNT-DELETE-WARM] skip source=${source} reason=throttled sinceLastMs=${nowMs - lastAccountDeleteWarmupAtMs}`); // guard-ok: ранний выход
+    return;
+  }
+  lastAccountDeleteWarmupAtMs = nowMs;
+  try {
+    const fn = callable<{ warm: true }, { ok?: boolean; warm?: boolean }>('accountDeleteEnqueue', { timeout: 20_000 });
+    void fn({ warm: true }).then(
+      (res) => console.log(`[ACCOUNT-DELETE-WARM] ok source=${source} warm=${String(res?.data?.warm === true)} ms=${Date.now() - nowMs}`), // guard-ok: итог прогрева
+      (error: unknown) => {
+        // Старый сервер отвечает permission-denied (account_delete_credential_pending) — это тоже прогрев, не сбой.
+        const code = (error as { code?: unknown } | null)?.code;
+        console.log(`[ACCOUNT-DELETE-WARM] answered source=${source} code=${typeof code === 'string' ? code : 'none'} ms=${Date.now() - nowMs} reason=${(error instanceof Error ? error.message : String(error)).slice(0, 80)}`); // guard-ok: ответ старого сервера/сеть
+      },
+    );
+  } catch (e) {
+    console.warn(`[ACCOUNT-DELETE-WARM] failed source=${source} reason=${e instanceof Error ? e.message.slice(0, 80) : String(e).slice(0, 80)}`); // guard-ok: сбой пишет причину
+  }
+}
+
 export async function ensureStableAuthLinkForStableIdDetailed(
   stableIdRaw: string,
   metadata?: StableAuthLinkMetadata,

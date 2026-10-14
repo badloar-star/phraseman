@@ -2122,6 +2122,50 @@ async function publishCredentialSafeReceipt(
     }, { merge: true });
 }
 
+// ── [ACCOUNT-DELETE-ENQUEUE] (координатор 14.10: ack удаления гостя №3 занял 17,2 с, из них ≈5 с — сам обработчик) ──
+// зачем: «сперва логи» — до ускорения знать, какая стадия постановки в очередь держит ответ. Только стадии и миллисекунды,
+// без uid/почты; при сбое — стадия, после которой упало, и код ошибки.
+export type AccountDeleteEnqueueTrace = {
+  mark(stage: string, extra?: Record<string, unknown>): void;
+  fail(error: unknown): void;
+};
+
+export function createAccountDeleteEnqueueTrace(now: () => number = Date.now): AccountDeleteEnqueueTrace {
+  const startedAtMs = now();
+  let stageStartedAtMs = startedAtMs;
+  let lastStage = 'start';
+  return {
+    mark(stage, extra = {}) {
+      const t = now();
+      console.log(JSON.stringify({
+        event: 'account_delete_enqueue_stage', tag: '[ACCOUNT-DELETE-ENQUEUE]', stage,
+        ms: t - stageStartedAtMs, sinceStartMs: t - startedAtMs, ...extra,
+      }));
+      stageStartedAtMs = t;
+      lastStage = stage;
+    },
+    fail(error) {
+      const t = now();
+      console.warn(JSON.stringify({
+        event: 'account_delete_enqueue_failed', tag: '[ACCOUNT-DELETE-ENQUEUE]', afterStage: lastStage,
+        sinceStartMs: t - startedAtMs,
+        code: typeof (error as { code?: unknown } | null)?.code === 'string' ? (error as { code: string }).code : null,
+        message: (error instanceof Error ? error.message : String(error)).slice(0, 120),
+      }));
+    },
+  };
+}
+
+/**
+ * Прогрев инстанса accountDeleteEnqueue с экрана удаления (координатор 14.10: холодный старт ≈9,5 с из 17,2 с ack).
+ * зачем именно `warm: true` в ТОЙ ЖЕ функции: отдельное имя — отдельный сервис Cloud Run, он не прогрел бы этот инстанс.
+ * Безопасность: прогрев НИКОГДА не ставит удаление — ветка стоит до любой работы с данными; а старый сервер (без этой ветки)
+ * отказывает вызову без ключа удаления в cleanCredentialProof ДО любых чтений и записей.
+ */
+export function isAccountDeleteWarmRequest(data: unknown): boolean {
+  return typeof data === 'object' && data !== null && (data as { warm?: unknown }).warm === true;
+}
+
 export async function enqueueAndReleaseAuthenticatedAccount(
   db: FirebaseFirestore.Firestore,
   authUid: string,
@@ -2136,10 +2180,14 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     /** Пакет 6A: ключ удаления Account V2 от телефона (undefined — старый клиент). */
     accountsV2Credential?: unknown;
     prepareAccountsV2?: (jobId: string, authUid: string, credential: unknown) => Promise<AccountsV2EnqueueOutcome>;
+    /** [ACCOUNT-DELETE-ENQUEUE]: стадии и миллисекунды (обработчик передаёт свою трассировку). */
+    trace?: AccountDeleteEnqueueTrace;
   } = {},
 ) {
   const proof = cleanCredentialProof(rawProof);
+  deps.trace?.mark('proof_ok');
   const stableUid = await resolveStableUidForDelete(db, authUid, requestedStableId);
+  deps.trace?.mark('stable_resolved', { requested: typeof requestedStableId === 'string' });
   const enqueue = deps.enqueue ?? enqueueAccountDeletionJob;
   const receipt = {
     operationId: proof.operationId,
@@ -2152,11 +2200,13 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     Date.now(),
     receipt,
   );
+  deps.trace?.mark('fenced');
   const identityClosure = await (deps.resolveClosure ?? resolveAccountDeleteIdentityClosure)(
     db,
     stableUid,
     authUid,
   );
+  deps.trace?.mark('closure_resolved', { closureSize: Array.isArray(identityClosure) ? identityClosure.length : null });
   const result = await enqueue(
     db,
     authUid,
@@ -2165,6 +2215,7 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     receipt,
     identityClosure,
   );
+  deps.trace?.mark('enqueued', { status: result.status, created: (result as { created?: unknown }).created ?? null });
   // зачем (Пакет 6A): ключ V2 сохраняется в задаче лишь ЗАГОТОВКОЙ квитанции —
   // опубликует её воркер в точке невозврата (после grace). Старый клиент ключа
   // не шлёт → ноль лишних чтений. Подготовка никогда не бросает: сбой V2 не
@@ -2175,6 +2226,7 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     ));
     const outcome = await prepare(result.jobId, authUid, deps.accountsV2Credential);
     console.log(JSON.stringify({ event: 'account_delete_accounts_v2_enqueue', outcome }));
+    deps.trace?.mark('accounts_v2_prepared');
   }
   try {
     await (deps.deleteUser ?? ((uid: string) => admin.auth().deleteUser(uid)))(authUid);
@@ -2182,9 +2234,13 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     if (error?.code !== 'auth/user-not-found') {
       throw new HttpsError('unavailable', 'account_delete_auth_release_failed');
     }
+    // зачем: ранний выход сбоя тоже виден — пользователь Auth уже снят раньше, это норма повтора.
+    console.log(JSON.stringify({ event: 'account_delete_enqueue_stage', tag: '[ACCOUNT-DELETE-ENQUEUE]', stage: 'auth_release_already_gone' }));
   }
+  deps.trace?.mark('auth_released');
   await (deps.publishCredentialSafe
     ?? ((operationId: string) => publishCredentialSafeReceipt(db, operationId)))(proof.operationId);
+  deps.trace?.mark('credential_safe');
   return {
     ok: true as const,
     ...result,
@@ -2302,18 +2358,34 @@ export const accountDeleteEnqueue = onCall({
   maxInstances: 80,
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  const result = await enqueueAndReleaseAuthenticatedAccount(
-    admin.firestore(),
-    request.auth.uid,
-    request.data?.stableId,
-    {
-      operationId: request.data?.operationId,
-      capability: request.data?.capability,
-    },
-    // зачем (Пакет 6A): новый клиент (6B) шлёт ключ V2 отдельным полем; старый — нет.
-    { accountsV2Credential: request.data?.accountsV2Deletion },
-  );
-  return result;
+  // зачем (координатор 14.10): прогрев с экрана удаления — ответ до любой работы с данными; задачу и метки НЕ трогает никогда.
+  if (isAccountDeleteWarmRequest(request.data)) {
+    console.log(JSON.stringify({ event: 'account_delete_enqueue_warm', tag: '[ACCOUNT-DELETE-ENQUEUE]', outcome: 'warm_ok' }));
+    return { ok: true as const, warm: true as const };
+  }
+  const trace = createAccountDeleteEnqueueTrace();
+  trace.mark('start', {
+    hasStableId: typeof request.data?.stableId === 'string',
+    hasV2Credential: request.data?.accountsV2Deletion !== undefined,
+  });
+  try {
+    const result = await enqueueAndReleaseAuthenticatedAccount(
+      admin.firestore(),
+      request.auth.uid,
+      request.data?.stableId,
+      {
+        operationId: request.data?.operationId,
+        capability: request.data?.capability,
+      },
+      // зачем (Пакет 6A): новый клиент (6B) шлёт ключ V2 отдельным полем; старый — нет.
+      { accountsV2Credential: request.data?.accountsV2Deletion, trace },
+    );
+    trace.mark('done', { status: result.status });
+    return result;
+  } catch (error) {
+    trace.fail(error);
+    throw error;
+  }
 });
 
 export const accountDeleteCredentialStatus = onCall({

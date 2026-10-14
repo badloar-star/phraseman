@@ -78,7 +78,16 @@ export async function sweepAccountDeletionJobs(
   for (const doc of deletableExpiredJobs) batch.delete(doc.ref);
   for (const doc of expiredTombstones.docs) batch.delete(doc.ref);
   for (const doc of expiredAuthMarkers.docs) batch.delete(doc.ref);
-  if (recoverable.size + deletableExpiredJobs.length + expiredTombstones.size + expiredAuthMarkers.size > 0) {
+  const writes = recoverable.size + deletableExpiredJobs.length + expiredTombstones.size + expiredAuthMarkers.size;
+  // зачем (координатор 14.10): прогон крона в 17:36 не оставил ни строки — теперь итог виден всегда, даже «нечего делать».
+  console.log(JSON.stringify({
+    event: 'account_delete_sweep', tag: '[ACCOUNT-DELETE-SWEEP]',
+    due: due.size, stranded: stranded.size, expired: expired.size,
+    retried: recoverable.size, expiredJobsDeleted: deletableExpiredJobs.length,
+    tombstonesDeleted: expiredTombstones.size, authMarkersDeleted: expiredAuthMarkers.size,
+    committed: writes > 0,
+  }));
+  if (writes > 0) {
     await batch.commit();
   }
 }

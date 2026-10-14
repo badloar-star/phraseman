@@ -14,6 +14,7 @@ import { cloneElement, isValidElement } from 'react';
 import { Platform, Text, type TextStyle } from 'react-native';
 import { shouldInstallNativeTextRenderPatch } from './native_runtime_capability';
 import { APP_FONT_FAMILY } from './typography';
+import { REGISTERED_INTER_WEIGHTS, fontWeightPlanLine, mismatchedWeights, noteRequestedFontWeight } from './font_weights';
 
 /** Все веса выбираются внутри единого нативного семейства Inter. */
 export function interFamilyForWeight(_weight: TextStyle['fontWeight'] | undefined): string {
@@ -61,6 +62,9 @@ export function installInterFontPatch(): void {
   if (!shouldInstallNativeTextRenderPatch(Platform.OS)) return;
   if (patched) return;
   patched = true;
+  // зачем (координатор 14.10, «сперва логи»): какие начертания Inter зарегистрированы и во что превращается каждый заказанный вес — одна строка при старте.
+  const mismatches = mismatchedWeights().map(([wanted, got]) => `${wanted}→${got}`).join(' ');
+  console.log(`[FONT-WEIGHT] семейство=${APP_FONT_FAMILY} зарегистрировано=${REGISTERED_INTER_WEIGHTS.join(',')} план: ${fontWeightPlanLine()} | рисуется НЕ тем, что заказано: ${mismatches || 'нет'} (Android при ничьей берёт нижнее начертание)`); // guard-ok: диагностика типографики
 
   const TextAny = Text as unknown as {
     render?: (...args: unknown[]) => unknown;
@@ -87,6 +91,7 @@ export function installInterFontPatch(): void {
       return element;
     }
 
+    if (typeof __DEV__ !== 'undefined' && __DEV__) noteRequestedFontWeight(weight); // зачем: dev-сводка заказанных весов по первым отрисовкам ([FONT-WEIGHT])
     const fontFamily = interFamilyForWeight(weight);
 
     // fontFamily кладём ПЕРВЫМ — пользовательский style может переопределить.

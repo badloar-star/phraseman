@@ -16545,7 +16545,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-303",
+    "id": "PM-304",
     "epic": "E21",
     "title": "Подсказки Главной (functions/home_hints_catalog, draft): убрать категорию «arena» (Арена удалена, D83) и «Английский не кусается» ×~100 (D188: язык изучения — любой из пяти)",
     "requirement_ids": [],
@@ -16558,13 +16558,13 @@
     "spec": "docs/phraseman-2.0/D188_LANG_NAMES_INVENTORY_2026-10-14.md",
     "acceptance": [
       {
-        "id": "PM-303-A1",
+        "id": "PM-304-A1",
         "text": "В каталоге нет категории arena и нет названия языка в вариантах; тест home_hints под новое число идей с причиной",
         "accepted": false,
         "evidence": []
       },
       {
-        "id": "PM-303-A2",
+        "id": "PM-304-A2",
         "text": "Подтверждено, что до публикации владельцем (home_hints/published) подсказки людям не показываются",
         "accepted": false,
         "evidence": []

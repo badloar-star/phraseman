@@ -23,6 +23,8 @@ const S = {
   // зачем (координатор 11.10): тур обещал «пятеро», а правило 5 и сервер (spire_residents.ts SPIRE_ZONE_RATIO = 0.15) — 15%.
   tour3Title: ['Верхние 15% переходят на пик выше', 'Верхні 15% переходять на пік вище', 'The top 15% move up to the next peak', 'El 15% superior sube al siguiente pico', 'Os 15% do topo sobem para o próximo pico', '15% đầu lên đỉnh tiếp theo', '15% teratas naik ke puncak berikutnya', 'İlk %15 bir üst zirveye geçer', 'Górne 15% przechodzi na wyższy szczyt'],
   tour3Text: ['{a}, {b}, {c}… до {z}. Нижние 15% и все без ступеней спускаются. В понедельник все снова с 1 этажа.', '{a}, {b}, {c}… до {z}. Нижні 15% і всі без сходинок спускаються. У понеділок усі знову з 1 поверху.', '{a}, {b}, {c}… up to {z}. The bottom 15% and everyone with no steps move down. On Monday everyone starts again from floor 1.', '{a}, {b}, {c}… hasta {z}. El 15% inferior y quien no tenga escalones bajan. El lunes todos vuelven al piso 1.', '{a}, {b}, {c}… até {z}. Os 15% de baixo e quem não tem degraus descem. Na segunda todos voltam ao andar 1.', '{a}, {b}, {c}… đến {z}. 15% cuối và ai chưa có bậc nào xuống đỉnh dưới. Thứ Hai mọi người lại bắt đầu từ tầng 1.', '{a}, {b}, {c}… sampai {z}. 15% terbawah dan yang tanpa anak tangga turun. Hari Senin semua mulai lagi dari lantai 1.', '{a}, {b}, {c}… {z} kadar. Son %15 ve hiç basamağı olmayanlar iner. Pazartesi herkes yeniden 1. kattan başlar.', '{a}, {b}, {c}… aż do {z}. Dolne 15% i wszyscy bez stopni spadają. W poniedziałek wszyscy znów od 1 piętra.'],
+  // зачем (D190, владелец 14.10): в режиме «по монетам недели» вниз уходят 5 последних по монетам — текст тура по rankBy.
+  tour3TextCoins: ['{a}, {b}, {c}… до {z}. 5 последних по монетам за неделю спускаются. В понедельник все снова с 1 этажа.', '{a}, {b}, {c}… до {z}. 5 останніх за монетами тижня спускаються. У понеділок усі знову з 1 поверху.', '{a}, {b}, {c}… up to {z}. The bottom 5 by coins this week move down. On Monday everyone starts again from floor 1.', '{a}, {b}, {c}… hasta {z}. Los 5 últimos en monedas de la semana bajan. El lunes todos vuelven al piso 1.', '{a}, {b}, {c}… até {z}. Os 5 últimos em moedas da semana descem. Na segunda todos voltam ao andar 1.', '{a}, {b}, {c}… đến {z}. 5 người ít xu nhất trong tuần xuống đỉnh dưới. Thứ Hai mọi người lại bắt đầu từ tầng 1.', '{a}, {b}, {c}… sampai {z}. 5 terbawah menurut koin minggu ini turun. Hari Senin semua mulai lagi dari lantai 1.', '{a}, {b}, {c}… {z} kadar. Haftanın jetonlarında son 5 kişi iner. Pazartesi herkes yeniden 1. kattan başlar.', '{a}, {b}, {c}… aż do {z}. 5 ostatnich wg monet tygodnia spada. W poniedziałek wszyscy znów od 1 piętra.'],
   // ── Ступень (§4–6) ──
   step: ['Ступень', 'Сходинка', 'Step', 'Escalón', 'Degrau', 'Bậc', 'Anak tangga', 'Basamak', 'Stopień'],
   timerPaused: ['таймер на паузе', 'таймер на паузі', 'timer paused', 'tiempo en pausa', 'tempo pausado', 'đồng hồ tạm dừng', 'waktu dijeda', 'süre durdu', 'licznik wstrzymany'],
@@ -101,8 +103,20 @@ export const SPIRE_GAME_STRINGS: Readonly<Record<string, Nine>> = S;
 export type SpireGameStringKey = keyof typeof S;
 
 /** Строка игровой части Шпиля с подстановкой {name} → vars[name]. */
+/**
+ * D190: каким рубильником сейчас ранжирована комната (config/spire_v1.rankBy с недели W43) — текст правила тура 3 обязан
+ * совпадать с итогом недели. Ставит app/spire/use_spire_game.ts, где rankBy уже посчитан (0 чтений); по умолчанию — ступени.
+ * зачем через модуль, а не пропсом: экран тура и экран Пика сейчас правит другая сессия (зона Дизайна) — пропс добавим, когда
+ * файлы освободятся.
+ */
+let spireTextRankBy: 'steps' | 'coins' = 'steps';
+export function setSpireTextRankBy(rankBy: 'steps' | 'coins'): void {
+  spireTextRankBy = rankBy === 'coins' ? 'coins' : 'steps';
+}
+
 export function spireGameText(lang: Lang, key: SpireGameStringKey, vars?: Readonly<Record<string, string | number>>): string {
-  const [ru, uk, en, es, ptBR, vi, id, tr, pl] = S[key];
+  const effectiveKey: SpireGameStringKey = key === 'tour3Text' && spireTextRankBy === 'coins' ? 'tour3TextCoins' : key;
+  const [ru, uk, en, es, ptBR, vi, id, tr, pl] = S[effectiveKey];
   const raw = triLang(lang, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl });
   if (!vars) return raw;
   return raw.replace(/\{([a-z0-9]+)\}/giu, (m, name: string) => (name in vars ? String(vars[name]) : m));

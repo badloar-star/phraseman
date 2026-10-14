@@ -58,7 +58,10 @@ describe('dev_state?spireRankBy', () => {
     const stub = fs.readFileSync(path.join(__dirname, '..', 'store_release_stubs', 'dev_state', 'dev_spire_tier_stub.ts'), 'utf8');
     expect(stub).toContain('export function getDevSpireRankByOverride(): null { return null; }');
     const hook = fs.readFileSync(path.join(__dirname, '..', 'app', 'spire', 'use_spire_game.ts'), 'utf8');
-    expect(hook).toMatch(/const rankBy: SpireRankBy = devRankBy \?\? \(config && room \? spireEffectiveRankBy\(config, room\.weekId\) : 'steps'\)/);
+    // зачем (сторож «use_spire_game ≤ 400 строк»): расчёт режима вынесен в app/spire/spire_rank_by_resolve.ts.
+    expect(hook).toContain('const { rankBy, devRankBy } = spireResolveRankBy(config, room?.weekId ?? null);');
+    const resolve = fs.readFileSync(path.join(__dirname, '..', 'app', 'spire', 'spire_rank_by_resolve.ts'), 'utf8');
+    expect(resolve).toMatch(/const rankBy: SpireRankBy = devRankBy \?\? \(config && weekId \? spireEffectiveRankBy\(config, weekId\) : 'steps'\)/);
     expect(hook).toContain("fillMissingWeekCoinsForPreview: devRankBy === 'coins'");
   });
 });

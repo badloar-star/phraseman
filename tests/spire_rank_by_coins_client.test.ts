@@ -65,7 +65,10 @@ describe('D162 клиент: пьедестал и «Все участники»
     expect(spireMemberScored(member('x', 5, 0), 'steps')).toBe(true);
     // «Все участники» делят зоны тем же правилом (spireMemberScored) и тем же порядком (spireSortMembers)
     const all = fs.readFileSync(path.join(__dirname, '..', 'components', 'spire', 'SpireAllMembers.tsx'), 'utf8');
-    expect(all).toMatch(/const scored = spireMemberScored\(m, rankBy\)/);
+    // зачем (D190): функция зон вынесена в components/spire/spire_zones.ts (сторож D190 гоняет её без экранного кода).
+    const zones = fs.readFileSync(path.join(__dirname, '..', 'components', 'spire', 'spire_zones.ts'), 'utf8');
+    expect(zones).toMatch(/const scored = spireMemberScored\(m, rankBy\)/);
+    expect(all).toContain("import { spireZonesFor, type SpireZone } from './spire_zones';");
     expect(all).toMatch(/spireSortMembers\(members, rankBy\)/);
   });
 

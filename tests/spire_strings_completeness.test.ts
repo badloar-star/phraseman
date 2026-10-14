@@ -24,6 +24,7 @@ const EXPECTED_NUMBERS: Readonly<Record<string, readonly number[]>> = {
   tour2Title: [SPIRE_STEP_TASK_COUNT, SPIRE_STEP_MAX_HEARTS],
   tour3Title: [PERCENT],
   tour3Text: [PERCENT, 1], // «…начинают с 1 этажа»
+  tour3TextCoins: [5, 1], // D190: «5 последних по монетам за неделю спускаются… с 1 этажа»
   hearts: [SPIRE_STEP_MAX_HEARTS],
   failSub: [SPIRE_STEP_TASK_COUNT],
   newWeekFromOne: [1],

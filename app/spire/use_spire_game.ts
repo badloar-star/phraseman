@@ -15,7 +15,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, InteractionManager } from 'react-native';
 
-import { spireEffectiveRankBy, spireStepBudgetMs, type SpireConfigDoc, type SpireRankBy } from '../../modules/spire/config_contract';
+import { spireStepBudgetMs, type SpireConfigDoc } from '../../modules/spire/config_contract';
 import { spirePickStepPlan, type SpireStepPick } from '../../modules/spire/pack_plan';
 import {
   SPIRE_REPORT_FLUSH_INTERVAL_MS,
@@ -26,7 +26,7 @@ import {
   type SpireWeekLocal,
 } from '../../modules/spire/report_queue';
 import { spireBuildRoomRows, spireMyPlace, type SpireRoomRow } from '../../modules/spire/room_rows';
-import { getDevSpireRankByOverride } from '../dev_spire_tier';
+import { spireResolveRankBy } from './spire_rank_by_resolve';
 import type { SpireFriendChip } from '../../components/spire/spire_room_types';
 import { spireCurrentWeekKey, spireFloorOfSteps } from '../../components/spire/spire_tower_model';
 import { DebugLogger } from '../debug-logger';
@@ -45,7 +45,6 @@ import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
 import { peekSpireRoom, spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
 import type { SpireStepContext, SpireStepFinish } from './use_spire_step_runner';
 import { spireDismissWeekResult, spireLoadWeekResult, type SpireWeekResultView } from './spire_week_result_client';
-
 const LOG = '[SPIRE]';
 
 export type SpireStepSession = Readonly<{ pick: SpireStepPick; ctx: SpireStepContext; attempt: number; runId: string }>;
@@ -211,10 +210,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
 
   // ── Строки комнаты: чужие из кэша, свои — локальные (мгновенно после ступени) ──
   const room = roomLoad?.room ?? null;
-  // зачем (D162, координатор 13.10): один рубильник config/spire_v1.rankBy — из уже кэшируемого конфига (0 чтений); монеты — с недели W43.
-  // Кадры Сверки (14.10): dev_state?spireRankBy подменяет рубильник только для показа; в стор-сборке подмена всегда null.
-  const devRankBy = getDevSpireRankByOverride();
-  const rankBy: SpireRankBy = devRankBy ?? (config && room ? spireEffectiveRankBy(config, room.weekId) : 'steps');
+  const { rankBy, devRankBy } = spireResolveRankBy(config, room?.weekId ?? null); // зачем (D162/D190): рубильник места, dev-подмена Сверки, текст тура
   const rows: readonly SpireRoomRow[] | null = useMemo(() => {
     if (!room || !ids || !config) return null;
     const mine = week && week.weekKey === room.weekId ? week : null;

@@ -4,6 +4,8 @@
 // зачем: макет делит 30 строк на «Зона повышения / Остаются / Зона понижения». Размер
 // зоны — не константа 5, а SPIRE_ZONE_RATIO (15%) от размера комнаты, как у правил
 // сервера (spireLiveZoneSize); понижение забирает и всех с нулём ступеней (TOWER §4.5).
+// D190 (режим монет): зоны — та же функция, что у итога недели (shared/spire_coins_zones.ts): k лучших живых вверх,
+// k последних вниз, нули сверх k остаются; боты в зоны не попадают.
 // Ранга монеты у участников в данных комнаты нет — вместо монеты кружок с инициалом.
 // Пакет B (30.09): строки — живая комната недели (живые + боты формулой + свои локальные
 // ступени); шапка своя, без обрезки текста в одну строку (подпись «камень · N человек»).
@@ -13,28 +15,20 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
-import { SPIRE_ZONE_RATIO } from '../../modules/spire/residents';
+import { spireZonesFor, type SpireZone } from './spire_zones';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { spireCoinsCount, spireGroupThousands, spireStepsCount, spireStepsShort } from './spire_plurals';
-import { spireMemberScored, spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
+import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
+
+export { spireZonesFor };
 import { runeWord } from '../../constants/runes';
 
-type Zone = 'up' | 'stay' | 'down';
+type Zone = SpireZone;
 
-/** Раскладывает отсортированных участников по зонам (чистая функция — удобно тестировать). */
-export function spireZonesFor(sorted: readonly SpireMemberRow[], rankBy: SpireRankByView = 'steps'): readonly Zone[] {
-  const size = Math.max(1, Math.round(sorted.length * SPIRE_ZONE_RATIO));
-  return sorted.map((m, i) => {
-    const scored = spireMemberScored(m, rankBy);
-    if (i < size && scored) return 'up';
-    if (i >= sorted.length - size || !scored) return 'down';
-    return 'stay';
-  });
-}
 
 type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle?: string; onBack: () => void; rankBy?: SpireRankByView }>;
 

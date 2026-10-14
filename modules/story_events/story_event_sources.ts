@@ -4,7 +4,10 @@ import { isStreakMilestone } from '../../components/streak/moments/streak_milest
 import { DebugLogger } from '../../app/debug-logger';
 import { recordStoryEvent, type StoryRecordResult } from './story_events_store';
 
-type SpireWeekFact = Readonly<{ weekId: string; lang: string; promoted: boolean; demoted: boolean; prevTier: number; newTier: number; roomRank: number; roomTotal: number }>;
+type SpireWeekFact = Readonly<{
+  weekId: string; lang: string; promoted: boolean; demoted: boolean; prevTier: number; newTier: number; roomRank: number; roomTotal: number;
+  weekCoins?: number; promotionCoins?: number; rankBy?: 'steps' | 'coins';
+}>;
 
 /** Итог недели Шпиля: вверх / вниз / удержался + этаж. Тот же документ, что прочитал загрузчик, — новых чтений нет. */
 function spireWeekPayload(result: SpireWeekFact): Readonly<Record<string, string | number>> {
@@ -12,6 +15,9 @@ function spireWeekPayload(result: SpireWeekFact): Readonly<Record<string, string
   return {
     weekId: result.weekId, lang: result.lang, outcome, prevTier: result.prevTier, floor: result.newTier,
     place: result.roomRank, total: result.roomTotal,
+    // зачем (координатор 14.10): слайд «N место из M · X монет за неделю» — монеты недели решают переход (D162/D190);
+    // promotionCoins — настоящая награда сервера за повышение (config/spire_v1.coins.promotionBonus, по умолчанию 100), 0 если нет.
+    weekCoins: result.weekCoins ?? 0, promotionCoins: result.promotionCoins ?? 0, rankBy: result.rankBy ?? 'steps',
   };
 }
 

@@ -1,6 +1,7 @@
 export type OverlayKey =
   | 'onboardingWelcome'
   | 'authRecovery'
+  | 'spireWeekMoment'
   | 'arenaOpponentFound'
   | 'update'
   | 'releaseNotes'
@@ -44,6 +45,10 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'arenaOpponentFound',
   'update',
   'authRecovery',
+  // spireWeekMoment — окно итога недели Пика (D191, владелец 14.10): «при первом открытии после закрытия недели, раньше всех
+  // окон». Уступает только системным (приветствие новичка, обязательное обновление, восстановление входа). Рисуется в дереве,
+  // не нативным <Modal>, поэтому в NATIVE_MODAL_KEYS не входит.
+  'spireWeekMoment',
   'releaseNotes',
   'broadcast',
   'appMessageModal',
@@ -161,6 +166,7 @@ export function isForceEvictable(key: OverlayKey | null): boolean {
 export const EMPTY_OVERLAY_WANTS: WantsMap = {
   onboardingWelcome: false,
   authRecovery: false,
+  spireWeekMoment: false,
   arenaOpponentFound: false,
   update: false,
   releaseNotes: false,

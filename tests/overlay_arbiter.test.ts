@@ -210,6 +210,8 @@ describe('OverlayArbiter: исчерпывающая классификация 
   // Выселять по таймеру нельзя — потеряется награда или окно, которое юзер читает.
   const PROTECTED_REGISTRY: readonly OverlayKey[] = [
     'onboardingWelcome', 'authRecovery',
+    // spireWeekMoment — окно итога недели Пика (D191): закрывает человек («Играть» / крестик), выселять таймером нельзя.
+    'spireWeekMoment',
     'update', 'releaseNotes', 'broadcast', 'appMessageModal', 'personalAdminMessage', 'notifNudge',
     'introFullAccess', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'streakRevive',

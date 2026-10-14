@@ -26,6 +26,7 @@ const S = {
   weekUp: ['Ты поднимаешься в {league}', 'Ти піднімаєшся в {league}', 'You move up to {league}', 'Subes a {league}', 'Você sobe para {league}', 'Bạn thăng lên {league}', 'Kamu naik ke {league}', '{league} ligine yükseliyorsun', 'Awansujesz do {league}'],
   weekDown: ['Ты спускаешься в {league}', 'Ти спускаєшся в {league}', 'You move down to {league}', 'Bajas a {league}', 'Você desce para {league}', 'Bạn xuống {league}', 'Kamu turun ke {league}', '{league} ligine iniyorsun', 'Schodzisz do {league}'],
   weekPlace: ['{place} место из {total}', '{place} місце з {total}', 'Place {place} of {total}', 'Puesto {place} de {total}', 'Posição {place} de {total}', 'Hạng {place}/{total}', 'Peringkat {place} dari {total}', '{total} kişi arasında {place}. sıra', '{place}. miejsce z {total}'],
+  weekCoins: ['{coins} монет за неделю', '{coins} монет за тиждень', '{coins} coins this week', '{coins} monedas esta semana', '{coins} moedas na semana', '{coins} xu trong tuần', '{coins} koin minggu ini', 'bu hafta {coins} jeton', '{coins} monet w tygodniu'],
   // ── слайд «ранг монеты» ──
   rankOverline: ['Ранг монеты', 'Ранг монети', 'Coin rank', 'Rango de la moneda', 'Rank da moeda', 'Hạng đồng xu', 'Peringkat koin', 'Jeton rütbesi', 'Ranga monety'],
   rankTitle: ['Ранг {n}', 'Ранг {n}', 'Rank {n}', 'Rango {n}', 'Rank {n}', 'Hạng {n}', 'Peringkat {n}', 'Rütbe {n}', 'Ranga {n}'],

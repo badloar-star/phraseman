@@ -48,6 +48,9 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
   const outcome = String(event.payload.outcome ?? 'stay');
   const place = num(event.payload.place);
   const total = num(event.payload.total);
+  // зачем (Ядро 14.10): монеты недели и награда за повышение приходят в payload события; число награды — ТОЛЬКО из promotionCoins сервера (0 или нет поля — строки нет), «+100» в коде не живёт
+  const weekCoins = num(event.payload.weekCoins);
+  const promotionCoins = num(event.payload.promotionCoins);
   const skin = useMemo(() => spireSkinForTier(tier), [tier]);
   const ratio = SPIRE_TOWER_GEOM.height / SPIRE_TW;
   // высота под башню: экран − шапка/полосы (120) − низ (60) − блок текста (150) − воздух
@@ -58,6 +61,11 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
   const title = outcome === 'up' ? storyText(lang, 'weekUp', { league })
     : outcome === 'down' ? storyText(lang, 'weekDown', { league })
       : momentText(lang, 'stayTitle', { league: momentLeagueIn(lang, tier, league) });
+  const subParts = [
+    total > 0 && place > 0 ? storyText(lang, 'weekPlace', { place, total }) : null,
+    weekCoins > 0 ? storyText(lang, 'weekCoins', { coins: storyThousands(weekCoins) }) : null,
+    outcome === 'up' && promotionCoins > 0 ? `+${storyThousands(promotionCoins)}` : null,
+  ].filter((part): part is string => part !== null);
   return (
     <>
       <View testID="story-week-tower" style={{ width: towerW, height: Math.round(SPIRE_TOWER_GEOM.height * k) }}>
@@ -68,7 +76,7 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
       </View>
       <Text style={[s.overline, { color: p.accentText, marginTop: 14 }]}>{`${storyText(lang, 'weekResult')} · ${momentText(lang, 'floorTag', { n: 1 })}`}</Text>
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
-      {total > 0 && place > 0 ? <Text style={[s.sub, { color: p.textSecondary }]}>{storyText(lang, 'weekPlace', { place, total })}</Text> : null}
+      {subParts.length > 0 ? <Text style={[s.sub, { color: p.textSecondary }]}>{subParts.join(' \u00B7 ')}</Text> : null}
     </>
   );
 }

@@ -30,8 +30,8 @@ export type MomentDownProps = Readonly<{
   coinRank: number | null;
   /** «Играть»: будит монету и ведёт к игре. */
   onPlay: () => void;
-  /** «Напомнить вечером»: напоминание решает Ядро. */
-  onRemind: () => void;
+  /** «Напомнить вечером»: напоминание решает Ядро; нет колбэка (напоминаний ещё нет) — второй кнопки нет. */
+  onRemind?: () => void;
   testID?: string;
 }>;
 
@@ -108,8 +108,12 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, testID = 'momen
       </View>
       <View style={[s.dock, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>
         <V2Button label={momentText(lang, 'downWake')} icon="arrow-forward" onPress={() => { doWake('button'); onPlay(); }} testID={`${testID}-play`} />
-        <View style={s.gap} />
-        <V2Button label={momentText(lang, 'downLater')} variant="secondary" onPress={onRemind} testID={`${testID}-remind`} />
+        {onRemind ? (
+          <>
+            <View style={s.gap} />
+            <V2Button label={momentText(lang, 'downLater')} variant="secondary" onPress={onRemind} testID={`${testID}-remind`} />
+          </>
+        ) : null}
       </View>
     </MomentFullScreen>
   );

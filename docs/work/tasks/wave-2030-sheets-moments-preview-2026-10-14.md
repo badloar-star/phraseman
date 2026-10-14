@@ -7,6 +7,9 @@ Governance-ID: TG-6A68EB57D1F6
 Governance-ID: TG-A3FE2353CC11
 Governance-ID: TG-35D1134F2350
 Governance-ID: TG-811879DB5D46
+Governance-ID: TG-11906BF8CD97
+Governance-ID: TG-DF9F5621EBCF
+Governance-ID: TG-9779EECB6A7E
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» по решению координатора
 Related epic/enabler: [sheet-swipe-follow-finger-2026-10-14.md](sheet-swipe-follow-finger-2026-10-14.md), [moments-v3-peak-m01-m03-2026-10-14.md](moments-v3-peak-m01-m03-2026-10-14.md), PM-302

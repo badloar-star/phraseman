@@ -31,7 +31,8 @@ export type MomentStayProps = Readonly<{
   /** Монеты недели человека (все режимы, D162). */
   weekCoins: number;
   /** Сколько монет не хватило до топ-5. */
-  gapToTop5: number;
+  /** Сколько монет не хватило до топ-5. зачем (Ядро 14.10): сервер присылает границу зоны только с 17.10 — нет поля → строки «До топ-5 не хватило N» нет, остальное окно как есть. */
+  gapToTop5?: number;
   onPlay: () => void;
   testID?: string;
 }>;
@@ -59,7 +60,10 @@ function MomentStay({ lang, tier, coinRank, place, weekCoins, gapToTop5, onPlay,
 
   const cardStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, pop.value * 1.6), transform: [{ scale: 0.9 + 0.1 * pop.value }] }));
   const league = momentLeagueIn(lang, tier, spireTierName(tier, lang));
-  const [bodyBefore, bodyAfter] = momentText(lang, 'stayBody', { place, coins: momentNumber(weekCoins), gap: GAP_MARK }).split(GAP_MARK);
+  const hasGap = gapToTop5 !== undefined;
+  const [bodyBefore, bodyAfter] = hasGap
+    ? momentText(lang, 'stayBody', { place, coins: momentNumber(weekCoins), gap: GAP_MARK }).split(GAP_MARK)
+    : [momentText(lang, 'stayBodyNoGap', { place, coins: momentNumber(weekCoins) }), ''];
 
   return (
     <View style={s.root} testID={testID} accessibilityViewIsModal>
@@ -71,7 +75,7 @@ function MomentStay({ lang, tier, coinRank, place, weekCoins, gapToTop5, onPlay,
         <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{momentText(lang, 'stayTitle', { league })}</Text>
         <Text style={[s.body, { color: p.textSecondary }]}>
           {bodyBefore}
-          <Text style={[s.bold, { color: p.text }]}>{momentNumber(gapToTop5)}</Text>
+          {hasGap ? <Text style={[s.bold, { color: p.text }]}>{momentNumber(gapToTop5)}</Text> : null}
           {bodyAfter ?? ''}
         </Text>
         <View style={s.acts}>

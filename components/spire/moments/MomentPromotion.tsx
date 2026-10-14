@@ -56,13 +56,16 @@ export type MomentPromotionProps = Readonly<{
   fromTier: number;
   /** Лига, В КОТОРУЮ поднимаемся (индекс 0…11): имя в итоге и наряд башни. */
   toTier: number;
-  /** Строки комнаты недели по убыванию монет (в образце — первые 6; «Ты» среди них). */
-  rows: readonly MomentRoomRow[];
+  /**
+   * Строки комнаты недели по убыванию монет (в образце — первые 6; «Ты» среди них).
+   * зачем (Ядро/координатор 14.10): лестницу присылает сервер только с 17.10 — нет строк (старые итоги) → акт 1 пропускается, момент начинается с места и идёт к башне, ничего не выдумываем.
+   */
+  rows?: readonly MomentRoomRow[];
   /** Моё место в комнате (1…30). */
   myPlace: number;
   /** Мой ранг монеты 0…19 (null — базовая): монета-персонаж и маркер на этаже. */
   myCoinRank: number | null;
-  /** Монеты за повышение (D190: +100), их начисляет ночной крон — здесь только показ. */
+  /** Монеты за повышение — число сервера (promotionCoins итога недели), их начисляет ночной крон; здесь только показ. 0 — строки «+N монет за повышение» нет. */
   bonusCoins: number;
   onPlay: () => void;
   testID?: string;
@@ -126,7 +129,8 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const insets = useStableSafeAreaInsets();
   const { width: winW, height: winH } = useWindowDimensions();
   const skin = useMemo(() => spireSkinForTier(toTier), [toTier]);
-  const [phase, setPhase] = useState<Phase>(reduceMotion ? PHASE_END : PHASE_START);
+  const hasLadder = (rows?.length ?? 0) > 0;
+  const [phase, setPhase] = useState<Phase>(reduceMotion ? PHASE_END : hasLadder ? PHASE_START : { ...PHASE_START, act: 2 });
   const [rowH, setRowH] = useState(FALLBACK_ROW_H);
   const [fire, setFire] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -141,7 +145,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
 
   const league = spireTierName(toTier, lang);
   const fromLeague = spireTierName(fromTier, lang);
-  const shown = useMemo(() => rows.slice(0, 6), [rows]);
+  const shown = useMemo(() => (rows ?? []).slice(0, 6), [rows]);
 
   const clearTimers = useCallback(() => { timers.current.forEach(clearTimeout); timers.current = []; }, []);
 
@@ -154,13 +158,15 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   }, [clearTimers, finalIn, markerIn, tagIn, towerIn]);
 
   useEffect(() => {
-    if (__DEV__) console.log(`[MOMENT-PROMO] показ из=${fromTier} в=${toTier} место=${myPlace} строк=${rows.length} бонус=${bonusCoins} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    if (__DEV__) console.log(`[MOMENT-PROMO] показ из=${fromTier} в=${toTier} место=${myPlace} строк=${rows?.length ?? 0} лестница=${String(hasLadder)} бонус=${bonusCoins} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
     if (reduceMotion) { setFire(false); return undefined; }
     const T = MOMENT_PROMO_TIMELINE;
-    const at = (ms: number, fn: () => void) => { timers.current.push(setTimeout(fn, ms)); };
-    at(T.flicker, () => setPhase((v) => ({ ...v })));
-    at(T.zone, () => { setPhase((v) => ({ ...v, zone: true })); zoneTop.value = withTiming((rowH + ROW_GAP) * TOP5 - 3, { duration: ZONE_SWEEP_MS, easing: Easing.out(Easing.cubic) }); playMomentSound(MOMENT_SOUND_EVENTS.promoTick); void hapticTap(); });
-    at(T.topLine, () => { setPhase((v) => ({ ...v, topLine: true })); flash.value = withSequence(withTiming(1, { duration: 0 }), withDelay(FREEZE_MS, withTiming(0, { duration: 0 }))); playMomentSound(MOMENT_SOUND_EVENTS.promoFlip); void hapticMediumImpact(); });
+    // без лестницы акт 1 не играется: акт 2 («место») встаёт на 0,4 с, дальше тот же ритм образца (сдвиг всех последующих меток)
+    const shift = hasLadder ? 0 : T.act2 - 400;
+    const at = (ms: number, fn: () => void) => { timers.current.push(setTimeout(fn, Math.max(0, ms - shift))); };
+    if (hasLadder) at(T.flicker, () => setPhase((v) => ({ ...v })));
+    if (hasLadder) at(T.zone, () => { setPhase((v) => ({ ...v, zone: true })); zoneTop.value = withTiming((rowH + ROW_GAP) * TOP5 - 3, { duration: ZONE_SWEEP_MS, easing: Easing.out(Easing.cubic) }); playMomentSound(MOMENT_SOUND_EVENTS.promoTick); void hapticTap(); });
+    if (hasLadder) at(T.topLine, () => { setPhase((v) => ({ ...v, topLine: true })); flash.value = withSequence(withTiming(1, { duration: 0 }), withDelay(FREEZE_MS, withTiming(0, { duration: 0 }))); playMomentSound(MOMENT_SOUND_EVENTS.promoFlip); void hapticMediumImpact(); });
     at(T.act2, () => { setPhase((v) => ({ ...v, act: 2, cheer: true })); playMomentSound(MOMENT_SOUND_EVENTS.promoCorrect); void hapticSuccess(); });
     at(T.act3, () => {
       setPhase((v) => ({ ...v, act: 3, tower: true, skip: false }));
@@ -247,7 +253,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
             {phase.final ? (
               <Animated.View style={[s.final, { paddingBottom: Math.max(insets.bottom, 12) + 24 }, finalStyle]} testID={`${testID}-final`}>
                 <Text accessibilityRole="header" style={[s.hXl, { color: p.text }]}>{league}</Text>
-                <Text style={[s.pBonus, { color: p.textSecondary }]}>{momentText(lang, 'promoBonus', { n: bonusCoins })}</Text>
+                {bonusCoins > 0 ? <Text style={[s.pBonus, { color: p.textSecondary }]}>{momentText(lang, 'promoBonus', { n: bonusCoins })}</Text> : null}
                 <View style={s.playWrap}>
                   <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={onPlay} testID={`${testID}-play`} />
                 </View>

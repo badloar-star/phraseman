@@ -184,8 +184,10 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
     walk('components');
     // зачем: сессия «Серия» (components/streak/moments) осознанно берёт общие эффекты, раскладку и флаг моментов отсюда — это не показ момента Пика; всё остальное по-прежнему запрещено
     // и dev-маршрут app/dev_moments_preview.tsx — вход Сверки на моках (только __DEV__, в стор-сборке вырезан; сторож tests/moments_dev_preview_release_guard.test.mjs)
+    // и Главная (app/(tabs)/home.tsx): лениво монтирует окно итога недели SpireWeekMomentHost по слоту Ядра (D191, флаг moments_v3)
+    // и флаг moments_v3 в гейте Ядра (spire_week_moment_gate), «С возвращением» (WelcomeBackMoment берёт раскладку и эффекты), окно «Хватает на ранг» (coin_rank_moments)
     // и сторис по аватару (components/stories) — берёт готовые строки итога недели (moments_strings), не показывает сам момент
-    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && f !== 'app/dev_moments_preview.tsx')).toEqual([]);
+    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && !f.startsWith('components/coin_rank_moments/') && !['app/dev_moments_preview.tsx', 'app/(tabs)/home.tsx', 'app/spire/spire_week_moment_gate.ts', 'components/moments/WelcomeBackMoment.tsx'].includes(f))).toEqual([]);
   });
 
   it('тайминги эталона и порог башни: монета ранга 5 в образце, «Играть» с стрелкой на итоге, дрожь и фейерверк на 8,8 с', () => {

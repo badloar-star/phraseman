@@ -177,6 +177,17 @@ describe('кадры четырёх видов событий', () => {
     expect(screen.getByTestId('story-week-tower')).toBeTruthy();
   });
 
+  it('итог недели с монетами недели и наградой сервера: «3 место из 30 · 470 монет за неделю · +100»; награда только из promotionCoins', async () => {
+    await render(<StorySlide event={ev('spire_week', { weekId: 'w3', lang: 'en', outcome: 'up', prevTier: 0, floor: 1, place: 3, total: 30, weekCoins: 470, promotionCoins: 100 }, 'w3')} lang="ru" coinRank={5} />);
+    expect(screen.getByText(/3 место из 30 \u00B7 470 монет за неделю \u00B7 \+100/)).toBeTruthy();
+  });
+
+  it('награды за повышение нет (promotionCoins 0) или итог не «вверх» → «+N» не показываем', async () => {
+    await render(<StorySlide event={ev('spire_week', { weekId: 'w4', lang: 'en', outcome: 'stay', prevTier: 1, floor: 1, place: 8, total: 30, weekCoins: 300, promotionCoins: 100 }, 'w4')} lang="ru" coinRank={5} />);
+    expect(screen.queryByText(/\+100/)).toBeNull();
+    expect(screen.getByText(/8 место из 30 \u00B7 300 монет за неделю/)).toBeTruthy();
+  });
+
   it('итог недели без поля total: строки «место из» нет (ничего не выдумываем)', async () => {
     await render(<StorySlide event={ev('spire_week', { weekId: 'w2', lang: 'ru', outcome: 'stay', prevTier: 1, floor: 1, place: 8 }, 'w2')} lang="ru" coinRank={5} />);
     expect(screen.getByText('Остаёшься в Базальте')).toBeTruthy();

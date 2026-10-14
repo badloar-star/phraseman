@@ -56,7 +56,11 @@ import { usePerfR1Probe } from '../perf_r1_probe';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
-import { useOverlayVisible } from '../../components/OverlayArbiter';
+import { useOverlayActiveKey, useOverlayVisible } from '../../components/OverlayArbiter';
+import { useSpireWeekMoment } from '../spire/use_spire_week_moment';
+import { useWelcomeBackMoment } from '../../hooks/use_welcome_back_moment';
+import { peekEnergy } from '../energy_peek_cache';
+import { SheetSwipeRoot } from '../../components/modal_fx/SheetSwipeClose';
 import {
   homeArrivalEffect,
   markHomeArrivalPlayed,
@@ -138,6 +142,10 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // за�
 // Окна — ленивые компоненты с прежними именами, монтируются только после первого открытия (и остаются, чтобы
 // проиграть закрытие); их модули прогреваются после первого кадра (prewarmHomeDeferredModules), поэтому первое
 // открытие не ждёт загрузки. Вид первого кадра не меняется: эти окна на нём закрыты.
+// зачем (D191, владелец 14.10): окно итога недели (m01–m03) тяжёлое (башня, SVG, фейерверк) и нужно раз в неделю — грузится лениво и только когда хук Ядра дал слот
+const SpireWeekMomentHost = lazy(() => import('../../components/spire/moments/SpireWeekMomentHost'));
+// зачем (D193, владелец 14.10): «С возвращением» (m21) — раз после долгой отлучки; грузится лениво, когда хук Авторизации дал слот
+const WelcomeBackMoment = lazy(() => import('../../components/moments/WelcomeBackMoment'));
 const loadPremiumCelebrationModal = () => import('../../components/PremiumCelebrationModal');
 const loadVipCelebrationModal = () => import('../../components/VipCelebrationModal');
 const loadSurveySheetModal = () => import('../../components/survey/SurveySheetModal');
@@ -641,6 +649,34 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // шторка монтируется только пока открыта (hooks/use_home_survey_entry.ts). Прежняя цепочка на
     // каждый фокус Главной удалена.
     const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);
+    // зачем (D191, Ядро 14.10): окно итога недели берёт слот в общей очереди окон, «показано» отмечает хук; здесь только точка монтирования
+    const weekMoment = useSpireWeekMoment({ uiLang: lang, studyTarget: String(studyTarget), tabEnabled: spireTabEnabled, active: homeRuntimeActive });
+    // зачем (координатор 14.10): авто-пейвол «серия» шёл мимо очереди окон и мог въехать поверх окна недели / «С возвращением» — перед push ждём свободный слот, показываем один раз после ([PAYWALL-AUTO])
+    // зачем (D193, Авторизация 14.10): «С возвращением» стоит в той же очереди окон сразу после итога недели; энергия — из памяти (peek), без чтений
+    const energyPeekNow = peekEnergy();
+    const welcomeBack = useWelcomeBackMoment({
+        studyTarget: String(studyTarget),
+        coinRank: isValidCoinRank(myCoinRank) ? myCoinRank : null,
+        energy: energyPeekNow ? { current: energyPeekNow.energy, max: energyPeekNow.maxEnergy } : null,
+        active: homeRuntimeActive,
+    });
+    const overlayActiveKey = useOverlayActiveKey();
+    const overlayActiveKeyRef = useRef(overlayActiveKey);
+    overlayActiveKeyRef.current = overlayActiveKey;
+    const pendingStreakPaywallRef = useRef<Readonly<{ streak: number; day: string }> | null>(null);
+    const pushStreakPaywall = useCallback(async (streak: number, day: string): Promise<void> => {
+        // зачем: отметка «показан сегодня» ставится В МОМЕНТ реального показа, а не при решении — отложенный пейвол не теряется
+        await AsyncStorage.setItem('streak_paywall_shown', day);
+        DebugLogger.info('[PAYWALL-AUTO]', `push: слот свободен, серия=${streak} день=${day}`);
+        router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streak) } } as any);
+    }, [router]);
+    useEffect(() => {
+        const pending = pendingStreakPaywallRef.current;
+        if (overlayActiveKey !== null || !pending || !homeRuntimeActive) return;
+        pendingStreakPaywallRef.current = null;
+        DebugLogger.info('[PAYWALL-AUTO]', `слот освободился (был занят), показываем отложенный пейвол: серия=${pending.streak}`);
+        void pushStreakPaywall(pending.streak, pending.day).catch(noteSwallowedHandler('home:streakPaywall.deferredPush'));
+    }, [homeRuntimeActive, overlayActiveKey, pushStreakPaywall]);
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
         if (firstHomeFrameEmittedRef.current)
@@ -1933,8 +1969,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     const today = getLocalDayKey();
                     const shownToday = await AsyncStorage.getItem('streak_paywall_shown');
                     if (shownToday !== today) {
-                        await AsyncStorage.setItem('streak_paywall_shown', today);
-                        router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streakBefore) } } as any);
+                        if (overlayActiveKeyRef.current !== null) {
+                            pendingStreakPaywallRef.current = { streak: streakBefore, day: today };
+                            DebugLogger.info('[PAYWALL-AUTO]', `слот окон занят (${String(overlayActiveKeyRef.current)}) — пейвол откладываем до освобождения, серия=${streakBefore}`);
+                        } else {
+                            await pushStreakPaywall(streakBefore, today);
+                        }
                     }
                 }
             }
@@ -2612,6 +2652,22 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 });
             });
         }}/></Suspense>) : null}
+      {weekMoment.visible && weekMoment.decision ? (<Suspense fallback={null}><SpireWeekMomentHost lang={lang} decision={weekMoment.decision} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} onClose={weekMoment.close} onRemind={weekMoment.remind.available ? weekMoment.remind.schedule : undefined} /></Suspense>) : null}
+      {welcomeBack.visible && welcomeBack.decision ? (
+        <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={welcomeBack.close}>
+          <SheetSwipeRoot>
+            <Suspense fallback={null}>
+              <WelcomeBackMoment
+                lang={lang}
+                coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null}
+                decision={welcomeBack.decision}
+                onCards={() => { welcomeBack.close(); nav.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'welcome_back' } } as never); }} /* зачем: тот же путь, что у плитки «Сохранённые» на Главной */
+                onHome={welcomeBack.close}
+              />
+            </Suspense>
+          </SheetSwipeRoot>
+        </Modal>
+      ) : null}
       {vipCelebrationMounted ? (<Suspense fallback={null}><VipCelebrationModal visible={vipCelebrationOverlayVisible} onClose={() => {
             setVipCelebrationVisible(false);
             const marker = vipCelebrationMarker;

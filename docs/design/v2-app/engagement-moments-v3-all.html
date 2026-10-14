@@ -1038,14 +1038,14 @@ const LDICT = {
   'Where is the station?': { es: '¿Dónde está la estación?', fr: 'Où est la gare ?', de: 'Wo ist der Bahnhof?', it: 'Dov’è la stazione?' },
   'Can I have the bill, please?': { es: '¿Me trae la cuenta, por favor?', fr: 'L’addition, s’il vous plaît.', de: 'Die Rechnung, bitte.', it: 'Il conto, per favore.' },
   'Push the envelope': { es: 'Caballo grande, ande o no ande', fr: 'Avoir le cafard', de: 'Auf dem Holzweg sein', it: 'Essere al verde' },
-  'Толкать конверт': { es: 'Большая лошадь — идёт она или нет', fr: 'Иметь таракана', de: 'Быть на лесовозной дороге', it: 'Быть на зелёном' },
+  'Толкать конверт': { es: 'Буквально: «Большая лошадь — идёт она или нет».', fr: 'Буквально: «Иметь таракана».', de: 'Буквально: «Быть на лесовозной дороге».', it: 'Буквально: «Быть на зелёном».' }, // зачем: перевод из банка фраз дня — с «Буквально: «…»» (кадр Сверки ES)
 };
 const LKEYS = Object.keys(LDICT).sort((a, b) => b.length - a.length);
 window.EMLANG = (t) => { const L = LANGS[lang]; if (L === 'en' || !t) return t; let out = t; LKEYS.forEach((k) => { const v = LDICT[k][L]; if (v && out.includes(k)) out = out.split(k).join(v); }); return out; };
 const applyLang = (root) => root.querySelectorAll('.em-ph, .ph2').forEach((ph) => { const w = document.createTreeWalker(ph, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { if (n._src === undefined) { if (!LKEYS.some((k) => n.textContent.includes(k))) continue; n._src = n.textContent; } n.textContent = window.EMLANG(n._src); } });
 const lbtn = document.getElementById('em-lang');
 const LESSON_M = ['m08', 'm09', 'm10', 'm15']; const DIALOG_M = ['m16', 'm17', 'm18'];
-const gates = () => { const L = LANGS[lang]; document.body.classList.toggle('no-lessons', L !== 'en'); document.body.classList.toggle('no-dialogs', L === 'it');
+const gates = () => { const L = LANGS[lang]; document.body.dataset.lang = L; document.body.classList.toggle('no-lessons', L !== 'en'); document.body.classList.toggle('no-dialogs', L === 'it');
   [[LESSON_M, 'gate-lessons', 'Уроков на этом языке в приложении нет — момент не показывается'], [DIALOG_M, 'gate-dialogs', 'Диалогов на итальянском в приложении нет — момент не показывается']].forEach(([ids, cls, txt]) => ids.forEach((id) => { const sec = document.getElementById(id); if (!sec) return; sec.classList.add(cls); sec.querySelectorAll('.em-ph').forEach((ph) => { if (!ph.querySelector('.langgate')) ph.insertAdjacentHTML('beforeend', `<div class="langgate">${txt}</div>`); }); })); };
 lbtn.addEventListener('click', () => { lang = (lang + 1) % LANGS.length; lbtn.textContent = `Язык изучения: ${LANGS[lang].toUpperCase()}`; applyLang(document); gates(); });
 document.body.addEventListener('click', (e) => { if (e.target.closest('[data-replay]')) setTimeout(() => { applyLang(document); gates(); }, 10); });

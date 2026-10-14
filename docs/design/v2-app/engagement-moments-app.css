@@ -67,7 +67,12 @@
 .em-ph .cta.ghost, .em-ph .cta.tone { background: var(--btn); color: var(--tx); box-shadow: var(--sh2); height: 52px; font-weight: 700; }
 .em-ph .cta.danger { background: var(--danger); color: var(--danger-ink); box-shadow: var(--sh2); }
 .em-ph .cta.dis { background: var(--btn-dis); color: var(--ink-dis); box-shadow: none; opacity: 1; }
-.em-ph .cta .ar, .em-ph .cta .ar-io { position: absolute; right: 22px; }
+/* зачем (координатор 14.10, решение «б»: образцы под код): кнопка = V2Button — иконка сразу за текстом (gap 10), а не у правого края;
+   тень действия = actionShadowStyle (0 14 24 -10 accent·0x99), второстепенная = nestedShadowStyle. Правило kit.css .cta:not(.gh):not(.dis):not(.red)
+   (блик inset + чёрная тень) перебивало тень моментов по специфичности — в коде такого блика нет. */
+.em-ph .cta .ar, .em-ph .cta .ar-io { position: static; }
+.em-ph .cta:not(.gh):not(.dis):not(.red):not(.ghost):not(.tone):not(.danger) { box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--cta) 60%, transparent); }
+.em-ph .cta.ghost:not(.gh):not(.dis):not(.red), .em-ph .cta.tone:not(.gh):not(.dis):not(.red), .em-ph .cta.danger:not(.gh):not(.dis):not(.red) { box-shadow: var(--sh2); }
 .em-ph .cta + .cta { margin-top: 12px; }
 .em-ph .xbtn { background: var(--control); color: var(--tx); box-shadow: var(--sh2); width: 44px; height: 44px; }
 /* круглая кнопка-значок (V2IconButton 44, glassRaised) */
@@ -232,3 +237,16 @@
 /* зачем (D143, home.tsx homeV2FillerTiles): запасные плитки «Пик» / «Наборы из видео» видны только когда основного раздела у языка нет — включает шлюз языка страницы */
 .em-ph [data-filler] { display: none !important; }
 /* зачем (Темы 702943d94, 14.10): вторичная кнопка в светлых цветных градиентах несёт тон темы (Аврора #93B2A9, Ирис #ADAEBF), отключённая — в тон; пересчитано deriveLiquidGlassButtonRoles при насыщенности 1 */
+
+/* зачем (координатор 14.10, «образцы под код»): ThemedArtLayers — слой .accent в цвет темы (artAccentTint: тёмная — accent, светлая — accentBright = --acc-text) */
+.em-ph { --art-acc: var(--acc); } .em-ph.lite { --art-acc: var(--acc-text); }
+.em-ph .artw { position: relative; display: inline-block; } .em-ph .artw.l { display: none; } .em-ph.lite .artw.d { display: none; } .em-ph.lite .artw.l { display: inline-block; }
+.em-ph .artw .artacc { position: absolute; inset: 0; background: var(--art-acc); pointer-events: none; }
+/* лента «Видео» по языку изучения: ES — превью испанского канала (кадр Сверки home_full_14_10/home_es_0) */
+body[data-lang="es"] .em-ph [data-home-video] [data-thumb="1"] { background: #000 url(assets/home_video/es_rail_1.jpg) center/cover !important; }
+body[data-lang="es"] .em-ph [data-home-video] [data-thumb="2"] { background: #000 url(assets/home_video/es_rail_2.jpg) left center/auto 138px no-repeat !important; }
+/* зачем: значки в плитках заданий и кнопках «Фразы дня» — iconTint (V2IconTile, DailyPhraseCard): accentBright в тёмной, accentText в светлой */
+.em-ph { --icon-tint: var(--acc); } .em-ph.lite { --icon-tint: var(--acc-text); }
+.em-ph [data-task] .tile .io, .em-ph [data-home-phrase] .ib .io { color: var(--icon-tint); }
+/* зачем: плитка значка задания (V2IconTile bgAlpha=HOME_PLATE_ALPHA) и круглые кнопки «Фразы дня» (v2Round) — glassRaised = opaqueControl·0.92 на 0.5 */
+.em-ph [data-task] .tile, .em-ph [data-home-phrase] .ib { background: color-mix(in srgb, var(--control) 46%, transparent) !important; }

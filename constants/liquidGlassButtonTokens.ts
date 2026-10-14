@@ -69,13 +69,26 @@ function underSurfaces(t: Surfaces): readonly string[] {
 }
 const minOver = (color: string, under: readonly string[]): number => Math.min(...under.map((s) => ratio(color, s)));
 
-/** Вторичная заливка: сдвигаем `opaqueControl` к тексту темы, пока она отличима от поверхностей и подпись читается. */
+const chroma = (hex: string): number => { const c = rgb(hex); return (Math.max(...c) - Math.min(...c)) / 255; };
+/** Нейтральная серая поверхность при цветном акценте темы (светлые градиентные темы на «Акценте/Максимуме»): вторичная кнопка на ней читалась как отключённая. */
+const NEUTRAL_CHROMA_MAX = 0.03;
+const ACCENT_CHROMA_MIN = 0.05;
+const TONE_SHARE = 0.3;
+
+/**
+ * Вторичная заливка: сдвигаем `opaqueControl` к тексту темы, пока она отличима от поверхностей и подпись читается.
+ * зачем (координатор 14.10, находка Макетов): в светлых градиентных темах opaqueControl нейтрально-серый (#AAAAAD), рядом с отключённой (#D5D5D6) вторичная читалась как ОТКЛЮЧЁННАЯ —
+ * владелец такое уже браковал. Если поверхность нейтральна, а акцент темы цветной, подмешиваем акцент (и в тёмный конец сдвига) — вторичная получает тон темы; «Спокойно» (акцент нейтрален) не меняется.
+ */
 function secondaryFill(t: Surfaces): string {
   const under = underSurfaces(t);
-  let best = hex6(t.opaqueControl);
+  const tone = chroma(t.opaqueControl) < NEUTRAL_CHROMA_MAX && chroma(t.cta) >= ACCENT_CHROMA_MIN;
+  const start = tone ? mix(t.opaqueControl, t.cta, TONE_SHARE) : hex6(t.opaqueControl);
+  const toward = tone ? mix(t.text, t.cta, 0.2) : t.text;
+  let best = start;
   let bestScore = -1;
   for (let k = 0; k <= 0.9001; k += 0.02) {
-    const c = mix(t.opaqueControl, t.text, k);
+    const c = mix(start, toward, k);
     const rs = minOver(c, under);
     const rt = ratio(t.text, c);
     if (rs >= SURFACE_MIN && rt >= TEXT_MIN) return c;

@@ -45,6 +45,43 @@ describe('токены кнопок × все темы', () => {
       }
     }
   }
+  // зачем (координатор 14.10, находка Макетов): «Удалить аккаунт» не должна выглядеть как обычная серая кнопка — dangerFill во ВСЕХ темах краснеет (оттенок красного, не серый);
+  // вторичная в цветных градиентных темах несёт тон темы и не читается как отключённая.
+  const hue = (hex: string): number => {
+    const [r, g, b] = rgb(hex).map((v) => v / 255) as [number, number, number];
+    const mx = Math.max(r, g, b); const mn = Math.min(r, g, b); const d = mx - mn;
+    if (d === 0) return -1;
+    const h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    return (h * 60 + 360) % 360;
+  };
+  const chroma = (hex: string): number => { const c = rgb(hex); return (Math.max(...c) - Math.min(...c)) / 255; };
+  it('опасная кнопка во всех 23 темах — красная (hue ≤ 20° или ≥ 340°, цветность ≥ 0,08), подпись ≥ 4,5', () => {
+    const wrong: string[] = [];
+    for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
+      for (const appearance of ['dark', 'light'] as const) {
+        for (const intensity of [0, 0.25, 0.5, 0.75, 1]) {
+          const t = liquidGlassTokens(id, { intensity, appearance } as never) as unknown as Tok;
+          const h = hue(t.dangerFill!);
+          if (!(h >= 0 && (h <= 20 || h >= 340)) || chroma(t.dangerFill!) < 0.08) wrong.push(`${id}|${appearance}|${intensity} dangerFill ${t.dangerFill} hue=${h.toFixed(0)} chroma=${chroma(t.dangerFill!).toFixed(2)}`);
+          if (ratio(t.dangerInk!, t.dangerFill!) < 4.5) wrong.push(`${id}|${appearance}|${intensity} подпись опасной < 4,5`);
+        }
+      }
+    }
+    expect(wrong).toEqual([]);
+  });
+  it('в светлых цветных градиентных темах (акцент/максимум) вторичная кнопка несёт тон темы (цветность ≥ 0,04) и заметно отличается от отключённой (≥ 1,25)', () => {
+    const wrong: string[] = [];
+    for (const id of (LIQUID_GLASS_THEME_IDS as readonly string[]).filter((x) => x.startsWith('grad_'))) {
+      for (const appearance of ['light'] as const) { // светлое оформление: там поверхность кнопки была нейтрально-серой; тёмные градиенты уже несут тон
+        for (const intensity of [0.5, 0.75, 1]) {
+          const t = liquidGlassTokens(id, { intensity, appearance } as never) as unknown as Tok;
+          if (chroma(t.buttonFill!) < 0.04) wrong.push(`${id}|${appearance}|${intensity} вторичная ${t.buttonFill} серая (цветность ${chroma(t.buttonFill!).toFixed(3)})`);
+          if (ratio(t.buttonFill!, t.buttonFillDisabled!) < 1.25) wrong.push(`${id}|${appearance}|${intensity} вторичная ≈ отключённая ${ratio(t.buttonFill!, t.buttonFillDisabled!).toFixed(2)}`);
+        }
+      }
+    }
+    expect(wrong).toEqual([]);
+  });
   it('все пары проходят пороги', () => {
     expect(bad).toEqual([]);
   });

@@ -97,6 +97,13 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   }, [cues]);
 
   const has = (id: string) => done.has(id);
+  // зачем (аудит Optimistic UI, 14.10): двойной тап по «Дальше» не должен звать onDone дважды (хозяин может закрывать окно и двигать очередь) — один вызов на показ
+  const finishedRef = useRef(false);
+  const finish = useCallback(() => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    onDone();
+  }, [onDone]);
   const baseStage = streakFlameStage(milestone);
   const title = streakMilestoneTitle(lang, milestone);
   const sub = streakMilestoneSubline(lang, milestone);
@@ -116,7 +123,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   );
   const foot = (
     <View style={s.foot}>
-      <V2Button label={streakMomentText(lang, 'next')} onPress={onDone} icon="arrow-forward" testID={`${testID}-next`} />
+      <V2Button label={streakMomentText(lang, 'next')} onPress={finish} icon="arrow-forward" testID={`${testID}-next`} />
       {showShare ? <V2Button label={streakMomentText(lang, 'share')} onPress={onShare} variant="secondary" testID={`${testID}-share`} /> : null}
     </View>
   );

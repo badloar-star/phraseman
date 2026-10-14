@@ -296,6 +296,7 @@ describe.each(Object.keys(PALETTES))('рубежи серии — тема «%s�
       expect(screen.getByTestId('streak-milestone-toast')).toBeTruthy();
     } else {
       await fireEvent.press(screen.getByTestId('streak-milestone-screen-next'));
+      await fireEvent.press(screen.getByTestId('streak-milestone-screen-next')); // двойной тап: onDone ровно один раз
       expect(onDone).toHaveBeenCalledTimes(1);
       const hasShare = screen.queryByTestId('streak-milestone-screen-share') !== null;
       expect(hasShare).toBe([100, 365, 500, 730, 1000].includes(m));

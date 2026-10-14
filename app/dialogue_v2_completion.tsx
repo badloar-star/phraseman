@@ -405,7 +405,7 @@ export default function DialogueV2CompletionRoute() {
                     accessibilityRole="button"
                     accessibilityLabel={labels.repeatMistakes}
                     onPress={dialogMistakes.openPractice}
-                    style={({ pressed }) => [styles.repeatMistakes, { backgroundColor: glass.opaqueControl }, pressed && { opacity: 0.7 }]}
+                    style={({ pressed }) => [styles.repeatMistakes, { backgroundColor: glass.buttonFill }, pressed && { opacity: 0.7 }]}
                   >
                     <Ionicons name="refresh" size={18} color={glass.text} />
                     <Text maxFontSizeMultiplier={1.3} style={[styles.repeatMistakesText, { color: glass.text }]}>{labels.repeatMistakes}</Text>

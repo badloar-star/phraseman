@@ -150,7 +150,8 @@ function SpeakMicButtonBase({
         <Reanimated.View
           style={[
             styles.btn,
-            { backgroundColor: disabled ? g.opaqueControl : g.cta, opacity: disabled ? 0.55 : 1, boxShadow: actionBoxShadow({ accent: g.cta }) },
+            // зачем (владелец 13.10, №35): отключённая — токен buttonFillDisabled (читается и отличима от активной), а не «45–55 % прозрачности»; главная — ctaFill
+            { backgroundColor: disabled ? g.buttonFillDisabled : g.ctaFill, boxShadow: actionBoxShadow({ accent: g.ctaFill }) },
             btnStyle,
           ]}
         >

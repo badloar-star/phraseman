@@ -250,7 +250,7 @@ export default function FeedbackRatingCard({
                 testID={`${testID}-send-visual`}
                 style={[
                   styles.liquidSendVisual,
-                  { backgroundColor: sendDisabled ? glass.opaqueControl : glass.cta },
+                  { backgroundColor: sendDisabled ? glass.buttonFillDisabled : glass.ctaFill }, // зачем (владелец 13.10, №35): токены кнопок темы
                 ]}
               >
                 <Text

@@ -9,7 +9,7 @@ const SKIP = /node_modules|[\\/]\.|\.test\.|__tests__|dev_|[\\/]dev[\\/]|\.d\.ts
 const BTN = /^(Pressable|TouchableOpacity|TouchableHighlight|DuoPressable|V2Pressable|PressableHybrid|AnimatedPressable|Reanimated\.Pressable)$/;
 
 /** Потолок на 14.10 после первого прохода (замер Темами). Уменьшай при правке, увеличивать нельзя. */
-const CEILING = 7; // зачем: остаток после первого прохода — 3 в файлах, ждавших коммита раунда 2 (будут исправлены), 4 в RegistrationPromptModal (чужие незакоммиченные правки)
+const CEILING = 0; // зачем: после батча 1 и добивания 7 остатков кнопок на opaqueControl не осталось (14.10)
 
 function listTsx(dir: string, out: string[] = []): string[] {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

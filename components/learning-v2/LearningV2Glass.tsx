@@ -242,8 +242,9 @@ export const Lv2Cta = memo(function Lv2Cta({
   const g = useLv2Glass();
   // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
   // зачем (владелец 12.10, «Тень»): контурная кнопка `.cta.gh` стала плашкой с малой тенью; кнопка действия — цветная тень темы
-  const bg = disabled ? g.opaqueControl : ghost ? g.plateFillFrom : g.accent;
-  const ink = disabled ? g.mutedText : ghost ? g.text : g.accentInk;
+  // зачем (владелец 13.10, №35): токены кнопок темы — отключённая buttonFillDisabled/buttonInkDisabled (>= 4,5), вторичная buttonFill (>= 1,6 к поверхностям), главная ctaFill
+  const bg = disabled ? g.buttonFillDisabled : ghost ? g.buttonFill : g.ctaFill;
+  const ink = disabled ? g.buttonInkDisabled : ghost ? g.text : g.accentInk;
   return (
     <Pressable
       testID={testID}

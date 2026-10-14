@@ -122,7 +122,8 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
   const primary = variant === 'primary';
   const height = compact ? 44 : 48;
   // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
-  const ink = disabled ? glass.mutedText : primary ? glass.accentInk : glass.text;
+  // зачем (владелец 13.10, №35 «кнопки не сливаются»): заливки — токены кнопок темы: отключённая buttonFillDisabled/buttonInkDisabled (подпись >= 4,5), вторичная buttonFill, главная ctaFill
+  const ink = disabled ? glass.buttonInkDisabled : primary ? glass.accentInk : glass.text;
   return (
     <PressableHybrid
       testID={testID}
@@ -144,7 +145,7 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
         justifyContent: 'center',
         gap: 10,
         overflow: 'hidden',
-        backgroundColor: disabled ? glass.opaqueControl : primary ? glass.accent : glass.opaqueControl,
+        backgroundColor: disabled ? glass.buttonFillDisabled : primary ? glass.ctaFill : glass.buttonFill,
         boxShadow: primary && !disabled ? undefined : nestedBoxShadow(glass), // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (ghost-кнопка)
       }}
     >

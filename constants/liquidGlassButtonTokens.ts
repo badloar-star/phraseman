@@ -37,6 +37,7 @@ const SURFACE_MIN = 1.6;
 const TEXT_MIN = 4.6;
 const CTA_SURFACE_MIN = 1.8;
 const CTA_INK_MIN = 4.5;
+const CTA_VS_SECONDARY_MIN = 1.3;
 const DISABLED_INK_TARGET = 4.6;
 const DANGER_SURFACE_MIN = 1.5;
 const DANGER_INK_MIN = 4.6;
@@ -85,14 +86,16 @@ function secondaryFill(t: Surfaces): string {
 }
 
 /** Главная заливка: cta, а при слиянии с фоном — глубже в сторону текста темы (подпись ctaInk должна остаться читаемой). */
-function primaryFill(t: Surfaces): string {
+function primaryFill(t: Surfaces, secondary: string): string {
   const under = underSurfaces(t);
   const cta = hex6(t.cta);
-  if (minOver(cta, under) >= CTA_SURFACE_MIN) return cta;
-  for (let k = 0.04; k <= 0.8001; k += 0.02) {
+  // зачем (закон владельца 13.10: вторичная и основная не сливаются): основная должна и отличаться от поверхностей, и быть заметно иной, чем вторичная
+  const ok = (c: string): boolean => minOver(c, under) >= CTA_SURFACE_MIN && ratio(c, secondary) >= CTA_VS_SECONDARY_MIN;
+  if (ok(cta)) return cta;
+  for (let k = 0.04; k <= 0.9001; k += 0.02) {
     const c = mix(cta, t.text, k);
     if (ratio(t.ctaInk, c) < CTA_INK_MIN) break; // дальше подпись не читается — оставляем лучшее из достигнутого
-    if (minOver(c, under) >= CTA_SURFACE_MIN) return c;
+    if (ok(c)) return c;
   }
   return cta;
 }
@@ -123,5 +126,5 @@ export function deriveLiquidGlassButtonRoles(t: Surfaces): LiquidGlassButtonRole
     if (ratio(candidate, buttonFillDisabled) < DISABLED_INK_TARGET) break;
     buttonInkDisabled = candidate;
   }
-  return { buttonFill, buttonFillDisabled, buttonInkDisabled, ctaFill: primaryFill(t), ...dangerRoles(t) };
+  return { buttonFill, buttonFillDisabled, buttonInkDisabled, ctaFill: primaryFill(t, buttonFill), ...dangerRoles(t) };
 }

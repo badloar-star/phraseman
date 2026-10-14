@@ -34,6 +34,10 @@ describe('токены кнопок × все темы', () => {
         if (ratio(t.accentInk!, t.ctaFill!) < 4.5) bad.push(`${at} подпись главной (accentInk) ${ratio(t.accentInk!, t.ctaFill!).toFixed(2)} < 4.5`);
         // (4) отключённая: подпись читается (≥ 4,5, находка Макетов 13.10), и она отличима от вторичной
         if (ratio(t.buttonInkDisabled!, t.buttonFillDisabled!) < 4.5) bad.push(`${at} подпись отключённой ${ratio(t.buttonInkDisabled!, t.buttonFillDisabled!).toFixed(2)} < 4.5`);
+        // вторичная и основная различимы между собой (закон владельца 13.10: «вторичная/основная» не сливаются)
+        if (ratio(t.ctaFill!, t.buttonFill!) < 1.3) bad.push(`${at} основная ≈ вторичная: ${ratio(t.ctaFill!, t.buttonFill!).toFixed(2)} < 1.3`);
+        // отключённая отличима и от основной
+        if (ratio(t.ctaFill!, t.buttonFillDisabled!) < 1.25) bad.push(`${at} основная ≈ отключённая: ${ratio(t.ctaFill!, t.buttonFillDisabled!).toFixed(2)} < 1.25`);
         // опасная кнопка: своя заливка, отличимая от поверхностей, и читаемая подпись
         for (const s of SURFACES) if (ratio(t.dangerFill!, t[s]!) < 1.5) bad.push(`${at} опасная → ${s}: ${ratio(t.dangerFill!, t[s]!).toFixed(2)} < 1.5`);
         if (ratio(t.dangerInk!, t.dangerFill!) < 4.5) bad.push(`${at} подпись опасной ${ratio(t.dangerInk!, t.dangerFill!).toFixed(2)} < 4.5`);

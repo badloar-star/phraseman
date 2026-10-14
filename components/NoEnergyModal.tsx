@@ -510,7 +510,7 @@ function NoEnergyModal({
               laterPress();
             }}
             activeOpacity={0.76}
-            style={[sx.action, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]} // зачем (владелец 12.10, стиль «Тень» без обводок): плашку отделяют тон и малая внешняя тень
+            style={[sx.action, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) }]} // зачем (владелец 12.10, стиль «Тень» без обводок): плашку отделяют тон и малая внешняя тень
           >
             <Text style={[sx.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
           </TouchableOpacity>
@@ -543,7 +543,7 @@ function NoEnergyModal({
         laterPress();
       }}
       activeOpacity={0.76}
-      style={[sx.action, sx.actionStacked, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]} // зачем (владелец 12.10, стиль «Тень» без обводок): плашку отделяют тон и малая внешняя тень
+      style={[sx.action, sx.actionStacked, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) }]} // зачем (владелец 12.10, стиль «Тень» без обводок): плашку отделяют тон и малая внешняя тень
     >
       <Text style={[sx.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
     </TouchableOpacity>

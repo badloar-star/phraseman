@@ -79,9 +79,10 @@ function PaywallTrialReminderPrompt({ lang, g, topInset, bottomInset, onAllow, o
         withHaptic={false}
         scaleTo={0.96}
         outerStyle={S.stretch}
-        style={S.ghost}
+        // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»; повод — вторичная «Напомнить за день» слилась с фоном и стояла впритык к главной): вторичная — пилюля на токене buttonFill, подпись text, зазор 12
+        style={[S.ghost, { backgroundColor: g.buttonFill }]}
       >
-        <Text style={[S.ghostText, { color: g.secondary }]}>{pick(lang, COPY.afterNotNow)}</Text>
+        <Text style={[S.ghostText, { color: g.text }]}>{pick(lang, COPY.afterNotNow)}</Text>
       </V2Pressable>
     </ScrollView>
   );
@@ -101,6 +102,6 @@ const S = StyleSheet.create({
   stretch: { alignSelf: 'stretch' },
   cta: { alignSelf: 'stretch', minHeight: 58, borderRadius: 29, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
-  ghost: { alignSelf: 'stretch', minHeight: 50, marginTop: 10, alignItems: 'center', justifyContent: 'center' },
+  ghost: { alignSelf: 'stretch', minHeight: 50, marginTop: 12, borderRadius: 25, alignItems: 'center', justifyContent: 'center' },
   ghostText: { fontSize: 16, fontWeight: '700' },
 });

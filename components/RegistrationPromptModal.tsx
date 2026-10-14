@@ -1579,7 +1579,7 @@ function RegistrationPromptModal({
             accessibilityLabel={labelLater}
             accessibilityState={{ disabled: !recoveryDismissAllowed }}
             hitSlop={8}
-            style={[styles.closeBtn, { backgroundColor: glass.opaqueControl, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+            style={[styles.closeBtn, { backgroundColor: glass.buttonFill, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
           >
             <Ionicons name="close" size={14} color={t.accentText} />
           </Pressable>
@@ -2175,7 +2175,7 @@ function RegistrationPromptModal({
                 {
                   borderRadius: 12,
                   marginTop: 6,
-                  backgroundColor: glass.opaqueControl,
+                  backgroundColor: glass.buttonFill,
                 },
               ]}
             >
@@ -2207,7 +2207,7 @@ function RegistrationPromptModal({
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
                 variant="secondary"
                 // зачем (overlays.html `.cta.gh`): «Позже» — капсула 48 на всю ширину с тонким светлым контуром.
-                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass), opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass), opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
                 contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
                 testID="auth-prompt-later"
               >
@@ -2222,7 +2222,7 @@ function RegistrationPromptModal({
                 accessibilityRole="button"
                 accessibilityLabel={labelLaterAccessibility}
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
-                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass), opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass), opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
                 testID="auth-prompt-later"
               >
                 <Text style={[styles.laterText, { color: glass.text, fontSize: 16, fontWeight: '700' }]}>

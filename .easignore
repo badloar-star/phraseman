@@ -172,7 +172,13 @@ assets/audio/learning-v2/
 assets/images/collectibles/dalli/
 
 # Non-runtime authoring, diagnostics, and local test artifacts
-/content/
+# Ядро 14.10: content/ исключён целиком, КРОМЕ content/learning-v2-course/activation/ — мелкие манифесты рантайма курса V2,
+# которые приложение require-ит (бандлер на сервере EAS иначе падает «Unable to resolve»). По семантике .gitignore подпапку нельзя
+# вернуть, если исключён весь родитель, поэтому исключаем содержимое по уровням. Сторож: scripts/easignore_runtime_imports_gate.mjs.
+/content/*
+!/content/learning-v2-course/
+/content/learning-v2-course/*
+!/content/learning-v2-course/activation/
 .shots/
 .eas-logs/
 test-results/

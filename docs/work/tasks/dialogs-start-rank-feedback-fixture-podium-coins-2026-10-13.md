@@ -14,6 +14,8 @@ Owner: сессия «2 · ДИЗАЙН» по поручениям коорди
 
 In scope: `tests/dialogue_v2_new_user_one_dialog.test.ts`; `app/dev_*` фикстура отзыва + стор-заглушка + `dev_state_fixtures`; `components/spire/SpirePodium.tsx` (и строки подписи монет), сторожа.
 
+Дополнение 14.10 (поручение координатора через Макеты, правило владельца «минимум ненужных элементов», MOCKUP_REQUIREMENTS §1): тост `ActionToast` — значок и одна строка (без рейла, плитки и капс-заголовка тона; тон остаётся в подписи для диктора); шторка «Почему так» V2 — без меток «Разбор»/«Перевод» и без счётчика остатка (остаток показывает только пустой лимит); шторка «Режим» Карточек — без подписей под режимами (кроме причины недоступности). Сторожа: `tests/dialog_why_sheet_minimal_contract.test.ts`, `tests/action_toast_liquid_glass_source_contract.test.mjs`. Rollback — git revert.
+
 Out of scope: сам D162 (Ядро, порядок по монетам недели), серверная часть отзыва диалога.
 
 ## Architecture

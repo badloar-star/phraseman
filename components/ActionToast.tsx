@@ -220,21 +220,12 @@ export function ActionToastHybridCard({
             ]}
           />
         )}
-        <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />{/* light-accent-ok: chrome.accent — фиксированный цвет рельсы тоста, не токен темы */}
-        <Reanimated.View
-          style={[
-            styles.iconBadge,
-            { backgroundColor: chrome.accentSoft },
-            iconStyle,
-          ]}
-        >
-          <Ionicons name={icon} size={20} color={chrome.title} />
+        {/* зачем (владелец 14.10, «минимум ненужных элементов»; Макеты MOCKUP_REQUIREMENTS §1): значок и одна строка — без рейла, плитки под значком и капс-заголовка тона; смысл тона читает диктор (accessibilityLabel) */}
+        <Reanimated.View style={[styles.iconBare, iconStyle]}>
+          <Ionicons name={icon} size={24} color={chrome.title} />
         </Reanimated.View>
-        <View style={styles.copy}>
-          <Text style={[styles.label, { color: chrome.title }]}>
-            {toneLabel}
-          </Text>
-          <Text style={[styles.message, { color: chrome.body }]}>
+        <View style={styles.copy} accessible accessibilityLabel={`${toneLabel}. ${message}`}>
+          <Text style={[styles.message, { color: chrome.title }]}>
             {message}
           </Text>
         </View>
@@ -626,22 +617,11 @@ function ActionToast() {
             },
           ]}
         >
-          <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />{/* light-accent-ok: chrome.accent — фиксированный цвет рельсы тоста, не токен темы */}
-          <View
-            style={[
-              styles.iconBadge,
-              {
-                backgroundColor: chrome.accentSoft,
-              },
-            ]}
-          >
-            <Ionicons name={tone.icon} size={20} color={chrome.title} />
+          <View style={styles.iconBare}>
+            <Ionicons name={tone.icon} size={24} color={chrome.title} />
           </View>
-          <View style={styles.copy}>
-            <Text style={[styles.label, { color: chrome.title }]}>
-              {toneLabel}
-            </Text>
-            <Text style={[styles.message, { color: chrome.body }]}>
+          <View style={styles.copy} accessible accessibilityLabel={`${toneLabel}. ${message}`}>
+            <Text style={[styles.message, { color: chrome.title }]}>
               {message}
             </Text>
           </View>
@@ -728,18 +708,10 @@ const styles = StyleSheet.create({
     // квадрат вокруг радиуса 16.
     ...noAndroidOutline,
   },
-  // `.rail`: планка 3 во всю высоту содержимого, скругление 3 — первым элементом ряда.
-  accentRail: {
-    alignSelf: 'stretch',
-    width: 3,
-    borderRadius: 3,
-  },
-  // `.tile.t44`: плитка значка 44.
-  iconBadge: {
-    width: 44,
-    height: 44,
-    borderRadius: 12,
-    borderWidth: 0,
+  // зачем (владелец 14.10): значок без плитки и без рейла; рамка 44 только держит размер зоны под значок
+  iconBare: {
+    width: 32,
+    height: 32,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -747,14 +719,6 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 0,
     gap: 3,
-  },
-  // `.tone` 12/760 капсом, разрядка .5 — шкала D145: 13.
-  label: {
-    fontSize: 13,
-    lineHeight: 17,
-    fontWeight: '800',
-    letterSpacing: 0.5,
-    textTransform: 'uppercase',
   },
   // `.message` 14/18 вторичным — шкала D145: 16/22.
   message: {

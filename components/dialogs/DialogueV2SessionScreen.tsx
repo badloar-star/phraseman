@@ -685,7 +685,6 @@ export function DialogueV2SessionScreen({
             freeLeft: whyTarget.plusGate.freeLeft,
             freePerDay: whyTarget.plusGate.freePerDay,
             exhaustedText: coachingLabels.whyExhausted,
-            leftText: coachingLabels.whyLeft(whyTarget.plusGate.freeLeft, whyTarget.plusGate.freePerDay),
             openPlusLabel: coachingLabels.openPlus,
             onOpenPlus: () => { onCloseWhy(); onOpenPlus?.(); },
           } : null}

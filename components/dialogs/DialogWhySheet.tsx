@@ -68,7 +68,6 @@ interface DialogWhySheetProps {
     freeLeft: number;
     freePerDay: number;
     exhaustedText: string;
-    leftText: string;
     openPlusLabel: string;
     onOpenPlus: () => void;
   } | null;
@@ -96,10 +95,6 @@ export default function DialogWhySheet({
     ru: 'Показать разбор', uk: 'Показати розбір', en: 'Show the explanation',
     es: 'Ver la explicación', 'pt-BR': 'Ver a explicação', vi: 'Xem giải thích',
     id: 'Lihat penjelasan', tr: 'Açıklamayı göster', pl: 'Pokaż wyjaśnienie',
-  });
-  const explainLabel = triLang(lang, {
-    ru: 'Разбор', uk: 'Розбір', en: 'Explanation', es: 'Explicación', 'pt-BR': 'Explicação',
-    vi: 'Giải thích', id: 'Penjelasan', tr: 'Açıklama', pl: 'Wyjaśnienie',
   });
 
   return (
@@ -244,11 +239,9 @@ export default function DialogWhySheet({
 
             {(!gate || gate.revealed) && coach.note && (!plusGate || plusGate.revealed) ? (
               <>
-                <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.label }]} maxFontSizeMultiplier={1.2}>
-                  {explainLabel}
-                </Text>
+                {/* зачем (владелец 14.10, «минимум ненужных элементов»; Макеты dialogs #20): меток «Разбор» и «Перевод» нет — разбор основным цветом, перевод вторичным, их различает тон, а не подпись */}
                 <Text
-                  style={{ color: glass.text, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 8 }}
+                  style={{ color: glass.text, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 22 }}
                   maxFontSizeMultiplier={1.2}
                 >
                   {/* зачем (dialogs-020): модель присылает прямые кавычки "…" — показываем «ёлочки» языка интерфейса. */}
@@ -259,14 +252,8 @@ export default function DialogWhySheet({
 
             {(!gate || gate.revealed) && coach.translation && (!plusGate || plusGate.revealed) ? (
               <>
-                <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.label }]} maxFontSizeMultiplier={1.2}>
-                  {triLang(lang, {
-                    ru: 'Перевод', uk: 'Переклад', en: 'Translation', es: 'Traducción', 'pt-BR': 'Tradução',
-                    vi: 'Bản dịch', id: 'Terjemahan', tr: 'Çeviri', pl: 'Tłumaczenie',
-                  })}
-                </Text>
                 <Text
-                  style={{ color: glass.text, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 8 }}
+                  style={{ color: glass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 16 }}
                   maxFontSizeMultiplier={1.2}
                 >
                   {coach.translation}
@@ -274,19 +261,7 @@ export default function DialogWhySheet({
               </>
             ) : null}
 
-            {/* Остаток бесплатных разборов — состояние счёта (макет C7, низ
-                шторки), а не подпись-расшифровка заголовка. Нет `gate` (режим
-                тьютора, оплаты там нет) → строки нет: счётчик соврал бы.
-                Кончились → строку заменяет экран с ценой выше. */}
-            {plusGate && plusGate.revealed ? (
-              <Text
-                style={{ color: glass.mutedText, fontSize: f.sub, textAlign: 'center', marginTop: 22 }}
-                maxFontSizeMultiplier={1.2}
-              >
-                {plusGate.leftText}
-              </Text>
-            ) : null}
-
+            {/* зачем (владелец 14.10, Макеты dialogs #20/#21): V2-счётчик «Осталось бесплатных разборов» убран — остаток показывает только пустой лимит (exhaustedText: «3 разбора в день, завтра снова») */}
             {gate && gate.freeLeft > 0 ? (
               <Text
                 style={{ color: glass.mutedText, fontSize: f.sub, textAlign: 'center', marginTop: 22 }}
@@ -325,7 +300,6 @@ const styles = StyleSheet.create({
   scroll: { flexGrow: 0 },
   scrollContent: { paddingBottom: 4 },
   quote: { borderRadius: 16, paddingHorizontal: 16, paddingVertical: 16, marginTop: 8 },
-  kicker: { fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginTop: 22 },
   unlockHit: { marginTop: 18 },
   unlockBtn: {
     flexDirection: 'row',

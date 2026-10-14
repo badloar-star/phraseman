@@ -19,6 +19,8 @@ test('ActionToast applies one active Liquid Glass material to all five real tone
   // подпись цветом текста; прежняя «легаси-палитра» снята вместе с themedToastChrome.
   assert.ok(toast.includes('backgroundColor: chrome.closeBg'), 'classic action capsule uses the active glass chrome');
   assert.ok(toast.includes('{ color: chrome.title }]}>{actionLabel}'), 'classic action label uses the title colour');
-  assert.ok(toast.includes('styles.accentRail') && toast.includes("textTransform: 'uppercase'"), 'rail and tone label stay as in the toast mockup');
+  // зачем (владелец 14.10, «минимум ненужных элементов»): тост — значок и одна строка; рейла, плитки под значком и капс-заголовка тона нет, смысл тона читает диктор
+  assert.ok(!toast.includes('styles.accentRail') && !toast.includes("textTransform: 'uppercase'") && !toast.includes('styles.iconBadge'), 'toast has no rail, tile or caps tone label');
+  assert.ok(toast.includes('accessibilityLabel={`${toneLabel}. ${message}`}'), 'tone is still announced to the screen reader');
   assert.ok(toast.includes('AUTO_DISMISS_MS = 3200'), 'existing lifecycle duration remains unchanged');
 });

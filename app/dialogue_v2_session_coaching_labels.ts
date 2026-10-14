@@ -31,7 +31,6 @@ export type DialogueV2SessionCoachingLabels = Readonly<{
   /** Отметка под пузырём, упёршимся в лимит (dialogs-035): сервер реплику не принял. */
   unsent: string;
   openPlus: string;
-  whyLeft: (left: number, total: number) => string;
 }>;
 
 export function dialogueV2SessionCoachingLabels(lang: Lang): DialogueV2SessionCoachingLabels {
@@ -132,13 +131,5 @@ export function dialogueV2SessionCoachingLabels(lang: Lang): DialogueV2SessionCo
       de: 'Die kostenlosen Erklärungen für heute sind aufgebraucht. 3 pro Tag – morgen wieder.',
     }),
     openPlus: triLang(lang, { ru: 'Открыть Plus', uk: 'Відкрити Plus', en: 'Open Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus', fr: 'Ouvrir Plus', de: 'Plus öffnen' }),
-    whyLeft: (left: number, total: number) => triLang(lang, {
-      ru: `Осталось бесплатных разборов сегодня: ${left} из ${total}`, uk: `Безкоштовних розборів сьогодні: ${left} з ${total}`,
-      en: `Free explanations left today: ${left} of ${total}`, es: `Explicaciones gratis hoy: ${left} de ${total}`,
-      'pt-BR': `Explicações grátis hoje: ${left} de ${total}`, vi: `Lượt giải thích miễn phí hôm nay: ${left}/${total}`,
-      id: `Sisa penjelasan gratis hari ini: ${left} dari ${total}`, tr: `Bugün kalan ücretsiz açıklama: ${left}/${total}`,
-      pl: `Darmowe wyjaśnienia na dziś: ${left} z ${total}`, fr: `Explications gratuites restantes : ${left} sur ${total}`,
-      de: `Heute noch ${left} von ${total} kostenlosen Erklärungen`,
-    }),
   });
 }

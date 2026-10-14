@@ -297,7 +297,8 @@ export default function FlashcardsTrainingModeSheet({
                         </View>
                         <View style={styles.copy}>
                           <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
-                          <Text style={[styles.description, { color: g.secondary }]}>{rowDescription}</Text>
+                          {/* зачем (владелец 14.10, «минимум ненужных элементов»; Макеты cards-v2 #27): подпись под режимом убрана — название самодостаточно; остаётся только причина недоступности («Вслух» без распознавания речи) и текст для диктора */}
+                          {speakingBlocked ? <Text style={[styles.description, { color: g.secondary }]}>{rowDescription}</Text> : null}
                         </View>
                       </KitTouchable>
                     );

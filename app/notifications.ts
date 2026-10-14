@@ -271,6 +271,50 @@ export async function scheduleYoutubePremiereLocalNotification(input: {
   }
 }
 
+/**
+ * D191 m03 «Напомнить вечером»: ставит одно напоминание, ТОЛЬКО если разрешение уже дано (новый запрос не делаем — решение
+ * координатора 14.10), включены общий тумблер и категория «Шпиль». Возвращает id или причину отказа — для лога [D191-REMIND].
+ */
+export async function scheduleSpireWeekRemindLocalNotification(input: Readonly<{
+  title: string;
+  body: string;
+  triggerAtMs: number;
+}>): Promise<Readonly<{ id: string } | { id: null; reason: 'no_module' | 'permission' | 'muted' | 'past' | 'failed' }>> {
+  try {
+    const N = await getNotifications();
+    if (!N) return { id: null, reason: 'no_module' };
+    if (!Number.isFinite(input.triggerAtMs) || input.triggerAtMs <= Date.now()) return { id: null, reason: 'past' };
+    if (!(await isNotificationPermissionGranted())) return { id: null, reason: 'permission' };
+    if (!(await isNotifCategoryEnabled('spire'))) return { id: null, reason: 'muted' };
+    const id = await N.scheduleNotificationAsync({
+      content: { title: input.title, body: input.body, sound: false, data: { type: 'spire_week_remind' as LocalNotificationType } },
+      trigger: withAndroidChannel({ type: 'date' as const, date: new Date(input.triggerAtMs) }),
+    });
+    return { id };
+  } catch (error) {
+    console.warn('[D191-REMIND] постановка напоминания упала', error instanceof Error ? error.message : String(error));
+    return { id: null, reason: 'failed' };
+  }
+}
+
+/** D191: доступна ли кнопка «Напомнить вечером» — разрешение уже есть и категория «Шпиль» не выключена (без запроса). */
+export async function canOfferSpireWeekRemind(): Promise<Readonly<{ ok: boolean; reason: 'ok' | 'permission' | 'muted' }>> {
+  if (!(await isNotificationPermissionGranted())) return { ok: false, reason: 'permission' };
+  if (!(await isNotifCategoryEnabled('spire'))) return { ok: false, reason: 'muted' };
+  return { ok: true, reason: 'ok' };
+}
+
+/** D191: снять одно локальное напоминание по id (повторный тап «Напомнить вечером» заменяет прежнее). */
+export async function cancelScheduledLocalNotificationById(notificationId: string): Promise<void> {
+  try {
+    const N = await getNotifications();
+    if (N && notificationId.trim()) await N.cancelScheduledNotificationAsync(notificationId);
+  } catch (error) {
+    // Протухший id уже не стоит в расписании — это не ошибка для человека, но след оставляем.
+    console.warn('[D191-REMIND] снятие прежнего напоминания не удалось', error instanceof Error ? error.message : String(error));
+  }
+}
+
 export async function cancelYoutubePremiereLocalNotification(notificationId: string): Promise<void> {
   try {
     const N = await getNotifications();
@@ -449,7 +493,9 @@ type LocalNotificationType =
   | 'upsell_d14'
   | 'paywall_abandoned'
   | 'gift_expiring'
-  | 'youtube_premiere';
+  | 'youtube_premiere'
+  // D191 m03 «Напомнить вечером» (координатор 14.10): одно напоминание сегодня в 19:00, категория «Шпиль».
+  | 'spire_week_remind';
 
 const IMMEDIATE_NOTIFICATION_MIN_GAP_MS = 45 * 60 * 1000;
 const IMMEDIATE_NOTIFICATION_TYPE_COOLDOWN_MS: Partial<Record<LocalNotificationType, number>> = {
@@ -1313,8 +1359,8 @@ const CATEGORY_LOCAL_TYPES: Record<NotifCategory, LocalNotificationType[]> = {
   // Пустой массив: «Позвать» — не локальное напоминание с расписанием, а серверный
   // пуш по тапу другого человека. Отменять здесь нечего.
   friends: [],
-  // Шпиль — только серверные пуши; отменять локально нечего.
-  spire: [],
+  // Шпиль: серверные пуши + одно локальное «Напомнить вечером» из окна итога недели (D191) — его и отменяем.
+  spire: ['spire_week_remind'],
 };
 
 function normalizeNotifPrefs(raw: unknown): NotifPrefs {

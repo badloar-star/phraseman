@@ -33,6 +33,8 @@ export function serverPushTapRoute(data: Record<string, unknown>): ServerPushTap
         : { pathname: '/manage_subscription', params: { source: 'notification_premium_expiry' } };
     case 'spire_week_result':
     case 'spire_zone_warning':
+    // D191 m03: локальное «Напомнить вечером» ведёт туда же — в раздел Шпиля.
+    case 'spire_week_remind':
       // зачем (PM-200): пуш Шпиля открывает сразу раздел «Шпиль» — вкладка «Сообщество»
       // понимает ?section=spire (сессия «Дизайн»); при замке сама вернётся к «Друзьям».
       return { pathname: '/(tabs)/community', params: { section: 'spire', source: String(data.type) } };
@@ -138,14 +140,15 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
           break;
         case 'premium_expiry_reminder':
         case 'spire_week_result':
-        case 'spire_zone_warning': {
+        case 'spire_zone_warning':
+        case 'spire_week_remind': {
           const route = serverPushTapRoute(data);
           if (!route) {
             console.warn('[PUSH-PREFS] tap: no route, fallback home', { type: data.type });
             navTabHome();
             break;
           }
-          if (data.type === 'spire_week_result' || data.type === 'spire_zone_warning') {
+          if (data.type === 'spire_week_result' || data.type === 'spire_zone_warning' || data.type === 'spire_week_remind') {
             // зачем (владелец 11.10): Шпиль скрыт (флаг выключен или интерфейс не ru/uk) — старый пуш ведёт на Главную,
             // а не в «Сообщество» с пустым разделом. Флаг прогреваем до решения: на холодном старте он ещё не прочитан.
             void import('./spire_tab_flag')

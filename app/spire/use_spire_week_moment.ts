@@ -12,6 +12,7 @@ import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { DebugLogger } from '../debug-logger';
 import { runAfterHomeFirstFrame } from '../first_frame_deferred_warmups';
 import { markSpireWeekMomentShown, resolveSpireWeekMoment, type SpireWeekMomentShow } from './spire_week_moment_gate';
+import { scheduleSpireWeekRemind, spireWeekRemindAvailability } from './spire_week_remind';
 
 export type UseSpireWeekMomentInput = Readonly<{ uiLang: string; studyTarget: string; tabEnabled: boolean; active: boolean }>;
 
@@ -22,6 +23,11 @@ export type UseSpireWeekMomentResult = Readonly<{
   decision: SpireWeekMomentShow | null;
   /** Закрыть окно (крестик / «Играть» / «Напомнить вечером»): освобождает слот для следующих окон. */
   close: () => void;
+  /**
+   * m03 «Напомнить вечером» (координатор 14.10): available=false → кнопку НЕ показывать (нет разрешения, категория «Шпиль»
+   * выключена, уже позже 18:30, или это не понижение). schedule() — одно напоминание сегодня в 19:00 местного и закрытие окна.
+   */
+  remind: Readonly<{ available: boolean; schedule: () => void }>;
 }>;
 
 export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeekMomentResult {
@@ -29,6 +35,7 @@ export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeek
   const [decision, setDecision] = useState<SpireWeekMomentShow | null>(null);
   const visible = useOverlayVisible('spireWeekMoment', decision !== null);
   const markedRef = useRef<string | null>(null);
+  const [remindAvailable, setRemindAvailable] = useState(false);
 
   useEffect(() => {
     if (!active) return undefined;
@@ -39,6 +46,14 @@ export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeek
     }), { holdDuringOnboarding: true });
     return () => { cancelled = true; cancelTask(); };
   }, [active, uiLang, studyTarget, tabEnabled]);
+
+  // зачем: доступность кнопки считается, пока окно ждёт слот — к показу ответ уже есть, первый кадр окна не ждёт.
+  useEffect(() => {
+    if (!decision || decision.outcome !== 'demoted') { setRemindAvailable(false); return undefined; }
+    let cancelled = false;
+    void spireWeekRemindAvailability().then((a) => { if (!cancelled) setRemindAvailable(a.available); });
+    return () => { cancelled = true; };
+  }, [decision]);
 
   useEffect(() => {
     if (!visible || !decision) return;
@@ -54,7 +69,18 @@ export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeek
     setDecision(null);
   }, []);
 
-  return { visible: visible && decision !== null, decision, close };
+  const scheduleRemind = useCallback(() => {
+    // Окно закрывается сразу (мгновенный отклик), напоминание ставится фоном; итог — в [D191-REMIND].
+    void scheduleSpireWeekRemind(uiLang);
+    setDecision(null);
+  }, [uiLang]);
+
+  return {
+    visible: visible && decision !== null,
+    decision,
+    close,
+    remind: { available: remindAvailable && decision?.outcome === 'demoted', schedule: scheduleRemind },
+  };
 }
 
 /* expo-router route shim: модуль в app/ — не экран */

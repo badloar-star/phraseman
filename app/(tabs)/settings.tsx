@@ -671,6 +671,8 @@ export default function SettingsMain() {
   }, []);
 
   const refreshLinkedAuth = useCallback((): Promise<void> => {
+    // зачем (координатор 14.10, прогон №2 🔴1): почему карточка аккаунта не обновилась после входа — каждое решение с его значением.
+    if (__DEV__) console.log(`[SETTINGS-ACCOUNT-CARD] t=${Date.now() % 100000} refresh enter active=${settingsRuntimeActive} inflight=${!!linkedAuthInFlightRef.current} dirty=${linkedAuthDirtyRef.current} gen=${linkedAuthGenerationRef.current}`); // guard-ok: временная трассировка
     if (!settingsRuntimeActive) {
       linkedAuthDirtyRef.current = true;
       return Promise.resolve();
@@ -680,7 +682,9 @@ export default function SettingsMain() {
     const generation = linkedAuthGenerationRef.current;
     const task = getLinkedAuthInfo()
       .then((info) => {
-        if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current) {
+        const applied = settingsRuntimeActive && generation === linkedAuthGenerationRef.current;
+        if (__DEV__) console.log(`[SETTINGS-ACCOUNT-CARD] t=${Date.now() % 100000} refresh result=${info?.provider ?? 'none'} applied=${applied} gen=${generation}/${linkedAuthGenerationRef.current} active=${settingsRuntimeActive}`); // guard-ok: временная трассировка
+        if (applied) {
           setLinkedAuth(info);
           writeSettingsPeek({ linkedAuth: info });
         }
@@ -701,8 +705,10 @@ export default function SettingsMain() {
 
   /** Повтор при открытии «Настройки»: Firestore раньше мог не ответить, а вкладка кэширована. */
   useEffect(() => {
+    if (__DEV__) console.log(`[SETTINGS-ACCOUNT-CARD] t=${Date.now() % 100000} focus active=${settingsRuntimeActive} dirty=${linkedAuthDirtyRef.current} authReady=${authReady} shown=${linkedAuth?.provider ?? 'none'} focusTick=${focusTick}`); // guard-ok: временная трассировка
     if (!settingsRuntimeActive) return;
     if (linkedAuthDirtyRef.current || !authReady) void refreshLinkedAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: linkedAuth только для журнала, не триггер
   }, [settingsRuntimeActive, focusTick, authReady, refreshLinkedAuth]);
 
   useEffect(() => {
@@ -717,6 +723,7 @@ export default function SettingsMain() {
 
   useEffect(() => {
     const sub = DeviceEventEmitter.addListener('auth_provider_linked', () => {
+      if (__DEV__) console.log(`[SETTINGS-ACCOUNT-CARD] t=${Date.now() % 100000} event auth_provider_linked received`); // guard-ok: временная трассировка
       settingsPeek = null; // зачем: связка/отвязка входа меняет строку аккаунта — устаревший снимок показывать нельзя.
       linkedAuthGenerationRef.current += 1;
       linkedAuthDirtyRef.current = true;
@@ -770,14 +777,7 @@ export default function SettingsMain() {
       subtitleTestID: 'settings-vip-expiry',
     });
   }
-  if (isIntroFullAccess && introFullAccessEndsAt && introFullAccessEndsAt > Date.now()) {
-    plusAccessDetails.push({
-      key: 'intro',
-      icon: 'sparkles-outline',
-      title: L('Полный доступ на 3 дня', 'Повний доступ на 3 дні', 'Full access for 3 days', 'Acceso completo por 3 días', 'Acesso completo por 3 dias', 'Truy cập đầy đủ 3 ngày', 'Akses penuh 3 hari', '3 gün tam erişim', 'Pełny dostęp na 3 dni'),
-      subtitle: `${L('Действует до', 'Діє до', 'Active until', 'Activo hasta', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(introFullAccessEndsAt)}`,
-    });
-  }
+  // зачем (D186, владелец 14.10): строки «Полный доступ на 3 дня · Действует до» больше нет — бонус на старт удалён.
 
   // Список настроек переведён на Telegram-стиль: сгруппированные карточки
   // (components/settings/SettingsGroup). Старые локальные Row/SectionTitle удалены.

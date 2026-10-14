@@ -32,6 +32,31 @@ export {
   INTRO_FULL_ACCESS_WELCOME_SEEN_KEY,
 } from './intro_full_access_keys';
 
+/**
+ * D186 (владелец 14.10: «ТАКОГО НЕ ДОЛЖНО БЫТЬ ВООБЩЕ, УДАЛИТЬ») — «Бонус на старт» (72 ч полного доступа) выключен полностью.
+ * Этап 1 (до сборки 16.10): состояние всегда «неактивно», выдачи нет, сервер не зовём — окна «Бонус на старт» / «Три дня
+ * завершились», строка в Настройках и доступ по бонусу пропадают сами (потребители читают active/welcomeUnseen/expiredUnseen=false).
+ * Этап 2 (после R1, задача в tasks.json): физическое удаление модуля, модалки, ключей и dev-подмен. В проде выдача выключена
+ * с 11.10 (intro_full_access_enabled=false), последний бонус истёк 14.10 — внутри окна никого нет.
+ */
+export const INTRO_FULL_ACCESS_REMOVED = true;
+
+let introRemovedLogged = false;
+function logIntroRemoved(where: string): void {
+  if (introRemovedLogged) return;
+  introRemovedLogged = true;
+  console.log(`[INTRO-REMOVED] ${where}: «Бонус на старт» выключен (D186) — состояние неактивно, выдачи нет`); // guard-ok: одна строка на процесс
+}
+
+const INTRO_REMOVED_STATE = Object.freeze({
+  active: false,
+  startedAt: null,
+  endsAt: null,
+  remainingMs: 0,
+  expiredUnseen: false,
+  welcomeUnseen: false,
+});
+
 export type IntroFullAccessState = {
   active: boolean;
   startedAt: number | null;
@@ -51,6 +76,10 @@ export async function startIntroFullAccessAfterOnboarding(
   nowMs: number = Date.now(),
   lang: Lang = 'ru',
 ): Promise<void> {
+  if (INTRO_FULL_ACCESS_REMOVED) {
+    console.log(`[INTRO-REMOVED] start_after_onboarding: выдача пропущена (D186) now=${nowMs} lang=${lang}`); // guard-ok: ранний выход называет причину
+    return;
+  }
   // Локальная отметка позволяет быстро завершить повторный вызов. Источник истины
   // для новой выдачи и kill-switch — серверный introFullAccessClaim. Подарок выдаётся
   // ровно один раз на canonical account; локальный admin reset не продлевает его.
@@ -159,6 +188,10 @@ function readIntroPairs(): Promise<readonly (readonly [string, string | null])[]
 }
 
 export async function getIntroFullAccessState(nowMs: number = Date.now()): Promise<IntroFullAccessState> {
+  if (INTRO_FULL_ACCESS_REMOVED) {
+    logIntroRemoved(`get_state now=${nowMs}`);
+    return { ...INTRO_REMOVED_STATE };
+  }
   // зачем (settings-gap-005, координатор 13.10): dev-подмена «пробный доступ активен» — только память и только __DEV__
   // (ленивый require: в стор-сборке ветка мертва, модуль — заглушка). Окна приветствия/окончания не всплывают.
   if (typeof __DEV__ !== 'undefined' && __DEV__) {

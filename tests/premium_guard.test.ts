@@ -297,7 +297,8 @@ test('drops account A projection completion after account generation changes', a
   expect(asyncStore.premium_active).not.toBe('true');
 });
 
-test('intro full access grants premium-level access without making real Premium active', async () => {
+// зачем (D186, владелец 14.10): «Бонус на старт» выключен (INTRO_FULL_ACCESS_REMOVED) — доступа по бонусу больше нет; кейс удаляется на этапе 2 (PM-298).
+test.skip('intro full access grants premium-level access without making real Premium active', async () => {
   asyncStore.intro_full_access_started_at_v1 = String(Date.now() - 60_000);
   asyncStore.intro_full_access_ends_at_v1 = String(Date.now() + 60_000);
   getCustomerInfo.mockResolvedValue({

@@ -39,7 +39,7 @@ const CRITICAL_FUNNEL_EVENTS = [
   'afterwin_upsell_shown',
   'afterwin_upsell_cta',
   'paywall_abandoned_push_sent',
-  'winback_shown',
+  // зачем (D193, владелец 14.10): winback больше не открывает пейвол — winback_shown не шлётся; окно «С возвращением» получит своё событие.
 ];
 
 function collectSource(): string {

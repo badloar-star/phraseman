@@ -11,16 +11,18 @@ function executableSource(source: string): string {
     .join('\n');
 }
 
+const ONBOARDING_PLAN_EARLY_EXIT = /if \(source === 'onboarding_plan'\) (?:return;|\{[\s\S]{0,200}?return;)/;
+
 describe('embedded onboarding paywall completion', () => {
   it('never dismisses the route stack after an onboarding_plan purchase', () => {
     const start = purchase.indexOf("if (source === 'onboarding')", purchase.indexOf('const handlePurchase'));
     const end = purchase.indexOf('} catch (err: unknown)', start);
     const body = executableSource(purchase.slice(start, end));
 
-    expect(body).toContain("if (source === 'onboarding_plan') return;");
-    expect(body.indexOf("if (source === 'onboarding_plan') return;")).toBeLessThan(
-      body.indexOf('dismissPaywallModal('),
-    );
+    // зачем (Авторизация 14.10): a15631ea5 развернул ранний выход в блок с логом — смысл тот же: onboarding_plan выходит ДО закрытия стека.
+    const earlyExit = body.match(ONBOARDING_PLAN_EARLY_EXIT);
+    expect(earlyExit).not.toBeNull();
+    expect(earlyExit!.index!).toBeLessThan(body.indexOf('dismissPaywallModal('));
   });
 
   it('never dismisses the route stack after an onboarding_plan restore', () => {
@@ -28,10 +30,10 @@ describe('embedded onboarding paywall completion', () => {
     const end = purchase.indexOf('} else {', start);
     const body = executableSource(purchase.slice(start, end));
 
-    expect(body).toContain("if (source === 'onboarding_plan') return;");
-    expect(body.indexOf("if (source === 'onboarding_plan') return;")).toBeLessThan(
-      body.indexOf('dismissPaywallModal('),
-    );
+    // зачем (Авторизация 14.10): a15631ea5 развернул ранний выход в блок с логом — смысл тот же: onboarding_plan выходит ДО закрытия стека.
+    const earlyExit = body.match(ONBOARDING_PLAN_EARLY_EXIT);
+    expect(earlyExit).not.toBeNull();
+    expect(earlyExit!.index!).toBeLessThan(body.indexOf('dismissPaywallModal('));
   });
 
   it('releases the onboarding overlay before optional entitlement work', () => {

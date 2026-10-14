@@ -127,7 +127,6 @@ import { getRunesBalanceRead } from './runes_system';
 // зачем (PM-052, D75, 02.10): очередь «сбора наград на Главной» удалена — монеты летят там,
 // где заработаны (CoinRewardFlight); копилка «на потом» больше не нужна.
 import { LangProvider, useLang } from '../components/LangContext';
-import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
 import {
   beginInitialAccountGeneration,
@@ -3283,11 +3282,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
       if (__DEV__) console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} check decision show=${show} isPremium=${isPremium} introPending=${introPending} path=${pathnameRef.current}`); // guard-ok: решение показа
       if (show) {
-        // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
-        globalRouter.push({ pathname: '/premium_modal', params: { context: 'winback', source: 'winback' } } as Href);
+        // зачем (D193, владелец 14.10: «ВМЕСТО ПРЕДЛОЖЕНИЯ КУПИТЬ — ВОТ ЭТОТ БУДЕТ ЛУЧШЕ»): по возвращении пейвол Plus больше не
+        // открываем — его место займёт окно «С возвращением» (шаг 2). Отметку ставим, как раньше: одно решение на возвращение.
+        console.log(`[WINBACK] show=skipped reason=paywall_retired_D193 path=${pathnameRef.current}`); // guard-ok: решение логируется
         await markWinbackShown(nowMs);
-        await import('./analytics').then(({ trackEvent }) => trackEvent('winback_shown', {})).catch(noteSwallowedHandler('_layout:useCallback.call_7'));
-        void import('./firebase').then(({ logWinbackShown }) => logWinbackShown()).catch(noteSwallowedHandler('_layout:useCallback.call_8'));
       }
       // фиксируем активность ПОСЛЕ оценки
       await recordLastActive(nowMs);
@@ -3826,17 +3824,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       onAcknowledge={closePersonalAdminMessage}
     />
 
-    {/* Bottomsheet первого урока после онбординга */}
-    <IntroFullAccessModal
-      visible={appOverlaysEnabled && introFullAccessModalVisible}
-      variant={introFullAccessModal ?? 'welcome'}
-      onPrimaryPress={() => {
-        void closeIntroFullAccessModal('primary');
-      }}
-      onSecondaryPress={() => {
-        void closeIntroFullAccessModal('secondary');
-      }}
-    />
+    {/* зачем (D186, владелец 14.10: «ТАКОГО НЕ ДОЛЖНО БЫТЬ ВООБЩЕ»): окно «Бонус на старт» / «Три дня завершились» не монтируется.
+        Состояние бонуса и так всегда «неактивно» (INTRO_FULL_ACCESS_REMOVED); физическое удаление — этап 2 (PM-298). */}
 
     {ready && effectiveShowOnboarding && (
       <View style={styles.appFullScreenOverlay}>

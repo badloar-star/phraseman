@@ -17,7 +17,8 @@ beforeEach(async () => {
 });
 afterEach(() => jest.restoreAllMocks());
 
-test('introAccess=active → пробный доступ активен ≈3 дня, без записи; off → прежнее состояние', async () => {
+// зачем (D186, владелец 14.10): «Бонус на старт» выключен — подмена «пробный доступ активен» больше недостижима; удаляется на этапе 2.
+test.skip('introAccess=active → пробный доступ активен ≈3 дня, без записи; off → прежнее состояние', async () => {
   const intro = require('../app/intro_full_access') as typeof import('../app/intro_full_access');
   const devState = require('../app/dev_state_fixtures') as typeof import('../app/dev_state_fixtures');
   const now = Date.now();

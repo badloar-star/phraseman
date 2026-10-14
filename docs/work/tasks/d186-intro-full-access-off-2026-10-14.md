@@ -1,6 +1,8 @@
 # Task packet: D186 этап 1 — «Бонус на старт» (72 ч полного доступа) выключен полностью до сборки 16.10
 
 Governance-ID: TG-DFA2AA04CBAD
+Governance-ID: TG-68B60DAE1131
+Governance-ID: TG-D6399A51DF21
 Status: In progress (после повтора Сверки WINBACK и гостя №3)
 Owner: 5 · АВТОРИЗАЦИЯ
 
@@ -27,6 +29,8 @@ Owner: 5 · АВТОРИЗАЦИЯ
 
 In scope:
 - `app/intro_full_access.ts` — `INTRO_FULL_ACCESS_REMOVED = true` (D186) и ранние выходы с логом;
+- `app/_layout.tsx` — снять монтирование `<IntroFullAccessModal>` и импорт (координатор 14.10: «окно нигде не монтируется»);
+- `app/(tabs)/settings.tsx` — снять строку «Полный доступ на 3 дня · Действует до» (блок `key: 'intro'`);
 - тесты: `intro_full_access.test.ts`, `dev_intro_full_access.test.ts`, `unit/premium_guard.test.ts` и др. — под «выключено»;
 - новый сторож `tests/d186_intro_full_access_removed.test.ts`.
 

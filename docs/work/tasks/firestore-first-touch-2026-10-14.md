@@ -1,6 +1,7 @@
 # Task packet: [FIRESTORE-FIRST-TOUCH] — кто трогает Firestore раньше очистки кэша после удаления аккаунта (координатор 14.10)
 
 Governance-ID: TG-7C25F60942F9
+Governance-ID: TG-68B60DAE1131
 Status: Черновик скриптом; в код — в одном окне с D186 этап 1, после WB-R Сверки
 Owner: 5 · АВТОРИЗАЦИЯ
 

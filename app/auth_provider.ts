@@ -314,6 +314,8 @@ export type SignInWithProviderOptions = Readonly<{
 }>;
 
 function emitAuthProviderLinked(): void {
+  // зачем (координатор 14.10, прогон №2 🔴1: карточка Настроек минуту «не привязан» после входа): кто шлёт событие обновления карточки.
+  if (__DEV__) console.log(`[SETTINGS-ACCOUNT-CARD] t=${Date.now() % 100000} emit auth_provider_linked from=${(new Error().stack ?? '').split('\n').slice(2, 4).map((s) => s.trim()).join(' <- ')}`); // guard-ok: временная трассировка
   try {
     emitAppEvent('auth_provider_linked');
   } catch (e) {
@@ -1658,13 +1660,18 @@ export function peekAccountCreatedAtMs(): number | null {
 export async function getLinkedAuthInfo(): Promise<LinkedAuth | null> {
   // зачем (Авторизация 12.10, settings-gap-001): dev `account=linked` — привязка для показа из памяти, Firestore не читается; в сторе null.
   const devLinked = getDevLinkedAuthDemo();
+  const cardStartedAt = Date.now();
+  const cardLog = (source: string, result: LinkedAuth | null): LinkedAuth | null => {
+    if (__DEV__) console.log(`[SETTINGS-ACCOUNT-CARD] t=${Date.now() % 100000} getLinkedAuthInfo source=${source} result=${result?.provider ?? 'none'} ms=${Date.now() - cardStartedAt}`); // guard-ok: временная трассировка
+    return result;
+  };
   if (devLinked) {
     console.log('[DEV-STATE] account: привязка для показа (account=linked), сеть не вызывалась'); // guard-ok: dev-ветка
     return devLinked;
   }
-  if (!CLOUD_SYNC_ENABLED) return null;
+  if (!CLOUD_SYNC_ENABLED) return cardLog('cloud_off', null);
   const db = getFirestore();
-  if (!db) return null;
+  if (!db) return cardLog('no_db', null);
   const fromAuth = (): LinkedAuth | null => getLinkedAuthFromCurrentUser();
   try {
     const stableId = await getStableId();
@@ -1676,14 +1683,14 @@ export async function getLinkedAuthInfo(): Promise<LinkedAuth | null> {
       if (__DEV__) console.warn('[auth_provider] getLinkedAuthInfo Firestore timeout/error -> auth backup', e);
       return null;
     });
-    if (doc == null) return fromAuth();
-    if (!doc.exists) return fromAuth();
+    if (doc == null) return cardLog('users_doc_timeout_or_error→currentUser', fromAuth());
+    if (!doc.exists) return cardLog('users_doc_missing→currentUser', fromAuth());
     const linked = doc.data()?.linkedAuth as LinkedAuth | undefined;
-    if (linked?.provider) return { ...linked, displayName: null };
-    return fromAuth();
+    if (linked?.provider) return cardLog('users_doc.linkedAuth', { ...linked, displayName: null });
+    return cardLog('users_doc_without_linkedAuth→currentUser', fromAuth());
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] getLinkedAuthInfo failed', e);
-    return fromAuth();
+    return cardLog(`catch:${e instanceof Error ? e.message.slice(0, 60) : 'unknown'}→currentUser`, fromAuth());
   }
 }
 

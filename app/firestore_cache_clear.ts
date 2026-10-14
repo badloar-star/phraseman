@@ -36,6 +36,48 @@ export async function markFirestoreCacheClearPending(reason: string): Promise<bo
 
 type FirestoreForClear = { clearPersistence(): Promise<void> };
 
+// зачем (координатор 14.10, удаление гостя №3: COLD 1 → clearPersistence failed-precondition, очистка прошла только со 2-го старта):
+// кто трогает Firestore раньше очистки — 46 файлов зовут firestore() напрямую, журнал этого не показывал. Только dev: оборачиваем
+// default() и getFirestore() модуля через Proxy (все свойства — FieldValue и т. п. — сохраняются), пишем первые 6 обращений
+// с временем от старта, фазой очистки в этот момент и двумя кадрами стека. Поведение не меняется.
+let clearPhase: 'idle' | 'running' | 'cleared' | 'failed' | 'none' = 'idle';
+let firstTouchCount = 0;
+
+function stackFrom(): string {
+  return (new Error().stack ?? '').split('\n').slice(3, 5).map((s) => s.trim().slice(0, 90)).join(' <- ');
+}
+
+function installFirestoreFirstTouchTrace(): void {
+  if (!(typeof __DEV__ !== 'undefined' && __DEV__)) return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const mod = require('@react-native-firebase/firestore') as Record<string, unknown>;
+    const wrap = (name: string): string => {
+      const original = mod[name];
+      if (typeof original !== 'function') return `${name}:absent`;
+      const traced = new Proxy(original as (...args: unknown[]) => unknown, {
+        apply(target, thisArg, args) {
+          if (firstTouchCount < 6) {
+            firstTouchCount += 1;
+            console.log(`[FIRESTORE-FIRST-TOUCH] #${firstTouchCount} via=${name} ms=${Math.round(globalThis.performance?.now?.() ?? -1)} clear=${clearPhase} from=${stackFrom()}`); // guard-ok: временная трассировка, 6 строк на процесс
+          }
+          return Reflect.apply(target, thisArg, args);
+        },
+      });
+      try {
+        Object.defineProperty(mod, name, { value: traced, configurable: true, writable: true, enumerable: true });
+        return `${name}:ok`;
+      } catch (error) {
+        return `${name}:locked(${errorCode(error)})`;
+      }
+    };
+    console.log(`[FIRESTORE-FIRST-TOUCH] installed ${wrap('default')} ${wrap('getFirestore')} ms=${Math.round(globalThis.performance?.now?.() ?? -1)}`); // guard-ok: одна строка на процесс
+  } catch (error) {
+    console.warn(`[FIRESTORE-FIRST-TOUCH] install_failed code=${errorCode(error)}`); // guard-ok: catch логирует код
+  }
+}
+installFirestoreFirstTouchTrace();
+
 // зачем (координатор 12.10): после успешной очистки при живом замке удаления (до 7 дней) метка становится `cleared:<operationId>` —
 // иначе правило «замок есть, метки нет» стирало бы кэш новой личности на каждом старте всю неделю.
 const CLEARED_PREFIX = 'cleared:';
@@ -81,7 +123,9 @@ export function runFirestoreCacheClearFromStartupRead(
   // Проверка — только значения из уже сделанного чтения: стоимость ~0 мс, нативного вызова нет.
   const decision = decideStartupCacheClear(markerValue, lockMirrorRaw);
   console.log(`${LOG} check ms=${Date.now() - checkStartedAt} marker=${markerValue && !markerValue.startsWith(CLEARED_PREFIX) ? 1 : 0} lock=${decision.lockOperationId ? 1 : 0} reason=${decision.reason} source=startup_multiget`); // guard-ok: одна строка на холодный старт
-  if (!decision.run) return Promise.resolve('none');
+  if (!decision.run) { clearPhase = 'none'; return Promise.resolve('none'); }
+  clearPhase = 'running';
+  if (__DEV__) console.log(`[FIRESTORE-FIRST-TOUCH] clear_start ms=${Math.round(globalThis.performance?.now?.() ?? -1)} touchesBefore=${firstTouchCount}`); // guard-ok: временная трассировка
   const startedAt = Date.now();
   // зачем (координатор 12.10): процесс убили между AsyncStorage.clear и записью метки — замок удаления есть, метки нет. Ставим её сейчас,
   // чтобы при отказе очистки повтор был и на следующем старте.
@@ -103,11 +147,14 @@ export function runFirestoreCacheClearFromStartupRead(
         console.warn(`${LOG} unmark_failed code=${errorCode(error)} — на следующем старте очистка повторится (безвредно)`); // guard-ok
       }
       console.log(`${LOG} ok ms=${Date.now() - startedAt}`); // guard-ok: итог
+      clearPhase = 'cleared';
       return 'cleared' as const;
     },
     (error: unknown) => {
       const code = errorCode(error);
       console.warn(`${LOG} failed code=${code} ms=${Date.now() - startedAt} — метка оставлена${code.includes('failed-precondition') ? ', повтор на следующем старте (Firestore уже был запущен)' : ''}`); // guard-ok
+      clearPhase = 'failed';
+      if (__DEV__) console.log(`[FIRESTORE-FIRST-TOUCH] clear_end failed touches=${firstTouchCount} ms=${Math.round(globalThis.performance?.now?.() ?? -1)}`); // guard-ok: временная трассировка
       return 'failed' as const;
     },
   );

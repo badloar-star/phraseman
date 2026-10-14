@@ -60,6 +60,11 @@ describe('intro full access gift', () => {
     expect(introSource).not.toContain('persistGiftAccessOnCloud');
   });
 
+});
+
+// зачем (D186, владелец 14.10): «Бонус на старт» выключен в источнике (INTRO_FULL_ACCESS_REMOVED) — кейсы выдачи/окон 72 ч
+// проверяют выключенное поведение; новое поведение держит tests/d186_intro_full_access_removed.test.ts. Удаляются на этапе 2 D186.
+describe.skip('intro full access gift — D186: выключено, удаляется на этапе 2', () => {
   it('starts a 72-hour gift after onboarding and returns active state', async () => {
     const now = Date.UTC(2026, 5, 6, 10, 0, 0);
     mockServerGrantStartMs = now;

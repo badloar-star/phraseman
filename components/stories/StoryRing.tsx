@@ -12,11 +12,10 @@ import Svg, { Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Animated, { Easing, cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 
-/** Слот аватара в шапке Главной (home.tsx: монета 48 × 48). */
-export const STORY_RING_SLOT = 48;
-/** Монета внутри кольца: слот − 2 × (кольцо 3 + зазор 2). */
-export const STORY_RING_COIN = 38;
-export const STORY_RING_STROKE = 3;
+// зачем: размеры вынесены в лёгкий story_ring_constants.ts (слот аватара на Главной не грузит это кольцо ради цифр); здесь прежний экспорт
+import { STORY_RING_COIN, STORY_RING_SLOT, STORY_RING_STROKE } from './story_ring_constants';
+
+export { STORY_RING_COIN, STORY_RING_SLOT, STORY_RING_STROKE };
 // theme-exempt: красный «сторис»-градиент — фирменный цвет кольца, одинаковый во всех темах (образец .story-ring.has)
 export const STORY_RING_COLORS = ['#FF2D55', '#FF3B30', '#FF6A1A', '#FF9500'] as const;
 const STOPS = [0, 0.35, 0.7, 1] as const;

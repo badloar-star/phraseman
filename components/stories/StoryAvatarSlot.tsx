@@ -5,6 +5,8 @@
 // Событий нет или флаг выключен → ровно прежняя кнопка (те же testID, тот же обработчик, тап ведёт в профиль) — поведение «как раньше» гарантировано. Есть непросмотренные →
 // кольцо вокруг монеты, тап открывает просмотр; всё просмотрено, но за 7 дней события есть → кольца нет, тап открывает просмотр недавних. Просмотр живёт отдельно от кольца: когда события просмотрены, кольцо гаснет, а открытый просмотр дорабатывает до конца.
 // Данные — useStoryEvents() Ядра (память процесса, первый кадр синхронно, сети нет). Логи: [STORY-RING] (что решило: кольцо/профиль, откуда origin).
+// Холодный старт (координатор 14.10): StoryRing (Svg + Reanimated) и StoryViewer (жесты, Modal, слайды) подключаются через require ВНУТРИ функций — только когда кольцо нужно (есть непросмотренное)
+// или человек тапнул по аватару с событиями. Флаг выключен / событий нет → слот не грузит ни одного модуля сторис, кроме лёгких констант, строк и хука данных.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
@@ -13,11 +15,31 @@ import type { Lang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
 import { useStoryEvents } from '../../modules/story_events/use_story_events';
 import type { StoryEventList } from '../../modules/story_events/story_events_core';
-import StoryRing, { STORY_RING_COIN, STORY_RING_SLOT } from './StoryRing';
-import StoryViewer, { type StoryOrigin } from './StoryViewer';
+import { STORY_RING_COIN, STORY_RING_SLOT } from './story_ring_constants';
+import type { StoryOrigin } from './StoryViewer';
 import { storyText } from './story_strings';
 
 const LOG = '[STORY-RING]';
+
+// зачем: ленивые подключения тяжёлых частей; кэш модуля — повторный require мгновенный. Отступ у require обязателен: сторож статического графа (cold_start_static_graph_guard) считает только require верхнего уровня.
+type StoryRingModule = typeof import('./StoryRing');
+type StoryViewerModule = typeof import('./StoryViewer');
+let ringModuleCache: StoryRingModule | null = null;
+let viewerModuleCache: StoryViewerModule | null = null;
+function loadStoryRing(): StoryRingModule {
+  if (!ringModuleCache) {
+    DebugLogger.info(LOG, 'подгрузка StoryRing (первое кольцо в этой сессии)');
+    ringModuleCache = require('./StoryRing') as StoryRingModule;
+  }
+  return ringModuleCache;
+}
+function loadStoryViewer(): StoryViewerModule {
+  if (!viewerModuleCache) {
+    DebugLogger.info(LOG, 'подгрузка StoryViewer (первое открытие просмотра в этой сессии)');
+    viewerModuleCache = require('./StoryViewer') as StoryViewerModule;
+  }
+  return viewerModuleCache;
+}
 
 export type StoryAvatarSlotProps = Readonly<{
   lang: Lang;
@@ -69,6 +91,9 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
     <View testID="home-avatar-coin-loading" style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: placeholderColor }} />
   ));
 
+  const Ring = ring ? loadStoryRing().default : null;
+  const Viewer = viewer ? loadStoryViewer().default : null;
+
   return (
     <>
       <TouchableOpacity
@@ -80,10 +105,10 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
         accessibilityLabel={ring ? storyText(lang, 'ringLabel') : profileLabel}
         hitSlop={6}
       >
-        {ring ? <StoryRing>{coin(STORY_RING_COIN)}</StoryRing> : coin(STORY_RING_SLOT)}
+        {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : coin(STORY_RING_SLOT)}
       </TouchableOpacity>
-      {viewer ? (
-        <StoryViewer lang={lang} events={viewer.events} coinRank={coinRank} origin={viewer.origin} onSeen={markSeen} onClose={closeViewer} />
+      {viewer && Viewer ? (
+        <Viewer lang={lang} events={viewer.events} coinRank={coinRank} origin={viewer.origin} onSeen={markSeen} onClose={closeViewer} />
       ) : null}
     </>
   );

@@ -20,7 +20,6 @@ import { DebugLogger } from '../../app/debug-logger';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
-import { playEvent } from '../../modules/sound_v2/sound_bank';
 import type { StoryEventList } from '../../modules/story_events/story_events_core';
 import { LinearGradient } from '../SafeLinearGradient';
 import { SheetSwipeRoot } from '../modal_fx/SheetSwipeClose';
@@ -101,7 +100,8 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
     if (closingRef.current) { DebugLogger.info(LOG, `close пропущен: уже закрывается source=${source}`); return; }
     closingRef.current = true;
     cancelAnimation(progress);
-    playEvent('sheet_close');
+    // зачем (координатор 14.10, холодный старт): звук закрытия ведёт общий мост Тем, а не прямой импорт банка звуков; флаг sound_v2 выключен — тишина
+    tryPlayV2Event('sheet_close', 'story_close');
     DebugLogger.info(LOG, `закрытие source=${source} reduceMotion=${String(reduceMotion)}`);
     if (reduceMotion) { finishClose(source); return; }
     closeP.value = withTiming(1, { duration: STORY_CLOSE_MS, easing: Easing.bezier(0.23, 1, 0.32, 1) }, (finished) => { if (finished) runOnJS(finishClose)(source); });

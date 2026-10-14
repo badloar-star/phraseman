@@ -58,9 +58,9 @@ jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn() }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 24, bottom: 16, left: 0, right: 0 }) }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn() } }));
 jest.mock('../components/SafeLinearGradient', () => ({ LinearGradient: 'LinearGradient' }));
+// зачем (координатор 14.10, холодный старт): StoryViewer не импортирует банк звуков напрямую — и листание ('story'), и закрытие ('sheet_close') идут через мост Тем (флаг sound_v2 внутри моста)
 const mockPlayEvent = jest.fn();
-jest.mock('../modules/sound_v2/sound_bank', () => ({ playEvent: (...args: unknown[]) => mockPlayEvent(...args) }));
-jest.mock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2Event: jest.fn() })); // звук листания 'story' ведут Темы через мост (флаг sound_v2)
+jest.mock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2Event: (...args: unknown[]) => mockPlayEvent(...args) }));
 jest.mock('../components/spire/SpireRankCoin', () => ({ __esModule: true, default: 'SpireRankCoin' }));
 jest.mock('../components/spire/useSpireScene', () => ({ useSpireScene: () => ({ light: false }) }));
 jest.mock('../components/spire/SpireTowerSvg', () => ({ __esModule: true, default: 'SpireTowerSvg' }));
@@ -156,7 +156,7 @@ describe('просмотр сторис', () => {
     expect(screen.getByText('Твои события')).toBeTruthy();
     expect(screen.getByTestId('story-viewer-when').props.children).toBe('сегодня');
     await fireEvent.press(screen.getByTestId('story-viewer-close'));
-    expect(mockPlayEvent).toHaveBeenCalledWith('sheet_close');
+    expect(mockPlayEvent).toHaveBeenCalledWith('sheet_close', 'story_close');
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
@@ -239,6 +239,24 @@ describe('тексты и исходники', () => {
     expect(read('app/(tabs)/home.tsx')).toContain('<StoryAvatarSlot');
     const slot = read('components/stories/StoryAvatarSlot.tsx');
     for (const id of ['home-hero-avatar-button', 'home-avatar-coin-rank', 'home-avatar-coin-loading']) expect(slot).toContain(id);
+  });
+
+  it('холодный старт: слот аватара не тянет StoryRing / StoryViewer / слайды / банк звуков статически; подключение — require внутри функций', () => {
+    const slot = read('components/stories/StoryAvatarSlot.tsx').split('\n').filter((l) => !l.trim().startsWith('//')).join('\n');
+    // статические импорты (кроме type): ни кольца, ни просмотра, ни слайдов, ни звука
+    const staticImports = [...slot.matchAll(/^import\s+(?!type\b)[^;]*?from\s+['"]([^'"]+)['"]/gm)].map((m) => m[1]);
+    for (const banned of ['./StoryRing', './StoryViewer', './StorySlides']) expect(staticImports).not.toContain(banned);
+    expect(staticImports.some((m) => m.includes('sound_bank'))).toBe(false);
+    expect(slot).toMatch(/^ {4}ringModuleCache = require\('\.\/StoryRing'\)/m);
+    expect(slot).toMatch(/^ {4}viewerModuleCache = require\('\.\/StoryViewer'\)/m);
+    // сам просмотр не берёт звук из банка напрямую
+    expect(read('components/stories/StoryViewer.tsx')).not.toContain("sound_v2/sound_bank");
+  });
+
+  it('StoryRing re-экспортирует размеры из лёгкого файла констант (прежний API кольца не менялся)', () => {
+    const ring = read('components/stories/StoryRing.tsx');
+    expect(ring).toContain("from './story_ring_constants'");
+    expect(ring).toContain('export { STORY_RING_COIN, STORY_RING_SLOT, STORY_RING_STROKE }');
   });
 });
 

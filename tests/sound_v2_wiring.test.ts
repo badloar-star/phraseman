@@ -200,9 +200,7 @@ describe('остальные события V2 — места подключен
     ['components/level_up/CoinRankUpgradeCeremony.tsx', "tryPlayV2Event('coin_rank'"],
     ['components/PremiumCelebrationModal.tsx', "tryPlayV2Event('plus'"],
     ['components/feedback/ComboRing.tsx', "tryPlayV2Event('lightning'"],
-    ['app/spire/use_spire_game.ts', "tryPlayV2Event('summit'"],
-    ['app/spire/use_spire_game.ts', "tryPlayV2Event('floor'"],
-    ['app/spire/use_spire_game.ts', "tryPlayV2Event('step'"],
+    ['app/spire/use_spire_game.ts', "tryPlayV2Event(kind === 'summit' ? 'summit' : kind === 'floor' ? 'floor' : 'step', 'spire_step_finish')"],
   ];
   it.each(SITES)('%s зовёт V2: %s', (file, needle) => {
     expect(read(file)).toContain(needle);

@@ -10,6 +10,25 @@ import { isSoundV2Enabled } from './sound_v2_flag';
 
 const LOG = '[SOUND-V2-BRIDGE]';
 
+/** Окно «недавно сыграно», мс: звук отклика игры и звук показанного момента — одно событие в одну секунду не двоятся. */
+export const RECENT_EVENT_WINDOW_MS = 400;
+const lastPlayedAt = new Map<SoundV2EventId, number>();
+
+/** Отметить, что событие только что прозвучало (все пути моста отмечают сами). */
+export function noteSoundEventPlayed(event: SoundV2EventId, now: number = Date.now()): void {
+  lastPlayedAt.set(event, now);
+}
+
+export function wasSoundEventPlayedWithin(event: SoundV2EventId, windowMs: number = RECENT_EVENT_WINDOW_MS, now: number = Date.now()): boolean {
+  const at = lastPlayedAt.get(event);
+  return at !== undefined && now - at >= 0 && now - at < windowMs;
+}
+
+/** Только для тестов. */
+export function resetRecentSoundEventsForTests(): void {
+  lastPlayedAt.clear();
+}
+
 type Plan = Readonly<{ event: SoundV2EventId; advance?: boolean; step?: number }>;
 
 /** Старое событие SoundDirector → событие V2. */
@@ -47,7 +66,10 @@ function playPlan(source: string, id: string, plan: Plan): boolean {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { playEvent } = require('./sound_bank') as typeof import('./sound_bank');
     const result = playEvent(plan.event, plan.advance ? { advance: true } : plan.step !== undefined ? { step: plan.step } : undefined);
-    if (result.played) return true;
+    if (result.played) {
+      noteSoundEventPlayed(plan.event);
+      return true;
+    }
     if (result.reason && SILENT_REASONS.has(result.reason)) return true;
     console.log(`${LOG} ${source}:${id} → ${plan.event} не сыграл (${String(result.reason)}) — играет старый звук`); // guard-ok: причина отката на старый путь
     return false;
@@ -68,6 +90,19 @@ export function tryPlayV2ForDirector(eventId: string): boolean {
 export function tryPlayV2Event(event: SoundV2EventId, source: string, advance = false, step?: number): boolean {
   if (!isSoundV2Enabled()) return false;
   return playPlan('moment', source, { event, advance, step });
+}
+
+/**
+ * Звук момента: сыграть событие V2, ЕСЛИ такое же не звучало последние ~400 мс (его уже сыграл путь отклика игры). Иначе — молчит и пишет причину.
+ * true — звук сыгран или звуки выключены; false — флаг выключен, дубль погашен или V2 не сыграл (вызывающий решает про заглушку).
+ */
+export function playUnlessRecentlyPlayed(event: SoundV2EventId, source: string, options?: Readonly<{ advance?: boolean; step?: number; windowMs?: number }>): boolean {
+  if (!isSoundV2Enabled()) return false;
+  if (wasSoundEventPlayedWithin(event, options?.windowMs ?? RECENT_EVENT_WINDOW_MS)) {
+    console.log(`${LOG} moment:${source} → ${event} уже звучало ≤ ${options?.windowMs ?? RECENT_EVENT_WINDOW_MS} мс назад — дубль погашен`); // guard-ok: причина тишины
+    return false;
+  }
+  return playPlan('moment', source, { event, advance: options?.advance, step: options?.step });
 }
 
 /** Звук карточек playSfx: true — сыграл V2, false — играть по-старому. */

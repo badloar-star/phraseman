@@ -52,9 +52,10 @@ describe('звуки V2: одно событие — один путь в фай
     }
   });
 
-  it('Пик: звуки ступени/этажа/вершины в use_spire_game выключены, когда играют моменты v3 (их компоненты играют те же события)', () => {
+  it('Пик: звуки ступени/этажа/вершины в use_spire_game играют СРАЗУ (без паузы и без реестра), дубль с моментом гасит сам момент через playUnlessRecentlyPlayed', () => {
     const hook = fs.readFileSync(path.join(ROOT, 'app/spire/use_spire_game.ts'), 'utf8');
-    expect(hook).toMatch(/if \(!isMomentsV3FlagOn\(\)\) \{[\s\S]*tryPlayV2Event\('summit'/);
+    expect(hook).toContain("tryPlayV2Event(kind === 'summit' ? 'summit' : kind === 'floor' ? 'floor' : 'step', 'spire_step_finish')");
+    expect(hook).not.toMatch(/setTimeout|isMomentsV3FlagOn|active_moment_registry/);
     const moments = ['components/spire/moments/SpireFloorMoment.tsx', 'components/spire/moments/SpireStepResultMoment.tsx']
       .map((f) => fs.readFileSync(path.join(ROOT, f), 'utf8')).join('\n');
     expect(moments).toContain("playEvent('floor')");

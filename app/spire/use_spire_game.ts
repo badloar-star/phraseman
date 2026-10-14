@@ -13,7 +13,6 @@
 // Празднование — только в памяти экрана (фундамент: не durable-очередь).
 // ═══════════════════════════════════════════════════════════════════════════
 import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
-import { isMomentsV3FlagOn } from '../../components/streak/moments/use_moments_v3_flag';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, InteractionManager } from 'react-native';
 
@@ -345,11 +344,10 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     };
     setOutcome(view);
     // зачем (координатор 14.10): звуки Пика V2 — ступень / этаж / вершина в момент итога; провал без звука; флаг sound_v2 выключен — тишина
-    // зачем (координатор 14.10, один путь на событие): при включённых моментах v3 те же события играют SpireStepResultMoment / SpireFloorMoment — здесь молчим, чтобы не было двойного звука
-    if (!isMomentsV3FlagOn()) {
-      if (kind === 'summit') tryPlayV2Event('summit', 'spire_step_finish');
-      else if (kind === 'floor') tryPlayV2Event('floor', 'spire_step_finish');
-      else if (kind === 'passed') tryPlayV2Event('step', 'spire_step_finish');
+    // зачем (координатор 14.10): отклик игры — СРАЗУ, без задержки; мост отмечает «событие сыграно». Момент Пика при показе играет своё событие через playUnlessRecentlyPlayed и молчит,
+    // если такое же только что прозвучало отсюда (двойного звука нет, а без момента звук как был).
+    if (kind !== 'failed' && kind !== 'save_failed') {
+      tryPlayV2Event(kind === 'summit' ? 'summit' : kind === 'floor' ? 'floor' : 'step', 'spire_step_finish');
     }
     void spireRecordStepResult(ids.uid, lang, finish.report).then((res) => {
       if (lastReportRef.current !== finish.report.reportId) {

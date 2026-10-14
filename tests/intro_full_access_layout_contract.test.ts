@@ -8,7 +8,8 @@ describe('intro full access layout orchestration', () => {
   it('starts the intro gift from onboarding completion and shows the welcome modal once', () => {
     expect(source).toContain('startIntroFullAccessAfterOnboarding');
     expect(source).toContain('shouldShowIntroFullAccessWelcome');
-    expect(source).toContain('markIntroFullAccessWelcomeSeen');
+    // зачем (D186, координатор 14.10): окно «72 часа» снято — функция его закрытия (markIntroFullAccessWelcomeSeen, переход intro_ended) удалена.
+    expect(source).not.toContain('markIntroFullAccessWelcomeSeen');
     expect(source).toContain("setIntroFullAccessModal('welcome')");
   });
 
@@ -32,8 +33,9 @@ describe('intro full access layout orchestration', () => {
     expect(source).toMatch(/await markIntroFullAccessEndedSeen\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
   });
 
-  it('routes the expiration CTA to the existing paywall context', () => {
-    expect(source).toContain("context: 'intro_ended'");
+  // зачем (D186): окна «72 часа» нет — перехода на пейвол intro_ended из корневого layout больше нет (мёртвая ветка удалена 14.10).
+  it('no longer routes an expiration CTA to the paywall (D186)', () => {
+    expect(source).not.toContain("context: 'intro_ended'");
     expect(source).toContain('markIntroFullAccessEndedSeen');
   });
 

@@ -514,7 +514,7 @@ export interface PaywallPurchaseArgs {
   /**
    * DEV/QA: форс «триал-режима» из тест-меню (_force_trial_ui=1). В Metro стора
    * нет (DEV_IAP_BYPASS) → trialDays обычно null, и триал-зависимое (trust-бейдж
-   * «платить не нужно», exit-оффер, trial-таймлайн) не показать. Этот флаг
+   * «платить не нужно», trial-таймлайн) не показать. Этот флаг
    * включает превью-триал ТОЛЬКО в dev-бандле. В сторе игнорируется.
    */
   forceTrialUI?: boolean;
@@ -970,7 +970,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     [selectedEligibility, selectedPkg],
   );
   // В dev-бандле тест-меню может форсить триал-режим (_force_trial_ui=1), чтобы
-  // увидеть trust-бейдж/exit-оффер/таймлайн без стора. В сторе forceTrialUI=false.
+  // увидеть trust-бейдж/таймлайн без стора. В сторе forceTrialUI=false.
   const devForceTrial = DEV_IAP_BYPASS && forceTrialUI === true;
   const devTrialDays = devForceTrial ? (forceTrialDays && forceTrialDays > 0 ? forceTrialDays : DEV_FORCE_TRIAL_DEFAULT_DAYS) : null;
   const subscriptionTrialDays = trial.hasTrial ? trial.days : devTrialDays;
@@ -1729,7 +1729,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   entitlementSyncRef.current = handleRestore;
 
   // ── закрытие ───────────────────────────────────────────────────────────────
-  // Фактическое закрытие пейвола (после exit-оффера или сразу, если оффер не нужен).
+  // Фактическое закрытие пейвола (D187: сразу, с первого тапа).
   // зачем (§139, 04.10): два быстрых тапа «закрыть» в одном кадре слали paywall_close дважды и дважды
   // уводили назад по стеку (выбивало на экран раньше). Окно, а не вечный замок: в онбординге пейвол
   // остаётся смонтированным под оверлеем, и будущее закрытие не должно блокироваться.

@@ -14,6 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { IS_STORE_RELEASE } from './config';
+import { noteWelcomeBackReturnGap } from '../modules/welcome_back/welcome_back_signal';
 
 const LAST_ACTIVE_KEY = 'winback_last_active_at_v1';
 const WINBACK_SHOWN_AT_KEY = 'winback_shown_at_v1';
@@ -48,6 +49,17 @@ export interface ShouldShowWinbackParams {
 
 /** Фиксирует время последней активности (звать на app foreground). */
 export async function recordLastActive(nowMs: number): Promise<void> {
+  // зачем (D193, координатор 14.10): окно «С возвращением» решает Главная ПОСЛЕ первого кадра, а здесь прошлая активность
+  // перезаписывается текущей — разрыв был бы ~0. Перед перезаписью отдаём прошлую активность в снимок возвращения (память).
+  // Dev-рычаг winbackaway=N подставляет «прошлую активность» так же, как гейт winback.
+  try {
+    const devAway = devWinbackAvailable() ? devAwayDaysOverride : null;
+    const prevRaw = devAway !== null ? null : await AsyncStorage.getItem(LAST_ACTIVE_KEY);
+    const prev = devAway !== null ? nowMs - devAway * 86_400_000 : (parseInt(prevRaw ?? '', 10) || null);
+    noteWelcomeBackReturnGap(prev, nowMs);
+  } catch (error) {
+    console.warn('[WELCOME-BACK] прошлая активность не прочиталась — снимка возвращения не будет', String(error)); // guard-ok: catch пишет причину
+  }
   try {
     await AsyncStorage.setItem(LAST_ACTIVE_KEY, String(nowMs));
   } catch (e) {

@@ -75,6 +75,9 @@ export async function hasMeaningfulLocalAccountData(
  * interpreted as empty: this is the boundary preventing anonymous A data from
  * being observed or synchronized while authenticated as provider B.
  */
+/** Служебные ключи, значения которых безопасно печатать в журнал clean_proof (не персональные). */
+const CLEAN_PROOF_SERVICE_KEYS: ReadonlySet<string> = new Set(['user_avatar', 'user_frame', 'streak_count', 'active_days_v1', 'unlocked_lessons']);
+
 export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
   storage: LocalAccountStorage = AsyncStorage,
 ): Promise<boolean> {
@@ -92,10 +95,20 @@ export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
       .filter(([key, value]) => !NON_AUTHORITATIVE_BOOT_KEYS.has(key) && isMeaningfulStoredAccountValue(value))
       .map(([key]) => key);
     if (dirtyKeys.length > 0) {
-      identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof dirty', {
-        count: dirtyKeys.length,
-        keys: dirtyKeys.slice(0, 12).map(redactStorageKey).join(','),
-      });
+      identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof dirty', { count: dirtyKeys.length });
+      // зачем (Сверка 14.10: «свежий гость = 25 грязных ключей», список обрезался на 12): ВСЕ ключи частями по 8, а для служебных
+      // ключей — короткое значение, чтобы отличить значение по умолчанию от прогресса. Значения служебных ключей не персональные.
+      const valueByKey = new Map(rows);
+      const describe = (key: string): string => {
+        const raw = valueByKey.get(key) ?? '';
+        const service = CLEAN_PROOF_SERVICE_KEYS.has(key) || key.startsWith('legacy_free_');
+        return service ? `${redactStorageKey(key)}=${String(raw).slice(0, 24)}` : `${redactStorageKey(key)}(len=${String(raw).length})`;
+      };
+      for (let i = 0; i < dirtyKeys.length; i += 8) {
+        identityTrace('[AUTH-LINK-GOOGLE]', `clean_proof dirty_keys ${i / 8 + 1}/${Math.ceil(dirtyKeys.length / 8)}`, {
+          keys: dirtyKeys.slice(i, i + 8).map(describe).join(' '),
+        });
+      }
       return false;
     }
     identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof clean', { checked: rows.length });

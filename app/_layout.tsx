@@ -234,6 +234,7 @@ import { prefetchEasUpdateAfterStartup } from './eas_update_prefetch';
 import { prefetchAchievementArtInBackground } from './achievement_art_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
+import { getOverlayActiveMirror, waitForOverlaySlotFree } from '../components/overlay_active_mirror'; // зачем: [PAYWALL-AUTO] — апселл ждёт свободный слот окон
 import {
   finishAccountDeleteUiTrace,
   traceAccountDeleteUi,
@@ -290,7 +291,6 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
 import { ProductAnalyticsRuntimeObserver } from './product_analytics_runtime_observer';
 import {
-  markNextNavigationAsReplace,
   navigationFallbackForPath,
   rememberNavigationPath,
   safeRouterBack,
@@ -320,7 +320,6 @@ import { readFreshInstallVerdict, skipAnnouncementsForFreshInstall } from './fre
 import {
   getIntroFullAccessState,
   markIntroFullAccessEndedSeen,
-  markIntroFullAccessWelcomeSeen,
   shouldShowIntroFullAccessWelcome,
   startIntroFullAccessAfterOnboarding,
 } from './intro_full_access';
@@ -950,11 +949,20 @@ function GlobalLevelUpRewards() {
           ]);
           if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
           if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          // Navigation first: a failed push must not consume the cooldown.
-          globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as Href);
-          await markAfterWinUpsellShown(Date.now());
-          await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
-          void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(noteSwallowedHandler('_layout:useEffect.call'));
+          // зачем (координатор 14.10, [PAYWALL-AUTO]): апселл не въезжает поверх окна очереди (итог недели, «С возвращением»):
+          // ждём освобождения слота вне замка смены аккаунта, показываем один раз; не дождались за 10 мин — сдаёмся с причиной.
+          const holderNow = getOverlayActiveMirror();
+          if (holderNow !== null) console.log(`[PAYWALL-AUTO] level_up upsell deferred holder=${holderNow}`); // guard-ok: решение логируется
+          waitForOverlaySlotFree(10 * 60_000, (freed, waitedMs) => {
+            if (!freed) { console.log(`[PAYWALL-AUTO] level_up upsell dropped reason=overlay_busy_timeout waitedMs=${waitedMs}`); return; } // guard-ok: ранний выход
+            if (!isLevelUpAccountTokenCurrent(accountToken)) { console.log('[PAYWALL-AUTO] level_up upsell dropped reason=account_changed'); return; } // guard-ok: ранний выход
+            console.log(`[PAYWALL-AUTO] level_up upsell shown waitedMs=${waitedMs}`); // guard-ok: решение логируется
+            // Navigation first: a failed push must not consume the cooldown.
+            globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as Href);
+            void markAfterWinUpsellShown(Date.now()).catch(noteSwallowedHandler('_layout:levelUpUpsell.markShown'));
+            void trackEvent('afterwin_upsell_shown', { source: 'level_up' }).catch(noteSwallowedHandler('_layout:levelUpUpsell.track'));
+            void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(noteSwallowedHandler('_layout:useEffect.call'));
+          });
         } catch (e) {
           // guard-ok: молчаливый отказ апселла = потерянная выручка без следа.
           DebugLogger.error('_layout:levelUpUpsell', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -3200,38 +3208,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     return realPremium || vip;
   }, [hasPremiumAccess]);
 
-  const closeIntroFullAccessModal = useCallback(async (action: 'primary' | 'secondary') => {
-    const variant = introFullAccessModal;
-    if (__DEV__) console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} intro_modal close variant=${variant ?? 'none'} action=${action} path=${pathnameRef.current}`); // guard-ok: закрытие окна конца интро
-    if (!variant) return;
-    if (variant === 'welcome') {
-      await markIntroFullAccessWelcomeSeen().catch(noteSwallowedHandler('_layout:useCallback.markIntroFullAccessWelcomeSeen'));
-      setIntroFullAccessModal(null);
-      return;
-    }
-
-    await markIntroFullAccessEndedSeen().catch(noteSwallowedHandler('_layout:useCallback.markIntroFullAccessEndedSeen'));
-    setIntroFullAccessModal(null);
-    if (action === 'primary') {
-      // Воронка: пользователь решил продолжить в полном доступе — ведём на пейвол.
-      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_cta', {})).catch(noteSwallowedHandler('_layout:useCallback.call'));
-      void import('./firebase').then(({ logIntroEndedCta }) => logIntroEndedCta()).catch(noteSwallowedHandler('_layout:useCallback.call_2'));
-      // Прокидываем личные данные, чтобы пейвол показал персональную строку
-      // («уже твоё: серия N · …»). Без них пейвол даёт корректный gain-фоллбэк.
-      const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(noteSwallowedAs('_layout:useCallback.getItem', null))) || '0', 10) || 0;
-      // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
-      markNextNavigationAsReplace();
-      if (__DEV__) console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} intro_modal → replace /premium_modal context=intro_ended (окно конца интро только что снято setIntroFullAccessModal(null))`); // guard-ok: навигация на пейвол
-      router.replace({
-        pathname: '/premium_modal',
-        params: { context: 'intro_ended', source: 'intro_ended', streak: String(streakCount) },
-      } as any);
-    } else {
-      // Воронка: закрыл модалку конца интро без перехода на пейвол.
-      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_dismiss', {})).catch(noteSwallowedHandler('_layout:useCallback.call_3'));
-      void import('./firebase').then(({ logIntroEndedDismiss }) => logIntroEndedDismiss()).catch(noteSwallowedHandler('_layout:useCallback.call_4'));
-    }
-  }, [introFullAccessModal, router]);
+  // зачем (D186, координатор 14.10): окно «72 часа» снято — функция закрытия с переходом на пейвол intro_ended удалена (мёртвая ветка).
 
   const checkIntroFullAccessEndedModal = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;

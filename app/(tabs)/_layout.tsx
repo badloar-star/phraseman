@@ -14,7 +14,7 @@ import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFad
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
-import { createTapLatencyProfilerHandler, noteTapAction } from '../tap_latency_trace';
+import { createTapLatencyProfilerHandler, noteTapAction, TAP_LATENCY_TRACE_ENABLED, traceLog } from '../tap_latency_trace';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { HOME_ENTRANCE } from '../../constants/motion';
 import { TabBarVisibilityProvider, useTabBarVisibility } from '../../components/TabBarVisibilityContext';
@@ -147,6 +147,28 @@ function prewarmDeferredTabScreen(idx: number): boolean {
 // «<Freeze freeze={freezeActive}>{children}</Freeze>» (tab_freeze_handoff_contract).
 // Когда трассировка выключена — обработчика нет и дети рендерятся как есть.
 const tapLatencyProfilerOnRender = createTapLatencyProfilerHandler();
+
+// зачем (координатор 14.10, [PAYWALL-CLOSE-JS]; TAP-LAT Сверки: layout:tabs 13–14 рендеров за один переход, 4,3–6,3 с): что сменилось
+// на каждой перерисовке разметки вкладок. Объекты сравниваются по идентичности (#id). Только с флагом EXPO_PUBLIC_TAP_LATENCY_TRACE=1.
+const tabsRenderWhy: { n: number; prev: Record<string, string> | null; ids: WeakMap<object, number>; nextId: number } = { n: 0, prev: null, ids: new WeakMap(), nextId: 1 };
+function tabsRenderWhyValue(v: unknown): string {
+  if (v !== null && typeof v === 'object') {
+    let id = tabsRenderWhy.ids.get(v as object);
+    if (!id) { id = tabsRenderWhy.nextId++; tabsRenderWhy.ids.set(v as object, id); }
+    return `#${id}`;
+  }
+  return String(v);
+}
+function traceTabsRenderWhy(values: Readonly<Record<string, unknown>>): void {
+  if (!TAP_LATENCY_TRACE_ENABLED) return;
+  const cur: Record<string, string> = {};
+  for (const key of Object.keys(values)) cur[key] = tabsRenderWhyValue(values[key]);
+  const prev = tabsRenderWhy.prev;
+  const changed = prev ? Object.keys(cur).filter((k) => prev[k] !== cur[k]).map((k) => `${k}:${prev[k]}→${cur[k]}`) : ['first render'];
+  tabsRenderWhy.n += 1;
+  tabsRenderWhy.prev = cur;
+  traceLog(`[TABS-RENDER] #${tabsRenderWhy.n} t=${Date.now() % 100000} changed=${changed.length > 0 ? changed.join(' ') : 'none (parent/context)'}`);
+}
 function TabRenderProbe({ id, children }: { id: string; children: React.ReactNode }) {
   if (!tapLatencyProfilerOnRender) return <>{children}</>;
   return <Profiler id={id} onRender={tapLatencyProfilerOnRender}>{children}</Profiler>;
@@ -790,6 +812,7 @@ function ReleasedTabLayout() {
   const router = useRouter();
   const routerRef = useRef(router);
   routerRef.current = router;
+  traceTabsRenderWhy({ pathname, segments: segments.join('/'), studyTarget, width: tabPaneWidth, theme: t, activeIdx, visualIdx, physicalPageIdx, focusTick, devHubVisible, visited: visitedTabs.size, mounted: mountedTabs.size, router });
   const lastEffectLayoutRef = useRef<TabPageLayout | null>(null);
   const backgroundPremountStartedRef = useRef(false);
   const backgroundPremountTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);

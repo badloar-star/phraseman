@@ -1,0 +1,1 @@
+  mCurrentFocus=Window{cf037eb u0 app.phraseman/app.phraseman.MainActivity}

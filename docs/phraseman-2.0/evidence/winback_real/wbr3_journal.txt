@@ -1,0 +1,15 @@
+10-14 19:07:46.169 I/SVERKA  (16290): === WB-R3 назад 19:07:47 ===
+10-14 19:07:47.369 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=67369 gate no reason=recent awayDays=0
+10-14 19:07:47.370 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=67370 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 19:09:01.435 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=41435 gate dev_override awayDays=8 (хранилище: last=1792001267319 shown=1792001179181)
+10-14 19:09:01.436 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=41435 gate YES awayDays=8 shownAt=never
+10-14 19:09:01.436 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=41436 check decision show=true isPremium=false introPending=false path=/home
+10-14 19:09:01.865 I/ReactNativeJS(16054): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 19:09:01.872 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=41871 sheet mount context=winback source=winback
+10-14 19:09:01.876 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=41873 sheet arbiter active=none
+10-14 19:09:01.877 I/ReactNativeJS(16054): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 19:09:01.878 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=41878 route mount context=winback source=winback
+10-14 19:09:10.055 W/ReactNativeJS(16054): '[NAV-BACK] decision', '{"leaving":"/premium_modal","leavingSection":"home","candidate":"/home","chosen":"/home","fallback":"/(tabs)/home","method":"dismiss_to"}'
+10-14 19:09:10.466 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=50465 route UNMOUNT context=winback
+10-14 19:09:10.468 I/ReactNativeJS(16054): [WINBACK-FREEZE] t=50467 sheet UNMOUNT context=winback
+10-14 19:09:12.130 I/SVERKA  (16406): === WB-R3 closed 19:09:13 ===

@@ -1,0 +1,20 @@
+10-14 18:59:35.209 I/SVERKA  (14835): === WB-R1 крестик 18:59:36 ===
+10-14 18:59:36.498 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=76497 gate no reason=recent awayDays=0
+10-14 18:59:36.498 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=76498 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 19:00:38.546 W/ReactNativeJS(14610): '[NAV-BACK] decision', '{"leaving":"/settings_themes","leavingSection":"settings","candidate":"/settings","chosen":"/settings","fallback":"/(tabs)/settings","method":"settings_dismiss_1"}', { [Stack] name: 'Stack' }
+10-14 19:00:50.756 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=50755 gate dev_override awayDays=8 (хранилище: last=1792000776434 shown=1792000687563)
+10-14 19:00:50.756 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=50756 gate YES awayDays=8 shownAt=never
+10-14 19:00:50.758 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=50756 check decision show=true isPremium=false introPending=false path=/home
+10-14 19:00:51.150 I/ReactNativeJS(14610): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 19:00:51.168 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=51167 sheet mount context=winback source=winback
+10-14 19:00:51.170 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=51169 sheet arbiter active=none
+10-14 19:00:51.171 I/ReactNativeJS(14610): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 19:00:51.172 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=51171 route mount context=winback source=winback
+10-14 19:01:01.915 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=61914 sheet close_button
+10-14 19:01:01.918 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=61917 handleClose reason=close context=winback source=winback exitEligible=false exitAlreadyShown=false trialDays=none
+10-14 19:01:01.919 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=61918 doClose reason=close context=winback source=winback lockLeftMs=0
+10-14 19:01:01.923 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=61922 dismiss leaving=/premium_modal?context=winback&source=winback candidate=/home chosen=/home shouldReplace=false canDismiss=true branch=dismiss(1) stack=/home
+10-14 19:01:02.431 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=62430 route UNMOUNT context=winback
+10-14 19:01:02.435 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=62432 sheet UNMOUNT context=winback
+10-14 19:01:02.938 I/ReactNativeJS(14610): [WINBACK-FREEZE] t=62936 dismiss +800ms top=/home stack=/home
+10-14 19:01:04.030 I/SVERKA  (15054): === WB-R1 closed 19:01:05 ===

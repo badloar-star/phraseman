@@ -1,0 +1,28 @@
+10-14 20:41:43.458 I/SVERKA  (32340): === CP-1 start 20:41:44 ===
+10-14 20:41:44.564 I/ReactNativeJS(32135): [PAYWALL-CLOSE-FREEZE] t=4562 tabs blur
+10-14 20:41:45.265 I/ReactNativeJS(32135): [TAP-LAT] → dev_state (из (tabs)) · без касания (редирект/таймер) · коммит→кадр 690.9мс
+10-14 20:41:45.265 I/ReactNativeJS(32135): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (691мс) · рендеры: stack 21×(150/5/213/219/593/…мс, всего 5406мс) · tab:lessons 11×(58/78/20/1/71/…мс, всего 556мс) · tab:home 7×(46/51/79/72/78/…мс, вс
+10-14 20:41:47.981 I/ReactNativeJS(32135): [TAP-LAT] → flashcards_training_setup (из dev_state) · без касания (редирект/таймер) · коммит→кадр 361.4мс
+10-14 20:41:47.981 I/ReactNativeJS(32135): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (361мс) · рендеры: stack 24×(803/609/212/167/8/…мс, всего 5049мс) · tab:lessons 11×(106/62/74/72/8/…мс, всего 548мс) · tab:home 5×(78/57/89/45/48мс, все�
+10-14 20:41:56.877 I/ReactNativeJS(32135): [TAP-LAT] → flashcards_blitz_session (из flashcards_training_setup) · палец 33.1мс · JS-лаг на отпускании 33.1мс · отпускание→обработчик — · обработчик→коммит 299.3мс · коммит→кадр 419.9м
+10-14 20:41:56.877 I/ReactNativeJS(32135): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (419мс) · рендеры от касания: stack 4×(35/100/558/50мс, всего 743мс) · tab:home 1×(41мс, всего 41мс) · tab:lessons 1×(38мс, всего 38мс)
+10-14 20:41:59.888 I/SVERKA  (32417): === CP-1 plus-tap 20:42:01 ===
+10-14 20:42:08.034 I/ReactNativeJS(32135): [NO-ENERGY-PLUS] tap ctx=no_energy variant=learn activity=flashcards handler=onClose
+10-14 20:42:08.052 W/ReactNativeJS(32135): '[NAV-BACK] decision', '{"leaving":"/flashcards_blitz_session","leavingSection":"flashcards","candidate":"/flashcards_training_setup","chosen":"/flashcards_training_setup","fallback":"/flashcards","method":"dismiss_to"}', { [Stack] name: 'Stack' }
+10-14 20:42:08.471 I/ReactNativeJS(32135): [NO-ENERGY-PLUS] unmount_with_pending ctx=no_energy variant=learn → push after screen left
+10-14 20:42:08.928 I/ReactNativeJS(32135): [TAP-LAT] → flashcards_training_setup (из flashcards_blitz_session) · палец 86.8мс · JS-лаг на отпускании 86.8мс · отпускание→обработчик — · обработчик→коммит 426.9мс · коммит→кадр 440.2м
+10-14 20:42:08.928 I/ReactNativeJS(32135): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (439мс) · рендеры от касания: stack 3×(7/543/603мс, всего 1153мс) · tab:lessons 1×(57мс, всего 57мс) · tab:home 1×(38мс, всего 38мс)
+10-14 20:42:08.935 I/ReactNativeJS(32135): [NO-ENERGY-PLUS] push via=unmount_rescue ctx=no_energy
+10-14 20:42:09.496 I/ReactNativeJS(32135): [INFO] [PAYWALL-OPEN]: шапка: ctx=no_energy source=no_energy_modal текст=no_energy контекстная=true выгода=есть lang=ru
+10-14 20:42:09.514 I/ReactNativeJS(32135): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"no_energy","source":"no_energy_modal","shownContext":"no_energy","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","ro
+10-14 20:42:09.858 I/ReactNativeJS(32135): [TAP-LAT] → premium_modal (из flashcards_training_setup) · палец 86.8мс · JS-лаг на отпускании 86.8мс · отпускание→обработчик — · обработчик→коммит 1460.4мс · коммит→кадр 337мс · ОТ �
+10-14 20:42:09.858 I/ReactNativeJS(32135): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (337мс) · рендеры от касания: stack 6×(7/543/603/7/294/…мс, всего 2074мс) · tab:lessons 3×(57/2/64мс, всего 123мс) · tab:home 2×(38/43мс, всего 
+10-14 20:42:13.456 I/SVERKA  (32453): === CP-1 close-tap 20:42:14 ===
+10-14 20:42:16.035 I/ReactNativeJS(32135): [PAYWALL-CLOSE] via=x reason=close context=no_energy source=no_energy_modal
+10-14 20:42:16.062 I/ReactNativeJS(32135): [PAYWALL-CLOSE-FREEZE] t=36062 branch=dismiss(1) why: shouldReplace=false candidate=yes canDismiss=true nativePopToBack=true
+10-14 20:42:16.948 I/ReactNativeJS(32135): [PAYWALL-CLOSE-FREEZE] t=36946 +0ms branch=dismiss(1) stack=[*__root] > [(tabs),*flashcards_training_setup] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:42:16.952 I/ReactNativeJS(32135): [PAYWALL-CLOSE-FREEZE] t=36948 +300ms branch=dismiss(1) stack=[*__root] > [(tabs),*flashcards_training_setup] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:42:16.954 I/ReactNativeJS(32135): [TAP-LAT] → flashcards_training_setup (из premium_modal) · палец 51.6мс · JS-лаг на отпускании 51.6мс · отпускание→обработчик — · обработчик→коммит 338.4мс · коммит→кадр 544.8мс · ОТ 
+10-14 20:42:16.954 I/ReactNativeJS(32135): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (545мс) · рендеры от касания: stack 2×(488/647мс, всего 1135мс) · tab:lessons 1×(60мс, всего 60мс) · tab:home 1×(51мс, всего 51мс)
+10-14 20:42:16.956 I/ReactNativeJS(32135): [PAYWALL-CLOSE-FREEZE] t=36956 +800ms branch=dismiss(1) stack=[*__root] > [(tabs),*flashcards_training_setup] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:42:17.598 I/ReactNativeJS(32135): [PAYWALL-CLOSE-FREEZE] t=37598 +1500ms branch=dismiss(1) stack=[*__root] > [(tabs),*flashcards_training_setup] index=0 top=__root paywallInStack=false overlay=none

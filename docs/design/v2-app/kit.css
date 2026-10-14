@@ -143,7 +143,7 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
 
 /* ---------- кнопки ---------- */
 .cta { display: flex; align-items: center; justify-content: center; gap: 12px; height: 48px; border-radius: 24px; background: var(--cta); color: var(--cta-ink); font-size: 17px; font-weight: 700; width: 100%; position: relative; }
-.cta .ar { position: absolute; right: 22px; }
+.cta .ar { position: static; } /* зачем (координатор 14.10, решение «б» — образцы под код): стрелка сразу за текстом, как V2Button (trailing-иконка в строке) */
 .cta.sm { height: 42px; border-radius: 21px; width: auto; padding: 0 18px; font-size: 16px; font-weight: 600; gap: 10px; }
 .cta.gh { background: transparent; color: var(--text); border: 1px solid var(--outline); }
 .cta.dis { background: var(--disabled); color: var(--muted); }

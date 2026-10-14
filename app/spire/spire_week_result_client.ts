@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SpireLang } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
 import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
+import { captureAccountGeneration, type AccountGenerationToken } from '../account_generation';
 import { DebugLogger } from '../debug-logger';
 import type { SpireLiveGate } from './spire_live_gate';
 import { spireErrorText, spireFirestore } from './spire_net';
@@ -52,7 +53,21 @@ export type SpireWeekResultView = Readonly<{
   ladder?: readonly SpireWeekLadderRowView[];
   /** D191: монеты последнего в зоне повышения (режим монет) — для m02 «сколько не хватило»; нет — undefined. */
   promotionLineCoins?: number;
+  /** Статус выплаты крона (paid / pending_wallet / none…); только для журнала. Монеты места/повышения выше — уже 0, если не 'paid'. */
+  rewardStatus?: string;
+  /** Снимок кошелька после выплаты (крон с 17.10); нет — старый итог или выплата не прошла. */
+  walletAfter?: SpireWeekWalletView;
 }>;
+
+export type SpireWeekWalletView = Readonly<{ stars: number; earnedTotal: number; seq: number; paidCoins: number }>;
+
+/** Снимок кошелька из итога: только при paid и только целые неотрицательные числа, seq > 0; иначе undefined (вливать нечего). */
+function decodeWallet(d: Record<string, unknown>): SpireWeekWalletView | undefined {
+  if (d.rewardStatus !== 'paid') return undefined;
+  const [stars, earnedTotal, seq, paidCoins] = [d.starsBalanceAfter, d.starsEarnedTotalAfter, d.starsSeq, d.rewardPaidCoins].map(Number);
+  if (![stars, earnedTotal, seq].every((v) => Number.isSafeInteger(v) && v >= 0) || seq === 0) return undefined;
+  return { stars, earnedTotal, seq, paidCoins: Number.isSafeInteger(paidCoins) && paidCoins > 0 ? paidCoins : 0 };
+}
 
 export type SpireWeekLadderRowView = Readonly<{ place: number; name: string; coinRank: number | null; coins: number; isMe: boolean }>;
 
@@ -96,6 +111,10 @@ export function spireDecodeWeekResult(raw: unknown, weekId: string, lang: SpireL
   const d = raw as Record<string, unknown>;
   if (d.schema !== 'spire-week-result.v1') return null;
   const coins = (d.rewardCoins && typeof d.rewardCoins === 'object' ? d.rewardCoins : {}) as Record<string, unknown>;
+  // зачем (координатор 15.10, аудит Optimistic UI): «+N монет» (окно m01, карточка итога, сторис) — только если монеты РЕАЛЬНО
+  // пришли в кошелёк (rewardStatus 'paid'). pending_wallet / отказ журнала → строки нет: нельзя хвалить монетами, которых нет в шапке.
+  const rewardPaid = d.rewardStatus === 'paid';
+  const wallet = decodeWallet(d);
   return {
     weekId,
     lang,
@@ -106,14 +125,45 @@ export function spireDecodeWeekResult(raw: unknown, weekId: string, lang: SpireL
     demoted: d.demoted === true, // guard-ok: только показ итога, который решил сервер (крон)
     prevTier: Math.max(0, n(d.prevTier)), // guard-ok: чтение для карточки, клиент ничего не пишет
     newTier: Math.max(0, n(d.newTier)), // guard-ok: чтение для карточки, клиент ничего не пишет
-    placeCoins: Math.max(0, n(coins.place)),
-    promotionCoins: Math.max(0, n(coins.promotion)),
+    placeCoins: rewardPaid ? Math.max(0, n(coins.place)) : 0,
+    promotionCoins: rewardPaid ? Math.max(0, n(coins.promotion)) : 0,
+    rewardStatus: typeof d.rewardStatus === 'string' ? d.rewardStatus.slice(0, 32) : 'none_field',
     rankBy: d.rankBy === 'coins' ? 'coins' : 'steps', // guard-ok: показ решения сервера (D162)
     weekCoins: Math.max(0, n(d.weekCoins)),
     // зачем (D191, координатор 14.10): клиент рисует лестницу / разрыв до топ-5 ТОЛЬКО если поля пришли — старые итоги без них.
     ...(decodeLadder(d.ladder) ? { ladder: decodeLadder(d.ladder) } : {}),
     ...(typeof d.promotionLineCoins === 'number' && Number.isFinite(d.promotionLineCoins) ? { promotionLineCoins: Math.max(0, n(d.promotionLineCoins)) } : {}),
+    ...(wallet ? { walletAfter: wallet } : {}),
   };
+}
+
+/** Уже влитые снимки в этом процессе: загрузчик зовут три места (Пик, окно D191, проба) — вливаем один раз. */
+const mergedWallets = new Set<string>();
+
+/**
+ * Снимок кошелька из итога недели → баланс шапки.
+ * зачем (координатор 15.10, аудит Optimistic UI): выплата крона за место/повышение лежала на сервере, а шапка её не видела
+ * до следующего урока — окно говорило «+100», баланс стоял. Вливаем ЕДИНСТВЕННЫМ каналом серверных снимков
+ * (mergeLevelSpinServerStars): он берёт только более новый starsSeq и не трогает непогашенные локальные операции, поэтому
+ * старый итог не затрёт свежий баланс, а повтор не удвоит монеты. Аккаунт сменился → не вливаем (token захвачен до чтения).
+ */
+async function mergeWeekWallet(token: AccountGenerationToken, uid: string, result: SpireWeekResultView | null, where: string): Promise<void> {
+  if (!result) return;
+  const tag = `[SPIRE-WEEK-WALLET] where=${where} weekId=${result.weekId} lang=${result.lang} rewardStatus=${result.rewardStatus ?? 'кэш_до_15.10'}`;
+  const w = result.walletAfter;
+  if (!w) { DebugLogger.info(LOG, `${tag} skip: снимка кошелька в итоге нет — баланс догонит квитанция урока/карточек`); return; }
+  const key = `${uid}:${result.weekId}:${result.lang}:${w.seq}`;
+  if (mergedWallets.has(key)) { DebugLogger.info(LOG, `${tag} skip: снимок seq=${w.seq} уже влит в этом запуске`); return; }
+  if (token.stableId?.trim() !== uid) { DebugLogger.warn(LOG, `${tag} skip: аккаунт не совпал (token=${token.stableId ? token.stableId.slice(0, 8) : 'нет'} uid=${uid.slice(0, 8)})`); return; }
+  mergedWallets.add(key); // guard-ok: метка процесса в памяти, не данные пользователя
+  try {
+    const grants = await import('../level_spin_star_grants');
+    const visible = await grants.mergeLevelSpinServerStars(token, { stars: w.stars, starsEarnedTotal: w.earnedTotal, starsSeq: w.seq, serverCreditedDelta: w.paidCoins });
+    DebugLogger.info(LOG, `${tag} merged: снимок stars=${w.stars} seq=${w.seq} выплата=${w.paidCoins} → видимый баланс=${visible.balance}`);
+  } catch (error) {
+    mergedWallets.delete(key);
+    DebugLogger.warn(LOG, `${tag} catch: не влили (${spireErrorText(error)}) — повтор при следующем заходе`);
+  }
 }
 
 async function readRow(uid: string, lang: SpireLang): Promise<CacheRow | null> {
@@ -149,6 +199,8 @@ export async function spireLoadWeekResult(
   opts: Readonly<{ markShown?: boolean; where?: string }> = {},
 ): Promise<SpireWeekResultView | null> {
   const nowMs = Date.now();
+  // зачем: аккаунт фиксируем ДО чтения — если он сменится, пока ждём сеть, снимок чужого кошелька не вольётся (merge сверит поколение).
+  const accountToken = captureAccountGeneration();
   const prevWeek = spirePreviousWeekKey(nowMs);
   const shouldMark = opts.markShown !== false;
   const where = opts.where ?? 'spire';
@@ -168,6 +220,7 @@ export async function spireLoadWeekResult(
     if (row.state === 'found') {
       logCard('shown', `из кэша (promoted=${String(row.result?.promoted)} demoted=${String(row.result?.demoted)})`);
       void recordSpireWeekStory(row.result); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
+      void mergeWeekWallet(accountToken, input.uid, row.result, where);
       if (shouldMark) await markShown();
       return row.result;
     }
@@ -192,6 +245,7 @@ export async function spireLoadWeekResult(
     if (result) {
       logCard('shown', 'первый вход на новой неделе — итог прочитан с сервера');
       void recordSpireWeekStory(result); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
+      void mergeWeekWallet(accountToken, input.uid, result, where);
       if (shouldMark) await markShown();
       else await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'found', checkedAtMs: nowMs, result });
     } else {

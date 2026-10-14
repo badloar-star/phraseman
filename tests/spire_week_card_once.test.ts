@@ -25,7 +25,9 @@ describe('Итог недели показывается один раз', () =>
   });
 
   it('логи [SPIRE-WEEK-CARD] содержат weekId и решение shown/skip с причиной', () => {
-    expect(client).toContain('[SPIRE-WEEK-CARD] weekId=${prevWeek} lang=${input.lang} ${decision}: ${why}');
+    // зачем: с D191 (31c733a49) лог несёт и место вызова (where=spire / home_week_moment / home_week_modal) — один загрузчик, три входа.
+    expect(client).toContain('[SPIRE-WEEK-CARD] where=${where} weekId=${prevWeek} lang=${input.lang}');
+    expect(client).toContain("${shouldMark ? decision : `peek_${decision}`}: ${why}");
   });
 
   it('форс для кадров: dev-подмена карточки остаётся в экране', () => {

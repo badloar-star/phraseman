@@ -64,6 +64,21 @@ function num(value: unknown): number {
 }
 
 /**
+ * Снимок кошелька после выплаты — для итога недели.
+ * зачем (координатор 15.10, аудит Optimistic UI): окно «+100 за повышение» говорило о монетах, которых шапка не видела до
+ * следующего урока — клиент принимает серверный баланс только из квитанций. Теперь итог несёт баланс, итог заработанного
+ * и номер операции журнала после выплаты; клиент вливает их через mergeLevelSpinServerStars (тот же guard по starsSeq —
+ * старый снимок свежего не затрёт). Битые числа → поля не пишем (клиент без снимка просто ничего не вливает).
+ */
+export function spireWeekPaidWalletFields(source: Readonly<{ balance: unknown; earnedTotal: unknown; seq: unknown }>): Record<string, number> {
+  const balance = Number(source.balance);
+  const earnedTotal = Number(source.earnedTotal);
+  const seq = Number(source.seq);
+  if (![balance, earnedTotal, seq].every((v) => Number.isSafeInteger(v) && v >= 0) || seq === 0) return {};
+  return { starsBalanceAfter: balance, starsEarnedTotalAfter: earnedTotal, starsSeq: seq };
+}
+
+/**
  * Одна транзакция на одного игрока. Чтения: users/{uid}, итог недели, расписка
  * (+ расписка внутри журнала). Записи: баланс + расписка + отметка в итоге.
  * Бросает только на сбое Firestore — вызывающий крон ловит и ретраит прогон.
@@ -100,12 +115,15 @@ export async function payoutSpireWeekReward(
     }
 
     if (receiptSnap.exists) {
-      const paid = Math.max(0, Math.trunc(num(receiptSnap.data()?.delta)));
+      const receipt = receiptSnap.data() ?? {};
+      const paid = Math.max(0, Math.trunc(num(receipt.delta)));
       // guard-ok: запись внутри runTransaction.
       tx.set(input.resultRef, { // guard-ok: merge:true ниже, внутри runTransaction
         rewardStatus: 'paid',
         rewardOpId: opId,
         rewardPaidCoins: paid,
+        // зачем: ретрай крона — снимок из расписки (баланс сразу после ЭТОЙ выплаты); клиент сам отбросит его, если уже видел новее.
+        ...spireWeekPaidWalletFields({ balance: receipt.balanceAfter, earnedTotal: receipt.earnedTotalAfter, seq: receipt.seq }),
       }, { merge: true });
       return { uid: input.uid, status: 'already_paid', opId, coins: paid };
     }
@@ -147,13 +165,14 @@ export async function payoutSpireWeekReward(
         errorCode: ledgerOutcome?.errorCode ?? 'no_outcome',
       };
     }
-    commitStarOperations(tx, prepared);
+    const ledger = commitStarOperations(tx, prepared);
     // guard-ok: запись внутри runTransaction.
     tx.set(input.resultRef, { // guard-ok: merge:true ниже, внутри runTransaction
       rewardStatus: 'paid',
       rewardOpId: opId,
       rewardPaidCoins: op.delta,
       rewardPaidAt: admin.firestore.FieldValue.serverTimestamp(),
+      ...spireWeekPaidWalletFields(ledger),
     }, { merge: true });
     return {
       uid: input.uid,

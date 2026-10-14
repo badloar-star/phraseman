@@ -2,6 +2,7 @@
 
 Governance-ID: TG-49E7B1951D25
 Governance-ID: TG-68B60DAE1131
+Governance-ID: TG-1F6322CA2CFD
 Status: Шаг 1 (журнал) — черновик скриптом; в код после воспроизведения WINBACK-FREEZE (не сбивать Сверку перезагрузкой)
 Owner: 5 · АВТОРИЗАЦИЯ
 
@@ -51,3 +52,9 @@ Out of scope: синхронизация и карантин (скорость �
 ## Rollback
 
 `git revert` коммита.
+
+## Факт и починка (14.10 ~19:40, журнал прогона №3 evidence/acc_speed_r3/journal_r3_full.txt, 81be77773)
+
+После `AUTH-LINK-GOOGLE result merged_devices` событие `auth_provider_linked` пришло 2 раза. Поколение поднялось 2 → 3 → 4, но `refresh enter gen=3/4 inflight=true` переиспользовал запрос поколения 2. Его ответ `getLinkedAuthInfo source=users_doc.linkedAuth result=google` отброшен: `applied=false gen=2/4`. Нового запроса не было, карточка осталась «Войти / Не привязан».
+
+Починка (`app/(tabs)/settings.tsx`): `linkedAuthInFlightGenRef` — поколение идущего запроса. Запрос прошлого поколения не поглощает свежий: запускается новый под текущее поколение, лог `[SETTINGS-ACCOUNT-CARD] refresh stale_inflight_superseded`. Сторож `tests/settings_account_card_generation_contract.test.ts`.

@@ -456,6 +456,8 @@ export default function SettingsMain() {
   const linkedAuthDirtyRef = useRef(true);
   const linkedAuthGenerationRef = useRef(0);
   const linkedAuthInFlightRef = useRef<Promise<void> | null>(null);
+  /** Поколение, под которое запущен идущий запрос (см. refreshLinkedAuth). */
+  const linkedAuthInFlightGenRef = useRef(-1);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
   // зачем (№16, журнал SP1 13.10 15:58: renderToCommitMs=469): окно входа (2507 строк, 86 хуков, без раннего выхода при visible=false)
   // входило в первый кадр «Настроек». Монтируем его скрытым ПОСЛЕ кадра и взаимодействий — к моменту тапа «Войти» оно уже смонтировано,
@@ -677,9 +679,17 @@ export default function SettingsMain() {
       linkedAuthDirtyRef.current = true;
       return Promise.resolve();
     }
-    if (linkedAuthInFlightRef.current) return linkedAuthInFlightRef.current;
+    // зачем (координатор 14.10, 🔴1, журнал прогона №3): после входа событие auth_provider_linked приходит 2+ раз и каждый раз поднимает
+    // поколение (2→3→4). Раньше идущий запрос поколения 2 переиспользовался, его ответ «google» отбрасывался как устаревший
+    // (applied=false gen=2/4), а нового запроса не было — карточка застревала на «Войти / Не привязан». Теперь запрос прошлого
+    // поколения не поглощает свежий: запускаем новый под текущее поколение.
+    if (linkedAuthInFlightRef.current) {
+      if (linkedAuthInFlightGenRef.current === linkedAuthGenerationRef.current) return linkedAuthInFlightRef.current;
+      console.log(`[SETTINGS-ACCOUNT-CARD] refresh stale_inflight_superseded inflightGen=${linkedAuthInFlightGenRef.current} gen=${linkedAuthGenerationRef.current}`); // guard-ok: ветка логируется
+    }
     linkedAuthDirtyRef.current = false;
     const generation = linkedAuthGenerationRef.current;
+    linkedAuthInFlightGenRef.current = generation;
     const task = getLinkedAuthInfo()
       .then((info) => {
         const applied = settingsRuntimeActive && generation === linkedAuthGenerationRef.current;

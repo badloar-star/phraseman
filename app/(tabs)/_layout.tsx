@@ -1003,7 +1003,12 @@ function ReleasedTabLayout() {
     if (physicalPageIdxRef.current !== physical) setPhysicalPageIdx(physical);
   }, [mountNow, pageLayout, pathname, segments, studyTarget]);
 
-  useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
+  useFocusEffect(useCallback(() => {
+    // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): вернулся ли фокус группе вкладок после закрытия пейвола (только dev).
+    if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tabs focus`); // guard-ok: временная трассировка
+    setFocusTick(tick => tick + 1);
+    return () => { if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tabs blur`); }; // guard-ok: временная трассировка
+  }, []));
 
   const scheduleBackgroundPremount = useCallback(() => {
     if (!ENABLE_BACKGROUND_TAB_PREMOUNT || backgroundPremountStartedRef.current) return;
@@ -1109,6 +1114,8 @@ function ReleasedTabLayout() {
 
   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
   const handleTabChange = useCallback((requestedIdx: number) => {
+    // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): дошёл ли тап по вкладке до обработчика и куда ведёт навигация (только dev).
+    if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tab_tap requested=${requestedIdx} active=${activeIdxRef.current} page=${physicalPageIdxRef.current}`); // guard-ok: временная трассировка
     // зачем D129: goToTab(1) из экранов при скрытом «Обучении» ведёт на Главную.
     const idx = visibleTabIdx(requestedIdx, pageLayoutRef.current);
     if (idx !== requestedIdx) console.warn('[LANG-SURFACE] tabs:goto_hidden_tab → home', { requestedIdx });

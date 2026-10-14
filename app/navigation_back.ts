@@ -529,7 +529,9 @@ export function dismissPaywallModal(
   const shouldReplace = paywallDismissShouldReplace;
   paywallDismissShouldReplace = false;
   // зачем (координатор 14.10, 🔴 «закрыл предложение — всё зависло»): какой веткой закрыли пейвол и что осталось сверху стека.
-  const canDismiss = typeof router.canDismiss === 'function' ? router.canDismiss() : 'n/a';
+  // зачем: журнал повторяет настоящее условие ниже и НЕ зовёт canDismiss(), когда настоящая логика его не зовёт
+  // (сторож navigation_back: при замене источника canDismiss вызываться не должен).
+  const canDismiss = !shouldReplace && candidate !== null && typeof router.canDismiss === 'function' ? router.canDismiss() : 'skipped';
   const branch = !shouldReplace && candidate !== null && canDismiss === true && typeof router.dismiss === 'function'
     ? 'dismiss(1)'
     : NATIVE_POP_TO_BACK_ENABLED && typeof router.dismissTo === 'function' ? 'dismissTo' : 'replace';
@@ -537,13 +539,23 @@ export function dismissPaywallModal(
   setTimeout(() => {
     console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} dismiss +800ms top=${currentEntry()?.href ?? 'none'} stack=${navigationStack.map((e) => e.key).join('>')}`); // guard-ok: временная трассировка
   }, 800);
+  // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): что решило ветку и что осталось в КОРНЕВОМ стеке после закрытия — Сверка видела
+  // «Главная видна, скролл стоит, тап по вкладке не переключает» после dismiss(1), а после dismissTo — нет.
+  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} branch=${branch} why: shouldReplace=${shouldReplace} candidate=${candidate ? 'yes' : 'none'} canDismiss=${canDismiss} nativePopToBack=${NATIVE_POP_TO_BACK_ENABLED}`); // guard-ok: временная трассировка
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const probe = require('./nav_freeze_probe') as typeof import('./nav_freeze_probe');
+    for (const delay of [0, 300, 800, 1500]) {
+      setTimeout(() => console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} +${delay}ms branch=${branch} ${probe.rootNavProbeLine()}`), delay); // guard-ok: временная трассировка
+    }
+  }
 
   if (
     !shouldReplace
     && candidate !== null
     && typeof router.canDismiss === 'function'
     && typeof router.dismiss === 'function'
-    && router.canDismiss()
+    && canDismiss === true
   ) {
     router.dismiss(1);
     return;

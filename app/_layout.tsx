@@ -252,6 +252,7 @@ import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
 import { FIRESTORE_CACHE_CLEAR_MARKER_KEY, runFirestoreCacheClearFromStartupRead } from './firestore_cache_clear';
+import { registerRootNavProbe } from './nav_freeze_probe'; // зачем: [PAYWALL-CLOSE-FREEZE] — снимок стека после закрытия пейвола
 import { hydrateDailyPhrasePeekFromStorage } from './daily_phrase_system';
 import { primeSurveyOfferCacheFromStorage } from './survey_offer_cache';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
@@ -1228,6 +1229,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   rootSegmentsRef.current = rootSegments;
   // зачем (R1): живое состояние навигации для проверки после navigate с корня (getCurrentRoute обновляется синхронно, в отличие от pathname из рендера)
   const rootNavigationContainerRef = useNavigationContainerRef() as unknown as { getCurrentRoute?: () => { name?: string; params?: unknown } | undefined };
+  // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): снимок корневого стека для журнала после закрытия пейвола (только dev, только чтение).
+  if (__DEV__) registerRootNavProbe(rootNavigationContainerRef);
   const insets = useStableSafeAreaInsets();
   const globalBottomOverlay = useGlobalBottomOverlayOffset();
   const lastPathRef = useRef<string | null>(null);

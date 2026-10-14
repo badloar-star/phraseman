@@ -28,6 +28,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { noteOverlayActiveForProbe } from '../app/nav_freeze_probe'; // зачем: [PAYWALL-CLOSE-FREEZE] — держатель слота в журнал
 import {
   decideWantsWrite,
   EMPTY_OVERLAY_WANTS,
@@ -76,6 +77,8 @@ export function deriveOverlayOccupied(
 export function OverlayArbiterProvider({ children }: { children: React.ReactNode }) {
   const [wantsMap, setWantsMap] = useState<WantsMap>(EMPTY_OVERLAY_WANTS);
   const [active, setActive] = useState<OverlayKey | null>(null);
+  // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): держатель слота окон для журнала вне React (только dev).
+  useEffect(() => { if (__DEV__) noteOverlayActiveForProbe(active); }, [active]);
 
   // Ключи, у которых сторож (H-ARBITER) принудительно отобрал слот, потому что владелец
   // завис (ownState застрял true). Пока ключ здесь, его `wants:true` ИГНОРИРУЕТСЯ — иначе

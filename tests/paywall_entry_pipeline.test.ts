@@ -43,10 +43,13 @@ describe('typed paywall entry pipeline', () => {
     });
   });
 
-  test('winback entry emits the truthful winback context through the typed dispatcher', () => {
+  // зачем (D193, владелец 14.10: «ВМЕСТО ПРЕДЛОЖЕНИЯ КУПИТЬ — ВОТ ЭТОТ БУДЕТ ЛУЧШЕ»): winback больше не открывает пейвол Plus
+  // (его место займёт окно «С возвращением»); подменённого контекста streak под видом winback тоже нет нигде.
+  test('winback no longer opens the paywall and never masquerades as another context', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
-    expect(source).toContain("params: { context: 'winback', source: 'winback' }");
+    expect(source).not.toContain("params: { context: 'winback', source: 'winback' }");
     expect(source).not.toContain("params: { context: 'streak', source: 'winback' }");
+    expect(source).toContain('[WINBACK] show=skipped reason=paywall_retired_D193');
   });
 
   test('the single Plus paywall consumes the dispatcher entry instead of minting a disconnected identity', () => {

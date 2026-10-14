@@ -34,7 +34,6 @@ import { computeSavingsPct, computePerDayString } from './paywall_pricing';
 import { getStorePromoPricing } from './premium_store_promo_display';
 import { getTrialInfo, type TrialEligibility, type TrialInfo } from './paywall_trial_info';
 import { readOnboardingNotificationChoice } from './onboarding_notification_choice';
-import { shouldShowExitTrialOffer } from './paywall_trial_offer';
 import { logPaywallFunnel, type PaywallVariantLabel } from './paywall_funnel';
 import {
   scheduleTrialEndReminder,
@@ -60,7 +59,6 @@ import { createPaywallAnalyticsImpression, paywallImpressionParams, type Paywall
 import { trackProductOperationFailure } from './product_operation_analytics';
 import { claimInitialInventoryResolution, classifyPaywallInventory } from './paywall_inventory_analytics';
 import { triLang, type Lang } from '../constants/i18n';
-import { pluralWithCount } from '../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): срок пробного — число из магазина (3, 7, 14…), форма слова обязана согласоваться
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import {
   onboardingFinishFailureAction, postAccessFailureAction, PURCHASE_FAILURE_PHASE_LABEL, purchaseFailurePhase, purchaseFailureUi, purchaseStaleUi, purchaseUnverifiedUi, restoreStaleUi,
@@ -119,16 +117,8 @@ const LOAD_FIRST_ATTEMPT_MS = 8_000;
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 
-/** Exit-intent оффер триала: готовая копия + колбэки под <ThemedConfirmModal>.
- *  Хук — .ts и JSX не рендерит, поэтому отдаёт состояние, а рисует его экран. */
-export type ExitTrialOfferState = {
-  title: string;
-  message: string;
-  confirmLabel: string;
-  cancelLabel: string;
-  onConfirm: () => void;
-  onCancel: () => void;
-};
+/** Откуда закрыли пейвол — для журнала [PAYWALL-CLOSE]. */
+export type PaywallCloseVia = 'x' | 'swipe' | 'scrim' | 'other';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
 
 /**
@@ -164,9 +154,6 @@ export function paywallTermsEqual(shown: PaywallPlanTerms, fresh: PaywallPlanTer
 // отдаёт управление приложению. Празднование Plus здесь стало бы вторым экраном
 // после подтверждённой покупки, что прямо запрещено контрактом онбординга.
 const ONBOARDING_PURCHASE_SOURCES = new Set(['onboarding', 'onboarding_plan']);
-
-/** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
-const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
 
 /**
  * Покупка ушла на внешнее подтверждение (iOS «Ask to Buy» у ребёнка, банковское
@@ -540,11 +527,6 @@ export interface PaywallPurchaseArgs {
   /** Allowlisted legacy lesson id to reopen after confirmed access. */
   resumeLessonId?: number | null;
   /**
-   * Пейвол Plus: закрытие без всплывающего окна-оффера поверх пейвола
-   * (владелец 2026-09-30: «никакого окна внутри окна»). Онбординг флаг не передаёт.
-   */
-  disableExitOffer?: boolean;
-  /**
    * D158, Plus-окно: кнопка покупки всегда активна (тап без offerings сам грузит и покупает),
    * цены из кэша между запусками, тайм-аут на старте магазина перед оплатой.
    * Онбординг флаг не передаёт — его поведение не менялось.
@@ -557,7 +539,7 @@ export const DEV_FORCE_TRIAL_DEFAULT_DAYS = 3;
 
 let onboardingPaywallHookMounts = 0; // зачем: счётчик перемонтирований хука онбординга для [ONB-PAYWALL-WAIT]
 
-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, forceTrialDays, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false, allowReferencePrice = true, devState: devStateArg = null }: PaywallPurchaseArgs) {
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, forceTrialDays, resumeLessonId, impression: suppliedImpression, resilientCheckout = false, allowReferencePrice = true, devState: devStateArg = null }: PaywallPurchaseArgs) {
   // зачем (координатор 12.10, R1 «нет пути»): явный `_dev_state` окна сильнее состояния по ссылке `dev_state?paywall=…` (пейвол онбординга); в стор-сборке оба null.
   const devState = devStateArg ?? getDevPaywallLinkState();
   const router = useRouter();
@@ -1799,114 +1781,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
   }, [router, context, source, variant, selected, lang, impression]);
 
-  // Exit-intent оффер триала: при попытке уйти с high-value контекста, когда в
-  // сторе реально есть бесплатный триал, мягко напоминаем о подтверждённом числе
-  // бесплатных дней — без давления и без синтетической длительности.
-  // Показываем ОДИН раз на устройство (кулдаун-ключ), и только если триал есть в
-  // сторе — иначе это была бы пустая всплывашка. Не в онбординге.
-  // зачем: владелец увидел на экране СИСТЕМНЫЙ Alert вместо нашей модалки —
-  // нативный диалог игнорирует тему приложения (белый лист с зелёными
-  // капс-кнопками на Android). Оффер теперь живёт в состоянии, а рисует его
-  // <ThemedConfirmModal> в экране пейвола — тот же компонент, что во всех
-  // остальных подтверждениях приложения.
-  const [exitOffer, setExitOffer] = useState<ExitTrialOfferState | null>(null);
-  const exitOfferShownRef = useRef(false);
-  const handleClose = useCallback((reason: 'close' | 'continue_free') => {
+  // зачем (D187, владелец 14.10: «Удалить код»): оффер пробного периода на выходе из пейвола удалён целиком — закрытие одно и прямое,
+  // с первого тапа. Постоянная строка журнала: откуда закрыли (крестик / свайп / затемнение) — для разборов «не закрывается/зависло».
+  const handleClose = useCallback((reason: 'close' | 'continue_free', via: PaywallCloseVia = 'x') => {
     hapticTap();
-    // Перехват на выходе: показываем тёплый оффер один раз за сессию экрана.
-    // DEV/QA: при форс-триале (_force_trial_ui) показываем на ЛЮБОМ контексте и без
-    // «уже видели», чтобы можно было проверять многократно из тест-меню.
-    const exitEligible = !disableExitOffer && context !== 'dialog_limit' && (devForceTrial
-      ? source !== 'onboarding' && (reason === 'close' || reason === 'continue_free') && !!trialDays
-      : shouldShowExitTrialOffer({
-          context,
-          closeReason: reason,
-          viewMode: 'purchase',
-          openManageFromSettings: false,
-          purchasing,
-          restoring,
-          hasStoreTrial: !!trialDays,
-          alreadySeen: false,
-          forceTrialUI: false,
-        }));
-    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} handleClose reason=${reason} context=${context} source=${source} exitEligible=${exitEligible} exitAlreadyShown=${exitOfferShownRef.current} trialDays=${trialDays ?? 'none'}`); // guard-ok: временная трассировка
-    if (
-      !exitOfferShownRef.current &&
-      source !== 'onboarding' &&
-      exitEligible
-    ) {
-      console.warn(`[WINBACK-FREEZE] t=${Date.now() % 100000} handleClose → exit-оффер перехватил закрытие (возможно только с dev _force_trial_ui: пейвол Plus передаёт disableExitOffer=true)`); // guard-ok: временная трассировка
-      exitOfferShownRef.current = true;
-      void (async () => {
-        try {
-          const seen = await AsyncStorage.getItem(EXIT_TRIAL_OFFER_SEEN_KEY);
-          // В dev-форсе кулдаун-ключ игнорируем — пусть показывается каждый раз.
-          if (seen === '1' && !devForceTrial) { doClose(reason); return; }
-          if (!devForceTrial) await AsyncStorage.setItem(EXIT_TRIAL_OFFER_SEEN_KEY, '1').catch(swallowError('paywall_purchase:exit_trial_offer_seen'));
-        } catch (error: unknown) {
-          // При сбое чтения — просто закрываем без оффера (причину пишем, catch не немой).
-          DebugLogger.info('[PAYWALL]', `exit-оффер: чтение «уже видели» упало — закрываем без оффера: ${error instanceof Error ? error.message : String(error)}`);
-          doClose(reason);
-          return;
-        }
-        void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
-        const days = trialDays;
-        if (!days) { doClose(reason); return; }
-        setExitOffer({
-          title: triLang(lang, {
-            ru: `Точно уходишь? ${pluralWithCount('ru', days, { one: 'день', few: 'дня', many: 'дней' })} доступа — бесплатно`,
-            uk: `Точно йдеш? ${pluralWithCount('uk', days, { one: 'день', few: 'дні', many: 'днів' })} доступу — безкоштовно`,
-            en: `Sure you're leaving? ${pluralWithCount('en', days, { one: 'day', few: 'days', many: 'days' })} of free access`,
-            es: `¿Seguro que te vas? ${pluralWithCount('es', days, { one: 'día', few: 'días', many: 'días' })} de acceso gratis`,
-            'pt-BR': `Tem certeza? ${pluralWithCount('pt-BR', days, { one: 'dia', few: 'dias', many: 'dias' })} de acesso grátis`,
-            vi: `Bạn chắc muốn rời đi? ${days} ngày dùng thử miễn phí`,
-            id: `Yakin mau keluar? ${days} hari akses gratis`,
-            tr: `Gerçekten çıkıyor musun? ${days} gün ücretsiz erişim`,
-            pl: `Na pewno wychodzisz? ${pluralWithCount('pl', days, { one: 'dzień', few: 'dni', many: 'dni' })} dostępu za darmo`,
-          }),
-          message: triLang(lang, {
-            ru: 'Платить сейчас не нужно. Отмени за день до конца пробного — и ничего не спишется.',
-            uk: 'Платити зараз не треба — просто скасуй підписку за день до кінця пробного періоду, і нічого не спишеться.',
-            en: "No need to pay now — just cancel the subscription a day before the trial ends, and nothing will be charged.",
-            es: 'No pagas ahora: solo cancela la suscripción un día antes de que acabe la prueba y no se cobrará nada.',
-            'pt-BR': 'Você não paga agora: basta cancelar a assinatura um dia antes do fim do teste e nada será cobrado.',
-            vi: 'Chưa phải trả tiền — chỉ cần hủy đăng ký trước khi hết hạn dùng thử một ngày là không bị tính phí.',
-            id: 'Belum bayar sekarang — cukup batalkan langganan sehari sebelum masa uji coba berakhir, tak ada tagihan.',
-            tr: 'Şimdi ödeme yok — deneme bitmeden bir gün önce aboneliği iptal et, hiçbir ücret alınmaz.',
-            pl: 'Teraz nie płacisz — wystarczy anulować subskrypcję dzień przed końcem okresu próbnego i nic nie pobierzemy.',
-          }),
-          confirmLabel: triLang(lang, {
-            ru: `Попробовать ${pluralWithCount('ru', days, { one: 'день', few: 'дня', many: 'дней' })} бесплатно`,
-            uk: `Спробувати ${pluralWithCount('uk', days, { one: 'день', few: 'дні', many: 'днів' })} безкоштовно`,
-            en: `Try ${pluralWithCount('en', days, { one: 'day', few: 'days', many: 'days' })} free`,
-            es: `Probar ${pluralWithCount('es', days, { one: 'día', few: 'días', many: 'días' })} gratis`,
-            'pt-BR': `Testar ${pluralWithCount('pt-BR', days, { one: 'dia', few: 'dias', many: 'dias' })} grátis`,
-            vi: `Dùng thử ${days} ngày miễn phí`,
-            id: `Coba ${days} hari gratis`,
-            tr: `${days} gün ücretsiz dene`,
-            pl: `Wypróbuj ${pluralWithCount('pl', days, { one: 'dzień', few: 'dni', many: 'dni' })} za darmo`,
-          }),
-          cancelLabel: triLang(lang, {
-            ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não',
-            vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
-          }),
-          onConfirm: () => {
-            // Оффер убираем СРАЗУ (оптимистично), чтобы тап не ждал стора.
-            setExitOffer(null);
-            void trackEvent('paywall_exit_offer_accepted', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
-            void handlePurchase();
-          },
-          onCancel: () => {
-            setExitOffer(null);
-            void trackEvent('paywall_exit_offer_declined', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
-            doClose(reason);
-          },
-        });
-      })();
-      return;
-    }
+    console.log(`[PAYWALL-CLOSE] via=${via} reason=${reason} context=${context} source=${source}`); // guard-ok: одна строка на закрытие пейвола, постоянный журнал
     doClose(reason);
-  }, [context, source, variant, purchasing, restoring, trialDays, lang, handlePurchase, doClose, devForceTrial, impression, disableExitOffer]);
+  }, [context, source, doClose]);
 
   // зачем (координатор 12.10, 🔴 пустой экран перед пейволом): когда именно хук онбординга получил цены и какого источника.
   const onbWaitStartRef = useRef(Date.now());
@@ -1959,7 +1840,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     savingsPct, perDayLabel,
     trial, trialDays, yearlyTrialDays, yearlyTrialSource, ctaDisabled, selectedAvailable,
     handlePurchase, handleRestore, handleClose,
-    exitOffer,
     allowTrialReminder, skipTrialReminder,
     ...shown,
   };

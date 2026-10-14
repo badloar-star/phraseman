@@ -71,7 +71,8 @@ describe('paywall navigation and scroll smoothness contract', () => {
     const screen = fs.readFileSync(path.join(root, 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8');
     const sheet = fs.readFileSync(path.join(root, 'components', 'paywall', 'PaywallSwipeSheet.tsx'), 'utf8');
     expect(screen).toContain('<PaywallSwipeSheet');
-    expect(screen).toContain("p.handleClose('close')");
+    // D187: закрытие одно и прямое; источник закрытия подписан для журнала [PAYWALL-CLOSE].
+    expect(screen).toContain("p.handleClose('close', 'swipe')");
     expect(sheet).toContain('useSharedValue(0)');
     expect(sheet).not.toMatch(/entering=|FadeIn|SlideIn/);
     expect(sheet).toContain('.enabled(enabled)');

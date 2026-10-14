@@ -200,19 +200,6 @@ export function logPaywallAbandonedPush() {
   trackRevenueActivity('paywall:abandoned_push', 'abandoned');
 }
 
-export function logExitTrialOfferShown(context: string, plan: string) {
-  logEvent('exit_trial_offer_shown', { context, plan, source: paywallSourceForContext(context) });
-}
-
-export function logExitTrialOfferAccepted(context: string, plan: string) {
-  logEvent('exit_trial_offer_accepted', { context, plan, source: paywallSourceForContext(context) });
-  trackRevenueActivity('paywall:trial_offer_accepted', context, { plan });
-}
-
-export function logExitTrialOfferDeclined(context: string, plan: string) {
-  logEvent('exit_trial_offer_declined', { context, plan, source: paywallSourceForContext(context) });
-}
-
 // ── Flashcard events ──────────────────────────────────────────────────────────
 
 export function logFlashcardAdded() {

@@ -1,30 +1,18 @@
 // ════════════════════════════════════════════════════════════════════════════
 // paywall_exit_offer_themed_modal_contract.test.ts
 //
-// зачем: владелец увидел на пейволе СИСТЕМНЫЙ диалог вместо нашей модалки —
-// exit-intent оффер триала («Точно уходишь? N дня доступа — бесплатно») был
-// написан через нативный Alert.alert. Нативный диалог рисует ОС: он игнорирует
-// тему приложения (на Android — белый лист с зелёными капс-кнопками поверх
-// тёмного пейвола) и выбивается из дизайна.
+// зачем (D187, владелец 14.10: «Удалить код»): оффер пробного периода на выходе из пейвола («Точно уходишь? N дней
+// бесплатно») удалён целиком. Он был выключен на единственном пейволе (disableExitOffer: true), но жил в хуке: перехват
+// первого тапа «закрыть» ставил невидимый оффер, если бы его кто-то включил. Теперь закрытие одно и прямое —
+// handleClose → doClose с первого тапа, с постоянной строкой журнала об источнике закрытия.
 //
-// Контракт фиксирует ровно ту регрессию, которую поймали глазами:
-//   1) оффер живёт в состоянии хука (ExitTrialOfferState), а не в Alert.alert;
-//   2) ВСЕ семь вариантов пейвола A–G рисуют его нашим <ThemedConfirmModal>;
-//   3) вся мультиязычная копия и три события воронки сохранены.
-//
-// Тест — по исходному тексту (как соседние paywall_tonal_*_contract): хук
-// usePaywallPurchase не рендерится в node/jest без рендерера, а регрессия здесь
-// именно «каким компонентом нарисовано», что и проверяется текстом.
+// Прежний контракт (оффер рисуется ThemedConfirmModal, а не нативным Alert) снят вместе с оффером. Запрет нативного
+// Alert на экране пейвола и поведение после лимита диалогов сохранены.
 // ════════════════════════════════════════════════════════════════════════════
 import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
-// зачем (координатор §46, 2026-10-01): семь вариантов пейвола A–G удалены — единственный
-// экран теперь components/paywall/PaywallPlusScreen.tsx. Он выключает оффер выхода
-// (disableExitOffer: true). Если оффер когда-нибудь включат, экран ОБЯЗАН рисовать
-// его ThemedConfirmModal: иначе хук на первом закрытии поставит оффер вместо закрытия,
-// и крестик станет «мёртвым».
 const PAYWALL_SCREENS = ['components/paywall/PaywallPlusScreen.tsx'] as const;
 
 function readPurchaseHook(): string {
@@ -35,74 +23,45 @@ function readPaywallScreen(screen: string): string {
   return fs.readFileSync(path.join(ROOT, screen), 'utf8');
 }
 
-describe('paywall exit-intent offer uses the themed modal, not a native Alert', () => {
-  it('exposes the exit offer as hook state instead of firing a native Alert', () => {
+describe('D187: no exit-intent offer — the paywall closes on the first tap', () => {
+  it('keeps no exit-offer state, storage key, copy or gate in the purchase hook', () => {
     const source = readPurchaseHook();
-
-    // Оффер отдаётся наружу как состояние с готовой копией и колбэками.
-    expect(source).toContain('export type ExitTrialOfferState = {');
-    expect(source).toContain('const [exitOffer, setExitOffer] = useState<ExitTrialOfferState | null>(null);');
-    expect(source).toContain('setExitOffer({');
-    expect(source).toContain('exitOffer,');
-  });
-
-  it('never routes the exit offer copy through Alert.alert', () => {
-    const source = readPurchaseHook();
-
-    // Заголовок оффера обязан жить в setExitOffer({ title: ... }), а не в Alert.
-    const offerAnchor = source.indexOf('Точно уходишь?');
-    expect(offerAnchor).toBeGreaterThan(-1);
-
-    // Ближайший вызов ВЫШЕ заголовка — setExitOffer, а не Alert.alert: если
-    // кто-то вернёт нативный диалог, этот порядок сломается.
-    const before = source.slice(0, offerAnchor);
-    const lastSetOffer = before.lastIndexOf('setExitOffer({');
-    const lastAlert = before.lastIndexOf('Alert.alert(');
-    expect(lastSetOffer).toBeGreaterThan(lastAlert);
-  });
-
-  it('keeps the full multilingual offer copy and the three funnel events', () => {
-    const source = readPurchaseHook();
-
-    // Копия оффера на всех поддерживаемых языках (регресс = пустая модалка).
-    for (const marker of ['Точно уходишь?', 'Точно йдеш?', '¿Seguro que te vas?', 'Tem certeza?']) {
-      expect(source).toContain(marker);
+    for (const gone of [
+      'ExitTrialOfferState',
+      'setExitOffer',
+      'EXIT_TRIAL_OFFER_SEEN_KEY',
+      'Точно уходишь?',
+      'shouldShowExitTrialOffer',
+      'disableExitOffer',
+    ]) {
+      expect(source).not.toContain(gone);
     }
-    // Обе подписи кнопок и честное объяснение про списание.
-    expect(source).toContain('Не сейчас');
-    expect(source).toContain('Платить сейчас не нужно');
-
-    // Воронка оффера не должна потеряться при переезде на модалку.
-    expect(source).toContain("trackEvent('paywall_exit_offer_shown'");
-    expect(source).toContain("trackEvent('paywall_exit_offer_accepted'");
-    expect(source).toContain("trackEvent('paywall_exit_offer_declined'");
   });
 
-  it('does not reopen an exit modal or the exhausted dialog after dialog-limit paywall close', () => {
-    const source = readPurchaseHook();
+  it('removed the exit-offer gate module', () => {
+    expect(fs.existsSync(path.join(ROOT, 'app', 'paywall_trial_offer.ts'))).toBe(false);
+  });
 
-    expect(source).toContain("context !== 'dialog_limit'");
+  it('closes straight away and logs where the close came from (swipe / close button / scrim)', () => {
+    const source = readPurchaseHook();
+    const start = source.indexOf('const handleClose = useCallback(');
+    expect(start).toBeGreaterThan(-1);
+    const body = source.slice(start, start + 900);
+    expect(body).toContain('doClose(reason)');
+    expect(body).toMatch(/\[PAYWALL-CLOSE\] via=/);
+  });
+
+  it.each(PAYWALL_SCREENS)('does not pass the retired exit-offer switch on %s', (screen) => {
+    expect(readPaywallScreen(screen)).not.toContain('disableExitOffer');
+  });
+
+  it('does not reopen the exhausted dialog after a dialog-limit paywall close', () => {
+    const source = readPurchaseHook();
     expect(source).toContain("if (context === 'dialog_limit')");
     expect(source).toContain("router.replace('/(tabs)/home' as any);");
   });
 
-  it.each(PAYWALL_SCREENS)('renders the offer with ThemedConfirmModal on %s (or disables it)', (screen) => {
-    const source = readPaywallScreen(screen);
-
-    // Допустимы два исхода: экран рисует оффер ИЛИ явно выключает его в хуке.
-    if (/disableExitOffer:\s*true/.test(source)) return;
-    expect(source).toMatch(/import ThemedConfirmModal from '[./]+(?:components\/)?ThemedConfirmModal';/);
-    expect(source).toContain('<ThemedConfirmModal');
-    expect(source).toContain('visible={!!p.exitOffer}');
-    // Подтверждение и отказ обязаны звать колбэки хука — иначе аналитика
-    // оффера и закрытие пейвола молча отвалятся.
-    expect(source).toContain('p.exitOffer?.onConfirm()');
-    expect(source).toContain('p.exitOffer?.onCancel()');
-  });
-
   it.each(PAYWALL_SCREENS)('does not fall back to a native Alert on %s', (screen) => {
-    const source = readPaywallScreen(screen);
-
-    expect(source).not.toContain('Alert.alert(');
+    expect(readPaywallScreen(screen)).not.toContain('Alert.alert(');
   });
 });

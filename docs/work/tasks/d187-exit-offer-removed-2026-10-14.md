@@ -1,6 +1,8 @@
 # Task packet: D187 — удалить код оффера пробного периода на выходе из пейвола (PM-297, владелец 14.10)
 
 Governance-ID: TG-D6399A51DF21
+Governance-ID: TG-03E6814D0757
+Governance-ID: TG-24320AACB1C6
 Governance-ID: TG-85BACE59AF7F
 Status: Тесты (красные) готовы; код — после D186 этапа 1
 Owner: 5 · АВТОРИЗАЦИЯ

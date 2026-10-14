@@ -47,7 +47,6 @@ jest.mock('../app/paywall_trial_info', () => ({
   getTrialInfo: jest.fn(() => ({ hasTrial: false })),
   trialDaysOrDefault: jest.fn(() => 3),
 }));
-jest.mock('../app/paywall_trial_offer', () => ({ shouldShowExitTrialOffer: jest.fn(() => false) }));
 jest.mock('../app/paywall_funnel', () => ({ logPaywallFunnel: jest.fn() }));
 jest.mock('../app/notifications', () => ({
   scheduleTrialEndReminder: jest.fn(async () => true),

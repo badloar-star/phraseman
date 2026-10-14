@@ -72,7 +72,6 @@ jest.mock('../app/paywall_trial_info', () => ({
   getTrialInfo: (...a: unknown[]) => mockGetTrialInfo(...a),
   trialDaysOrDefault: jest.fn(() => 3),
 }));
-jest.mock('../app/paywall_trial_offer', () => ({ shouldShowExitTrialOffer: jest.fn(() => false) }));
 jest.mock('../app/paywall_funnel', () => ({ logPaywallFunnel: jest.fn() }));
 jest.mock('../app/notifications', () => ({
   scheduleTrialEndReminder: jest.fn(async () => true),
@@ -137,7 +136,6 @@ async function mount(resilientCheckout = true) {
     const value = usePaywallPurchase({
       variant: 'PLUS', context: 'test', source: 'test', lang: 'en',
       impression: createPaywallAnalyticsImpression(() => 'imp-1'),
-      disableExitOffer: true,
       resilientCheckout,
     });
     frames.push(value);

@@ -92,7 +92,6 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
 
   const p = usePaywallPurchase({
     variant: PAYWALL_PLUS_VARIANT, context: ctx, source, lang, forceTrialUI, forceTrialDays, resumeLessonId, impression, devState: devPaywallState,
-    disableExitOffer: true,
     // зачем (D158): Plus-окно — кнопка всегда активна, цены из кэша, потолок загрузки.
     resilientCheckout: true,
   });
@@ -213,13 +212,16 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const swipeEnabled = !checkoutInFlight && !prompt;
   const onSwipeClose = (dy: number) => {
     console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet swipe_close dy=${Math.round(dy)} context=${ctx}`); // guard-ok: закрытие свайпом
-    p.handleClose('close');
+    p.handleClose('close', 'swipe');
   };
 
   const closeWindow = () => {
     console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet scrim_tap checkout=${checkoutInFlight}`); // guard-ok: временная трассировка
-    if (checkoutInFlight) return;
-    p.handleClose('close');
+    if (checkoutInFlight) {
+      console.log('[PAYWALL-CLOSE] scrim ignored reason=checkout_in_flight'); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    p.handleClose('close', 'scrim');
   };
 
   return (
@@ -241,7 +243,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
           <PaywallSwipeSheet testID="paywall-sheet" style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: windowHeight - insets.top - 8 }]}
             enabled={swipeEnabled} travel={windowHeight} onSwipeClose={onSwipeClose}
             header={<PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeDisabled={checkoutInFlight}
-              onClose={() => { console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet close_button`); p.handleClose('close'); }}
+              onClose={() => { console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet close_button`); p.handleClose('close', 'x'); }}
               contextTitle={contextual ? headline.title : undefined}
               contextSubtitle={contextual ? headline.subtitle : undefined}
               contextIcon={contextual ? <PaywallContextIcon ctx={ctx} size={26} color={g.accentText} /> : undefined}

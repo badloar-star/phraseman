@@ -23439,9 +23439,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": "2026-10-14T17:38:25.777Z",
+      "prev_status": "pending",
+      "removed_reason": "retired D186: «Бонус на старт» (72 часа полного доступа) удалён решением владельца 14.10 — в образце плашка вместо окна"
     },
     {
       "id": "overlays-more-005",
@@ -23469,9 +23471,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": "2026-10-14T17:38:25.777Z",
+      "prev_status": "pending",
+      "removed_reason": "retired D186: «Бонус на старт» (72 часа полного доступа) удалён решением владельца 14.10 — в образце плашка вместо окна"
     },
     {
       "id": "overlays-more-006",

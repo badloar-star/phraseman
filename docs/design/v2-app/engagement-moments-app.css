@@ -22,7 +22,7 @@
 /* ---------- токены темы: СВЕТЛАЯ Аврора k=1 ---------- */
 .em-ph.lite { --bg: #DED7F9; --bg2: #CCF1E7; --bg-bottom: #DED7F9; --tx: #111114; --sc: #5C5C63; --mu: #5B5B62;
   --acc: #48816E; --on: #FFFFFF; --acc-text: #185E47; --acc-soft: rgba(126,240,200,.30); --acc-tile: #C2F0E2; --acc2: #5B49D6;
-  --cta: #5FB296; --cta-ink: #04261D; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF; --btn: #93B2A9; --btn-dis: #C9D9D4; --ink-dis: #535959; --danger: #DAA7A7; --danger-ink: #752A2B;
+  --cta: #57A087; --cta-ink: #04261D; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF; --btn: #93B2A9; --btn-dis: #C9D9D4; --ink-dis: #535959; --danger: #DAA7A7; --danger-ink: #752A2B;
   --plate1: #FFFFFF; --plate2: #F5F5F6; --raised1: #FFFFFF; --raised2: #FAFAFB; --sheetplate1: #FFFFFF; --sheetplate2: #F5F5F6;
   --ti: rgba(20,20,40,.06); --ti2: #AAAAAD; --trk: rgba(20,20,40,.1); --line: rgba(0,0,0,.08); --dim: rgba(0,0,0,.62); /* как GlassAlertDialog в коде: затемнение 0,62 чёрного в любой теме */
   --sh: 0 14px 26px -14px rgba(10,10,20,.34), 0 1px 3px rgba(10,10,20,.06); --sh2: 0 5px 10px -5px rgba(10,10,20,.28); --sho: 0 26px 40px -14px rgba(10,10,20,.46), 0 2px 4px rgba(10,10,20,.08);
@@ -31,7 +31,7 @@
 /* ---------- токены темы: СВЕТЛАЯ «Ирис» (grad_iris, light k=1) — вторая светлая градиентная ---------- */
 .em-ph.lite.iris { --bg: #F8DDEE; --bg2: #DADFFA; --bg-bottom: #F8DDEE; --tx: #111114; --sc: #5C5C63; --mu: #606066;
   --acc: #323B6B; --on: #FFFFFF; --acc-text: #323B6B; --acc-soft: rgba(199,201,255,.30); --acc-tile: #E0E0F8; --acc2: #D5567F;
-  --cta: #A3A4D0; --cta-ink: #1B1C4A; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF; --btn: #ADAEBF; --btn-dis: #D6D7DF; --ink-dis: #5C5C61; --danger: #DCA9A8; --danger-ink: #782D2D;
+  --cta: #9495BD; --cta-ink: #1B1C4A; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF; --btn: #ADAEBF; --btn-dis: #D6D7DF; --ink-dis: #5C5C61; --danger: #DCA9A8; --danger-ink: #782D2D;
   --ti2: #AFAFB2; --good: #097234; --bad: #AF3C3A; --warn: #835A00; --gold: #835A00; --flame: #323B6B;
   background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
 .em-ph .sb { color: var(--tx); }
@@ -250,3 +250,4 @@ body[data-lang="es"] .em-ph [data-home-video] [data-thumb="2"] { background: #00
 .em-ph [data-task] .tile .io, .em-ph [data-home-phrase] .ib .io { color: var(--icon-tint); }
 /* зачем: плитка значка задания (V2IconTile bgAlpha=HOME_PLATE_ALPHA) и круглые кнопки «Фразы дня» (v2Round) — glassRaised = opaqueControl·0.92 на 0.5 */
 .em-ph [data-task] .tile, .em-ph [data-home-phrase] .ib { background: color-mix(in srgb, var(--control) 46%, transparent) !important; }
+/* зачем (лист приёмки 14.10): главная кнопка = V2Button primary → p.cta = ctaFill (liquidGlassButtonTokens, №35): светлая Аврора #57A087, светлый Ирис #9495BD — было #5FB296/#A3A4D0 до №35 */

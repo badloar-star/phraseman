@@ -199,8 +199,9 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
     // и dev-маршрут app/dev_moments_preview.tsx — вход Сверки на моках (только __DEV__, в стор-сборке вырезан; сторож tests/moments_dev_preview_release_guard.test.mjs)
     // и Главная (app/(tabs)/home.tsx): лениво монтирует окно итога недели SpireWeekMomentHost по слоту Ядра (D191, флаг moments_v3)
     // и флаг moments_v3 в гейте Ядра (spire_week_moment_gate), «С возвращением» (WelcomeBackMoment берёт раскладку и эффекты), окно «Хватает на ранг» (coin_rank_moments)
+    // и экран Пика (SpireHomeScreen — итог ступени/этажа моментом m06/m07 за флагом), «Идеальный урок» (lesson_moments, m09), «Первый диалог» (dialog_moments, m17) — берут раскладку и эффекты моментов
     // и сторис по аватару (components/stories) — берёт готовые строки итога недели (moments_strings), не показывает сам момент
-    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && !f.startsWith('components/coin_rank_moments/') && !['app/dev_moments_preview.tsx', 'app/(tabs)/home.tsx', 'app/spire/spire_week_moment_gate.ts', 'app/coin_rank_enough_gate.ts', 'components/moments/WelcomeBackMoment.tsx'].includes(f))).toEqual([]);
+    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && !f.startsWith('components/coin_rank_moments/') && !f.startsWith('components/lesson_moments/') && !f.startsWith('components/dialog_moments/') && !['app/dev_moments_preview.tsx', 'app/(tabs)/home.tsx', 'app/spire/spire_week_moment_gate.ts', 'app/coin_rank_enough_gate.ts', 'components/moments/WelcomeBackMoment.tsx', 'components/spire/SpireHomeScreen.tsx'].includes(f))).toEqual([]);
   });
 
   it('тайминги эталона и порог башни: монета ранга 5 в образце, «Играть» с стрелкой на итоге, дрожь и фейерверк на 8,8 с', () => {

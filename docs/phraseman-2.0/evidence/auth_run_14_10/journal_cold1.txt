@@ -1,0 +1,18 @@
+10-14 18:40:40.458 I/SVERKA  (10484): === COLD 1 18:40:41 ===
+10-14 18:41:03.752 I/ReactNativeJS(10513): [ACCOUNT-V2] layout skip ready=false firstContentReady=false
+10-14 18:41:05.108 I/ReactNativeJS(10513): [ACCOUNT-V2] layout skip ready=false firstContentReady=false
+10-14 18:41:05.306 I/ReactNativeJS(10513): [ACCOUNT-DELETE-GUARD] read:fast_none — замка нет, хранилище не читаем (дальше без лога)
+10-14 18:41:06.120 I/ReactNativeJS(10513): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:41:06.792 I/ReactNativeJS(10513): [ACC-MUT] firestore_cache_clear check ms=2 marker=1 lock=0 reason=marker source=startup_multiget
+10-14 18:41:06.792 I/ReactNativeJS(10513): [ACC-MUT] firestore_cache_clear start reason=marker
+10-14 18:41:08.208 W/ReactNativeJS(10513): [ACC-MUT] firestore_cache_clear failed code=firestore/failed-precondition ms=1415 — метка оставлена, повтор на следующем старте (Firestore уже был запущен)
+10-14 18:41:09.207 I/ReactNativeJS(10513): [ACCOUNT-V2] client_flag accounts_v2_client_enabled=false source=network
+10-14 18:41:11.232 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1876,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&exclud
+10-14 18:41:16.298 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1109,"caller":"_updateFoundationProgress <- updateFoundationProgress <- reduceFoundationEventProgress","waitedMs":946}'
+10-14 18:41:18.130 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1797,"caller":"withLocalAccountLock <- list","waitedMs":1944}'
+10-14 18:41:18.142 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] wait_exceeded', '{"waitedMs":3034,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excl
+10-14 18:41:24.740 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":6592,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&exclud
+10-14 18:41:24.742 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] wait_exceeded', '{"waitedMs":9580,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excl
+10-14 18:41:24.847 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] wait_exceeded', '{"waitedMs":9654,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excl
+10-14 18:41:24.869 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] wait_exceeded', '{"waitedMs":6716,"caller":"_attemptPendingLearningV2ActivityReleasedCompletionsV <- attemptPendingLearningV2ActivityReleasedCompletionsV1","blockedBy":[{"caller":"raw: ?anon_0_ (http:/
+10-14 18:41:24.873 W/ReactNativeJS(10513): '[ACCOUNT-LOCK] wait_exceeded', '{"waitedMs":3116,"caller":"callback <- react-stack-bottom-frame <- runWithFiberInDEV <- commitHookEffectListMount <- commitHookPassiveMountEffects","blockedBy":[{"caller":"raw: ?anon_0

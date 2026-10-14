@@ -1,0 +1,11 @@
+10-14 18:41:26.933 I/SVERKA  (10746): === COLD 2 18:41:28 ===
+10-14 18:41:46.322 I/ReactNativeJS(10775): [ACCOUNT-V2] layout skip ready=false firstContentReady=false
+10-14 18:41:46.760 I/ReactNativeJS(10775): [ACCOUNT-DELETE-GUARD] read:fast_none — замка нет, хранилище не читаем (дальше без лога)
+10-14 18:41:46.771 I/ReactNativeJS(10775): [ACCOUNT-V2] layout skip ready=false firstContentReady=false
+10-14 18:41:47.775 I/ReactNativeJS(10775): [ACCOUNT-V2] client_flag accounts_v2_client_enabled=false source=cache
+10-14 18:41:47.872 I/ReactNativeJS(10775): [ACC-MUT] firestore_cache_clear check ms=0 marker=1 lock=0 reason=marker source=startup_multiget
+10-14 18:41:47.873 I/ReactNativeJS(10775): [ACC-MUT] firestore_cache_clear start reason=marker
+10-14 18:41:48.130 I/ReactNativeJS(10775): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:41:50.429 I/ReactNativeJS(10775): [ACC-MUT] firestore_cache_clear ok ms=2556
+10-14 18:41:51.985 W/ReactNativeJS(10775): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1233,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&exclud
+10-14 18:42:02.725 W/ReactNativeJS(10775): '[ACCOUNT-LOCK] wait_exceeded', '{"waitedMs":2249,"caller":"callback <- react-stack-bottom-frame <- runWithFiberInDEV <- commitHookEffectListMount <- commitHookPassiveMountEffects","blockedBy":[]}'

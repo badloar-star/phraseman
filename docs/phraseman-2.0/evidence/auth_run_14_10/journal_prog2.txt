@@ -1,0 +1,148 @@
+10-14 18:11:20.515 I/SVERKA  ( 5270): === STEP 5 pick 18:11:21 ===
+10-14 18:11:26.610 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":416722}
+10-14 18:11:26.619 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:cd34045d","preProviderStable":"h:bbd564c0","t":416730}
+10-14 18:11:27.170 I/ReactNativeJS( 4322): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:11:27.627 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":417739}
+10-14 18:11:28.505 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":46,"keys":"user_avatar,user_frame,streak_count,active_days_v1,friends_push_v1,unlocked_less","t":418616}
+10-14 18:11:28.518 I/ReactNativeJS( 4322): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":false,"stableId":"0ef9b505"}'
+10-14 18:11:29.080 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:11:29.315 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":419426}
+10-14 18:11:29.316 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:bbd564c0","tookMs":81723,"t":419428}
+10-14 18:11:29.317 W/ReactNativeJS( 4322): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:bbd564c0","tookMs":81723,"t":419428}
+10-14 18:11:30.266 I/ReactNativeJS( 4322): [AUTH-SWITCH-OFFER] resume_credential not_stored provider=google reason=caller_not_capturing
+10-14 18:11:30.269 I/ReactNativeJS( 4322): [SIGNIN] ui:returned provider=google result=error in=82890ms
+10-14 18:11:59.917 I/SVERKA  ( 5449): === STEP 5 after 18:12:01 ===
+10-14 18:12:09.126 I/SVERKA  ( 5459): === STEP 6 before 18:12:10 ===
+10-14 18:12:15.193 I/ReactNativeJS( 4322): [AUTH-SWITCH-OFFER] tap → settings switch dialog
+10-14 18:12:16.154 I/ReactNativeJS( 4322): [AUTH-SWITCH-OFFER] settings: open switch dialog from sign-in offer
+10-14 18:12:16.156 I/ReactNativeJS( 4322): [ACC-MUT] switch_stage idle→confirm
+10-14 18:12:17.315 I/SVERKA  ( 5518): === STEP 6 window 18:12:18 ===
+10-14 18:12:27.572 I/SVERKA  ( 5547): === STEP 7 continue tap 18:12:28 ===
+10-14 18:12:30.367 I/ReactNativeJS( 4322): [ACC-MUT] switch_stage confirm→wiping
+10-14 18:12:30.371 I/ReactNativeJS( 4322): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":false,"allowPendingShardSpendDiscard":false}'
+10-14 18:12:30.681 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":5,"t":480793}
+10-14 18:12:30.700 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":24,"pendingSpend":0,"t":480812}
+10-14 18:12:30.710 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":33,"t":480822}
+10-14 18:12:34.511 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":3834,"synced":true,"t":484623}
+10-14 18:12:34.512 W/ReactNativeJS( 4322): [ACC-SWITCH-WIPE] signout force_sync {"synced":true,"allowWipeWithoutSync":false,"t":484624}
+10-14 18:12:34.513 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":3836,"t":484625}
+10-14 18:12:34.516 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":3839,"t":484627}
+10-14 18:12:34.558 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":3882,"entries":0,"t":484671}
+10-14 18:12:37.318 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":6641,"t":487430}
+10-14 18:12:37.407 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:12:37.408 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage marker_done {"sinceStartMs":6732,"t":487520}
+10-14 18:12:37.418 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":6741,"t":487530}
+10-14 18:12:37.419 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":6742,"t":487530}
+10-14 18:12:37.972 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:12:38.853 I/ReactNativeJS( 4322): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:12:38.949 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:12:40.818 I/ReactNativeJS( 4322): [ACC-WIPE] app_messages {"app_messages_cache_v2":1,"app_messages_last_background_refresh_ms_v2":1,"app_messages_local_preview_v2":1,"app_messages_login_forced_v1":1,"friend_blocked_v1":1,"mistake_restore_full_done_v1":1}
+10-14 18:12:40.853 I/ReactNativeJS( 4322): [ACC-WIPE] owner_residue count=112 {"ai_dialog_monthly_quota:v3:<owner>":1,"all_channel_videos_v1:<owner>:channel-3":1,"dev_local_plus_override_v1:<owner>":1,"dialogue_v2_coins_awarded_v1:<owner>:d2s_devmv6xvaie7zb08vfzspsdv4xt09974mayjstmi41f":1,"dialogue_v2_coins_awarded_v1:<owner>:d2s_devmv6xy618le2or2xljetjd3kk9qlvynw5mm6equ5n":1,"dialogue_v2_coins_awarded_v1:<owner>:d2s
+10-14 18:12:41.326 W/ReactNativeJS( 4322): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":346,"collectKeysMs":31,"collectKeysKeys":2234,"noteStashMs":255,"removeKeysMs":1110,"removeKeysKeys":2231,"giftReceiptsMs":4,"customizationMs":16,"dialogueMemoryMs":73,"profileCardPublicMs":5,"appMessagesMs":18,"appMessagesKeys":6,"lateLearningV2Ms":17,"lateLearningV2Keys":8,"giftReceipts2Ms":1,"finalScanMs":9,"resetMemoryMs
+10-14 18:12:41.327 W/ReactNativeJS( 4322): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":2368,"caller":"_wipeLocalAccountData <- wipeLocalAccountData <- wipeLocalData","waitedMs":0}'
+10-14 18:12:41.633 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:12:42.196 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:12:43.217 I/ReactNativeJS( 4322): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:12:43.225 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:12:43.930 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:12:44.306 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:12:45.053 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":14377,"kind":"resumed","t":495165}
+10-14 18:12:45.054 I/ReactNativeJS( 4322): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":true,"tookMs":14683}'
+10-14 18:12:45.054 I/ReactNativeJS( 4322): [ACC-MUT] switch_stage wiping→idle
+10-14 18:12:45.509 I/ReactNativeJS( 4322): [AUTH-APPLE-BTN] variant=dark background=#FFFFFF shape=sheet
+10-14 18:14:20.335 I/SVERKA  ( 5974): === STEP 7 after 18:14:21 ===
+10-14 18:14:33.342 I/SVERKA  ( 6004): === STEP 5b google 18:14:34 ===
+10-14 18:14:37.900 I/ReactNativeJS( 4322): [SIGNIN] ui:tap provider=google context=settings
+10-14 18:14:38.124 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:d2734ded","localStable":"h:5a78ec86","requireOwnership":false,"t":608235}
+10-14 18:14:39.245 I/ReactNativeJS( 4322): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:14:43.908 I/SVERKA  ( 6080): === STEP 5b chooser 18:14:45 ===
+10-14 18:14:48.854 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":618966}
+10-14 18:14:48.858 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:d2734ded","preProviderStable":"h:5a78ec86","t":618969}
+10-14 18:14:49.968 I/ReactNativeJS( 4322): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:14:50.131 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":620242}
+10-14 18:14:51.930 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":18,"keys":"user_avatar,user_frame,legacy_free_lesson_cap_v1,legacy_free_lesson_migration_v1","t":622042}
+10-14 18:14:51.947 I/ReactNativeJS( 4322): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":true,"stableId":"1fd26dca"}'
+10-14 18:14:53.885 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:14:54.022 W/ReactNativeJS( 4322): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":2536,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:114151:33) <- 
+10-14 18:14:54.036 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":true,"t":624148}
+10-14 18:15:00.478 I/ReactNativeJS( 4322): [ACCOUNT-AUTHORITY] anon_merge_nonce issued result=memory_only
+10-14 18:15:02.150 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:d2734ded","targetUid":"h:d9408b9b","uidChanged":true,"t":632262}
+10-14 18:15:02.307 I/ReactNativeJS( 4322): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:15:03.725 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:5a78ec86","remoteStable":"h:de10a251","branch":"remote","t":633837}
+10-14 18:15:03.730 I/ReactNativeJS( 4322): [ACCOUNT-AUTHORITY] anon_merge_nonce not_attached source=ensure_link reason=other_stable_id
+10-14 18:15:08.137 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":638249}
+10-14 18:15:08.138 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":638250}
+10-14 18:15:08.139 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage local_data_checked {"provider":"google","tookMs":0,"sinceStartMs":30016,"preserveLocalProgress":false,"handoff":true,"t":638251}
+10-14 18:15:08.140 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":638252}
+10-14 18:15:08.141 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage presync_phase_done {"provider":"google","tookMs":2,"sinceStartMs":30018,"t":638253}
+10-14 18:15:08.141 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage server_merge_done {"provider":"google","tookMs":1,"sinceStartMs":30019,"called":false,"t":638254}
+10-14 18:15:08.142 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":638254}
+10-14 18:15:08.143 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage authoritative_link_reused {"provider":"google","tookMs":2,"sinceStartMs":30021,"source":"callable","ageMs":5,"t":638256}
+10-14 18:15:08.144 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":638256}
+10-14 18:15:08.145 W/ReactNativeJS( 4322): [WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":638256}
+10-14 18:15:08.147 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage sync_quiesced {"provider":"google","tookMs":3,"sinceStartMs":30024,"t":638259}
+10-14 18:15:08.163 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage entitlement_transition_begun {"provider":"google","tookMs":16,"sinceStartMs":30040,"t":638275}
+10-14 18:15:08.167 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage transition_lock_acquired {"provider":"google","tookMs":4,"sinceStartMs":30044,"t":638279}
+10-14 18:15:10.909 I/ReactNativeJS( 4322): [ACC-WIPE] app_messages {"app_messages_cache_v2":1,"app_messages_last_background_refresh_ms_v2":1,"app_messages_login_forced_v1":1,"friend_blocked_v1":1,"mistake_restore_full_done_v1":1}
+10-14 18:15:10.965 I/ReactNativeJS( 4322): [ACC-WIPE] owner_residue count=8 {"mistake_practice_restore_mark_v1:<owner>:de":1,"mistake_practice_restore_mark_v1:<owner>:en":1,"mistake_practice_restore_mark_v1:<owner>:es":1,"mistake_practice_restore_mark_v1:<owner>:fr":1,"mistake_practice_restore_mark_v1:<owner>:it":1,"phone_state_integrity_last_check_v1:<owner>:1":1,"today_tasks_v1:<owner>":1,"user_referral_code_v2:leg
+10-14 18:15:11.271 W/ReactNativeJS( 4322): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":398,"collectKeysMs":34,"collectKeysKeys":2217,"noteStashMs":932,"removeKeysMs":368,"removeKeysKeys":2214,"giftReceiptsMs":1,"customizationMs":878,"dialogueMemoryMs":41,"profileCardPublicMs":7,"appMessagesMs":82,"appMessagesKeys":5,"lateLearningV2Ms":18,"lateLearningV2Keys":8,"giftReceipts2Ms":1,"finalScanMs":22,"resetMemoryM
+10-14 18:15:11.272 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage wipe_done {"provider":"google","tookMs":3105,"sinceStartMs":33149,"t":641384}
+10-14 18:15:12.976 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage set_stable_id_done {"provider":"google","tookMs":1691,"sinceStartMs":34840,"t":643075}
+10-14 18:15:13.005 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage handoff_cleared {"provider":"google","tookMs":38,"sinceStartMs":34878,"t":643113}
+10-14 18:15:13.016 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage generation_begun {"provider":"google","tookMs":14,"sinceStartMs":34892,"t":643127}
+10-14 18:15:13.024 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage stable_id_installed {"provider":"google","tookMs":6,"sinceStartMs":34898,"t":643133}
+10-14 18:15:13.025 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] swap stage auth_user_ready {"provider":"google","tookMs":4,"sinceStartMs":34902,"t":643137}
+10-14 18:15:13.036 W/ReactNativeJS( 4322): [AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:5a78ec86","to":"h:de10a251","tookMs":34910,"t":643145}
+10-14 18:15:13.531 I/ReactNativeJS( 4322): [ACCOUNT-AUTHORITY] anon_merge_nonce cleared reason=sign_in_settled count=1
+10-14 18:15:13.543 I/ReactNativeJS( 4322): [SIGNIN] ui:returned provider=google result=merged_devices in=35643ms
+10-14 18:15:15.703 W/ReactNativeJS( 4322): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":2147,"caller":"withExactActiveScope <- persistLearningV2CompletionRetryCursor <- reserveAttempt","waitedMs":0}'
+10-14 18:15:21.775 I/SVERKA  ( 6231): === STEP 5b result 18:15:22 ===
+10-14 18:15:26.058 I/ReactNativeJS( 4322): [SIGNIN] bg:swap_restore:restoreFromCloud ok 13025ms
+10-14 18:15:26.058 I/ReactNativeJS( 4322): [AUTH-SHARDS] шаг шардов снят stage=swap_restore
+10-14 18:15:26.094 I/ReactNativeJS( 4322): [SIGNIN] bg:swap_restore:switchBackup ok 34ms
+10-14 18:15:26.376 I/ReactNativeJS( 4322): [SIGNIN] bg:swap_restore:markOnboarded ok 279ms
+10-14 18:15:26.704 I/ReactNativeJS( 4322): [SIGNIN] bg:swap_restore:revenueCat ok 326ms
+10-14 18:15:32.354 I/ReactNativeJS( 4322): [SIGNIN] bg:swap_restore done total=19321ms restore=restored
+10-14 18:15:56.046 I/SVERKA  ( 6291): === STEP 9-10 settings 18:15:57 ===
+10-14 18:16:10.463 I/ReactNativeJS( 4322): '[ACC-SWITCH-WIPE] prewarm', '{"source":"account_details","failed":[],"tookMs":682}'
+10-14 18:16:11.691 I/SVERKA  ( 6369): === STEP 10 account 18:16:12 ===
+10-14 18:16:25.064 I/SVERKA  ( 6421): === STEP 10 account email 18:16:26 ===
+10-14 18:16:38.261 I/SVERKA  ( 6478): === STEP 3 settings fresh 18:16:39 ===
+10-14 18:16:43.337 I/ReactNativeJS( 4322): '[ACC-SWITCH-WIPE] prewarm', '{"source":"account_details","failed":[],"tookMs":552}'
+10-14 18:16:47.141 I/ReactNativeJS( 4322): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":false}'
+10-14 18:16:47.824 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":439,"t":737936}
+10-14 18:16:47.909 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":524,"pendingSpend":0,"t":738021}
+10-14 18:16:47.921 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":536,"t":738033}
+10-14 18:16:48.327 I/SVERKA  ( 6550): === STEP 3 window 18:16:49 ===
+10-14 18:16:51.001 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage force_sync_deadline {"sinceStartMs":3616,"deadlineMs":3000,"t":741113}
+10-14 18:16:51.002 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":3616,"synced":false,"t":741114}
+10-14 18:16:51.002 W/ReactNativeJS( 4322): [ACC-SWITCH-WIPE] signout force_sync {"synced":false,"allowWipeWithoutSync":true,"t":741115}
+10-14 18:16:51.003 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage emergency_backup_skipped {"sinceStartMs":3617,"reason":"final_snapshot_under_lock","t":741115}
+10-14 18:16:51.003 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":3618,"t":741115}
+10-14 18:16:51.004 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":3618,"t":741116}
+10-14 18:16:51.024 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":3638,"entries":0,"t":741135}
+10-14 18:16:51.295 W/ReactNativeJS( 4322): [ACC-MUT] backup:shelved_other_owner reason=normal_switch owner=h:bbd564c0 stamp=mv8dgt0y bytes=486 shelfCount=1 shelfBytes=92308 evicted=0
+10-14 18:16:54.468 W/ReactNativeJS( 4322): [ACC-MUT] backup:previous_pages_kept reason=shelved owner=h:bbd564c0
+10-14 18:16:54.470 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":7084,"t":744582}
+10-14 18:16:54.846 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:16:54.847 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage marker_done {"sinceStartMs":7462,"t":744959}
+10-14 18:16:54.854 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":7468,"t":744966}
+10-14 18:16:54.854 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":7469,"t":744967}
+10-14 18:16:55.274 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:16:56.532 I/ReactNativeJS( 4322): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:16:56.555 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:16:58.993 I/ReactNativeJS( 4322): [ACC-WIPE] app_messages {"app_messages_cache_v2":1,"app_messages_last_background_refresh_ms_v2":1,"app_messages_login_forced_v1":1,"mistake_restore_full_done_v1":1}
+10-14 18:16:59.038 I/ReactNativeJS( 4322): [ACC-WIPE] owner_residue count=13 {"mistake_practice_restore_mark_v1:<owner>:de":1,"mistake_practice_restore_mark_v1:<owner>:en":1,"mistake_practice_restore_mark_v1:<owner>:es":1,"mistake_practice_restore_mark_v1:<owner>:fr":1,"mistake_practice_restore_mark_v1:<owner>:it":1,"mistake_practice_upload_mark_v1:<owner>:de":1,"mistake_practice_upload_mark_v1:<owner>:en":1,"mistake
+10-14 18:16:59.319 W/ReactNativeJS( 4322): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":327,"collectKeysMs":41,"collectKeysKeys":2217,"noteStashMs":388,"removeKeysMs":1148,"removeKeysKeys":2214,"giftReceiptsMs":1,"customizationMs":28,"dialogueMemoryMs":8,"profileCardPublicMs":4,"appMessagesMs":488,"appMessagesKeys":4,"lateLearningV2Ms":11,"lateLearningV2Keys":8,"giftReceipts2Ms":1,"finalScanMs":22,"resetMemoryM
+10-14 18:16:59.320 W/ReactNativeJS( 4322): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":2760,"caller":"wipeLocalAccountData <- wipeLocalData","waitedMs":0}'
+10-14 18:16:59.733 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:17:00.412 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:17:01.384 I/ReactNativeJS( 4322): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:17:01.385 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:17:02.401 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:17:03.476 W/ReactNativeJS( 4322): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-14 18:17:04.452 W/ReactNativeJS( 4322): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":17066,"kind":"resumed","t":754564}
+10-14 18:17:04.452 I/ReactNativeJS( 4322): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":false,"tookMs":17313}'
+10-14 18:17:04.453 I/ReactNativeJS( 4322): '[ACC-MUT] ui:logout_attempt_1', '{"ok":true,"reason":null,"detail":null}'
+10-14 18:17:04.855 I/ReactNativeJS( 4322): [AUTH-APPLE-BTN] variant=dark background=#FFFFFF shape=sheet
+10-14 18:17:05.832 W/ReactNativeJS( 4322): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1374,"caller":"withExactActiveScope <- persistLearningV2CompletionRetryCursor <- reserveAttempt","waitedMs":0}'

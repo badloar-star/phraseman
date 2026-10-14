@@ -1,0 +1,59 @@
+10-14 18:28:42.084 I/SVERKA  ( 9576): === DELETE-READY 18:28:43 ===
+10-14 18:28:46.128 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-UI] phone_state_prewarm ok ms=31
+10-14 18:28:47.999 I/SVERKA  ( 9612): === P2 delete window 18:28:49 ===
+10-14 18:29:06.078 I/SVERKA  ( 9751): === P2 DELETE typed 18:29:07 ===
+10-14 18:29:18.409 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-UI] phone_state_prewarm ok ms=127
+10-14 18:29:25.487 I/SVERKA  ( 9842): === P2 DELETE typed kb 18:29:26 ===
+10-14 18:30:29.573 I/ReactNativeJS( 9108): [account-delete-ui] confirm_pressed
+10-14 18:30:29.580 I/ReactNativeJS( 9108): [ACC-MUT] delete:in
+10-14 18:30:29.765 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=persist generation=1
+10-14 18:30:29.782 I/ReactNativeJS( 9108): [ACC-MUT] delete:anon_lock=ok stable=present
+10-14 18:30:29.797 I/ReactNativeJS( 9108): [ACCOUNT-V2] delete skip reason=flag_off
+10-14 18:30:29.801 I/ReactNativeJS( 9108): [account-delete-local] flight_created:guarded
+10-14 18:30:29.815 I/ReactNativeJS( 9108): [account-delete-local] start
+10-14 18:30:29.828 I/ReactNativeJS( 9108): [account-delete-local] drains:premium_1:restore_1:cloud_1
+10-14 18:30:30.096 I/ReactNativeJS( 9108): [account-delete-local] phone_state_retire_done_ms_264
+10-14 18:30:30.096 I/ReactNativeJS( 9108): [account-delete-local] phone_state_retired_1
+10-14 18:30:30.639 W/ReactNativeJS( 9108): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":0,"collectKeysMs":37,"collectKeysKeys":2217,"noteStashMs":7,"removeKeysMs":225,"removeKeysKeys":2214,"giftReceiptsMs":6,"customizationMs":27,"dialogueMemoryMs":12,"profileCardPublicMs":11,"appMessagesMs":23,"appMessagesKeys":5,"lateLear
+10-14 18:30:30.642 I/ReactNativeJS( 9108): [account-delete-local] account_data_wiped
+10-14 18:30:30.679 I/ReactNativeJS( 9108): [account-delete-local] async_storage_cleared
+10-14 18:30:30.681 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=restore_mirror generation=2
+10-14 18:30:30.697 I/ReactNativeJS( 9108): [account-delete-local] readback_verified_1
+10-14 18:30:30.710 I/ReactNativeJS( 9108): [ACC-MUT] firestore_cache_clear marked reason=account_delete
+10-14 18:30:30.711 I/ReactNativeJS( 9108): [account-delete-local] flight_deadline_result_1
+10-14 18:30:30.776 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=persist generation=3
+10-14 18:30:30.802 I/ReactNativeJS( 9108): [account-delete-local] phase_local_data_cleared_1
+10-14 18:30:30.806 I/ReactNativeJS( 9108): [account-delete-ui] root_event_received
+10-14 18:30:30.809 I/ReactNativeJS( 9108): [account-delete-ui] native_stack_reset_requested
+10-14 18:30:30.812 I/ReactNativeJS( 9108): [account-delete-ui] native_sheets_dismiss_requested
+10-14 18:30:30.833 I/ReactNativeJS( 9108): [account-delete-ui] home_replace_requested
+10-14 18:30:30.834 I/ReactNativeJS( 9108): [account-delete-ui] onboarding_show_requested
+10-14 18:30:30.839 I/ReactNativeJS( 9108): [ACC-MUT] enqueue:enqueue_guest start deadlineMs=25000
+10-14 18:30:31.681 I/ReactNativeJS( 9108): [account-delete-ui] account_details_unmounted
+10-14 18:30:31.884 I/ReactNativeJS( 9108): [account-delete-ui] onboarding_render_committed
+10-14 18:30:31.885 I/ReactNativeJS( 9108): [account-delete-ui] onboarding_visible
+10-14 18:30:31.887 W/ReactNativeJS( 9108): '[WARNING] account_delete_ui:handoff: confirm_pressed>root_event_received>native_stack_reset_requested>native_sheets_dismiss_requested>home_replace_requested>onboarding_show_requested>account_details_unmounted>onboarding_render_committed>onboarding_visible', { [Stack] name: 'Stack' }
+10-14 18:30:32.835 I/ReactNativeJS( 9108): [ACC-MUT] enqueue:enqueue_guest dispatched warmupMs=1997
+10-14 18:30:32.844 I/ReactNativeJS( 9108): [ACC-MUT] delete:prepared=ok
+10-14 18:30:32.845 I/ReactNativeJS( 9108): [AA-S4] delete skip reason=cutover_off
+10-14 18:30:32.865 I/ReactNativeJS( 9108): [AUTH-SHARDS] delete: снос pending_shard_grants снят (покрыт локальной очисткой)
+10-14 18:30:34.273 I/ReactNativeJS( 9108): '[ACC-SWITCH-WIPE] prewarm', '{"source":"account_details","failed":[],"tookMs":2482}'
+10-14 18:30:34.545 W/ReactNativeJS( 9108): [WARNING] account_delete_quarantine:broken_guard_discarded: active_unfinished_ignored local_data_cleared
+10-14 18:30:48.078 I/ReactNativeJS( 9108): [ACC-MUT] enqueue:enqueue_guest ack=ok totalMs=17238 late=0
+10-14 18:30:48.079 I/ReactNativeJS( 9108): [ACC-MUT] delete:anon_server=enqueue ack=ok status=queued
+10-14 18:30:48.089 I/ReactNativeJS( 9108): [RELEASE-REASON] account_delete:queued result=info
+10-14 18:30:48.094 I/ReactNativeJS( 9108): [ACCOUNT-V2] delete_clear skip reason=flag_off
+10-14 18:30:48.217 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=persist generation=4
+10-14 18:30:48.271 I/ReactNativeJS( 9108): [ACC-MUT] delete:anon_phase_server_enqueued=1
+10-14 18:30:48.404 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=restore_mirror generation=5
+10-14 18:30:48.595 I/ReactNativeJS( 9108): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:30:48.739 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=persist generation=6
+10-14 18:30:51.631 I/ReactNativeJS( 9108): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-14 18:30:51.671 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read:waits_for_persist count=1 round=0
+10-14 18:30:51.723 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=persist generation=7
+10-14 18:30:53.206 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=persist generation=8
+10-14 18:30:53.503 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read:waits_for_persist count=1 round=0
+10-14 18:30:53.812 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=persist generation=9
+10-14 18:30:54.189 I/ReactNativeJS( 9108): [ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=clear generation=10
+10-14 18:30:54.192 I/ReactNativeJS( 9108): [ACC-MUT] delete:bg_out ok=true reason=none cloudDeleted=false tookMs=21345
+10-14 18:31:00.795 I/ReactNativeJS( 9108): [AUTH-APPLE-BTN] variant=dark background=#FFFFFF shape=pill

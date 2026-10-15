@@ -36,6 +36,8 @@ const ALLOWED = {
   'components/stats/AiBlockNote.tsx': [1, 'ИИ готовит разбор (загрузка)'],
   'modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx': [1, 'идёт запись/звук'],
   'components/LearningV2MapNode.tsx': [1, 'хвост PM-032: ореол узла карты'],
+  // зачем (владелец 15.10, m16 «звонок» — эталон v3 одобрен 14.10): идёт входящий звонок — кольца и пульс «Ответить», пока звонок на экране; гейт фокуса и AppState (useRuntimeActive), при «уменьшить движение» статично
+  'components/dialogs/DialogueIncomingCall.tsx': [2, 'идёт входящий звонок (m16): кольца и пульс «Ответить», гейт useRuntimeActive'],
 };
 
 function walk(dir, out) {

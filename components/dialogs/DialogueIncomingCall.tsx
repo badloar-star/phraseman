@@ -193,7 +193,7 @@ const s = StyleSheet.create({
   avatarWrap: { marginTop: 22, width: 104, height: 104, alignItems: 'center', justifyContent: 'center' },
   avatar: { width: 104, height: 104, borderRadius: 32, alignItems: 'center', justifyContent: 'center' },
   // `.ring`: круг, светящаяся кромка 2 px цветом акцента
-  ring: { borderRadius: 52, borderWidth: 2 }, // guard-ok: расходящееся кольцо звонка (эффект эталона .ring), не контейнер
+  ring: { borderRadius: 52, borderWidth: 1 }, // shadow-ok: расходящееся кольцо звонка (эффект эталона .ring), не контейнер; D145 — 1 pt
   // `.h-lg` / `.p`
   title: { marginTop: 18, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
   sub: { marginTop: 4, fontSize: 16, lineHeight: 22, textAlign: 'center' },

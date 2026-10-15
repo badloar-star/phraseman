@@ -78,7 +78,7 @@ const s = StyleSheet.create({
   wrap: { alignItems: 'center', zIndex: 5 },
   // `.heat .tip`: padding 4/9, радиус 10, 12/800, без переноса
   tip: { position: 'absolute', paddingVertical: 4, paddingHorizontal: 9, borderRadius: 10 },
-  tipText: { fontSize: 12, lineHeight: 15, fontWeight: '800' },
+  tipText: { fontSize: 13, lineHeight: 17, fontWeight: '800' }, // D145: шкала 13/16 (в эталоне 12)
 });
 
 export default memo(ComboHeatSlot);

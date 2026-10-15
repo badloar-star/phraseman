@@ -314,7 +314,7 @@ const s = StyleSheet.create({
   rowSub: { fontSize: 13, lineHeight: 17, marginTop: 1 },
   pill: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 34, borderRadius: 17, paddingHorizontal: 10 },
   pillCoin: { width: 18, height: 18 },
-  pillText: { fontSize: 15, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  pillText: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // `.fly`: 18 × 18, круг, цвет акцента
   fly: { position: 'absolute', left: 16 + 15 - 9, top: '50%', marginTop: -9, width: 18, height: 18, borderRadius: 9 },
   // `.trow`: min 58, padding 10/14, радиус 14, gap 12
@@ -323,7 +323,7 @@ const s = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
-    borderWidth: 1.5, // shadow-ok: кружок-отметка задачи (индикатор выполнено/нет, как радио), не контейнер; guard-ok
+    borderWidth: 1, // D145: рамка 1 pt; shadow-ok: кружок-отметка задачи (индикатор выполнено/нет, как радио), не контейнер; guard-ok
     alignItems: 'center',
     justifyContent: 'center',
   },

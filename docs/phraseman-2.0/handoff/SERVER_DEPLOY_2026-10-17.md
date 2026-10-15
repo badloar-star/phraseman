@@ -11,7 +11,12 @@
   - **функции**, основной набор `default`;
   - **админка с политикой** — хостинг `admin`;
   - **сайт** knowlyapps — хостинг `knowlywww`, только юридические страницы.
-- Индексы Firestore и `storage.rules` **не менялись**.
+- Индексы Firestore не менялись.
+- **`storage.rules` — ИЗМЕНИЛИСЬ и НЕ выложены** (Ядро, 15.10 ~18:30, проверено только чтением). В проде опубликован
+  набор от 2026-08-25 (`rulesets/21ed09d6…`), в нём нет блока `spire_packs` — правило Пика (PM-272, 31025415e, ~24.09)
+  в прод так и не уехало. Итог: пакеты недели лежат для всех 5 языков × 12 ярусов (W41, W42), а клиент получает
+  **403** → «Задания этой недели ещё готовятся» у всех (журнал Сверки B16r3: `pack: ответ 403`). Разница опубликованного
+  и репозитория — ровно один блок `match /spire_packs/{allPaths=**}` (get вошедшим, list/write — нет). См. шаг 1а.
 - Набор функций `content` (курс Learning V2, зона Codex) тоже изменился. Он **вне этой выкладки**, решать отдельно с Codex.
 
 ## Требует отдельного «да» владельца
@@ -116,6 +121,13 @@ bash scripts/deploy_from_clean_head.sh --only "functions:default:legacyBonusConv
    ```bash
    firebase deploy --only firestore:rules --project phraseman-ea0b3
    ```
+1а. **Правила Storage** — только добавляют чтение пакета недели Пика вошедшим (без этого Пик не открывается ни на одном
+   языке). Нужно отдельное «да» владельца; можно и раньше 17.10 — затрагивает только чтение `spire_packs/**`:
+   ```bash
+   firebase deploy --only storage --project phraseman-ea0b3
+   ```
+   Проверка: в журнале клиента `[SPIRE] pack: сеть ok hash=…` вместо `pack: ответ 403`. Откат — переопубликовать
+   набор `rulesets/21ed09d6-1ca2-42d0-8c9f-c756ae8eef2b` (Firebase Console → Storage → Rules → история).
 2. **Функции, набор `default`** — после «да» по таблице выше:
    ```bash
    firebase deploy --only functions:default --project phraseman-ea0b3

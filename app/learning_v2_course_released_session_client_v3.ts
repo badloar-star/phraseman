@@ -65,7 +65,7 @@ import { materializeLearningV2CourseSessionAudioChildV1 } from "../modules/learn
 import type { LearningV2GeneratedSessionShardV1 } from "../modules/learning-v2/content/generator_session_shard";
 import { authoredEsLearningV2SessionShard } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
 import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
-import { FACTORY_NATIVE_PROJECTION_VERSION_V1, factoryNativeLearningV2CourseIdentityV1, materializeFactoryNativeLearningV2SessionV1, type LearningV2FactoryNativeNewWordEncounterV1, type LearningV2FactoryNativePracticeSemanticV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
+import { FACTORY_NATIVE_PROJECTION_VERSION_V1, factoryNativeLearningV2CourseIdentityV1, factoryNativeSessionWordEncountersV1, materializeFactoryNativeLearningV2SessionV1, type LearningV2FactoryNativeNewWordEncounterV1, type LearningV2FactoryNativePracticeSemanticV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
 import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import {
   LEARNING_V2_INTERFACE_LOCALES,
@@ -1323,13 +1323,14 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
             session.lessonOrdinal === locator.lessonOrdinal &&
             session.sessionOrdinal <= locator.sessionOrdinal,
           )
-          .map((session) => materializeFactoryNativeLearningV2SessionV1({
+          // зачем (координатор 15.10, урок 1 целиком — до 56 занятий): только список слов, без полной сборки каждого
+          // занятия ≤ текущего (раньше до 56 сборок с SHA-256 детей на открытие s56). Лёгкая очередь — тот же код карточек.
+          .map((session) => factoryNativeSessionWordEncountersV1({
             lessonOrdinal: session.lessonOrdinal,
             sessionOrdinal: session.sessionOrdinal,
             interfaceLocale: requestedLocale,
           }))
-          .filter((material): material is NonNullable<typeof material> => material !== null)
-          .flatMap((material) => Object.values(material.wordEncounterQueuesByInteractionId))
+          .filter((encounters): encounters is NonNullable<typeof encounters> => encounters !== null)
       : Object.values(result.material.factoryWordEncounterQueues ?? {});
     for (const encounters of wordEncounterSets) {
       for (const encounter of encounters) {

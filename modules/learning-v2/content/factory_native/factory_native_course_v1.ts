@@ -697,6 +697,80 @@ export function factoryNativeLearningV2InitialRewardBindingV1() {
   });
 }
 
+/**
+ * Одна встреча с новым словом (карточка). Общий код для полной сборки занятия и для лёгкой очереди слов —
+ * чтобы оба пути давали байт-в-байт одинаковые встречи (сторож learning_v2_word_encounters_light_equivalence).
+ */
+function buildFactoryNativeWordCardEncounterV1(
+  rawMode: Record<string, unknown>,
+  oldInteractionId: string,
+  oldPrefix: string,
+  courseSessionId: string,
+  row: Readonly<{ lessonOrdinal: number; sessionOrdinal: number }>,
+  wordOrder: number,
+): LearningV2FactoryNativeNewWordEncounterV1 {
+  const definitionByLocale = localized(record(rawMode.wordCard).definitionByLocale);
+  const word = String(record(rawMode.wordCard).word);
+  const meaningByLocale = localizedWordMeaning(
+    definitionByLocale, word, row.lessonOrdinal, row.sessionOrdinal,
+  );
+  const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage: "en", targetText: word, meaningByLocale });
+  return Object.freeze({
+    encounterId: `${remapId(oldInteractionId, oldPrefix, courseSessionId)}:word-card`,
+    lexicalItemId: `lexical-en-${hashCanonicalBody({
+      word,
+      sense: lexicalSense(word, row.lessonOrdinal, row.sessionOrdinal),
+    }).slice(0, 32)}`,
+    transcription: knownTranscriptionOrNull(word),
+    playfulMeaningByLocale: definitionByLocale,
+    motionVariant: wordOrder % 2 === 0 ? "premium_a" : "lesson_hero_b",
+    presentation: "blocking_task_overlay", dismissal: "continue_only", saveControl: "bookmark_icon",
+    orderWithinSession: wordOrder,
+    save,
+  }) as LearningV2FactoryNativeNewWordEncounterV1;
+}
+
+/**
+ * Очередь встреч с новыми словами одного занятия БЕЗ полной сборки материала (без детей и их SHA-256).
+ * зачем (координатор 15.10, урок 1 целиком в сборке — потолок 56): client_v3 при открытии занятия собирал ВСЕ занятия
+ * урока ≤ текущего только ради списка слов — на s56 это 56 полных сборок. Список слов зависит лишь от карточек слов
+ * (отключённые из-за аудио задания на него не влияют), поэтому читаем только их. Кэш — на все занятия, память процесса.
+ */
+const factoryNativeWordEncountersCache = new Map<string, readonly LearningV2FactoryNativeNewWordEncounterV1[] | null>();
+
+export function factoryNativeSessionWordEncountersV1(input: Readonly<{
+  lessonOrdinal: number;
+  sessionOrdinal: number;
+  interfaceLocale: LearningV2InterfaceLocale;
+}>): readonly LearningV2FactoryNativeNewWordEncounterV1[] | null {
+  const key = `${input.lessonOrdinal}:${input.sessionOrdinal}:${input.interfaceLocale}`;
+  if (factoryNativeWordEncountersCache.has(key)) return factoryNativeWordEncountersCache.get(key) ?? null;
+  const row = FACTORY_NATIVE_MANIFEST_V1.find((candidate) =>
+    candidate.lessonOrdinal === input.lessonOrdinal && candidate.sessionOrdinal === input.sessionOrdinal);
+  if (!row || !LEARNING_V2_INTERFACE_LOCALES.includes(input.interfaceLocale)) {
+    console.warn(`[V2-PREP] words: нет строки или языка l=${input.lessonOrdinal} s=${input.sessionOrdinal} locale=${input.interfaceLocale}`); // guard-ok: ранний выход
+    factoryNativeWordEncountersCache.set(key, null);
+    return null;
+  }
+  const authoredLocale = FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1[input.interfaceLocale];
+  const courseSessionId = learningV2CourseSessionIdV1(row.lessonOrdinal, row.sessionOrdinal);
+  const rawPages = record(row.loadIntro()).pages as unknown[];
+  const oldPrefix = String(record(rawPages[0]).pageId).replace(/:intro1$/u, "");
+  const rawInteractions = record(row.loadLearner(authoredLocale)).interactions as unknown[];
+  const encounters: LearningV2FactoryNativeNewWordEncounterV1[] = [];
+  let wordOrder = 0;
+  for (const rawValue of rawInteractions) {
+    const raw = record(rawValue);
+    const rawMode = record(raw.modePayload);
+    if (rawMode.isWordCard !== true) continue;
+    wordOrder += 1;
+    encounters.push(buildFactoryNativeWordCardEncounterV1(rawMode, String(raw.interactionId), oldPrefix, courseSessionId, row, wordOrder));
+  }
+  const frozen = Object.freeze(encounters);
+  factoryNativeWordEncountersCache.set(key, frozen);
+  return frozen;
+}
+
 type FactoryNativeMaterializeInputV1 = Readonly<{
   lessonOrdinal: number;
   sessionOrdinal: number;
@@ -842,26 +916,8 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
     const rawMode = record(raw.modePayload);
     const oldInteractionId = String(raw.interactionId);
     if (rawMode.isWordCard === true) {
-      const definitionByLocale = localized(record(rawMode.wordCard).definitionByLocale);
-      const word = String(record(rawMode.wordCard).word);
-      const meaningByLocale = localizedWordMeaning(
-        definitionByLocale, word, row.lessonOrdinal, row.sessionOrdinal,
-      );
-      const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage: "en", targetText: word, meaningByLocale });
       wordOrder += 1;
-      pendingCards.push(Object.freeze({
-        encounterId: `${remapId(oldInteractionId, oldPrefix, courseSessionId)}:word-card`,
-        lexicalItemId: `lexical-en-${hashCanonicalBody({
-          word,
-          sense: lexicalSense(word, row.lessonOrdinal, row.sessionOrdinal),
-        }).slice(0, 32)}`,
-        transcription: knownTranscriptionOrNull(word),
-        playfulMeaningByLocale: definitionByLocale,
-        motionVariant: wordOrder % 2 === 0 ? "premium_a" : "lesson_hero_b",
-        presentation: "blocking_task_overlay", dismissal: "continue_only", saveControl: "bookmark_icon",
-        orderWithinSession: wordOrder,
-        save,
-      }));
+      pendingCards.push(buildFactoryNativeWordCardEncounterV1(rawMode, oldInteractionId, oldPrefix, courseSessionId, row, wordOrder));
       continue;
     }
     if (disabledInteractionIdSet.has(oldInteractionId)) {

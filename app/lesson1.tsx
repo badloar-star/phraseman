@@ -131,6 +131,7 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import { isDevOverlaysOff } from './dev_overlays_off';
 import { isDevLessonIntroSkip } from './dev_cards_state';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
+import { withComboPlusGate } from './combo_lesson_gate';
 import { MOTION_DURATION } from '../constants/motion';
 import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { recordHomeContinueLegacy } from './home_continue_mark';
@@ -4239,4 +4240,5 @@ function LessonScreen() {
   );
 }
 
-export default withLessonRuntimeAccessBoundary(LessonScreen);
+// зачем (граница доступа, аудит R58 #24): прямая ссылка lesson1?combo= без Plus не показывает комбо — см. combo_lesson_gate.tsx
+export default withComboPlusGate(withLessonRuntimeAccessBoundary(LessonScreen));

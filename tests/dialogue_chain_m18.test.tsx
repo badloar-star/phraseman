@@ -129,7 +129,8 @@ describe('m18 · подключение к итогу диалога', () => {
   });
   it('без флага прежняя раскладка: заголовок, «Загрузка…», цифры → монеты → цели → ошибки/отзыв', () => {
     expect(src).toContain('{DlgChain ? null : <View style={styles.titleBlock}>');
-    expect(src).toContain("{!DlgChain && state.kind === 'loading' ? (");
+    // 15.10 (Сверка): во время «Повторить» вместо тихой строки остаётся карточка с занятой кнопкой
+    expect(src).toContain("{!DlgChain && state.kind === 'loading' && !retrying ? (");
     const legacy = src.slice(src.indexOf('{DlgChain ? null : <>'), src.indexOf('          </>}'));
     const order = ['{statsCard}', 'dialogue-v2-completion-coins', 'dialogue-v2-completion-goals', '{errorsAndFeedback}'].map((m) => legacy.indexOf(m));
     expect(order.every((i) => i >= 0)).toBe(true);

@@ -87,6 +87,7 @@ function completionLabels(lang: Lang) {
     errorsTitle: triLang(lang, { ru: 'Ошибки', uk: 'Помилки', en: 'Mistakes', es: 'Errores', 'pt-BR': 'Erros', vi: 'Lỗi', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy', fr: 'Erreurs', de: 'Fehler' }),
     loading: triLang(lang, { ru: 'Собеседник готовит итог…', uk: 'Співрозмовник готує підсумок…', en: 'Your partner is preparing the summary…', es: 'Tu interlocutor prepara el resumen…', 'pt-BR': 'Seu interlocutor prepara o resumo…', vi: 'Đang chuẩn bị tổng kết…', id: 'Ringkasan sedang disiapkan…', tr: 'Özet hazırlanıyor…', pl: 'Rozmówca przygotowuje podsumowanie…', fr: 'Ton interlocuteur prépare le bilan…', de: 'Die Auswertung wird vorbereitet…' }),
     unavailable: triLang(lang, { ru: 'Итог пока недоступен', uk: 'Підсумок поки недоступний', en: 'The summary is unavailable', es: 'El resumen no está disponible', 'pt-BR': 'O resumo está indisponível', vi: 'Chưa có tổng kết', id: 'Ringkasan belum tersedia', tr: 'Özet şu an yok', pl: 'Podsumowanie jest niedostępne', fr: 'Le bilan est indisponible', de: 'Die Auswertung ist nicht verfügbar' }),
+    retryFailed: triLang(lang, { ru: 'Не получилось, попробуй ещё раз', uk: 'Не вийшло, спробуй ще раз', en: "That didn't work, try again", es: 'No ha funcionado, inténtalo de nuevo', 'pt-BR': 'Não deu certo, tente de novo', vi: 'Chưa được, hãy thử lại', id: 'Belum berhasil, coba lagi', tr: 'Olmadı, tekrar dene', pl: 'Nie udało się, spróbuj ponownie', fr: "Ça n'a pas marché, réessaie", de: 'Hat nicht geklappt, versuch es noch einmal' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów', fr: 'Réessayer', de: 'Erneut versuchen' }),
     done: triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe', fr: 'Terminé', de: 'Fertig' }),
     // зачем (решение владельца 13.10, dialogs.html D2: под «Готово» «Добить: Ещё учу (N)» при ошибках; в карточке «Ошибки» — «Повторить ошибки»): N — ошибки диалога, записанные в «Мои ошибки»
@@ -216,6 +217,23 @@ export default function DialogueV2CompletionRoute() {
     runCompletion();
     return () => { requestGenerationRef.current += 1; };
   }, [runCompletion]);
+  // зачем (Сверка 15.10, 0fb6d9eac): «Повторить» под «Итог пока недоступен» не давал отклика — карточка мгновенно сменялась тихой строкой
+  // загрузки, а быстрый повторный отказ возвращал ту же карточку: человек не видел, что что-то произошло. Теперь карточка остаётся, кнопка
+  // «занята» до ответа, повторный отказ — «Не получилось, попробуй ещё раз»; причина каждого отказа — в [DIALOG-SUMMARY] выше.
+  const [retrying, setRetrying] = useState(false);
+  const [retryFailed, setRetryFailed] = useState(false);
+  const retryCompletion = useCallback(() => {
+    if (retrying) return;
+    console.log('[DIALOG-SUMMARY] retry tap', JSON.stringify({ session: sessionId ? sessionId.slice(0, 12) : null })); // guard-ok: одна строка на тап
+    setRetrying(true);
+    runCompletion();
+  }, [retrying, runCompletion, sessionId]);
+  useEffect(() => {
+    if (!retrying || state.kind === 'loading') return;
+    setRetrying(false);
+    setRetryFailed(state.kind === 'unavailable');
+    console.log('[DIALOG-SUMMARY] retry result', JSON.stringify({ shown: state.kind })); // guard-ok: одна строка на исход повтора
+  }, [retrying, state.kind]);
 
   useEffect(() => {
     let alive = true;
@@ -438,14 +456,14 @@ export default function DialogueV2CompletionRoute() {
             ) : null}
           </View>}
 
-          {!DlgChain && state.kind === 'loading' ? (
+          {!DlgChain && state.kind === 'loading' && !retrying ? (
             // зачем (E9, координатор 12.10): цифры и «Что исправить» уже есть на телефоне и показаны сразу; ждём только оценку и цели сервера — тихая строка вместо карточки со спиннером, ниже скелет целей
             <Text testID="dialogue-v2-completion-loading" maxFontSizeMultiplier={1.3} style={[styles.stateText, styles.loadingNote, { color: glass.secondary }]}>{labels.loading}</Text>
           ) : null}
-          {state.kind === 'unavailable' ? (
+          {state.kind === 'unavailable' || (retrying && state.kind === 'loading') ? (
             <View style={[dialogueGlassCardStyle(glass, 16), styles.stateCard]}>
-              <Text maxFontSizeMultiplier={1.3} style={[styles.stateText, { color: glass.secondary }]}>{labels.unavailable}</Text>
-              <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.retry} onPress={runCompletion} testID="dialogue-v2-completion-retry" />
+              <Text maxFontSizeMultiplier={1.3} style={[styles.stateText, { color: glass.secondary }]}>{retryFailed ? labels.retryFailed : labels.unavailable}</Text>
+              <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.retry} onPress={retryCompletion} busy={retrying} testID="dialogue-v2-completion-retry" />
             </View>
           ) : null}
 

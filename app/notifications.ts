@@ -20,6 +20,7 @@ import { cancelRetiredLocalNotificationsOnce as runRetiredLocalNotificationsCanc
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { ENGLISH_UI_LOCALE_ENABLED } from './config';
 import { isDevNotifPermDenied } from './dev_social_state';
+import { readOnboardingNotificationChoice } from './onboarding_notification_choice';
 import {
   onboardingTrialReminderDelaySeconds,
   trialReminderDelaySeconds,
@@ -191,9 +192,18 @@ export const requestNotificationPermission = async (): Promise<boolean> => {
   return res.granted;
 };
 
+/**
+ * зачем (координатор 15.10, Сверка full_sweep_1015/dobor: «Не сейчас» в онбординге, а на Главной системное окно): сперва логи —
+ * кто зовёт системный запрос. Стек снимается СИНХРОННО до первого await (после await Hermes теряет вызвавшего).
+ */
+function notifPermCaller(): string[] {
+  return (new Error().stack ?? '').split('\n').slice(2, 7).map((line) => line.trim());
+}
+
 export const requestNotificationPermissionWithFallback = async (
   opts: { openSettingsIfBlocked?: boolean } = {},
 ): Promise<{ granted: boolean; blocked: boolean; openedSettings: boolean }> => {
+  const caller = notifPermCaller();
   // зачем (координатор 12.10, settings-gap-012): dev `notifperm=denied` — «телефон не разрешает» без системного окна и без ухода
   // в системные настройки (робот не должен покидать приложение). В стор-сборке геттер false.
   if (isDevNotifPermDenied()) {
@@ -217,7 +227,10 @@ export const requestNotificationPermissionWithFallback = async (
       return { granted: false, blocked: true, openedSettings: false };
     }
 
+    const onboardingChoice = await readOnboardingNotificationChoice();
+    console.warn('[NOTIF-PERM] system_prompt', JSON.stringify({ onboardingChoice, status: current?.status ?? null, canAskAgain: current?.canAskAgain ?? null, openSettingsIfBlocked: opts.openSettingsIfBlocked === true, caller })); // guard-ok: трассировка системного запроса
     const asked = await N.requestPermissionsAsync();
+    console.warn('[NOTIF-PERM] system_prompt_result', JSON.stringify({ status: asked?.status ?? null, canAskAgain: asked?.canAskAgain ?? null })); // guard-ok: итог
     if (asked?.status === 'granted') {
       return { granted: true, blocked: false, openedSettings: false };
     }
@@ -256,6 +269,8 @@ export const isNotificationPermissionGranted = async (): Promise<boolean> => {
 };
 
 const canUseNotifications = async (requestIfNeeded: boolean): Promise<boolean> => {
+  // зачем (NOTIF-PERM): 13 планировщиков зовут с requestIfNeeded=true по умолчанию — видно, какой из них дошёл до запроса.
+  const caller = requestIfNeeded ? notifPermCaller() : null;
   try {
     const N = await getNotifications();
     if (!N) return false;
@@ -263,8 +278,11 @@ const canUseNotifications = async (requestIfNeeded: boolean): Promise<boolean> =
     const { status } = await N.getPermissionsAsync();
     if (status === 'granted') return true;
     if (!requestIfNeeded) return false;
+    console.warn('[NOTIF-PERM] implicit_request', JSON.stringify({ status, caller })); // guard-ok: неявный запрос из планировщика
     return await requestNotificationPermission();
-  } catch {
+  } catch (error) {
+    // зачем: немой catch запрещён — сбой проверки разрешения пишет причину.
+    console.warn('[NOTIF-PERM] canUseNotifications failed', error instanceof Error ? error.message : String(error));
     return false;
   }
 };

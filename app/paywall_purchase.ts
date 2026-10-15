@@ -1599,9 +1599,23 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     const operationAccount = captureAccountGeneration();
     const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
     setRestoring(true);
+    // зачем (координатор 14.10, аудит покупки): пока идёт восстановление, окно Plus закрыть нельзя (restoring блокирует крестик, свайп, фон и «назад»),
+    // а старт магазина и синхронизация личности ждались без потолка — зависший RevenueCat запирал человека с вечным «Восстанавливаем…».
+    // Тот же потолок, что у покупки (LOAD_GATE_TOTAL_MS). По таймауту — тост «Попробуй ещё раз», finally освобождает кнопку и закрытие.
+    // Сам restorePurchases/getCustomerInfo без потолка: поздний ответ магазина нужно применить, а не выбросить.
+    const stopRestoreBeforeStore = (step: 'initRevenueCat' | 'syncRevenueCatIdentity', ms: number): void => {
+      releaseReason('restore_purchase', 'load_timeout', 'error');
+      console.warn(`[PAYWALL-RESTORE] timeout step=${step} ms=${ms} ceilingMs=${LOAD_GATE_TOTAL_MS} mode=${mode} source=${source} accountCurrent=${String(isOperationAccountCurrent())} -> store not called, retry toast, button and close released`); // guard-ok: ранний выход логируется
+      emitAppEvent('action_toast', restoreRetryToast());
+    };
     try {
-      await initRevenueCat(isOperationAccountCurrent);
-      if (!(await syncRevenueCatIdentity(isOperationAccountCurrent))) {
+      const initCapped = await awaitWithinInitCap('initRevenueCat', initRevenueCat(isOperationAccountCurrent), LOAD_GATE_TOTAL_MS, `restore:${mode}:${source}`);
+      if (initCapped.status === 'timeout') { stopRestoreBeforeStore('initRevenueCat', initCapped.ms); return; }
+      if (initCapped.status === 'error') throw initCapped.error; // прежнее поведение: общий catch → тост restore_failed
+      const identityCapped = await awaitWithinInitCap('syncRevenueCatIdentity', syncRevenueCatIdentity(isOperationAccountCurrent), LOAD_GATE_TOTAL_MS, `restore:${mode}:${source}`);
+      if (identityCapped.status === 'timeout') { stopRestoreBeforeStore('syncRevenueCatIdentity', identityCapped.ms); return; }
+      if (identityCapped.status === 'error') throw identityCapped.error; // прежнее поведение
+      if (!identityCapped.value) {
         // зачем: тот же фирменный тост вместо системного Alert, что и в purchase —
         // ошибка подключения к стору при восстановлении обязана остаться видимой.
         emitAppEvent('action_toast', storeUnreachableToast());

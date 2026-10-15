@@ -1,0 +1,13 @@
+10-15 22:42:23.429 I/ReactNativeJS(31662): '[MISTAKES-GATE] tap', '{"surface":"mistakes_hub_start","status":"allowed","used":0,"limit":1,"bypass":null,"sessionCount":2}'
+10-15 22:42:23.431 I/ReactNativeJS(31662): '[MISTAKES-GATE] decision', '{"source":"mistakes_hub_start","premium":false,"quota":{"status":"allowed","used":0,"limit":1},"sessionCount":2,"decision":"start_with_receipt"}'
+10-15 22:42:23.436 I/ReactNativeJS(31662): [MISTAKES-FLOW] хаб → тренировка: шторка=2 готово=2 группа=all источник=демо-снимок dev (mistakes=demo)
+10-15 22:42:23.619 I/ReactNativeJS(31662): '[MISTAKES-GATE] session:mount', '{"entrySource":"cards","requestedLength":"all","focusMistakeId":null,"plus":false}'
+10-15 22:42:24.316 I/ReactNativeJS(31662): '[MISTAKES-GATE] consume:out', '{"receiptId":"mistakes:f0259f84-9555-45bd-8e58-f4eae40bea6a","status":"allowed","used":1,"limit":1,"bypass":null}'
+10-15 22:42:24.398 I/ReactNativeJS(31662): [MISTAKES-FLOW] тренировка: вход=hub шторка=2 собрано=6 очередь=6 счётчик=0/6 старая сессия=false демо хаба=true → РАСХОЖДЕН�
+10-15 22:42:24.399 I/ReactNativeJS(31662): '[MISTAKES-GATE] session:energy', '{"resumed":false,"initialCount":6,"costsEnergy":true}'
+10-15 22:42:24.627 I/ReactNativeJS(31662): '[MISTAKES-GATE] session:energy_result', '{"energyResult":"spent","sessionId":"mistake-session:v1:6a04ab035fb383dc3f8bffaaa2115f8989ed85c54325d2c7c4fb15d0f5fc1363","needsSave":true,"cancelledEffect
+10-15 22:42:24.844 I/ReactNativeJS(31662): '[MISTAKES-GATE] session:saved_after_payment', '{"sessionId":"mistake-session:v1:6a04ab035fb383dc3f8bffaaa2115f8989ed85c54325d2c7c4fb15d0f5fc1363","costsEnergy":true}'
+10-15 22:42:41.844 W/ReactNativeJS(31662): [MISTAKES-GATE] journal:loaded events=6 ms=1032 source=storage
+10-15 22:42:42.366 W/ReactNativeJS(31662): [MISTAKES-GATE] journal:written events=1 attempt=1 ms=518
+10-15 22:43:48.665 W/ReactNativeJS(31662): [MISTAKES-GATE] journal:written events=1 attempt=1 ms=271
+10-15 22:44:09.106 W/ReactNativeJS(31662): [MISTAKES-GATE] journal:written events=1 attempt=1 ms=577

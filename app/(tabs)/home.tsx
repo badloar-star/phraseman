@@ -2555,7 +2555,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         lastLesson, continueResolved, mistakeAccountGeneration, mistakeReadySnapshot, homeV2Videos, homeV2VideoStatus, homeV2VideoNoChannel, homeFeatureTipsReplayCount, homeFeatureTipIndex,
         homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, profileIntroRequested, titleModalVisible, selectedTitleKey, specialTitleStats,
         celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance, runesKnown, belowFoldReady,
-        overlayActiveKey, rankEnough,
+        overlayActiveKey, rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close,
+        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurvey, weekMoment, welcomeBack, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
+        celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,
     }), homeRuntimeActive, true);
     return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>
       <ScreenGradient>

@@ -8,7 +8,7 @@
 //   const rankEnough = useCoinRankEnoughMoment({ active: homeRuntimeActive });
 //   {rankEnough.visible && rankEnough.offer ? <CoinRankEnoughDialog coinRank={rankEnough.offer.rank} coins={rankEnough.offer.balance}
 //      onUpgrade={() => { rankEnough.close(); /* на экран ранга */ }} onLater={rankEnough.close} /> : null}
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { decideRankEnough, markRankOffered, readOfferedRanks, readRankEnoughFlag } from './coin_rank_enough_gate';
@@ -85,7 +85,8 @@ export function useCoinRankEnoughMoment(input: Readonly<{ active: boolean }>): R
     setOffer(null);
   }, []);
 
-  return { visible: visible && offer !== null, offer, close };
+  // зачем (замер [HOME-RENDERS] 15.10): раньше каждый рендер Главной получал НОВЫЙ объект результата — он мерцал «причиной» в каждой перерисовке и ломал любую мемоизацию по нему; теперь identity держится, пока не изменились сами поля
+  return useMemo(() => ({ visible: visible && offer !== null, offer, close }), [visible, offer, close]);
 }
 
 /* expo-router route shim: модуль в app/ — не экран */

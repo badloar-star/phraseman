@@ -73,3 +73,16 @@ describe('проводка [HOME-RENDERS] (источники)', () => {
     }
   });
 });
+
+describe('по замеру coldstart_1315_r2: результат хука «Достаточно монет» не создаётся заново на каждый рендер', () => {
+  const fs = require('node:fs') as typeof import('node:fs');
+  const path = require('node:path') as typeof import('node:path');
+  const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
+
+  it('useMemo по полям; в снимке корня Главной — поля rankEnough, а не сам объект', () => {
+    expect(read('app/use_coin_rank_enough_moment.ts')).toContain('return useMemo(() => ({ visible: visible && offer !== null, offer, close }), [visible, offer, close]);');
+    const home = read('app/(tabs)/home.tsx');
+    expect(home).toContain('rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close');
+    expect(home).toContain('goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurvey, weekMoment, welcomeBack, appSnapshot');
+  });
+});

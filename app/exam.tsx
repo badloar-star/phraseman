@@ -1062,15 +1062,15 @@ export default function ExamScreen() {
             icon="ribbon-outline"
             title={t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Final course exam', 'Examen integrador del curso', 'Teste final do curso', 'Bài kiểm tra tổng kết khóa học', 'Tes akhir kursus', 'Kurs final sınavı', 'Test końcowy kursu')}
             message={t3(
-              '50 заданий: грамматика и лексика по темам уроков; оценка только в приложении (не DELE/SIELE).',
-              '50 завдань: граматика й лексика за темами уроків; оцінка лише в застосунку (не DELE/SIELE).',
-              '50 tasks: grammar and vocabulary from the lesson topics; the score is in-app only (not DELE/SIELE).',
-              '50 tareas: gramática y léxico según las lecciones; resultado orientativo en la app (no es DELE/SIELE).',
-              '50 tarefas: gramática e vocabulário dos temas das lições; resultado apenas no app (não é DELE/SIELE).',
-              '50 câu hỏi: ngữ pháp và từ vựng theo chủ đề bài học; điểm chỉ dùng trong ứng dụng (không phải DELE/SIELE).',
-              '50 soal: tata bahasa dan kosakata dari topik pelajaran; nilai hanya di aplikasi (bukan DELE/SIELE).',
-              '50 soru: ders konularına göre gramer ve kelime; sonuç sadece uygulama içindir (DELE/SIELE değildir).',
-              '50 zadań: gramatyka i słownictwo z tematów lekcji; wynik tylko w aplikacji (to nie DELE/SIELE).',
+              '50 заданий: грамматика и лексика по темам уроков. Это проверка внутри приложения, а не официальный экзамен.',
+              '50 завдань: граматика й лексика за темами уроків. Це перевірка в застосунку, а не офіційний іспит.',
+              '50 tasks: grammar and vocabulary from the lesson topics. It’s an in-app check, not an official exam.',
+              '50 tareas: gramática y léxico según las lecciones. Es una prueba de la app, no un examen oficial.',
+              '50 tarefas: gramática e vocabulário dos temas das lições. É uma avaliação do app, não um exame oficial.',
+              '50 câu hỏi: ngữ pháp và từ vựng theo chủ đề bài học. Đây là bài kiểm tra trong ứng dụng, không phải kỳ thi chính thức.',
+              '50 soal: tata bahasa dan kosakata dari topik pelajaran. Ini tes di aplikasi, bukan ujian resmi.',
+              '50 soru: ders konularına göre gramer ve kelime. Bu bir uygulama içi test, resmi sınav değil.',
+              '50 zadań: gramatyka i słownictwo z tematów lekcji. To sprawdzian w aplikacji, a nie oficjalny egzamin.',
             )}
           />
           {certificate && (

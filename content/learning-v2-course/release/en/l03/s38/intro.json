@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-38",
   "learningOutcomeByLocale": {
-    "ru": "переносить `these/those` в рыночную ситуацию: называть и выбирать несколько близких или дальних предметов",
-    "uk": "переносити `these/those` у ринкову ситуацію: називати й вибирати кілька близьких або далеких предметів"
+    "ru": "назвать один билет и отличить его от нескольких, показать близкий или дальний предмет",
+    "uk": "назвати один квиток і відрізнити його від кількох, показати близький або далекий предмет"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Яблоки перед вами",
-        "uk": "Яблука перед вами"
+        "ru": "Один билет в руке",
+        "uk": "Один квиток у руці"
       },
       "bodyByLocale": {
-        "ru": "`apple` — «яблоко», `apples` — «яблоки». Перед вами лежит несколько яблок: `These are apples.` — «Это яблоки». Для близкой группы выбирайте `these`, а после него ставьте `are` и название во множественном числе. Считать каждое яблоко отдельно не нужно: фраза сразу называет всю группу.",
-        "uk": "`apple` — «яблуко», `apples` — «яблука». Перед вами лежить кілька яблук: `These are apples.` — «Це яблука». Для близької групи вибирайте `these`, а після нього ставте `are` і назву в множині. Рахувати кожне яблуко окремо не треба: фраза одразу називає всю групу."
+        "ru": "`ticket` — «билет». Вы уже знаете `tickets` — «билеты». Один — `ticket`, несколько — `tickets`. `This is a ticket` — «Это билет»: показываем на один рядом. Перед `ticket` здесь нужно `a`, потому что первый звук согласный. Один билет не станет двумя, даже если сложить его пополам.",
+        "uk": "`ticket` — «квиток». Ви вже знаєте `tickets` — «квитки». Один — `ticket`, кілька — `tickets`. `This is a ticket` — «Це квиток»: показуємо на один поруч. Перед `ticket` тут потрібне `a`, бо перший звук приголосний. Один квиток не стане двома, навіть якщо скласти його навпіл."
       },
       "question": {
         "interactionId": "en:lesson-03:session-38:intro1:q",
         "promptByLocale": {
-          "ru": "Перед вами лежит несколько яблок. Назовите их.",
-          "uk": "Перед вами лежить кілька яблук. Назвіть їх."
+          "ru": "Назовите один билет одним английским словом.",
+          "uk": "Назвіть один квиток одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-38:intro1:r1",
-              "text": "These are apples."
+              "text": "ticket"
             },
             {
               "responseId": "en:lesson-03:session-38:intro1:r2",
-              "text": "Those are apples."
+              "text": "tickets"
             },
             {
               "responseId": "en:lesson-03:session-38:intro1:r3",
-              "text": "This is an apple."
+              "text": "table"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-38:intro1:r1",
-              "text": "These are apples."
+              "text": "ticket"
             },
             {
               "responseId": "en:lesson-03:session-38:intro1:r2",
-              "text": "Those are apples."
+              "text": "tickets"
             },
             {
               "responseId": "en:lesson-03:session-38:intro1:r3",
-              "text": "This is an apple."
+              "text": "table"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Перед вами лежит несколько яблок. Назовите их.",
-          "uk": "Перед вами лежить кілька яблук. Назвіть їх."
+          "ru": "Назовите один билет одним английским словом.",
+          "uk": "Назвіть один квиток одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Бананы через проход",
-        "uk": "Банани через прохід"
+        "ru": "Этот или тот",
+        "uk": "Цей чи той"
       },
       "bodyByLocale": {
-        "ru": "`banana` — «банан», `bananas` — «бананы». Через проход видно несколько бананов: `Those are bananas.` — «Это бананы». Для дальней группы выбирайте `those`; несколько предметов сохраняют пару `those are` и форму `bananas`. Проход широкий, а нужная связка всё равно короткая.",
-        "uk": "`banana` — «банан», `bananas` — «банани». Через прохід видно кілька бананів: `Those are bananas.` — «Це банани». Для далекої групи вибирайте `those`. Для кількох предметів потрібні пара `those are` і форма `bananas`. Прохід широкий, а потрібна зв’язка все одно коротка."
+        "ru": "`This ticket is here` — «Этот билет здесь». `That ticket is there` — «Тот билет там». `This` выбираем для одного рядом, `that` — для одного дальше. Перед словом `ticket` уже стоит указатель, поэтому ещё одно `a` не добавляем. Для нескольких можно сказать `Those are tickets` — «Это билеты», показывая дальше.",
+        "uk": "`This ticket is here` — «Цей квиток тут». `That ticket is there` — «Той квиток там». `This` вибираємо для одного поруч, `that` — для одного далі. Перед словом `ticket` уже стоїть вказівне слово, тому ще одне `a` не додаємо. Для кількох можна сказати `Those are tickets` — «Це квитки», показуючи далі."
       },
       "question": {
         "interactionId": "en:lesson-03:session-38:intro2:q",
         "promptByLocale": {
-          "ru": "Через проход видно несколько бананов. Назовите их.",
-          "uk": "Через прохід видно кілька бананів. Назвіть їх."
+          "ru": "Билет лежит далеко от вас. Скажите «Тот билет там».",
+          "uk": "Квиток лежить далеко від вас. Скажіть «Той квиток там»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-38:intro2:r1",
-              "text": "Those are bananas."
+              "text": "That ticket is there."
             },
             {
               "responseId": "en:lesson-03:session-38:intro2:r2",
-              "text": "These are bananas."
+              "text": "Those ticket is there."
             },
             {
               "responseId": "en:lesson-03:session-38:intro2:r3",
-              "text": "That is a banana."
+              "text": "That ticket are there."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-38:intro2:r1",
-              "text": "Those are bananas."
+              "text": "That ticket is there."
             },
             {
               "responseId": "en:lesson-03:session-38:intro2:r2",
-              "text": "These are bananas."
+              "text": "Those ticket is there."
             },
             {
               "responseId": "en:lesson-03:session-38:intro2:r3",
-              "text": "That is a banana."
+              "text": "That ticket are there."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Через проход видно несколько бананов. Назовите их.",
-          "uk": "Через прохід видно кілька бананів. Назвіть їх."
+          "ru": "Билет лежит далеко от вас. Скажите «Тот билет там».",
+          "uk": "Квиток лежить далеко від вас. Скажіть «Той квиток там»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Показать, что положить",
-        "uk": "Показати, що покласти"
+        "ru": "Как чувствует себя Анна",
+        "uk": "Як почувається Анна"
       },
       "bodyByLocale": {
-        "ru": "`orange` — «апельсин», `oranges` — «апельсины». Дальняя группа называется `Those are oranges.` Для заказа скажите `Those oranges, please.` — «Те апельсины, пожалуйста». В просьбе `those` ставится прямо перед `oranges`: продавец сразу понимает, что положить в пакет, и лекция об апельсинах не начинается.",
-        "uk": "`orange` — «апельсин», `oranges` — «апельсини». `Those are oranges.` — так називаємо далеку групу. Для замовлення скажіть `Those oranges, please.` — «Ті апельсини, будь ласка». У проханні `those` стоїть перед `oranges`: продавець одразу розуміє, що покласти в пакет, і лекція про апельсини не починається."
+        "ru": "`weak` — «слабый». `She is weak` — «Она слаба»: в нашей ситуации Анна чувствует, что у неё мало сил. `unofficial` — «неофициальный»: у встречи нет официального статуса. `It is unofficial` — «Она неофициальная». Это не то же самое, что непринуждённая атмосфера: её описывает `informal`. Рядом с Анной окна: `These are windows` — «Это окна».",
+        "uk": "`weak` — «слабкий». `She is weak` — «Вона слабка»: у нашій ситуації Анна відчуває, що в неї мало сил. `unofficial` — «неофіційний»: зустріч не має офіційного статусу. `It is unofficial` — «Вона неофіційна». Це не те саме, що невимушена атмосфера: її описує `informal`. Поруч з Анною вікна: `These are windows` — «Це вікна»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-38:intro3:q",
         "promptByLocale": {
-          "ru": "Вы показываете на апельсины у дальнего прилавка. Выберите точную просьбу.",
-          "uk": "Ви показуєте на апельсини біля далекого прилавка. Виберіть точне прохання."
+          "ru": "Анна чувствует слабость после дороги. Скажите «Она слаба».",
+          "uk": "Анна відчуває слабкість після дороги. Скажіть «Вона слабка»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-38:intro3:r1",
-              "text": "Those oranges, please."
+              "text": "She is weak."
             },
             {
               "responseId": "en:lesson-03:session-38:intro3:r2",
-              "text": "These oranges, please."
+              "text": "She is lonely."
             },
             {
               "responseId": "en:lesson-03:session-38:intro3:r3",
-              "text": "Those are oranges."
+              "text": "She are weak."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-38:intro3:r1",
-              "text": "Those oranges, please."
+              "text": "She is weak."
             },
             {
               "responseId": "en:lesson-03:session-38:intro3:r2",
-              "text": "These oranges, please."
+              "text": "She is lonely."
             },
             {
               "responseId": "en:lesson-03:session-38:intro3:r3",
-              "text": "Those are oranges."
+              "text": "She are weak."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы показываете на апельсины у дальнего прилавка. Выберите точную просьбу.",
-          "uk": "Ви показуєте на апельсини біля далекого прилавка. Виберіть точне прохання."
+          "ru": "Анна чувствует слабость после дороги. Скажите «Она слаба».",
+          "uk": "Анна відчуває слабкість після дороги. Скажіть «Вона слабка»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "93efbbaa1b1005772b4a181fe9c4a5afe58d4e7f5effeb9560960b164550e84d"
+  "introFingerprint": "49c1c1c51dcfcec1277a085c57d5adeb68daecf13b64b18aace2353d580d0ffa"
 }

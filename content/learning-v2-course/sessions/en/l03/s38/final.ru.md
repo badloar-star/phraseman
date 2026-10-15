@@ -1,153 +1,138 @@
-# Английский · Урок 3 · Занятие 38 — «У разных прилавков»
+# Английский · Урок 3 · Занятие 38 — Билет перед встречей
 
-**Сцена занятия.** Вы с другом пришли на утренний рынок со списком покупок; перед вами лежат яблоки, бананы — через проход, а апельсины — у дальнего углового прилавка. Нужно назвать две группы фруктов и точно показать продавцу, какие фрукты положить в пакет.
+**Ситуация.** Вы с Анной пришли в клуб на встречу. У вас в руке билет, другой лежит дальше на столе. После дороги Анна чувствует слабость и садится у окна. Встреча организована участниками и не имеет официального статуса.
 
-**Как сказать:** переносить `these/those` в рыночную ситуацию: называть и выбирать несколько близких или дальних предметов
-**Новые слова:** apple, banana, orange
-**Для повторения:** these, those, are, flower
+**Что вы освоите:** назвать один билет и отличить его от нескольких, показать близкий или дальний предмет
+**Новые слова:** ticket
 
 ---
 
 ## Интро 1
 
-### Яблоки перед вами
+### Один билет в руке
 
-`apple` — «яблоко», `apples` — «яблоки». Перед вами лежит несколько яблок: `These are apples.` — «Это яблоки». Для близкой группы выбирайте `these`, а после него ставьте `are` и название во множественном числе. Считать каждое яблоко отдельно не нужно: фраза сразу называет всю группу.
+`ticket` — «билет». Вы уже знаете `tickets` — «билеты». Один — `ticket`, несколько — `tickets`. `This is a ticket` — «Это билет»: показываем на один рядом. Перед `ticket` здесь нужно `a`, потому что первый звук согласный. Один билет не станет двумя, даже если сложить его пополам.
 
-**Перед вами лежит несколько яблок. Назовите их.**
+**Назовите один билет одним английским словом.**
 
-- ✅ **These are apples.**
-- ❌ Those are apples. — *`Those are apples` подходит для нескольких яблок дальше. Эти яблоки перед вами, поэтому нужно `these`.*
-- ❌ This is an apple. — *`This is an apple` называет одно яблоко рядом. Здесь яблок несколько, поэтому нужны `these are` и `apples`.*
+- ✅ **ticket**
+- ❌ tickets — *`tickets` — несколько билетов. Один — `ticket`.*
+- ❌ table — *`table` — стол. Билет — `ticket`.*
 
 ---
 
 ## Интро 2
 
-### Бананы через проход
+### Этот или тот
 
-`banana` — «банан», `bananas` — «бананы». Через проход видно несколько бананов: `Those are bananas.` — «Это бананы». Для дальней группы выбирайте `those`; несколько предметов сохраняют пару `those are` и форму `bananas`. Проход широкий, а нужная связка всё равно короткая.
+`This ticket is here` — «Этот билет здесь». `That ticket is there` — «Тот билет там». `This` выбираем для одного рядом, `that` — для одного дальше. Перед словом `ticket` уже стоит указатель, поэтому ещё одно `a` не добавляем. Для нескольких можно сказать `Those are tickets` — «Это билеты», показывая дальше.
 
-**Через проход видно несколько бананов. Назовите их.**
+**Билет лежит далеко от вас. Скажите «Тот билет там».**
 
-- ✅ **Those are bananas.**
-- ❌ These are bananas. — *`These are bananas` подходит для нескольких бананов рядом. Бананы через проход, поэтому нужно `those`.*
-- ❌ That is a banana. — *`That is a banana` называет один дальний банан. Здесь бананов несколько, поэтому нужны `those are` и `bananas`.*
+- ✅ **That ticket is there.**
+- ❌ Those ticket is there. — *`Those` — несколько, а билет один: `That ticket`.*
+- ❌ That ticket are there. — *Один билет требует `is`: `That ticket is there`.*
 
 ---
 
 ## Интро 3
 
-### Показать, что положить
+### Как чувствует себя Анна
 
-`orange` — «апельсин», `oranges` — «апельсины». Дальняя группа называется `Those are oranges.` Для заказа скажите `Those oranges, please.` — «Те апельсины, пожалуйста». В просьбе `those` ставится прямо перед `oranges`: продавец сразу понимает, что положить в пакет, и лекция об апельсинах не начинается.
+`weak` — «слабый». `She is weak` — «Она слаба»: в нашей ситуации Анна чувствует, что у неё мало сил. `unofficial` — «неофициальный»: у встречи нет официального статуса. `It is unofficial` — «Она неофициальная». Это не то же самое, что непринуждённая атмосфера: её описывает `informal`. Рядом с Анной окна: `These are windows` — «Это окна».
 
-**Вы показываете на апельсины у дальнего прилавка. Выберите точную просьбу.**
+**Анна чувствует слабость после дороги. Скажите «Она слаба».**
 
-- ✅ **Those oranges, please.**
-- ❌ These oranges, please. — *`These oranges, please` подходит для апельсинов рядом. Нужный прилавок дальше, поэтому нужно `those`.*
-- ❌ Those are oranges. — *`Those are oranges` называет предметы. Для заказа поставьте `those` прямо перед `oranges`.*
+- ✅ **She is weak.**
+- ❌ She is lonely. — *`lonely` — одинокая. Здесь Анне не хватает сил: `weak`.*
+- ❌ She are weak. — *С `She` нужно `is`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-38:i01; family: listen_choose -->
-Цель: `apple`
-Варианты: `apple`
+**1 · Гость показывает на несколько окон прямо рядом с вами. Скажите «Это окна», используя слово для нескольких рядом**
+<!-- interaction_id: en:lesson-03:session-38:i01; family: phrase_builder -->
+Плитки: `windows` `are` `These` `is` → **These are windows.**
+*(плитка `is` лишняя: здесь нужно `are` — `These are windows.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-38:i03; family: scripted_repeat_compare -->
-Цель: `banana`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-38:i02; family: listen_choose -->
+🔊 *ticket* → **ticket** · table · picture
+- table — *В записи первое слово — `ticket`, а в этом варианте — `table`.*
+- picture — *В записи первое слово — `ticket`, а в этом варианте — `picture`.*
 
-**3 · Послушайте и выберите фрукт — у дальнего прилавка**
-<!-- interaction_id: en:lesson-03:session-38:i05; family: listen_choose -->
-Цель: `orange`
-Варианты: `orange`
+**3 · Назовите один билет одним английским словом**
+<!-- interaction_id: en:lesson-03:session-38:i03; family: context_gap_grammar -->
+___ → **ticket** · tickets · table
+- tickets — *`tickets` — билеты. Один — `ticket`.*
+- table — *`table` — стол. Билет — `ticket`.*
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-38:i02; family: scripted_repeat_compare -->
-Цель: `apple`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-38:i04; family: speed_match -->
+ticket — билет · weak — слабый · unofficial — неофициальный · windows — окна
 
-**5 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-38:i04; family: listen_choose -->
-Цель: `banana`
-Варианты: `banana`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-38:i05; family: listen_build_dictation -->
+🔊 *This is a ticket.* Плитки: `ticket` `a` `is` `This` `are` → **This is a ticket.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a ticket.`)*
 
-**6 · Произнесите слово — апельсины у дальнего прилавка**
-<!-- interaction_id: en:lesson-03:session-38:i06; family: scripted_repeat_compare -->
-Цель: `orange`
+**6 · Один билет лежит дальше от вас. Скажите «Тот билет там»**
+<!-- interaction_id: en:lesson-03:session-38:i06; family: phrase_builder -->
+Плитки: `there` `is` `ticket` `That` `are` → **That ticket is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `That ticket is there.`)*
 
-**7 · Соедините слова со значениями — товары на рынке**
-<!-- interaction_id: en:lesson-03:session-38:i08; family: speed_match -->
-Пары: `apple` — яблоко · `banana` — банан · `orange` — апельсин · `flower` — цветок
-Цель: `apple · banana · orange · flower`
+**7 · После дороги у Анны мало сил. Скажите «Она слаба» с сокращением**
+<!-- interaction_id: en:lesson-03:session-38:i07; family: scripted_repeat_compare -->
+🎙 **She's weak.**
 
-**8 · Послушайте и соберите фразу — бананы через проход**
-<!-- interaction_id: en:lesson-03:session-38:i10; family: listen_build_dictation -->
-Цель: `Those are bananas.`
+**8 · Вы впервые называете один предмет рядом: это билет**
+<!-- interaction_id: en:lesson-03:session-38:i08; family: context_gap_grammar -->
+This is ___ ticket. → **a** · an · are
+- an — *`ticket` начинается с согласного звука: `a ticket`.*
+- are — *Перед названием одного билета здесь нужно `a`: `a ticket`.*
 
-**9 · Произнесите фразу — цветы у вашего прилавка**
-<!-- interaction_id: en:lesson-03:session-38:i11; family: scripted_repeat_compare -->
-Цель: `These are flowers.`
+**9 · Послушайте описание статуса встречи**
+<!-- interaction_id: en:lesson-03:session-38:i09; family: listen_choose -->
+🔊 *It is unofficial.* → **It is unofficial.** · It is official. · It is informal.
+- It is official. — *В записи последнее слово — `unofficial`, а в этом варианте — `official`.*
+- It is informal. — *В записи последнее слово — `unofficial`, а в этом варианте — `informal`.*
 
-**10 · Соберите описание — апельсины у дальнего прилавка**
-<!-- interaction_id: en:lesson-03:session-38:i07; family: phrase_builder -->
-Цель: `Those are oranges.`
+**10 · Соедините слова со значениями для наших примеров**
+<!-- interaction_id: en:lesson-03:session-38:i10; family: speed_match -->
+ticket — билет · tickets — билеты · this — этот, один рядом · those — те, несколько дальше
 
-**11 · Вставьте указатель — несколько яблок лежат у дальнего прилавка**
-<!-- interaction_id: en:lesson-03:session-38:i09; family: context_gap_grammar -->
-Цель: `___ are apples.`
-Варианты: `Those` · `These` · `That` · `This`
-- These — *`These are apples` подходит для яблок рядом. Эти яблоки дальше, поэтому нужно `Those`.*
-- That — *`That` относится к одному дальнему предмету и требует `is`. Здесь яблок несколько.*
-- This — *`This` относится к одному предмету рядом и требует `is`. Здесь яблок несколько и они дальше.*
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-38:i11; family: listen_build_dictation -->
+🔊 *Those are tickets.* Плитки: `tickets` `are` `Those` `is` → **Those are tickets.**
+*(плитка `is` лишняя: здесь нужно `are` — `Those are tickets.`)*
 
-
-**12 · Соберите описание — бананы теперь лежат перед вами**
+**12 · Вы показываете на билет в своей руке. Скажите «Этот билет здесь»**
 <!-- interaction_id: en:lesson-03:session-38:i12; family: phrase_builder -->
-Цель: `These are bananas.`
+Плитки: `here` `is` `ticket` `This` `are` → **This ticket is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `This ticket is here.`)*
 
-**13 · Послушайте и выберите точное значение просьбы**
-<!-- interaction_id: en:lesson-03:session-38:i13; family: listen_choose -->
-Цель: `Those oranges, please.`
-Варианты: `Те апельсины, пожалуйста` · `Эти апельсины, пожалуйста` · `Те яблоки, пожалуйста` · `Это апельсины`
-- Эти апельсины, пожалуйста — *В записи слышно `those`, а не `these`: выбирают дальнюю группу.*
-- Те яблоки, пожалуйста — *Названо `oranges` — апельсины, а не `apples` — яблоки.*
-- Это апельсины — *В записи нет `are`: это просьба выбрать апельсины, а не сообщение об их названии.*
+**13 · У встречи нет официального статуса. Скажите «Она неофициальная» с сокращением**
+<!-- interaction_id: en:lesson-03:session-38:i13; family: scripted_repeat_compare -->
+🎙 **It's unofficial.**
 
+**14 · Вы показываете на несколько окон вдалеке**
+<!-- interaction_id: en:lesson-03:session-38:i14; family: context_gap_grammar -->
+Those ___ windows. → **are** · is · am
+- is — *Окон несколько: `Those are windows`.*
+- am — *Для нескольких с `Those` нужно `are`.*
 
-**14 · Соберите просьбу — апельсины находятся у вашего прилавка**
-<!-- interaction_id: en:lesson-03:session-38:i14; family: phrase_builder -->
-Цель: `These oranges, please.`
+**15 · Послушайте, как чувствует себя Анна**
+<!-- interaction_id: en:lesson-03:session-38:i15; family: listen_choose -->
+🔊 *She is weak.* → **She is weak.** · She is lonely. · She is sleepy.
+- She is lonely. — *В записи последнее слово — `weak`, а в этом варианте — `lonely`.*
+- She is sleepy. — *В записи последнее слово — `weak`, а в этом варианте — `sleepy`.*
 
-**15 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-38:i15; family: scripted_repeat_compare -->
-Цель: `Those are oranges.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-38:i16; family: speed_match -->
+ticket — билет · weak — слабый · unofficial — неофициальный · windows — окна
 
-**16 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-38:i16:s01; family: listen_build_dictation -->
-Цель: `These are apples.`
+**17 · На другой встрече гость спрашивает об одном предмете на дальнем столе. Это билет. Назовите его полной фразой, начав с указателя на один предмет дальше**
+<!-- interaction_id: en:lesson-03:session-38:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **That is a ticket.**
 
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-38:i16:s02; family: scripted_repeat_compare -->
-Цель: `Those are bananas.`
-
-**18 · Соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-38:i17:s01; family: phrase_builder -->
-Цель: `Those are apples.`
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-38:i17:s02; family: scripted_repeat_compare -->
-Цель: `These are bananas.`
-
-**20 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-38:i17:s03; family: listen_build_dictation -->
-Цель: `These oranges, please.`
-
-## Для сборщика
-new_words: apple — яблоко — Круглый фрукт с тонкой кожурой и сердцевиной с семенами.
-new_words: banana — банан — Длинный изогнутый фрукт с жёлтой кожурой.
-new_words: orange — апельсин — Круглый цитрусовый фрукт с оранжевой кожурой.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder, 13=listen_choose, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation

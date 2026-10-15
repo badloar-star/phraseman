@@ -21,7 +21,8 @@ import { subscribeAppSnapshot } from '../../app/app_snapshot_store';
 import { triLang, type Lang } from '../../constants/i18n';
 import { runeWord } from '../../constants/runes';
 import { hapticTap } from '../../hooks/use-haptics';
-import { V2_TYPE } from '../../constants/v2Style';
+import { V2_TYPE, alphaHex } from '../../constants/v2Style';
+import { LinearGradient } from '../SafeLinearGradient';
 import type { DoneChainAfter, DoneChainBefore } from './done_chain_gate';
 
 /**
@@ -168,6 +169,8 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
   const g = useLv2Glass();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
+  // зачем (Макеты 06b311f0d, 🟡 б: «УРОК ПРОЙДЕН» заезжает под значки статус-бара при прокрутке — следствие 80c6cc2e0): верхний скрим цвета фона экрана, только после прокрутки (порог 6 dp, одно переключение на пересечение)
+  const [scrolled, setScrolled] = useState(false);
   const reduced = useReducedMotion();
   const animate = !reduced;
   const c = copy(lang);
@@ -195,6 +198,8 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
     <View testID={props.testID ?? 'v2-done-screen'} onTouchStart={skip} style={[s.root, { backgroundColor: g.bg }]}>
       <ScrollView
         contentContainerStyle={[s.content, { paddingTop: insets.top + 8, paddingBottom: 170 + insets.bottom }]}
+        onScroll={(e) => { const next = e.nativeEvent.contentOffset.y > TOP_FADE_SHOW_AT; setScrolled((prev) => (prev === next ? prev : next)); }}
+        scrollEventThrottle={32}
         showsVerticalScrollIndicator={false}
         // зачем: в feedbackSlot живёт форма «Всё было понятно?» с полем ввода — клавиатура не должна её закрывать.
         keyboardShouldPersistTaps="handled"
@@ -318,6 +323,15 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         {props.feedbackSlot ? <View style={{ marginTop: 14 }}>{props.feedbackSlot}</View> : null}
         </>))}
       </ScrollView>
+      {scrolled ? (
+        <LinearGradient
+          pointerEvents="none"
+          testID="v2-done-top-fade"
+          colors={[g.bg, g.bg, alphaHex(g.bg, 0)]}
+          locations={[0, insets.top / (insets.top + TOP_FADE_FEATHER), 1]}
+          style={[s.topFade, { height: insets.top + TOP_FADE_FEATHER }]}
+        />
+      ) : null}
 
       {dock(
         <>
@@ -355,8 +369,13 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
   }
 }
 
+/** Порог прокрутки (dp), с которого включается верхний скрим, и высота растворения под inset. */
+const TOP_FADE_SHOW_AT = 6;
+const TOP_FADE_FEATHER = 28;
+
 const s = StyleSheet.create({
   root: { flex: 1 },
+  topFade: { position: 'absolute', top: 0, left: 0, right: 0 },
   content: { paddingHorizontal: 20 },
   head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 44 },
   // зачем («Тень» 12.10): плашки без обводок — заливка и тень из ShadowSurface

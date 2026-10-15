@@ -1367,6 +1367,15 @@ export default function LessonComplete() {
     router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: ids.join(','), length: 'all' } } as never);
   }, [router, lessonId]);
 
+  // зачем (Макеты 06b311f0d, 🟡 а): ошибки в блоке итога есть, а id для точечной тренировки нет — кнопка «Повторить ошибки» ведёт в существующий хаб «Мои ошибки», а не исчезает
+  const openMistakesHub = useCallback(() => {
+    if (!navOnce(`lesson_complete:mistakes_hub:${lessonId}`)) return;
+    hapticTap();
+    DebugLogger.info('[LESSON-RESULT]', `«Повторить ошибки» без id ошибок lesson=${lessonId} → /mistakes_hub`);
+    markNextNavigationAsReplace();
+    router.replace('/mistakes_hub' as never);
+  }, [router, lessonId]);
+
   const handleRepeatLesson = useCallback(() => {
     if (repeatOpeningRef.current) return;
     repeatOpeningRef.current = true;
@@ -1475,7 +1484,8 @@ export default function LessonComplete() {
               wrong={lessonCounts?.wrong ?? null}
               // зачем (владелец 13.10): список «Ошибки» из макета practice.html#done — промахи только что пройденного урока (память процесса, см. lesson_run_errors_memory); у комбо и без промахов блока нет.
               errors={isComboCompletion ? undefined : peekLessonRunErrors(lessonId)}
-              onRepeatErrors={runMistakeIds.length > 0 ? finishMistakes : undefined}
+              // зачем (Макеты 06b311f0d, 🟡 а; эталон practice#done2: «Повторить ошибки» стоит в блоке всегда): id ошибок есть — тренировка именно этих ошибок, ошибки есть, а id нет — хаб «Мои ошибки»
+              onRepeatErrors={runMistakeIds.length > 0 ? finishMistakes : (!isComboCompletion && peekLessonRunErrors(lessonId).length > 0 ? openMistakesHub : undefined)}
               coinsGained={practiceRunes.runes}
               plusNote={completionRequiresPremium ? {
                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),

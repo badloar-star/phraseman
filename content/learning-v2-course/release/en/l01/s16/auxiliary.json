@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-16:intro1:r2": {
-          "ru": "После `you` нужно `are`: без него английская фраза неполная.",
-          "uk": "Після `you` потрібне `are`: без нього англійська фраза неповна."
+          "ru": "После `I` нужна форма `am`: `I am kind`.",
+          "uk": "Після `I` потрібна форма `am`: `I am kind`."
         },
         "en:lesson-01:session-16:intro1:r3": {
-          "ru": "`is` — не для `you`. Про собеседника всегда `are`.",
-          "uk": "`is` — не для `you`. Про співрозмовника завжди `are`."
+          "ru": "Это про него. О себе начните с `I am`.",
+          "uk": "Це про нього. Про себе почніть із `I am`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-16:intro2:r2": {
-          "ru": "Сначала `are`, затем `not`: `You are not wrong`.",
-          "uk": "Спершу `are`, потім `not`: `You are not wrong`."
+          "ru": "После `She` нужно `is`. `am` подходит к `I`.",
+          "uk": "Після `She` потрібно `is`. `am` поєднується з `I`."
         },
         "en:lesson-01:session-16:intro2:r3": {
-          "ru": "`not` в конце не работает. Его место сразу за `are`.",
-          "uk": "`not` у кінці не працює. Його місце одразу за `are`."
+          "ru": "`He` означает «он», а речь о Мие: `She`.",
+          "uk": "`He` означає «він», а йдеться про Мію: `She`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-16:intro3:r2": {
-          "ru": "После `you` нужно `are`: `You are brave`.",
-          "uk": "Після `you` потрібне `are`: `You are brave`."
+          "ru": "Здесь речь о столе, поэтому нужно `It`, а не `He`.",
+          "uk": "Тут ідеться про стіл, тому потрібно `It`, а не `He`."
         },
         "en:lesson-01:session-16:intro3:r3": {
-          "ru": "`am` живёт только рядом с `I`. Про него — `are`.",
-          "uk": "`am` живе тільки поряд з `I`. Про нього — `are`."
+          "ru": "Между `It` и `clean` нужно `is`.",
+          "uk": "Між `It` і `clean` потрібно `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dd6b71e37c839449b3ec845586ef92088cabab3ed373905ce68a61f8d003a54d"
+  "auxiliaryFingerprint": "f9f5d9376bc42f7dd7aa81eef67e5de59bf79a7867724b455756bcd5a100a5eb"
 }

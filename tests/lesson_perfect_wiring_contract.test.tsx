@@ -72,6 +72,14 @@ describe('m09 · окно LessonPerfectHost', () => {
     const second = await render(<LessonPerfectHost lang="ru" onceKey="k2" total={20} coinsEarned={150} />);
     expect(second.queryByTestId('perfect-next')).toBeNull();
   });
+
+  it('P22a: проход уже праздновали — хост сразу сообщает «закрыто», оценка приложения не ждёт вечно', async () => {
+    await render(<LessonPerfectHost lang="ru" onceKey="k3" total={20} coinsEarned={150} />);
+    const onOpenChange = jest.fn();
+    await render(<LessonPerfectHost lang="ru" onceKey="k3" total={20} coinsEarned={150} onOpenChange={onOpenChange} />);
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+    expect(onOpenChange).not.toHaveBeenCalledWith(true);
+  });
 });
 
 describe('m09 · подключение к lesson_complete', () => {
@@ -81,6 +89,9 @@ describe('m09 · подключение к lesson_complete', () => {
     expect(src).not.toMatch(/^import LessonPerfectHost/m);
     expect(src).toContain('decidePerfectMoment({ momentsV3, isCombo: isComboCompletion, counts: lessonCounts, coinsHydrating: practiceRunes.hydrating })');
     expect(src).toContain('coinsEarned={practiceRunes.runes}');
-    expect(src).toContain('visible={showReview && !perfectMomentOpen}');
+    // зачем (Ревизор P22a): оценка ждёт и открытое окно, и «ещё не решено» (ленивая загрузка); рядом может стоять очередь рубежа серии Тем
+    const reviewLine = src.split('\n').find((l) => l.includes('visible={showReview && !perfectMomentOpen')) ?? '';
+    expect(reviewLine).toContain('!(sequenceShowing && perfectDecision.show && !perfectMomentSettled)');
+    expect(src).toContain('onOpenChange={onPerfectOpenChange}');
   });
 });

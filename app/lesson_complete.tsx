@@ -759,6 +759,13 @@ export default function LessonComplete() {
   // зачем (координатор 15.10, m09): штамп «ИДЕАЛ» — на итоге обычного урока без единой ошибки, когда монеты урока уже посчитаны; решение и причина — perfect_moment_gate
   const momentsV3 = useMomentsV3Enabled();
   const [perfectMomentOpen, setPerfectMomentOpen] = useState(false);
+  // зачем (Ревизор P22a): окно m09 грузится лениво — пока оно не открылось и не закрылось, оценка приложения ждёт; иначе на iOS второе
+  // нативное окно (m09) уже не откроется поверх оценки. «Решено» = хост сообщил закрытие или что окна не будет.
+  const [perfectMomentSettled, setPerfectMomentSettled] = useState(false);
+  const onPerfectOpenChange = useCallback((open: boolean) => {
+    setPerfectMomentOpen(open);
+    if (!open) setPerfectMomentSettled(true);
+  }, []);
   const perfectDecision = decidePerfectMoment({ momentsV3, isCombo: isComboCompletion, counts: lessonCounts, coinsHydrating: practiceRunes.hydrating });
   // зачем (координатор 15.10, m10 «семь ударов» за moments_v3): снимок серии и задачи «Сегодня» — на ПЕРВОМ кадре экрана, до того как grantBonus запишет урок
   // (recordTodayTaskActivity засчитывает и день серии) — иначе «5 → 6» и «0/1 → 1/1» не с чего было бы показать. Синхронное чтение памяти, без диска и сети.
@@ -1494,11 +1501,11 @@ export default function LessonComplete() {
             ) : null}
             {perfectMomentOn && lessonCounts ? (
               <Suspense fallback={null}>
-                <LessonPerfectHost lang={lang} onceKey={perfectMomentKey(lessonId, studyTarget, completionAttemptId)} total={lessonCounts.correct + lessonCounts.wrong} coinsEarned={practiceRunes.runes} onOpenChange={setPerfectMomentOpen} />
+                <LessonPerfectHost lang={lang} onceKey={perfectMomentKey(lessonId, studyTarget, completionAttemptId)} total={lessonCounts.correct + lessonCounts.wrong} coinsEarned={practiceRunes.runes} onOpenChange={onPerfectOpenChange} />
               </Suspense>
             ) : null}
             <ReviewPromptModal
-              visible={showReview && !perfectMomentOpen && !milestoneHold}
+              visible={showReview && !perfectMomentOpen && !milestoneHold && !(sequenceShowing && perfectDecision.show && !perfectMomentSettled)}
               context={reviewContext}
               lang={lang}
               onClose={goNext}

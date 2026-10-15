@@ -33,7 +33,8 @@ function LessonPerfectHost({ lang, onceKey, total, coinsEarned, onOpenChange }: 
 
   useEffect(() => {
     console.log(`[LESSON-PERFECT] ${open ? 'показ' : 'пропуск: этот проход уже праздновали'} key=${onceKey} заданий=${total} монет=${coinsEarned} ранг=${String(coinRank)}`); // guard-ok: единичный журнал решения
-    if (open) onOpenChange?.(true);
+    // зачем (Ревизор P22a): экран ждёт ответа «окно открыто/не будет» — если этот проход уже праздновали, сразу сообщаем «закрыто», чтобы оценка приложения не ждала вечно
+    onOpenChange?.(open);
     return () => { if (open) onOpenChange?.(false); };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: решение принимается один раз на показ
   }, []);

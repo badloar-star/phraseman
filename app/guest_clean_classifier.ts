@@ -39,29 +39,19 @@ const SERVICE_KEYS: ReadonlySet<string> = new Set([
 
 /** Дни активности { anchor, bits }: не больше одного дня (сегодня) — след установки, не прогресс. */
 function isSingleActiveDay(value: string): boolean {
-  try {
-    const parsed = JSON.parse(value) as { bits?: unknown };
-    return typeof parsed?.bits === 'string' && parsed.bits.split('').filter((bit) => bit === '1').length <= 1;
-  } catch {
-    // Битая запись не доказывает «по умолчанию»: при сомнении — прогресс (окно смены аккаунта останется).
-    return false;
-  }
+  const parsed = parseJson(value, 'active_days_v1') as { bits?: unknown } | undefined;
+  return typeof parsed?.bits === 'string' && parsed.bits.split('').filter((bit) => bit === '1').length <= 1;
 }
 
 /** Основа достижений v2 у свежей установки: баланс 0, без оплат и возвращения, не больше одного дня. */
 function isEmptyFoundationProgress(value: string): boolean {
-  try {
-    const parsed = JSON.parse(value) as {
-      maxEligibleShardBalance?: unknown; activeDates?: unknown; comeback?: unknown; paidAccess?: { plus?: unknown; pro?: unknown };
-    };
-    return parsed?.maxEligibleShardBalance === 0
-      && Array.isArray(parsed.activeDates) && parsed.activeDates.length <= 1
-      && parsed.comeback === null
-      && parsed.paidAccess?.plus === false && parsed.paidAccess?.pro === false;
-  } catch {
-    // Битая запись не доказывает «по умолчанию»: при сомнении — прогресс (окно смены аккаунта останется).
-    return false;
-  }
+  const parsed = parseJson(value, 'achievement_foundation_progress_v2') as {
+    maxEligibleShardBalance?: unknown; activeDates?: unknown; comeback?: unknown; paidAccess?: { plus?: unknown; pro?: unknown };
+  } | undefined;
+  return parsed?.maxEligibleShardBalance === 0
+    && Array.isArray(parsed.activeDates) && parsed.activeDates.length <= 1
+    && parsed.comeback === null
+    && parsed.paidAccess?.plus === false && parsed.paidAccess?.pro === false;
 }
 
 /**
@@ -104,25 +94,29 @@ function shapeOf(node: unknown, depth: number): string {
   return `str${String(node).length}`;
 }
 
-function parseJson(value: string): unknown {
+/**
+ * Разбор значения ключа. Битая запись не доказывает «по умолчанию»: вызывающий ответит progress (окно смены останется).
+ * зачем (Ревизор 15.10, правило «немых catch»): причина отказа разбора — в журнал; key — имя без идентификаторов.
+ */
+function parseJson(value: string, key: string): unknown {
   try {
     return JSON.parse(value);
-  } catch {
-    // Не JSON — форма не доказывает «по умолчанию»: вызывающий ответит progress.
+  } catch (error) {
+    console.warn(`[GUEST-CLEAN] parse_failed key=${key} reason=${error instanceof Error ? error.name : typeof error} len=${value.length}`); // guard-ok: причина отказа разбора
     return undefined;
   }
 }
 
 /** Список достижений после базовой инициализации: ни одно не получено (unlockedAt пуст у всех). */
 function isUnearnedAchievementList(value: string): boolean {
-  const parsed = parseJson(value);
+  const parsed = parseJson(value, 'achievements_v1');
   return Array.isArray(parsed) && parsed.every((item) => item !== null && typeof item === 'object'
     && (item as { unlockedAt?: unknown }).unlockedAt === null);
 }
 
 /** Очередь операций монет телефона без единой операции. */
 function isEmptyShardOutbox(value: string): boolean {
-  const parsed = parseJson(value) as { operationIds?: unknown; acknowledgedOperationIds?: unknown } | undefined;
+  const parsed = parseJson(value, 'client_shard_phone_state_outbox_v1') as { operationIds?: unknown; acknowledgedOperationIds?: unknown } | undefined;
   return Array.isArray(parsed?.operationIds) && parsed.operationIds.length === 0
     && Array.isArray(parsed?.acknowledgedOperationIds) && parsed.acknowledgedOperationIds.length === 0;
 }
@@ -134,7 +128,7 @@ function isEmptyShardOutbox(value: string): boolean {
  * unconfirmedLocalLift > 0 при нулевом сервере — монеты, которых нет в облаке; при входе они стёрлись бы без копии.
  */
 function isEmptySpinProjection(value: string): boolean {
-  const parsed = parseJson(value) as {
+  const parsed = parseJson(value, 'level_spin_star_projection_v1') as {
     operations?: unknown; acknowledged?: unknown; serverBalance?: unknown; serverEarnedTotal?: unknown;
     serverSeq?: unknown; unconfirmedLocalLift?: unknown; compactedSpendTotal?: unknown;
   } | undefined;

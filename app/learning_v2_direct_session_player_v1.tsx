@@ -391,6 +391,16 @@ function runFrom(
   });
 }
 
+// зачем (координатор 15.10, урок 1 V2 целиком s01–s56): немые catch плеера прятали причину — звук слова или фразы пропадал молча.
+// Поведение прежнее (null/откат), но причина в журнале [V2-PLAYER]. Пересчёты useMemo пишут один раз на место и id, без потока строк.
+const playerSwallowedOnce = new Set<string>();
+function logPlayerSwallowed(where: string, id: string, error: unknown): void {
+  const key = `${where}:${id}`;
+  if (playerSwallowedOnce.has(key)) return;
+  playerSwallowedOnce.add(key);
+  console.warn("[V2-PLAYER] swallowed", JSON.stringify({ where, id, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина проглоченной ошибки
+}
+
 export default function LearningV2DirectSessionPlayerV1() {
   const router = useRouter();
   const params = useLocalSearchParams<{
@@ -1130,7 +1140,8 @@ export default function LearningV2DirectSessionPlayerV1() {
             handle: activeAudioPreload,
             supplementalId: encounter.lexicalItemId,
           })?.fileUri ?? null;
-        } catch {
+        } catch (error: unknown) {
+          logPlayerSwallowed("new_word_audio", encounter.lexicalItemId, error);
           fileUri = null;
         }
       }
@@ -1148,7 +1159,8 @@ export default function LearningV2DirectSessionPlayerV1() {
             handle: activeAudioPreload,
             supplementalId: word.lexicalItemId,
           })?.fileUri ?? null;
-        } catch {
+        } catch (error: unknown) {
+          logPlayerSwallowed("unlocked_word_audio", word.lexicalItemId, error);
           readyHandleUri = null;
         }
       }
@@ -1252,7 +1264,8 @@ export default function LearningV2DirectSessionPlayerV1() {
     const lexicalItemId = currentNewWordEncounter.lexicalItemId;
     if (presentedUnlockStartedRef.current.has(lexicalItemId)) return;
     presentedUnlockStartedRef.current.add(lexicalItemId);
-    void markCurrentNewWordPresented().catch(() => {
+    void markCurrentNewWordPresented().catch((error: unknown) => {
+      console.warn("[V2-PLAYER] new_word_present_failed", JSON.stringify({ lexicalItemId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: откат с причиной
       presentedUnlockStartedRef.current.delete(lexicalItemId);
     });
   }, [currentNewWordEncounter, markCurrentNewWordPresented, newWordFlow.kind]);
@@ -1316,7 +1329,8 @@ export default function LearningV2DirectSessionPlayerV1() {
             ? "saved"
             : "save_failed",
       }));
-    } catch {
+    } catch (error: unknown) {
+      console.warn("[V2-PLAYER] new_word_save_failed", JSON.stringify({ lexicalItemId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина в журнале
       setNewWordSaveStates((current) => ({
         ...current,
         [lexicalItemId]: "save_failed",
@@ -1441,7 +1455,8 @@ export default function LearningV2DirectSessionPlayerV1() {
         handle: activeAudioPreload,
         interactionId: practice.interactionId,
       });
-    } catch {
+    } catch (error: unknown) {
+      logPlayerSwallowed("full_phrase_audio", practice.interactionId, error);
       return null;
     }
   }, [activeAudioPreload, practice]);

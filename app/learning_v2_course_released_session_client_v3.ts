@@ -309,7 +309,11 @@ const readyInFlight = new Map<
 let writeChain: Promise<void> = Promise.resolve();
 let legacyCachePurgeV4: Promise<void> | null = null;
 
-function fail(): never {
+// зачем (координатор 15.10, урок 1 V2 целиком s01–s56): безымянный отказ подготовки не говорил, ЧТО сломалось — занятие не открывалось молча.
+// Причина и подробности (занятие, слово, голос, чего не хватает) — в журнал [V2-PREPARE]. Текст ошибки прежний: на него опираются вызовы и
+// тесты, поведение не меняется.
+function fail(reason?: string, detail?: Readonly<Record<string, unknown>>): never {
+  if (reason) console.warn("[V2-PREPARE]", JSON.stringify({ reason, ...detail })); // guard-ok: причина отказа
   throw new Error("learning_v2_course_released_session_app_client_v3_invalid");
 }
 
@@ -1289,7 +1293,7 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
     Object.keys(input).sort().join("|") !== "locator|sessionRunId" ||
     !ID_RE.test(input.sessionRunId)
   )
-    fail();
+    fail("prepare_input_invalid", { keys: plain(input) ? Object.keys(input).sort() : typeof input });
   const locator = exactCurrentLocator(input.locator);
   const key = `${currentKey(locator)}:${input.sessionRunId}`;
   const existing = readyInFlight.get(key);
@@ -1309,7 +1313,14 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
     });
     // Production always uses a complete, locally verified published MP3 set.
     // Device speech remains a DEV-only authoring concern outside this release path.
-    if (!result.material.audioChild) fail();
+    const prepareWhere = {
+      lesson: locator.lessonOrdinal,
+      session: locator.sessionOrdinal,
+      courseSessionId: result.material.courseSessionId,
+    };
+    if (!result.material.audioChild) {
+      fail("audio_child_missing", { ...prepareWhere, audioDelivery: result.material.audioDelivery });
+    }
     const supplementalWordAudio = new Map<
       string,
       LearningV2CourseSessionAudioFileV1
@@ -1325,22 +1336,41 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
           )
           // зачем (координатор 15.10, урок 1 целиком — до 56 занятий): только список слов, без полной сборки каждого
           // занятия ≤ текущего (раньше до 56 сборок с SHA-256 детей на открытие s56). Лёгкая очередь — тот же код карточек.
-          .map((session) => factoryNativeSessionWordEncountersV1({
-            lessonOrdinal: session.lessonOrdinal,
-            sessionOrdinal: session.sessionOrdinal,
-            interfaceLocale: requestedLocale,
+          // Номер занятия слова едет рядом — для причины отказа в журнале.
+          .map((session) => ({
+            wordSession: session.sessionOrdinal,
+            encounters: factoryNativeSessionWordEncountersV1({
+              lessonOrdinal: session.lessonOrdinal,
+              sessionOrdinal: session.sessionOrdinal,
+              interfaceLocale: requestedLocale,
+            }),
           }))
-          .filter((encounters): encounters is NonNullable<typeof encounters> => encounters !== null)
-      : Object.values(result.material.factoryWordEncounterQueues ?? {});
-    for (const encounters of wordEncounterSets) {
+      : Object.values(result.material.factoryWordEncounterQueues ?? {})
+          .map((encounters) => ({ wordSession: locator.sessionOrdinal, encounters }));
+    const WORD_VOICE = "ash";
+    for (const { wordSession, encounters } of wordEncounterSets) {
+      if (encounters === null) continue;
       for (const encounter of encounters) {
         const file = learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
           encounter.save.targetText,
-          "ash",
+          WORD_VOICE,
         );
-        if (!file) fail();
+        const wordWhere = {
+          ...prepareWhere,
+          wordSession,
+          wordId: encounter.lexicalItemId,
+          text: encounter.save.targetText,
+          voice: WORD_VOICE,
+        };
+        if (!file) fail("word_audio_missing", wordWhere);
         const previous = supplementalWordAudio.get(encounter.lexicalItemId);
-        if (previous && previous.fileFingerprint !== file.fileFingerprint) fail();
+        if (previous && previous.fileFingerprint !== file.fileFingerprint) {
+          fail("word_audio_conflict", {
+            ...wordWhere,
+            previousFingerprint: previous.fileFingerprint,
+            fileFingerprint: file.fileFingerprint,
+          });
+        }
         supplementalWordAudio.set(encounter.lexicalItemId, file);
       }
     }
@@ -1355,7 +1385,7 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       ),
     });
     audioReadyAtMs = Date.now();
-    if (!isLearningV2CourseSessionAudioPreloadHandleV1(audio)) fail();
+    if (!isLearningV2CourseSessionAudioPreloadHandleV1(audio)) fail("audio_preload_handle_invalid", prepareWhere);
     const audioSummary = getLearningV2CourseSessionAudioPreloadSummaryV1(audio);
     const audioComplete = audioSummary.localFileCount === audioSummary.selectedFileCount;
     if (
@@ -1364,7 +1394,17 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       audioSummary.learnerFingerprint !== result.material.learnerChild.learnerFingerprint ||
       audioSummary.audioFingerprint !== result.material.audioChild.audioFingerprint ||
       audioSummary.supplementalAudioCount !== supplementalWordAudio.size
-    ) fail();
+    ) {
+      fail("audio_summary_mismatch", {
+        ...prepareWhere,
+        courseSessionIdMatch: audioSummary.courseSessionId === result.material.courseSessionId,
+        sessionRunIdMatch: audioSummary.sessionRunId === input.sessionRunId,
+        learnerFingerprintMatch: audioSummary.learnerFingerprint === result.material.learnerChild.learnerFingerprint,
+        audioFingerprintMatch: audioSummary.audioFingerprint === result.material.audioChild.audioFingerprint,
+        supplementalAudioCount: audioSummary.supplementalAudioCount,
+        supplementalExpected: supplementalWordAudio.size,
+      });
+    }
     // зачем: владелец 22.09 — «занятие не подготовилось. проверь связь» на
     // уроке 2 и вылет на Главную. Неполная озвучка ОТКЛОНЯЛА подготовку, и
     // занятие не открывалось вовсе. Решение владельца: открывать без звука,
@@ -1446,7 +1486,7 @@ export function getLearningV2CourseSessionReadySummaryV3(
   handle: LearningV2CourseSessionReadyHandleV3,
 ): LearningV2CourseSessionReadySummaryV3 {
   const material = readyMetadata.get(handle as object);
-  if (!material || !isLearningV2CourseSessionReadyHandleV3(handle)) fail();
+  if (!material || !isLearningV2CourseSessionReadyHandleV3(handle)) fail("ready_handle_unknown", { known: material !== undefined });
   return material.summary;
 }
 
@@ -1454,7 +1494,7 @@ export function getLearningV2CourseSessionReadyTimingV3(
   handle: LearningV2CourseSessionReadyHandleV3,
 ): LearningV2CourseSessionReadyTimingV3 {
   const material = readyMetadata.get(handle as object);
-  if (!material || !isLearningV2CourseSessionReadyHandleV3(handle)) fail();
+  if (!material || !isLearningV2CourseSessionReadyHandleV3(handle)) fail("ready_handle_unknown", { known: material !== undefined });
   return material.timing;
 }
 
@@ -1462,7 +1502,7 @@ export function resolveLearningV2CourseSessionReadyMaterialV3(
   handle: LearningV2CourseSessionReadyHandleV3,
 ): ReadyMaterial {
   const material = readyMetadata.get(handle as object);
-  if (!material || !isLearningV2CourseSessionReadyHandleV3(handle)) fail();
+  if (!material || !isLearningV2CourseSessionReadyHandleV3(handle)) fail("ready_handle_unknown", { known: material !== undefined });
   return material;
 }
 

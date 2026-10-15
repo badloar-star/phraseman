@@ -1,170 +1,138 @@
-# Английский · Урок 1 · Занятие 41 — «I'm и you're»
+# Английский · Урок 1 · Занятие 41 — Честно о разбитой кружке
 
-**Ситуация.** В пятницу Ира и Олег встречаются с вами в тихом кафе после работы. Олег опоздал и извиняется; Ира спрашивает, всё ли у вас в порядке.
-**Сегодня.** Скажете `I'm` и `you're` в коротких фразах.
-**Новые слова:** —
-**Возвращаются:** fine, late, sure, sorry
+**Ситуация.** В гостях у друзей вы случайно разбили кружку. Вы рассказываете, что произошло, а друзья вспоминают другие случаи, когда было важно сказать правду.
+
+**Что вы освоите:** назвать честность человека знакомыми полными и короткими фразами
+**Новые слова:** honest
 
 ---
 
 ## Интро 1
 
-### `I am` в живой речи звучит как `I'm`
+### Честный
 
-`I am` — «я есть». Перед следующим словом эти два слипаются в одно: `I'm`.
+`honest` — «честный»: говорит правду, не обманывает. `I am honest` — «Я честный». Коротко: `I'm honest`. Буква `h` в начале `honest` не произносится. Вы признаётесь, что разбили кружку: кот был в другой комнате, так что его алиби на этот раз безупречно.
 
-Значок `'` — след от буквы `a`, которую проглотили.
+**Вы говорите о своей привычке признавать правду, даже если ошиблись. Назовите себя честным человеком.**
 
-`late` — «опоздал». `I am late` и `I'm late` — одно и то же, просто второе быстрее. А вот `I'm am late` — это `am` сказанное дважды, будто с первого раза не расслышали.
-
-**Вы входите в кафе позже Иры и Олега. Скажите коротко, что опоздали.**
-
-- ✅ **I'm late.**
-- ❌ Im late. — *Значок `'` потерялся. Без него это уже не сокращение, а просто набор букв.*
-- ❌ I'm am late. — *`am` уже спрятано внутри `I'm`. Второй раз его ставить не нужно.*
+- ✅ **I am honest.**
+- ❌ I honest. — *После `I` нужно `am`: `I am honest`.*
+- ❌ I am okay. — *`okay` — «в порядке». Здесь нужно назвать честность: `honest`.*
 
 ---
 
 ## Интро 2
 
-### `you are` сокращается в `you're`
+### Он и она
 
-`you are` — «ты есть», «вы есть». Вслух это сжимается так же: `you're fine` вместо `you are fine`.
+Про Олега: `He is honest`. Про Машу: `She is honest`. Коротко: `He's honest` и `She's honest`. Честность не означает, что человек никогда не ошибается: честный человек тоже может перепутать время или уронить кружку.
 
-`your` — это «твой», а `you're` — сокращение от `you are`. Звучат они одинаково, но значат разное.
+**Маша всегда признаёт свои ошибки и не обманывает друзей. Назовите её честной.**
 
-Запомнить просто: со значком — там спрятано `are`.
-
-**Друг извиняется, что толкнул вас у стойки. Успокойте его: «всё нормально».**
-
-- ✅ **You're fine.**
-- ❌ Your fine. — *`your` — это «твой». Здесь нужно `you're` — сжатое `you are`.*
-- ❌ You're are fine. — *`are` уже внутри `you're`. Одного раза достаточно.*
+- ✅ **She is honest.**
+- ❌ He is honest. — *Это про него. Про Машу нужно `She`.*
+- ❌ She are honest. — *После `She` нужна форма `is`.*
 
 ---
 
 ## Интро 3
 
-### В конце фразы сокращение не ставят
+### Что именно хотим сказать
 
-`I'm` не живёт в одиночку — за ним всегда идёт слово: `I'm sorry`, `I'm sure`.
+`You are honest` — «Ты честный» или «Вы честные». `You are okay` — «С тобой всё нормально» или «С вами всё нормально». Эти фразы не заменяют друг друга: одна про честность, другая — про состояние. В начале обеих стоит `You are`.
 
-Спросили: «Кто опоздал?» Ответ — `I am`. В конце фразы на `am` падает нажим, его проговаривают целиком. Сжимается только то, что произносят быстро и мимоходом — а последнее слово мимоходом не скажешь.
+**Друг проверил, что вы не поранились осколками. Вы действительно в порядке. Скажите о своём состоянии.**
 
-`sorry` — «извини», `sure` — «уверен».
-
-**Вы случайно наступили Ире на ногу у столика. Извинитесь коротко.**
-
-- ✅ **I'm sorry.**
-- ❌ I sorry. — *Между `I` и словом о себе нужна форма `am`, здесь — `I'm`.*
-- ❌ Im sorry. — *Без значка `'` это не сокращение. `I'm` пишется с ним.*
+- ✅ **I am okay.**
+- ❌ I am honest. — *Это про честность. Здесь нужно сообщить, что с вами всё нормально: `okay`.*
+- ❌ I is okay. — *После `I` нужна форма `am`.*
 
 ---
 
-## Практика (18 заданий, подсказок становится меньше)
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите — как звучит сокращение**
-<!-- interaction_id: en:lesson-01:session-41:i01; family: listen_choose -->
-🔊 *I'm* → **I'm** · I am · I will
-- I am — *Это полная форма, два отдельных слова. В записи они слиты в одно.*
-- I will — *Другие слова. В записи звучит короткое `I'm`.*
+**1 · Вы говорите о себе как о человеке, который не обманывает. Соберите фразу**
+<!-- interaction_id: en:lesson-01:session-41:i01; family: phrase_builder -->
+Плитки: `honest` `am` `I` `is` → **I am honest.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am honest.`)*
 
-**2 · Вставьте слово — вы пришли позже всех**
-<!-- interaction_id: en:lesson-01:session-41:i02; family: context_gap_grammar -->
-___ late. → **I'm** · Im · I
-- Im — *Значок `'` обязателен: `I'm`.*
-- I — *Одного `I` мало: в `I'm` уже сокращено `am`.*
+**2 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-41:i02; family: listen_choose -->
+🔊 *She is honest.* → **She is honest.** · He is honest. · She is okay.
+- He is honest. — *В записи первое слово — `She`, а в этом варианте — `He`.*
+- She is okay. — *В записи последнее слово — `honest`, а в этом варианте — `okay`.*
 
-**3 · Соберите фразу — «я в порядке»**
-<!-- interaction_id: en:lesson-01:session-41:i03; family: phrase_builder -->
-Плитки: `fine` `I'm` `am` → **I'm fine.**
-*(плитка `am` лишняя: она уже спрятана в `I'm`)*
+**3 · Олег говорит правду. Дополните описание его честности**
+<!-- interaction_id: en:lesson-01:session-41:i03; family: context_gap_grammar -->
+He ___ honest. → **is** · am · are
+- am — *После `He` нужно `is`.*
+- are — *Здесь `He is honest`.*
 
-**4 · Послушайте и выберите — про собеседника**
-<!-- interaction_id: en:lesson-01:session-41:i04; family: listen_choose -->
-🔊 *you're* → **you're** · you · your
-- you — *Здесь нужно `you're`: в нём уже есть `are`.*
-- your — *«Твой». Звучит точно так же, но в предложении о состоянии нужно `you're`.*
+**4 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-01:session-41:i04; family: speed_match -->
+I'm — I am · He's — He is · She's — She is · You're — You are
 
-**5 · Вставьте слово — друг переживает, что опоздал, а всё нормально**
-<!-- interaction_id: en:lesson-01:session-41:i05; family: context_gap_grammar -->
-___ fine. → **You're** · Your · You
-- Your — *«Твой». Перед словом о состоянии нужно `you're`.*
-- You — *`you` + `are` сокращается до `you're`.*
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-41:i05; family: listen_build_dictation -->
+🔊 *You're honest.* Плитки: `honest` `You're` `We're` → **You're honest.**
+*(плитка `We're` лишняя: здесь нужно `You're` — `You're honest.`)*
 
-**6 · Соберите фразу — «ты опоздал»**
+**6 · Двое друзей всегда честно признают свои ошибки. Вы рассказываете о них. Назовите их честными**
 <!-- interaction_id: en:lesson-01:session-41:i06; family: phrase_builder -->
-Плитки: `late` `You're` `are` → **You're late.**
-*(плитка `are` лишняя: она внутри `You're`)*
+Плитки: `honest` `are` `They` `We` → **They are honest.**
+*(плитка `We` лишняя: здесь нужно `They` — `They are honest.`)*
 
-**7 · Вставьте слово — вас спросили дорогу, и вы точно знаете**
-<!-- interaction_id: en:lesson-01:session-41:i07; family: context_gap_grammar -->
-I'm ___ . → **sure** · sorry · late
-- sorry — *Это извинение. Вы не извиняетесь, вы знаете ответ.*
-- late — *«Опоздал». Речь про уверенность.*
+**7 · Коротко скажите о своей честности**
+<!-- interaction_id: en:lesson-01:session-41:i07; family: scripted_repeat_compare -->
+🎙 **I'm honest.**
 
-**8 · Соберите фразу — «извини»**
-<!-- interaction_id: en:lesson-01:session-41:i08; family: phrase_builder -->
-Плитки: `sorry` `I'm` → **I'm sorry.**
+**8 · Вы не пострадали, с вами всё нормально. Сообщите именно об этом**
+<!-- interaction_id: en:lesson-01:session-41:i08; family: context_gap_grammar -->
+I am ___ . → **okay** · honest · ill
+- honest — *Это «честный». О состоянии здесь скажите `okay`.*
+- ill — *`ill` — «болею». Здесь с вами всё нормально: `okay`.*
 
-**9 · Вставьте слово — друг сомневается, а вы видите, что он не ошибся**
-<!-- interaction_id: en:lesson-01:session-41:i09; family: context_gap_grammar -->
-___ sure. → **You're** · Your · You
-- Your — *«Твой». Про состояние — `you're`.*
-- You — *После `you` здесь нужно `are`, поэтому получается `you're`.*
+**9 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-41:i09; family: listen_choose -->
+🔊 *We are honest.* → **We are honest.** · They are honest. · We are okay.
+- They are honest. — *В записи первое слово — `We`, а в этом варианте — `They`.*
+- We are okay. — *В записи последнее слово — `honest`, а в этом варианте — `okay`.*
 
-**10 · Соберите фразу — вы отвечаете человеку, который зря извинился**
-<!-- interaction_id: en:lesson-01:session-41:i10; family: phrase_builder -->
-Плитки: `You're` `fine` `sorry` → **You're fine.**
-*(плитка `sorry` лишняя: `sorry` лишнее: человеку отвечают `You're fine.`)*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-41:i10; family: speed_match -->
+honest — честный · okay — в порядке · brave — смелый · afraid — боится
 
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-41:i11; family: listen_build_dictation -->
+🔊 *He's okay.* Плитки: `okay` `He's` `She's` → **He's okay.**
+*(плитка `She's` лишняя: здесь нужно `He's` — `He's okay.`)*
 
-**11 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-41:i11; family: speed_match -->
-fine — в порядке · late — опоздал · sure — уверен · sorry — извини
+**12 · Обратитесь к подруге и отметьте её честность**
+<!-- interaction_id: en:lesson-01:session-41:i12; family: phrase_builder -->
+Плитки: `honest` `are` `You` `is` → **You are honest.**
+*(плитка `is` лишняя: здесь нужно `are` — `You are honest.`)*
 
-**12 · Послушайте и соберите — «я уверен»**
-<!-- interaction_id: en:lesson-01:session-41:i12; family: listen_build_dictation -->
-🔊 *I'm sure.* Плитки: `sure` `I'm` `am` → **I'm sure.**
-*(плитка `am` лишняя)*
-*(плитка `am` лишняя: `am` лишнее: оно уже спрятано в `I'm sure.`)*
+**13 · Вы с братом не скрываете своих ошибок. Назовите вас обоих честными**
+<!-- interaction_id: en:lesson-01:session-41:i13; family: scripted_repeat_compare -->
+🎙 **We are honest.**
 
+**14 · Назовите двух друзей честными. Вставьте слово**
+<!-- interaction_id: en:lesson-01:session-41:i14; family: context_gap_grammar -->
+They ___ honest. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Здесь `They are honest`.*
 
-**13 · Вставьте слово — вы всё ещё за столом, и вам хорошо**
-<!-- interaction_id: en:lesson-01:session-41:i13; family: context_gap_grammar -->
-I'm ___ . → **fine** · late · sure
-- late — *Про опоздание уже сказали. Речь о том, как вам сейчас.*
-- sure — *«Уверен» — ответ на вопрос, а не про самочувствие.*
+**15 · Послушайте и выберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-41:i15; family: listen_choose -->
+🔊 *She's honest.* → **She's honest.** · He's honest. · She's okay.
+- He's honest. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
+- She's okay. — *В записи последнее слово — `honest`, а в этом варианте — `okay`.*
 
-**14 · Послушайте и выберите — вы успокаиваете человека после извинения**
-<!-- interaction_id: en:lesson-01:session-41:i14; family: listen_choose -->
-🔊 *You're fine.* → **You're fine.** · I'm fine. · You're late.
-- I'm fine. — *«I'm fine» — это ответ о себе; здесь вы успокаиваете другого человека.*
-- You're late. — *«You're late» — это про опоздание. После извинения вы говорите, что всё в порядке.*
+**16 · Соедините короткие формы и слова с соответствиями**
+<!-- interaction_id: en:lesson-01:session-41:i16; family: speed_match -->
+We're — We are · They're — They are · honest — честный · okay — в порядке
 
-**15 · Послушайте и соберите — у стойки спросили, кто опоздал**
-<!-- interaction_id: en:lesson-01:session-41:i15; family: listen_build_dictation -->
-🔊 *I am.* Плитки: `I` `am` → **I am.**
-
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-41:i16:s01; family: scripted_repeat_compare -->
-Олег спрашивает, почему вы пришли позже. 🎙 **I'm late.**
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-41:i16:s02; family: scripted_repeat_compare -->
-После случайного толчка у столика извинитесь перед Ирой. 🎙 **I'm sorry.**
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-41:i16:s03; family: scripted_repeat_compare -->
-Олег переживает после извинения. Скажите ему, что всё нормально. 🎙 **You're fine.**
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=phrase_builder, 9=context_gap_grammar, 10=phrase_builder, 11=speed_match, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare
-
----
+**17 · Продавец заметил, что вы заплатили лишнее, и вернул деньги. В разговоре с сестрой отметьте его честность**
+<!-- interaction_id: en:lesson-01:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **He is honest.**
 

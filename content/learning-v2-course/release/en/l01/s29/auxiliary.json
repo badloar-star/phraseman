@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-29:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-29:intro1:r2": {
-          "ru": "`It` пропало. Без него непонятно, кто тяжёлый.",
-          "uk": "`It` зникло. Без нього незрозуміло, хто важкий."
+          "ru": "После `I` нужно `am`.",
+          "uk": "Після `I` потрібно `am`."
         },
         "en:lesson-01:session-29:intro1:r3": {
-          "ru": "Между `it` и словом нужна форма `is`.",
-          "uk": "Між `it` і словом потрібна форма `is`."
+          "ru": "С `I` ставим `am`, а `are` — с `You`, `We`, `They`.",
+          "uk": "Із `I` ставимо `am`, а `are` — із `You`, `We`, `They`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-29:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-29:intro2:r2": {
-          "ru": "Чемодан не мужчина. `he` — только про людей, про вещь — `it`.",
-          "uk": "Валіза не чоловік. `he` — тільки про людей, про річ — `it`."
+          "ru": "После `It` нужна форма `is`.",
+          "uk": "Після `It` потрібна форма `is`."
         },
         "en:lesson-01:session-29:intro2:r3": {
-          "ru": "`she` — тоже только про людей. Для чемодана есть `it`.",
-          "uk": "`she` — теж тільки про людей. Для валізи є `it`."
+          "ru": "С `It` здесь ставим `is`, а не `are`.",
+          "uk": "Із `It` тут ставимо `is`, а не `are`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-29:intro3:r2": {
-          "ru": "`clean` — это когда мыть нечего. Засохший кофе на дне — как раз есть что.",
-          "uk": "`clean` — це коли мити нічого. Засохла кава на дні — якраз є що."
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
         },
         "en:lesson-01:session-29:intro3:r3": {
-          "ru": "Между `it` и словом нужна форма `is`.",
-          "uk": "Між `it` і словом потрібна форма `is`."
+          "ru": "В этой фразе нельзя пропустить `is`.",
+          "uk": "У цій фразі не можна пропустити `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c83ef2fc6df96f8069ee781668c7d70f212cef1fe020b5241c6d9855a98008bb"
+  "auxiliaryFingerprint": "0e206f68c275f62587a54b22806736d03d654d23f4f69bec8f7edba529a910b2"
 }

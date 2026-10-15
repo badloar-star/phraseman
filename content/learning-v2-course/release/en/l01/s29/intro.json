@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-29",
   "learningOutcomeByLocale": {
-    "ru": "`It is`, когда описываете одну вещь.",
-    "uk": "`It is`, коли описуєте одну річ."
+    "ru": "исправлять пропуск или неверный выбор am, is, are в знакомых коротких описаниях",
+    "uk": "виправляти пропуск або неправильний вибір am, is, are у знайомих коротких описах"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`heavy` и `light` — тяжёлое и лёгкое",
-        "uk": "`heavy` і `light` — важке й легке"
+        "ru": "Я местный",
+        "uk": "Я місцевий"
       },
       "bodyByLocale": {
-        "ru": "`heavy` — «тяжёлый». `light` — «лёгкий».\n\nПро вещь по-английски говорят `It is heavy` — «оно тяжёлое». Слово `it` — это «оно» для всего, у чего нет имени: сумка, стол, окно, дверь.\n\nПо-русски можно сказать просто «тяжёлая». По-английски так нельзя: сначала назови, о чём речь, — `It is heavy`.",
-        "uk": "`heavy` — «важкий». `light` — «легкий».\n\nПро річ англійською кажуть `It is heavy` — «воно важке». Слово `it` — це «воно» для всього, що не має імені: сумка, стіл, вікно, двері.\n\nУкраїнською можна сказати просто «важка». Англійською так не вийде: спершу назви, про що йдеться, — `It is heavy`."
+        "ru": "`local` — «местный». Вы живёте в этом городе: `I am local` — «Я местный». Про вас с подругой можно сказать `We are local` — «Мы местные». Слово `local` не меняется, а после `I` нужно `am`, после `We` — `are`.",
+        "uk": "`local` — «місцевий». Ви живете в цьому місті: `I am local` — «Я місцевий». Про вас із подругою можна сказати `We are local` — «Ми місцеві». Слово `local` не змінюється, а після `I` потрібно `am`, після `We` — `are`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-29:intro1:q",
         "promptByLocale": {
-          "ru": "Вы поднимаете сумку с пола, и она не хочет подниматься. Скажите про неё.",
-          "uk": "Ви піднімаєте сумку з підлоги, а вона не хоче підніматися. Скажіть про неї."
+          "ru": "Вы живёте в городе, где проходит фестиваль. Исправьте ответ о себе «I local».",
+          "uk": "Ви живете в місті, де проходить фестиваль. Виправте відповідь про себе «I local»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-29:intro1:r1",
-              "text": "It is heavy."
+              "text": "I am local."
             },
             {
               "responseId": "en:lesson-01:session-29:intro1:r2",
-              "text": "Is heavy."
+              "text": "I is local."
             },
             {
               "responseId": "en:lesson-01:session-29:intro1:r3",
-              "text": "It heavy."
+              "text": "I are local."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-29:intro1:r1",
-              "text": "It is heavy."
+              "text": "I am local."
             },
             {
               "responseId": "en:lesson-01:session-29:intro1:r2",
-              "text": "Is heavy."
+              "text": "I is local."
             },
             {
               "responseId": "en:lesson-01:session-29:intro1:r3",
-              "text": "It heavy."
+              "text": "I are local."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы поднимаете сумку с пола, и она не хочет подниматься. Скажите про неё.",
-          "uk": "Ви піднімаєте сумку з підлоги, а вона не хоче підніматися. Скажіть про неї."
+          "ru": "Вы живёте в городе, где проходит фестиваль. Исправьте ответ о себе «I local».",
+          "uk": "Ви живете в місті, де проходить фестиваль. Виправте відповідь про себе «I local»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вещь — это `it`, а не `he` и не `she`",
-        "uk": "Річ — це `it`, а не `he` і не `she`"
+        "ru": "Из другой страны",
+        "uk": "З іншої країни"
       },
       "bodyByLocale": {
-        "ru": "`he` — про мужчину, `she` — про женщину. Всё остальное — `it`.\n\nУ английских вещей рода нет. Стол, сумка, окно, чайник — про каждое одно и то же короткое `it`. И тяжёлый чемодан — тоже `it`: `It is heavy`.\n\nТак что выбирать не из чего: перед вами не человек — значит `it`.",
-        "uk": "`he` — про чоловіка, `she` — про жінку. Усе інше — `it`.\n\nВ англійських речей роду немає. Стіл, сумка, вікно, чайник — про кожне одне й те саме коротке `it`. І важка валіза — теж `it`: `It is heavy`.\n\nТож обирати нема з чого: перед вами не людина — отже `it`."
+        "ru": "`foreign` — «иностранный». Фильм произведён в другой стране: `It is foreign` — «Он иностранный». Здесь речь о фильме, поэтому начинаем с `It is`. Слово говорит о происхождении, а не о качестве: иностранный фильм тоже может оказаться скучным.",
+        "uk": "`foreign` — «іноземний». Фільм створено в іншій країні: `It is foreign` — «Він іноземний». Тут ідеться про фільм, тому починаємо з `It is`. Слово говорить про походження, а не про якість: іноземний фільм теж може виявитися нудним."
       },
       "question": {
         "interactionId": "en:lesson-01:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Вы берётесь за чемодан, а он не отрывается от пола. Скажите про чемодан.",
-          "uk": "Ви беретеся за валізу, а вона не відривається від підлоги. Скажіть про валізу."
+          "ru": "Вы обсуждаете фильм иностранного производства. Исправьте его описание «It foreign».",
+          "uk": "Ви обговорюєте фільм іноземного виробництва. Виправте його опис «It foreign»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-29:intro2:r1",
-              "text": "It is heavy."
+              "text": "It is foreign."
             },
             {
               "responseId": "en:lesson-01:session-29:intro2:r2",
-              "text": "He is heavy."
+              "text": "It am foreign."
             },
             {
               "responseId": "en:lesson-01:session-29:intro2:r3",
-              "text": "She is heavy."
+              "text": "It are foreign."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-29:intro2:r1",
-              "text": "It is heavy."
+              "text": "It is foreign."
             },
             {
               "responseId": "en:lesson-01:session-29:intro2:r2",
-              "text": "He is heavy."
+              "text": "It am foreign."
             },
             {
               "responseId": "en:lesson-01:session-29:intro2:r3",
-              "text": "She is heavy."
+              "text": "It are foreign."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы берётесь за чемодан, а он не отрывается от пола. Скажите про чемодан.",
-          "uk": "Ви беретеся за валізу, а вона не відривається від підлоги. Скажіть про валізу."
+          "ru": "Вы обсуждаете фильм иностранного производства. Исправьте его описание «It foreign».",
+          "uk": "Ви обговорюєте фільм іноземного виробництва. Виправте його опис «It foreign»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`clean` и `dirty` — чисто и грязно",
-        "uk": "`clean` і `dirty` — чисто й брудно"
+        "ru": "В интернете",
+        "uk": "В інтернеті"
       },
       "bodyByLocale": {
-        "ru": "`clean` — «чистый». `dirty` — «грязный».\n\nСтавятся они туда же, куда любое слово о предмете: `It is clean`, `It is dirty`.\n\n`dirty` — сильное слово. Это не «пылинка на полке», а то, что видно с порога и хочется отмыть.",
-        "uk": "`clean` — «чистий». `dirty` — «брудний».\n\nСтавляться вони туди ж, куди й будь-яке слово про предмет: `It is clean`, `It is dirty`.\n\n`dirty` — сильне слово. Це не «пилинка на полиці», а те, що видно від дверей і хочеться відмити."
+        "ru": "`online` — «в интернете, онлайн». Один показ пройдёт в интернете: `It is online`. Идти к кинотеатру не надо; очередь за попкорном теперь только на вашей кухне. О людях `We are online` значит «Мы в сети».",
+        "uk": "`online` — «в інтернеті, онлайн». Один показ відбудеться в інтернеті: `It is online`. Іти до кінотеатру не треба; черга за попкорном тепер лише на вашій кухні. Про людей `We are online` означає «Ми в мережі»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Вы достаёте из сумки кружку — на дне засохший кофе. Скажите про кружку.",
-          "uk": "Ви дістаєте із сумки чашку — на дні засохла кава. Скажіть про чашку."
+          "ru": "Организатор говорит, что показ можно посмотреть в интернете. Исправьте описание показа «It are online».",
+          "uk": "Організатор каже, що показ можна подивитися в інтернеті. Виправте опис показу «It are online»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-29:intro3:r1",
-              "text": "It is dirty."
+              "text": "It is online."
             },
             {
               "responseId": "en:lesson-01:session-29:intro3:r2",
-              "text": "It is clean."
+              "text": "It am online."
             },
             {
               "responseId": "en:lesson-01:session-29:intro3:r3",
-              "text": "It dirty."
+              "text": "It online."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-29:intro3:r1",
-              "text": "It is dirty."
+              "text": "It is online."
             },
             {
               "responseId": "en:lesson-01:session-29:intro3:r2",
-              "text": "It is clean."
+              "text": "It am online."
             },
             {
               "responseId": "en:lesson-01:session-29:intro3:r3",
-              "text": "It dirty."
+              "text": "It online."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы достаёте из сумки кружку — на дне засохший кофе. Скажите про кружку.",
-          "uk": "Ви дістаєте із сумки чашку — на дні засохла кава. Скажіть про чашку."
+          "ru": "Организатор говорит, что показ можно посмотреть в интернете. Исправьте описание показа «It are online».",
+          "uk": "Організатор каже, що показ можна подивитися в інтернеті. Виправте опис показу «It are online»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "13df2f134c5abeb80095ad76dce9b0015ee9f4155abf7c9f6b48a283d24ec924"
+  "introFingerprint": "aa774666180102fa4a2a633d873d4369f12401c86ffe3522340e75aa0bdf9ae4"
 }

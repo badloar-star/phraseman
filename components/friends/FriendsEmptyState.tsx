@@ -90,7 +90,9 @@ export default function FriendsEmptyState({
         onPress={showError ? onRetry! : onAdd}
         testID={showError ? 'friends-offline-retry' : 'friends-empty-add'}
         accessibilityLabel={showError ? retry : add}
-        style={{ marginTop: 20 }}
+        // зачем (R55, кадр эмулятора B 15.10): «Добавить друга» в макете `.cta.sm` inline-flex — компактная по центру;
+        // PressableHybrid по умолчанию тянется (alignSelf stretch). «Повторить» при ошибке — во всю ширину, как `width:100%` макета.
+        style={showError ? { marginTop: 20 } : { marginTop: 20, alignSelf: 'center' }}
       />
     </View>
   );

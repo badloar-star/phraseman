@@ -1571,7 +1571,14 @@ export default function FriendsTabScreen() {
 
   const handleSearch = useCallback(async () => {
     const query = getFriendSearchQuery(codeInput);
-    if (!isFriendSearchReady(query) || isSearching) return;
+    // зачем (R55, «первый тап по лупе не срабатывает» при открытой клавиатуре): сперва логи — видно, дошёл ли тап до поиска
+    // и почему вышли. Сам запрос не печатаем (ник — персональные данные), только длину и тип.
+    const searchTrace = { queryLength: query.length, ready: isFriendSearchReady(query), isSearching, isCode: isFriendCodeQuery(query), keyboardVisible: Keyboard.isVisible() };
+    if (__DEV__) console.log('[FRIEND-SEARCH] tap', JSON.stringify(searchTrace));
+    if (!searchTrace.ready || isSearching) {
+      console.warn('[FRIEND-SEARCH] skip', JSON.stringify({ reason: isSearching ? 'already_searching' : 'query_not_ready', ...searchTrace }));
+      return;
+    }
     hapticTap();
     Keyboard.dismiss();
     setIsSearching(true);
@@ -1579,6 +1586,8 @@ export default function FriendsTabScreen() {
     setSearchError(null);
     try {
       const isCode = isFriendCodeQuery(query);
+      // зачем (R55 п.3, координатор 15.10): 6 знаков A–Z0–9 вне алфавита кода (0/O/1/I) кодом быть не могут — поиск по имени, без блокировки.
+      if (__DEV__ && !isCode && /^[A-Z0-9]{6}$/i.test(query)) console.log('[FRIEND-SEARCH] reason=code_like_out_of_alphabet → name_search', JSON.stringify({ queryLength: query.length }));
       const codeUpper = normalizeInviteCodeInput(query);
       await trackActivity('friends:search_start', {
         feature: 'friends',
@@ -2354,6 +2363,8 @@ export default function FriendsTabScreen() {
           <FriendsFeedbackRow testID="friends-feedback" tone={addFeedbackTone} text={addFeedback} textScale={textScale} style={{ marginTop: 4, marginBottom: 10, paddingHorizontal: 4 }} />
         )}
 
+        {/* зачем (R55, макет community.html friendsEmpty): в пустом списке ссылки «Нашёл ошибку?» нет — только при непустом. */}
+        {sortedFriends.length > 0 ? (
         <View style={{ alignItems: 'center', paddingVertical: 16 }}>
           <ReportErrorButton
             screen="friends_tab"
@@ -2361,6 +2372,7 @@ export default function FriendsTabScreen() {
             dataText={L('Вкладка друзья', 'Вкладка друзі', 'Friends tab', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}
           />
         </View>
+        ) : null}
     </>
   );
 

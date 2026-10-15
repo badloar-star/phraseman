@@ -33,6 +33,8 @@ export interface ComboRingProps {
   value: number;
   level: ComboLevel;
   size?: number;
+  /** m08 «Молния» (moments_v3): цвет нагрева кольца по порогам 3/5/10 эталона; нет — прежние цвета. */
+  heatColor?: string;
 }
 
 /** Доля заполнения кольца в пределах текущего уровня (0..1). */
@@ -51,7 +53,7 @@ function fractionForBand(value: number, level: ComboLevel): number {
   return Math.max(0, Math.min(1, (value - from) / span));
 }
 
-export function ComboRing({ value, level, size = 56 }: ComboRingProps) {
+export function ComboRing({ value, level, size = 56, heatColor }: ComboRingProps) {
   // зачем (координатор 14.10): «Молния» V2 — серия звука растёт с уровнем кольца (Искра → Молния → Гроза, шаги 0…2); играет, когда уровень поднялся; флаг sound_v2 выключен — тишина
   const prevLevelRef = useRef<ComboLevel>(level);
   useEffect(() => {
@@ -76,7 +78,7 @@ export function ComboRing({ value, level, size = 56 }: ComboRingProps) {
     strokeDashoffset: circumference * (1 - progress.value),
   }));
 
-  const ringColor = level >= 1 ? t.gold : (t.accentGraphic ?? t.accent); // зачем (светлый акцент): кольцо — графика
+  const ringColor = heatColor ?? (level >= 1 ? t.gold : (t.accentGraphic ?? t.accent)); // зачем (светлый акцент): кольцо — графика; m08 — цвет нагрева снаружи
   const showGlow = level >= 2;
   const numberColor = level >= 1 ? t.accentText : t.textPrimary;
 

@@ -596,6 +596,9 @@ const LessonContent = React.memo(function LessonContent({
   lessonTheorySupportBlocked,
   lessonHintSupportBlocked,
 }: LessonContentProps) {
+  // зачем (владелец 15.10, m08 «Молния» за moments_v3: «ДА ДЕЛАЙ, НА КОЛЬЦЕ»): кольцо серии греется 3 → 5 → 10, плашка «N подряд», «серия сброшена»; модуль — require только при флаге
+  const comboMomentsOn = useMomentsV3Enabled();
+  const ComboHeatSlot = comboMomentsOn ? (require('../components/feedback/ComboHeatSlot') as typeof import('../components/feedback/ComboHeatSlot')).default : null;
   const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder (в тёмном ≈ accent, вид не меняется)
   const effectiveOs = useEffectivePlatformOS();
   const { width: screenW, height: screenH } = useWindowDimensions();
@@ -1109,7 +1112,7 @@ const LessonContent = React.memo(function LessonContent({
             />
           </View>
 
-          {comboCount >= 3 && (
+          {ComboHeatSlot ? <ComboHeatSlot comboCount={comboCount} lang={lang} size={34} /> : comboCount >= 3 && (
             <ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />
           )}
           {/* Stats row — legacy reward toast floats absolutely; row wrap + shrink so ●wrong не режется у края */}
@@ -2632,6 +2635,8 @@ function LessonScreen() {
   // зачем (m15, координатор 14.10): за флагом moments_v3 «назад» посреди урока сначала спрашивает; «Выйти» зовёт прежний handleLessonHeaderBack (abandon + навигация, двойной тап защищён lessonExitInFlightRef),
   // «Продолжить»/фон/«назад» закрывают шторку. Флаг выкл, интро-экраны (попытки ещё нет) или выход уже идёт — прежнее поведение без шторки.
   const momentsV3 = useMomentsV3Enabled();
+  // зачем (владелец 15.10, m08 «Молния»: монета «НЕ УБИРАЕМ А ОСТАВЛЯЕМ»): молния, вспышка, холодная виньетка и монета поверх урока — только при флаге, модуль require'ом
+  const ComboMomentLayer = momentsV3 ? (require('../components/feedback/ComboMomentLayer') as typeof import('../components/feedback/ComboMomentLayer')).default : null;
   const [exitSheetOpen, setExitSheetOpen] = useState(false);
   const [exitSheetMounted, setExitSheetMounted] = useState(false);
   const requestLessonExit = useCallback(() => {
@@ -4152,6 +4157,7 @@ function LessonScreen() {
             onDone={runeFlight.clearFlight}
           />
         )}
+        {ComboMomentLayer ? <ComboMomentLayer comboCount={comboCount} /> : null}
       </ScreenGradient>
     </TouchableWithoutFeedback>
     {momentsV3 && exitSheetMounted ? (

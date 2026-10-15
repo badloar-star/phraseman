@@ -52,11 +52,23 @@ export async function shouldBlockLessonAccess(lessonId: number, studyTarget?: Ru
   return (await resolveLessonRuntimeGate(lessonId, studyTarget)) !== 'available';
 }
 
+/**
+ * Последнее решение охранника lesson1 по уроку — чтобы меню при своём замке могло сверить, не разошлись ли два решения (Ревизор 3bed5434c: расхождение = риск петли по нажатиям).
+ */
+const lastGateDecisions = new Map<number, { gate: string; atMs: number }>();
+
+export function peekLessonGateDecision(lessonId: number): { gate: string; ageMs: number } | null {
+  const saved = lastGateDecisions.get(lessonId);
+  return saved ? { gate: saved.gate, ageMs: Date.now() - saved.atMs } : null;
+}
+
 export function openLessonAccessGate(
   router: any,
   lessonId: number,
+  gate: string = 'unknown',
 ): void {
-  console.log(`[LESSON-LOCK] access_gate → lesson_menu lessonId=${lessonId}`); // guard-ok: звено цепочки lesson1 → lesson_menu (кто и с каким id зовёт переход)
+  lastGateDecisions.set(lessonId, { gate, atMs: Date.now() });
+  console.log(`[LESSON-LOCK] access_gate → lesson_menu lessonId=${lessonId} gate=${gate}`); // guard-ok: звено цепочки lesson1 → lesson_menu (кто и с каким id зовёт переход)
   router.replace({
     pathname: '/lesson_menu',
     params: { id: lessonId },

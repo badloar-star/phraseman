@@ -84,3 +84,27 @@ describe('🔴 цикл lesson1 ↔ lesson_menu на запертом уроке
     expect(read('app/lesson_premium_gate.ts')).toContain('[LESSON-LOCK] access_gate → lesson_menu lessonId=');
   });
 });
+
+describe('🟡 Ревизора 3bed5434c: тупик при подавлении, тосты по причине, сверка решений', () => {
+  it('подавленный bounce всё равно уходит на список, без тоста', () => {
+    const src = read('app/lesson_menu.tsx');
+    const effect = src.slice(src.indexOf('const lockedBackDispatchedRef = useRef(false);'), src.indexOf('// Служебный флаг первого завершения'));
+    const suppressed = effect.slice(effect.indexOf('menu:bounce_suppressed'), effect.indexOf('lessonLockBounceAt.set(lessonId, nowMs);'));
+    expect(suppressed).toContain("router.replace('/(tabs)/lessons' as never);");
+    expect(suppressed).not.toContain('action_toast');
+  });
+  it('тост выбирается по причине замка (прогресс / уровень / порог / Plus), 9 языков в каждом', () => {
+    const src = read('app/lesson_menu.tsx');
+    expect(src).toContain("const toastKind: 'premium' | 'level' | 'threshold' | 'progress'");
+    const table = src.slice(src.indexOf('const LESSON_LOCK_TOAST = {'), src.indexOf('} as const;', src.indexOf('const LESSON_LOCK_TOAST = {')));
+    for (const key of ['progress', 'threshold', 'level', 'premium']) expect(table).toContain(`${key}: {`);
+    for (const lang of ['ru: ', 'uk: ', 'en: ', 'es: ', "'pt-BR': ", 'vi: ', 'id: ', 'tr: ', 'pl: ']) expect(table.split(lang).length - 1).toBeGreaterThanOrEqual(4);
+  });
+  it('журнал access_gate показывает menuLock и gateLock и расхождение', () => {
+    const src = read('app/lesson_menu.tsx');
+    expect(src).toContain('menuLock: { locked: true, reason: lockReason');
+    expect(src).toContain("disagree: gateLock !== null && gateLock.gate === 'available'");
+    expect(read('app/lesson_premium_gate.ts')).toContain('export function peekLessonGateDecision');
+    expect(read('app/lesson_runtime_access_boundary.tsx')).toContain('openLessonAccessGate(router, lessonId, String(gate));');
+  });
+});

@@ -49,6 +49,7 @@ import { effectiveLessonStarScore } from './lesson_star_score';
 import { perfScreenMount } from './perf-monitor';
 import { GlassAlertDialog } from '../components/v2/GlassAlertDialog';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { peekLessonGateDecision } from './lesson_premium_gate';
 import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
@@ -316,6 +317,29 @@ export async function prefetchLessonMenuCache(
 /** Предохранитель цикла lesson1 ↔ lesson_menu: не больше одного bounce на id урока за это окно (🔴 Моменты 15.10). */
 export const LESSON_LOCK_BOUNCE_FUSE_MS = 5000;
 const lessonLockBounceAt = new Map<number, number>();
+/** Тосты запертого урока по причине замка, 9 языков (ключи рядом с местом использования — единственный потребитель). */
+const LESSON_LOCK_TOAST = {
+  progress: {
+    ru: 'Этот урок ещё закрыт — сначала пройди предыдущий', uk: 'Цей урок ще закритий — спершу пройди попередній', en: 'This lesson is still locked — finish the previous one first',
+    es: 'Esta lección aún está bloqueada: termina primero la anterior', 'pt-BR': 'Esta lição ainda está bloqueada — termine a anterior primeiro', vi: 'Bài này chưa mở — hãy hoàn thành bài trước',
+    id: 'Pelajaran ini masih terkunci — selesaikan yang sebelumnya dulu', tr: 'Bu ders hâlâ kilitli — önce öncekini bitir', pl: 'Ta lekcja jest jeszcze zablokowana — najpierw skończ poprzednią',
+  },
+  threshold: {
+    ru: 'Чтобы открыть урок, улучши результат в предыдущем', uk: 'Щоб відкрити урок, покращ результат у попередньому', en: 'To unlock this lesson, improve your score in the previous one',
+    es: 'Para abrir esta lección, mejora tu resultado en la anterior', 'pt-BR': 'Para abrir esta lição, melhore seu resultado na anterior', vi: 'Để mở bài này, hãy cải thiện kết quả bài trước',
+    id: 'Untuk membuka pelajaran ini, tingkatkan nilaimu di pelajaran sebelumnya', tr: 'Bu dersi açmak için önceki dersteki sonucunu yükselt', pl: 'Aby odblokować tę lekcję, popraw wynik w poprzedniej',
+  },
+  level: {
+    ru: 'Сначала сдай экзамен предыдущего уровня', uk: 'Спершу склади іспит попереднього рівня', en: 'Pass the previous level’s exam first',
+    es: 'Primero aprueba el examen del nivel anterior', 'pt-BR': 'Primeiro passe na prova do nível anterior', vi: 'Hãy vượt qua bài kiểm tra của cấp trước',
+    id: 'Lulus ujian level sebelumnya dulu', tr: 'Önce bir önceki seviyenin sınavını geç', pl: 'Najpierw zdaj egzamin poprzedniego poziomu',
+  },
+  premium: {
+    ru: 'Этот урок доступен с Plus', uk: 'Цей урок доступний з Plus', en: 'This lesson is available with Plus',
+    es: 'Esta lección está disponible con Plus', 'pt-BR': 'Esta lição está disponível com o Plus', vi: 'Bài này có trong gói Plus',
+    id: 'Pelajaran ini tersedia dengan Plus', tr: 'Bu ders Plus ile açılır', pl: 'Ta lekcja jest dostępna w Plus',
+  },
+} as const;
 
 function LessonMenu() {
   const lh = useLineScale();
@@ -483,17 +507,20 @@ function LessonMenu() {
     // и lesson1 сам не открывает. Предохранитель: не больше одного bounce на id за 5 с (повтор — только журнал, без навигации).
     const nowMs = Date.now();
     const lastBounceAt = lessonLockBounceAt.get(lessonId);
+    // зачем (Ревизор 3bed5434c): расхождение «меню говорит закрыто, охранник lesson1 говорил открыто» видно в журнале явно (menuLock vs gateLock)
+    const gateLock = peekLessonGateDecision(lessonId);
+    console.log('[LESSON-LOCK] access_gate', JSON.stringify({ lessonId, menuLock: { locked: true, reason: lockReason, requiredScore: lockInfo?.requiredScore ?? null }, gateLock, disagree: gateLock !== null && gateLock.gate === 'available' })); // guard-ok: сверка двух решений замка
     if (lastBounceAt !== undefined && nowMs - lastBounceAt < LESSON_LOCK_BOUNCE_FUSE_MS) {
-      console.log('[LESSON-LOCK] menu:bounce_suppressed', JSON.stringify({ lessonId, sinceLastMs: nowMs - lastBounceAt, fuseMs: LESSON_LOCK_BOUNCE_FUSE_MS })); // guard-ok: предохранитель цикла
+      // зачем (Ревизор 3bed5434c 🟡 (1)): подавленный bounce не должен оставлять человека на меню запертого урока — уходим на список в любом случае, только без тоста
+      console.log('[LESSON-LOCK] menu:bounce_suppressed', JSON.stringify({ lessonId, sinceLastMs: nowMs - lastBounceAt, fuseMs: LESSON_LOCK_BOUNCE_FUSE_MS, action: 'replace_without_toast' })); // guard-ok: предохранитель цикла
+      router.replace('/(tabs)/lessons' as never);
       return;
     }
     lessonLockBounceAt.set(lessonId, nowMs);
-    emitAppEvent('action_toast', actionToastTri('info', {
-      ru: 'Этот урок ещё закрыт — сначала пройди предыдущий', uk: 'Цей урок ще закритий — спершу пройди попередній', en: 'This lesson is still locked — finish the previous one first',
-      es: 'Esta lección aún está bloqueada: termina primero la anterior', 'pt-BR': 'Esta lição ainda está bloqueada — termine a anterior primeiro', vi: 'Bài này chưa mở — hãy hoàn thành bài trước',
-      id: 'Pelajaran ini masih terkunci — selesaikan yang sebelumnya dulu', tr: 'Bu ders hâlâ kilitli — önce öncekini bitir', pl: 'Ta lekcja jest jeszcze zablokowana — najpierw skończ poprzednią',
-    }));
-    console.log('[LESSON-LOCK] menu:bounce_replace', JSON.stringify({ lessonId, to: '/(tabs)/lessons', canGoBack: router.canGoBack() })); // guard-ok: один replace на список
+    // зачем (Ревизор 3bed5434c 🟡 (2)): текст тоста — по причине замка (прогресс / уровень / порог оценки / Plus)
+    const toastKind: 'premium' | 'level' | 'threshold' | 'progress' = lockReason === 'premium' ? 'premium' : lockReason === 'level' ? 'level' : lockInfo?.requiredScore ? 'threshold' : 'progress';
+    emitAppEvent('action_toast', actionToastTri('info', LESSON_LOCK_TOAST[toastKind]));
+    console.log('[LESSON-LOCK] menu:bounce_replace', JSON.stringify({ lessonId, toastKind, to: '/(tabs)/lessons', canGoBack: router.canGoBack() })); // guard-ok: один replace на список
     router.replace('/(tabs)/lessons' as never);
   }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, lockInfo, router]);
 

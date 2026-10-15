@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-54:intro1:r2": {
+          "ru": "`full` — полный. Полосатый — `striped`.",
+          "uk": "`full` — повний. Смугастий — `striped`."
+        },
+        "en:lesson-03:session-54:intro1:r3": {
+          "ru": "`heavy` — тяжёлый. Узор из полос — `striped`.",
+          "uk": "`heavy` — важкий. Візерунок зі смуг — `striped`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-54:intro2:r2": {
+          "ru": "Вы узнаёте аэропорт, поэтому `familiar`.",
+          "uk": "Ви впізнаєте аеропорт, тому `familiar`."
+        },
+        "en:lesson-03:session-54:intro2:r3": {
+          "ru": "Один аэропорт: `is`.",
+          "uk": "Один аеропорт: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-54:intro3:r2": {
+          "ru": "Здесь оцениваем надёжность: `reliable`.",
+          "uk": "Тут оцінюємо надійність: `reliable`."
+        },
+        "en:lesson-03:session-54:intro3:r3": {
+          "ru": "Об одном сервисе: `It is reliable`.",
+          "uk": "Про один сервіс: `It is reliable`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b494f5c02b7aae4f44114e799d5a77aee5b2d33b34c765e48303b22d4fd7c3f9"
+}

@@ -1,147 +1,138 @@
-# Англійська · Урок 3 · Заняття 54 — «Зайві слова на ярликах»
+# Англійська · Урок 3 · Заняття 54 — Смугаста сумка в аеропорту
 
-**Сцена заняття.** Після ремонту ви з другом перевіряєте кімнату й підписи на меблях. Яскрава лампа стоїть поруч, блідий килимок лежить біля дальньої стіни, смугасті подушки — на дивані. У кількох англійських підписах поруч із `this`, `that`, `these` або `those` залишилося зайве `a` чи `the`; ви виправляєте їх по одному.
-**Як сказати:** article і demonstrative не ставляться разом: `this/that/these/those + adjective + noun` без `a/an/the`.
-**Нові слова:** bright, pale, striped
-**Повернення:** this, that, these, those, lamp, rug, cushions, lamps, here
+**Ситуація.** Ви з другом збираєтеся в подорож. Смугасту сумку легко впізнати. Знайомий аеропорт позначено на карті; інший ви бачите вперше. Друг допомагає розібратися з незнайомим номером телефону й радить надійний сервіс.
+
+**Що ви опануєте:** описати смугасту річ і розрізнити знайоме, незнайоме та невідоме
+**Нові слова:** striped
+
+---
 
 ## Інтро 1
 
-### Яскрава лампа поруч
+### Візерунок зі смуг
 
-`bright` — «яскравий». Повна фраза тут — `This bright lamp is here.` Слово `This` уже вказує на одну лампу поруч, тому між ним і `bright lamp` не додають `a`. Лампа від зайвого артикля яскравішою не стане — підпис лише зламається.
+`striped` — «смугастий». Про сумку зі смугами: `It is striped` — «Вона смугаста». Можна назвати річ цілком: `This is a striped bag` — «Це смугаста сумка». `a` стосується однієї сумки, а `striped` стоїть перед `bag`. Смуги не роблять сумку швидшою, зате допомагають її впізнати.
 
-**Яскрава лампа стоїть поруч. Оберіть виправлений підпис.**
+**Як одним словом описати візерунок зі смуг?**
 
-- ✅ **This bright lamp is here.**
-- ❌ This a bright lamp is here. — *Після `This` одразу ставимо опис і предмет: `bright lamp`.*
-- ❌ A this bright lamp is here. — *Щоб указати на цю лампу, починаємо з `This`; `a` поруч із ним не потрібне.*
+- ✅ **striped**
+- ❌ full — *`full` — повний. Смугастий — `striped`.*
+- ❌ heavy — *`heavy` — важкий. Візерунок зі смуг — `striped`.*
 
 ---
 
 ## Інтро 2
 
-### Блідий килимок біля стіни
+### Знайоме й незнайоме місце
 
-`pale` — «блідий». Килимок лежить далі, тому підпис — `That pale rug is here.` Слово `That` указує на один дальній предмет і саме займає місце перед `pale rug`; `the` поруч не ставлять. Два вказівники в одному короткому підписі тягнуть килимок у різні боки.
+`airport` — «аеропорт». `familiar` — «знайомий»: ви вже бували в цьому місці й упізнаєте його. `This airport is familiar` — «Цей аеропорт знайомий». `unfamiliar` — «незнайомий»: ви бачите інший аеропорт уперше. Про нього: `It is unfamiliar` — «Він незнайомий».
 
-**Блідий килимок лежить біля дальньої стіни. Оберіть виправлений підпис.**
+**Ви вже бували в цьому аеропорту й упізнаєте його. Скажіть «Цей аеропорт знайомий».**
 
-- ✅ **That pale rug is here.**
-- ❌ That the pale rug is here. — *Після `That` одразу йдуть `pale rug`; `the` зайве.*
-- ❌ This pale rug is here. — *`This` указує на предмет поруч, а килимок лежить далі.*
+- ✅ **This airport is familiar.**
+- ❌ This airport is unfamiliar. — *Ви впізнаєте аеропорт, тому `familiar`.*
+- ❌ This airport are familiar. — *Один аеропорт: `is`.*
 
 ---
 
 ## Інтро 3
 
-### Смугасті подушки на дивані
+### Невідомий і надійний
 
-`striped` — «смугастий». Для кількох дальніх подушок підходить `Those striped cushions are here.` Слово `Those` уже вказує на групу, тому перед `striped cushions` не додають `the`. Смуг на подушках вистачає; ще одна службова смужка зі слів їм не потрібна.
+`unknown` — «невідомий»: номер з’явився на екрані, і ви не знаєте, чий він. Про номер: `It is unknown` — «Він невідомий». `unfamiliar` означає, що ви з чимось не знайомі; `unknown` підкреслює брак відомостей. `reliable` — «надійний»: сервіс не раз виконував обіцяне. Про нього: `It is reliable` — «Він надійний».
 
-**Смугасті подушки лежать далі на дивані. Оберіть виправлений підпис.**
+**Сервіс завжди виконує обіцяне, ви можете на нього покластися. Скажіть «Він надійний».**
 
-- ✅ **Those striped cushions are here.**
-- ❌ Those the striped cushions are here. — *Після `Those` одразу ставимо `striped cushions`; `the` зайве.*
-- ❌ That striped cushions are here. — *`That` стосується одного предмета, а тут кілька подушок.*
+- ✅ **It is reliable.**
+- ❌ It is unknown. — *Тут оцінюємо надійність: `reliable`.*
+- ❌ It are reliable. — *Про один сервіс: `It is reliable`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-54:i01; family: listen_choose -->
-Ціль: `bright`
-Варіанти: `bright`
+**1 · Ви впізнаєте аеропорт, у якому вже бували. Скажіть «Цей аеропорт знайомий»**
+<!-- interaction_id: en:lesson-03:session-54:i01; family: phrase_builder -->
+Плитки: `familiar` `is` `airport` `This` `are` → **This airport is familiar.**
+*(плитка `are` зайва: тут потрібно `is` — `This airport is familiar.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-54:i03; family: scripted_repeat_compare -->
-Ціль: `pale`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-54:i02; family: listen_choose -->
+🔊 *striped* → **striped** · full · heavy
+- full — *У записі перше слово — `striped`, а в цьому варіанті — `full`.*
+- heavy — *У записі перше слово — `striped`, а в цьому варіанті — `heavy`.*
 
-**3 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-54:i07; family: listen_choose -->
-Ціль: `striped`
-Варіанти: `striped` · `bright` · `pale`
-- bright — *У записі чути `striped` — «смугастий», а не `bright` — «яскравий».*
-- pale — *`Pale` — «блідий». У записі названо візерунок зі смуг.*
+**3 · Назвіть одним словом опис «смугастий»**
+<!-- interaction_id: en:lesson-03:session-54:i03; family: context_gap_grammar -->
+___ → **striped** · full · familiar
+- full — *`full` — повний; смугастий — `striped`.*
+- familiar — *`familiar` — знайомий; смугастий — `striped`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-54:i04; family: speed_match -->
+striped — смугастий · familiar — знайомий · unfamiliar — незнайомий · airport — аеропорт
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-54:i02; family: scripted_repeat_compare -->
-Ціль: `bright`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-54:i05; family: listen_build_dictation -->
+🔊 *It is striped.* Плитки: `striped` `is` `It` `are` → **It is striped.**
+*(плитка `are` зайва: тут потрібно `is` — `It is striped.`)*
 
-**5 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-54:i04; family: listen_choose -->
-Ціль: `pale`
-Варіанти: `pale`
+**6 · Покажіть на сумку поруч: «Це смугаста сумка»**
+<!-- interaction_id: en:lesson-03:session-54:i06; family: phrase_builder -->
+Плитки: `bag` `striped` `a` `is` `This` `are` → **This is a striped bag.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a striped bag.`)*
 
-**6 · Розрізніть слово — striped чи stripped**
-<!-- interaction_id: en:lesson-03:session-54:i08; family: sound_contrast -->
-Ціль: `striped`
-Варіанти: `striped` · `stripped`
-- stripped — *У записі `striped`: це «смугастий». У `stripped` немає голосного перед кінцем слова.*
+**7 · Друг показує інший аеропорт, який ви бачите вперше. Скажіть «Він незнайомий» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-54:i07; family: scripted_repeat_compare -->
+🎙 **It's unfamiliar.**
 
+**8 · Ви називаєте одну смугасту сумку**
+<!-- interaction_id: en:lesson-03:session-54:i08; family: context_gap_grammar -->
+This is ___ striped bag. → **a** · an · are
+- an — *Після артикля приголосний звук: `a striped bag`.*
+- are — *`is` уже є. Перед описом однієї сумки потрібне `a`.*
 
-**7 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-03:session-54:i05; family: speed_match -->
-Пари: `bright` — яскравий · `lamp` — лампа · `rug` — килимок · `cushions` — подушки
-Ціль: `bright · lamp · rug · cushions`
+**9 · Послухайте опис номера, про який немає відомостей**
+<!-- interaction_id: en:lesson-03:session-54:i09; family: listen_choose -->
+🔊 *It is unknown.* → **It is unknown.** · It is reliable. · It is familiar.
+- It is reliable. — *У записі останнє слово — `unknown`, а в цьому варіанті — `reliable`.*
+- It is familiar. — *У записі останнє слово — `unknown`, а в цьому варіанті — `familiar`.*
 
-**8 · Розрізніть слово — pale чи peel**
-<!-- interaction_id: en:lesson-03:session-54:i06; family: sound_contrast -->
-Ціль: `pale`
-Варіанти: `pale` · `peel`
-- peel — *`Peel` — «чистити шкірку». У записі звучить `pale` — «блідий».*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-54:i10; family: speed_match -->
+unknown — невідомий · reliable — надійний · airport — аеропорт · familiar — знайомий
 
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-54:i11; family: listen_build_dictation -->
+🔊 *That bag is striped.* Плитки: `striped` `is` `bag` `That` `are` → **That bag is striped.**
+*(плитка `are` зайва: тут потрібно `is` — `That bag is striped.`)*
 
-**9 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-54:i10; family: scripted_repeat_compare -->
-Ціль: `striped`
+**12 · Аеропорт для подорожі вже вибрано. Запитайте «Де аеропорт?»**
+<!-- interaction_id: en:lesson-03:session-54:i12; family: phrase_builder -->
+Плитки: `airport` `the` `is` `Where` `are` → **Where is the airport?**
+*(плитка `are` зайва: тут потрібно `is` — `Where is the airport?`)*
 
-**10 · З’єднайте пари — згадайте підписи в кімнаті**
-<!-- interaction_id: en:lesson-03:session-54:i09; family: speed_match -->
-Пари: `bright` — яскравий · `pale` — блідий · `striped` — смугастий · `lamp` — лампа · `rug` — килимок · `cushions` — подушки · `here` — тут
-Ціль: `bright · pale · striped · lamp · rug · cushions · here`
+**13 · Сервіс не раз виконував обіцяне. Скажіть про нього «Він надійний» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-54:i13; family: scripted_repeat_compare -->
+🎙 **It's reliable.**
 
-**11 · Складіть виправлений підпис — яскрава лампа поруч**
-<!-- interaction_id: en:lesson-03:session-54:i11; family: phrase_builder -->
-Ціль: `This bright lamp is here.`
-
-**12 · Вставте початок — блідий килимок лежить далі**
-<!-- interaction_id: en:lesson-03:session-54:i12; family: context_gap_grammar -->
-Ціль: `___ pale rug is here.`
-Варіанти: `That` · `A` · `The` · `Those`
-- A — *Тут ви вказуєте на дальній килимок, тому початок — `That`.*
-- The — *Для цього підпису потрібен указівник відстані `That`, а не `The`.*
-- Those — *`Those` стосується кількох предметів; килимок один.*
-
-
-**13 · Послухайте й складіть почуту фразу**
-<!-- interaction_id: en:lesson-03:session-54:i13; family: listen_build_dictation -->
-Ціль: `These bright lamps are here.`
-
-**14 · Вставте опис — на дальньому дивані кілька подушок зі смугами**
+**14 · Ви описуєте одну сумку далі від себе**
 <!-- interaction_id: en:lesson-03:session-54:i14; family: context_gap_grammar -->
-Ціль: `Those ___ cushions are here.`
-Варіанти: `striped` · `bright` · `pale` · `the`
-- bright — *У цьому підписі подушки зі смугами, тому потрібно `striped`.*
-- pale — *`Pale` означає «блідий», а тут описують смуги.*
-- the — *Після `Those` потрібен опис `striped`; `the` поруч з указівником не ставлять.*
+That bag ___ striped. → **is** · are · am
+- are — *Одна сумка: `That bag is striped`.*
+- am — *З `That bag` потрібне `is`.*
 
+**15 · Послухайте опис місця, яке людина бачить уперше**
+<!-- interaction_id: en:lesson-03:session-54:i15; family: listen_choose -->
+🔊 *It is unfamiliar.* → **It is unfamiliar.** · It is familiar. · It is striped.
+- It is familiar. — *У записі останнє слово — `unfamiliar`, а в цьому варіанті — `familiar`.*
+- It is striped. — *У записі останнє слово — `unfamiliar`, а в цьому варіанті — `striped`.*
 
-**15 · Складіть підпис — друг пересунув блідий килимок ближче до вас**
-<!-- interaction_id: en:lesson-03:session-54:i15; family: phrase_builder -->
-Ціль: `This pale rug is here.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-54:i16; family: speed_match -->
+striped — смугастий · unfamiliar — незнайомий · unknown — невідомий · reliable — надійний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-54:i16; family: scripted_repeat_compare -->
-Ціль: `That striped rug is here.`
-
-**17 · виправте останній підпис біля дальньої стіни**
-<!-- interaction_id: en:lesson-03:session-54:i17; family: phrase_builder -->
-Ціль: `Those bright lamps are here.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=sound_contrast, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=listen_build_dictation, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · В іншій подорожі друг шукає сумку зі смугами. Ви показуєте на сумку поруч із собою. Скажіть «Ця сумка смугаста»**
+<!-- interaction_id: en:lesson-03:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **This bag is striped.**
 

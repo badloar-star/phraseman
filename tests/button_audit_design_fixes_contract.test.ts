@@ -101,7 +101,7 @@ describe('аудит кнопок: Видео, добавки Макетов R57
   it('закладка в сетке держит прокрутку: строка «Сохранённые» сдвигает список на свою высоту', () => {
     const videos = read('app/lingman_videos.tsx');
     expect(videos).toContain('const hasSavedRow = !savedOnly && savedVideos.length > 0;');
-    expect(videos).toContain('scrollToOffset({ offset: scrollYRef.current + h + SAVED_ROW_MARGIN, animated: false })');
+    expect(videos).toContain('scrollToOffset({ offset: Math.max(0, scrollYRef.current) + h + SAVED_ROW_MARGIN, animated: false })');
     expect(videos).toContain('onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; reportTabScroll(e); }}');
   });
 });

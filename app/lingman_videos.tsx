@@ -29,6 +29,7 @@ import type { LearningLanguageTarget } from './learning_language_contour';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useSectionLanguage } from './section_language';
+import { videoOpenMark, videoOpenTraceStart } from './video_open_trace';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -565,7 +566,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     const isHeroVideo = !!activeEvent && activeEvent.id === video.id && (activeEvent.state === 'upcoming' || activeEvent.state === 'live');
     if (!isHeroVideo) {
       console.warn('[VIDEO-SCREEN] navigate', JSON.stringify({ source: 'home_grid', videoId: video.id })); // guard-ok: вход на экран ролика логируется
+      videoOpenTraceStart('home_grid_tap');
       router.push({ pathname: '/lingman_video_watch', params: { videoId: video.id, channelId: catalog?.channel.id ?? channel.channelId, title: video.title, source: 'home_grid' } } as never);
+      videoOpenMark('router.push called');
       return;
     }
     // Ровно один videoId хранится в состоянии: смена id размонтирует прежний
@@ -768,7 +771,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         const h = Math.round(e.nativeEvent.layout.height);
         const prev = savedRowHRef.current;
         savedRowHRef.current = h;
-        if (prev === 0 && h > 0 && scrollYRef.current > 8) homeListRef.current?.scrollToOffset({ offset: scrollYRef.current + h + SAVED_ROW_MARGIN, animated: false });
+        // зачем (Макеты R59, 15.10: закладка сдвигала сетку на ~220 px под пальцем): компенсируем и у верхнего края — строка появляется НАД экраном, сетка остаётся на месте
+        if (prev === 0 && h > 0) homeListRef.current?.scrollToOffset({ offset: Math.max(0, scrollYRef.current) + h + SAVED_ROW_MARGIN, animated: false });
       }}
       accessibilityRole="button"
       accessibilityLabel={copy.savedVideos}
@@ -801,12 +805,13 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !studyLanguageSheetVisible && !deepLinkedVideoId && !activeVideoId} />
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader
-          channel={activeChannel}
+          channel={!catalog && !pendingChannel ? { ...activeChannel, displayName: '', avatarUrl: undefined } : activeChannel}
           title={inTab ? copy.tabTitle : savedOnly ? copy.savedVideos : undefined}
           onBack={inTab ? undefined : () => safeRouterBack(router, '/(tabs)/home' as any)}
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
           studyTarget={studyTarget}
-          // зачем (Ревизор 15.10, #26/R59): нет канала языка или канал ещё не известен — канал по умолчанию («Английский») не показываем
+          // зачем (Макеты R59, 15.10: чип «Английский» мигал на миг при входе): пока настоящий канал неизвестен (нет ни каталога, ни шапки ожидаемого канала), чип рисуется той же формы без названия, а не запасным английским
+          // Ревизор 15.10, #26/R59: нет канала языка или канал ещё не известен — канал по умолчанию («Английский») не показываем
           hideChannel={(noChannel && !catalog) || (!catalog && !pendingChannel && String(studyTarget) !== 'en')}
           // зачем (решение 5, video.html; баг владельца 11.10): пилюля языка открывает шторку «Язык изучения» (PRF-23) —
           // раньше вела на /settings_language, то есть на язык ИНТЕРФЕЙСА, а канал задаётся языком обучения.

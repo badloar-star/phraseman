@@ -111,3 +111,15 @@ describe('плеер: пауза и возврат на ту же секунду
     expect(src).toContain('autoPlay={resumeSec === null} startSec={resumeSec ?? startSec}');
   });
 });
+
+describe('R59 «Видео» (координатор 15.10)', () => {
+  it('закладка: сетка остаётся на месте и у верхнего края; чип канала без запасного названия; журнал [VIDEO-OPEN-TRACE]', () => {
+    const videos = read('app/lingman_videos.tsx');
+    expect(videos).toContain('if (prev === 0 && h > 0) homeListRef.current?.scrollToOffset({ offset: Math.max(0, scrollYRef.current) + h + SAVED_ROW_MARGIN, animated: false });');
+    expect(videos).toContain("channel={!catalog && !pendingChannel ? { ...activeChannel, displayName: '', avatarUrl: undefined } : activeChannel}");
+    expect(videos).toContain("videoOpenTraceStart('home_grid_tap');");
+    const watch = read('app/lingman_video_watch.tsx');
+    for (const mark of ['watch first render', 'watch mount', 'phrases resolved', 'pack search done', 'watch onLayout']) expect(watch).toContain(mark);
+    expect(read('components/youtube/YoutubeInlinePlayer.tsx')).toContain("videoOpenMark('player mount')");
+  });
+});

@@ -32,6 +32,7 @@ import { useOwnedPack } from './community_packs/useOwnedPack';
 import { PanelDock } from '../components/mistakes-panel/PanelKit';
 import { setPendingTrainIntent } from './flashcards/train_intent';
 import { trainNavMark, trainNavTraceStart } from './train_nav_trace';
+import { videoOpenMark } from './video_open_trace';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from './video_phrase_set_packs';
 import { loadVideoMarketPacks, peekVideoMarketPacks } from './community_packs/communityFirestore';
 import { normalizePackLanguage } from './flashcards/pack_languages';
@@ -83,6 +84,10 @@ export default function LingmanVideoWatchScreen() {
   // зачем (аудит кнопок Карточек #14/#15, 15.10): набор ролика уже добавлен — кнопка «Тренировать», а не «Добавить» (из локальных id, без Firestore)
   const packOwned = useOwnedPack(pack?.id ?? `video:${videoId}`);
   const packFromRef = useRef<string>(peekVideoMarketPacks(studyTarget) ? 'memory' : 'pending');
+  // зачем ([VIDEO-OPEN-TRACE], 15.10): первый render и mount экрана ролика в цепочке «тап → экран открыт»
+  const traceFirstRenderRef = useRef(false);
+  if (!traceFirstRenderRef.current) { traceFirstRenderRef.current = true; videoOpenMark(`watch first render (catalog snapshot: ${catalog ? 'hit' : 'miss'}, video in snapshot: ${video ? 'yes' : 'no'})`); }
+  useEffect(() => { videoOpenMark('watch mount'); }, []);
   const [playerOpen, setPlayerOpen] = useState(true);
   // зачем (координатор 15.10): «Тренировать» ставит ролик на паузу сразу (плеер снимается — звук глохнет мгновенно), позиция запоминается; «Назад» возвращает ролик на ту же секунду без перезапуска с нуля.
   const lastPositionRef = useRef(0);
@@ -132,6 +137,7 @@ export default function LingmanVideoWatchScreen() {
         }
       }
       console.log(`[VIDEO-PACK-TRAIN] find videoId=${videoId} source=${packFromRef.current} found=${found?.id ?? 'none'} alive=${alive}`); // guard-ok: итог поиска набора ролика
+      videoOpenMark(`pack search done found=${found?.id ?? 'none'} source=${packFromRef.current}`);
       if (alive && found) setPack(found);
     })();
     return () => { alive = false; };
@@ -210,7 +216,7 @@ export default function LingmanVideoWatchScreen() {
   return (
     <ScreenGradient artBackdrop="home">
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
-      <SafeAreaView testID="lingman-video-watch" style={styles.container} edges={['top', 'left', 'right']}>
+      <SafeAreaView testID="lingman-video-watch" style={styles.container} edges={['top', 'left', 'right']} onLayout={() => videoOpenMark('watch onLayout')}>
         {/* зачем (макет video-redesign #c1, экран 3): сверху «назад» слева и закладка ролика справа, затем плеер с полосой прогресса. */}
         <View style={styles.topbar}>
           <Pressable testID="lingman-video-watch-close" accessibilityRole="button" accessibilityLabel={copy.back} onPress={close} hitSlop={8} style={styles.topButton}>
@@ -245,7 +251,7 @@ export default function LingmanVideoWatchScreen() {
                 sourceTitle={channelName || undefined}
                 testID={`video-phrases-${videoId}`}
                 defaultExpanded
-                onSourceResolved={(from, count) => logOpen(from, count)}
+                onSourceResolved={(from, count) => { videoOpenMark(`phrases resolved from=${from} count=${count}`); logOpen(from, count); }}
               />
             </View>
           ) : null}

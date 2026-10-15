@@ -23,6 +23,7 @@ import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../v2/ShadowSurface';
 import { trainNavMark } from '../../app/train_nav_trace';
+import { videoOpenMark } from '../../app/video_open_trace';
 import { FlowText } from '../text-integrity';
 
 const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
@@ -90,6 +91,7 @@ export default function YoutubeInlinePlayer({
   const [playerError, setPlayerError] = useState(false);
   // зачем ([NAV-PAINT-TRACE], 15.10): размонтирование плеера/WebView — отдельная отметка цепочки перехода с ролика
   useEffect(() => () => trainNavMark('player WebView unmount'), []);
+  useEffect(() => { videoOpenMark('player mount'); }, []);
   const [playerKey, setPlayerKey] = useState(0);
   const webViewRef = useRef<WebView>(null);
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);

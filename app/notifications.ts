@@ -1835,11 +1835,16 @@ export const scheduleStreakWarningIfNeeded = async (
   lang: Lang = 'ru',
   opts: { requestPermission?: boolean } = {}
 ): Promise<void> => {
+  // зачем (Ревизор 959d29934 по be94ec7a8): каждый ранний выход пишет причину и решившие значения — «пуш не встал» без
+  // следа больше не бывает. Префикс [STREAK-WARN].
+  const skip = (reason: string, extra: Record<string, unknown> = {}): void => {
+    console.log('[STREAK-WARN] schedule:skip', JSON.stringify({ reason, ...extra })); // guard-ok: ранний выход
+  };
   try {
     const N = await getNotifications();
-    if (!N) return;
+    if (!N) { skip('notifications_module_unavailable'); return; }
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
-    if (!hasPermission) return;
+    if (!hasPermission) { skip('no_permission', { requestPermission: opts.requestPermission ?? true }); return; }
 
     const today = getLocalDayKey();
 
@@ -1850,17 +1855,18 @@ export const scheduleStreakWarningIfNeeded = async (
       AsyncStorage.getItem('notifications_enabled'),
     ]);
 
-    if (notifEnabledRaw !== 'true') return;
+    if (notifEnabledRaw !== 'true') { skip('notifications_disabled', { notifEnabledRaw }); return; }
     if (!(await isNotifCategoryEnabled('streak'))) {
       // Категория выключена — вычищаем уже запланированное предупреждение.
       await cancelScheduledNotificationsByType(N, ['streak_warning']);
       const staleWarningId = await AsyncStorage.getItem(STREAK_WARNING_NOTIF_ID_KEY);
       if (staleWarningId) await N.cancelScheduledNotificationAsync(staleWarningId).catch(swallowError('notifications:scheduleStreakWarningIfNeeded'));
       await AsyncStorage.multiRemove(['streak_warning_scheduled', STREAK_WARNING_NOTIF_ID_KEY]);
+      skip('category_off_cleared', { hadStaleId: Boolean(staleWarningId) });
       return;
     }
     const streak = parseInt(streakRaw || '0') || 0;
-    if (streak === 0) return;
+    if (streak === 0) { skip('streak_zero', { streakRaw }); return; }
 
     // isSameLocalOrUtcDay: last_active_date мог быть записан ДО миграции на
     // локальную дату (старая UTC-схема) — переходный период принимает оба.
@@ -1872,18 +1878,19 @@ export const scheduleStreakWarningIfNeeded = async (
       const prevWarningId = await AsyncStorage.getItem(STREAK_WARNING_NOTIF_ID_KEY);
       if (prevWarningId) await N.cancelScheduledNotificationAsync(prevWarningId).catch(swallowError('notifications:scheduleStreakWarningIfNeeded'));
       await AsyncStorage.multiRemove(['streak_warning_scheduled', STREAK_WARNING_NOTIF_ID_KEY]);
+      skip('lesson_done_today_cleared', { lastActiveRaw, today, hadPrevId: Boolean(prevWarningId) });
       return;
     }
 
     // Только одно предупреждение в день
     const alreadyScheduled = await AsyncStorage.getItem('streak_warning_scheduled');
-    if (alreadyScheduled === today) return;
+    if (alreadyScheduled === today) { skip('already_scheduled_today', { today }); return; }
 
     // Планируем на 21:00 сегодня
     const now = new Date();
     const warn = new Date(now);
     warn.setHours(21, 0, 0, 0);
-    if (warn <= now) return; // уже 21:00+ — не спамим
+    if (warn <= now) { skip('past_21', { hour: now.getHours() }); return; } // уже 21:00+ — не спамим
 
     const secondsUntil = Math.floor((warn.getTime() - now.getTime()) / 1000);
 
@@ -2200,15 +2207,19 @@ export const scheduleStreakWarningIfNeeded = async (
     // зачем (Ревизор по R37 bf2886e77, гонка): «не занимался» прочитано в начале, а день мог засчитаться, пока собирали
     // текст, — тогда отмена (cancelStreakWarningForToday) уже прошла, и пуш вставал ПОСЛЕ неё. Перепроверяем прямо перед
     // постановкой (и ключ дня — около полуночи день мог смениться).
-    const isDayAlreadyCounted = async (): Promise<boolean> => {
+    // Причина «день уже засчитан» или null — печатаем, КАКОЕ условие решило (Ревизор 959d29934).
+    const dayAlreadyCountedReason = async (): Promise<{ reason: string; lastActiveNow: string | null; scheduledNow: string | null; dayNow: string } | null> => {
       const [lastActiveNow, scheduledNow] = await Promise.all([
         AsyncStorage.getItem('last_active_date'),
         AsyncStorage.getItem('streak_warning_scheduled'),
       ]);
-      return isSameLocalOrUtcDay(lastActiveNow) || scheduledNow === getLocalDayKey() || getLocalDayKey() !== today;
+      const dayNow = getLocalDayKey();
+      const reason = isSameLocalOrUtcDay(lastActiveNow) ? 'lesson_done' : scheduledNow === dayNow ? 'already_scheduled' : dayNow !== today ? 'day_changed' : null;
+      return reason ? { reason, lastActiveNow, scheduledNow, dayNow } : null;
     };
-    if (await isDayAlreadyCounted()) {
-      console.log('[STREAK-WARN] schedule:skip — день засчитан или сменился, пока готовили текст'); // guard-ok: ранний выход
+    const beforeSchedule = await dayAlreadyCountedReason();
+    if (beforeSchedule) {
+      skip('day_counted_before_schedule', { ...beforeSchedule, today });
       return;
     }
     await cancelScheduledNotificationsByType(N, ['streak_warning']);
@@ -2221,17 +2232,24 @@ export const scheduleStreakWarningIfNeeded = async (
       },
       trigger: triggerInterval(secondsUntil),
     });
-    if (await isDayAlreadyCounted()) {
-      // день засчитался во время постановки — снимаем только что поставленное
-      await N.cancelScheduledNotificationAsync(warningId).catch(swallowError('notifications:scheduleStreakWarningIfNeeded.race'));
-      console.log('[STREAK-WARN] schedule:cancelled_after_race — день засчитан во время постановки'); // guard-ok: итог гонки
+    const afterSchedule = await dayAlreadyCountedReason();
+    if (afterSchedule) {
+      // день засчитался во время постановки — снимаем только что поставленное; «отменено» пишем только при реальной отмене
+      try {
+        await N.cancelScheduledNotificationAsync(warningId);
+        console.log('[STREAK-WARN] schedule:cancelled_after_race', JSON.stringify({ ...afterSchedule, today })); // guard-ok: итог гонки
+      } catch (cancelError) {
+        console.warn('[STREAK-WARN] schedule:race_cancel_failed', JSON.stringify({ ...afterSchedule, today, error: cancelError instanceof Error ? cancelError.message : String(cancelError) })); // guard-ok: catch пишет причину
+      }
       return;
     }
 
     await AsyncStorage.setItem('streak_warning_scheduled', today);
     await AsyncStorage.setItem(STREAK_WARNING_NOTIF_ID_KEY, warningId);
+    console.log('[STREAK-WARN] schedule:scheduled', JSON.stringify({ today, secondsUntil, streak })); // guard-ok: итог
   } catch (e) {
-    if (__DEV__) console.warn('[notifications]', e);
+    // зачем: немой catch запрещён — сбой постановки «Защити серию» пишет причину в любой сборке.
+    console.warn('[STREAK-WARN] schedule:failed', e instanceof Error ? e.message : String(e)); // guard-ok: catch пишет причину
   }
 };
 

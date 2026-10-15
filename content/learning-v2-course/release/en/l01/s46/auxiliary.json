@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-46:intro1:r2": {
+          "ru": "`useful` — «полезная». Для этого поиска карта не помогает: `useless`.",
+          "uk": "`useful` — «корисна». Для цього пошуку карта не допомагає: `useless`."
+        },
+        "en:lesson-01:session-46:intro1:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-46:intro2:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-46:intro2:r3": {
+          "ru": "Для этого телефона кабели не подходят: `useless`.",
+          "uk": "Для цього телефона кабелі не підходять: `useless`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-46:intro3:r2": {
+          "ru": "Сигнал позволил отправить сообщение. Здесь нужно сказать о его слабости: `weak`.",
+          "uk": "Сигнал дозволив надіслати повідомлення. Тут треба сказати про його слабкість: `weak`."
+        },
+        "en:lesson-01:session-46:intro3:r3": {
+          "ru": "Это о человеке. Про сигнал используйте `It`.",
+          "uk": "Це про людину. Про сигнал використовуйте `It`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6649849c989feeaab50e67a95a0a9a9d851d2e09fb12f5300770e76e0313ac26"
+}

@@ -1,0 +1,999 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Карта іншого міста не допомагає знайти ваш готель. Складіть фразу про карту",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Карта іншого міста не допомагає знайти ваш готель. Складіть фразу про карту",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is useless.",
+        "localizedMeaning": {
+          "ru": "Карта другого города не помогает найти ваш отель. Соберите фразу о карте",
+          "uk": "Карта іншого міста не допомагає знайти ваш готель. Складіть фразу про карту"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "useless"
+        ],
+        "authoredDistractorTokens": [
+          "He"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Карта іншого міста не допомагає знайти ваш готель. Складіть фразу про карту",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It` — `It is useless.`",
+              "uk": "тут потрібно `It` — `It is useless.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-46:i02:r1",
+          "text": "It is useless."
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i02:r2",
+          "text": "It is useful."
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i02:r3",
+          "text": "It is weak."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:i02:audio",
+          "transcript": "It is useless."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-46:i02:r1",
+            "targetText": "It is useless.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i02:r2",
+            "targetText": "It is useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i02:r3",
+            "targetText": "It is weak.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `useless`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `useless`, а в цьому варіанті — `useful`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `useless`, а в этом варианте — `weak`.",
+              "uk": "У записі останнє слово — `useless`, а в цьому варіанті — `weak`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-46:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Два кабеля не подходят к вашему телефону. Дополните оценку их пользы для зарядки",
+          "uk": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання"
+        },
+        "gappedTargetPhrase": "They ___ useless.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-46:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Два кабелі не підходять до вашого телефона. Доповніть оцінку їхньої користі для заряджання",
+            "feedbackByLocale": {
+              "ru": "Про два кабеля — `They are`.",
+              "uk": "Про два кабелі — `They are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-46:i04:p1",
+            "target": "useless",
+            "meaningByLocale": {
+              "ru": "бесполезный",
+              "uk": "марний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i04:p2",
+            "target": "useful",
+            "meaningByLocale": {
+              "ru": "полезный",
+              "uk": "корисний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i04:p3",
+            "target": "weak",
+            "meaningByLocale": {
+              "ru": "слабый",
+              "uk": "слабкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i04:p4",
+            "target": "missing",
+            "meaningByLocale": {
+              "ru": "пропавший",
+              "uk": "зниклий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "useless",
+          "useful",
+          "weak",
+          "missing"
+        ],
+        "rightColumn": [
+          "марний",
+          "корисний",
+          "слабкий",
+          "зниклий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:i05:audio",
+          "transcript": "It's useless."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's useless.",
+        "orderedTokens": [
+          "It's",
+          "useless"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's useless.`",
+              "uk": "тут потрібно `It's` — `It's useless.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Два старі розклади не містять жодного нинішнього рейсу. Скажіть, що для вибору рейсу вони марні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Два старі розклади не містять жодного нинішнього рейсу. Скажіть, що для вибору рейсу вони марні",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are useless.",
+        "localizedMeaning": {
+          "ru": "Два старых расписания не содержат ни одного нынешнего рейса. Скажите, что для выбора рейса они бесполезны",
+          "uk": "Два старі розклади не містять жодного нинішнього рейсу. Скажіть, що для вибору рейсу вони марні"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "useless"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Два старі розклади не містять жодного нинішнього рейсу. Скажіть, що для вибору рейсу вони марні",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are useless.`",
+              "uk": "тут потрібно `are` — `They are useless.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко оцініть кабель, який не підходить для заряджання вашого телефона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко оцініть кабель, який не підходить для заряджання вашого телефона",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:i07:audio",
+          "transcript": "It's useless."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's useless.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-46:i08:r1",
+          "text": "weak"
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i08:r2",
+          "text": "useless"
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i08:r3",
+          "text": "missing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сигнал слабый, но позволяет отправлять сообщения. Назовите именно слабость",
+          "uk": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-46:i08:r1",
+            "text": "weak"
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i08:r2",
+            "text": "useless"
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i08:r3",
+            "text": "missing"
+          }
+        ],
+        "testedDimension": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+            "feedbackByLocale": {
+              "ru": "Для сообщений сигнал помогает. Здесь нужно «слабый»: `weak`.",
+              "uk": "Для повідомлень сигнал допомагає. Тут потрібно «слабкий»: `weak`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Сигнал слабкий, але дозволяє надсилати повідомлення. Назвіть саме слабкість",
+            "feedbackByLocale": {
+              "ru": "Сигнал есть. Он слабый: `weak`.",
+              "uk": "Сигнал є. Він слабкий: `weak`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про сигнал",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-46:i09:r1",
+          "text": "It is weak."
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i09:r2",
+          "text": "It is useless."
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i09:r3",
+          "text": "It is useful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про сигнал",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:i09:audio",
+          "transcript": "It is weak."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-46:i09:r1",
+            "targetText": "It is weak.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i09:r2",
+            "targetText": "It is useless.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i09:r3",
+            "targetText": "It is useful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про сигнал",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `weak`, а в этом варианте — `useless`.",
+              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `useless`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про сигнал",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `weak`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `useful`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте короткі початки з повними",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте короткі початки з повними",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-46:i10:p1",
+            "target": "It's",
+            "meaningByLocale": {
+              "ru": "It is",
+              "uk": "It is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i10:p2",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i10:p3",
+            "target": "He's",
+            "meaningByLocale": {
+              "ru": "He is",
+              "uk": "He is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i10:p4",
+            "target": "We're",
+            "meaningByLocale": {
+              "ru": "We are",
+              "uk": "We are"
+            }
+          }
+        ],
+        "leftColumn": [
+          "It's",
+          "They're",
+          "He's",
+          "We're"
+        ],
+        "rightColumn": [
+          "It is",
+          "They are",
+          "He is",
+          "We are"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку фразу про речі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку фразу про речі",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:i11:audio",
+          "transcript": "They're useless."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They're useless.",
+        "orderedTokens": [
+          "They're",
+          "useless"
+        ],
+        "authoredDistractorTokens": [
+          "We're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку фразу про речі",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They're` — `They're useless.`",
+              "uk": "тут потрібно `They're` — `They're useless.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Нова карта показує потрібні вулиці й допомагає знайти готель. Скажіть про її користь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нова карта показує потрібні вулиці й допомагає знайти готель. Скажіть про її користь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is useful.",
+        "localizedMeaning": {
+          "ru": "Новая карта показывает нужные улицы и помогает найти отель. Скажите о её пользе",
+          "uk": "Нова карта показує потрібні вулиці й допомагає знайти готель. Скажіть про її користь"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "useful"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Нова карта показує потрібні вулиці й допомагає знайти готель. Скажіть про її користь",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is useful.`",
+              "uk": "тут потрібно `is` — `It is useful.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після хвороби брат каже, що в нього мало сил. Розкажіть другові про його слабкість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Після хвороби брат каже, що в нього мало сил. Розкажіть другові про його слабкість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:i13:audio",
+          "transcript": "He is weak."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is weak.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-46:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Инструкция относится к другому устройству и совсем не помогает настроить ваше. Назовите её бесполезной для этой задачи",
+          "uk": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання"
+        },
+        "gappedTargetPhrase": "It ___ useless.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-46:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i14:r2",
+            "correct": false,
+            "testedDimension": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+            "feedbackByLocale": {
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i14:r3",
+            "correct": false,
+            "testedDimension": "Інструкція стосується іншого пристрою й зовсім не допомагає налаштувати ваш. Назвіть її марною для цього завдання",
+            "feedbackByLocale": {
+              "ru": "Про одну инструкцию — `It is`.",
+              "uk": "Про одну інструкцію — `It is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть коротку фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-46:i15:r1",
+          "text": "It's useful."
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i15:r2",
+          "text": "It's useless."
+        },
+        {
+          "responseId": "en:lesson-01:session-46:i15:r3",
+          "text": "It's weak."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:i15:audio",
+          "transcript": "It's useful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-46:i15:r1",
+            "targetText": "It's useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i15:r2",
+            "targetText": "It's useless.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i15:r3",
+            "targetText": "It's weak.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `useful`, а в этом варианте — `useless`.",
+              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `useless`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `useful`, а в этом варианте — `weak`.",
+              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `weak`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-46:i16:p1",
+            "target": "useless",
+            "meaningByLocale": {
+              "ru": "не приносит пользы",
+              "uk": "не приносить користі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i16:p2",
+            "target": "useful",
+            "meaningByLocale": {
+              "ru": "приносит пользу",
+              "uk": "приносить користь"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i16:p3",
+            "target": "weak",
+            "meaningByLocale": {
+              "ru": "слабый",
+              "uk": "слабкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-46:i16:p4",
+            "target": "correct",
+            "meaningByLocale": {
+              "ru": "правильный",
+              "uk": "правильний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "useless",
+          "useful",
+          "weak",
+          "correct"
+        ],
+        "rightColumn": [
+          "не приносить користі",
+          "приносить користь",
+          "слабкий",
+          "правильний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На кухні відкривачка зламалася й більше не відкриває банки. Оцініть її користь для відкривання банки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "На кухні відкривачка зламалася й більше не відкриває банки. Оцініть її користь для відкривання банки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-46:i17:audio",
+          "transcript": "It is useless."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is useless.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "554eb1632f288ee3ad623461c6298fa0cfb5307c26a5f8fd35ea94b11caf126c"
+}

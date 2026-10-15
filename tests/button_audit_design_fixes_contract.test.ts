@@ -102,7 +102,7 @@ describe('аудит кнопок: Видео, добавки Макетов R57
     const videos = read('app/lingman_videos.tsx');
     expect(videos).toContain('const hasSavedRow = !savedOnly && savedVideos.length > 0;');
     expect(videos).toContain('scrollToOffset({ offset: scrollYRef.current + h + SAVED_ROW_MARGIN, animated: false })');
-    expect(videos).toContain('onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; }}');
+    expect(videos).toContain('onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; reportTabScroll(e); }}');
   });
 });
 
@@ -125,5 +125,15 @@ describe('аудит кнопок: добавки Ревизора по 9fa4a483
   it('#26/R59: пилюля канала скрыта, пока канал языка неизвестен или его нет', () => {
     expect(read('components/youtube/YoutubeChannelHeader.tsx')).toContain('{hideChannel ? null : (() => {');
     expect(read('app/lingman_videos.tsx')).toContain("hideChannel={(noChannel && !catalog) || (!catalog && !pendingChannel && String(studyTarget) !== 'en')}");
+  });
+});
+
+describe('таббар: вкладка «Видео» сообщает прокрутку, как остальные (координатор 15.10)', () => {
+  it('списки вкладки «Видео» кормят TopFadeScrollContext — капсула сжимается так же, как на четырёх других вкладках', () => {
+    const src = read('app/lingman_videos.tsx');
+    expect(src).toContain("import { useTopFadeScroll } from '../components/TopFadeScrollContext';");
+    expect(src).toContain('if (inTab && screenRuntimeActiveRef.current) topFadeScroll?.onScroll?.(e);');
+    expect(src).toContain('reportTabScroll(e); }}');
+    expect(src).toContain('renderItem={renderPlaylist} onScroll={reportTabScroll}');
   });
 });

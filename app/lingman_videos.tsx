@@ -40,6 +40,7 @@ import { accountScopeKey } from './account_scope_key';
 import { safeRouterBack } from './navigation_back';
 import { useTabNav } from './TabContext';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
+import { useTopFadeScroll } from '../components/TopFadeScrollContext';
 import { V2 } from '../constants/v2Style';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { DebugLogger } from './debug-logger';
@@ -496,6 +497,12 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   // зачем (Макеты R59, 15.10): закладка в сетке добавляла строку «Сохранённые видео» над сеткой — сетка уезжала вниз прямо под пальцем. Пока строка появляется/исчезает, держим прокрутку: смещаем на её высоту (+ отступ 18).
   const hasSavedRow = !savedOnly && savedVideos.length > 0;
   const scrollYRef = useRef(0);
+  // зачем (координатор 15.10, консистентность): вкладка «Видео» не сообщала прокрутку таб-оболочке — капсула таббара не сжималась, а на остальных четырёх вкладках сжимается (макет tabbar-variants, 24.09).
+  // Теперь прокрутка списков во вкладке идёт в TopFadeScrollContext, как у Главной/Обучения/Сообщества/Настроек (верхняя маска и сжатие капсулы).
+  const topFadeScroll = useTopFadeScroll();
+  const reportTabScroll = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
+    if (inTab && screenRuntimeActiveRef.current) topFadeScroll?.onScroll?.(e);
+  }, [inTab, topFadeScroll]);
   const savedRowHRef = useRef(0);
   const SAVED_ROW_MARGIN = 18;
   useEffect(() => {
@@ -828,15 +835,15 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             <View style={styles.gridSkeleton}>{renderGridSkeleton(gridSkeletonHeight)}</View>
           </ScrollView>
         ) : tab === 'playlists' ? (
-          catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={playlistsForGrid} numColumns={2} keyExtractor={(item) => item.id} renderItem={renderPlaylist} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.gridList, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
+          catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={playlistsForGrid} numColumns={2} keyExtractor={(item) => item.id} renderItem={renderPlaylist} onScroll={reportTabScroll} scrollEventThrottle={32} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.gridList, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
             : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}><View style={styles.gridSkeleton}>
               {renderGridSkeleton(gridSkeletonHeight)}
             </View></ScrollView>
         ) : (
           <FlashList
             ref={homeListRef}
-            onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; }}
-            scrollEventThrottle={64}
+            onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; reportTabScroll(e); }}
+            scrollEventThrottle={32}
             decelerationRate="fast"
             testID="lingman-videos-list"
             data={homeListVideos}

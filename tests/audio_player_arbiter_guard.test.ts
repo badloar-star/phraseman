@@ -19,6 +19,9 @@ const ARBITER_MARK = /audio_runtime_arbiter|use_managed_spoken_audio_player/;
 const ALLOWLIST: Readonly<Record<string, string>> = {
   'modules/audio/expo_sfx_backend.ts':
     'SFX: короткие эффекты интерфейса, свой sound_arbiter/sound_director; не речь и не диалог',
+  // зачем (15.10): эффекты V2 — тот же класс, что expo_sfx_backend; рантайм сам не играет речь, а уважает её (isVoiceActive, пауза 250 мс после речи), запись микрофона и выключатель звуков
+  'modules/sound_v2/sound_v2_runtime.ts':
+    'SFX V2: короткие эффекты интерфейса; гейт речи/записи/выключателя — в самом рантайме (проверяет audio_never_permanently_silent_contract)',
   'modules/audio/celebrationScenePlayer.ts':
     'празднование: сцена-звук, управляется sound_arbiter; не претендует на «голосовой» канал',
   'modules/learning-v2/runtime/voice_physical_device_runner_v1.ts':

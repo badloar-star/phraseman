@@ -3,6 +3,7 @@
 // Граф: `import … from` / `export … from` (без `import type`) и require верхнего уровня; require внутри функции и динамический import() — ленивые, в граф не входят.
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source'; // зачем (координатор 05.10): на ПК владельца рабочая копия в CRLF — исходник читаем через normalizeEol
 
 const ROOT = path.join(__dirname, '..').replace(/\\/g, '/') + '/';
 const EXTS = ['.ts', '.tsx', '.js', '.jsx'];
@@ -25,7 +26,7 @@ function staticGraph(rootRel: string): Set<string> {
     const cur = queue.pop()!;
     if (seen.has(cur) || !/\.(ts|tsx|js|jsx)$/.test(cur)) continue;
     seen.add(cur);
-    const src = fs.readFileSync(cur, 'utf8').replace(/^\s*\/\/.*$/gm, '');
+    const src = normalizeEol(fs.readFileSync(cur, 'utf8')).replace(/^\s*\/\/.*$/gm, '');
     for (const m of src.matchAll(IMP)) { const r = resolve(cur, m[1]!); if (r) queue.push(r); }
     for (const m of src.matchAll(REQ_TOP)) { const r = resolve(cur, (m[1] ?? m[2])!); if (r) queue.push(r); }
   }
@@ -49,7 +50,7 @@ describe('холодный старт: новые модули моментов 
   });
 
   it('слот колец подключается лениво (require внутри компонента, только при включённом флаге)', () => {
-    const card = fs.readFileSync(`${ROOT}components/home/v2/HomeV2TodayCard.tsx`, 'utf8');
+    const card = normalizeEol(fs.readFileSync(`${ROOT}components/home/v2/HomeV2TodayCard.tsx`, 'utf8'));
     expect(card).toContain("ringsOn ? (require('../../streak/moments/TodayRingsSlot')");
     expect(card).not.toMatch(/^import .*TodayRingsSlot/m);
   });

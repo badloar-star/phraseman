@@ -56221,6 +56221,309 @@
           "byteSize": 37248
         }
       ]
+    },
+    "l04/s18/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is some milk.",
+          "file": "c81ad8999b7c68e38f3f856b8cc490a8ffdcdff3cc556427f053ebb5a466e5e6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c81ad8999b7c68e38f3f856b8cc490a8ffdcdff3cc556427f053ebb5a466e5e6.mp3",
+          "contentHash": "7944b38ab555d00e5452c6201b5c2a87eba9b93ea96475562c617163ee4200a4",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s18/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there any milk here?",
+          "file": "61924b091ea25a907034a7ef32940a15b57de9f8ec79604765edcef460adba91.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/61924b091ea25a907034a7ef32940a15b57de9f8ec79604765edcef460adba91.mp3",
+          "contentHash": "4d6a33d2291d368dea583c45d7b0490d12356aac2dc88555117ae27492562694",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l04/s18/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He's unwell.",
+          "file": "9caa7a3edd546d6bb27324d596f2086c1b438e9ac16e3d81e19dc5f70d8ad526.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9caa7a3edd546d6bb27324d596f2086c1b438e9ac16e3d81e19dc5f70d8ad526.mp3",
+          "contentHash": "a37101ad5f72e6c4b3cded72e6a4d1a2a0282233e9cd3a31780ca4b67a2df6c7",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s18/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a hotel.",
+          "file": "541aa8a1ea9ba417c19611119a71201651d83668f15270ea4f860eb92feb2e58.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/541aa8a1ea9ba417c19611119a71201651d83668f15270ea4f860eb92feb2e58.mp3",
+          "contentHash": "ead357fe5a80e0477a9834edef7dce4c303c9141851886274b4e25eb4b00d496",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s18/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "milk",
+          "file": "63849f694769638f2ed9b51d5e113ffe6e81ef6b035bd727cccb5b7327166c3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63849f694769638f2ed9b51d5e113ffe6e81ef6b035bd727cccb5b7327166c3b.mp3",
+          "contentHash": "189238aa2e6f4f30e61798c9fbcd843388abb493d7def10a96ac5bcd542013a5",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s18/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "milk",
+          "file": "d1bd4b850709cdf852209b25a3d53a31c556e0b30e48bda976362327a9a3aaa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d1bd4b850709cdf852209b25a3d53a31c556e0b30e48bda976362327a9a3aaa4.mp3",
+          "contentHash": "0387bad0ed9d4498aecac5e4b03e92a65539afeaa1da23592d1df38b1df98573",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l04/s18/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "milk",
+          "file": "d1bd4b850709cdf852209b25a3d53a31c556e0b30e48bda976362327a9a3aaa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d1bd4b850709cdf852209b25a3d53a31c556e0b30e48bda976362327a9a3aaa4.mp3",
+          "contentHash": "0387bad0ed9d4498aecac5e4b03e92a65539afeaa1da23592d1df38b1df98573",
+          "byteSize": 14976
+        },
+        {
+          "text": "unwell",
+          "file": "fc52c86efe659643635fd89b9f832cf7c71d6de958a7df7951694fab1a78dd52.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc52c86efe659643635fd89b9f832cf7c71d6de958a7df7951694fab1a78dd52.mp3",
+          "contentHash": "eb420a434dc5664ad1189a4b4697470fb3478feb0c961763c2241e46da201d6b",
+          "byteSize": 16512
+        },
+        {
+          "text": "boxes",
+          "file": "268c361a35002c47458ecdcd1144f0c73d77750bd544a6494bbfba9594d08502.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/268c361a35002c47458ecdcd1144f0c73d77750bd544a6494bbfba9594d08502.mp3",
+          "contentHash": "60a65f8a7ec54fe4c21c1cc5bd5ed541988452950df5141f2d3cb72e07eedef0",
+          "byteSize": 21888
+        },
+        {
+          "text": "hotel",
+          "file": "602a1ffa7d865a24ad54642dd3253bba45411673b8ba898a279575791d432d63.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/602a1ffa7d865a24ad54642dd3253bba45411673b8ba898a279575791d432d63.mp3",
+          "contentHash": "fb91d6938fc357f135f1ef150a68b53e52864db4f1d481a4a61d8a729bf2691a",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s18/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is some milk.",
+          "file": "c6bbbac944d79658c234ae934d1bf7af4f296a09bf9c84890ddfcd7cf5d82df6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c6bbbac944d79658c234ae934d1bf7af4f296a09bf9c84890ddfcd7cf5d82df6.mp3",
+          "contentHash": "8a4eee504be07de766e74de89b99d9f32aff55fbb569106465474d4caba9d311",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s18/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There are some boxes here.",
+          "file": "5f1027889c7b8c867e2d4afa8f34e3d92412f6da00282f3555fee9c430e81013.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5f1027889c7b8c867e2d4afa8f34e3d92412f6da00282f3555fee9c430e81013.mp3",
+          "contentHash": "51b78e878d9ca91a7b2664b7db6c12af42428f1d466314f4c62e8ea112d486f6",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s18/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He's unwell.",
+          "file": "9caa7a3edd546d6bb27324d596f2086c1b438e9ac16e3d81e19dc5f70d8ad526.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9caa7a3edd546d6bb27324d596f2086c1b438e9ac16e3d81e19dc5f70d8ad526.mp3",
+          "contentHash": "a37101ad5f72e6c4b3cded72e6a4d1a2a0282233e9cd3a31780ca4b67a2df6c7",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s18/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is some milk here.",
+          "file": "cde30a62621d3062d42dcf721a4d0d03402c2e8be8f1aedd1a39875392b92590.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cde30a62621d3062d42dcf721a4d0d03402c2e8be8f1aedd1a39875392b92590.mp3",
+          "contentHash": "465eb834887a9f19c1b4dd5a23f232986bfa654a1c2c14e4a058320b2d5107fd",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s18/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are there any boxes?",
+          "file": "b032beeca8180ef84b5abba10a2c224f155c28194909891b054b25414717b4eb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b032beeca8180ef84b5abba10a2c224f155c28194909891b054b25414717b4eb.mp3",
+          "contentHash": "8f8a49e93b49f9c47e2a9422abca48a2eec8f1f22eb55d443be065f827da6963",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s18/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "milk",
+          "file": "390ec291672911f40b43dbf2e93c974fe7b7ebb551191f870cf79c58cd2cf31c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/390ec291672911f40b43dbf2e93c974fe7b7ebb551191f870cf79c58cd2cf31c.mp3",
+          "contentHash": "75edfbb51a545af8804eb8727e4e75fa77b8da5b35a3535a3fc6b06b74cb3052",
+          "byteSize": 11520
+        },
+        {
+          "text": "boxes",
+          "file": "d35dab63b3fa2fc2047b69c3809a997a5b10ea4f8fd3bfe798c6b95c96967238.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d35dab63b3fa2fc2047b69c3809a997a5b10ea4f8fd3bfe798c6b95c96967238.mp3",
+          "contentHash": "0f300167fdf6e0030413b6b9b51f43d28353f3357e4e58e7fed071824e3e772c",
+          "byteSize": 18816
+        },
+        {
+          "text": "hotel",
+          "file": "9e05ad558a084504a2d6d72db0f3d8f527296c22291abfbeeb7f4d93ac19a64f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e05ad558a084504a2d6d72db0f3d8f527296c22291abfbeeb7f4d93ac19a64f.mp3",
+          "contentHash": "836a3197644af67a5433b0c1111333ca3fc3da2ffef890f11a49fddb902cd3ea",
+          "byteSize": 17280
+        },
+        {
+          "text": "unwell",
+          "file": "0583fa5e2fc1432fe80d08bb9ffab9de3c07b83621cb583f791b28774a5ee7a4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0583fa5e2fc1432fe80d08bb9ffab9de3c07b83621cb583f791b28774a5ee7a4.mp3",
+          "contentHash": "f543564d552801f879d084eadb08d34ffffa9023f53cb8637ef792ebe1bc5bbd",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s18/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there any milk?",
+          "file": "1464e7eff654a8e2e59b84493fa952c74e058697612ff09339e7938301d5662f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1464e7eff654a8e2e59b84493fa952c74e058697612ff09339e7938301d5662f.mp3",
+          "contentHash": "f5a686526bd3b3498d2dda5ab3c17d8d9443f683010e523c972dd44cb4d63826",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s18/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Are there any boxes here?",
+          "file": "764cf1a4b6c5c847f985f2c925bbeb8bb71d4b17d4ec3905f31a676e6133174d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/764cf1a4b6c5c847f985f2c925bbeb8bb71d4b17d4ec3905f31a676e6133174d.mp3",
+          "contentHash": "98be8b4ec00329a0f505da6586983e43b4200646abb977a6dadb74424c6b4b61",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l04/s18/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is some milk there.",
+          "file": "9997688b05486d30c1b2006a378107c6ec3d6a7bb27c9632799c8fc75834d9cd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9997688b05486d30c1b2006a378107c6ec3d6a7bb27c9632799c8fc75834d9cd.mp3",
+          "contentHash": "70ab72bdc74b01f75f29e17a2a678c2341eb5ce467d9bc4da4828d8ce985543f",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s18/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there any milk here?",
+          "file": "bcd89d6f0d7bbe3d84aa460bcf5b63a1e739240578c309ad4c7b3201f0a81f38.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bcd89d6f0d7bbe3d84aa460bcf5b63a1e739240578c309ad4c7b3201f0a81f38.mp3",
+          "contentHash": "aad8570b406588932ef2c06edd453a559b3a4df1350472250b3b06d56b59b594",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s18/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He is unwell.",
+          "file": "ae29fc0c7addc99ad5a5ea387ad861af4f1a06bbe91896f604ec8cf54b4eec0d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae29fc0c7addc99ad5a5ea387ad861af4f1a06bbe91896f604ec8cf54b4eec0d.mp3",
+          "contentHash": "149ab681ca45fe97a33aca745d59dd32835376cfd0feab34be36dd7c536d5de9",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s18/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "milk",
+          "file": "d1bd4b850709cdf852209b25a3d53a31c556e0b30e48bda976362327a9a3aaa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d1bd4b850709cdf852209b25a3d53a31c556e0b30e48bda976362327a9a3aaa4.mp3",
+          "contentHash": "0387bad0ed9d4498aecac5e4b03e92a65539afeaa1da23592d1df38b1df98573",
+          "byteSize": 14976
+        },
+        {
+          "text": "unwell",
+          "file": "fc52c86efe659643635fd89b9f832cf7c71d6de958a7df7951694fab1a78dd52.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc52c86efe659643635fd89b9f832cf7c71d6de958a7df7951694fab1a78dd52.mp3",
+          "contentHash": "eb420a434dc5664ad1189a4b4697470fb3478feb0c961763c2241e46da201d6b",
+          "byteSize": 16512
+        },
+        {
+          "text": "boxes",
+          "file": "268c361a35002c47458ecdcd1144f0c73d77750bd544a6494bbfba9594d08502.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/268c361a35002c47458ecdcd1144f0c73d77750bd544a6494bbfba9594d08502.mp3",
+          "contentHash": "60a65f8a7ec54fe4c21c1cc5bd5ed541988452950df5141f2d3cb72e07eedef0",
+          "byteSize": 21888
+        },
+        {
+          "text": "hotel",
+          "file": "602a1ffa7d865a24ad54642dd3253bba45411673b8ba898a279575791d432d63.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/602a1ffa7d865a24ad54642dd3253bba45411673b8ba898a279575791d432d63.mp3",
+          "contentHash": "fb91d6938fc357f135f1ef150a68b53e52864db4f1d481a4a61d8a729bf2691a",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s18/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there any milk here?",
+          "file": "5a5a77db8ae1ee1b2222a6b6ff0818cb68faeb6a07ece1bfc25b761e7cf4889a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a5a77db8ae1ee1b2222a6b6ff0818cb68faeb6a07ece1bfc25b761e7cf4889a.mp3",
+          "contentHash": "8d45fb80698ac481e80bf0d32c150002b190a552cc1adb4ca4846a3624b753cd",
+          "byteSize": 25344
+        }
+      ]
     }
   },
   "settings": {

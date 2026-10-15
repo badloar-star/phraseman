@@ -18,6 +18,7 @@ import { spireWeekStartMs } from '../../modules/spire/residents';
 import { recordSpireWeekStory } from '../../modules/story_events/story_event_sources';
 import { DebugLogger } from '../debug-logger';
 import { readMomentsV3Flag } from '../moments_v3_flag_read';
+import { getDevSpireWeekResultOverride } from '../dev_spire_tier';
 import { spireOpenLiveGate } from './spire_live_gate';
 import { spireUiLangDecision } from './spire_ui_lang_gate';
 import { spireLoadWeekResult, spirePreviousWeekKey, type SpireWeekResultView } from './spire_week_result_client';
@@ -110,6 +111,15 @@ export async function resolveSpireWeekMoment(input: SpireWeekMomentInput): Promi
   const { getCanonicalUserId } = await import('../user_id_policy');
   const uid = await getCanonicalUserId();
   if (!uid) { log('не показываем: нет uid'); return { show: false, reason: 'no_uid' }; }
+  // зачем (координатор 15.10, сценарий Сверки моментов v3): итог недели с сервера бывает раз в неделю — на эмуляторе окно D191 не вызвать.
+  // dev_state?spireWeek=up|stay|down|top|marble|obsidian подставляет готовый итог макета: без сети, без проверки времени. Только dev-сборка —
+  // в стор-сборке getDevSpireWeekResultOverride() всегда null, ветка мёртвая. Флаг, вкладка и языки выше проверяются как в бою.
+  const devResult = getDevSpireWeekResultOverride();
+  if (devResult) {
+    const devOutcome = spireWeekMomentOutcome(devResult);
+    log(`ПОКАЗЫВАЕМ (dev spireWeek): outcome=${devOutcome} tier ${devResult.prevTier}→${devResult.newTier} место=${devResult.roomRank}/${devResult.roomTotal}`);
+    return { show: true, uid, lang, weekId: devResult.weekId, outcome: devOutcome, result: devResult, isRepeatPromotion: spireIsRepeatPromotion(devResult) };
+  }
   const shownWeek = await readShownWeek(uid, lang);
   const timing = decideSpireWeekMomentTiming(nowMs, shownWeek);
   if (!timing.ok) {

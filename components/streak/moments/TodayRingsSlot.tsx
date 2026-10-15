@@ -1,7 +1,7 @@
 // TodayRingsSlot.tsx — кольца дня внутри блока «Сегодня» Главной: показываются только за флагом moments_v3 (выключен → null, ничего не стоит).
 // зачем (координатор 14.10): кольца = три задачи блока «Сегодня» (урок, ступени Пика, карточки), монета ранга в центре; числа берутся из тех же задач, что строки блока —
 // ничего не пишется и не начисляется. Монета и язык читаются только когда флаг включён (внутренний компонент), чтобы выключенный флаг не добавлял подписок на Главной.
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useLang } from '../../LangContext';
 import { useMyCoinRank } from '../../../hooks/use_my_coin_rank';
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -13,6 +13,11 @@ export type TodayRingsTask = Readonly<{ progress: number; target: number }>;
 const Inner = memo(function Inner({ tasks }: Readonly<{ tasks: readonly TodayRingsTask[] }>) {
   const { lang } = useLang();
   const rank = useMyCoinRank();
+  // зачем (координатор 15.10, сценарий Сверки моментов v3): что нарисовали кольца m11 — одна строка на смену чисел
+  const ringsKey = tasks.map((task) => `${task.progress}/${task.target}`).join(',');
+  useEffect(() => {
+    console.log('[MOMENT-m11] rings', JSON.stringify({ tasks: ringsKey, drawn: tasks.length >= 3, coinRank: rank ?? null })); // guard-ok: одна строка на смену чисел
+  }, [ringsKey, rank, tasks.length]);
   if (tasks.length < 3) return null; // колец три — меньше задач нечего рисовать честно
   const t = tasks;
   return (

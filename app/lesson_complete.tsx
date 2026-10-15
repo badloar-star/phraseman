@@ -796,6 +796,13 @@ export default function LessonComplete() {
     if (!open) setPerfectMomentSettled(true);
   }, []);
   const perfectDecision = decidePerfectMoment({ momentsV3, isCombo: isComboCompletion, counts: lessonCounts, coinsHydrating: practiceRunes.hydrating });
+  // зачем (координатор 15.10, сценарий Сверки моментов v3): решение m09 «ИДЕАЛ» и его причина — одной строкой на каждую смену причины
+  const perfectReasonLoggedRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (perfectReasonLoggedRef.current === perfectDecision.reason) return;
+    perfectReasonLoggedRef.current = perfectDecision.reason;
+    console.log('[MOMENT-m09] decision', JSON.stringify({ lessonId, show: perfectDecision.show, reason: perfectDecision.reason })); // guard-ok: одна строка на смену причины
+  }, [lessonId, perfectDecision.reason, perfectDecision.show]);
   // зачем (координатор 15.10, m10 «семь ударов» за moments_v3): снимок серии и задачи «Сегодня» — на ПЕРВОМ кадре экрана, до того как grantBonus запишет урок
   // (recordTodayTaskActivity засчитывает и день серии) — иначе «5 → 6» и «0/1 → 1/1» не с чего было бы показать. Синхронное чтение памяти, без диска и сети.
   const doneChainBeforeRef = useRef<DoneChainBefore | null>(null);

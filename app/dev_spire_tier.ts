@@ -118,7 +118,7 @@ export function setDevSpireWeekResultOverride(kind: DevSpireWeekKind | null): bo
     return false;
   }
   weekOverride = kind;
-  console.log(kind === null ? '[DEV-STATE] spireWeek override=off' : `[DEV-STATE] spireWeek override=${kind} (только карточка «Итог недели», сервер и недели не меняются)`); // guard-ok: единичный лог на ссылку
+  console.log(kind === null ? '[DEV-STATE] spireWeek override=off' : `[DEV-STATE] spireWeek override=${kind} (карточка «Итог недели» в Пике и окно D191 на Главной; сервер и недели не меняются)`); // guard-ok: единичный лог на ссылку
   return true;
 }
 

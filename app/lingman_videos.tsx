@@ -79,6 +79,7 @@ import {
   type YoutubeChannelPreference,
 } from './youtube_channel_preference';
 import {
+  loadYoutubePremiereReminders,
   openYoutubePremiereNotificationSettings,
   requestYoutubePremiereReminderFromTap,
 } from './youtube_premiere_notifications';
@@ -172,6 +173,17 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const deepLinkHandledRef = useRef<string | null>(null);
   // зачем: «Напомнить» меняется на «Напоминание установлено» мгновенно (оптимистично), система догоняет.
   const [remindedIds, setRemindedIds] = useState<readonly string[]>([]);
+  // зачем (аудит Видео 🟡, 15.10): remindedIds жили только в памяти экрана — после перезапуска у уже поставленного напоминания снова была кнопка «Напомнить». Читаем сохранённые напоминания один раз (локально, без сети).
+  useEffect(() => {
+    let alive = true;
+    void loadYoutubePremiereReminders().then((stored) => {
+      if (!alive || stored.length === 0) return;
+      setRemindedIds((current) => [...current, ...stored.map((item) => item.videoId).filter((id) => !current.includes(id))]);
+    }).catch((error: unknown) => {
+      console.warn('[VIDEO-TAB] напоминания о премьерах не прочитались', error instanceof Error ? error.message : String(error)); // guard-ok: catch называет причину
+    });
+    return () => { alive = false; };
+  }, []);
 
   // RSS remains a rollback fallback while the new atomic catalog rolls out.
   const initialChannel = getActiveYoutubeChannel();
@@ -188,6 +200,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const copy = useMemo(() => ({
     tabTitle: triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Videos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Filmy' }),
     error: triLang(lang, { ru: 'Не удалось поставить напоминание.', uk: 'Не вдалося встановити нагадування.', en: 'Could not set the reminder.', es: 'No se pudo activar el recordatorio.', 'pt-BR': 'Não foi possível definir o lembrete.', vi: 'Không thể đặt lời nhắc.', id: 'Pengingat tidak dapat dibuat.', tr: 'Hatırlatıcı ayarlanamadı.', pl: 'Nie udało się ustawić przypomnienia.' }),
+    noSaved: triLang(lang, {
+      ru: 'Пока нет сохранённых видео', uk: 'Поки немає збережених відео', en: 'No saved videos yet', es: 'Aún no hay vídeos guardados', 'pt-BR': 'Ainda não há vídeos salvos',
+      vi: 'Chưa có video đã lưu', id: 'Belum ada video tersimpan', tr: 'Henüz kayıtlı video yok', pl: 'Brak zapisanych filmów',
+    }),
     savedVideos: triLang(lang, { ru: 'Сохранённые видео', uk: 'Збережені відео', en: 'Saved videos', es: 'Vídeos guardados', 'pt-BR': 'Vídeos salvos', vi: 'Video đã lưu', id: 'Video tersimpan', tr: 'Kaydedilen videolar', pl: 'Zapisane filmy' }),
     // зачем (паритет с макетом video.html «Ошибка»): текст и кнопка как на кадре; «потянуть вниз» повторяет загрузку.
     catalogFailed: triLang(lang, { ru: 'Не удалось загрузить каталог. Потяни вниз, чтобы повторить.', uk: 'Не вдалося завантажити каталог. Потягни вниз, щоб повторити.', en: 'Couldn’t load the catalog. Pull down to retry.', es: 'No se pudo cargar el catálogo. Desliza hacia abajo para reintentar.', 'pt-BR': 'Não foi possível carregar o catálogo. Puxe para baixo para tentar de novo.', vi: 'Không tải được danh mục. Kéo xuống để thử lại.', id: 'Katalog gagal dimuat. Tarik ke bawah untuk mengulang.', tr: 'Katalog yüklenemedi. Tekrar denemek için aşağı çek.', pl: 'Nie udało się wczytać katalogu. Pociągnij w dół, aby ponowić.' }),
@@ -743,6 +759,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const savedRow = hasSavedRow ? (
     <TouchableOpacity
       testID="video-saved-row"
+      hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }} // зачем (аудит Видео 🟡, 15.10): строка 64 dp с отступами — зона нажатия чуть шире
       onLayout={(e) => {
         const h = Math.round(e.nativeEvent.layout.height);
         const prev = savedRowHRef.current;
@@ -878,7 +895,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             /> : null}
             {savedRow}
             </>}
-            ListEmptyComponent={!hero ? <View testID="lingman-videos-empty" /> : null}
+            // зачем (аудит Видео 🟡, 15.10): «Сохранённые видео» без единого ролика показывали пустое место — теперь короткая подпись
+            ListEmptyComponent={!hero ? (savedOnly ? <Text testID="lingman-videos-empty" style={[styles.unavailableTitle, { color: g.secondary, marginTop: 40 }]}>{copy.noSaved}</Text> : <View testID="lingman-videos-empty" />) : null}
           />
         )}
 

@@ -137,3 +137,13 @@ describe('таббар: вкладка «Видео» сообщает прок�
     expect(src).toContain('renderItem={renderPlaylist} onScroll={reportTabScroll}');
   });
 });
+
+describe('аудит кнопок: Видео 🟡 (15.10)', () => {
+  it('поставленные напоминания читаются при открытии, «Сохранённые видео» без роликов — с подписью, строка сохранённых с hitSlop', () => {
+    const src = read('app/lingman_videos.tsx');
+    expect(src).toContain('void loadYoutubePremiereReminders().then((stored) => {');
+    expect(src).toContain('{copy.noSaved}');
+    expect(src).toContain("ru: 'Пока нет сохранённых видео'");
+    expect(src).toContain('hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}');
+  });
+});

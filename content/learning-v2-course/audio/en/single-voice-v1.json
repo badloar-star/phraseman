@@ -48343,6 +48343,309 @@
           "byteSize": 25344
         }
       ]
+    },
+    "l03/s48/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is an office.",
+          "file": "cb7171db103fd7934a36aecbea710c68fbed1d22a4a0f6a6c1c28c54dc8e57e7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb7171db103fd7934a36aecbea710c68fbed1d22a4a0f6a6c1c28c54dc8e57e7.mp3",
+          "contentHash": "c9317095d0ac5748cf3c50b942e2c5488ef06718c04a7b593c69c1d42bba22c3",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l03/s48/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bedrooms are there.",
+          "file": "64c5ff05f24da65d742a4abcb7254947f5a1f42c87ccee719ae5229d4dd1d592.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/64c5ff05f24da65d742a4abcb7254947f5a1f42c87ccee719ae5229d4dd1d592.mp3",
+          "contentHash": "fc61f1c1472b8f8b8760bfb8d499f65f866714824d345bad68c84c72bb2d32e4",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s48/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "These are hotels.",
+          "file": "1ce8015d251c5511ce295d1b05d67c24009632bd1f025d85dd643669e85d56b8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1ce8015d251c5511ce295d1b05d67c24009632bd1f025d85dd643669e85d56b8.mp3",
+          "contentHash": "9b3ee843eb6a170b048529afc825f387534c129ddf372ac8f2e9f38ed001c463",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l03/s48/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The kitchen is here.",
+          "file": "e7ab658b4ab2921490b92b1485533004c453e208d89fc7c45bbdb682d9c12748.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e7ab658b4ab2921490b92b1485533004c453e208d89fc7c45bbdb682d9c12748.mp3",
+          "contentHash": "3cf62260124e94e62b3f961d9c7c4d2a0793f8c9a790adb57cb6637953a8bb9a",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l03/s48/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bathroom is there.",
+          "file": "f12a90f9a2e39f0e40a64879bbe17913737732fde5c17677898c0b966fdffe21.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f12a90f9a2e39f0e40a64879bbe17913737732fde5c17677898c0b966fdffe21.mp3",
+          "contentHash": "a9e3ca2b306163a007cbe1ca37542cafa1b7b31272b607278daf171f2dadd38d",
+          "byteSize": 56448
+        }
+      ]
+    },
+    "l03/s48/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bedrooms are there.",
+          "file": "d53e56cdfccea97cea9c4b5f4c822ceefd4d1b9775daec8239cc52ef098a5586.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d53e56cdfccea97cea9c4b5f4c822ceefd4d1b9775daec8239cc52ef098a5586.mp3",
+          "contentHash": "37786252330b7a2f2ddd4aac293a6ad725e6db140172d59ab81896b08c5f1130",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s48/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "kitchen",
+          "file": "2ea3a5123ffc106520476aa70b5db63b1461f3dd577a7301368cdb25f3a3668f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ea3a5123ffc106520476aa70b5db63b1461f3dd577a7301368cdb25f3a3668f.mp3",
+          "contentHash": "aabbaf398ea9135029010e4bb5a8fe07eaead451099319bd3d1f3193e07e8d33",
+          "byteSize": 20352
+        },
+        {
+          "text": "bathroom",
+          "file": "3be14eb3ab3a6137327a8cda5a440ab33e010847d831c0ff1ccb13c0518b91ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3be14eb3ab3a6137327a8cda5a440ab33e010847d831c0ff1ccb13c0518b91ff.mp3",
+          "contentHash": "267bdab79d8a83fb1864d2ebf65a4ac0bc4d69ef75f6f703365b50b9a1d4961e",
+          "byteSize": 23040
+        },
+        {
+          "text": "bedrooms",
+          "file": "b9d69bfb1908459876fcf3ba28c1e1b709f1f18ce0aa0c9f13305da8473d534c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9d69bfb1908459876fcf3ba28c1e1b709f1f18ce0aa0c9f13305da8473d534c.mp3",
+          "contentHash": "21b70cacea2bdcb32f5669a0d9be3025a3d5f3262d4cc4e99afab9303be8c73e",
+          "byteSize": 25344
+        },
+        {
+          "text": "hotels",
+          "file": "f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "contentHash": "a042cae9fdf3b3dc5f7d39f857106075bab6cfc6a86b031b68fab8f010f70e0b",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l03/s48/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "These are hotels.",
+          "file": "74c94638cf93e9062815bb5fc7ee3c2f88a78670fa85a5876deabfdab93291cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/74c94638cf93e9062815bb5fc7ee3c2f88a78670fa85a5876deabfdab93291cc.mp3",
+          "contentHash": "bb37df682e607285d298bbd926cb44f3511dbb0c0b67eb4f21e2d8d59bf3921e",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l03/s48/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is an office.",
+          "file": "90eb8dca5ba834817b31445b443784e24956e7a89c6ad3ca655f7b0298d24828.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90eb8dca5ba834817b31445b443784e24956e7a89c6ad3ca655f7b0298d24828.mp3",
+          "contentHash": "6e56625551b0ca1795ff6eb91f552671ccbed5be4cfaf34d10fef4f043574ecb",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l03/s48/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The airport is there.",
+          "file": "136493aebf74b98434a2c2cba8348024aff9597b35322dac87d35d083e6d8778.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/136493aebf74b98434a2c2cba8348024aff9597b35322dac87d35d083e6d8778.mp3",
+          "contentHash": "992f291cc59aece1c84b461d9242f525c21cf9777e28115e01f56837f09a7010",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l03/s48/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is an office.",
+          "file": "1251eaa4ae53dafba36287af0a7cf772667c1acca71ba9a847be646b89f4f061.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1251eaa4ae53dafba36287af0a7cf772667c1acca71ba9a847be646b89f4f061.mp3",
+          "contentHash": "2aa9c7ed6031964dc1cce7819edaf512fa91dc4066b07d524cc9d2fcf0e0543e",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s48/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Those are restaurants.",
+          "file": "56bb47c00dea755b72f96c6d1661ad30a3b7cf59e9c31f2e1331c9d92ea8dd06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56bb47c00dea755b72f96c6d1661ad30a3b7cf59e9c31f2e1331c9d92ea8dd06.mp3",
+          "contentHash": "806eff7b64ec2f88f631510b7f636bc0aaa6cc53fdbcaf3326bb05ca6c9f98ac",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s48/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "office",
+          "file": "dc059ca5a4f3896301ee5d94f6b620098e38794a3a3cbc7613f0c06cb04f02fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc059ca5a4f3896301ee5d94f6b620098e38794a3a3cbc7613f0c06cb04f02fd.mp3",
+          "contentHash": "47495d463e6136eff2ef55b3b9183db34efc8b3e6fcfad34fe0b1b38b597191c",
+          "byteSize": 39552
+        },
+        {
+          "text": "airport",
+          "file": "dc764529f39ff54be94e3bbe69ffbd4c9d9a2151783ed89d8b8c507926955399.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc764529f39ff54be94e3bbe69ffbd4c9d9a2151783ed89d8b8c507926955399.mp3",
+          "contentHash": "fef0d39d419f61eb44f08e4f8a18d01c9216b79c4602778b310a9a20df141dd6",
+          "byteSize": 30720
+        },
+        {
+          "text": "restaurants",
+          "file": "7a4da83d9035639dc8e0f70b38cdc369ef8780676a22a92b6460a9cccc36fc76.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a4da83d9035639dc8e0f70b38cdc369ef8780676a22a92b6460a9cccc36fc76.mp3",
+          "contentHash": "7742bcef48c75dc892807d41372d6d0b249c44ef44c2d371d4b419c47286446b",
+          "byteSize": 21888
+        },
+        {
+          "text": "hotels",
+          "file": "974a2d7b20abc29c9f4261dba00cd2d1c95ec18d76bb8f02d3c41bb58f8031d7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/974a2d7b20abc29c9f4261dba00cd2d1c95ec18d76bb8f02d3c41bb58f8031d7.mp3",
+          "contentHash": "a80ef1f41910cfb39a050bf5e1c3f5bf5e663bf8cbf25ff4ed34634699eb47ee",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l03/s48/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a kitchen.",
+          "file": "40f3392311cb803ef359e1c299e160532f0ac75d03a50a6d8dbada345c96374c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/40f3392311cb803ef359e1c299e160532f0ac75d03a50a6d8dbada345c96374c.mp3",
+          "contentHash": "cf57b3f68b804e2217fbf11485eaf6afad9afe6db1bdd562989925a7544c0c39",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l03/s48/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The bedrooms are here.",
+          "file": "6e7f5325ca1856cc22739d52881fcd791d91b617e72909e8b4a62a22dec8f4fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e7f5325ca1856cc22739d52881fcd791d91b617e72909e8b4a62a22dec8f4fb.mp3",
+          "contentHash": "0fcccae358390c2b289fe44bbc8876fed57dd5d159099ce5c5f8fe9ba9ee02bd",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l03/s48/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bathroom is here.",
+          "file": "908d1502df8a15a4697ecb00c312a92ce321cc9c7cfc094104ae9ca89e736dc6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/908d1502df8a15a4697ecb00c312a92ce321cc9c7cfc094104ae9ca89e736dc6.mp3",
+          "contentHash": "bac2b0f4d6c7ded57bdb3e937a9d0ecaefc20c62e632f715df616eeabf1d3222",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l03/s48/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The hotels are there.",
+          "file": "b8961daf91263feb35efa6e4f801a8a675f26b50a78b7b67d04c9b42358a3620.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8961daf91263feb35efa6e4f801a8a675f26b50a78b7b67d04c9b42358a3620.mp3",
+          "contentHash": "bf1ed286853f31b4e5941bb6e98ba2831cf755fa82cd5ad01a378fbb818dc368",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l03/s48/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "That is an airport.",
+          "file": "e45e2a9a8339a0eee0ddb5aa248aba715b99a8b022b3b1ff4b3847f2628b30bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e45e2a9a8339a0eee0ddb5aa248aba715b99a8b022b3b1ff4b3847f2628b30bc.mp3",
+          "contentHash": "7838bb2088e2a3911e4c0e693b0ccb05b36799f3e8afda3b9bc2e123f07b21e8",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l03/s48/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "a kitchen",
+          "file": "3cec8df792b741792744c47999672caeaaf4dc70aeb9c49a91a6332e501056dc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3cec8df792b741792744c47999672caeaaf4dc70aeb9c49a91a6332e501056dc.mp3",
+          "contentHash": "0abd048f1023fafa91a312964f2eab831fe0615243c33d6be01d2847ae404fca",
+          "byteSize": 38016
+        },
+        {
+          "text": "an office",
+          "file": "8902cf29abe6b42bf986780a84e3f3fd8cfc3a9d80b49324457854dd23fe032d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8902cf29abe6b42bf986780a84e3f3fd8cfc3a9d80b49324457854dd23fe032d.mp3",
+          "contentHash": "c276dbc53e63448768c3a0dd067da429cd16aaf5f4f344cd1f5498949ed2274d",
+          "byteSize": 36480
+        },
+        {
+          "text": "an airport",
+          "file": "486c3397bdd1e5e4a22e06ec9a71415279675a9c4647cde422d3154c9b283603.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/486c3397bdd1e5e4a22e06ec9a71415279675a9c4647cde422d3154c9b283603.mp3",
+          "contentHash": "bb89f3377cf1aae98ec32fd7aeba35a6281cf230199404864db114189eda3613",
+          "byteSize": 32256
+        },
+        {
+          "text": "a bathroom",
+          "file": "208fb06aef734ab3c666276916fd0bf23638f94ea1c7132edda4075b665216da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/208fb06aef734ab3c666276916fd0bf23638f94ea1c7132edda4075b665216da.mp3",
+          "contentHash": "6a89fcee2488483a5ee19dd770e15f8e94a7df6cd9ceecf6fcbaec0cbe9f9517",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l03/s48/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The restaurants are here.",
+          "file": "0c4616b0d6c7ee3126ed042b519f6513c259412c5ee98db779f31172321eae5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c4616b0d6c7ee3126ed042b519f6513c259412c5ee98db779f31172321eae5e.mp3",
+          "contentHash": "705d159763c0fc17014a0d823793d71b861225e8c1456c7be1680caeb300258c",
+          "byteSize": 29952
+        }
+      ]
     }
   },
   "settings": {

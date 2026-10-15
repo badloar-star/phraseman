@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-36:i01",
-    "correctText": "tree",
-    "correctResponseId": "en:lesson-03:session-36:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i03",
-    "correctText": "flower",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i05",
-    "correctText": "bicycle",
+    "correctText": "The chairs are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i02",
-    "correctText": "tree",
-    "correctResponseId": null
+    "correctText": "children",
+    "correctResponseId": "en:lesson-03:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i03",
+    "correctText": "children",
+    "correctResponseId": "en:lesson-03:session-36:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-36:i04",
-    "correctText": "flower",
-    "correctResponseId": "en:lesson-03:session-36:i04:r1"
+    "correctText": "en:lesson-03:session-36:i04:p1=children\nen:lesson-03:session-36:i04:p2=sleepy\nen:lesson-03:session-36:i04:p3=informal\nen:lesson-03:session-36:i04:p4=chairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i05",
+    "correctText": "These are children.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i06",
-    "correctText": "bicycle",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i08",
-    "correctText": "tree",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i09",
-    "correctText": "flower",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i10",
-    "correctText": "bicycle",
+    "correctText": "Those children are sleepy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i07",
-    "correctText": "en:lesson-03:session-36:i07:p1=tree\nen:lesson-03:session-36:i07:p2=flower\nen:lesson-03:session-36:i07:p3=bicycle\nen:lesson-03:session-36:i07:p4=frame",
+    "correctText": "I'm sleepy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i08",
+    "correctText": "These",
+    "correctResponseId": "en:lesson-03:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i09",
+    "correctText": "It is informal.",
+    "correctResponseId": "en:lesson-03:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i10",
+    "correctText": "en:lesson-03:session-36:i10:p1=these\nen:lesson-03:session-36:i10:p2=those\nen:lesson-03:session-36:i10:p3=children\nen:lesson-03:session-36:i10:p4=chairs",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i11",
-    "correctText": "That is a flower.",
+    "correctText": "Those chairs are outside.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i12",
-    "correctText": "Это велосипед",
-    "correctResponseId": "en:lesson-03:session-36:i12:r1"
+    "correctText": "These chairs are here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i13",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-03:session-36:i13:r1"
+    "correctText": "It's informal.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i14",
-    "correctText": "Those are bicycles.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-36:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-36:i15",
-    "correctText": "That is a tree.",
+    "correctText": "These children are sleepy.",
+    "correctResponseId": "en:lesson-03:session-36:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i16",
+    "correctText": "en:lesson-03:session-36:i16:p1=children\nen:lesson-03:session-36:i16:p2=sleepy\nen:lesson-03:session-36:i16:p3=informal\nen:lesson-03:session-36:i16:p4=chairs",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-36:i16:s01",
-    "correctText": "Those are flowers.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i16:s02",
-    "correctText": "Those are photos.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i17:s01",
-    "correctText": "Those are trees.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i17:s02",
-    "correctText": "That is a flower.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-36:i17:s03",
-    "correctText": "Those are bicycles.",
+    "interactionId": "en:lesson-03:session-36:i17",
+    "correctText": "Those are children.",
     "correctResponseId": null
   }
 ]

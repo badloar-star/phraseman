@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-36:intro1:r2": {
+          "ru": "`child` — один ребёнок; несколько — `children`.",
+          "uk": "`child` — одна дитина; кілька — `children`."
+        },
+        "en:lesson-03:session-36:intro1:r3": {
+          "ru": "`children` уже означает «дети», дополнительное `s` не нужно.",
+          "uk": "`children` уже означає «діти», додаткове `s` не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-36:intro2:r2": {
+          "ru": "`That` — один. Детей несколько и они дальше: `Those`.",
+          "uk": "`That` — один. Дітей кілька й вони далі: `Those`."
+        },
+        "en:lesson-03:session-36:intro2:r3": {
+          "ru": "Детей несколько: нужно `are`.",
+          "uk": "Дітей кілька: потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-36:intro3:r2": {
+          "ru": "`formal` — «официальная». Здесь встреча непринуждённая: `informal`.",
+          "uk": "`formal` — «офіційна». Тут зустріч невимушена: `informal`."
+        },
+        "en:lesson-03:session-36:intro3:r3": {
+          "ru": "Речь об одной встрече: `It is informal`.",
+          "uk": "Ідеться про одну зустріч: `It is informal`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d909083825c19d7a700c5d375c28f9d8b15da460ba6cb049aafc71dbd0b04fe5"
+}

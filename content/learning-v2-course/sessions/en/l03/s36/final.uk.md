@@ -1,166 +1,138 @@
-# Англійська · Урок 3 · Заняття 36 — «Один чи кілька — на слух»
+# Англійська · Урок 3 · Заняття 36 — Діти на ранковій зустрічі
 
-**Сцена заняття.** Ви з другом стоїте надворі біля вітрини магазину товарів для саду й прогулянок; за склом виставлено дерево в горщику, квіти та велосипеди. Динамік по черзі описує один товар або кілька, а ви на слух знаходите потрібне у вітрині.
+**Ситуація.** Ви з Анною зустрічаєте сім’ї в клубі рано-вранці. Діти поруч розглядають книжки, інша група чекає в дальньому кінці кімнати. Олег розставляє стільці. Зустріч проходить без офіційних виступів: можна просто познайомитися й поговорити.
 
-**Як сказати:** розрізняти `that is` і `those are`, однину та множину на слух
-**Нові слова:** tree, flower, bicycle
-**Для повторення:** that, those, is, are, this, these, photo, frame
+**Що ви опануєте:** назвати дітей поруч і далі, використовуючи форму children, та описати їхній стан
+**Нові слова:** children
 
 ---
 
 ## Інтро 1
 
-### Одне дерево за склом
+### Діти без зайвого s
 
-`tree` — «дерево». У цій вітрині стоїть одне дерево в горщику: `That is a tree.` — «Це дерево». На слух початок `that is` одразу повідомляє, що предмет один; `a tree` це підтверджує. Для кількох дерев прозвучало б `Those are trees.` Спочатку ловіть початок фрази — він рахує швидше за очі.
+`child` — «дитина», `children` — «діти». Тут для кількох не додаємо звичайне `s`: запам’ятовуємо `children`, не `childs` і не `childrens`. `These are children` — «Це діти», показуємо на кількох поруч. `children` уже означає кількох: додаткове `s` не приведе на зустріч іще одну дитину.
 
-**За склом стоїть одне невелике дерево. Виберіть точний опис.**
+**Перед вами кілька дітей. Назвіть їх одним англійським словом.**
 
-- ✅ **That is a tree.**
-- ❌ Those are trees. — *Так описують кілька дерев далі. У вітрині зараз одне дерево, тому потрібні `that is` і `a tree`.*
-- ❌ That are a tree. — *`that` стосується одного предмета й поєднується з `is`, а не з `are`.*
+- ✅ **children**
+- ❌ child — *`child` — одна дитина; кілька — `children`.*
+- ❌ childrens — *`children` уже означає «діти», додаткове `s` не потрібне.*
 
 ---
 
 ## Інтро 2
 
-### Для кількох квітів — інша пара
+### Ті діти ще сонні
 
-`flower` — «квітка», `flowers` — «квіти». У вітрині виставлено кілька квітів: `Those are flowers.` — «Це квіти». Початок `those are` повідомляє про кілька предметів, а форма `flowers` підтверджує число. Для однієї квітки прозвучало б `That is a flower.` Число чути двічі: на початку фрази й у формі іменника.
+`sleepy` — «сонний»: хочеться спати, але людина не обов’язково вже спить. `Those children are sleepy` — «Ті діти сонні», говоримо про групу далі від нас. `Those children` — кілька дітей далі, тому після них потрібно `are`. Для дітей поруч змінюємо `Those` на `These`.
 
-**У дальній частині вітрини стоїть кілька квітів. Яку фразу ви почуєте?**
+**Діти в дальньому кінці кімнати позіхають, їм хочеться спати. Скажіть «Ті діти сонні».**
 
-- ✅ **Those are flowers.**
-- ❌ That is a flower. — *Так описують одну квітку. Тут квітів кілька, тому потрібні `those are` і форма `flowers`.*
-- ❌ Those is flowers. — *Після `those` потрібна форма `are`: пара `those is` не узгоджується за числом.*
+- ✅ **Those children are sleepy.**
+- ❌ That children are sleepy. — *`That` — один. Дітей кілька й вони далі: `Those`.*
+- ❌ Those children is sleepy. — *Дітей кілька: потрібно `are`.*
 
 ---
 
 ## Інтро 3
 
-### Три сигнали в одному записі
+### Зустріч без церемоній
 
-`bicycle` — «велосипед», `bicycles` — «велосипеди». У вітрині стоїть один велосипед: `That is a bicycle.` — «Це велосипед». Для кількох прозвучить `Those are bicycles.` Слухайте всю пару `that is` або `those are`, а не полюйте лише на останній звук: початок уже підказує число.
+`informal` — «неформальний, невимушений». Про нашу зустріч можна сказати `It is informal` — «Вона неформальна»: немає суворого порядку виступів, учасники просто спілкуються. Це не означає, що зустріч таємна чи заборонена. Поки всі знайомляться, Олег розставляє стільці: `These chairs are here` — «Ці стільці тут». `these chairs` — кілька стільців поруч.
 
-**У записі працівник магазину описує один велосипед за склом. Виберіть почуту фразу.**
+**Зустріч проходить невимушено, без офіційних виступів. Скажіть про неї «Вона неформальна».**
 
-- ✅ **That is a bicycle.**
-- ❌ Those are bicycles. — *Тут три сигнали кількох предметів: `those`, `are` і `bicycles`. У записі названо один велосипед.*
-- ❌ Those is a bicycle. — *`those` потребує множини й форми `are`. Для одного велосипеда потрібно `that is`.*
+- ✅ **It is informal.**
+- ❌ It is formal. — *`formal` — «офіційна». Тут зустріч невимушена: `informal`.*
+- ❌ It are informal. — *Ідеться про одну зустріч: `It is informal`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-36:i01; family: listen_choose -->
-Ціль: `tree`
-Варіанти: `tree`
+**1 · Олег шукає стільці для зустрічі. Повідомте «Стільці тут»**
+<!-- interaction_id: en:lesson-03:session-36:i01; family: phrase_builder -->
+Плитки: `here` `are` `chairs` `The` `is` → **The chairs are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The chairs are here.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-36:i03; family: scripted_repeat_compare -->
-Ціль: `flower`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-36:i02; family: listen_choose -->
+🔊 *children* → **children** · cats · chairs
+- cats — *У записі перше слово — `children`, а в цьому варіанті — `cats`.*
+- chairs — *У записі перше слово — `children`, а в цьому варіанті — `chairs`.*
 
-**3 · Вставте слово — на ціннику під предметом із педалями**
-<!-- interaction_id: en:lesson-03:session-36:i05; family: context_gap_grammar -->
-Ціль: `___`
-Варіанти: `bicycle` · `flower` · `tree`
-- ✅ bicycle — *Предмет із педалями — це `bicycle`, «велосипед».*
-- flower — *`flower` — це квітка. В умові названо предмет із педалями, тому потрібне `bicycle`.*
-- tree — *`tree` — це дерево. Педалі є у велосипеда, тому потрібне `bicycle`.*
+**3 · Назвіть кількох дітей одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-36:i03; family: context_gap_grammar -->
+___ → **children** · child · childrens
+- child — *`child` — одна дитина. Тут потрібне `children`.*
+- childrens — *Для кількох дітей потрібне `children`, без додаткового `s`.*
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-36:i02; family: scripted_repeat_compare -->
-Ціль: `tree`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-36:i04; family: speed_match -->
+children — діти · sleepy — сонний · informal — неформальний, невимушений · chairs — стільці
 
-**5 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-36:i04; family: listen_choose -->
-Ціль: `flower`
-Варіанти: `flower`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-36:i05; family: listen_build_dictation -->
+🔊 *These are children.* Плитки: `children` `are` `These` `is` → **These are children.**
+*(плитка `is` зайва: тут потрібно `are` — `These are children.`)*
 
-**6 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-36:i06; family: scripted_repeat_compare -->
-Ціль: `bicycle`
+**6 · Дітям в іншому кінці кімнати хочеться спати. Скажіть «Ті діти сонні»**
+<!-- interaction_id: en:lesson-03:session-36:i06; family: phrase_builder -->
+Плитки: `sleepy` `are` `children` `Those` `is` → **Those children are sleepy.**
+*(плитка `is` зайва: тут потрібно `are` — `Those children are sleepy.`)*
 
-**7 · З'єднайте слова зі значеннями — сезонна вітрина**
-<!-- interaction_id: en:lesson-03:session-36:i07; family: speed_match -->
-Пари: `tree` — дерево · `flower` — квітка · `bicycle` — велосипед · `frame` — рамка
-Ціль: `tree · flower · bicycle · frame`
+**7 · Ви теж рано встали, і вам хочеться спати. Скажіть «Я сонний» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-36:i07; family: scripted_repeat_compare -->
+🎙 **I'm sleepy.**
 
-**8 · Складіть фразу — одне дерево за склом**
-<!-- interaction_id: en:lesson-03:session-36:i08; family: phrase_builder -->
-Ціль: `That is a tree.`
+**8 · Ви показуєте на кількох дітей просто поруч із вами**
+<!-- interaction_id: en:lesson-03:session-36:i08; family: context_gap_grammar -->
+___ are children. → **These** · This · That
+- This — *`This` — один. Для кількох поруч потрібне `These`.*
+- That — *`That` — один далі. Тут кілька поруч: `These`.*
 
-**9 · Послухайте та складіть фразу — одна рамка поруч із вітриною**
-<!-- interaction_id: en:lesson-03:session-36:i09; family: listen_build_dictation -->
-Ціль: `That is a frame.`
+**9 · Послухайте опис зустрічі**
+<!-- interaction_id: en:lesson-03:session-36:i09; family: listen_choose -->
+🔊 *It is informal.* → **It is informal.** · It is formal. · It is unusual.
+- It is formal. — *У записі останнє слово — `informal`, а в цьому варіанті — `formal`.*
+- It is unusual. — *У записі останнє слово — `informal`, а в цьому варіанті — `unusual`.*
 
-**10 · Промовте фразу — на плакаті одна фотографія**
-<!-- interaction_id: en:lesson-03:session-36:i10; family: scripted_repeat_compare -->
-Ціль: `That is a photo.`
+**10 · З’єднайте слова зі значеннями для наших прикладів**
+<!-- interaction_id: en:lesson-03:session-36:i10; family: speed_match -->
+these — ці, кілька поруч · those — ті, кілька далі · children — діти · chairs — стільці
 
-**11 · Послухайте й складіть — за склом одна квітка**
+**11 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-36:i11; family: listen_build_dictation -->
-Ціль: `That is a flower.`
-Плитки: `That` `is` `a` `flower` `Those` `are` `flowers`
-*(плитка `Those` зайва: у записі одна квітка, тому початок `That is`.)*
-*(плитка `are` зайва: з однією квіткою потрібна форма `is`.)*
-*(плитка `flowers` зайва: у записі один `flower`, а не кілька квітів.)*
+🔊 *Those chairs are outside.* Плитки: `outside` `are` `chairs` `Those` `is` → **Those chairs are outside.**
+*(плитка `is` зайва: тут потрібно `are` — `Those chairs are outside.`)*
 
-**12 · Послухайте й виберіть точне значення фрази**
-<!-- interaction_id: en:lesson-03:session-36:i12; family: listen_choose -->
-Ціль: `That is a bicycle.`
-Варіанти: `То велосипед.` · `То велосипеди.` · `То дерево.` · `То квіти.`
-- ✅ То велосипед. — *`That is` і `a bicycle` указують на один велосипед.*
-- То велосипеди. — *`That is` і `a bicycle` указують на один велосипед.*
-- То дерево. — *Число збігається, але в записі названо `bicycle`, а не `tree`.*
-- То квіти. — *У записі один предмет і слово `bicycle`; квітів було б кілька.*
+**12 · Ви показуєте на стільці просто перед вами. Скажіть «Ці стільці тут»**
+<!-- interaction_id: en:lesson-03:session-36:i12; family: phrase_builder -->
+Плитки: `here` `are` `chairs` `These` `is` → **These chairs are here.**
+*(плитка `is` зайва: тут потрібно `are` — `These chairs are here.`)*
 
-**13 · Вставте форму — за склом кілька велосипедів**
-<!-- interaction_id: en:lesson-03:session-36:i13; family: context_gap_grammar -->
-Ціль: `Those ___ bicycles.`
-Варіанти: `are` · `is` · `am` · `be`
-- ✅ are — *Після `Those` і кількох велосипедів потрібна форма `are`.*
-- is — *`is` стосується одного предмета. Після `those` потрібна форма `are`.*
-- am — *`am` працює з `I`, а тут ідеться про кілька велосипедів.*
-- be — *У цій фразі потрібна готова форма `are`, а не словникова форма `be`.*
+**13 · Анна запитує про характер зустрічі. Вона невимушена, без офіційних виступів. Скажіть «Вона неформальна» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-36:i13; family: scripted_repeat_compare -->
+🎙 **It's informal.**
 
-**14 · Складіть опис — за склом кілька велосипедів**
-<!-- interaction_id: en:lesson-03:session-36:i14; family: phrase_builder -->
-Ціль: `Those are bicycles.`
-Плитки: `Those` `are` `bicycles` `That` `is` `a` `bicycle`
-*(плитка `That` зайва: тут кілька велосипедів, тому потрібно `Those`.)*
-*(плитка `is` зайва: з кількома велосипедами потрібна форма `are`.)*
-*(плитка `a` зайва: перед кількома велосипедами артикль `a` не ставлять.)*
-*(плитка `bicycle` зайва: тут кілька `bicycles`.)*
+**14 · Ви повідомляєте, що кільком дітям у дальньому кінці кімнати хочеться спати**
+<!-- interaction_id: en:lesson-03:session-36:i14; family: context_gap_grammar -->
+Those children ___ sleepy. → **are** · is · am
+- is — *`children` — кілька дітей: потрібно `are`.*
+- am — *З `Those children` тут потрібно `are`.*
 
-**15 · Промовте опис одного дерева за склом**
-<!-- interaction_id: en:lesson-03:session-36:i15; family: scripted_repeat_compare -->
-Ціль: `That is a tree.`
+**15 · Послухайте й виберіть точну фразу**
+<!-- interaction_id: en:lesson-03:session-36:i15; family: listen_choose -->
+🔊 *These children are sleepy.* → **These children are sleepy.** · Those children are sleepy. · The children are sleepy.
+- Those children are sleepy. — *У записі перше слово — `These`, а в цьому варіанті — `Those`.*
+- The children are sleepy. — *У записі перше слово — `These`, а в цьому варіанті — `The`.*
 
-**16 · Послухайте та складіть одну фразу — кілька квітів**
-<!-- interaction_id: en:lesson-03:session-36:i16:s01; family: listen_build_dictation -->
-Ціль: `Those are flowers.`
-Плитки: `Those` `are` `flowers` `photo`
-*(плитка `photo` зайва: у записі кілька квітів, а не фотографія.)*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-36:i16; family: speed_match -->
+children — діти · sleepy — сонний · informal — неформальний, невимушений · chairs — стільці
 
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-36:i16:s02; family: scripted_repeat_compare -->
-Ціль: `Those are photos.`
-
-**18 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-36:i17:s01; family: phrase_builder -->
-Ціль: `Those are trees.`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-36:i17:s02; family: scripted_repeat_compare -->
-Ціль: `That is a flower.`
-
-**20 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-36:i17:s03; family: listen_build_dictation -->
-Ціль: `Those are bicycles.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=phrase_builder, 9=listen_build_dictation, 10=scripted_repeat_compare, 11=listen_build_dictation, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation
+**17 · На іншій зустрічі гість запитує про групу людей у дальньому кінці кімнати. Там діти. Назвіть їх повною фразою зі словом для кількох далі**
+<!-- interaction_id: en:lesson-03:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Those are children.**
 

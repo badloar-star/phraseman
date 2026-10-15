@@ -1,155 +1,138 @@
-# Англійська · Урок 2 · Заняття 49 — «Як минув тиждень?»
+# Англійська · Урок 2 · Заняття 49 — Замовлення з помилкою
 
-**Сцена заняття.** У неділю ввечері ви з другом сидите у спільній вітальні хостелу й гортаєте фотографії за тиждень. Він запитує про людей і місця на знімках. Потім ви збираєтеся вийти на вечірню прогулянку.
+**Ситуація.** Ви з Анною отримали надруковані запрошення. Ціна була низькою, але в першій партії неправильно вказано дату й адресу. Для розсилання гостям такий результат не підходить. Ви перевіряєте виправлений варіант.
 
-**Як сказати:** змішане повторення знайомих запитань і коротких відповідей
-**Нові слова:** —
-**Повертаються:** tired, manager, near, ready
+**Що ви опануєте:** сказати, що результат неприйнятний, та уточнити оцінку
+**Нові слова:** unacceptable
 
 ---
 
 ## Інтро 1
 
-### Відповісти про себе
+### Так прийняти не можна
 
-`Yes, I am` — «Так», якщо вас запитали `Are you tired?` — «Ви втомилися?» Навіть про втому можна сказати без зайвих зусиль: `tired` уже прозвучало, тож повторювати його не треба. У короткій відповіді залишається `I am`: говоримо про себе, а з `I` потрібне `am`, не `is`.
+`unacceptable` — «неприйнятний»: результат не можна прийняти за потрібними вимогами. На запрошеннях неправильні дата й адреса: `It is unacceptable`. Тут оцінюємо якість замовлення. Низька ціна не допоможе гостям знайти свято, якщо запрошення відправляє їх на інший кінець міста.
 
-**Друг запитує, чи ви втомилися після насиченого тижня. Ви втомилися. Дайте коротку відповідь.**
+**У запрошеннях неправильні дата й адреса. Такий результат не можна прийняти для розсилання. Скажіть повною фразою, що він неприйнятний.**
 
-- ✅ **Yes, I am.**
-- ❌ Yes, I is. — *Після `I` потрібне `am`, а не `is`: `Yes, I am`.*
-- ❌ Yes, am. — *У цій короткій відповіді зникло `I`. Збережіть обидва слова: `Yes, I am`.*
+- ✅ **It is unacceptable.**
+- ❌ It is acceptable. — *Це «прийнятний». За умовою результат прийняти не можна.*
+- ❌ It unacceptable. — *Між `It` і `unacceptable` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### Людина чи назва
+### Перевірити оцінку
 
-`Who is he?` — «Хто він?» Так дізнаються, що це за людина. А `What is the name?` — «Яка назва?» — запитують про місце, яке вже обговорюють. Спочатку вирішіть, що хочете дізнатися: хто перед вами чи як називається місце. Від цього й залежить вибір між `Who` та `What`.
+`Is it unacceptable?` — «Це неприйнятно?» Відповідь `Yes, it is` підтверджує, що варіант не можна прийняти. `No, it is not` заперечує це. Слово `unacceptable` сильніше за просте «мені не дуже подобається»: ви кажете, що результат не відповідає необхідним вимогам.
 
-**Друг показує на незнайомого чоловіка на фотографії. Ви хочете дізнатися, хто він. Запитайте.**
+**Анна запитує «Is it unacceptable?» про партію з неправильними датою й адресою. Підтвердьте короткою відповіддю «так».**
 
-- ✅ **Who is he?**
-- ❌ Where is he? — *Це запитання про місце. Ви хочете дізнатися, хто цей чоловік, тому потрібне `Who`.*
-- ❌ What is the name? — *Це запитання про назву в прикладі з місцем. Зараз ви запитуєте про чоловіка: `Who is he?`*
+- ✅ **Yes, it is.**
+- ❌ No, it is not. — *Це заперечує неприйнятність. За умовою результат не можна прийняти.*
+- ❌ Yes, it are. — *З `it` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Де розташована й чи близько
+### Ціна й точність
 
-`Where is the station?` — «Де станція?» Так дізнаються, де вона розташована. `Is it near?` — «Це близько?» — уточнює відстань, якщо зрозуміло, про що йдеться. Почути «близько» приємно, але куди йти — досі загадка. Тому, щоб знайти станцію, потрібне запитання з `Where`.
+`cheap` — «дешевий, недорогий»: друк коштував мало, `It is cheap`. `accurate` — «точний»: дата й адреса збігаються з правильними даними, `They are accurate`. Ціна й точність — різні ознаки. Недороге замовлення може бути точним; у нашому першому варіанті помилка справді є.
 
-**Друг згадав станцію, але не показав її на карті. Дізнайтеся, де вона.**
+**Ви звірили дату й адресу у виправленому варіанті: обидві вказано правильно. Коротко скажіть, що вони точні.**
 
-- ✅ **Where is the station?**
-- ❌ Is it near? — *Так ви уточните відстань. Зараз вам треба дізнатися, де саме розташована станція.*
-- ❌ What is the station? — *Це запитання «Що це за станція?» Воно не з’ясовує, де вона розташована.*
+- ✅ **They're accurate.**
+- ❌ They're cheap. — *Це про ціну. Ви перевірили точність відомостей.*
+- ❌ It's accurate. — *Тут говоримо одразу про дату й адресу: `They're`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть — яка репліка прозвучала на початку розмови**
-<!-- interaction_id: en:lesson-02:session-49:i01; family: listen_choose -->
-Ціль: `Are you tired?`
-Варіанти: `Are you tired?` · `Am I tired?` · `Are you ready?`
-- Am I tired? — *Це запитання про себе. У записі друг починає з `Are you` й звертається до вас.*
-- Are you ready? — *Це запитання про готовність. Останнє слово в записі — `tired`, «втомлений».*
+**1 · У замовленні неправильні дата й адреса. Такий результат прийняти не можна. Скажіть повною фразою, що він неприйнятний**
+<!-- interaction_id: en:lesson-02:session-49:i01; family: phrase_builder -->
+Плитки: `unacceptable` `is` `It` `are` → **It is unacceptable.**
+*(плитка `are` зайва: тут потрібно `is` — `It is unacceptable.`)*
 
+**2 · Послухайте фразу про замовлення**
+<!-- interaction_id: en:lesson-02:session-49:i02; family: listen_choose -->
+🔊 *It is cheap.* → **It is cheap.** · It is accurate. · It is acceptable.
+- It is accurate. — *У записі останнє слово — `cheap`, а в цьому варіанті — `accurate`.*
+- It is acceptable. — *У записі останнє слово — `cheap`, а в цьому варіанті — `acceptable`.*
 
-**2 · Вставте слово — друг запитав, чи ви втомилися; ви втомилися, дайте коротку відповідь: «Так»**
-<!-- interaction_id: en:lesson-02:session-49:i02; family: context_gap_grammar -->
-Ціль: `Yes, I ___ .`
-Варіанти: `am` · `are` · `is`
-- are — *Ви відповідаєте про себе: `Yes, I am`. Тут потрібне `am`.*
-- is — *Сполучення `I is` не підходить для цієї відповіді. Скажіть `Yes, I am`.*
+**3 · Уточніть, чи цей результат неприйнятний**
+<!-- interaction_id: en:lesson-02:session-49:i03; family: context_gap_grammar -->
+___ it unacceptable? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it unacceptable?`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-49:i04; family: speed_match -->
+unacceptable — неприйнятний · acceptable — прийнятний · cheap — дешевий · accurate — точний
 
-**3 · Складіть фразу — друг відкрив фотографію з незнайомим вам чоловіком; запитайте, хто він**
-<!-- interaction_id: en:lesson-02:session-49:i03; family: phrase_builder -->
-Ціль: `Who is he?`
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-49:i05; family: listen_build_dictation -->
+🔊 *Yes, it is.* Плитки: `is` `it` `Yes,` `No,` → **Yes, it is.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, it is.`)*
 
-**4 · Вставте слово — ви працюєте в компанії перший тиждень; на наступному знімку — керівник Марко. Поясніть другові, хто такий Марко**
-<!-- interaction_id: en:lesson-02:session-49:i04; family: context_gap_grammar -->
-Ціль: `He is the ___ .`
-Варіанти: `manager` · `intern` · `host`
-- intern — *Це «стажер». На знімку чоловік, який керує вашою командою: `manager`.*
-- host — *Це «господар вечора». Зараз ви називаєте робочу роль чоловіка — `manager`.*
-
-
-**5 · Скажіть уголос — друг показує кафе на фотографії; запитайте, як воно називається**
-<!-- interaction_id: en:lesson-02:session-49:i05; family: scripted_repeat_compare -->
-Ціль: `What is the name?`
-
-**6 · Складіть фразу — друг згадав станцію біля району на фотографії; попросіть показати, де вона**
+**6 · Анна оглянула кілька зразків і відмовилася прийняти частину роботи. Запитайте, що неприйнятно**
 <!-- interaction_id: en:lesson-02:session-49:i06; family: phrase_builder -->
-Ціль: `Where is the station?`
+Плитки: `unacceptable` `is` `What` `Where` → **What is unacceptable?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is unacceptable?`)*
 
-**7 · Послухайте й виберіть — яка репліка прозвучала, коли друг повернувся до фотографії вашого керівника**
-<!-- interaction_id: en:lesson-02:session-49:i07; family: listen_choose -->
-Ціль: `Is he new?`
-Варіанти: `Is he new?` · `Is she new?` · `He is new.`
-- Is she new? — *Це запитання про жінку. У записі після `Is` звучить `he` — «він».*
-- He is new. — *Це повідомлення. Запис починається з `Is he`: друг ставить запитання.*
+**7 · У запрошеннях неправильна адреса. Коротко повідомте, що такий результат неприйнятний**
+<!-- interaction_id: en:lesson-02:session-49:i07; family: scripted_repeat_compare -->
+🎙 **It's unacceptable.**
 
+**8 · У виправленому варіанті дата й адреса точні. На «Are they accurate?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-49:i08; family: context_gap_grammar -->
+Yes, they ___. → **are** · am · is
+- am — *З `they` потрібно `are`.*
+- is — *Відповідь — `Yes, they are`.*
 
-**8 · Складіть фразу — керівник працює в компанії багато років; на запитання друга, чи він новенький, дайте коротку відповідь: «Ні»**
-<!-- interaction_id: en:lesson-02:session-49:i08; family: phrase_builder -->
-Ціль: `No, he is not.`
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-49:i09; family: listen_choose -->
+🔊 *Are they accurate?* → **Are they accurate?** · Are they cheap? · Are they acceptable?
+- Are they cheap? — *У записі останнє слово — `accurate`, а в цьому варіанті — `cheap`.*
+- Are they acceptable? — *У записі останнє слово — `accurate`, а в цьому варіанті — `acceptable`.*
 
-**9 · Вставте слово — ви обговорюєте дорогу від хостелу до станції; уточніть, чи близько вона**
-<!-- interaction_id: en:lesson-02:session-49:i09; family: context_gap_grammar -->
-Ціль: `Is it ___ ?`
-Варіанти: `near` · `ready` · `tired`
-- ready — *Це «готово». Ви запитуєте про відстань до станції: `near`.*
-- tired — *Це «втомлений». Для запитання про близькість станції потрібне `Is it near?`*
-
-
-**10 · З’єднайте пари — слова з розмови про тиждень**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-49:i10; family: speed_match -->
-Пари: `tired` — втомлений · `manager` — керівник · `near` — близько · `ready` — готовий
-Ціль: `tired · manager · near · ready`
+cheap — дешевий · accurate — точний · acceptable — прийнятний · unacceptable — неприйнятний
 
-**11 · Складіть фразу — тепер ви обговорюєте кафе на фотографії; запитайте, чи близько воно від хостелу**
-<!-- interaction_id: en:lesson-02:session-49:i11; family: phrase_builder -->
-Ціль: `Is it near?`
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-49:i11; family: listen_build_dictation -->
+🔊 *It is not acceptable.* Плитки: `acceptable` `not` `is` `It` `are` → **It is not acceptable.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not acceptable.`)*
 
-**12 · Послухайте й виберіть — яка репліка прозвучала у відповідь на запитання про кафе**
-<!-- interaction_id: en:lesson-02:session-49:i12; family: listen_choose -->
-Ціль: `I am not sure.`
-Варіанти: `I am not sure.` · `I am sure.` · `Are you sure?`
-- I am sure. — *Без `not` це «Я впевнений». У записі друг говорить, що не впевнений.*
-- Are you sure? — *Це запитання до співрозмовника. У записі друг повідомляє про себе: `I am not sure`.*
+**12 · Анна дізналася ціну нового друку. Запитайте, чи він недорогий**
+<!-- interaction_id: en:lesson-02:session-49:i12; family: phrase_builder -->
+Плитки: `cheap` `it` `Is` `Are` → **Is it cheap?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it cheap?`)*
 
+**13 · Ви звірили виправлені дату й адресу. Коротко повідомте, що вони точні**
+<!-- interaction_id: en:lesson-02:session-49:i13; family: scripted_repeat_compare -->
+🎙 **They're accurate.**
 
-**13 · Послухайте й складіть — друг повернувся до питання про відстань до станції**
-<!-- interaction_id: en:lesson-02:session-49:i13; family: listen_build_dictation -->
-Ціль: `It is not near.`
-
-**14 · Вставте слово — ви з другом плануєте вийти на прогулянку; уточніть, чи ви обоє готові**
+**14 · У старому варіанті неправильно вказано адресу. Скажіть, що вона не точна**
 <!-- interaction_id: en:lesson-02:session-49:i14; family: context_gap_grammar -->
-Ціль: `Are ___ ready?`
-Варіанти: `we` · `I` · `he`
-- I — *Це «я». Ви запитуєте про вас обох, тому потрібне `we`.*
-- he — *Це «він». Ви запитуєте про себе й друга, тому виберіть `we`: `Are we ready?`*
+It ___ not accurate. → **is** · am · are
+- am — *З `It` потрібно `is`.*
+- are — *Фраза — `It is not accurate`.*
 
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-49:i15; family: listen_choose -->
+🔊 *Is it unacceptable?* → **Is it unacceptable?** · Is it acceptable? · Is it accurate?
+- Is it acceptable? — *У записі останнє слово — `unacceptable`, а в цьому варіанті — `acceptable`.*
+- Is it accurate? — *У записі останнє слово — `unacceptable`, а в цьому варіанті — `accurate`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-49:i15; family: scripted_repeat_compare -->
-Ціль: `Am I wrong?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-49:i16; family: speed_match -->
+accurate — точний · unacceptable — неприйнятний · cheap — дешевий · acceptable — прийнятний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-49:i16; family: scripted_repeat_compare -->
-Ціль: `I am ready.`
-
-**17 · Складіть фразу — перед виходом ви хочете дізнатися, котра година; запитайте друга**
-<!-- interaction_id: en:lesson-02:session-49:i17; family: phrase_builder -->
-Ціль: `What is the time?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=context_gap_grammar, 5=scripted_repeat_compare, 6=phrase_builder, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=phrase_builder, 12=listen_choose, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · В іншому зразку Анна помітила дефект. Запитайте, чи цей результат неприйнятний**
+<!-- interaction_id: en:lesson-02:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it unacceptable?**
 

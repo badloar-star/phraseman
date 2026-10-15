@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-49:intro1:r2": {
+          "ru": "Это «приемлемый». По условию результат принять нельзя.",
+          "uk": "Це «прийнятний». За умовою результат прийняти не можна."
+        },
+        "en:lesson-02:session-49:intro1:r3": {
+          "ru": "Между `It` и `unacceptable` нужно `is`.",
+          "uk": "Між `It` і `unacceptable` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-49:intro2:r2": {
+          "ru": "Это отрицает неприемлемость. По условию результат нельзя принять.",
+          "uk": "Це заперечує неприйнятність. За умовою результат не можна прийняти."
+        },
+        "en:lesson-02:session-49:intro2:r3": {
+          "ru": "С `it` нужно `is`.",
+          "uk": "З `it` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-49:intro3:r2": {
+          "ru": "Это о цене. Вы проверили точность сведений.",
+          "uk": "Це про ціну. Ви перевірили точність відомостей."
+        },
+        "en:lesson-02:session-49:intro3:r3": {
+          "ru": "Здесь говорим сразу о дате и адресе: `They're`.",
+          "uk": "Тут говоримо одразу про дату й адресу: `They're`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1c075f613155534782d736407afce2fb42d9dc45745b38024df502433f9a3d4f"
+}

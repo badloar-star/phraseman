@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-01:session-36:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — colleagues",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам хочется спать. Соберите фразу о себе",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — colleagues",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хочется спать. Соберите фразу о себе",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i01:audio",
-          "transcript": "colleagues"
+        "family": "phrase_builder",
+        "targetPhrase": "I am sleepy.",
+        "localizedMeaning": {
+          "ru": "Вам хочется спать. Соберите фразу о себе",
+          "uk": "Вам хочеться спати. Складіть фразу про себе"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "I",
+          "am",
+          "sleepy"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i01:r1",
-            "targetText": "colleagues",
-            "meaningByLocale": {
-              "ru": "«коллеги». Люди с вашей работы. Не друзья, но каждый день рядом.",
-              "uk": "«колеги». Люди з вашої роботи. Не друзі, але щодня поруч."
+            "responseId": "en:lesson-01:session-36:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Вам хочется спать. Соберите фразу о себе",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am sleepy.`",
+              "uk": "тут потрібно `am` — `I am sleepy.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "colleagues",
-          "definitionByLocale": {
-            "ru": "«коллеги». Люди с вашей работы. Не друзья, но каждый день рядом.",
-            "uk": "«колеги». Люди з вашої роботи. Не друзі, але щодня поруч."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-36:i02:r1",
-          "text": "colleagues"
+          "text": "He is sleepy."
         },
         {
           "responseId": "en:lesson-01:session-36:i02:r2",
-          "text": "college"
+          "text": "She is sleepy."
         },
         {
           "responseId": "en:lesson-01:session-36:i02:r3",
-          "text": "call"
+          "text": "He is serious."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-36:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-36:i02:audio",
-          "transcript": "colleagues"
+          "transcript": "He is sleepy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-36:i02:r1",
-            "targetText": "colleagues",
+            "targetText": "He is sleepy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-36:i02:r2",
-            "targetText": "college",
+            "targetText": "She is sleepy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-36:i02:r3",
-            "targetText": "call",
+            "targetText": "He is serious.",
             "meaningByLocale": null
           }
         ],
@@ -101,28 +102,19 @@
           {
             "responseId": "en:lesson-01:session-36:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — colleagues",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "Похоже началом, но это «колледж», и на конце нет звука «з».",
-              "uk": "Схоже початком, але це «коледж», і в кінці немає звука «з»."
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
             }
           },
           {
             "responseId": "en:lesson-01:session-36:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — colleagues",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "Только первый кусок. `colleagues` длиннее: «ко-лигз».",
-              "uk": "Це тільки початок слова. `colleagues` довше: «ко-ліґз»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i02:r1",
-            "correct": true,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "`colleagues` — «коллеги»: вы работаете в одной компании.",
-              "uk": "`colleagues` — «колеги»: ви працюєте в одній компанії."
+              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `serious`.",
+              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `serious`."
             }
           }
         ],
@@ -135,42 +127,68 @@
       "interactionId": "en:lesson-01:session-36:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — friends",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — friends",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i03:audio",
-          "transcript": "friends"
+      "prompt": "Двое друзей хотят спать. Дополните фразу о них",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-36:i03:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-01:session-36:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-36:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двое друзей хотят спать. Дополните фразу о них",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Двое друзей хотят спать. Дополните фразу о них",
+          "uk": "Двоє друзів хочуть спати. Доповніть фразу про них"
+        },
+        "gappedTargetPhrase": "They ___ sleepy.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-36:i03:r1",
-            "targetText": "friends",
-            "meaningByLocale": {
-              "ru": "«друзья». Те, с кем вы видитесь не потому, что надо.",
-              "uk": "«друзі». Ті, з ким ви бачитеся не тому, що треба."
-            }
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i03:r3",
+            "text": "is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "friends",
-          "definitionByLocale": {
-            "ru": "«друзья». Те, с кем вы видитесь не потому, что надо.",
-            "uk": "«друзі». Ті, з ким ви бачитеся не тому, що треба."
+        "testedDimension": "Двое друзей хотят спать. Дополните фразу о них",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Двое друзей хотят спать. Дополните фразу о них",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Двое друзей хотят спать. Дополните фразу о них",
+            "feedbackByLocale": {
+              "ru": "Здесь `They are`, потому что речь о них.",
+              "uk": "Тут `They are`, адже йдеться про них."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -178,631 +196,60 @@
       "interactionId": "en:lesson-01:session-36:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-36:i04:r1",
-          "text": "friends"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i04:r2",
-          "text": "trends"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i04:r3",
-          "text": "friend"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i04:audio",
-          "transcript": "friends"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-36:i04:r1",
-            "targetText": "friends",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i04:r2",
-            "targetText": "trends",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i04:r3",
-            "targetText": "friend",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — friends",
-            "feedbackByLocale": {
-              "ru": "Начало другое: тут «тр-», а в `friends` — «фр-».",
-              "uk": "Початок інший: тут «тр-», а у `friends` — «фр-»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — friends",
-            "feedbackByLocale": {
-              "ru": "Один. Вы слышали `friends`, с «з» на конце — их несколько.",
-              "uk": "Один. Ви чули `friends`, із «з» у кінці — їх кілька."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i04:r1",
-            "correct": true,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "`friends` — «друзья»: они общаются как близкие люди.",
-              "uk": "`friends` — «друзі»: вони спілкуються як близькі люди."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «мы коллеги»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «мы коллеги»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are colleagues.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «мы коллеги»",
-          "uk": "Складіть фразу — «ми колеги»"
-        },
-        "orderedTokens": [
-          "We",
-          "are",
-          "colleagues"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Соберите фразу — «мы коллеги»",
-            "feedbackByLocale": {
-              "ru": "`is` лишнее: с `We` ставят `are` — `We are colleagues.`",
-              "uk": "`is` зайве: з `We` ставлять `are` — `We are colleagues`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — neighbours",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i06:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — neighbours",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i06:audio",
-          "transcript": "neighbours"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-36:i06:r1",
-            "targetText": "neighbours",
-            "meaningByLocale": {
-              "ru": "«соседи». Те, кто живёт рядом. Или просто сидит за соседним столом.",
-              "uk": "«сусіди». Ті, хто живе поруч. Або просто сидить за сусіднім столом."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "neighbours",
-          "definitionByLocale": {
-            "ru": "«соседи». Те, кто живёт рядом. Или просто сидит за соседним столом.",
-            "uk": "«сусіди». Ті, хто живе поруч. Або просто сидить за сусіднім столом."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — guests",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i07:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — guests",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i07:audio",
-          "transcript": "guests"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-36:i07:r1",
-            "targetText": "guests",
-            "meaningByLocale": {
-              "ru": "«гости». Пришли ненадолго: поели, поговорили, ушли.",
-              "uk": "«гості». Прийшли ненадовго: поїли, поговорили, пішли."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "guests",
-          "definitionByLocale": {
-            "ru": "«гости». Пришли ненадолго: поели, поговорили, ушли.",
-            "uk": "«гості». Прийшли ненадовго: поїли, поговорили, пішли."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-36:i08:r1",
-          "text": "guests"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i08:r2",
-          "text": "guess"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i08:r3",
-          "text": "gets"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i08:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i08:audio",
-          "transcript": "guests"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-36:i08:r1",
-            "targetText": "guests",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i08:r2",
-            "targetText": "guess",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i08:r3",
-            "targetText": "gets",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i08:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — guests",
-            "feedbackByLocale": {
-              "ru": "«Догадка», и на конце только «с». В `guests` слышно «стс».",
-              "uk": "«Здогад», і в кінці тільки «с». У `guests` чути «стс»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i08:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — guests",
-            "feedbackByLocale": {
-              "ru": "«Гетс», без «с» в середине. В `guests` перед «т» есть «с»: «гэстс».",
-              "uk": "«Ґетс», без «с» усередині. У `guests` перед «т» є «с»: «ґестс»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i08:r1",
-            "correct": true,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "`guests` — «гости»: они пришли ненадолго.",
-              "uk": "`guests` — «гості»: вони прийшли ненадовго."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — эти люди пришли на час и уйдут",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-36:i09:r1",
-          "text": "guests"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i09:r2",
-          "text": "neighbours"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i09:r3",
-          "text": "colleagues"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — эти люди пришли на час и уйдут",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — эти люди пришли на час и уйдут",
-          "uk": "Вставте слово — ці люди прийшли на годину й підуть"
-        },
-        "gappedTargetPhrase": "They are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-36:i09:r1",
-            "text": "guests"
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i09:r2",
-            "text": "neighbours"
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i09:r3",
-            "text": "colleagues"
-          }
-        ],
-        "testedDimension": "Вставьте слово — эти люди пришли на час ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i09:r1",
-            "correct": true,
-            "testedDimension": "Вставьте слово — эти люди пришли на час и уйдут",
-            "feedbackByLocale": {
-              "ru": "Они пришли на час: `guests` — «гости».",
-              "uk": "Вони прийшли на годину: `guests` — «гості»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i09:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — эти люди пришли на час ",
-            "feedbackByLocale": {
-              "ru": "Соседи никуда не уходят, в том и смысл.",
-              "uk": "Сусіди нікуди не йдуть, у тому й суть."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i09:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — эти люди пришли на час ",
-            "feedbackByLocale": {
-              "ru": "Коллеги — с вашей работы. Эти вообще не отсюда.",
-              "uk": "Колеги — з вашої роботи. Ці взагалі не звідси."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы живёте в соседних квартирах",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы живёте в соседних квартирах",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are neighbours.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы живёте в соседних квартирах",
-          "uk": "Складіть фразу — ви живете в сусідніх квартирах"
-        },
-        "orderedTokens": [
-          "We",
-          "are",
-          "neighbours"
-        ],
-        "authoredDistractorTokens": [
-          "am"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i10:tile:d1",
-            "correct": false,
-            "testedDimension": "Соберите фразу — вы живёте в соседних кв",
-            "feedbackByLocale": {
-              "ru": "`am` лишнее: с `They` ставят `are` — `They are neighbours.`",
-              "uk": "`am` зайве: з `They` ставлять `are` — `They are neighbours`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «они друзья»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i11:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — «они друзья»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i11:audio",
-          "transcript": "They are friends."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are friends.",
-        "orderedTokens": [
-          "They",
-          "are",
-          "friends"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i11:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите — «они друзья»",
-            "feedbackByLocale": {
-              "ru": "`is` лишнее: правильно `They are friends.`",
-              "uk": "`is` зайве: правильно `They are friends`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-36:i12:r1",
-          "text": "together"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i12:r2",
-          "text": "alone"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i12:r3",
-          "text": "quiet"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом",
-          "uk": "Вставте слово — колега Міра питає, чому вся команда обідає за одним столом"
-        },
-        "gappedTargetPhrase": "We are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-36:i12:r1",
-            "text": "together"
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i12:r2",
-            "text": "alone"
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i12:r3",
-            "text": "quiet"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вы обедаете всей команд",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i12:r1",
-            "correct": true,
-            "testedDimension": "Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом",
-            "feedbackByLocale": {
-              "ru": "Вся команда за одним столом: `together` — «вместе».",
-              "uk": "Уся команда за одним столом: `together` — «разом»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы обедаете всей команд",
-            "feedbackByLocale": {
-              "ru": "«Один». Вас за столом восемь человек.",
-              "uk": "«Один». Вас за столом восьмеро."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы обедаете всей команд",
-            "feedbackByLocale": {
-              "ru": "«Тихие». Может, и так, но спросили не про шум, а про то, что вы вместе.",
-              "uk": "«Тихі». Може, й так, але спитали не про шум, а про те, що ви разом."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — за соседним столом никто не разговаривает",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — за соседним столом никто не разговаривает",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They are quiet.",
-        "orderedTokens": [
-          "They",
-          "are",
-          "quiet"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i13:tile:d1",
-            "correct": false,
-            "testedDimension": "Соберите фразу — за соседним столом никт",
-            "feedbackByLocale": {
-              "ru": "`is` лишнее: правильно `They are quiet.`",
-              "uk": "`is` зайве: правильно `They are quiet`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-36:i14:p1",
-            "target": "colleagues",
+            "pairId": "en:lesson-01:session-36:i04:p1",
+            "target": "sleepy",
             "meaningByLocale": {
-              "ru": "коллеги",
-              "uk": "колеги"
+              "ru": "хочется спать",
+              "uk": "хочеться спати"
             }
           },
           {
-            "pairId": "en:lesson-01:session-36:i14:p2",
-            "target": "friends",
+            "pairId": "en:lesson-01:session-36:i04:p2",
+            "target": "correct",
             "meaningByLocale": {
-              "ru": "друзья",
-              "uk": "друзі"
+              "ru": "правильный",
+              "uk": "правильний"
             }
           },
           {
-            "pairId": "en:lesson-01:session-36:i14:p3",
-            "target": "neighbours",
+            "pairId": "en:lesson-01:session-36:i04:p3",
+            "target": "certain",
             "meaningByLocale": {
-              "ru": "соседи",
-              "uk": "сусіди"
+              "ru": "уверен",
+              "uk": "упевнений"
             }
           },
           {
-            "pairId": "en:lesson-01:session-36:i14:p4",
-            "target": "guests",
+            "pairId": "en:lesson-01:session-36:i04:p4",
+            "target": "serious",
             "meaningByLocale": {
-              "ru": "гости",
-              "uk": "гості"
+              "ru": "серьёзный",
+              "uk": "серйозний"
             }
           }
         ],
         "leftColumn": [
-          "colleagues",
-          "friends",
-          "neighbours",
-          "guests"
+          "sleepy",
+          "correct",
+          "certain",
+          "serious"
         ],
         "rightColumn": [
-          "коллеги",
-          "друзья",
-          "соседи",
-          "гости"
+          "хочется спать",
+          "правильный",
+          "уверен",
+          "серьёзный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -819,94 +266,191 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-36:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-01:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткую фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i05:audio",
+          "transcript": "She's sleepy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She's sleepy.",
+        "orderedTokens": [
+          "She's",
+          "sleepy"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `She's` — `She's sleepy.`",
+              "uk": "тут потрібно `She's` — `She's sleepy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы и Олег хотите спать. Соберите фразу от вас двоих",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы и Олег хотите спать. Соберите фразу от вас двоих",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are sleepy.",
+        "localizedMeaning": {
+          "ru": "Вы и Олег хотите спать. Соберите фразу от вас двоих",
+          "uk": "Ви та Олег хочете спати. Складіть фразу від вас двох"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "sleepy"
+        ],
+        "authoredDistractorTokens": [
+          "They"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы и Олег хотите спать. Соберите фразу от вас двоих",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `We` — `We are sleepy.`",
+              "uk": "тут потрібно `We` — `We are sleepy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите коротко, почему вам трудно сосредоточиться на игре: хочется спать",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите коротко, почему вам трудно сосредоточиться на игре: хочется спать",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i07:audio",
+          "transcript": "I'm sleepy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm sleepy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех",
+      "prompt": "Вы сверили сумму очков, ошибки нет. Назовите правильность результата",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-36:i15:r1",
-          "text": "funny"
+          "responseId": "en:lesson-01:session-36:i08:r1",
+          "text": "correct"
         },
         {
-          "responseId": "en:lesson-01:session-36:i15:r2",
-          "text": "kind"
+          "responseId": "en:lesson-01:session-36:i08:r2",
+          "text": "sleepy"
         },
         {
-          "responseId": "en:lesson-01:session-36:i15:r3",
-          "text": "loud"
-        },
-        {
-          "responseId": "en:lesson-01:session-36:i15:r4",
-          "text": "lost"
+          "responseId": "en:lesson-01:session-36:i08:r3",
+          "text": "serious"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех",
+      "accessibilityLabel": "Вы сверили сумму очков, ошибки нет. Назовите правильность результата",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех",
-          "uk": "Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх"
+          "ru": "Вы сверили сумму очков, ошибки нет. Назовите правильность результата",
+          "uk": "Ви звірили суму очок, помилки немає. Назвіть правильність результату"
         },
-        "gappedTargetPhrase": "They are ___ .",
+        "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-36:i15:r1",
-            "text": "funny"
+            "responseId": "en:lesson-01:session-36:i08:r1",
+            "text": "correct"
           },
           {
-            "responseId": "en:lesson-01:session-36:i15:r2",
-            "text": "kind"
+            "responseId": "en:lesson-01:session-36:i08:r2",
+            "text": "sleepy"
           },
           {
-            "responseId": "en:lesson-01:session-36:i15:r3",
-            "text": "loud"
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i15:r4",
-            "text": "lost"
+            "responseId": "en:lesson-01:session-36:i08:r3",
+            "text": "serious"
           }
         ],
-        "testedDimension": "Вставьте слово — коллега весь обед всех ",
+        "testedDimension": "Вы сверили сумму очков, ошибки нет. Назовите правильность результата",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i15:r1",
-            "correct": true,
-            "testedDimension": "Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех",
+            "responseId": "en:lesson-01:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы сверили сумму очков, ошибки нет. Назовите правильность результата",
             "feedbackByLocale": {
-              "ru": "Он всех смешил: `funny` — «смешной».",
-              "uk": "Він усіх смішив: `funny` — «смішний"
+              "ru": "Сонным бывает игрок. Результат здесь правильный: `correct`.",
+              "uk": "Сонним буває гравець. Результат тут правильний: `correct`."
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i15:r2",
+            "responseId": "en:lesson-01:session-36:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега весь обед всех ",
+            "testedDimension": "Вы сверили сумму очков, ошибки нет. Назовите правильность результата",
             "feedbackByLocale": {
-              "ru": "«Добрые». Про доброту речи не было, речь про смех.",
-              "uk": "«Добрі». Про доброту не йшлося, йшлося про сміх."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i15:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — коллега весь обед всех ",
-            "feedbackByLocale": {
-              "ru": "«Громкие». Смешить и шуметь — не одно и то же.",
-              "uk": "«Гучні». Смішити й шуміти — не те саме."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-36:i15:r4",
-            "correct": false,
-            "testedDimension": "Вставьте слово — коллега весь обед всех ",
-            "feedbackByLocale": {
-              "ru": "«Потерялись». Они за столом, всё в порядке.",
-              "uk": "«Загубилися». Вони за столом, усе гаразд."
+              "ru": "`serious` — «серьёзный». Правильность передаёт `correct`.",
+              "uk": "`serious` — «серйозний». Правильність передає `correct`."
             }
           }
         ]
@@ -914,26 +458,266 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-36:i16:s01",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "interactionId": "en:lesson-01:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите услышанное",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-36:i09:r1",
+          "text": "I am certain."
+        },
+        {
+          "responseId": "en:lesson-01:session-36:i09:r2",
+          "text": "I am sleepy."
+        },
+        {
+          "responseId": "en:lesson-01:session-36:i09:r3",
+          "text": "I am serious."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i09:audio",
+          "transcript": "I am certain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-36:i09:r1",
+            "targetText": "I am certain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i09:r2",
+            "targetText": "I am sleepy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i09:r3",
+            "targetText": "I am serious.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите услышанное",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `certain`, а в этом варианте — `sleepy`.",
+              "uk": "У записі останнє слово — `certain`, а в цьому варіанті — `sleepy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите услышанное",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `certain`, а в этом варианте — `serious`.",
+              "uk": "У записі останнє слово — `certain`, а в цьому варіанті — `serious`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините знакомые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-36:i10:p1",
+            "target": "sleepy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-36:i10:p2",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-36:i10:p3",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-36:i10:p4",
+            "target": "certain",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "упевнений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sleepy",
+          "asleep",
+          "awake",
+          "certain"
+        ],
+        "rightColumn": [
+          "сонный",
+          "спит",
+          "не спит",
+          "уверен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-36:i16:s01:audio"
+        "en:lesson-01:session-36:i11:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i11:audio",
+          "transcript": "They are sleepy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are sleepy.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "sleepy"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are sleepy.`",
+              "uk": "тут потрібно `are` — `They are sleepy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег действительно предлагает закончить игру, он не шутит. Соберите фразу о его серьёзности",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег действительно предлагает закончить игру, он не шутит. Соберите фразу о его серьёзности",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is serious.",
+        "localizedMeaning": {
+          "ru": "Олег действительно предлагает закончить игру, он не шутит. Соберите фразу о его серьёзности",
+          "uk": "Олег справді пропонує закінчити гру, він не жартує. Складіть фразу про його серйозність"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "serious"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег действительно предлагает закончить игру, он не шутит. Соберите фразу о его серьёзности",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is serious.`",
+              "uk": "тут потрібно `is` — `He is serious.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы точно помните правило, которое только что прочитали. Скажите о своей уверенности",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Вы точно помните правило, которое только что прочитали. Скажите о своей уверенности",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i16:s01:audio",
-          "transcript": "We are colleagues."
+          "audioTargetId": "en:lesson-01:session-36:i13:audio",
+          "transcript": "I am certain."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are colleagues.",
+        "targetPhrase": "I am certain.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -947,29 +731,255 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-36:i16:s02",
+      "interactionId": "en:lesson-01:session-36:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Маша призналась, что хочет спать. Вы обращаетесь к ней: «Ты сонная». Вставьте слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-36:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-36:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-36:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Маша призналась, что хочет спать. Вы обращаетесь к ней: «Ты сонная». Вставьте слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Маша призналась, что хочет спать. Вы обращаетесь к ней: «Ты сонная». Вставьте слово",
+          "uk": "Маша зізналася, що хоче спати. Ви звертаєтеся до неї: «Ти сонна». Вставте слово"
+        },
+        "gappedTargetPhrase": "You ___ sleepy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-36:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Маша призналась, что хочет спать. Вы обращаетесь к ней: «Ты сонная». Вставьте слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i14:r2",
+            "correct": false,
+            "testedDimension": "Маша призналась, что хочет спать. Вы обращаетесь к ней: «Ты сонная». Вставьте слово",
+            "feedbackByLocale": {
+              "ru": "С `You` используем `are`.",
+              "uk": "З `You` використовуємо `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i14:r3",
+            "correct": false,
+            "testedDimension": "Маша призналась, что хочет спать. Вы обращаетесь к ней: «Ты сонная». Вставьте слово",
+            "feedbackByLocale": {
+              "ru": "Даже к одному человеку обращаемся `You are`.",
+              "uk": "Навіть до однієї людини звертаємося `You are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте короткую фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-36:i15:r1",
+          "text": "We're sleepy."
+        },
+        {
+          "responseId": "en:lesson-01:session-36:i15:r2",
+          "text": "They're sleepy."
+        },
+        {
+          "responseId": "en:lesson-01:session-36:i15:r3",
+          "text": "We're serious."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте короткую фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i15:audio",
+          "transcript": "We're sleepy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-36:i15:r1",
+            "targetText": "We're sleepy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i15:r2",
+            "targetText": "They're sleepy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i15:r3",
+            "targetText": "We're serious.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте короткую фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We're`, а в этом варианте — `They're`.",
+              "uk": "У записі перше слово — `We're`, а в цьому варіанті — `They're`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте короткую фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `serious`.",
+              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `serious`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями в этой ситуации",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями в этой ситуации",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-36:i16:p1",
+            "target": "serious",
+            "meaningByLocale": {
+              "ru": "не шутит",
+              "uk": "не жартує"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-36:i16:p2",
+            "target": "certain",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "упевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-36:i16:p3",
+            "target": "correct",
+            "meaningByLocale": {
+              "ru": "без ошибки",
+              "uk": "без помилки"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-36:i16:p4",
+            "target": "sleepy",
+            "meaningByLocale": {
+              "ru": "хочется спать",
+              "uk": "хочеться спати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "serious",
+          "certain",
+          "correct",
+          "sleepy"
+        ],
+        "rightColumn": [
+          "не шутит",
+          "уверен",
+          "без ошибки",
+          "хочется спать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "В поезде брат ещё не спит, но говорит, что его клонит в сон. Расскажите маме о его состоянии",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-36:i16:s02:audio"
+        "en:lesson-01:session-36:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "В поезде брат ещё не спит, но говорит, что его клонит в сон. Расскажите маме о его состоянии",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i16:s02:audio",
-          "transcript": "They are guests."
+          "audioTargetId": "en:lesson-01:session-36:i17:audio",
+          "transcript": "He is sleepy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They are guests.",
+        "targetPhrase": "He is sleepy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -978,158 +988,13 @@
         ]
       },
       "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i17:s01",
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — вы работаете в одной компании",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i17:s01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — вы работаете в одной компании",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i17:s01:audio",
-          "transcript": "We are colleagues."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are colleagues.",
-        "orderedTokens": [
-          "We",
-          "are",
-          "colleagues"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i17:s01:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите — вы работаете в о",
-            "feedbackByLocale": {
-              "ru": "`is` лишнее: правильно `We are colleagues.`",
-              "uk": "`is` зайве: правильно `We are colleagues`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null,
-      "ordinal": 21
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i17:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i17:s02:audio",
-          "transcript": "We are together."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "We are together.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i17:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-36:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i17:s03:audio",
-          "transcript": "They are friends."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "They are friends.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-36:i17:s04",
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — эти люди пришли ненадолго",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — эти люди пришли ненадолго",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They are guests.",
-        "orderedTokens": [
-          "They",
-          "are",
-          "guests"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-36:i17:s04:tile:d1",
-            "correct": false,
-            "testedDimension": "Соберите фразу — эти люди пришли ненадол",
-            "feedbackByLocale": {
-              "ru": "`is` лишнее: правильно `They are guests.`",
-              "uk": "`is` зайве: правильно `They are guests`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null,
-      "ordinal": 24
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f0d5ae5027d25346c1448a27d83aeb65358f7168a7dd510fde7f7249c4d99c3e"
+  "learnerFingerprint": "7accf262df0453899d0e7c34ab9bbbd24a7522c47aa6b0dd34c4baee6da367fe"
 }

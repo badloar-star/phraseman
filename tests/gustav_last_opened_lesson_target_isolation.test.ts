@@ -27,7 +27,8 @@ describe('Gustav last opened lesson target isolation', () => {
     // ключ вовсе, а если начнёт — только через target-scoped ключ.
     expect(layout).not.toContain("AsyncStorage.getItem('last_opened_lesson')");
     expect(layout).not.toContain('prefetchLessonMenuCache(id)');
-    expect(layout).toContain('loadLessonsTabStateFromStorage(studyTarget)');
+    // Изоляция — ПЕРВЫЙ аргумент studyTarget; второй (с 12.10, [LESSONS-BOOT] 2bef4202d) — метка вызывающего для журнала.
+    expect(layout).toMatch(/loadLessonsTabStateFromStorage\(studyTarget(?:\s*,\s*'[a-z_]+')?\)/);
   });
 
   it('keeps lesson menu prefetch and cloud sync bound to the active target', () => {

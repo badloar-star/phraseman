@@ -1,0 +1,17 @@
+10-15 16:57:58.257 I/ReactNativeJS( 2832): '[V2-MAP] tabbar', '{"hidden":false,"atMs":1792079878256}'
+10-15 16:58:07.363 I/ReactNativeJS( 2832): '[V2-MAP] lessons-pane', '{"freezeWanted":false,"coverLessons":false,"shouldLoad":false,"epoch":0,"phase":"active","atMs":1792079887356}'
+10-15 16:58:08.341 I/ReactNativeJS( 2832): '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"render","at":12877}'
+10-15 16:58:09.077 I/ReactNativeJS( 2832): '[V2-PAGE] LessonsTab:mount', '{"instanceId":"eb0l7x","presentation":"tab","initialPage":"lessons"}'
+10-15 16:58:09.087 I/ReactNativeJS( 2832): '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"mount","at":13619,"renderToEffectMs":742}'
+10-15 16:58:09.096 I/ReactNativeJS( 2832): '[V2-MAP] page:commit', '{"instanceId":"eb0l7x","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"lessons","visible":true,"navFocused":true,"atMs":1792079889092}'
+10-15 16:58:09.110 W/ReactNativeJS( 2832): '[LESSONS-LIST] data', '{"rows":40,"queryLength":0,"firstKinds":["header","lesson","lesson","lesson"]}', { [Stack] name: 'Stack' }
+10-15 16:58:09.114 I/ReactNativeJS( 2832): '[V2-MAP] lessons-pane', '{"freezeWanted":false,"coverLessons":false,"shouldLoad":true,"epoch":0,"phase":"active","atMs":1792079889110}'
+10-15 16:58:14.320 I/ReactNativeJS( 2832): '[V2-OPEN] progress:disk', '{"diskMs":25,"completed":0,"current":"lesson-01:session:01"}'
+10-15 16:58:14.340 I/ReactNativeJS( 2832): '[V2-OPEN] progress:applied', '{"sinceTap":null,"warmupMs":2834,"completed":0,"current":"lesson-01:session:01"}'
+10-15 16:58:17.459 I/ReactNativeJS( 2832): '[V2-OPEN] tap', '{"from":"openNewLessons","instanceId":"eb0l7x","runtimeOwnerId":"lessons","visible":true}'
+10-15 16:58:17.460 I/ReactNativeJS( 2832): '[V2-PAGE] setPage', '{"from":"lessons","to":"v2","presentation":"tab","initialPage":"lessons","instanceId":"eb0l7x","runtimeOwnerId":"lessons","visible":true}', '    at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.p
+10-15 16:58:18.138 I/ReactNativeJS( 2832): '[V2-MAP] chapters:mount', '{"scopeKey":"1:en:0","atMs":1792079898136}'
+10-15 16:58:18.146 I/ReactNativeJS( 2832): '[V2-MAP] chapters:rows', '{"titles":32,"visibleLessons":1,"selectedLessonOrdinal":1,"rows":2048,"lessonRows":64,"chapters":7,"sessions":15,"allLessonsOpen":false,"active":true}'
+10-15 16:58:18.149 I/ReactNativeJS( 2832): '[V2-MAP] page:commit', '{"instanceId":"eb0l7x","page":"v2","branch":"v2_map","presentation":"tab","runtimeOwnerId":"lessons","visible":true,"navFocused":true,"atMs":1792079898148}'
+10-15 16:58:18.821 I/ReactNativeJS( 2832): '[V2-MAP] scrollToCurrent:skip', '{"reason":"no_current_row","rows":0}'
+10-15 16:58:18.826 W/ReactNativeJS( 2832): '[LESSONS-LIST] data', '{"rows":0,"queryLength":0,"firstKinds":[]}', { [Stack] name: 'Stack' }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-23:intro1:r2": {
+          "ru": "`ticket` — один билет; несколько — `tickets`.",
+          "uk": "`ticket` — один квиток; кілька — `tickets`."
+        },
+        "en:lesson-03:session-23:intro1:r3": {
+          "ru": "Перед названием нескольких билетов не ставим `a`.",
+          "uk": "Перед назвою кількох квитків не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-23:intro2:r2": {
+          "ru": "Билетов несколько: нужно `are`.",
+          "uk": "Квитків кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-23:intro2:r3": {
+          "ru": "Здесь нужно сообщить, что билеты действительны: `valid`.",
+          "uk": "Тут потрібно повідомити, що квитки дійсні: `valid`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-23:intro3:r2": {
+          "ru": "Билетов несколько: нужно `are`.",
+          "uk": "Квитків кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-23:intro3:r3": {
+          "ru": "О месте спрашиваем `Where` — «Где».",
+          "uk": "Про місце запитуємо `Where` — «Де»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3b61d902480bbf316302b65ba3494efc2e54341c42aa24c255dd583305dd53ad"
+}

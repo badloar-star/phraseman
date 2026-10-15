@@ -1,162 +1,138 @@
-# Англійська · Урок 3 · Заняття 23 — «Розкласти по місцях»
+# Англійська · Урок 3 · Заняття 23 — Квитки на вечір у клубі
 
-**Сцена заняття.** Друг допомагає вам розкласти розпаковані кухонні речі: столове приладдя — до шухляди, посуд — до шафи. Ви розгортаєте пакунки на столі й називаєте їхній вміст, щоб друг звільнив для речей потрібне місце.
+**Ситуація.** Ви з Анною зустрічаєте гостей на платному вечорі в клубі. Олег приніс квитки для друзів, але один квиток виглядає інакше. Поки ви звіряєте квитки й шукаєте пальто гостя, Анна розповідає про знайомих.
 
-**Як сказати:** пригадуємо форми одного й кількох предметів: `a spoon`, `spoons`, `a fork`, `forks`, `a cup`, `cups`; знайомі `It is a`, `They are`, `Are they`, `They are not`  
-**Нові слова:** spoon, fork, cup  
-**Повертаються:** bowl
+**Що ви опануєте:** назвати кілька квитків, запитати, де вони, й повідомити, що вони дійсні
+**Нові слова:** tickets
 
 ---
 
 ## Інтро 1
 
-### Ложка чи ложки
+### Для кожного по квитку
 
-`spoon` — «ложка», `spoons` — «ложки». Одну ложку називаємо `It is a spoon` — «Це ложка»: перед назвою стоїть `a`. Кілька — `They are spoons`, «Це ложки». Переходячи від однієї ложки до кількох, змінюємо всю фразу, а не лише додаємо `s`.
+`ticket` — «квиток», `tickets` — «квитки». `They are tickets` — «Це квитки». Для кількох квитків додаємо `s`, а перед `tickets` не ставимо `a`. Олег купив один квиток і привів трьох друзів. Компанія велика, але квиток від цього не розмножився. Для всієї компанії потрібні `tickets`.
 
-`soon` — «незабаром»: це коли принесуть ложку, а не як її назвати.
+**Олег показує кілька квитків. Назвіть їх одним англійським словом.**
 
-**Друг відчиняє шухляду й питає, що ви розпакували. У вас одна ложка. Скажіть: «Це ложка».**
-
-- ✅ **It is a spoon.**
-- ❌ It is spoon. — *У цій фразі одну ложку називаємо `a spoon`. Перед `spoon` пропущено `a`.*
-- ❌ It is a spoons. — *Ви називаєте одну ложку. Потрібна форма `spoon`; `spoons` означає кілька ложок.*
+- ✅ **tickets**
+- ❌ ticket — *`ticket` — один квиток; кілька — `tickets`.*
+- ❌ a tickets — *Перед назвою кількох квитків не ставимо `a`.*
 
 ---
 
 ## Інтро 2
 
-### Що у пакунку
+### Різні, але дійсні
 
-`fork` — «виделка», `forks` — «виделки». Кілька виделок називаємо `They are forks` — «Це виделки». Якщо треба уточнити назву, початок змінюється на `Are they`: `Are they forks?` — «Це виделки?» Питання про кілька предметів зберігає форму `forks`.
+`The tickets are valid` — «Квитки дійсні»: за ними можна пройти на цей вечір. `different` — «різний, інший». `The tickets are different` — «Квитки різні». Різний колір ще не означає, що квиток недійсний. Якщо потрібно знайти підготовлені квитки, запитайте `Where are the tickets?` — «Де квитки?»
 
-**Друг тримає пакунок із кількома предметами столового приладдя, але папір ще не зняв. Уточніть: «Це виделки?»**
+**Ви перевірили квитки: за всіма можна пройти на цей вечір. Повідомте «Квитки дійсні».**
 
-- ✅ **Are they forks?**
-- ❌ Are they fork? — *Ви питаєте про кілька предметів столового приладдя. Для кількох виделок потрібна форма `forks`.*
-- ❌ Is they forks? — *У питанні з `they` потрібен початок `Are they`. Слово `Is` із `they` не вживаємо.*
+- ✅ **The tickets are valid.**
+- ❌ The tickets is valid. — *Квитків кілька: потрібно `are`.*
+- ❌ The tickets are different. — *Тут потрібно повідомити, що квитки дійсні: `valid`.*
 
 ---
 
 ## Інтро 3
 
-### Скільки чашок
+### Знайомі серед гостей
 
-`cup` — «чашка», `cups` — «чашки». Одна чашка в повній фразі — `It is a cup`, «Це чашка». Кілька — `They are cups`, «Це чашки». Перед `cups` у цій фразі `a` не ставимо: воно стосується назви однієї чашки. Для кількох лишається `cups`.
+Анна представляє друзів: `He is married` — «Він одружений», `She is single` — «Вона не перебуває у стосунках». У цій розмові `single` описує стосунки, а не кількість людей у кімнаті. Олег тим часом шукає пальто гостя: `Where is the coat?` — «Де пальто?» Пальто одне — `is`; квитків кілька — `Where are the tickets?`.
 
-**Друг звільняє полицю й питає, що ви туди поставите. Перед вами кілька чашок. Назвіть їх: «Це чашки».**
+**Анна знає, які квитки підготовлені для друзів. Запитайте, де квитки.**
 
-- ✅ **They are cups.**
-- ❌ They are cup. — *Чашок кілька, тому потрібно `cups`, із `s` наприкінці.*
-- ❌ They are a cups. — *У цій фразі кілька чашок називаємо `cups`. Слово `a` перед ним зайве.*
+- ✅ **Where are the tickets?**
+- ❌ Where is the tickets? — *Квитків кілька: потрібно `are`.*
+- ❌ What are the tickets? — *Про місце запитуємо `Where` — «Де».*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — spoon**
-<!-- interaction_id: en:lesson-03:session-23:i01; family: listen_choose -->
-Ціль: `spoon`
+**1 · Гість запитує про кілька папірців у вас у руці. Назвіть їх: «Це квитки»**
+<!-- interaction_id: en:lesson-03:session-23:i01; family: phrase_builder -->
+Плитки: `tickets` `are` `They` `is` → **They are tickets.**
+*(плитка `is` зайва: тут потрібно `are` — `They are tickets.`)*
 
-**2 · Послухайте й оберіть — яке слово сказав друг**
+**2 · Послухайте повідомлення про квитки**
 <!-- interaction_id: en:lesson-03:session-23:i02; family: listen_choose -->
-Ціль: `spoon`
-Варіанти: `spoon` · `soon` · `swoon`
-- soon — *`soon` — «незабаром». Це коли принесуть ложку, а не як її назвати. У `soon` після англійського `s` одразу починається голосний; у `spoon` між ними губи повністю змикаються на `p` і розкриваються.*
-- swoon — *`swoon` — «непритомніти». Після початкового англійського `s` губи округлюються й плавно переходять до голосного. У `spoon` на цьому місці губи повністю змикаються на `p` і розкриваються.*
+🔊 *The tickets are valid.* → **The tickets are valid.** · The tickets are different. · The tickets are here.
+- The tickets are different. — *У записі останнє слово — `valid`, а в цьому варіанті — `different`.*
+- The tickets are here. — *У записі останнє слово — `valid`, а в цьому варіанті — `here`.*
 
+**3 · Ви називаєте кілька квитків**
+<!-- interaction_id: en:lesson-03:session-23:i03; family: context_gap_grammar -->
+They are ___. → **tickets** · ticket · a tickets
+- ticket — *Квитків кілька: `tickets`.*
+- a tickets — *Перед `tickets` не ставимо `a`.*
 
-**3 · Картка слова — fork**
-<!-- interaction_id: en:lesson-03:session-23:i03; family: listen_choose -->
-Ціль: `fork`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-23:i04; family: speed_match -->
+tickets — квитки · valid — дійсний · different — різний, інший · coat — пальто
 
-**4 · Послухайте й оберіть — яке слово вимовив друг**
-<!-- interaction_id: en:lesson-03:session-23:i04; family: listen_choose -->
-Ціль: `fork`
-Варіанти: `fork` · `pork` · `cork`
-- pork — *`pork` — «свинина». На початку губи повністю змикаються на `p` і розкриваються. У `fork` повітря відразу йде між нижньою губою та верхніми зубами на `f`.*
-- cork — *`cork` — «корок», яким закривають пляшку. Початок утворюється змиканням і розмиканням задньої частини язика на `k`. На початку `fork` повітря проходить між нижньою губою та верхніми зубами на `f`.*
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-23:i05; family: listen_build_dictation -->
+🔊 *The coat is here.* Плитки: `here` `is` `coat` `The` `are` → **The coat is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The coat is here.`)*
 
+**6 · Анна знає, які квитки потрібні. Запитайте, де квитки**
+<!-- interaction_id: en:lesson-03:session-23:i06; family: phrase_builder -->
+Плитки: `tickets` `the` `are` `Where` `What` → **Where are the tickets?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where are the tickets?`)*
 
-**5 · Зберіть фразу — друг питає, що ви залишили біля шухляди; там одна ложка, скажіть «Це ложка»**
-<!-- interaction_id: en:lesson-03:session-23:i05; family: phrase_builder -->
-Ціль: `It is a spoon.`
-Варіанти: `spoons`
+**7 · Анна розповіла, що Олег одружений. Скажіть про нього «Він одружений» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-23:i07; family: scripted_repeat_compare -->
+🎙 **He's married.**
 
-**6 · Вставте назву — друг питає, що у вас у руці; ви тримаєте три ложки, скажіть «Це ложки»**
-<!-- interaction_id: en:lesson-03:session-23:i06; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `spoons` · `spoon` · `a spoon`
-- spoon — *Ви тримаєте три ложки. Їхня назва — `spoons`, із `s` наприкінці.*
-- a spoon — *`a spoon` називає одну ложку. Тут їх три, тому потрібно `spoons`.*
+**8 · Ви перевірили квитки: за ними можна пройти на сьогоднішній вечір**
+<!-- interaction_id: en:lesson-03:session-23:i08; family: context_gap_grammar -->
+The tickets are ___. → **valid** · married · single
+- married — *`married` описує людину в шлюбі. Про квитки тут потрібно `valid`.*
+- single — *Дійсні квитки — `valid`. Слово `single` цього не означає.*
 
+**9 · Послухайте, що Анна розповідає про подругу**
+<!-- interaction_id: en:lesson-03:session-23:i09; family: listen_choose -->
+🔊 *She is single.* → **She is single.** · She is married. · She is famous.
+- She is married. — *У записі останнє слово — `single`, а в цьому варіанті — `married`.*
+- She is famous. — *У записі останнє слово — `single`, а в цьому варіанті — `famous`.*
 
-**7 · Картка слова — cup**
-<!-- interaction_id: en:lesson-03:session-23:i07; family: listen_choose -->
-Ціль: `cup`
+**10 · З’єднайте слова зі значеннями в розмові про гостей і квитки**
+<!-- interaction_id: en:lesson-03:session-23:i10; family: speed_match -->
+married — одружений · single — не перебуває у стосунках · tickets — квитки · different — різний, інший
 
-**8 · Послухайте й оберіть — яке слово сказав друг**
-<!-- interaction_id: en:lesson-03:session-23:i08; family: listen_choose -->
-Ціль: `cup`
-Варіанти: `cup` · `cap` · `cop`
-- cap — *`cap` — «кепка». Голосний вимовляється з язиком низько спереду. У `cup` язик ближче до середини рота, губи не округлені. Початок і кінець слів однакові.*
-- cop — *`cop` — розмовне «поліцейський». Голосний утворюється язиком ближче до задньої частини рота. У `cup` голосний у середині рота, губи не округлені; порівняйте середину слів.*
-
-
-**9 · Зберіть питання — друг розгортає ще один набір столового приладдя, ви стоїте біля шухляди й уточнюєте «Це виделки?»**
-<!-- interaction_id: en:lesson-03:session-23:i09; family: phrase_builder -->
-Ціль: `Are they forks?`
-Варіанти: `fork`
-
-**10 · Вставте назву — друг звільняє нижню полицю й питає, що ви туди поставите; назвіть дві миски на столі (`bowl` — «миска», `bowls` — «миски»)**
-<!-- interaction_id: en:lesson-03:session-23:i10; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `bowls` · `bowl` · `a bowl`
-- bowl — *На столі дві миски. Потрібна форма `bowls`, назва кількох.*
-- a bowl — *`a bowl` означає одну миску. Ви називаєте дві: `They are bowls`.*
-
-
-**11 · Послухайте й зберіть — що сказав друг**
+**11 · Послухайте й складіть повідомлення**
 <!-- interaction_id: en:lesson-03:session-23:i11; family: listen_build_dictation -->
-Ціль: `They are not cups.`
-Варіанти: `cup`
+🔊 *The tickets are different.* Плитки: `different` `are` `tickets` `The` `is` → **The tickets are different.**
+*(плитка `is` зайва: тут потрібно `are` — `The tickets are different.`)*
 
-**12 · Вставте назву — друг питає, що ви залишили біля раковини; там одна чашка, скажіть «Це чашка»**
-<!-- interaction_id: en:lesson-03:session-23:i12; family: context_gap_grammar -->
-Ціль: `It is ___.`
-Варіанти: `a cup` · `cup` · `cups`
-- cup — *У цій фразі одну чашку називаємо `a cup`. Перед `cup` пропущено `a`.*
-- cups — *`cups` означає кілька чашок. Біля раковини одна: `a cup`.*
+**12 · Анна уточнює, чи можна пройти за цими квитками. Повідомте «Квитки дійсні»**
+<!-- interaction_id: en:lesson-03:session-23:i12; family: phrase_builder -->
+Плитки: `valid` `are` `tickets` `The` `is` → **The tickets are valid.**
+*(плитка `is` зайва: тут потрібно `are` — `The tickets are valid.`)*
 
+**13 · Подруга Анни зараз не перебуває у стосунках. Скажіть про це зі скороченням, почніть із «Вона»**
+<!-- interaction_id: en:lesson-03:session-23:i13; family: scripted_repeat_compare -->
+🎙 **She's single.**
 
-**13 · Друг показує на кілька виделок у відкритій шухляді й запитує: «Що це?» Складіть відповідь.**
-<!-- interaction_id: en:lesson-03:session-23:i13; family: phrase_builder -->
-Ціль: `They are forks.`
-Варіанти: `is` · `fork`
+**14 · Ви запитуєте, де кілька квитків**
+<!-- interaction_id: en:lesson-03:session-23:i14; family: context_gap_grammar -->
+Where ___ the tickets? → **are** · is · am
+- is — *Квитків кілька, тому `are`.*
+- am — *З `the tickets` тут потрібно `are`.*
 
-**14 · З’єднайте назви з українськими значеннями — речі для кухні**
-<!-- interaction_id: en:lesson-03:session-23:i14; family: speed_match -->
-Пари: `spoons` — ложки · `forks` — виделки · `cups` — чашки · `bowls` — миски
-Ціль: `spoons · forks · cups · bowls`
+**15 · Послухайте повідомлення про Олега**
+<!-- interaction_id: en:lesson-03:session-23:i15; family: listen_choose -->
+🔊 *He is married.* → **He is married.** · He is single. · He is famous.
+- He is single. — *У записі останнє слово — `married`, а в цьому варіанті — `single`.*
+- He is famous. — *У записі останнє слово — `married`, а в цьому варіанті — `famous`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-23:i15; family: scripted_repeat_compare -->
-Ціль: `They are bowls.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-23:i16; family: speed_match -->
+married — одружений · single — не перебуває у стосунках · valid — дійсний · coat — пальто
 
-**16 · Вставте назву — друг питає, що залишилося під папером; ви знайшли одну виделку, скажіть «Це виделка»**
-<!-- interaction_id: en:lesson-03:session-23:i16; family: context_gap_grammar -->
-Ціль: `It is ___.`
-Варіанти: `a fork` · `forks` · `fork`
-- forks — *`forks` — кілька виделок. Під папером одна: `a fork`.*
-- fork — *У цій фразі одну виделку називаємо `a fork`. Слово `a` пропускати не варто.*
-
-
-**17 · Складіть фразу — друг звільнив верхню полицю й питає, що ви туди несете; у вас дві чашки**
-<!-- interaction_id: en:lesson-03:session-23:i17; family: phrase_builder -->
-Ціль: `They are cups.`
-Варіанти: `cup`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=listen_choose, 9=phrase_builder, 10=context_gap_grammar, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=scripted_repeat_compare, 16=context_gap_grammar, 17=phrase_builder
+**17 · Перед наступним вечором Анна знову підготувала квитки для друзів. Запитайте, де квитки**
+<!-- interaction_id: en:lesson-03:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where are the tickets?**
 

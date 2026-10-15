@@ -29,7 +29,11 @@ describe('guest sign-in invite after lesson 1 (2.0 result)', () => {
     expect(lesson).toContain("testID: 'lesson-complete-guest-signin-invite'");
     expect(lesson).toContain("router.push({ pathname: '/(tabs)/settings', params: { [SETTINGS_OPEN_SIGN_IN_PARAM]: '1' } }");
     expect(copy).toContain("export const SETTINGS_OPEN_SIGN_IN_PARAM = 'signIn';");
-    expect(settings).toContain('setAuthPromptVisible(true);\n    router.setParams({ [SETTINGS_OPEN_SIGN_IN_PARAM]: undefined });');
+    expect(settings).toContain("if (openSignInParam !== '1') return;\n    router.setParams({ [SETTINGS_OPEN_SIGN_IN_PARAM]: undefined });");
+    // Ревизор f05ceeb88: уже привязанному окно входа не открываем.
+    expect(settings).toContain("console.log('[GUEST-SIGNIN-INVITE] settings: skip reason=already_linked');");
+    // мёртвое окно legacy-ветки удалено целиком
+    expect(lesson).not.toMatch(/RegistrationPromptModal|showAuthPrompt/);
   });
 
   it('V2DoneScreen renders noteAction as an accessible pressable line without a card', () => {

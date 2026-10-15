@@ -77,7 +77,6 @@ import {
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import { prefetchLessonMenuCache } from './lesson_menu';
-import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
@@ -663,7 +662,6 @@ export default function LessonComplete() {
     : undefined;
   const [showReview, setShowReview] = useState(false);
   const [reviewContext, setReviewContext] = useState<ReviewContext>('perfect_lesson');
-  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [guestSignInInvite, setGuestSignInInvite] = useState(false); // аудит кнопок №3: строка в итоге 2.0 вместо мёртвого окна
   const [lessonScore, setLessonScore] = useState<number>(0);
   // зачем (D121 / learn.html E1–E3): звёзды итога — по проценту верных, не по медали; нет оценки — 0 звёзд.
@@ -1407,10 +1405,6 @@ export default function LessonComplete() {
         premiumBannerAnim.setValue(0);
         return true;
       }
-      if (showAuthPrompt) {
-        setShowAuthPrompt(false);
-        return true;
-      }
       if (showReview) {
         setShowReview(false);
         return true;
@@ -1427,7 +1421,6 @@ export default function LessonComplete() {
     sequenceShowing,
     showPremiumBanner,
     premiumBannerAnim,
-    showAuthPrompt,
     showReview,
     activeNotif,
     dismissNotif,
@@ -1937,11 +1930,6 @@ export default function LessonComplete() {
           onDismiss={dismissNotif}
         />
       )}
-      <RegistrationPromptModal
-        visible={showAuthPrompt && seqDone}
-        context="lesson1"
-        onClose={() => setShowAuthPrompt(false)}
-      />
     </SafeAreaView>
     </ScreenGradient>
   );

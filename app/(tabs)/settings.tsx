@@ -573,10 +573,23 @@ export default function SettingsMain() {
   const openSignInParam = useLocalSearchParams<{ [SETTINGS_OPEN_SIGN_IN_PARAM]?: string }>()[SETTINGS_OPEN_SIGN_IN_PARAM];
   useEffect(() => {
     if (openSignInParam !== '1') return;
-    console.log('[GUEST-SIGNIN-INVITE] settings: open sign-in from lesson result invite');
-    setAuthPromptMounted(true);
-    setAuthPromptVisible(true);
     router.setParams({ [SETTINGS_OPEN_SIGN_IN_PARAM]: undefined });
+    // зачем (Ревизор f05ceeb88): человек мог войти раньше тапа по строке — уже привязанному окно входа не показываем.
+    // Без отмены по очистке эффекта: setParams выше сам перезапустит эффект, и отмена оборвала бы эту проверку.
+    void getLinkedAuthInfo().then((linked) => {
+      if (linked) {
+        console.log('[GUEST-SIGNIN-INVITE] settings: skip reason=already_linked');
+        return;
+      }
+      console.log('[GUEST-SIGNIN-INVITE] settings: open sign-in from lesson result invite');
+      setAuthPromptMounted(true);
+      setAuthPromptVisible(true);
+    }).catch((error: unknown) => {
+      // Сбой проверки привязки — окно всё равно открываем: вход безопасен, а человек нажал «войти» сам.
+      console.warn('[GUEST-SIGNIN-INVITE] settings: linked check failed — open sign-in', error instanceof Error ? error.message : String(error));
+      setAuthPromptMounted(true);
+      setAuthPromptVisible(true);
+    });
   }, [openSignInParam, router]);
   // зачем (Account V2, 8L): защита от двойного тапа на время проверки невыгруженных карточек
   // перед «Сменить без сохранения» (стадия в это время ещё 'idle').

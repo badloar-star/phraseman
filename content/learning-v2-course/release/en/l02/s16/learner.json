@@ -7,70 +7,114 @@
       "interactionId": "en:lesson-02:session-16:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Администратор понял просьбу перенести показ. Спросите, возможно ли это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Администратор понял просьбу перенести показ. Спросите, возможно ли это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it possible?",
+        "localizedMeaning": {
+          "ru": "Администратор понял просьбу перенести показ. Спросите, возможно ли это",
+          "uk": "Адміністратор зрозумів прохання перенести показ. Запитайте, чи це можливо"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "possible"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-16:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Администратор понял просьбу перенести показ. Спросите, возможно ли это",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is it possible?`",
+              "uk": "тут потрібно `Is` — `Is it possible?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте фразу",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-16:i01:r1",
-          "text": "thirsty"
+          "responseId": "en:lesson-02:session-16:i02:r1",
+          "text": "It is not urgent."
         },
         {
-          "responseId": "en:lesson-02:session-16:i01:r2",
-          "text": "thirty"
+          "responseId": "en:lesson-02:session-16:i02:r2",
+          "text": "It is not possible."
         },
         {
-          "responseId": "en:lesson-02:session-16:i01:r3",
-          "text": "dirty"
+          "responseId": "en:lesson-02:session-16:i02:r3",
+          "text": "It is not obvious."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-16:i01:audio"
+        "en:lesson-02:session-16:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-16:i01:audio",
-          "transcript": "thirsty"
+          "audioTargetId": "en:lesson-02:session-16:i02:audio",
+          "transcript": "It is not urgent."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-02:session-16:i01:r1",
-            "targetText": "thirsty",
+            "responseId": "en:lesson-02:session-16:i02:r1",
+            "targetText": "It is not urgent.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-16:i01:r2",
-            "targetText": "thirty",
+            "responseId": "en:lesson-02:session-16:i02:r2",
+            "targetText": "It is not possible.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-16:i01:r3",
-            "targetText": "dirty",
+            "responseId": "en:lesson-02:session-16:i02:r3",
+            "targetText": "It is not obvious.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i01:r2",
+            "responseId": "en:lesson-02:session-16:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — thirsty",
+            "testedDimension": "Послушайте фразу",
             "feedbackByLocale": {
-              "ru": "Это «тридцать». В `thirsty` перед концом слышно «с», в `thirty` его нет.",
-              "uk": "Це «тридцять». У `thirsty` перед кінцем чути «с», у `thirty` його немає."
+              "ru": "В записи последнее слово — `urgent`, а в этом варианте — `possible`.",
+              "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `possible`."
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i01:r3",
+            "responseId": "en:lesson-02:session-16:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — thirsty",
+            "testedDimension": "Послушайте фразу",
             "feedbackByLocale": {
-              "ru": "Это «грязный». Слово начинается с «д», а `thirsty` — с другого звука, языком между зубами.",
-              "uk": "Це «брудний». Слово починається з «д», а `thirsty` — з іншого звука, язиком між зубами."
+              "ru": "В записи последнее слово — `urgent`, а в этом варианте — `obvious`.",
+              "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `obvious`."
             }
           }
         ],
@@ -80,137 +124,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-16:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — мужчина у стойки просит второй стакан воды",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-16:i02:r1",
-          "text": "thirsty"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i02:r2",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i02:r3",
-          "text": "awake"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — мужчина у стойки просит второй стакан воды",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — мужчина у стойки просит второй стакан воды",
-          "uk": "Вставте слово — чоловік біля стійки просить другу склянку води"
-        },
-        "gappedTargetPhrase": "Is he ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-16:i02:r1",
-            "text": "thirsty"
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i02:r2",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i02:r3",
-            "text": "awake"
-          }
-        ],
-        "testedDimension": "Вставьте слово — мужчина у стойки просит",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-16:i02:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — мужчина у стойки просит",
-            "feedbackByLocale": {
-              "ru": "«Заблудился». Он стоит у стойки и заказывает — дорогу не ищет.",
-              "uk": "«Заблукав». Він стоїть біля стійки й замовляє — дороги не шукає."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i02:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — мужчина у стойки просит",
-            "feedbackByLocale": {
-              "ru": "«Проснулся, не спит». Это и так видно, а вода — про жажду.",
-              "uk": "«Прокинувся, не спить». Це й так видно, а вода — про спрагу."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-02:session-16:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — свободных столиков нет, люди стоят вдоль стены",
+      "prompt": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-16:i03:r1",
-          "text": "crowded"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-02:session-16:i03:r2",
-          "text": "comfortable"
+          "text": "Am"
         },
         {
           "responseId": "en:lesson-02:session-16:i03:r3",
-          "text": "dizzy"
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — свободных столиков нет, люди стоят вдоль стены",
+      "accessibilityLabel": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — свободных столиков нет, люди стоят вдоль стены",
-          "uk": "Вставте слово — вільних столиків немає, люди стоять попід стіною"
+          "ru": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
+          "uk": "Ви обговорюєте показ у сусідньому залі. Запитайте, чи він приватний"
         },
-        "gappedTargetPhrase": "Is it ___ ?",
+        "gappedTargetPhrase": "___ it private?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-16:i03:r1",
-            "text": "crowded"
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-02:session-16:i03:r2",
-            "text": "comfortable"
+            "text": "Am"
           },
           {
             "responseId": "en:lesson-02:session-16:i03:r3",
-            "text": "dizzy"
+            "text": "Are"
           }
         ],
-        "testedDimension": "Вставьте слово — свободных столиков нет,",
+        "testedDimension": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-16:i03:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — свободных столиков нет,",
+            "testedDimension": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
             "feedbackByLocale": {
-              "ru": "«Удобно». Когда некуда сесть, это как раз наоборот.",
-              "uk": "«Зручно». Коли нема куди сісти, це якраз навпаки."
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-16:i03:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — свободных столиков нет,",
+            "testedDimension": "Вы обсуждаете показ в соседнем зале. Спросите, частный ли он",
             "feedbackByLocale": {
-              "ru": "«Голова кружится». Так говорят про человека, а не про кафе.",
-              "uk": "«Голова паморочиться». Так кажуть про людину, а не про кав'ярню."
+              "ru": "Про этот показ — `Is it`.",
+              "uk": "Про цей показ — `Is it`."
             }
           }
         ]
@@ -221,142 +196,60 @@
       "interactionId": "en:lesson-02:session-16:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — спросите про шум: за соседним столом кричат в трубку",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — спросите про шум: за соседним столом кричат в трубку",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is it noisy?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — спросите про шум: за соседним столом кричат в трубку",
-          "uk": "Складіть фразу — запитайте про гамір: за сусіднім столом кричать у слухавку"
-        },
-        "orderedTokens": [
-          "Is",
-          "it",
-          "noisy"
-        ],
-        "authoredDistractorTokens": [
-          "he"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "sound_contrast",
-      "inputMode": "single_choice",
-      "prompt": "Различите звуки — какое из двух про «людно»?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-16:i05:r1",
-          "text": "crowded"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i05:r2",
-          "text": "cloudy"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-16:i05:audioA",
-        "en:lesson-02:session-16:i05:audioB"
-      ],
-      "accessibilityLabel": "Различите звуки — какое из двух про «людно»?",
-      "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "crowded",
-        "contrastB": "cloudy",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-02:session-16:i05:audioA",
-          "transcript": "crowded"
-        },
-        "audioB": {
-          "audioTargetId": "en:lesson-02:session-16:i05:audioB",
-          "transcript": "cloudy"
-        },
-        "testedPhoneticContrast": "Различите звуки — какое из двух про «люд",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-16:i05:r2",
-            "correct": false,
-            "testedDimension": "Различите звуки — какое из двух про «люд",
-            "feedbackByLocale": {
-              "ru": "Это «облачно». Оба слова начинаются с «к», но дальше в `crowded` идёт «р», а в `cloudy` — «л».",
-              "uk": "Це «хмарно». Обидва слова починаються з «к», але далі в `crowded` іде «р», а в `cloudy` — «л»."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-16:i06:p1",
-            "target": "thirsty",
+            "pairId": "en:lesson-02:session-16:i04:p1",
+            "target": "possible",
             "meaningByLocale": {
-              "ru": "хочет пить",
-              "uk": "хоче пити"
+              "ru": "возможный",
+              "uk": "можливий"
             }
           },
           {
-            "pairId": "en:lesson-02:session-16:i06:p2",
-            "target": "crowded",
+            "pairId": "en:lesson-02:session-16:i04:p2",
+            "target": "impossible",
             "meaningByLocale": {
-              "ru": "людно",
-              "uk": "людно"
+              "ru": "невозможный",
+              "uk": "неможливий"
             }
           },
           {
-            "pairId": "en:lesson-02:session-16:i06:p3",
-            "target": "noisy",
+            "pairId": "en:lesson-02:session-16:i04:p3",
+            "target": "urgent",
             "meaningByLocale": {
-              "ru": "шумно",
-              "uk": "гамірно"
+              "ru": "срочный",
+              "uk": "терміновий"
             }
           },
           {
-            "pairId": "en:lesson-02:session-16:i06:p4",
-            "target": "curious",
+            "pairId": "en:lesson-02:session-16:i04:p4",
+            "target": "private",
             "meaningByLocale": {
-              "ru": "любопытный",
-              "uk": "допитливий"
+              "ru": "частный, не для всех",
+              "uk": "приватний, не для всіх"
             }
           }
         ],
         "leftColumn": [
-          "thirsty",
-          "crowded",
-          "noisy",
-          "curious"
+          "possible",
+          "impossible",
+          "urgent",
+          "private"
         ],
         "rightColumn": [
-          "хочет пить",
-          "людно",
-          "шумно",
-          "любопытный"
+          "возможный",
+          "невозможный",
+          "срочный",
+          "частный, не для всех"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -373,78 +266,126 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткую фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-16:i05:audio",
+          "transcript": "It's impossible."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's impossible.",
+        "orderedTokens": [
+          "It's",
+          "impossible"
+        ],
+        "authoredDistractorTokens": [
+          "They're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-16:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's impossible.`",
+              "uk": "тут потрібно `It's` — `It's impossible.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На ваш показ пускают только приглашённых. Скажите, что он не общедоступный",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На ваш показ пускают только приглашённых. Скажите, что он не общедоступный",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not public.",
+        "localizedMeaning": {
+          "ru": "На ваш показ пускают только приглашённых. Скажите, что он не общедоступный",
+          "uk": "На ваш показ пускають лише запрошених. Скажіть, що він не загальнодоступний"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "public"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-16:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "На ваш показ пускают только приглашённых. Скажите, что он не общедоступный",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is not public.`",
+              "uk": "тут потрібно `is` — `It is not public.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-16:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-16:i07:r1",
-          "text": "handsome"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i07:r2",
-          "text": "handle"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i07:r3",
-          "text": "hands"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг проверяет видео в наушниках. Спросите, без звука ли видео",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-16:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Друг проверяет видео в наушниках. Спросите, без звука ли видео",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-16:i07:audio",
-          "transcript": "handsome"
+          "transcript": "Is it silent?"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-16:i07:r1",
-            "targetText": "handsome",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i07:r2",
-            "targetText": "handle",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i07:r3",
-            "targetText": "hands",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-16:i07:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — handsome",
-            "feedbackByLocale": {
-              "ru": "Это «ручка» — у двери или у чашки. Второй кусок слова другой.",
-              "uk": "Це «ручка» — у дверей або в чашки. Другий шматок слова інший."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i07:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — handsome",
-            "feedbackByLocale": {
-              "ru": "Это «руки». В `handsome` после «хэнд» идёт ещё слог.",
-              "uk": "Це «руки». У `handsome` після «хенд» іде ще склад."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "Is it silent?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -454,63 +395,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — мужчина за дальним столиком, все на него оглядываются",
+      "prompt": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-16:i08:r1",
-          "text": "handsome"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-02:session-16:i08:r2",
-          "text": "thirsty"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-16:i08:r3",
-          "text": "noisy"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — мужчина за дальним столиком, все на него оглядываются",
+      "accessibilityLabel": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — мужчина за дальним столиком, все на него оглядываются",
-          "uk": "Вставте слово — чоловік за дальнім столиком, усі на нього озираються"
+          "ru": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
+          "uk": "Анна й Олег обговорюють фільм, поки ви перевіряєте запис. Скажіть, що вони не мовчать"
         },
-        "gappedTargetPhrase": "Is he ___ ?",
+        "gappedTargetPhrase": "They ___ not silent.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-16:i08:r1",
-            "text": "handsome"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-02:session-16:i08:r2",
-            "text": "thirsty"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-16:i08:r3",
-            "text": "noisy"
+            "text": "is"
           }
         ],
-        "testedDimension": "Вставьте слово — мужчина за дальним стол",
+        "testedDimension": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-16:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — мужчина за дальним стол",
+            "testedDimension": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
             "feedbackByLocale": {
-              "ru": "«Хочет пить». Оглядываются не на жажду.",
-              "uk": "«Хоче пити». Озираються не на спрагу."
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
             }
           },
           {
             "responseId": "en:lesson-02:session-16:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — мужчина за дальним стол",
+            "testedDimension": "Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат",
             "feedbackByLocale": {
-              "ru": "«Шумный». Он сидит молча, шума от него нет.",
-              "uk": "«Гамірний». Він сидить мовчки, гамору від нього немає."
+              "ru": "Про Анну и Олега — `They are not`.",
+              "uk": "Про Анну й Олега — `They are not`."
             }
           }
         ]
@@ -521,32 +462,75 @@
       "interactionId": "en:lesson-02:session-16:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «она любопытная?»",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-16:i09:r1",
+          "text": "Is it obvious?"
+        },
+        {
+          "responseId": "en:lesson-02:session-16:i09:r2",
+          "text": "Is it possible?"
+        },
+        {
+          "responseId": "en:lesson-02:session-16:i09:r3",
+          "text": "Is it urgent?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-16:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «она любопытная?»",
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-16:i09:audio",
-          "transcript": "Is she curious?"
+          "transcript": "Is it obvious?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is she curious?",
-        "orderedTokens": [
-          "Is",
-          "she",
-          "curious"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-16:i09:r1",
+            "targetText": "Is it obvious?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i09:r2",
+            "targetText": "Is it possible?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i09:r3",
+            "targetText": "Is it urgent?",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "he"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `obvious`, а в этом варианте — `possible`.",
+              "uk": "У записі останнє слово — `obvious`, а в цьому варіанті — `possible`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `obvious`, а в этом варианте — `urgent`.",
+              "uk": "У записі останнє слово — `obvious`, а в цьому варіанті — `urgent`."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -554,330 +538,60 @@
       "interactionId": "en:lesson-02:session-16:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — спутник сидит в мягком кресле у окна и не хочет уходить",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-16:i10:r1",
-          "text": "comfortable"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i10:r2",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i10:r3",
-          "text": "dizzy"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — спутник сидит в мягком кресле у окна и не хочет уходить",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — спутник сидит в мягком кресле у окна и не хочет уходить",
-          "uk": "Вставте слово — супутник сидить у м'якому кріслі біля вікна й не хоче йти"
-        },
-        "gappedTargetPhrase": "Is he ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-16:i10:r1",
-            "text": "comfortable"
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i10:r2",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i10:r3",
-            "text": "dizzy"
-          }
-        ],
-        "testedDimension": "Вставьте слово — спутник сидит в мягком ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-16:i10:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — спутник сидит в мягком ",
-            "feedbackByLocale": {
-              "ru": "«Заблудился». Он в кресле, а не на улице.",
-              "uk": "«Заблукав». Він у кріслі, а не на вулиці."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — спутник сидит в мягком ",
-            "feedbackByLocale": {
-              "ru": "«Голова кружится». Тогда бы он как раз хотел уйти.",
-              "uk": "«Голова паморочиться». Тоді б він якраз хотів піти."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — ответьте «да, она любопытная» коротко",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — ответьте «да, она любопытная» коротко",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Yes, she is.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — ответьте «да, она любопытная» коротко",
-          "uk": "Складіть фразу — відповідайте «так, вона допитлива» коротко"
-        },
-        "orderedTokens": [
-          "Yes,",
-          "she",
-          "is"
-        ],
-        "authoredDistractorTokens": [
-          "curious"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — женщина встала и схватилась за стол, её качнуло",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-16:i12:r1",
-          "text": "dizzy"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i12:r2",
-          "text": "cheerful"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i12:r3",
-          "text": "awake"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — женщина встала и схватилась за стол, её качнуло",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — женщина встала и схватилась за стол, её качнуло",
-          "uk": "Вставте слово — жінка встала й схопилася за стіл, її хитнуло"
-        },
-        "gappedTargetPhrase": "Is she ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-16:i12:r1",
-            "text": "dizzy"
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i12:r2",
-            "text": "cheerful"
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i12:r3",
-            "text": "awake"
-          }
-        ],
-        "testedDimension": "Вставьте слово — женщина встала и схвати",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-16:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — женщина встала и схвати",
-            "feedbackByLocale": {
-              "ru": "«Весёлая». Хвататься за стол от веселья не станут.",
-              "uk": "«Весела». Хапатися за стіл від веселощів не стануть."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — женщина встала и схвати",
-            "feedbackByLocale": {
-              "ru": "«Не спит». Она только что встала — это и так ясно.",
-              "uk": "«Не спить». Вона щойно встала — це й так ясно."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — человек у входа вертит телефон и смотрит по сторонам",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-16:i13:r1",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i13:r2",
-          "text": "comfortable"
-        },
-        {
-          "responseId": "en:lesson-02:session-16:i13:r3",
-          "text": "handsome"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — человек у входа вертит телефон и смотрит по сторонам",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — человек у входа вертит телефон и смотрит по сторонам",
-          "uk": "Вставте слово — людина біля входу крутить телефон і роздивляється навсібіч"
-        },
-        "gappedTargetPhrase": "Is he ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-16:i13:r1",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i13:r2",
-            "text": "comfortable"
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i13:r3",
-            "text": "handsome"
-          }
-        ],
-        "testedDimension": "Вставьте слово — человек у входа вертит ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-16:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — человек у входа вертит ",
-            "feedbackByLocale": {
-              "ru": "«Удобно». Он стоит в дверях и не знает, куда идти.",
-              "uk": "«Зручно». Він стоїть у дверях і не знає, куди йти."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-16:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — человек у входа вертит ",
-            "feedbackByLocale": {
-              "ru": "«Красивый». Вопрос не про внешность, а про то, что он ищет дорогу.",
-              "uk": "«Гарний». Питання не про зовнішність, а про те, що він шукає дорогу."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «здесь шумно?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-16:i14:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — «здесь шумно?»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-16:i14:audio",
-          "transcript": "Is it noisy?"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is it noisy?",
-        "orderedTokens": [
-          "Is",
-          "it",
-          "noisy"
-        ],
-        "authoredDistractorTokens": [
-          "crowded"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-16:i15:p1",
-            "target": "handsome",
+            "pairId": "en:lesson-02:session-16:i10:p1",
+            "target": "public",
             "meaningByLocale": {
-              "ru": "красивый",
-              "uk": "гарний"
+              "ru": "общедоступный",
+              "uk": "загальнодоступний"
             }
           },
           {
-            "pairId": "en:lesson-02:session-16:i15:p2",
-            "target": "dizzy",
+            "pairId": "en:lesson-02:session-16:i10:p2",
+            "target": "private",
             "meaningByLocale": {
-              "ru": "кружится голова",
-              "uk": "паморочиться голова"
+              "ru": "частный, не для всех",
+              "uk": "приватний, не для всіх"
             }
           },
           {
-            "pairId": "en:lesson-02:session-16:i15:p3",
-            "target": "lost",
+            "pairId": "en:lesson-02:session-16:i10:p3",
+            "target": "obvious",
             "meaningByLocale": {
-              "ru": "заблудился",
-              "uk": "заблукав"
+              "ru": "очевидный",
+              "uk": "очевидний"
             }
           },
           {
-            "pairId": "en:lesson-02:session-16:i15:p4",
-            "target": "comfortable",
+            "pairId": "en:lesson-02:session-16:i10:p4",
+            "target": "silent",
             "meaningByLocale": {
-              "ru": "удобно",
-              "uk": "зручно"
+              "ru": "беззвучный",
+              "uk": "беззвучний"
             }
           }
         ],
         "leftColumn": [
-          "handsome",
-          "dizzy",
-          "lost",
-          "comfortable"
+          "public",
+          "private",
+          "obvious",
+          "silent"
         ],
         "rightColumn": [
-          "красивый",
-          "кружится голова",
-          "заблудился",
-          "удобно"
+          "общедоступный",
+          "частный, не для всех",
+          "очевидный",
+          "беззвучный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -894,222 +608,379 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-16:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-02:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — женщина за стойкой улыбается каждому; спросите, весёлая ли она",
+      "prompt": "Послушайте и соберите короткую фразу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — женщина за стойкой улыбается каждому; спросите, весёлая ли она",
+      "audioTargetIds": [
+        "en:lesson-02:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is she cheerful?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — женщина за стойкой улыбается каждому; спросите, весёлая ли она",
-          "uk": "Складіть запитання — жінка за стійкою усміхається кожному; запитайте, чи вона весела"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-16:i11:audio",
+          "transcript": "It's not impossible."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's not impossible.",
         "orderedTokens": [
-          "Is",
-          "she",
-          "cheerful"
+          "It's",
+          "not",
+          "impossible"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "They're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-16:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's not impossible.`",
+              "uk": "тут потрібно `It's` — `It's not impossible.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-16:i17:s01",
+      "interactionId": "en:lesson-02:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is urgent.",
+        "localizedMeaning": {
+          "ru": "Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное",
+          "uk": "Гості скоро прийдуть, а адреса в запрошенні неправильна. Друг знає про помилку. Скажіть, що її виправлення термінове"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "urgent"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-16:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is urgent.`",
+              "uk": "тут потрібно `is` — `It is urgent.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы обсуждаете, понятно ли гостям, где вход. Указателя нет, и все путаются. Коротко скажите, что это неочевидно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Вы обсуждаете, понятно ли гостям, где вход. Указателя нет, и все путаются. Коротко скажите, что это неочевидно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-16:i13:audio",
+          "transcript": "It's not obvious."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's not obvious.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-16:i14:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-02:session-16:i14:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-16:i14:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+          "uk": "У сусідньому залі теж показують фільм. Запитайте, чи той показ загальнодоступний"
+        },
+        "gappedTargetPhrase": "___ it public?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-16:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ",
+            "feedbackByLocale": {
+              "ru": "Вопрос начинается с `Is it`.",
+              "uk": "Запитання починається з `Is it`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-16:i15:r1",
+          "text": "It is private."
+        },
+        {
+          "responseId": "en:lesson-02:session-16:i15:r2",
+          "text": "It is public."
+        },
+        {
+          "responseId": "en:lesson-02:session-16:i15:r3",
+          "text": "It is silent."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-16:i15:audio",
+          "transcript": "It is private."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-16:i15:r1",
+            "targetText": "It is private.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i15:r2",
+            "targetText": "It is public.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i15:r3",
+            "targetText": "It is silent.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-16:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `private`, а в этом варианте — `public`.",
+              "uk": "У записі останнє слово — `private`, а в цьому варіанті — `public`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `private`, а в этом варианте — `silent`.",
+              "uk": "У записі останнє слово — `private`, а в цьому варіанті — `silent`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-16:i16:p1",
+            "target": "urgent",
+            "meaningByLocale": {
+              "ru": "срочный",
+              "uk": "терміновий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-16:i16:p2",
+            "target": "obvious",
+            "meaningByLocale": {
+              "ru": "очевидный",
+              "uk": "очевидний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-16:i16:p3",
+            "target": "impossible",
+            "meaningByLocale": {
+              "ru": "невозможный",
+              "uk": "неможливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-16:i16:p4",
+            "target": "silent",
+            "meaningByLocale": {
+              "ru": "молчащий",
+              "uk": "той, хто мовчить"
+            }
+          }
+        ],
+        "leftColumn": [
+          "urgent",
+          "obvious",
+          "impossible",
+          "silent"
+        ],
+        "rightColumn": [
+          "срочный",
+          "очевидный",
+          "невозможный",
+          "молчащий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Друг просит вас отойти от проектора и обсудить новую идею. Вы не знаете, может ли разговор подождать. Спросите, срочно ли это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-16:i17:s01:audio"
+        "en:lesson-02:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Друг просит вас отойти от проектора и обсудить новую идею. Вы не знаете, может ли разговор подождать. Спросите, срочно ли это",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-16:i17:s01:audio",
-          "transcript": "Is he thirsty?"
+          "audioTargetId": "en:lesson-02:session-16:i17:audio",
+          "transcript": "Is it urgent?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is he thirsty?",
+        "targetPhrase": "Is it urgent?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-16:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-16:i17:s02:audio",
-          "transcript": "Yes, he is."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Yes, he is.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i17:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-16:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-16:i17:s03:audio",
-          "transcript": "Is she awake?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Is she awake?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i17:s04",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-16:i17:s04:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-16:i17:s04:audio",
-          "transcript": "No, she is not."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "No, she is not.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i17:s05",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-16:i17:s05:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-16:i17:s05:audio",
-          "transcript": "Is it crowded?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Is it crowded?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-16:i17:s06",
-      "ordinal": 25,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-16:i17:s06:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-16:i17:s06:audio",
-          "transcript": "Yes, it is."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Yes, it is.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1120,11 +991,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 22,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4636aa50424c00b5101455ccca43990991ef5211c1072990ddae319235ff9dbe"
+  "learnerFingerprint": "b41d380be347e486ebdcdde5fb9a2ea431db6f8e63dbe7e6dfa665d6ad2052bd"
 }

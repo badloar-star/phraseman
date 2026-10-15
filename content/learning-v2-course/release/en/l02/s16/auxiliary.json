@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-16:intro1:r2": {
+          "ru": "С `it` нужно `is`.",
+          "uk": "З `it` потрібно `is`."
+        },
+        "en:lesson-02:session-16:intro1:r3": {
+          "ru": "После `Is` идёт `it`, затем `possible`.",
+          "uk": "Після `Is` йде `it`, потім `possible`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-16:intro2:r2": {
+          "ru": "Это показ для всех. Здесь нужен `not public`.",
+          "uk": "Це показ для всіх. Тут потрібно `not public`."
+        },
+        "en:lesson-02:session-16:intro2:r3": {
+          "ru": "После `It` сохраняем `is`.",
+          "uk": "Після `It` зберігаємо `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-16:intro3:r2": {
+          "ru": "Это «Срочно». Здесь можно подождать.",
+          "uk": "Це «Терміново». Тут можна зачекати."
+        },
+        "en:lesson-02:session-16:intro3:r3": {
+          "ru": "Это «Невозможно». В условии речь о срочности.",
+          "uk": "Це «Неможливо». За умовою йдеться про терміновість."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b5c017dd7fbf3959fad6091fd26edf69783051e01a78b494203900776ce14663"
+}

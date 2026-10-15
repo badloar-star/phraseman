@@ -1,232 +1,138 @@
-# Английский · Урок 2 · Занятие 16 — «Десять человек за десять минут»
+# Английский · Урок 2 · Занятие 16 — Перед показом
 
-**Сцена занятия.** Вы встречаете коллегу Олю у входа в переполненное кафе. Макс у стойки просит воды, Мира у окна отдыхает после дороги, а Олег сидит за дальним столиком. Вы с Олей решаете, есть ли свободные места: она спрашивает о каждом из них и о самом кафе, а вы отвечаете.
-**Как сказать:** повторение — вопрос `Is he …? / Is she …? / Is it …?` и короткие ответы
+**Ситуация.** Вы готовите с друзьями показ домашнего фильма. Проверяете зал, запись, приглашения и последние просьбы гостей.
+
+**Что вы освоите:** выбрать вопрос, сообщение или отрицание со словами второй главы
 **Новые слова:** —
-**Возвращаются:** thirsty, dizzy, comfortable, curious, cheerful, crowded, noisy, handsome, awake, lost
 
 ---
 
 ## Интро 1
 
-### `is` идёт первым
+### Спрашиваем или сообщаем
 
-`thirsty` — «хочет пить». Сообщение и вопрос собраны из одних и тех же слов, а порядок разный: `He is thirsty` — сообщаете, `Is he thirsty?` — спрашиваете.
+`It is possible` — «Это возможно». `Is it possible?` — «Это возможно?» В обычном вопросе `is` стоит перед `it`. Так вы можете уточнить, можно ли перенести показ, не обещая ничего гостям заранее.
 
-Знак вопроса тут ничего не решает. Решает то, какое слово стоит первым.
+**Вы уже объяснили администратору, что хотите перенести показ на час. Спросите, возможно ли это.**
 
-**Макс у стойки допил стакан воды и просит второй. Спросите, хочет ли он ещё пить.**
-
-- ✅ **Is he thirsty?**
-- ❌ He is thirsty? — *Так вы сообщаете: «он хочет пить». Вопрос начинают с `is`.*
-- ❌ Is thirsty he? — *`he` оторвали от `is`. Сначала `is he`, потом само слово.*
+- ✅ **Is it possible?**
+- ❌ Are it possible? — *С `it` нужно `is`.*
+- ❌ Is possible it? — *После `Is` идёт `it`, затем `possible`.*
 
 ---
 
 ## Интро 2
 
-### `it` — про место и вещь
+### Кому можно приходить
 
-`crowded` — «людно», `noisy` — «шумно». Про человека говорят `he` или `she`, а про кафе, улицу, чашку — `it`.
+`public` — «общедоступный», `private` — «частный, не для всех». Частный показ только для приглашённых можно описать так: `It is not public`. А если приглашение лежит на виду, оно не превращается в приглашение для всего города.
 
-По-русски у каждой вещи свой род: стол — «он», чашка — «она». Хочется перенести это в английский и сказать `he` про стол. Не надо: любая вещь и любое место — `it`.
+**На показ можно прийти только по личному приглашению. Скажите, что он не общедоступный.**
 
-**Свободных столиков не осталось. Спросите про само кафе — людно ли тут.**
-
-- ✅ **Is it crowded?**
-- ❌ Is he crowded? — *`he` — про мужчину. Кафе — вещь, значит `it`.*
-- ❌ It is crowded? — *Это сообщение: «тут людно». Вопрос начинают с `is`.*
+- ✅ **It is not public.**
+- ❌ It is public. — *Это показ для всех. Здесь нужен `not public`.*
+- ❌ It not public. — *После `It` сохраняем `is`.*
 
 ---
 
 ## Интро 3
 
-### Ответ в два слова
+### Что именно вы отрицаете
 
-`curious` — «любопытный». На `Is she curious?` голое `Yes` звучит обрывком, будто вы не дослушали. Поэтому добавляют два слова из вопроса: `Yes, she is.`
+`It is not urgent` — «Это не срочно». `It is not impossible` — «Это не невозможно»: возможность есть. `Not` стоит после `is`, а смысл зависит от следующего слова. Читайте всю фразу, а не только знакомое начало.
 
-Порядок при этом переворачивается: в вопросе `is she`, в ответе `she is`. Для «нет» добавляют `not` сразу после `is`: `No, she is not.`
+**Выбрать музыку для следующего показа можно на неделе. Коротко скажите, что это не срочно.**
 
-**Оля спрашивает: «Is she curious?» — а Мира у окна и правда рассматривает всех подряд. Ответьте согласием.**
-
-- ✅ **Yes, she is.**
-- ❌ Yes, is she. — *Так снова получается вопрос. В ответе сначала `she`, потом `is`.*
-- ❌ Yes, she is curious not. — *`not` в конец не ставят. Согласие короткое: `Yes, she is.`*
+- ✅ **It's not urgent.**
+- ❌ It's urgent. — *Это «Срочно». Здесь можно подождать.*
+- ❌ It's not possible. — *Это «Невозможно». В условии речь о срочности.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-16:i01; family: listen_choose -->
-Цель: `thirsty`
-Варианты: `thirsty` · `thirty` · `dirty`
-- thirty — *Это «тридцать». В `thirsty` перед концом слышно «с», в `thirty` его нет.*
-- dirty — *Это «грязный». Слово начинается с «д», а `thirsty` — с другого звука, языком между зубами.*
+**1 · Администратор понял просьбу перенести показ. Спросите, возможно ли это**
+<!-- interaction_id: en:lesson-02:session-16:i01; family: phrase_builder -->
+Плитки: `possible` `it` `Is` `Are` → **Is it possible?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it possible?`)*
 
+**2 · Послушайте фразу**
+<!-- interaction_id: en:lesson-02:session-16:i02; family: listen_choose -->
+🔊 *It is not urgent.* → **It is not urgent.** · It is not possible. · It is not obvious.
+- It is not possible. — *В записи последнее слово — `urgent`, а в этом варианте — `possible`.*
+- It is not obvious. — *В записи последнее слово — `urgent`, а в этом варианте — `obvious`.*
 
-**2 · Вставьте слово — Макс у стойки просит второй стакан воды**
-<!-- interaction_id: en:lesson-02:session-16:i02; family: context_gap_grammar -->
-Цель: `Is he ___ ?`
-Варианты: `thirsty` · `lost` · `awake`
-- lost — *«Заблудился». Он стоит у стойки и заказывает — дорогу не ищет.*
-- awake — *«Проснулся, не спит». Это и так видно, а вода — про жажду.*
+**3 · Вы обсуждаете показ в соседнем зале. Спросите, частный ли он**
+<!-- interaction_id: en:lesson-02:session-16:i03; family: context_gap_grammar -->
+___ it private? → **Is** · Am · Are
+- Am — *С `it` нужно `Is`.*
+- Are — *Про этот показ — `Is it`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-16:i04; family: speed_match -->
+possible — возможный · impossible — невозможный · urgent — срочный · private — частный, не для всех
 
-**3 · Соберите вопрос — свободных столиков нет, люди стоят вдоль стены**
-<!-- interaction_id: en:lesson-02:session-16:i03; family: phrase_builder -->
-Цель: `Is it crowded?`
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-16:i05; family: listen_build_dictation -->
+🔊 *It's impossible.* Плитки: `impossible` `It's` `They're` → **It's impossible.**
+*(плитка `They're` лишняя: здесь нужно `It's` — `It's impossible.`)*
 
-**4 · Послушайте и выберите — за соседним столом кричат в трубку; вы спрашиваете о шуме**
-<!-- interaction_id: en:lesson-02:session-16:i04; family: listen_choose -->
-Цель: `Is it noisy?`
-Варианты: `Is it noisy?` · `It is noisy.` · `Is it crowded?`
-- It is noisy. — *В вопросе первым звучит `Is`. `It is noisy.` — сообщение.*
-- Is it crowded? — *`crowded` — «людно». В записи после `it` звучит `noisy`: «шумно».*
+**6 · На ваш показ пускают только приглашённых. Скажите, что он не общедоступный**
+<!-- interaction_id: en:lesson-02:session-16:i06; family: phrase_builder -->
+Плитки: `public` `not` `is` `It` `are` → **It is not public.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not public.`)*
 
+**7 · Друг проверяет видео в наушниках. Спросите, без звука ли видео**
+<!-- interaction_id: en:lesson-02:session-16:i07; family: scripted_repeat_compare -->
+🎙 **Is it silent?**
 
-**5 · Различите звуки — какое из двух про «людно»?**
-<!-- interaction_id: en:lesson-02:session-16:i05; family: sound_contrast -->
-Варианты: `crowded` · `cloudy`
-- cloudy — *Это «облачно». Оба слова начинаются с «к», но дальше в `crowded` идёт «р», а в `cloudy` — «л».*
-
-
-**6 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-16:i06; family: speed_match -->
-Пары: `thirsty` — хочет пить · `crowded` — людно · `noisy` — шумно · `curious` — любопытный
-Цель: `thirsty · crowded · noisy · curious`
-
-**7 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-16:i07; family: listen_choose -->
-Цель: `handsome`
-Варианты: `handsome` · `handle` · `hands`
-- handle — *Это «ручка» — у двери или у чашки. Второй кусок слова другой.*
-- hands — *Это «руки». В `handsome` после «хэнд» идёт ещё слог.*
-
-
-**8 · Вставьте слово — Олег за дальним столиком; все на него оглядываются**
+**8 · Анна и Олег обсуждают фильм, пока вы проверяете запись. Скажите, что они не молчат**
 <!-- interaction_id: en:lesson-02:session-16:i08; family: context_gap_grammar -->
-Цель: `Is he ___ ?`
-Варианты: `handsome` · `thirsty` · `noisy`
-- thirsty — *«Хочет пить». Оглядываются не на жажду.*
-- noisy — *«Шумный». Он сидит молча, шума от него нет.*
+They ___ not silent. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Про Анну и Олега — `They are not`.*
 
+**9 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-16:i09; family: listen_choose -->
+🔊 *Is it obvious?* → **Is it obvious?** · Is it possible? · Is it urgent?
+- Is it possible? — *В записи последнее слово — `obvious`, а в этом варианте — `possible`.*
+- Is it urgent? — *В записи последнее слово — `obvious`, а в этом варианте — `urgent`.*
 
-**9 · Послушайте и соберите — «она любопытная?»**
-<!-- interaction_id: en:lesson-02:session-16:i09; family: listen_build_dictation -->
-Цель: `Is she curious?`
-🔊 *Is she curious?* Плитки: `Is` `she` `curious` `he`
-*Плитка `he` лишняя: вопрос о женщине, поэтому нужен `she`: `Is she curious?`*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-16:i10; family: speed_match -->
+public — общедоступный · private — частный, не для всех · obvious — очевидный · silent — беззвучный
 
-**10 · Вставьте слово — Олег сидит в мягком кресле у окна и не хочет уходить**
-<!-- interaction_id: en:lesson-02:session-16:i10; family: context_gap_grammar -->
-Цель: `Is he ___ ?`
-Варианты: `comfortable` · `lost` · `dizzy`
-- lost — *«Заблудился». Он в кресле, а не на улице.*
-- dizzy — *«Голова кружится». Тогда бы он как раз хотел уйти.*
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-16:i11; family: listen_build_dictation -->
+🔊 *It's not impossible.* Плитки: `impossible` `not` `It's` `They're` → **It's not impossible.**
+*(плитка `They're` лишняя: здесь нужно `It's` — `It's not impossible.`)*
 
+**12 · Гости скоро придут, а адрес в приглашении неверный. Друг знает об ошибке. Скажите, что её исправление срочное**
+<!-- interaction_id: en:lesson-02:session-16:i12; family: phrase_builder -->
+Плитки: `urgent` `is` `It` `are` → **It is urgent.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is urgent.`)*
 
-**11 · Соберите фразу — ответьте «да, она любопытная» коротко**
-<!-- interaction_id: en:lesson-02:session-16:i11; family: phrase_builder -->
-Цель: `Yes, she is.`
-Плитки: `Yes,` `she` `is` `curious`
-*Плитка `curious` лишняя: короткий ответ уже закончен: `Yes, she is.`*
+**13 · Вы обсуждаете, понятно ли гостям, где вход. Указателя нет, и все путаются. Коротко скажите, что это неочевидно**
+<!-- interaction_id: en:lesson-02:session-16:i13; family: scripted_repeat_compare -->
+🎙 **It's not obvious.**
 
-**12 · Вставьте слово — Мира встала и схватилась за стол, её качнуло**
-<!-- interaction_id: en:lesson-02:session-16:i12; family: context_gap_grammar -->
-Цель: `Is she ___ ?`
-Варианты: `dizzy` · `cheerful` · `awake`
-- cheerful — *«Весёлая». Хвататься за стол от веселья не станут.*
-- awake — *«Не спит». Она только что встала — это и так ясно.*
+**14 · В соседнем зале тоже показывают фильм. Спросите, общедоступный ли тот показ**
+<!-- interaction_id: en:lesson-02:session-16:i14; family: context_gap_grammar -->
+___ it public? → **Is** · Am · Are
+- Am — *С `it` нужно `Is`.*
+- Are — *Вопрос начинается с `Is it`.*
 
+**15 · Послушайте фразу**
+<!-- interaction_id: en:lesson-02:session-16:i15; family: listen_choose -->
+🔊 *It is private.* → **It is private.** · It is public. · It is silent.
+- It is public. — *В записи последнее слово — `private`, а в этом варианте — `public`.*
+- It is silent. — *В записи последнее слово — `private`, а в этом варианте — `silent`.*
 
-**13 · Соберите вопрос — Антон у входа не может найти нужный адрес и просит помощи; спросите, не заблудился ли он**
-<!-- interaction_id: en:lesson-02:session-16:i13; family: phrase_builder -->
-Цель: `Is he lost?`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-16:i16; family: speed_match -->
+urgent — срочный · obvious — очевидный · impossible — невозможный · silent — молчащий
 
-**14 · Послушайте и соберите — «здесь шумно?»**
-<!-- interaction_id: en:lesson-02:session-16:i14; family: listen_build_dictation -->
-Цель: `Is it noisy?`
-🔊 *Is it noisy?* Плитки: `Is` `it` `noisy` `crowded`
-*Плитка `crowded` лишняя: здесь спрашивают о шуме, поэтому нужно `noisy`: `Is it noisy?`*
+**17 · Друг просит вас отойти от проектора и обсудить новую идею. Вы не знаете, может ли разговор подождать. Спросите, срочно ли это**
+<!-- interaction_id: en:lesson-02:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it urgent?**
 
-**15 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-16:i15; family: speed_match -->
-Пары: `handsome` — красивый · `dizzy` — кружится голова · `lost` — заблудился · `comfortable` — удобно
-Цель: `handsome · dizzy · lost · comfortable`
-
-**16 · Соберите вопрос — бариста Лена за стойкой улыбается каждому; спросите, весёлая ли она**
-<!-- interaction_id: en:lesson-02:session-16:i16; family: phrase_builder -->
-Цель: `Is she cheerful?`
-
-**17 · Произнесите фразу — Оля показывает на Макса у стойки и спрашивает, хочет ли он пить**
-<!-- interaction_id: en:lesson-02:session-16:i17:s01; family: scripted_repeat_compare -->
-Цель: `Is he thirsty?`
-
-**18 · Произнесите фразу — подтвердите вопрос Оли о Максе**
-<!-- interaction_id: en:lesson-02:session-16:i17:s02; family: scripted_repeat_compare -->
-Цель: `Yes, he is.`
-
-**19 · Произнесите фразу — Оля показывает на Миру у окна и спрашивает, бодрствует ли она**
-<!-- interaction_id: en:lesson-02:session-16:i17:s03; family: scripted_repeat_compare -->
-Цель: `Is she awake?`
-
-**20 · Произнесите фразу — Мира у окна задремала; ответьте на вопрос Оли о ней**
-<!-- interaction_id: en:lesson-02:session-16:i17:s04; family: scripted_repeat_compare -->
-Цель: `No, she is not.`
-
-**21 · Произнесите фразу — коллега спрашивает о самом кафе: здесь людно?**
-<!-- interaction_id: en:lesson-02:session-16:i17:s05; family: scripted_repeat_compare -->
-Цель: `Is it crowded?`
-
-**22 · Произнесите фразу — подтвердите вопрос коллеги о том же кафе**
-<!-- interaction_id: en:lesson-02:session-16:i17:s06; family: scripted_repeat_compare -->
-Цель: `Yes, it is.`
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=sound_contrast, 6=speed_match, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=phrase_builder, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=speed_match, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| thirsty | интро 1, 1, 2, 6, 8, 17 | интро 1, 1, 2 |
-| crowded | интро 2, 3, 5, 6, 14, 17 | интро 2, 3, 5 |
-| noisy | интро 2, 4, 6, 8, 14 | 4, 14 |
-| curious | интро 3, 6, 9, 11 | интро 3, 9, 11 |
-| handsome | 7, 8, 13 | 7, 8 |
-| dizzy | 3, 10, 12 | 12 |
-| comfortable | 3, 10, 13, 15 | 10 |
-| lost | 2, 10, 13, 15 | 13 |
-| cheerful | 12, 16 | 16 |
-| awake | 2, 12, 17 | 17 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | thirsty | да — первая фраза страницы и оба примера |
-| Интро 2 | crowded, it | да — `crowded` в первой фразе, `it` объясняется в тексте |
-| Интро 3 | Yes, she is | да — ответ разобран в тексте страницы |
-
-**3. Доска пар**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| thirsty (зад. 6) | — (возврат) | зад. 1 слух, зад. 2 выбор |
-| crowded (зад. 6) | — (возврат) | зад. 3 выбор, зад. 5 слух |
-| noisy (зад. 6) | — (возврат) | зад. 4 сборка |
-| curious (зад. 6) | — (возврат) | интро 3 |
-| handsome (зад. 15) | — (возврат) | зад. 7 слух, зад. 8 выбор |
-| dizzy (зад. 15) | — (возврат) | зад. 3 разбор, зад. 12 выбор |
-| lost (зад. 15) | — (возврат) | зад. 2 разбор, зад. 13 выбор |
-| comfortable (зад. 15) | — (возврат) | зад. 10 выбор |
-
-Пересечения между досками 6 и 15 нет.

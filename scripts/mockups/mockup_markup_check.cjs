@@ -10,7 +10,7 @@ const { chromium } = require('playwright');
 const fs = require('fs'); const path = require('path');
 const DIR = path.join(__dirname, '..', '..', 'docs', 'design', 'v2-app') + path.sep;
 const BASE = (process.env.MOCKUP_URL || 'http://127.0.0.1:8765/').replace(/\/?$/, '/');
-const PAGES = process.argv.slice(2).length ? process.argv.slice(2) : ['engagement-moments-v3-all.html', 'engagement-moments-v3-a.html', 'engagement-moments-v3-b.html', 'engagement-moments-v3-c.html', 'stories-avatar.html', 'streak-milestones.html', 'rings-flame-lab.html', 'account-progress-proposal.html'];
+const PAGES = process.argv.slice(2).length ? process.argv.slice(2) : ['engagement-moments-v3-all.html', 'engagement-moments-v3-a.html', 'engagement-moments-v3-b.html', 'engagement-moments-v3-c.html', 'stories-avatar.html', 'streak-milestones.html', 'rings-flame-lab.html', 'account-progress-proposal.html', 'learning-v2-voice-limit.html'];
 const TAGS = ['div', 'span', 'section', 'button', 'b', 'p', 'a', 'ol', 'ul', 'li', 'svg', 'g'];
 const balance = (s) => { const out = {}; for (const t of TAGS) { const d = (s.match(new RegExp(`<${t}[\\s>]`, 'g')) || []).length - (s.match(new RegExp(`</${t}>`, 'g')) || []).length; if (d) out[t] = d; } return out; };
 (async () => { const br = await chromium.launch(); let bad = 0;

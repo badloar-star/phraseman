@@ -24,8 +24,10 @@ const STR = [];
 for (const f of STRING_FILES) {
   const p = path.join(ROOT, f); if (!fs.existsSync(p)) { log('нет файла строк', f); continue; }
   const src = fs.readFileSync(p, 'utf8');
-  const re = /(?:^\s*([A-Za-z_]\w*)\s*:\s*\[|const\s+([A-Z_][A-Z0-9_]*)\s*:\s*Nine\s*=\s*\[)\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'/gm;
-  let m; while ((m = re.exec(src))) STR.push({ file: f, key: m[1] || m[2], ru: m[3].replace(/\\'/g, "'"), uk: m[4].replace(/\\'/g, "'") });
+  // зачем (Темы 15.10): строки бывают и в таблицах по числу («7: ['Первая неделя', …]» внутри const TITLES) — ключ пишем как TITLES[7]
+  const re = /(?:^\s*([A-Za-z_]\w*|\d+)\s*:\s*\[|const\s+([A-Z_][A-Z0-9_]*)\s*:\s*Nine\s*=\s*\[)\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'/gm;
+  let m; while ((m = re.exec(src))) { let key = m[1] || m[2]; if (/^\d+$/.test(key)) { const owner = [...src.slice(0, m.index).matchAll(/const\s+([A-Za-z_]\w*)\s*[:=]/g)].pop(); key = `${owner ? owner[1] : '?'}[${key}]`; }
+    STR.push({ file: f, key, ru: m[3].replace(/\\'/g, "'"), uk: m[4].replace(/\\'/g, "'") }); }
 }
 log('строк кода', STR.length);
 const esc = (s) => s.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
@@ -67,9 +69,16 @@ function tokenOf(css, themeKey) {
   for (const [k, v] of Object.entries(t)) { if (typeof v !== 'string' || !/^#[0-9A-Fa-f]{6,8}$/.test(v)) continue; const r = hexToRgba(v);
     if (Math.abs(r[0] - c[0]) <= 2 && Math.abs(r[1] - c[1]) <= 2 && Math.abs(r[2] - c[2]) <= 2 && Math.abs(r[3] - c[3]) <= 0.03) hits.push(k); }
   hits.sort((a, b) => (PRIORITY.indexOf(a) + 1 || 99) - (PRIORITY.indexOf(b) + 1 || 99));
-  return hits.length ? hits.slice(0, 2).join(' / ') : `нет токена ${hex(c)}`;
+  return hits.length ? hits.slice(0, 2).join(' / ') : (codeColor(c) || `нет токена ${hex(c)}`);
 }
 
+// ---------- постоянные цвета кода (не токены темы, напр. STREAK_PLATE_BG) ----------
+// зачем (Темы 15.10): плашка цифры на огне — намеренная константа кода, одинаковая во всех темах; называем её, а не пишем «нет токена»
+const CODE_COLORS = [];
+(function walkC(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) { if (!/node_modules|__tests__/.test(e.name)) walkC(p); continue; } if (!/\.(tsx?|js)$/.test(e.name)) continue;
+  const src = fs.readFileSync(p, 'utf8'); const re = /const\s+([A-Z][A-Z0-9_]+)\s*=\s*['"](#[0-9A-Fa-f]{6,8}|rgba?\([\d.,\s]+\))['"]/g; let m;
+  while ((m = re.exec(src))) CODE_COLORS.push({ name: m[1], file: path.relative(ROOT, p).split(path.sep).join('/'), c: m[2] }); } })(path.join(ROOT, 'components'));
+const codeColor = (c) => { for (const k of CODE_COLORS) { const r = k.c.startsWith('#') ? hexToRgba(k.c) : parseColor(k.c); if (r && Math.abs(r[0] - c[0]) <= 2 && Math.abs(r[1] - c[1]) <= 2 && Math.abs(r[2] - c[2]) <= 2 && Math.abs(r[3] - c[3]) <= 0.03) return `${k.name} (${k.file.split('/').pop()}, постоянная кода)`; } return null; };
 // ---------- ассеты: имя файла → путь в коде ----------
 const ASSETS = new Map();
 (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (!ASSETS.has(e.name)) ASSETS.set(e.name, path.relative(ROOT, p).replace(/\\/g, '/')); } })(path.join(ROOT, 'assets'));
@@ -152,7 +161,7 @@ async function sampleVariant(pg, vid, total, partSel) {
       const L1 = other('aurora-light'), L2 = other('iris-light');
       const fin = base.filter((e) => e.alive && e.last >= lastT - 200); const gone = base.filter((e) => !(e.alive && e.last >= lastT - 200));
       const what = (e) => e.tag === 'img' ? `картинка \`${assetInCode(e.src)}\`` : e.glyph ? `иконка Ionicons **${GLYPH[e.glyph] || '?'}**` : e.tag === 'svg' ? 'svg-графика' : e.tag === 'canvas' ? 'частицы (canvas)' : e.text ? `текст «${e.text}»` : `блок .${e.cls.split(' ')[0] || e.tag}`;
-      const txt = (e) => { if (!e.text || e.glyph) return '—'; if (!/[A-Za-zА-Яа-яЁё]/.test(e.text)) return e.text.length <= 2 && !/\d/.test(e.text) ? `символ анимации «${e.text}»` : `«${e.text}» · число из данных`; const c = codeString(e.text); if (!c) return `ru «${e.text}» · **нет в строках кода**`; if (c.exact) return `ru «${e.text}» · \`${c.key}\` (${c.file.split('/').pop()}) · ${c.uk.includes('{') ? 'uk-шаблон' : 'uk'} «${c.uk}»${e.frag ? ' · выделено: ' + e.frag : ''}`; return `ru «${e.text}» · составлено из ${c.parts.slice(0, 3).map((p) => '`' + p.key + '`').join(' + ')}`; };
+      const txt = (e) => { if (!e.text || e.glyph) return '—'; if (/\b(zz|emo)\b/.test(e.cls)) return `знак анимации монеты «${e.text}»`; if (!/[A-Za-zА-Яа-яЁё]/.test(e.text)) return e.text.length <= 2 && !/\d/.test(e.text) ? `символ анимации «${e.text}»` : `«${e.text}» · число из данных`; const c = codeString(e.text); if (!c) return `ru «${e.text}» · **нет в строках кода**`; if (c.exact) return `ru «${e.text}» · \`${c.key}\` (${c.file.split('/').pop()}) · ${c.uk.includes('{') ? 'uk-шаблон' : 'uk'} «${c.uk}»${e.frag ? ' · выделено: ' + e.frag : ''}`; return `ru «${e.text}» · составлено из ${c.parts.slice(0, 3).map((p) => '`' + p.key + '`').join(' + ')}`; };
       const font = (e) => e.text ? `${parseFloat(e.fs)}/${e.lh === 'normal' ? 'auto' : parseFloat(e.lh)} · ${e.fw}${+e.fw >= 800 ? ' (на Android сейчас 700 — известное расхождение, шрифт)' : ''}${e.ls && e.ls !== 'normal' && parseFloat(e.ls) !== 0 ? ` · трекинг ${parseFloat(e.ls)}` : ''}${e.tt !== 'none' ? ' · ' + e.tt : ''}` : '—';
       const col = (e, tn, tk) => { if (!e) return 'нет элемента'; const parts = []; if (e.text || e.glyph) parts.push('цвет ' + (tokenOf(e.color, tk) || '—')); const bg = tokenOf(e.bg, tk); if (bg) parts.push('фон ' + bg); if (e.bgi) parts.push('фон-градиент/картинка'); return parts.join(' · ') || '—'; };
       const box = (e) => `x${e.x} y${e.y} · ${e.w}×${e.h}${e.rad && e.rad !== '0px' ? ' · радиус ' + e.rad.replace(/px/g, '') : ''}${e.pad && e.pad !== '0px' ? ' · отступы ' + e.pad.replace(/px/g, '') : ''}${e.sh ? ' · тень' : ''}`;

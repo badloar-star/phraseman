@@ -16,6 +16,8 @@ const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev
   'dev_energy_stop_flag',
   // зачем (Авторизация 12.10): показ ранга и баланса монет для съёмки — в стор-бандле заглушка
   'dev_coin_rank', 'dev_spire_tier',
+  // зачем (координатор 15.10): shortLesson — урок из N заданий для проверки итога; в стор-бандле заглушка, урок всегда полный
+  'dev_short_lesson',
   // зачем (PM-216 пункт В, координатор 13.10): dev-модули, найденные в первом стор-экспорте
   'dev_ai_consent', 'dev_as_free_flag', 'dev_dialog_send', 'dev_fc_lang_state', 'dev_hub_bus', 'dev_overlays_off',
   'dev_practice_runes_seed', 'dev_robot_display', 'dev_today_tasks', 'dev_year_activity', 'dev_youtube_demo'] as const;
@@ -90,6 +92,8 @@ describe('store-release stubs for the R1 dev-state modules', () => {
     expect([robot.isDevInboxEmpty(), robot.getDevReminderTime(), robot.setDevInboxEmpty(true)]).toEqual([false, null, false]);
     const fcLang = require('../store_release_stubs/dev_state/dev_fc_lang_state_stub');
     expect([fcLang.getDevOtherLanguageDecks('en'), fcLang.setDevFcLangs(true)]).toEqual([null, false]);
+    const shortLesson = require('../store_release_stubs/dev_state/dev_short_lesson_stub');
+    expect([shortLesson.getDevShortLessonCells(), shortLesson.setDevShortLessonCells(3), shortLesson.getDevShortLessonCells()]).toEqual([null, false, null]); // урок не укорачивается
     const send = require('../store_release_stubs/dev_state/dev_dialog_send_stub');
     expect(send.devDialogNextMonthStartMs(Date.UTC(2026, 9, 13))).toBe(Date.UTC(2026, 10, 1));
     /* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */

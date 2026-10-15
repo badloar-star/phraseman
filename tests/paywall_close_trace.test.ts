@@ -74,5 +74,44 @@ describe('точки журнала в путях закрытия', () => {
     expect(settings).toContain("paywallCloseRender('SettingsMain');");
     expect(settings).toContain("paywallCloseMark('settings:focus');");
     expect(settings).toContain("paywallCloseMark('settings:frame1');");
+    expect(settings).toContain("paywallCloseRenderCause('SettingsMain', {");
+    expect(settings).toContain('paywallCloseProfile(id, phase, actualDuration);');
+  });
+
+  // зачем (Сверка 10:45: 7 перерисовок Настроек за секунду после крестика): журнал причин показывает, КАКИЕ значения изменились перед каждой перерисовкой
+  const freshTrace = () => {
+    const lines: string[] = [];
+    const logSpy = jest.spyOn(console, 'log').mockImplementation((...args: unknown[]) => { lines.push(String(args[0])); });
+    jest.resetModules();
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const trace = require('../app/paywall_close_trace') as typeof import('../app/paywall_close_trace');
+    return { lines, trace, restore: () => logSpy.mockRestore() };
+  };
+
+  it('cause: молчит вне закрытия, но запоминает базу; в закрытии называет изменившиеся значения или «нет»', () => {
+    const { lines, trace, restore } = freshTrace();
+    try {
+      trace.paywallCloseRenderCause('SettingsMain', { focusTick: 1, lang: 'ru' });
+      expect(lines).toEqual([]);
+      trace.paywallCloseMark('handleClose');
+      lines.length = 0;
+      trace.paywallCloseRender('SettingsMain');
+      trace.paywallCloseRenderCause('SettingsMain', { focusTick: 2, lang: 'ru' });
+      trace.paywallCloseRender('SettingsMain');
+      trace.paywallCloseRenderCause('SettingsMain', { focusTick: 2, lang: 'ru' });
+      expect(lines.some((l) => /cause SettingsMain n=1 .*changed=focusTick$/.test(l))).toBe(true);
+      expect(lines.some((l) => /cause SettingsMain n=2 .*changed=нет$/.test(l))).toBe(true);
+    } finally { restore(); }
+  });
+
+  it('profile: цена коммита видна только пока закрытие идёт', () => {
+    const { lines, trace, restore } = freshTrace();
+    try {
+      trace.paywallCloseProfile('settings_body', 'update', 41.6);
+      expect(lines).toEqual([]);
+      trace.paywallCloseMark('handleClose');
+      trace.paywallCloseProfile('settings_body', 'update', 41.6);
+      expect(lines.some((l) => /profile id=settings_body phase=update actualMs=42/.test(l))).toBe(true);
+    } finally { restore(); }
   });
 });

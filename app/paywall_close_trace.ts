@@ -56,5 +56,22 @@ export function paywallCloseRender(name: string): void {
   emit(`[PAYWALL-CLOSE-TIMING] render ${name} n=${renders} +${Date.now() - t0}ms`); // перерисовка во время закрытия
 }
 
+// зачем (Сверка 10:45: после крестика Настройки рисуются 7 раз за ~1 с, JS занят ~650 мс; «сперва логи»): для каждой перерисовки — какие из наблюдаемых значений изменились с прошлой (значение сравнивается по Object.is). «нет» = рисуют родитель/контекст без изменения этих значений.
+const prevCause: Record<string, Record<string, unknown>> = {};
+export function paywallCloseRenderCause(name: string, values: Readonly<Record<string, unknown>>): void {
+  const prev = prevCause[name];
+  prevCause[name] = { ...values }; // база для следующей отрисовки обновляется всегда — первая строка журнала уже сравнивается с реальной предыдущей
+  if (!active) return;
+  if (!prev) { emit(`[PAYWALL-CLOSE-TIMING] cause ${name} n=${renders} baseline`); return; }
+  const changed = Object.keys(values).filter((k) => !Object.is(values[k], prev[k]));
+  emit(`[PAYWALL-CLOSE-TIMING] cause ${name} n=${renders} +${Date.now() - t0}ms changed=${changed.length ? changed.join(',') : 'нет'}`); // причина перерисовки
+}
+
+/** Цена отрисовки по React.Profiler: сколько мс ушло на каждый коммит, пока пейвол закрывается. */
+export function paywallCloseProfile(id: string, phase: string, actualMs: number): void {
+  if (!active) return;
+  emit(`[PAYWALL-CLOSE-TIMING] profile id=${id} phase=${phase} actualMs=${Math.round(actualMs)} +${Date.now() - t0}ms`); // цена коммита
+}
+
 /* expo-router route shim: модуль в app/ — не экран */
 export default function __RouteShim() { return null; }

@@ -91,7 +91,7 @@ import {
 const EXEMPT_COLOR_2 = 'rgba(0,0,0,0.75)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
 const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.62)'; // theme-exempt: затемнение под окном «Сменить аккаунт?» — `.or-dim` .62 образца, тёмный скрим в любой теме
 import { noteSwallowedHandler } from '../swallow_log';
-import { paywallCloseMark, paywallCloseRender } from '../paywall_close_trace'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { paywallCloseMark, paywallCloseProfile, paywallCloseRender, paywallCloseRenderCause } from '../paywall_close_trace'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
 
@@ -205,6 +205,7 @@ export default function SettingsMain() {
     return () => { cancelAnimationFrame(raf1); if (raf2 !== null) cancelAnimationFrame(raf2); };
   }, []));
   const onSettingsProfile = React.useCallback((id: string, phase: string, actualDuration: number) => {
+    paywallCloseProfile(id, phase, actualDuration); // зачем (Сверка 10:45: после крестика Настройки рисуются 7 раз за ~1 с, JS занят ~650 мс; «сперва логи»): цена каждого коммита Настроек, пока пейвол закрывается
     if (__DEV__ && phase === 'mount') console.warn(`[SETTINGS-PERF] profile id=${id} phase=${phase} actualMs=${Math.round(actualDuration)}`); // guard-ok: временный замер №16
   }, []);
   const tabContentBottomPad = useTabContentBottomPad();
@@ -985,6 +986,13 @@ export default function SettingsMain() {
     });
   };
   const fontSizeLabel = L('Размер шрифта', 'Розмір шрифту', 'Font size', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki');
+  // зачем (Сверка 10:45: после крестика Настройки рисуются 7 раз за ~1 с, JS занят ~650 мс; «сперва логи»): что именно изменилось перед каждой перерисовкой (фокус-тик, владелец вкладки, премиум, снимок профиля, уведомления, вход, реферальный слот…)
+  paywallCloseRenderCause('SettingsMain', {
+    focusTick, runtimeOwnerId, settingsRuntimeActive, notifEnabled, notifHour, lang, liquidGlassThemeId, fontSize, isPremium, isVip, hasPremiumAccess, isIntroFullAccess,
+    myCoinRank, linkedAuth, authReady, userName, premiumPlan, vipPlan, vipUntilMs, settingsReferralStateKey, settingsReferralDrain, codeEntryMode,
+    uiSounds: soundSettings.uiSounds, voiceOut: soundSettings.voiceOut, snapshotProfile: appSnapshot.profile, snapshotSettings: appSnapshot.settings,
+    tabContentBottomPad, insetTop: insets.top, insetBottom: insets.bottom,
+  });
   const tapHapticsLabel = L('Тактильный отклик', 'Тактильний відгук', 'Haptic feedback', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna');
 
   return (

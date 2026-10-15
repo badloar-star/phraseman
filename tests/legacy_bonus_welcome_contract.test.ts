@@ -93,7 +93,8 @@ describe('окно «Встречайте PhraseMan 2.0» · тексты', () =
   });
 
   it('русский — дословно макет; слово «монета» склоняется (1 монета, 2 монеты, 5 монет, 21 монета)', () => {
-    expect(legacyBonusTitle('ru')).toBe('Встречайте PhraseMan 2.0');
+    // зачем (Макеты aaa9b9cc1): неразрывный пробел — «2.0» не переносится одно на вторую строку.
+    expect(legacyBonusTitle('ru')).toBe('Встречайте PhraseMan 2.0');
     expect(legacyBonusConvertTitle('ru')).toBe('Твои бонусы переходят в монеты');
     expect(legacyBonusCta('ru')).toBe('Понятно');
     expect(legacyBonusCoinWord('ru', 1)).toBe('монета');

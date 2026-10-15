@@ -288,7 +288,7 @@ export default function FlashcardsHubScreen() {
       id: 'Pelajari kata dan frasa dengan lebih efektif', tr: 'Kelimeleri ve ifadeleri daha etkili öğren',
       pl: 'Ucz się słów i zwrotów skuteczniej',
     }),
-    brand: 'PhraseMan 2.0',
+    brand: 'PhraseMan 2.0',
     countPending: triLang(lang, {
       ru: 'Количество пока загружается', uk: 'Кількість ще завантажується', en: 'Count loading',
       es: 'Cargando cantidad', 'pt-BR': 'Carregando total', vi: 'Đang tải số lượng',

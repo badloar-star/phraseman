@@ -15,7 +15,8 @@ type Nine = readonly [string, string, string, string, string, string, string, st
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
 const pick = (lang: Lang, row: Nine): string => row[LANG_INDEX[lang] ?? 2];
 
-const TITLE: Nine = ['Встречайте PhraseMan 2.0', 'Зустрічайте PhraseMan 2.0', 'Meet PhraseMan 2.0', 'Conoce PhraseMan 2.0', 'Conheça o PhraseMan 2.0', 'Chào mừng đến với PhraseMan 2.0', 'Inilah PhraseMan 2.0', 'PhraseMan 2.0 ile tanış', 'Poznaj PhraseMan 2.0'];
+// зачем (Макеты aaa9b9cc1, 15.10): между «PhraseMan» и «2.0» — неразрывный пробел, чтобы «2.0» не висело одно на второй строке.
+const TITLE: Nine = ['Встречайте PhraseMan 2.0', 'Зустрічайте PhraseMan 2.0', 'Meet PhraseMan 2.0', 'Conoce PhraseMan 2.0', 'Conheça o PhraseMan 2.0', 'Chào mừng đến với PhraseMan 2.0', 'Inilah PhraseMan 2.0', 'PhraseMan 2.0 ile tanış', 'Poznaj PhraseMan 2.0'];
 const CONVERT: Nine = ['Твои бонусы переходят в монеты', 'Твої бонуси переходять у монети', 'Your bonuses turn into coins', 'Tus bonos se convierten en monedas', 'Seus bônus viram moedas', 'Phần thưởng của bạn chuyển thành xu', 'Bonusmu berubah menjadi koin', 'Bonusların jetona dönüşüyor', 'Twoje bonusy zamieniają się w monety'];
 const TOTAL: Nine = ['Итого', 'Разом', 'Total', 'Total', 'Total', 'Tổng', 'Total', 'Toplam', 'Razem'];
 const CTA: Nine = ['Понятно', 'Зрозуміло', 'Got it', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'];

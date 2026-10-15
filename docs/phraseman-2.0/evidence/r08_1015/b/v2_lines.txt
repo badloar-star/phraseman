@@ -1,0 +1,12 @@
+10-15 16:04:05.204 24137 24198 I ReactNativeJS: '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"render","at":6449}'
+10-15 16:04:06.587 24137 24198 I ReactNativeJS: '[V2-PAGE] LessonsTab:mount', '{"instanceId":"xijq0f","presentation":"tab","initialPage":"lessons"}'
+10-15 16:04:06.592 24137 24198 I ReactNativeJS: '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"mount","at":7837,"renderToEffectMs":1388}'
+10-15 16:04:06.616 24137 24198 I ReactNativeJS: '[V2-MAP] page:commit', '{"instanceId":"xijq0f","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"lessons","visible":true,"atMs":1792076646607}'
+10-15 16:04:14.242 24137 24198 I ReactNativeJS: '[V2-OPEN] progress:disk', '{"diskMs":220,"completed":0,"current":"lesson-01:session:01"}'
+10-15 16:04:14.258 24137 24198 I ReactNativeJS: '[V2-OPEN] progress:applied', '{"sinceTap":null,"warmupMs":3338,"completed":0,"current":"lesson-01:session:01"}'
+10-15 16:04:25.662 24137 24198 I ReactNativeJS: '[V2-OPEN] tap', '{"from":"openNewLessons","instanceId":"xijq0f","runtimeOwnerId":"lessons","visible":true}'
+10-15 16:04:25.666 24137 24198 I ReactNativeJS: '[V2-PAGE] setPage', '{"from":"lessons","to":"v2","presentation":"tab","initialPage":"lessons","instanceId":"xijq0f","runtimeOwnerId":"lessons","visible":true}', '    at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=fal
+10-15 16:04:26.958 24137 24198 I ReactNativeJS: '[V2-MAP] chapters:mount', '{"scopeKey":"1:en:0","atMs":1792076666956}'
+10-15 16:04:26.963 24137 24198 I ReactNativeJS: '[V2-MAP] chapters:rows', '{"titles":32,"visibleLessons":1,"selectedLessonOrdinal":1,"rows":2048,"lessonRows":64,"chapters":7,"sessions":15,"allLessonsOpen":false,"active":true}'
+10-15 16:04:26.971 24137 24198 I ReactNativeJS: '[V2-MAP] page:commit', '{"instanceId":"xijq0f","page":"v2","branch":"v2_map","presentation":"tab","runtimeOwnerId":"lessons","visible":true,"atMs":1792076666965}'
+10-15 16:04:27.468 24137 24198 I ReactNativeJS: '[V2-MAP] scrollToCurrent:skip', '{"reason":"no_current_row","rows":0}'

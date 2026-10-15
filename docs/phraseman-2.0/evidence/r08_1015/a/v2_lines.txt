@@ -1,0 +1,10 @@
+10-15 16:01:51.076 23249 23305 I ReactNativeJS: '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"render","at":11693}'
+10-15 16:01:52.686 23249 23305 I ReactNativeJS: '[V2-PAGE] LessonsTab:mount', '{"instanceId":"bbsodj","presentation":"tab","initialPage":"lessons"}'
+10-15 16:01:52.696 23249 23305 I ReactNativeJS: '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"mount","at":13311,"renderToEffectMs":1618}'
+10-15 16:01:52.705 23249 23305 I ReactNativeJS: '[V2-MAP] page:commit', '{"instanceId":"bbsodj","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"home","visible":false,"atMs":1792076512699}'
+10-15 16:02:29.627 23249 23305 I ReactNativeJS: '[V2-OPEN] tap', '{"from":"openNewLessons","instanceId":"bbsodj","runtimeOwnerId":"lessons","visible":true}'
+10-15 16:02:29.628 23249 23305 I ReactNativeJS: '[V2-PAGE] setPage', '{"from":"lessons","to":"v2","presentation":"tab","initialPage":"lessons","instanceId":"bbsodj","runtimeOwnerId":"lessons","visible":true}', '    at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=fal
+10-15 16:02:30.071 23249 23305 I ReactNativeJS: '[V2-MAP] chapters:mount', '{"scopeKey":"1:en:0","atMs":1792076550067}'
+10-15 16:02:30.076 23249 23305 I ReactNativeJS: '[V2-MAP] chapters:rows', '{"titles":32,"visibleLessons":1,"selectedLessonOrdinal":1,"rows":2048,"lessonRows":64,"chapters":7,"sessions":15,"allLessonsOpen":false,"active":true}'
+10-15 16:02:30.079 23249 23305 I ReactNativeJS: '[V2-MAP] page:commit', '{"instanceId":"bbsodj","page":"v2","branch":"v2_map","presentation":"tab","runtimeOwnerId":"lessons","visible":true,"atMs":1792076550076}'
+10-15 16:02:30.460 23249 23305 I ReactNativeJS: '[V2-MAP] scrollToCurrent:skip', '{"reason":"no_current_row","rows":0}'

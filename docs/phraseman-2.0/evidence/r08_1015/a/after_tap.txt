@@ -1,0 +1,20 @@
+--------- beginning of main
+10-15 16:02:29.622 23249 23305 I ReactNativeJS: '[SFX-LAT] request', { eventId: 'pm.ui.tap_soft',
+10-15 16:02:29.622 23249 23305 I ReactNativeJS:   cacheHit: true,
+10-15 16:02:29.622 23249 23305 I ReactNativeJS:   firstEverPlay: true,
+10-15 16:02:29.622 23249 23305 I ReactNativeJS:   createPlayerMs: 0,
+10-15 16:02:29.622 23249 23305 I ReactNativeJS:   cacheSize: 7,
+10-15 16:02:29.622 23249 23305 I ReactNativeJS:   maxCacheSize: 16,
+10-15 16:02:29.622 23249 23305 I ReactNativeJS:   isLoaded: false,
+10-15 16:02:29.622 23249 23305 I ReactNativeJS:   exclusive: true,
+10-15 16:02:29.622 23249 23305 I ReactNativeJS:   seekIsAsync: true }
+10-15 16:02:29.627 23249 23305 I ReactNativeJS: '[V2-OPEN] tap', '{"from":"openNewLessons","instanceId":"bbsodj","runtimeOwnerId":"lessons","visible":true}'
+10-15 16:02:29.628 23249 23305 I ReactNativeJS: '[V2-PAGE] setPage', '{"from":"lessons","to":"v2","presentation":"tab","initialPage":"lessons","instanceId":"bbsodj","runtimeOwnerId":"lessons","visible":true}', '    at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1265242:22) |     at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1266675:14) |     at _performTransitionSideEffects (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:60805:22) |     at _receiveSignal (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:60761:45)'
+10-15 16:02:30.071 23249 23305 I ReactNativeJS: '[V2-MAP] chapters:mount', '{"scopeKey":"1:en:0","atMs":1792076550067}'
+10-15 16:02:30.076 23249 23305 I ReactNativeJS: '[V2-MAP] chapters:rows', '{"titles":32,"visibleLessons":1,"selectedLessonOrdinal":1,"rows":2048,"lessonRows":64,"chapters":7,"sessions":15,"allLessonsOpen":false,"active":true}'
+10-15 16:02:30.079 23249 23305 I ReactNativeJS: '[V2-MAP] page:commit', '{"instanceId":"bbsodj","page":"v2","branch":"v2_map","presentation":"tab","runtimeOwnerId":"lessons","visible":true,"atMs":1792076550076}'
+10-15 16:02:30.090 23249 23305 I ReactNativeJS: '[V2-PREWARM] start', '{"courseSessionId":"lesson-01:session:01"}'
+10-15 16:02:30.452 23249 23305 I ReactNativeJS: '[V2-PREWARM] start', '{"courseSessionId":"lesson-01:session:02"}'
+10-15 16:02:30.457 23249 23305 I ReactNativeJS: [LESSONS-BOOT] load:start {"sinceModuleMs":50310,"atEpochMs":1792076550453,"target":"en","caller":"unspecified","inflight":1,"cached":true}
+10-15 16:02:30.460 23249 23305 I ReactNativeJS: '[V2-MAP] scrollToCurrent:skip', '{"reason":"no_current_row","rows":0}'
+10-15 16:02:30.466 23249 23305 W ReactNativeJS: '[LESSONS-LIST] data', '{"rows":0,"queryLength":0,"firstKinds":[]}', { [Stack] name: 'Stack' }

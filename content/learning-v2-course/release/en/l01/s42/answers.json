@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-42:i01",
-    "correctText": "great",
+    "correctText": "She is polite.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i02",
-    "correctText": "great",
+    "correctText": "He is polite.",
     "correctResponseId": "en:lesson-01:session-42:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i03",
-    "correctText": "awful",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-42:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i04",
-    "correctText": "awful",
-    "correctResponseId": "en:lesson-01:session-42:i04:r1"
+    "correctText": "en:lesson-01:session-42:i04:p1=He's\nen:lesson-01:session-42:i04:p2=She's\nen:lesson-01:session-42:i04:p3=You're\nen:lesson-01:session-42:i04:p4=I'm",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i05",
-    "correctText": "He's great.",
+    "correctText": "They're polite.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i06",
-    "correctText": "gone",
+    "correctText": "We are polite.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i07",
-    "correctText": "gone",
-    "correctResponseId": "en:lesson-01:session-42:i07:r1"
+    "correctText": "You're polite.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i08",
-    "correctText": "great",
+    "correctText": "afraid",
     "correctResponseId": "en:lesson-01:session-42:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i09",
-    "correctText": "She's quiet.",
-    "correctResponseId": null
+    "correctText": "They are afraid.",
+    "correctResponseId": "en:lesson-01:session-42:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i10",
-    "correctText": "en:lesson-01:session-42:i10:p1=great\nen:lesson-01:session-42:i10:p2=awful\nen:lesson-01:session-42:i10:p3=gone\nen:lesson-01:session-42:i10:p4=quiet",
+    "correctText": "en:lesson-01:session-42:i10:p1=polite\nen:lesson-01:session-42:i10:p2=afraid\nen:lesson-01:session-42:i10:p3=honest\nen:lesson-01:session-42:i10:p4=brave",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i11",
-    "correctText": "It's awful.",
+    "correctText": "She's polite.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i12",
-    "correctText": "gone",
-    "correctResponseId": "en:lesson-01:session-42:i12:r1"
+    "correctText": "I am polite.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i13",
-    "correctText": "She's funny.",
+    "correctText": "He is afraid.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-42:i14",
-    "correctText": "He's here.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-42:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i15",
-    "correctText": "awful",
+    "correctText": "We're polite.",
     "correctResponseId": "en:lesson-01:session-42:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-42:i16",
-    "correctText": "She's late.",
+    "correctText": "en:lesson-01:session-42:i16:p1=We're\nen:lesson-01:session-42:i16:p2=They're\nen:lesson-01:session-42:i16:p3=polite\nen:lesson-01:session-42:i16:p4=afraid",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-42:i17:s01",
-    "correctText": "It's great.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-42:i17:s02",
-    "correctText": "He's gone.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-42:i17:s03",
-    "correctText": "It's quiet.",
+    "interactionId": "en:lesson-01:session-42:i17",
+    "correctText": "She is polite.",
     "correctResponseId": null
   }
 ]

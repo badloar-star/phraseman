@@ -1,181 +1,138 @@
-# Англійська · Урок 1 · Заняття 42 — «he's, she's, it's»
+# Англійська · Урок 1 · Заняття 42 — Знайомимося із сусідами
 
-**Ситуація.** У кафе Іра, Олег і Ліна обговорюють нового керівника, тиху колегу та несмачний напій. Ви відповідаєте короткими англійськими фразами.
-**Сьогодні.** Скажете `he's`, `she's` та `it's`.
-**Нові слова:** great, awful, gone
-**Повертаються:** here, late, funny, quiet
+**Ситуація.** Ви з братом уперше прийшли на зустріч сусідів. Брат боїться заговорити, господиня привітно вас приймає, а ви обговорюєте враження після знайомства.
+
+**Що ви опануєте:** назвати ввічливість людини й відрізнити її від знайомого почуття страху
+**Нові слова:** polite
 
 ---
 
 ## Інтро 1
 
-### `he is` у живій мові звучить як `he's`
+### Ввічливий
 
-`great` — «чудово, клас». Про людину, про вечір, про будь-що хороше.
+`polite` — «ввічливий»: звертається шанобливо, дякує, не перебиває. `She is polite` — «Вона ввічлива». Це про манеру спілкування, а не про згоду з усім підряд. Ввічливо відмовитися від третього шматка пирога теж можна — навіть якщо господиня вже дістала тарілку.
 
-Українською ми кажемо просто «він чудовий» — і жодного «є» посередині. Англійська так не вміє: там між `he` і словом про нього завжди стоїть `is`. Повністю це `he is great`.
+**Господиня уважно вас слухає й дякує за допомогу. Назвіть її ввічливою.**
 
-Але вголос два слова злипаються в одне: `he's great`. Значок `'` стоїть там, де випала літера `i`.
-
-Читається це одним шматком, без паузи посередині. Пауза видає людину, яка проговорює про себе шкільне правило.
-
-**Друг питає про вашого нового начальника. Похваліть його коротко.**
-
-- ✅ **He's great.**
-- ❌ He great. — *Тут випало не лише `i`, а все скорочення. Значок `'` є тільки тоді, коли є `he's`.*
-- ❌ He's is great. — *`is` уже сховане всередині `he's`. Вдруге його ставити не треба.*
+- ✅ **She is polite.**
+- ❌ She are polite. — *Після `She` потрібно `is`.*
+- ❌ She is afraid. — *`afraid` — «боїться». Тут треба назвати ввічливість: `polite`.*
 
 ---
 
 ## Інтро 2
 
-### `she's` працює так само
+### Звертаємося до людини
 
-`quiet` — «тиха, мовчазна». Не про гучність голосу, а про людину, яка зайвого не говорить.
+`You are polite` — «Ти ввічливий» або «Ви ввічливі». Можна похвалити одного співрозмовника або кількох. Про себе: `I am polite`; про вас із братом: `We are polite`. До слова `polite` не додаємо `s`.
 
-`she is quiet` у барі перетворюється на `she's quiet`. Та сама схема: літера `i` йде, на її місце стає значок.
+**Брат дочекався, поки господиня закінчить говорити, і подякував їй. Зверніться до нього й похваліть його ввічливість.**
 
-Жодного окремого правила для жіночого роду тут немає. Добра новина: запам'ятати треба одну річ, а не дві.
-
-**За столом обговорюють колегу, яка весь вечір мовчить. Скажіть про неї.**
-
-- ✅ **She's quiet.**
-- ❌ Shes quiet. — *Значок загубили. Без нього це просто злиплі літери.*
-- ❌ She quiet. — *Ми кажемо «вона тиха» і не додаємо нічого. Англійською тут потрібне `is` — або `she's`, що те саме.*
+- ✅ **You are polite.**
+- ❌ He is polite. — *Це розповідь про нього. Тут ви звертаєтеся просто до брата: `You are polite`.*
+- ❌ You is polite. — *Після `You` потрібна форма `are`.*
 
 ---
 
 ## Інтро 3
 
-### `it's` — про річ, а не про людину
+### Боїться, але не грубить
 
-`awful` — «жахливий, огидний». Слово різке: про їжу, про погоду, про вечір, який не вдався.
+`afraid` описує страх, `polite` — ввічливість. Ці слова можуть підходити одній людині: брат боїться заговорити, але відповідає шанобливо. Коротко: `He's afraid` і `He's polite`. У кожній відповіді називаємо саме те, про що просять.
 
-`it is awful` скорочується до `it's awful`. Про предмет, про місце, про погоду — усюди `it`.
+**Брат зізнався, що йому страшно заговорити з незнайомими людьми. Назвіть саме його страх короткою фразою.**
 
-Про людей так не кажуть: для них є `he's` і `she's`. Назвати людину `it` — це як сказати про дорослого «воно». Про дитину так ще скажуть, про начальника — ні.
-
-**Друг кривиться над своїм пивом і чекає вашого вироку. Воно й справді погане.**
-
-- ✅ **It's awful.**
-- ❌ Its awful. — *Значок зник, а разом із ним і `is`. Скорочення тримається саме на цьому значку.*
-- ❌ It awful. — *Українською досить сказати «воно жахливе». Англійською між `it` і словом про нього потрібне `is`. Або коротке `it's`.*
+- ✅ **He's afraid.**
+- ❌ He's polite. — *Це про ввічливість. Тут треба назвати страх: `afraid`.*
+- ❌ She's afraid. — *Це про неї. Про брата потрібно `He's`.*
 
 ---
 
-## Практика (19 завдань, підказок стає менше)
+## Практика (17 завдань)
 
-**1 · Картка слова — great**
-<!-- interaction_id: en:lesson-01:session-42:i01; family: listen_choose -->
-> **great** — «чудово, клас». Головна похвала в барі: і про людину, і про вечір, і про матч по телевізору.
+**1 · Господиня звертається до вас шанобливо. Складіть фразу про її ввічливість**
+<!-- interaction_id: en:lesson-01:session-42:i01; family: phrase_builder -->
+Плитки: `polite` `is` `She` `are` → **She is polite.**
+*(плитка `are` зайва: тут потрібно `is` — `She is polite.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-42:i02; family: listen_choose -->
-🔊 *great* → **great** · grade · gate
-- grade — *У кінці «д», а не «т». Слово інше — «оцінка».*
-- gate — *Усередині немає «р». `gate` — «ворота».*
+🔊 *He is polite.* → **He is polite.** · She is polite. · He is afraid.
+- She is polite. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
+- He is afraid. — *У записі останнє слово — `polite`, а в цьому варіанті — `afraid`.*
 
-**3 · Картка слова — awful**
-<!-- interaction_id: en:lesson-01:session-42:i03; family: listen_choose -->
-> **awful** — «жахливий». Не «так собі», а прямо погано: їжа, погода, вечір.
+**3 · Похваліть співрозмовника за ввічливість, звертаючись до нього. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-42:i03; family: context_gap_grammar -->
+You ___ polite. → **are** · am · is
+- am — *Після `You` потрібно `are`.*
+- is — *До одного співрозмовника теж звертаємося `You are`.*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-42:i04; family: listen_choose -->
-🔊 *awful* → **awful** · offer · awake
-- offer — *Інше слово й інший кінець: `-er` проти `-ful`.*
-- awake — *Початок схожий, далі все розходиться: в `awful` немає «к».*
+**4 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-01:session-42:i04; family: speed_match -->
+He's — He is · She's — She is · You're — You are · I'm — I am
 
-**5 · Складіть фразу — «він чудовий»**
-<!-- interaction_id: en:lesson-01:session-42:i05; family: phrase_builder -->
-Плитки: `He's` `great` `is` → **He's great.**
-*(плитка `is` зайва: `is` зайве: у `He's great` слово `is` уже заховане в `He's`.)*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-42:i05; family: listen_build_dictation -->
+🔊 *They're polite.* Плитки: `polite` `They're` `We're` → **They're polite.**
+*(плитка `We're` зайва: тут потрібно `They're` — `They're polite.`)*
 
+**6 · Ви та брат уважно слухаєте й дякуєте господарям. Назвіть вас обох ввічливими**
+<!-- interaction_id: en:lesson-01:session-42:i06; family: phrase_builder -->
+Плитки: `polite` `are` `We` `They` → **We are polite.**
+*(плитка `They` зайва: тут потрібно `We` — `We are polite.`)*
 
-**6 · Картка слова — gone**
-<!-- interaction_id: en:lesson-01:session-42:i06; family: listen_choose -->
-> **gone** — «пішов, його більше немає». Була людина за столом — і немає людини. Або було пиво в кухлі.
+**7 · Коротко похваліть господиню за ввічливість, звертаючись до неї**
+<!-- interaction_id: en:lesson-01:session-42:i07; family: scripted_repeat_compare -->
+🎙 **You're polite.**
 
-**7 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-42:i07; family: listen_choose -->
-🔊 *gone* → **gone** · go · gun
-- go — *Тільки початок, без «н» у кінці.*
-- gun — *Інший голосний і інше слово — «пістолет».*
-
-**8 · Вставте слово — начальник у барі всім сподобався**
+**8 · Вам страшно почати розмову з незнайомою людиною. Назвіть саме страх**
 <!-- interaction_id: en:lesson-01:session-42:i08; family: context_gap_grammar -->
-He's ___ . → **great** · awful · gone
-- awful — *Це «жахливий» — рівно навпаки.*
-- gone — *«Пішов». Він сидить із вами за столом.*
+I am ___ . → **afraid** · polite · honest
+- polite — *`polite` — «ввічливий». Страх передає `afraid`.*
+- honest — *`honest` — «чесний». Тут треба назвати страх: `afraid`.*
 
-**9 · Послухайте і складіть — Ліна читає повідомлення: «Вона тиха»**
-<!-- interaction_id: en:lesson-01:session-42:i09; family: listen_build_dictation -->
-🔊 *She's quiet.* Плитки: `She's` `quiet` `She` → **She's quiet.**
-*(плитка `She` зайва: Потрібно `She's quiet`: `She` без `is` не утворює фразу.)*
+**9 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-42:i09; family: listen_choose -->
+🔊 *They are afraid.* → **They are afraid.** · We are afraid. · They are polite.
+- We are afraid. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
+- They are polite. — *У записі останнє слово — `afraid`, а в цьому варіанті — `polite`.*
 
-
-**10 · З'єднайте пари**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-42:i10; family: speed_match -->
-great — чудово · awful — жахливий · gone — пішов · quiet — тиха
+polite — ввічливий · afraid — боїться · honest — чесний · brave — сміливий
 
-**11 · Послухайте і складіть — «воно жахливе»**
+**11 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-42:i11; family: listen_build_dictation -->
-🔊 *It's awful.* Плитки: `awful` `It's` `great` `is` → **It's awful.**
-*(плитка `great` зайва: `great` зайве: в аудіо `It's awful`.)*
-*(плитка `is` зайва: `is` зайве: воно вже заховане в `It's awful`.)*
+🔊 *She's polite.* Плитки: `polite` `She's` `He's` → **She's polite.**
+*(плитка `He's` зайва: тут потрібно `She's` — `She's polite.`)*
 
+**12 · Ви говорите про свою звичку шанобливо звертатися до людей. Назвіть себе ввічливою людиною**
+<!-- interaction_id: en:lesson-01:session-42:i12; family: phrase_builder -->
+Плитки: `polite` `am` `I` `are` → **I am polite.**
+*(плитка `are` зайва: тут потрібно `am` — `I am polite.`)*
 
-**12 · Вставте слово — ви обернулися, а стілець друга порожній**
-<!-- interaction_id: en:lesson-01:session-42:i12; family: context_gap_grammar -->
-He's ___ . → **gone** · here · late
-- here — *«Тут». Якраз навпаки: його немає.*
-- late — *«Запізнився». Він не запізнився, він уже встиг піти.*
+**13 · Брат розповів вам про страх перед знайомством. Передайте сестрі саме це його почуття**
+<!-- interaction_id: en:lesson-01:session-42:i13; family: scripted_repeat_compare -->
+🎙 **He is afraid.**
 
-**13 · Складіть фразу — вона пожартувала, і ви смієтеся; скажіть про неї коротко**
-<!-- interaction_id: en:lesson-01:session-42:i13; family: phrase_builder -->
-Плитки: `funny` `She's` `is` `quiet` → **She's funny.**
-*(`funny` — «смішна», `quiet` — «тиха»)*
-*(плитка `is` зайва: `is` зайве: воно вже заховане в `She's funny`.)*
-*(плитка `quiet` зайва: `quiet` зайве: після жарту кажуть `She's funny`.)*
+**14 · Двоє сусідів говорять шанобливо й не перебивають. Назвіть їх ввічливими**
+<!-- interaction_id: en:lesson-01:session-42:i14; family: context_gap_grammar -->
+They ___ polite. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Тут `They are polite`.*
 
+**15 · Послухайте й виберіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-42:i15; family: listen_choose -->
+🔊 *We're polite.* → **We're polite.** · They're polite. · We're afraid.
+- They're polite. — *У записі перше слово — `We're`, а в цьому варіанті — `They're`.*
+- We're afraid. — *У записі останнє слово — `polite`, а в цьому варіанті — `afraid`.*
 
-**14 · Послухайте і складіть — «він тут»**
-<!-- interaction_id: en:lesson-01:session-42:i14; family: listen_build_dictation -->
-🔊 *He's here.* Плитки: `here` `He's` `gone` `is` → **He's here.**
-*(плитка `gone` зайва: `gone` зайве: в аудіо `He's here`.)*
-*(плитка `is` зайва: `is` зайве: воно вже заховане в `He's here`.)*
+**16 · З’єднайте форми та слова з відповідниками**
+<!-- interaction_id: en:lesson-01:session-42:i16; family: speed_match -->
+We're — We are · They're — They are · polite — ввічливий · afraid — боїться
 
-
-**15 · Вставте слово — надворі злива, ви забігли в паб**
-<!-- interaction_id: en:lesson-01:session-42:i15; family: context_gap_grammar -->
-It's ___ . → **awful** · quiet · great
-- quiet — *«Тихо». Про зливу так не скажеш.*
-- great — *«Чудово». Мокрим під дощем — навряд.*
-
-**16 · Складіть фразу — її все немає, а початок був о сьомій; скажіть коротко**<!-- interaction_id: en:lesson-01:session-42:i16; family: phrase_builder --> (`late` — «запізнилася»)
-Плитки: `late` `She's` `is` → **She's late.**
-*(плитка `is` зайва: `is` зайве: воно вже заховане в `She's late`.)*
-
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-42:i17:s01; family: scripted_repeat_compare -->
-Іра питає, як минув вечір. 🎙 **It's great.**
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-42:i17:s02; family: scripted_repeat_compare -->
-Олег дивиться на порожній стілець керівника. 🎙 **He's gone.**
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-42:i17:s03; family: scripted_repeat_compare -->
-Ліна вимкнула музику, і в кафе стало тихо. 🎙 **It's quiet.**
-
----
-
-## Для сборщика
-
-new_words:
-great — чудово, клас — «чудово, клас». Головна похвала в барі: і про людину, і про вечір, і про матч по телевізору.
-awful — жахливий — «жахливий». Не «так собі», а прямо погано: їжа, погода, вечір.
-gone — пішов — «пішов, його більше немає». Була людина за столом — і немає людини. Або було пиво в кухлі.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=speed_match, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
+**17 · Працівниця магазину спокійно вислухала ваше прохання й ввічливо допомогла. Розкажіть другові саме про її ввічливість**
+<!-- interaction_id: en:lesson-01:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **She is polite.**
 

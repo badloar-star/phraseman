@@ -1,179 +1,138 @@
-# Английский · Урок 1 · Занятие 42 — «he's, she's, it's»
+# Английский · Урок 1 · Занятие 42 — Знакомимся с соседями
 
-**Ситуация.** В кафе Ира, Олег и Лина обсуждают нового руководителя, тихую коллегу и невкусный напиток. Вы отвечаете короткими английскими фразами.
-**Сегодня.** Скажете `he's`, `she's` и `it's`.
-**Новые слова:** great, awful, gone
-**Возвращаются:** here, late, funny, quiet
+**Ситуация.** Вы с братом впервые пришли на встречу соседей. Брат боится заговорить, хозяйка радушно вас принимает, а вы обсуждаете впечатления после знакомства.
+
+**Что вы освоите:** назвать вежливость человека и отличить её от знакомого чувства страха
+**Новые слова:** polite
 
 ---
 
 ## Интро 1
 
-### `he is` в живой речи звучит как `he's`
+### Вежливый
 
-`great` — «отлично, класс». Про человека, про вечер, про что угодно хорошего.
+`polite` — «вежливый»: обращается уважительно, благодарит, не перебивает. `She is polite` — «Она вежливая». Это про манеру общения, а не про согласие со всем подряд. Вежливо отказаться от третьего куска пирога тоже можно — даже если хозяйка уже достала тарелку.
 
-Полностью это будет `he is great`. Но вслух два слова слипаются в одно: `he's great`. Значок `'` стоит там, где выпала буква `i`.
+**Хозяйка внимательно вас слушает и благодарит за помощь. Назовите её вежливой.**
 
-Читается это одним куском, без паузы посередине. Пауза выдаёт человека, который проговаривает про себя школьное правило.
-
-**Друг спрашивает про вашего нового начальника. Похвалите его коротко.**
-
-- ✅ **He's great.**
-- ❌ He great. — *Тут выпало не только `i`, а всё сокращение. Значок `'` есть только когда есть `he's`.*
-- ❌ He's is great. — *`is` уже спрятано внутри `he's`. Второй раз его ставить не нужно.*
+- ✅ **She is polite.**
+- ❌ She are polite. — *После `She` нужно `is`.*
+- ❌ She is afraid. — *`afraid` — «боится». Здесь нужно назвать вежливость: `polite`.*
 
 ---
 
 ## Интро 2
 
-### `she's` работает точно так же
+### Обращаемся к человеку
 
-`quiet` — «тихая, молчаливая». Не про громкость голоса, а про человека, который лишнего не говорит.
+`You are polite` — «Ты вежливый» или «Вы вежливые». Можно похвалить одного собеседника или нескольких. Про себя: `I am polite`; про вас с братом: `We are polite`. К слову `polite` не добавляем `s`.
 
-`she is quiet` в баре превращается в `she's quiet`. Та же схема: буква `i` уходит, на её место встаёт значок.
+**Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Обратитесь к нему и похвалите его вежливость.**
 
-Никакого отдельного правила для женского рода тут нет. Хорошая новость: запоминать нужно одну штуку, а не две.
-
-**За столом обсуждают коллегу, которая весь вечер молчит. Скажите про неё.**
-
-- ✅ **She's quiet.**
-- ❌ Shes quiet. — *Значок потеряли. Без него это просто слипшиеся буквы.*
-- ❌ She quiet. — *Между `she` и словом о ней нужно `is` — или `she's`, что то же самое.*
+- ✅ **You are polite.**
+- ❌ He is polite. — *Это рассказ о нём. Здесь вы обращаетесь прямо к брату: `You are polite`.*
+- ❌ You is polite. — *После `You` нужна форма `are`.*
 
 ---
 
 ## Интро 3
 
-### `it's` — про вещь, а не про человека
+### Боится, но не грубит
 
-`awful` — «ужасный, отвратительный». Слово сильное: про еду, про погоду, про вечер, который не задался.
+`afraid` описывает страх, `polite` — вежливость. Эти слова могут подходить одному человеку: брат боится заговорить, но отвечает уважительно. Коротко: `He's afraid` и `He's polite`. В каждом ответе называем именно то, о чём просят.
 
-`it is awful` сокращается в `it's awful`. Про предмет, про место, про погоду — везде `it`.
+**Брат признался, что ему страшно заговорить с незнакомыми людьми. Назовите именно его страх короткой фразой.**
 
-Про людей так не говорят: для них есть `he's` и `she's`. Назвать человека `it` — примерно как назвать его «оно».
-
-**Друг морщится над своим пивом и ждёт вашего приговора. Оно и правда плохое.**
-
-- ✅ **It's awful.**
-- ❌ Its awful. — *Значок пропал, и `is` вместе с ним. Сокращение держится на этом значке.*
-- ❌ It awful. — *Между `it` и словом о нём нужно `is`. Или короткое `it's`.*
+- ✅ **He's afraid.**
+- ❌ He's polite. — *Это про вежливость. Здесь нужно назвать страх: `afraid`.*
+- ❌ She's afraid. — *Это про неё. Про брата нужно `He's`.*
 
 ---
 
-## Практика (19 заданий, подсказок становится меньше)
+## Практика (17 заданий)
 
-**1 · Карточка слова — great**
-<!-- interaction_id: en:lesson-01:session-42:i01; family: listen_choose -->
-> **great** — «отлично, класс». Самая частая похвала в баре: и про человека, и про вечер, и про матч по телевизору.
+**1 · Хозяйка обращается с вами уважительно. Соберите фразу о её вежливости**
+<!-- interaction_id: en:lesson-01:session-42:i01; family: phrase_builder -->
+Плитки: `polite` `is` `She` `are` → **She is polite.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is polite.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-42:i02; family: listen_choose -->
-🔊 *great* → **great** · grade · gate
-- grade — *На конце «д», а не «т». Слово другое — «оценка».*
-- gate — *Внутри нет «р». `gate` — «ворота».*
+🔊 *He is polite.* → **He is polite.** · She is polite. · He is afraid.
+- She is polite. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is afraid. — *В записи последнее слово — `polite`, а в этом варианте — `afraid`.*
 
-**3 · Карточка слова — awful**
-<!-- interaction_id: en:lesson-01:session-42:i03; family: listen_choose -->
-> **awful** — «ужасный». Не «так себе», а прямо плохо: еда, погода, вечер.
+**3 · Похвалите собеседника за вежливость, обращаясь к нему. Вставьте слово**
+<!-- interaction_id: en:lesson-01:session-42:i03; family: context_gap_grammar -->
+You ___ polite. → **are** · am · is
+- am — *После `You` нужно `are`.*
+- is — *К одному собеседнику тоже обращаемся `You are`.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-42:i04; family: listen_choose -->
-🔊 *awful* → **awful** · offer · awake
-- offer — *Другое слово и другой конец: `-er` против `-ful`.*
-- awake — *Начало похоже, дальше всё расходится: в `awful` нет «к».*
+**4 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-01:session-42:i04; family: speed_match -->
+He's — He is · She's — She is · You're — You are · I'm — I am
 
-**5 · Соберите фразу — «он отличный»**
-<!-- interaction_id: en:lesson-01:session-42:i05; family: phrase_builder -->
-Плитки: `He's` `great` `is` → **He's great.**
-*(плитка `is` лишняя: `is` лишнее: в `He's great.` слово `is` уже спрятано в `He's`.)*
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-42:i05; family: listen_build_dictation -->
+🔊 *They're polite.* Плитки: `polite` `They're` `We're` → **They're polite.**
+*(плитка `We're` лишняя: здесь нужно `They're` — `They're polite.`)*
 
+**6 · Вы и брат внимательно слушаете и благодарите хозяев. Назовите вас обоих вежливыми**
+<!-- interaction_id: en:lesson-01:session-42:i06; family: phrase_builder -->
+Плитки: `polite` `are` `We` `They` → **We are polite.**
+*(плитка `They` лишняя: здесь нужно `We` — `We are polite.`)*
 
-**6 · Карточка слова — gone**
-<!-- interaction_id: en:lesson-01:session-42:i06; family: listen_choose -->
-> **gone** — «ушёл, его больше нет». Был человек за столом — и нет человека. Или было пиво в кружке.
+**7 · Коротко похвалите хозяйку за вежливость, обращаясь к ней**
+<!-- interaction_id: en:lesson-01:session-42:i07; family: scripted_repeat_compare -->
+🎙 **You're polite.**
 
-**7 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-42:i07; family: listen_choose -->
-🔊 *gone* → **gone** · go · gun
-- go — *Только начало, без «н» на конце.*
-- gun — *Другая гласная и другое слово — «пистолет».*
-
-**8 · Вставьте слово — начальник в баре всем понравился**
+**8 · Вам страшно начать разговор с незнакомым человеком. Назовите именно страх**
 <!-- interaction_id: en:lesson-01:session-42:i08; family: context_gap_grammar -->
-He's ___ . → **great** · awful · gone
-- awful — *Это «ужасный» — ровно наоборот.*
-- gone — *«Ушёл». Он сидит с вами за столом.*
+I am ___ . → **afraid** · polite · honest
+- polite — *`polite` — «вежливый». Страх передаёт `afraid`.*
+- honest — *`honest` — «честный». Здесь нужно назвать страх: `afraid`.*
 
-**9 · Послушайте и соберите — Лина читает сообщение: «Она тихая»**
-<!-- interaction_id: en:lesson-01:session-42:i09; family: listen_build_dictation -->
-🔊 *She's quiet.* Плитки: `She's` `quiet` `She` → **She's quiet.**
-*(плитка `She` лишняя: Нужно `She's quiet.`: `She` без `is` не образует фразу.)*
+**9 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-42:i09; family: listen_choose -->
+🔊 *They are afraid.* → **They are afraid.** · We are afraid. · They are polite.
+- We are afraid. — *В записи первое слово — `They`, а в этом варианте — `We`.*
+- They are polite. — *В записи последнее слово — `afraid`, а в этом варианте — `polite`.*
 
-
-**10 · Соедините пары**
+**10 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-01:session-42:i10; family: speed_match -->
-great — отлично · awful — ужасный · gone — ушёл · quiet — тихая
+polite — вежливый · afraid — боится · honest — честный · brave — смелый
 
-**11 · Послушайте и соберите — «оно ужасное»**
+**11 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-42:i11; family: listen_build_dictation -->
-🔊 *It's awful.* Плитки: `awful` `It's` `great` `is` → **It's awful.**
-*(плитка `great` лишняя: `great` лишнее: в аудио `It's awful.`)*
-*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `It's awful.`)*
+🔊 *She's polite.* Плитки: `polite` `She's` `He's` → **She's polite.**
+*(плитка `He's` лишняя: здесь нужно `She's` — `She's polite.`)*
 
+**12 · Вы говорите о своей привычке уважительно обращаться с людьми. Назовите себя вежливым человеком**
+<!-- interaction_id: en:lesson-01:session-42:i12; family: phrase_builder -->
+Плитки: `polite` `am` `I` `are` → **I am polite.**
+*(плитка `are` лишняя: здесь нужно `am` — `I am polite.`)*
 
-**12 · Вставьте слово — вы обернулись, а стул друга пустой**
-<!-- interaction_id: en:lesson-01:session-42:i12; family: context_gap_grammar -->
-He's ___ . → **gone** · here · late
-- here — *«Здесь». Как раз наоборот: его нет.*
-- late — *«Опоздал». Он не опоздал, он уже успел уйти.*
+**13 · Брат рассказал вам о страхе перед знакомством. Передайте сестре именно это его чувство**
+<!-- interaction_id: en:lesson-01:session-42:i13; family: scripted_repeat_compare -->
+🎙 **He is afraid.**
 
-**13 · Соберите фразу — она пошутила, и вы смеётесь; скажите про неё коротко**
-<!-- interaction_id: en:lesson-01:session-42:i13; family: phrase_builder -->
-Плитки: `funny` `She's` `is` `quiet` → **She's funny.**
-*(`funny` — «смешная», `quiet` — «тихая»)*
-*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `She's funny.`)*
-*(плитка `quiet` лишняя: `quiet` лишнее: после шутки говорят `She's funny.`)*
+**14 · Двое соседей говорят уважительно и не перебивают. Назовите их вежливыми**
+<!-- interaction_id: en:lesson-01:session-42:i14; family: context_gap_grammar -->
+They ___ polite. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Здесь `They are polite`.*
 
+**15 · Послушайте и выберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-42:i15; family: listen_choose -->
+🔊 *We're polite.* → **We're polite.** · They're polite. · We're afraid.
+- They're polite. — *В записи первое слово — `We're`, а в этом варианте — `They're`.*
+- We're afraid. — *В записи последнее слово — `polite`, а в этом варианте — `afraid`.*
 
-**14 · Послушайте и соберите — «он здесь»**
-<!-- interaction_id: en:lesson-01:session-42:i14; family: listen_build_dictation -->
-🔊 *He's here.* Плитки: `here` `He's` `gone` `is` → **He's here.**
-*(плитка `gone` лишняя: `gone` лишнее: в аудио `He's here.`)*
-*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `He's here.`)*
+**16 · Соедините формы и слова с соответствиями**
+<!-- interaction_id: en:lesson-01:session-42:i16; family: speed_match -->
+We're — We are · They're — They are · polite — вежливый · afraid — боится
 
-
-**15 · Вставьте слово — на улице ливень, вы забежали в паб**
-<!-- interaction_id: en:lesson-01:session-42:i15; family: context_gap_grammar -->
-It's ___ . → **awful** · quiet · great
-- quiet — *«Тихо». Про ливень так не скажешь.*
-- great — *«Отлично». Мокрым под дождём — вряд ли.*
-
-**16 · Соберите фразу — её всё нет, а начало было в семь; скажите коротко**<!-- interaction_id: en:lesson-01:session-42:i16; family: phrase_builder --> (`late` — «опоздала»)
-Плитки: `late` `She's` `is` → **She's late.**
-*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `She's late.`)*
-
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-42:i17:s01; family: scripted_repeat_compare -->
-Ира спрашивает, как прошёл вечер. 🎙 **It's great.**
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-42:i17:s02; family: scripted_repeat_compare -->
-Олег смотрит на пустой стул руководителя. 🎙 **He's gone.**
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-42:i17:s03; family: scripted_repeat_compare -->
-Лина выключила музыку, и в кафе стало тихо. 🎙 **It's quiet.**
-
----
-
-## Для сборщика
-
-new_words:
-great — отлично, класс — «отлично, класс». Самая частая похвала в баре: и про человека, и про вечер, и про матч по телевизору.
-awful — ужасный — «ужасный». Не «так себе», а прямо плохо: еда, погода, вечер.
-gone — ушёл — «ушёл, его больше нет». Был человек за столом — и нет человека. Или было пиво в кружке.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=speed_match, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
+**17 · Сотрудница магазина спокойно выслушала вашу просьбу и вежливо помогла. Расскажите другу именно о её вежливости**
+<!-- interaction_id: en:lesson-01:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **She is polite.**
 

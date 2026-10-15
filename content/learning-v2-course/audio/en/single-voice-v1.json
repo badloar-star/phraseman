@@ -55615,6 +55615,309 @@
           "byteSize": 28416
         }
       ]
+    },
+    "l04/s16/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a swimming pool here?",
+          "file": "e0f725aa7a34de53851b884a738b5bbc6c24480d64be9c7feaaa21f50ea18f81.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0f725aa7a34de53851b884a738b5bbc6c24480d64be9c7feaaa21f50ea18f81.mp3",
+          "contentHash": "8e1af51c1e3b75e1647a91f142fd488cf236a6c2fae967c26c2b3c854d830884",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s16/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a hotel here.",
+          "file": "5d0170d7b6fb11f5112f7469b6e15816088c121bafadd8f66517da25e4158cad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d0170d7b6fb11f5112f7469b6e15816088c121bafadd8f66517da25e4158cad.mp3",
+          "contentHash": "dfab2774250d6ece2c032bd280d2eb513d00efcbec4499fc0b48808e74447cb9",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s16/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Are there laundrettes here?",
+          "file": "955bf39aebd07fdeb7ba9542c4854ae84356d2bd1175bc0242372f2f610d8b32.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/955bf39aebd07fdeb7ba9542c4854ae84356d2bd1175bc0242372f2f610d8b32.mp3",
+          "contentHash": "79e64a7bcbfca138ea319a9c6c7cf13892f48790dd4b50d9b72663442111b3d4",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l04/s16/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a neighbourhood.",
+          "file": "e01df42dc552220b83dc392d9aab2528753ad686647de0f8ab9642b938169811.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e01df42dc552220b83dc392d9aab2528753ad686647de0f8ab9642b938169811.mp3",
+          "contentHash": "43eb7d46ed9d01547e22296f6c9fd21513c3d120d652aa5e299cb8c32cac9499",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s16/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "swimming pool",
+          "file": "9c09dfc97de19f6f1997cfd5c035dfd6cb2093a82e77642d2c51ccaf95cb6be8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9c09dfc97de19f6f1997cfd5c035dfd6cb2093a82e77642d2c51ccaf95cb6be8.mp3",
+          "contentHash": "15cb1c15fdf271777d8b546a2c693bd0faad6b83a3e46015ef131f58a9e52fcc",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l04/s16/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "swimming pool",
+          "file": "6778ae80728c479529057ed419b2cffc5962c261cdd8a5cd1cc4f2f78112a335.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6778ae80728c479529057ed419b2cffc5962c261cdd8a5cd1cc4f2f78112a335.mp3",
+          "contentHash": "83206ac21300efed89a4a572d52f51298b0730026c86faf2aba9aea14ead9ef3",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s16/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "swimming pool",
+          "file": "9c09dfc97de19f6f1997cfd5c035dfd6cb2093a82e77642d2c51ccaf95cb6be8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9c09dfc97de19f6f1997cfd5c035dfd6cb2093a82e77642d2c51ccaf95cb6be8.mp3",
+          "contentHash": "15cb1c15fdf271777d8b546a2c693bd0faad6b83a3e46015ef131f58a9e52fcc",
+          "byteSize": 22656
+        },
+        {
+          "text": "dentist",
+          "file": "1d6c8778698a6346522ae9de7d0284e3a4c9b5050cf387b8ac2d262f864d7907.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d6c8778698a6346522ae9de7d0284e3a4c9b5050cf387b8ac2d262f864d7907.mp3",
+          "contentHash": "848516b629de95c592290325e234883a7e87e43944f51048f94f174bd3462803",
+          "byteSize": 29952
+        },
+        {
+          "text": "hotel",
+          "file": "34e93b1803296b46fa47146642d31309f486f028359681e313e3bf020d8f7978.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34e93b1803296b46fa47146642d31309f486f028359681e313e3bf020d8f7978.mp3",
+          "contentHash": "e9e6f772bb88a884607a44bb909906476eb501efae635fa29a325d1de4b92a6c",
+          "byteSize": 23040
+        },
+        {
+          "text": "tram",
+          "file": "71812677c3b6d6ee9cfd2a37a110ebfe101771ebba3ac2326c61df3bb2d47256.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/71812677c3b6d6ee9cfd2a37a110ebfe101771ebba3ac2326c61df3bb2d47256.mp3",
+          "contentHash": "822aa77df4fe206fa3db816e54c8c640708cb91b69707f1a874a7fee857fd5d8",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s16/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a swimming pool?",
+          "file": "0e7d993e3c3dbe74a3f7f3d9fe8c03dd074b055cc493680bda02d2f23751d057.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e7d993e3c3dbe74a3f7f3d9fe8c03dd074b055cc493680bda02d2f23751d057.mp3",
+          "contentHash": "e3d5d7d84a52a509927b5430d338984e9a2d458f60d69b309522ea3099dd309b",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s16/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a hotel here.",
+          "file": "56b2c80a80e03067b03ea6269b83deaab29ba1ebb6b67cee47b21d96bb64536f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56b2c80a80e03067b03ea6269b83deaab29ba1ebb6b67cee47b21d96bb64536f.mp3",
+          "contentHash": "927a4a6b76d74b0281459736f594686e22a5cbcc3762fcae4211dbc5efbc3753",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l04/s16/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is a tram.",
+          "file": "108e2ac8b05596590e2d58bb76f6edf2180e56afa17060bb196216ef5aac57d5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/108e2ac8b05596590e2d58bb76f6edf2180e56afa17060bb196216ef5aac57d5.mp3",
+          "contentHash": "3b88036214a4be9e462905d0d62720a72388bbba342762e1264aa7fd4730a916",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s16/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are there laundrettes here?",
+          "file": "3faca3856d4351be48b138c59331ac7087da4e100455e5e96e838b40eb3fe06c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3faca3856d4351be48b138c59331ac7087da4e100455e5e96e838b40eb3fe06c.mp3",
+          "contentHash": "dfec0cc7a30fab3d399658666de9417d0bfa168402fc7c577ea17e6df57f0070",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s16/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a gym?",
+          "file": "5fddae24871d165bd2e6a93788fc0bb48a00cf81776f5b1ba0b96c51863404a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fddae24871d165bd2e6a93788fc0bb48a00cf81776f5b1ba0b96c51863404a8.mp3",
+          "contentHash": "d67e0dc6ed1d1c34df3b59666b5114e191a35eab20ec985155e9f56ce03cd6ca",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s16/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "platform",
+          "file": "28a7e7622af2cb6d50fc601a0d00a5dd866cf180a5c46939909c7f974d7cb25b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28a7e7622af2cb6d50fc601a0d00a5dd866cf180a5c46939909c7f974d7cb25b.mp3",
+          "contentHash": "5168e67d8b2dd7b00bbe0fe0007ea1bdbb9d3aa1a398637ffe167391119a3de5",
+          "byteSize": 34944
+        },
+        {
+          "text": "taxi",
+          "file": "1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "contentHash": "022f82bbfeeb55d35f57b455b3bca699bc3ac83cf766f5d4c8343d0cd3be2b24",
+          "byteSize": 19584
+        },
+        {
+          "text": "laundrette",
+          "file": "d56facb389000211557ff0f5b5755c968c98916d3d5885fddacd376a15bb6242.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d56facb389000211557ff0f5b5755c968c98916d3d5885fddacd376a15bb6242.mp3",
+          "contentHash": "27ea5117e7e2d097ca323bee5312674880bdb421dfc14cb91ee5a89562108958",
+          "byteSize": 25344
+        },
+        {
+          "text": "gym",
+          "file": "7e68480bef0225f3baced9abda34bbc04faa98c2d50a0ce956c18514a9a42a8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e68480bef0225f3baced9abda34bbc04faa98c2d50a0ce956c18514a9a42a8b.mp3",
+          "contentHash": "6d57d997d0c3ac10f4736a72d530acb31080e5affe3476775bf67d14612ce091",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s16/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a swimming pool here.",
+          "file": "d8c107ce81124d0d1e5cfd45b4c7531f460f9a3303d68e9ae89c6f6a30c23835.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8c107ce81124d0d1e5cfd45b4c7531f460f9a3303d68e9ae89c6f6a30c23835.mp3",
+          "contentHash": "4a230e436ac118200a41ee23bac346ca4b1b7c38ba0b3ef1e328bdac8919cd5d",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l04/s16/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are there swimming pools here?",
+          "file": "eea121030734cad9c3de72ec4fbd7743c1f6a263c8814a4455b65331fe38fe5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eea121030734cad9c3de72ec4fbd7743c1f6a263c8814a4455b65331fe38fe5d.mp3",
+          "contentHash": "f29695acfc6cd1518c7a70ca593d9f849d7754599d008e59fb748a8a10d6b1c6",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l04/s16/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "That is a swimming pool.",
+          "file": "b015081fa65a4344ae24ed4a3aaa242bc73a457e378ffed0ab21163e7949b0c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b015081fa65a4344ae24ed4a3aaa242bc73a457e378ffed0ab21163e7949b0c3.mp3",
+          "contentHash": "613ed6575995346f3118b2846a7c7a9e10393cab59061c4f64580082e6f6a751",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l04/s16/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There are swimming pools here.",
+          "file": "aebfc251934906d4a49706b63c7c92facbd4a043bf58e866d357eaf0e6a6351c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aebfc251934906d4a49706b63c7c92facbd4a043bf58e866d357eaf0e6a6351c.mp3",
+          "contentHash": "d2294611ab12a6f82bc6bd4e5eecd0bfa2a32c426e8a900a38ac8cf2824f6c92",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l04/s16/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a dentist?",
+          "file": "f860ed4753672b0b1d462383813593a5f0aa23a37d544673c4251c86d8968d8e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f860ed4753672b0b1d462383813593a5f0aa23a37d544673c4251c86d8968d8e.mp3",
+          "contentHash": "428fe2716f25d34f617db9441e728ae09fd8c80a91519f4d4fc0aa0eae0ff0f7",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s16/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "neighbourhood",
+          "file": "773a5e97049586f310376e299b5652e00b06625fc926cf95d90ed391d64bc8fe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/773a5e97049586f310376e299b5652e00b06625fc926cf95d90ed391d64bc8fe.mp3",
+          "contentHash": "ce038a1eb52f6586e926b38339b46a540b20f6589eb4f6faa08ff7e1d46f29cd",
+          "byteSize": 19584
+        },
+        {
+          "text": "dentist",
+          "file": "ae01ecffbaa05e8f076db3b65c914ca8f9db657c3a106bc4e768bbdae2abe936.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae01ecffbaa05e8f076db3b65c914ca8f9db657c3a106bc4e768bbdae2abe936.mp3",
+          "contentHash": "53bf4906d6ae7a4394e043b51ca2d2e16c7ab1ad7f5363ef8f54383a911f224d",
+          "byteSize": 32640
+        },
+        {
+          "text": "platform",
+          "file": "9120c4c02ec513fb39ff04bb90f3adee0be4fc7007b6afcd2881d14de9d22b91.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9120c4c02ec513fb39ff04bb90f3adee0be4fc7007b6afcd2881d14de9d22b91.mp3",
+          "contentHash": "72418191bd030e0e9fde74de601904eec8d4422296b252250ff88011e5df0159",
+          "byteSize": 29952
+        },
+        {
+          "text": "taxi",
+          "file": "07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "contentHash": "217d27331222e12a1f85a6be341966a5806976418612dfb443f5e2be7e2b26cc",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s16/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a swimming pool here?",
+          "file": "f4614e263da5a203735c3c1d0de552d625b8b0d73679926ae7b0c175f6b3aec2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f4614e263da5a203735c3c1d0de552d625b8b0d73679926ae7b0c175f6b3aec2.mp3",
+          "contentHash": "bb4181e99d1a9446fa3c3e0441897bd784b684e99d93c5c994a12787ac9a1ce2",
+          "byteSize": 41088
+        }
+      ]
     }
   },
   "settings": {

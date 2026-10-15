@@ -37,17 +37,16 @@ describe('community-010: «Отправляем заявку…» — состо
   });
 });
 
-describe('dialogs-028: бейдж «PLUS» на микрофоне', () => {
+describe('dialogs-028: бейдж остатка/«PLUS» на микрофоне', () => {
   const screen = read('components/dialogs/DialogueV2SessionScreen.tsx');
 
-  it('проп micPlusBadge (по умолчанию выключен) рисует значок «PLUS» в углу кнопки; цвета — токены темы', () => {
+  it('значок на микрофоне — общая цифра остатка (MicAllowanceBadge, на нуле «PLUS» внутри него); цвета — токены темы, не hex', () => {
+    // зачем (владелец 15.10, D196): вместо отдельного значка «PLUS» по старому состоянию — цифра общего дневного счётчика; проп micPlusBadge остался для подписи диктора
     expect(screen).toContain('micPlusBadge?: boolean;');
     expect(screen).toContain('micPlusBadge = false,');
-    const badge = screen.slice(screen.indexOf('{micPlusBadge ? ('), screen.indexOf('</Pressable>', screen.indexOf('{micPlusBadge ? (')));
-    expect(badge).toContain('testID="dialogue-v2-voice-plus-badge"');
-    expect(badge).toContain('backgroundColor: glass.cta');
-    expect(badge).toContain('color: glass.ctaInk');
-    expect(badge).toContain('>PLUS</Text>');
+    expect(screen).toContain('<MicAllowanceBadge size="sm" testID="dialogue-v2-voice-allowance" />');
+    const badge = read('components/MicAllowanceBadge.tsx');
+    expect(badge).toContain('plusFill: g.cta, plusInk: g.ctaInk');
     expect(badge).not.toMatch(/#[0-9A-Fa-f]{3,8}/);
   });
 

@@ -49,7 +49,8 @@ import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
 import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from './speech_device_availability';
 import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { getVerifiedPremiumAccessStatus, isTesterNoLimitsActive } from './premium_guard';
-import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
+import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
+import MicAllowanceBadge from '../components/MicAllowanceBadge';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
@@ -636,8 +637,8 @@ const LessonContent = React.memo(function LessonContent({
   // premium users get the SpeakingPanel (mic + waveform + 90% scoring).
   // зачем (владелец, 2026-09-13): дневной лимит голосовых попыток обычного
   // аккаунта вместо глухого «только в Plus»; замок горит только при исчерпании.
-  const speakingGate = useSpeakingAttemptGate({ context: 'speaking', source: 'lesson_speaking' });
-  const speakingIsPremium = !speakingGate.locked;
+  // зачем (владелец 15.10, D196): общий дневной счётчик голоса 3/день на все микрофоны — гейт и цифра остатка вместо замка; прежняя серверная квота «speaking» убрана
+  const speakingGate = useVoiceAttemptGate({ surface: 'lessons', source: 'lesson_speaking' });
   const speakingFeatureEnabled = true;
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
@@ -1637,11 +1638,7 @@ const LessonContent = React.memo(function LessonContent({
             >
               <View style={{ position: 'relative' }}>
                 <Ionicons name={speechNa ? 'mic-off-outline' : 'mic-outline'} size={26} color={glass.text} />
-                {!speakingIsPremium && !speechNa && (
-                  <View style={{ position: 'absolute', top: -4, right: -8 }}>
-                    <Ionicons name="lock-closed" size={12} color={glass.text} />
-                  </View>
-                )}
+                {!speechNa ? <MicAllowanceBadge size="sm" testID="lesson-speaking-allowance" /> : null}
               </View>
               <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>
                 {triLang(lang, {

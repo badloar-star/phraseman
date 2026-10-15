@@ -30,6 +30,8 @@ import { useStreakMilestoneHold } from './streak_milestone_pending';
 // зачем (координатор 15.10): рубеж серии на итоге «Моих ошибок» — тот же ленивый хост
 const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
 import { usePremium } from '../components/PremiumContext';
+import MicAllowanceBadge from '../components/MicAllowanceBadge';
+import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 import ScreenGradient from '../components/ScreenGradient';
 import { SpeakingPanel, buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -752,6 +754,8 @@ function MistakePracticeSessionScreen() {
   // задание «Моих ошибок» превращается в печать той же фразы — ошибка всё равно
   // отрабатывается и засчитывается, а микрофон не обещает того, что не умеет.
   const speechNa = useSpeechUnavailableOnDevice();
+  // зачем (владелец 15.10, D196): голос в «Моих ошибках» — тоже из общего дневного счётчика 3/день: тап по микрофону при нуле ведёт на пейвол, иначе списывает попытку и цифра падает сразу
+  const voiceGate = useVoiceAttemptGate({ surface: 'mistakes', source: 'mistake_practice_direct' });
   const renderer = entry?.exercise.renderer === 'speech' && (speechNa || speechSkipped) ? 'typing' : entry?.exercise.renderer;
   const speechReplacedByTyping = entry?.exercise.renderer === 'speech' && speechNa;
   const speechSwapLoggedRef = useRef<string | null>(null);
@@ -1610,11 +1614,12 @@ function MistakePracticeSessionScreen() {
               <Pressable
                 accessibilityRole="button"
                 accessibilityLabel={copy.holdToSpeak}
-                onPressIn={() => setSpeechHeld(true)}
+                onPressIn={() => { if (!voiceGate.tryStartAttempt()) return; setSpeechHeld(true); }}
                 onPressOut={() => setSpeechHeld(false)}
                 style={({ pressed }) => [styles.mic, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 34, spreadDistance: -12, color: `${g.accent}B3` }] }, pressed && { opacity: 0.9 }]}
               >
                 <Ionicons name="mic" size={32} color={g.accentInk} />
+                <MicAllowanceBadge testID="mistake-practice-allowance" />
               </Pressable>
               <Text style={[styles.micLabel, { color: g.secondary }]}>{pcopy.holdToSpeak}</Text>
               {speechRecovery ? <Text style={[styles.recovery, { color: g.secondary, fontSize: f.sub }]}>{speechRecovery}</Text> : null}

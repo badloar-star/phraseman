@@ -23,6 +23,8 @@ export type VoiceAllowanceBadgeProps = Readonly<{
   remaining: number;
   colors: VoiceAllowanceColors;
   reduceMotion?: boolean;
+  /** md — на большой кнопке (28 pt, цифра 16); sm — на малой кнопке в поле ввода диалогов (22 pt, цифра 13, D145: меньше 13 нельзя). */
+  size?: 'md' | 'sm';
   testID?: string;
 }>;
 
@@ -30,7 +32,7 @@ const TICK_UP_MS = 170;
 const TICK_DOWN_MS = 250; // вместе 420 мс, как vbTick в макете
 const EASE = Easing.bezier(0.3, 1.5, 0.5, 1);
 
-function VoiceAllowanceBadge({ remaining, colors, reduceMotion = false, testID = 'voice-allowance-badge' }: VoiceAllowanceBadgeProps) {
+function VoiceAllowanceBadge({ remaining, colors, reduceMotion = false, size = 'md', testID = 'voice-allowance-badge' }: VoiceAllowanceBadgeProps) {
   const prev = useRef(remaining);
   const scale = useSharedValue(1);
   useEffect(() => {
@@ -49,12 +51,13 @@ function VoiceAllowanceBadge({ remaining, colors, reduceMotion = false, testID =
       accessibilityElementsHidden
       style={[
         s.badge,
+        size === 'sm' ? s.badgeSm : null,
         // кольцо вокруг пилюли — тень без размытия цвета фона страницы (в макете box-shadow 0 0 0 2px var(--bg)), не обводка
         { backgroundColor: plus ? colors.plusFill : colors.fill, boxShadow: `0 0 0 2px ${colors.ring}` },
         style,
       ]}
     >
-      <Text style={[plus ? s.plusText : s.digit, { color: plus ? colors.plusInk : colors.ink }]} testID={`${testID}-text`}>
+      <Text style={[plus ? s.plusText : s.digit, size === 'sm' ? s.textSm : null, { color: plus ? colors.plusInk : colors.ink }]} testID={`${testID}-text`}>
         {plus ? 'PLUS' : String(remaining)}
       </Text>
     </Reanimated.View>
@@ -74,6 +77,9 @@ const s = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 2,
   },
+  // малая кнопка (поле ввода диалогов, макет .rbtn 52): пилюля 22, цифра 13 (в макете 12 — D145 запрещает меньше 13)
+  badgeSm: { top: -5, right: -8, minWidth: 22, height: 22, paddingHorizontal: 6, borderRadius: 11 },
+  textSm: { fontSize: 13, lineHeight: 17 },
   digit: { fontSize: 16, lineHeight: 20, fontWeight: '800', fontVariant: ['tabular-nums'] },
   plusText: { fontSize: 13, lineHeight: 20, fontWeight: '800', letterSpacing: 0.4 },
 });

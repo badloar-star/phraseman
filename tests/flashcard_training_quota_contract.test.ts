@@ -70,16 +70,14 @@ describe('Revenue VNext flashcard training quota wiring', () => {
     expect(screen).toContain('sessionAuthorized={quotaSessionAuthorized}');
     expect(screen).toContain('setQuotaSessionAuthorized(true)');
     expect(button).toContain('sessionAuthorized?: boolean;');
-    // 2026-09-13: вне авторизованной сессии действует дневной лимит голоса (useSpeakingAttemptGate).
-    expect(button).toContain('const speakingAllowed = sessionAuthorized || !speakingGate.locked;');
-    // Вход в запись решает гейт дневного лимита (а не булев премиум-флаг),
-    // отпускание завершает ТОЛЬКО начатое удержание — иначе поздний onHoldEnd
-    // приходил после отказа гейта.
-    expect(button).toContain('if (!sessionAuthorized && !speakingGate.tryStartAttempt())');
+    // зачем (владелец 15.10, D196): голос — ОДИН общий дневной счётчик 3/день на все микрофоны, без исключений: прежний гейт кнопки (серверная квота «speaking»)
+    // и обход для авторизованной карточной сессии убраны; гейт и цифра остатка приходят от хозяина через `allowance` (плеер курса) или живут в значке (MicAllowanceBadge).
+    expect(button).not.toContain('hooks/useSpeakingAttemptGate');
+    expect(button).not.toContain('const speakingAllowed =');
+    // отпускание завершает ТОЛЬКО начатое удержание — иначе поздний onHoldEnd приходил после отказа.
     expect(button).toContain('if (!holdStartedRef.current) return;');
-    // зачем (04.10, §SPEECH-NA): на телефоне без распознавания речи значок Plus/лимита не показываем —
-    // кнопка уже перечёркнута, «купи» там врало бы. Замок лимита — только когда речь доступна.
-    expect(button).toContain('{!speakingAllowed && !speechNa ? (');
+    // зачем (04.10, §SPEECH-NA): на телефоне без распознавания речи значок остатка/PLUS не показываем — кнопка уже перечёркнута.
+    expect(button).toContain('{allowance && !speechNa ? (');
   });
 
   // зачем (законный сдвиг, 03.10): createChargedOperationGuard() в «Вспомни»/«Устно» заменён защитой

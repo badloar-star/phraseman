@@ -49,9 +49,10 @@ describe('VoiceAllowanceBadge', () => {
 
 describe('SpeakHoldButton: allowance необязателен, Карточки как были', () => {
   const src = read('app/flashcards/SpeakHoldButton.tsx');
-  it('без allowance условия прежние; PlusBadge скрыт только при allowance', () => {
+  it('allowance необязателен: без него запись стартует как раньше; прежних гейта и значка PLUS в кнопке больше нет (D196: один общий счётчик)', () => {
     expect(src).toContain('allowance?: SpeakHoldAllowance;');
-    expect(src).toContain('{!allowance && !speakingAllowed && !speechNa ? (');
+    expect(src).not.toContain('{!allowance && !speakingAllowed && !speechNa ? (');
+    expect(src).not.toContain('hooks/useSpeakingAttemptGate');
     expect(src).toContain('backgroundColor: disabled ? t.bgSurface : spent && allowance ? allowance.colors.spentFill : accent,');
   });
   it('при остатке 0 тап зовёт onSpentPress и не стартует запись (лог [VOICE-LIMIT])', () => {
@@ -66,7 +67,7 @@ describe('плеер курса V2: гейт до записи, списание
   const src = read('app/learning_v2_direct_session_player_v1.tsx');
   it('хук Ядра и контекст пейвола', () => {
     expect(src).toContain('const voiceAllowance = useVoiceDailyAllowance();');
-    expect(src).toContain('context: VOICE_LIMIT_PAYWALL_CONTEXT, source: "learning_v2_course_voice"');
+    expect(src).toContain('context: "ai_voice_input", source: "learning_v2_course_voice"');
   });
   it('гейт стоит в startVoiceHold после проверок доступности и до запуска записи', () => {
     const fn = src.slice(src.indexOf('const startVoiceHold = useCallback('), src.indexOf('const stopVoiceCapture = useCallback('));

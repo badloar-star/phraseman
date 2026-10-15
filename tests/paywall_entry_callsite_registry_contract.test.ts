@@ -16,6 +16,8 @@ const LEGACY_CONTEXT_ALIASES = new Set(['ai_dialog', 'hall_of_fame']);
 const TRUSTED_FORWARDERS = new Set([
   'app/paywall_navigation.ts',
   'app/premium_modal.tsx',
+  // зачем (D196, Дизайн 15.10): общий гейт голоса пробрасывает типизированный PaywallSource поверхности (урок, ошибки, ИИ-диалог…), контекст — литерал ai_voice_input
+  'hooks/use_voice_attempt_gate.ts',
 ]);
 const REVIEWED_DYNAMIC_CONTEXTS = new Set([
   'app/(tabs)/lessons.tsx:lessonPaywallContext(lessonNum, effectiveLegacyFreeLessonCap)',

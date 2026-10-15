@@ -22,11 +22,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
-import { useSpeakingAttemptGate } from '../../hooks/useSpeakingAttemptGate';
-import PlusBadge from '../../components/PlusBadge';
 import VoiceAllowanceBadge, { type VoiceAllowanceColors } from '../../components/VoiceAllowanceBadge';
-import SpeakingQuotaDots from '../../components/SpeakingQuotaDots';
-import type { RevenueDailyQuotaResult } from '../revenue_daily_quota';
 import { useTheme } from '../../components/ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useLang } from '../../components/LangContext';
@@ -34,17 +30,6 @@ import { triLang } from '../../constants/i18n';
 import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from '../speech_device_availability';
 
 const PRESS_SPRING = { damping: 16, stiffness: 320, mass: 0.6 } as const;
-/**
- * Квота «без лимита» для авторизованной карточной сессии.
- *
- * зачем: сессия уже оплачена квотой ТРЕНИРОВОК, голосовые попытки внутри неё не
- * списываются. Показать здесь ряд голосовых точек значило бы соврать про остаток,
- * поэтому подставляем limit=null — компонент рисует распорку той же высоты и
- * геометрия кнопки остаётся неизменной.
- */
-const SESSION_AUTHORIZED_QUOTA: RevenueDailyQuotaResult = Object.freeze({
-  status: 'allowed', used: 0, limit: null, extra: 0, resetAt: null, period: null, bypass: null,
-});
 export const SPEAK_HOLD_BUTTON_SIZE = 76;
 const HALO_SIZE = SPEAK_HOLD_BUTTON_SIZE + 22;
 /** Высота всего, что нарисовано ПОД кругом — соседи в транспортном ряду
@@ -88,7 +73,6 @@ export default function SpeakHoldButton({
   accent,
   listening,
   disabled: disabledProp = false,
-  sessionAuthorized = false,
   reduceMotion = false,
   onHoldStart,
   onHoldEnd,
@@ -97,11 +81,9 @@ export default function SpeakHoldButton({
   allowance,
   testID = 'fc-speak-hold',
 }: SpeakHoldButtonProps) {
-  const { theme: t, themeMode } = useTheme();
-  // зачем (владелец, 2026-09-13): вне авторизованной карточной сессии действует
-  // дневной лимит голосовых попыток обычного аккаунта (не глухой пейвол).
-  // Авторизованная сессия уже заплатила квотой тренировок — гейт не спрашиваем.
-  const speakingGate = useSpeakingAttemptGate({ context: 'speaking', source: 'flashcards_speak_hold' });
+  const { theme: t } = useTheme();
+  // зачем (владелец 15.10, D196): один общий дневной счётчик на все микрофоны — гейт и цифра остатка приходят от хозяина кнопки через `allowance` (плеер курса),
+  // а прежний собственный гейт (серверная квота «speaking») и точки остатка убраны: две разные цифры на одном микрофоне недопустимы.
   const holdStartedRef = useRef(false);
   const { lang } = useLang();
   // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя кнопка
@@ -110,7 +92,6 @@ export default function SpeakHoldButton({
   const speechNa = useSpeechUnavailableOnDevice();
   const disabled = disabledProp || speechNa;
   const spent = !!allowance && allowance.remaining <= 0 && !speechNa;
-  const speakingAllowed = sessionAuthorized || !speakingGate.locked;
   const microphoneLabel = triLang(lang, {
     ru: 'Микрофон. Ответить устно', uk: 'Мікрофон. Відповісти вголос', en: 'Microphone. Answer aloud',
     es: 'Micrófono. Responder en voz alta', 'pt-BR': 'Microfone. Responder em voz alta', vi: 'Micrô. Trả lời thành tiếng',
@@ -164,13 +145,9 @@ export default function SpeakHoldButton({
       allowance.onSpentPress();
       return;
     }
-    if (!sessionAuthorized && !speakingGate.tryStartAttempt()) {
-      holdStartedRef.current = false;
-      return;
-    }
     holdStartedRef.current = true;
     onHoldStart();
-  }, [allowance, sessionAuthorized, speakingGate, press, reduceMotion, onHoldStart, speechNa, testID]);
+  }, [allowance, press, reduceMotion, onHoldStart, speechNa, testID]);
 
   const onPressOut = useCallback(() => {
     press.value = reduceMotion ? withTiming(0, { duration: 80 }) : withSpring(0, PRESS_SPRING);
@@ -225,11 +202,6 @@ export default function SpeakHoldButton({
             <VoiceAllowanceBadge remaining={allowance.remaining} colors={allowance.colors} reduceMotion={reduceMotion} testID={`${testID}-allowance`} />
           </View>
         ) : null}
-        {!allowance && !speakingAllowed && !speechNa ? (
-          <View pointerEvents="none" style={styles.badge}>
-            <PlusBadge themeMode={themeMode} size="xs" />
-          </View>
-        ) : null}
       </View>
       {/* Подпись фиксированной высоты: состояния меняются, геометрия — нет. */}
       <Text
@@ -238,18 +210,8 @@ export default function SpeakHoldButton({
       >
         {label}
       </Text>
-      {/* зачем (владелец 2026-09-13): остаток дневных голосовых попыток виден
-          на всех микрофонах. В авторизованной карточной сессии точек нет: она
-          уже оплачена квотой тренировок, и ряд голосовых попыток там был бы
-          ложью. Высота ряда постоянна в обоих случаях — транспортный ряд и
-          соседние круги не сдвигаются. */}
-      <SpeakingQuotaDots
-        quota={sessionAuthorized || speechNa ? SESSION_AUTHORIZED_QUOTA : speakingGate.quota}
-        spentColor={t.textMuted}
-        remainingColor={accent}
-        style={styles.dots}
-        testID={`${testID}-quota-dots`}
-      />
+      {/* распорка высоты прежнего ряда точек (4 + 5): транспортный ряд и соседние круги не сдвигаются (SPEAK_HOLD_LABEL_HEIGHT) */}
+      <View style={styles.dots} />
     </View>
   );
 }
@@ -279,10 +241,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     elevation: 6,
   },
-  badge: { position: 'absolute', top: 2, right: -6 },
   // якорь бейджа остатка: ровно поверх круга 76 внутри ореола — бейдж позиционируется от угла круга (top -6, right -10), как в макете
   allowanceAnchor: { position: 'absolute', top: (HALO_SIZE - SPEAK_HOLD_BUTTON_SIZE) / 2, left: (HALO_SIZE - SPEAK_HOLD_BUTTON_SIZE) / 2, width: SPEAK_HOLD_BUTTON_SIZE, height: SPEAK_HOLD_BUTTON_SIZE },
-  dots: { marginTop: 4 },
+  dots: { marginTop: 4, height: 5 },
   label: {
     marginTop: 4,
     fontSize: 13,

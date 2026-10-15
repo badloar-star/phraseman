@@ -1960,7 +1960,8 @@ export default function LearningV2DirectSessionPlayerV1() {
   const voiceAttemptSeqRef = useRef(0);
   const openVoicePlus = useCallback(() => {
     console.log("[VOICE-LIMIT] course_v2: лимит исчерпан -> пейвол", VOICE_LIMIT_PAYWALL_CONTEXT); // guard-ok: ветка решения
-    router.push({ pathname: "/premium_modal", params: { context: VOICE_LIMIT_PAYWALL_CONTEXT, source: "learning_v2_course_voice" } } as never);
+    // литерал контекста нужен сторожу точек входа пейвола (tests/paywall_entry_callsite_registry_contract): значение то же, что VOICE_LIMIT_PAYWALL_CONTEXT
+    router.push({ pathname: "/premium_modal", params: { context: "ai_voice_input", source: "learning_v2_course_voice" } } as never);
   }, [router]);
   const voiceTargetText = practice
     ? material?.factoryPracticeSemantics?.[practice.interactionId]

@@ -21,9 +21,8 @@ import Reanimated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { useSpeakingAttemptGate } from '../../hooks/useSpeakingAttemptGate';
-import PlusBadge from '../../components/PlusBadge';
-import { useTheme } from '../../components/ThemeContext';
+import { useVoiceAttemptGate } from '../../hooks/use_voice_attempt_gate';
+import MicAllowanceBadge from '../../components/MicAllowanceBadge';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useLang } from '../../components/LangContext';
@@ -55,18 +54,16 @@ function SpeakMicButtonBase({
   g,
   listening,
   disabled: disabledProp = false,
-  sessionAuthorized = false,
   reduceMotion = false,
   onStart,
   onStop,
   testID = 'fc-speak-mic',
 }: SpeakMicButtonProps) {
-  const { themeMode } = useTheme();
   const { lang } = useLang();
-  const speakingGate = useSpeakingAttemptGate({ context: 'speaking', source: 'flashcards_speak_hold' });
+  // зачем (владелец 15.10, D196): общий дневной счётчик голоса на все микрофоны — гейт и цифра остатка; прежняя серверная квота «speaking» и значок PLUS по ней убраны
+  const voiceGate = useVoiceAttemptGate({ surface: 'cards_speaking', source: 'flashcards_speak_hold' });
   const speechNa = useSpeechUnavailableOnDevice();
   const disabled = disabledProp || speechNa;
-  const speakingAllowed = sessionAuthorized || !speakingGate.locked;
   // зачем: кольцо крутится только пока экран в фокусе и приложение на переднем плане (перф-контракт: вечные циклы под гардом)
   const runtimeActive = useRuntimeActive();
   const press = useSharedValue(0);
@@ -106,12 +103,12 @@ function SpeakMicButtonBase({
       console.warn('[SPEECH-AVAIL] SpeakMicButton: press ignored — speech unavailable on device', JSON.stringify({ testID })); // guard-ok: ранний выход пишет причину, лог на жест, не на кадр
       return;
     }
-    if (!sessionAuthorized && !speakingGate.tryStartAttempt()) {
-      console.warn('[SPEECH-GATE] SpeakMicButton: attempt gate refused', JSON.stringify({ testID, locked: speakingGate.locked })); // guard-ok: ранний выход пишет причину, лог на жест, не на кадр
+    if (!voiceGate.tryStartAttempt()) {
+      console.warn('[SPEECH-GATE] SpeakMicButton: attempt gate refused', JSON.stringify({ testID, locked: voiceGate.locked })); // guard-ok: ранний выход пишет причину, лог на жест, не на кадр
       return;
     }
     onStart();
-  }, [listening, onStart, onStop, sessionAuthorized, speakingGate, speechNa, testID]);
+  }, [listening, onStart, onStop, speechNa, testID, voiceGate]);
 
   const label = speechNa
     ? speechUnavailableOnDeviceText(lang)
@@ -158,11 +155,7 @@ function SpeakMicButtonBase({
           <Ionicons name={speechNa ? 'mic-off-outline' : 'mic'} size={28} color={disabled ? g.secondary : g.ctaInk} />
         </Reanimated.View>
       </Pressable>
-      {!speakingAllowed && !speechNa ? (
-        <View pointerEvents="none" style={styles.badge}>
-          <PlusBadge themeMode={themeMode} size="xs" />
-        </View>
-      ) : null}
+      {!speechNa ? <MicAllowanceBadge testID={`${testID}-allowance`} /> : null}
     </View>
   );
 }
@@ -171,7 +164,6 @@ const styles = StyleSheet.create({
   stage: { width: SPEAK_MIC_SIZE, height: SPEAK_MIC_SIZE, alignItems: 'center', justifyContent: 'center', alignSelf: 'center' },
   ring: { position: 'absolute' },
   btn: { width: SPEAK_MIC_SIZE, height: SPEAK_MIC_SIZE, borderRadius: SPEAK_MIC_SIZE / 2, alignItems: 'center', justifyContent: 'center' },
-  badge: { position: 'absolute', top: 0, right: -8 },
 });
 
 export default memo(SpeakMicButtonBase);

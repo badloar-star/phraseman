@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { PressableScale } from '../feedback/PressableScale';
 import { describeDialogueVoiceMessage } from '../../app/dialogue_voice_message';
+import MicAllowanceBadge from '../MicAllowanceBadge';
 import type { DialogueVoiceDraft } from '../../app/dialogue_voice_message';
 import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_message';
 import type { DialogueV2CoachingMood } from '../../app/dialogue_v2_turn_coaching_client';
@@ -561,17 +562,8 @@ export function DialogueV2SessionScreen({
                 ) : (
                   <Ionicons name={voiceUnavailable ? 'mic-off-outline' : 'mic-outline'} size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
                 )}
-                {/* зачем (dialogs-028, dialogs.html C15 «бейдж PLUS на микрофоне»): значок «PLUS» в правом нижнем углу кнопки — голосовые попытки закончились, дальше голос в Plus. Цвета — токены темы (cta / ctaInk). */}
-                {micPlusBadge ? (
-                  <View
-                    pointerEvents="none"
-                    testID="dialogue-v2-voice-plus-badge"
-                    // зачем (координатор 13.10, решение по макету п.82 и dialogs-028; D145 §129): значок «PLUS» на углу кнопки микрофона — исключение «d145-micro» (микро-бейдж, которому 13 физически не влезает): 10 px и 17×32 ровно как в образце `.ibar .rbtn .plus`. Паритет с макетом важнее; файл внесён в MICRO_FILES храповика.
-                    style={{ position: 'absolute', right: -5, bottom: -3, minWidth: 32, height: 17, borderRadius: 9, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.cta }}
-                  >
-                    <Text style={{ color: glass.ctaInk, fontSize: 10, /* d145-micro: бейдж PLUS на углу кнопки микрофона, макет dialogs-028 (.rbtn .plus 10px) */ lineHeight: 13, fontWeight: '800', letterSpacing: 0.5 }} maxFontSizeMultiplier={1.1}>PLUS</Text>
-                  </View>
-                ) : null}
+                {/* зачем (владелец 15.10, D196; эталон dialogs.html блок H, .rbtn 52): вместо значка «PLUS» по старому состоянию — цифра остатка общего дневного счётчика (пилюля 22, цифра 13), на нуле «PLUS» внутри неё, у Plus цифры нет */}
+                <MicAllowanceBadge size="sm" testID="dialogue-v2-voice-allowance" />
               </Pressable>
               <TextInput
                 value={draft}

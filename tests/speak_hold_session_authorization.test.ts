@@ -1,9 +1,9 @@
 import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react-native';
 
-const mockPush = jest.fn();
-const mockFeatureAccess = jest.fn(() => false);
-
+// зачем (владелец 15.10, D196): голос — один общий дневной счётчик на все микрофоны, без исключений. Кнопка зажатия больше не держит собственный гейт
+// (серверная квота «speaking») и обход для авторизованной карточной сессии: гейт и цифра остатка приходят от хозяина через `allowance`.
+// Тест держит поведение кнопки: без allowance (Plus / доступ ещё неизвестен) запись стартует; при остатке 0 тап зовёт onSpentPress и запись не стартует.
 jest.mock('react-native', () => ({
   Pressable: 'Pressable', Text: 'Text', View: 'View',
   StyleSheet: {
@@ -14,38 +14,15 @@ jest.mock('react-native', () => ({
   },
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
-jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockPush }) }));
 jest.mock('react-native-reanimated', () => ({
   __esModule: true,
   default: { View: 'AnimatedView' },
+  Easing: { bezier: () => 'ease' },
   useAnimatedStyle: (factory: () => unknown) => factory(),
   useSharedValue: (value: unknown) => ({ value }),
   withSpring: (value: unknown) => value,
   withTiming: (value: unknown) => value,
-}));
-// 2026-09-13: гейт голоса — дневной лимит (useSpeakingAttemptGate); locked = лимит исчерпан.
-jest.mock('../hooks/useSpeakingAttemptGate', () => ({
-  useSpeakingAttemptGate: (input: { context: string; source: string }) => {
-    const locked = !mockFeatureAccess();
-    return {
-      locked,
-      quota: { status: locked ? 'exhausted' : 'allowed', used: 0, limit: 3, extra: 0, resetAt: null, period: null, bypass: null },
-      tryStartAttempt: () => {
-        if (locked) {
-          mockPush({ pathname: '/premium_modal', params: { context: input.context, source: input.source } });
-          return false;
-        }
-        return true;
-      },
-    };
-  },
-}));
-jest.mock('../components/PlusBadge', () => ({
-  __esModule: true,
-  default: function MockPlusBadge() {
-    const ReactRuntime = require('react') as typeof React;
-    return ReactRuntime.createElement('PlusBadge', { testID: 'plus-badge' });
-  },
+  withSequence: (...values: unknown[]) => values[values.length - 1],
 }));
 jest.mock('../components/ThemeContext', () => ({
   useTheme: () => ({ theme: { bgSurface: '#111', textMuted: '#777' }, themeMode: 'dark' }),
@@ -53,8 +30,7 @@ jest.mock('../components/ThemeContext', () => ({
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'en' }) }));
 jest.mock('../constants/i18n', () => ({ triLang: (_lang: string, values: { en: string }) => values.en }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn() }));
-// зачем (§SPEECH-NA): кнопка сама спрашивает, есть ли распознаватель на устройстве;
-// здесь проверяется авторизация сессии — устройство считаем «с распознавателем».
+// зачем (§SPEECH-NA): кнопка сама спрашивает, есть ли распознаватель на устройстве; здесь считаем «с распознавателем».
 jest.mock('../app/speech_device_availability', () => ({
   useSpeechUnavailableOnDevice: () => false,
   speechUnavailableOnDeviceText: () => 'Speech recognition doesn’t work on this device',
@@ -66,35 +42,45 @@ const baseProps = {
   accent: '#0f0', listening: false, label: 'Hold',
   onHoldStart: jest.fn(), onHoldEnd: jest.fn(),
 };
+const colors = { fill: '#000', ink: '#fff', ring: '#111', plusFill: '#fff', plusInk: '#000', spentFill: '#333', spentInk: '#999' };
 
 beforeEach(() => jest.clearAllMocks());
 afterEach(async () => { await cleanup(); });
 
-test('a quota-authorized flashcard session reaches microphone callbacks without global speaking access', async () => {
+test('без allowance (Plus или доступ ещё неизвестен) удержание доходит до записи без пейвола', async () => {
   const onHoldStart = jest.fn();
   const onHoldEnd = jest.fn();
-  const view = await render(React.createElement(SpeakHoldButton, {
-    ...baseProps, onHoldStart, onHoldEnd, sessionAuthorized: true,
-  }));
+  const view = await render(React.createElement(SpeakHoldButton, { ...baseProps, onHoldStart, onHoldEnd }));
   const button = view.getByTestId('fc-speak-hold');
   await fireEvent(button, 'pressIn');
   await fireEvent(button, 'pressOut');
   expect(onHoldStart).toHaveBeenCalledTimes(1);
   expect(onHoldEnd).toHaveBeenCalledTimes(1);
-  expect(mockPush).not.toHaveBeenCalled();
-  expect(view.queryByTestId('plus-badge')).toBeNull();
 });
 
-test('ordinary callers without session authorization retain the global speaking paywall gate', async () => {
+test('остаток есть — запись стартует, цифра показана', async () => {
+  const onHoldStart = jest.fn();
+  const onSpentPress = jest.fn();
+  const view = await render(React.createElement(SpeakHoldButton, {
+    ...baseProps, onHoldStart, allowance: { remaining: 2, colors, onSpentPress },
+  }));
+  await fireEvent(view.getByTestId('fc-speak-hold'), 'pressIn');
+  expect(onHoldStart).toHaveBeenCalledTimes(1);
+  expect(onSpentPress).not.toHaveBeenCalled();
+  expect(view.getByTestId('fc-speak-hold-allowance-text', { hidden: true }).props.children).toBe('2');
+});
+
+test('остаток 0 — тап зовёт onSpentPress (пейвол), запись и конец записи не вызываются, на значке «PLUS»', async () => {
   const onHoldStart = jest.fn();
   const onHoldEnd = jest.fn();
+  const onSpentPress = jest.fn();
   const view = await render(React.createElement(SpeakHoldButton, {
-    ...baseProps, onHoldStart, onHoldEnd,
+    ...baseProps, onHoldStart, onHoldEnd, allowance: { remaining: 0, colors, onSpentPress },
   }));
   await fireEvent(view.getByTestId('fc-speak-hold'), 'pressIn');
   await fireEvent(view.getByTestId('fc-speak-hold'), 'pressOut');
+  expect(onSpentPress).toHaveBeenCalledTimes(1);
   expect(onHoldStart).not.toHaveBeenCalled();
   expect(onHoldEnd).not.toHaveBeenCalled();
-  expect(mockPush).toHaveBeenCalledWith({ pathname: '/premium_modal', params: { context: 'speaking', source: 'flashcards_speak_hold' } });
-  expect(view.getByTestId('plus-badge')).toBeTruthy();
+  expect(view.getByTestId('fc-speak-hold-allowance-text', { hidden: true }).props.children).toBe('PLUS');
 });

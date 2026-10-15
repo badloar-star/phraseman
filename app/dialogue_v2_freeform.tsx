@@ -6,6 +6,7 @@ import { dialogueV2FreeformOpening } from './dialogue_v2_freeform_opening';
 import { DialogueV2FreeformScreen, type DialogueV2FreeformMessage } from '../components/dialogs/DialogueV2FreeformScreen';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
+import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { useDialogueV2VoiceMessage } from '../hooks/use_dialogue_v2_voice_message';
@@ -128,6 +129,21 @@ export default function DialogueV2FreeformRoute() {
     onTranscript: setDraft,
   });
   const discardVoice = voice.discard;
+  // зачем (владелец 15.10, D196): свободный разговор — тоже из общего дневного счётчика голоса 3/день (раньше у него гейта не было вовсе): при нуле тап по микрофону ведёт на пейвол,
+  // попытка списывается в момент РЕАЛЬНОГО начала записи (переход в recording), цифра на микрофоне падает сразу
+  const voiceGate = useVoiceAttemptGate({ surface: 'dialogs', source: 'dialogue_v2_freeform' });
+  const commitVoiceAttempt = voiceGate.commitStartedAttempt;
+  const prevVoiceStatusRef = useRef(voice.status);
+  useEffect(() => {
+    const previous = prevVoiceStatusRef.current;
+    prevVoiceStatusRef.current = voice.status;
+    if (voice.status !== 'recording' || previous === 'recording') return;
+    commitVoiceAttempt();
+  }, [commitVoiceAttempt, voice.status]);
+  const startVoice = useCallback(() => {
+    if (!voiceGate.canStartAttempt()) return;
+    void voice.start();
+  }, [voice, voiceGate]);
 
   const replaceSession = useCallback((next: ServerSession | null) => {
     sessionRef.current = next;
@@ -420,5 +436,5 @@ export default function DialogueV2FreeformRoute() {
     );
   }
 
-  return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={voice.start} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} />;
+  return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} />;
 }

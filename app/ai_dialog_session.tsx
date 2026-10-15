@@ -28,7 +28,6 @@ import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
-import SpeakingQuotaDots from '../components/SpeakingQuotaDots';
 import DialogQuotaBadge, { formatAiDialogQuotaResetDate } from '../components/DialogQuotaBadge';
 import { callPremiumDialogStream, warmPremiumDialogStream, DialogStreamError } from './ai_dialog_stream_client';
 import { DIALOG_TRANSLATE_PREFETCH_ENABLED } from './ai_dialog_flags';
@@ -103,7 +102,8 @@ import {
   DIALOG_HINT_PRICE_RUNES,
   FREE_DIALOG_HINTS_PER_DAY,
 } from './ai_dialog_hint_economy';
-import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
+import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
+import MicAllowanceBadge from '../components/MicAllowanceBadge';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
@@ -286,7 +286,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const [quotaResetAtMs, setQuotaResetAtMs] = useState<number | null>(null);
   const quotaResetDate = formatAiDialogQuotaResetDate(quotaResetAtMs, lang);
   const accountStableId = captureAccountGeneration().stableId;
-  const voiceInputGate = useSpeakingAttemptGate({ context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
+  // зачем (владелец 15.10, D196; Ядро: «старую квоту убрать, иначе два лимита и две цифры»): голосовой ввод ИИ-диалога — из общего дневного счётчика 3/день, цифра остатка на микрофоне
+  const voiceInputGate = useVoiceAttemptGate({ surface: 'ai_dialog', source: 'ai_dialog_voice_input' });
   const router = useRouter();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const dialogueTarget = resolveDialogueStudyTarget(studyTarget);
@@ -3246,48 +3247,18 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 }}
               >
                 {voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing' ? (
-                  // Тот же сдвиг, что у иконки: спиннер встаёт ровно на её место.
-                  <ActivityIndicator size="small" color={t.accentText} style={{ marginTop: -5 }} />
+                  // спиннер встаёт ровно на место иконки (оба по центру круга)
+                  <ActivityIndicator size="small" color={t.accentText} />
                 ) : (
                   <Ionicons
                     name={speechNa ? 'mic-off-outline' : voiceInputStatus === 'listening' ? 'mic' : 'mic-outline'}
                     size={21}
                     color={voiceInputStatus === 'listening' ? t.textOnGold : t.accentText}
-                    // Ряд точек занимает низ круга всегда (в том числе распоркой),
-                    // поэтому иконка постоянно смещена вверх на его половину —
-                    // композиция по центру, и прыжка при смене остатка нет.
-                    style={{ marginTop: -5 }}
                   />
                 )}
-                {/* зачем (владелец 2026-09-13): остаток дневных голосовых попыток
-                    виден на КАЖДОМ микрофоне. Точки лежат абсолютом внутри круга
-                    44×44 — строка ввода, поле и кнопка отправки не двигаются
-                    ни в одном состоянии. */}
-                <SpeakingQuotaDots
-                  quota={speechNa ? { ...voiceInputGate.quota, limit: null } : voiceInputGate.quota}
-                  size="sm"
-                  spentColor={voiceInputStatus === 'listening' ? `${t.textOnGold}59` : t.textMuted}
-                  remainingColor={voiceInputStatus === 'listening' ? t.textOnGold : accentGfx.border}
-                  style={{ position: 'absolute', left: 0, right: 0, bottom: 6 }}
-                  testID="ai-dialog-voice-quota-dots"
-                />
-                {voiceInputGate.locked && !speechNa && (
-                  <View
-                    style={{
-                      position: 'absolute',
-                      right: -2,
-                      top: -5,
-                      borderRadius: 8,
-                      paddingHorizontal: 5,
-                      paddingVertical: 2,
-                      backgroundColor: t.accent,
-                      borderWidth: 0,
-                      borderColor: t.bgPrimary,
-                    }}
-                  >
-                    <Text style={{ color: t.textOnGold, fontSize: 8 /* d145-micro: бейдж PLUS на углу кнопки микрофона 44 pt, на 13 закроет кнопку */, fontWeight: '900' }}>PLUS</Text>
-                  </View>
-                )}
+                {/* зачем (владелец 15.10, D196): цифра остатка общего дневного счётчика на микрофоне поля ввода (пилюля 22, как .rbtn макета); 0 — «PLUS»; у Plus цифры нет.
+                    Значок лежит абсолютом поверх круга 44×44 — строка ввода, поле и кнопка отправки не двигаются ни в одном состоянии. */}
+                {!speechNa ? <MicAllowanceBadge size="sm" testID="ai-dialog-voice-allowance" /> : null}
               </TouchableOpacity>
               <TextInput
                 value={input}

@@ -4,6 +4,7 @@ import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollVie
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { PressableScale } from '../feedback/PressableScale';
+import MicAllowanceBadge from '../MicAllowanceBadge';
 import { describeDialogueVoiceMessage, type DialogueVoiceDraft } from '../../app/dialogue_voice_message';
 import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_message';
 import type { Lang } from '../../constants/i18n';
@@ -164,6 +165,8 @@ export function DialogueV2FreeformScreen({
               ) : (
                 <Ionicons name={voiceUnavailable ? 'mic-off-outline' : 'mic-outline'} size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
               )}
+              {/* зачем (владелец 15.10, D196): цифра остатка общего дневного счётчика голоса на микрофоне свободного разговора (пилюля 22); 0 — «PLUS», у Plus цифры нет */}
+              <MicAllowanceBadge size="sm" testID="dialogue-v2-freeform-voice-allowance" />
             </Pressable>
             <TextInput
               // зачем (съёмка R1 dialogs-046/gap-011): поле и отправка свободного разговора были без testID — робот не мог написать реплику.

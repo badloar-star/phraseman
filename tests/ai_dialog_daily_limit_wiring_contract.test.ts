@@ -74,10 +74,13 @@ describe('ИИ-диалог — месячный лимит обычного а�
   });
 
   test('голосовой ввод — голосовая попытка квоты', () => {
-    expect(session).toContain("useSpeakingAttemptGate({ context: 'ai_voice_input', source: 'ai_dialog_voice_input' })");
+    // зачем (владелец 15.10, D196): голосовой ввод ИИ-диалога — из общего дневного счётчика 3/день (одна цифра на все микрофоны), прежняя серверная квота и точки остатка убраны
+    expect(session).toContain("useVoiceAttemptGate({ surface: 'ai_dialog', source: 'ai_dialog_voice_input' })");
+    expect(session).not.toContain('useSpeakingAttemptGate');
+    expect(session).not.toContain('SpeakingQuotaDots');
     expect(session).toContain('if (!voiceInputGate.canStartAttempt()) {');
     expect(session).toContain('voiceInputGate.commitStartedAttempt();');
-    expect(session).toContain('{voiceInputGate.locked && !speechNa && ('); // устройство без распознавателя (§SPEECH-NA)
+    expect(session).toContain('{!speechNa ? <MicAllowanceBadge size="sm"'); // устройство без распознавателя (§SPEECH-NA) — цифры нет
   });
 
   // D124 (владелец 2026-09-30): закрытый сценарий открывает только ранг — тап

@@ -79,28 +79,33 @@ describe('speaking quota dots: геометрия не двигается', () =
   });
 });
 
-describe('speaking quota dots: подключены ВСЕ микрофоны', () => {
+// зачем (владелец 15.10, D196): точки остатка заменены ЦИФРОЙ общего дневного счётчика (MicAllowanceBadge / VoiceAllowanceBadge) на каждом микрофоне; модель точек остаётся для старых мест,
+// но ни один микрофон приложения больше не рисует две разные цифры. Этот сторож держит, что значок подключён на ВСЕХ микрофонах (иначе «везде» тихо станет «в одном»).
+describe('цифра остатка голоса: подключена ВСЕ микрофоны', () => {
   it.each([
-    ['урок', ['components', 'SpeakingButton.tsx']],
-    ['карточки', ['app', 'flashcards', 'SpeakHoldButton.tsx']],
-    ['диалог', ['app', 'ai_dialog_session.tsx']],
-  ])('%s показывает остаток попыток', (_surface, segments) => {
+    ['урок', ['app', 'lesson1.tsx']],
+    ['тренировка ошибок', ['app', 'mistake_practice_session.tsx']],
+    ['карточки «Устно»', ['app', 'flashcards', 'SpeakMicButton.tsx']],
+    ['ИИ-диалог', ['app', 'ai_dialog_session.tsx']],
+    ['диалоги V2', ['components', 'dialogs', 'DialogueV2SessionScreen.tsx']],
+    ['свободный разговор', ['components', 'dialogs', 'DialogueV2FreeformScreen.tsx']],
+  ])('%s показывает цифру остатка', (_surface, segments) => {
     const source = read(...segments);
-    expect(source).toContain('SpeakingQuotaDots');
-    expect(source).toMatch(/<SpeakingQuotaDots[\s\S]{0,400}quota=\{/);
+    expect(source).toContain('<MicAllowanceBadge');
+    expect(source).not.toContain('<SpeakingQuotaDots');
   });
 
-  it('карточная сессия, оплаченная квотой тренировок, не врёт голосовым остатком', () => {
+  it('кнопка зажатия курса показывает цифру через allowance и не держит старый гейт и точки', () => {
     const source = read('app', 'flashcards', 'SpeakHoldButton.tsx');
-    expect(source).toContain('SESSION_AUTHORIZED_QUOTA');
-    // зачем (11.10): на устройстве без распознавания речи (speechNa) кнопка выключена, и ряд попыток тоже не
-    // показывает «потраченные» точки — это та же правда, что и для оплаченной сессии.
-    expect(source).toMatch(/sessionAuthorized(?: \|\| speechNa)? \? SESSION_AUTHORIZED_QUOTA : speakingGate\.quota/);
+    expect(source).toContain('<VoiceAllowanceBadge remaining={allowance.remaining}');
+    expect(source).not.toContain('hooks/useSpeakingAttemptGate');
+    expect(source).not.toContain('components/SpeakingQuotaDots');
+    expect(source).not.toContain('const SESSION_AUTHORIZED_QUOTA');
   });
 
   it('соседи по транспортному ряду карточек выровнены с учётом точек', () => {
     // marginBottom боковых кнопок = всё, что нарисовано под кругом: подпись
-    // (4+18) + ряд точек (4+5). Разойдётся — ряд станет кривым.
+    // (4+18) + распорка прежнего ряда точек (4+5). Разойдётся — ряд станет кривым.
     const source = read('app', 'flashcards', 'SpeakHoldButton.tsx');
     expect(source).toContain('export const SPEAK_HOLD_LABEL_HEIGHT = 31;');
     // зачем (Карточки 2.0, Устно по макету practice): боковых кнопок в транспортном ряду больше нет — «Верно» и «Дальше» стоят в нижней панели,

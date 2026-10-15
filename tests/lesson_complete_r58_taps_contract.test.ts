@@ -16,10 +16,15 @@ describe('итог урока: тапы и подписи (R58 #31, #35)', () =>
     expect(src).toContain("pl: 'Zakończ'");
   });
 
-  it('«Следующий урок»: быстрый путь без облака, полная проверка только перед пейволом', () => {
-    expect(src).toContain('getVerifiedPremiumAccessStatus({ allowCloudRefresh: false })');
-    expect(src).toMatch(/premium = await getVerifiedPremiumStatus\(\)/);
-    // пейвол — после подтверждения полным путём
-    expect(src.indexOf('premium = await getVerifiedPremiumStatus()')).toBeLessThan(src.indexOf("pathname: '/premium_modal'", src.indexOf('premium = await getVerifiedPremiumStatus()')));
+  it('«Следующий урок»: пейвол только при подтверждённом «нет» — решение lesson_next_access, кэш сбрасывается перед полной проверкой (Ревизор 15.10, 🔴)', () => {
+    expect(src).toContain("import { resolveNextLessonAccess } from './lesson_next_access';");
+    expect(src).toContain('contextPremium: () => hasPremiumRef.current,');
+    expect(src).toContain('prepare: invalidatePremiumCache,');
+    expect(src).toContain('verify: () => getVerifiedPremiumStatus(),');
+    expect(src).toContain("if (accessDecision === 'paywall') {");
+    // быстрый путь с облаком off больше не кладёт холодный false в кэш, который читает запасная проверка
+    expect(src).not.toContain('getVerifiedPremiumAccessStatus({ allowCloudRefresh: false }).catch(noteSwallowedAs(\'lesson_complete:goNext');
+    // холодный false при открытии экрана сбрасывается
+    expect(src).toContain('if (!premium) invalidatePremiumCache();');
   });
 });

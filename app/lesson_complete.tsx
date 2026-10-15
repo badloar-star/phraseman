@@ -57,7 +57,8 @@ import { openStoreReviewPage } from './store_review';
 import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
 import { logAppWarning } from './app_health';
 import { markLessonFinishedOnce } from './mastery';
-import { getVerifiedPremiumAccessStatus, getVerifiedPremiumStatus } from './premium_guard';
+import { getVerifiedPremiumAccessStatus, getVerifiedPremiumStatus, invalidatePremiumCache } from './premium_guard';
+import { resolveNextLessonAccess } from './lesson_next_access';
 import { FREE_LESSON_LIMIT, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
@@ -530,6 +531,9 @@ export default function LessonComplete() {
   const { studyTarget } = useStudyTarget();
   const softUpsellStudyTarget: SoftUpsellStudyTarget = studyTarget === 'fr' ? 'fr' : 'en';
   const { hasPremiumAccess } = usePremium();
+  // зачем (Ревизор по 31029c044, 15.10, 🔴): «Следующий урок» читает Plus из контекста В МОМЕНТ решения, а не на тапе — холодный кэш не должен показать платящему пейвол
+  const hasPremiumRef = useRef(hasPremiumAccess);
+  hasPremiumRef.current = hasPremiumAccess;
   const [softUpsellAccountToken, setSoftUpsellAccountToken] = useState(() => captureAccountGeneration());
   const softUpsellAccountScope = studyTarget === 'es'
     ? ''
@@ -618,6 +622,8 @@ export default function LessonComplete() {
       }).catch(noteSwallowedAs('lesson_complete:useEffect.getVerifiedPremiumAccessStatus', false)),
       readLegacyFreeLessonCap(studyTarget).catch(noteSwallowedAs('lesson_complete:useEffect.readLegacyFreeLessonCap', undefined)),
     ]).then(([premium, legacyFreeLessonCap]) => {
+      // зачем (Ревизор 15.10, 🔴): проверка без облака на холодном кэше кладёт в память `false`, и следующая проверка («Следующий урок») берёт его из кэша — платящий видел пейвол. Холодный `false` сбрасываем.
+      if (!premium) invalidatePremiumCache();
       if (cancelled) return;
       setCompletionRequiresPremium(!premium && requiresPremiumForLesson(lessonId + 1, legacyFreeLessonCap));
       setCompletionAccessReady(true);
@@ -1239,14 +1245,17 @@ export default function LessonComplete() {
       const tapAt = Date.now();
       void (async () => {
         try {
-          // зачем (аудит R58 #35, 15.10): тап «Следующий урок» ждал облачную сверку подписки до 5 с без отклика. Быстрый путь — кэш доступа без похода в облако; полную проверку
-          // делаем только если по кэшу пейвол выходит (чтобы платящий не увидел пейвол из-за холодного кэша).
-          let premium = await getVerifiedPremiumAccessStatus({ allowCloudRefresh: false }).catch(noteSwallowedAs('lesson_complete:goNext.getVerifiedPremiumAccessStatus.cache', false));
+          // зачем (Ревизор по 31029c044, 15.10, 🔴 деньги и доверие): пейвол — ТОЛЬКО при подтверждённом «нет». Plus в контексте → открываем сразу; иначе кэш сбрасываем и спрашиваем полным путём
+          // с облаком, не дольше 4 с (кнопка всё это время «занята»); нет ответа или сбой — урок открывается без пейвола (замок самого урока решает на входе). Логика и тест — lesson_next_access.ts.
           const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
-          if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
-            premium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_complete:goNext.getVerifiedPremiumStatus', false));
-          }
-          if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
+          const accessDecision = await resolveNextLessonAccess({
+            needsPremium: requiresPremiumForLesson(next, legacyFreeLessonCap),
+            contextPremium: () => hasPremiumRef.current,
+            prepare: invalidatePremiumCache,
+            verify: () => getVerifiedPremiumStatus(),
+            log: (message) => DebugLogger.info('[LESSON-NEXT]', `lesson=${lessonId}→${next}: доступ — ${message}`),
+          });
+          if (accessDecision === 'paywall') {
             // Экран результата остаётся единственным: для закрытого урока сразу открываем
             // существующий путь Plus, без промежуточного баннера на завершении урока.
             markNextNavigationAsReplace();

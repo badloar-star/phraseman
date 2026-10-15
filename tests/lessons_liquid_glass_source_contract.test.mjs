@@ -6,7 +6,9 @@ const lessons = readFileSync(new URL('../app/(tabs)/lessons.tsx', import.meta.ur
 
 test('legacy lesson list resolves the active Liquid Glass theme above its real list data', () => {
   assert.ok(lessons.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');
-  assert.ok(lessons.includes('colors={[learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}'), 'full-bleed themed background');
+  // R69 (Сверка 15.10): градиент страницы начинается прозрачным (фон оболочки без шва под статус-баром), затем те же тона темы
+  assert.ok(lessons.includes('colors={[alphaHex(learnGlass.bgTop, 0), learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}'), 'full-bleed themed background');
+  assert.ok(lessons.includes('locations={[0, 0.1, 0.55, 1]}'), 'themed background starts transparent, no seam under the status bar');
   assert.ok(lessons.includes('<ScreenGradient forceFullBleed>'), 'legacy catalog inherits the themed full-bleed shell');
   // зачем (стиль «Тень» 12.10, координатор: красные сторожи): круглые кнопки шапки без кромки, с малой тенью.
   assert.ok(lessons.includes('boxShadow: nestedBoxShadow(learnGlass)'), 'header controls use the nested shadow');

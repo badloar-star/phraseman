@@ -177,6 +177,7 @@ import {
   type LessonsTabSnapshot,
 } from "../lessons_tab_state";
 import { useStableSafeAreaInsets } from "../stable_safe_area_metrics";
+import { alphaHex } from "../../constants/v2Style";
 import {
   animateNextLayoutShiftWithoutEntryFade,
   animateNextLayoutTransition,
@@ -5237,7 +5238,11 @@ export default function LessonsTab({
         {page === "lessons" ? (
           <LinearGradient
             pointerEvents="none"
-            colors={[learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}
+            // зачем (R69 «шов под статус-баром», Сверка 15.10: «Обучение», левый край, y=132 px: #edeffd → #f3f4fd): страница лежит ниже верхнего inset оболочки, и этот непрозрачный градиент начинался плоским bgTop ровно по границе —
+            // выше inset виден фон оболочки с цветным пятном темы слева, ниже его перекрывал bgTop без пятна. Теперь градиент начинается ПРОЗРАЧНЫМ (фон оболочки продолжается без шва) и плавно переходит в прежние тона
+            // к 10 % высоты; дальше вид прежний (bgTop → bg → bgBottom).
+            colors={[alphaHex(learnGlass.bgTop, 0), learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}
+            locations={[0, 0.1, 0.55, 1]}
             style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
           />
         ) : null}

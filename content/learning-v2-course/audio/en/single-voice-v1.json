@@ -57736,6 +57736,309 @@
           "byteSize": 30720
         }
       ]
+    },
+    "l04/s23/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is some cheese here.",
+          "file": "8891ef362e9b63e4b307bcde6b2657870da9c6b400374d125aadd30345015317.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8891ef362e9b63e4b307bcde6b2657870da9c6b400374d125aadd30345015317.mp3",
+          "contentHash": "037bb4b6db55a0e3904338ce667cb66b4b84c6800de27bf748b01587300d77ce",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s23/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there any cheese here?",
+          "file": "46323d49726c4ed25e6aecdfd4f039caad00903531dc9ec7589b40ae386cbc73.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46323d49726c4ed25e6aecdfd4f039caad00903531dc9ec7589b40ae386cbc73.mp3",
+          "contentHash": "ef2ab3704e0584d3f92594304c21659bff44852d3dcd7f7fc4326445ab4210ee",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s23/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's valid.",
+          "file": "f0ae4a4996d7ef7408aa6fc0b9fefc0df0aadb266695d7b686ff2fd7d99dd59d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0ae4a4996d7ef7408aa6fc0b9fefc0df0aadb266695d7b686ff2fd7d99dd59d.mp3",
+          "contentHash": "1b3ea3c3a1dde0480ec6bfaf933a83c50cbe7878fa4f075b22fb92c28c8b375e",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l04/s23/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There are some tickets.",
+          "file": "4f66097618eb47d21704742d6516acac93ccf9b368948213b4ae2d1d8caa714b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f66097618eb47d21704742d6516acac93ccf9b368948213b4ae2d1d8caa714b.mp3",
+          "contentHash": "5319bc08de7e77b1b830bfd97a9f4de0fd3ce39a7c187d4e316f7a21836b4daf",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s23/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cheese",
+          "file": "8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "contentHash": "a6c0ed3063da04429bb63cf78654d260ff8c123ddd91a72cf4678aa44553a6fd",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s23/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cheese",
+          "file": "8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "contentHash": "a6c0ed3063da04429bb63cf78654d260ff8c123ddd91a72cf4678aa44553a6fd",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s23/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "cheese",
+          "file": "7a4effc1341c52d7e388ba09aebf0379cf8cff7655d9cf2f4e87eabab8d5404e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a4effc1341c52d7e388ba09aebf0379cf8cff7655d9cf2f4e87eabab8d5404e.mp3",
+          "contentHash": "201cb66644ecb5df724a70b2841f68e60608034fdb4ff39ce1c806c15a8737a7",
+          "byteSize": 21888
+        },
+        {
+          "text": "valid",
+          "file": "f2a107d1d2d6fd565ad60faee7854be4b51eefc3fad03af88581f9f8c921387f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f2a107d1d2d6fd565ad60faee7854be4b51eefc3fad03af88581f9f8c921387f.mp3",
+          "contentHash": "dce3b55c80b95a450d96c5a8f5e34300196e884ffb0ef63925763544bd60b56a",
+          "byteSize": 17280
+        },
+        {
+          "text": "tickets",
+          "file": "79479ccd3127723b449214b9c6b03270921d46b1f2bb958c79b6ae9b2ba3f2ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/79479ccd3127723b449214b9c6b03270921d46b1f2bb958c79b6ae9b2ba3f2ad.mp3",
+          "contentHash": "eec27422d97abbb1d4f47dd00d13b038c2fe660bfa72838f3fe4c4b2064d36f5",
+          "byteSize": 20352
+        },
+        {
+          "text": "gym",
+          "file": "46bfe99b1735a24c25c4ee2893dcf7133c1d9386203a8a3f71803b7c4f53900b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46bfe99b1735a24c25c4ee2893dcf7133c1d9386203a8a3f71803b7c4f53900b.mp3",
+          "contentHash": "b22af039dce86e70c7b4c3783188531d16e8bd19759601413c5992aef18103e6",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l04/s23/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is some cheese.",
+          "file": "a94462768d0d2695462ab335e7f05fcd686f33c8198230201f994a97a3aac50a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a94462768d0d2695462ab335e7f05fcd686f33c8198230201f994a97a3aac50a.mp3",
+          "contentHash": "9fdd9cb3c14cee476c0603abae519a6b6e22530ff8136fc04e0648495a9941c9",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l04/s23/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Are there any tickets here?",
+          "file": "3a7a3e002da036a3fc402219d25673be8b9e188099f5878f6d3cd6d07682d898.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a7a3e002da036a3fc402219d25673be8b9e188099f5878f6d3cd6d07682d898.mp3",
+          "contentHash": "72b69f34811c4a973acdfacca7891d179b5b4d677651dad57917c4496f766711",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l04/s23/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's valid.",
+          "file": "f0ae4a4996d7ef7408aa6fc0b9fefc0df0aadb266695d7b686ff2fd7d99dd59d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0ae4a4996d7ef7408aa6fc0b9fefc0df0aadb266695d7b686ff2fd7d99dd59d.mp3",
+          "contentHash": "1b3ea3c3a1dde0480ec6bfaf933a83c50cbe7878fa4f075b22fb92c28c8b375e",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l04/s23/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is some cheese here.",
+          "file": "cb39479cbe9adccfbfcab46cbfc2453c14eebcaf94214ae8d1cae3ac2684f1fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb39479cbe9adccfbfcab46cbfc2453c14eebcaf94214ae8d1cae3ac2684f1fc.mp3",
+          "contentHash": "bdd0f35735bf4a54afa252a151cf3a301eb6b116a75655c2339087d6a59d0ea9",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s23/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a gym?",
+          "file": "5fddae24871d165bd2e6a93788fc0bb48a00cf81776f5b1ba0b96c51863404a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fddae24871d165bd2e6a93788fc0bb48a00cf81776f5b1ba0b96c51863404a8.mp3",
+          "contentHash": "d67e0dc6ed1d1c34df3b59666b5114e191a35eab20ec985155e9f56ce03cd6ca",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s23/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "cheese",
+          "file": "7a4effc1341c52d7e388ba09aebf0379cf8cff7655d9cf2f4e87eabab8d5404e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a4effc1341c52d7e388ba09aebf0379cf8cff7655d9cf2f4e87eabab8d5404e.mp3",
+          "contentHash": "201cb66644ecb5df724a70b2841f68e60608034fdb4ff39ce1c806c15a8737a7",
+          "byteSize": 21888
+        },
+        {
+          "text": "tickets",
+          "file": "79479ccd3127723b449214b9c6b03270921d46b1f2bb958c79b6ae9b2ba3f2ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/79479ccd3127723b449214b9c6b03270921d46b1f2bb958c79b6ae9b2ba3f2ad.mp3",
+          "contentHash": "eec27422d97abbb1d4f47dd00d13b038c2fe660bfa72838f3fe4c4b2064d36f5",
+          "byteSize": 20352
+        },
+        {
+          "text": "gym",
+          "file": "46bfe99b1735a24c25c4ee2893dcf7133c1d9386203a8a3f71803b7c4f53900b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46bfe99b1735a24c25c4ee2893dcf7133c1d9386203a8a3f71803b7c4f53900b.mp3",
+          "contentHash": "b22af039dce86e70c7b4c3783188531d16e8bd19759601413c5992aef18103e6",
+          "byteSize": 19584
+        },
+        {
+          "text": "valid",
+          "file": "f2a107d1d2d6fd565ad60faee7854be4b51eefc3fad03af88581f9f8c921387f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f2a107d1d2d6fd565ad60faee7854be4b51eefc3fad03af88581f9f8c921387f.mp3",
+          "contentHash": "dce3b55c80b95a450d96c5a8f5e34300196e884ffb0ef63925763544bd60b56a",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l04/s23/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there any cheese?",
+          "file": "fa23998f6d77bc1665ecc61852474da6678bcaf344cdcd76a0dfc947e049e3c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fa23998f6d77bc1665ecc61852474da6678bcaf344cdcd76a0dfc947e049e3c5.mp3",
+          "contentHash": "40b38e324e0846b2a8b15dbdd10c96e0c530de34386b32891a79a2b971ac0a5e",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s23/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There are some tickets here.",
+          "file": "0422957216880d455af89f502dd0d303b5a0b035144bb30dfd2c2f06cfb00b09.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0422957216880d455af89f502dd0d303b5a0b035144bb30dfd2c2f06cfb00b09.mp3",
+          "contentHash": "3b2cb5d21286df83aef9a0e523cf8a2e1cbc152c203a71ee6a166eee22210ff7",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s23/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a gym here?",
+          "file": "ae3b9628eb31c01ed74f66ec036c3c19b5d59149a4b225c9b0c2ca4ce1f94d03.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae3b9628eb31c01ed74f66ec036c3c19b5d59149a4b225c9b0c2ca4ce1f94d03.mp3",
+          "contentHash": "1c02bc6368379ed95cfce69ff101082b76be8a6fb58fc42b202641e9b3980647",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s23/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there any cheese here?",
+          "file": "66924366fe9f200b59d9d2fdf933684431a16d60bbe21af87f5370a19a929760.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/66924366fe9f200b59d9d2fdf933684431a16d60bbe21af87f5370a19a929760.mp3",
+          "contentHash": "ac9ccf22026a762c3f2bf174b06c72482688b35db54cd7bc45ec6324dfa126dc",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s23/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It is valid.",
+          "file": "62b3c5e8a214781d37281943defc718d7ffe21a08859a6849ee46eea55cb73e4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/62b3c5e8a214781d37281943defc718d7ffe21a08859a6849ee46eea55cb73e4.mp3",
+          "contentHash": "5d6990614ab144407f7660f2f032295a0fe3bbc676546bc6911ec3799d01254b",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s23/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "cheese",
+          "file": "7a4effc1341c52d7e388ba09aebf0379cf8cff7655d9cf2f4e87eabab8d5404e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a4effc1341c52d7e388ba09aebf0379cf8cff7655d9cf2f4e87eabab8d5404e.mp3",
+          "contentHash": "201cb66644ecb5df724a70b2841f68e60608034fdb4ff39ce1c806c15a8737a7",
+          "byteSize": 21888
+        },
+        {
+          "text": "valid",
+          "file": "f2a107d1d2d6fd565ad60faee7854be4b51eefc3fad03af88581f9f8c921387f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f2a107d1d2d6fd565ad60faee7854be4b51eefc3fad03af88581f9f8c921387f.mp3",
+          "contentHash": "dce3b55c80b95a450d96c5a8f5e34300196e884ffb0ef63925763544bd60b56a",
+          "byteSize": 17280
+        },
+        {
+          "text": "tickets",
+          "file": "79479ccd3127723b449214b9c6b03270921d46b1f2bb958c79b6ae9b2ba3f2ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/79479ccd3127723b449214b9c6b03270921d46b1f2bb958c79b6ae9b2ba3f2ad.mp3",
+          "contentHash": "eec27422d97abbb1d4f47dd00d13b038c2fe660bfa72838f3fe4c4b2064d36f5",
+          "byteSize": 20352
+        },
+        {
+          "text": "gym",
+          "file": "46bfe99b1735a24c25c4ee2893dcf7133c1d9386203a8a3f71803b7c4f53900b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46bfe99b1735a24c25c4ee2893dcf7133c1d9386203a8a3f71803b7c4f53900b.mp3",
+          "contentHash": "b22af039dce86e70c7b4c3783188531d16e8bd19759601413c5992aef18103e6",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l04/s23/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there any cheese here?",
+          "file": "46323d49726c4ed25e6aecdfd4f039caad00903531dc9ec7589b40ae386cbc73.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46323d49726c4ed25e6aecdfd4f039caad00903531dc9ec7589b40ae386cbc73.mp3",
+          "contentHash": "ef2ab3704e0584d3f92594304c21659bff44852d3dcd7f7fc4326445ab4210ee",
+          "byteSize": 29952
+        }
+      ]
     }
   },
   "settings": {

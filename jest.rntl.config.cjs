@@ -48,6 +48,9 @@ module.exports = {
     '<rootDir>/tests/moment_coin_contract.test.tsx',
     // зачем (координатор 15.10): замер каскада перерисовок вкладок — настоящая разметка, патчи TABS_RENDER в памяти
     '<rootDir>/tests/tabs_render_cascade_measure.test.tsx',
+    // зачем (координатор 15.10, TABS_RENDER_2 + INSETS_MEMO): focusTick в своём контексте; insets — та же ссылка при тех же числах
+    '<rootDir>/tests/tab_focus_tick_context.test.tsx',
+    '<rootDir>/tests/stable_safe_area_insets_memo.test.tsx',
   ],
   // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
   setupFiles: ['react-native-gesture-handler/jestSetup'],

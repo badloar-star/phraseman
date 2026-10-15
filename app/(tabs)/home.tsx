@@ -6,7 +6,7 @@ import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium } from '../../components/PremiumContext';
-import { useTabNav } from '../TabContext';
+import { useTabFocusTick, useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -632,7 +632,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         homeScrollYRef.current = event.nativeEvent.contentOffset.y;
         refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility]);
-    const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
+    const { goToTab, activeIdx, runtimeOwnerId } = useTabNav();
+    const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
     // зачем (HOME-COLD_cold1: video:start через 5 998 мс, homeOnboardingDone:false): флаг, уже прочитанный корнем,
     // включает homeRuntimeActive на первом кадре; multiGet ниже остаётся источником правды.
     const [homeOnboardingDone, setHomeOnboardingDone] = useState(() => takeOnboardingDonePeek() === true);

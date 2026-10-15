@@ -9,7 +9,7 @@ import {
 import Reanimated from 'react-native-reanimated';
 import { Image } from 'expo-image';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import { useTabNav } from '../TabContext';
+import { useTabFocusTick, useTabNav } from '../TabContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../../components/ThemeContext';
@@ -329,7 +329,8 @@ export default function SettingsMain() {
     onBouncyScroll(e);
   }, [onBouncyScroll, topFadeScroll]);
   const bouncyStyle = useBouncyStyle(bouncyStretch);
-  const { focusTick, runtimeOwnerId } = useTabNav();
+  const { runtimeOwnerId } = useTabNav();
+  const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
   const settingsTabVisible = runtimeOwnerId === 'settings';
   const settingsRuntimeActive = useRuntimeActive(settingsTabVisible);
 

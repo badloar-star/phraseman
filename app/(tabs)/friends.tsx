@@ -91,7 +91,7 @@ import {
 } from '../friends_tab_swr_warm';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReportErrorButton from '../../components/ReportErrorButton';
-import { useTabNav } from '../TabContext';
+import { useTabFocusTick, useTabNav } from '../TabContext';
 // зачем (владелец, 2026-08-16): лента «Активность» удалена — у 99 % пользователей она была
 // пустой (35 из 4 657 имеют друзей), источник событий давал 0–2 события в день на всю базу.
 // Социальный жест остался один и дешёвый: «дай пять» = профильный лайк прямо в строке друга.
@@ -791,7 +791,8 @@ export default function FriendsTabScreen() {
   const { lang } = useLang();
   const router = useRouter();
   const socialParams = useLocalSearchParams<{ focusFriend?: string; socialEventId?: string }>();
-  const { focusTick, runtimeOwnerId } = useTabNav();
+  const { runtimeOwnerId } = useTabNav();
+  const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
   const friendsTabVisible = runtimeOwnerId === 'friends';
   const friendsRuntimeActive = useRuntimeActive(friendsTabVisible);
 

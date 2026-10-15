@@ -231,7 +231,7 @@ function loadIsolated(paths: { layoutPath: string; ctxPath: string }): Env {
   return env;
 }
 
-type Counts = Readonly<{ layoutRenders: number; layoutCommits: number; homeRenders: number }>;
+type Counts = Readonly<{ layoutRenders: number; layoutCommits: number; homeRenders: number; homeMounted: boolean }>;
 
 async function providersRerenderSeparately(env: Env): Promise<void> {
   if (!mockCtx.unstable) return;
@@ -272,6 +272,7 @@ async function measureTransition(env: Env, label: string, unstable: boolean): Pr
     layoutRenders: mockTrace.lines.filter((l) => l.includes('[TABS-RENDER]')).length,
     layoutCommits: mockTrace.commits['layout:tabs'] ?? 0,
     homeRenders: mockHome.renders,
+    homeMounted: mount.probeInTree > 0,
   };
   process.stdout.write(`[TABS-RENDER-MEASURE] ${label} unstable=${String(unstable)} transition=${JSON.stringify(counts)}\n`);
   view.unmount();
@@ -296,19 +297,23 @@ describe('tabs layout re-render cascade on «paywall open → close» (route cha
   let current: Result;
   const singles: Record<number, Result | null> = {};
   let all: Result | null = null;
+  let pair12: Result | null = null; // применяемый набор (координатор 15.10): №1 + №2
 
   beforeAll(async () => {
     jest.spyOn(console, 'log').mockImplementation(() => undefined);
     jest.spyOn(console, 'warn').mockImplementation(() => undefined);
     current = (await measureVariant([]))!;
     for (const n of [1, 2, 3, 4]) singles[n] = await measureVariant([n]);
+    pair12 = await measureVariant([1, 2]);
     all = await measureVariant([1, 2, 3, 4]);
   });
 
   it('the harness observes the real layout and Home in every variant (no empty render)', () => {
+    // зачем: «живость» стенда — разметка рендерится и Главная смонтирована. Перерисовки Главной на переходе здесь не проверяем:
+    // после TABS_RENDER_1+2 их 0 — это цель (последний тест), а не признак пустого стенда.
     expect(current.stable.layoutRenders).toBeGreaterThan(0);
-    expect(current.stable.homeRenders).toBeGreaterThan(0);
-    for (const r of [...Object.values(singles), all]) if (r) expect(r.mounted).toBe(true);
+    expect(current.stable.homeMounted).toBe(true);
+    for (const r of [...Object.values(singles), pair12, all]) if (r) expect(r.mounted && r.stable.homeMounted).toBe(true);
   });
 
   it('TABS_RENDER_1..4 together reduce re-renders of Home on a route change (stable providers)', () => {
@@ -326,9 +331,9 @@ describe('tabs layout re-render cascade on «paywall open → close» (route cha
     expect(current.unstable.layoutRenders).toBeGreaterThan(current.stable.layoutRenders);
   });
 
-  // Цель после применения подтверждённых патчей: Главная не перерисовывается из-за смены маршрута и возврата фокуса.
-  // зачем skip: на текущем коде (патчи ещё не применены — ждут подтверждения [TABS-RENDER] в прогоне №7) утверждение красное.
-  it.skip('current code: Home does not re-render on «paywall open → close» (target after TABS_RENDER_1..4)', () => {
+  // Цель: Главная не перерисовывается из-за смены маршрута и возврата фокуса. Достигнута применением TABS_RENDER_1 + 2 (15.10,
+  // решение координатора по замеру cfe9e5cc2: Главная 3 → 0) — сторож держит это на текущем коде.
+  it('current code: Home does not re-render on «paywall open → close» (target after TABS_RENDER_1..4)', () => {
     expect(current.stable.homeRenders).toBe(0);
   });
 });

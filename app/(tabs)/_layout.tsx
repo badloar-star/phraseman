@@ -812,6 +812,11 @@ function ReleasedTabLayout() {
   const router = useRouter();
   const routerRef = useRef(router);
   routerRef.current = router;
+  // зачем (координатор 14.10, каскад [TABS-RENDER]): маршрут для navigateTo — из ref на момент вызова, а не из замыкания (см. navigateTo).
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+  const segmentsRef = useRef(segments);
+  segmentsRef.current = segments;
   traceTabsRenderWhy({ pathname, segments: segments.join('/'), studyTarget, width: tabPaneWidth, theme: t, activeIdx, visualIdx, physicalPageIdx, focusTick, devHubVisible, visited: visitedTabs.size, mounted: mountedTabs.size, router });
   const lastEffectLayoutRef = useRef<TabPageLayout | null>(null);
   const backgroundPremountStartedRef = useRef(false);
@@ -1127,13 +1132,19 @@ function ReleasedTabLayout() {
     rememberVisitedTab(idx);
   }, [rememberVisitedTab]);
 
+  // зачем (координатор 14.10, каскад [TABS-RENDER] после крестика пейвола): navigateTo зависел от pathname/segments/router — каждая смена
+  // маршрута (открыть/закрыть пейвол) пересоздавала handleTabChange/handleSwipeComplete, а с ними TabContext.value, и перерисовывались ВСЕ
+  // потребители useTabNav в незамороженных панелях. Маршрут читаем из ref в момент вызова — ссылка стабильна, проверка даже точнее.
   const navigateTo = useCallback((idx: number) => {
     const target = IDX_TO_TAB_ROUTE[idx];
-    if (!target) return;
-    if (routerShowsTab(pathname, segments, idx)) return;
+    if (!target) {
+      console.warn('[TABS-NAV] navigateTo: no route for tab', idx); // guard-ok: ранний выход логируется
+      return;
+    }
+    if (routerShowsTab(pathnameRef.current, segmentsRef.current, idx)) return;
     pendingTabIdxRef.current = idx;
-    router.navigate(target as any);
-  }, [pathname, segments, router]);
+    routerRef.current.navigate(target as any);
+  }, []);
 
   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
   const handleTabChange = useCallback((requestedIdx: number) => {

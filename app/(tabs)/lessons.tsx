@@ -68,7 +68,7 @@ import { subscribeAppSnapshot, useAppSnapshotSelector } from "../app_snapshot_st
 import { getRunesBalanceRead, peekRunes } from "../runes_system";
 import { getStableId, peekStableId } from "../stable_id";
 import { projectDevLessonAccess } from "../dev_plus_controls";
-import { useTabNav } from "../TabContext";
+import { useTabFocusTick, useTabNav } from "../TabContext";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTheme } from "../../components/ThemeContext";
 import { useAccentGraphics } from "../../hooks/use_accent_graphics";
@@ -2501,7 +2501,8 @@ export default function LessonsTab({
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   const topFadeScroll = useTopFadeScroll();
-  const { goHome, focusTick, runtimeOwnerId } = useTabNav();
+  const { goHome, runtimeOwnerId } = useTabNav();
+  const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
   const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
   const learnGlass = liquidGlassTokens(liquidGlassThemeId);
   // зачем (Темы R1_THEMEMODE_LEGACY_MAP, координатор 12.10): карточка урока «Обучения» по замыслу ВСЕГДА тёмная с белым текстом (lessonTextColor),

@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useLayoutEffect, useState } from 'react';
 import {
   AppState,
+  InteractionManager,
   LayoutChangeEvent,
   StyleProp,
   StyleSheet,
@@ -22,6 +23,9 @@ import LinearGradient from './SafeLinearGradient';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+
+/** Предохранитель: сколько проходов блика максимум (≈ 84 с при 1400 мс). Скелет дольше минуты — это уже не загрузка, а зависание; крутить блик вечно незачем. */
+export const SHIMMER_MAX_LOOPS = 60;
 
 interface SkeletonBlockProps {
   /** Ширина блока. Число (px) или строка-процент ('60%'). */
@@ -71,38 +75,55 @@ function SkeletonBlockBase({
   // остаётся статичная плашка той же формы (при sweep=0 блик за левым краем).
   const reducedMotion = useReducedMotion();
 
-  // Луп бежит только когда экран виден И приложение на переднем плане: при
-  // freezeOnBlur:false скелетон может пережить уход с экрана — гард гасит его,
-  // чтобы блик не перерисовывался в фоне и не грел телефон.
+  // зачем (R08 «зависание интерфейса», Ревизор fd1d5d589, координатор 15.10): бесконечный блик крутился ровно в момент, когда скелет заменяется большим содержимым (~30 экранов), —
+  // непрерывные коммиты анимации на Fabric могли перебить коммит React, и интерфейс замирал до касания. Правила:
+  //  1) блик стартует только когда блок ИЗМЕРЕН (onLayout, measuredW > 0), экран ВИДЕН и нет «Уменьшить движение»;
+  //  2) старт — после InteractionManager.runAfterInteractions: не посреди монтирования большого содержимого и не поверх идущих переходов;
+  //  3) остановка на размонтировании — в очистке useLayoutEffect (срабатывает в самом коммите, до отрисовки заменяющего содержимого), а не в пассивной очистке позже;
+  //  4) уход с экрана и фон приложения гасят анимацию и отменяют отложенный старт;
+  //  5) цикл конечный (SHIMMER_MAX_LOOPS проходов): зависший скелет не крутится вечно, после — статичная плашка.
+  useLayoutEffect(() => () => { cancelAnimation(sweep); }, [sweep]);
+
   useEffect(() => {
-    if (!isFocused || reducedMotion) {
+    if (measuredW <= 0 || !isFocused || reducedMotion) {
       cancelAnimation(sweep);
       sweep.value = 0;
-      return;
+      return undefined;
     }
-
+    let disposed = false;
+    let pending: { cancel: () => void } | null = null;
     const start = () => {
       cancelAnimation(sweep);
       sweep.value = 0;
       sweep.value = withRepeat(
         withTiming(1, { duration: durationMs, easing: Easing.inOut(Easing.ease) }),
-        -1,
+        SHIMMER_MAX_LOOPS,
         false,
       );
     };
     const stop = () => {
+      pending?.cancel();
+      pending = null;
       cancelAnimation(sweep);
       sweep.value = 0;
     };
+    const scheduleStart = () => {
+      pending?.cancel();
+      pending = InteractionManager.runAfterInteractions(() => {
+        pending = null;
+        if (!disposed && AppState.currentState === 'active') start();
+      });
+    };
 
-    if (AppState.currentState === 'active') start();
+    if (AppState.currentState === 'active') scheduleStart();
     const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') start();
+      if (state === 'active') scheduleStart();
       else stop();
     });
     return () => {
+      disposed = true;
       appSub.remove();
-      cancelAnimation(sweep);
+      stop();
     };
   }, [sweep, durationMs, measuredW, isFocused, reducedMotion]);
 

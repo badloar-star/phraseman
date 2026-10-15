@@ -45,6 +45,15 @@ Out of scope: сервер (`authStampAnonOwnership`, TTL метки), прод-
   не должен требовать nonce при свежей метке без него. Если требует — предвыборку ограничить или принимать nonce и в этой ветке.
 - Политика конфиденциальности не затронута: тот же вызов, те же данные, другой момент.
 
+## Ревью Ядра — APPROVE (15.10, ~08:10)
+
+1) linked_in_place: метка смотрится только на двери relink (assertStableOwner, functions/src/auth_identity.ts ~615–640); после
+   linked_in_place uid тот же → ensure_link выходит раньше на 'user' (~598). nonce_required недостижим; ограничивать не нужно.
+2) Повтор stamp перезаписывает anon_merge_claim целиком (mergeFields, ~2733) → новый nonceHash, старый nonce = nonce_mismatch.
+3) Висячая метка безвредна: без nonce → nonce_required, TTL 10 мин; побочно 10 мин закрыта legacy-дверь relink для 1.6.24 на
+   этом stableId — на том же телефоне сборка 2.0+.
+💸 Каждая предвыборка = вызов + запись users/{id} + инвокация usersWriteRouter; push_token_dedupe выходит рано.
+
 ## Technical debt
 
 - 💸 +1 вызов функции (и запись метки) на каждый тап «Google», включая отмену и linked_in_place, где раньше метки не было.

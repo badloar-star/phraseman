@@ -157,7 +157,7 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     void hydrate();
   }, [hydrate, input.autoHydrate]);
 
-  const registerVerdict = useCallback((verdictInput: Readonly<{
+  const applyVerdict = useCallback((verdictInput: Readonly<{
     answerAttemptId: string;
     verdict: SessionAttemptVerdict;
   }>): SessionAttemptsEffect => {
@@ -212,6 +212,52 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     }
     return transition.effect;
   }, [adoptState, energyActivity, input.sessionId, mistakeChargeActive, persist]);
+
+  // зачем (Ревизор 2.75, Сверка: сердца 3/3 при ошибках — подозрение на немой ранний выход редьюсера phase !== 'active' / дубликат id): каждый вердикт пишет [ATTEMPTS-VERDICT]
+  // с состоянием ДО и ПОСЛЕ — видно, какая ветка сработала. Ранний выход без эффекта (duplicate/phase) теперь не немой.
+  const hydratedRef = useRef(hydrated);
+  hydratedRef.current = hydrated;
+  const hydrationTrustedRef = useRef(hydrationTrusted);
+  hydrationTrustedRef.current = hydrationTrusted;
+  const registerVerdictNow = useCallback((verdictInput: Readonly<{
+    answerAttemptId: string;
+    verdict: SessionAttemptVerdict;
+  }>, source: 'live' | 'replayed_after_hydration' = 'live'): SessionAttemptsEffect => {
+    const before = stateRef.current;
+    const duplicate = before.processedAnswerAttemptIds.includes(verdictInput.answerAttemptId);
+    const effect = applyVerdict(verdictInput);
+    const after = stateRef.current;
+    console.log('[ATTEMPTS-VERDICT]', JSON.stringify({ // guard-ok: журнал вердикта и раннего выхода редьюсера
+      sessionId: input.sessionId, source, answerAttemptId: verdictInput.answerAttemptId, verdict: verdictInput.verdict,
+      phaseBefore: before.phase, phaseAfter: after.phase, remainingBefore: before.remainingAttempts, remainingAfter: after.remainingAttempts,
+      duplicate, effect, mistakeChargeActive, hydrated: hydratedRef.current, hydrationTrusted: hydrationTrustedRef.current,
+      earlyExit: effect === 'none' && after === before ? (before.phase !== 'active' ? 'phase_not_active' : duplicate ? 'duplicate_answer_id' : 'none_effect') : null,
+    }));
+    return effect;
+  }, [applyVerdict, input.sessionId, mistakeChargeActive]);
+
+  // зачем (Сверка 4b2f7ac3c: вероятная причина — очень быстрый первый ответ пришёл ДО гидратации сердец, и редьюсер отбросил вердикт): вердикт до гидратации не отбрасываем,
+  // а ставим в очередь и применяем после неё, по порядку, с логом.
+  const pendingVerdictsRef = useRef<Array<{ answerAttemptId: string; verdict: SessionAttemptVerdict }>>([]);
+  const registerVerdictNowRef = useRef(registerVerdictNow);
+  registerVerdictNowRef.current = registerVerdictNow;
+  const registerVerdict = useCallback((verdictInput: Readonly<{
+    answerAttemptId: string;
+    verdict: SessionAttemptVerdict;
+  }>): SessionAttemptsEffect => {
+    if (!hydratedRef.current && input.persistenceEnabled !== false) {
+      pendingVerdictsRef.current.push({ answerAttemptId: verdictInput.answerAttemptId, verdict: verdictInput.verdict });
+      console.log('[ATTEMPTS-VERDICT]', JSON.stringify({ sessionId: input.sessionId, source: 'queued_before_hydration', answerAttemptId: verdictInput.answerAttemptId, verdict: verdictInput.verdict, queued: pendingVerdictsRef.current.length })); // guard-ok: вердикт до гидратации поставлен в очередь
+      return 'none';
+    }
+    return registerVerdictNow(verdictInput, 'live');
+  }, [input.persistenceEnabled, input.sessionId, registerVerdictNow]);
+  useEffect(() => {
+    if (!hydrated || pendingVerdictsRef.current.length === 0) return;
+    const queued = pendingVerdictsRef.current.splice(0);
+    console.log('[ATTEMPTS-VERDICT]', JSON.stringify({ sessionId: input.sessionId, source: 'replay_after_hydration', count: queued.length })); // guard-ok: применяем очередь после гидратации
+    for (const item of queued) registerVerdictNowRef.current(item, 'replayed_after_hydration');
+  }, [hydrated, input.sessionId]);
 
   /** Режим Б: можно ли продолжить остановленное занятие — Plus или хотя бы 1 энергия восстановилась. */
   // Ожидающие списания вычитаем: сразу после остановки энергия в контексте ещё 1 (журнал не записан) — без этого

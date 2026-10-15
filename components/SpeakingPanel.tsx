@@ -804,6 +804,9 @@ export function SpeakingPanel({
   // buildSpeakingStartOptions с targetText = слово).
   const recordWordSystem = useCallback(
     async (index: number) => {
+      // зачем (Ревизор P5, 15.10): микрофон слова идёт мимо общего лимита голоса 3/день; сейчас недостижим (только presentation="modal",
+      // живые хосты — inline). Журнал покажет, если путь станет достижимым; гейт — после релиза.
+      console.warn(`[VOICE-LIMIT] word_mic_start ungated ${JSON.stringify({ via: 'system', presentation, index })}`); // guard-ok: трасса недостижимого пути
       if (!speech) {
         setWordPhase('no_speech'); playNoSpeech();
         return;
@@ -956,7 +959,7 @@ export function SpeakingPanel({
         if (mountedRef.current) { setWordPhase('no_speech'); playNoSpeech(); }
       }
     },
-    [speech, tokens, recognitionLocale, cleanupWordListeners, clearWordWatchdog, applyWordResult, playNoSpeech, playRecordStart, recordingAudio, restoreLoudPlaybackMode],
+    [speech, tokens, recognitionLocale, cleanupWordListeners, clearWordWatchdog, applyWordResult, playNoSpeech, playRecordStart, recordingAudio, restoreLoudPlaybackMode, presentation],
   );
 
   const finishAttempt = useCallback(
@@ -1759,6 +1762,7 @@ export function SpeakingPanel({
   // системного распознавателя — тот же путь, что и для фразы =====
   const startWordHold = useCallback(
     (index: number) => {
+      console.warn(`[VOICE-LIMIT] word_mic_start ungated ${JSON.stringify({ via: 'hold', presentation, index })}`); // guard-ok: см. recordWordSystem (Ревизор P5)
       if (!runtimeActiveRef.current) return;
       if (!pcmHoldMode) return;
       if (wordHoldRecRef.current) return;
@@ -1807,7 +1811,7 @@ export function SpeakingPanel({
         wordHoldRecRef.current = startHoldRecording({ onFirstAudio: onWordFirstAudio });
       })();
     },
-    [pcmHoldMode, ensureHoldMicPermission, playNoSpeech, playRecordStart, clearAutoAdvance, stopReplayPlayback],
+    [pcmHoldMode, ensureHoldMicPermission, playNoSpeech, playRecordStart, clearAutoAdvance, stopReplayPlayback, presentation],
   );
 
   const endWordHold = useCallback(

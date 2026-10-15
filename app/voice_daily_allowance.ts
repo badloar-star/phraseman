@@ -17,6 +17,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
 import { usePremium } from '../components/PremiumContext';
+import { onAccountOwnerChanged } from './account_owner_change';
 import {
   FREE_DIALOG_VOICE_DAILY_LIMIT,
   dialogVoiceLimitDecision,
@@ -101,7 +102,34 @@ export function voiceDailyAllowanceFrom(input: Access & Readonly<{ count: number
  * Можно ли начинать запись. false → вызывающий открывает пейвол (VOICE_LIMIT_PAYWALL_CONTEXT) и запись не стартует.
  * «Доступ неизвестен» пропускает: блокировать Plus из-за медленной проверки хуже, чем дать одну лишнюю попытку.
  */
-export function voiceDailyAllowanceGate(surface: VoiceAllowanceSurface, access: Access): boolean {
+/**
+ * Ревизор R1-c (15.10): признак «доступ выяснен» наблюдали только через ~94 с, а без сети он может не выставиться вовсе — тогда
+ * гейт в access_unknown пускал Free без лимита весь запуск. Для лимита голоса (и только для него) доступ, неизвестный дольше
+ * ACCESS_UNKNOWN_GRACE_MS от запуска, считаем Free. Plus с сохранённым статусом сюда не попадает: hasPremiumAccess берётся из снимка сразу.
+ */
+const ACCESS_UNKNOWN_GRACE_MS = 8_000;
+const MODULE_STARTED_AT_MS = Date.now();
+let accessFallbackLogged = false;
+
+export function effectiveVoiceAccess(access: Access, nowMs: number = Date.now()): Access {
+  if (access.accessResolved || access.hasPremiumAccess) return access;
+  const waitedMs = nowMs - MODULE_STARTED_AT_MS;
+  if (waitedMs < ACCESS_UNKNOWN_GRACE_MS) return access;
+  if (!accessFallbackLogged) {
+    accessFallbackLogged = true;
+    console.warn(`[ACCESS-RESOLVE] voice_fallback_free ${JSON.stringify({ waitedMs, graceMs: ACCESS_UNKNOWN_GRACE_MS })}`); // guard-ok: причина резолва для лимита
+  }
+  return { accessResolved: true, hasPremiumAccess: false };
+}
+
+/** Сколько ещё ждать до запасного режима (для перерисовки значка); 0 — уже наступил или не нужен. */
+export function msUntilVoiceAccessFallback(access: Access, nowMs: number = Date.now()): number {
+  if (access.accessResolved || access.hasPremiumAccess) return 0;
+  return Math.max(0, ACCESS_UNKNOWN_GRACE_MS - (nowMs - MODULE_STARTED_AT_MS));
+}
+
+export function voiceDailyAllowanceGate(surface: VoiceAllowanceSurface, rawAccess: Access): boolean {
+  const access = effectiveVoiceAccess(rawAccess);
   const count = peekCount();
   const decision = dialogVoiceLimitDecision({ ...access, count });
   const allowed = decision !== 'limit_reached';
@@ -117,7 +145,8 @@ const COUNTED_KEYS_MEMORY = 32;
  * повтор того же ключа (двойной статус «слушаю», повторный рендер) не списывает второй раз. Plus не списывает.
  * Возвращает счётчик после списания (или текущий, если не списано).
  */
-export function recordVoiceDailyAttempt(surface: VoiceAllowanceSurface, attemptKey: string, access: Access): number {
+export function recordVoiceDailyAttempt(surface: VoiceAllowanceSurface, attemptKey: string, rawAccess: Access): number {
+  const access = effectiveVoiceAccess(rawAccess);
   if (access.accessResolved) settleVoiceAttemptsAfterAccess(access);
   if (!access.accessResolved && !access.hasPremiumAccess) {
     // зачем (Ревизор 15.10 🟡): пока доступ не выяснен, это может быть Plus — на диск не списываем, держим в памяти и решаем,
@@ -144,6 +173,13 @@ export function recordVoiceDailyAttempt(surface: VoiceAllowanceSurface, attemptK
 }
 
 const pendingUnresolvedKeys: { surface: VoiceAllowanceSurface; attemptKey: string }[] = [];
+// зачем (Ревизор R1-b): отложенные попытки и ключи принадлежат владельцу — при смене аккаунта попытка A не должна засчитаться B.
+onAccountOwnerChanged('voice_daily_allowance', () => {
+  const dropped = pendingUnresolvedKeys.length;
+  pendingUnresolvedKeys.length = 0;
+  countedAttemptKeys.length = 0;
+  console.log(`${LOG} owner_changed ${JSON.stringify({ droppedPending: dropped })}`);
+});
 
 /** Доступ выяснен: отложенные попытки Plus отбрасываются, Free — засчитываются (каждая один раз по attemptKey). */
 export function settleVoiceAttemptsAfterAccess(access: Access): void {
@@ -200,13 +236,27 @@ export function useVoiceDailyAllowance(): VoiceDailyAllowance {
       if (midnightTimer) clearTimeout(midnightTimer);
     };
   }, []);
+  // зачем (Ревизор R1-c): доступ так и не выяснился — через 8 с от запуска значок перерисуется в режиме Free (цифра видна)
+  const [fallbackTick, setFallbackTick] = useState(0);
+  useEffect(() => {
+    const waitMs = msUntilVoiceAccessFallback({ accessResolved, hasPremiumAccess });
+    if (waitMs <= 0) return undefined;
+    const timer = setTimeout(() => setFallbackTick((tick) => tick + 1), waitMs + 50);
+    return () => clearTimeout(timer);
+  }, [accessResolved, hasPremiumAccess]);
+  const access = useMemo(
+    () => effectiveVoiceAccess({ accessResolved, hasPremiumAccess }),
+    // fallbackTick — перечитать время после истечения запасного окна
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [accessResolved, hasPremiumAccess, fallbackTick],
+  );
   // зачем (Ревизор 15.10 🟡): доступ выяснился — решаем отложенные попытки (Plus — отбросить, Free — засчитать)
   useEffect(() => {
-    if (accessResolved) settleVoiceAttemptsAfterAccess({ accessResolved, hasPremiumAccess });
-  }, [accessResolved, hasPremiumAccess]);
+    if (access.accessResolved) settleVoiceAttemptsAfterAccess(access);
+  }, [access]);
   return useMemo(
-    () => voiceDailyAllowanceFrom({ accessResolved, hasPremiumAccess, count: snapshot.count, hydrated: snapshot.hydrated }),
-    [accessResolved, hasPremiumAccess, snapshot.count, snapshot.hydrated],
+    () => voiceDailyAllowanceFrom({ ...access, count: snapshot.count, hydrated: snapshot.hydrated }),
+    [access, snapshot.count, snapshot.hydrated],
   );
 }
 

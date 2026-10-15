@@ -112,11 +112,16 @@ describe('дневной лимит голоса в Диалогах', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'dialogue_v2_session.tsx'), 'utf8');
     expect(src).toContain("micPlusBadge={voiceLimitDecision === 'limit_reached'}");
     expect(src).toContain('onStartVoice={startVoice}');
-    expect(src).toMatch(/if \(decision === 'limit_reached'\) \{[\s\S]{0,240}openVoicePlus\(\);\s*return;/);
-    // координатор 15.10: голосовая стена — пейвол про голос (ai_voice_input), а не про месячные ответы (dialog_limit)
-    expect(src).toMatch(/const openVoicePlus = \(\) => nav\.push\(\{[\s\S]{0,120}context: 'ai_voice_input'/);
+    // R1-a (Ревизор 15.10): решение и пейвол ai_voice_input (с защитой от двойного тапа и paywall_shown) — у общего хука;
+    // на лимите запись не стартует. Контекст пейвола про голос, а не про месячные ответы (dialog_limit) — внутри хука.
+    expect(src).toContain("useVoiceAttemptGate({ surface: 'dialogs', source: 'dialogue_v2_session' })");
+    expect(src).toMatch(/const allowed = voiceGate\.canStartAttempt\(\);[\s\S]{0,500}if \(decision === 'limit_reached'\) \{[\s\S]{0,300}return;\s*\}\s*void voice\.start\(\);/);
+    expect(fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use_voice_attempt_gate.ts'), 'utf8')).toContain("context: 'ai_voice_input'");
     expect(src).toContain("if (voice.status !== 'recording' || previous === 'recording') return;");
-    expect(src).toContain("reason: 'plus_unlimited'");
+    // R1-a (Ревизор 15.10): Plus не списывает и доступ «не выяснен» ждёт — это решает общий recordVoiceDailyAttempt
+    // (покрыто tests/voice_daily_allowance.test.ts); экран обязан идти через общий путь, а не свой счётчик.
+    expect(src).toContain('commitVoiceAttempt();');
+    expect(src).not.toContain('recordDialogVoiceAttempt(');
     expect(src).toContain('[DIALOG-VOICE] start:tap');
   });
 });

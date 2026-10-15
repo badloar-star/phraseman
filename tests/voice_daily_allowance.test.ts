@@ -15,6 +15,8 @@ import {
   VOICE_LIMIT_PAYWALL_CONTEXT,
   setDevVoiceRemaining,
   settleVoiceAttemptsAfterAccess,
+  effectiveVoiceAccess,
+  msUntilVoiceAccessFallback,
   recordVoiceDailyAttempt,
   resetVoiceDailyAllowanceForTests,
   voiceDailyAllowanceFrom,
@@ -119,6 +121,28 @@ describe('голос на сегодня (D165 + D194)', () => {
     // доступ выяснился как Free — отложенная попытка засчитывается при следующем обращении с известным доступом
     expect(recordVoiceDailyAttempt('mistakes', 'f:4', FREE)).toBe(2);
     expect(logs.some((l) => l.includes('deferred_dropped'))).toBe(true);
+  });
+
+  it('R1-c: доступ неизвестен — первые 8 с ждём, дальше для лимита голоса Free; Plus и выясненный доступ не трогаются', () => {
+    const UNKNOWN = { accessResolved: false, hasPremiumAccess: false } as const;
+    const now = Date.now();
+    expect(effectiveVoiceAccess(PLUS, now + 60_000)).toEqual(PLUS);
+    expect(effectiveVoiceAccess(FREE, now + 60_000)).toEqual(FREE);
+    expect(effectiveVoiceAccess({ accessResolved: false, hasPremiumAccess: true }, now + 60_000)).toEqual({ accessResolved: false, hasPremiumAccess: true });
+    expect(effectiveVoiceAccess(UNKNOWN, now + 60_000)).toEqual({ accessResolved: true, hasPremiumAccess: false });
+    expect(logs.some((l) => l.includes('[ACCESS-RESOLVE] voice_fallback_free'))).toBe(true);
+    expect(msUntilVoiceAccessFallback(PLUS)).toBe(0);
+  });
+
+  it('R1-b: смена владельца отбрасывает отложенные попытки — попытка A не засчитывается B', async () => {
+    const { beginAccountGeneration } = require('../app/account_generation') as typeof import('../app/account_generation');
+    await hydrateDialogVoiceAttempts();
+    beginAccountGeneration('owner-a');
+    expect(recordVoiceDailyAttempt('lessons', 'a:1', { accessResolved: false, hasPremiumAccess: false })).toBe(0);
+    beginAccountGeneration('owner-b');
+    settleVoiceAttemptsAfterAccess(FREE);
+    expect(logs.some((l) => l.includes('owner_changed'))).toBe(true);
+    expect(recordVoiceDailyAttempt('lessons', 'b:1', FREE)).toBe(1);
   });
 
   it('вчерашние попытки не считаются (местные сутки), до чтения диска — «не знаем»', async () => {

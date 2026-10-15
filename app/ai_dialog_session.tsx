@@ -1114,6 +1114,17 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     // cue играем по ПЕРВОМУ признаку, что движок реально слушает (а не сразу
     // после start() — прогрев ~100-300мс терял начало речи). На редких OEM 'start'
     // не эмитится и сразу приходит result — поэтому один раз по любому из них.
+    // зачем (Ревизор/координатор 15.10): одно удержание = одна попытка голоса у Free. Списание шло на КАЖДОЕ событие 'start'
+    // движка — повторный 'start' в той же сессии захвата списывал вторую. Плюс OEM без 'start' (сразу result) не списывали вовсе.
+    let engineStartEvents = 0;
+    let attemptCommitted = false;
+    const commitAttemptOnce = (via: 'start' | 'result') => {
+      if (via === 'start') engineStartEvents += 1;
+      console.warn(`[VOICE-LIMIT] ai_dialog engine_${via} ${JSON.stringify({ session, engineStartEvents, alreadyCommitted: attemptCommitted })}`); // guard-ok: трасса списания на удержание
+      if (attemptCommitted) return;
+      attemptCommitted = true;
+      voiceInputGate.commitStartedAttempt();
+    };
     let cuePlayed = false;
     const playCueOnce = () => {
       if (!isCurrentSession()) return;
@@ -1136,7 +1147,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         return;
       }
       setVoiceInputStatus('listening');
-      voiceInputGate.commitStartedAttempt();
+      commitAttemptOnce('start');
       playCueOnce();
     });
     const resultSub = speechModule.addListener('result', (event: any) => {
@@ -1144,6 +1155,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       clearRecognizerWatchdog();
       if (holdPressActiveRef.current) {
         setVoiceInputStatus('listening');
+        commitAttemptOnce('result');
         playCueOnce();
       }
       const alternatives: Array<{ transcript?: string }> = Array.isArray(event?.results)

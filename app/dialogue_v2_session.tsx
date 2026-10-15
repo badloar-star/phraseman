@@ -53,9 +53,10 @@ import {
   dialogVoiceLimitDecision,
   hydrateDialogVoiceAttempts,
   peekDialogVoiceAttempts,
-  recordDialogVoiceAttempt,
   subscribeDialogVoiceAttempts,
 } from './dialogue_v2_voice_daily_limit';
+import { effectiveVoiceAccess } from './voice_daily_allowance';
+import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 const INTERFACE_LANGS = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'fr', 'de']);
@@ -289,20 +290,21 @@ function SessionContent() {
     void hydrateDialogVoiceAttempts().then(sync);
     return unsubscribe;
   }, []);
-  const voiceLimitDecision = dialogVoiceLimitDecision({ accessResolved, hasPremiumAccess, count: voiceAttempts });
+  // зачем (Ревизор R1-c): доступ неизвестен дольше 8 с — для лимита голоса считаем Free (иначе без сети лимита нет весь запуск)
+  const voiceLimitDecision = dialogVoiceLimitDecision({ ...effectiveVoiceAccess({ accessResolved, hasPremiumAccess }), count: voiceAttempts });
+  // зачем (Ревизор R1-a 15.10): Диалоги V2 на общем хуке, как свободный разговор — ключ попытки, отложенное списание при
+  // неизвестном доступе, пейвол с защитой от двойного тапа и событием paywall_shown (своя ветка этого не умела).
+  const voiceGate = useVoiceAttemptGate({ surface: 'dialogs', source: 'dialogue_v2_session' });
+  const commitVoiceAttempt = voiceGate.commitStartedAttempt;
   // Попытка = НАЧАТАЯ запись: считаем переход в recording, а не тап (отмена до старта и отказ микрофона — не попытка).
   const prevVoiceStatusRef = useRef(voice.status);
   useEffect(() => {
     const previous = prevVoiceStatusRef.current;
     prevVoiceStatusRef.current = voice.status;
     if (voice.status !== 'recording' || previous === 'recording') return;
-    if (hasPremiumAccess) {
-      console.log('[DIALOG-VOICE] attempt:not_counted', JSON.stringify({ reason: 'plus_unlimited', previous }));
-      return;
-    }
-    const count = recordDialogVoiceAttempt();
-    console.log('[DIALOG-VOICE] attempt:counted', JSON.stringify({ count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, accessResolved, previous }));
-  }, [voice.status, hasPremiumAccess, accessResolved]);
+    commitVoiceAttempt();
+    console.log('[DIALOG-VOICE] attempt:committed_via_gate', JSON.stringify({ limit: FREE_DIALOG_VOICE_DAILY_LIMIT, accessResolved, hasPremiumAccess, previous }));
+  }, [voice.status, commitVoiceAttempt, accessResolved, hasPremiumAccess]);
   const preparedBotVoiceAssets = useMemo(() => messages.flatMap((message) => (
     message.author === 'persona' && message.preparedBotVoice
       ? [Object.freeze({ messageId: message.id, localUri: message.preparedBotVoice.localUri })]
@@ -754,18 +756,16 @@ function SessionContent() {
   // зачем (Макеты / координатор 15.10): голосовая стена D165 (3 голосовых в день) открывала dialog_limit — там текст про месячный
   // лимит ОТВЕТОВ («… ответов в месяц»), человек не понимал, что кончился именно голос. Готовый одобренный контекст ai_voice_input
   // говорит ровно про это («Отвечай голосом · Бесплатно — 3 реплики голосом в день», 9 языков). Стена ответов (onOpenPlus) — прежняя.
-  const openVoicePlus = () => nav.push({
-    pathname: '/premium_modal',
-    params: { context: 'ai_voice_input', source: 'dialogue_v2_session' },
-  } as never);
   // зачем (п.81): на исчерпанном лимите тап по микрофону — вход в Plus про голос; запись не стартует.
   const startVoice = () => {
     const count = peekDialogVoiceAttempts();
-    const decision = dialogVoiceLimitDecision({ accessResolved, hasPremiumAccess, count });
+    // зачем (Ревизор R1-a/R1-c): та же проверка, что у всех микрофонов (с запасным режимом при неизвестном доступе)
+    const allowed = voiceGate.canStartAttempt();
+    const decision = allowed ? 'allowed' : 'limit_reached';
     console.log('[DIALOG-VOICE] start:tap', JSON.stringify({ count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, decision, voiceStatus: voice.status }));
     if (decision === 'limit_reached') {
+      // пейвол ai_voice_input уже открыл хук (с защитой от двойного тапа и paywall_shown)
       console.log('[DIALOG-VOICE] start:blocked', JSON.stringify({ count, decision, shown: 'premium_modal', context: 'ai_voice_input' }));
-      openVoicePlus();
       return;
     }
     void voice.start();

@@ -85,3 +85,30 @@ Governance-ID: TG-FCDF025FA9CE
 Сторожа V2 (координатор 14:25):
 - `learning_v2_speaking_ui_parity_contract`: окно поиска testID 800 → 2400 знаков — пропсы D194/D196 сдвинули testID; кнопка на месте.
 - `learning_v2_scripted_repeat_player_lifecycle.test.tsx` — неотслеживаемый файл Codex: голый `__DEV__` в тестовом окружении; это Codex.
+Governance-ID: TG-AF51AF9B5D44
+Governance-ID: TG-04289FE4E25C
+Governance-ID: TG-FE79B7317CB0
+Governance-ID: TG-B5BD19696D52
+Governance-ID: TG-94C2AE2FB9EC
+P5 (координатор 14:35): микрофон слова в SpeakingPanel без лимита, но недостижим — все 4 живых хоста inline, SpeakingButton (modal) без импортёров.
+До сборки: журнал [VOICE-LIMIT] word_mic_start в recordWordSystem и startWordHold. Гейт — после релиза.
+R1-c (координатор): доступ неизвестен дольше 8 с с запуска — для лимита голоса считаем Free; PremiumContext не трогаем (рискованно до сборки).
+R1-a: Диалоги V2 — списание и проверка через общий путь. R1-b: отложенные попытки чистятся при смене владельца.
+
+### C1 — нативные окна Главной в NATIVE_MODAL_KEYS (15.10, 14:47)
+- spireWeekMoment (SpireWeekMomentHost `<Modal>`), welcomeBack и coinRankEnough (`<Modal>`-обёртки в home.tsx) добавлены в
+  NATIVE_MODAL_KEYS; неверные комментарии «в дереве, не <Modal>» исправлены.
+- Лог `[OVERLAY-ARB] handoff {from,to,fromNative,toNative,delayMs}` в OverlayArbiter на каждую передачу слота.
+- Сторож tests/overlay_native_modal_keys_contract.test.ts: три хост-окна + общий скан components/ (useOverlayVisible + <Modal>).
+- Попутно 084db1b62: dev `notif=<тип>` имитирует тап после перехода на next (Сверка Б16: replace закрывал пейвол).
+Governance-ID: TG-6CAAC140D121
+
+### R1-a (хук) + ИИ-диалог «одна попытка на удержание» (15.10, 14:53)
+Governance-ID: TG-6CAAC140D121
+- Диалоги V2 переведены на useVoiceAttemptGate({surface:'dialogs', source:'dialogue_v2_session'}) — как dialogue_v2_freeform:
+  ключ попытки, отложенное списание, пейвол ai_voice_input с защитой от двойного тапа и paywall_shown.
+- ai_dialog_session: commitAttemptOnce на сессию захвата (флаг attemptCommitted), лог `[VOICE-LIMIT] ai_dialog engine_{start|result}`
+  {session, engineStartEvents, alreadyCommitted}; первый result при удержании тоже списывает (OEM без 'start').
+- Сторож tests/ai_dialog_voice_attempt_once_contract.test.ts; dialogue_v2_voice_daily_limit переведён на хук.
+- Проверка: голос 22/22, пейвол-реестр + use_voice_attempt_gate 24/24.
+- Откат: git revert коммита; поведение вернётся к своей ветке Диалогов и списанию на каждый 'start'.

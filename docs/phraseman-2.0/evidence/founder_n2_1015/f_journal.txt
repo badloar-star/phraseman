@@ -1,0 +1,2 @@
+10-15 21:50:33.425 I/ReactNativeJS(22086): '[FOUNDER-NICK]', '{"source":"none","scope":"52a0b873","present":false}'
+10-15 21:50:33.727 I/ReactNativeJS(22086): '[FOUNDER-NICK]', '{"source":"storage_user_name","scope":"52a0b873","present":true}'

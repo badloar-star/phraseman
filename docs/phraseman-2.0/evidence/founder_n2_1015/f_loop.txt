@@ -1,0 +1,16 @@
+--------- beginning of main
+10-15 21:51:48.977 E/ReactNativeJS(22086): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 21:51:49.028 I/ReactNativeJS(22086): '[COIN-PILL]', '{"screen":"lessons","source":"wallet_cache","shown":0,"value":0,"snapshotValue":0,"trusted":true,"hydrated":true,"rankBinding":"3ca0ca0e#5","accountStableId":"3ca0ca0e#5"}'
+10-15 21:51:49.106 E/ReactNativeJS(22086): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 21:51:49.571 E/ReactNativeJS(22086): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 21:51:49.605 I/ReactNativeJS(22086): '[COIN-PILL]', '{"screen":"lessons","source":"wallet_cache","shown":0,"value":0,"snapshotValue":0,"trusted":true,"hydrated":true,"rankBinding":"3ca0ca0e#5","accountStableId":"3ca0ca0e#5"}'
+10-15 21:51:50.147 E/ReactNativeJS(22086): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 21:51:50.189 I/ReactNativeJS(22086): '[COIN-PILL]', '{"screen":"lessons","source":"wallet_cache","shown":0,"value":0,"snapshotValue":0,"trusted":true,"hydrated":true,"rankBinding":"3ca0ca0e#5","accountStableId":"3ca0ca0e#5"}'
+10-15 21:51:50.716 E/ReactNativeJS(22086): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 21:51:50.749 I/ReactNativeJS(22086): '[COIN-PILL]', '{"screen":"lessons","source":"wallet_cache","shown":0,"value":0,"snapshotValue":0,"trusted":true,"hydrated":true,"rankBinding":"3ca0ca0e#5","accountStableId":"3ca0ca0e#5"}'
+10-15 21:51:51.311 E/ReactNativeJS(22086): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 21:51:51.357 I/ReactNativeJS(22086): '[COIN-PILL]', '{"screen":"lessons","source":"wallet_cache","shown":0,"value":0,"snapshotValue":0,"trusted":true,"hydrated":true,"rankBinding":"3ca0ca0e#5","accountStableId":"3ca0ca0e#5"}'
+10-15 21:51:51.899 E/ReactNativeJS(22086): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 21:51:51.941 I/ReactNativeJS(22086): '[COIN-PILL]', '{"screen":"lessons","source":"wallet_cache","shown":0,"value":0,"snapshotValue":0,"trusted":true,"hydrated":true,"rankBinding":"3ca0ca0e#5","accountStableId":"3ca0ca0e#5"}'
+10-15 21:51:52.483 E/ReactNativeJS(22086): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 21:51:52.532 I/ReactNativeJS(22086): '[COIN-PILL]', '{"screen":"lessons","source":"wallet_cache","shown":0,"value":0,"snapshotValue":0,"trusted":true,"hydrated":true,"rankBinding":"3ca0ca0e#5","accountStableId":"3ca0ca0e#5"}'

@@ -1,151 +1,138 @@
-# Англійська · Урок 3 · Заняття 1 — «Перша коробка»
+# Англійська · Урок 3 · Заняття 1 — Що в конверті
 
-**Сцена заняття.** Ви облаштовуєте нову квартиру. Друг допомагає відкрити першу коробку, а ви по черзі називаєте речі, які дістаєте.
+**Ситуація.** Ви з Анною прийшли готувати невелику виставку. У конверті лежить ключ від приміщення. Ви називаєте знахідку, уточнюєте, чи все готове, й обговорюєте участь Олега. У надрукованому запрошенні неправильна адреса: такий результат неприйнятний.
 
-**Як сказати:** назвати один предмет: `a + noun`  
-**Нові слова:** chair, table, lamp  
-**Повертаються:** it is, flat, ready
+**Що ви опануєте:** назвати один предмет з a й відрізнити назву від опису стану
+**Нові слова:** key
 
 ---
 
 ## Інтро 1
 
-### Маленьке слово перед назвою
+### Це ключ
 
-`a chair` — «стілець». У повній фразі `It is a chair` («Це стілець») маленьке `a` стоїть перед назвою одного предмета. Українською досить сказати «Це стілець», тож в англійській теж кортить скоротити до `It is chair`. Заощадили одну літеру — отримали цілу помилку.
+`key` — «ключ». Щоб назвати знайдений предмет, скажіть `It is a key` — «Це ключ». Перед `key` тут потрібно маленьке `a`. Українською перед «ключ» нічого додавати не хочеться. Заощадили одну літеру в англійській фразі — доведеться її повертати. Ключ від цього легшим не стане.
 
-**Друг запитує, що ви дістали. Відповідайте повною фразою: «Це стілець».**
+**У конверті ключ. Назвіть предмет повною фразою.**
 
-- ✅ **It is a chair.**
-- ❌ It is chair. — *Перед назвою одного предмета зникло `a`: `It is a chair`.*
-- ❌ It a chair. — *Після `It` потрібне `is`: `It is a chair`.*
+- ✅ **It is a key.**
+- ❌ It is key. — *У цій фразі перед назвою одного предмета потрібно `a`: `a key`.*
+- ❌ It a key. — *Після `It` потрібно `is`; `a` його не замінює.*
 
 ---
 
 ## Інтро 2
 
-### Два маленькі слова в повній фразі
+### Чому саме a
 
-`a table` — «стіл». Щоб сказати «Це стіл», поєднайте `It is` і `a table`: `It is a table`. У готовій фразі залишаються обидва маленькі слова: `is` з’єднує `It` із назвою, а `a` стоїть перед `table`. Одне слово не може працювати за двох.
+Перед назвою одного предмета в таких фразах ставимо `a` або `an`. Вибір залежить від наступного звука: перед приголосним — `a`, перед голосним — `an`. У `key` перший звук приголосний, тому `a key`. А в `It is ready` слово `ready` описує стан: перед ним окремо `a` не ставимо.
 
-**Ви зняли упаковку зі столу. Скажіть другові повною фразою: «Це стіл».**
+**Ви називаєте ключ. Виберіть повну фразу.**
 
-- ✅ **It is a table.**
-- ❌ It is table. — *Навіть коли стіл перед очима, перед назвою одного предмета потрібне `a`: `a table`.*
-- ❌ It am a table. — *З `It` уживається `is`, а не `am`: `It is a table`.*
+- ✅ **It is a key.**
+- ❌ It is an key. — *У `key` перший звук приголосний. Тут потрібно `a key`.*
+- ❌ It is ready. — *Це «Він готовий», а ви називаєте предмет: ключ.*
 
 ---
 
 ## Інтро 3
 
-### Назва чи стан
+### Уточнити знахідку
 
-`a lamp` — «лампа». Порівняйте: `It is a lamp` — «Це лампа», а `It is ready` — «Вона готова». У першій фразі ви називаєте річ, у другій кажете про її стан. Тому в назві `a lamp` є `a`, а перед самим словом `ready` воно не потрібне.
+`Is it a key?` — «Це ключ?» Знайоме `Is` переходить на початок запитання, а `a key` залишається разом. `It is not a key` — «Це не ключ». Навіть коли ви заперечуєте, що предмет — ключ, у цій фразі зберігається `a`. Не плутайте це з `It is here` — «Він тут»: там ви повідомляєте місце.
 
-**Друг показує на ввімкнену річ. Скажіть повною фразою: «Це лампа».**
+**Анна тримає невеликий предмет, який ви погано бачите. Запитайте, чи це ключ.**
 
-- ✅ **It is a lamp.**
-- ❌ It is lamp. — *Перед назвою одного предмета зникло `a`: `It is a lamp`.*
-- ❌ It are a lamp. — *Після `It` потрібне `is`: `It is a lamp`.*
+- ✅ **Is it a key?**
+- ❌ Is it key? — *У назві `a key` зникло `a`.*
+- ❌ It is a key. — *Це повідомлення. Для запитання почніть з `Is it`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — chair**
-<!-- interaction_id: en:lesson-03:session-01:i01; family: listen_choose -->
-Ціль: `chair`
+**1 · Ви дістали ключ із конверта. Назвіть предмет повною фразою**
+<!-- interaction_id: en:lesson-03:session-01:i01; family: phrase_builder -->
+Плитки: `key` `a` `is` `It` `are` → **It is a key.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a key.`)*
 
-**2 · Послухайте й виберіть — яке слово вимовив помічник**
+**2 · Послухайте відповідь Анни про самопочуття; fine — «у порядку»**
 <!-- interaction_id: en:lesson-03:session-01:i02; family: listen_choose -->
-Ціль: `chair`
-Варіанти: `chair` · `share` · `cheer`
-- share — *На початку `share` чути звук, ближчий до «ш», а на початку `chair` — до «ч». У записі — `chair`.*
-- cheer — *У `cheer` голосний починається ближче до українського «и», а в `chair` — до «е». У записі — `chair`.*
+🔊 *I am fine.* → **I am fine.** · I am ready. · I am happy.
+- I am ready. — *У записі останнє слово — `fine`, а в цьому варіанті — `ready`.*
+- I am happy. — *У записі останнє слово — `fine`, а в цьому варіанті — `happy`.*
 
+**3 · Доповніть повну фразу «Це ключ»**
+<!-- interaction_id: en:lesson-03:session-01:i03; family: context_gap_grammar -->
+It ___ key. → **is a** · is · is an
+- is — *Вийде `It is key`: зникло `a`. Потрібно `is a`.*
+- is an — *Перед приголосним звуком у `key` потрібно `a`, не `an`.*
 
-**3 · Картка слова — table**
-<!-- interaction_id: en:lesson-03:session-01:i03; family: listen_choose -->
-Ціль: `table`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-01:i04; family: speed_match -->
+key — ключ · here — тут · ready — готовий · fine — у порядку
 
-**4 · Послухайте й виберіть — яке слово прозвучало біля другої коробки**
-<!-- interaction_id: en:lesson-03:session-01:i04; family: listen_choose -->
-Ціль: `table`
-Варіанти: `table` · `fable` · `label`
-- fable — *На початку `fable` чути «ф», а на початку `table` — «т». У записі — `table`.*
-- label — *На початку `label` чути «л», а на початку `table` — «т». У записі — `table`.*
+**5 · Послухайте й складіть назву знахідки**
+<!-- interaction_id: en:lesson-03:session-01:i05; family: listen_build_dictation -->
+🔊 *It is a key.* Плитки: `key` `a` `is` `It` `are` → **It is a key.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a key.`)*
 
+**6 · Анна показує предмет з іншого конверта. Запитайте, чи це ключ**
+<!-- interaction_id: en:lesson-03:session-01:i06; family: phrase_builder -->
+Плитки: `key` `a` `it` `Is` `Are` → **Is it a key?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it a key?`)*
 
-**5 · Складіть фразу — друг запитує `What is it?`; ви дістали стілець і відповідаєте повною фразою**
-<!-- interaction_id: en:lesson-03:session-01:i05; family: phrase_builder -->
-Ціль: `It is a chair.`
-Варіанти: `am`
+**7 · Ви раді брати участь у виставці: happy — «щасливий, радий». Скажіть «Я радий» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-01:i07; family: scripted_repeat_compare -->
+🎙 **I'm happy.**
 
-**6 · Картка слова — lamp**
-<!-- interaction_id: en:lesson-03:session-01:i06; family: listen_choose -->
-Ціль: `lamp`
+**8 · Анна назвала час відкриття, але ви хочете уточнити її впевненість. Запитайте «Ти впевнена?»; sure — «впевнений»**
+<!-- interaction_id: en:lesson-03:session-01:i08; family: context_gap_grammar -->
+Are you ___? → **sure** · fine · here
+- fine — *Це запитання про самопочуття. Про впевненість запитуємо `Are you sure?`.*
+- here — *Це запитання «Ти тут?» Для впевненості потрібно `sure`.*
 
-**7 · Послухайте й виберіть — яке слово вимовив друг**
-<!-- interaction_id: en:lesson-03:session-01:i07; family: listen_choose -->
-Ціль: `lamp`
-Варіанти: `lamp` · `camp` · `damp`
-- camp — *На початку `camp` чути «к», а на початку `lamp` — «л». У записі — `lamp`.*
-- damp — *На початку `damp` чути «д», а на початку `lamp` — «л». У записі — `lamp`.*
+**9 · Послухайте запитання Анни**
+<!-- interaction_id: en:lesson-03:session-01:i09; family: listen_choose -->
+🔊 *Are you ready?* → **Are you ready?** · Are you happy? · Are you sure?
+- Are you happy? — *У записі останнє слово — `ready`, а в цьому варіанті — `happy`.*
+- Are you sure? — *У записі останнє слово — `ready`, а в цьому варіанті — `sure`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-01:i10; family: speed_match -->
+happy — щасливий · sure — впевнений · interested — зацікавлений · comfortable — той, кому зручно
 
-**8 · Складіть фразу — з наступної упаковки виглянув стіл**
-<!-- interaction_id: en:lesson-03:session-01:i08; family: phrase_builder -->
-Ціль: `It is a table.`
-Варіанти: `am`
+**11 · Послухайте й складіть фразу про Олега; interested — «зацікавлений»**
+<!-- interaction_id: en:lesson-03:session-01:i11; family: listen_build_dictation -->
+🔊 *He is interested.* Плитки: `interested` `is` `He` `are` → **He is interested.**
+*(плитка `are` зайва: тут потрібно `is` — `He is interested.`)*
 
-**9 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-01:i09; family: scripted_repeat_compare -->
-Ціль: `It is a flat.`
+**12 · Анна прийняла маленький інструмент за ключ. Скажіть повною фразою «Це не ключ»**
+<!-- interaction_id: en:lesson-03:session-01:i12; family: phrase_builder -->
+Плитки: `key` `a` `not` `is` `It` `are` → **It is not a key.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not a key.`)*
 
-**10 · Послухайте й складіть — друг називає ще одну річ із коробки**
-<!-- interaction_id: en:lesson-03:session-01:i10; family: listen_build_dictation -->
-Ціль: `It is a lamp.`
+**13 · Вам зручно на обраному місці; comfortable — «той, кому зручно». Скажіть «Мені зручно» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-01:i13; family: scripted_repeat_compare -->
+🎙 **I'm comfortable.**
 
-**11 · З’єднайте пари — речі в квартирі**
-<!-- interaction_id: en:lesson-03:session-01:i11; family: speed_match -->
-Пари: `chair` — стілець · `table` — стіл · `lamp` — лампа · `flat` — квартира
-Ціль: `chair · table · lamp · flat`
-
-**12 · Вставте частину фрази — з коробки видно спинку стільця; скажіть «Це стілець»**
-<!-- interaction_id: en:lesson-03:session-01:i12; family: context_gap_grammar -->
-Ціль: `It ___ chair.`
-Варіанти: `is a` · `is` · `a`
-- is — *З одним `is` вийде `It is chair`: перед назвою предмета бракує `a`.*
-- a — *З одним `a` вийде `It a chair`: після `It` зникло `is`. Тут потрібні обидва слова: `is a`.*
-
-
-**13 · Складіть запитання — видно дріт, але сам предмет ще в коробці; запитайте, чи це лампа**
-<!-- interaction_id: en:lesson-03:session-01:i13; family: phrase_builder -->
-Ціль: `Is it a lamp?`
-Варіанти: `Are`
-
-**14 · Доповніть фразу — друг прикрутив останню ніжку столу; скажіть, що стіл готовий (`ready` — «готовий»)**
+**14 · У запрошенні неправильна адреса. Скажіть, що це неприйнятно; unacceptable — «неприйнятний»**
 <!-- interaction_id: en:lesson-03:session-01:i14; family: context_gap_grammar -->
-Ціль: `It ___ ready.`
-Варіанти: `is` · `is a` · `a`
-- is a — *`ready` описує стан. Окреме `a` перед цим словом не потрібне: `It is ready`.*
-- a — *У `It a ready` зникло `is` і з’явилося зайве `a`. Про стан кажуть `It is ready`.*
+It ___ unacceptable. → **is** · is a · a
+- is a — *`unacceptable` описує оцінку, а не називає предмет. Тут `It is unacceptable`.*
+- a — *Потрібно `is`; перед окремим `unacceptable` не ставимо `a`.*
 
+**15 · Послухайте запитання про участь у виставці**
+<!-- interaction_id: en:lesson-03:session-01:i15; family: listen_choose -->
+🔊 *Are you interested?* → **Are you interested?** · Are you sure? · Are you comfortable?
+- Are you sure? — *У записі останнє слово — `interested`, а в цьому варіанті — `sure`.*
+- Are you comfortable? — *У записі останнє слово — `interested`, а в цьому варіанті — `comfortable`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-01:i15; family: scripted_repeat_compare -->
-Ціль: `Is it ready?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-01:i16; family: speed_match -->
+key — ключ · unacceptable — неприйнятний · here — тут · ready — готовий
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-01:i16; family: scripted_repeat_compare -->
-Ціль: `It is a table.`
-
-**17 · Складіть фразу — друг вирішив, що в останній коробці лампа; ви відкрили її й заперечуєте: «Це не лампа»**
-<!-- interaction_id: en:lesson-03:session-01:i17; family: phrase_builder -->
-Ціль: `It is not a lamp.`
-Варіанти: `am`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Пізніше ви знайшли ключ під порожнім конвертом. Назвіть знахідку: «Це ключ», зі скороченням**
+<!-- interaction_id: en:lesson-03:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It's a key.**
 

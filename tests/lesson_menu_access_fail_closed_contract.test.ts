@@ -29,7 +29,7 @@ describe('lesson menu access check is fail-closed', () => {
     expect(accessCatch).toBeGreaterThan(accessTry);
     expect(accessFinally).toBeGreaterThan(accessCatch);
     expect(lockCheck.slice(accessCatch, accessFinally)).toContain('gatedSetLocked(true);');
-    expect(lockCheck.slice(accessCatch, accessFinally)).toContain("setLockReason('progress');");
+    expect(lockCheck.slice(accessCatch, accessFinally)).toContain("gatedSetReason('progress');");
 
     for (const handler of ['openLessonFromMenu', 'handleStartLesson', 'handleReplayIntroAndContinue']) {
       const start = source.indexOf(`const ${handler} = useCallback`);

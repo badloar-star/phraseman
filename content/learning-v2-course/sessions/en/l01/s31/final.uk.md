@@ -1,210 +1,138 @@
-# Англійська · Урок 1 · Заняття 31 — «Погода за вікном»
+# Англійська · Урок 1 · Заняття 31 — Ділимо обід і рахунок
 
-**Ситуація.** Лена зустрічає сусіда Тома біля під'їзду в Дубліні. Том збирається вийти й питає Лену, яка погода надворі.
-**Як сказати:** `It is`, коли говорите про погоду.
-**Нові слова:** wet, dry, hot, warm
-**Повертаються:** cold, rainy, windy
+**Ситуація.** Ви обідаєте з друзями в кафе. Порівнюєте суми в рахунках і посуд, уточнюєте, які замовлення оформлено окремо.
+
+**Що ви опануєте:** вимовити короткий опис порівнюваних предметів, вибираючи відомі is та are
+**Нові слова:** equal, similar, separate
 
 ---
 
 ## Інтро 1
 
-### `wet` і `dry` — мокро й сухо
+### Рівні
 
-`wet` — «мокро». `dry` — «сухо». Про дощ, про асфальт, про вашу куртку — одне слово на все.
+`equal` — «рівний». У двох рахунках рівно та сама сума: `They are equal` — «Вони рівні». Тут порівнюємо величину сум, а не вигляд чеків. Шматки пирога теж можна зробити рівними — якщо ніхто не почав їсти до порівняння.
 
-Про погоду англійці кажуть `it`: `It is wet`. Воно тут ні на що не показує — просто так побудована фраза про погоду. Викинути не можна: без `it` речення не буде.
+**У двох рахунках по 12 євро. Скажіть про суми: «Вони рівні».**
 
-**Дощ іде з ночі, все блищить. Сусід у дверях питає, як там.**
-
-- ✅ **It is wet.**
-- ❌ Is wet. — *Зникло `it`. Фраза про погоду завжди починається з нього, навіть якщо українською там нічого немає.*
-- ❌ It wet. — *Між `it` і словом про погоду потрібна форма `is`.*
+- ✅ **They are equal.**
+- ❌ They is equal. — *Після `They` потрібно `are`.*
+- ❌ They are different. — *Суми однакові за величиною, тому `equal`.*
 
 ---
 
 ## Інтро 2
 
-### `hot` — спекотно, `warm` — тепло
+### Схожі
 
-`hot` — «спекотно, гаряче». `warm` — «тепло».
+`similar` — «схожий». Дві чашки схожі за формою, але малюнки трохи відрізняються: `They are similar` — «Вони схожі». Це не обіцянка, що збігається кожна деталь. `equal` порівнює рівність, наприклад сум; `similar` — схожість.
 
-`hot` — це коли вже забагато: сонце пече, у кімнаті задуха. `warm` — коли добре: не мерзнеш і не пітнієш.
+**Дві чашки майже однакові за формою, але з різними малюнками. Скажіть про їхню схожість.**
 
-Переплутаєте — вас зрозуміють, але `It is hot` у дублінському квітні прозвучить як жарт.
-
-Тими самими словами кажуть про чай, про воду з крана, про батарею.
-
-**Сусід вийшов без куртки і не пошкодував: сонце, вітру немає. Скажіть про таку погоду.**
-
-- ✅ **It is warm.**
-- ❌ It is hot. — *Занадто сильно. `hot` — це коли хочеться в тінь, а тут просто приємно.*
-- ❌ It is cold. — *Навпаки. `cold` — «холодно», а куртка не знадобилася.*
+- ✅ **They are similar.**
+- ❌ They are separate. — *`separate` — «окремі». Тут треба назвати схожість: `similar`.*
+- ❌ They is similar. — *Після `They` ставимо `are`.*
 
 ---
 
 ## Інтро 3
 
-### `dry` — сухо
+### Окремі
 
-`It is dry` кажуть не про сонце, а про те, що дощу немає. Це різні речі: небо може бути сірим цілий день, але `dry`.
+`separate` — «окремий». У вас два окремі рахунки: `They are separate` — «Вони окремі». Їх не об’єднали в один. Це не означає, що суми різні: окремі рахунки можуть виявитися рівними.
 
-Тим самим словом кажуть про сухий одяг, сухі черевики й сухий рушник.
+**Офіціант оформив два окремі рахунки. Скажіть, що вони окремі, а не один спільний.**
 
-**Три дні лив дощ, а сьогодні асфальт світлий і черевики чисті. Сусід питає, як надворі.**
-
-- ✅ **It is dry.**
-- ❌ It is wet. — *Це про мокро, а дощ якраз скінчився. Сухо — `dry`.*
-- ❌ Dry is. — *Слова перевернулися. Спочатку `It is`, потім слово про погоду — порядок не міняється.*
+- ✅ **They are separate.**
+- ❌ They are equal. — *Це говорить про рівність сум. Тут ідеться про те, що рахунки окремі: `separate`.*
+- ❌ They are separates. — *До слова-опису `separate` тут не додають `-s`.*
 
 ---
 
-## Практика (20 завдань, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · Картка слова — wet**
-<!-- interaction_id: en:lesson-01:session-31:i01; family: listen_choose -->
-> **wet** — «мокро, мокрий». Про дощ надворі, про лавку, на яку краще не сідати, і про вас, якщо парасольки не було.
+**1 · У двох рахунках однакові суми. Складіть фразу про їхню рівність**
+<!-- interaction_id: en:lesson-01:session-31:i01; family: phrase_builder -->
+Плитки: `equal` `are` `They` `is` → **They are equal.**
+*(плитка `is` зайва: тут потрібно `are` — `They are equal.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-31:i02; family: listen_choose -->
-🔊 *wet* → **wet** · went · what
-- went — *Усередині чути «н», якого у `wet` немає.*
-- what — *Початок той самий. Далі голосний інший: у `what` чути «о», у `wet` — «е».*
+🔊 *They are similar.* → **They are similar.** · They are separate. · They are equal.
+- They are separate. — *У записі останнє слово — `similar`, а в цьому варіанті — `separate`.*
+- They are equal. — *У записі останнє слово — `similar`, а в цьому варіанті — `equal`.*
 
-**3 · Картка слова — dry**
-<!-- interaction_id: en:lesson-01:session-31:i03; family: listen_choose -->
-> **dry** — «сухо, сухий». Дощу немає, асфальт світлий, куртку можна не вішати на батарею.
+**3 · Замовлення десерту оформлено окремо від обіду. Доповніть фразу про це замовлення**
+<!-- interaction_id: en:lesson-01:session-31:i03; family: context_gap_grammar -->
+It ___ separate. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Одне замовлення — `It is`.*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-31:i04; family: listen_choose -->
-🔊 *dry* → **dry** · try · draw
-- try — *Відрізняється тільки першим звуком. `dry` починається з «д».*
-- draw — *Початок той самий, `dr`. Далі у `dry` чути «ай», а в `draw` — довге «о».*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-31:i04; family: speed_match -->
+equal — рівний · similar — схожий · separate — окремий · different — різний
 
-**5 · Картка слова — cold**
-<!-- interaction_id: en:lesson-01:session-31:i05; family: listen_choose -->
-> **cold** — «холодно, холодний». Про погоду, через яку вертаєшся по шарф, і про чай, що стояв надто довго.
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-01:session-31:i05; family: listen_build_dictation -->
+🔊 *They are separate.* Плитки: `separate` `are` `They` `is` → **They are separate.**
+*(плитка `is` зайва: тут потрібно `are` — `They are separate.`)*
 
-**6 · Вставте слово — дощ іде третю годину**
-<!-- interaction_id: en:lesson-01:session-31:i06; family: context_gap_grammar -->
-It is ___ . → **wet** · dry · cold
-- dry — *Це «сухо», а надворі дощ. Мокро — `wet`.*
-- cold — *«Холодно» — про температуру, а питання про воду згори.*
+**6 · Дві тарілки схожі за малюнком. Складіть фразу про їхню схожість**
+<!-- interaction_id: en:lesson-01:session-31:i06; family: phrase_builder -->
+Плитки: `similar` `are` `They` `am` → **They are similar.**
+*(плитка `am` зайва: тут потрібно `are` — `They are similar.`)*
 
-**7 · Складіть фразу — «сухо»**
-<!-- interaction_id: en:lesson-01:session-31:i07; family: phrase_builder -->
-Плитки: `dry` `is` `It` `am` → **It is dry.**
-*(плитка `am` зайва: `are` зайве: після `It` ставлять `is` — `It is dry`.)*
+**7 · Ви розділили платіж на дві однакові суми. Скажіть про суми вголос**
+<!-- interaction_id: en:lesson-01:session-31:i07; family: scripted_repeat_compare -->
+🎙 **They are equal.**
 
+**8 · Замовлення двох компаній оформлено окремо. Треба сказати саме про це. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-31:i08; family: context_gap_grammar -->
+They are ___ . → **separate** · equal · similar
+- equal — *`equal` — «рівні». Тут важливо, що замовлення окремі: `separate`.*
+- similar — *`similar` — «схожі». Тут ідеться про окремі замовлення: `separate`.*
 
-**8 · Картка слова — hot**
-<!-- interaction_id: en:lesson-01:session-31:i08; family: listen_choose -->
-> **hot** — «спекотно, гаряче». Про погоду, від якої шукаєш тінь, і про чай, який поки що не випити.
-
-**9 · Картка слова — warm**
+**9 · Послухайте опис малюнка на чашці**
 <!-- interaction_id: en:lesson-01:session-31:i09; family: listen_choose -->
-> **warm** — «тепло». Не спекотно й не холодно, а рівно так, як хочеться.
+🔊 *It is similar.* → **It is similar.** · It is separate. · It is missing.
+- It is separate. — *У записі останнє слово — `similar`, а в цьому варіанті — `separate`.*
+- It is missing. — *У записі останнє слово — `similar`, а в цьому варіанті — `missing`.*
 
-**10 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-31:i10; family: listen_choose -->
-🔊 *warm* → **warm** · worm · war
-- worm — *`worm` — «черв'як». На місці голосного там глухий невиразний звук, ні «о», ні «а». У `warm` ясно чути «о».*
-- war — *Обрубаний хвіст. У `warm` на кінці чути «м».*
+**10 · З’єднайте знайомі слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-31:i10; family: speed_match -->
+alive — живий · dead — мертвий · missing — зниклий · married — перебуває у шлюбі
 
-**11 · Вставте слово — сонце пече, ви шукаєте тінь**
-<!-- interaction_id: en:lesson-01:session-31:i11; family: context_gap_grammar -->
-It is ___ . → **hot** · warm · cold
-- warm — *«Тепло» — це коли приємно. А ви ховаєтесь від сонця, отже вже забагато.*
-- cold — *Прямо навпаки. `cold` — про холод.*
+**11 · Послухайте й складіть фразу про замовлення**
+<!-- interaction_id: en:lesson-01:session-31:i11; family: listen_build_dictation -->
+🔊 *It is separate.* Плитки: `separate` `is` `It` `are` → **It is separate.**
+*(плитка `are` зайва: тут потрібно `is` — `It is separate.`)*
 
-**12 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-31:i12; family: speed_match -->
-wet — мокро · dry — сухо · hot — спекотно · warm — тепло
+**12 · Гаманця немає в сумці, ви його шукаєте. Складіть фразу про гаманець: «Він зник»**
+<!-- interaction_id: en:lesson-01:session-31:i12; family: phrase_builder -->
+Плитки: `missing` `is` `It` `He` → **It is missing.**
+*(плитка `He` зайва: тут потрібно `It` — `It is missing.`)*
 
-**13 · Вставте слово — зранку шарф і друга кофта**
-<!-- interaction_id: en:lesson-01:session-31:i13; family: context_gap_grammar -->
-It is ___ . → **cold** · warm · dry
-- warm — *«Тепло» — це коли кофта не потрібна.*
-- dry — *Про воду, а мова про температуру.*
+**13 · Офіціант запитує, чи спільний у вас рахунок. Скажіть про два вже оформлені рахунки: «Вони окремі»**
+<!-- interaction_id: en:lesson-01:session-31:i13; family: scripted_repeat_compare -->
+🎙 **They are separate.**
 
-**14 · Картка слова — rainy**
-<!-- interaction_id: en:lesson-01:session-31:i14; family: listen_choose -->
-> **rainy** — «дощово». Не одна хмарка на годину, а день, коли дощ іде і йде.
+**14 · Дві чашки схожі. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-31:i14; family: context_gap_grammar -->
+They ___ similar. → **are** · is · am
+- is — *Після `They` потрібно `are`.*
+- am — *`am` потрібне з `I`, а тут `They are`.*
 
-**15 · Вставте слово — ллє зранку і не збирається вщухати**
-<!-- interaction_id: en:lesson-01:session-31:i15; family: context_gap_grammar -->
-It is ___ . → **rainy** · dry · hot
-- dry — *Це «сухо», а з неба ллє.*
-- hot — *Про спеку, а мова про дощ.*
+**15 · Послухайте й виберіть фразу про героїню фільму, який обговорюють друзі**
+<!-- interaction_id: en:lesson-01:session-31:i15; family: listen_choose -->
+🔊 *She is single.* → **She is single.** · He is single. · She is married.
+- He is single. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
+- She is married. — *У записі останнє слово — `single`, а в цьому варіанті — `married`.*
 
-**16 · Картка слова — windy**
-<!-- interaction_id: en:lesson-01:session-31:i16; family: listen_choose -->
-> **windy** — «вітряно». Вітер вириває двері з рук, а парасольку вивертає навиворіт.
+**16 · З’єднайте слова та значення**
+<!-- interaction_id: en:lesson-01:session-31:i16; family: speed_match -->
+single — не перебуває у шлюбі (в анкеті) · equal — рівний · similar — схожий · separate — окремий
 
-**17 · Вставте слово — шапку зриває, іти доводиться боком**
-<!-- interaction_id: en:lesson-01:session-31:i17; family: context_gap_grammar -->
-It is ___ . → **windy** · warm · wet
-- warm — *Про тепло, а мова про вітер.*
-- wet — *Про воду, а вас тіпає вітром, не дощем.*
-
-**18 · Послухайте і складіть — «дощово»**
-<!-- interaction_id: en:lesson-01:session-31:i18; family: listen_build_dictation -->
-🔊 *It is rainy.* Плитки: `rainy` `It` `is` `windy` → **It is rainy.**
-*(плитка `windy` зайва: `open` зайве: у записі сказано `It is rainy` — «дощово».)*
-
-
-**19 · Складіть фразу — надворі рве парасолю з рук**
-<!-- interaction_id: en:lesson-01:session-31:i19; family: phrase_builder -->
-Плитки: `windy` `It` `are` `is` → **It is windy.**
-*(плитка `are` зайва: `are` зайве: про вулицю кажуть `It is windy`.)*
-
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-31:i20:s01; family: scripted_repeat_compare -->
-🎙 **It is dry.**
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-31:i20:s02; family: scripted_repeat_compare -->
-🎙 **It is warm.**
-
----
-
-## Для сборщика
-
-new_words:
-wet — мокро, мокрий — про дощ надворі, про лавку, на яку краще не сідати, і про вас, якщо парасольки не було
-dry — сухо, сухий — дощу немає, асфальт світлий, куртку можна не вішати на батарею
-hot — спекотно, гаряче — про погоду, від якої шукаєш тінь, і про чай, який поки що не випити
-warm — тепло — не спекотно й не холодно, а рівно так, як хочеться
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_choose, 6=context_gap_grammar, 7=phrase_builder, 8=listen_choose, 9=listen_choose, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=listen_choose, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar, 18=listen_build_dictation, 19=phrase_builder, 20=scripted_repeat_compare, 21=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | дотиків у практиці | де ПРАВИЛЬНА відповідь |
-|---|---|---|
-| cold | 5 (картка), 6 (пастка), 11 (пастка), 13 (вибір) | 13 — правильна відповідь |
-| rainy | 14 (картка), 15 (вибір), 18 (складання) | 15 і 18 — двічі правильна відповідь |
-| windy | 16 (картка), 17 (вибір), 19 (складання) | 17 і 19 — двічі правильна відповідь |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | wet | так — «`wet` — „мокро“», приклад `It is wet` |
-| Інтро 2 | warm | так — «`warm` — „тепло“», розібрано відмінність від `hot` |
-| Інтро 3 | dry | так — уся сторінка про `dry` |
-
-**3. Дошка пар (завдання 12)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| wet | 1 | 2 (слух), 6 (вибір) |
-| dry | 3 | 4 (слух), 7 (складання) |
-| hot | 8 | 11 (вибір) |
-| warm | 9 | 10 (слух), 11 (розбір пастки) |
+**17 · У магазині ви порівнюєте дві куртки: вони схожі за фасоном, хоча деталі відрізняються. Скажіть продавцеві про їхню схожість**
+<!-- interaction_id: en:lesson-01:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **They are similar.**
 

@@ -22,7 +22,10 @@ TTL=900   # 15 минут — после этого слот считается 
 RENEW_EVERY=${PM_SLOT_RENEW_EVERY:-60}
 # Стабильный ID сессии: $$ в Git Bash меняется на каждый вызов и ломал
 # распознавание "мой слот", поэтому фолбэк — PPID (живёт вместе с сессией).
-ME="${CLAUDE_SESSION_ID:-${CLAUDE_CODE_SESSION_ID:-ppid-$PPID}}"
+# зачем (координатор 15.10): у Claude Code ID сессии стабилен (CLAUDE_CODE_SESSION_ID), а у сессий без такой переменной (Codex и др.) PPID меняется
+# между вызовами инструмента — «мой слот» не узнаётся, слот течёт до TTL, свой же acquire даёт ложный WAIT. Такая сессия задаёт PM_SESSION_ID один раз
+# (например export PM_SESSION_ID=codex-<имя>) — он главнее остальных.
+ME="${PM_SESSION_ID:-${CLAUDE_SESSION_ID:-${CLAUDE_CODE_SESSION_ID:-ppid-$PPID}}}"
 ME="$(printf %s "$ME" | tr -c "A-Za-z0-9_-" "_")"
 
 now(){ date +%s; }

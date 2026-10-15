@@ -7,6 +7,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../../constants/i18n';
 import { clampSpireTierIndex } from '../../../modules/spire/tier_names';
+import { pluralWord, type PluralForms } from '../../../constants/plural';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
@@ -23,18 +24,18 @@ const S = {
   promoRoomOverline: ['Топ-5 комнаты', 'Топ-5 кімнати', 'Room top 5', 'Top 5 de la sala', 'Top 5 da sala', 'Top 5 của phòng', '5 besar ruangan', 'Odanın ilk 5’i', 'Top 5 pokoju'],
   promoPlace: ['{n} место. Поднимаешься', '{n} місце. Піднімаєшся', 'Place {n}. You’re moving up', 'Puesto {n}. Subes de liga', 'Posição {n}. Você sobe de liga', 'Hạng {n}. Bạn thăng hạng', 'Peringkat {n}. Kamu naik liga', '{n}. sıra. Yükseliyorsun', '{n}. miejsce. Awansujesz'],
   floorTag: ['Этаж {n}', 'Поверх {n}', 'Floor {n}', 'Piso {n}', 'Andar {n}', 'Tầng {n}', 'Lantai {n}', 'Kat {n}', 'Piętro {n}'],
-  promoBonus: ['+{n} монет за повышение', '+{n} монет за підвищення', '+{n} coins for moving up', '+{n} monedas por subir', '+{n} moedas por subir', '+{n} xu vì thăng hạng', '+{n} koin karena naik', 'Yükseldiğin için +{n} jeton', '+{n} monet za awans'],
+  promoBonus: ['+{n} {nw} за повышение', '+{n} {nw} за підвищення', '+{n} {nw} for moving up', '+{n} {nw} por subir', '+{n} {nw} por subir', '+{n} {nw} vì thăng hạng', '+{n} {nw} karena naik', 'Yükseldiğin için +{n} {nw}', '+{n} {nw} za awans'],
   // зачем (m01 вариант B «Короткая», лист приёмки CHECKLIST_m01): надпись, заголовок, строка итога и текст «Поделиться»; нейтральные по роду формулировки
   promoShortOverline: ['Топ-5 · {league}', 'Топ-5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', '5 besar · {league}', 'İlk 5 · {league}', 'Top 5 · {league}'],
   promoShortTitle: ['Поднимаешься', 'Піднімаєшся', 'You’re moving up', 'Subes de liga', 'Você sobe de liga', 'Bạn thăng hạng', 'Kamu naik liga', 'Yükseliyorsun', 'Awansujesz'],
-  promoShortBody: ['{place} место · {coins} монет за неделю', '{place} місце · {coins} монет за тиждень', 'Place {place} · {coins} coins this week', 'Puesto {place} · {coins} monedas esta semana', 'Posição {place} · {coins} moedas na semana', 'Hạng {place} · {coins} xu trong tuần', 'Peringkat {place} · {coins} koin minggu ini', '{place}. sıra · bu hafta {coins} jeton', '{place}. miejsce · {coins} monet w tygodniu'],
+  promoShortBody: ['{place} место · {coins} {cw} за неделю', '{place} місце · {coins} {cw} за тиждень', 'Place {place} · {coins} {cw} this week', 'Puesto {place} · {coins} {cw} esta semana', 'Posição {place} · {coins} {cw} na semana', 'Hạng {place} · {coins} {cw} trong tuần', 'Peringkat {place} · {coins} {cw} minggu ini', '{place}. sıra · bu hafta {coins} {cw}', '{place}. miejsce · {coins} {cw} w tygodniu'],
   promoShortPlaceOnly: ['{place} место', '{place} місце', 'Place {place}', 'Puesto {place}', 'Posição {place}', 'Hạng {place}', 'Peringkat {place}', '{place}. sıra', '{place}. miejsce'],
-  promoShareText: ['Поднимаюсь в лигу {league} в Phraseman: {place} место, {coins} монет за неделю.', 'Піднімаюсь у лігу {league} у Phraseman: {place} місце, {coins} монет за тиждень.', 'Moving up to {league} in Phraseman: place {place}, {coins} coins this week.', 'Subo a {league} en Phraseman: puesto {place}, {coins} monedas esta semana.', 'Subindo para {league} no Phraseman: posição {place}, {coins} moedas na semana.', 'Thăng hạng {league} trong Phraseman: hạng {place}, {coins} xu trong tuần.', 'Naik ke {league} di Phraseman: peringkat {place}, {coins} koin minggu ini.', 'Phraseman’da {league} ligine yükseliyorum: {place}. sıra, bu hafta {coins} jeton.', 'Awansuję do ligi {league} w Phraseman: {place}. miejsce, {coins} monet w tygodniu.'],
+  promoShareText: ['Поднимаюсь в лигу {league} в Phraseman: {place} место, {coins} {cw} за неделю.', 'Піднімаюсь у лігу {league} у Phraseman: {place} місце, {coins} {cw} за тиждень.', 'Moving up to {league} in Phraseman: place {place}, {coins} {cw} this week.', 'Subo a {league} en Phraseman: puesto {place}, {coins} {cw} esta semana.', 'Subindo para {league} no Phraseman: posição {place}, {coins} {cw} na semana.', 'Thăng hạng {league} trong Phraseman: hạng {place}, {coins} {cw} trong tuần.', 'Naik ke {league} di Phraseman: peringkat {place}, {coins} {cw} minggu ini.', 'Phraseman’da {league} ligine yükseliyorum: {place}. sıra, bu hafta {coins} {cw}.', 'Awansuję do ligi {league} w Phraseman: {place}. miejsce, {coins} {cw} w tygodniu.'],
   // ── m02 · удержался ──
   staySay: ['Держимся.', 'Тримаємось.', 'Holding steady.', 'Aguantamos.', 'Seguimos firmes.', 'Giữ vững nhé.', 'Kita bertahan.', 'Tutunuyoruz.', 'Trzymamy się.'],
   stayTitle: ['Остаёшься в {league}', 'Залишаєшся в {league}', 'You stay in {league}', 'Sigues en {league}', 'Você continua em {league}', 'Bạn ở lại {league}', 'Kamu tetap di {league}', '{league} liginde kalıyorsun', 'Zostajesz w {league}'],
-  stayBody: ['{place} место · {coins} монет за неделю. До топ-5 не хватило {gap}.', '{place} місце · {coins} монет за тиждень. До топ-5 не вистачило {gap}.', 'Place {place} · {coins} coins this week. You were {gap} short of the top 5.', 'Puesto {place} · {coins} monedas esta semana. Te faltaron {gap} para el top 5.', 'Posição {place} · {coins} moedas na semana. Faltaram {gap} para o top 5.', 'Hạng {place} · {coins} xu trong tuần. Còn thiếu {gap} để vào top 5.', 'Peringkat {place} · {coins} koin minggu ini. Kurang {gap} untuk masuk 5 besar.', '{place}. sıra · bu hafta {coins} jeton. İlk 5’e {gap} eksik kaldı.', '{place}. miejsce · {coins} monet w tygodniu. Do top 5 zabrakło {gap}.'],
-  stayBodyNoGap: ['{place} место · {coins} монет за неделю.', '{place} місце · {coins} монет за тиждень.', 'Place {place} · {coins} coins this week.', 'Puesto {place} · {coins} monedas esta semana.', 'Posição {place} · {coins} moedas na semana.', 'Hạng {place} · {coins} xu trong tuần.', 'Peringkat {place} · {coins} koin minggu ini.', '{place}. sıra · bu hafta {coins} jeton.', '{place}. miejsce · {coins} monet w tygodniu.'],
+  stayBody: ['{place} место · {coins} {cw} за неделю. До топ-5 не хватило {gap}.', '{place} місце · {coins} {cw} за тиждень. До топ-5 не вистачило {gap}.', 'Place {place} · {coins} {cw} this week. You were {gap} short of the top 5.', 'Puesto {place} · {coins} {cw} esta semana. Te faltaron {gap} para el top 5.', 'Posição {place} · {coins} {cw} na semana. Faltaram {gap} para o top 5.', 'Hạng {place} · {coins} {cw} trong tuần. Còn thiếu {gap} để vào top 5.', 'Peringkat {place} · {coins} {cw} minggu ini. Kurang {gap} untuk masuk 5 besar.', '{place}. sıra · bu hafta {coins} {cw}. İlk 5’e {gap} eksik kaldı.', '{place}. miejsce · {coins} {cw} w tygodniu. Do top 5 zabrakło {gap}.'],
+  stayBodyNoGap: ['{place} место · {coins} {cw} за неделю.', '{place} місце · {coins} {cw} за тиждень.', 'Place {place} · {coins} {cw} this week.', 'Puesto {place} · {coins} {cw} esta semana.', 'Posição {place} · {coins} {cw} na semana.', 'Hạng {place} · {coins} {cw} trong tuần.', 'Peringkat {place} · {coins} {cw} minggu ini.', '{place}. sıra · bu hafta {coins} {cw}.', '{place}. miejsce · {coins} {cw} w tygodniu.'],
   // ── m03 · понижение (туман): монета спит и просыпается ЖЕСТОМ, но в ТЕКСТАХ монета не описана как живая (владелец 14.10: «только формулировка, анимацию сна, сердечки и эмоции оставить») ──
   downTitle: ['Неделя закончилась: {league}', 'Тиждень закінчився: {league}', 'The week is over: {league}', 'La semana terminó: {league}', 'A semana acabou: {league}', 'Tuần đã kết thúc: {league}', 'Minggu telah berakhir: {league}', 'Hafta bitti: {league}', 'Tydzień się skończył: {league}'],
   downBody: ['Неделя в пятёрке последних по монетам — спускаемся в {league}. Ранг, монеты и фразы на месте.', 'Тиждень у п’ятірці останніх за монетами — спускаємось у {league}. Ранг, монети й вислови на місці.', 'A week in the bottom five by coins — we move down to {league}. Your rank, coins and phrases are safe.', 'Una semana entre los cinco últimos por monedas: bajamos a {league}. Tu rango, monedas y frases siguen ahí.', 'Uma semana entre os cinco últimos em moedas — descemos para {league}. Seu rank, moedas e frases continuam aí.', 'Một tuần ở nhóm 5 người cuối theo xu — xuống {league}. Hạng, xu và cụm từ vẫn còn nguyên.', 'Seminggu di lima terbawah menurut koin — turun ke {league}. Peringkat, koin, dan frasa tetap aman.', 'Bir hafta jetonlara göre son beşteydin — {league} ligine iniyoruz. Rütben, jetonların ve ifadelerin yerinde.', 'Tydzień w ostatniej piątce według monet — schodzimy do ligi {league}. Ranga, monety i frazy zostają.'],
@@ -66,12 +67,51 @@ export function momentNumber(n: number): string {
   return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
+// зачем (Ревизор P19 → координатор 15.10): «21 монет», «22 монет», en «1 coins» — слово после числа было зашито. Форма слова «монета»
+// под число: именительный («+21 монета», «22 монеты за неделю») и винительный для «на/o N …» («обгоняет на 1 монету», pl «o 1 monetę»).
+// Правило выбора формы — общее для приложения (constants/plural.ts: pl «21 monet»), здесь только слова.
+const COIN_NOM: Readonly<Record<string, PluralForms>> = {
+  ru: { one: 'монета', few: 'монеты', many: 'монет' }, uk: { one: 'монета', few: 'монети', many: 'монет' }, pl: { one: 'moneta', few: 'monety', many: 'monet' },
+  en: { one: 'coin', few: 'coins', many: 'coins' }, es: { one: 'moneda', few: 'monedas', many: 'monedas' }, 'pt-BR': { one: 'moeda', few: 'moedas', many: 'moedas' },
+  vi: { one: 'xu', few: 'xu', many: 'xu' }, id: { one: 'koin', few: 'koin', many: 'koin' }, tr: { one: 'jeton', few: 'jeton', many: 'jeton' },
+};
+const COIN_ACC: Readonly<Record<string, PluralForms>> = {
+  ...COIN_NOM,
+  ru: { one: 'монету', few: 'монеты', many: 'монет' }, uk: { one: 'монету', few: 'монети', many: 'монет' }, pl: { one: 'monetę', few: 'monety', many: 'monet' },
+};
+
+/** Число из переменной шаблона: 1180, «1 180» (с неразрывным пробелом тысяч) → 1180; не число → null. */
+function countOf(value: string | number | undefined): number | null {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (typeof value !== 'string') return null;
+  const digits = value.replace(/\D/g, '');
+  return digits ? Number(digits) : null;
+}
+
+/** Слово «монета» в форме под число: `acc` — винительный («на 1 монету»), иначе именительный («+21 монета»). */
+export function momentCoinWord(lang: Lang, count: number, acc = false): string {
+  const table = acc ? COIN_ACC : COIN_NOM;
+  return pluralWord(lang, count, table[lang] ?? table.en!);
+}
+
+/** Добавляет слова под числа: `{nw}` — к `{n}`, `{cw}` — к `{coins}`, `{nwa}` — винительный к `{n}`. */
+export function withMomentCoinWords(lang: Lang, vars?: Readonly<Record<string, string | number>>): Readonly<Record<string, string | number>> | undefined {
+  if (!vars) return vars;
+  const out: Record<string, string | number> = { ...vars };
+  const n = countOf(vars.n);
+  const coins = countOf(vars.coins);
+  if (n !== null) { out.nw = momentCoinWord(lang, n); out.nwa = momentCoinWord(lang, n, true); }
+  if (coins !== null) out.cw = momentCoinWord(lang, coins);
+  return out;
+}
+
 /** Текст момента на языке интерфейса; `{ключ}` в строке заменяется значением из vars. Неизвестный язык — английский. */
 export function momentText(lang: Lang, key: MomentStringKey, vars?: Readonly<Record<string, string | number>>): string {
   const row = S[key] as Nine;
   const raw = row[LANG_INDEX[lang] ?? LANG_INDEX.en];
-  if (!vars) return raw;
-  return raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in vars ? String(vars[name]) : whole));
+  const filled = withMomentCoinWords(lang, vars);
+  if (!filled) return raw;
+  return raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in filled ? String(filled[name]) : whole));
 }
 
 export const MOMENT_STRING_KEYS = Object.keys(S) as readonly MomentStringKey[];

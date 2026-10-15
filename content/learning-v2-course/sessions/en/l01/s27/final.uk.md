@@ -1,235 +1,138 @@
-# Англійська · Урок 1 · Заняття 27 — «It is not»
+# Англійська · Урок 1 · Заняття 27 — Кому вже можна телефонувати
 
-**Ситуація.** Рієлтор показує Лені квартиру й називає її дешевою, близькою та зручною. Лена відповідає лише там, де з ним не згодна.
-**Як сказати:** `It is not`, коли не згодні з описом речі, місця або ситуації.
-**Нові слова:** easy, hard, far, cheap
-**Повертаються:** small, dark, expensive, warm
+**Ситуація.** Вранці в гостьовому будинку ви збираєте друзів на прогулянку. З’ясовуєте, хто ще спить і хто може допомогти з маршрутом.
+
+**Що ви опануєте:** розрізняти стан і можливість допомогти, вибираючи знайомі форми am, is, are
+**Нові слова:** awake, asleep, available
 
 ---
 
 ## Інтро 1
 
-### `not` стає після `is`
+### Уже не спить
 
-`cheap` — «дешево». Слово, яке частіше каже продавець, ніж покупець.
+`awake` — «не спить». Друг уже читає повідомлення: `He is awake` — «Він не спить». Про себе скажіть `I am awake`. Навіть якщо кава ще не встигла допомогти, сну вже немає — отже, ви `awake`.
 
-Щоб заперечити, ставимо `not` одразу після `is`: `It is not cheap`.
+**Подруга вже прокинулася й читає книжку. Скажіть, що вона не спить.**
 
-Голосний у `cheap` тягнеться. Обірвете його — англієць почує інше слово.
-
-**Рієлтор називає ціну «`Cheap!`», але ви вважаєте її високою. Заперечте.**
-
-- ✅ **It is not cheap.**
-- ❌ It not cheap. — *Після `it` потрібна форма `is`; потім ставлять `not`.*
-- ❌ It is cheap not. — *`not` утік у кінець. Його місце — одразу після `is`, до самого слова.*
+- ✅ **She is awake.**
+- ❌ She awake. — *Між `She` і `awake` потрібно `is`.*
+- ❌ She am awake. — *Після `She` потрібна форма `is`, а `am` ставимо після `I`.*
 
 ---
 
 ## Інтро 2
 
-### `no` — це відповідь, `not` — це фраза
+### Ще спить
 
-`far` — «далеко». Про відстань: до роботи, до магазину, до зупинки.
+`asleep` — «спить». Друг заснув: `He is asleep` — «Він спить». Це протилежне до `awake`. В англійській фразі `He is asleep` потрібне `is`, хоча в українському «він спить» окремого слова на цьому місці немає.
 
-На запитання «`Far?`» можна відповісти лише `no`. Але повна фраза `It is not far` ясно каже: їхати недалеко.
+**Двоє друзів іще сплять у своїй кімнаті. Скажіть про них.**
 
-Різниця проста: `no` живе окремо, саме по собі. Усередині фрази після `is` стоїть `not`.
-
-**Рієлтор каже, що до центру ціла година. Ви вже дійшли за п'ятнадцять хвилин. Заперечте.**
-
-- ✅ **It is not far.**
-- ❌ It is no far. — *Після `is` перед ознакою стоїть `not`. `no` сюди не підходить.*
-- ❌ It not far. — *Без `is` фрази немає. Спочатку `It is`, потім `not`.*
+- ✅ **They are asleep.**
+- ❌ They are awake. — *`awake` — «не сплять». Тут вони сплять: `asleep`.*
+- ❌ They is asleep. — *Після `They` потрібна форма `are`.*
 
 ---
 
 ## Інтро 3
 
-### `easy` і `hard`
+### Може приділити час
 
-`easy` — «легко, просто». `hard` — «важко». Ними міряють будь-яку справу: від замка на дверях до дороги на роботу.
+`available` тут — «вільний, може приділити час». Друг уже закінчив свої справи й може допомогти: `He is available`. А `He is awake` повідомляє лише, що він не спить. Можна прокинутися о сьомій і весь ранок бути зайнятим.
 
-`It is hard` — прямо й різко: важко. `It is not easy` — м'якше: ви не сперечаєтесь, що справа важка, ви просто не згодні, що вона проста. Візьмемо м'яке.
+**Подруга закінчила роботу й може зараз допомогти з маршрутом. Скажіть, що вона вільна для цього.**
 
-**Рієлтор показує вікно, яке відчиняється лише з третьої спроби, і каже: «`Easy!`» Заперечте.**
-
-- ✅ **It is not easy.**
-- ❌ It is easy not. — *`not` не ставлять у кінець. Його місце — перед ознакою: `It is not easy`.*
-- ❌ Is not easy. — *`It` загубилося. Без нього фраза починається нізвідки.*
+- ✅ **She is available.**
+- ❌ She is awake. — *Це говорить лише про те, що вона не спить. Можливість приділити час — `available`.*
+- ❌ She are available. — *Після `She` потрібно `is`.*
 
 ---
 
-## Практика (18 завдань, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · Картка слова — cheap**
-<!-- interaction_id: en:lesson-01:session-27:i01; family: listen_choose -->
-> **cheap** — «дешево». Ціна така, що ви перепитуєте, чи все гаразд.
+**1 · Складіть відповідь другові — ви вже прокинулися: «Я не сплю»**
+<!-- interaction_id: en:lesson-01:session-27:i01; family: phrase_builder -->
+Плитки: `awake` `am` `I` `is` → **I am awake.**
+*(плитка `is` зайва: тут потрібно `am` — `I am awake.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-27:i02; family: listen_choose -->
-🔊 *cheap* → **cheap** · chip · sheep
-Правильна відповідь — `cheap`: у ньому тягнеться голосна й чути початковий звук «ч».
-- chip — *Голосна коротка, обривається. У `cheap` вона тягнеться.*
-- sheep — *Починається з «ш», а `cheap` — з «ч». Слухайте найперший звук.*
+🔊 *She is asleep.* → **She is asleep.** · He is asleep. · She is awake.
+- He is asleep. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
+- She is awake. — *У записі останнє слово — `asleep`, а в цьому варіанті — `awake`.*
 
-**3 · Картка слова — far**
-<!-- interaction_id: en:lesson-01:session-27:i03; family: listen_choose -->
-> **far** — «далеко». Іти довго, а на карті здавалося поруч.
+**3 · Двоє друзів закінчили справи й можуть зараз допомогти. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-27:i03; family: context_gap_grammar -->
+They ___ available. → **are** · is · am
+- is — *Після `They` потрібно `are`.*
+- am — *`am` потрібне після `I`. Тут `They are`.*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-27:i04; family: listen_choose -->
-🔊 *far* → **far** · four · fur
-Правильна відповідь — `far`: рот відкритий широко.
-- four — *Це «чотири». Губи округлюються в трубочку, а в `far` рот відкритий широко.*
-- fur — *Губи майже не відкриваються. У `far` рот відкритий широко.*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-27:i04; family: speed_match -->
+awake — не спить · asleep — спить · available — вільний, може приділити час · alone — без інших людей
 
-**5 · Складіть фразу — «це не дешево»**
-<!-- interaction_id: en:lesson-01:session-27:i05; family: phrase_builder -->
-Плитки: `not` `cheap` `is` `It` → **It is not cheap.**
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-01:session-27:i05; family: listen_build_dictation -->
+🔊 *We are awake.* Плитки: `awake` `are` `We` `They` → **We are awake.**
+*(плитка `They` зайва: тут потрібно `We` — `We are awake.`)*
 
-**6 · Картка слова — dark**
-<!-- interaction_id: en:lesson-01:session-27:i06; family: listen_choose -->
-> **dark** — «темно». Удень вмикаєте світло, бо вікно дивиться в стіну.
+**6 · Друг іще спить. Складіть повідомлення про нього**
+<!-- interaction_id: en:lesson-01:session-27:i06; family: phrase_builder -->
+Плитки: `asleep` `is` `He` `are` → **He is asleep.**
+*(плитка `are` зайва: тут потрібно `is` — `He is asleep.`)*
 
-**7 · Вставте слово — до зупинки п'ять хвилин**
-<!-- interaction_id: en:lesson-01:session-27:i07; family: context_gap_grammar -->
-It is not ___ . → **far** · cheap · dark
-Правильна відповідь — `far`: до зупинки п'ять хвилин, тому це недалеко.
-- cheap — *Це про ціну, а не про відстань.*
-- dark — *Це про світло. Про дорогу — `far`.*
+**7 · Ви закінчили свої справи й можете зараз допомогти сестрі. Скажіть їй, що ви вільні**
+<!-- interaction_id: en:lesson-01:session-27:i07; family: scripted_repeat_compare -->
+🎙 **I am available.**
 
-**8 · Картка слова — easy**
-<!-- interaction_id: en:lesson-01:session-27:i08; family: listen_choose -->
-> **easy** — «легко, просто». Вийшло з першого разу й без чужої допомоги.
+**8 · Подруга вже прокинулася. Треба сказати лише, що вона не спить. Виберіть слово**
+<!-- interaction_id: en:lesson-01:session-27:i08; family: context_gap_grammar -->
+She is ___ . → **awake** · asleep · worried
+- asleep — *`asleep` — «спить». Подруга вже не спить: `awake`.*
+- worried — *`worried` — «хвилюється». Про тривогу нічого не сказано; тут `awake`.*
 
-**9 · Картка слова — hard**
+**9 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-01:session-27:i09; family: listen_choose -->
-> **hard** — «важко». Доводиться старатися, і все одно не одразу.
+🔊 *You are available.* → **You are available.** · We are available. · You are confused.
+- We are available. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
+- You are confused. — *У записі останнє слово — `available`, а в цьому варіанті — `confused`.*
 
-**10 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-27:i10; family: listen_choose -->
-🔊 *hard* → **hard** · heart · hat
-Правильна відповідь — `hard`: це «важко», а звук тягнеться довше, ніж у `hat`.
-- heart — *Звучить близько, але це «серце». Не про труднощі.*
-- hat — *Коротке, обривається одразу. `hard` довше і тягнеться.*
+**10 · З’єднайте знайомі слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-27:i10; family: speed_match -->
+bored — нудьгує · confused — заплутався · worried — хвилюється · together — разом
 
-**11 · Картка слова — warm**
-<!-- interaction_id: en:lesson-01:session-27:i11; family: listen_choose -->
-> **warm** — «тепло». Не спекотно, а якраз стільки, що не хочеться йти.
+**11 · Послухайте й складіть почуте**
+<!-- interaction_id: en:lesson-01:session-27:i11; family: listen_build_dictation -->
+🔊 *They are asleep.* Плитки: `asleep` `are` `They` `is` → **They are asleep.**
+*(плитка `is` зайва: тут потрібно `are` — `They are asleep.`)*
 
-**12 · Вставте слово — замок заїдає, ключ провертається важко**
-<!-- interaction_id: en:lesson-01:session-27:i12; family: context_gap_grammar -->
-It is ___ . → **hard** · easy · warm
-Правильна відповідь — `hard`: ключ провертається важко.
-- easy — *Це рівно навпаки: «легко».*
-- warm — *Це про тепло, а не про те, чи легко впоратися.*
+**12 · Подруга звільнилася й готова приділити час вашому питанню. Складіть фразу про це**
+<!-- interaction_id: en:lesson-01:session-27:i12; family: phrase_builder -->
+Плитки: `available` `is` `She` `am` → **She is available.**
+*(плитка `am` зайва: тут потрібно `is` — `She is available.`)*
 
-**13 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-27:i13; family: speed_match -->
-cheap — дешево · far — далеко · easy — легко · hard — важко
+**13 · Друг уже біля сусіднього будинку. Скажіть про нього: «Він поблизу»**
+<!-- interaction_id: en:lesson-01:session-27:i13; family: scripted_repeat_compare -->
+🎙 **He is nearby.**
 
-**14 · Картка слова — small**
-<!-- interaction_id: en:lesson-01:session-27:i14; family: listen_choose -->
-> **small** — «маленький». Удвох на кухні вже не розминутися.
+**14 · Ви відповідаєте на дзвінок і повідомляєте, що вже не спите. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-27:i14; family: context_gap_grammar -->
+I ___ awake. → **am** · is · are
+- is — *Після `I` потрібно `am`.*
+- are — *Про себе починаємо з `I am`.*
 
-**15 · Вставте слово — рієлтор називає кімнату тісною, а вам у ній просторо**
-<!-- interaction_id: en:lesson-01:session-27:i15; family: context_gap_grammar -->
-It ___ not small. → **is** · am · are
-Правильна відповідь — `is`: після `It` потрібна форма `is`.
-- am — *`am` живе тільки поруч з `I`. Про річ — `is`.*
-- are — *Для однієї речі після `it` потрібне `is`.*
+**15 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-27:i15; family: listen_choose -->
+🔊 *We are together.* → **We are together.** · They are together. · We are available.
+- They are together. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
+- We are available. — *У записі останнє слово — `together`, а в цьому варіанті — `available`.*
 
-**16 · Послухайте і складіть — «це не далеко»**
-<!-- interaction_id: en:lesson-01:session-27:i16; family: listen_build_dictation -->
-🔊 *It is not far.* Плитки: `far` `is` `It` `not` `no` → **It is not far.**
-Зайва плитка `no`: усередині фрази після `is` потрібне `not`.
-Зайва плитка `no`: усередині фрази після `is` потрібне `not`.
-*(плитка `no` зайва: `no` зайве: усередині фрази після `is` потрібне `not` — `It is not far`.)*
+**16 · З’єднайте слова та значення**
+<!-- interaction_id: en:lesson-01:session-27:i16; family: speed_match -->
+nearby — поблизу · awake — не спить · asleep — спить · available — вільний, може приділити час
 
-
-**17 · Картка слова — expensive**
-<!-- interaction_id: en:lesson-01:session-27:i17; family: listen_choose -->
-> **expensive** — «дорого». Ціна, після якої ви вдаєте, що просто зайшли подивитися.
-
-**18 · Складіть фразу — «це не дорого»**
-<!-- interaction_id: en:lesson-01:session-27:i18; family: phrase_builder -->
-Плитки: `expensive` `It` `not` `is` → **It is not expensive.**
-
-**19 · Скажіть уголос — у кімнаті справді темно**
-<!-- interaction_id: en:lesson-01:session-27:i19; family: scripted_repeat_compare -->
-🎙 **It is dark.**
-
-**20 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-27:i20; family: speed_match -->
-small — маленький · dark — темно · expensive — дорого · warm — тепло
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-27:i21:s01; family: scripted_repeat_compare -->
-🎙 **It is not cheap.**
-
-**22 · Складіть фразу — «це не далеко»**
-<!-- interaction_id: en:lesson-01:session-27:i21:s02; family: phrase_builder -->
-Плитки: `far` `not` `It` `is` `are` → **It is not far.**
-Зайва плитка `are`: з `It` ставлять `is`.
-Зайва плитка `are`: з `It` ставлять `is`.
-*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is not far`.)*
-
-
-**23 · Послухайте і складіть — «це не просто»**
-<!-- interaction_id: en:lesson-01:session-27:i21:s03; family: listen_build_dictation -->
-🔊 *It is not easy.* Плитки: `easy` `It` `not` `is` `are` → **It is not easy.**
-Зайва плитка `are`: з `It` ставлять `is`.
-Зайва плитка `are`: з `It` ставлять `is`.
-*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is not easy`.)*
-
-
-**24 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-27:i21:s04; family: scripted_repeat_compare -->
-🎙 **It is warm.**
-
----
-
-## Для сборщика
-
-new_words:
-easy — легко, просто — «легко, просто». Вийшло з першого разу й без чужої допомоги.
-hard — важко — «важко». Доводиться старатися, і все одно не одразу.
-far — далеко — «далеко». Іти довго, а на карті здавалося поруч.
-cheap — дешево — «дешево». Ціна така, що ви перепитуєте, чи все гаразд.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=context_gap_grammar, 8=listen_choose, 9=listen_choose, 10=listen_choose, 11=listen_choose, 12=context_gap_grammar, 13=speed_match, 14=listen_choose, 15=context_gap_grammar, 16=listen_build_dictation, 17=listen_choose, 18=phrase_builder, 19=scripted_repeat_compare, 20=speed_match, 21=scripted_repeat_compare, 22=phrase_builder, 23=listen_build_dictation, 24=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| small | 14 (картка), 15 (у тексті фрази), 20 (дошка пар) | 15 — правильна відповідь `is` усередині фрази `It is not small` |
-| dark | 6 (картка), 7 (пастка), 19 (складання), 20 (дошка пар) | 19 — правильна відповідь `It is dark` |
-| expensive | 17 (картка), 18 (складання), 20 (дошка пар) | 18 — правильна відповідь `It is not expensive` |
-| warm | 11 (картка), 12 (пастка), 20 (дошка пар), 21 (фінал) | 21 — правильна відповідь містить `It is warm` |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | cheap | так — «`cheap` — „дешево“», `It is not cheap` |
-| Інтро 2 | far | так — «`far` — „далеко“», `It is not far` |
-| Інтро 3 | easy | так — «`easy` — „легко, просто“», `It is not easy` |
-
-**3. Дошка пар**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| cheap | завдання 1 | 2 (слух), 5 (складання), 7 (пастка) |
-| far | завдання 3 | 4 (слух), 7 (правильна відповідь) |
-| easy | завдання 8 | 12 (пастка), інтро 3 |
-| hard | завдання 9 | 10 (слух), 12 (правильна відповідь) |
-| small | завдання 14 | 15 — фраза `It is not small` |
-| dark | завдання 6 | 7 (пастка), інтро-сцена, 19 (складання) |
-| expensive | завдання 17 | 18 (складання) |
-| warm | завдання 11 | 12 (пастка) |
+**17 · Колега просить вас із напарником допомогти перенести стіл. Ви обоє вільні й можете приділити йому час. Скажіть це за вас обох**
+<!-- interaction_id: en:lesson-01:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **We are available.**
 

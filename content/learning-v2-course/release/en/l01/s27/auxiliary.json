@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-27:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-27:intro1:r2": {
-          "ru": "После `it` нужна форма `is`; затем ставят `not`.",
-          "uk": "Після `it` потрібна форма `is`; потім ставлять `not`."
+          "ru": "Между `She` и `awake` нужно `is`.",
+          "uk": "Між `She` і `awake` потрібно `is`."
         },
         "en:lesson-01:session-27:intro1:r3": {
-          "ru": "`not` убежал в конец. Его место — сразу после `is`, до самого слова.",
-          "uk": "`not` утік у кінець. Його місце — одразу після `is`, до самого слова."
+          "ru": "После `She` нужна форма `is`, а `am` ставим после `I`.",
+          "uk": "Після `She` потрібна форма `is`, а `am` ставимо після `I`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-27:intro2:r2": {
-          "ru": "После `is` перед признаком стоит `not`. `no` сюда не подходит.",
-          "uk": "Після `is` перед ознакою стоїть `not`. `no` сюди не підходить."
+          "ru": "`awake` — «не спят». Здесь они спят: `asleep`.",
+          "uk": "`awake` — «не сплять». Тут вони сплять: `asleep`."
         },
         "en:lesson-01:session-27:intro2:r3": {
-          "ru": "Без `is` фразы нет. Сначала `It is`, потом `not`.",
-          "uk": "Без `is` фрази немає. Спочатку `It is`, потім `not`."
+          "ru": "После `They` нужна форма `are`.",
+          "uk": "Після `They` потрібна форма `are`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-27:intro3:r2": {
-          "ru": "Так получается «легко нет» — набор слов. `not` идёт раньше признака: `It is not easy`.",
-          "uk": "`not` не ставлять у кінець. Його місце — перед ознакою: `It is not easy`."
+          "ru": "Это говорит лишь о том, что она не спит. Возможность уделить время — `available`.",
+          "uk": "Це говорить лише про те, що вона не спить. Можливість приділити час — `available`."
         },
         "en:lesson-01:session-27:intro3:r3": {
-          "ru": "`It` потерялось. Без него фраза начинается ниоткуда.",
-          "uk": "`It` загубилося. Без нього фраза починається нізвідки."
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c325aae427833acb5bb982d74989b98c499d736e20028e10871239d1b842d15e"
+  "auxiliaryFingerprint": "c142779ce9b1969ba5ea675fcfa76ad9e47f3e5a11448afaee520a26ded876f5"
 }

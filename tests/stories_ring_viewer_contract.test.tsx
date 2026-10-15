@@ -146,7 +146,10 @@ describe('аватар в шапке Главной (D192)', () => {
 });
 
 describe('просмотр сторис', () => {
-  beforeEach(() => { mockMarkSeen.mockClear(); mockPlayEvent.mockClear(); });
+  // зачем (координатор 15.10, полный прогон после полуночи): подпись «сегодня/вчера» считается от Date.now(), а события теста привязаны к 14.10 12:00 UTC — часы фиксируем, иначе тест краснеет с наступлением следующих суток
+  let nowSpy: jest.SpyInstance<number, []>;
+  beforeEach(() => { mockMarkSeen.mockClear(); mockPlayEvent.mockClear(); nowSpy = jest.spyOn(Date, 'now').mockReturnValue(NOW); });
+  afterEach(() => { nowSpy.mockRestore(); });
 
   it('полосы по числу событий, подпись времени, звук story на первом кадре, ✕ закрывает со звуком sheet_close', async () => {
     const onClose = jest.fn();

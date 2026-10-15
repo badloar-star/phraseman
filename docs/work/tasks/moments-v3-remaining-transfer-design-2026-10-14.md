@@ -40,3 +40,7 @@ Accept: переводы кроме RU — предложение, носите�
 Удалить новые папки компонентов и состояния `/dev_moments_preview`; флаг `moments_v3` выключен — в проде ничего не меняется.
 
 Governance-ID: TG-1AA55DB5DFA1
+
+Governance-ID: TG-DB5AA5D1E35A
+
+Governance-ID: TG-61334FC7A758

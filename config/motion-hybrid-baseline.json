@@ -7,7 +7,9 @@
     "components/PremiumCelebrationModal.tsx": "празднование: своего движения в макете нет — ждёт макета движения (владелец, координатор 05.10)",
     "components/premium_celebration/CelebrationSceneViews.tsx": "сцены празднования Plus: своего движения в макете нет — ждёт макета движения (владелец, координатор 05.10)",
     "components/home/HomeMistakesLockedSheet.tsx": "Главная — не трогать (OWNER_FEEDBACK: «ГЛАВНУЮ НЕ ТРОГАЙ ВООБЩЕ»)",
-    "components/home/v2/HomeV2VideoPlayerModal.tsx": "Главная — не трогать (OWNER_FEEDBACK: «ГЛАВНУЮ НЕ ТРОГАЙ ВООБЩЕ»)"
+    "components/home/v2/HomeV2VideoPlayerModal.tsx": "Главная — не трогать (OWNER_FEEDBACK: «ГЛАВНУЮ НЕ ТРОГАЙ ВООБЩЕ»)",
+    "components/spire/moments/SpireOvertakeToast.tsx": "тост «обгоняет тебя» (m05): движение 600 мс cubic-bezier(.3,1.6,.5,1) взято из макета engagement-moments-v3-all, общего входа гибрида под него нет — гейт паритета владельца 04.10 важнее (Дизайн, 15.10)",
+    "components/streak/moments/StreakMilestoneToast.tsx": "тост рубежа серии: движение 600 мс cubic-bezier(.3,1.6,.5,1) взято из одобренного владельцем макета engagement-moments-v3-all (emToastIn), 14.10"
   },
   "awaitingNote": "awaiting — объяснённые исключения (не долг храповика): у каждого причина; сторож падает, если файл получил вход, а исключение не убрали."
 }

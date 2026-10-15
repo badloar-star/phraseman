@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-16:intro1:r2": {
+          "ru": "Перед `lock` нужно `a`, потому что первый звук согласный.",
+          "uk": "Перед `lock` потрібно `a`, бо перший звук приголосний."
+        },
+        "en:lesson-03:session-16:intro1:r3": {
+          "ru": "В этой фразе перед названием одного замка нужно `a`.",
+          "uk": "У цій фразі перед назвою одного замка потрібно `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-16:intro2:r2": {
+          "ru": "Нужно узнать место: `Where`, а не `What`.",
+          "uk": "Потрібно дізнатися місце: `Where`, а не `What`."
+        },
+        "en:lesson-03:session-16:intro2:r3": {
+          "ru": "С одним пальто здесь нужно `is`.",
+          "uk": "З одним пальтом тут потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-16:intro3:r2": {
+          "ru": "С одним окном здесь нужен вопрос с `Is`.",
+          "uk": "З одним вікном тут потрібне запитання з `Is`."
+        },
+        "en:lesson-03:session-16:intro3:r3": {
+          "ru": "Это сообщение. Чтобы спросить, начните с `Is the window`.",
+          "uk": "Це повідомлення. Щоб запитати, почніть з `Is the window`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2741cbf5ebdc5ae54efa70d52d845b773c662f1ebe80c49048d7800b8bfa8847"
+}

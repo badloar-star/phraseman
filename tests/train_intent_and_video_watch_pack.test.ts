@@ -43,3 +43,13 @@ describe('подключение', () => {
     expect(watch).not.toContain('if (peekVideoMarketPacks(studyTarget)) return undefined;\n    let alive');
   });
 });
+
+describe('сторож цепочки «ролик → набор → Тренировать → окно режимов»', () => {
+  it('поиск набора, тап и намерение пишут [VIDEO-PACK-TRAIN]/[TRAIN-INTENT]; старый ключ языка никто не пишет', () => {
+    const watch = read('app/lingman_video_watch.tsx');
+    expect(watch).toContain('[VIDEO-PACK-TRAIN] find');
+    expect(watch).toContain('[VIDEO-PACK-TRAIN] tap');
+    expect(read('app/flashcards/train_intent.ts')).toContain('[TRAIN-INTENT] set');
+    expect(read('app/flashcards/pack_language_preferences.ts')).not.toContain('AsyncStorage.setItem');
+  });
+});

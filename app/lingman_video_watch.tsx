@@ -119,6 +119,7 @@ export default function LingmanVideoWatchScreen() {
           console.warn(LOG, 'pack:phrase_set catch → без блока', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
         }
       }
+      console.log(`[VIDEO-PACK-TRAIN] find videoId=${videoId} source=${packFromRef.current} found=${found?.id ?? 'none'} alive=${alive}`); // guard-ok: итог поиска набора ролика
       if (alive && found) setPack(found);
     })();
     return () => { alive = false; };
@@ -168,6 +169,7 @@ export default function LingmanVideoWatchScreen() {
   const trainLabel = triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати вислови ролика', en: 'Practice this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' });
   const trainVideo = useCallback(() => {
     console.log(LOG, 'train', JSON.stringify({ videoId })); // guard-ok: вход в тренировку логируется
+    console.log(`[VIDEO-PACK-TRAIN] tap videoId=${videoId} packId=${pack?.id ?? 'none'} cards=${pack?.cardCount ?? 0} owned=${String(packOwned)}`); // guard-ok: цепочка ролик → набор → Тренировать
     // зачем (🔴 Ц1, 15.10): документа набора ролика может не быть — страница набора пустая. «Тренировать» ведёт в окно режимов хаба на колоду этого набора
     // (карточки — из документа или из фраз ролика); намерение идёт через train_intent, потому что navigate в открытый хаб теряет параметры.
     const deckId = `pack:video_${videoId}`;

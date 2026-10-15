@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-21",
   "learningOutcomeByLocale": {
-    "ru": "выбираем `am`, `are` или `is` перед словом о человеке.",
-    "uk": "обираємо `am`, `are` або `is` перед словом про людину."
+    "ru": "сказать, где человек или компания, и исправить пропущенные am, is, are в знакомых фразах",
+    "uk": "сказати, де людина чи компанія, і виправити пропущені am, is, are у знайомих фразах"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Три формы глагола be",
-        "uk": "Три форми дієслова be"
+        "ru": "Уже внутри",
+        "uk": "Уже всередині"
       },
       "bodyByLocale": {
-        "ru": "`short` — «невысокий». Про рост человека.\n\nВ английской фразе о человеке после `I`, `you`, `he` или `she` нужна форма глагола `be`. Про себя говорят с `am`, с собеседником — с `are`, о другом человеке — с `is`.\n\nУ нас в этом месте не стоит ничего. Здесь придётся каждый раз выбирать одну из трёх.",
-        "uk": "`short` — «невисокий». Про зріст людини.\n\nВ англійській фразі про людину після `I`, `you`, `he` або `she` потрібна форма дієслова `be`. Про себе кажуть з `am`, зі співрозмовником — з `are`, про іншу людину — з `is`.\n\nУ нас на цьому місці не стоїть нічого. Тут доведеться щоразу вибирати одну з трьох."
+        "ru": "`inside` — «внутри». Вы уже вошли в клуб: `I am inside` — «Я внутри». По-русски можно обойтись двумя словами. По-английски здесь нужно и `am`: билет проверяют у входа, а `am` из фразы всё равно не выпускаем.",
+        "uk": "`inside` — «всередині». Ви вже зайшли до клубу: `I am inside` — «Я всередині». Українською можна обійтися двома словами. Англійською тут потрібне й `am`: квиток перевіряють на вході, а `am` із фрази все одно не випускаємо."
       },
       "question": {
         "interactionId": "en:lesson-01:session-21:intro1:q",
         "promptByLocale": {
-          "ru": "Коллега на крыльце кивает на парня у двери. Он невысокий — скажите про него.",
-          "uk": "Колега на ґанку киває на хлопця біля дверей. Він невисокий — скажіть про нього."
+          "ru": "Вы уже в здании. Исправьте сообщение другу «I inside».",
+          "uk": "Ви вже в будівлі. Виправте повідомлення другові «I inside»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-21:intro1:r1",
-              "text": "He is short."
+              "text": "I am inside."
             },
             {
               "responseId": "en:lesson-01:session-21:intro1:r2",
-              "text": "He am short."
+              "text": "I is inside."
             },
             {
               "responseId": "en:lesson-01:session-21:intro1:r3",
-              "text": "He short."
+              "text": "I are inside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-21:intro1:r1",
-              "text": "He is short."
+              "text": "I am inside."
             },
             {
               "responseId": "en:lesson-01:session-21:intro1:r2",
-              "text": "He am short."
+              "text": "I is inside."
             },
             {
               "responseId": "en:lesson-01:session-21:intro1:r3",
-              "text": "He short."
+              "text": "I are inside."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега на крыльце кивает на парня у двери. Он невысокий — скажите про него.",
-          "uk": "Колега на ґанку киває на хлопця біля дверей. Він невисокий — скажіть про нього."
+          "ru": "Вы уже в здании. Исправьте сообщение другу «I inside».",
+          "uk": "Ви вже в будівлі. Виправте повідомлення другові «I inside»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Меняется форма be, а слово остаётся",
-        "uk": "Змінюється форма be, а слово лишається"
+        "ru": "Снаружи",
+        "uk": "Зовні"
       },
       "bodyByLocale": {
-        "ru": "`thin` — «худой».\n\nФорм три, но слово о человеке не меняется: `I am thin`, `You are thin`, `She is thin`. Меняется только `am`, `are` или `is`.\n\nПо-русски говорят «худой», «худая», «худые». В этих английских фразах слово `thin` остаётся одним и тем же; форму меняет только `be`.",
-        "uk": "`thin` — «худий».\n\nФорм три, але слово про людину не змінюється: `I am thin`, `You are thin`, `She is thin`. Змінюються лише `am`, `are` або `is`.\n\nУкраїнською кажуть «худий», «худа», «худі». У цих англійських фразах слово `thin` лишається тим самим; форму змінює тільки `be`."
+        "ru": "`outside` — «снаружи». Друзья ждут перед входом: `They are outside` — «Они снаружи». Это противоположно `inside`. Если вы стоите вместе с ними, говорите `We are outside` — «Мы снаружи».",
+        "uk": "`outside` — «зовні». Друзі чекають перед входом: `They are outside` — «Вони зовні». Це протилежне до `inside`. Якщо ви стоїте разом із ними, кажіть `We are outside` — «Ми зовні»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "Коллега кивает на девушку у машины: она худая. Скажите про неё.",
-          "uk": "Колега киває на дівчину біля машини: вона худа. Скажіть про неї."
+          "ru": "Двое друзей ждут перед входом, ещё не заходили. Скажите про них.",
+          "uk": "Двоє друзів чекають перед входом, іще не заходили. Скажіть про них."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-21:intro2:r1",
-              "text": "She is thin."
+              "text": "They are outside."
             },
             {
               "responseId": "en:lesson-01:session-21:intro2:r2",
-              "text": "She are thin."
+              "text": "They are inside."
             },
             {
               "responseId": "en:lesson-01:session-21:intro2:r3",
-              "text": "She am thin."
+              "text": "They is outside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-21:intro2:r1",
-              "text": "She is thin."
+              "text": "They are outside."
             },
             {
               "responseId": "en:lesson-01:session-21:intro2:r2",
-              "text": "She are thin."
+              "text": "They are inside."
             },
             {
               "responseId": "en:lesson-01:session-21:intro2:r3",
-              "text": "She am thin."
+              "text": "They is outside."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега кивает на девушку у машины: она худая. Скажите про неё.",
-          "uk": "Колега киває на дівчину біля машини: вона худа. Скажіть про неї."
+          "ru": "Двое друзей ждут перед входом, ещё не заходили. Скажите про них.",
+          "uk": "Двоє друзів чекають перед входом, іще не заходили. Скажіть про них."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "О себе — всегда am",
-        "uk": "Про себе — завжди am"
+        "ru": "На верхнем этаже",
+        "uk": "На верхньому поверсі"
       },
       "bodyByLocale": {
-        "ru": "`blond` — «светловолосый», про волосы. `young` — «молодой».\n\nО себе говорят только с `am`: `I am blond`, `I am young`. С `I` нельзя поставить `is` или `are`.",
-        "uk": "`blond` — «світловолосий», про волосся. `young` — «молодий».\n\nПро себе кажуть тільки з `am`: `I am blond`, `I am young`. З `I` не можна поставити `is` або `are`."
+        "ru": "`upstairs` — «наверху, на верхнем этаже». Подруга уже поднялась на второй этаж: `She is upstairs` — «Она наверху». В этой фразе слово говорит о месте, а не о движении по лестнице. После `She` остаётся `is`.",
+        "uk": "`upstairs` — «нагорі, на верхньому поверсі». Подруга вже піднялася на другий поверх: `She is upstairs` — «Вона нагорі». У цій фразі слово говорить про місце, а не про рух сходами. Після `She` залишається `is`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Коллега спрашивает, вы ли самый молодой в команде. Вы — да. Скажите про себя.",
-          "uk": "Колега питає, чи ви наймолодший у команді. Ви — так. Скажіть про себе."
+          "ru": "Подруга ждёт на втором этаже. Исправьте сообщение о ней «She upstairs».",
+          "uk": "Подруга чекає на другому поверсі. Виправте повідомлення про неї «She upstairs»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-21:intro3:r1",
-              "text": "I am young."
+              "text": "She is upstairs."
             },
             {
               "responseId": "en:lesson-01:session-21:intro3:r2",
-              "text": "I is young."
+              "text": "She are upstairs."
             },
             {
               "responseId": "en:lesson-01:session-21:intro3:r3",
-              "text": "I are young."
+              "text": "She is outside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-21:intro3:r1",
-              "text": "I am young."
+              "text": "She is upstairs."
             },
             {
               "responseId": "en:lesson-01:session-21:intro3:r2",
-              "text": "I is young."
+              "text": "She are upstairs."
             },
             {
               "responseId": "en:lesson-01:session-21:intro3:r3",
-              "text": "I are young."
+              "text": "She is outside."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега спрашивает, вы ли самый молодой в команде. Вы — да. Скажите про себя.",
-          "uk": "Колега питає, чи ви наймолодший у команді. Ви — так. Скажіть про себе."
+          "ru": "Подруга ждёт на втором этаже. Исправьте сообщение о ней «She upstairs».",
+          "uk": "Подруга чекає на другому поверсі. Виправте повідомлення про неї «She upstairs»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "10700a88ff0fb6e25306837685c0630eab31763041d21b5597c5e3a11be1e8c2"
+  "introFingerprint": "2968cc735e0b1b40168567e012ec854da980d65d044d965f39b8c0638ef0f3ec"
 }

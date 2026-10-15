@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-21:intro1:r2": {
-          "ru": "`am` живёт только рядом с `I`. Про третьего человека — `is`.",
-          "uk": "`am` живе тільки поруч із `I`. Про третю людину — `is`."
+          "ru": "После `I` нужна форма `am`.",
+          "uk": "Після `I` потрібна форма `am`."
         },
         "en:lesson-01:session-21:intro1:r3": {
-          "ru": "В английской фразе здесь нужна форма `is`: без неё фраза неполная.",
-          "uk": "В англійській фразі тут потрібна форма `is`: без неї фраза неповна."
+          "ru": "С `I` используем `am`, а не `are`.",
+          "uk": "Із `I` вживаємо `am`, а не `are`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-21:intro2:r2": {
-          "ru": "`are` — для того, с кем говорите. Про неё — `is`.",
-          "uk": "`are` — для того, з ким говорите. Про неї — `is`."
+          "ru": "`inside` — «внутри», а друзья ещё снаружи: `outside`.",
+          "uk": "`inside` — «всередині», а друзі ще зовні: `outside`."
         },
         "en:lesson-01:session-21:intro2:r3": {
-          "ru": "`am` бывает только у `I`. Никто, кроме вас самих, `am` не получает.",
-          "uk": "`am` буває тільки в `I`. Ніхто, крім вас самих, `am` не отримує."
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-21:intro3:r2": {
-          "ru": "`is` — про него или про неё. Про себя — `am`.",
-          "uk": "`is` — про нього або про неї. Про себе — `am`."
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
         },
         "en:lesson-01:session-21:intro3:r3": {
-          "ru": "`are` — про того, с кем говорите. Себе — `am`.",
-          "uk": "`are` — про того, з ким говорите. Собі — `am`."
+          "ru": "`outside` — «снаружи». Подруга на верхнем этаже: `upstairs`.",
+          "uk": "`outside` — «зовні». Подруга на верхньому поверсі: `upstairs`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a279d16f47b45c557ae946df4ba60d7f6afb020a113f570b973892784daa96c6"
+  "auxiliaryFingerprint": "46ba21243894e815cf0aacf5834283f5767f23a549d61223e2fdc1fab41df38c"
 }

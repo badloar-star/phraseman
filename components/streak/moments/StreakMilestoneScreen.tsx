@@ -240,8 +240,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
         <ScrollView key={bodyKey} decelerationRate="fast" style={s.fillBody} contentContainerStyle={s.body} showsVerticalScrollIndicator={false} bounces={false}>{body}</ScrollView>
         {withFoot ? <Beat i={2}>{foot}</Beat> : <View style={s.footSpacer} />}
         {skippable ? (
-          <Pressable accessibilityRole="button" accessibilityLabel={streakMomentText(lang, 'skip')} onPress={skip} hitSlop={12} style={[s.skip, { top: insets.top + 12 }]} testID={`${testID}-skip`}>
-            <Text style={[s.skipText, { color: p.textSecondary }]}>{streakMomentText(lang, 'skip')}</Text>
+          <Pressable accessibilityRole="button" accessibilityLabel={streakMomentText(lang, 'skip')} onPress={skip} hitSlop={12} style={[s.skip, { top: insets.top + 12, backgroundColor: glass.buttonFill }]} testID={`${testID}-skip`}>
+            <Text style={[s.skipText, { color: p.text }]}>{streakMomentText(lang, 'skip')}</Text>
           </Pressable>
         ) : null}
       </Animated.View>
@@ -266,8 +266,10 @@ const s = StyleSheet.create({
   p: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
   foot: { gap: 12 },
   footSpacer: { height: 56 },
-  skip: { position: 'absolute', right: 20, paddingVertical: 8, paddingHorizontal: 12 },
-  skipText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  // зачем (Макеты 15.10, решение координатора, эталон v3 d365/d1000 и m01): «Пропустить» — 13 · 700 на плашке-таблетке (padding 6/10, радиус 12);
+  // одно осознанное отличие от эталона: фон плашки buttonFill вместо control — правило владельца 13.10 "кнопки не сливаются" (на control контраст 1,00)
+  skip: { position: 'absolute', right: 20, paddingVertical: 6, paddingHorizontal: 10, borderRadius: 12 },
+  skipText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
 });
 
 export default memo(StreakMilestoneScreen);

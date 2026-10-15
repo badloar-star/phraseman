@@ -1,0 +1,2 @@
+10-15 17:37:50.569 I/ReactNativeJS( 7582): '[SPIRE-BUDGET]', '{"towerTop":435,"towerSavedAtMeasure":0,"fullTowerTop":435,"dockTop":387,"gap":16,"infoH":84,"fullInfoH":84,"rawFit":-148,"level":3,"steps":"podium>card","applied":[],"scrollMode":true,"windowH":220,"limits":[180,140,48]}'
+10-15 17:37:52.162 I/ReactNativeJS( 7582): '[SPIRE-BUDGET]', '{"towerTop":461,"towerSavedAtMeasure":0,"fullTowerTop":461,"dockTop":387,"gap":16,"infoH":103,"fullInfoH":103,"rawFit":-193,"level":3,"steps":"podium>card","applied":[],"scrollMode":true,"windowH":220,"limits":[180,140,48]}'

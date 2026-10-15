@@ -1093,6 +1093,8 @@ export { levelSpinStarGrant } from "./level_spin_star_grant";
 export { coinReconcileV1 } from "./coin_reconcile_v1";
 // D195 (владелец 15.10): старые бонусы → монеты один раз на человека; выкладка 17.10 пунктом SERVER_DEPLOY, выключатель legacy_bonus_enabled
 export { legacyBonusConvertMine } from "./legacy_bonus_convert";
+// владелец 15.10: статистика экрана уровня в онбординге — один ответ на человека, дневные счётчики (раздел админки «Онбординг · уровень»)
+export { onboardingLevelRecord } from "./onboarding_level_stats";
 // зачем (D51/D53, Q12 2026-10-01): строка-итог миграции «Подарки → монеты»
 // для контроля в админке. Деплой — прицельно и только после релиза 2.0 (D91).
 export { giftsToCoinsMigrationReport } from "./gifts_to_coins_report";

@@ -227,6 +227,19 @@ firebase deploy --only "functions:default:legacyBonusConvertMine" --project phra
 - Откат: `legacy_bonus_enabled` → `false` останавливает новые начисления. Уже начисленные монеты не отзываются
   (расписки `star_operations/legacy_bonus:v1.*` и метка `users/{id}.legacyBonusConvertedV1` остаются).
 
+Пункт 8 — статистика уровня из онбординга (владелец 15.10, раздел админки «Онбординг · уровень»).
+
+```bash
+firebase deploy --only firestore:rules --project phraseman-ea0b3
+firebase deploy --only "functions:default:onboardingLevelRecord" --project phraseman-ea0b3
+```
+
+- Правила (коммит админки 15.10): `onboarding_level_daily` читает админ, `onboarding_level_counted` — только сервер. Правила — шаг 1 выкладки, как и раньше.
+- Функция: один ответ на человека (метка по stableId, без уровня человека), дневной документ с `FieldValue.increment`.
+  1 вызов + 2 чтения + 2 записи на человека, проходящего онбординг; админка читает ≤ 180 дневных документов.
+- Клиент шлёт только при согласии на статистику; в сборке 16.10 (app/onboarding_level_stats.ts).
+- Откат: выложить функцию с прошлого коммита не нужно — без функции клиент просто кладёт ответ в «отложенные» и молчит.
+
 ### Порядок и зависимости
 
 - Пункт 3 выкладывать **вместе** с лестницей и снимком кошелька (они в тех же `spireFinalizeCron` / `spire_finalize_core`).

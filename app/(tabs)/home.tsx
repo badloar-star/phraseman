@@ -1180,6 +1180,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => runAfterHomeFirstFrame('account_switch_backup_gc', () => import('../account_switch_backup_gc').then((m) => m.runAccountSwitchBackupGc('cold_start'))), []);
     // зачем (D195, владелец 15.10): старые бонусы → монеты — один ленивый вызов сервера после первого кадра (раз на владельца, дальше локальная метка)
     useEffect(() => runAfterHomeFirstFrame('legacy_bonus_convert', () => import('../legacy_bonus_client').then((m) => m.runLegacyBonusConvertOnce('home_first_frame')), { holdDuringOnboarding: true }), []);
+    // зачем (владелец 15.10, «Онбординг · уровень»): ответ экрана уровня, не ушедший в онбординге без сети, — отправить при следующем запуске
+    useEffect(() => runAfterHomeFirstFrame('onboarding_level_flush', () => import('../onboarding_level_stats').then((m) => m.flushPendingOnboardingLevelAnswer()), { holdDuringOnboarding: true }), []);
     // зачем (D191, координатор 14.10): окно итога недели будет «как штык» при первом открытии после закрытия недели; в сборку 16.10 —
     // только проба после первого кадра и журнал [SPIRE-WEEK-MODAL] «когда показали бы», без показа и без арбитра (≤1 чтение в неделю).
     useEffect(() => runAfterHomeFirstFrame('spire_week_modal_probe', () => import('../spire/spire_week_modal_probe').then((m) => m.spireProbeWeekModal({ uiLang: lang, studyTarget, tabEnabled: spireTabEnabled })), { holdDuringOnboarding: true }), [lang, studyTarget, spireTabEnabled]);

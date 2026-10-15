@@ -3,6 +3,7 @@ export type OverlayKey =
   | 'authRecovery'
   | 'spireWeekMoment'
   | 'welcomeBack'
+  | 'legacyBonusWelcome'
   | 'coinRankEnough'
   | 'arenaOpponentFound'
   | 'update'
@@ -53,6 +54,9 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'spireWeekMoment',
   // welcomeBack — окно «С возвращением» (D193, владелец 14.10): после окна итога недели; рисуется в дереве, не нативным <Modal>.
   'welcomeBack',
+  // legacyBonusWelcome — окно «Встречайте PhraseMan 2.0» (D195, Ядро 15.10): старые бонусы стали монетами; после «С возвращением», до «Хватает на ранг».
+  // Закрывает человек («Понятно»), таймера нет — выселять нельзя; шторка в нативном окне (HybridSheetShell).
+  'legacyBonusWelcome',
   // coinRankEnough — m14A «Хватает на ранг N» (координатор 14.10): после окон итога недели и «С возвращением»; в дереве, не <Modal>.
   'coinRankEnough',
   'releaseNotes',
@@ -124,6 +128,7 @@ export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>
 export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'onboardingWelcome',
   'authRecovery',
+  'legacyBonusWelcome',
   'update',
   'releaseNotes',
   'broadcast',
@@ -174,6 +179,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   authRecovery: false,
   spireWeekMoment: false,
   welcomeBack: false,
+  legacyBonusWelcome: false,
   coinRankEnough: false,
   arenaOpponentFound: false,
   update: false,

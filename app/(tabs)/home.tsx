@@ -147,6 +147,8 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // за�
 const SpireWeekMomentHost = lazy(() => import('../../components/spire/moments/SpireWeekMomentHost'));
 // зачем (D193, владелец 14.10): «С возвращением» (m21) — раз после долгой отлучки; грузится лениво, когда хук Авторизации дал слот
 const WelcomeBackMoment = lazy(() => import('../../components/moments/WelcomeBackMoment'));
+// зачем (Ядро 15.10, D195, окно «Встречайте PhraseMan 2.0»): хост — крошечная обёртка (ждёт первый кадр Главной); клиент начисления и шторка с анимациями грузятся лениво внутри него
+import LegacyBonusWelcomeHost from '../../components/legacy_bonus/LegacyBonusWelcomeHost';
 // зачем (m14A, Ядро 14.10): «Хватает на ранг N» — когда монет впервые хватает на следующий ранг; слот в той же очереди окон (после «С возвращением»), грузится лениво
 const CoinRankEnoughDialog = lazy(() => import('../../components/coin_rank_moments/CoinRankEnoughDialog'));
 const loadPremiumCelebrationModal = () => import('../../components/PremiumCelebrationModal');
@@ -2682,6 +2684,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           </SheetSwipeRoot>
         </Modal>
       ) : null}
+      <LegacyBonusWelcomeHost lang={lang} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} active={homeRuntimeActive} />
       {rankEnough.visible && rankEnough.offer ? (
         <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={rankEnough.close}>
           <SheetSwipeRoot>

@@ -76,6 +76,7 @@ import {
   type TabPageLayout,
 } from '../tab_page_model';
 import { useStudyTarget } from '../../components/StudyTargetContext';
+import { trackSectionPathname } from '../section_language';
 import { isLearnTabVisibleForTarget } from '../learning_language_surface_readiness';
 import { shouldLoadTabScreen } from '../tab_mount_policy';
 import { whenOnboardingSettled } from '../onboarding_defer_gate';
@@ -815,6 +816,8 @@ function ReleasedTabLayout() {
   const { width: tabPaneWidth } = useScreen();
   const { theme: t } = useTheme();
   const pathname = usePathname();
+  // зачем (владелец 15.10): язык, выбранный пилюлей раздела («Видео», «Карточки»), живёт только пока человек в разделе — ушёл, и раздел снова на языке из Настроек.
+  useEffect(() => { trackSectionPathname(pathname); }, [pathname]);
   // зачем: useSegments() в expo-router 6 типизирован union'ом ВСЕХ маршрутов —
   // в массивах зависимостей TS падает с TS2590 («union слишком сложный»).
   // Помощники ниже и так принимают readonly string[], поэтому сужаем тип здесь.

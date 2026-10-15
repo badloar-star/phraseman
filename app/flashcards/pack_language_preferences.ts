@@ -1,14 +1,24 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { registerHubCacheProbe } from '../hub_lifecycle_probe';
+import { peekStudyTargetRaw } from '../app_snapshot_bootstrap';
+import { setSectionLanguageOverride, subscribeSectionLanguageReset } from '../section_language';
 import {
+  defaultPackLanguageForStudyTarget,
   isStudyPackLanguage,
   type PackLanguage,
   type StudyPackLanguage,
 } from './pack_languages';
 
+/** Старый ключ на диске: больше НЕ читается и не пишется (владелец 15.10 — выбор в разделе локальный, глобального ключа нет). */
 export const PACK_LANGUAGE_PREFERENCE_KEY = 'fc_pack_language_v1';
 const listeners = new Set<(language: StudyPackLanguage) => void>();
 let rememberedLanguage: StudyPackLanguage | null = null;
+// зачем (владелец 15.10, R57 «выбор языка пишет глобальный ключ»): выбор языка наборов — только на время захода в «Карточки»; ушёл из раздела — снова язык из Настроек.
+subscribeSectionLanguageReset((section) => {
+  if (section !== 'cards' || rememberedLanguage === null) return;
+  rememberedLanguage = null;
+  const globalDefault = defaultPackLanguageForStudyTarget(peekStudyTargetRaw());
+  for (const listener of listeners) listener(globalDefault);
+});
 export function peekStoredPackLanguage(): StudyPackLanguage | null { return rememberedLanguage; }
 export function subscribePackLanguage(listener: (language: StudyPackLanguage) => void): () => void {
   listeners.add(listener);
@@ -16,13 +26,7 @@ export function subscribePackLanguage(listener: (language: StudyPackLanguage) =>
 }
 
 export async function getStoredPackLanguage(): Promise<StudyPackLanguage | null> {
-  const raw = await AsyncStorage.getItem(PACK_LANGUAGE_PREFERENCE_KEY).catch((error: unknown) => {
-    console.warn('[PACK-LANG] preference:read_failed', String((error as Error)?.message ?? error));
-    return null;
-  });
-  // зачем (D127): выбранный язык — это ФИЛЬТР по изучаемому языку. «Без языка»
-  // фильтром быть не может: такие наборы видны при любом выбранном языке.
-  rememberedLanguage = isStudyPackLanguage(raw) ? raw : null;
+  // зачем (владелец 15.10): язык хранится только в памяти раздела; нет локального выбора — вызывающий берёт язык из Настроек.
   return rememberedLanguage;
 }
 
@@ -31,7 +35,8 @@ export async function setStoredPackLanguage(language: PackLanguage): Promise<voi
     console.warn(`[PACK-LANG] preference:skip value="${String(language)}" — фильтр принимает только изучаемые языки`);
     return;
   }
-  await AsyncStorage.setItem(PACK_LANGUAGE_PREFERENCE_KEY, language);
+  // зачем (владелец 15.10): запись на диск убрана — выбор локален для раздела и сбрасывается при выходе из него.
+  setSectionLanguageOverride('cards', language);
   rememberedLanguage = language;
   for (const listener of listeners) listener(language);
 }

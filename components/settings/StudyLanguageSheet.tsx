@@ -42,9 +42,14 @@ interface StudyLanguageSheetProps {
   activeTarget: StudyTarget;
   /** Префикс логов вызывающего экрана, например `[VIDEO-LANG-PILL]`. */
   logTag?: string;
+  /**
+   * зачем (владелец 15.10): пилюля раздела выбирает язык ТОЛЬКО для раздела — глобальный язык изучения меняется лишь в Настройках.
+   * Задан — выбор уходит сюда, глобальное переключение и переходы не вызываются.
+   */
+  onSelectLocal?: (code: StudyTarget) => void;
 }
 
-export default function StudyLanguageSheet({ visible, onClose, lang, activeTarget, logTag = '[STUDY-LANG-SHEET]' }: StudyLanguageSheetProps) {
+export default function StudyLanguageSheet({ visible, onClose, lang, activeTarget, logTag = '[STUDY-LANG-SHEET]', onSelectLocal }: StudyLanguageSheetProps) {
   const copy = useMemo(() => ({
     title: triLang(lang, { ru: 'Язык изучения', uk: 'Мова навчання', en: 'Learning language', es: 'Idioma de estudio', 'pt-BR': 'Idioma de estudo', vi: 'Ngôn ngữ học', id: 'Bahasa belajar', tr: 'Öğrenilen dil', pl: 'Język nauki' }),
     subtitle: triLang(lang, { ru: 'Прогресс каждого языка хранится отдельно', uk: 'Прогрес кожної мови зберігається окремо', en: 'Each language keeps its own progress', es: 'Cada idioma guarda su propio progreso', 'pt-BR': 'Cada idioma guarda seu próprio progresso', vi: 'Mỗi ngôn ngữ có tiến độ riêng', id: 'Setiap bahasa punya progresnya sendiri', tr: 'Her dilin ilerlemesi ayrı tutulur', pl: 'Każdy język ma osobny postęp' }),
@@ -54,7 +59,7 @@ export default function StudyLanguageSheet({ visible, onClose, lang, activeTarge
   return (
     <FriendsAddSheetShell visible={visible} onClose={onClose} title={copy.title} subtitle={copy.subtitle} closeLabel={copy.close} testID="study-language-sheet" headerLayout="kit">
       {({ requestDismiss }) => (
-        <StudyLanguageSheetList lang={lang} activeTarget={activeTarget} logTag={logTag} onCloseNow={onClose} requestDismiss={requestDismiss} />
+        <StudyLanguageSheetList lang={lang} activeTarget={activeTarget} logTag={logTag} onCloseNow={onClose} requestDismiss={requestDismiss} onSelectLocal={onSelectLocal} />
       )}
     </FriendsAddSheetShell>
   );
@@ -69,7 +74,8 @@ function KitCheckIcon({ color }: { color: string }) {
   );
 }
 
-function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, requestDismiss }: {
+function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, requestDismiss, onSelectLocal }: {
+  onSelectLocal?: (code: StudyTarget) => void;
   lang: Lang;
   activeTarget: StudyTarget;
   logTag: string;
@@ -126,10 +132,19 @@ function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, reques
       closeAnimated('already_selected');
       return;
     }
+    // зачем (владелец 15.10): локальный выбор раздела — галочка и закрытие в кадре тапа, глобальный язык не трогаем.
+    if (onSelectLocal) {
+      hapticTap();
+      setShownTarget(code);
+      onSelectLocal(code);
+      closeAnimated('local_select');
+      console.log(`[LEARN-LANG] select_local ui=${lang} lang=${code} from=${logTag}`); // guard-ok: локальный выбор
+      return;
+    }
     // зачем (D188): любой язык открыт — общий select сразу переключает обучение (галочка и закрытие в кадре тапа).
     const route = select(code);
     console.log(`[LEARN-LANG] select ui=${lang} lang=${code} started=${learning} resolved=${startedLanguagesResolved} route=${route} from=${logTag}`);
-  }, [closeAnimated, lang, logTag, select, shownTarget, startedLanguagesResolved]);
+  }, [closeAnimated, lang, logTag, onSelectLocal, select, shownTarget, startedLanguagesResolved]);
 
   return (
     <View style={styles.list}>

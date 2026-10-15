@@ -28,7 +28,8 @@ describe('multichannel YouTube catalog UI contract', () => {
 
   it('selects the automatic channel by the language being studied, not the interface language', () => {
     const source = screen();
-    expect(source).toContain('const { studyTarget } = useStudyTarget();');
+    expect(source).toContain('const { studyTarget: globalStudyTarget } = useStudyTarget();'); // язык раздела = локальный выбор или язык из Настроек (владелец 15.10)
+    expect(source).toContain('const studyTarget = sectionLanguage.language;');
     expect(source).toContain('resolvePreferredYoutubeChannel(manifest, studyTarget, currentPreference)');
     expect(source).toContain('resolvePreferredYoutubeChannel(manifest, studyTarget, nextPreference)');
     expect(source).not.toContain('resolvePreferredYoutubeChannel(manifest, lang,');

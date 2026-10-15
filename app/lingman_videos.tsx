@@ -28,6 +28,7 @@ import { resolveVideoChannelForStudyTarget } from './video_language_contour';
 import type { LearningLanguageTarget } from './learning_language_contour';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useSectionLanguage } from './section_language';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -120,7 +121,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   // в режиме списка сохранённых (без вкладок), чтобы не дублировать плеер, фразы и каталог.
   const savedOnly = !inTab && savedParam === '1';
   const { lang } = useLang();
-  const { studyTarget } = useStudyTarget();
+  const { studyTarget: globalStudyTarget } = useStudyTarget();
+  // зачем (владелец 15.10): пилюля языка в «Видео» выбирает язык только для раздела на время захода; в Настройках язык прежний, при возврате на вкладку снова он.
+  const sectionLanguage = useSectionLanguage('video', globalStudyTarget);
+  const studyTarget = sectionLanguage.language;
   const { liquidGlassThemeId } = useTheme();
   const { showGlassAlert, node: glassAlertNode } = useGlassAlert();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -909,6 +913,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             }}
             lang={lang}
             activeTarget={studyTarget}
+            onSelectLocal={inTab ? sectionLanguage.setLanguage : undefined}
             logTag="[VIDEO-LANG-PILL]"
           />
         ) : null}

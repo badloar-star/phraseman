@@ -130,6 +130,8 @@ type PlusAccessDetail = {
  * живым и дешёвым (локальный снапшот, без сети), чтобы возврат был мгновенным.
  */
 const SHOW_SOUND_SETTINGS = false;
+// зачем (владелец 15.10): «Размер шрифта» убран из Настроек — не менял заметно ничего; всем возвращается «средний», чтобы никто не остался на скрытом крупном/мелком.
+const SETTINGS_FONT_SIZE_ROW_VISIBLE = false;
 
 // зачем: собственные имена языков изучения узнаваемы при любом языке интерфейса (как в StudyLanguagePicker);
 // зачем D129/D130: флаги теперь есть у всех пяти языков (итальянский и немецкий — 2026-09-30).
@@ -230,6 +232,11 @@ export default function SettingsMain() {
     return () => console.log('[DEEPLINK-SETTINGS] screen:unmount', JSON.stringify({ livedMs: Date.now() - mountedAt }));
   }, []);
   const { theme: t, liquidGlassThemeId, fontSize, setFontSize, f } = useTheme();
+  useEffect(() => {
+    if (SETTINGS_FONT_SIZE_ROW_VISIBLE || fontSize === 'medium') return;
+    console.log('[SETTINGS-FONT] reset', JSON.stringify({ from: fontSize, to: 'medium', reason: 'row_hidden' }));
+    setFontSize('medium');
+  }, [fontSize, setFontSize]);
   // зачем (владелец 2026-09-29): корень «Настройки» — 1 в 1 по макету PRF-01; все цвета плашек
   // берутся из общих токенов 13 тем Liquid Glass, как на уже перенесённых дочерних экранах.
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -1189,6 +1196,9 @@ export default function SettingsMain() {
             )}
           />
           {/* Размер шрифта — три плитки выбора в той же группе. */}
+          {/* зачем (владелец 15.10 ~18:05): «Размер шрифта ничего не меняет — значит не нужен». Строка скрыта флагом, разметка оставлена,
+              чтобы вернуть одним флагом, если когда-нибудь появится настоящий масштаб. */}
+          {SETTINGS_FONT_SIZE_ROW_VISIBLE ? (
           <SettingsGlassCard glass={glass} testID="settings-font-size-row" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
               <SettingsGlassTile glass={glass}>
@@ -1239,6 +1249,7 @@ export default function SettingsMain() {
               ))}
             </View>
           </SettingsGlassCard>
+          ) : null}
         </SettingsGlassGroup>
 
         <SettingsGlassEyebrow wide glass={glass} title="PHRASEMAN PLUS" />

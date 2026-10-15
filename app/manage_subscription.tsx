@@ -43,7 +43,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useScreen } from '../hooks/use-screen';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
-import { storePriceTrim } from './paywall_purchase';
+import { storePriceTrim, storeUnreachableToast } from './paywall_purchase';
 import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
 import {
   inferPremiumPlanFromCustomerInfo,
@@ -546,7 +546,10 @@ export default function ManageSubscription() {
     try {
       await initRevenueCat(isOperationCurrent);
       if (!await syncRevenueCatIdentity(isOperationCurrent)) {
-        console.warn('[RESTORE] drop:identity_sync_failed'); // guard-ok
+        // зачем (бета-тест А4, 15.10): без связи с магазином кнопка «Восстановить» раньше просто переставала крутиться — человек не понимал, что произошло. Устаревшая операция (смена аккаунта) по-прежнему молчит.
+        const stillCurrent = isOperationCurrent();
+        console.warn(`[RESTORE] drop:identity_sync_failed stillCurrent=${stillCurrent} → ${stillCurrent ? 'тост «не удалось связаться с магазином»' : 'тишина (операция устарела)'}`); // guard-ok
+        if (stillCurrent) emitAppEvent('action_toast', storeUnreachableToast());
         return;
       }
       // AA S2d раунд 3: метка потока покупки — фоновый перенос Plus в это время ждёт.

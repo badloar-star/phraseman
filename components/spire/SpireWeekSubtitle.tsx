@@ -19,7 +19,8 @@ function SpireWeekSubtitle({ text, tier, color }: SpireWeekSubtitleProps) {
 
 const s = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 6 },
-  subtitle: { fontSize: 16, lineHeight: 20 },
+  // зачем (бета-тест А4, 15.10): рядом с подписью плашка энергии — при крупном шрифте или длинном переводе подпись переносится, а не уезжает под плашку
+  subtitle: { fontSize: 16, lineHeight: 20, flexShrink: 1 },
 });
 
 export default memo(SpireWeekSubtitle);

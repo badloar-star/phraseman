@@ -88,7 +88,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
         {pending ? (
           <View style={[s.titleBar, { backgroundColor: p.control }]} />
         ) : (
-          <Text testID="home-continue-lesson-title" style={[s.title, { color: p.text }]}>{title}</Text>
+          <Text testID="home-continue-lesson-title" numberOfLines={2} ellipsizeMode="tail" style={[s.title, { color: p.text }]}>{title}</Text> /* зачем (бета-тест А4, 15.10): карточка фиксированной высоты 96 с overflow hidden — длинное название обрезалось без многоточия; теперь два ряда и «…» */
         )}
         <View style={s.progressRow}>
           <View style={[s.track, { backgroundColor: p.track }]}>

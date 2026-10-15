@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-19:i01",
+    "correctText": "That is a tram.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i02",
+    "correctText": "soup",
+    "correctResponseId": "en:lesson-04:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i03",
+    "correctText": "soup",
+    "correctResponseId": "en:lesson-04:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i04",
+    "correctText": "en:lesson-04:session-19:i04:p1=soup\nen:lesson-04:session-19:i04:p2=guilty\nen:lesson-04:session-19:i04:p3=bags\nen:lesson-04:session-19:i04:p4=tram",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i05",
+    "correctText": "There is some soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i06",
+    "correctText": "There are some bags here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i07",
+    "correctText": "I'm guilty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i09",
+    "correctText": "Are there any bags?",
+    "correctResponseId": "en:lesson-04:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i10",
+    "correctText": "en:lesson-04:session-19:i10:p1=soup\nen:lesson-04:session-19:i10:p2=bags\nen:lesson-04:session-19:i10:p3=tram\nen:lesson-04:session-19:i10:p4=guilty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i11",
+    "correctText": "Is there any soup?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i12",
+    "correctText": "Are there any bags here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i13",
+    "correctText": "There is some soup there.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-19:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i15",
+    "correctText": "I am guilty.",
+    "correctResponseId": "en:lesson-04:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i16",
+    "correctText": "en:lesson-04:session-19:i16:p1=soup\nen:lesson-04:session-19:i16:p2=guilty\nen:lesson-04:session-19:i16:p3=bags\nen:lesson-04:session-19:i16:p4=tram",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i17",
+    "correctText": "Is there any soup here?",
+    "correctResponseId": null
+  }
+]

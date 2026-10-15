@@ -1,0 +1,984 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-19:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назвіть транспорт удалині: «То — трамвай»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть транспорт удалині: «То — трамвай»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a tram.",
+        "localizedMeaning": {
+          "ru": "Назовите транспорт вдалеке: «То — трамвай»",
+          "uk": "Назвіть транспорт удалині: «То — трамвай»"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "tram"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Назвіть транспорт удалині: «То — трамвай»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `That is a tram.`",
+              "uk": "тут потрібно `is` — `That is a tram.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-19:i02:r1",
+          "text": "soup"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i02:r2",
+          "text": "milk"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i02:r3",
+          "text": "tram"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-19:i02:audio",
+          "transcript": "soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-19:i02:r1",
+            "targetText": "soup",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i02:r2",
+            "targetText": "milk",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i02:r3",
+            "targetText": "tram",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `soup`, а в этом варианте — `milk`.",
+              "uk": "У записі перше слово — `soup`, а в цьому варіанті — `milk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `soup`, а в этом варианте — `tram`.",
+              "uk": "У записі перше слово — `soup`, а в цьому варіанті — `tram`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть суп одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-19:i03:r1",
+          "text": "soup"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i03:r2",
+          "text": "milk"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i03:r3",
+          "text": "bags"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть суп одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите суп одним словом",
+          "uk": "Назвіть суп одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i03:r1",
+            "text": "soup"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i03:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i03:r3",
+            "text": "bags"
+          }
+        ],
+        "testedDimension": "Назвіть суп одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть суп одним словом",
+            "feedbackByLocale": {
+              "ru": "`milk` — молоко; суп — `soup`.",
+              "uk": "`milk` — молоко; суп — `soup`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть суп одним словом",
+            "feedbackByLocale": {
+              "ru": "`bags` — сумки; суп — `soup`.",
+              "uk": "`bags` — сумки; суп — `soup`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-19:i04:p1",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i04:p2",
+            "target": "guilty",
+            "meaningByLocale": {
+              "ru": "виноватый",
+              "uk": "винний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i04:p3",
+            "target": "bags",
+            "meaningByLocale": {
+              "ru": "сумки",
+              "uk": "сумки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i04:p4",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          }
+        ],
+        "leftColumn": [
+          "soup",
+          "guilty",
+          "bags",
+          "tram"
+        ],
+        "rightColumn": [
+          "суп",
+          "винний",
+          "сумки",
+          "трамвай"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-19:i05:audio",
+          "transcript": "There is some soup."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is some soup.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "soup"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть повідомлення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is some soup.`",
+              "uk": "тут потрібно `is` — `There is some soup.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сумки для дороги знайшлися. Повідомте «Тут є кілька сумок» із some",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумки для дороги знайшлися. Повідомте «Тут є кілька сумок» із some",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are some bags here.",
+        "localizedMeaning": {
+          "ru": "Сумки для дороги нашлись. Сообщите «Здесь есть несколько сумок» с some",
+          "uk": "Сумки для дороги знайшлися. Повідомте «Тут є кілька сумок» із some"
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "some",
+          "bags",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сумки для дороги знайшлися. Повідомте «Тут є кілька сумок» із some",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `There are some bags here.`",
+              "uk": "тут потрібно `are` — `There are some bags here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви з’їли спільні ягоди. Зізнайтеся «Я винен» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Ви з’їли спільні ягоди. Зізнайтеся «Я винен» зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-19:i07:audio",
+          "transcript": "I'm guilty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm guilty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомте «Тут є трохи супу»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-19:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Тут є трохи супу»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Здесь есть немного супа»",
+          "uk": "Повідомте «Тут є трохи супу»"
+        },
+        "gappedTargetPhrase": "There ___ some soup here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Повідомте «Тут є трохи супу»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут є трохи супу»",
+            "feedbackByLocale": {
+              "ru": "О супе как еде говорим `There is some soup here`.",
+              "uk": "Про суп як їжу кажемо `There is some soup here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут є трохи супу»",
+            "feedbackByLocale": {
+              "ru": "Наличие супа передаём через `There is`.",
+              "uk": "Наявність супу передаємо через `There is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-19:i09:r1",
+          "text": "Are there any bags?"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i09:r2",
+          "text": "Are there any boxes?"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i09:r3",
+          "text": "Are there any books?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-19:i09:audio",
+          "transcript": "Are there any bags?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-19:i09:r1",
+            "targetText": "Are there any bags?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i09:r2",
+            "targetText": "Are there any boxes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i09:r3",
+            "targetText": "Are there any books?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bags`, а в этом варианте — `boxes`.",
+              "uk": "У записі останнє слово — `bags`, а в цьому варіанті — `boxes`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bags`, а в этом варианте — `books`.",
+              "uk": "У записі останнє слово — `bags`, а в цьому варіанті — `books`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-19:i10:p1",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i10:p2",
+            "target": "bags",
+            "meaningByLocale": {
+              "ru": "сумки",
+              "uk": "сумки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i10:p3",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i10:p4",
+            "target": "guilty",
+            "meaningByLocale": {
+              "ru": "виноватый",
+              "uk": "винний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "soup",
+          "bags",
+          "tram",
+          "guilty"
+        ],
+        "rightColumn": [
+          "суп",
+          "сумки",
+          "трамвай",
+          "винний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-19:i11:audio",
+          "transcript": "Is there any soup?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there any soup?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "any",
+          "soup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте сумки перед виходом. Запитайте «Тут є сумки?» з any",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте сумки перед виходом. Запитайте «Тут є сумки?» з any",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are there any bags here?",
+        "localizedMeaning": {
+          "ru": "Вы ищете сумки перед выходом. Спросите «Здесь есть сумки?» с any",
+          "uk": "Ви шукаєте сумки перед виходом. Запитайте «Тут є сумки?» з any"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "any",
+          "bags",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про інший стіл. Повідомте «Там є трохи супу» із some",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-19:i13:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про інший стіл. Повідомте «Там є трохи супу» із some",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-19:i13:audio",
+          "transcript": "There is some soup there."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is some soup there.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Тут є суп?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-19:i14:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i14:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i14:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Тут є суп?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Здесь есть суп?»",
+          "uk": "Запитайте «Тут є суп?»"
+        },
+        "gappedTargetPhrase": "___ there any soup here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Запитайте «Тут є суп?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Тут є суп?»",
+            "feedbackByLocale": {
+              "ru": "О супе как еде спрашиваем `Is there any soup here?`.",
+              "uk": "Про суп як їжу запитуємо `Is there any soup here?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Тут є суп?»",
+            "feedbackByLocale": {
+              "ru": "Вопрос о наличии супа начинается с `Is there`.",
+              "uk": "Запитання про наявність супу починається з `Is there`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте зізнання друга",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-19:i15:r1",
+          "text": "I am guilty."
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i15:r2",
+          "text": "I am tired."
+        },
+        {
+          "responseId": "en:lesson-04:session-19:i15:r3",
+          "text": "I am hungry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте зізнання друга",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-19:i15:audio",
+          "transcript": "I am guilty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-19:i15:r1",
+            "targetText": "I am guilty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i15:r2",
+            "targetText": "I am tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i15:r3",
+            "targetText": "I am hungry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-19:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте зізнання друга",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `guilty`, а в этом варианте — `tired`.",
+              "uk": "У записі останнє слово — `guilty`, а в цьому варіанті — `tired`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте зізнання друга",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `guilty`, а в этом варианте — `hungry`.",
+              "uk": "У записі останнє слово — `guilty`, а в цьому варіанті — `hungry`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-19:i16:p1",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i16:p2",
+            "target": "guilty",
+            "meaningByLocale": {
+              "ru": "виноватый",
+              "uk": "винний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i16:p3",
+            "target": "bags",
+            "meaningByLocale": {
+              "ru": "сумки",
+              "uk": "сумки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-19:i16:p4",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          }
+        ],
+        "leftColumn": [
+          "soup",
+          "guilty",
+          "bags",
+          "tram"
+        ],
+        "rightColumn": [
+          "суп",
+          "винний",
+          "сумки",
+          "трамвай"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В іншій подорожі ви зайшли пообідати й ще не знаєте меню. Запитайте «Тут є суп?» з any",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "В іншій подорожі ви зайшли пообідати й ще не знаєте меню. Запитайте «Тут є суп?» з any",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-19:i17:audio",
+          "transcript": "Is there any soup here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there any soup here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8f4018837d8ba1363013c14054e5c5b8243aa243a6deb56fd1084ac6ee89a80c"
+}

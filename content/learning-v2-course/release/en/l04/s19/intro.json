@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о супе с any и сообщить о нём с some, повторить сумки и транспорт",
+    "uk": "запитати про суп з any і повідомити про нього із some, повторити сумки та транспорт"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Суп на обед",
+        "uk": "Суп на обід"
+      },
+      "bodyByLocale": {
+        "ru": "`soup` — «суп». Когда говорим о еде вообще, не считаем отдельные порции: `There is some soup` — «Есть немного супа». Перед `soup` здесь не нужно `a`, а начало — `There is`. Даже целая кастрюля супа не превращает `is` в `are`. Кастрюля большая, правило то же.",
+        "uk": "`soup` — «суп». Коли говоримо про їжу загалом, не рахуємо окремі порції: `There is some soup` — «Є трохи супу». Перед `soup` тут не потрібне `a`, а початок — `There is`. Навіть ціла каструля супу не перетворює `is` на `are`. Каструля велика, правило те саме."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть немного супа».",
+          "uk": "Повідомте «Тут є трохи супу»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-19:intro1:r1",
+              "text": "There is some soup here."
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro1:r2",
+              "text": "There are some soup here."
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro1:r3",
+              "text": "There is a soup here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-19:intro1:r1",
+              "text": "There is some soup here."
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro1:r2",
+              "text": "There are some soup here."
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro1:r3",
+              "text": "There is a soup here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть немного супа».",
+          "uk": "Повідомте «Тут є трохи супу»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Суп и сумки",
+        "uk": "Суп і сумки"
+      },
+      "bodyByLocale": {
+        "ru": "`Is there any soup?` — «Есть ли суп?» Так спрашиваем, когда ещё не знаем, есть ли он. `bags` — «сумки». Их несколько: `Are there any bags?` — «Есть ли сумки?» В сообщении: `There are some bags` — «Есть несколько сумок». Суп — `is`, несколько сумок — `are`.",
+        "uk": "`Is there any soup?` — «Чи є суп?» Так запитуємо, коли ще не знаємо, чи є він. `bags` — «сумки». Їх кілька: `Are there any bags?` — «Чи є сумки?» У повідомленні: `There are some bags` — «Є кілька сумок». Суп — `is`, кілька сумок — `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы не знаете, остался ли суп. Спросите «Здесь есть суп?» с `any`.",
+          "uk": "Ви не знаєте, чи залишився суп. Запитайте «Тут є суп?» з `any`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-19:intro2:r1",
+              "text": "Is there any soup here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro2:r2",
+              "text": "Are there any soup here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro2:r3",
+              "text": "There is any soup here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-19:intro2:r1",
+              "text": "Is there any soup here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro2:r2",
+              "text": "Are there any soup here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro2:r3",
+              "text": "There is any soup here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы не знаете, остался ли суп. Спросите «Здесь есть суп?» с `any`.",
+          "uk": "Ви не знаєте, чи залишився суп. Запитайте «Тут є суп?» з `any`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто съел ягоды?",
+        "uk": "Хто з’їв ягоди?"
+      },
+      "bodyByLocale": {
+        "ru": "`guilty` — «виноватый». Друг признаётся, что съел ягоды, оставленные для всех: `I am guilty` — «Я виноват». Сокращённо: `I’m guilty`. Здесь это признание в небольшом проступке, не разговор о суде. `tram` — «трамвай»: `That is a tram` — «То — трамвай». После обеда пора к остановке.",
+        "uk": "`guilty` — «винний». Друг зізнається, що з’їв ягоди, залишені для всіх: `I am guilty` — «Я винен». Скорочено: `I’m guilty`. Тут це зізнання в невеликій провині, не розмова про суд. `tram` — «трамвай»: `That is a tram` — «То — трамвай». Після обіду час до зупинки."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы сами съели общие ягоды. Признайтесь «Я виноват» с сокращением.",
+          "uk": "Ви самі з’їли спільні ягоди. Зізнайтеся «Я винен» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-19:intro3:r1",
+              "text": "I'm guilty."
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro3:r2",
+              "text": "I are guilty."
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro3:r3",
+              "text": "He is guilty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-19:intro3:r1",
+              "text": "I'm guilty."
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro3:r2",
+              "text": "I are guilty."
+            },
+            {
+              "responseId": "en:lesson-04:session-19:intro3:r3",
+              "text": "He is guilty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы сами съели общие ягоды. Признайтесь «Я виноват» с сокращением.",
+          "uk": "Ви самі з’їли спільні ягоди. Зізнайтеся «Я винен» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "97871e6cf6cdfec613de566343064c8c81b4badff04a79911d0cfe0116df31df"
+}

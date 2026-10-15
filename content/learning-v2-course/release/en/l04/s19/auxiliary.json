@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-19:intro1:r2": {
+          "ru": "О супе как еде говорим `There is some soup here`.",
+          "uk": "Про суп як їжу кажемо `There is some soup here`."
+        },
+        "en:lesson-04:session-19:intro1:r3": {
+          "ru": "Здесь речь о супе вообще, не об отдельном виде или заказанной порции: `some soup`.",
+          "uk": "Тут ідеться про суп загалом, не про окремий вид чи замовлену порцію: `some soup`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-19:intro2:r2": {
+          "ru": "С супом как едой нужно `Is there`.",
+          "uk": "Із супом як їжею потрібне `Is there`."
+        },
+        "en:lesson-04:session-19:intro2:r3": {
+          "ru": "В этом вопросе сначала `Is there`: `Is there any soup here?`.",
+          "uk": "У цьому запитанні спочатку `Is there`: `Is there any soup here?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-19:intro3:r2": {
+          "ru": "С `I` нужно `am`: `I’m guilty`.",
+          "uk": "З `I` потрібне `am`: `I’m guilty`."
+        },
+        "en:lesson-04:session-19:intro3:r3": {
+          "ru": "Это «Он виноват», а вы признаётесь за себя: `I’m guilty`.",
+          "uk": "Це «Він винен», а ви зізнаєтеся за себе: `I’m guilty`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d244166c68cbc517b05c079cf41ac9c3b8d337dea0bfbc90fffe21a0d5cefc32"
+}

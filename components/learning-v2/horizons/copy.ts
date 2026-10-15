@@ -379,13 +379,13 @@ export function horizonsCreditCopy(lang: Lang) {
   const labels = {
     ru: ["МОНЕТЫ ЗА УПРАЖНЕНИЯ", "Учебный результат · без начисления", "НАЧИСЛЕНО РАНЕЕ", "Повторного начисления нет"],
     en: ["PRACTICE COINS", "Practice result · not credited", "PREVIOUSLY CREDITED", "Not credited again"],
-    uk: ["РУНИ ЗА ВПРАВИ", "Навчальний результат · без нарахування", "НАРАХОВАНО РАНІШЕ", "Повторного нарахування немає"],
-    es: ["RUNAS DE PRÁCTICA", "Resultado de práctica · sin abono", "ABONADAS ANTES", "No se abonan de nuevo"],
-    "pt-BR": ["RUNAS DOS EXERCÍCIOS", "Resultado de prática · sem crédito", "CREDITADAS ANTES", "Não são creditadas novamente"],
-    vi: ["RUNE TỪ BÀI TẬP", "Kết quả luyện tập · chưa cộng thưởng", "ĐÃ CỘNG TRƯỚC ĐÓ", "Không cộng thưởng lần nữa"],
-    id: ["RUNE LATIHAN", "Hasil latihan · belum ditambahkan", "SUDAH DIBERIKAN", "Tidak diberikan lagi"],
-    tr: ["ALIŞTIRMA RÜNLERİ", "Alıştırma sonucu · bakiyeye eklenmedi", "DAHA ÖNCE EKLENDİ", "Yeniden eklenmez"],
-    pl: ["RUNY Z ĆWICZEŃ", "Wynik ćwiczeń · bez naliczenia", "NALICZONE WCZEŚNIEJ", "Nie są naliczane ponownie"],
+    uk: ["МОНЕТИ ЗА ВПРАВИ", "Навчальний результат · без нарахування", "НАРАХОВАНО РАНІШЕ", "Повторного нарахування немає"],
+    es: ["MONEDAS DE PRÁCTICA", "Resultado de práctica · sin abono", "ABONADAS ANTES", "No se abonan de nuevo"],
+    "pt-BR": ["MOEDAS DOS EXERCÍCIOS", "Resultado de prática · sem crédito", "CREDITADAS ANTES", "Não são creditadas novamente"],
+    vi: ["XU TỪ BÀI TẬP", "Kết quả luyện tập · chưa cộng thưởng", "ĐÃ CỘNG TRƯỚC ĐÓ", "Không cộng thưởng lần nữa"],
+    id: ["KOIN LATIHAN", "Hasil latihan · belum ditambahkan", "SUDAH DIBERIKAN", "Tidak diberikan lagi"],
+    tr: ["ALIŞTIRMA JETONLARI", "Alıştırma sonucu · bakiyeye eklenmedi", "DAHA ÖNCE EKLENDİ", "Yeniden eklenmez"],
+    pl: ["MONETY Z ĆWICZEŃ", "Wynik ćwiczeń · bez naliczenia", "NALICZONE WCZEŚNIEJ", "Nie są naliczane ponownie"],
   };
   const [practiceTitle, practiceNote, existingTitle, existingNote] = labels[lang] ?? labels.en;
   return {practiceTitle, practiceNote, existingTitle, existingNote};

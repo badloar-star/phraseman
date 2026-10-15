@@ -58,7 +58,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     attemptsStatus: (remaining, total) => `Tentativas: ${remaining} de ${total}`,
     exhaustedTitle: 'As tentativas acabaram',
     exhaustedBody: 'Recupere as 3 tentativas e repita esta pergunta.',
-    restoreForRunes: 'Recuperar · 25 monedas',
+    restoreForRunes: 'Recuperar · 25 moedas',
     restartWithEnergy: 'Começar de novo',
     endSession: 'Encerrar sessão',
     notEnoughRunes: (missing) => `Faltam ${missing} moedas`,

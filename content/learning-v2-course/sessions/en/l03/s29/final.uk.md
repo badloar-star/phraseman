@@ -1,206 +1,138 @@
-# Англійська · Урок 3 · Заняття 29 — «Назвали — далі it»
+# Англійська · Урок 3 · Заняття 29 — Столи для майстерні
 
-**Сцена заняття.** Біля дверей квартири ви із сусідом розбираєте пошту після того, як пішов листоноша. Посилка лежить поруч, лист — далі на килимку, а марку видно на конверті: спочатку треба назвати річ, а потім коротко додати, яка вона, не повторюючи назву.
+**Ситуація.** У клубі готують зустріч із письма від руки. Ви з Олегом шукаєте столи й ручки. Анна поки у від’їзді й допомагає через інтернет. На зустріч записалися і місцеві учасники, і гості з інших країн.
 
-**Як сказати:** `this/that` указує на предмет; `it` повертається до вже названого предмета
-**Нові слова:** parcel, letter, stamp
-**Для повторення:** phone, key, heavy, wet, small
+**Що ви опануєте:** назвати кілька столів, запитати, де вони, й говорити про столи загалом
+**Нові слова:** tables
 
 ---
 
 ## Інтро 1
 
-### Назвати, а потім не повторюватися
+### Одного столу замало
 
-`parcel` — «посилка». Вона лежить поруч, тому ви кажете `This is a parcel.` — «Це посилка». Тепер сусід уже знає, про що йдеться.
+`table` — «стіл», `tables` — «столи». `They are tables` — «Це столи». Для кількох столів додаємо `s`, а `a` перед `tables` не ставимо. Олег приніс один маленький стіл на всю групу. Ручки помістилися, папір помістився. Лікті учасників — уже за записом. Потрібні `tables` — столи.
 
-Щоб додати «вона важка», не повторюйте `parcel`: скажіть `It is heavy.` Разом: `This is a parcel. It is heavy.` — «Це посилка. Вона важка». Посилку назвали один раз — і продовжили про неї.
+**На фотографії кілька столів. Назвіть їх одним англійським словом.**
 
-**Ви вже сказали сусідові `This is a parcel.` Тепер продовжте про ту саму посилку: вона важка.**
-
-- ✅ **It is heavy.**
-- ❌ They are heavy. — *Йдеться про одну посилку, тому потрібна форма однини `It is`, а не множина `They are`.*
-- ❌ Is it heavy? — *Це запитання. За ситуацією ви повідомляєте сусідові, що вже названа посилка важка.*
+- ✅ **tables**
+- ❌ table — *`table` — один стіл; кілька — `tables`.*
+- ❌ a tables — *Перед назвою кількох столів не ставимо `a`.*
 
 ---
 
 ## Інтро 2
 
-### Назвати лист і додати деталь
+### Столи важливі
 
-`letter` — «лист». Він лежить далі біля дверей, тому ви кажете `That is a letter.` — «Он лист».
+`Tables are important` — «Столи важливі». Обговорюючи, що потрібно для занять письмом, можна сказати так про столи загалом: перед `tables` немає `the`. `The tables are upstairs` — «Столи нагорі»: ідеться про певні столи для нашої зустрічі. Щоб знайти їх, запитайте `Where are the tables?` — «Де столи?»
 
-Потім `it` підхоплює вже названий лист. Разом: `That is a letter. It is wet.` — «Он лист. Він мокрий». Лист устиг намокнути, але вдруге представлятися йому не треба.
+**Ви обговорюєте заняття письмом загалом. Скажіть, що столи важливі, без указівки на певні столи.**
 
-**Ви вже сказали `That is a letter.` Тепер продовжте про той самий лист: він мокрий.**
-
-- ✅ **It is wet.**
-- ❌ They are wet. — *Йдеться про один лист, тому потрібне `It is wet`, а не множина `They are wet`.*
-- ❌ It wet. — *Після `it` потрібне `is`: `It is wet`.*
+- ✅ **Tables are important.**
+- ❌ The tables are important. — *`The tables` — певні столи. Тут ідеться про столи загалом: `Tables`.*
+- ❌ A tables are important. — *Перед `tables` не ставимо `a`.*
 
 ---
 
 ## Інтро 3
 
-### `it` продовжує про ту саму річ
+### Допомога здалеку
 
-`stamp` — «поштова марка». Вона поруч на конверті: `This is a stamp.` — «Це марка».
+`away` тут — «у від’їзді», `online` — «у мережі». Анна в іншому місті: `She is away`. Але зараз вона на зв’язку через інтернет: `She is online`. Це не суперечність: можна бути далеко й допомагати онлайн. `local` — «місцевий», `foreign` — «іноземний». Ці слова допомагають розрізняти місцеве й те, що стосується іншої країни.
 
-У наступному реченні `it` означає ту саму марку. Разом: `This is a stamp. It is small.` — «Це марка. Вона маленька». Саме `it` не каже «поруч» або «далеко» — воно продовжує розмову про вже названу річ.
+**Анна зараз підключена до інтернету й відповідає вам. Повідомте «Вона в мережі».**
 
-**Ви вже сказали `This is a stamp.` Тепер продовжте про ту саму марку: вона маленька.**
-
-- ✅ **It is small.**
-- ❌ That is small. — *Марку вже названо. `That` укаже на іншу далеку річ, а `it` продовжить говорити про ту саму марку.*
-- ❌ This is a small. — *Після `a` бракує назви речі. Марку вже названо, тому кажемо `It is small`.*
+- ✅ **She is online.**
+- ❌ She is local. — *`local` — «місцева», а зараз важливо, що вона в мережі: `online`.*
+- ❌ She is foreign. — *`foreign` — «іноземна», а для «у мережі» потрібне `online`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-29:i01; family: listen_choose -->
-Ціль: `parcel`
-Варіанти: `parcel`
+**1 · Олег шукає ручки для зустрічі. Повідомте «Ручки тут»**
+<!-- interaction_id: en:lesson-03:session-29:i01; family: phrase_builder -->
+Плитки: `here` `are` `pens` `The` `is` → **The pens are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The pens are here.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-29:i03; family: scripted_repeat_compare -->
-Ціль: `letter`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-29:i02; family: listen_choose -->
+🔊 *tables* → **tables** · tickets · chairs
+- tickets — *У записі перше слово — `tables`, а в цьому варіанті — `tickets`.*
+- chairs — *У записі перше слово — `tables`, а в цьому варіанті — `chairs`.*
 
-**3 · Виберіть назву — на конверті лежить марка**
-<!-- interaction_id: en:lesson-03:session-29:i05; family: context_gap_grammar -->
-Ціль: `___`
-Варіанти: `stamp` · `letter` · `parcel`
-- letter — *Letter — лист. На конверті лежить марка: stamp.*
-- parcel — *Parcel — посилка. На конверті лежить марка: stamp.*
+**3 · Назвіть кілька столів одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-29:i03; family: context_gap_grammar -->
+___ → **tables** · table · a tables
+- table — *Кілька столів — `tables`.*
+- a tables — *Перед `tables` не ставимо `a`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-29:i04; family: speed_match -->
+tables — столи · pens — ручки · local — місцевий · foreign — іноземний
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-29:i02; family: scripted_repeat_compare -->
-Ціль: `parcel`
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-29:i05; family: listen_build_dictation -->
+🔊 *The tables are upstairs.* Плитки: `upstairs` `are` `tables` `The` `is` → **The tables are upstairs.**
+*(плитка `is` зайва: тут потрібно `are` — `The tables are upstairs.`)*
 
-**5 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-29:i04; family: listen_choose -->
-Ціль: `letter`
-Варіанти: `letter`
+**6 · Обговорюючи заняття письмом загалом, скажіть «Столи важливі», не вказуючи на певні столи**
+<!-- interaction_id: en:lesson-03:session-29:i06; family: phrase_builder -->
+Плитки: `important` `are` `Tables` `is` → **Tables are important.**
+*(плитка `is` зайва: тут потрібно `are` — `Tables are important.`)*
 
-**6 · Розрізніть слово — stamp або stand**
-<!-- interaction_id: en:lesson-03:session-29:i06; family: sound_contrast -->
-Ціль: `stamp`
-Варіанти: `stamp` · `stand`
-- stand — *Stand — стояти. У записі перед останнім звуком чути p: stamp.*
+**7 · Анна зараз на зв’язку через інтернет. Скажіть «Вона в мережі» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-29:i07; family: scripted_repeat_compare -->
+🎙 **She's online.**
 
-
-**7 · Виберіть форму — ця річ лежить тут**
+**8 · Ви говорите, що для занять письмом важливі столи загалом, без указівки на конкретні столи**
 <!-- interaction_id: en:lesson-03:session-29:i08; family: context_gap_grammar -->
-Ціль: `This ___ here.`
-Варіанти: `is` · `are`
-- are — *Are — для кількох предметів. Тут один предмет: This is here.*
+___ are important. → **Tables** · The tables · A tables
+- The tables — *`The tables` — певні столи. Тут потрібне загальне `Tables`.*
+- A tables — *Перед `tables` не ставимо `a`.*
 
+**9 · Послухайте повідомлення про Анну**
+<!-- interaction_id: en:lesson-03:session-29:i09; family: listen_choose -->
+🔊 *She is away.* → **She is away.** · She is online. · She is local.
+- She is online. — *У записі останнє слово — `away`, а в цьому варіанті — `online`.*
+- She is local. — *У записі останнє слово — `away`, а в цьому варіанті — `local`.*
 
-**8 · Розрізніть слово — This або That**
-<!-- interaction_id: en:lesson-03:session-29:i09; family: sound_contrast -->
-Ціль: `This`
-Варіанти: `This` · `That`
-- That — *That використовують для предмета далі. Тут предмет поруч: This.*
+**10 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-29:i10; family: speed_match -->
+online — у мережі · away — у від’їзді · tables — столи · pens — ручки
 
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-29:i11; family: listen_build_dictation -->
+🔊 *The pens are inside.* Плитки: `inside` `are` `pens` `The` `is` → **The pens are inside.**
+*(плитка `is` зайва: тут потрібно `are` — `The pens are inside.`)*
 
-**9 · Промовте одну фразу — марка лежить поруч на столі**
-<!-- interaction_id: en:lesson-03:session-29:i10; family: scripted_repeat_compare -->
-Ціль: `This stamp, please.`
+**12 · Олег знає, які столи потрібні групі. Запитайте, де столи**
+<!-- interaction_id: en:lesson-03:session-29:i12; family: phrase_builder -->
+Плитки: `tables` `the` `are` `Where` `What` → **Where are the tables?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where are the tables?`)*
 
-**10 · З’єднайте слова зі значеннями — пошта біля дверей**
-<!-- interaction_id: en:lesson-03:session-29:i07; family: speed_match -->
-Пари: `parcel` — посилка · `letter` — лист · `stamp` — поштова марка · `key` — ключ
-Ціль: `parcel · letter · stamp · key`
+**13 · Анна поїхала до іншого міста. Скажіть «Вона у від’їзді» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-29:i13; family: scripted_repeat_compare -->
+🎙 **She's away.**
 
-**11 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i11:s01; family: phrase_builder -->
-Ціль: `This is a parcel.`
+**14 · Ви повідомляєте, де кілька потрібних столів**
+<!-- interaction_id: en:lesson-03:session-29:i14; family: context_gap_grammar -->
+The tables ___ upstairs. → **are** · is · am
+- is — *Столів кілька: потрібно `are`.*
+- am — *З `the tables` тут потрібно `are`.*
 
-**12 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i11:s02; family: scripted_repeat_compare -->
-Ціль: `It is heavy.`
+**15 · Послухайте повідомлення про учасника зустрічі**
+<!-- interaction_id: en:lesson-03:session-29:i15; family: listen_choose -->
+🔊 *He is local.* → **He is local.** · He is foreign. · He is online.
+- He is foreign. — *У записі останнє слово — `local`, а в цьому варіанті — `foreign`.*
+- He is online. — *У записі останнє слово — `local`, а в цьому варіанті — `online`.*
 
-**13 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i12:s01; family: phrase_builder -->
-Ціль: `That is a letter.`
+**16 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-29:i16; family: speed_match -->
+local — місцевий · foreign — іноземний · online — у мережі · away — у від’їзді
 
-**14 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i12:s02; family: scripted_repeat_compare -->
-Ціль: `It is wet.`
-
-**15 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i13:s01; family: listen_build_dictation -->
-Ціль: `This is a parcel.`
-
-**16 · Вставте одну відповідь в одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i13:s02; family: context_gap_grammar -->
-Ціль: `___ is heavy.`
-Варіанти: `It` · `This` · `That` · `Is`
-- This — *`This is heavy` знову вказує на ближню річ. За умовою посилку вже названо, тому `It` повертається до неї.*
-- That — *`That` указує на іншу далеку річ. Тут продовжуємо говорити про вже названу посилку: `It is heavy`.*
-- Is — *`Is is heavy` не утворює речення. Про названу річ починаємо зі слова `It`.*
-
-
-**17 · Послухайте одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i14:s01; family: listen_choose -->
-Ціль: `That is a letter.`
-Варіанти: `То лист.` · `Ось лист.` · `То посилка.`
-- Ось лист. — *У записі перше слово — `That`, а варіант передає `This`: змінилося вказівне слово.*
-- То посилка. — *У записі назвали `letter`, а не `parcel`; слово `It` потім повертається саме до листа.*
-
-
-**18 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i14:s02; family: phrase_builder -->
-Ціль: `It is wet.`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i15:s01; family: scripted_repeat_compare -->
-Ціль: `This is a stamp.`
-
-**20 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i15:s02; family: phrase_builder -->
-Ціль: `It is small.`
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i16:s01; family: scripted_repeat_compare -->
-Ціль: `That is a letter.`
-
-**22 · Вставте одну відповідь в одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i16:s02; family: context_gap_grammar -->
-Ціль: `___ is wet.`
-Варіанти: `It` · `That` · `This` · `Am`
-- That — *`That` знову вказує на річ вдалині. Лист уже названо, тому далі використовуємо `It`.*
-- This — *`This` укаже на ближню річ і змінить точку відліку. Тут продовжуємо говорити про названий лист: `It`.*
-- Am — *`am` уживаємо з `I`, коли говоримо про себе. Про вже названий лист потрібно `It`.*
-
-
-**23 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i17:s01; family: scripted_repeat_compare -->
-Ціль: `That is a parcel.`
-
-**24 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i17:s02; family: phrase_builder -->
-Ціль: `It is heavy.`
-
-**25 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i17:s03; family: scripted_repeat_compare -->
-Ціль: `This is a letter.`
-
-**26 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i17:s04; family: listen_build_dictation -->
-Ціль: `It is wet.`
-
-**27 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i17:s05; family: scripted_repeat_compare -->
-Ціль: `That is a stamp.`
-
-**28 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-29:i17:s06; family: listen_build_dictation -->
-Ціль: `It is small.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=context_gap_grammar, 8=sound_contrast, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=scripted_repeat_compare, 13=phrase_builder, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=context_gap_grammar, 17=listen_choose, 18=phrase_builder, 19=scripted_repeat_compare, 20=phrase_builder, 21=scripted_repeat_compare, 22=context_gap_grammar, 23=scripted_repeat_compare, 24=phrase_builder, 25=scripted_repeat_compare, 26=listen_build_dictation, 27=scripted_repeat_compare, 28=listen_build_dictation
+**17 · На наступній зустрічі ви готуєте іншу кімнату. Анна знає, які столи виділені вам. Запитайте, де столи**
+<!-- interaction_id: en:lesson-03:session-29:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where are the tables?**
 

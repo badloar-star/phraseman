@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-29:intro1:r2": {
+          "ru": "`table` — один стол; несколько — `tables`.",
+          "uk": "`table` — один стіл; кілька — `tables`."
+        },
+        "en:lesson-03:session-29:intro1:r3": {
+          "ru": "Перед названием нескольких столов не ставим `a`.",
+          "uk": "Перед назвою кількох столів не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-29:intro2:r2": {
+          "ru": "`The tables` — определённые столы. Здесь речь о столах вообще: `Tables`.",
+          "uk": "`The tables` — певні столи. Тут ідеться про столи загалом: `Tables`."
+        },
+        "en:lesson-03:session-29:intro2:r3": {
+          "ru": "Перед `tables` не ставим `a`.",
+          "uk": "Перед `tables` не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-29:intro3:r2": {
+          "ru": "`local` — «местная», а сейчас важно, что она в сети: `online`.",
+          "uk": "`local` — «місцева», а зараз важливо, що вона в мережі: `online`."
+        },
+        "en:lesson-03:session-29:intro3:r3": {
+          "ru": "`foreign` — «иностранная», а для «в сети» нужно `online`.",
+          "uk": "`foreign` — «іноземна», а для «у мережі» потрібне `online`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bfc9a120c846e3aacd6e398be72d220e4e001d16481d1d8092c55c879ac9b47c"
+}

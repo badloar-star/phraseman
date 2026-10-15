@@ -25,14 +25,15 @@ describe('«Итог урока»: шапка закреплена, скрим �
     expect(src).toContain('const topFadeSolidH = insets.top + 8 + HEAD_H;');
     expect(src).toContain('const topFadeH = topFadeSolidH + TOP_FADE_FEATHER;');
     expect(src).toContain('locations={[0, topFadeSolid, 1]}');
-    expect(src).toContain('toValue: scrolled ? 1 : 0, duration: scrolled ? 160 : 220');
+    expect(src).toContain('withTiming(scrolled ? 1 : 0, { duration: scrolled ? 160 : 220 })');
     expect(src).toContain('const TOP_FADE_SHOW_AT = 6;');
     expect(src).toContain('const TOP_FADE_FEATHER = 28;');
   });
 
   it('скрим того же цвета, что корень экрана (шва нет); не перехватывает касания; шапка лежит поверх скрима', () => {
     expect(src).toContain('style={[s.root, { backgroundColor: g.bg }]}');
-    expect(src).toMatch(/<Animated\.View pointerEvents="none" testID="v2-done-top-fade"/);
+    expect(src).toMatch(/<Reanimated\.View pointerEvents="none" testID="v2-done-top-fade"/);
+    expect(src).not.toMatch(/\bAnimated\.(Value|timing)/);
     expect(src.indexOf('testID="v2-done-top-fade"')).toBeLessThan(src.indexOf('testID="v2-done-head"'));
   });
 

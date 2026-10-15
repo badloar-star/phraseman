@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import React, { memo, useEffect, useRef, useState, type ReactNode } from 'react';
-import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useEffect, useState, type ReactNode } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Reanimated, {
   useAnimatedStyle,
   useReducedMotion,
@@ -171,8 +171,10 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
   const insets = useStableSafeAreaInsets();
   // зачем (Макеты 06b311f0d, 🟡 б: «УРОК ПРОЙДЕН» заезжает под значки статус-бара при прокрутке — следствие 80c6cc2e0): верхний скрим цвета фона экрана, только после прокрутки (порог 6 dp, одно переключение на пересечение)
   const [scrolled, setScrolled] = useState(false);
-  const fadeOpacity = useRef(new Animated.Value(0)).current;
-  useEffect(() => { Animated.timing(fadeOpacity, { toValue: scrolled ? 1 : 0, duration: scrolled ? 160 : 220, useNativeDriver: true }).start(); }, [scrolled, fadeOpacity]);
+  // зачем (координатор 15.10, красный done_chain_m10): плавность скрима — Reanimated, как у остального экрана; react-native Animated в моке сторожа нет и в проекте не используется
+  const fadeOpacity = useSharedValue(0);
+  useEffect(() => { fadeOpacity.value = withTiming(scrolled ? 1 : 0, { duration: scrolled ? 160 : 220 }); }, [scrolled, fadeOpacity]);
+  const fadeStyle = useAnimatedStyle(() => ({ opacity: fadeOpacity.value }));
   const reduced = useReducedMotion();
   const animate = !reduced;
   const c = copy(lang);
@@ -319,9 +321,9 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         </>))}
       </ScrollView>
       {/* зачем (Макеты 06b311f0d + Сверка): скрим сверху — непрозрачный на высоту шапки (inset + отступ + кнопка), ниже растворяется; плавно (160/220 мс) после прокрутки; шапка лежит поверх */}
-      <Animated.View pointerEvents="none" testID="v2-done-top-fade" style={[s.topFade, { height: topFadeH, opacity: fadeOpacity }]}>
+      <Reanimated.View pointerEvents="none" testID="v2-done-top-fade" style={[s.topFade, { height: topFadeH }, fadeStyle]}>
         <LinearGradient pointerEvents="none" colors={[g.bg, g.bg, alphaHex(g.bg, 0)]} locations={[0, topFadeSolid, 1]} style={StyleSheet.absoluteFill} />
-      </Animated.View>
+      </Reanimated.View>
       <View pointerEvents="box-none" testID="v2-done-head" style={[s.headPinned, { paddingTop: insets.top + 8 }]}>
         <View style={s.head}>
           <Pressable

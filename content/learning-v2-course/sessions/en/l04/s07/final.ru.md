@@ -1,118 +1,138 @@
-# Английский · Урок 4 · Занятие 7 — «Площадка во дворе»
+# Английский · Урок 4 · Занятие 7 — Площадка и кафе
 
-**Сцена занятия.** Вы стоите во дворе жилого комплекса. Видна площадка, рядом стоят дома, за углом — магазин и улица. Вам нужно быстро объяснить соседу, что здесь есть.
-**Как сказать:** выбрать `There is` для одного места и `There are` для нескольких зданий.
+**Ситуация.** Вы с другом выбираете место для семейной прогулки. На карте есть детская площадка и несколько кафе. Перед выходом вы собираете вещи и решаете, что необходимо взять.
+
+**Что вы освоите:** сообщить об одной площадке и нескольких кафе, назвать необходимую вещь
 **Новые слова:** playground
-**Возвращаются:** building, shop, street
+
+---
 
 ## Интро 1
 
-### Площадка во дворе
+### Место для игр
 
-`playground` — «площадка»: место во дворе, где играют дети. Это отдельное место, а не здание: у него могут быть качели, горка или мяч, но не лестничная клетка. Слово `playground` называет именно площадку; двор без неё просто немного тише.
+`playground` — «детская площадка». `There is a playground` — «Есть детская площадка». Качели и горка могут быть частью одной площадки: две горки не означают две площадки. Для одного места нужны `is` и `a`. `There is a playground here` — «Здесь есть детская площадка».
 
-**Во дворе одна площадка. Выберите слово.**
+**Сообщите, что здесь есть детская площадка.**
 
-- ✅ **playground**
-- ❌ building — *`Building` — здание. Во дворе показана `playground`.*
-- ❌ shop — *`Shop` — магазин. Здесь нужна `playground`.*
+- ✅ **There is a playground here.**
+- ❌ There are a playground here. — *Площадка одна: `There is a playground here`.*
+- ❌ There is playground here. — *Перед одной площадкой нужно `a`: `a playground`.*
+
+---
 
 ## Интро 2
 
-### Одна площадка
+### Кафе для отдыха
 
-`There is a playground in the courtyard.` — «Во дворе есть площадка». `There is` идёт с одним местом; перед `playground` нужен `a`. Одна площадка требует одну форму. `In the courtyard` говорит, где она находится, но не превращает одну площадку в несколько.
+`cafes` — «кафе», когда их несколько. `There are cafes here` — «Здесь есть кафе». Несколько мест — `are`, без `a`. `cup` — «чашка»: `This is a cup` — «Это чашка». Для одной чашки: `There is a cup here` — «Здесь есть чашка».
 
-**Во дворе есть одна площадка. Выберите сообщение.**
+**Сообщите, что здесь есть несколько кафе.**
 
-- ✅ **There is a playground in the courtyard.**
-- ❌ There are a playground in the courtyard. — *Площадка одна: нужно `There is a playground`.*
-- ❌ There is playground in the courtyard. — *Перед одним исчисляемым местом нужен `a`: `a playground`.*
+- ✅ **There are cafes here.**
+- ❌ There is cafes here. — *Кафе несколько: `There are`.*
+- ❌ There are a cafes here. — *Перед несколькими `cafes` не ставим `a`.*
+
+---
 
 ## Интро 3
 
-### Дома рядом
+### Что необходимо
 
-`There are buildings near the playground.` — «Рядом с площадкой есть здания». Слово `are` на своём месте: зданий больше одного, а площадка остаётся одна. Сначала посмотрите, что именно считаете: `buildings` с `-s` ведёт к `There are`; площадка здесь лишь ориентир, не главный бухгалтер.
+`necessary` — «необходимый». Для пикника нужна чашка: без неё вам не из чего пить. О чашке в этой ситуации: `It is necessary` — «Она необходима». Сокращение: `It’s necessary`. Это не значит, что чашка нужна всегда и всем: говорим о конкретной прогулке.
 
-**Рядом с площадкой несколько домов. Выберите сообщение.**
+**Вы объясняете, что чашка нужна для этого пикника. Скажите «Она необходима» с сокращением.**
 
-- ✅ **There are buildings near the playground.**
-- ❌ There is buildings near the playground. — *Зданий несколько, поэтому нужно `There are buildings`.*
-- ❌ There are a building near the playground. — *Одно `a building` не подходит к `There are`; здесь несколько `buildings`.*
+- ✅ **It's necessary.**
+- ❌ It are necessary. — *С `It` нужно `is`, сокращённо `It’s`.*
+- ❌ It's striped. — *`striped` — полосатая. Здесь говорим о необходимости: `necessary`.*
 
-## Практика — по одной цели
+---
 
-**1 · Послушайте и выберите, что прозвучало**
-<!-- interaction_id: en:lesson-04:session-07:i01; family: listen_choose -->
-Цель: `playground`
-🔊 *playground*
-Значения вариантов: playground — площадка · playgroup — игровая группа · playgrounds — площадки
-→ **playground** · playgroup · playgrounds
-- playgroup — *В записи `playground`, а не `playgroup`: слышно конец `-ground`.*
-- playgrounds — *В записи один `playground`, без окончания `-s`.*
+## Практика (17 заданий)
 
-**2 · Произнесите новое слово**
-<!-- interaction_id: en:lesson-04:session-07:i02; family: scripted_repeat_compare -->
-Цель: `playground`
-🎙 **playground**
+**1 · Назовите вещь в своей руке: «Это чашка»**
+<!-- interaction_id: en:lesson-04:session-07:i01; family: phrase_builder -->
+Плитки: `cup` `a` `is` `This` `are` → **This is a cup.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a cup.`)*
 
-**3 · Во дворе отмечено место для детей. Выберите название**
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-04:session-07:i02; family: listen_choose -->
+🔊 *playground* → **playground** · garden · museum
+- garden — *В записи первое слово — `playground`, а в этом варианте — `garden`.*
+- museum — *В записи первое слово — `playground`, а в этом варианте — `museum`.*
+
+**3 · Назовите детскую площадку одним английским словом**
 <!-- interaction_id: en:lesson-04:session-07:i03; family: context_gap_grammar -->
-___ → **playground** · building · shop
-- building — *`Building` — здание. Место для детей — `playground`.*
-- shop — *`Shop` — магазин. Во дворе отмечена `playground`.*
+___ → **playground** · museum · bank
+- museum — *`museum` — музей; детская площадка — `playground`.*
+- bank — *`bank` — банк; детская площадка — `playground`.*
 
-**4 · Послушайте и соберите сообщение о площадке**
-<!-- interaction_id: en:lesson-04:session-07:i04; family: listen_build_dictation -->
-Цель: `There is a playground near a building.`
-🔊 *There is a playground near a building.*
-Плитки: `There` · `is` · `a` · `playground` · `near` · `a` · `building` · `are`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-07:i04; family: speed_match -->
+playground — детская площадка · necessary — необходимый · cup — чашка · cafes — кафе — несколько
 
-**5 · Соберите сообщение об одной площадке**
-<!-- interaction_id: en:lesson-04:session-07:i05; family: phrase_builder -->
-Цель: `There is a playground near the shop.`
-Плитки: `There` · `is` · `a` · `playground` · `near` · `the` · `shop` · `are`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-07:i05; family: listen_build_dictation -->
+🔊 *There is a playground.* Плитки: `playground` `a` `is` `There` `are` → **There is a playground.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a playground.`)*
 
-**6 · Вставьте форму для одной площадки**
-<!-- interaction_id: en:lesson-04:session-07:i06; family: context_gap_grammar -->
-There ___ a playground near the street. → **is** · are · am
-- are — *Площадка одна, поэтому нужна форма `is`.*
-- am — *`Am` употребляется с `I`; здесь нужна форма `is`.*
+**6 · Друг изучает район. Сообщите «Здесь есть кафе», имея в виду несколько**
+<!-- interaction_id: en:lesson-04:session-07:i06; family: phrase_builder -->
+Плитки: `here` `cafes` `are` `There` `is` → **There are cafes here.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are cafes here.`)*
 
-**7 · Произнесите сообщение о домах**
+**7 · Для этого пикника чашка нужна: иначе вам не из чего пить. Скажите «Она необходима» с сокращением**
 <!-- interaction_id: en:lesson-04:session-07:i07; family: scripted_repeat_compare -->
-Цель: `There are buildings beside the playground.`
-🎙 **There are buildings beside the playground.**
+🎙 **It's necessary.**
 
-**8 · Соедините слова с их значениями**
-<!-- interaction_id: en:lesson-04:session-07:i08; family: speed_match -->
-Пары: `playground` — площадка · `building` — здание · `shop` — магазин · `street` — улица
+**8 · Сообщите о наличии одной детской площадки**
+<!-- interaction_id: en:lesson-04:session-07:i08; family: context_gap_grammar -->
+There is ___ playground here. → **a** · an · are
+- an — *Перед согласным звуком в `playground` нужно `a`.*
+- are — *`is` уже есть; перед одним местом нужно `a`.*
 
-**9 · Вставьте форму для нескольких домов**
-<!-- interaction_id: en:lesson-04:session-07:i09; family: context_gap_grammar -->
-There ___ buildings on the street. → **are** · is · am
-- is — *Зданий несколько, поэтому нужна форма `are`.*
-- am — *`Am` употребляется с `I`; здесь несколько `buildings`.*
+**9 · Послушайте, что человек говорит о вещи для пикника**
+<!-- interaction_id: en:lesson-04:session-07:i09; family: listen_choose -->
+🔊 *It is necessary.* → **It is necessary.** · It is striped. · It is real.
+- It is striped. — *В записи последнее слово — `necessary`, а в этом варианте — `striped`.*
+- It is real. — *В записи последнее слово — `necessary`, а в этом варианте — `real`.*
 
-**10 · Соберите сообщение о магазине**
-<!-- interaction_id: en:lesson-04:session-07:i10; family: phrase_builder -->
-Цель: `There is a shop near the playground.`
-Плитки: `There` · `is` · `a` · `shop` · `near` · `the` · `playground` · `are`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-07:i10; family: speed_match -->
+playground — детская площадка · cafes — кафе — несколько · here — здесь · there — там
 
-**11 · Послушайте и соберите сообщение о домах**
+**11 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-04:session-07:i11; family: listen_build_dictation -->
-Цель: `There are buildings on the street near the playground.`
-🔊 *There are buildings on the street near the playground.*
-Плитки: `There` · `are` · `buildings` · `on` · `the` · `street` · `near` · `the` · `playground` · `is`
+🔊 *There is a cup here.* Плитки: `here` `cup` `a` `is` `There` `are` → **There is a cup here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a cup here.`)*
 
-**12 · соберите сообщение о площадке и зданиях**
+**12 · Друг спрашивает, что за место рядом. Назовите его: «Это детская площадка»**
 <!-- interaction_id: en:lesson-04:session-07:i12; family: phrase_builder -->
-Цель: `There is a playground near the buildings.`
-Плитки: `There` · `is` · `a` · `playground` · `near` · `the` · `buildings` · `are`
+Плитки: `playground` `a` `is` `This` `are` → **This is a playground.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a playground.`)*
 
-## Для сборщика
+**13 · Друг не узнаёт предмет на дальней стойке. Назовите его: «То — чашка»**
+<!-- interaction_id: en:lesson-04:session-07:i13; family: scripted_repeat_compare -->
+🎙 **That is a cup.**
 
-atomic_practice: practice.atomic.json
-new_words: playground — площадка — Место во дворе, где играют дети.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=listen_build_dictation, 5=phrase_builder, 6=context_gap_grammar, 7=scripted_repeat_compare, 8=speed_match, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=phrase_builder
+**14 · Вы показываете другой район на карте. Сообщите «Там есть кафе», имея в виду несколько**
+<!-- interaction_id: en:lesson-04:session-07:i14; family: context_gap_grammar -->
+There ___ cafes there. → **are** · is · am
+- is — *Кафе несколько: `There are cafes there`. Последнее `there` — «там».*
+- am — *Для нескольких кафе нужно `There are`.*
+
+**15 · Послушайте сообщение о детской площадке**
+<!-- interaction_id: en:lesson-04:session-07:i15; family: listen_choose -->
+🔊 *That is a playground.* → **That is a playground.** · That is a clinic. · That is a museum.
+- That is a clinic. — *В записи последнее слово — `playground`, а в этом варианте — `clinic`.*
+- That is a museum. — *В записи последнее слово — `playground`, а в этом варианте — `museum`.*
+
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-07:i16; family: speed_match -->
+playground — детская площадка · necessary — необходимый · cup — чашка · cafes — кафе — несколько
+
+**17 · В другой поездке вы заметили площадку с качелями. Друг ещё не знает о ней. Сообщите «Здесь есть детская площадка»**
+<!-- interaction_id: en:lesson-04:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **There is a playground here.**
+

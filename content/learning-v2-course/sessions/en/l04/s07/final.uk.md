@@ -1,118 +1,138 @@
-# Англійська · Урок 4 · Заняття 7 — «Майданчик у дворі»
+# Англійська · Урок 4 · Заняття 7 — Майданчик і кафе
 
-**Сцена заняття.** Ви стоїте у дворі житлового комплексу. Видно майданчик, поруч стоять будинки, за рогом — магазин і вулиця. Вам треба швидко пояснити сусідові, що тут є.
-**Як сказати:** обрати `There is` для одного місця й `There are` для кількох будинків.
+**Ситуація.** Ви з другом вибираєте місце для сімейної прогулянки. На карті є дитячий майданчик і кілька кафе. Перед виходом ви збираєте речі й вирішуєте, що необхідно взяти.
+
+**Що ви опануєте:** повідомити про один майданчик і кілька кафе, назвати необхідну річ
 **Нові слова:** playground
-**Повертаються:** building, shop, street
+
+---
 
 ## Інтро 1
 
-### Майданчик у дворі
+### Місце для ігор
 
-`playground` — «майданчик»: місце у дворі, де граються діти. Це окреме місце, а не будівля: там можуть бути гойдалки, гірка або м’яч, але не сходова клітка. Слово `playground` називає саме майданчик; двір без нього просто трохи тихіший.
+`playground` — «дитячий майданчик». `There is a playground` — «Є дитячий майданчик». Гойдалки й гірка можуть бути частиною одного майданчика: дві гірки не означають два майданчики. Для одного місця потрібні `is` і `a`. `There is a playground here` — «Тут є дитячий майданчик».
 
-**У дворі один майданчик. Оберіть слово.**
+**Повідомте, що тут є дитячий майданчик.**
 
-- ✅ **playground**
-- ❌ building — *`Building` — будівля. У дворі показано `playground`.*
-- ❌ shop — *`Shop` — магазин. Тут потрібне `playground`.*
+- ✅ **There is a playground here.**
+- ❌ There are a playground here. — *Майданчик один: `There is a playground here`.*
+- ❌ There is playground here. — *Перед одним майданчиком потрібне `a`: `a playground`.*
+
+---
 
 ## Інтро 2
 
-### Один майданчик
+### Кафе для відпочинку
 
-`There is a playground in the courtyard.` — «У дворі є майданчик». `There is` іде з одним місцем; перед `playground` потрібен `a`. Один майданчик потребує однієї форми. `In the courtyard` каже, де він є, але не перетворює один майданчик на кілька.
+`cafes` — «кафе», коли їх кілька. `There are cafes here` — «Тут є кафе». Кілька місць — `are`, без `a`. `cup` — «чашка»: `This is a cup` — «Це чашка». Для однієї чашки: `There is a cup here` — «Тут є чашка».
 
-**У дворі є один майданчик. Оберіть повідомлення.**
+**Повідомте, що тут є кілька кафе.**
 
-- ✅ **There is a playground in the courtyard.**
-- ❌ There are a playground in the courtyard. — *Майданчик один: потрібне `There is a playground`.*
-- ❌ There is playground in the courtyard. — *Перед одним злічуваним місцем потрібен `a`: `a playground`.*
+- ✅ **There are cafes here.**
+- ❌ There is cafes here. — *Кафе кілька: `There are`.*
+- ❌ There are a cafes here. — *Перед кількома `cafes` не ставимо `a`.*
+
+---
 
 ## Інтро 3
 
-### Будинки поруч
+### Що необхідне
 
-`There are buildings near the playground.` — «Біля майданчика є будівлі». Слово `are` на своєму місці: будівель більше однієї, а майданчик лишається один. Спершу подивіться, що саме рахуєте: `buildings` з `-s` веде до `There are`; майданчик тут лише орієнтир, не головний бухгалтер.
+`necessary` — «необхідний». Для пікніка потрібна чашка: без неї вам немає з чого пити. Про чашку в цій ситуації: `It is necessary` — «Вона необхідна». Скорочення: `It’s necessary`. Це не означає, що чашка потрібна завжди й усім: говоримо про конкретну прогулянку.
 
-**Поруч із майданчиком кілька будинків. Оберіть повідомлення.**
+**Ви пояснюєте, що чашка потрібна для цього пікніка. Скажіть «Вона необхідна» зі скороченням.**
 
-- ✅ **There are buildings near the playground.**
-- ❌ There is buildings near the playground. — *Будинків кілька, тому потрібне `There are buildings`.*
-- ❌ There are a building near the playground. — *Одне `a building` не підходить до `There are`; тут кілька `buildings`.*
+- ✅ **It's necessary.**
+- ❌ It are necessary. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ❌ It's striped. — *`striped` — смугаста. Тут говоримо про необхідність: `necessary`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте й оберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-07:i01; family: listen_choose -->
-Ціль: `playground`
-🔊 *playground*
-Значення варіантів: playground — майданчик · playgroup — ігрова група · playgrounds — майданчики
-→ **playground** · playgroup · playgrounds
-- playgroup — *У записі `playground`, а не `playgroup`: там є кінець `-ground`.*
-- playgrounds — *У записі один `playground`, без закінчення `-s`.*
+## Практика (17 завдань)
 
-**2 · Промовте нове слово**
-<!-- interaction_id: en:lesson-04:session-07:i02; family: scripted_repeat_compare -->
-Ціль: `playground`
-🎙 **playground**
+**1 · Назвіть річ у своїй руці: «Це чашка»**
+<!-- interaction_id: en:lesson-04:session-07:i01; family: phrase_builder -->
+Плитки: `cup` `a` `is` `This` `are` → **This is a cup.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a cup.`)*
 
-**3 · У дворі позначено місце для дітей. Оберіть назву**
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-07:i02; family: listen_choose -->
+🔊 *playground* → **playground** · garden · museum
+- garden — *У записі перше слово — `playground`, а в цьому варіанті — `garden`.*
+- museum — *У записі перше слово — `playground`, а в цьому варіанті — `museum`.*
+
+**3 · Назвіть дитячий майданчик одним англійським словом**
 <!-- interaction_id: en:lesson-04:session-07:i03; family: context_gap_grammar -->
-___ → **playground** · building · shop
-- building — *`Building` — будівля. Місце для дітей — `playground`.*
-- shop — *`Shop` — магазин. У дворі позначено `playground`.*
+___ → **playground** · museum · bank
+- museum — *`museum` — музей; дитячий майданчик — `playground`.*
+- bank — *`bank` — банк; дитячий майданчик — `playground`.*
 
-**4 · Послухайте й складіть повідомлення про майданчик**
-<!-- interaction_id: en:lesson-04:session-07:i04; family: listen_build_dictation -->
-Ціль: `There is a playground near a building.`
-🔊 *There is a playground near a building.*
-Плитки: `There` · `is` · `a` · `playground` · `near` · `a` · `building` · `are`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-07:i04; family: speed_match -->
+playground — дитячий майданчик · necessary — необхідний · cup — чашка · cafes — кафе — кілька
 
-**5 · Складіть повідомлення про один майданчик**
-<!-- interaction_id: en:lesson-04:session-07:i05; family: phrase_builder -->
-Ціль: `There is a playground near the shop.`
-Плитки: `There` · `is` · `a` · `playground` · `near` · `the` · `shop` · `are`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-07:i05; family: listen_build_dictation -->
+🔊 *There is a playground.* Плитки: `playground` `a` `is` `There` `are` → **There is a playground.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a playground.`)*
 
-**6 · Вставте форму для одного майданчика**
-<!-- interaction_id: en:lesson-04:session-07:i06; family: context_gap_grammar -->
-There ___ a playground near the street. → **is** · are · am
-- are — *`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину.*
-- am — *`Am` уживають лише з `I`; тут потрібна форма `is`.*
+**6 · Друг вивчає район. Повідомте «Тут є кафе», маючи на увазі кілька**
+<!-- interaction_id: en:lesson-04:session-07:i06; family: phrase_builder -->
+Плитки: `here` `cafes` `are` `There` `is` → **There are cafes here.**
+*(плитка `is` зайва: тут потрібно `are` — `There are cafes here.`)*
 
-**7 · Промовте повідомлення про будинки**
+**7 · Для цього пікніка чашка потрібна: інакше вам немає з чого пити. Скажіть «Вона необхідна» зі скороченням**
 <!-- interaction_id: en:lesson-04:session-07:i07; family: scripted_repeat_compare -->
-Ціль: `There are buildings beside the playground.`
-🎙 **There are buildings beside the playground.**
+🎙 **It's necessary.**
 
-**8 · З’єднайте слова з їхніми значеннями**
-<!-- interaction_id: en:lesson-04:session-07:i08; family: speed_match -->
-Пари: `playground` — майданчик · `building` — будівля · `shop` — магазин · `street` — вулиця
+**8 · Повідомте про наявність одного дитячого майданчика**
+<!-- interaction_id: en:lesson-04:session-07:i08; family: context_gap_grammar -->
+There is ___ playground here. → **a** · an · are
+- an — *Перед приголосним звуком у `playground` потрібне `a`.*
+- are — *`is` уже є; перед одним місцем потрібне `a`.*
 
-**9 · Вставте форму для кількох будинків**
-<!-- interaction_id: en:lesson-04:session-07:i09; family: context_gap_grammar -->
-There ___ buildings on the street. → **are** · is · am
-- is — *Будинків кілька, тому потрібна форма `are`.*
-- am — *`Am` уживається з `I`; тут кілька `buildings`.*
+**9 · Послухайте, що людина говорить про річ для пікніка**
+<!-- interaction_id: en:lesson-04:session-07:i09; family: listen_choose -->
+🔊 *It is necessary.* → **It is necessary.** · It is striped. · It is real.
+- It is striped. — *У записі останнє слово — `necessary`, а в цьому варіанті — `striped`.*
+- It is real. — *У записі останнє слово — `necessary`, а в цьому варіанті — `real`.*
 
-**10 · Складіть повідомлення про магазин**
-<!-- interaction_id: en:lesson-04:session-07:i10; family: phrase_builder -->
-Ціль: `There is a shop near the playground.`
-Плитки: `There` · `is` · `a` · `shop` · `near` · `the` · `playground` · `are`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-07:i10; family: speed_match -->
+playground — дитячий майданчик · cafes — кафе — кілька · here — тут · there — там
 
-**11 · Послухайте й складіть повідомлення про будинки**
+**11 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-04:session-07:i11; family: listen_build_dictation -->
-Ціль: `There are buildings on the street near the playground.`
-🔊 *There are buildings on the street near the playground.*
-Плитки: `There` · `are` · `buildings` · `on` · `the` · `street` · `near` · `the` · `playground` · `is`
+🔊 *There is a cup here.* Плитки: `here` `cup` `a` `is` `There` `are` → **There is a cup here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a cup here.`)*
 
-**12 · складіть повідомлення про майданчик і будинки**
+**12 · Друг запитує, що за місце поруч. Назвіть його: «Це дитячий майданчик»**
 <!-- interaction_id: en:lesson-04:session-07:i12; family: phrase_builder -->
-Ціль: `There is a playground near the buildings.`
-Плитки: `There` · `is` · `a` · `playground` · `near` · `the` · `buildings` · `are`
+Плитки: `playground` `a` `is` `This` `are` → **This is a playground.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a playground.`)*
 
-## Для збирача
+**13 · Друг не впізнає предмет на дальній стійці. Назвіть його: «То — чашка»**
+<!-- interaction_id: en:lesson-04:session-07:i13; family: scripted_repeat_compare -->
+🎙 **That is a cup.**
 
-atomic_practice: practice.atomic.json
-new_words: playground — майданчик — Місце у дворі, де граються діти.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=listen_build_dictation, 5=phrase_builder, 6=context_gap_grammar, 7=scripted_repeat_compare, 8=speed_match, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=phrase_builder
+**14 · Ви показуєте інший район на карті. Повідомте «Там є кафе», маючи на увазі кілька**
+<!-- interaction_id: en:lesson-04:session-07:i14; family: context_gap_grammar -->
+There ___ cafes there. → **are** · is · am
+- is — *Кафе кілька: `There are cafes there`. Останнє `there` — «там».*
+- am — *Для кількох кафе потрібне `There are`.*
+
+**15 · Послухайте повідомлення про дитячий майданчик**
+<!-- interaction_id: en:lesson-04:session-07:i15; family: listen_choose -->
+🔊 *That is a playground.* → **That is a playground.** · That is a clinic. · That is a museum.
+- That is a clinic. — *У записі останнє слово — `playground`, а в цьому варіанті — `clinic`.*
+- That is a museum. — *У записі останнє слово — `playground`, а в цьому варіанті — `museum`.*
+
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-07:i16; family: speed_match -->
+playground — дитячий майданчик · necessary — необхідний · cup — чашка · cafes — кафе — кілька
+
+**17 · В іншій подорожі ви помітили майданчик із гойдалками. Друг ще не знає про нього. Повідомте «Тут є дитячий майданчик»**
+<!-- interaction_id: en:lesson-04:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **There is a playground here.**
+

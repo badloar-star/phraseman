@@ -8,7 +8,8 @@ describe('«не засчитано»: проводка блока', () => {
   it('Карточки «Устно»: блок вместо прежней карточки при провале с названным словом; те же testID кнопок; «Пропустить» текстом', () => {
     const src = read('app/flashcards_speaking_session.tsx');
     expect(src).toContain("import SpeechFailBlock from '../components/speech/SpeechFailBlock';");
-    expect(src).toContain('scorePronunciationTranscript({ targetText: card.en, transcript: spokenTranscript }).missingWords');
+    expect(src).toContain('retainedMissingWords(attempt)');
+    expect(src).not.toContain('scorePronunciationTranscript(');
     expect(src).toContain('phase === \'scored\' && attempt && band && card && failWords.length > 0');
     expect(src).toContain('testID="fc-speak-fail"');
     expect(src).toMatch(/testID="fc-speak-retry"[\s\S]*?testID="fc-speak-next"[\s\S]*?\{labels\.skip\}/);
@@ -20,6 +21,8 @@ describe('«не засчитано»: проводка блока', () => {
     const src = read('app/learning_v2_direct_session_player_v1.tsx');
     expect(src).toContain('import SpeechFailBlock from "../components/speech/SpeechFailBlock";');
     expect(src).toContain('voiceAttemptResult && voiceTargetText && voiceFailWords.length > 0');
+    expect(src).toContain('voiceAttemptResult.missingWords');
+    expect(src).not.toContain('scorePronunciationTranscript(');
     expect(src).toContain('testID="learning-v2-speech-fail"');
     expect(src).toContain('"Ещё раз", uk: "Ще раз"');
     expect(src).toContain('styles.voiceResultCard');

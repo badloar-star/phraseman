@@ -62,7 +62,6 @@ import { mixDark } from '../components/mistakes-panel/panelPaint'; // theme-exem
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import SpeechFailBlock from '../components/speech/SpeechFailBlock';
-import { scorePronunciationTranscript } from './pronunciation_scoring_core';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
@@ -167,6 +166,13 @@ function retainedSpeakingTranscript(attempt: SpeakingAttempt | null): string | n
   const transcript = (attempt as SpeakingAttempt & { transcript?: unknown }).transcript;
   if (typeof transcript !== 'string') return null;
   return transcript.trim().length > 0 ? transcript : null;
+}
+
+// зачем (координатор 15.10, «не засчитано»): панель в `onScore` отдаёт `missingWords` — пропущенные слова цели от строгой проверки; сессия хранит попытку как есть, берём оттуда
+function retainedMissingWords(attempt: SpeakingAttempt | null): readonly string[] {
+  if (!attempt) return [];
+  const words = (attempt as SpeakingAttempt & { missingWords?: unknown }).missingWords;
+  return Array.isArray(words) ? words.filter((w): w is string => typeof w === 'string') : [];
 }
 
 /**
@@ -1585,10 +1591,8 @@ RU: ${card.translation}`}
   const band = attempt ? speakingBand(attempt.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD, attempt.passed) : null;
   const spokenTranscript = retainedSpeakingTranscript(attempt);
   // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале показываем фразу ЦЕЛИКОМ с подсвеченными пропущенными словами и строкой «Не услышали слово «X» — скажи
-  // фразу целиком». Пропущенные слова — тем же оценщиком по распознанному тексту (панель в `onScore` пока отдаёт только счёт и текст); пусто (ничего не распознано / слово не названо) — прежний вид результата.
-  const failWords: readonly string[] = !attempt || attempt.passed || !card || !spokenTranscript
-    ? []
-    : (scorePronunciationTranscript({ targetText: card.en, transcript: spokenTranscript }).missingWords ?? []);
+  // фразу целиком». Пропущенные слова — из результата панели (`missingWords`); пусто (слово не названо) — прежний вид результата.
+  const failWords: readonly string[] = !attempt || attempt.passed || !card ? [] : retainedMissingWords(attempt);
   // зачем (Карточки 2.0 12.10): микрофон 92 включается касанием; подпись «зажми…» ушла вместе с удержанием.
   const passedNow = phase === 'scored' && attempt?.passed === true;
   const spoken = session.events.filter((e) => e.correct).length;

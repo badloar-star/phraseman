@@ -48,9 +48,9 @@ import {
 import {
   buildSpokenWordReport,
   firstSoundHint,
-  maskSpokenWordKeepInitial,
   type SpokenWordEntry,
 } from '../app/speaking_word_report';
+import { buildSpeechFailView, speechFailDisplayWord, speechFailLineText } from '../app/speech_fail_view';
 import {
   judgeSingleWord,
   isDrillableStatus,
@@ -264,7 +264,8 @@ export interface SpeakingPanelProps {
   /** Called when the spoken attempt reaches the pass threshold. */
   onPass?: (result: { score: number; transcript: string }) => void;
   /** Called after every scored attempt, including a failed pronunciation. */
-  onScore?: (result: { score: number; passed: boolean; transcript: string }) => void;
+  // зачем (координатор 15.10, «не засчитано»): `missingWords` — пропущенные слова цели от строгой проверки; хост рисует по ним красное и строку «Не услышали слово «X»» (раньше пересчитывал по тексту)
+  onScore?: (result: { score: number; passed: boolean; transcript: string; missingWords: readonly string[] }) => void;
   /** Live transcript from the exact same recognizer used by the oral mode. */
   onTranscriptChange?: (transcript: string) => void;
   /**
@@ -389,6 +390,8 @@ export function SpeakingPanel({
   const [wordReport, setWordReport] = useState<SpokenWordEntry[] | null>(null);
   // Одна конкретная подсказка «что тянет балл вниз» (самая важная проблема).
   const [hint, setHint] = useState<SpeakingHint | null>(null);
+  // пропущенные слова последней непринятой попытки (нормализованные слова цели) — по ним красное в карте и строка под ней
+  const [failMissing, setFailMissing] = useState<readonly string[]>([]);
   // Тренировка слов: какое слово карты открыто и какие уже «дочинены» до зелёного.
   const [drill, setDrill] = useState<WordDrillState>(() => initWordDrillState());
   // Локальные переопределения статуса слов после дрилла: index → 'clean'. Живут
@@ -509,6 +512,7 @@ export function SpeakingPanel({
   const attemptStartRef = useRef(0);
 
   const tokens = useMemo(() => speakingTargetTokens(targetText), [targetText]);
+  const failView = useMemo(() => buildSpeechFailView(targetText, failMissing), [targetText, failMissing]);
   const matched = useMemo(
     () => speakingMatchedFlags(targetText, transcript),
     [targetText, transcript],
@@ -677,7 +681,8 @@ export function SpeakingPanel({
         }),
       );
       setScore(honestScore);
-      onScore?.({ score: honestScore, passed, transcript: text });
+      setFailMissing(passed ? [] : biased.missingWords);
+      onScore?.({ score: honestScore, passed, transcript: text, missingWords: passed ? [] : biased.missingWords });
       if (passed) {
         setStatus('passed');
         hapticSuccess();
@@ -1167,6 +1172,7 @@ export function SpeakingPanel({
     setScore(null);
     setWordReport(null);
     setHint(null);
+    setFailMissing([]);
     deleteRecordingFile(recordingUriRef.current);
     recordingUriRef.current = null;
     setRecordingUri(null);
@@ -1597,6 +1603,7 @@ export function SpeakingPanel({
     setScore(null);
     setWordReport(null);
     setHint(null);
+    setFailMissing([]);
     // «requesting» = мик прогревается; на «listening» + cue переходим только когда
     // пришёл первый реальный аудио-чанк (иначе первое слово терялось в cold-start
     // AudioRecord ~100-300мс). Захваченное до этого аудио рекордер сохраняет.
@@ -1723,6 +1730,7 @@ export function SpeakingPanel({
           setScore(null);
           setWordReport(null);
           setHint(null);
+          setFailMissing([]);
           setStatus('listening');
         }
         return;
@@ -1773,6 +1781,7 @@ export function SpeakingPanel({
     setScore(null);
     setWordReport(null);
     setHint(null);
+    setFailMissing([]);
     setStatus('idle');
   }, []);
 
@@ -2253,7 +2262,10 @@ export function SpeakingPanel({
   const effectivePassed = effectiveScore != null && effectiveScore >= passThreshold;
   const passed = effectivePassed;
   const band = effectiveScore != null ? speakingBand(effectiveScore, passThreshold) : null;
-  const hintLine = hint && !effectivePassed ? speakingHintText(hint, lang) : null;
+  // зачем (эталон speech-result-states.html): пока есть непринятое слово — строка «Не услышали слово «X» — скажи фразу целиком» (первое не «дочиненное» тренировкой), иначе прежняя подсказка
+  const firstFailIdx = failView.tokens.findIndex((t, i) => t.missed && !drillCleaned.has(i));
+  const failLine = !effectivePassed && firstFailIdx >= 0 ? speechFailLineText(lang, speechFailDisplayWord(failView.tokens[firstFailIdx]!.text)) : null;
+  const hintLine = effectivePassed ? null : failLine ?? (hint ? speakingHintText(hint, lang) : null);
   // Подготовка Android PCM/whisper идёт в фоне и никогда не блокирует микрофон:
   // до готовности работает системный recognizer с тем же hold-жестом.
   const preparingModelView = false;
@@ -2517,24 +2529,23 @@ export function SpeakingPanel({
               // Слово «дочинено» тренировкой → показываем его чистым (зелёным),
               // даже если исходно было жёлтым/красным.
               const cleaned = drillCleaned.has(i);
-              const effectiveStatus = entry
-                ? cleaned
-                  ? 'clean'
-                  : entry.status
-                : null;
-              // Анти-чит: missed-слово не раскрываем — только первая буква.
-              const missedMasked =
-                effectiveStatus === 'missed' && !matched[i] && status !== 'passed';
-              const reveal =
-                (matched[i] || status === 'passed' || entry != null) && !missedMasked;
-              // Маска по буквам: каждая буква/цифра → «_», пунктуация остаётся.
-              const masked = missedMasked
-                ? maskSpokenWordKeepInitial(tok)
-                : tok.replace(/[\p{L}\p{N}]/gu, '_');
+              // зачем (эталон 15.10): красное — то, что строгая проверка не услышала (`missingWords`), даже если пословная карта посчитала слово «чистым»
+              const strictMissed = showResult && !cleaned && failView.tokens[i]?.missed === true;
+              const effectiveStatus: 'clean' | 'fuzzy' | 'missed' | null = cleaned
+                ? 'clean'
+                : strictMissed
+                  ? 'missed'
+                  : entry
+                    ? entry.status
+                    : null;
+              // эталон «не засчитано»: фраза показывается ЦЕЛИКОМ, пропущенное слово — красным (прежняя маска «t____» снята решением эталона)
+              const reveal = matched[i] || status === 'passed' || entry != null || strictMissed;
+              // Маска по буквам (до результата): каждая буква/цифра → «_», пунктуация остаётся.
+              const masked = tok.replace(/[\p{L}\p{N}]/gu, '_');
               // Тренируемо: показан результат, слово было проблемным и ещё не
               // закрыто. По таким словам можно нажать и открыть карточку.
               const drillable =
-                showResult && entry != null && isDrillableStatus(entry.status) && !cleaned;
+                showResult && effectiveStatus != null && isDrillableStatus(effectiveStatus) && !cleaned;
               const isOpen = drill.openIndex === i;
               const color = effectiveStatus
                 ? effectiveStatus === 'clean'
@@ -2551,9 +2562,7 @@ export function SpeakingPanel({
                     styles.phraseWord,
                     {
                       color,
-                      // Красная маска — полной яркости: это кликабельная цель
-                      // «жми и тренируй», а не фоновая чёрточка.
-                      opacity: reveal || missedMasked ? 1 : 0.6,
+                      opacity: reveal ? 1 : 0.6,
                       letterSpacing: reveal ? 0 : 2,
                     },
                   ]}

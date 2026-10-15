@@ -1,8 +1,6 @@
-// Анти-чит маска missed-слов в «Скажи вслух»: после неудачной попытки красные
-// (не прозвучавшие) слова показываются первой буквой + «_» вместо полного
-// текста, чтобы эталон нельзя было прочитать с экрана на повторной попытке.
-// Контракт: и пословная карта (SpeakingPanel), и подсказка «Не прозвучало»
-// (buildSpeakingHint) используют одну и ту же маску.
+// Маска missed-слов «t____» (помощники остаются), но экран «не засчитано» её больше НЕ применяет:
+// решение эталона Макетов 15.10 (speech-result-states.html) — фраза целиком, пропущенные слова красным,
+// строка «Не услышали слово «X»». Контракт: подсказка и пословная карта показывают слова целиком.
 
 import { maskSpokenPhraseKeepInitial, maskSpokenWordKeepInitial } from '../app/speaking_word_report';
 import { buildSpeakingHint } from '../app/speaking_score_bands';
@@ -38,8 +36,8 @@ describe('maskSpokenWordKeepInitial', () => {
   });
 });
 
-describe('missed-word anti-cheat wiring', () => {
-  it('buildSpeakingHint never returns a raw missed word', () => {
+describe('экран «не засчитано»: пропущенные слова целиком', () => {
+  it('buildSpeakingHint возвращает пропущенные слова как есть (без маски)', () => {
     const hint = buildSpeakingHint({
       honestyFlagged: false,
       stress: 'unknown',
@@ -53,20 +51,20 @@ describe('missed-word anti-cheat wiring', () => {
     });
     expect(hint.kind).toBe('missed_words');
     if (hint.kind === 'missed_words') {
-      expect(hint.words).toEqual(['H__', 's__', 'e___']);
-      for (const raw of ['Has', 'she', 'ever']) {
-        expect(hint.words).not.toContain(raw);
-      }
+      expect(hint.words).toEqual(['Has', 'she', 'ever']);
     }
   });
 
-  it('SpeakingPanel renders missed words through the mask (source contract)', () => {
+  it('SpeakingPanel рисует красное по missingWords, без маски пропущенных слов (source contract)', () => {
     const source = fs.readFileSync(
       path.join(__dirname, '..', 'components', 'SpeakingPanel.tsx'),
       'utf8',
     );
-    // Маска подключена и применяется именно к missed-статусу.
-    expect(source).toContain('maskSpokenWordKeepInitial');
-    expect(source).toContain('missedMasked');
+    expect(source).toContain('buildSpeechFailView');
+    expect(source).toContain('strictMissed');
+    expect(source).not.toContain('maskSpokenWordKeepInitial');
+    expect(source).not.toContain('missedMasked');
+    // onScore отдаёт хостам пропущенные слова строгой проверки
+    expect(source).toMatch(/onScore\?\.\(\{[^}]*missingWords/);
   });
 });

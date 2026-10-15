@@ -49,7 +49,6 @@ import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
 import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from './speech_device_availability';
 import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import SpeechFailBlock from '../components/speech/SpeechFailBlock';
-import { scorePronunciationTranscript } from './pronunciation_scoring_core';
 import { getVerifiedPremiumAccessStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 import MicAllowanceBadge from '../components/MicAllowanceBadge';
@@ -142,7 +141,6 @@ import { patchHomeScreenHydration } from './home_screen_hydration';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
-import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import SessionAttemptsHud, { type SessionAttemptsEnergyModel } from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
@@ -647,8 +645,8 @@ const LessonContent = React.memo(function LessonContent({
   const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
   const [speakingOpen, setSpeakingOpen] = useState(false);
   const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
-  // зачем (координатор 15.10, «не засчитано»): панель в onScore отдаёт ещё и распознанный текст — по нему считаем пропущенные слова для блока по эталону Макетов
-  const [speakingResult, setSpeakingResult] = useState<(SpeakingAttemptResult & { transcript?: string }) | null>(null);
+  // зачем (координатор 15.10, «не засчитано»): панель в onScore отдаёт ещё и пропущенные слова строгой проверки (`missingWords`) — по ним блок по эталону Макетов
+  const [speakingResult, setSpeakingResult] = useState<(SpeakingAttemptResult & { transcript?: string; missingWords?: readonly string[] }) | null>(null);
   const speakingOpenedForPhraseRef = useRef<string | null>(null);
   // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя «Устно»
   // заранее отключено (перечёркнутый микрофон); тап не тратит попытку и не ведёт
@@ -708,7 +706,7 @@ const LessonContent = React.memo(function LessonContent({
     onSpeakingActiveChange?.(false);
   }, [onSpeakingActiveChange]);
 
-  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult & { transcript?: string }) => {
+  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult & { transcript?: string; missingWords?: readonly string[] }) => {
     setSpeakingResult(result);
     closeSpeaking();
   }, [closeSpeaking]);
@@ -987,13 +985,12 @@ const LessonContent = React.memo(function LessonContent({
       .filter(w => w.length > 0);
     return userWords.map((word, i) => ({ word, isWrong: word !== correctWords[i] }));
   })();
-  const speakingPrimaryLine = speakingResult
-    ? (speakingResult.passed ? spokenTargetLine : maskSpokenPhraseKeepInitial(spokenTargetLine))
-    : '';
-  // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале с названным словом вместо красной маски `t____` и звёзд — фраза целиком, пропущенные слова мягким
-  // красным и строка «Не услышали слово «X» — скажи фразу целиком»; пропущенные слова — тем же оценщиком по распознанному тексту. Пусто (ничего не распознано) — прежний вид.
-  const speakingFailWords: readonly string[] = speakingResult && !speakingResult.passed && status !== 'result' && spokenTargetLine && speakingResult.transcript?.trim()
-    ? (scorePronunciationTranscript({ targetText: spokenTargetLine, transcript: speakingResult.transcript }).missingWords ?? [])
+  // зачем (эталон Макетов 15.10): красная маска `t____` снята — после речи фраза показывается целиком (анти-чит отменён решением эталона)
+  const speakingPrimaryLine = speakingResult ? spokenTargetLine : '';
+  // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале с названным словом вместо звёзд — фраза целиком, пропущенные слова мягким красным и строка
+  // «Не услышали слово «X» — скажи фразу целиком»; пропущенные слова — из результата панели (`missingWords`). Пусто (слово не названо) — прежний вид.
+  const speakingFailWords: readonly string[] = speakingResult && !speakingResult.passed && status !== 'result' && spokenTargetLine
+    ? (speakingResult.missingWords ?? [])
     : [];
   const interactiveAnswerText = settings.hardMode
     ? typedText

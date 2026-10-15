@@ -66,7 +66,6 @@ import SpeakingPanel, {
 } from "../components/SpeakingPanel";
 import SpeakingInlineResultStars from "../components/SpeakingInlineResultStars";
 import SpeechFailBlock from "../components/speech/SpeechFailBlock";
-import { scorePronunciationTranscript } from "./pronunciation_scoring_core";
 import { starsForScore } from "../components/SpeakingScoreStars";
 import SpeakHoldButton from "./flashcards/SpeakHoldButton";
 import { useLang } from "../components/LangContext";
@@ -137,8 +136,8 @@ import type {
 type ReleasedSessionClientV3 = typeof import("./learning_v2_course_released_session_client_v3");
 const releasedSessionClientV3 = (): ReleasedSessionClientV3 =>
   require("./learning_v2_course_released_session_client_v3") as ReleasedSessionClientV3;
-const bundledLearningV2CourseSessionMaterialV3 = ((...args) =>
-  releasedSessionClientV3().bundledLearningV2CourseSessionMaterialV3(...args)) as ReleasedSessionClientV3["bundledLearningV2CourseSessionMaterialV3"];
+const previewLearningV2CourseSessionMaterialV3 = ((...args) =>
+  releasedSessionClientV3().previewLearningV2CourseSessionMaterialV3(...args)) as ReleasedSessionClientV3["previewLearningV2CourseSessionMaterialV3"];
 const consumeLearningV2CourseSessionReadyHandoffV3 = ((...args) =>
   releasedSessionClientV3().consumeLearningV2CourseSessionReadyHandoffV3(...args)) as ReleasedSessionClientV3["consumeLearningV2CourseSessionReadyHandoffV3"];
 const peekLearningV2CourseSessionReadyHandoffKeysV3 = ((...args) =>
@@ -257,7 +256,7 @@ const FACTORY_NATIVE_SESSION_IDS = new Set(
 function buildLearningV2DevUnlockedDraftDevicePreviewV1(
   locator: LearningV2CourseReleasedSessionCurrentLocatorV3,
 ): LearningV2CourseReleasedSessionMaterialV3 | null {
-  return bundledLearningV2CourseSessionMaterialV3(locator);
+  return previewLearningV2CourseSessionMaterialV3(locator);
 }
 
 function wordEncounterPresentationId(
@@ -304,6 +303,8 @@ type LearningV2VoiceAttemptResult = Readonly<{
   score: number;
   passed: boolean;
   transcript: string;
+  /** Пропущенные слова цели от строгой проверки панели (экран «не засчитано»). */
+  missingWords: readonly string[];
 }>;
 
 function learningV2VoiceUiStatusFromSpeakingPanel(
@@ -562,7 +563,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     if (isAuthoringPreview && locator) {
       return isDevUnlockedDraftPreview
         ? buildLearningV2DevUnlockedDraftDevicePreviewV1(locator)
-        : bundledLearningV2CourseSessionMaterialV3(locator);
+        : previewLearningV2CourseSessionMaterialV3(locator);
     }
     return null;
   });
@@ -964,7 +965,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       try {
         const previewMaterial = isDevUnlockedDraftPreview
           ? buildLearningV2DevUnlockedDraftDevicePreviewV1(locator)
-          : bundledLearningV2CourseSessionMaterialV3(locator);
+          : previewLearningV2CourseSessionMaterialV3(locator);
         if (!previewMaterial) {
           throw new Error("learning_v2_factory_native_session_unavailable");
         }
@@ -1989,11 +1990,9 @@ export default function LearningV2DirectSessionPlayerV1() {
   const voiceControlDisabled =
     voiceFooterDisabled || modeVoiceStatus === "finishing";
   // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале — фраза целиком с подсвеченными пропущенными словами и строкой «Не услышали слово «X» — скажи
-  // фразу целиком»; пропущенные слова — тем же оценщиком по распознанному тексту. Пусто (ничего не распознано / слово не названо) — прежняя карточка «Ты сказал(а)».
+  // фразу целиком»; пропущенные слова — из результата панели (`missingWords`). Пусто (слово не названо) — прежняя карточка «Ты сказал(а)».
   const voiceFailWords: readonly string[] =
-    voiceAttemptResult && !voiceAttemptResult.passed && voiceTargetText && voiceAttemptResult.transcript.trim()
-      ? (scorePronunciationTranscript({ targetText: voiceTargetText, transcript: voiceAttemptResult.transcript }).missingWords ?? [])
-      : [];
+    voiceAttemptResult && !voiceAttemptResult.passed && voiceTargetText ? voiceAttemptResult.missingWords : [];
   const voiceResultAccessibilityLabel = voiceAttemptResult
     ? (() => {
         const stars = starsForScore(
@@ -3401,12 +3400,12 @@ export default function LearningV2DirectSessionPlayerV1() {
                     setVoiceHoldActive(false);
                   }
                 }}
-                onScore={({ score, passed, transcript: heard }) => {
+                onScore={({ score, passed, transcript: heard, missingWords }) => {
                   if (!practice || !runSummary || !heard.trim()) return;
                   setSelectedChoiceId(null);
                   setOrderedIds([]);
                   setTranscript(heard);
-                  setVoiceAttemptResult({ score, passed, transcript: heard });
+                  setVoiceAttemptResult({ score, passed, transcript: heard, missingWords });
                   setVoiceAttemptSubmitted(true);
                   evaluate(
                     learningV2CourseSessionVoiceResponseV1(

@@ -203,7 +203,9 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const towerTop = Math.max(insets.top + 28, 76);
   const finalBlockH = 190 + Math.max(insets.bottom, 12);
   const ratio = SPIRE_TOWER_GEOM.height / SPIRE_TW;
-  const towerW = Math.max(120, Math.min(196, Math.floor((winH - towerTop - finalBlockH) / ratio)));
+  // зачем (правило владельца 14.10 «башня не обрезается», сторож spire_static_tower_uncropped): нижняя граница 120 на экране 360×640 делала башню выше
+  // доступного места — она вылезала за кадр. Ширина теперь только вписывается по высоте (минимум 60 — чтобы не выродилась).
+  const towerW = Math.max(60, Math.min(196, Math.floor((winH - towerTop - finalBlockH) / ratio)));
   const k = towerW / SPIRE_TW;
   const mk = spireMarkerXY(SPIRE_TOWER_GEOM.floors[0]);
   const towerStyle = useAnimatedStyle(() => ({ opacity: towerIn.value, transform: [{ translateY: (1 - towerIn.value) * 28 }] }));

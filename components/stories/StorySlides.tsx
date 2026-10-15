@@ -52,7 +52,8 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
   const skin = useMemo(() => spireSkinForTier(tier), [tier]);
   const ratio = SPIRE_TOWER_GEOM.height / SPIRE_TW;
   // высота под башню: экран − шапка/полосы (120) − низ (60) − блок текста (150) − воздух
-  const towerW = Math.max(110, Math.min(170, Math.floor((winH - 120 - 60 - 150 - 40) / ratio)));
+  // зачем (правило «башня не обрезается», сторож spire_static_tower_uncropped): без нижней границы 110 — на 360×640 башня вписывается, а не вылезает
+  const towerW = Math.max(60, Math.min(170, Math.floor((winH - 120 - 60 - 150 - 40) / ratio)));
   const k = towerW / SPIRE_TW;
   const mk = spireMarkerXY(SPIRE_TOWER_GEOM.floors[0]);
   const league = spireTierName(tier, lang);

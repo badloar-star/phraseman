@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-06:intro1:r2": {
+          "ru": "Перед `pen` в этом названии нужно `a`.",
+          "uk": "Перед `pen` у цій назві потрібно `a`."
+        },
+        "en:lesson-03:session-06:intro1:r3": {
+          "ru": "Перед согласным звуком в `pen` нужно `a`, не `an`.",
+          "uk": "Перед приголосним звуком у `pen` потрібно `a`, не `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-06:intro2:r2": {
+          "ru": "В названии `a pen` пропало `a`.",
+          "uk": "У назві `a pen` зникло `a`."
+        },
+        "en:lesson-03:session-06:intro2:r3": {
+          "ru": "Это вопрос о надёжном человеке, а вы уточняете название предмета.",
+          "uk": "Це запитання про надійну людину, а ви уточнюєте назву предмета."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-06:intro3:r2": {
+          "ru": "Перед отдельным `excited` здесь не нужно `a`.",
+          "uk": "Перед окремим `excited` тут не потрібно `a`."
+        },
+        "en:lesson-03:session-06:intro3:r3": {
+          "ru": "С `I` нужно `am`.",
+          "uk": "З `I` потрібно `am`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9cdc1a2eff92884e173d31505521ad026c30b8208c644b961907ea977645a4fa"
+}

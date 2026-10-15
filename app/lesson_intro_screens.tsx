@@ -77,6 +77,12 @@ const SLIDE_DURATION_MS = 1500; // длинный «дрейф» снизу
 const SLIDE_DISTANCE_PX = 44; // путь slide-up — больше воздуха
 const AUTO_SCROLL_DELAY_MS = 520; // даём блоку доехать до конца, потом скроллим
 const INTRO_HEADER_TOP_GAP = 8;
+/** Кромка подложки шапки ниже её низа (мягкий уход контента под шапку), бета-тест Б2. */
+const INTRO_HEADER_FEATHER = 14;
+/** Прозрачный вариант цвета верха фона (для плавной кромки без серого «пятна» при интерполяции). */
+function introHeaderBackdropClear(bgTop: string): string {
+  return /^#[0-9a-fA-F]{6}$/.test(bgTop) ? `${bgTop}00` : 'rgba(255,255,255,0)'; // theme-exempt: прозрачный конец кромки — несёт только альфу
+}
 // Фолбэк, пока хедер не измерил свою реальную высоту через onLayout.
 // Честная высота = paddingTop(8) + высота pill/кнопки(~36) + paddingBottom(12) ≈ 56;
 // + воздух до первой карточки.
@@ -702,6 +708,15 @@ export default function LessonIntroScreens({
             при скролле уходят в тень у статус-бара, а не обрезаются резко.
             Высота = safe-area + хедер. */}
         <TopFadeMask headerHeight={headerHeight + INTRO_HEADER_TOP_GAP} />
+        {/* зачем (бета-тест Б2, 15.10): шапка «Урок N» — плавающий слой без фона, а скрим TopFadeMask на светлой теме держит альфу 0,8 — прокручиваемый текст теории был виден ПОД заголовком и наезжал на него.
+            Подложка шапки: цвет верха фона темы (тот же, что у ScreenGradient сверху) непрозрачно до низа шапки + мягкая кромка INTRO_HEADER_FEATHER; контент уходит под шапку, а не просвечивает сквозь неё. */}
+        <LinearGradient
+          pointerEvents="none"
+          testID="lesson-intro-header-backdrop"
+          colors={[introGlass.bgTop, introGlass.bgTop, introHeaderBackdropClear(introGlass.bgTop)]}
+          locations={[0, headerBottom / (headerBottom + INTRO_HEADER_FEATHER), 1]}
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, height: headerBottom + INTRO_HEADER_FEATHER, zIndex: 9, elevation: 9 }}
+        />
 
         {/* Шапка: Back + pill «Урок N · A1» */}
         <Animated.View

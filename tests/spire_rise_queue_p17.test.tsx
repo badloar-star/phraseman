@@ -37,6 +37,6 @@ describe('P17 · окна позиции Пика ждут конца ступе
   });
   it('экран Пика передаёт stepActive из session / pending игры', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'components', 'spire', 'SpireHomeScreen.tsx'), 'utf8');
-    expect(src).toContain('stepActive={game.session !== null || game.pending !== null}');
+    expect(src).toContain('stepActive={game.session !== null || game.pending !== null || (game.outcome !== null && !momentOutcome)}');
   });
 });

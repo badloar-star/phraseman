@@ -1,119 +1,136 @@
-# Английский · Урок 4 · Занятие 10 — «У стойки для посетителей»
+# Английский · Урок 4 · Занятие 10 — Ищем отель
 
-**Сцена занятия.** Вы у стойки для посетителей в незнакомом районе. Нужно узнать, есть ли рядом отель.
-**Как сказать:** ответить на один вопрос отдельно: `Yes, there is.` или `No, there isn't.`
-**Новое слово:** hotel
-**Возвращаются:** pharmacy, library, bakery, garden, bank, post office, supermarket, clinic, playground, building, shop, street, neighbourhood, dentist
+**Ситуация.** Вы с другом приехали в новый город и ищете отель. На карте также есть сад. Рассматривая план комнаты, вы спрашиваете о замке, а затем обсуждаете время встречи.
+
+**Что вы освоите:** спросить о наличии отеля и замка, сообщить о невозможности конкретного плана
+**Новые слова:** hotel
+
+---
 
 ## Интро 1
 
-### Отель
+### Есть ли отель?
 
-`hotel` — «гостиница» или «отель»: место, где можно заплатить за комнату и переночевать. Для одного места говорим `a hotel`. Чемодану отель не нужен: он и на полу неплохо устроился. А вам нужна комната. Не путайте с `hostel`: там бывают и общие, и отдельные комнаты. Здесь вам нужна именно гостиница.
+`hotel` — «отель, гостиница». `There is a hotel` — «Есть отель». Вопрос: `Is there a hotel?` — «Есть ли отель?» Один отель — `a hotel`, вопрос начинается с `Is there`. Чемодан готов ночевать где угодно, но вам лучше найти комнату.
 
-**Вы ищете гостиницу на одну ночь. Выберите группу слов.**
+**Спросите, есть ли здесь отель.**
 
-- ✅ **a hotel**
-- ❌ a hospital — *`A hospital` — больница. Место для ночёвки — `a hotel`.*
-- ❌ a hostel — *`A hostel` — хостел. В вопросе нужен именно отель: `a hotel`.*
+- ✅ **Is there a hotel here?**
+- ❌ There is a hotel here. — *Это сообщение; вопрос начинается с `Is there`.*
+- ❌ Is there hotel here? — *Перед одним отелем нужно `a`: `a hotel`.*
+
+---
 
 ## Интро 2
 
-### Короткое «нет»
+### Сад и замок
 
-`No, there is not.` — «Нет». Так полностью отвечают на `Is there a hotel near the library?` Вопрос уже назвал отель и библиотеку, поэтому повторять их не нужно. После `No` говорят `there`, затем `is not`. Сокращённый ответ `No, there isn't.` значит то же самое; `isn't` — это короткое `is not`.
+`garden` — «сад»: `Is there a garden here?` — «Здесь есть сад?» `lock` — «замок» на двери, не дворец. `Is there a lock?` — «Есть ли замок?» `There is a lock here` — «Здесь есть замок». Вопрос и сообщение различаются порядком `Is there` и `There is`.
 
-**Посетитель спрашивает сотрудника у стойки: `Is there a hotel near the library?` Рядом отеля нет. Выберите полный отрицательный ответ сотрудника.**
+**Вы смотрите план двери и хотите узнать, предусмотрен ли замок. Спросите «Есть ли замок?»**
 
-- ✅ **No, there is not.**
-- ❌ No, there not is. — *После `there` сначала ставят `is`, затем `not`: `No, there is not.`.*
-- ❌ No, is there not. — *Это порядок слов вопроса. В ответе порядок такой: `there is not`.*
+- ✅ **Is there a lock?**
+- ❌ There is a lock. — *Это сообщение. Для вопроса нужно `Is there a lock?`.*
+- ❌ Are there a lock? — *Один замок: `Is there a lock?`.*
+
+---
 
 ## Интро 3
 
-### Короткое «да»
+### Это невозможно
 
-`Yes, there is.` — «Да, есть». Так коротко отвечают на `Is there a hotel near the pharmacy?` Вопрос уже назвал отель и аптеку, поэтому повторять их не нужно. В ответе после `Yes` говорят `there`, затем `is`. Эти два слова взяты из вопроса, но в ответе стоят в порядке `there is`.
+`impossible` — «невозможный». Друг предлагает встретиться через минуту, но вы ещё далеко и точно не успеете. О таком плане: `It is impossible` — «Это невозможно». Сокращённо: `It’s impossible`. Это сильнее, чем «трудно»: по условиям выполнить план нельзя.
 
-**Посетитель спрашивает сотрудника у стойки: `Is there a hotel near the pharmacy?` Рядом с аптекой отель есть. Выберите короткий ответ сотрудника.**
+**Вы точно не успеете к предложенному времени. Скажите о плане «Это невозможно» с сокращением.**
 
-- ✅ **Yes, there is.**
-- ❌ Yes, there. — *После `there` пропущено `is`: `Yes, there is.`.*
-- ❌ Yes, is there. — *В ответе сначала говорят `there`, потом `is`: `Yes, there is.`.*
+- ✅ **It's impossible.**
+- ❌ It's possible. — *`possible` — возможно, а здесь невозможно: `impossible`.*
+- ❌ It are impossible. — *С `It` нужно `is`, сокращённо `It’s`.*
 
-## Практика — по одной цели
+---
 
-**1 · Послушайте и выберите, что прозвучало**
-<!-- interaction_id: en:lesson-04:session-10:i01; family: listen_choose -->
-Цель: `hotel`
-🔊 *hotel*
-Значения вариантов: hotel — отель · hospital — больница · hostel — хостел
-→ **hotel** · hospital · hostel
-- hospital — *В `hotel` после /h/ слышно /əʊ/; в `hospital` — короткое /ɒ/ и затем /sp/.*
-- hostel — *В `hostel` после /h/ слышно /st/; в записи `hotel` — /həʊˈtel/ без /st/.*
+## Практика (17 заданий)
 
-**2 · Произнесите новое слово**
-<!-- interaction_id: en:lesson-04:session-10:i02; family: scripted_repeat_compare -->
-Цель: `hotel`
-🎙 **hotel**
+**1 · Сообщите другу «Есть сад»**
+<!-- interaction_id: en:lesson-04:session-10:i01; family: phrase_builder -->
+Плитки: `garden` `a` `is` `There` `are` → **There is a garden.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a garden.`)*
 
-**3 · Быстро соедините названия с русскими значениями**
-<!-- interaction_id: en:lesson-04:session-10:i03; family: speed_match -->
-Пары: `hotel` — отель · `bank` — банк · `post office` — почта · `supermarket` — супермаркет · `street` — улица · `dentist` — стоматолог · `shop` — магазин
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-04:session-10:i02; family: listen_choose -->
+🔊 *hotel* → **hotel** · hospital · garden
+- hospital — *В записи первое слово — `hotel`, а в этом варианте — `hospital`.*
+- garden — *В записи первое слово — `hotel`, а в этом варианте — `garden`.*
 
-**4 · Послушайте вопрос у стойки и выберите его смысл**
-<!-- interaction_id: en:lesson-04:session-10:i04; family: listen_choose -->
-Цель: `Is there a hotel near the library?`
-🔊 *Is there a hotel near the library?*
-Значения вариантов: Is there a hotel near the library? — Рядом с библиотекой есть отель? · Is there a library near the hotel? — Рядом с отелем есть библиотека? · There is a hotel near the library. — Рядом с библиотекой есть отель.
-→ **Is there a hotel near the library?** · Is there a library near the hotel? · There is a hotel near the library.
+**3 · Назовите отель одним английским словом**
+<!-- interaction_id: en:lesson-04:session-10:i03; family: context_gap_grammar -->
+___ → **hotel** · hospital · clinic
+- hospital — *`hospital` — больница; отель — `hotel`.*
+- clinic — *`clinic` — клиника; отель — `hotel`.*
 
-- Is there a library near the hotel? — *В записи спрашивают про отель рядом с библиотекой, а не библиотеку рядом с отелем.*
-- There is a hotel near the library. — *В записи вопрос `Is there ...?`, а не сообщение.*
-**5 · Соберите вопрос об отеле рядом с аптекой**
-<!-- interaction_id: en:lesson-04:session-10:i05; family: phrase_builder -->
-Цель: `Is there a hotel near the pharmacy?`
-Плитки: `Is` · `there` · `a` · `hotel` · `near` · `the` · `pharmacy` · `There`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-10:i04; family: speed_match -->
+hotel — отель · impossible — невозможный · lock — замок на двери · garden — сад
 
-**6 · На карте магазин отмечен внутри здания, а отеля рядом с ним нет. На вопрос `Is there a hotel near the shop in the building?` выберите полный отрицательный ответ**
-<!-- interaction_id: en:lesson-04:session-10:i06; family: context_gap_grammar -->
-___ → **No, there is not.** · No, there not is. · No, is there not.
-- No, there not is. — *После `there` сначала ставят `is`, затем `not`: `No, there is not.`.*
-- No, is there not. — *Это порядок слов вопроса. В ответе порядок такой: `there is not`.*
+**5 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-10:i05; family: listen_build_dictation -->
+🔊 *Is there a hotel?* Плитки: `hotel` `a` `there` `Is` → **Is there a hotel?**
 
-**7 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-10:i07; family: listen_build_dictation -->
-Цель: `Is there a bank near the dentist?`
-🔊 *Is there a bank near the dentist?*
-Плитки: `Is` · `there` · `a` · `bank` · `near` · `the` · `dentist` · `There`
+**6 · Вы изучаете район. Спросите «Здесь есть сад?»**
+<!-- interaction_id: en:lesson-04:session-10:i06; family: phrase_builder -->
+Плитки: `here` `garden` `a` `there` `Is` → **Is there a garden here?**
 
-**8 · Соберите вопрос о почте рядом с супермаркетом**
-<!-- interaction_id: en:lesson-04:session-10:i08; family: phrase_builder -->
-Цель: `Is there a post office near the supermarket?`
-Плитки: `Is` · `there` · `a` · `post` · `office` · `near` · `the` · `supermarket` · `There`
+**7 · Друг предлагает встретиться через минуту, а вы ещё далеко и точно не успеете. Скажите «Это невозможно» с сокращением**
+<!-- interaction_id: en:lesson-04:session-10:i07; family: scripted_repeat_compare -->
+🎙 **It's impossible.**
 
-**9 · Быстро соедините названия с русскими значениями**
-<!-- interaction_id: en:lesson-04:session-10:i09; family: speed_match -->
-Пары: `playground` — площадка · `bakery` — пекарня · `garden` — сад · `neighbourhood` — район · `library` — библиотека · `building` — здание · `clinic` — клиника
+**8 · Спросите о наличии одного отеля**
+<!-- interaction_id: en:lesson-04:session-10:i08; family: context_gap_grammar -->
+Is there ___ hotel here? → **a** · an · are
+- an — *В `hotel` первый звук согласный: `a hotel`.*
+- are — *Здесь нужен артикль перед одним отелем: `a`.*
 
-**10 · Соберите вопрос об отеле рядом с садом**
-<!-- interaction_id: en:lesson-04:session-10:i10; family: phrase_builder -->
-Цель: `Is there a hotel near the garden?`
-Плитки: `Is` · `there` · `a` · `hotel` · `near` · `the` · `garden` · `There`
+**9 · Послушайте вопрос о детали двери**
+<!-- interaction_id: en:lesson-04:session-10:i09; family: listen_choose -->
+🔊 *Is there a lock?* → **Is there a lock?** · Is there a garden? · Is there a hotel?
+- Is there a garden? — *В записи последнее слово — `lock`, а в этом варианте — `garden`.*
+- Is there a hotel? — *В записи последнее слово — `lock`, а в этом варианте — `hotel`.*
 
-**11 · На карте пекарня находится рядом с площадкой в этом районе. На вопрос `Is there a bakery near the playground in this neighbourhood?` выберите короткий ответ.**
-<!-- interaction_id: en:lesson-04:session-10:i11; family: context_gap_grammar -->
-___ → **Yes, there is.** · Yes, there. · Yes, is there.
-- Yes, there. — *После `there` пропущено `is`: `Yes, there is.`.*
-- Yes, is there. — *В ответе сначала говорят `there`, потом `is`: `Yes, there is.`.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-10:i10; family: speed_match -->
+hotel — отель · lock — замок на двери · here — здесь · there — там
 
-**12 · сотрудник объясняет: отель на другой улице, а на этой улице рядом с клиникой гостиницы нет. Вопрос: `Is there a hotel on this street near the clinic?` Соберите короткий ответ.**
+**11 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-04:session-10:i11; family: listen_build_dictation -->
+🔊 *There is a lock here.* Плитки: `here` `lock` `a` `is` `There` `are` → **There is a lock here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a lock here.`)*
+
+**12 · Друг не узнаёт здание рядом. Назовите его: «Это отель»**
 <!-- interaction_id: en:lesson-04:session-10:i12; family: phrase_builder -->
-Цель: `No, there isn't.`
-Плитки: `No,` · `there` · `isn't` · `not`
+Плитки: `hotel` `a` `is` `This` `are` → **This is a hotel.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a hotel.`)*
 
-## Для сборщика
+**13 · Вы показываете точку на плане двери. Спросите «Здесь есть замок?»**
+<!-- interaction_id: en:lesson-04:session-10:i13; family: scripted_repeat_compare -->
+🎙 **Is there a lock here?**
 
-atomic_practice: practice.atomic.json
-new_words: hotel — отель — Место, где останавливаются на ночь.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=speed_match, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=phrase_builder, 9=speed_match, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder
+**14 · Друг показывает другой район на карте. Спросите «Там есть сад?»**
+<!-- interaction_id: en:lesson-04:session-10:i14; family: context_gap_grammar -->
+___ there a garden there? → **Is** · Are · Am
+- Are — *Один сад: `Is there a garden there?`. Последнее `there` — «там».*
+- Am — *Вопрос об одном саде начинается с `Is there`.*
+
+**15 · Послушайте ответ о предложенном времени встречи**
+<!-- interaction_id: en:lesson-04:session-10:i15; family: listen_choose -->
+🔊 *It is impossible.* → **It is impossible.** · It is possible. · It is necessary.
+- It is possible. — *В записи последнее слово — `impossible`, а в этом варианте — `possible`.*
+- It is necessary. — *В записи последнее слово — `impossible`, а в этом варианте — `necessary`.*
+
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-10:i16; family: speed_match -->
+hotel — отель · impossible — невозможный · lock — замок на двери · garden — сад
+
+**17 · В другой поездке вы приехали в незнакомый город и ищете ночлег. У справочной спросите «Здесь есть отель?»**
+<!-- interaction_id: en:lesson-04:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is there a hotel here?**
+

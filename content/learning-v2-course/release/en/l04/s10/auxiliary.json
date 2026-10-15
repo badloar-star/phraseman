@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-10:intro1:r2": {
-          "ru": "`A hospital` — больница. Место для ночёвки — `a hotel`.",
-          "uk": "`A hospital` — лікарня. Місце для ночівлі — `a hotel`."
+          "ru": "Это сообщение; вопрос начинается с `Is there`.",
+          "uk": "Це повідомлення; запитання починається з `Is there`."
         },
         "en:lesson-04:session-10:intro1:r3": {
-          "ru": "`A hostel` — хостел. В вопросе нужен именно отель: `a hotel`.",
-          "uk": "`A hostel` — хостел. У питанні потрібен саме готель: `a hotel`."
+          "ru": "Перед одним отелем нужно `a`: `a hotel`.",
+          "uk": "Перед одним готелем потрібне `a`: `a hotel`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-10:intro2:r2": {
-          "ru": "После `there` сначала ставят `is`, затем `not`: `No, there is not.`.",
-          "uk": "Після `there` спочатку ставлять `is`, потім `not`: `No, there is not.`."
+          "ru": "Это сообщение. Для вопроса нужно `Is there a lock?`.",
+          "uk": "Це повідомлення. Для запитання потрібне `Is there a lock?`."
         },
         "en:lesson-04:session-10:intro2:r3": {
-          "ru": "Это порядок слов вопроса. В ответе порядок такой: `there is not`.",
-          "uk": "Це порядок слів питання. У відповіді порядок такий: `there is not`."
+          "ru": "Один замок: `Is there a lock?`.",
+          "uk": "Один замок: `Is there a lock?`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-10:intro3:r2": {
-          "ru": "После `there` пропущено `is`: `Yes, there is.`.",
-          "uk": "Після `there` пропущено `is`: `Yes, there is.`."
+          "ru": "`possible` — возможно, а здесь невозможно: `impossible`.",
+          "uk": "`possible` — можливо, а тут неможливо: `impossible`."
         },
         "en:lesson-04:session-10:intro3:r3": {
-          "ru": "В ответе сначала говорят `there`, потом `is`: `Yes, there is.`.",
-          "uk": "У відповіді спочатку кажуть `there`, потім `is`: `Yes, there is.`."
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "cdab96b7400cce34401f111c43d34e539ff34d48eb2d8e85281ba71078c6fe55"
+  "auxiliaryFingerprint": "a8000db63ec22bb30a102dd0aa000b5872abcff77739b2e3c466b0064b7383b4"
 }

@@ -1,0 +1,45 @@
+--------- beginning of main
+10-15 19:13:16.490 I/ReactNativeJS(14286): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=126ms materialPrewarmed=true audioPrewarmed=true
+10-15 19:13:16.491 I/ReactNativeJS(14286): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=126ms materialPrewarmed=true audioPrewarmed=true
+10-15 19:13:16.493 I/ReactNativeJS(14286): '[V2-HANDOFF] stage', '{"sessionRunId":"998beccf-ff14-4764-bfb5-dafa0d42b7fa","courseSessionId":"lesson-01:session:01","stagedKeys":["998beccf-ff14-4764-bfb5-dafa0d42b7fa"]}'
+10-15 19:13:16.494 I/ReactNativeJS(14286): [HOME-CONTINUE] mark: V2 урок 1 занятие 1 target=en
+10-15 19:13:16.516 I/ReactNativeJS(14286): '[HOME-RENDERS]', '{"tag":"home:continue","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-15 19:13:16.523 I/ReactNativeJS(14286): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":57,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 19:13:16.611 I/ReactNativeJS(14286): '[V2-PAGE] push:session', '{"sessionId":"lesson-01:session:01","sessionRunId":"998beccf-ff14-4764-bfb5-dafa0d42b7fa","from":"lessons.tsx:modalLaunch"}'
+10-15 19:13:16.621 I/ReactNativeJS(14286): [HOME-CONTINUE] выбор=v2 причина=только V2 время: старый=нет урока V2=1792087996493 (урок 1, занятие 1) target=en
+10-15 19:13:16.639 I/ReactNativeJS(14286): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"learning-v2/session/[id]","noop":false,"atMs":519102,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | run@213682:31 | anonymous@216251:33 | react-stack-bottom-frame@28676:26 | runWithFiberInDEV@20473:135"}'
+10-15 19:13:16.665 I/ReactNativeJS(14286): '[HOME-RENDERS]', '{"tag":"home:continue","window":"cold","n":2,"changed":["onPress"],"atMs":150}'
+10-15 19:13:16.669 I/ReactNativeJS(14286): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":58,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 19:13:16.767 W/ReactNativeJS(14286): '[Worklets] Tried to modify key `current` of an object which has been already passed to a worklet. See\n        https://docs.swmansion.com/react-native-reanimated/docs/guides/troubleshooting#tried-to-modify-key-of-an-object-which-has-been-converted-to-a-serializable\n        for more details.', { [Stack] name: 'Stack' }
+10-15 19:13:16.812 I/ReactNativeJS(14286): '[ENERGY-MODE] resolved', '{"mode":"start_charge"}'
+10-15 19:13:16.864 I/ReactNativeJS(14286): '[V2-MAP] chapters:rows', '{"titles":32,"visibleLessons":1,"selectedLessonOrdinal":1,"rows":2048,"lessonRows":64,"chapters":7,"sessions":15,"allLessonsOpen":false,"active":false}'
+10-15 19:13:16.867 I/ReactNativeJS(14286): '[V2-MAP] page:commit', '{"instanceId":"8idok3","page":"v2","branch":"v2_map","presentation":"tab","runtimeOwnerId":"lessons","visible":true,"navFocused":false,"atMs":1792087996864}'
+10-15 19:13:16.869 I/ReactNativeJS(14286): [ENERGY-GATE] learning_v2: precheck=ok energy=5 bonus=0 unlimited=false
+10-15 19:13:16.873 I/ReactNativeJS(14286): [ENERGY-GATE] auto: wait screen=learning_v2_session op=energy:learning_v2_session:998beccf-ff14-4764-bfb5-dafa0d42b7fa firstQuestionVisible=false
+10-15 19:13:16.875 I/ReactNativeJS(14286): [PAYWALL-CLOSE-FREEZE] t=96873 tabs blur
+10-15 19:13:16.876 I/ReactNativeJS(14286): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#bo99oo*[(tabs)#XTJyMM,learning-v2/session/[id]#Lyt7Ci*]","atMs":519338}'
+10-15 19:13:16.956 I/ReactNativeJS(14286): '[V2-HANDOFF] consume', '{"routedCourseSessionId":"lesson-01:session:01","routedSessionRunId":"998beccf-ff14-4764-bfb5-dafa0d42b7fa","askedBridge":true,"got":true,"stagedKeys":["998beccf-ff14-4764-bfb5-dafa0d42b7fa"],"runtimeMode":"direct_v1","previewMode":null,"previewOrigin":"course","runKind":"initial","lessonOrdinal":"1","sessionOrdinal":"1"}'
+10-15 19:13:17.241 I/ReactNativeJS(14286): [NO-ENERGY-PLUS] unmount nothing_pending
+10-15 19:13:17.305 I/ReactNativeJS(14286): '[HOME-CONTINUE-ART] layout', '{"node":"card","x":12,"y":70,"w":387,"h":96}', '{"pending":true,"artWide":true,"accent":true,"badge":"Урок 1","artSize":64}'
+10-15 19:13:17.305 I/ReactNativeJS(14286): '[HOME-CONTINUE-ART] layout', '{"node":"artColumn","x":263,"y":0,"w":124,"h":96}', '{"pending":true,"artWide":true,"accent":true,"badge":"Урок 1","artSize":64}'
+10-15 19:13:17.352 I/ReactNativeJS(14286): [ENERGY-GATE] auto: charge screen=learning_v2_session activity=learning_v2_session op=energy:learning_v2_session:998beccf-ff14-4764-bfb5-dafa0d42b7fa finalizeOn=shown
+10-15 19:13:17.354 I/ReactNativeJS(14286): [ENERGY-GATE] charge: start op=energy:learning_v2_session:998beccf-ff14-4764-bfb5-dafa0d42b7fa activity=learning_v2_session screen=learning_v2_session subject=lesson-01:session:01
+10-15 19:13:17.357 I/ReactNativeJS(14286): '[ENERGY-GATE] start enter', '{"activity":"learning_v2_session","op":"energy:learning_v2_session:998beccf-ff14-4764-bfb5-dafa0d42b7fa","subject":"lesson-01:session:01","mode":"start_charge","plusOrUnlimited":false,"unlimitedReason":"none:dev_override_removed","base":5,"bonus":0,"refundCredit":0,"available":5,"energyReady":true,"mistakeCharge":false}'
+10-15 19:13:17.362 I/ReactNativeJS(14286): [DIALOG-VOICE] hydrate {"day":"2026-10-15","fromDisk":0,"fromEarly":0,"count":0,"storedDay":null}
+10-15 19:13:17.363 I/ReactNativeJS(14286): [ENERGY-GATE] recovery: journal=0 staleForOwner=0 boot=boot-mv9um421-wwqrpl6y
+10-15 19:13:17.363 I/ReactNativeJS(14286): [ENERGY-GATE] recovery: done refunded=0
+10-15 19:13:17.365 I/ReactNativeJS(14286): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519:learning-v2-direct%3A1%3A1
+10-15 19:13:17.869 W/ReactNativeJS(14286): [NAV-PAINT] group=training route=/learning-v2/session/lesson-01:session:01 ms=981
+10-15 19:13:18.088 I/ReactNativeJS(14286): '[SPEAK-MIC] audio-mode', '{"intent":"spoken","spokenLeases":1,"recordingLeases":0}'
+10-15 19:13:18.451 I/ReactNativeJS(14286): [ENERGY-RESTORE] spend COMMITTED (activity=learning_v2_session, cost=1, status=applied): before=5 after=4 lastSettledAt=1792087998092 recoveryCredit=0
+10-15 19:13:18.454 I/ReactNativeJS(14286): [SFX-DROP] pm.energy.spend reason=voice scope=energy-spend dedupeKey=none rateLimit=shared cooldownMs=300
+10-15 19:13:18.456 I/ReactNativeJS(14286): '[ENERGY-GATE] start decision', '{"decision":"spent","reason":"ledger_applied","activity":"learning_v2_session","op":"energy:learning_v2_session:998beccf-ff14-4764-bfb5-dafa0d42b7fa","subject":"lesson-01:session:01","mode":"start_charge","plusOrUnlimited":false,"unlimitedReason":"none:dev_override_removed","base":4,"bonus":0,"refundCredit":0,"available":4,"energyReady":true,"cost":1,"before":5,"after":4}'
+10-15 19:13:18.457 I/ReactNativeJS(14286): [ENERGY-GATE] charge: result op=energy:learning_v2_session:998beccf-ff14-4764-bfb5-dafa0d42b7fa result=spent tookMs=1103
+10-15 19:13:18.572 I/ReactNativeJS(14286): [LANG-SWITCH] notification_lang source=energy_full stored=none resolved=ru via=device
+10-15 19:13:18.585 I/ReactNativeJS(14286): [HEARTS] ЧТЕНИЕ: найдено осталось=3/3 фаза=active ключ=session_attempts_state_v1:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519:learning-v2-direct%3A1%3A1
+10-15 19:13:18.640 I/ReactNativeJS(14286): [ENERGY-GATE] auto: result=spent screen=learning_v2_session op=energy:learning_v2_session:998beccf-ff14-4764-bfb5-dafa0d42b7fa → markShown (no modal)
+10-15 19:13:18.650 I/ReactNativeJS(14286): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=null)
+10-15 19:13:18.650 W/ReactNativeJS(14286): '[COIN-RECOVER] slow', '{"outcome":"ok","totalMs":1289,"stages":{"account_lock_wait":1224,"part_stored_ops":59,"part_phone_state":61,"phone_state_and_stored_ops":61,"phone_credit_fingerprints":0,"storage_lock_wait":0,"storage_reads":3,"prepared_fingerprints":0,"practice_journal_reads":0,"compute_projection":0,"compaction":0,"multi_set":0,"prepared_clear":1},"counts":{"phoneCredits":0,"storedOperations":0,"projectionBytes":199,"prepared":0,"projectionOperations":0,"compacted":0,"writes":0,"writeBytes":0,"skippedUnchanged":2}}'
+10-15 19:13:18.792 I/ReactNativeJS(14286): [ENERGY-GATE] shown: op=energy:learning_v2_session:998beccf-ff14-4764-bfb5-dafa0d42b7fa screen=learning_v2_session ack=true
+10-15 19:13:21.104 I/ReactNativeJS(14286): '[SPEAK-MIC] audio-mode', '{"intent":"ui","spokenLeases":0,"recordingLeases":0}'
+10-15 19:13:26.637 I/ReactNativeJS(14286): '[HOME-RENDERS]', '{"tag":"home:continue","stage":"renders_window","window":"cold","count":2,"byCause":{"mount":1,"onPress":1},"ms":10122}'

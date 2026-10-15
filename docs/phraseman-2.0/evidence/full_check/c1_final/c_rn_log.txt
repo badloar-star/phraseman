@@ -1,0 +1,6 @@
+--------- beginning of main
+10-15 19:12:41.474 I/ReactNativeJS(14286): [V2-ACCESS] free=all (решение владельца 13.10), прежний лимит 2 не применяется; первый запрос урока 1
+10-15 19:12:41.478 I/ReactNativeJS(14286): '[V2-TAP] press', '{"courseSessionId":"lesson-01:session:01","state":"current","prewarmed":true}'
+10-15 19:12:41.605 I/ReactNativeJS(14286): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=pending tap→audio=pending tap→modal=126ms materialPrewarmed=false audioPrewarmed=false
+10-15 19:12:41.631 I/ReactNativeJS(14286): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=pending tap→modal=126ms materialPrewarmed=true audioPrewarmed=false
+10-15 19:12:41.631 I/ReactNativeJS(14286): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=126ms materialPrewarmed=true audioPrewarmed=true

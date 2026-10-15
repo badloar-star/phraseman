@@ -1,0 +1,64 @@
+--------- beginning of main
+10-15 19:10:35.749 I/ReactNativeJS(14286): [INFO] [MY-PACKS]: стопка: «Тренировать» pack=video_OHxgJuazJO0 cnt=50
+10-15 19:10:35.749 I/ReactNativeJS(14286): [TRAIN-INTENT] set deck=pack:video_OHxgJuazJO0 count=50
+10-15 19:10:35.774 I/ReactNativeJS(14286): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"flashcards","noop":false,"atMs":358235,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | run@213682:31 | anonymous@216251:33 | react-stack-bottom-frame@28676:26 | runWithFiberInDEV@20473:135"}'
+10-15 19:10:35.790 I/ReactNativeJS(14286): '[PERF-R1-MOUNT]', '{"tag":"probe:cards_hub","inst":6,"event":"render","at":358252}'
+10-15 19:10:35.898 I/ReactNativeJS(14286): '[FEATURE-INTRO] entry', '{"id":"cards_hub_first_visit","enabled":true,"active":true,"hasDef":true,"introVisible":false,"shown":false}'
+10-15 19:10:35.903 I/ReactNativeJS(14286): [CARDS-HUB-ANIM] старт: бесконечное парение (по приказу владельца 11.10), пока экран в фокусе и приложение активно
+10-15 19:10:35.906 I/ReactNativeJS(14286): '[HUB-LIFECYCLE] mount CardsHubV2#6', '{"live":{"CardsHubV2":2,"FlashcardsHubScreen":1},"caches":{"account_generation.listeners":43,"video_packs.memory":13,"community.catalogInFlight":0,"community.authorPacksLastKnown":1,"community.catalogPacks":8,"community.videoCatalogPacks":3,"community.packOpens":0,"pack_language.listeners":1,"collection.savedCards":0,"collection.customCards":0,"collection.enToUk":0,"collection.stagedOwnedPackCards":0,"deck_options.warmAvailableCardCounts":0,"deck_options.warmDeckOptions":3},"emitter":{"__no_registry__":0}}'
+10-15 19:10:35.909 I/ReactNativeJS(14286): '[MEM]', 'hub_lifecycle:mount CardsHubV2#6', '{"heapMb":100,"allocatedMb":77.3,"externalMb":3.1,"numGCs":995,"gcTimeMs":11032}'
+10-15 19:10:35.912 I/ReactNativeJS(14286): [HUB-LIFECYCLE] sub CardsHubV2.floatLoop on active=1
+10-15 19:10:35.917 I/ReactNativeJS(14286): '[HUB-LIFECYCLE] mount FlashcardsHubScreen#6', '{"live":{"CardsHubV2":2,"FlashcardsHubScreen":2},"caches":{"account_generation.listeners":43,"video_packs.memory":13,"community.catalogInFlight":0,"community.authorPacksLastKnown":1,"community.catalogPacks":8,"community.videoCatalogPacks":3,"community.packOpens":0,"pack_language.listeners":1,"collection.savedCards":0,"collection.customCards":0,"collection.enToUk":0,"collection.stagedOwnedPackCards":0,"deck_options.warmAvailableCardCounts":0,"deck_options.warmDeckOptions":3},"emitter":{"__no_registry__":0}}'
+10-15 19:10:35.919 I/ReactNativeJS(14286): '[MEM]', 'hub_lifecycle:mount FlashcardsHubScreen#6', '{"heapMb":100,"allocatedMb":77.7,"externalMb":3.1,"numGCs":995,"gcTimeMs":11032}'
+10-15 19:10:35.921 I/ReactNativeJS(14286): '[PERF-R1-MOUNT]', '{"tag":"probe:cards_hub","inst":6,"event":"mount","at":358382,"renderToEffectMs":130}'
+10-15 19:10:36.072 I/ReactNativeJS(14286): [INFO] [VIDEO-PACKS]: source=cache наборов 13 (сеть пропущена: кэш свежее 6 ч)
+10-15 19:10:36.074 I/ReactNativeJS(14286): '[BLITZ-AUTOOPEN] hub:autotrain-effect', '{"train":"1","deck":"pack:video_OHxgJuazJO0","handled":false}'
+10-15 19:10:36.075 I/ReactNativeJS(14286): [TRAIN-INTENT] consume ageMs=325 deck=pack:video_OHxgJuazJO0 count=50
+10-15 19:10:36.076 I/ReactNativeJS(14286): '[PERF-R1-NAV]', '{"event":"action","type":"SET_PARAMS","noop":false,"atMs":358538,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | anonymous@145520:21 | setParams@213785:68 | anonymous@1535618:23 | react-stack-bottom-frame@28676:26"}'
+10-15 19:10:36.077 I/ReactNativeJS(14286): '[FC-TRAIN-ENTRY] tap:train', '{"quotaStatus":"waiting","used":0,"limit":30,"bypass":null,"trainingLocked":false,"trainingEntryReady":false,"accessResolved":true}'
+10-15 19:10:36.079 I/ReactNativeJS(14286): [FC-TRAIN-ENTRY] early_tap:waiting статус квоты="waiting"
+10-15 19:10:36.081 I/ReactNativeJS(14286): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#bo99oo*[(tabs)#XTJyMM,flashcards#M4zUZP,flashcards_my_packs#_KOMc-,flashcards#h1mXOH*]","atMs":358543}'
+10-15 19:10:36.129 I/ReactNativeJS(14286): '[FEATURE-INTRO] entry', '{"id":"cards_hub_first_visit","enabled":false,"active":false,"hasDef":true,"introVisible":false,"shown":false}'
+10-15 19:10:36.132 I/ReactNativeJS(14286): [HUB-LIFECYCLE] sub FlashcardsHubScreen.focus on active=1
+10-15 19:10:36.133 I/ReactNativeJS(14286): '[BLITZ-LIMIT] screen:refresh', '{"reason":"focus"}'
+10-15 19:10:36.135 I/ReactNativeJS(14286): '[PACKS-FIRSTFRAME] peek HIT key=%s packs=%d ageMs=%d', 'en', 8, 7222082
+10-15 19:10:36.137 I/ReactNativeJS(14286): '[PACKS-FIRSTFRAME] peek HIT key=%s packs=%d ageMs=%d', 'en', 8, 7222085
+10-15 19:10:36.139 I/ReactNativeJS(14286): '[PACKS-FIRSTFRAME] load CACHE key=%s packs=%d source=warm-cache', 'en', 8
+10-15 19:10:36.143 I/ReactNativeJS(14286): '[BLITZ-AUTOOPEN] hub:autotrain-effect', '{"train":null,"deck":null,"handled":true}'
+10-15 19:10:36.144 I/ReactNativeJS(14286): [BLITZ-AUTOOPEN] hub:focus — сброс флага автозапуска
+10-15 19:10:36.147 I/ReactNativeJS(14286): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#bo99oo*[(tabs)#XTJyMM,flashcards#M4zUZP,flashcards_my_packs#_KOMc-,flashcards#h1mXOH*]","atMs":358608}'
+10-15 19:10:36.393 I/ReactNativeJS(14286): [FC-DECKS] source:publishedCatalog warm наборов=8
+10-15 19:10:36.395 I/ReactNativeJS(14286): '[HUB-TILES] mine:settled', '{"settled":1,"userId":"есть","studyTarget":"en","source":"снимок «Мои наборы»"}'
+10-15 19:10:36.396 I/ReactNativeJS(14286): '[HUB-TILES] mine:instant', '{"source":"cache","value":1,"confirmed":null,"studyTarget":"en","userId":"есть"}'
+10-15 19:10:36.396 I/ReactNativeJS(14286): [FC-DECKS] source:saved ok за 263мс
+10-15 19:10:36.407 I/ReactNativeJS(14286): '[PERF-R1]', '{"screen":"cards_hub","stage":"first_frame","ms":611,"commits":3}'
+10-15 19:10:36.408 I/ReactNativeJS(14286): '[BLITZ-LIMIT]', 'preview:read', '{"source":"disk","period":"2026-10","used":0,"premium":false}'
+10-15 19:10:36.408 I/ReactNativeJS(14286): '[BLITZ-LIMIT] screen:read', '{"status":"allowed","used":0,"limit":30,"bypass":null,"applied":false}'
+10-15 19:10:36.411 I/ReactNativeJS(14286): [FC-DECKS] source:accessiblePackIds ok за 277мс
+10-15 19:10:36.411 I/ReactNativeJS(14286): [FC-DECKS] source:communityOwnedTitles ok за 278мс
+10-15 19:10:36.412 I/ReactNativeJS(14286): [FC-DECKS] source:localAuthorPacks ok за 277мс
+10-15 19:10:36.424 I/ReactNativeJS(14286): '[BLITZ-LIMIT]', 'preview:read', '{"source":"disk","period":"2026-10","used":0,"premium":false}'
+10-15 19:10:36.425 I/ReactNativeJS(14286): '[BLITZ-LIMIT] screen:read', '{"status":"allowed","used":0,"limit":30,"bypass":null,"applied":true}'
+10-15 19:10:36.426 I/ReactNativeJS(14286): [FC-DECKS] source:custom ok за 293мс
+10-15 19:10:36.428 I/ReactNativeJS(14286): [FC-DECKS] source:communityOwnedIds ok за 294мс
+10-15 19:10:36.428 I/ReactNativeJS(14286): [FC-DECKS] sources:done за 295мс
+10-15 19:10:36.429 I/ReactNativeJS(14286): [FC-DECKS] локальных наборов: всего=0 моей цели=0 скрыто облачных близнецов=0
+10-15 19:10:36.429 I/ReactNativeJS(14286): [FC-DECKS] source:videoCatalog warm наборов=3
+10-15 19:10:36.430 I/ReactNativeJS(14286): '[FC-DECKS] pack:video_OHxgJuazJO0 import_marketplace:begin', '{"ms":0}'
+10-15 19:10:36.431 I/ReactNativeJS(14286): '[FC-DECKS] pack:video_OHxgJuazJO0 import_marketplace:done', '{"ms":2}'
+10-15 19:10:36.432 I/ReactNativeJS(14286): '[FC-DECKS] pack:video_OHxgJuazJO0 import_firestore:begin', '{"ms":2}'
+10-15 19:10:36.432 I/ReactNativeJS(14286): '[FC-DECKS] pack:video_OHxgJuazJO0 import_firestore:done', '{"ms":3}'
+10-15 19:10:36.436 I/ReactNativeJS(14286): '[HUB-TILES] mine:local', '{"prev":1,"local":1,"authored":0,"ownedCommunity":1,"shown":1,"source":"снимок «Мои наборы»"}'
+10-15 19:10:36.513 I/ReactNativeJS(14286): '[FC-DECKS] pack:video_OHxgJuazJO0 persisted_read:done', '{"ms":84,"cards":0}'
+10-15 19:10:36.515 I/ReactNativeJS(14286): [DECK] video_fallback pack=video_OHxgJuazJO0 документа нет (отметка) — сразу фразы ролика, чтение пропущено
+10-15 19:10:36.517 I/ReactNativeJS(14286): [DECK] video_fallback pack=video_OHxgJuazJO0 source=memory phrases=50 cards=50
+10-15 19:10:36.518 I/ReactNativeJS(14286): [FC-DECKS] build:done наборов=3 всего за 385мс, снимок=пишем
+10-15 19:10:36.539 W/ReactNativeJS(14286): [NAV-PAINT] group=tab route=/flashcards ms=455
+10-15 19:10:36.546 I/ReactNativeJS(14286): [FC-TRAIN-ENTRY] early_tap:resolved status="allowed" waitedMs=465
+10-15 19:10:37.556 I/ReactNativeJS(14286): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#14","count":1,"byCause":{"tiles":1},"ms":10149}'
+10-15 19:10:37.557 I/ReactNativeJS(14286): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#14","count":1,"byCause":{"bellSlot":1,"avatarSlot":1,"stats":1},"ms":10157}'
+10-15 19:10:37.559 I/ReactNativeJS(14286): '[HOME-RENDERS]', '{"tag":"home:today","stage":"renders_window","window":"refocus#14","count":1,"byCause":{"tasks":1,"onOpenTask":1,"surveyRow":1},"ms":10140}'
+10-15 19:10:37.559 I/ReactNativeJS(14286): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#14","count":1,"byCause":{"ownerActive":1,"onSeeAll":1},"ms":10149}'
+10-15 19:10:37.573 I/ReactNativeJS(14286): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#14","count":1,"byCause":{"homeRuntimeActive":1,"homeSurvey":1,"weekMoment":1,"welcomeBack":1},"ms":10177}'
+10-15 19:10:38.938 I/ReactNativeJS(14286): '[PERF-R1]', '{"screen":"cards_hub","stage":"commits_3s","commits":5,"ms":3147}'
+10-15 19:10:40.929 I/ReactNativeJS(14286): [CARDS-HUB-ANIM] за 5 с: обновлений анимации=257 (51 к/с), значение=-7.82, с начала=5030 мс

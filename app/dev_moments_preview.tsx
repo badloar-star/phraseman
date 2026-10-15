@@ -12,6 +12,7 @@
 //   state=steppass | stepfail | floor | summit — m06 «Ступень пройдена / не пройдена» и m07 «Этаж пройден / Вершина» на моках образца (&tier=N лига для башни, &rank=N ранг монеты)
 //   state=rise | overtake | lastchance — m05 «Позиция выросла / обогнали / последний шанс» на моках образца (lastchance: &gap=N не хватает до топ-5, по умолчанию 60)
 //   state=perfect — m09 «Идеальный урок» (&n=N заданий, 20; &coins=N монет за урок, 150); state=firstdialog — m17 «Первый разговор» (&study=en|es|fr|de, en; &n=N реплик, 6; &goals=N целей, 5)
+//   state=promoshort — m01 вариант B «Короткая» (повторное повышение): &tier=N лига (1…11), &place=N (5), &coins=N монеты недели (470), +100 за повышение
 //   state=fonts — полоса весов Inter 400–900 для решения владельца по шрифту 800 (Темы; на Android 246 мест рисуются как 700)
 //   &selector=1 — снизу полоса переключения состояний и «Повторить» (по умолчанию скрыта, чтобы не попадать в кадр); &replay=N — перезапуск показа
 // Экраны — ТЕ ЖЕ компоненты, что будут в бою; данные — моки без сети, ничего не пишется и не начисляется. Тема и язык — текущие настройки приложения (dev_state?theme=…).
@@ -35,6 +36,7 @@ import SpireOvertakeToast from '../components/spire/moments/SpireOvertakeToast';
 import SpirePositionRiseMoment from '../components/spire/moments/SpirePositionRiseMoment';
 import FontWeightStrip from '../components/dev/FontWeightStrip';
 import FirstDialogMoment from '../components/dialog_moments/FirstDialogMoment';
+import MomentPromotionShort from '../components/spire/moments/MomentPromotionShort';
 import LessonPerfectMoment from '../components/lesson_moments/LessonPerfectMoment';
 import MomentDown from '../components/spire/moments/MomentDown';
 import MomentPromotion, { type MomentRoomRow } from '../components/spire/moments/MomentPromotion';
@@ -44,7 +46,7 @@ import TodayRings from '../components/streak/moments/TodayRings';
 import { STREAK_MILESTONES, isStreakMilestone, type StreakMilestone } from '../components/streak/moments/streak_milestones';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 
-const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'perfect', 'firstdialog', 'fonts'] as const;
+const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'perfect', 'firstdialog', 'promoshort', 'fonts'] as const;
 type PreviewState = (typeof STATES)[number];
 const isState = (v: unknown): v is PreviewState => typeof v === 'string' && (STATES as readonly string[]).includes(v);
 const noop = (): void => undefined;
@@ -144,6 +146,9 @@ function Inner() {
         ) : null}
         {state === 'firstdialog' ? (
           <FirstDialogMoment key={key} lang={lang} studyTarget={params.study === 'es' || params.study === 'fr' || params.study === 'de' ? params.study : 'en'} coinRank={rank} turns={int(params.n, 6, 1, 99)} goalsDone={int(params.goals, 5, 0, 20)} goalsTotal={int(params.goals, 5, 1, 20)} onNext={noop} />
+        ) : null}
+        {state === 'promoshort' ? (
+          <MomentPromotionShort key={key} lang={lang} toTier={Math.max(1, tier)} myPlace={place} myCoinRank={rank} weekCoins={int(params.coins, 470, 0, 999999)} bonusCoins={100} onPlay={noop} onShare={noop} />
         ) : null}
         {state === 'fonts' ? <FontWeightStrip /> : null}
         {params.selector === '1' ? (

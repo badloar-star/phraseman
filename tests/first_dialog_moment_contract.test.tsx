@@ -35,7 +35,7 @@ jest.mock('../components/spire/useSpirePalette', () => ({
 }));
 
 import FirstDialogMoment from '../components/dialog_moments/FirstDialogMoment';
-import { FIRST_DIALOG_LANGS, FIRST_DIALOG_STRING_KEYS, firstDialogText } from '../components/dialog_moments/first_dialog_strings';
+import { FIRST_DIALOG_LANGS, FIRST_DIALOG_STRING_KEYS, firstDialogStats, firstDialogText } from '../components/dialog_moments/first_dialog_strings';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
@@ -45,7 +45,7 @@ describe('m17 · первый диалог', () => {
     await render(<FirstDialogMoment lang="ru" studyTarget="en" coinRank={5} turns={6} goalsDone={5} goalsTotal={5} onNext={onNext} />);
     expect(screen.getByTestId('first-dialog-title').props.children).toBe('Первый разговор по-английски — есть!');
     expect(screen.getByText('Получилось!')).toBeTruthy();
-    expect(screen.getByTestId('first-dialog-stats').props.children).toBe('Реплик: 6 · заданий 5 из 5');
+    expect(screen.getByTestId('first-dialog-stats').props.children).toBe('6 реплик · 5 заданий из 5');
     expect(screen.getByText('ПЕРВЫЙ ДИАЛОГ')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('first-dialog-next'));
     expect(onNext).toHaveBeenCalledTimes(1);
@@ -67,6 +67,22 @@ describe('m17 · первый диалог', () => {
   it('английский интерфейс, изучается французский: «Your first conversation in French — done!»', async () => {
     await render(<FirstDialogMoment lang="en" studyTarget="fr" coinRank={5} turns={3} goalsDone={3} goalsTotal={3} onNext={jest.fn()} />);
     expect(screen.getByTestId('first-dialog-title').props.children).toBe('Your first conversation in French — done!');
+  });
+});
+
+describe('строка итога: слова согласуются с числом (лист приёмки m17)', () => {
+  it('ru: 1 реплика · 1 задание из 3; 2 реплики · 2 задания из 5; 6 реплик · 5 заданий из 5; 21 реплика; 11 реплик', () => {
+    expect(firstDialogStats('ru', 1, 1, 3)).toBe('1 реплика · 1 задание из 3');
+    expect(firstDialogStats('ru', 2, 2, 5)).toBe('2 реплики · 2 задания из 5');
+    expect(firstDialogStats('ru', 6, 5, 5)).toBe('6 реплик · 5 заданий из 5');
+    expect(firstDialogStats('ru', 21, 3, 3)).toBe('21 реплика · 3 задания из 3');
+    expect(firstDialogStats('ru', 11, 11, 11)).toBe('11 реплик · 11 заданий из 11');
+  });
+  it('uk/pl — три формы; en/es/pt-BR/vi/id/tr — свой порядок слов, во всех 9 языках строка непустая и содержит числа', () => {
+    expect(firstDialogStats('uk', 3, 2, 4)).toBe('3 репліки · 2 завдання з 4');
+    expect(firstDialogStats('pl', 5, 5, 5)).toBe('5 wypowiedzi · 5 zadań z 5');
+    expect(firstDialogStats('en', 1, 1, 1)).toBe('1 turn · 1 of 1 goal');
+    for (const lang of FIRST_DIALOG_LANGS) { const text = firstDialogStats(lang, 6, 5, 5); expect([lang, /6/.test(text) && /5/.test(text)]).toEqual([lang, true]); }
   });
 });
 

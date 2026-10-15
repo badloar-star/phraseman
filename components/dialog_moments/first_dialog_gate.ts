@@ -22,14 +22,14 @@ export type FirstDialogInput = Readonly<{
 export type FirstDialogDecision = Readonly<{ show: boolean; reason: string }>;
 
 export function decideFirstDialogMoment(input: FirstDialogInput): FirstDialogDecision {
-  if (!input.momentsV3) return { show: false, reason: 'флаг moments_v3 выключен' };
-  if (input.endedBy !== 'bot') return { show: false, reason: `диалог не засчитан: endedBy=${input.endedBy}` };
-  if (input.learnerTurns <= 0) return { show: false, reason: `диалог не засчитан: реплик ${input.learnerTurns}` };
-  if (!input.scenarioId) return { show: false, reason: 'нет id сценария' };
-  if (input.goalsTotal <= 0) return { show: false, reason: 'итог без целей — цифры момента выдумывать нельзя' };
-  if (!input.doneIds.has(input.scenarioId)) return { show: false, reason: `сценарий ${input.scenarioId} не отмечен пройденным` };
-  if (input.doneIds.size !== 1) return { show: false, reason: `не первый: пройдено сценариев ${input.doneIds.size}` };
-  if (input.alreadyShown === null) return { show: false, reason: 'отметка показа ещё читается' };
-  if (input.alreadyShown) return { show: false, reason: 'для этого языка уже показывали' };
-  return { show: true, reason: `первый засчитанный диалог языка: реплик=${input.learnerTurns} целей=${input.goalsTotal}` };
+  if (!input.momentsV3) return { show: false, reason: 'флаг moments_v3 выключен' }; // guard-ok: log-only reason
+  if (input.endedBy !== 'bot') return { show: false, reason: `диалог не засчитан: endedBy=${input.endedBy}` }; // guard-ok: log-only reason
+  if (input.learnerTurns <= 0) return { show: false, reason: `диалог не засчитан: реплик ${input.learnerTurns}` }; // guard-ok: log-only reason
+  if (!input.scenarioId) return { show: false, reason: 'нет id сценария' }; // guard-ok: log-only reason
+  if (input.goalsTotal <= 0) return { show: false, reason: 'итог без целей — цифры момента выдумывать нельзя' }; // guard-ok: log-only reason
+  if (!input.doneIds.has(input.scenarioId)) return { show: false, reason: `сценарий ${input.scenarioId} не отмечен пройденным` }; // guard-ok: log-only reason
+  if (input.doneIds.size !== 1) return { show: false, reason: `не первый: пройдено сценариев ${input.doneIds.size}` }; // guard-ok: log-only reason
+  if (input.alreadyShown === null) return { show: false, reason: 'отметка показа ещё читается' }; // guard-ok: log-only reason
+  if (input.alreadyShown) return { show: false, reason: 'для этого языка уже показывали' }; // guard-ok: log-only reason
+  return { show: true, reason: `первый засчитанный диалог языка: реплик=${input.learnerTurns} целей=${input.goalsTotal}` }; // guard-ok: log-only reason
 }

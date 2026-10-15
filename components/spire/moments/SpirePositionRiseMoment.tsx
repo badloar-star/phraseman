@@ -13,6 +13,7 @@ import type { Lang } from '../../../constants/i18n';
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../../../hooks/use-haptics';
 import { playEvent } from '../../../modules/sound_v2/sound_bank';
 import { useFireOnce } from '../../moments/use_fire_once';
+import { V2_TYPE } from '../../../constants/v2Style';
 import { V2Button } from '../../v2/V2Kit';
 import { spireGameText } from '../spire_game_strings';
 import { useSpirePalette } from '../useSpirePalette';
@@ -151,8 +152,9 @@ const RiseRow = memo(function RiseRow({ row, place, originalIndex, fromIndex, to
 const s = StyleSheet.create({
   full: { flex: 1, paddingHorizontal: 24, paddingTop: 76, paddingBottom: 36 },
   body: { flex: 1, alignItems: 'center' },
-  ov: { fontSize: 12, lineHeight: 16, letterSpacing: 2.6, fontWeight: '700', textAlign: 'center' },
-  hMd: { marginTop: 6, fontSize: 21, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center' },
+  // зачем (лист приёмки m05, решение координатора 15.10): надзаголовок — V2_TYPE.overline (13/17 · 700 · трекинг 1,4), «Ты в топ-5» — 20/26 · 700 · −0,2
+  ov: { ...V2_TYPE.overline, textAlign: 'center' },
+  hMd: { marginTop: 6, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center' },
   ladder: { alignSelf: 'stretch', marginTop: 16, gap: ROW_GAP },
   zone: { position: 'absolute', left: -8, right: -8, height: 2, zIndex: 3 },
   zoneLbl: { position: 'absolute', right: 8, top: -18, fontSize: 10, letterSpacing: 2, fontWeight: '800' },

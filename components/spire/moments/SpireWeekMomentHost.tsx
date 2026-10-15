@@ -8,12 +8,15 @@
 // «Напомнить вечером» (m03) — только если хук Ядра сказал, что напоминание доступно (weekMoment.remind.available); иначе второй кнопки нет.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo, useRef } from 'react';
-import { Modal, View } from 'react-native';
+import { Modal, Share, View } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
 import type { SpireWeekMomentShow } from '../../../app/spire/spire_week_moment_gate';
 import { SheetSwipeRoot } from '../../modal_fx/SheetSwipeClose';
 import MomentDown from './MomentDown';
 import MomentPromotion, { type MomentRoomRow } from './MomentPromotion';
+import MomentPromotionShort from './MomentPromotionShort';
+import { momentNumber, momentText } from './moments_strings';
+import { spireTierName } from '../../../modules/spire/tier_names';
 import MomentStay from './MomentStay';
 
 export type SpireWeekMomentHostProps = Readonly<{
@@ -58,12 +61,28 @@ function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemi
     onPlay?.();
   }, [onClose, onPlay]);
   const rows = useMemo(() => spireWeekLadderRows(result.ladder), [result.ladder]);
+  // зачем (координатор 15.10, m01 вариант B): «Поделиться» — системное окно с текстом из строк (лига, место, монеты недели; без имени и идентификаторов), на наш сервер ничего не уходит; пока окно открыто, второе не открываем
+  const sharingRef = useRef(false);
+  const handleShare = useCallback(() => {
+    if (sharingRef.current) { console.log('[WEEK-MOMENT] share: окно уже открыто — пропуск'); return; }
+    sharingRef.current = true;
+    const message = momentText(lang, 'promoShareText', { league: spireTierName(result.newTier, lang), place: result.roomRank, coins: momentNumber(result.weekCoins ?? 0) });
+    console.log(`[WEEK-MOMENT] share: открываю системное окно, символов=${message.length}`); // guard-ok: единичный лог действия
+    Share.share({ message })
+      .then((r) => { console.log(`[WEEK-MOMENT] share: результат action=${String(r.action)}`); }) // guard-ok: итог
+      .catch((e: unknown) => { console.warn(`[WEEK-MOMENT] share: сбой ${e instanceof Error ? e.message : String(e)}`); }) // guard-ok: catch называет причину
+      .finally(() => { sharingRef.current = false; });
+  }, [lang, result.newTier, result.roomRank, result.weekCoins]);
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
       <SheetSwipeRoot>
         <View style={{ flex: 1 }} testID={testID}>
           {outcome === 'promoted' ? (
-            <MomentPromotion lang={lang} fromTier={result.prevTier} toTier={result.newTier} rows={rows} myPlace={result.roomRank} myCoinRank={coinRank} bonusCoins={result.promotionCoins} onPlay={handlePlay} />
+            decision.isRepeatPromotion === true ? (
+              <MomentPromotionShort lang={lang} toTier={result.newTier} myPlace={result.roomRank} myCoinRank={coinRank} weekCoins={result.weekCoins} bonusCoins={result.promotionCoins} onPlay={handlePlay} onShare={handleShare} />
+            ) : (
+              <MomentPromotion lang={lang} fromTier={result.prevTier} toTier={result.newTier} rows={rows} myPlace={result.roomRank} myCoinRank={coinRank} bonusCoins={result.promotionCoins} onPlay={handlePlay} />
+            )
           ) : outcome === 'stayed' ? (
             <MomentStay lang={lang} tier={result.newTier} coinRank={coinRank} place={result.roomRank} weekCoins={result.weekCoins ?? 0} gapToTop5={spireWeekGapToTop5(result)} onPlay={handlePlay} />
           ) : (

@@ -10,6 +10,7 @@ jest.mock('react-native', () => ({
   Text: 'Text',
   Pressable: 'Pressable',
   Modal: 'Modal',
+  Share: { share: (...args: unknown[]) => (globalThis as { __shareMock?: (...a: unknown[]) => Promise<unknown> }).__shareMock?.(...args) },
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {}, absoluteFillObject: {} },
   Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },
   Dimensions: { get: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }) },
@@ -27,7 +28,7 @@ jest.mock('react-native-reanimated', () => {
   const chain = { duration: () => chain, easing: () => chain };
   return {
     __esModule: true,
-    default: { View },
+    default: { View, Text: (props: Record<string, unknown>) => R.createElement('Text', props, props.children) },
     Easing: { out: () => () => 0, cubic: () => 0, quad: () => 0, linear: () => 0, bezier: () => () => 0 },
     FadeIn: chain,
     FadeOut: chain,
@@ -166,5 +167,39 @@ describe('помощники окна', () => {
     expect(spireWeekGapToTop5(result({ weekCoins: 460, promotionLineCoins: 700 }))).toBe(240);
     expect(spireWeekGapToTop5(result({ weekCoins: 800, promotionLineCoins: 700 }))).toBe(0);
     expect(spireWeekGapToTop5(result({ weekCoins: 460 }))).toBeUndefined();
+  });
+});
+
+describe('m01 вариант B «Короткая»: повторное повышение (isRepeatPromotion)', () => {
+  const repeat = (patch: Partial<Result>): SpireWeekMomentShow => ({ ...decision('promoted', { promoted: true, prevTier: 1, newTier: 2, promotionCoins: 100, ...patch }), isRepeatPromotion: true });
+
+  it('вместо трёх актов — короткий экран: надпись «Топ-5 · лига», «Поднимаешься», строка «5 место · 470 монет за неделю · +100», «Играть»; «Играть» СНАЧАЛА закрывает окно, потом ведёт в Пик', async () => {
+    const order: string[] = [];
+    await render(<SpireWeekMomentHost lang="ru" decision={repeat({})} coinRank={5} onClose={() => { order.push('close'); }} onPlay={() => { order.push('play'); }} />);
+    expect(screen.getByTestId('moment-promotion-short-title').props.children).toBe('Поднимаешься');
+    expect(String(screen.getByTestId('moment-promotion-short-overline').props.children)).toContain('ТОП-5 · ');
+    expect(screen.getByTestId('moment-promotion-short-body').props.children).toBe('5 место · 470 монет за неделю · +100');
+    await fireEvent.press(screen.getByTestId('moment-promotion-short-play'));
+    await fireEvent.press(screen.getByTestId('moment-promotion-short-play'));
+    expect(order).toEqual(['close', 'play']);
+  });
+
+  it('без награды сервера строка без «+N»; без isRepeatPromotion остаётся обычный m01 (не короткий)', async () => {
+    await render(<SpireWeekMomentHost lang="ru" decision={repeat({ promotionCoins: 0 })} coinRank={5} onClose={jest.fn()} />);
+    expect(screen.getByTestId('moment-promotion-short-body').props.children).toBe('5 место · 470 монет за неделю');
+    await render(<SpireWeekMomentHost lang="ru" decision={decision('promoted', { promoted: true, prevTier: 1, newTier: 2, promotionCoins: 100 })} coinRank={5} onClose={jest.fn()} />);
+    expect(screen.queryByTestId('moment-promotion-short-title')).toBeNull();
+  });
+
+  it('«Поделиться» открывает системное окно с текстом из строк (лига, место, монеты; без имени), на сервер ничего не уходит', async () => {
+    const calls: unknown[][] = [];
+    (globalThis as { __shareMock?: (...a: unknown[]) => Promise<unknown> }).__shareMock = (...a) => { calls.push(a); return Promise.resolve({ action: 'sharedAction' }); };
+    await render(<SpireWeekMomentHost lang="ru" decision={repeat({})} coinRank={5} onClose={jest.fn()} />);
+    await fireEvent.press(screen.getByTestId('moment-promotion-short-share'));
+    expect(calls).toHaveLength(1);
+    const message = String((calls[0]?.[0] as { message?: string } | undefined)?.message ?? '');
+    expect(message).toContain('5 место');
+    expect(message).toContain('470 монет за неделю');
+    expect(message).not.toMatch(/Марк|Ты\b/);
   });
 });

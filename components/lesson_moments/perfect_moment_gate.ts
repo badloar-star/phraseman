@@ -20,13 +20,13 @@ export type PerfectMomentDecision = Readonly<{ show: boolean; reason: string }>;
 
 /** Показывать ли штамп «ИДЕАЛ»; причина — для журнала (какое значение решило). */
 export function decidePerfectMoment(input: PerfectMomentInput): PerfectMomentDecision {
-  if (!input.momentsV3) return { show: false, reason: 'флаг moments_v3 выключен' };
-  if (input.isCombo) return { show: false, reason: 'комбо-итог без идеала' };
-  if (!input.counts) return { show: false, reason: 'итог ещё не посчитан' };
-  if (input.counts.correct <= 0) return { show: false, reason: `верных ответов нет (correct=${input.counts.correct})` };
-  if (input.counts.wrong > 0) return { show: false, reason: `были ошибки (wrong=${input.counts.wrong})` };
-  if (input.coinsHydrating) return { show: false, reason: 'монеты урока ещё считаются' };
-  return { show: true, reason: `идеал: верно=${input.counts.correct} ошибок=0` };
+  if (!input.momentsV3) return { show: false, reason: 'флаг moments_v3 выключен' }; // guard-ok: log-only reason
+  if (input.isCombo) return { show: false, reason: 'комбо-итог без идеала' }; // guard-ok: log-only reason
+  if (!input.counts) return { show: false, reason: 'итог ещё не посчитан' }; // guard-ok: log-only reason
+  if (input.counts.correct <= 0) return { show: false, reason: `верных ответов нет (correct=${input.counts.correct})` }; // guard-ok: log-only reason
+  if (input.counts.wrong > 0) return { show: false, reason: `были ошибки (wrong=${input.counts.wrong})` }; // guard-ok: log-only reason
+  if (input.coinsHydrating) return { show: false, reason: 'монеты урока ещё считаются' }; // guard-ok: log-only reason
+  return { show: true, reason: `идеал: верно=${input.counts.correct} ошибок=0` }; // guard-ok: log-only reason
 }
 
 const shownInThisProcess = new Set<string>();

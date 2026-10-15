@@ -17,8 +17,9 @@ import { useFireOnce } from '../moments/use_fire_once';
 import { MomentFullScreen } from '../spire/moments/moments_layout';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import StreakConfetti from '../streak/moments/StreakConfetti';
+import { V2_TYPE } from '../../constants/v2Style';
 import { V2Button } from '../v2/V2Kit';
-import { firstDialogText } from './first_dialog_strings';
+import { firstDialogStats, firstDialogText } from './first_dialog_strings';
 
 /** Тайминги образца, мс: монета 300, конфетти 700, тексты 900 + 220 × i. */
 export const FIRST_DIALOG_TIMELINE = { cheer: 300, confetti: 700, texts: 900, textStep: 220 } as const;
@@ -67,7 +68,7 @@ function FirstDialogMoment({ lang, studyTarget, coinRank, turns, goalsDone, goal
           <MomentCoin rank={coinRank} size={110} mood={cheer ? 'cheer' : 'idle'} say={cheer ? firstDialogText(lang, 'say') : undefined} emote={cheer ? 'heart' : null} emoteCount={4} glints testID={`${testID}-coin`} />
           <Animated.Text entering={beat(0)} style={[s.ov, { color: p.accentTextSafe }]}>{firstDialogText(lang, 'overline').toUpperCase()}</Animated.Text>
           <Animated.Text entering={beat(1)} accessibilityRole="header" style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{firstDialogText(lang, 'title', { adv })}</Animated.Text>
-          <Animated.Text entering={beat(2)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-stats`}>{firstDialogText(lang, 'stats', { turns, done: goalsDone, all: goalsTotal })}</Animated.Text>
+          <Animated.Text entering={beat(2)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-stats`}>{firstDialogStats(lang, turns, goalsDone, goalsTotal)}</Animated.Text>
         </View>
         <Animated.View entering={beat(3)} style={s.foot}>
           <V2Button label={firstDialogText(lang, 'next')} icon="arrow-forward" onPress={() => fire(onNext, 'next')} testID={`${testID}-next`} />
@@ -81,7 +82,8 @@ const s = StyleSheet.create({
   // `.full`: колонка, поля 24, верх 76 / низ 36
   full: { flex: 1, paddingHorizontal: 24, paddingTop: 76, paddingBottom: 36 },
   body: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  ov: { marginTop: 20, fontSize: 13, lineHeight: 17, letterSpacing: 2.6, fontWeight: '700', textAlign: 'center' },
+  // зачем (лист приёмки m17, решение координатора 15.10): надзаголовок — V2_TYPE.overline (13/17 · 700 · трекинг 1,4)
+  ov: { marginTop: 20, ...V2_TYPE.overline, textAlign: 'center' },
   hXl: { marginTop: 6, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' },
   p: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   foot: { gap: 0 },

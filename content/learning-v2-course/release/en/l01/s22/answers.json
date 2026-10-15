@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-22:i01",
-    "correctText": "asleep",
+    "correctText": "He is rich.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i02",
-    "correctText": "asleep",
+    "correctText": "She is poor.",
     "correctResponseId": "en:lesson-01:session-22:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-22:i03",
-    "correctText": "awake",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-22:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-22:i04",
-    "correctText": "awake",
-    "correctResponseId": "en:lesson-01:session-22:i04:r1"
+    "correctText": "en:lesson-01:session-22:i04:p1=rich\nen:lesson-01:session-22:i04:p2=poor\nen:lesson-01:session-22:i04:p3=famous\nen:lesson-01:session-22:i04:p4=inside",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i05",
-    "correctText": "asleep",
-    "correctResponseId": "en:lesson-01:session-22:i05:r1"
+    "correctText": "We are poor.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i06",
-    "correctText": "away",
+    "correctText": "She is famous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i07",
-    "correctText": "ill",
+    "correctText": "They are rich.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i08",
-    "correctText": "ill",
+    "correctText": "am",
     "correctResponseId": "en:lesson-01:session-22:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-22:i09",
-    "correctText": "She is away.",
-    "correctResponseId": null
+    "correctText": "You are rich.",
+    "correctResponseId": "en:lesson-01:session-22:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-22:i10",
-    "correctText": "ill",
-    "correctResponseId": "en:lesson-01:session-22:i10:r1"
+    "correctText": "en:lesson-01:session-22:i10:p1=outside\nen:lesson-01:session-22:i10:p2=upstairs\nen:lesson-01:session-22:i10:p3=dirty\nen:lesson-01:session-22:i10:p4=open",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i11",
-    "correctText": "He is awake.",
+    "correctText": "He is famous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i12",
-    "correctText": "en:lesson-01:session-22:i12:p1=asleep\nen:lesson-01:session-22:i12:p2=awake\nen:lesson-01:session-22:i12:p3=away\nen:lesson-01:session-22:i12:p4=ill",
+    "correctText": "They are poor.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i13",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-22:i13:r1"
+    "correctText": "It is closed.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i14",
-    "correctText": "She is home.",
-    "correctResponseId": null
+    "correctText": "famous",
+    "correctResponseId": "en:lesson-01:session-22:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-22:i15",
-    "correctText": "He is not sick.",
-    "correctResponseId": null
+    "correctText": "We are famous.",
+    "correctResponseId": "en:lesson-01:session-22:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-22:i16",
-    "correctText": "She is tired.",
+    "correctText": "en:lesson-01:session-22:i16:p1=closed\nen:lesson-01:session-22:i16:p2=famous\nen:lesson-01:session-22:i16:p3=poor\nen:lesson-01:session-22:i16:p4=rich",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-22:i17:s01",
-    "correctText": "He is asleep.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-22:i17:s02",
-    "correctText": "She is awake.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-22:i17:s03",
-    "correctText": "He is away.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-22:i17:s04",
-    "correctText": "He is tired.",
+    "interactionId": "en:lesson-01:session-22:i17",
+    "correctText": "He is famous.",
     "correctResponseId": null
   }
 ]

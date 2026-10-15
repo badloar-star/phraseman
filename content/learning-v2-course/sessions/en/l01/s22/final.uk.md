@@ -1,226 +1,138 @@
-# Англійська · Урок 1 · Заняття 22 — «Він спить, вона поїхала»
+# Англійська · Урок 1 · Заняття 22 — Хто є хто у фільмі
 
-**Ситуація.** Увечері сусід Сергій притримує двері й розповідає про свою родину: хто вже спить, хто ще не повернувся і хто занедужав.
+**Ситуація.** Ви з другом дивитеся фільм. Він пропустив початок і запитує про героїв: у кого багато грошей, у кого їх мало й кого всі впізнають.
 
-**Як сказати:** `He is`, `She is` та `He is not`, коли говорите про іншу людину.
-**Нові слова:** asleep, awake, away, ill
-**Повертаються:** quiet, home, sick, tired
+**Що ви опануєте:** впізнавати на слух знайомі I am, He/She is, You/We/They are та описувати героїв фільму
+**Нові слова:** rich, poor, famous
 
 ---
 
 ## Інтро 1
 
-### `asleep` — спить
+### У нього багато грошей
 
-`asleep` — «спить». Очі заплющені, дихання рівне.
+`rich` — «багатий». Героєві належать кілька дорогих будинків: `He is rich` — «Він багатий». Про двох заможних героїв скажемо `They are rich`. Саме `rich` залишається тим самим.
 
-Українською ми кажемо просто: «він спить», «він удома», «він утомився» — без жодної зв'язки. В англійській між `he` і словом про нього завжди стоїть `is`: `He is asleep`. Пропустити його хочеться кожному — і щоразу фраза розсипається.
+**Друг запитує про чоловіка, якому належать кілька дорогих будинків. Скажіть: «Він багатий».**
 
-**Сусід киває на двері: там син, і його краще не будити. Скажіть про нього.**
-
-- ✅ **He is asleep.**
-- ❌ He asleep. — *В англійській фразі потрібна форма `is`: без неї фраза неповна.*
-- ❌ He am asleep. — *`am` живе тільки поруч із `I`. Про іншу людину — `is`.*
+- ✅ **He is rich.**
+- ❌ He are rich. — *Після `He` потрібна форма `is`.*
+- ❌ They are rich. — *Це про них. Зараз ідеться про одного чоловіка: `He is rich`.*
 
 ---
 
 ## Інтро 2
 
-### `awake` — не спить
+### Грошей мало
 
-`awake` — «не спить». Людина прокинулася і все чує.
+`poor` — «бідний»: у цій історії героїні ледве вистачає грошей на їжу. `She is poor` — «Вона бідна». Це про гроші, а не про доброту чи розум. Якщо грошей мало у двох героїв, скажемо `They are poor`.
 
-`awake` й `asleep` починаються схоже, але означають протилежне: `awake` — не спить, `asleep` — спить.
+**У героїні майже немає грошей. Скажіть другові про її становище.**
 
-У цій фразі слово ставлять після `is`: `He is awake`.
-
-**З кімнати чути, що донька сусіда вовтузиться і не спить. Скажіть про неї.**
-
-- ✅ **She is awake.**
-- ❌ She is asleep. — *Навпаки: `asleep` — спить. Тут вона якраз не спить — `awake`.*
-- ❌ She awake. — *Без `is` фраза розвалюється. Про третю людину — завжди `is`.*
+- ✅ **She is poor.**
+- ❌ She poor. — *У цій фразі між `She` і `poor` потрібно `is`.*
+- ❌ She is rich. — *`rich` — «багата», а тут грошей мало: `poor`.*
 
 ---
 
 ## Інтро 3
 
-### `away` — його тут немає
+### Її впізнають
 
-`away` — «поїхав, його немає на місці». Не «загубився», а просто відсутній: робота, інше місто, магазин.
+`famous` — «знаменитий». Героїню впізнають незнайомі люди: `She is famous` — «Вона знаменита». Це ще не означає, що вона багата: автографом за каву зазвичай не розплатишся. Про відомих людей кажемо `They are famous`.
 
-Хочете сказати «його немає» — не шукайте слово «немає», беріть `He is away`.
+**Двох співаків упізнають по всій країні. Скажіть про них: «Вони знамениті».**
 
-Звучить «аУЕЙ», наголос на другому складі. Перший склад майже проковтується, як видих перед словом.
-
-**Сергій каже, що його старший син поїхав на тиждень. Скажіть про сина.**
-
-- ✅ **He is away.**
-- ❌ He is not away. — *Це «він на місці». А його якраз немає — приберіть `not`.*
-- ❌ He away. — *Тут потрібна форма `is`: `He is away`.*
+- ✅ **They are famous.**
+- ❌ They is famous. — *Після `They` потрібно `are`.*
+- ❌ They are rich. — *Про гроші нічого не сказано. Їх знають багато людей: `famous`.*
 
 ---
 
-## Практика (20 завдань, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · Картка слова — asleep**
-<!-- interaction_id: en:lesson-01:session-22:i01; family: listen_choose -->
-> **asleep** — «спить». Очі заплющені, дихання рівне, і чіпати його не треба.
+**1 · Складіть фразу про заможного героя: «Він багатий»**
+<!-- interaction_id: en:lesson-01:session-22:i01; family: phrase_builder -->
+Плитки: `rich` `is` `He` `are` → **He is rich.**
+*(плитка `are` зайва: тут потрібно `is` — `He is rich.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуту фразу**
 <!-- interaction_id: en:lesson-01:session-22:i02; family: listen_choose -->
-🔊 *asleep* → **asleep** · sleep · sheep
-- asleep — *У записі `asleep` є початок `a-`, а далі чути `sleep`: це не `sleep` і не `sheep`.*
-- sleep — *Це те саме слово без початку. В `asleep` попереду є короткий проковтнутий звук: асЛІП. Наголос — на другій частині.*
-- sheep — *Це «вівця». Перший звук інший: «ш», а не «с».*
+🔊 *She is poor.* → **She is poor.** · He is poor. · She is rich.
+- He is poor. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
+- She is rich. — *У записі останнє слово — `poor`, а в цьому варіанті — `rich`.*
 
-**3 · Картка слова — awake**
-<!-- interaction_id: en:lesson-01:session-22:i03; family: listen_choose -->
-> **awake** — «не спить». Очі розплющені, все чує — говоріть тихіше.
+**3 · Вставте слово — двох співаків знають по всій країні**
+<!-- interaction_id: en:lesson-01:session-22:i03; family: context_gap_grammar -->
+They ___ famous. → **are** · is · am
+- is — *Після `They` потрібно `are`.*
+- am — *`am` ставимо з `I`, а тут `They are`.*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-22:i04; family: listen_choose -->
-🔊 *awake* → **awake** · wake · away
-- awake — *У записі `awake` спочатку чути коротке `a-`, потім `wake`: це не `wake` і не `away`.*
-- wake — *Це те саме слово без початку. В `awake` попереду один короткий проковтнутий звук: аУЕЙК.*
-- away — *Схожий початок, кінець інший: «аУЕЙ» без «к».*
+**4 · З’єднайте слова та значення**
+<!-- interaction_id: en:lesson-01:session-22:i04; family: speed_match -->
+rich — багатий · poor — бідний · famous — знаменитий · inside — всередині
 
-**5 · Вставте слово — син сусіда лежить із заплющеними очима**
-<!-- interaction_id: en:lesson-01:session-22:i05; family: context_gap_grammar -->
-He is ___ . → **asleep** · awake · home
-- asleep — *У хлопчика заплющені очі, отже він `asleep`; `awake` означає «не спить».*
-- awake — *Навпаки: `awake` — не спить. Очі заплющені — отже `asleep`.*
-- home — *«Удома» — правда, але сусід просить не шуміти не через це.*
+**5 · Послухайте репліку героїв і складіть почуте**
+<!-- interaction_id: en:lesson-01:session-22:i05; family: listen_build_dictation -->
+🔊 *We are poor.* Плитки: `poor` `are` `We` `They` → **We are poor.**
+*(плитка `They` зайва: тут потрібно `We` — `We are poor.`)*
 
-**6 · Картка слова — away**
-<!-- interaction_id: en:lesson-01:session-22:i06; family: listen_choose -->
-> **away** — «поїхав, його тут немає». Інше місто, робота, магазин — байдуже де, важливо що не тут.
+**6 · Співачку впізнають у всіх містах. Складіть фразу про неї: «Вона знаменита»**
+<!-- interaction_id: en:lesson-01:session-22:i06; family: phrase_builder -->
+Плитки: `famous` `is` `She` `He` → **She is famous.**
+*(плитка `He` зайва: тут потрібно `She` — `She is famous.`)*
 
-**7 · Картка слова — ill**
-<!-- interaction_id: en:lesson-01:session-22:i07; family: listen_choose -->
-> **ill** — «хворий». Друге слово з тим самим змістом, що й `sick`.
+**7 · У двох братів у фільмі багато грошей. Скажіть про них: «Вони багаті»**
+<!-- interaction_id: en:lesson-01:session-22:i07; family: scripted_repeat_compare -->
+🎙 **They are rich.**
 
-**8 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-22:i08; family: listen_choose -->
-🔊 *ill* → **ill** · eel · all
-- ill — *У записі короткий звук у `ill`: це не довге `eel` і не `all`.*
-- eel — *Це «вугор», і голосна там тягнеться: «і-і-л». В `ill` голосна інша, глухіша — між українськими «і» та «и».*
-- all — *Голосна інша: «ол». А тут «іл».*
+**8 · Вставте слово в репліку співачки про себе: «Я знаменита»**
+<!-- interaction_id: en:lesson-01:session-22:i08; family: context_gap_grammar -->
+I ___ famous. → **am** · is · are
+- is — *Про себе співачка каже `I am`.*
+- are — *Після `I` потрібна форма `am`.*
 
-**9 · Складіть фразу — «вона поїхала»**
-<!-- interaction_id: en:lesson-01:session-22:i09; family: phrase_builder -->
-Плитки: `away` `She` `is` `am` → **She is away.**
-*`am` зайве: з `She` ставлять `is` — `She is away`.*
-*(плитка `am` зайва: `am` зайве: з `She` ставлять `is` — `She is away`.)*
+**9 · Послухайте й виберіть точну репліку**
+<!-- interaction_id: en:lesson-01:session-22:i09; family: listen_choose -->
+🔊 *You are rich.* → **You are rich.** · We are rich. · You are famous.
+- We are rich. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
+- You are famous. — *У записі останнє слово — `rich`, а в цьому варіанті — `famous`.*
 
+**10 · З’єднайте знайомі слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-22:i10; family: speed_match -->
+outside — зовні · upstairs — на верхньому поверсі · dirty — брудний · open — відкритий
 
-**10 · Вставте слово — донька сусіда другий день не виходить, температура**
-<!-- interaction_id: en:lesson-01:session-22:i10; family: context_gap_grammar -->
-She is ___ . → **ill** · away · quiet
-- ill — *Температура й другий день удома — ознака `ill`; вона не поїхала й не просто мовчить.*
-- away — *«Поїхала» — але вона якраз удома, у ліжку.*
-- quiet — *«Тиха» — так, але не через це. Річ у хворобі.*
-
-**11 · Послухайте і складіть — «він не спить»**
+**11 · Послухайте й складіть почуту фразу**
 <!-- interaction_id: en:lesson-01:session-22:i11; family: listen_build_dictation -->
-🔊 *He is awake.* Плитки: `awake` `He` `is` `asleep` → **He is awake.**
-*`asleep` зайве: у записі він не спить, тому `He is awake`.*
-*(плитка `asleep` зайва: `asleep` зайве: у записі він не спить, тому `He is awake`.)*
+🔊 *He is famous.* Плитки: `famous` `is` `He` `She` → **He is famous.**
+*(плитка `She` зайва: тут потрібно `He` — `He is famous.`)*
 
+**12 · Двом героям ледве вистачає грошей на їжу. Складіть фразу про них: «Вони бідні»**
+<!-- interaction_id: en:lesson-01:session-22:i12; family: phrase_builder -->
+Плитки: `poor` `are` `They` `is` → **They are poor.**
+*(плитка `is` зайва: тут потрібно `are` — `They are poor.`)*
 
-**12 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-22:i12; family: speed_match -->
-asleep — спить · awake — не спить · away — поїхав · ill — хворий
+**13 · У фільмі герої прийшли до зачиненого магазину. Скажіть про магазин: «Він зачинений»**
+<!-- interaction_id: en:lesson-01:session-22:i13; family: scripted_repeat_compare -->
+🎙 **It is closed.**
 
-**13 · Вставте слово — донька сусіда сидить із книжкою і не видає ані звуку**
-<!-- interaction_id: en:lesson-01:session-22:i13; family: context_gap_grammar -->
-She is ___ . → **quiet** · away · ill
-- quiet — *Дівчинка поруч із книжкою, але її не чути, тому вона `quiet`, а не `away` чи `ill`.*
-- away — *«Поїхала» — але вона тут, ви її бачите. Не чути — це `quiet`.*
-- ill — *«Хвора» — зараз із нею все гаразд, вона просто мовчить.*
+**14 · Ви знаєте лише, що співачку впізнають тисячі людей. Доповніть опис її популярності**
+<!-- interaction_id: en:lesson-01:session-22:i14; family: context_gap_grammar -->
+She is ___ . → **famous** · rich · poor
+- rich — *`rich` говорить про гроші. Тут відомо лише, що її впізнають: `famous`.*
+- poor — *`poor` — «бідна». Про гроші нічого не сказано; ідеться про популярність: `famous`.*
 
-**14 · Складіть фразу — її немає на роботі, вона в себе вдома**
-<!-- interaction_id: en:lesson-01:session-22:i14; family: phrase_builder -->
-Плитки: `home` `She` `are` `is` → **She is home.**
-*`are` зайве: з `She` ставлять `is` — `She is home`.*
-*(плитка `are` зайва: `are` зайве: з `She` ставлять `is` — `She is home`.)*
+**15 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-22:i15; family: listen_choose -->
+🔊 *We are famous.* → **We are famous.** · They are famous. · We are poor.
+- They are famous. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
+- We are poor. — *У записі останнє слово — `famous`, а в цьому варіанті — `poor`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-22:i16; family: speed_match -->
+closed — зачинений · famous — знаменитий · poor — бідний · rich — багатий
 
-**15 · Скажіть уголос — Марта говорить про колегу Олега: «Він не хворий»**
-<!-- interaction_id: en:lesson-01:session-22:i15; family: scripted_repeat_compare -->
-Плитки: `sick` `He` `not` `is` → **He is not sick.**
+**17 · На книжковому ярмарку ви зустріли письменника, якого знають по всій країні. Скажіть другові про письменника: «Він знаменитий»**
+<!-- interaction_id: en:lesson-01:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **He is famous.**
 
-**16 · Складіть фразу — Ніна позіхає третій раз поспіль**
-<!-- interaction_id: en:lesson-01:session-22:i16; family: phrase_builder -->
-Плитки: `tired` `She` `is` `not` → **She is tired.**
-*`not` зайве: Ніна позіхає, тому `She is tired`, без заперечення.*
-*(плитка `not` зайва: `not` зайве: Ніна позіхає, тому `She is tired`, без заперечення.)*
-
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-22:i17:s01; family: scripted_repeat_compare -->
-🎙 **He is asleep.**
-
-**18 · Складіть фразу — «вона не спить»**
-<!-- interaction_id: en:lesson-01:session-22:i17:s02; family: phrase_builder -->
-Плитки: `awake` `She` `is` `are` → **She is awake.**
-*`are` зайве: з `She` ставлять `is` — `She is awake`.*
-*(плитка `are` зайва: `are` зайве: з `She` ставлять `is` — `She is awake`.)*
-
-
-**19 · Послухайте і складіть — «він поїхав»**
-<!-- interaction_id: en:lesson-01:session-22:i17:s03; family: listen_build_dictation -->
-🔊 *He is away.* Плитки: `away` `He` `is` `are` → **He is away.**
-*`are` зайве: з `He` ставлять `is` — `He is away`.*
-*(плитка `are` зайва: `are` зайве: з `He` ставлять `is` — `He is away`.)*
-
-
-**20 · Складіть фразу — сусід прямо каже, що втомився**
-<!-- interaction_id: en:lesson-01:session-22:i17:s04; family: phrase_builder -->
-Плитки: `tired` `He` `is` `are` → **He is tired.**
-*`are` зайве: з `He` ставлять `is` — `He is tired`.*
-*(плитка `are` зайва: `are` зайве: з `He` ставлять `is` — `He is tired`.)*
-
-
----
-
-## Для сборщика
-
-new_words:
-asleep — спить — Очі заплющені, дихання рівне, і чіпати його не треба.
-awake — не спить — Очі розплющені, все чує — говоріть тихіше.
-away — поїхав, його тут немає — Інше місто, робота, магазин — байдуже де, важливо що не тут.
-ill — хворий — Друге слово з тим самим змістом, що й sick.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=phrase_builder, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=phrase_builder, 17=scripted_repeat_compare, 18=phrase_builder, 19=listen_build_dictation, 20=phrase_builder
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| quiet | 10 (пастка), 13 | 13 |
-| home | 5 (пастка), 14 | 14 |
-| sick | 7 (картка ill), 15 | 15 |
-| tired | 16, 17 | 16, 17 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | asleep | так |
-| Інтро 2 | awake | так |
-| Інтро 3 | away | так |
-
-**3. Дошка пар (завдання 12)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| asleep | 1 | 2 (слух), 5 (вибір) |
-| awake | 3 | 4 (слух), 11 (складання) |
-| away | 6 | 9 (складання), 10 (пастка вибору) |
-| ill | 7 | 8 (слух), 10 (вибір) |
-
-**4. Граматика у правильних відповідях**
-
-Усі цілі — тільки `He is` / `She is` / `He is not`. Конструкції `It is` у сесії більше немає.

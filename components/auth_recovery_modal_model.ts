@@ -78,7 +78,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     working: 'Проверяем и восстанавливаем аккаунт…', supportTitle: 'Нужна помощь поддержки',
     supportBody: 'Восстановление остановлено, чтобы не затронуть другой аккаунт. Локальные данные сохранены.',
     errorRateLimited: 'Слишком много попыток. Подожди немного и попробуй снова.', errorInvalidCode: 'Код не подошёл. Проверь все 6 цифр.',
-    errorExpired: 'Срок действия кода истёк. Запроси новый код.', errorNetwork: 'Нет связи с сервером. Проверь интернет и попробуй снова.',
+    errorExpired: 'Срок действия кода истёк. Запроси новый код.', errorNetwork: 'Нет связи. Проверь интернет и попробуй снова.',
     errorCancelled: 'Вход был отменён. Можно попробовать ещё раз.', errorSupport: 'Не удалось безопасно продолжить. Обратись в поддержку.',
   },
   uk: {
@@ -90,7 +90,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     confirm: 'Підтвердити', resend: 'Надіслати код ще раз', resendIn: 'Повторне надсилання через', expiresIn: 'Код діє ще', working: 'Перевіряємо та відновлюємо акаунт…',
     supportTitle: 'Потрібна допомога підтримки', supportBody: 'Відновлення зупинено, щоб не зачепити інший акаунт. Локальні дані збережено.',
     errorRateLimited: 'Забагато спроб. Трохи зачекай і спробуй знову.', errorInvalidCode: 'Код не підійшов. Перевір усі 6 цифр.',
-    errorExpired: 'Термін дії коду минув. Запроси новий код.', errorNetwork: 'Немає зв’язку із сервером. Перевір інтернет і спробуй знову.',
+    errorExpired: 'Термін дії коду минув. Запроси новий код.', errorNetwork: 'Немає зв’язку. Перевір інтернет і спробуй знову.',
     errorCancelled: 'Вхід скасовано. Можна спробувати ще раз.', errorSupport: 'Не вдалося безпечно продовжити. Звернися до підтримки.',
   },
   // зачем (координатор 12.10): подготовка к английскому интерфейсу — тексты есть заранее, флаг не трогаем.
@@ -104,7 +104,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     working: 'Checking and recovering your account…', supportTitle: 'Support can help',
     supportBody: 'Recovery was stopped so another account is not affected. Your local data is safe.',
     errorRateLimited: 'Too many attempts. Wait a bit and try again.', errorInvalidCode: "That code didn't work. Check all 6 digits.",
-    errorExpired: 'The code has expired. Request a new one.', errorNetwork: "Can't reach the server. Check your internet connection and try again.",
+    errorExpired: 'The code has expired. Request a new one.', errorNetwork: 'No connection. Check your internet and try again.',
     errorCancelled: 'Sign-in was cancelled. You can try again.', errorSupport: "We couldn't continue safely. Please contact support.",
   },
   es: {
@@ -116,7 +116,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     confirm: 'Confirmar', resend: 'Enviar otro código', resendIn: 'Puedes reenviar en', expiresIn: 'El código caduca en', working: 'Comprobando y recuperando la cuenta…',
     supportTitle: 'Necesitas ayuda de soporte', supportBody: 'La recuperación se detuvo para no afectar otra cuenta. Tus datos locales siguen a salvo.',
     errorRateLimited: 'Demasiados intentos. Espera un poco y vuelve a intentarlo.', errorInvalidCode: 'El código no es correcto. Revisa los 6 dígitos.',
-    errorExpired: 'El código ha caducado. Solicita uno nuevo.', errorNetwork: 'No podemos conectar con el servidor. Revisa internet e inténtalo de nuevo.',
+    errorExpired: 'El código ha caducado. Solicita uno nuevo.', errorNetwork: 'Sin conexión. Revisa internet e inténtalo de nuevo.',
     errorCancelled: 'Se canceló el acceso. Puedes intentarlo de nuevo.', errorSupport: 'No se puede continuar de forma segura. Contacta con soporte.',
   },
   'pt-BR': {
@@ -128,7 +128,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     confirm: 'Confirmar', resend: 'Enviar outro código', resendIn: 'Reenviar em', expiresIn: 'O código expira em', working: 'Verificando e recuperando a conta…',
     supportTitle: 'Ajuda do suporte necessária', supportBody: 'A recuperação foi interrompida para não afetar outra conta. Seus dados locais estão preservados.',
     errorRateLimited: 'Muitas tentativas. Aguarde um pouco e tente novamente.', errorInvalidCode: 'O código não confere. Verifique os 6 dígitos.',
-    errorExpired: 'O código expirou. Solicite um novo.', errorNetwork: 'Sem conexão com o servidor. Verifique a internet e tente novamente.',
+    errorExpired: 'O código expirou. Solicite um novo.', errorNetwork: 'Sem conexão. Verifique a internet e tente novamente.',
     errorCancelled: 'O acesso foi cancelado. Você pode tentar novamente.', errorSupport: 'Não foi possível continuar com segurança. Fale com o suporte.',
   },
   vi: {
@@ -140,7 +140,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     confirm: 'Xác nhận', resend: 'Gửi lại mã', resendIn: 'Có thể gửi lại sau', expiresIn: 'Mã hết hạn sau', working: 'Đang kiểm tra và khôi phục tài khoản…',
     supportTitle: 'Cần hỗ trợ', supportBody: 'Quá trình khôi phục đã dừng để không ảnh hưởng tài khoản khác. Dữ liệu trên máy vẫn được giữ.',
     errorRateLimited: 'Quá nhiều lần thử. Hãy chờ một chút rồi thử lại.', errorInvalidCode: 'Mã không đúng. Hãy kiểm tra đủ 6 chữ số.',
-    errorExpired: 'Mã đã hết hạn. Hãy yêu cầu mã mới.', errorNetwork: 'Không kết nối được máy chủ. Hãy kiểm tra mạng rồi thử lại.',
+    errorExpired: 'Mã đã hết hạn. Hãy yêu cầu mã mới.', errorNetwork: 'Mất kết nối. Hãy kiểm tra mạng rồi thử lại.',
     errorCancelled: 'Đăng nhập đã bị hủy. Bạn có thể thử lại.', errorSupport: 'Không thể tiếp tục an toàn. Hãy liên hệ hỗ trợ.',
   },
   id: {
@@ -152,7 +152,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     confirm: 'Konfirmasi', resend: 'Kirim kode lagi', resendIn: 'Kirim ulang dalam', expiresIn: 'Kode kedaluwarsa dalam', working: 'Memeriksa dan memulihkan akun…',
     supportTitle: 'Perlu bantuan dukungan', supportBody: 'Pemulihan dihentikan agar tidak memengaruhi akun lain. Data lokal tetap tersimpan.',
     errorRateLimited: 'Terlalu banyak percobaan. Tunggu sebentar lalu coba lagi.', errorInvalidCode: 'Kode tidak cocok. Periksa keenam digit.',
-    errorExpired: 'Kode sudah kedaluwarsa. Minta kode baru.', errorNetwork: 'Tidak dapat terhubung ke server. Periksa internet lalu coba lagi.',
+    errorExpired: 'Kode sudah kedaluwarsa. Minta kode baru.', errorNetwork: 'Tidak ada koneksi. Periksa internet lalu coba lagi.',
     errorCancelled: 'Login dibatalkan. Kamu dapat mencoba lagi.', errorSupport: 'Tidak dapat melanjutkan dengan aman. Hubungi dukungan.',
   },
   tr: {
@@ -164,7 +164,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     confirm: 'Onayla', resend: 'Kodu yeniden gönder', resendIn: 'Yeniden gönderme süresi', expiresIn: 'Kodun kalan süresi', working: 'Hesap kontrol ediliyor ve kurtarılıyor…',
     supportTitle: 'Destek yardımı gerekli', supportBody: 'Başka bir hesabı etkilememek için kurtarma durduruldu. Yerel verilerin korunuyor.',
     errorRateLimited: 'Çok fazla deneme yapıldı. Biraz bekleyip tekrar dene.', errorInvalidCode: 'Kod eşleşmedi. 6 haneyi kontrol et.',
-    errorExpired: 'Kodun süresi doldu. Yeni kod iste.', errorNetwork: 'Sunucuya bağlanılamıyor. İnterneti kontrol edip tekrar dene.',
+    errorExpired: 'Kodun süresi doldu. Yeni kod iste.', errorNetwork: 'Bağlantı yok. İnterneti kontrol edip tekrar dene.',
     errorCancelled: 'Giriş iptal edildi. Tekrar deneyebilirsin.', errorSupport: 'Güvenli biçimde devam edilemiyor. Destekle iletişime geç.',
   },
   pl: {
@@ -176,7 +176,7 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     confirm: 'Potwierdź', resend: 'Wyślij kod ponownie', resendIn: 'Ponowne wysłanie za', expiresIn: 'Kod wygaśnie za', working: 'Sprawdzamy i odzyskujemy konto…',
     supportTitle: 'Potrzebna pomoc wsparcia', supportBody: 'Odzyskiwanie zatrzymano, aby nie naruszyć innego konta. Dane lokalne zostały zachowane.',
     errorRateLimited: 'Zbyt wiele prób. Poczekaj chwilę i spróbuj ponownie.', errorInvalidCode: 'Kod jest nieprawidłowy. Sprawdź wszystkie 6 cyfr.',
-    errorExpired: 'Kod wygasł. Poproś o nowy.', errorNetwork: 'Brak połączenia z serwerem. Sprawdź internet i spróbuj ponownie.',
+    errorExpired: 'Kod wygasł. Poproś o nowy.', errorNetwork: 'Brak połączenia. Sprawdź internet i spróbuj ponownie.',
     errorCancelled: 'Logowanie anulowano. Możesz spróbować ponownie.', errorSupport: 'Nie można bezpiecznie kontynuować. Skontaktuj się ze wsparciem.',
   },
 };

@@ -132,9 +132,9 @@ function submissionError(lang: Lang, messageKey: string | null): string {
     tr: 'Anket artık kullanılamıyor.', pl: 'Ankieta jest już niedostępna.',
   });
   return triLang(lang, {
-    ru: messageKey === 'auth' ? 'Не удалось подтвердить аккаунт. Попробуй снова.' : 'Не удалось отправить. Попробуй снова.',
-    uk: messageKey === 'auth' ? 'Не вдалося підтвердити акаунт. Спробуй ще раз.' : 'Не вдалося надіслати. Спробуй ще раз.',
-    en: messageKey === 'auth' ? "Couldn't confirm the account. Try again." : "Couldn't send. Try again.",
+    ru: messageKey === 'auth' ? 'Не получилось. Попробуй снова.' : 'Не удалось отправить. Попробуй снова.',
+    uk: messageKey === 'auth' ? 'Не вийшло. Спробуй ще раз.' : 'Не вдалося надіслати. Спробуй ще раз.',
+    en: messageKey === 'auth' ? 'Something went wrong. Try again.' : "Couldn't send. Try again.",
     es: 'No se pudo enviar. Inténtalo de nuevo.', 'pt-BR': 'Falha ao enviar. Tente de novo.', vi: 'Gửi không thành công. Thử lại.',
     id: 'Gagal mengirim. Coba lagi.', tr: 'Gönderilemedi. Tekrar dene.', pl: 'Nie udało się wysłać. Spróbuj ponownie.',
   });

@@ -234,15 +234,15 @@ export function getPremiumDialogErrorMessage(
       });
     case 'global_budget':
       return triLang(lang, {
-        ru: 'Сервис диалогов временно недоступен.\n\nДостигнут общий лимит сервиса. Попробуй позже.',
-        uk: 'Сервіс діалогів тимчасово недоступний.\n\nДосягнуто загального ліміту сервісу. Спробуй пізніше.',
-        en: 'The dialogue service is temporarily unavailable.\n\nThe overall service limit was reached. Try again later.',
-        es: 'El servicio de diálogos no está disponible temporalmente.\n\nSe alcanzó el límite general del servicio. Inténtalo más tarde.',
-        'pt-BR': 'O serviço de diálogos está temporariamente indisponível.\n\nO limite geral do serviço foi atingido. Tente mais tarde.',
-        vi: 'Dịch vụ hội thoại tạm thời không khả dụng.\n\nDịch vụ đã đạt giới hạn chung. Hãy thử lại sau.',
-        id: 'Layanan dialog untuk sementara tidak tersedia.\n\nBatas umum layanan telah tercapai. Coba lagi nanti.',
-        tr: 'Diyalog hizmeti geçici olarak kullanılamıyor.\n\nHizmetin genel sınırına ulaşıldı. Daha sonra tekrar dene.',
-        pl: 'Usługa dialogów jest chwilowo niedostępna.\n\nOsiągnięto ogólny limit usługi. Spróbuj później.',
+        ru: 'Диалоги сейчас недоступны.\n\nПопробуй чуть позже.',
+        uk: 'Діалоги зараз недоступні.\n\nСпробуй трохи пізніше.',
+        en: 'Dialogues aren’t available right now.\n\nTry again a bit later.',
+        es: 'Los diálogos no están disponibles ahora.\n\nInténtalo un poco más tarde.',
+        'pt-BR': 'Os diálogos não estão disponíveis agora.\n\nTente de novo daqui a pouco.',
+        vi: 'Hội thoại hiện chưa dùng được.\n\nHãy thử lại sau ít phút.',
+        id: 'Dialog sedang tidak tersedia.\n\nCoba lagi sebentar lagi.',
+        tr: 'Diyaloglar şu an kullanılamıyor.\n\nBiraz sonra tekrar dene.',
+        pl: 'Dialogi są teraz niedostępne.\n\nSpróbuj trochę później.',
       });
     case 'rate_limited':
       return triLang(lang, {
@@ -284,27 +284,27 @@ export function getPremiumDialogErrorMessage(
       });
     case 'provider_unavailable':
       return triLang(lang, {
-        ru: 'Сервис диалогов временно недоступен.\n\nСообщение не отправлено. Попробуй ещё раз через минуту.',
-        uk: 'Сервіс діалогів тимчасово недоступний.\n\nПовідомлення не надіслано. Спробуй ще раз за хвилину.',
-        en: 'The dialogue service is temporarily unavailable.\n\nYour message was not sent. Try again in a minute.',
-        es: 'El servicio de diálogos no está disponible temporalmente.\n\nEl mensaje no se envió. Inténtalo de nuevo en un minuto.',
-        'pt-BR': 'O serviço de diálogos está temporariamente indisponível.\n\nA mensagem não foi enviada. Tente novamente em um minuto.',
-        vi: 'Dịch vụ hội thoại tạm thời không khả dụng.\n\nTin nhắn chưa được gửi. Hãy thử lại sau một phút.',
-        id: 'Layanan dialog untuk sementara tidak tersedia.\n\nPesan belum terkirim. Coba lagi dalam satu menit.',
-        tr: 'Diyalog hizmeti geçici olarak kullanılamıyor.\n\nMesaj gönderilmedi. Bir dakika sonra tekrar dene.',
-        pl: 'Usługa dialogów jest chwilowo niedostępna.\n\nWiadomość nie została wysłana. Spróbuj ponownie za minutę.',
+        ru: 'Сообщение не отправилось.\n\nПопробуй ещё раз через минуту.',
+        uk: 'Повідомлення не надіслалося.\n\nСпробуй ще раз за хвилину.',
+        en: 'Your message didn’t send.\n\nTry again in a minute.',
+        es: 'El mensaje no se envió.\n\nInténtalo de nuevo en un minuto.',
+        'pt-BR': 'A mensagem não foi enviada.\n\nTente novamente em um minuto.',
+        vi: 'Tin nhắn chưa gửi được.\n\nHãy thử lại sau một phút.',
+        id: 'Pesan belum terkirim.\n\nCoba lagi dalam satu menit.',
+        tr: 'Mesaj gönderilemedi.\n\nBir dakika sonra tekrar dene.',
+        pl: 'Wiadomość się nie wysłała.\n\nSpróbuj ponownie za minutę.',
       });
     case 'network':
       return triLang(lang, {
-        ru: 'Не удалось связаться с сервером.\n\nПроверь интернет-соединение и попробуй ещё раз.',
-        uk: 'Не вдалося зв’язатися із сервером.\n\nПеревір інтернет-з’єднання та спробуй ще раз.',
-        en: "Couldn't reach the server.\n\nCheck your internet connection and try again.",
-        es: 'No se pudo conectar con el servidor.\n\nComprueba tu conexión a internet e inténtalo de nuevo.',
-        'pt-BR': 'Não foi possível conectar ao servidor.\n\nVerifique sua conexão com a internet e tente novamente.',
-        vi: 'Không thể kết nối với máy chủ.\n\nHãy kiểm tra kết nối mạng rồi thử lại.',
-        id: 'Tidak dapat terhubung ke server.\n\nPeriksa koneksi internet lalu coba lagi.',
-        tr: 'Sunucuya bağlanılamadı.\n\nİnternet bağlantını kontrol edip tekrar dene.',
-        pl: 'Nie udało się połączyć z serwerem.\n\nSprawdź połączenie z internetem i spróbuj ponownie.',
+        ru: 'Нет связи.\n\nПроверь интернет и попробуй ещё раз.',
+        uk: 'Немає зв’язку.\n\nПеревір інтернет і спробуй ще раз.',
+        en: 'No connection.\n\nCheck your internet and try again.',
+        es: 'Sin conexión.\n\nRevisa tu internet e inténtalo de nuevo.',
+        'pt-BR': 'Sem conexão.\n\nVerifique a internet e tente de novo.',
+        vi: 'Mất kết nối.\n\nHãy kiểm tra mạng rồi thử lại.',
+        id: 'Tidak ada koneksi.\n\nPeriksa internet lalu coba lagi.',
+        tr: 'Bağlantı yok.\n\nİnternetini kontrol edip tekrar dene.',
+        pl: 'Brak połączenia.\n\nSprawdź internet i spróbuj ponownie.',
       });
     case 'unknown':
     default:

@@ -153,7 +153,7 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     repeatReward:
       "Награда за повтор подтвердится отдельно и появится в общем балансе автоматически.",
     stored:
-      "Результат сохранён на устройстве и синхронизируется автоматически.",
+      "Результат сохранён — он появится на всех твоих устройствах.",
     perfectBody: "Идеальная сессия — ты собрал все звёзды результата.",
     improveBody: (n) => `Можно улучшить результат ещё на ${n} ${ruStar(n)}.`,
     cardProgress: (n) => `${n} из 12`,
@@ -260,7 +260,7 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     repeatReward:
       "The repeat reward will be confirmed separately and added to your total balance automatically.",
     stored:
-      "The result is saved on your device and will sync automatically.",
+      "Result saved — it’ll show up on all your devices.",
     perfectBody: "Perfect session — you collected every star.",
     improveBody: (n) => `You can still improve your result by ${n} ${enStar(n)}.`,
     cardProgress: (n) => `${n} of 12`,
@@ -906,7 +906,7 @@ function makeCopy(
       "Nagroda za powtórkę zostanie potwierdzona osobno i dodana automatycznie.",
     ),
     stored: phrase(
-      "Результат збережено на пристрої та буде синхронізовано автоматично.",
+      "Результат збережено — він з’явиться на всіх твоїх пристроях.",
       "El resultado se guardó en el dispositivo y se sincronizará automáticamente.",
       "O resultado foi salvo no dispositivo e será sincronizado automaticamente.",
       "Kết quả đã lưu trên thiết bị và sẽ tự đồng bộ.",

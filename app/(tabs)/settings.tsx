@@ -853,10 +853,10 @@ export default function SettingsMain() {
       // зачем (аудит по Библии, 2026-08-26): «Вы уверены?» — обращение на «вы»
       // (Правило 14) и вопрос ни о чём. Заголовок называет само действие,
       // кнопки получили глаголы вместо «Да/Нет» (Правило 1).
-      L('Очистить кеш?', 'Очистити кеш?', 'Clear cache?', '¿Vaciar la caché?', 'Limpar o cache?', 'Xoá bộ nhớ đệm?', 'Bersihkan cache?', 'Önbellek temizlensin mi?', 'Wyczyścić pamięć podręczną?'),
+      L('Очистить временные файлы?', 'Очистити тимчасові файли?', 'Clear temporary files?', '¿Borrar los archivos temporales?', 'Limpar os arquivos temporários?', 'Xóa tệp tạm?', 'Hapus file sementara?', 'Geçici dosyalar silinsin mi?', 'Wyczyścić pliki tymczasowe?'),
       // зачем: перечисление («рейтинги, сообщения, друзья») пугало — читалось как
       // удаление данных, хотя это лишь локальные копии. Оставлен голый вопрос:
-      // слово «кеш» самодостаточно, кому надо — тот понимает.
+      // зачем (правило владельца 15.10: никаких системных слов в интерфейсе): «кеш» → «временные файлы».
       undefined,
       [
         { text: L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Để sau', 'Nanti saja', 'Şimdi değil', 'Nie teraz'), style: 'cancel' as const },
@@ -1320,7 +1320,7 @@ export default function SettingsMain() {
             glass={glass}
             testID="settings-clear-cache-row"
             icon="trash-outline"
-            title={L('Очистить кеш', 'Очистити кеш', 'Clear cache', 'Borrar caché', 'Limpar cache', 'Xóa bộ nhớ đệm', 'Hapus cache', 'Önbelleği temizle', 'Wyczyść pamięć podręczną')}
+            title={L('Очистить временные файлы', 'Очистити тимчасові файли', 'Clear temporary files', 'Borrar archivos temporales', 'Limpar arquivos temporários', 'Xóa tệp tạm', 'Hapus file sementara', 'Geçici dosyaları temizle', 'Wyczyść pliki tymczasowe')}
             value={clearCacheState === 'running'
               ? L('Чистим…', 'Чистимо…', 'Clearing…', 'Borrando…', 'Limpando…', 'Đang xóa…', 'Menghapus…', 'Temizleniyor…', 'Czyszczenie…')
               : clearCacheState === 'done'
@@ -1673,26 +1673,26 @@ export default function SettingsMain() {
                   if (!res.ok && res.reason === 'pending_shard_spend') {
                     showGlassAlert(
                       L(
-                        'Покупка ещё синхронизируется',
-                        'Покупка ще синхронізується',
-                        'The purchase is still syncing',
-                        'La compra aún se está sincronizando',
-                        'A compra ainda está sincronizando',
-                        'Giao dịch mua vẫn đang đồng bộ',
-                        'Pembelian masih disinkronkan',
-                        'Satın alma hâlâ eşitleniyor',
-                        'Zakup nadal się synchronizuje',
+                        'Покупка ещё оформляется',
+                        'Покупка ще оформлюється',
+                        'The purchase is still processing',
+                        'La compra aún se está procesando',
+                        'A compra ainda está sendo processada',
+                        'Giao dịch mua vẫn đang xử lý',
+                        'Pembelian masih diproses',
+                        'Satın alma hâlâ işleniyor',
+                        'Zakup jest jeszcze przetwarzany',
                       ),
                       L(
-                        'Смена аккаунта отменена: незавершённое списание монет нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
-                        'Зміну акаунта скасовано: незавершене списання монет не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
-                        'Account switch canceled: an unfinished coin charge cannot be carried over or skipped. Connect to the internet and try again.',
-                        'El cambio de cuenta se canceló: un gasto de monedas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
-                        'A troca de conta foi cancelada: um gasto de moedas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
-                        'Đã hủy đổi tài khoản: khoản trừ xu đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
-                        'Pergantian akun dibatalkan: pengeluaran koin yang tertunda tidak dapat dipindahkan atau dilewati. Sambungkan internet lalu coba lagi.',
-                        'Hesap değişimi iptal edildi: bekleyen jeton harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
-                        'Zmiana konta została anulowana: oczekującego wydatku monet nie można przenieść ani pominąć. Połącz się z internetem i spróbuj ponownie.',
+                        'Смена аккаунта отменена: монеты ещё списываются. Подключись к интернету и попробуй снова.',
+                        'Зміну акаунта скасовано: монети ще списуються. Підключися до інтернету й спробуй ще раз.',
+                        'Account switch canceled: your coins are still being spent. Connect to the internet and try again.',
+                        'Cambio de cuenta cancelado: las monedas aún se están descontando. Conéctate a internet e inténtalo de nuevo.',
+                        'Troca de conta cancelada: as moedas ainda estão sendo descontadas. Conecte-se à internet e tente novamente.',
+                        'Đã hủy đổi tài khoản: xu vẫn đang được trừ. Hãy kết nối internet rồi thử lại.',
+                        'Pergantian akun dibatalkan: koin masih diproses. Sambungkan internet lalu coba lagi.',
+                        'Hesap değişimi iptal edildi: jetonlar hâlâ düşülüyor. İnternete bağlanıp tekrar dene.',
+                        'Zmiana konta anulowana: monety są jeszcze pobierane. Połącz się z internetem i spróbuj ponownie.',
                       ),
                       [
                         {
@@ -1806,15 +1806,15 @@ export default function SettingsMain() {
                     showGlassAlert(
                       L('Смена аккаунта не началась', 'Зміна акаунта не почалася', "The account switch didn't start", 'El cambio de cuenta no empezó', 'A troca de conta não começou', 'Việc đổi tài khoản chưa bắt đầu', 'Pergantian akun belum dimulai', 'Hesap değişimi başlamadı', 'Zmiana konta się nie rozpoczęła'),
                       L(
-                        'Защитная проверка остановила смену до записи маркера. Аккаунт и локальные данные не изменены.',
-                        'Захисна перевірка зупинила зміну до запису маркера. Акаунт і локальні дані не змінено.',
-                        'A safety check stopped the switch before the marker was written. Your account and local data are unchanged.',
-                        'Una comprobación de seguridad detuvo el cambio antes de guardar el marcador. Tu cuenta y tus datos no cambiaron.',
-                        'Uma verificação de segurança parou a troca antes de gravar o marcador. Sua conta e seus dados não mudaram.',
-                        'Kiểm tra an toàn đã dừng việc đổi trước khi ghi dấu. Tài khoản và dữ liệu trên máy không thay đổi.',
-                        'Pemeriksaan keamanan menghentikan pergantian sebelum penanda ditulis. Akun dan data lokal tidak berubah.',
-                        'Güvenlik kontrolü değişimi işaret yazılmadan durdurdu. Hesabın ve yerel verilerin değişmedi.',
-                        'Kontrola bezpieczeństwa zatrzymała zmianę przed zapisaniem znacznika. Konto i dane lokalne są bez zmian.',
+                        'Ничего не изменилось — аккаунт и прогресс на месте. Попробуй ещё раз.',
+                        'Нічого не змінилося — акаунт і прогрес на місці. Спробуй ще раз.',
+                        'Nothing changed — your account and progress are safe. Try again.',
+                        'No cambió nada: tu cuenta y tu progreso siguen igual. Inténtalo de nuevo.',
+                        'Nada mudou — sua conta e seu progresso estão a salvo. Tente de novo.',
+                        'Không có gì thay đổi — tài khoản và tiến độ vẫn nguyên. Hãy thử lại.',
+                        'Tidak ada yang berubah — akun dan progresmu aman. Coba lagi.',
+                        'Hiçbir şey değişmedi — hesabın ve ilerlemen yerinde. Tekrar dene.',
+                        'Nic się nie zmieniło — konto i postęp są bezpieczne. Spróbuj ponownie.',
                       ),
                       [
                         { text: L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij'), style: 'cancel' },
@@ -1833,15 +1833,15 @@ export default function SettingsMain() {
                     void enqueueThemedBlockingInfoAlert(
                       L('Можно выбрать аккаунт', 'Можна вибрати акаунт', 'You can choose an account', 'Puedes elegir cuenta', 'Você pode escolher a conta', 'Bạn có thể chọn tài khoản', 'Kamu bisa memilih akun', 'Hesap seçebilirsin', 'Możesz wybrać konto'),
                       L(
-                        'Сервер не ответил перед выходом, поэтому мы сохранили аварийную копию на устройстве. Теперь войди в нужный Google-аккаунт.',
-                        'Сервер не відповів перед виходом, тому ми зберегли аварійну копію на пристрої. Тепер увійди в потрібний Google-акаунт.',
-                        'The server did not respond before signing out, so we saved an emergency backup on the device. Now sign in to the right Google account.',
-                        'El servidor no respondió antes de salir, así que guardamos una copia de emergencia en el dispositivo. Ahora entra con la cuenta de Google correcta.',
-                        'O servidor não respondeu antes de sair, então salvamos uma cópia de emergência no dispositivo. Agora entre na conta Google correta.',
-                        'Máy chủ không phản hồi trước khi đăng xuất, nên chúng tôi đã lưu bản sao khẩn cấp trên thiết bị. Bây giờ hãy đăng nhập vào tài khoản Google đúng.',
-                        'Server tidak merespons sebelum keluar, jadi kami menyimpan salinan darurat di perangkat. Sekarang masuk ke akun Google yang benar.',
-                        'Çıkmadan önce sunucu yanıt vermedi, bu yüzden cihazda acil bir kopya sakladık. Şimdi doğru Google hesabıyla giriş yap.',
-                        'Serwer nie odpowiedział przed wylogowaniem, więc zapisaliśmy awaryjną kopię na urządzeniu. Teraz zaloguj się na właściwe konto Google.',
+                        'Мы сохранили твой прогресс на этом устройстве. Теперь войди в нужный Google-аккаунт.',
+                        'Ми зберегли твій прогрес на цьому пристрої. Тепер увійди в потрібний Google-акаунт.',
+                        'We saved your progress on this device. Now sign in to the right Google account.',
+                        'Guardamos tu progreso en este dispositivo. Ahora entra con la cuenta de Google correcta.',
+                        'Salvamos seu progresso neste dispositivo. Agora entre na conta Google correta.',
+                        'Chúng tôi đã lưu tiến độ của bạn trên thiết bị này. Bây giờ hãy đăng nhập đúng tài khoản Google.',
+                        'Kami menyimpan progresmu di perangkat ini. Sekarang masuk ke akun Google yang benar.',
+                        'İlerlemeni bu cihazda sakladık. Şimdi doğru Google hesabıyla giriş yap.',
+                        'Zapisaliśmy twój postęp na tym urządzeniu. Teraz zaloguj się na właściwe konto Google.',
                       ),
                       L('Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj'),
                       { icon: 'bookmark' },

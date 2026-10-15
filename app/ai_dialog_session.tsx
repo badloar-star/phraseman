@@ -2856,8 +2856,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                               <Ionicons name="refresh" size={16} color={t.textMuted} />
                               <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
                                 {triLang(lang, {
-                                  ru: 'Сбой · Перевести снова',
-                                  uk: 'Збій · Перекласти знову',
+                                  ru: 'Не вышло · Перевести снова',
+                                  uk: 'Не вийшло · Перекласти знову',
                                   en: 'Failed · Try again',
                                   es: 'Error · Reintentar',
                                   'pt-BR': 'Falhou · Tentar de novo',

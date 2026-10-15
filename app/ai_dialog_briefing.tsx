@@ -97,15 +97,15 @@ export function MissingDialogueScreen() {
           pl: 'Nie znaleziono dialogu',
         })}
         body={triLang(lang, {
-          ru: 'Ссылка на этот диалог недоступна. Вернитесь к урокам и выберите ситуацию снова.',
-          uk: 'Посилання на цей діалог недоступне. Поверніться до уроків і виберіть ситуацію знову.',
-          en: 'This dialogue’s link is unavailable. Go back to lessons and pick a situation again.',
-          es: 'El enlace a este diálogo no está disponible. Vuelve a las lecciones y elige otra situación.',
-          'pt-BR': 'O link para este diálogo está indisponível. Volte às lições e escolha a situação novamente.',
-          vi: 'Liên kết đến hội thoại này không khả dụng. Hãy quay lại bài học và chọn tình huống khác.',
-          id: 'Tautan ke dialog ini tidak tersedia. Kembali ke pelajaran dan pilih situasi lagi.',
-          tr: 'Bu diyaloğun bağlantısı kullanılamıyor. Derslere dönüp durumu tekrar seç.',
-          pl: 'Link do tego dialogu jest niedostępny. Wróć do lekcji i wybierz sytuację ponownie.',
+          ru: 'Этот диалог не открылся. Вернись к урокам и выбери ситуацию снова.',
+          uk: 'Цей діалог не відкрився. Повернися до уроків і вибери ситуацію знову.',
+          en: 'This dialogue didn’t open. Go back to lessons and pick a situation again.',
+          es: 'Este diálogo no se abrió. Vuelve a las lecciones y elige la situación otra vez.',
+          'pt-BR': 'Este diálogo não abriu. Volte às lições e escolha a situação de novo.',
+          vi: 'Hội thoại này chưa mở được. Hãy quay lại bài học và chọn lại tình huống.',
+          id: 'Dialog ini tidak terbuka. Kembali ke pelajaran dan pilih situasi lagi.',
+          tr: 'Bu diyalog açılmadı. Derslere dönüp durumu tekrar seç.',
+          pl: 'Ten dialog się nie otworzył. Wróć do lekcji i wybierz sytuację ponownie.',
         })}
         action={triLang(lang, {
           ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver',

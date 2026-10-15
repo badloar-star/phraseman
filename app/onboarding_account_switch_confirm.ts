@@ -179,7 +179,7 @@ function forcedSwitchTitle(lang: Lang, reason: string): string {
     return triLang(lang, { ru: 'Прогресс не сохранён', uk: 'Прогрес не збережено', en: 'Progress not saved', es: 'Progreso no guardado', 'pt-BR': 'Progresso não salvo', vi: 'Chưa lưu tiến độ', id: 'Progres belum disimpan', tr: 'İlerleme kaydedilmedi', pl: 'Postęp nie został zapisany' });
   }
   if (reason === 'pending_shard_spend') {
-    return triLang(lang, { ru: 'Покупка ещё синхронизируется', uk: 'Покупка ще синхронізується', en: 'The purchase is still syncing', es: 'La compra aún se está sincronizando', 'pt-BR': 'A compra ainda está sincronizando', vi: 'Giao dịch mua vẫn đang đồng bộ', id: 'Pembelian masih disinkronkan', tr: 'Satın alma hâlâ eşitleniyor', pl: 'Zakup nadal się synchronizuje' });
+    return triLang(lang, { ru: 'Покупка ещё оформляется', uk: 'Покупка ще оформлюється', en: 'The purchase is still processing', es: 'La compra aún se está procesando', 'pt-BR': 'A compra ainda está sendo processada', vi: 'Giao dịch mua vẫn đang xử lý', id: 'Pembelian masih diproses', tr: 'Satın alma hâlâ işleniyor', pl: 'Zakup jest jeszcze przetwarzany' });
   }
   return triLang(lang, { ru: 'Нужна проверка монет', uk: 'Потрібна перевірка монет', en: 'Coins need to be checked', es: 'Se deben revisar las monedas', 'pt-BR': 'É preciso verificar as moedas', vi: 'Cần kiểm tra xu', id: 'Koin perlu diperiksa', tr: 'Jetonların kontrol edilmesi gerekiyor', pl: 'Monety wymagają sprawdzenia' });
 }

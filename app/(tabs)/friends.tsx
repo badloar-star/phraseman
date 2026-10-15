@@ -1667,15 +1667,15 @@ export default function FriendsTabScreen() {
           tags: { reason: 'profile_unavailable', targetUid: result.uid },
         });
         setSearchError(L(
-          'Профиль найден, но ещё не синхронизирован. Открой профиль на втором устройстве и попробуй снова.',
-          'Профіль знайдено, але ще не синхронізовано. Відкрий профіль на другому пристрої та спробуй ще раз.',
-          'Profile found, but not synced yet. Open the profile on the other device and try again.',
-          'Perfil encontrado, pero aún no está sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
-          'Perfil encontrado, mas ainda não está sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
-          'Hồ sơ đã được tìm thấy, nhưng chưa đồng bộ. Hãy mở hồ sơ trên thiết bị thứ hai rồi thử lại.',
-          'Profil ditemukan, tetapi belum tersinkron. Buka profil di perangkat kedua lalu coba lagi.',
-          'Profil bulundu, ama henüz senkronize edilmedi. Profili ikinci cihazda açıp tekrar dene.',
-          'Profil znaleziony, ale nie jest jeszcze zsynchronizowany. Otwórz profil na drugim urządzeniu i spróbuj ponownie.',
+          'Профиль пока не готов. Открой приложение на другом устройстве и попробуй снова.',
+          'Профіль поки не готовий. Відкрий застосунок на іншому пристрої та спробуй ще раз.',
+          'This profile isn’t ready yet. Open the app on the other device and try again.',
+          'Este perfil aún no está listo. Abre la app en el otro dispositivo e inténtalo de nuevo.',
+          'Este perfil ainda não está pronto. Abra o app no outro dispositivo e tente de novo.',
+          'Hồ sơ này chưa sẵn sàng. Hãy mở ứng dụng trên thiết bị kia rồi thử lại.',
+          'Profil ini belum siap. Buka aplikasi di perangkat lain lalu coba lagi.',
+          'Bu profil henüz hazır değil. Uygulamayı diğer cihazda açıp tekrar dene.',
+          'Ten profil nie jest jeszcze gotowy. Otwórz aplikację na drugim urządzeniu i spróbuj ponownie.',
         ));
         return;
       }

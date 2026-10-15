@@ -1,212 +1,138 @@
-# Англійська · Урок 2 · Заняття 20 — «Where is — крізь шум»
+# Англійська · Урок 2 · Заняття 20 — Фарба не його
 
-**Сцена заняття.** Біля метро гудуть машини, поряд грає вуличний музикант. Ви питаєте дорогу, і перепитувати доводиться всім — і вам, і вам у відповідь.
+**Ситуація.** Ви допомагаєте підготувати кімнату до зустрічі. На скатертині пляма фарби; спочатку підозрюють Олега, але з’ясовується, що він до цього не причетний.
 
-**Як сказати:** повторення `Where is` + місце — на слух
-**Нові слова:** —
-**Повертаються:** station, street, near, behind, crowded
+**Що ви опануєте:** підтвердити невинуватість і правильно вибрати так або ні за запитанням
+**Нові слова:** yes, innocent
 
 ---
 
 ## Інтро 1
 
-### `Where is` злипається в один шматок
+### Не винний
 
-`where` — «де». Одразу за ним стає `is`, і в швидкій мові паузи між ними немає: `Where is` звучить як одне слово. На слух `is` там майже зникає — але вимовляють його завжди.
+`innocent` — «невинний». `He is innocent` — «Він невинний». Це той самий основний зміст, що й у `He is not guilty`. Фарба на скатертині з’явилася раніше за Олега. Пляма має чудове алібі для нього: вона встигла висохнути до його приходу.
 
-Тому `is` часто не чують і не кажуть: виходить `Where the station?` Зрозуміють, але звучить поламано.
+**Олег не забруднив скатертину: пляма з’явилася до нього. Скажіть, що він невинний.**
 
-**Біля метро шумно. Спитайте перехожого, де вокзал.**
-
-- ✅ **Where is the station?**
-- ❌ Where the station? — *Зникло `is`. Воно стоїть другим, одразу за `where`.*
-- ❌ Where station is? — *`is` поїхало в кінець. Його місце — друге, до самого місця.*
+- ✅ **He is innocent.**
+- ❌ He is guilty. — *Це «Він винний». За умовою Олег не причетний.*
+- ❌ He innocent. — *Після `He` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### Усе вирішує третій звук
+### Так підтверджує запитання
 
-`street` — «вулиця», `station` — «вокзал, станція». Починаються вони однаково — «ст», і ці два звуки вам нічого не скажуть.
+`yes` — «так». Ви вже зустрічали це слово в коротких відповідях. На `Is he innocent?` відповідь `Yes, he is` підтверджує невинуватість. А на `Is he guilty?` про ту саму невинну людину відповідь буде `No, he is not`. Зміст залежить від запитання.
 
-Слухайте третій звук. У `street` там «р» — виходить суцільне «стр». У `station` замість нього тягнеться «ей»: «стей». Один звук — і слово впізнане.
+**Олег не причетний до плями. Друг запитує: `Is he innocent?` Дайте коротку відповідь «так».**
 
-**Перехожий говорить швидко, ви розібрали тільки початок: «стр». Про що він сказав?**
-
-- ✅ **street**
-- ❌ station — *Це «вокзал». Після «ст» у нього «ей», а ви почули «р».*
-- ❌ standing — *Теж на «ст», але третій звук там «е», а не «р».*
+- ✅ **Yes, he is.**
+- ❌ No, he is not. — *Це заперечувало б невинуватість. Тут підтвердьте її.*
+- ❌ Yes, is he. — *У відповіді порядок `he is`, а не `is he`.*
 
 ---
 
 ## Інтро 3
 
-### Чуєте коротко — відповідайте повністю
+### Не загубіть not
 
-Ви спитали — і відповідь буде короткою, без довгих пояснень. `near` — «поряд». `behind` — «за», «позаду».
+`She is innocent` — «Вона невинна». `She is not innocent` — «Вона не є невинною»: ви вже заперечуєте невинуватість. Не додавайте `not` лише тому, що в українському слові «невинна» є «не».
 
-Повністю це `It is near` або `It is behind the station`. У шумі до вас часто долітає тільки `near` чи `behind` — зрозуміти цього досить, але самі відповідайте повністю.
+**Анна не чіпала фарбу. Коротко скажіть, що вона невинна.**
 
-**Перехожий махає рукою: іти пару хвилин. Що він сказав?**
-
-- ✅ **It is near.**
-- ❌ It near. — *Між `it` і словом про місце стоїть `is`.*
-- ❌ Is it near? — *Так питаєте ви самі. Перехожий відповідає, отже першим іде `it`.*
+- ✅ **She's innocent.**
+- ❌ She's not innocent. — *Це заперечує невинуватість Анни. Тут `not` не потрібно.*
+- ❌ He's innocent. — *Анна — `she`, а не `he`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-20:i01; family: listen_choose -->
-Ціль: `station`
-Варіанти: `station` · `street` · `standing`
-- street — *Це «вулиця». Третій звук там «р», а в `station` — «ей».*
-- standing — *Початок спільний, а далі розходяться: у `station` іде «ей», у `standing` — «ен».*
+**1 · Олег прийшов після того, як на скатертині з’явилася фарба. Він не причетний. Скажіть, що він невинний**
+<!-- interaction_id: en:lesson-02:session-20:i01; family: phrase_builder -->
+Плитки: `innocent` `is` `He` `are` → **He is innocent.**
+*(плитка `are` зайва: тут потрібно `is` — `He is innocent.`)*
 
+**2 · Послухайте запитання про Анну**
+<!-- interaction_id: en:lesson-02:session-20:i02; family: listen_choose -->
+🔊 *Is she prepared?* → **Is she prepared?** · Is she careful? · Is she lost?
+- Is she careful? — *У записі останнє слово — `prepared`, а в цьому варіанті — `careful`.*
+- Is she lost? — *У записі останнє слово — `prepared`, а в цьому варіанті — `lost`.*
 
-**2 · Складіть повідомлення — на карті об’єкт поруч із вами**
-<!-- interaction_id: en:lesson-02:session-20:i02; family: phrase_builder -->
-Ціль: `It is near.`
+**3 · Олег невинний. На «Is he innocent?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-20:i03; family: context_gap_grammar -->
+Yes, he ___. → **is** · am · are
+- am — *З `he` потрібно `is`.*
+- are — *Відповідь — `Yes, he is`.*
 
-**3 · Розрізніть звуки — яке з двох про «поряд»?**
-<!-- interaction_id: en:lesson-02:session-20:i03; family: sound_contrast -->
-Варіанти: `near` · `nine`
-- nine — *Це «дев'ять». Перший звук один, а голосний різний: «ай» проти «іе».*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-20:i04; family: speed_match -->
+yes — так · innocent — невинний · prepared — підготовлений · careful — обережний
 
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-20:i05; family: listen_build_dictation -->
+🔊 *No, they are not.* Плитки: `not` `are` `they` `No,` `Yes,` → **No, they are not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, they are not.`)*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-20:i04; family: listen_choose -->
-Ціль: `behind`
-Варіанти: `behind` · `bell` · `behave`
-- bell — *Один склад, коротко. `behind` тягнеться на два.*
-- behave — *Початок той самий, кінець інший: у `behind` чути «айнд».*
+**6 · Олег невинний. На «Is he guilty?» дайте коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-20:i06; family: phrase_builder -->
+Плитки: `not` `is` `he` `No,` `Yes,` → **No, he is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, he is not.`)*
 
+**7 · Анна не розливала фарбу. Коротко скажіть, що вона невинна**
+<!-- interaction_id: en:lesson-02:session-20:i07; family: scripted_repeat_compare -->
+🎙 **She's innocent.**
 
-**5 · Картка слова — crowded**
-<!-- interaction_id: en:lesson-02:session-20:i05; family: listen_choose -->
-Ціль: `crowded`
+**8 · На зустріч пускають лише запрошених. На «Is it private?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-20:i08; family: context_gap_grammar -->
+Yes, it ___. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Про зустріч — `it is`.*
 
-**6 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-20:i06; family: listen_choose -->
-Ціль: `crowded`
-Варіанти: `crowded` · `cloud` · `crow`
-- cloud — *«Хмара». Перший звук спільний, але далі «л», а в `crowded` — «р».*
-- crow — *Це «ворона», і слово коротше: у `crowded` два склади, у `crow` один.*
+**9 · Послухайте фразу про Олега**
+<!-- interaction_id: en:lesson-02:session-20:i09; family: listen_choose -->
+🔊 *He is not lost.* → **He is not lost.** · He is not prepared. · He is not innocent.
+- He is not prepared. — *У записі останнє слово — `lost`, а в цьому варіанті — `prepared`.*
+- He is not innocent. — *У записі останнє слово — `lost`, а в цьому варіанті — `innocent`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-20:i10; family: speed_match -->
+lost — той, хто заблукав · private — приватний, не для всіх · innocent — невинний · yes — так
 
-**7 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-20:i07; family: speed_match -->
-Пари: `station` — вокзал · `street` — вулиця · `near` — поряд · `behind` — за
-Ціль: `station · street · near · behind`
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-20:i11; family: listen_build_dictation -->
+🔊 *We're prepared.* Плитки: `prepared` `We're` `He's` → **We're prepared.**
+*(плитка `He's` зайва: тут потрібно `We're` — `We're prepared.`)*
 
-**8 · Послухайте і зберіть — «де вокзал?»**
-<!-- interaction_id: en:lesson-02:session-20:i08; family: listen_build_dictation -->
-Ціль: `Where is the station?`
-🔊 *Where is the station?* Плитки: `Where` `is` `the` `station` `street`
-*Плитка `street` зайва: у записі питають про вокзал — `station`, а не про вулицю — `street`.*
+**12 · Анна й Олег уже все підготували. На «Are they prepared?» дайте коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-20:i12; family: phrase_builder -->
+Плитки: `are` `they` `Yes,` `No,` → **Yes, they are.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, they are.`)*
 
-**9 · Вставте слово — перехожий показує: іти пару хвилин**
-<!-- interaction_id: en:lesson-02:session-20:i09; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `near` · `behind` · `crowded`
-- behind — *«За, позаду» — тоді б показали назад, а не вперед.*
-- crowded — *«Людно» — це про натовп, а не про відстань.*
+**13 · Ви знаєте дорогу до місця зустрічі. Друг запитує: «Are you lost?» Дайте коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-20:i13; family: scripted_repeat_compare -->
+🎙 **No, I am not.**
 
+**14 · Друг береться нести відкриту банку фарби. Запитайте, чи він обережний**
+<!-- interaction_id: en:lesson-02:session-20:i14; family: context_gap_grammar -->
+___ you careful? → **Are** · Am · Is
+- Am — *З `you` потрібно `Are`.*
+- Is — *До співрозмовника — `Are you`.*
 
-**10 · Послухайте і зберіть — «де вулиця?»**
-<!-- interaction_id: en:lesson-02:session-20:i10; family: listen_build_dictation -->
-Ціль: `Where is the street?`
-🔊 *Where is the street?* Плитки: `Where` `is` `the` `street` `station`
-*Плитка `station` зайва: у записі питають про вулицю — `street`, а не про вокзал — `station`.*
+**15 · Послухайте фразу про Анну**
+<!-- interaction_id: en:lesson-02:session-20:i15; family: listen_choose -->
+🔊 *She is innocent.* → **She is innocent.** · She is prepared. · She is careful.
+- She is prepared. — *У записі останнє слово — `innocent`, а в цьому варіанті — `prepared`.*
+- She is careful. — *У записі останнє слово — `innocent`, а в цьому варіанті — `careful`.*
 
-**11 · Вставте слово — ви шукаєте вулицю, а не вокзал**
-<!-- interaction_id: en:lesson-02:session-20:i11; family: context_gap_grammar -->
-Ціль: `Where is the ___ ?`
-Варіанти: `street` · `station` · `near`
-- station — *Це «вокзал». Вулиця — `street`.*
-- near — *«Поряд» — це відповідь, а не місце, яке ви шукаєте.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-20:i16; family: speed_match -->
+prepared — підготовлений · careful — обережний · lost — той, хто заблукав · private — приватний, не для всіх
 
+**17 · Ви не розливали фарбу. Друг запитує: «Are you innocent?» Дайте коротку відповідь «так», не повторюючи innocent**
+<!-- interaction_id: en:lesson-02:session-20:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Yes, I am.**
 
-**12 · Послухайте і виберіть — що саме спитали?**
-<!-- interaction_id: en:lesson-02:session-20:i12; family: listen_choose -->
-Ціль: `Where is the station?`
-Варіанти: `де вокзал` · `де вулиця` · `вокзал поряд`
-- де вулиця — *Прозвучало `station`, а «вулиця» — це `street`.*
-- вокзал поряд — *Фраза почалася з `where` — отже це питання.*
-
-
-**13 · Вставте слово — біля виходу натовп, ідете боком**
-<!-- interaction_id: en:lesson-02:session-20:i13; family: context_gap_grammar -->
-Ціль: `The street is ___ .`
-Варіанти: `crowded` · `near` · `behind`
-- near — *«Поряд» — про відстань, а ви кажете про людей.*
-- behind — *«Позаду» — теж про місце, а не про натовп.*
-
-
-**14 · Складіть фразу — перехожий показує за вокзал: вхід розташований там**
-<!-- interaction_id: en:lesson-02:session-20:i14; family: phrase_builder -->
-Ціль: `It is behind the station.`
-Плитки: `It` `is` `behind` `the` `station` `where`
-*Плитка `where` зайва: це питальне слово, а тут ви повідомляєте, де вхід: `It is behind the station.`*
-
-**15 · Послухайте і зберіть — відповідь перехожого**
-<!-- interaction_id: en:lesson-02:session-20:i15; family: listen_build_dictation -->
-Ціль: `It is near.`
-🔊 *It is near.* Плитки: `It` `is` `near` `behind`
-*Плитка `behind` зайва: у записі сказано `near` — «поруч», а не `behind` — «позаду».*
-
-**16 · Складіть запитання — вам назвали адресу, але не сказали дорогу; запитайте про вулицю**
-<!-- interaction_id: en:lesson-02:session-20:i16; family: phrase_builder -->
-Ціль: `Where is the street?`
-Плитки: `Where` `is` `the` `street` `It`
-*Плитка `It` зайва: запитання про місце починається з `Where is`, а `It is` починає відповідь.*
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-20:i17:s01; family: scripted_repeat_compare -->
-Ціль: `Where is the station?`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-20:i17:s02; family: scripted_repeat_compare -->
-Ціль: `Where is the street?`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-20:i17:s03; family: scripted_repeat_compare -->
-Ціль: `The street is crowded.`
-
-## Для сборщика
-
-new_words: —
-modes: 1=listen_choose, 2=phrase_builder, 3=sound_contrast, 4=listen_choose, 5=listen_choose, 6=listen_choose, 7=speed_match, 8=listen_build_dictation, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| station | 1, 7, 8, 11, 12, 17 | 1 (вибір на слух), 8 (збірка), 12 (вибір), 17 (фінал) |
-| street | 7, 10, 11, 13, 16, 17 | 10 (збірка), 11 (вставка), 16 (збірка), 17 (фінал) |
-| near | 2, 3, 7, 9, 15 | 2 (вибір на слух), 3 (розрізнення), 9 (вставка), 15 (збірка) |
-| behind | 4, 7, 14 | 4 (вибір на слух), 14 (збірка) |
-| crowded | 5, 6, 9, 13, 17 | 6 (вибір на слух), 13 (вставка), 17 (фінал) |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | Where is the station? | так — `Where is` розбирається в тексті, `station` стоїть прямо в тексті: `Where the station?` |
-| Інтро 2 | street | так — `street` пояснено першою фразою, і вся сторінка про його звук |
-| Інтро 3 | It is near. | так — `near` і повна форма `It is near` стоять у тексті |
-
-**3. Дошка пар (завдання 7)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| station | з минулих занять (l02_s17) | завдання 1 — вибір на слух |
-| street | з минулих занять (l02_s17) | інтро 2 — питання сторінки |
-| near | з минулих занять (l02_s19) | завдання 2 і 3 — вибір і розрізнення |
-| behind | з минулих занять (l02_s19) | завдання 4 — вибір на слух |

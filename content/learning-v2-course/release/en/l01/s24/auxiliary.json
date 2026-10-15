@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-24:intro1:r2": {
-          "ru": "В английской фразе нужна форма `is`: `He is funny`.",
-          "uk": "В англійській фразі потрібна форма `is`: `He is funny`."
+          "ru": "Это только о вас. Вы говорите за себя и сестру: `We are early`.",
+          "uk": "Це лише про вас. Ви говорите за себе та сестру: `We are early`."
         },
         "en:lesson-01:session-24:intro1:r3": {
-          "ru": "С `he` нужна форма `is`, а не `are`.",
-          "uk": "З `he` потрібна форма `is`, а не `are`."
+          "ru": "После `We` нужно `are`.",
+          "uk": "Після `We` потрібно `are`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-24:intro2:r2": {
-          "ru": "Сначала ставят `is`, затем `not`: `She is not tired`.",
-          "uk": "Спочатку ставлять `is`, потім `not`: `She is not tired`."
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
         },
         "en:lesson-01:session-24:intro2:r3": {
-          "ru": "`no` вместо `not`. Отрицание внутри фразы — всегда `not`.",
-          "uk": "`no` замість `not`. Заперечення всередині фрази — завжди `not`."
+          "ru": "`outside` — «снаружи». Друзья на верхнем этаже: `upstairs`.",
+          "uk": "`outside` — «зовні». Друзі на верхньому поверсі: `upstairs`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-24:intro3:r2": {
-          "ru": "Про девушку — `she`. `he` — только про мужчину.",
-          "uk": "Про дівчину — `she`. `he` — тільки про чоловіка."
+          "ru": "О деньгах ничего не сказано. Известность — `famous`.",
+          "uk": "Про гроші нічого не сказано. Популярність — `famous`."
         },
         "en:lesson-01:session-24:intro3:r3": {
-          "ru": "Между `she` и словом о человеке нужна форма `is`.",
-          "uk": "Між `she` і словом про людину потрібна форма `is`."
+          "ru": "После `She` нужна форма `is`.",
+          "uk": "Після `She` потрібна форма `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7f1e235d78ddf82097f447121d86a24463e0b34020ea02dbc6356fdc846e6a11"
+  "auxiliaryFingerprint": "77db6aa3925eb34f8c8b4fb694cac5458e260edf2a7d264f8b948904579c9c95"
 }

@@ -1,206 +1,138 @@
-# Англійська · Урок 1 · Заняття 24 — «Троє людей поспіль»
+# Англійська · Урок 1 · Заняття 24 — День відкритих дверей у театрі
 
-**Ситуація.** В обід Ліна сидить разом із вами біля вікна в їдальні й розповідає про людей з вашого відділу: Денис усіх смішить, Мія мовчить, а Анна допомагає колегам.
+**Ситуація.** Ви допомагаєте на дні відкритих дверей у театрі. Зустрічаєте гостей, пояснюєте, де друзі, й розповідаєте про героїв вистави.
 
-**Як сказати:** `he is`, `she is` та `is not`, коли говорите про іншу людину.
+**Що ви опануєте:** самостійно вибрати знайомі am, is, are та слова розділу в новій ситуації
 **Нові слова:** —
-**Повертаються:** funny, quiet, hungry, late, tired, kind
 
 ---
 
 ## Інтро 1
 
-### `is` з he та she
+### Хто говорить
 
-`he` — «він», `she` — «вона». Між таким словом і словом про людину завжди стоїть `is`: `he is funny`, `she is quiet`.
+Про себе починаємо з `I am`, за себе та інших — із `We are`. Якщо говоримо про інших людей, потрібно `They are`. Слово після них вибираємо за ситуацією: `I am prepared` — «Я підготувався», `We are early` — «Ми прийшли завчасно».
 
-Українською ми кажемо «він смішний» — і між ними немає нічого. Рука сама тягнеться написати `he funny`. Тягнеться в усіх, не лише у вас. Але англійською така фраза просто не тримається.
+**Ви із сестрою прийшли за годину до початку. Скажіть за вас обох, що ви прийшли завчасно.**
 
-**Колега киває на хлопця біля каси: він цілий обід усіх смішив. Скажіть про нього.**
-
-- ✅ **He is funny.**
-- ❌ He funny. — *В англійській фразі потрібна форма `is`: `He is funny`.*
-- ❌ He are funny. — *З `he` потрібна форма `is`, а не `are`.*
+- ✅ **We are early.**
+- ❌ I am early. — *Це лише про вас. Ви говорите за себе та сестру: `We are early`.*
+- ❌ We is early. — *Після `We` потрібно `are`.*
 
 ---
 
 ## Інтро 2
 
-### `not` стає після `is`
+### Де людина
 
-Щоб сказати «не», ставимо `not` одразу після `is`: `she is not tired`, `he is not late`.
+`inside` — «всередині», `outside` — «зовні», `upstairs` — «на верхньому поверсі», `nearby` — «поблизу». Початок вибираємо за тим, про кого говоримо: `She is upstairs`, але `They are upstairs`. Поверх один, а людей може бути скільки завгодно — форму вибираємо не за поверхом.
 
-Порядок завжди такий: спочатку `is`, потім `not`. Тому кажуть `She is not tired`, а не `She not tired`.
+**Двоє друзів чекають на другому поверсі театру. Скажіть, де вони.**
 
-**Колега каже, що дівчина біля вікна вимоталася. Ви бачили її п'ять хвилин тому — бадьора. Заперечте.**
-
-- ✅ **She is not tired.**
-- ❌ She not tired. — *Спочатку ставлять `is`, потім `not`: `She is not tired`.*
-- ❌ She is no tired. — *`no` замість `not`. Заперечення всередині фрази — завжди `not`.*
+- ✅ **They are upstairs.**
+- ❌ They is upstairs. — *Після `They` потрібно `are`.*
+- ❌ They are outside. — *`outside` — «зовні». Друзі на верхньому поверсі: `upstairs`.*
 
 ---
 
 ## Інтро 3
 
-### Одна фраза — одна людина
+### Що саме відомо
 
-`he` і `she` не змішуються: про чоловіка — `he`, про жінку — `she`. З обома словами форма лишається однаковою: `is`.
+Вибирайте слово за фактом, який хочете повідомити. `famous` — «знаменитий», `rich` — «багатий»; одне не доводить іншого. Так само `alone` описує відсутність компанії, а `single` в анкеті — відсутність шлюбу.
 
-Простіше, ніж здається: міняєте перше слово, решту не чіпаєте. `He is kind` — `She is kind`.
+**Актрису впізнають по всій країні. Про її гроші ви нічого не знаєте. Скажіть про її популярність.**
 
-**Колега показує на дівчину, яка вранці допомогла вам розібратися з поштою. Скажіть про неї добре слово.**
-
-- ✅ **She is kind.**
-- ❌ He is kind. — *Про дівчину — `she`. `he` — тільки про чоловіка.*
-- ❌ She kind. — *Між `she` і словом про людину потрібна форма `is`.*
+- ✅ **She is famous.**
+- ❌ She is rich. — *Про гроші нічого не сказано. Популярність — `famous`.*
+- ❌ She are famous. — *Після `She` потрібна форма `is`.*
 
 ---
 
-## Практика (18 завдань, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-24:i01; family: speed_match -->
-funny — смішний · quiet — тихий · hungry — голодний · late — запізнюється
+**1 · Новий гість вагається, чи можна зайти. Складіть фразу, щоб сказати йому, що раді його приходу**
+<!-- interaction_id: en:lesson-01:session-24:i01; family: phrase_builder -->
+Плитки: `welcome` `are` `You` `am` → **You are welcome.**
+*(плитка `am` зайва: тут потрібно `are` — `You are welcome.`)*
 
-**2 · Оберіть форму — Ліна прямо каже: «Денис біля каси смішний»**
-<!-- interaction_id: en:lesson-01:session-24:i02; family: context_gap_grammar -->
-He ___ funny. → **is** · are · am
-- is — *Про Дениса кажуть `he`, тому у фразі `He is funny.` потрібна форма `is`.*
-- are — *Не для однієї людини. `He is` — і ніяк інакше.*
-- am — *`am` живе тільки поруч з `I`. Про нього — `is`.*
+**2 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-24:i02; family: listen_choose -->
+🔊 *We are prepared.* → **We are prepared.** · They are prepared. · We are lucky.
+- They are prepared. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
+- We are lucky. — *У записі останнє слово — `prepared`, а в цьому варіанті — `lucky`.*
 
-**3 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-24:i03; family: listen_choose -->
-🔊 *quiet* → **quiet** · quit · queen
-- quiet — *У записі чути `quiet`: два склади «куай-ет», не коротке `quit` і не `queen`.*
-- quit — *Обрубаний хвіст. `quiet` — два склади: «куай-ет».*
-- queen — *Інше слово цілком. Початок схожий, далі розходиться.*
+**3 · Ви неправильно назвали час початку. Вставте слово, щоб визнати свою помилку**
+<!-- interaction_id: en:lesson-01:session-24:i03; family: context_gap_grammar -->
+I ___ wrong. → **am** · is · are
+- is — *Про себе кажемо `I am`.*
+- are — *Після `I` потрібно `am`.*
 
-**4 · Вставте слово — Ліна прямо каже: «Мія за сусіднім столом тиха»**
-<!-- interaction_id: en:lesson-01:session-24:i04; family: context_gap_grammar -->
-She is ___ . → **quiet** · funny · hungry
-- quiet — *Ліна каже, що Мія мовчить, тому `quiet` — «тиха», а не `funny` чи `hungry`.*
-- funny — *«Смішна» — але вона якраз мовчить.*
-- hungry — *«Голодна» — вона вже їсть, річ не в тому.*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-24:i04; family: speed_match -->
+welcome — бажаний · safe — у безпеці · right — має рацію · wrong — не має рації
 
-**5 · Складіть фразу — Ліна прямо каже: «Денис голодний»**
-<!-- interaction_id: en:lesson-01:session-24:i05; family: phrase_builder -->
-Плитки: `hungry` `he` `are` `is` → **He is hungry.**
-Зайва плитка `are`: з `He` ставлять `is` — `He is hungry`.
-*(плитка `are` зайва: `are` зайве: з `He` ставлять `is` — `He is hungry`.)*
+**5 · Послухайте й складіть повідомлення про гостю**
+<!-- interaction_id: en:lesson-01:session-24:i05; family: listen_build_dictation -->
+🔊 *She is inside.* Плитки: `inside` `is` `She` `He` → **She is inside.**
+*(плитка `He` зайва: тут потрібно `She` — `She is inside.`)*
 
+**6 · Двоє гостей прийшли однією компанією. Скажіть про них, склавши фразу**
+<!-- interaction_id: en:lesson-01:session-24:i06; family: phrase_builder -->
+Плитки: `together` `are` `They` `is` → **They are together.**
+*(плитка `is` зайва: тут потрібно `are` — `They are together.`)*
 
-**6 · Вставте слово — Ліна прямо каже: «Анна не втомилася»**
-<!-- interaction_id: en:lesson-01:session-24:i06; family: context_gap_grammar -->
-She is not ___ . → **tired** · kind · quiet
-- tired — *Ліна прямо каже, що Анна не втомилася: після `not` потрібне `tired`.*
-- kind — *«Добра» — з цим ніхто не сперечався.*
-- quiet — *«Тиха» — йшлося про втому.*
+**7 · Гість не розуміє, в якій частині будівлі перебуває, і не може знайти зал. Скажіть про нього: «Він заблукав»**
+<!-- interaction_id: en:lesson-01:session-24:i07; family: scripted_repeat_compare -->
+🎙 **He is lost.**
 
-**7 · Послухайте і складіть — «Анна не запізнюється»**
-<!-- interaction_id: en:lesson-01:session-24:i07; family: listen_build_dictation -->
-🔊 *She is not late.* Плитки: `not` `she` `late` `is` → **She is not late.**
+**8 · Ви з гостями вже вийшли з небезпечного проходу. Скажіть за всю вашу групу, що ви в безпеці**
+<!-- interaction_id: en:lesson-01:session-24:i08; family: context_gap_grammar -->
+We ___ safe. → **are** · is · am
+- is — *За вашу групу кажемо `We are`.*
+- am — *`am` поєднується з `I`, а тут `We are`.*
 
-**8 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-24:i08; family: listen_choose -->
-🔊 *kind* → **kind** · kid · king
-- kind — *У записі кінець `kind` звучить як `-nd`, а не як `kid` чи `king`.*
-- kid — *Коротше на один звук. `kind` тягнеться довше: «кайнд».*
-- king — *Кінець інший: `-нг` замість `-нд`.*
+**9 · Послухайте й виберіть фразу про героїв вистави**
+<!-- interaction_id: en:lesson-01:session-24:i09; family: listen_choose -->
+🔊 *They are married.* → **They are married.** · We are married. · They are different.
+- We are married. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
+- They are different. — *У записі останнє слово — `married`, а в цьому варіанті — `different`.*
 
-**9 · Вставте слово — Ліна прямо каже: «Анна добра»**
-<!-- interaction_id: en:lesson-01:session-24:i09; family: context_gap_grammar -->
-She is ___ . → **kind** · late · tired
-- kind — *Анна допомагає колегам, тому `kind` — «добра»; не йдеться ні про запізнення, ні про втому.*
-- late — *«Запізнюється» — вона, навпаки, знайшла час допомогти.*
-- tired — *«Втомилася» — про втому тут не йдеться.*
+**10 · З’єднайте слова та значення**
+<!-- interaction_id: en:lesson-01:session-24:i10; family: speed_match -->
+early — рано · lucky — везучий · alone — без інших людей · nearby — поблизу
 
-**10 · Складіть фразу — «Денис не голодний», уважно: `not` серед плиток є, але чи потрібен він?**
-<!-- interaction_id: en:lesson-01:session-24:i10; family: phrase_builder -->
-Колега пропонує взяти хлопцеві другу порцію. Він щойно з'їв обід.
-Плитки: `he` `is` `not` `hungry` → **He is not hungry.**
+**11 · Послухайте й складіть почуту фразу**
+<!-- interaction_id: en:lesson-01:session-24:i11; family: listen_build_dictation -->
+🔊 *You are careful.* Плитки: `careful` `are` `You` `They` → **You are careful.**
+*(плитка `They` зайва: тут потрібно `You` — `You are careful.`)*
 
-**11 · Скажіть уголос — Ліна говорить про Мію: «Вона смішна»**
-<!-- interaction_id: en:lesson-01:session-24:i11; family: scripted_repeat_compare -->
-🎙 **She is funny.**
+**12 · За сюжетом у героя майже немає грошей. Складіть фразу про його становище**
+<!-- interaction_id: en:lesson-01:session-24:i12; family: phrase_builder -->
+Плитки: `poor` `is` `He` `are` → **He is poor.**
+*(плитка `are` зайва: тут потрібно `is` — `He is poor.`)*
 
-**12 · Оберіть форму — Анна біля вікна не запізнюється**
-<!-- interaction_id: en:lesson-01:session-24:i12; family: context_gap_grammar -->
-She ___ not late. → **is** · are · not
-- is — *Після `she` перед `not` ставлять `is`: `She is not late`.*
-- are — *Про одну людину — `is`. `are` тут не працює.*
-- not — *`not` у реченні вже стоїть. Другий не потрібен.*
+**13 · В анкеті героїні зазначено, що вона не перебуває у шлюбі. Скажіть про неї, використовуючи слово з анкети**
+<!-- interaction_id: en:lesson-01:session-24:i13; family: scripted_repeat_compare -->
+🎙 **She is single.**
 
-**13 · Послухайте і складіть — «Денис тихий»**
-<!-- interaction_id: en:lesson-01:session-24:i13; family: listen_build_dictation -->
-🔊 *He is quiet.* Плитки: `quiet` `is` `he` `she` → **He is quiet.**
-Зайва плитка `she`: у записі про Дениса кажуть `He is quiet`.
-*(плитка `she` зайва: `she` зайве: у записі про Дениса кажуть `He is quiet`.)*
+**14 · Друзі чекають на вулиці перед театром. Доповніть повідомлення про те, де вони**
+<!-- interaction_id: en:lesson-01:session-24:i14; family: context_gap_grammar -->
+They are ___ . → **outside** · inside · upstairs
+- inside — *`inside` — «всередині», а друзі на вулиці: `outside`.*
+- upstairs — *`upstairs` — «на верхньому поверсі». Тут друзі зовні: `outside`.*
 
+**15 · Послухайте порівняння двох персонажів**
+<!-- interaction_id: en:lesson-01:session-24:i15; family: listen_choose -->
+🔊 *They are different.* → **They are different.** · We are different. · They are famous.
+- We are different. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
+- They are famous. — *У записі останнє слово — `different`, а в цьому варіанті — `famous`.*
 
-**14 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-24:i14; family: speed_match -->
-tired — втомився · kind — добрий · he — він · she — вона
+**16 · З’єднайте слова та значення**
+<!-- interaction_id: en:lesson-01:session-24:i16; family: speed_match -->
+rich — багатий · poor — бідний · famous — знаменитий · married — перебуває у шлюбі
 
-**15 · Складіть фразу — Ліна прямо каже: «Анна не втомилася»**
-<!-- interaction_id: en:lesson-01:session-24:i15; family: phrase_builder -->
-Плитки: `she` `not` `tired` `is` `are` → **She is not tired.**
-Зайва плитка `are`: з `She` ставлять `is` — `She is not tired`.
-*(плитка `are` зайва: `are` зайве: з `She` ставлять `is` — `She is not tired`.)*
+**17 · Завтра ви з братом переїжджаєте. Коробки зібрані, машину замовили заздалегідь. Скажіть за вас обох: «Ми підготувалися»**
+<!-- interaction_id: en:lesson-01:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **We are prepared.**
 
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-24:i16:s01; family: scripted_repeat_compare -->
-🎙 **He is funny.**
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-24:i16:s02; family: scripted_repeat_compare -->
-🎙 **She is quiet.**
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-24:i16:s03; family: scripted_repeat_compare -->
-🎙 **She is kind.**
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=speed_match, 2=context_gap_grammar, 3=listen_choose, 4=context_gap_grammar, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=scripted_repeat_compare, 12=context_gap_grammar, 13=listen_build_dictation, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| funny | 1, 2, 4, 11, 16 | 11 (складання), 16 (голос) |
-| quiet | 1, 3, 4, 6, 13, 16 | 4 (встав слово), 13 (диктант) |
-| hungry | 1, 4, 5, 10 | 5 (складання), 10 (складання) |
-| late | 1, 7, 9, 12 | 7 (диктант), 12 (скріпка у фразі з `late`) |
-| tired | 6, 9, 14, 15 | 6 (встав слово), 15 (складання) |
-| kind | 6, 8, 9, 14, 16 | 9 (встав слово), 16 (голос) |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | `He is funny` | так — `he is funny` у першому абзаці |
-| Інтро 2 | `She is not tired` | так — `she is not tired` у першому абзаці |
-| Інтро 3 | `She is kind` | так — `She is kind` у другому абзаці |
-
-**3. Дошка пар**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| funny (дошка 1) | з минулих сесій | з минулих сесій |
-| quiet (дошка 1) | з минулих сесій | з минулих сесій |
-| hungry (дошка 1) | з минулих сесій | з минулих сесій |
-| late (дошка 1) | з минулих сесій | з минулих сесій |
-| tired (дошка 14) | з минулих сесій | завдання 6, 9 цієї сесії |
-| kind (дошка 14) | з минулих сесій | завдання 8, 9 цієї сесії |
-| he (дошка 14) | з минулих сесій | завдання 2, 5, 10, 13 |
-| she (дошка 14) | з минулих сесій | завдання 4, 6, 7, 9, 11, 12 |
-
-Дошки не перетинаються словами: дошка 1 — `funny/quiet/hungry/late`, дошка 14 — `tired/kind/he/she`.

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-24",
   "learningOutcomeByLocale": {
-    "ru": "`he is`, `she is` и `is not`, когда говорите о другом человеке.",
-    "uk": "`he is`, `she is` та `is not`, коли говорите про іншу людину."
+    "ru": "самостоятельно выбрать знакомые am, is, are и слова главы в новой ситуации",
+    "uk": "самостійно вибрати знайомі am, is, are та слова розділу в новій ситуації"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`is` с he и she",
-        "uk": "`is` з he та she"
+        "ru": "Кто говорит",
+        "uk": "Хто говорить"
       },
       "bodyByLocale": {
-        "ru": "`he` — «он», `she` — «она». Между таким словом и словом о человеке всегда стоит `is`: `he is funny`, `she is quiet`.\n\nПо-русски «он смешной» обходится без связки, и рука тянется написать `he funny`. Без `is` это два слова, которые друг о друге не знают.",
-        "uk": "`he` — «він», `she` — «вона». Між таким словом і словом про людину завжди стоїть `is`: `he is funny`, `she is quiet`.\n\nУкраїнською ми кажемо «він смішний» — і між ними немає нічого. Рука сама тягнеться написати `he funny`. Тягнеться в усіх, не лише у вас. Але англійською така фраза просто не тримається."
+        "ru": "О себе начинаем с `I am`, за себя и других — с `We are`. Если говорим о других людях, нужно `They are`. Слово после них выбираем по ситуации: `I am prepared` — «Я подготовился», `We are early` — «Мы пришли заранее».",
+        "uk": "Про себе починаємо з `I am`, за себе та інших — із `We are`. Якщо говоримо про інших людей, потрібно `They are`. Слово після них вибираємо за ситуацією: `I am prepared` — «Я підготувався», `We are early` — «Ми прийшли завчасно»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Коллега кивает на парня у кассы: он весь обед всех смешил. Скажите про него.",
-          "uk": "Колега киває на хлопця біля каси: він цілий обід усіх смішив. Скажіть про нього."
+          "ru": "Вы с сестрой пришли за час до начала. Скажите за вас обоих, что вы пришли заранее.",
+          "uk": "Ви із сестрою прийшли за годину до початку. Скажіть за вас обох, що ви прийшли завчасно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-24:intro1:r1",
-              "text": "He is funny."
+              "text": "We are early."
             },
             {
               "responseId": "en:lesson-01:session-24:intro1:r2",
-              "text": "He funny."
+              "text": "I am early."
             },
             {
               "responseId": "en:lesson-01:session-24:intro1:r3",
-              "text": "He are funny."
+              "text": "We is early."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-24:intro1:r1",
-              "text": "He is funny."
+              "text": "We are early."
             },
             {
               "responseId": "en:lesson-01:session-24:intro1:r2",
-              "text": "He funny."
+              "text": "I am early."
             },
             {
               "responseId": "en:lesson-01:session-24:intro1:r3",
-              "text": "He are funny."
+              "text": "We is early."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега кивает на парня у кассы: он весь обед всех смешил. Скажите про него.",
-          "uk": "Колега киває на хлопця біля каси: він цілий обід усіх смішив. Скажіть про нього."
+          "ru": "Вы с сестрой пришли за час до начала. Скажите за вас обоих, что вы пришли заранее.",
+          "uk": "Ви із сестрою прийшли за годину до початку. Скажіть за вас обох, що ви прийшли завчасно."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`not` встаёт после `is`",
-        "uk": "`not` стає після `is`"
+        "ru": "Где человек",
+        "uk": "Де людина"
       },
       "bodyByLocale": {
-        "ru": "Чтобы сказать «не», ставим `not` сразу после `is`: `she is not tired`, `he is not late`.\n\nПорядок всегда такой: сначала `is`, затем `not`. Поэтому говорят `She is not tired`, а не `She not tired`.",
-        "uk": "Щоб сказати «не», ставимо `not` одразу після `is`: `she is not tired`, `he is not late`.\n\nПорядок завжди такий: спочатку `is`, потім `not`. Тому кажуть `She is not tired`, а не `She not tired`."
+        "ru": "`inside` — «внутри», `outside` — «снаружи», `upstairs` — «на верхнем этаже», `nearby` — «поблизости». Начало выбираем по тому, о ком говорим: `She is upstairs`, но `They are upstairs`. Этаж один, а людей может быть сколько угодно — форму выбираем не по этажу.",
+        "uk": "`inside` — «всередині», `outside` — «зовні», `upstairs` — «на верхньому поверсі», `nearby` — «поблизу». Початок вибираємо за тим, про кого говоримо: `She is upstairs`, але `They are upstairs`. Поверх один, а людей може бути скільки завгодно — форму вибираємо не за поверхом."
       },
       "question": {
         "interactionId": "en:lesson-01:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "Коллега говорит, что девушка у окна вымоталась. Вы видели её пять минут назад — бодрая. Возразите.",
-          "uk": "Колега каже, що дівчина біля вікна вимоталася. Ви бачили її п'ять хвилин тому — бадьора. Заперечте."
+          "ru": "Двое друзей ждут на втором этаже театра. Скажите, где они.",
+          "uk": "Двоє друзів чекають на другому поверсі театру. Скажіть, де вони."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-24:intro2:r1",
-              "text": "She is not tired."
+              "text": "They are upstairs."
             },
             {
               "responseId": "en:lesson-01:session-24:intro2:r2",
-              "text": "She not tired."
+              "text": "They is upstairs."
             },
             {
               "responseId": "en:lesson-01:session-24:intro2:r3",
-              "text": "She is no tired."
+              "text": "They are outside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-24:intro2:r1",
-              "text": "She is not tired."
+              "text": "They are upstairs."
             },
             {
               "responseId": "en:lesson-01:session-24:intro2:r2",
-              "text": "She not tired."
+              "text": "They is upstairs."
             },
             {
               "responseId": "en:lesson-01:session-24:intro2:r3",
-              "text": "She is no tired."
+              "text": "They are outside."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега говорит, что девушка у окна вымоталась. Вы видели её пять минут назад — бодрая. Возразите.",
-          "uk": "Колега каже, що дівчина біля вікна вимоталася. Ви бачили її п'ять хвилин тому — бадьора. Заперечте."
+          "ru": "Двое друзей ждут на втором этаже театра. Скажите, где они.",
+          "uk": "Двоє друзів чекають на другому поверсі театру. Скажіть, де вони."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одна фраза — один человек",
-        "uk": "Одна фраза — одна людина"
+        "ru": "Что именно известно",
+        "uk": "Що саме відомо"
       },
       "bodyByLocale": {
-        "ru": "`he` и `she` не смешиваются: про мужчину — `he`, про женщину — `she`.\n\nС `he` и `she` форма остаётся одинаковой: `is`.\n\nМеняете первое слово, остальное не трогаете: `He is kind` — `She is kind`.",
-        "uk": "`he` і `she` не змішуються: про чоловіка — `he`, про жінку — `she`. З обома словами форма лишається однаковою: `is`.\n\nПростіше, ніж здається: міняєте перше слово, решту не чіпаєте. `He is kind` — `She is kind`."
+        "ru": "Выбирайте слово по факту, который хотите сообщить. `famous` — «знаменитый», `rich` — «богатый»; одно не доказывает другое. Так же `alone` описывает отсутствие компании, а `single` в анкете — отсутствие брака.",
+        "uk": "Вибирайте слово за фактом, який хочете повідомити. `famous` — «знаменитий», `rich` — «багатий»; одне не доводить іншого. Так само `alone` описує відсутність компанії, а `single` в анкеті — відсутність шлюбу."
       },
       "question": {
         "interactionId": "en:lesson-01:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Коллега показывает на девушку, которая утром помогла вам разобраться с почтой. Скажите про неё доброе слово.",
-          "uk": "Колега показує на дівчину, яка вранці допомогла вам розібратися з поштою. Скажіть про неї добре слово."
+          "ru": "Актрису узнают по всей стране. О её деньгах вы ничего не знаете. Скажите о её известности.",
+          "uk": "Актрису впізнають по всій країні. Про її гроші ви нічого не знаєте. Скажіть про її популярність."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-24:intro3:r1",
-              "text": "She is kind."
+              "text": "She is famous."
             },
             {
               "responseId": "en:lesson-01:session-24:intro3:r2",
-              "text": "He is kind."
+              "text": "She is rich."
             },
             {
               "responseId": "en:lesson-01:session-24:intro3:r3",
-              "text": "She kind."
+              "text": "She are famous."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-24:intro3:r1",
-              "text": "She is kind."
+              "text": "She is famous."
             },
             {
               "responseId": "en:lesson-01:session-24:intro3:r2",
-              "text": "He is kind."
+              "text": "She is rich."
             },
             {
               "responseId": "en:lesson-01:session-24:intro3:r3",
-              "text": "She kind."
+              "text": "She are famous."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега показывает на девушку, которая утром помогла вам разобраться с почтой. Скажите про неё доброе слово.",
-          "uk": "Колега показує на дівчину, яка вранці допомогла вам розібратися з поштою. Скажіть про неї добре слово."
+          "ru": "Актрису узнают по всей стране. О её деньгах вы ничего не знаете. Скажите о её известности.",
+          "uk": "Актрису впізнають по всій країні. Про її гроші ви нічого не знаєте. Скажіть про її популярність."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "90c5958c7667189cde6efc44f8e7220957b5df7399bc9eea14b852be56a35977"
+  "introFingerprint": "b5d6bdb648e87faa88e70ec7a42202e4e498b6e8f02ebf71641e1f9f6394182d"
 }

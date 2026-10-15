@@ -293,7 +293,8 @@
   @media (prefers-reduced-motion: reduce) { .rise > * { animation: none; } .flip .fl, .zth, .zf { transition: none; } }
   /* ---------- дорисовано по приложению (решения 12.10): «Кто видит», «Подсказка», «Показать ответ» ---------- */
   .vseg { display: flex; gap: 4px; padding: 5px; border-radius: 16px; background: #161618; }
-  .vseg span { flex: 1; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--sec); cursor: pointer; transition: background 200ms, color 200ms; }
+  /* зачем (D145 «16/13 главнее макета», Макеты 15.10): текст сегмента «Только я / Все» 16/20 · 600 как segText в PackEditorV2.tsx */
+  .vseg span { flex: 1; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; line-height: 20px; font-weight: 600; color: var(--sec); cursor: pointer; transition: background 200ms, color 200ms; }
   .vseg span.on { background: var(--cta); color: var(--cta-ink); }
   .hintrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; min-height: 44px; }
   .hintb { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 22px; background: #262628; font-size: 16px; font-weight: 700; cursor: pointer; }

@@ -238,12 +238,15 @@ export function scanSource(rawText) {
   };
   const literalsOut = [];
   const lines = src.split('\n');
+  // зачем (Ядро 15.10): пометка «guard-ok» пишется В КОММЕНТАРИИ, а src — уже без комментариев: проверка по src её не видела никогда.
+  // Номера строк у src и raw совпадают (stripComments заменяет комментарии пробелами), поэтому пометку ищем в исходной строке.
+  const rawLines = raw.split('\n');
   for (const lit of literals) {
     if (!CYR.test(lit.text)) continue;
     if (inSpans(lit.start, langSpans) || inSpans(lit.start, positionalSpans) || inSpans(lit.start, logSpans)) continue;
     const ln = lineOf(src, lit.start);
     const lineText = lines[ln - 1] ?? '';
-    if (LOG_CALL.test(lineText) || /guard-ok|\[DEV-STATE\]|__DEV__/.test(lineText)) continue;
+    if (LOG_CALL.test(lineText) || /guard-ok|\[DEV-STATE\]|__DEV__/.test(lineText) || /guard-ok/.test(rawLines[ln - 1] ?? '')) continue;
     // поле данных «titleRu: 'Путешествия'» — не интерфейс
     const before = src.slice(Math.max(0, lit.start - 40), lit.start);
     if (/(Ru|Uk|Es)\s*:\s*$/.test(before)) continue;

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-22",
   "learningOutcomeByLocale": {
-    "ru": "перенос знакомого множественного числа в проверку кухонной доставки: `bottles`, `bowls`, `plates`; знакомые `They are`, `Are they`, `They are not`, `It is a`",
-    "uk": "переносимо знайому форму кількох предметів у перевірку кухонної доставки: `bottles`, `bowls`, `plates`; знайомі `They are`, `Are they`, `They are not`, `It is a`"
+    "ru": "назвать несколько чашек и спросить об их месте",
+    "uk": "назвати кілька чашок і запитати про їхнє місце"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Бутылки одной строкой",
-        "uk": "Пляшки в одному рядку"
+        "ru": "Чашка и чашки",
+        "uk": "Чашка й чашки"
       },
       "bodyByLocale": {
-        "ru": "`bottle` — «бутылка», `bottles` — «бутылки». Для нескольких добавляем к написанию знакомое окончание `s`. Если назвать весь набор словом `bottle`, получится, что остальные бутылки зря ехали. Скажем про весь набор: `They are bottles` — «Это бутылки».",
-        "uk": "`bottle` — «пляшка», `bottles` — «пляшки». Коли пляшок кілька, до написання додаємо знайоме `s`. Назвати весь набір `bottle` означало б, ніби решта пляшок приїхала дарма. Про весь набір скажемо `They are bottles` — «Це пляшки»."
+        "ru": "`cup` — «чашка», `cups` — «чашки». Для нескольких чашек добавляем `s`: `They are cups` — «Это чашки». Перед `cups` не ставим `a`. Олег принёс одну чашку для всех гостей. Экономия посуды отличная, но чаепитие придётся проводить по очереди. Нужны `cups` — чашки.",
+        "uk": "`cup` — «чашка», `cups` — «чашки». Для кількох чашок додаємо `s`: `They are cups` — «Це чашки». Перед `cups` не ставимо `a`. Олег приніс одну чашку для всіх гостей. Економія посуду чудова, але чаювання доведеться проводити по черзі. Потрібні `cups` — чашки."
       },
       "question": {
         "interactionId": "en:lesson-03:session-22:intro1:q",
         "promptByLocale": {
-          "ru": "Курьер сверяет список и спрашивает, что вы достали. Перед вами несколько бутылок для воды. Скажите: «Это бутылки».",
-          "uk": "Кур’єр звіряє список і питає, що ви дістали. Перед вами кілька пляшок для води. Скажіть: «Це пляшки»."
+          "ru": "Вы достали из коробки несколько чашек. Назовите их одним английским словом.",
+          "uk": "Ви дістали з коробки кілька чашок. Назвіть їх одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-22:intro1:r1",
-              "text": "They are bottles."
+              "text": "cups"
             },
             {
               "responseId": "en:lesson-03:session-22:intro1:r2",
-              "text": "They are bottle."
+              "text": "cup"
             },
             {
               "responseId": "en:lesson-03:session-22:intro1:r3",
-              "text": "They are a bottles."
+              "text": "a cups"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-22:intro1:r1",
-              "text": "They are bottles."
+              "text": "cups"
             },
             {
               "responseId": "en:lesson-03:session-22:intro1:r2",
-              "text": "They are bottle."
+              "text": "cup"
             },
             {
               "responseId": "en:lesson-03:session-22:intro1:r3",
-              "text": "They are a bottles."
+              "text": "a cups"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Курьер сверяет список и спрашивает, что вы достали. Перед вами несколько бутылок для воды. Скажите: «Это бутылки».",
-          "uk": "Кур’єр звіряє список і питає, що ви дістали. Перед вами кілька пляшок для води. Скажіть: «Це пляшки»."
+          "ru": "Вы достали из коробки несколько чашек. Назовите их одним английским словом.",
+          "uk": "Ви дістали з коробки кілька чашок. Назвіть їх одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Миски внутри мисок",
-        "uk": "Миски всередині мисок"
+        "ru": "Найти нужные чашки",
+        "uk": "Знайти потрібні чашки"
       },
       "bodyByLocale": {
-        "ru": "`bowl` — «миска», глубокая открытая посуда. Несколько мисок — `bowls`: к написанию добавляем `s`. Даже если миски вложены одна в другую, предметов несколько. Поэтому называем их `They are bowls` — «Это миски», а не как один предмет.",
-        "uk": "`bowl` — «миска», глибока відкрита посудина. Кілька мисок — `bowls`: до написання додаємо `s`. Навіть коли миски вкладені одна в одну, предметів кілька. Тому кажемо `They are bowls` — «Це миски», а не називаємо їх одним предметом."
+        "ru": "`Where are the cups?` — «Где чашки?» `the cups` — чашки, о которых вы с Анной уже говорили. Чашек несколько, поэтому в вопросе нужно `are`. Можно ответить: `The cups are here` — «Чашки здесь».",
+        "uk": "`Where are the cups?` — «Де чашки?» `the cups` — чашки, про які ви з Анною вже говорили. Чашок кілька, тому в запитанні потрібно `are`. Можна відповісти: `The cups are here` — «Чашки тут»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-22:intro2:q",
         "promptByLocale": {
-          "ru": "Вы разъединили две миски из набора. Курьер уточняет название для списка. Ответьте: «Это миски».",
-          "uk": "Ви роз’єднали дві миски з набору. Кур’єр уточнює назву для списку. Відповідайте: «Це миски»."
+          "ru": "Анна знает, какие чашки нужны для чаепития. Спросите, где чашки.",
+          "uk": "Анна знає, які чашки потрібні для чаювання. Запитайте, де чашки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-22:intro2:r1",
-              "text": "They are bowls."
+              "text": "Where are the cups?"
             },
             {
               "responseId": "en:lesson-03:session-22:intro2:r2",
-              "text": "They are bowl."
+              "text": "Where is the cups?"
             },
             {
               "responseId": "en:lesson-03:session-22:intro2:r3",
-              "text": "They are a bowl."
+              "text": "What are the cups?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-22:intro2:r1",
-              "text": "They are bowls."
+              "text": "Where are the cups?"
             },
             {
               "responseId": "en:lesson-03:session-22:intro2:r2",
-              "text": "They are bowl."
+              "text": "Where is the cups?"
             },
             {
               "responseId": "en:lesson-03:session-22:intro2:r3",
-              "text": "They are a bowl."
+              "text": "What are the cups?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы разъединили две миски из набора. Курьер уточняет название для списка. Ответьте: «Это миски».",
-          "uk": "Ви роз’єднали дві миски з набору. Кур’єр уточнює назву для списку. Відповідайте: «Це миски»."
+          "ru": "Анна знает, какие чашки нужны для чаепития. Спросите, где чашки.",
+          "uk": "Анна знає, які чашки потрібні для чаювання. Запитайте, де чашки."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Уточнить про тарелки",
-        "uk": "Уточнюємо про тарілки"
+        "ru": "Картина закончена",
+        "uk": "Картина закінчена"
       },
       "bodyByLocale": {
-        "ru": "`plate` — «тарелка», `plates` — «тарелки». Назвать несколько можно фразой `They are plates` — «Это тарелки». Чтобы уточнить, переставьте первые два слова: `Are they plates?` — «Это тарелки?» Название нескольких тарелок в вопросе остаётся тем же.",
-        "uk": "`plate` — «тарілка», `plates` — «тарілки». Кілька предметів можна назвати фразою `They are plates` — «Це тарілки». Щоб перепитати, поміняйте місцями перші два слова: `Are they plates?` — «Це тарілки?» Назва кількох тарілок у питанні не змінюється."
+        "ru": "`The picture is complete` — «Картина закончена». В этой сцене `complete` означает, что работа над ней завершена. `famous` — «известный», `rich` — «богатый», `poor` — «бедный». Эти слова не заменяют друг друга: известный художник не обязательно богат. О госте, которого знают многие, скажем `He is famous` — «Он известен».",
+        "uk": "`The picture is complete` — «Картина закінчена». У цій сцені `complete` означає, що роботу над нею завершено. `famous` — «відомий», `rich` — «багатий», `poor` — «бідний». Ці слова не замінюють одне одного: відомий художник не обов’язково багатий. Про гостя, якого знає багато людей, скажемо `He is famous` — «Він відомий»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-22:intro3:q",
         "promptByLocale": {
-          "ru": "Курьер принёс коробку с посудой для сервировки. Вы ожидали набор тарелок. Уточните: «Это тарелки?»",
-          "uk": "Кур’єр приніс коробку з посудом для сервірування. Ви чекали набір тарілок. Уточніть: «Це тарілки?»"
+          "ru": "Анна закончила работу над картиной. Сообщите «Картина закончена».",
+          "uk": "Анна закінчила роботу над картиною. Повідомте «Картина закінчена»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-22:intro3:r1",
-              "text": "Are they plates?"
+              "text": "The picture is complete."
             },
             {
               "responseId": "en:lesson-03:session-22:intro3:r2",
-              "text": "Are they plate?"
+              "text": "The picture is famous."
             },
             {
               "responseId": "en:lesson-03:session-22:intro3:r3",
-              "text": "Is they plates?"
+              "text": "The picture is poor."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-22:intro3:r1",
-              "text": "Are they plates?"
+              "text": "The picture is complete."
             },
             {
               "responseId": "en:lesson-03:session-22:intro3:r2",
-              "text": "Are they plate?"
+              "text": "The picture is famous."
             },
             {
               "responseId": "en:lesson-03:session-22:intro3:r3",
-              "text": "Is they plates?"
+              "text": "The picture is poor."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Курьер принёс коробку с посудой для сервировки. Вы ожидали набор тарелок. Уточните: «Это тарелки?»",
-          "uk": "Кур’єр приніс коробку з посудом для сервірування. Ви чекали набір тарілок. Уточніть: «Це тарілки?»"
+          "ru": "Анна закончила работу над картиной. Сообщите «Картина закончена».",
+          "uk": "Анна закінчила роботу над картиною. Повідомте «Картина закінчена»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a10227599fc61af21ec00e58f995e0e3d3d7ab5fdacb2c59781d0ef71dcafc37"
+  "introFingerprint": "baff107ae5c8510c6ec01340aade71c6499f930a65457a3bd8a6b2664c208b88"
 }

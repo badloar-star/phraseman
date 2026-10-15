@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-22:intro1:r2": {
+          "ru": "`cup` — одна чашка; несколько — `cups`.",
+          "uk": "`cup` — одна чашка; кілька — `cups`."
+        },
+        "en:lesson-03:session-22:intro1:r3": {
+          "ru": "Перед названием нескольких чашек не ставим `a`.",
+          "uk": "Перед назвою кількох чашок не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-22:intro2:r2": {
+          "ru": "Чашек несколько: нужно `are`.",
+          "uk": "Чашок кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-22:intro2:r3": {
+          "ru": "О месте спрашиваем `Where` — «Где».",
+          "uk": "Про місце запитуємо `Where` — «Де»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-22:intro3:r2": {
+          "ru": "`famous` — «известная», а здесь важно, что работа закончена: `complete`.",
+          "uk": "`famous` — «відома», а тут важливо, що роботу закінчено: `complete`."
+        },
+        "en:lesson-03:session-22:intro3:r3": {
+          "ru": "Здесь нужно `complete` — «закончена». Слово `poor` этого не означает.",
+          "uk": "Тут потрібне `complete` — «закінчена». Слово `poor` цього не означає."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2af9085d1a0fa75e73ce0134a3219324ce89ce1adff1d57567ac319e42dead74"
+}

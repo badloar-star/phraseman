@@ -7,11 +7,13 @@
 // скачался / ещё не собран — строка причины над кнопкой, без красных ошибок.
 // Двойной тап защищён выше (useSpireGame: один старт за раз) и здесь (busy).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import type { Lang } from '../../constants/i18n';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useTheme } from '../ThemeContext';
 import { V2 } from '../../constants/v2Style';
 import type { SpireStartBlock } from '../../app/spire/use_spire_game';
 import { useEnergy, useEnergyCountdown } from '../EnergyContext';
@@ -35,6 +37,10 @@ type Props = Readonly<{
 
 function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
+  // зачем (координатор 15.10, spire-gap-010; эталон kit.css `.cta.dis`: background var(--disabled), текст var(--disabled-ink)): неактивная кнопка — токены ОТКЛЮЧЁННОЙ заливки и подписи темы
+  // (читаемая светлая серая, правило «кнопки не сливаются»), а не control + приглушённый текст, который на тёмном слипался с фоном
+  const { liquidGlassThemeId } = useTheme();
+  const off = useMemo(() => { const g = liquidGlassTokens(liquidGlassThemeId); return { fill: g.buttonFillDisabled, ink: g.buttonInkDisabled }; }, [liquidGlassThemeId]);
   const router = useRouter();
   const { energy, bonusEnergy, isUnlimited, energyReady } = useEnergy();
   const noEnergy = !premium && !isUnlimited && energyReady && energy + bonusEnergy < 1;
@@ -60,14 +66,14 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
     return (
       <View testID="spire-dock-no-energy">
         <View
-          style={[s.cta, { backgroundColor: p.control }, sh.nested]}
+          style={[s.cta, { backgroundColor: off.fill }, sh.nested]}
           accessible
           accessibilityRole="button"
           accessibilityState={{ disabled: true }}
           accessibilityLabel={spireGameText(lang, 'energyIn', { t: formattedTime || '—' })}
         >
-          <Ionicons name="flash" size={18} color={p.textSecondary} />
-          <Text style={[s.ctaText, { color: p.textSecondary }]}>{spireGameText(lang, 'energyIn', { t: formattedTime || '—' })}</Text>
+          <Ionicons name="flash" size={18} color={off.ink} />
+          <Text style={[s.ctaText, { color: off.ink }]}>{spireGameText(lang, 'energyIn', { t: formattedTime || '—' })}</Text>
         </View>
         <V2Pressable onPress={openPlus} accessibilityRole="link" style={s.plus} testID="spire-dock-plus">
           <Text style={[s.plusText, { color: p.textSecondary }]}>
@@ -104,14 +110,14 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
         accessibilityLabel={note ? `${spireText(lang, 'climb')}. ${note}` : spireText(lang, 'climb')}
         accessibilityState={{ disabled: !enabled, busy }}
         style={dis
-          ? [s.cta, { backgroundColor: p.control }, sh.nested]
+          ? [s.cta, { backgroundColor: off.fill }, sh.nested]
           : [s.cta, { backgroundColor: p.cta, opacity: enabled ? 1 : 0.4 }, enabled ? sh.action(p.cta) : null]}
         testID="spire-climb"
         onLayout={(e) => logSpireLayout('dock.cta', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height) })}
       >
-        <Text style={[s.ctaText, { color: dis ? p.textMuted : p.ctaText }]}>{note ? spireGameText(lang, 'retry') : spireText(lang, 'climb')}</Text>
+        <Text style={[s.ctaText, { color: dis ? off.ink : p.ctaText }]}>{note ? spireGameText(lang, 'retry') : spireText(lang, 'climb')}</Text>
         {/* зачем (Сверка spire-013, kit.css `.cta .ar`): стрелка у правого края кнопки, текст остаётся по центру */}
-        <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-forward" size={20} color={dis ? p.textMuted : p.ctaText} /></View>
+        <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-forward" size={20} color={dis ? off.ink : p.ctaText} /></View>
       </V2Pressable>
     </View>
   );

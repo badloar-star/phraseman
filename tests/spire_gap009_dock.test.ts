@@ -7,11 +7,12 @@ const read = (name: string) => readFileSync(join(__dirname, '..', 'components', 
 
 describe('Шпиль: нижняя кнопка без комнаты (spire-gap-009)', () => {
   const dock = read('SpireClimbDock.tsx');
-  it('неактивный вид — заливка контрола, приглушённый текст, малая тень; busy и активная — как раньше', () => {
+  it('неактивный вид — токены ОТКЛЮЧЁННОЙ заливки/подписи темы (эталон kit.css .cta.dis, spire-gap-010: не сливается с фоном), малая тень; busy и активная — как раньше', () => {
     expect(dock).toMatch(/const dis = !ready && !busy;/);
-    expect(dock).toMatch(/\[s\.cta, \{ backgroundColor: p\.control \}, sh\.nested\]/);
+    expect(dock).toContain('fill: g.buttonFillDisabled, ink: g.buttonInkDisabled');
+    expect(dock).toMatch(/\[s\.cta, \{ backgroundColor: off\.fill \}, sh\.nested\]/);
     expect(dock).toMatch(/opacity: enabled \? 1 : 0\.4 \}, enabled \? sh\.action\(p\.cta\) : null/);
-    expect(dock).toMatch(/color: dis \? p\.textMuted : p\.ctaText/);
+    expect(dock).toMatch(/color: dis \? off\.ink : p\.ctaText/);
     expect(dock).toMatch(/disabled=\{!enabled\}/);
   });
   it('лог [SPIRE-DOCK] есть у кнопки, домашнего экрана и пилюли энергии; только в dev', () => {

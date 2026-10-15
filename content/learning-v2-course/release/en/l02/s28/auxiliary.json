@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-28:intro1:r2": {
+          "ru": "Между `I` и `flexible` нужно `am`.",
+          "uk": "Між `I` і `flexible` потрібно `am`."
+        },
+        "en:lesson-02:session-28:intro1:r3": {
+          "ru": "Это отрицает готовность подстраиваться. Вы готовы изменить день.",
+          "uk": "Це заперечує готовність підлаштовуватися. Ви готові змінити день."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-28:intro2:r2": {
+          "ru": "Это «Я уверен». Нужно сообщить, что сама дата верна.",
+          "uk": "Це «Я впевнений». Потрібно повідомити, що сама дата правильна."
+        },
+        "en:lesson-02:session-28:intro2:r3": {
+          "ru": "Между `It` и `correct` нужно `is`.",
+          "uk": "Між `It` і `correct` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-28:intro3:r2": {
+          "ru": "Это сообщение. Для вопроса поставьте `Are` перед `you`.",
+          "uk": "Це повідомлення. Для запитання поставте `Are` перед `you`."
+        },
+        "en:lesson-02:session-28:intro3:r3": {
+          "ru": "Это вопрос о том, прав ли собеседник, а вы уточняете, не шутит ли он.",
+          "uk": "Це запитання про те, чи співрозмовник має рацію, а ви уточнюєте, чи він не жартує."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d9692a88b4450180f8f4c29a1aba71aeab949d78bf686c6cbdbcfbf448b4962b"
+}

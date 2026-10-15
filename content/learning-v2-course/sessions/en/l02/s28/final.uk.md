@@ -1,207 +1,138 @@
-# Англійська · Урок 2 · Заняття 28 — «What is на слух»
+# Англійська · Урок 2 · Заняття 28 — Перенесімо зустріч
 
-**Сцена заняття.** Година пік у дублінському кафе. Офіціант говорить швидко, і питання доводиться і ставити, і впізнавати на слух.
-**Як сказати:** повторення `What is + річ` — на слух, у швидкій мові
-**Нові слова:** —
-**Повертаються:** price, name, weather, time, street
+**Ситуація.** Ви з Анною й Олегом домовляєтеся про зустріч книжкового клубу. Час можна змінити. У листуванні з’явилася неправильна дата, і ви з’ясовуєте, хто її написав.
+
+**Що ви опануєте:** сказати про готовність змінювати плани й уточнити домовленість
+**Нові слова:** flexible
 
 ---
 
 ## Інтро 1
 
-### Після `what` завжди `is`
+### Можна домовитися
 
-`What is this?` — «що це?». `this` — «це», саме те, на що показують пальцем. Порядок жорсткий: спершу `what`, одразу за ним `is`, і аж потім сама річ.
+`flexible` — «гнучкий». Про людину це може означати, що вона готова змінювати плани й підлаштовуватися: `I am flexible`. Ви можете зустрітися і в суботу, і в неділю. Для цього не потрібно вміти сідати на шпагат: зараз ідеться про плани, а не про ноги.
 
-Найчастіша помилка — відправити `is` у кінець: `What this is?` Так не кажуть: `is` стоїть другим.
+**Ви готові перенести зустріч на інший день. Скажіть повною фразою, що ви гнучко ставитеся до планів.**
 
-**Офіціант тицяє в рядок меню і щось про нього питає. Яке питання він поставив?**
-
-- ✅ **What is this?**
-- ❌ What this is? — *`is` поїхало в кінець. Його місце друге, одразу за `what`.*
-- ❌ This what is? — *Питання починається з `what`, а не з речі.*
+- ✅ **I am flexible.**
+- ❌ I flexible. — *Між `I` і `flexible` потрібно `am`.*
+- ❌ I am not flexible. — *Це заперечує готовність підлаштовуватися. Ви готові змінити день.*
 
 ---
 
 ## Інтро 2
 
-### Маленьке `the` у питанні
+### Упевнений — не означає правий
 
-`time` — «час». Питання про годинник збирається так: `What is the time?` Між `is` і словом стоїть маленьке `the`.
+`certain` — «упевнений», `correct` — «правильний». `I am certain` — «Я впевнений». `It is correct` — «Це правильно». Можна бути впевненим і все ж переплутати суботу з неділею. Тому дату краще звірити з повідомленням.
 
-У питаннях про ціну, назву і час воно стоїть: `the price`, `the name`, `the time`. Запам'ятовуйте їх цілком — разом із `the`.
+**Ви звірили дату із запрошенням: її вказано правильно. Скажіть повною фразою, що це правильно.**
 
-**Телефон сів, годинника в залі немає. Запитайте офіціанта, котра година.**
-
-- ✅ **What is the time?**
-- ❌ What is time? — *Зникло `the`. У цьому питанні воно стоїть перед словом.*
-- ❌ What is the weather? — *`weather` — «погода». Погода за вікном, а вам потрібен годинник.*
+- ✅ **It is correct.**
+- ❌ I am certain. — *Це «Я впевнений». Потрібно повідомити, що сама дата правильна.*
+- ❌ It correct. — *Між `It` і `correct` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Слово в кінці вирішує все
+### Ти серйозно?
 
-`price` — «ціна», `name` — «назва». Початок питання не змінюється, а останнє слово вирішує все: запитайте про `name` — вам зачитають назву страви, запитайте про `price` — назвуть цифру.
+`serious` — «серйозний». Друг пропонує зустрітися о шостій ранку. `Are you serious?` — «Ти серйозно?» Він може відповісти `Yes, I am` — «Так». Тут не потрібне друге `serious`: слово вже прозвучало в запитанні.
 
-Одне й те саме питання, різна відповідь — і різниця рівно в одному слові.
+**Олег пропонує почати зустріч о шостій ранку. Ви хочете зрозуміти, чи він не жартує. Запитайте, чи він серйозно.**
 
-**Офіціант назвав страву, але ви не розчули цифру. Запитайте про ціну.**
-
-- ✅ **What is the price?**
-- ❌ What is the name? — *`name` — це «назва». Назву ви почули, а цифру ні.*
-- ❌ What is the weather? — *`weather` — «погода». Вам потрібна цифра, а не небо за вікном.*
+- ✅ **Are you serious?**
+- ❌ You are serious. — *Це повідомлення. Для запитання поставте `Are` перед `you`.*
+- ❌ Are you correct? — *Це запитання про те, чи співрозмовник має рацію, а ви уточнюєте, чи він не жартує.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте і виберіть — що прозвучало**
-<!-- interaction_id: en:lesson-02:session-28:i01; family: listen_choose -->
-Ціль: `what`
-Варіанти: `what` · `water` · `walk`
-- water — *«Вода». Довше: у `water` два склади, у `what` один.*
-- walk — *«Іти пішки». У `what` голосний короткий, ближчий до «а», у `walk` — довге округле «оо».*
+**1 · Ви готові змінити день зустрічі. Скажіть повною фразою, що ви гнучко ставитеся до планів**
+<!-- interaction_id: en:lesson-02:session-28:i01; family: phrase_builder -->
+Плитки: `flexible` `am` `I` `are` → **I am flexible.**
+*(плитка `are` зайва: тут потрібно `am` — `I am flexible.`)*
 
-
-**2 · Картка слова — price**
+**2 · Послухайте фразу**
 <!-- interaction_id: en:lesson-02:session-28:i02; family: listen_choose -->
-Ціль: `price`
-> **price** — «ціна». Цифра на ціннику або в рахунку — це `price`.
+🔊 *It is correct.* → **It is correct.** · It is serious. · It is flexible.
+- It is serious. — *У записі останнє слово — `correct`, а в цьому варіанті — `serious`.*
+- It is flexible. — *У записі останнє слово — `correct`, а в цьому варіанті — `flexible`.*
 
-**3 · Розрізніть звуки — яке з двох про «ціну»?**
-<!-- interaction_id: en:lesson-02:session-28:i03; family: sound_contrast -->
-Варіанти: `price` · `nice`
-- nice — *Це «приємний». Різниця в першому звуці: «пр» проти «н».*
+**3 · Олег пропонує зустрітися о шостій ранку. Запитайте його, чи він серйозно**
+<!-- interaction_id: en:lesson-02:session-28:i03; family: context_gap_grammar -->
+___ you serious? → **Are** · Am · Is
+- Am — *З `you` потрібно `Are`.*
+- Is — *Запитання — `Are you serious?`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-28:i04; family: speed_match -->
+flexible — гнучкий · correct — правильний · certain — упевнений · serious — серйозний
 
-**4 · Послухайте і зберіть — «що це?»**
-<!-- interaction_id: en:lesson-02:session-28:i04; family: listen_build_dictation -->
-Ціль: `What is this?`
-🔊 *What is this?* Плитки: `What` `is` `this` `the`
-*Плитка `the` зайва: після `this` у короткому запитанні немає іменника; фраза закінчується на `this?`*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-28:i05; family: listen_build_dictation -->
+🔊 *She is not certain.* Плитки: `certain` `not` `is` `She` `are` → **She is not certain.**
+*(плитка `are` зайва: тут потрібно `is` — `She is not certain.`)*
 
-**5 · Послухайте і виберіть — про що запитали**
-<!-- interaction_id: en:lesson-02:session-28:i05; family: listen_choose -->
-Ціль: `What is the price?`
-Варіанти: `ціна` · `назва` · `час`
-- назва — *Прозвучало `price`. `name` — це «назва».*
-- час — *Прозвучало `price`. `time` — «час», і звучить зовсім інакше.*
+**6 · Ви шукаєте учасника, готового змінити день зустрічі. Запитайте, хто гнучко ставиться до планів**
+<!-- interaction_id: en:lesson-02:session-28:i06; family: phrase_builder -->
+Плитки: `flexible` `is` `Who` `Where` → **Who is flexible?**
+*(плитка `Where` зайва: тут потрібно `Who` — `Who is flexible?`)*
 
+**7 · Ви точно пам’ятаєте домовленість. Коротко скажіть, що ви впевнені**
+<!-- interaction_id: en:lesson-02:session-28:i07; family: scripted_repeat_compare -->
+🎙 **I'm certain.**
 
-**6 · Картка слова — time**
-<!-- interaction_id: en:lesson-02:session-28:i06; family: listen_choose -->
-Ціль: `time`
-> **time** — «час». Його дивляться на годиннику, коли треба дізнатися, котра година.
+**8 · Ви справді хочете зустрітися рано. На «Are you serious?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-28:i08; family: context_gap_grammar -->
+Yes, I ___. → **am** · is · are
+- is — *Відповідаєте про себе: `I am`.*
+- are — *Відповідь — `Yes, I am`.*
 
-**7 · Картка слова — weather**
-<!-- interaction_id: en:lesson-02:session-28:i07; family: listen_choose -->
-Ціль: `weather`
-
-**8 · Послухайте і виберіть — що прозвучало**
-<!-- interaction_id: en:lesson-02:session-28:i08; family: listen_choose -->
-Ціль: `weather`
-Варіанти: `weather` · `water` · `winter`
-- water — *«Вода». Всередині різні приголосні: у `weather` язик між зубами, у `water` — «т».*
-- winter — *«Зима». Голосний інший: у `weather` чути «е», у `winter` — коротке «і».*
-
-
-**9 · Картка слова — street**
+**9 · Послухайте фразу про Анну**
 <!-- interaction_id: en:lesson-02:session-28:i09; family: listen_choose -->
-Ціль: `street`
+🔊 *She is innocent.* → **She is innocent.** · She is certain. · She is flexible.
+- She is certain. — *У записі останнє слово — `innocent`, а в цьому варіанті — `certain`.*
+- She is flexible. — *У записі останнє слово — `innocent`, а в цьому варіанті — `flexible`.*
 
-**10 · З'єднайте пари**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-28:i10; family: speed_match -->
-Пари: `price` — ціна · `name` — назва · `time` — час · `weather` — погода
-Ціль: `price · name · time · weather`
+innocent — невинний · yes — так · flexible — гнучкий · correct — правильний
 
-**11 · Вставте слово — ви не зрозуміли, як називається страва**
-<!-- interaction_id: en:lesson-02:session-28:i11; family: context_gap_grammar -->
-Ціль: `What is the ___ ?`
-Варіанти: `name` · `price` · `weather`
-- price — *«Ціна». Цифру ви бачите, а от слово в меню незрозуміле.*
-- weather — *«Погода». Про погоду в меню не пишуть.*
+**11 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-02:session-28:i11; family: listen_build_dictation -->
+🔊 *Is he serious?* Плитки: `serious` `he` `Is` `Who` → **Is he serious?**
+*(плитка `Who` зайва: тут потрібно `Is` — `Is he serious?`)*
 
-
-**12 · Складіть запитання — ви записуєте адресу кафе й просите офіціанта назвати вулицю**
+**12 · Неправильну дату написав Олег, Анна її не змінювала. Скажіть повною фразою, що вона невинна**
 <!-- interaction_id: en:lesson-02:session-28:i12; family: phrase_builder -->
-Ціль: `What is the street?`
-Плитки: `What` `is` `the` `street` `price`
-*Плитка `price` зайва: ви питаєте назву вулиці — `street`, а не ціну.*
+Плитки: `innocent` `is` `She` `are` → **She is innocent.**
+*(плитка `are` зайва: тут потрібно `is` — `She is innocent.`)*
 
-**13 · Послухайте і зберіть — «котра година?»**
-<!-- interaction_id: en:lesson-02:session-28:i13; family: listen_build_dictation -->
-Ціль: `What is the time?`
-🔊 *What is the time?* Плитки: `What` `is` `the` `time` `price`
-*Плитка `price` зайва: у записі питають час — `time`, а не ціну — `price`.*
+**13 · Ви з Анною можете обрати будь-який із двох днів. Коротко скажіть за двох, що ви гнучко ставитеся до планів**
+<!-- interaction_id: en:lesson-02:session-28:i13; family: scripted_repeat_compare -->
+🎙 **We're flexible.**
 
-**14 · Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну**
-<!-- interaction_id: en:lesson-02:session-28:i14; family: phrase_builder -->
-Ціль: `What is the price?`
-Плитки: `What` `is` `the` `price` `name`
-*Плитка `name` зайва: ви питаєте ціну — `price`, а не назву.*
+**14 · У повідомленні помилково стоїть інша дата. Доповніть фразу про те, що це неправильно**
+<!-- interaction_id: en:lesson-02:session-28:i14; family: context_gap_grammar -->
+It ___ not correct. → **is** · am · are
+- am — *З `It` потрібно `is`.*
+- are — *Фраза — `It is not correct`.*
 
-**15 · Вставте слово — за вікном злива, супутник питає, що там надворі**
-<!-- interaction_id: en:lesson-02:session-28:i15; family: context_gap_grammar -->
-Ціль: `What is the ___ ?`
-Варіанти: `weather` · `street` · `name`
-- street — *«Вулиця». Вулицю ви знаєте, вам незрозуміло, що з небом.*
-- name — *«Назва». У дощу назви немає.*
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-28:i15; family: listen_choose -->
+🔊 *Who is certain?* → **Who is certain?** · Who is innocent? · Who is flexible?
+- Who is innocent? — *У записі останнє слово — `certain`, а в цьому варіанті — `innocent`.*
+- Who is flexible? — *У записі останнє слово — `certain`, а в цьому варіанті — `flexible`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-28:i16; family: speed_match -->
+serious — серйозний · certain — упевнений · innocent — невинний · yes — так
 
-**16 · Складіть запитання — у заявці на проєкт немає заголовка; запитайте його назву**
-<!-- interaction_id: en:lesson-02:session-28:i16; family: phrase_builder -->
-Ціль: `What is the name?`
-Плитки: `What` `is` `the` `name` `price`
-*Плитка `price` зайва: тут треба дізнатися назву — `name`, а не ціну.*
+**17 · Ви хочете перенести зустріч і звертаєтеся до Олега. Запитайте, чи готовий він гнучко поставитися до планів**
+<!-- interaction_id: en:lesson-02:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Are you flexible?**
 
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-28:i17:s01; family: scripted_repeat_compare -->
-Ціль: `What is this?`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-28:i17:s02; family: scripted_repeat_compare -->
-Ціль: `What is the price?`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-28:i17:s03; family: scripted_repeat_compare -->
-Ціль: `What is the time?`
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_build_dictation, 5=listen_choose, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| price | 2, 3, 5, 10, 11, 12, 14, 17 | 2, 3 (слух), 5 (слух), 14 (збірка), 17 (голос) |
-| name | 10, 11, 14, 15 | 11 (вставка) |
-| time | 6, 10, 12, 13, 17 | 6 (слух), 13 (збірка), 17 (голос) |
-| weather | 7, 8, 10, 11, 15 | 8 (слух), 15 (вставка) |
-| street | 9, 12, 15 | 12 (вставка) |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть воно в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | What is this | так — `What is this?` і переклад `this` у першому рядку |
-| Інтро 2 | the time | так — `time` — «час» і `What is the time?` у першому рядку |
-| Інтро 3 | price | так — `price` — «ціна» у першому рядку |
-
-**3. Дошка пар**
-
-| слово | відпрацювання ДО дошки |
-|---|---|
-| price (дошка 10) | так — завдання 2, 3, 5 |
-| name (дошка 10) | так — розібрано в Інтро 2 |
-| time (дошка 10) | так — завдання 6 |
-| weather (дошка 10) | так — картка 7 і слух 8 |
-| street | не на дошці — картка 9, вставка 12 |

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-28",
   "learningOutcomeByLocale": {
-    "ru": "повторение `What is + вещь` — на слух, в быстрой речи",
-    "uk": "повторення `What is + річ` — на слух, у швидкій мові"
+    "ru": "сказать о готовности менять планы и уточнить договорённость",
+    "uk": "сказати про готовність змінювати плани й уточнити домовленість"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "После `what` всегда `is`",
-        "uk": "Після `what` завжди `is`"
+        "ru": "Можно договориться",
+        "uk": "Можна домовитися"
       },
       "bodyByLocale": {
-        "ru": "`What is this?` — «что это?». `this` — «это», то самое, на что показывают пальцем. Порядок жёсткий: сначала `what`, сразу за ним `is`, и только потом сама вещь.\n\nСамая частая ошибка — отправить `is` в конец: `What this is?` Так не говорят: `is` стоит вторым.",
-        "uk": "`What is this?` — «що це?». `this` — «це», саме те, на що показують пальцем. Порядок жорсткий: спершу `what`, одразу за ним `is`, і аж потім сама річ.\n\nНайчастіша помилка — відправити `is` у кінець: `What this is?` Так не кажуть: `is` стоїть другим."
+        "ru": "`flexible` — «гибкий». Про человека это может означать, что он готов менять планы и подстраиваться: `I am flexible`. Вы можете встретиться и в субботу, и в воскресенье. Для этого не нужно уметь садиться на шпагат: сейчас речь о планах, а не о ногах.",
+        "uk": "`flexible` — «гнучкий». Про людину це може означати, що вона готова змінювати плани й підлаштовуватися: `I am flexible`. Ви можете зустрітися і в суботу, і в неділю. Для цього не потрібно вміти сідати на шпагат: зараз ідеться про плани, а не про ноги."
       },
       "question": {
         "interactionId": "en:lesson-02:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "Официант тычет в строчку меню и что-то спрашивает про неё. Какой вопрос он задал?",
-          "uk": "Офіціант тицяє в рядок меню і щось про нього питає. Яке питання він поставив?"
+          "ru": "Вы готовы перенести встречу на другой день. Скажите полной фразой, что вы гибко подходите к планам.",
+          "uk": "Ви готові перенести зустріч на інший день. Скажіть повною фразою, що ви гнучко ставитеся до планів."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-28:intro1:r1",
-              "text": "What is this?"
+              "text": "I am flexible."
             },
             {
               "responseId": "en:lesson-02:session-28:intro1:r2",
-              "text": "What this is?"
+              "text": "I flexible."
             },
             {
               "responseId": "en:lesson-02:session-28:intro1:r3",
-              "text": "This what is?"
+              "text": "I am not flexible."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-28:intro1:r1",
-              "text": "What is this?"
+              "text": "I am flexible."
             },
             {
               "responseId": "en:lesson-02:session-28:intro1:r2",
-              "text": "What this is?"
+              "text": "I flexible."
             },
             {
               "responseId": "en:lesson-02:session-28:intro1:r3",
-              "text": "This what is?"
+              "text": "I am not flexible."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Официант тычет в строчку меню и что-то спрашивает про неё. Какой вопрос он задал?",
-          "uk": "Офіціант тицяє в рядок меню і щось про нього питає. Яке питання він поставив?"
+          "ru": "Вы готовы перенести встречу на другой день. Скажите полной фразой, что вы гибко подходите к планам.",
+          "uk": "Ви готові перенести зустріч на інший день. Скажіть повною фразою, що ви гнучко ставитеся до планів."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Маленькое `the` в вопросе",
-        "uk": "Маленьке `the` у питанні"
+        "ru": "Уверен — не значит прав",
+        "uk": "Упевнений — не означає правий"
       },
       "bodyByLocale": {
-        "ru": "`time` — «время». Вопрос про часы собирается так: `What is the time?` Между `is` и словом стоит маленькое `the`.\n\nВ вопросах про цену, название и время оно стоит: `the price`, `the name`, `the time`. Запоминайте их целиком — вместе с `the`.",
-        "uk": "`time` — «час». Питання про годинник збирається так: `What is the time?` Між `is` і словом стоїть маленьке `the`.\n\nУ питаннях про ціну, назву і час воно стоїть: `the price`, `the name`, `the time`. Запам'ятовуйте їх цілком — разом із `the`."
+        "ru": "`certain` — «уверенный», `correct` — «правильный, верный». `I am certain` — «Я уверен». `It is correct` — «Это верно». Можно быть уверенным и всё же перепутать субботу с воскресеньем. Поэтому дату лучше сверить с сообщением.",
+        "uk": "`certain` — «упевнений», `correct` — «правильний». `I am certain` — «Я впевнений». `It is correct` — «Це правильно». Можна бути впевненим і все ж переплутати суботу з неділею. Тому дату краще звірити з повідомленням."
       },
       "question": {
         "interactionId": "en:lesson-02:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Телефон сел, часов в зале нет. Спросите официанта, сколько времени.",
-          "uk": "Телефон сів, годинника в залі немає. Запитайте офіціанта, котра година."
+          "ru": "Вы сверили дату с приглашением: она указана верно. Скажите полной фразой, что это правильно.",
+          "uk": "Ви звірили дату із запрошенням: її вказано правильно. Скажіть повною фразою, що це правильно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-28:intro2:r1",
-              "text": "What is the time?"
+              "text": "It is correct."
             },
             {
               "responseId": "en:lesson-02:session-28:intro2:r2",
-              "text": "What is time?"
+              "text": "I am certain."
             },
             {
               "responseId": "en:lesson-02:session-28:intro2:r3",
-              "text": "What is the weather?"
+              "text": "It correct."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-28:intro2:r1",
-              "text": "What is the time?"
+              "text": "It is correct."
             },
             {
               "responseId": "en:lesson-02:session-28:intro2:r2",
-              "text": "What is time?"
+              "text": "I am certain."
             },
             {
               "responseId": "en:lesson-02:session-28:intro2:r3",
-              "text": "What is the weather?"
+              "text": "It correct."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Телефон сел, часов в зале нет. Спросите официанта, сколько времени.",
-          "uk": "Телефон сів, годинника в залі немає. Запитайте офіціанта, котра година."
+          "ru": "Вы сверили дату с приглашением: она указана верно. Скажите полной фразой, что это правильно.",
+          "uk": "Ви звірили дату із запрошенням: її вказано правильно. Скажіть повною фразою, що це правильно."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Слово в конце решает всё",
-        "uk": "Слово в кінці вирішує все"
+        "ru": "Ты серьёзно?",
+        "uk": "Ти серйозно?"
       },
       "bodyByLocale": {
-        "ru": "`price` — «цена», `name` — «название». Начало вопроса не меняется, а последнее слово решает всё: спросите про `name` — вам зачитают название блюда, спросите про `price` — назовут цифру.\n\nОдин и тот же вопрос, разный ответ — и разница ровно в одном слове.",
-        "uk": "`price` — «ціна», `name` — «назва». Початок питання не змінюється, а останнє слово вирішує все: запитайте про `name` — вам зачитають назву страви, запитайте про `price` — назвуть цифру.\n\nОдне й те саме питання, різна відповідь — і різниця рівно в одному слові."
+        "ru": "`serious` — «серьёзный». Друг предлагает встретиться в шесть утра. `Are you serious?` — «Ты серьёзно?» Он может ответить `Yes, I am` — «Да». Здесь не нужен второй `serious`: слово уже прозвучало в вопросе.",
+        "uk": "`serious` — «серйозний». Друг пропонує зустрітися о шостій ранку. `Are you serious?` — «Ти серйозно?» Він може відповісти `Yes, I am` — «Так». Тут не потрібне друге `serious`: слово вже прозвучало в запитанні."
       },
       "question": {
         "interactionId": "en:lesson-02:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Официант назвал блюдо, но вы не расслышали цифру. Спросите про цену.",
-          "uk": "Офіціант назвав страву, але ви не розчули цифру. Запитайте про ціну."
+          "ru": "Олег предлагает начать встречу в шесть утра. Вы хотите понять, не шутит ли он. Спросите, серьёзно ли он это.",
+          "uk": "Олег пропонує почати зустріч о шостій ранку. Ви хочете зрозуміти, чи він не жартує. Запитайте, чи він серйозно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-28:intro3:r1",
-              "text": "What is the price?"
+              "text": "Are you serious?"
             },
             {
               "responseId": "en:lesson-02:session-28:intro3:r2",
-              "text": "What is the name?"
+              "text": "You are serious."
             },
             {
               "responseId": "en:lesson-02:session-28:intro3:r3",
-              "text": "What is the weather?"
+              "text": "Are you correct?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-28:intro3:r1",
-              "text": "What is the price?"
+              "text": "Are you serious?"
             },
             {
               "responseId": "en:lesson-02:session-28:intro3:r2",
-              "text": "What is the name?"
+              "text": "You are serious."
             },
             {
               "responseId": "en:lesson-02:session-28:intro3:r3",
-              "text": "What is the weather?"
+              "text": "Are you correct?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Официант назвал блюдо, но вы не расслышали цифру. Спросите про цену.",
-          "uk": "Офіціант назвав страву, але ви не розчули цифру. Запитайте про ціну."
+          "ru": "Олег предлагает начать встречу в шесть утра. Вы хотите понять, не шутит ли он. Спросите, серьёзно ли он это.",
+          "uk": "Олег пропонує почати зустріч о шостій ранку. Ви хочете зрозуміти, чи він не жартує. Запитайте, чи він серйозно."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d004a71a03d2306340ec6bfea5378698aab5ad0d5890e52e1542db4ee3a3f7f9"
+  "introFingerprint": "cae049c4a580d0e71e150df49ae73797e63658d99d2cc573171686f30512ef0f"
 }

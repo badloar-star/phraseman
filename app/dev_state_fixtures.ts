@@ -19,7 +19,7 @@ import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off'
 import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevRobotNoCloud } from './dev_robot_no_cloud';
 import { setDevSaveOfferOpen, setDevSaveOfferProgress } from './dev_save_offer_progress';
-import { setDevUiLang } from './dev_ui_lang';
+import { DEV_UI_LANGS, setDevUiLang, type DevUiLangRequest } from './dev_ui_lang';
 import { setDevMistakesDemo } from './dev_mistakes_demo';
 import { setDevFriendsDemo } from './dev_friends_demo';
 import { emitAppEvent } from './events';
@@ -281,7 +281,7 @@ export type DevStateRequest = Readonly<{
   /** Экран подписки сразу на шаге удержания (dev_save_offer_progress.ts): progress / support, off — выключить (только память). */
   saveOffer?: 'progress' | 'support' | 'off';
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
-  uiLang?: 'en' | 'off';
+  uiLang?: DevUiLangRequest;
   /** «Сегодня» на Главной с заданием Пика (координатор 13.10, «Шпиль → Пик»): только показ, хранилище не трогается. */
   todaytask?: 'spire' | 'off';
   /** [WINBACK-FREEZE]: гейт winback считает, что человек не заходил N дней (3 / 8 / 30) или снять. Только память. */
@@ -408,7 +408,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.publish = pick('publish', ['ok', 'off'] as const);
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
   request.saveOffer = pick('saveOffer', ['progress', 'support', 'off'] as const);
-  request.uiLang = pick('uiLang', ['en', 'off'] as const);
+  // зачем (координатор 15.10, утренняя съёмка): любой из 9 языков интерфейса по ссылке, не только en
+  request.uiLang = pick('uiLang', [...DEV_UI_LANGS, 'off'] as const);
   request.todaytask = pick('todaytask', ['spire', 'off'] as const);
   request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
   request.edu = pick('edu', ['parity', 'off'] as const);
@@ -889,7 +890,7 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.uiLang !== undefined) {
     // зачем (координатор 12.10, п.76): проход разделов в английском до включения флага; только память
-    await step('uiLang', request.uiLang, async () => setDevUiLang(request.uiLang!));
+    await step('uiLang', request.uiLang, async () => setDevUiLang(request.uiLang!, 'link'));
   }
   if (request.todaytask !== undefined) {
     // зачем (координатор 13.10, «Шпиль → Пик» 95d30d485): «Пройти ступени Пика» в «Сегодня» выпадает только при живом конфиге Пика — подмена показа, только память

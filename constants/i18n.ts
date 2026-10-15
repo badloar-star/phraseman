@@ -2,7 +2,7 @@
 // `en` is a pure UI language gated by ENGLISH_UI_LOCALE_ENABLED, same pattern
 // as SPANISH_UI_LOCALE_ENABLED below.
 import { ENGLISH_UI_LOCALE_ENABLED, SPANISH_UI_LOCALE_ENABLED } from '../app/config';
-import { isDevUiLangEnOn } from '../app/dev_ui_lang';
+import { isDevUiLangEnOn, isDevUiLangOn } from '../app/dev_ui_lang';
 import {
   ACTIVE_INTERFACE_SOURCE_LOCALES,
   PLANNED_INTERFACE_SOURCE_LOCALES,
@@ -57,7 +57,8 @@ export const INTERFACE_LANG_READY_FOR_PROD: readonly InterfaceLanguageOptionCode
 ];
 
 export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang is Lang {
-  if (lang === 'es') return SPANISH_UI_LOCALE_ENABLED;
+  // зачем (координатор 15.10): dev_state?uiLang=es открывает ворота es для съёмки кадров, как en (только память, в сторе false)
+  if (lang === 'es') return SPANISH_UI_LOCALE_ENABLED || isDevUiLangOn('es');
   // зачем (12.10, «английский входит в R1»): dev-подмена dev_state?uiLang=en (app/dev_ui_lang.ts, только память, в сторе всегда false) открывает ворота en для прохода разделов до включения флага
   if (lang === 'en') return ENGLISH_UI_LOCALE_ENABLED || isDevUiLangEnOn();
   return INTERFACE_LANG_READY_FOR_PROD.includes(lang);

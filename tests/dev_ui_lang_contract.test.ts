@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { isInterfaceLangEnabled, triLang } from '../constants/i18n';
-import { isDevUiLangEnOn, setDevUiLang, subscribeDevUiLang } from '../app/dev_ui_lang';
+import { isDevUiLangEnOn, peekDevUiLang, setDevUiLang, subscribeDevUiLang } from '../app/dev_ui_lang';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
@@ -27,6 +27,26 @@ describe('dev_state?uiLang — английский интерфейс без г
     expect(triLang('en', { ru: 'ру', uk: 'укр', es: 'es' })).toBe('ру');
   });
 
+  // координатор 15.10 (утренняя съёмка 100 кадров): любой из 9 языков интерфейса по ссылке, только dev, журнал source=link
+  it('подмена на любой из 9 языков: ru / pt-BR / es; es открывает свои ворота; off снимает', () => {
+    const logs: string[] = [];
+    const spy = jest.spyOn(console, 'log').mockImplementation((...a: unknown[]) => { logs.push(a.map(String).join(' ')); });
+    expect(setDevUiLang('ru')).toBe(true);
+    expect(peekDevUiLang()).toBe('ru');
+    expect(isDevUiLangEnOn()).toBe(false);
+    expect(setDevUiLang('pt-BR')).toBe(true);
+    expect(peekDevUiLang()).toBe('pt-BR');
+    // ворота es без подмены — как решил флаг SPANISH_UI_LOCALE_ENABLED; подмена на es открывает их всегда
+    const esByFlag = (setDevUiLang('off'), isInterfaceLangEnabled('es'));
+    expect(setDevUiLang('es')).toBe(true);
+    expect(isInterfaceLangEnabled('es')).toBe(true);
+    expect(setDevUiLang('off')).toBe(true);
+    expect(peekDevUiLang()).toBeNull();
+    expect(isInterfaceLangEnabled('es')).toBe(esByFlag);
+    expect(logs.some((l) => l.includes('[DEV-STATE] uiLang=ru source=link'))).toBe(true);
+    spy.mockRestore();
+  });
+
   it('подписчик LangContext получает каждый запрос', () => {
     const seen: string[] = [];
     const unsubscribe = subscribeDevUiLang((request) => { seen.push(request); });
@@ -40,7 +60,8 @@ describe('dev_state?uiLang — английский интерфейс без г
   it('модуль в сторе отказывает: геттер и установка закрыты проверкой dev-сборки', () => {
     const src = read('app/dev_ui_lang.ts');
     expect(src).toContain("typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE");
-    expect(src).toContain('return devAvailable() && enOn;');
+    expect(src).toContain("return devAvailable() && current === 'en';");
+    expect(src).toContain('return devAvailable() ? current : null;');
     expect(src).toContain('[DEV-STATE] uiLang: отклонено — не dev-сборка');
   });
 
@@ -51,14 +72,15 @@ describe('dev_state?uiLang — английский интерфейс без г
     const block = src.slice(at, src.indexOf('}, []);', at));
     expect(block).not.toContain('persistPortablePreference');
     expect(block).toContain('writePeekAppLang(');
-    expect(block).toContain('if (isDevUiLangEnOn()) apply(\'en\');');
+    expect(block).toContain('const pending = peekDevUiLang();');
+    expect(block).toContain('if (pending) apply(pending);');
     expect(src).toContain("if (typeof __DEV__ === 'undefined' || !__DEV__) return undefined;\n    const apply");
   });
 
   it('параметр ссылки uiLang разобран и применяется шагом', () => {
     const fixtures = read('app/dev_state_fixtures.ts');
-    expect(fixtures).toContain("request.uiLang = pick('uiLang', ['en', 'off'] as const);");
-    expect(fixtures).toContain("await step('uiLang', request.uiLang, async () => setDevUiLang(request.uiLang!));");
+    expect(fixtures).toContain("request.uiLang = pick('uiLang', [...DEV_UI_LANGS, 'off'] as const);");
+    expect(fixtures).toContain("await step('uiLang', request.uiLang, async () => setDevUiLang(request.uiLang!, 'link'));");
   });
 
   it('ссылки «en-проход» все с uiLang=en и overlays=off', () => {

@@ -8,9 +8,13 @@
  */
 import { IS_STORE_RELEASE } from './config';
 
-export type DevUiLangRequest = 'en' | 'off';
+// зачем (координатор 15.10, утренняя съёмка 100 кадров): Сверке нужен любой из 9 языков интерфейса по ссылке, а не только en.
+// Список дублирует коды из constants/i18n (импорт оттуда дал бы цикл: i18n читает этот модуль в воротах языков).
+export const DEV_UI_LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+export type DevUiLang = typeof DEV_UI_LANGS[number];
+export type DevUiLangRequest = DevUiLang | 'off';
 
-let enOn = false;
+let current: DevUiLang | null = null;
 const listeners = new Set<(request: DevUiLangRequest) => void>();
 
 function devAvailable(): boolean {
@@ -23,21 +27,31 @@ export function subscribeDevUiLang(listener: (request: DevUiLangRequest) => void
   return () => { listeners.delete(listener); };
 }
 
-/** Включить/выключить английский интерфейс в dev. В стор-сборке — отказ с логом. Возвращает true, если применено. */
-export function setDevUiLang(request: DevUiLangRequest): boolean {
+/** Включить язык интерфейса (любой из 9) или вернуть сохранённый (off) в dev. В стор-сборке — отказ с логом. Возвращает true, если применено. */
+export function setDevUiLang(request: DevUiLangRequest, source: string = 'link'): boolean {
   if (!devAvailable()) {
-    console.warn('[DEV-STATE] uiLang: отклонено — не dev-сборка', { request }); // guard-ok: ранний выход логируется
+    console.warn('[DEV-STATE] uiLang: отклонено — не dev-сборка', { request, source }); // guard-ok: ранний выход логируется
     return false;
   }
-  enOn = request === 'en';
-  console.log(`[DEV-STATE] uiLang=${request} (ворота en ${enOn ? 'открыты' : 'закрыты'}, подписчиков ${listeners.size}, только память)`);
+  current = request === 'off' ? null : request;
+  console.log(`[DEV-STATE] uiLang=${request} source=${source} (подмена ${current ?? 'снята'}, подписчиков ${listeners.size}, только память)`);
   listeners.forEach((listener) => listener(request));
   return true;
 }
 
 /** true — английский интерфейс открыт dev-подменой. В стор-сборке всегда false. */
 export function isDevUiLangEnOn(): boolean {
-  return devAvailable() && enOn;
+  return devAvailable() && current === 'en';
+}
+
+/** true — dev-подмена стоит ровно на этом языке (открывает его ворота, даже если язык закрыт флагом). В стор-сборке всегда false. */
+export function isDevUiLangOn(lang: string): boolean {
+  return devAvailable() && current === lang;
+}
+
+/** Текущий язык dev-подмены или null (нет подмены / стор-сборка). */
+export function peekDevUiLang(): DevUiLang | null {
+  return devAvailable() ? current : null;
 }
 
 // зачем (D188, координатор 14.10): dev-параметр `enStudyPrompt` снят вместе с автопереходом на выбор языка изучения при паре

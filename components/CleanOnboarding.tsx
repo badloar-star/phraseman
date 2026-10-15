@@ -2725,6 +2725,12 @@ function CleanOnboarding({
   // (шаг читаем из ref), и запись не делается, если онбординг уже завершён.
   const exitStepRef = useRef(step);
   exitStepRef.current = step;
+  // зачем (аудит R58 #43, координатор 15.10): «Назад» во время оплаты уводил с шага цен, а завершение онбординга по
+  // premium_activated ждало именно шаг цен — платящий шёл дальше и снова видел пейвол. Флаг оплаты — для системной «Назад»,
+  // метка старта оплаты — чтобы завершить онбординг на любом шаге, если оплату начали здесь.
+  const paywallPurchasingRef = useRef(false);
+  paywallPurchasingRef.current = paywallPurchasing;
+  const onboardingPurchaseStartedAtRef = useRef<number | null>(null);
   const exitLoggedRef = useRef(false);
   useEffect(() => {
     const sub = AppState.addEventListener('change', (next) => {
@@ -3166,7 +3172,17 @@ function CleanOnboarding({
       const inFlight = authInFlightRef.current;
       // зачем (2-й прогон Сверки 11.10): «Назад» во время входа вывела из приложения, а строк не было — пишем каждое нажатие
       // с состоянием, которое решает ветку.
-      console.log('[ONBOARDING-BACK] hardware press', JSON.stringify({ step, authMode, inFlight, authSlow }));
+      console.log('[ONBOARDING-BACK] hardware press', JSON.stringify({ step, authMode, inFlight, authSlow, purchasing: paywallPurchasingRef.current }));
+      if (paywallPurchasingRef.current) {
+        // Пока идёт оплата, «Назад» не уводит с шага цен: иначе после оплаты онбординг не завершался и платящий видел пейвол.
+        console.log(`[ONBOARDING-BACK] hardware absorbed reason=purchase_in_flight step=${step}`); // guard-ok: ранний выход пишет причину
+        emitAppEvent('action_toast', actionToastTri('info', {
+          ru: 'Подожди — идёт оплата', uk: 'Зачекай — триває оплата', en: 'Hold on — processing your payment',
+          es: 'Espera: estamos procesando el pago', 'pt-BR': 'Espere — processando o pagamento', vi: 'Chờ chút — đang xử lý thanh toán',
+          id: 'Tunggu — pembayaran sedang diproses', tr: 'Bekle — ödeme işleniyor', pl: 'Chwila — trwa płatność',
+        }));
+        return true;
+      }
       if (inFlight) {
         // Пока идёт вход, системная «Назад» НИКОГДА не закрывает приложение (вход дошёл бы до конца за кадром).
         if (!allowLeaveDuringAuth('back')) {
@@ -3410,6 +3426,7 @@ function CleanOnboarding({
       // и НЕ навигирует на главную (см. комментарий у queuePostPurchaseReturn).
       await queuePostPurchaseReturn(selectedBillingPlan);
       trackOnboardingPlanTrialCta({ plan: selectedBillingPlan });
+      onboardingPurchaseStartedAtRef.current = Date.now();
       // Реальная покупка выбранного тарифа. Хук сам обрабатывает отмену
       // (userCancelled — тихо остаёмся на шаге) и ошибку (свой Alert); успех
       // приходит событием premium_activated → completeOnboarding.
@@ -3672,7 +3689,17 @@ function CleanOnboarding({
   // событие летит и на старте приложения при активном премиуме.
   useEffect(() => {
     const sub = onAppEvent('premium_activated', () => {
-      if (exitStepRef.current !== 'onboardingPaywall') return;
+      const startedAt = onboardingPurchaseStartedAtRef.current;
+      if (exitStepRef.current !== 'onboardingPaywall') {
+        const sinceStartMs = startedAt === null ? null : Date.now() - startedAt;
+        if (sinceStartMs !== null && sinceStartMs < 10 * 60_000) {
+          console.log(`[ONB-PREMIUM] premium_activated step=${exitStepRef.current} purchaseStartedAgoMs=${sinceStartMs} → завершаем онбординг (ушёл с цен во время оплаты)`); // guard-ok: ветка решения
+          void completeOnboardingRef.current();
+          return;
+        }
+        console.log(`[ONB-PREMIUM] premium_activated ignored step=${exitStepRef.current} reason=not_on_paywall purchaseStartedAgoMs=${sinceStartMs}`); // guard-ok: ранний выход пишет причину
+        return;
+      }
       void completeOnboardingRef.current();
     });
     return () => sub.remove();

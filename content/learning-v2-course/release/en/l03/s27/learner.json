@@ -7,242 +7,115 @@
       "interactionId": "en:lesson-03:session-27:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — remote",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна ищет приготовленные сумки. Сообщите «Сумки здесь»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-27:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — remote",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна ищет приготовленные сумки. Сообщите «Сумки здесь»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i01:audio",
-          "transcript": "remote"
+        "family": "phrase_builder",
+        "targetPhrase": "The bags are here.",
+        "localizedMeaning": {
+          "ru": "Анна ищет приготовленные сумки. Сообщите «Сумки здесь»",
+          "uk": "Анна шукає підготовлені сумки. Повідомте «Сумки тут»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "The",
+          "bags",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-27:i01:r1",
-            "targetText": "remote",
-            "meaningByLocale": {
-              "ru": "«пульт». Им управляют устройством на расстоянии: можно стоять у стола, а сигнал дойдёт до устройства.",
-              "uk": "«пульт». Ним керують пристроєм на відстані: можна стояти біля столу, а сигнал дійде до пристрою."
+            "responseId": "en:lesson-03:session-27:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна ищет приготовленные сумки. Сообщите «Сумки здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bags are here.`",
+              "uk": "тут потрібно `are` — `The bags are here.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "remote",
-          "definitionByLocale": {
-            "ru": "«пульт». Им управляют устройством на расстоянии: можно стоять у стола, а сигнал дойдёт до устройства.",
-            "uk": "«пульт». Ним керують пристроєм на відстані: можна стояти біля столу, а сигнал дійде до пристрою."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i03",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-27:i03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i03:audio",
-          "transcript": "button"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "button",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i05",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-27:i05:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i05:audio",
-          "transcript": "switch"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "switch",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-27:i02",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-27:i02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i02:audio",
-          "transcript": "remote"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "remote",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i04",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово назвал техник",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-27:i04:r1",
-          "text": "button"
+          "responseId": "en:lesson-03:session-27:i02:r1",
+          "text": "cars"
         },
         {
-          "responseId": "en:lesson-03:session-27:i04:r2",
-          "text": "butter"
+          "responseId": "en:lesson-03:session-27:i02:r2",
+          "text": "cats"
         },
         {
-          "responseId": "en:lesson-03:session-27:i04:r3",
-          "text": "bottle"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i04:r4",
-          "text": "bottom"
+          "responseId": "en:lesson-03:session-27:i02:r3",
+          "text": "cups"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-27:i04:audio"
+        "en:lesson-03:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово назвал техник",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i04:audio",
-          "transcript": "button"
+          "audioTargetId": "en:lesson-03:session-27:i02:audio",
+          "transcript": "cars"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-27:i04:r1",
-            "targetText": "button",
-            "meaningByLocale": {
-              "ru": "кнопка",
-              "uk": "кнопка"
-            }
+            "responseId": "en:lesson-03:session-27:i02:r1",
+            "targetText": "cars",
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-27:i04:r2",
-            "targetText": "butter",
-            "meaningByLocale": {
-              "ru": "масло",
-              "uk": "масло"
-            }
+            "responseId": "en:lesson-03:session-27:i02:r2",
+            "targetText": "cats",
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-27:i04:r3",
-            "targetText": "bottle",
-            "meaningByLocale": {
-              "ru": "бутылка",
-              "uk": "пляшка"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i04:r4",
-            "targetText": "bottom",
-            "meaningByLocale": {
-              "ru": "дно",
-              "uk": "дно"
-            }
+            "responseId": "en:lesson-03:session-27:i02:r3",
+            "targetText": "cups",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-27:i04:r2",
+            "responseId": "en:lesson-03:session-27:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В конце `button` слышно `n`; в конце `butter` звука `n` нет.",
-              "uk": "Наприкінці `button` чути `n`; наприкінці `butter` звука `n` немає."
+              "ru": "В записи первое слово — `cars`, а в этом варианте — `cats`.",
+              "uk": "У записі перше слово — `cars`, а в цьому варіанті — `cats`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-27:i04:r3",
+            "responseId": "en:lesson-03:session-27:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В конце `bottle` слышно `l`, а в `button` — `n`.",
-              "uk": "Наприкінці `bottle` чути `l`, а в `button` — `n`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i04:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "Последний согласный в `bottom` — `m`, а в `button` — `n`.",
-              "uk": "Останній приголосний у `bottom` — `m`, а в `button` — `n`."
+              "ru": "В записи первое слово — `cars`, а в этом варианте — `cups`.",
+              "uk": "У записі перше слово — `cars`, а в цьому варіанті — `cups`."
             }
           }
         ],
@@ -252,96 +125,132 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-03:session-27:i03",
+      "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-27:i06:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i06:audio",
-          "transcript": "switch"
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите несколько автомобилей одним английским словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-27:i03:r1",
+          "text": "cars"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "switch",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-03:session-27:i03:r2",
+          "text": "car"
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i03:r3",
+          "text": "a cars"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите несколько автомобилей одним английским словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите несколько автомобилей одним английским словом",
+          "uk": "Назвіть кілька автомобілів одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i03:r1",
+            "text": "cars"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i03:r2",
+            "text": "car"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i03:r3",
+            "text": "a cars"
+          }
+        ],
+        "testedDimension": "Назовите несколько автомобилей одним английским словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите несколько автомобилей одним английским словом",
+            "feedbackByLocale": {
+              "ru": "Несколько машин — `cars`.",
+              "uk": "Кілька машин — `cars`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите несколько автомобилей одним английским словом",
+            "feedbackByLocale": {
+              "ru": "Перед `cars` не ставим `a`.",
+              "uk": "Перед `cars` не ставимо `a`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями — элементы устройства",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями — элементы устройства",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-27:i07:p1",
-            "target": "remote",
+            "pairId": "en:lesson-03:session-27:i04:p1",
+            "target": "cars",
             "meaningByLocale": {
-              "ru": "пульт",
-              "uk": "пульт"
+              "ru": "машины",
+              "uk": "машини"
             }
           },
           {
-            "pairId": "en:lesson-03:session-27:i07:p2",
-            "target": "button",
+            "pairId": "en:lesson-03:session-27:i04:p2",
+            "target": "bags",
             "meaningByLocale": {
-              "ru": "кнопка",
-              "uk": "кнопка"
+              "ru": "сумки",
+              "uk": "сумки"
             }
           },
           {
-            "pairId": "en:lesson-03:session-27:i07:p3",
-            "target": "switch",
+            "pairId": "en:lesson-03:session-27:i04:p3",
+            "target": "awake",
             "meaningByLocale": {
-              "ru": "выключатель",
-              "uk": "вимикач"
+              "ru": "не спит",
+              "uk": "не спить"
             }
           },
           {
-            "pairId": "en:lesson-03:session-27:i07:p4",
-            "target": "screen",
+            "pairId": "en:lesson-03:session-27:i04:p4",
+            "target": "asleep",
             "meaningByLocale": {
-              "ru": "экран",
-              "uk": "екран"
+              "ru": "спит",
+              "uk": "спить"
             }
           }
         ],
         "leftColumn": [
-          "remote",
-          "button",
-          "switch",
-          "screen"
+          "cars",
+          "bags",
+          "awake",
+          "asleep"
         ],
         "rightColumn": [
-          "пульт",
-          "кнопка",
-          "выключатель",
-          "экран"
+          "машины",
+          "сумки",
+          "не спит",
+          "спит"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -358,26 +267,118 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "interactionId": "en:lesson-03:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите сообщение",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-27:i08:audio"
+        "en:lesson-03:session-27:i05:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-27:i05:audio",
+          "transcript": "The cars are available."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cars are available.",
+        "orderedTokens": [
+          "The",
+          "cars",
+          "are",
+          "available"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите сообщение",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cars are available.`",
+              "uk": "тут потрібно `are` — `The cars are available.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Машины разные» о машинах вообще, например об их размерах",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Машины разные» о машинах вообще, например об их размерах",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Cars are different.",
+        "localizedMeaning": {
+          "ru": "Скажите «Машины разные» о машинах вообще, например об их размерах",
+          "uk": "Скажіть «Машини різні» про машини загалом, наприклад про їхні розміри"
+        },
+        "orderedTokens": [
+          "Cars",
+          "are",
+          "different"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Машины разные» о машинах вообще, например об их размерах",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Cars are different.`",
+              "uk": "тут потрібно `are` — `Cars are different.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна уже проснулась. Скажите «Она не спит» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Анна уже проснулась. Скажите «Она не спит» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i08:audio",
-          "transcript": "remote"
+          "audioTargetId": "en:lesson-03:session-27:i07:audio",
+          "transcript": "She's awake."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "remote",
+        "targetPhrase": "She's awake.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -386,6 +387,75 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-27:i08:r1",
+          "text": "Cars"
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i08:r2",
+          "text": "The cars"
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i08:r3",
+          "text": "A cars"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+          "uk": "Ви говорите про різні розміри машин загалом, без указівки на певні машини"
+        },
+        "gappedTargetPhrase": "___ are different.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i08:r1",
+            "text": "Cars"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i08:r2",
+            "text": "The cars"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i08:r3",
+            "text": "A cars"
+          }
+        ],
+        "testedDimension": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+            "feedbackByLocale": {
+              "ru": "`The cars` — конкретные машины. Здесь нужно общее `Cars`.",
+              "uk": "`The cars` — конкретні машини. Тут потрібне загальне `Cars`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+            "feedbackByLocale": {
+              "ru": "Перед `cars` не ставим `a`.",
+              "uk": "Перед `cars` не ставимо `a`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -394,302 +464,70 @@
       "interactionId": "en:lesson-03:session-27:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сообщение о брате Анны",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-27:i09:r1",
+          "text": "He is asleep."
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i09:r2",
+          "text": "He is awake."
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i09:r3",
+          "text": "He is available."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i09:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i09:audio",
-          "transcript": "button"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "button",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-27:i10:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i10:audio",
-          "transcript": "switch"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "switch",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — пульт лежит у вас в руке",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — пульт лежит у вас в руке",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is this a remote?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — пульт лежит у вас в руке",
-          "uk": "Складіть запитання — пульт лежить у вас у руці"
-        },
-        "orderedTokens": [
-          "Is",
-          "this",
-          "a",
-          "remote"
-        ],
-        "authoredDistractorTokens": [
-          "that"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-27:i12:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите одну фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i12:audio",
-          "transcript": "Is this a button?"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is this a button?",
-        "orderedTokens": [
-          "Is",
-          "this",
-          "a",
-          "button?"
-        ],
-        "distractorTokens": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте указатель — выключатель находится у дальней стены",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-27:i13:r1",
-          "text": "that"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i13:r2",
-          "text": "this"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i13:r3",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i13:r4",
-          "text": "a"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте указатель — выключатель находится у дальней стены",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — выключатель находится у дальней стены",
-          "uk": "Вставте вказівне слово — вимикач розташований біля дальньої стіни"
-        },
-        "gappedTargetPhrase": "Is ___ a switch?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-27:i13:r1",
-            "text": "that"
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i13:r2",
-            "text": "this"
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i13:r3",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i13:r4",
-            "text": "a"
-          }
-        ],
-        "testedDimension": "Вставьте указатель — выключатель находит",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-27:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — выключатель находит",
-            "feedbackByLocale": {
-              "ru": "`this` указывает на предмет рядом. Выключатель у дальней стены, поэтому нужно `that`.",
-              "uk": "`this` указує на предмет поруч. Вимикач біля дальньої стіни, тому потрібне `that`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — выключатель находит",
-            "feedbackByLocale": {
-              "ru": "Вопрос уже начинается с `Is`. После него нужен указатель на дальний предмет — `that`.",
-              "uk": "Запитання вже починається з `Is`. Після нього потрібне вказівне слово для далекого предмета — `that`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i13:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — выключатель находит",
-            "feedbackByLocale": {
-              "ru": "`a` уже стоит перед `switch`. Между `Is` и `a switch` нужен указатель `that`.",
-              "uk": "`a` уже стоїть перед `switch`. Між `Is` і `a switch` потрібне слово `that`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите значение точного вопроса",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-27:i14:r1",
-          "text": "Это выключатель?"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i14:r2",
-          "text": "Это стежок?"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i14:r3",
-          "text": "Это ведьма?"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i14:r4",
-          "text": "Это часы?"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-27:i14:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите значение точного вопроса",
+      "accessibilityLabel": "Послушайте сообщение о брате Анны",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i14:audio",
-          "transcript": "Is that a switch?"
+          "audioTargetId": "en:lesson-03:session-27:i09:audio",
+          "transcript": "He is asleep."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-27:i14:r1",
-            "targetText": "Это выключатель?",
+            "responseId": "en:lesson-03:session-27:i09:r1",
+            "targetText": "He is asleep.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-27:i14:r2",
-            "targetText": "Это стежок?",
+            "responseId": "en:lesson-03:session-27:i09:r2",
+            "targetText": "He is awake.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-27:i14:r3",
-            "targetText": "Это ведьма?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i14:r4",
-            "targetText": "Это часы?",
+            "responseId": "en:lesson-03:session-27:i09:r3",
+            "targetText": "He is available.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-27:i14:r2",
+            "responseId": "en:lesson-03:session-27:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите значение точного в",
+            "testedDimension": "Послушайте сообщение о брате Анны",
             "feedbackByLocale": {
-              "ru": "В записи после `s` слышно `w`: прозвучало `switch`. Для «стежок» прозвучало бы `stitch`, со звуком `t` после `s`.",
-              "uk": "У записі після `s` чути `w`: прозвучало `switch`. Для «стібок» прозвучало б `stitch`, зі звуком `t` після `s`."
+              "ru": "В записи последнее слово — `asleep`, а в этом варианте — `awake`.",
+              "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `awake`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-27:i14:r3",
+            "responseId": "en:lesson-03:session-27:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите значение точного в",
+            "testedDimension": "Послушайте сообщение о брате Анны",
             "feedbackByLocale": {
-              "ru": "В записи перед `witch` слышно начальное `s`: прозвучало `switch` — «выключатель».",
-              "uk": "У записі перед `witch` чути початкове `s`: прозвучало `switch` — «вимикач»."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i14:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите значение точного в",
-            "feedbackByLocale": {
-              "ru": "В `watch` другой гласный и нет начального `s`; в записи прозвучало `switch`.",
-              "uk": "У `watch` інший голосний і немає початкового `s`; у записі прозвучало `switch`."
+              "ru": "В записи последнее слово — `asleep`, а в этом варианте — `available`.",
+              "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `available`."
             }
           }
         ],
@@ -699,175 +537,192 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — лампа стоит у дальней стены",
+      "interactionId": "en:lesson-03:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — лампа стоит у дальней стены",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is that a lamp?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — лампа стоит у дальней стены",
-          "uk": "Складіть запитання — лампа стоїть біля дальньої стіни"
-        },
-        "orderedTokens": [
-          "Is",
-          "that",
-          "a",
-          "lamp"
-        ],
-        "authoredDistractorTokens": [
-          "this",
-          "are"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-27:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте первое слово — вы держите рядом одну кнопку и уточняете, что это",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-27:i16:r1",
-          "text": "Is"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i16:r2",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i16:r3",
-          "text": "Are"
-        },
-        {
-          "responseId": "en:lesson-03:session-27:i16:r4",
-          "text": "A"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте первое слово — вы держите рядом одну кнопку и уточняете, что это",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте первое слово — вы держите рядом одну кнопку и уточняете, что это",
-          "uk": "Вставте перше слово — ви тримаєте поруч одну кнопку й уточнюєте, що це"
-        },
-        "gappedTargetPhrase": "___ this a button?",
-        "gapOptions": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-03:session-27:i16:r1",
-            "text": "Is"
+            "pairId": "en:lesson-03:session-27:i10:p1",
+            "target": "available",
+            "meaningByLocale": {
+              "ru": "доступный",
+              "uk": "доступний"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-27:i16:r2",
-            "text": "This"
+            "pairId": "en:lesson-03:session-27:i10:p2",
+            "target": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый",
+              "uk": "щедрий"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-27:i16:r3",
-            "text": "Are"
+            "pairId": "en:lesson-03:session-27:i10:p3",
+            "target": "cars",
+            "meaningByLocale": {
+              "ru": "машины",
+              "uk": "машини"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-27:i16:r4",
-            "text": "A"
+            "pairId": "en:lesson-03:session-27:i10:p4",
+            "target": "bags",
+            "meaningByLocale": {
+              "ru": "сумки",
+              "uk": "сумки"
+            }
           }
         ],
-        "testedDimension": "Вставьте первое слово — вы держите рядом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-27:i16:r2",
-            "correct": false,
-            "testedDimension": "Вставьте первое слово — вы держите рядом",
-            "feedbackByLocale": {
-              "ru": "`This` повторит уже стоящее `this`, а вопрос останется без `Is`. В начале нужно `Is`.",
-              "uk": "`This` повторить уже наявне `this`, а запитання залишиться без `Is`. На початку потрібне `Is`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставьте первое слово — вы держите рядом",
-            "feedbackByLocale": {
-              "ru": "В этой формуле после `this` нужна связка `is`; вопрос начинается с `Is this`.",
-              "uk": "У цій формулі після `this` потрібна зв'язка `is`; запитання починається з `Is this`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-27:i16:r4",
-            "correct": false,
-            "testedDimension": "Вставьте первое слово — вы держите рядом",
-            "feedbackByLocale": {
-              "ru": "`a` уже стоит перед `button`. В начале вопроса нужно `Is`.",
-              "uk": "`a` уже стоїть перед `button`. На початку запитання потрібне `Is`."
-            }
-          }
+        "leftColumn": [
+          "available",
+          "generous",
+          "cars",
+          "bags"
+        ],
+        "rightColumn": [
+          "доступный",
+          "щедрый",
+          "машины",
+          "сумки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i17:s01",
-      "ordinal": 20,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите одну фразу — шаг 1 из 3",
+      "prompt": "Послушайте и соберите сообщение",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-27:i17:s01:audio"
+        "en:lesson-03:session-27:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите одну фразу — шаг 1 из 3",
+      "accessibilityLabel": "Послушайте и соберите сообщение",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i17:s01:audio",
-          "transcript": "Is this a remote?"
+          "audioTargetId": "en:lesson-03:session-27:i11:audio",
+          "transcript": "The bags are inside."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is this a remote?",
+        "hiddenTargetPhrase": "The bags are inside.",
         "orderedTokens": [
-          "Is",
-          "this",
-          "a",
-          "remote?"
+          "The",
+          "bags",
+          "are",
+          "inside"
         ],
-        "distractorTokens": []
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-27:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите сообщение",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bags are inside.`",
+              "uk": "тут потрібно `are` — `The bags are inside.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-27:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег знает, какие машины нужны группе. Спросите, где машины",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег знает, какие машины нужны группе. Спросите, где машины",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the cars?",
+        "localizedMeaning": {
+          "ru": "Олег знает, какие машины нужны группе. Спросите, где машины",
+          "uk": "Олег знає, які машини потрібні групі. Запитайте, де машини"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "cars"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-27:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег знает, какие машины нужны группе. Спросите, где машины",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where are the cars?`",
+              "uk": "тут потрібно `Where` — `Where are the cars?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Олег охотно делится тем, что у него есть. Скажите «Он щедрый» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-27:i17:s02:audio"
+        "en:lesson-03:session-27:i13:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Олег охотно делится тем, что у него есть. Скажите «Он щедрый» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-27:i17:s02:audio",
-          "transcript": "Is this a button?"
+          "audioTargetId": "en:lesson-03:session-27:i13:audio",
+          "transcript": "He's generous."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is this a button?",
+        "targetPhrase": "He's generous.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -881,40 +736,270 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i17:s03",
-      "ordinal": 22,
+      "interactionId": "en:lesson-03:session-27:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-27:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+          "uk": "Ви повідомляєте, що кількома вибраними машинами можна скористатися"
+        },
+        "gappedTargetPhrase": "The cars ___ available.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-27:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+            "feedbackByLocale": {
+              "ru": "Машин несколько: нужно `are`.",
+              "uk": "Машин кілька: потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+            "feedbackByLocale": {
+              "ru": "С `the cars` здесь нужно `are`.",
+              "uk": "З `the cars` тут потрібно `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i15",
+      "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 3 из 3",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сообщение об Анне",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-27:i15:r1",
+          "text": "She is awake."
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i15:r2",
+          "text": "She is asleep."
+        },
+        {
+          "responseId": "en:lesson-03:session-27:i15:r3",
+          "text": "She is available."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение об Анне",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-27:i15:audio",
+          "transcript": "She is awake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-27:i15:r1",
+            "targetText": "She is awake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i15:r2",
+            "targetText": "She is asleep.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i15:r3",
+            "targetText": "She is available.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-27:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение об Анне",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `awake`, а в этом варианте — `asleep`.",
+              "uk": "У записі останнє слово — `awake`, а в цьому варіанті — `asleep`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение об Анне",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `awake`, а в этом варианте — `available`.",
+              "uk": "У записі останнє слово — `awake`, а в цьому варіанті — `available`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 3 из 3",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is that a switch?",
-        "localizedMeaning": {
-          "ru": "Соберите одну фразу",
-          "uk": "Складіть одну фразу"
-        },
-        "orderedTokens": [
-          "Is",
-          "that",
-          "a",
-          "switch?"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-27:i16:p1",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-27:i16:p2",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-27:i16:p3",
+            "target": "available",
+            "meaningByLocale": {
+              "ru": "доступный",
+              "uk": "доступний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-27:i16:p4",
+            "target": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый",
+              "uk": "щедрий"
+            }
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "leftColumn": [
+          "awake",
+          "asleep",
+          "available",
+          "generous"
+        ],
+        "rightColumn": [
+          "не спит",
+          "спит",
+          "доступный",
+          "щедрый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы обсуждаете автомобили с другом: машины вообще бывают разных размеров. Скажите «Машины разные», без указания на конкретную группу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Вы обсуждаете автомобили с другом: машины вообще бывают разных размеров. Скажите «Машины разные», без указания на конкретную группу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-27:i17:audio",
+          "transcript": "Cars are different."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Cars are different.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "adb4fde1d22c4cb04a37a0d6fc1ea039a7aa306663287abc04fab9dddaf28949"
+  "learnerFingerprint": "93d421c1b3eca65a0da93a4512f231cf60bb07722502db8f97c1c91c8019b9b4"
 }

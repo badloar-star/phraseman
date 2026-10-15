@@ -1,175 +1,138 @@
-# Англійська · Урок 3 · Заняття 27 — «Це пульт?»
+# Англійська · Урок 3 · Заняття 27 — Машини для ранньої поїздки
 
-**Сцена заняття.** У майстерні електроніки технік перевіряє пристрій перед видачею. На столі перед вами лежать пульт і кнопка, а вимикач розташований біля дальньої стіни; ви уточнюєте призначення кожного елемента керування.
+**Ситуація.** Ви з Анною збираєте групу для ранньої поїздки. Олег запропонував свої машини й допомагає із сумками. До виїзду ще є час: Анна вже прокинулася, а її брат поки спить. Ви уточнюєте, де машини й чи можна ними скористатися.
 
-**Як сказати:** `Is this/that a + предмет?` — запитати про один предмет поруч або вдалині
-**Нові слова:** remote, button, switch
-**Для повторення:** phone, screen, speaker, lamp
+**Що ви опануєте:** назвати кілька машин, запитати про їхнє місце й відрізнити машини загалом від конкретних машин
+**Нові слова:** cars
 
 ---
 
 ## Інтро 1
 
-### `Is` виходить наперед
+### Не одна машина
 
-`remote` — «пульт». Пульт лежить поруч на робочому столі: `This is a remote.` Щоб перетворити фразу на запитання, поставте `is` перед `this`: `Is this a remote?` — «Це пульт?»
+`car` — «машина, автомобіль», `cars` — «машини». `They are cars` — «Це машини». Для кількох машин додаємо `s`, а `a` перед `cars` не ставимо. Олег запропонував одну машину на всю групу. Сумки він уже склав. Залишилося вирішити, де поїдуть люди. Потрібні `cars` — кілька машин.
 
-Інші частини не змінюються: `this` указує на предмет поруч, а `a remote` називає один пульт. Твердження починається з `This is`, запитання — з `Is this`.
+**На фотографії кілька автомобілів. Назвіть їх одним англійським словом.**
 
-**Ви тримаєте один пульт зі столу й хочете перевірити, чи правильно впізнали річ. Запитайте техніка.**
-
-- ✅ **Is this a remote?**
-- ❌ This is a remote. — *Такий порядок утворює твердження. Запитання починається з `Is this`: `Is this a remote?`*
-- ❌ Is this remote? — *Перед назвою одного предмета потрібне `a`: `a remote`.*
+- ✅ **cars**
+- ❌ car — *`car` — одна машина; кілька — `cars`.*
+- ❌ a cars — *Перед назвою кількох машин не ставимо `a`.*
 
 ---
 
 ## Інтро 2
 
-### Поруч `this`, вдалині `that`
+### Які машини доступні
 
-`button` — «кнопка». Про предмет поруч запитуємо так: спочатку `is`, потім `this`. Кнопка на робочому столі перед вами — `Is this a button?` — «Це кнопка?»
+`available` — «доступний, наявний у розпорядженні». `The cars are available` — «Машини доступні»: цими машинами зараз можна скористатися. `the cars` — конкретні машини, про які ви говорите. А `Cars are different` — «Машини різні»: можна говорити про машини загалом, наприклад про їхні розміри. Перед `cars` у такому загальному висловлюванні немає `the`.
 
-Вибирайте за відстанню: `Is this…?` — предмет поруч, `Is that…?` — предмет далі. `Is` відкриває запитання, а `a` залишається перед назвою одного предмета.
+**Ви говорите про машини загалом: вони бувають різних розмірів. Виберіть фразу «Машини різні».**
 
-**На робочому столі перед вами видно одну кнопку. Уточніть у техніка, чи це кнопка.**
-
-- ✅ **Is this a button?**
-- ❌ Is that a button? — *Кнопка знаходиться просто перед вами. Тут потрібне слово `this`: `Is this a button?`*
-- ❌ This is a button. — *Це порядок твердження. У запитанні `is` ставлять першим: `Is this a button?`*
+- ✅ **Cars are different.**
+- ❌ The cars are different. — *`The cars` — певні машини. Тут ідеться про машини загалом: `Cars`.*
+- ❌ A cars are different. — *Перед `cars` не ставимо `a`.*
 
 ---
 
 ## Інтро 3
 
-### Перед назвою одного предмета залишається `a`
+### Хто вже прокинувся
 
-`switch` — «вимикач». Перед назвою одного предмета ставимо `a`: `Is that a switch?` — «Он там вимикач?»
+`awake` — «не спить», `asleep` — «спить». Анна вже прокинулася: `She is awake` — «Вона не спить». Її брат іще спить: `He is asleep`. Олег охоче ділиться машинами й допомагає групі: `He is generous` — «Він щедрий». Поки брат спить, можна знайти машини: `Where are the cars?` — «Де машини?»
 
-Формула: `Is + this/that + a + предмет?` Без `a` вийде обрубок `Is that switch?`; із `that` на початку вийде твердження, а не запитання.
+**Анна знає, які машини виділені для поїздки. Запитайте, де машини.**
 
-**Ви вказуєте на один вимикач біля дальньої стіни. Запитайте техніка, чи це вимикач.**
-
-- ✅ **Is that a switch?**
-- ❌ Is that switch? — *Вимикач один. Перед його назвою потрібне `a`: `a switch`.*
-- ❌ That is a switch. — *Для запитання винесіть `is` наперед: `Is that a switch?`*
+- ✅ **Where are the cars?**
+- ❌ Where is the cars? — *Машин кілька: потрібно `are`.*
+- ❌ What are the cars? — *Про місце запитуємо `Where` — «Де».*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — remote**
-<!-- interaction_id: en:lesson-03:session-27:i01; family: listen_choose -->
-Ціль: `remote`
+**1 · Анна шукає підготовлені сумки. Повідомте «Сумки тут»**
+<!-- interaction_id: en:lesson-03:session-27:i01; family: phrase_builder -->
+Плитки: `here` `are` `bags` `The` `is` → **The bags are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The bags are here.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-27:i03; family: scripted_repeat_compare -->
-Ціль: `button`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-27:i02; family: listen_choose -->
+🔊 *cars* → **cars** · cats · cups
+- cats — *У записі перше слово — `cars`, а в цьому варіанті — `cats`.*
+- cups — *У записі перше слово — `cars`, а в цьому варіанті — `cups`.*
 
-**3 · Виберіть назву — біля дальньої стіни знаходиться вимикач**
-<!-- interaction_id: en:lesson-03:session-27:i05; family: context_gap_grammar -->
-Ціль: `___`
-Варіанти: `switch` · `button` · `remote`
-- button — *Button — кнопка. Тут потрібен вимикач: switch.*
-- remote — *Remote — пульт. Тут потрібен вимикач: switch.*
+**3 · Назвіть кілька автомобілів одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-27:i03; family: context_gap_grammar -->
+___ → **cars** · car · a cars
+- car — *Кілька машин — `cars`.*
+- a cars — *Перед `cars` не ставимо `a`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-27:i04; family: speed_match -->
+cars — машини · bags — сумки · awake — не спить · asleep — спить
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-27:i02; family: scripted_repeat_compare -->
-Ціль: `remote`
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-27:i05; family: listen_build_dictation -->
+🔊 *The cars are available.* Плитки: `available` `are` `cars` `The` `is` → **The cars are available.**
+*(плитка `is` зайва: тут потрібно `are` — `The cars are available.`)*
 
-**5 · Послухайте й виберіть — яке слово назвав технік**
-<!-- interaction_id: en:lesson-03:session-27:i04; family: listen_choose -->
-Значення варіантів: `button` — кнопка · `butter` — масло · `bottle` — пляшка · `bottom` — дно
-Ціль: `button`
-Варіанти: `button` · `butter` · `bottle` · `bottom`
-- butter — *Наприкінці `button` чути `n`; наприкінці `butter` звука `n` немає.*
-- bottle — *Наприкінці `bottle` чути `l`, а в `button` — `n`.*
-- bottom — *Останній приголосний у `bottom` — `m`, а в `button` — `n`.*
+**6 · Скажіть «Машини різні» про машини загалом, наприклад про їхні розміри**
+<!-- interaction_id: en:lesson-03:session-27:i06; family: phrase_builder -->
+Плитки: `different` `are` `Cars` `is` → **Cars are different.**
+*(плитка `is` зайва: тут потрібно `are` — `Cars are different.`)*
 
+**7 · Анна вже прокинулася. Скажіть «Вона не спить» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-27:i07; family: scripted_repeat_compare -->
+🎙 **She's awake.**
 
-**6 · Розрізніть слово — switch чи stitch**
-<!-- interaction_id: en:lesson-03:session-27:i06; family: sound_contrast -->
-Ціль: `switch`
-*switch · stitch* → **switch**
-- stitch — *У stitch після s чути t. У записі після s чути w: switch.*
+**8 · Ви говорите про різні розміри машин загалом, без указівки на певні машини**
+<!-- interaction_id: en:lesson-03:session-27:i08; family: context_gap_grammar -->
+___ are different. → **Cars** · The cars · A cars
+- The cars — *`The cars` — конкретні машини. Тут потрібне загальне `Cars`.*
+- A cars — *Перед `cars` не ставимо `a`.*
 
+**9 · Послухайте повідомлення про брата Анни**
+<!-- interaction_id: en:lesson-03:session-27:i09; family: listen_choose -->
+🔊 *He is asleep.* → **He is asleep.** · He is awake. · He is available.
+- He is awake. — *У записі останнє слово — `asleep`, а в цьому варіанті — `awake`.*
+- He is available. — *У записі останнє слово — `asleep`, а в цьому варіанті — `available`.*
 
-**7 · З'єднайте слова зі значеннями — елементи пристрою**
-<!-- interaction_id: en:lesson-03:session-27:i07; family: speed_match -->
-Пари: `remote` — пульт · `button` — кнопка · `switch` — вимикач · `screen` — екран
-Ціль: `remote · button · switch · screen`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-27:i10; family: speed_match -->
+available — доступний · generous — щедрий · cars — машини · bags — сумки
 
-**8 · Розрізніть вказівне слово — this чи that**
-<!-- interaction_id: en:lesson-03:session-27:i08; family: sound_contrast -->
-Ціль: `This`
-*This · That* → **This**
-- That — *That вказує на предмет далі. Тут предмет поруч: this.*
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-27:i11; family: listen_build_dictation -->
+🔊 *The bags are inside.* Плитки: `inside` `are` `bags` `The` `is` → **The bags are inside.**
+*(плитка `is` зайва: тут потрібно `are` — `The bags are inside.`)*
 
+**12 · Олег знає, які машини потрібні групі. Запитайте, де машини**
+<!-- interaction_id: en:lesson-03:session-27:i12; family: phrase_builder -->
+Плитки: `cars` `the` `are` `Where` `What` → **Where are the cars?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where are the cars?`)*
 
-**9 · Вставте форму — один предмет лежить поруч**
-<!-- interaction_id: en:lesson-03:session-27:i09; family: context_gap_grammar -->
-Ціль: `This ___ here.`
-Варіанти: `is` · `are`
-- are — *Are використовують з кількома предметами. Тут предмет один, тому is.*
+**13 · Олег охоче ділиться тим, що має. Скажіть «Він щедрий» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-27:i13; family: scripted_repeat_compare -->
+🎙 **He's generous.**
 
+**14 · Ви повідомляєте, що кількома вибраними машинами можна скористатися**
+<!-- interaction_id: en:lesson-03:session-27:i14; family: context_gap_grammar -->
+The cars ___ available. → **are** · is · am
+- is — *Машин кілька: потрібно `are`.*
+- am — *З `the cars` тут потрібно `are`.*
 
-**10 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-27:i10; family: scripted_repeat_compare -->
-Ціль: `Is that a switch?`
+**15 · Послухайте повідомлення про Анну**
+<!-- interaction_id: en:lesson-03:session-27:i15; family: listen_choose -->
+🔊 *She is awake.* → **She is awake.** · She is asleep. · She is available.
+- She is asleep. — *У записі останнє слово — `awake`, а в цьому варіанті — `asleep`.*
+- She is available. — *У записі останнє слово — `awake`, а в цьому варіанті — `available`.*
 
-**11 · Складіть запитання — пульт лежить у вас у руці**
-<!-- interaction_id: en:lesson-03:session-27:i11; family: phrase_builder -->
-Ціль: `Is this a remote?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-27:i16; family: speed_match -->
+awake — не спить · asleep — спить · available — доступний · generous — щедрий
 
-**12 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-27:i12; family: listen_build_dictation -->
-Ціль: `Is this a button?`
-
-**13 · Вставте вказівне слово — вимикач розташований біля дальньої стіни**
-<!-- interaction_id: en:lesson-03:session-27:i13; family: context_gap_grammar -->
-Ціль: `Is ___ a switch?`
-Варіанти: `that` · `this` · `is` · `a`
-- this — *`this` указує на предмет поруч. Вимикач біля дальньої стіни, тому потрібне `that`.*
-- is — *Запитання вже починається з `Is`. Після нього потрібне вказівне слово для далекого предмета — `that`.*
-- a — *`a` уже стоїть перед `switch`. Між `Is` і `a switch` потрібне слово `that`.*
-
-
-**14 · Послухайте й виберіть значення точного запитання**
-<!-- interaction_id: en:lesson-03:session-27:i14; family: listen_choose -->
-Ціль: `Is that a switch?`
-Варіанти: `Це вимикач?` · `Це стібок?` · `Це відьма?` · `Це годинник?`
-- Це стібок? — *У записі після `s` чути `w`: прозвучало `switch`. Для «стібок» прозвучало б `stitch`, зі звуком `t` після `s`.*
-- Це відьма? — *У записі перед `witch` чути початкове `s`: прозвучало `switch` — «вимикач».*
-- Це годинник? — *У `watch` інший голосний і немає початкового `s`; у записі прозвучало `switch`.*
-
-
-**15 · Складіть запитання — лампа стоїть біля дальньої стіни**
-<!-- interaction_id: en:lesson-03:session-27:i15; family: phrase_builder -->
-Ціль: `Is that a lamp?`
-
-**16 · Вставте перше слово — ви тримаєте поруч одну кнопку й уточнюєте, що це**
-<!-- interaction_id: en:lesson-03:session-27:i16; family: context_gap_grammar -->
-Ціль: `___ this a button?`
-Варіанти: `Is` · `This` · `Are` · `A`
-- This — *`This` повторить уже наявне `this`, а запитання залишиться без `Is`. На початку потрібне `Is`.*
-- Are — *У цій формулі після `this` потрібна зв'язка `is`; запитання починається з `Is this`.*
-- A — *`a` уже стоїть перед `button`. На початку запитання потрібне `Is`.*
-
-
-**17 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-27:i17:s01; family: listen_build_dictation -->
-Ціль: `Is this a remote?`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-27:i17:s02; family: scripted_repeat_compare -->
-Ціль: `Is this a button?`
-
-**19 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-27:i17:s03; family: phrase_builder -->
-Ціль: `Is that a switch?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=sound_contrast, 9=context_gap_grammar, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=phrase_builder
+**17 · Ви обговорюєте автомобілі з другом: машини загалом бувають різних розмірів. Скажіть «Машини різні», без указівки на конкретну групу**
+<!-- interaction_id: en:lesson-03:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Cars are different.**
 

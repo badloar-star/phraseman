@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Давайте поговорим · Phraseman</title><meta name="description" content="Phraseman — живой язык для вашей жизни."><link rel="icon" href="/assets/approved/brand.png"><script src="/assets/approved/site.js" defer></script><script src="/assets/approved/product-motion.js" defer></script><script src="/assets/approved/cinema.js" defer></script><script src="/assets/approved/certificate-premium-renderer.js" defer></script><script src="/assets/approved/certificate-art.js" defer></script><script src="/assets/approved/edition-certificates.js" defer></script><script src="/assets/approved/test-engine.js" defer></script><script src="/assets/approved/edition.js" defer></script><script src="/assets/approved/world.js" defer></script><link rel="canonical" href="https://knowlyapps.com/contact/" />
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Давайте поговорим · Phraseman</title><meta name="description" content="Phraseman — живой язык для вашей жизни."><link rel="icon" href="/assets/approved/brand.png"><script src="/assets/approved/site.js" defer></script><script src="/assets/approved/product-motion.js" defer></script><script src="/assets/approved/cinema.js" defer></script><script src="/assets/approved/certificate-premium-renderer.js" defer></script><script src="/assets/approved/edition-certificates.js" defer></script><script src="/assets/approved/test-engine.js" defer></script><script src="/assets/approved/edition.js" defer></script><script src="/assets/approved/world.js" defer></script><link rel="canonical" href="https://knowlyapps.com/contact/" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://knowlyapps.com/contact/" />
 <meta property="og:title" content="Поддержка Phraseman" />
@@ -122,9 +122,11 @@ window.I18N = {
           'Thank you! Your message was received — we will read it and reply.');
         form.reset();
       } catch (err) {
+        // зачем: координатор 15.10 — пользователю никаких технических текстов («Ошибка сервера (500)»); причина — только в консоль
+        console.warn('[CONTACT] отправка не удалась:', err && err.message);
         say('err',
-          (err && err.message) || 'Не удалось отправить. Попробуй позже или напиши на почту.',
-          (err && err.message) || 'Could not send. Try again later or write to our email.');
+          'Не удалось отправить. Попробуй позже или напиши на почту.',
+          'Could not send. Try again later or write to our email.');
       } finally {
         if (btn) {
           btn.disabled = false;

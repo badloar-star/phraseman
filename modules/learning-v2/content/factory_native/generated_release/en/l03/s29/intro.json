@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-29",
   "learningOutcomeByLocale": {
-    "ru": "`this/that` указывает на предмет; `it` возвращается к уже названному предмету",
-    "uk": "`this/that` указує на предмет; `it` повертається до вже названого предмета"
+    "ru": "назвать несколько столов, спросить, где они, и говорить о столах вообще",
+    "uk": "назвати кілька столів, запитати, де вони, й говорити про столи загалом"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Назвать, а потом не повторяться",
-        "uk": "Назвати, а потім не повторюватися"
+        "ru": "Одного стола мало",
+        "uk": "Одного столу замало"
       },
       "bodyByLocale": {
-        "ru": "`parcel` — «посылка». Она лежит рядом, поэтому вы говорите `This is a parcel.` — «Это посылка».\n\nЧтобы добавить «она тяжёлая», не повторяйте `parcel`: скажите `It is heavy.` Вместе: `This is a parcel. It is heavy.` — «Это посылка. Она тяжёлая». Посылку назвали один раз — и продолжили о ней.",
-        "uk": "`parcel` — «посилка». Вона лежить поруч, тому ви кажете `This is a parcel.` — «Це посилка». Тепер сусід уже знає, про що йдеться.\n\nЩоб додати «вона важка», не повторюйте `parcel`: скажіть `It is heavy.` Разом: `This is a parcel. It is heavy.` — «Це посилка. Вона важка». Посилку назвали один раз — і продовжили про неї."
+        "ru": "`table` — «стол», `tables` — «столы». `They are tables` — «Это столы». Для нескольких столов добавляем `s`, а `a` перед `tables` не ставим. Олег принёс один маленький стол на всю группу. Ручки поместились, бумага поместилась. Локти участников — уже по записи. Нужны `tables` — столы.",
+        "uk": "`table` — «стіл», `tables` — «столи». `They are tables` — «Це столи». Для кількох столів додаємо `s`, а `a` перед `tables` не ставимо. Олег приніс один маленький стіл на всю групу. Ручки помістилися, папір помістився. Лікті учасників — уже за записом. Потрібні `tables` — столи."
       },
       "question": {
         "interactionId": "en:lesson-03:session-29:intro1:q",
         "promptByLocale": {
-          "ru": "Вы уже сказали соседу `This is a parcel.` Теперь продолжите о той же посылке: она тяжёлая.",
-          "uk": "Ви вже сказали сусідові `This is a parcel.` Тепер продовжте про ту саму посилку: вона важка."
+          "ru": "На фотографии несколько столов. Назовите их одним английским словом.",
+          "uk": "На фотографії кілька столів. Назвіть їх одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro1:r1",
-              "text": "It is heavy."
+              "text": "tables"
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r2",
-              "text": "They are heavy."
+              "text": "table"
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r3",
-              "text": "Is it heavy?"
+              "text": "a tables"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro1:r1",
-              "text": "It is heavy."
+              "text": "tables"
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r2",
-              "text": "They are heavy."
+              "text": "table"
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r3",
-              "text": "Is it heavy?"
+              "text": "a tables"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже сказали соседу `This is a parcel.` Теперь продолжите о той же посылке: она тяжёлая.",
-          "uk": "Ви вже сказали сусідові `This is a parcel.` Тепер продовжте про ту саму посилку: вона важка."
+          "ru": "На фотографии несколько столов. Назовите их одним английским словом.",
+          "uk": "На фотографії кілька столів. Назвіть їх одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Назвать письмо и добавить деталь",
-        "uk": "Назвати лист і додати деталь"
+        "ru": "Столы важны",
+        "uk": "Столи важливі"
       },
       "bodyByLocale": {
-        "ru": "`letter` — «письмо». Оно лежит дальше у двери, поэтому вы говорите `That is a letter.` — «Вон письмо».\n\nЗатем `it` подхватывает уже названное письмо. Вместе: `That is a letter. It is wet.` — «Вон письмо. Оно мокрое». Письмо успело промокнуть, но второй раз представляться ему не нужно.",
-        "uk": "`letter` — «лист». Він лежить далі біля дверей, тому ви кажете `That is a letter.` — «Он лист».\n\nПотім `it` підхоплює вже названий лист. Разом: `That is a letter. It is wet.` — «Он лист. Він мокрий». Лист устиг намокнути, але вдруге представлятися йому не треба."
+        "ru": "`Tables are important` — «Столы важны». Обсуждая, что нужно для занятий письмом, можно сказать так о столах вообще: перед `tables` нет `the`. `The tables are upstairs` — «Столы наверху»: речь об определённых столах для нашей встречи. Чтобы найти их, спросите `Where are the tables?` — «Где столы?»",
+        "uk": "`Tables are important` — «Столи важливі». Обговорюючи, що потрібно для занять письмом, можна сказати так про столи загалом: перед `tables` немає `the`. `The tables are upstairs` — «Столи нагорі»: ідеться про певні столи для нашої зустрічі. Щоб знайти їх, запитайте `Where are the tables?` — «Де столи?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже сказали `That is a letter.` Теперь продолжите о том же письме: оно мокрое.",
-          "uk": "Ви вже сказали `That is a letter.` Тепер продовжте про той самий лист: він мокрий."
+          "ru": "Вы обсуждаете занятия письмом вообще. Скажите, что столы важны, без указания на определённые столы.",
+          "uk": "Ви обговорюєте заняття письмом загалом. Скажіть, що столи важливі, без указівки на певні столи."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro2:r1",
-              "text": "It is wet."
+              "text": "Tables are important."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r2",
-              "text": "They are wet."
+              "text": "The tables are important."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r3",
-              "text": "It wet."
+              "text": "A tables are important."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro2:r1",
-              "text": "It is wet."
+              "text": "Tables are important."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r2",
-              "text": "They are wet."
+              "text": "The tables are important."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r3",
-              "text": "It wet."
+              "text": "A tables are important."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже сказали `That is a letter.` Теперь продолжите о том же письме: оно мокрое.",
-          "uk": "Ви вже сказали `That is a letter.` Тепер продовжте про той самий лист: він мокрий."
+          "ru": "Вы обсуждаете занятия письмом вообще. Скажите, что столы важны, без указания на определённые столы.",
+          "uk": "Ви обговорюєте заняття письмом загалом. Скажіть, що столи важливі, без указівки на певні столи."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`it` продолжает про ту же вещь",
-        "uk": "`it` продовжує про ту саму річ"
+        "ru": "Помощь издалека",
+        "uk": "Допомога здалеку"
       },
       "bodyByLocale": {
-        "ru": "`stamp` — «почтовая марка». Она рядом на конверте: `This is a stamp.` — «Это марка».\n\nВ следующей фразе `it` означает ту же марку. Вместе: `This is a stamp. It is small.` — «Это марка. Она маленькая». Само `it` не говорит «рядом» или «далеко» — оно продолжает разговор об уже названной вещи.",
-        "uk": "`stamp` — «поштова марка». Вона поруч на конверті: `This is a stamp.` — «Це марка».\n\nУ наступному реченні `it` означає ту саму марку. Разом: `This is a stamp. It is small.` — «Це марка. Вона маленька». Саме `it` не каже «поруч» або «далеко» — воно продовжує розмову про вже названу річ."
+        "ru": "`away` здесь — «в отъезде», `online` — «в сети». Анна в другом городе: `She is away`. Но сейчас она на связи через интернет: `She is online`. Это не противоречие: можно быть далеко и помогать онлайн. `local` — «местный», `foreign` — «иностранный». Эти слова помогают различать местное и относящееся к другой стране.",
+        "uk": "`away` тут — «у від’їзді», `online` — «у мережі». Анна в іншому місті: `She is away`. Але зараз вона на зв’язку через інтернет: `She is online`. Це не суперечність: можна бути далеко й допомагати онлайн. `local` — «місцевий», `foreign` — «іноземний». Ці слова допомагають розрізняти місцеве й те, що стосується іншої країни."
       },
       "question": {
         "interactionId": "en:lesson-03:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Вы уже сказали `This is a stamp.` Теперь продолжите о той же марке: она маленькая.",
-          "uk": "Ви вже сказали `This is a stamp.` Тепер продовжте про ту саму марку: вона маленька."
+          "ru": "Анна сейчас подключена к интернету и отвечает вам. Сообщите «Она в сети».",
+          "uk": "Анна зараз підключена до інтернету й відповідає вам. Повідомте «Вона в мережі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro3:r1",
-              "text": "It is small."
+              "text": "She is online."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r2",
-              "text": "That is small."
+              "text": "She is local."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r3",
-              "text": "This is a small."
+              "text": "She is foreign."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro3:r1",
-              "text": "It is small."
+              "text": "She is online."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r2",
-              "text": "That is small."
+              "text": "She is local."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r3",
-              "text": "This is a small."
+              "text": "She is foreign."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже сказали `This is a stamp.` Теперь продолжите о той же марке: она маленькая.",
-          "uk": "Ви вже сказали `This is a stamp.` Тепер продовжте про ту саму марку: вона маленька."
+          "ru": "Анна сейчас подключена к интернету и отвечает вам. Сообщите «Она в сети».",
+          "uk": "Анна зараз підключена до інтернету й відповідає вам. Повідомте «Вона в мережі»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "efccf5e0227cdfbbdef5722017bf96864b55cb7574e5ec5fbfb6c75ef5c5db57"
+  "introFingerprint": "73ee97d0f646d981c8ab4415b0c9d7a986b6506d6f87eaa0b3643f8f7cefaea1"
 }

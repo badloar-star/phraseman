@@ -7,68 +7,44 @@
       "interactionId": "en:lesson-03:session-16:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — кассир кладёт в корзину документ с суммой покупки; назовите его полной фразой (`invoice` — «счёт на оплату»)",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-16:i01:r1",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i01:r2",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i01:r3",
-          "text": "is"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На плане Олег показывает незнакомый Анне предмет. Назовите его: «Это стол»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — кассир кладёт в корзину документ с суммой покупки; назовите его полной фразой (`invoice` — «счёт на оплату»)",
+      "accessibilityLabel": "На плане Олег показывает незнакомый Анне предмет. Назовите его: «Это стол»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — кассир кладёт в корзину документ с суммой покупки; назовите его полной фразой (`invoice` — «счёт на оплату»)",
-          "uk": "Вставте слово — касир кладе до кошика документ із сумою покупки; назвіть його повною фразою (`invoice` — «рахунок на оплату»)"
+        "family": "phrase_builder",
+        "targetPhrase": "It is a table.",
+        "localizedMeaning": {
+          "ru": "На плане Олег показывает незнакомый Анне предмет. Назовите его: «Это стол»",
+          "uk": "На плані Олег показує незнайомий Анні предмет. Назвіть його: «Це стіл»"
         },
-        "gappedTargetPhrase": "It is ___ invoice.",
-        "gapOptions": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-16:i01:r1",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i01:r2",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i01:r3",
-            "text": "is"
+            "responseId": "en:lesson-03:session-16:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "На плане Олег показывает незнакомый Анне предмет. Назовите его: «Это стол»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `a` — `It is a table.`",
+              "uk": "тут потрібно `a` — `It is a table.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — кассир кладёт в корзину",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-16:i01:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — кассир кладёт в корзину",
-            "feedbackByLocale": {
-              "ru": "Название `invoice` начинается с гласного звука. Здесь нужно `an`.",
-              "uk": "Назва `invoice` починається з голосного звуку. Тут потрібне `an`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i01:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — кассир кладёт в корзину",
-            "feedbackByLocale": {
-              "ru": "После `It` уже есть `is`. Перед названием счёта добавьте `an`, а не второе `is`.",
-              "uk": "Після `It` уже є `is`. Перед назвою рахунка додайте `an`, а не друге `is`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -76,32 +52,75 @@
       "interactionId": "en:lesson-03:session-16:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сообщение о двери мастерской",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-16:i02:r1",
+          "text": "The door is closed."
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i02:r2",
+          "text": "The door is open."
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i02:r3",
+          "text": "The door is dirty."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-16:i02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте сообщение о двери мастерской",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-16:i02:audio",
-          "transcript": "It is an invoice."
+          "transcript": "The door is closed."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is an invoice.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-16:i02:r1",
+            "targetText": "The door is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i02:r2",
+            "targetText": "The door is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i02:r3",
+            "targetText": "The door is dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение о двери мастерской",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `closed`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `open`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение о двери мастерской",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `closed`, а в этом варианте — `dirty`.",
+              "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `dirty`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -109,40 +128,65 @@
       "interactionId": "en:lesson-03:session-16:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите короткое название — кассир показывает рабочую форму сотрудника; ответьте двумя словами (`uniform` — «рабочая форма»)",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна указывает на помещение на плане. Назовите его: «Это комната»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-16:i03:r1",
-          "text": "An"
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i03:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите короткое название — кассир показывает рабочую форму сотрудника; ответьте двумя словами (`uniform` — «рабочая форма»)",
+      "accessibilityLabel": "Анна указывает на помещение на плане. Назовите его: «Это комната»",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "A uniform.",
-        "localizedMeaning": {
-          "ru": "Соберите короткое название — кассир показывает рабочую форму сотрудника; ответьте двумя словами (`uniform` — «рабочая форма»)",
-          "uk": "Складіть коротку назву — касир показує робочу форму працівника; дайте відповідь двома словами (`uniform` — «робоча форма»)"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна указывает на помещение на плане. Назовите его: «Это комната»",
+          "uk": "Анна вказує на приміщення на плані. Назвіть його: «Це кімната»"
         },
-        "orderedTokens": [
-          "A",
-          "uniform"
-        ],
-        "authoredDistractorTokens": [
-          "An"
-        ],
-        "slotFeedback": [
+        "gappedTargetPhrase": "It is ___ room.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-03:session-16:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Анна указывает на помещение на плане. Назовите его: «Это комната»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-16:i03:r2",
             "correct": false,
-            "testedDimension": "Соберите короткое название — кассир пока",
+            "testedDimension": "Анна указывает на помещение на плане. Назовите его: «Это комната»",
             "feedbackByLocale": {
-              "ru": "В начале `uniform` слышен согласный «й», поэтому выбираем `A`.",
-              "uk": "На початку `uniform` чути приголосний «й», тому обираємо `A`."
+              "ru": "Перед `room` нужно `a`: первый звук согласный.",
+              "uk": "Перед `room` потрібно `a`: перший звук приголосний."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Анна указывает на помещение на плане. Назовите его: «Это комната»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно название `a room`.",
+              "uk": "Тут потрібна назва `a room`."
             }
           }
         ]
@@ -153,367 +197,60 @@
       "interactionId": "en:lesson-03:session-16:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — сборка займёт шестьдесят минут; назовите срок двумя словами (`hour` — «час»)",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-16:i04:r1",
-          "text": "An"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i04:r2",
-          "text": "A"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i04:r3",
-          "text": "Is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — сборка займёт шестьдесят минут; назовите срок двумя словами (`hour` — «час»)",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — сборка займёт шестьдесят минут; назовите срок двумя словами (`hour` — «час»)",
-          "uk": "Вставте слово — складання триватиме шістдесят хвилин; назвіть час двома словами (`hour` — «година»)"
-        },
-        "gappedTargetPhrase": "___ hour.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-16:i04:r1",
-            "text": "An"
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i04:r2",
-            "text": "A"
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i04:r3",
-            "text": "Is"
-          }
-        ],
-        "testedDimension": "Вставьте слово — сборка займёт шестьдеся",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-16:i04:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — сборка займёт шестьдеся",
-            "feedbackByLocale": {
-              "ru": "У `hour` первая буква не звучит, начало гласное. Нужно `An`.",
-              "uk": "У `hour` перша літера не вимовляється, тому слово починається з голосного звука. Потрібне `An`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i04:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — сборка займёт шестьдеся",
-            "feedbackByLocale": {
-              "ru": "Срок называем коротко: `An hour`. `Is` перед `hour` не образует нужного названия.",
-              "uk": "Час називаємо коротко: `An hour`. `Is hour` не є короткою відповіддю про час очікування."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-16:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — что спросил друг о документе",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-16:i05:r1",
-          "text": "Is it an invoice?"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i05:r2",
-          "text": "It is an invoice."
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i05:r3",
-          "text": "It is not an invoice."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-16:i05:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — что спросил друг о документе",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-16:i05:audio",
-          "transcript": "Is it an invoice?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-16:i05:r1",
-            "targetText": "Is it an invoice?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i05:r2",
-            "targetText": "It is an invoice.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i05:r3",
-            "targetText": "It is not an invoice.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-16:i05:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — что спросил друг",
-            "feedbackByLocale": {
-              "ru": "Это утверждение с порядком `It is`. В записи звучит вопрос `Is it`.",
-              "uk": "Це твердження з порядком `It is`. У записі звучить запитання `Is it`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i05:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — что спросил друг",
-            "feedbackByLocale": {
-              "ru": "В этом варианте есть `not`. В записи друг только спрашивает о счёте.",
-              "uk": "У цьому варіанті є `not`. У записі друг лише запитує про рахунок."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-16:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — кассир уточняет товар в горшке; назовите растение полной фразой (`plant` — «растение»)",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-16:i06:r1",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i06:r2",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i06:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — кассир уточняет товар в горшке; назовите растение полной фразой (`plant` — «растение»)",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — кассир уточняет товар в горшке; назовите растение полной фразой (`plant` — «растение»)",
-          "uk": "Вставте слово — касир уточнює товар у горщику; назвіть рослину повною фразою (`plant` — «рослина»)"
-        },
-        "gappedTargetPhrase": "It is ___ plant.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-16:i06:r1",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i06:r2",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i06:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте слово — кассир уточняет товар в",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-16:i06:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — кассир уточняет товар в",
-            "feedbackByLocale": {
-              "ru": "Первый звук `plant` — согласный «п». Перед названием растения здесь нужно `a`.",
-              "uk": "Перший звук `plant` — приголосний «п». Перед назвою рослини тут потрібне `a`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i06:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — кассир уточняет товар в",
-            "feedbackByLocale": {
-              "ru": "Начало `It is` готово. Перед названием одного растения нужно `a`, а не `am`.",
-              "uk": "Початок `It is` уже готовий. Перед назвою однієї рослини потрібне `a`, а не `am`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-16:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — кассир достал документ из папки; уточните, счёт ли это",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-16:i07:r1",
-          "text": "a"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — кассир достал документ из папки; уточните, счёт ли это",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is it an invoice?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — кассир достал документ из папки; уточните, счёт ли это",
-          "uk": "Складіть запитання — касир дістав документ із теки; уточніть, чи це рахунок"
-        },
-        "orderedTokens": [
-          "Is",
-          "it",
-          "an",
-          "invoice"
-        ],
-        "authoredDistractorTokens": [
-          "a"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-16:i07:r1",
-            "correct": false,
-            "testedDimension": "Соберите вопрос — кассир достал документ",
-            "feedbackByLocale": {
-              "ru": "После `Is it` идёт `an invoice`: название начинается с гласного звука.",
-              "uk": "Після `Is it` іде `an invoice`: назва починається з голосного звука."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-16:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — сотрудник говорит о времени ожидания",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-16:i08:r1",
-          "text": "A"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-16:i08:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — сотрудник говорит о времени ожидания",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-16:i08:audio",
-          "transcript": "An hour."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "An hour.",
-        "orderedTokens": [
-          "An",
-          "hour"
-        ],
-        "authoredDistractorTokens": [
-          "A"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-16:i08:r1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите — сотрудник говори",
-            "feedbackByLocale": {
-              "ru": "В записи звучит `An hour`. Перед гласным началом `hour` выбираем `An`.",
-              "uk": "У записі звучить `An hour`. Перед голосним звуком на початку `hour` обираємо `An`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-16:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините названия с русскими значениями — содержимое корзины",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините названия с русскими значениями — содержимое корзины",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-16:i09:p1",
-            "target": "invoice",
+            "pairId": "en:lesson-03:session-16:i04:p1",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "счёт на оплату",
-              "uk": "рахунок на оплату"
+              "ru": "дверь",
+              "uk": "двері"
             }
           },
           {
-            "pairId": "en:lesson-03:session-16:i09:p2",
-            "target": "hour",
+            "pairId": "en:lesson-03:session-16:i04:p2",
+            "target": "lock",
             "meaningByLocale": {
-              "ru": "час",
-              "uk": "година"
+              "ru": "замок",
+              "uk": "замок"
             }
           },
           {
-            "pairId": "en:lesson-03:session-16:i09:p3",
-            "target": "uniform",
+            "pairId": "en:lesson-03:session-16:i04:p3",
+            "target": "room",
             "meaningByLocale": {
-              "ru": "рабочая форма",
-              "uk": "робоча форма"
+              "ru": "комната",
+              "uk": "кімната"
             }
           },
           {
-            "pairId": "en:lesson-03:session-16:i09:p4",
-            "target": "plant",
+            "pairId": "en:lesson-03:session-16:i04:p4",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "растение",
-              "uk": "рослина"
+              "ru": "стол",
+              "uk": "стіл"
             }
           }
         ],
         "leftColumn": [
-          "invoice",
-          "hour",
-          "uniform",
-          "plant"
+          "door",
+          "lock",
+          "room",
+          "table"
         ],
         "rightColumn": [
-          "счёт на оплату",
-          "час",
-          "рабочая форма",
-          "растение"
+          "дверь",
+          "замок",
+          "комната",
+          "стол"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -530,68 +267,194 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-16:i10",
-      "ordinal": 13,
+      "interactionId": "en:lesson-03:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите сообщение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-16:i05:audio",
+          "transcript": "The picture is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The picture is here.",
+        "orderedTokens": [
+          "The",
+          "picture",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-16:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите сообщение",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The picture is here.`",
+              "uk": "тут потрібно `is` — `The picture is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы с Олегом ищете пальто, о котором только что говорили. Спросите, где пальто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с Олегом ищете пальто, о котором только что говорили. Спросите, где пальто",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the coat?",
+        "localizedMeaning": {
+          "ru": "Вы с Олегом ищете пальто, о котором только что говорили. Спросите, где пальто",
+          "uk": "Ви з Олегом шукаєте пальто, про яке щойно говорили. Запитайте, де пальто"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "coat"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-16:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы с Олегом ищете пальто, о котором только что говорили. Спросите, где пальто",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is the coat?`",
+              "uk": "тут потрібно `Where` — `Where is the coat?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с Анной осматриваете замок мастерской. Скажите «Замок старый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Вы с Анной осматриваете замок мастерской. Скажите «Замок старый»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-16:i07:audio",
+          "transcript": "The lock is old."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The lock is old.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-16:i08",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — кассир уточняет, счёт ли перед ним",
+      "prompt": "Вы показываете вымытое окно мастерской. Дополните «Окно чистое»",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-16:i10:r1",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i10:r2",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-16:i10:r3",
+          "responseId": "en:lesson-03:session-16:i08:r1",
           "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i08:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — кассир уточняет, счёт ли перед ним",
+      "accessibilityLabel": "Вы показываете вымытое окно мастерской. Дополните «Окно чистое»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — кассир уточняет, счёт ли перед ним",
-          "uk": "Вставте слово — касир уточнює, чи рахунок перед ним"
+          "ru": "Вы показываете вымытое окно мастерской. Дополните «Окно чистое»",
+          "uk": "Ви показуєте вимите вікно майстерні. Доповніть «Вікно чисте»"
         },
-        "gappedTargetPhrase": "Is it ___ invoice?",
+        "gappedTargetPhrase": "The window ___ clean.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-16:i10:r1",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i10:r2",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-16:i10:r3",
+            "responseId": "en:lesson-03:session-16:i08:r1",
             "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i08:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — кассир уточняет, счёт л",
+        "testedDimension": "Вы показываете вымытое окно мастерской. Дополните «Окно чистое»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-16:i10:r2",
+            "responseId": "en:lesson-03:session-16:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — кассир уточняет, счёт л",
+            "testedDimension": "Вы показываете вымытое окно мастерской. Дополните «Окно чистое»",
             "feedbackByLocale": {
-              "ru": "В начале `invoice` слышен гласный звук. Перед названием выбираем `an`.",
-              "uk": "На початку `invoice` чути голосний звук. Перед назвою обираємо `an`."
+              "ru": "С одним окном здесь нужно `is`.",
+              "uk": "З одним вікном тут потрібно `is`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-16:i10:r3",
+            "responseId": "en:lesson-03:session-16:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — кассир уточняет, счёт л",
+            "testedDimension": "Вы показываете вымытое окно мастерской. Дополните «Окно чистое»",
             "feedbackByLocale": {
-              "ru": "Вопрос уже начинается с `Is it`. Перед `invoice` нужно `an`, а не ещё одно `is`.",
-              "uk": "Запитання вже починається з `Is it`. Перед `invoice` потрібне `an`, а не ще одне `is`."
+              "ru": "`The window` — один предмет, поэтому здесь `is`.",
+              "uk": "`The window` — один предмет, тому тут `is`."
             }
           }
         ]
@@ -599,73 +462,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-16:i11",
-      "ordinal": 14,
+      "interactionId": "en:lesson-03:session-16:i09",
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — что кассир сказал о документе",
+      "prompt": "Послушайте описание комнаты после встречи",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-16:i11:r1",
-          "text": "It is not an invoice."
+          "responseId": "en:lesson-03:session-16:i09:r1",
+          "text": "The room is quiet."
         },
         {
-          "responseId": "en:lesson-03:session-16:i11:r2",
-          "text": "It is an invoice."
+          "responseId": "en:lesson-03:session-16:i09:r2",
+          "text": "The room is cold."
         },
         {
-          "responseId": "en:lesson-03:session-16:i11:r3",
-          "text": "Is it an invoice?"
+          "responseId": "en:lesson-03:session-16:i09:r3",
+          "text": "The room is warm."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-16:i11:audio"
+        "en:lesson-03:session-16:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — что кассир сказал о документе",
+      "accessibilityLabel": "Послушайте описание комнаты после встречи",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-16:i11:audio",
-          "transcript": "It is not an invoice."
+          "audioTargetId": "en:lesson-03:session-16:i09:audio",
+          "transcript": "The room is quiet."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-16:i11:r1",
-            "targetText": "It is not an invoice.",
+            "responseId": "en:lesson-03:session-16:i09:r1",
+            "targetText": "The room is quiet.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-16:i11:r2",
-            "targetText": "It is an invoice.",
+            "responseId": "en:lesson-03:session-16:i09:r2",
+            "targetText": "The room is cold.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-16:i11:r3",
-            "targetText": "Is it an invoice?",
+            "responseId": "en:lesson-03:session-16:i09:r3",
+            "targetText": "The room is warm.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-16:i11:r2",
+            "responseId": "en:lesson-03:session-16:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что кассир сказа",
+            "testedDimension": "Послушайте описание комнаты после встречи",
             "feedbackByLocale": {
-              "ru": "Здесь нет `not`, документ называют счётом. В записи звучит отрицание.",
-              "uk": "Тут немає `not`, документ називають рахунком. У записі звучить заперечення."
+              "ru": "В записи последнее слово — `quiet`, а в этом варианте — `cold`.",
+              "uk": "У записі останнє слово — `quiet`, а в цьому варіанті — `cold`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-16:i11:r3",
+            "responseId": "en:lesson-03:session-16:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что кассир сказа",
+            "testedDimension": "Послушайте описание комнаты после встречи",
             "feedbackByLocale": {
-              "ru": "Это вопрос с порядком `Is it`. В записи порядок `It is not`.",
-              "uk": "Це запитання з порядком `Is it`. У записі порядок `It is not`."
+              "ru": "В записи последнее слово — `quiet`, а в этом варианте — `warm`.",
+              "uk": "У записі останнє слово — `quiet`, а в цьому варіанті — `warm`."
             }
           }
         ],
@@ -675,72 +538,192 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините знакомые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-16:i10:p1",
+            "target": "window",
+            "meaningByLocale": {
+              "ru": "окно",
+              "uk": "вікно"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-16:i10:p2",
+            "target": "picture",
+            "meaningByLocale": {
+              "ru": "картинка",
+              "uk": "зображення"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-16:i10:p3",
+            "target": "coat",
+            "meaningByLocale": {
+              "ru": "пальто",
+              "uk": "пальто"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-16:i10:p4",
+            "target": "door",
+            "meaningByLocale": {
+              "ru": "дверь",
+              "uk": "двері"
+            }
+          }
+        ],
+        "leftColumn": [
+          "window",
+          "picture",
+          "coat",
+          "door"
+        ],
+        "rightColumn": [
+          "окно",
+          "картинка",
+          "пальто",
+          "дверь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-16:i11:audio",
+          "transcript": "Where is the table?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the table?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-16:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is the table?`",
+              "uk": "тут потрібно `Where` — `Where is the table?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-16:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — кассир просит назвать покупку в горшке; ответьте полной фразой",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-16:i12:r1",
-          "text": "an"
-        }
-      ],
+      "prompt": "Анна стоит у известного вам обоим окна мастерской. Спросите, закрыто ли окно",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — кассир просит назвать покупку в горшке; ответьте полной фразой",
+      "accessibilityLabel": "Анна стоит у известного вам обоим окна мастерской. Спросите, закрыто ли окно",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a plant.",
+        "targetPhrase": "Is the window closed?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — кассир просит назвать покупку в горшке; ответьте полной фразой",
-          "uk": "Складіть фразу — касир просить назвати покупку в горщику; дайте відповідь повною фразою"
+          "ru": "Анна стоит у известного вам обоим окна мастерской. Спросите, закрыто ли окно",
+          "uk": "Анна стоїть біля відомого вам обом вікна майстерні. Запитайте, чи вікно зачинене"
         },
         "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "plant"
+          "Is",
+          "the",
+          "window",
+          "closed"
         ],
         "authoredDistractorTokens": [
-          "an"
+          "Are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-16:i12:r1",
+            "responseId": "en:lesson-03:session-16:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — кассир просит назвать п",
+            "testedDimension": "Анна стоит у известного вам обоим окна мастерской. Спросите, закрыто ли окно",
             "feedbackByLocale": {
-              "ru": "Полная фраза начинается с `It is`. Перед согласным началом `plant` нужно `a`.",
-              "uk": "Повна фраза починається з `It is`. Перед приголосним звуком на початку `plant` потрібне `a`."
+              "ru": "здесь нужно `Is` — `Is the window closed?`",
+              "uk": "тут потрібно `Is` — `Is the window closed?`"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-16:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Вы собираете работы после выставки. Анна знает, какая картинка вам нужна. Спросите, где картинка",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-16:i13:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Вы собираете работы после выставки. Анна знает, какая картинка вам нужна. Спросите, где картинка",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-16:i13:audio",
-          "transcript": "It is an invoice."
+          "transcript": "Where is the picture?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is an invoice.",
+        "targetPhrase": "Where is the picture?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -757,46 +740,65 @@
       "interactionId": "en:lesson-03:session-16:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — кассир исправляет одну строку в системе",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы нашли пальто, которое только что искали вместе с Олегом. Дополните сообщение",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-16:i14:r1",
-          "text": "a"
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i14:r2",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i14:r3",
+          "text": "Are"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-16:i14:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — кассир исправляет одну строку в системе",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы нашли пальто, которое только что искали вместе с Олегом. Дополните сообщение",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-16:i14:audio",
-          "transcript": "It is not an invoice."
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы нашли пальто, которое только что искали вместе с Олегом. Дополните сообщение",
+          "uk": "Ви знайшли пальто, яке щойно шукали разом з Олегом. Доповніть повідомлення"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not an invoice.",
-        "orderedTokens": [
-          "It",
-          "is",
-          "not",
-          "an",
-          "invoice"
-        ],
-        "authoredDistractorTokens": [
-          "a"
-        ],
-        "slotFeedback": [
+        "gappedTargetPhrase": "___ coat is here.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-03:session-16:i14:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i14:r2",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Вы нашли пальто, которое только что искали вместе с Олегом. Дополните сообщение",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-16:i14:r2",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — кассир исправляе",
+            "testedDimension": "Вы нашли пальто, которое только что искали вместе с Олегом. Дополните сообщение",
             "feedbackByLocale": {
-              "ru": "В записи после `not` звучит `an invoice`. Название начинается с гласного звука.",
-              "uk": "У записі після `not` звучить `an invoice`. Назва починається з голосного звука."
+              "ru": "Для известного вам обоим пальто здесь `The coat`; перед `coat` форма `An` также не подходит.",
+              "uk": "Для відомого вам обом пальта тут `The coat`; перед `coat` форма `An` також не підходить."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы нашли пальто, которое только что искали вместе с Олегом. Дополните сообщение",
+            "feedbackByLocale": {
+              "ru": "Это сообщение `The coat is here`.",
+              "uk": "Це повідомлення `The coat is here`."
             }
           }
         ]
@@ -807,57 +809,75 @@
       "interactionId": "en:lesson-03:session-16:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите короткое название — кассир спрашивает, что за документ перед вами; ответьте двумя словами",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание замка",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-16:i15:r1",
-          "text": "A"
+          "text": "The lock is old."
         },
         {
           "responseId": "en:lesson-03:session-16:i15:r2",
-          "text": "is"
+          "text": "The lock is new."
+        },
+        {
+          "responseId": "en:lesson-03:session-16:i15:r3",
+          "text": "The lock is open."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите короткое название — кассир спрашивает, что за документ перед вами; ответьте двумя словами",
+      "audioTargetIds": [
+        "en:lesson-03:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание замка",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "An invoice.",
-        "localizedMeaning": {
-          "ru": "Соберите короткое название — кассир спрашивает, что за документ перед вами; ответьте двумя словами",
-          "uk": "Складіть коротку назву — касир питає, що за документ перед вами; дайте відповідь двома словами"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-16:i15:audio",
+          "transcript": "The lock is old."
         },
-        "orderedTokens": [
-          "An",
-          "invoice"
-        ],
-        "authoredDistractorTokens": [
-          "A",
-          "is"
-        ],
-        "slotFeedback": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-16:i15:r1",
-            "correct": false,
-            "testedDimension": "Соберите короткое название — кассир спра",
-            "feedbackByLocale": {
-              "ru": "`invoice` начинается с гласного звука, поэтому короткое название — `An invoice`.",
-              "uk": "`invoice` починається з голосного звука, тому коротка назва — `An invoice`."
-            }
+            "targetText": "The lock is old.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-16:i15:r2",
+            "targetText": "The lock is new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i15:r3",
+            "targetText": "The lock is open.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-16:i15:r2",
             "correct": false,
-            "testedDimension": "Соберите короткое название — кассир спра",
+            "testedDimension": "Послушайте описание замка",
             "feedbackByLocale": {
-              "ru": "Здесь нужно короткое название из двух слов, без `is`.",
-              "uk": "Тут потрібна коротка назва з двох слів, без `is`."
+              "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+              "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание замка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `old`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `old`, а в цьому варіанті — `open`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -865,125 +885,107 @@
       "interactionId": "en:lesson-03:session-16:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-16:i16:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-16:i16:audio",
-          "transcript": "Is it an invoice?"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-16:i16:p1",
+            "target": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-16:i16:p2",
+            "target": "window",
+            "meaningByLocale": {
+              "ru": "окно",
+              "uk": "вікно"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-16:i16:p3",
+            "target": "picture",
+            "meaningByLocale": {
+              "ru": "картинка",
+              "uk": "зображення"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-16:i16:p4",
+            "target": "coat",
+            "meaningByLocale": {
+              "ru": "пальто",
+              "uk": "пальто"
+            }
+          }
+        ],
+        "leftColumn": [
+          "table",
+          "window",
+          "picture",
+          "coat"
+        ],
+        "rightColumn": [
+          "стол",
+          "окно",
+          "картинка",
+          "пальто"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Is it an invoice?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-16:i17:s01",
+      "interactionId": "en:lesson-03:session-16:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Вы собираетесь уходить из мастерской. Олег стоит у окна, о котором вы оба говорили. Спросите, закрыто ли окно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-16:i17:s01:audio"
+        "en:lesson-03:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Вы собираетесь уходить из мастерской. Олег стоит у окна, о котором вы оба говорили. Спросите, закрыто ли окно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-16:i17:s01:audio",
-          "transcript": "It is an invoice."
+          "audioTargetId": "en:lesson-03:session-16:i17:audio",
+          "transcript": "Is the window closed?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is an invoice.",
+        "targetPhrase": "Is the window closed?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-16:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-16:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-16:i17:s02:audio",
-          "transcript": "Is it an invoice?"
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Is it an invoice?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-16:i17:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-16:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-16:i17:s03:audio",
-          "transcript": "It is not an invoice."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It is not an invoice.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -994,11 +996,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8101f9e4db60085c4784e482216452cfa63fa76778bd464f82a2b7d5df82dcc7"
+  "learnerFingerprint": "56efa1d7db3bed7b258b1a8423269608e69a892e2cf6cbf9770fa16e6b2e591a"
 }

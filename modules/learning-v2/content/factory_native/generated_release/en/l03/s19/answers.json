@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-19:i01",
-    "correctText": "story",
+    "correctText": "They are bags.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i02",
-    "correctText": "story",
+    "correctText": "The bags are together.",
     "correctResponseId": "en:lesson-03:session-19:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-19:i03",
-    "correctText": "country",
-    "correctResponseId": null
+    "correctText": "bags",
+    "correctResponseId": "en:lesson-03:session-19:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-19:i04",
-    "correctText": "country",
-    "correctResponseId": "en:lesson-03:session-19:i04:r1"
+    "correctText": "en:lesson-03:session-19:i04:p1=bags\nen:lesson-03:session-19:i04:p2=together\nen:lesson-03:session-19:i04:p3=alone\nen:lesson-03:session-19:i04:p4=room",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i05",
-    "correctText": "They are stories.",
+    "correctText": "The room is nearby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i06",
-    "correctText": "battery",
+    "correctText": "Where are the bags?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i07",
-    "correctText": "battery",
-    "correctResponseId": "en:lesson-03:session-19:i07:r1"
+    "correctText": "I'm alone.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i08",
-    "correctText": "countries",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-19:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-19:i09",
-    "correctText": "Are they batteries?",
-    "correctResponseId": null
+    "correctText": "He is guilty.",
+    "correctResponseId": "en:lesson-03:session-19:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-19:i10",
-    "correctText": "boxes",
-    "correctResponseId": "en:lesson-03:session-19:i10:r1"
+    "correctText": "en:lesson-03:session-19:i10:p1=nearby\nen:lesson-03:session-19:i10:p2=guilty\nen:lesson-03:session-19:i10:p3=bags\nen:lesson-03:session-19:i10:p4=room",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i11",
-    "correctText": "They are not stories.",
+    "correctText": "The bags are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i12",
-    "correctText": "en:lesson-03:session-19:i12:p1=stories\nen:lesson-03:session-19:i12:p2=countries\nen:lesson-03:session-19:i12:p3=batteries\nen:lesson-03:session-19:i12:p4=boxes",
+    "correctText": "The bags are together.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i13",
-    "correctText": "Are they countries?",
-    "correctResponseId": "en:lesson-03:session-19:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-19:i14",
-    "correctText": "Are they boxes?",
+    "correctText": "He's guilty.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-19:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-19:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-19:i15",
-    "correctText": "batteries",
+    "correctText": "The bags are nearby.",
     "correctResponseId": "en:lesson-03:session-19:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-19:i16",
-    "correctText": "They are not countries.",
+    "correctText": "en:lesson-03:session-19:i16:p1=together\nen:lesson-03:session-19:i16:p2=alone\nen:lesson-03:session-19:i16:p3=nearby\nen:lesson-03:session-19:i16:p4=guilty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-19:i17",
-    "correctText": "They are batteries.",
+    "correctText": "Where are the bags?",
     "correctResponseId": null
   }
 ]

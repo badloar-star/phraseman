@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-12:intro1:r2": {
+          "ru": "Перед `table` нужно `a`: первый звук согласный.",
+          "uk": "Перед `table` потрібно `a`: перший звук приголосний."
+        },
+        "en:lesson-03:session-12:intro1:r3": {
+          "ru": "В этой фразе перед названием одного стола нужно `a`.",
+          "uk": "У цій фразі перед назвою одного столу потрібно `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-12:intro2:r2": {
+          "ru": "О месте спрашиваем `Where`, а не `What`.",
+          "uk": "Про місце запитуємо `Where`, а не `What`."
+        },
+        "en:lesson-03:session-12:intro2:r3": {
+          "ru": "С одним столом здесь нужно `is`.",
+          "uk": "З одним столом тут потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-12:intro3:r2": {
+          "ru": "С `It` нужно `is`.",
+          "uk": "З `It` потрібно `is`."
+        },
+        "en:lesson-03:session-12:intro3:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7eb873c2a4b173c397ffe05599122266986ec74fc6a61a314822f0a0f4c71499"
+}

@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-33:i01",
-    "correctText": "shoe",
-    "correctResponseId": "en:lesson-03:session-33:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i03",
-    "correctText": "sock",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i05",
-    "correctText": "shirt",
+    "correctText": "The dogs are active.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i02",
-    "correctText": "shoe",
-    "correctResponseId": null
+    "correctText": "phone",
+    "correctResponseId": "en:lesson-03:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i03",
+    "correctText": "phone",
+    "correctResponseId": "en:lesson-03:session-33:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i04",
-    "correctText": "sock",
-    "correctResponseId": "en:lesson-03:session-33:i04:r1"
+    "correctText": "en:lesson-03:session-33:i04:p1=phone\nen:lesson-03:session-33:i04:p2=dogs\nen:lesson-03:session-33:i04:p3=okay\nen:lesson-03:session-33:i04:p4=active",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i05",
+    "correctText": "This is a phone.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i06",
-    "correctText": "shirt",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i08",
-    "correctText": "shoe",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i09",
-    "correctText": "sock",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i10",
-    "correctText": "shirt",
+    "correctText": "That is a phone.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i07",
-    "correctText": "en:lesson-03:session-33:i07:p1=shoe\nen:lesson-03:session-33:i07:p2=sock\nen:lesson-03:session-33:i07:p3=shirt\nen:lesson-03:session-33:i07:p4=hat",
+    "correctText": "These are dogs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i08",
+    "correctText": "This",
+    "correctResponseId": "en:lesson-03:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i09",
+    "correctText": "Those are dogs.",
+    "correctResponseId": "en:lesson-03:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i10",
+    "correctText": "en:lesson-03:session-33:i10:p1=this\nen:lesson-03:session-33:i10:p2=that\nen:lesson-03:session-33:i10:p3=these\nen:lesson-03:session-33:i10:p4=those",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i11",
-    "correctText": "These are shoes.",
+    "correctText": "Those dogs are active.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i12",
-    "correctText": "Это шляпы",
-    "correctResponseId": "en:lesson-03:session-33:i12:r1"
+    "correctText": "This phone is okay.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i13",
-    "correctText": "These",
-    "correctResponseId": "en:lesson-03:session-33:i13:r1"
+    "correctText": "That is okay.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i14",
-    "correctText": "These are socks.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-33:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i15",
-    "correctText": "These are shirts.",
-    "correctResponseId": null
+    "correctText": "That phone is okay.",
+    "correctResponseId": "en:lesson-03:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i16",
-    "correctText": "These shirts, please.",
+    "correctText": "en:lesson-03:session-33:i16:p1=phone\nen:lesson-03:session-33:i16:p2=okay\nen:lesson-03:session-33:i16:p3=active\nen:lesson-03:session-33:i16:p4=dogs",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-33:i17:s01",
-    "correctText": "These are shoes.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i17:s02",
-    "correctText": "These are socks.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i17:s03",
-    "correctText": "These are shirts.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i17:s04",
-    "correctText": "These shirts, please.",
+    "interactionId": "en:lesson-03:session-33:i17",
+    "correctText": "This is a phone.",
     "correctResponseId": null
   }
 ]

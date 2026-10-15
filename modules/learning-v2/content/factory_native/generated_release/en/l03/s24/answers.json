@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-24:i01",
-    "correctText": "an envelope",
-    "correctResponseId": "en:lesson-03:session-24:i01:r1"
+    "correctText": "They are books.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i02",
-    "correctText": "Are they envelopes?",
+    "correctText": "The boxes are here.",
     "correctResponseId": "en:lesson-03:session-24:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i03",
-    "correctText": "It is an envelope.",
-    "correctResponseId": null
+    "correctText": "maps",
+    "correctResponseId": "en:lesson-03:session-24:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i04",
-    "correctText": "they",
-    "correctResponseId": "en:lesson-03:session-24:i04:r1"
+    "correctText": "en:lesson-03:session-24:i04:p1=books\nen:lesson-03:session-24:i04:p2=boxes\nen:lesson-03:session-24:i04:p3=bags\nen:lesson-03:session-24:i04:p4=maps",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i05",
-    "correctText": "It is a glass.",
-    "correctResponseId": "en:lesson-03:session-24:i05:r1"
+    "correctText": "The pens are inside.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i06",
-    "correctText": "dishes",
-    "correctResponseId": "en:lesson-03:session-24:i06:r1"
+    "correctText": "Where are the cups?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i07",
-    "correctText": "Are they glasses?",
+    "correctText": "They are bags.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i08",
-    "correctText": "stories",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-24:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i09",
-    "correctText": "They are envelopes.",
-    "correctResponseId": null
+    "correctText": "They are cups.",
+    "correctResponseId": "en:lesson-03:session-24:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i10",
-    "correctText": "They are not envelopes.",
-    "correctResponseId": "en:lesson-03:session-24:i10:r1"
+    "correctText": "en:lesson-03:session-24:i10:p1=pens\nen:lesson-03:session-24:i10:p2=cups\nen:lesson-03:session-24:i10:p3=tickets\nen:lesson-03:session-24:i10:p4=boxes",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i11",
-    "correctText": "glass",
-    "correctResponseId": "en:lesson-03:session-24:i11:r1"
+    "correctText": "The bags are here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i12",
-    "correctText": "They are not dishes.",
+    "correctText": "Where are the maps?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i13",
-    "correctText": "They are envelopes.",
+    "correctText": "They are pens.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i14",
-    "correctText": "en:lesson-03:session-24:i14:p1=envelopes\nen:lesson-03:session-24:i14:p2=dishes\nen:lesson-03:session-24:i14:p3=stories\nen:lesson-03:session-24:i14:p4=glasses",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-24:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i15",
-    "correctText": "It is a story.",
-    "correctResponseId": null
+    "correctText": "The tickets are valid.",
+    "correctResponseId": "en:lesson-03:session-24:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i16",
-    "correctText": "glasses",
-    "correctResponseId": "en:lesson-03:session-24:i16:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-24:i17:s01",
-    "correctText": "It is an envelope.",
+    "correctText": "en:lesson-03:session-24:i16:p1=books\nen:lesson-03:session-24:i16:p2=maps\nen:lesson-03:session-24:i16:p3=cups\nen:lesson-03:session-24:i16:p4=tickets",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-24:i17:s02",
-    "correctText": "Are they envelopes?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-24:i17:s03",
-    "correctText": "They are not envelopes.",
+    "interactionId": "en:lesson-03:session-24:i17",
+    "correctText": "Where are the bags?",
     "correctResponseId": null
   }
 ]

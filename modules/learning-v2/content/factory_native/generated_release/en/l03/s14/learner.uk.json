@@ -7,41 +7,43 @@
       "interactionId": "en:lesson-03:session-14:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sandwich",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна показує на роздруківку. Назвіть її: «Це зображення»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-14:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — sandwich",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна показує на роздруківку. Назвіть її: «Це зображення»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i01:audio",
-          "transcript": "sandwich"
+        "family": "phrase_builder",
+        "targetPhrase": "It is a picture.",
+        "localizedMeaning": {
+          "ru": "Анна показывает на распечатку. Назовите её: «Это картинка»",
+          "uk": "Анна показує на роздруківку. Назвіть її: «Це зображення»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "picture"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-14:i01:r1",
-            "targetText": "sandwich",
-            "meaningByLocale": {
-              "ru": "«сэндвич». Хлеб с начинкой, например с сыром. Здесь речь об одном сэндвиче.",
-              "uk": "«сендвіч». Хліб із начинкою, наприклад, із сиром. Тут ідеться про один сендвіч."
+            "responseId": "en:lesson-03:session-14:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна показує на роздруківку. Назвіть її: «Це зображення»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `a` — `It is a picture.`",
+              "uk": "тут потрібно `a` — `It is a picture.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sandwich",
-          "definitionByLocale": {
-            "ru": "«сэндвич». Хлеб с начинкой, например с сыром. Здесь речь об одном сэндвиче.",
-            "uk": "«сендвіч». Хліб із начинкою, наприклад, із сиром. Тут ідеться про один сендвіч."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — яке слово сказав друг",
+      "prompt": "Послухайте опис зображення",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-14:i02:r1",
-          "text": "sandwich"
+          "text": "The picture is dirty."
         },
         {
           "responseId": "en:lesson-03:session-14:i02:r2",
-          "text": "bandage"
+          "text": "The picture is clean."
         },
         {
           "responseId": "en:lesson-03:session-14:i02:r3",
-          "text": "language"
+          "text": "The picture is big."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-14:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й оберіть — яке слово сказав друг",
+      "accessibilityLabel": "Послухайте опис зображення",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-14:i02:audio",
-          "transcript": "sandwich"
+          "transcript": "The picture is dirty."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-14:i02:r1",
-            "targetText": "sandwich",
+            "targetText": "The picture is dirty.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-14:i02:r2",
-            "targetText": "bandage",
+            "targetText": "The picture is clean.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-14:i02:r3",
-            "targetText": "language",
+            "targetText": "The picture is big.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-14:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
+            "testedDimension": "Послухайте опис зображення",
             "feedbackByLocale": {
-              "ru": "`bandage` — «повязка». Первым слышен «б». В `sandwich` первым звучит «с»; ритм слов похож.",
-              "uk": "`bandage` — «пов’язка». Спочатку чути «б». У `sandwich` першим звучить «с»; ритм слів подібний."
+              "ru": "В записи последнее слово — `dirty`, а в этом варианте — `clean`.",
+              "uk": "У записі останнє слово — `dirty`, а в цьому варіанті — `clean`."
             }
           },
           {
             "responseId": "en:lesson-03:session-14:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
+            "testedDimension": "Послухайте опис зображення",
             "feedbackByLocale": {
-              "ru": "`language` — «язык». Слово начинается с «л», а `sandwich` — с «с». Слушайте начало, а не только похожую вторую часть.",
-              "uk": "`language` — «мова». Слово починається з «л», а `sandwich` — з «с». Слухайте початок, а не лише подібну другу частину."
+              "ru": "В записи последнее слово — `dirty`, а в этом варианте — `big`.",
+              "uk": "У записі останнє слово — `dirty`, а в цьому варіанті — `big`."
             }
           }
         ],
@@ -126,42 +128,68 @@
       "interactionId": "en:lesson-03:session-14:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — salad",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-14:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — salad",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i03:audio",
-          "transcript": "salad"
+      "prompt": "Доповніть назву роздрукованого зображення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i03:r1",
+          "text": "a"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-03:session-14:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть назву роздрукованого зображення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните название распечатанного изображения",
+          "uk": "Доповніть назву роздрукованого зображення"
+        },
+        "gappedTargetPhrase": "It is ___ picture.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-03:session-14:i03:r1",
-            "targetText": "salad",
-            "meaningByLocale": {
-              "ru": "«салат». Блюдо из смешанных продуктов, часто с овощами. Здесь называем одну порцию.",
-              "uk": "«салат». Страва зі змішаних продуктів, часто з овочами. Тут називаємо одну порцію."
-            }
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i03:r3",
+            "text": "are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "salad",
-          "definitionByLocale": {
-            "ru": "«салат». Блюдо из смешанных продуктов, часто с овощами. Здесь называем одну порцию.",
-            "uk": "«салат». Страва зі змішаних продуктів, часто з овочами. Тут називаємо одну порцію."
+        "testedDimension": "Доповніть назву роздрукованого зображення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть назву роздрукованого зображення",
+            "feedbackByLocale": {
+              "ru": "Перед `picture` нужно `a`: первый звук согласный.",
+              "uk": "Перед `picture` потрібно `a`: перший звук приголосний."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть назву роздрукованого зображення",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно название `a picture`.",
+              "uk": "Тут потрібна назва `a picture`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,486 +197,60 @@
       "interactionId": "en:lesson-03:session-14:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — яке слово вимовив офіціант",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i04:r1",
-          "text": "salad"
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i04:r2",
-          "text": "valid"
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i04:r3",
-          "text": "sallow"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-14:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив офіціант",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i04:audio",
-          "transcript": "salad"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-14:i04:r1",
-            "targetText": "salad",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i04:r2",
-            "targetText": "valid",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i04:r3",
-            "targetText": "sallow",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
-            "feedbackByLocale": {
-              "ru": "`valid` — «действительный». Начинается с «в», а `salad` — с «с». Похожий ритм не делает слова одинаковыми.",
-              "uk": "`valid` — «чинний». Починається з «в», а `salad` — з «с». Подібний ритм не робить слова однаковими."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
-            "feedbackByLocale": {
-              "ru": "`sallow` — «нездорово-бледный». Начало похоже, но на конце звучит гласный с переходом к другому звучанию. В `salad` слово заканчивается согласным «д».",
-              "uk": "`sallow` — «хворобливо-блідий». Початок схожий, але наприкінці голосний ковзає від одного звучання до іншого. У `salad` слово закінчується приголосним «д»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротку назву — офіціант уточнює, що ви обрали; дайте відповідь двома англійськими словами, що означають «сендвіч»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i05:r1",
-          "text": "An"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротку назву — офіціант уточнює, що ви обрали; дайте відповідь двома англійськими словами, що означають «сендвіч»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "A sandwich.",
-        "localizedMeaning": {
-          "ru": "Соберите короткое название — официант уточняет, что вы выбрали; ответьте двумя словами «сэндвич»",
-          "uk": "Складіть коротку назву — офіціант уточнює, що ви обрали; дайте відповідь двома англійськими словами, що означають «сендвіч»"
-        },
-        "orderedTokens": [
-          "A",
-          "sandwich"
-        ],
-        "authoredDistractorTokens": [
-          "An"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i05:r1",
-            "correct": false,
-            "testedDimension": "Складіть коротку назву — офіціант уточню",
-            "feedbackByLocale": {
-              "ru": "Название `sandwich` начинается с согласного «с». В коротком ответе перед ним нужно `A`.",
-              "uk": "Назва `sandwich` починається з приголосного «с». У короткій відповіді перед нею потрібне `A`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — egg",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-14:i06:audio"
-      ],
-      "accessibilityLabel": "Картка слова — egg",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i06:audio",
-          "transcript": "egg"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-14:i06:r1",
-            "targetText": "egg",
-            "meaningByLocale": {
-              "ru": "«яйцо». Например, куриное яйцо. Здесь речь об одном целом яйце, а не о части блюда.",
-              "uk": "«яйце». Наприклад, куряче яйце. Тут ідеться про одне ціле яйце, а не про частину страви."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "egg",
-          "definitionByLocale": {
-            "ru": "«яйцо». Например, куриное яйцо. Здесь речь об одном целом яйце, а не о части блюда.",
-            "uk": "«яйце». Наприклад, куряче яйце. Тут ідеться про одне ціле яйце, а не про частину страви."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — яке слово вимовив друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i07:r1",
-          "text": "egg"
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i07:r2",
-          "text": "edge"
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i07:r3",
-          "text": "leg"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-14:i07:audio"
-      ],
-      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i07:audio",
-          "transcript": "egg"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-14:i07:r1",
-            "targetText": "egg",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i07:r2",
-            "targetText": "edge",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i07:r3",
-            "targetText": "leg",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i07:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
-            "feedbackByLocale": {
-              "ru": "`edge` — «край». На конце звучит сочетание «дж», а в `egg` — «г». Начало похоже, поэтому дослушайте слово.",
-              "uk": "`edge` — «край». Наприкінці чути поєднання «дж», а в `egg` — проривний звук, близький до українського «ґ». Початок схожий, тому дослухайте слово."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i07:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
-            "feedbackByLocale": {
-              "ru": "`leg` — «нога». Сначала слышно «л», затем гласный. В `egg` начало сразу гласное, а конец у слов одинаковый.",
-              "uk": "`leg` — «нога». Спершу чути «л», а потім голосний. У `egg` початок одразу голосний, а кінцівка в обох словах подібна."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — друг показує на годинник на стіні й питає, що це; назвіть предмет (`clock` — «годинник», настінний або настільний)",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i08:r1",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i08:r2",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i08:r3",
-          "text": "is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — друг показує на годинник на стіні й питає, що це; назвіть предмет (`clock` — «годинник», настінний або настільний)",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — друг показывает на часы на стене и спрашивает, что это; назовите предмет (`clock` — «часы», настенные или настольные)",
-          "uk": "Вставте слово — друг показує на годинник на стіні й питає, що це; назвіть предмет (`clock` — «годинник», настінний або настільний)"
-        },
-        "gappedTargetPhrase": "It is ___ clock.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-14:i08:r1",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i08:r2",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i08:r3",
-            "text": "is"
-          }
-        ],
-        "testedDimension": "Вставте слово — друг показує на годинник",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i08:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — друг показує на годинник",
-            "feedbackByLocale": {
-              "ru": "В начале `clock` слышно согласный «к». Перед этим названием выбираем `a`.",
-              "uk": "На початку `clock` чути приголосний «к». Перед цією назвою обираємо `a`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i08:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — друг показує на годинник",
-            "feedbackByLocale": {
-              "ru": "После `It` уже стоит `is`. Перед названием часов здесь нужно `a`, а не второе `is`.",
-              "uk": "Після `It` уже стоїть `is`. Перед назвою годинника тут потрібне `a`, а не друге `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — офіціант говорить про їжу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i09:r1",
-          "text": "a"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-14:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть — офіціант говорить про їжу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i09:audio",
-          "transcript": "It is an egg."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is an egg.",
-        "orderedTokens": [
-          "It",
-          "is",
-          "an",
-          "egg"
-        ],
-        "authoredDistractorTokens": [
-          "a"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i09:r1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть — офіціант говорит",
-            "feedbackByLocale": {
-              "ru": "В записи перед `egg` звучит `an`. Название начинается с гласного звука, поэтому плитка `a` лишняя.",
-              "uk": "У записі перед `egg` звучить `an`. Назва починається з голосного звуку, тому плитка `a` зайва."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — до зустрічі рівно шістдесят хвилин; назвіть цей проміжок двома словами (`hour` — «година»)",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i10:r1",
-          "text": "An"
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i10:r2",
-          "text": "A"
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i10:r3",
-          "text": "Is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — до зустрічі рівно шістдесят хвилин; назвіть цей проміжок двома словами (`hour` — «година»)",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — до встречи ровно шестьдесят минут; назовите этот промежуток двумя словами (`hour` — «час»)",
-          "uk": "Вставте слово — до зустрічі рівно шістдесят хвилин; назвіть цей проміжок двома словами (`hour` — «година»)"
-        },
-        "gappedTargetPhrase": "___ hour.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-14:i10:r1",
-            "text": "An"
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i10:r2",
-            "text": "A"
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i10:r3",
-            "text": "Is"
-          }
-        ],
-        "testedDimension": "Вставте слово — до зустрічі рівно шістде",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i10:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — до зустрічі рівно шістде",
-            "feedbackByLocale": {
-              "ru": "Первая буква `h` в `hour` не звучит: слово начинается с гласного. Перед ним нужно `An`.",
-              "uk": "Перша літера `h` у `hour` не звучить: слово починається з голосного. Перед ним потрібне `An`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — до зустрічі рівно шістде",
-            "feedbackByLocale": {
-              "ru": "Нужно короткое название промежутка времени: `An hour`. Одно `Is` перед `hour` такого названия не образует.",
-              "uk": "Потрібна коротка назва проміжку часу: `An hour`. Одне `Is` перед `hour` такої назви не утворює."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви з українськими значеннями — що ви побачили в кафе",
+      "prompt": "З’єднайте слова зі значеннями; open тут описує двері",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви з українськими значеннями — що ви побачили в кафе",
+      "accessibilityLabel": "З’єднайте слова зі значеннями; open тут описує двері",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-14:i11:p1",
-            "target": "sandwich",
+            "pairId": "en:lesson-03:session-14:i04:p1",
+            "target": "picture",
             "meaningByLocale": {
-              "ru": "сэндвич",
-              "uk": "сендвіч"
+              "ru": "картинка",
+              "uk": "зображення"
             }
           },
           {
-            "pairId": "en:lesson-03:session-14:i11:p2",
-            "target": "salad",
+            "pairId": "en:lesson-03:session-14:i04:p2",
+            "target": "pen",
             "meaningByLocale": {
-              "ru": "салат",
-              "uk": "салат"
+              "ru": "ручка",
+              "uk": "ручка"
             }
           },
           {
-            "pairId": "en:lesson-03:session-14:i11:p3",
-            "target": "egg",
+            "pairId": "en:lesson-03:session-14:i04:p3",
+            "target": "dirty",
             "meaningByLocale": {
-              "ru": "яйцо",
-              "uk": "яйце"
+              "ru": "грязный",
+              "uk": "брудний"
             }
           },
           {
-            "pairId": "en:lesson-03:session-14:i11:p4",
-            "target": "clock",
+            "pairId": "en:lesson-03:session-14:i04:p4",
+            "target": "open",
             "meaningByLocale": {
-              "ru": "часы",
-              "uk": "годинник"
+              "ru": "открытый",
+              "uk": "відчинений"
             }
           }
         ],
         "leftColumn": [
-          "sandwich",
-          "salad",
-          "egg",
-          "clock"
+          "picture",
+          "pen",
+          "dirty",
+          "open"
         ],
         "rightColumn": [
-          "сэндвич",
-          "салат",
-          "яйцо",
-          "часы"
+          "зображення",
+          "ручка",
+          "брудний",
+          "відчинений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -665,242 +267,119 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-14:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть питання — друг приніс порцію страви; уточніть «Це салат?»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i12:r1",
-          "text": "an"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть питання — друг приніс порцію страви; уточніть «Це салат?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is it a salad?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — друг принёс порцию блюда; уточните «Это салат?»",
-          "uk": "Складіть питання — друг приніс порцію страви; уточніть «Це салат?»"
-        },
-        "orderedTokens": [
-          "Is",
-          "it",
-          "a",
-          "salad"
-        ],
-        "authoredDistractorTokens": [
-          "an"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i12:r1",
-            "correct": false,
-            "testedDimension": "Складіть питання — друг приніс порцію ст",
-            "feedbackByLocale": {
-              "ru": "После `Is it` нужно `a salad`. Название порции начинается с согласного «с».",
-              "uk": "Після `Is it` потрібне `a salad`. Назва порції починається з приголосного «с»."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — що друг сказав про їжу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i13:r1",
-          "text": "It is not a sandwich."
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i13:r2",
-          "text": "It is a sandwich."
-        },
-        {
-          "responseId": "en:lesson-03:session-14:i13:r3",
-          "text": "It is not an egg."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-14:i13:audio"
-      ],
-      "accessibilityLabel": "Послухайте й оберіть — що друг сказав про їжу",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i13:audio",
-          "transcript": "It is not a sandwich."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-14:i13:r1",
-            "targetText": "It is not a sandwich.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i13:r2",
-            "targetText": "It is a sandwich.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i13:r3",
-            "targetText": "It is not an egg.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i13:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — що друг сказав пр",
-            "feedbackByLocale": {
-              "ru": "В этом варианте название подтверждают. В записи после `is` слышно `not` — название отрицают.",
-              "uk": "У цьому варіанті назву підтверджують. У записі після `is` чути `not` — назву заперечують."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-14:i13:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — що друг сказав пр",
-            "feedbackByLocale": {
-              "ru": "Здесь названо яйцо: `an egg`. В записи после отрицания звучит `a sandwich`.",
-              "uk": "Тут названо яйце: `an egg`. У записі після заперечення звучить `a sandwich`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-03:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — друг говорить про час до зустрічі",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i14:r1",
-          "text": "A"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-14:i14:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть — друг говорить про час до зустрічі",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i14:audio",
-          "transcript": "An hour."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "An hour.",
-        "orderedTokens": [
-          "An",
-          "hour"
-        ],
-        "authoredDistractorTokens": [
-          "A"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i14:r1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть — друг говорить пр",
-            "feedbackByLocale": {
-              "ru": "В записи звучит `An hour`. У `hour` гласное начало, поэтому перед ним выбираем `An`.",
-              "uk": "У записі звучить `An hour`. У `hour` голосний початок, тому перед ним обираємо `An`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть заперечення — друг прийняв булочку за сендвіч; виправте його: «Це не сендвіч»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-14:i15:r1",
-          "text": "an"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть заперечення — друг прийняв булочку за сендвіч; виправте його: «Це не сендвіч»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is not a sandwich.",
-        "localizedMeaning": {
-          "ru": "Соберите отрицание — друг принял булочку за сэндвич; поправьте его: «Это не сэндвич»",
-          "uk": "Складіть заперечення — друг прийняв булочку за сендвіч; виправте його: «Це не сендвіч»"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "not",
-          "a",
-          "sandwich"
-        ],
-        "authoredDistractorTokens": [
-          "an"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-14:i15:r1",
-            "correct": false,
-            "testedDimension": "Складіть заперечення — друг прийняв було",
-            "feedbackByLocale": {
-              "ru": "После `It is not` ставим `a sandwich`. Отрицание сохраняет `a` перед согласным началом названия.",
-              "uk": "Після `It is not` ставимо `a sandwich`. Заперечення зберігає `a` перед приголосним початком назви."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-14:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "prompt": "Послухайте й складіть повідомлення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-14:i16:audio"
+        "en:lesson-03:session-14:i05:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i05:audio",
+          "transcript": "The pen is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The pen is here.",
+        "orderedTokens": [
+          "The",
+          "pen",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть повідомлення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The pen is here.`",
+              "uk": "тут потрібно `is` — `The pen is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На знайомій вам обом роздруківці брудна пляма. Повідомте «Зображення брудне»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На знайомій вам обом роздруківці брудна пляма. Повідомте «Зображення брудне»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The picture is dirty.",
+        "localizedMeaning": {
+          "ru": "На знакомой вам обоим распечатке грязное пятно. Сообщите «Картинка грязная»",
+          "uk": "На знайомій вам обом роздруківці брудна пляма. Повідомте «Зображення брудне»"
+        },
+        "orderedTokens": [
+          "The",
+          "picture",
+          "is",
+          "dirty"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "На знайомій вам обом роздруківці брудна пляма. Повідомте «Зображення брудне»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The picture is dirty.`",
+              "uk": "тут потрібно `is` — `The picture is dirty.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви говорите про двері до виставкової зали. Повідомте «Двері відчинені»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Ви говорите про двері до виставкової зали. Повідомте «Двері відчинені»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-14:i16:audio",
-          "transcript": "It is a clock."
+          "audioTargetId": "en:lesson-03:session-14:i07:audio",
+          "transcript": "The door is open."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is a clock.",
+        "targetPhrase": "The door is open.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -914,47 +393,604 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-14:i17",
-      "ordinal": 20,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — друг дивиться на вашу порцію салату й питає, що це; назвіть страву повною фразою",
+      "interactionId": "en:lesson-03:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Олег помітив бруд на своєму пальці: джерело плями тепер очевидне. Доповніть «Це очевидно»",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-14:i17:r1",
-          "text": "an"
+          "responseId": "en:lesson-03:session-14:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i08:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — друг дивиться на вашу порцію салату й питає, що це; назвіть страву повною фразою",
+      "accessibilityLabel": "Олег помітив бруд на своєму пальці: джерело плями тепер очевидне. Доповніть «Це очевидно»",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is a salad.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — друг смотрит на вашу порцию салата и спрашивает, что это; назовите блюдо полной фразой",
-          "uk": "Складіть фразу — друг дивиться на вашу порцію салату й питає, що це; назвіть страву повною фразою"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Олег заметил грязь на своём пальце: источник пятна теперь очевиден. Дополните «Это очевидно»",
+          "uk": "Олег помітив бруд на своєму пальці: джерело плями тепер очевидне. Доповніть «Це очевидно»"
         },
+        "gappedTargetPhrase": "It ___ obvious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Олег помітив бруд на своєму пальці: джерело плями тепер очевидне. Доповніть «Це очевидно»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Олег помітив бруд на своєму пальці: джерело плями тепер очевидне. Доповніть «Це очевидно»",
+            "feedbackByLocale": {
+              "ru": "С `It` нужно `is`.",
+              "uk": "З `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Олег помітив бруд на своєму пальці: джерело плями тепер очевидне. Доповніть «Це очевидно»",
+            "feedbackByLocale": {
+              "ru": "С `It` нужно `is`.",
+              "uk": "З `It` потрібно `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте повідомлення про двері",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i09:r1",
+          "text": "The door is closed."
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i09:r2",
+          "text": "The door is open."
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i09:r3",
+          "text": "The door is old."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про двері",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i09:audio",
+          "transcript": "The door is closed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i09:r1",
+            "targetText": "The door is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i09:r2",
+            "targetText": "The door is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i09:r3",
+            "targetText": "The door is old.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте повідомлення про двері",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `closed`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `open`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте повідомлення про двері",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `closed`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `old`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями; closed тут описує двері",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями; closed тут описує двері",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-14:i10:p1",
+            "target": "closed",
+            "meaningByLocale": {
+              "ru": "закрытый",
+              "uk": "зачинений"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i10:p2",
+            "target": "obvious",
+            "meaningByLocale": {
+              "ru": "очевидный",
+              "uk": "очевидний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i10:p3",
+            "target": "picture",
+            "meaningByLocale": {
+              "ru": "картинка",
+              "uk": "зображення"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i10:p4",
+            "target": "pen",
+            "meaningByLocale": {
+              "ru": "ручка",
+              "uk": "ручка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "closed",
+          "obvious",
+          "picture",
+          "pen"
+        ],
+        "rightColumn": [
+          "зачинений",
+          "очевидний",
+          "зображення",
+          "ручка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i11:audio",
+          "transcript": "Where is the pen?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the pen?",
         "orderedTokens": [
-          "It",
+          "Where",
           "is",
-          "a",
-          "salad"
+          "the",
+          "pen"
         ],
         "authoredDistractorTokens": [
-          "an"
+          "What"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-14:i17:r1",
+            "responseId": "en:lesson-03:session-14:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — друг дивиться на вашу п",
+            "testedDimension": "Послухайте й складіть запитання",
             "feedbackByLocale": {
-              "ru": "После `It is` нужно `a salad`: называем одну порцию, а первый звук названия — согласный «с».",
-              "uk": "Після `It is` потрібне `a salad`: називаємо одну порцію, а перший звук назви приголосний «с»."
+              "ru": "здесь нужно `Where` — `Where is the pen?`",
+              "uk": "тут потрібно `Where` — `Where is the pen?`"
             }
           }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте роздруковане зображення, яке приніс Олег. Він знає, про яке зображення йдеться. Запитайте, де воно, використавши слово «зображення»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте роздруковане зображення, яке приніс Олег. Він знає, про яке зображення йдеться. Запитайте, де воно, використавши слово «зображення»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the picture?",
+        "localizedMeaning": {
+          "ru": "Вы ищете распечатанную картинку, которую принёс Олег. Он знает, о какой картинке речь. Спросите, где она, используя слово «картинка»",
+          "uk": "Ви шукаєте роздруковане зображення, яке приніс Олег. Він знає, про яке зображення йдеться. Запитайте, де воно, використавши слово «зображення»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "picture"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте роздруковане зображення, яке приніс Олег. Він знає, про яке зображення йдеться. Запитайте, де воно, використавши слово «зображення»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is the picture?`",
+              "uk": "тут потрібно `Where` — `Where is the picture?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви вже обговорюєте причину плями. Скажіть «Це очевидно» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Ви вже обговорюєте причину плями. Скажіть «Це очевидно» зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i13:audio",
+          "transcript": "It's obvious."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's obvious.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви показуєте Олегу ручку, яку ви обоє щойно шукали. Доповніть повідомлення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i14:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i14:r2",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i14:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте Олегу ручку, яку ви обоє щойно шукали. Доповніть повідомлення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете Олегу ручку, которую вы оба только что искали. Дополните сообщение",
+          "uk": "Ви показуєте Олегу ручку, яку ви обоє щойно шукали. Доповніть повідомлення"
+        },
+        "gappedTargetPhrase": "___ pen is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i14:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i14:r2",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Ви показуєте Олегу ручку, яку ви обоє щойно шукали. Доповніть повідомлення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви показуєте Олегу ручку, яку ви обоє щойно шукали. Доповніть повідомлення",
+            "feedbackByLocale": {
+              "ru": "Для известной вам обоим ручки здесь `The pen`; перед `pen` форма `An` также не подходит.",
+              "uk": "Для відомої вам обом ручки тут `The pen`; перед `pen` форма `An` також не підходить."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви показуєте Олегу ручку, яку ви обоє щойно шукали. Доповніть повідомлення",
+            "feedbackByLocale": {
+              "ru": "Это сообщение `The pen is here`.",
+              "uk": "Це повідомлення `The pen is here`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте ще одне повідомлення про двері",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i15:r1",
+          "text": "The door is open."
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i15:r2",
+          "text": "The door is closed."
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i15:r3",
+          "text": "The door is dirty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте ще одне повідомлення про двері",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i15:audio",
+          "transcript": "The door is open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i15:r1",
+            "targetText": "The door is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i15:r2",
+            "targetText": "The door is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i15:r3",
+            "targetText": "The door is dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте ще одне повідомлення про двері",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
+              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте ще одне повідомлення про двері",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `open`, а в этом варианте — `dirty`.",
+              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `dirty`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями; open і closed тут описують двері",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями; open і closed тут описують двері",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-14:i16:p1",
+            "target": "dirty",
+            "meaningByLocale": {
+              "ru": "грязный",
+              "uk": "брудний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i16:p2",
+            "target": "open",
+            "meaningByLocale": {
+              "ru": "открытый",
+              "uk": "відчинений"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i16:p3",
+            "target": "closed",
+            "meaningByLocale": {
+              "ru": "закрытый",
+              "uk": "зачинений"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i16:p4",
+            "target": "obvious",
+            "meaningByLocale": {
+              "ru": "очевидный",
+              "uk": "очевидний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dirty",
+          "open",
+          "closed",
+          "obvious"
+        ],
+        "rightColumn": [
+          "брудний",
+          "відчинений",
+          "зачинений",
+          "очевидний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після виставки ви збираєте роботи. Потрібного зображення немає на столі. Олег знає, яке ви шукаєте. Запитайте, де зображення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Після виставки ви збираєте роботи. Потрібного зображення немає на столі. Олег знає, яке ви шукаєте. Запитайте, де зображення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i17:audio",
+          "transcript": "Where is the picture?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the picture?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -966,5 +1002,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ce8dd6872f340d6b334e64b493cb2a5d8a7beb2cf8979bd9e6112fc9a78a5882"
+  "learnerFingerprint": "2af2135cffb67b9191b3b3600f38779822c017b48227894f51c0d326b53849f2"
 }

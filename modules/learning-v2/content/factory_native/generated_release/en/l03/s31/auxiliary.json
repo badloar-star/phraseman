@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-31:intro1:r2": {
+          "ru": "`park` — один парк; несколько — `parks`.",
+          "uk": "`park` — один парк; кілька — `parks`."
+        },
+        "en:lesson-03:session-31:intro1:r3": {
+          "ru": "Перед названием нескольких парков не ставим `a`.",
+          "uk": "Перед назвою кількох парків не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-31:intro2:r2": {
+          "ru": "Парков несколько: нужно `are`.",
+          "uk": "Парків кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-31:intro2:r3": {
+          "ru": "`unusual` — «необычные». Здесь важно, что парки похожи: `similar`.",
+          "uk": "`unusual` — «незвичайні». Тут важливо, що парки схожі: `similar`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-31:intro3:r2": {
+          "ru": "`The parks` — определённые парки. Здесь говорим о парках вообще: `Parks`.",
+          "uk": "`The parks` — певні парки. Тут говоримо про парки загалом: `Parks`."
+        },
+        "en:lesson-03:session-31:intro3:r3": {
+          "ru": "Перед `parks` не ставим `a`.",
+          "uk": "Перед `parks` не ставимо `a`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "52850a61d6de76bb046a8c4bdf5cc8a30568a8cd3b986933851e987739ee7d64"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-15:intro1:r2": {
+          "ru": "Перед `coat` нужно `a`: первый звук согласный.",
+          "uk": "Перед `coat` потрібно `a`: перший звук приголосний."
+        },
+        "en:lesson-03:session-15:intro1:r3": {
+          "ru": "В этой фразе перед названием одного пальто нужно `a`.",
+          "uk": "У цій фразі перед назвою одного пальта потрібно `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-15:intro2:r2": {
+          "ru": "О месте спрашиваем `Where`, а не `What`.",
+          "uk": "Про місце запитуємо `Where`, а не `What`."
+        },
+        "en:lesson-03:session-15:intro2:r3": {
+          "ru": "С одним пальто здесь нужно `is`.",
+          "uk": "З одним пальтом тут потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-15:intro3:r2": {
+          "ru": "С `It` нужно `is`.",
+          "uk": "З `It` потрібно `is`."
+        },
+        "en:lesson-03:session-15:intro3:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "870ebb6f425d1af4a5d9670be59a719975c55ce175209ea04a12a25a7f5c7f6d"
+}

@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-23:i01",
-    "correctText": "spoon",
+    "correctText": "They are tickets.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i02",
-    "correctText": "spoon",
+    "correctText": "The tickets are valid.",
     "correctResponseId": "en:lesson-03:session-23:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-23:i03",
-    "correctText": "fork",
-    "correctResponseId": null
+    "correctText": "tickets",
+    "correctResponseId": "en:lesson-03:session-23:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-23:i04",
-    "correctText": "fork",
-    "correctResponseId": "en:lesson-03:session-23:i04:r1"
+    "correctText": "en:lesson-03:session-23:i04:p1=tickets\nen:lesson-03:session-23:i04:p2=valid\nen:lesson-03:session-23:i04:p3=different\nen:lesson-03:session-23:i04:p4=coat",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i05",
-    "correctText": "It is a spoon.",
+    "correctText": "The coat is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i06",
-    "correctText": "spoons",
-    "correctResponseId": "en:lesson-03:session-23:i06:r1"
+    "correctText": "Where are the tickets?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i07",
-    "correctText": "cup",
+    "correctText": "He's married.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i08",
-    "correctText": "cup",
+    "correctText": "valid",
     "correctResponseId": "en:lesson-03:session-23:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-23:i09",
-    "correctText": "Are they forks?",
-    "correctResponseId": null
+    "correctText": "She is single.",
+    "correctResponseId": "en:lesson-03:session-23:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-23:i10",
-    "correctText": "bowls",
-    "correctResponseId": "en:lesson-03:session-23:i10:r1"
+    "correctText": "en:lesson-03:session-23:i10:p1=married\nen:lesson-03:session-23:i10:p2=single\nen:lesson-03:session-23:i10:p3=tickets\nen:lesson-03:session-23:i10:p4=different",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i11",
-    "correctText": "They are not cups.",
+    "correctText": "The tickets are different.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i12",
-    "correctText": "a cup",
-    "correctResponseId": "en:lesson-03:session-23:i12:r1"
+    "correctText": "The tickets are valid.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i13",
-    "correctText": "forks",
-    "correctResponseId": "en:lesson-03:session-23:i13:r1"
+    "correctText": "She's single.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i14",
-    "correctText": "en:lesson-03:session-23:i14:p1=spoons\nen:lesson-03:session-23:i14:p2=forks\nen:lesson-03:session-23:i14:p3=cups\nen:lesson-03:session-23:i14:p4=bowls",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-23:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-23:i15",
-    "correctText": "They are bowls.",
-    "correctResponseId": null
+    "correctText": "He is married.",
+    "correctResponseId": "en:lesson-03:session-23:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-23:i16",
-    "correctText": "a fork",
-    "correctResponseId": "en:lesson-03:session-23:i16:r1"
+    "correctText": "en:lesson-03:session-23:i16:p1=married\nen:lesson-03:session-23:i16:p2=single\nen:lesson-03:session-23:i16:p3=valid\nen:lesson-03:session-23:i16:p4=coat",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-23:i17",
-    "correctText": "They are cups.",
+    "correctText": "Where are the tickets?",
     "correctResponseId": null
   }
 ]

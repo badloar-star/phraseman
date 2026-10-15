@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-14:i01",
-    "correctText": "sandwich",
+    "correctText": "It is a picture.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i02",
-    "correctText": "sandwich",
+    "correctText": "The picture is dirty.",
     "correctResponseId": "en:lesson-03:session-14:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-14:i03",
-    "correctText": "salad",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-14:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-14:i04",
-    "correctText": "salad",
-    "correctResponseId": "en:lesson-03:session-14:i04:r1"
+    "correctText": "en:lesson-03:session-14:i04:p1=picture\nen:lesson-03:session-14:i04:p2=pen\nen:lesson-03:session-14:i04:p3=dirty\nen:lesson-03:session-14:i04:p4=open",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i05",
-    "correctText": "A sandwich.",
+    "correctText": "The pen is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i06",
-    "correctText": "egg",
+    "correctText": "The picture is dirty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i07",
-    "correctText": "egg",
-    "correctResponseId": "en:lesson-03:session-14:i07:r1"
+    "correctText": "The door is open.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i08",
-    "correctText": "a",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-14:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-14:i09",
-    "correctText": "It is an egg.",
-    "correctResponseId": null
+    "correctText": "The door is closed.",
+    "correctResponseId": "en:lesson-03:session-14:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-14:i10",
-    "correctText": "An",
-    "correctResponseId": "en:lesson-03:session-14:i10:r1"
+    "correctText": "en:lesson-03:session-14:i10:p1=closed\nen:lesson-03:session-14:i10:p2=obvious\nen:lesson-03:session-14:i10:p3=picture\nen:lesson-03:session-14:i10:p4=pen",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i11",
-    "correctText": "en:lesson-03:session-14:i11:p1=sandwich\nen:lesson-03:session-14:i11:p2=salad\nen:lesson-03:session-14:i11:p3=egg\nen:lesson-03:session-14:i11:p4=clock",
+    "correctText": "Where is the pen?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i12",
-    "correctText": "Is it a salad?",
+    "correctText": "Where is the picture?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i13",
-    "correctText": "It is not a sandwich.",
-    "correctResponseId": "en:lesson-03:session-14:i13:r1"
+    "correctText": "It's obvious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i14",
-    "correctText": "An hour.",
-    "correctResponseId": null
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-14:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-14:i15",
-    "correctText": "It is not a sandwich.",
-    "correctResponseId": null
+    "correctText": "The door is open.",
+    "correctResponseId": "en:lesson-03:session-14:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-14:i16",
-    "correctText": "It is a clock.",
+    "correctText": "en:lesson-03:session-14:i16:p1=dirty\nen:lesson-03:session-14:i16:p2=open\nen:lesson-03:session-14:i16:p3=closed\nen:lesson-03:session-14:i16:p4=obvious",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-14:i17",
-    "correctText": "It is a salad.",
+    "correctText": "Where is the picture?",
     "correctResponseId": null
   }
 ]

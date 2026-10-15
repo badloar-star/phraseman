@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-11:i01",
-    "correctText": "hour",
+    "correctText": "It is a room.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i02",
-    "correctText": "hour",
+    "correctText": "The room is quiet.",
     "correctResponseId": "en:lesson-03:session-11:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i03",
-    "correctText": "uniform",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-11:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i04",
-    "correctText": "uniform",
-    "correctResponseId": "en:lesson-03:session-11:i04:r1"
+    "correctText": "en:lesson-03:session-11:i04:p1=room\nen:lesson-03:session-11:i04:p2=book\nen:lesson-03:session-11:i04:p3=quiet\nen:lesson-03:session-11:i04:p4=smart",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i05",
-    "correctText": "An",
-    "correctResponseId": "en:lesson-03:session-11:i05:r1"
+    "correctText": "Where is the book?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i06",
-    "correctText": "A uniform.",
+    "correctText": "The room is quiet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i07",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-03:session-11:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-11:i08",
-    "correctText": "An hour.",
+    "correctText": "He is strong.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-11:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-11:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-11:i09",
-    "correctText": "a",
+    "correctText": "It is urgent.",
     "correctResponseId": "en:lesson-03:session-11:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i10",
-    "correctText": "en:lesson-03:session-11:i10:p1=hour\nen:lesson-03:session-11:i10:p2=uniform\nen:lesson-03:session-11:i10:p3=kettle\nen:lesson-03:session-11:i10:p4=vacuum",
+    "correctText": "en:lesson-03:session-11:i10:p1=strong\nen:lesson-03:session-11:i10:p2=urgent\nen:lesson-03:session-11:i10:p3=room\nen:lesson-03:session-11:i10:p4=book",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i11",
-    "correctText": "It is not a uniform.",
-    "correctResponseId": "en:lesson-03:session-11:i11:r1"
+    "correctText": "The book is here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i12",
-    "correctText": "Is it an hour?",
+    "correctText": "Where is the room?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i13",
-    "correctText": "Is it a uniform?",
+    "correctText": "She's smart.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i14",
-    "correctText": "It is not a uniform.",
-    "correctResponseId": null
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-11:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i15",
-    "correctText": "It is an hour.",
+    "correctText": "She is smart.",
     "correctResponseId": "en:lesson-03:session-11:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i16",
-    "correctText": "It is a kettle.",
+    "correctText": "en:lesson-03:session-11:i16:p1=smart\nen:lesson-03:session-11:i16:p2=strong\nen:lesson-03:session-11:i16:p3=quiet\nen:lesson-03:session-11:i16:p4=urgent",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i17",
-    "correctText": "It is a uniform.",
+    "correctText": "Where is the room?",
     "correctResponseId": null
   }
 ]

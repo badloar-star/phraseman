@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-12:i01",
-    "correctText": "vase",
+    "correctText": "It is a table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i02",
-    "correctText": "vase",
+    "correctText": "The table is here.",
     "correctResponseId": "en:lesson-03:session-12:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i03",
-    "correctText": "clock",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-12:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i04",
-    "correctText": "clock",
-    "correctResponseId": "en:lesson-03:session-12:i04:r1"
+    "correctText": "en:lesson-03:session-12:i04:p1=table\nen:lesson-03:session-12:i04:p2=bag\nen:lesson-03:session-12:i04:p3=friendly\nen:lesson-03:session-12:i04:p4=helpful",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i05",
-    "correctText": "It is a vase.",
+    "correctText": "Where is the bag?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i06",
-    "correctText": "radio",
+    "correctText": "The table is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i07",
-    "correctText": "radio",
-    "correctResponseId": "en:lesson-03:session-12:i07:r1"
+    "correctText": "He is helpful.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i08",
-    "correctText": "An hour.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-12:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i09",
-    "correctText": "It is a uniform.",
-    "correctResponseId": null
+    "correctText": "He is loud.",
+    "correctResponseId": "en:lesson-03:session-12:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i10",
-    "correctText": "en:lesson-03:session-12:i10:p1=vase\nen:lesson-03:session-12:i10:p2=clock\nen:lesson-03:session-12:i10:p3=radio\nen:lesson-03:session-12:i10:p4=uniform",
+    "correctText": "en:lesson-03:session-12:i10:p1=loud\nen:lesson-03:session-12:i10:p2=private\nen:lesson-03:session-12:i10:p3=table\nen:lesson-03:session-12:i10:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i11",
-    "correctText": "It is a clock.",
+    "correctText": "The bag is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i12",
-    "correctText": "An",
-    "correctResponseId": "en:lesson-03:session-12:i12:r1"
+    "correctText": "Where is the table?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i13",
-    "correctText": "Is it a radio?",
+    "correctText": "She's friendly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i14",
-    "correctText": "Is it an hour?",
+    "correctText": "The",
     "correctResponseId": "en:lesson-03:session-12:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i15",
-    "correctText": "It is not a vase.",
-    "correctResponseId": null
+    "correctText": "She is friendly.",
+    "correctResponseId": "en:lesson-03:session-12:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i16",
-    "correctText": "Is it a clock?",
+    "correctText": "en:lesson-03:session-12:i16:p1=loud\nen:lesson-03:session-12:i16:p2=friendly\nen:lesson-03:session-12:i16:p3=helpful\nen:lesson-03:session-12:i16:p4=private",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i17",
-    "correctText": "It is a radio.",
+    "correctText": "Where is the table?",
     "correctResponseId": null
   }
 ]

@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-18:i01",
-    "correctText": "bus",
+    "correctText": "They are boxes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i02",
-    "correctText": "bus",
+    "correctText": "You are early.",
     "correctResponseId": "en:lesson-03:session-18:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-18:i03",
-    "correctText": "dish",
-    "correctResponseId": null
+    "correctText": "boxes",
+    "correctResponseId": "en:lesson-03:session-18:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-18:i04",
-    "correctText": "dish",
-    "correctResponseId": "en:lesson-03:session-18:i04:r1"
+    "correctText": "en:lesson-03:session-18:i04:p1=boxes\nen:lesson-03:session-18:i04:p2=early\nen:lesson-03:session-18:i04:p3=lucky\nen:lesson-03:session-18:i04:p4=lock",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i05",
-    "correctText": "watch",
+    "correctText": "The lock is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i06",
-    "correctText": "watch",
-    "correctResponseId": "en:lesson-03:session-18:i06:r1"
+    "correctText": "Are they boxes?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i07",
-    "correctText": "box",
+    "correctText": "You're lucky.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i08",
-    "correctText": "box",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-18:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-18:i09",
-    "correctText": "They are buses.",
-    "correctResponseId": null
+    "correctText": "You are wrong.",
+    "correctResponseId": "en:lesson-03:session-18:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-18:i10",
-    "correctText": "Are they dishes?",
+    "correctText": "en:lesson-03:session-18:i10:p1=wrong\nen:lesson-03:session-18:i10:p2=unwell\nen:lesson-03:session-18:i10:p3=boxes\nen:lesson-03:session-18:i10:p4=books",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i11",
-    "correctText": "tickets",
-    "correctResponseId": "en:lesson-03:session-18:i11:r1"
+    "correctText": "The boxes are here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i12",
-    "correctText": "They are not watches.",
+    "correctText": "They are boxes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i13",
-    "correctText": "boxes",
-    "correctResponseId": "en:lesson-03:session-18:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-18:i14",
-    "correctText": "en:lesson-03:session-18:i14:p1=buses\nen:lesson-03:session-18:i14:p2=dishes\nen:lesson-03:session-18:i14:p3=watches\nen:lesson-03:session-18:i14:p4=boxes",
+    "correctText": "He's unwell.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-18:i14",
+    "correctText": "boxes",
+    "correctResponseId": "en:lesson-03:session-18:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-18:i15",
-    "correctText": "They are dishes.",
+    "correctText": "The lock is old.",
     "correctResponseId": "en:lesson-03:session-18:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-18:i16",
-    "correctText": "They are tickets.",
+    "correctText": "en:lesson-03:session-18:i16:p1=wrong\nen:lesson-03:session-18:i16:p2=early\nen:lesson-03:session-18:i16:p3=lucky\nen:lesson-03:session-18:i16:p4=unwell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i17",
-    "correctText": "They are boxes.",
+    "correctText": "Are they boxes?",
     "correctResponseId": null
   }
 ]

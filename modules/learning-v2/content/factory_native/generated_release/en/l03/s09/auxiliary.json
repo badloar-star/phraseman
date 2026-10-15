@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-09:intro1:r2": {
+          "ru": "С одной дверью здесь нужно `is`.",
+          "uk": "Українською «двері», але в цій англійській фразі один предмет `door` поєднується з `is`."
+        },
+        "en:lesson-03:session-09:intro1:r3": {
+          "ru": "Между `The door` и `open` нужно `is`.",
+          "uk": "Між `The door` і `open` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-09:intro2:r2": {
+          "ru": "С одним ключом здесь нужно `is`.",
+          "uk": "З одним ключем тут потрібно `is`."
+        },
+        "en:lesson-03:session-09:intro2:r3": {
+          "ru": "После `The key` нужно `is`.",
+          "uk": "Після `The key` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-09:intro3:r2": {
+          "ru": "Об одной двери здесь спрашиваем с `Is`.",
+          "uk": "Про один предмет `door` тут запитуємо з `Is`."
+        },
+        "en:lesson-03:session-09:intro3:r3": {
+          "ru": "Это сообщение. В вопросе начните с `Is the door`.",
+          "uk": "Це повідомлення. У запитанні почніть з `Is the door`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3b79853ff14c33bb72f7ee9856d821887aeabc63760bebc94b47a8c72887d7f3"
+}

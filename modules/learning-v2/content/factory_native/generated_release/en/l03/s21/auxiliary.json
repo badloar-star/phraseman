@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-21:intro1:r2": {
+          "ru": "`pen` — одна ручка; здесь несколько: `pens`.",
+          "uk": "`pen` — одна ручка; тут кілька: `pens`."
+        },
+        "en:lesson-03:session-21:intro1:r3": {
+          "ru": "Перед названием нескольких ручек не ставим `a`.",
+          "uk": "Перед назвою кількох ручок не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-21:intro2:r2": {
+          "ru": "Ручек несколько, поэтому нужно `are`.",
+          "uk": "Ручок кілька, тому потрібно `are`."
+        },
+        "en:lesson-03:session-21:intro2:r3": {
+          "ru": "О месте спрашиваем `Where` — «Где».",
+          "uk": "Про місце запитуємо `Where` — «Де»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-21:intro3:r2": {
+          "ru": "`Yes` — «Да», а здесь нужен ответ «Нет»: `No`.",
+          "uk": "`Yes` — «Так», а тут потрібна відповідь «Ні»: `No`."
+        },
+        "en:lesson-03:session-21:intro3:r3": {
+          "ru": "Отдельный ответ «Нет» — `No`, а не `Not`.",
+          "uk": "Окрема відповідь «Ні» — `No`, а не `Not`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1f13f154f1cc642f36c38b777e640c672f8cd871535e70ffa9752233ec29cbcf"
+}

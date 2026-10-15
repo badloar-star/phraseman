@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-31",
   "learningOutcomeByLocale": {
-    "ru": "словарная отработка с быстрым переносом — `This/That + один предмет, please` в театральной костюмерной",
-    "uk": "словникове тренування зі швидким перенесенням — `This/That + один предмет, please` у театральній костюмерній"
+    "ru": "назвать несколько парков, сравнить их и отличить парки вообще от конкретных парков",
+    "uk": "назвати кілька парків, порівняти їх і відрізнити парки загалом від конкретних парків"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Шляпа перед вами",
-        "uk": "Капелюх перед вами"
+        "ru": "Один парк или несколько",
+        "uk": "Один парк чи кілька"
       },
       "bodyByLocale": {
-        "ru": "`hat` — «шляпа». Она лежит на столе перед вами, поэтому скажите костюмеру: `This hat, please.` — «Эту шляпу, пожалуйста».\n\nЕсли её перенесут к дальней стене, скажите `That hat, please.` Первое слово показывает расстояние: `this` — рядом, `that` — дальше. `hat` не меняется, `please` остаётся в конце. Сцена не ждёт.",
-        "uk": "`hat` — «капелюх». Він лежить на столі перед вами, тому скажіть костюмерові: `This hat, please.` — «Цей капелюх, будь ласка».\n\nЯкщо його перенесуть до дальньої стіни, скажіть `That hat, please.` Перше слово вказує на відстань: `this` — поруч, `that` — далі. `hat` не змінюється, `please` залишається в кінці. Сцена не чекає."
+        "ru": "`park` — «парк», `parks` — «парки». `They are parks` — «Это парки». Для нескольких парков добавляем `s`, перед `parks` не ставим `a`. Олег отметил один парк и объявил, что знает все парки города. На карте осталось ещё несколько зелёных пятен, которые портят ему статистику. Нужны `parks` — парки.",
+        "uk": "`park` — «парк», `parks` — «парки». `They are parks` — «Це парки». Для кількох парків додаємо `s`, перед `parks` не ставимо `a`. Олег позначив один парк і оголосив, що знає всі парки міста. На карті залишилося ще кілька зелених плям, які псують йому статистику. Потрібні `parks` — парки."
       },
       "question": {
         "interactionId": "en:lesson-03:session-31:intro1:q",
         "promptByLocale": {
-          "ru": "Нужная шляпа лежит прямо перед вами. Выберите её.",
-          "uk": "Потрібний капелюх лежить просто перед вами. Виберіть його."
+          "ru": "На карте отмечены несколько парков. Назовите их одним английским словом.",
+          "uk": "На карті позначено кілька парків. Назвіть їх одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-31:intro1:r1",
-              "text": "This hat, please."
+              "text": "parks"
             },
             {
               "responseId": "en:lesson-03:session-31:intro1:r2",
-              "text": "That hat, please."
+              "text": "park"
             },
             {
               "responseId": "en:lesson-03:session-31:intro1:r3",
-              "text": "This is a hat."
+              "text": "a parks"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-31:intro1:r1",
-              "text": "This hat, please."
+              "text": "parks"
             },
             {
               "responseId": "en:lesson-03:session-31:intro1:r2",
-              "text": "That hat, please."
+              "text": "park"
             },
             {
               "responseId": "en:lesson-03:session-31:intro1:r3",
-              "text": "This is a hat."
+              "text": "a parks"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Нужная шляпа лежит прямо перед вами. Выберите её.",
-          "uk": "Потрібний капелюх лежить просто перед вами. Виберіть його."
+          "ru": "На карте отмечены несколько парков. Назовите их одним английским словом.",
+          "uk": "На карті позначено кілька парків. Назвіть їх одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ремень у дальней стены",
-        "uk": "Ремінь біля дальньої стіни"
+        "ru": "Похожи, но не один парк",
+        "uk": "Схожі, але не один парк"
       },
       "bodyByLocale": {
-        "ru": "`belt` — «ремень». Нужный ремень висит у дальней стены, поэтому начните с `that` и скажите: `That belt, please.` — «Тот ремень, пожалуйста».\n\nМежду `that` и `belt` не нужны ни `is`, ни `a`. Это короткая просьба: указатель, один предмет, `please`.\n\nНе добавляйте артикль даже в спешке: `that belt`, а не `that a belt`.",
-        "uk": "`belt` — «ремінь». Потрібний ремінь висить біля дальньої стіни, тому почніть із `that` і скажіть: `That belt, please.` — «Той ремінь, будь ласка».\n\nМіж `that` і `belt` не потрібні ані `is`, ані `a`. Це коротке прохання: вказівне слово, один предмет, `please`.\n\nНе додавайте артикль навіть поспіхом: `that belt`, а не `that a belt`."
+        "ru": "`similar` — «похожий», `separate` — «отдельный», `unusual` — «необычный». `The parks are similar` — «Парки похожи». У обоих есть дорожки и пруд, но это два отдельных парка: `They are separate` — «Они отдельные». `equal` — «равный»: это не то же самое, что «похожий». Например, две одинаковые суммы равны, а два парка могут быть похожи, хотя один больше другого.",
+        "uk": "`similar` — «схожий», `separate` — «окремий», `unusual` — «незвичайний». `The parks are similar` — «Парки схожі». В обох є доріжки та ставок, але це два окремі парки: `They are separate` — «Вони окремі». `equal` — «рівний»: це не те саме, що «схожий». Наприклад, дві однакові суми рівні, а два парки можуть бути схожі, хоча один більший за інший."
       },
       "question": {
         "interactionId": "en:lesson-03:session-31:intro2:q",
         "promptByLocale": {
-          "ru": "Ремень висит у дальней стены. Выберите его короткой просьбой.",
-          "uk": "Ремінь висить біля дальньої стіни. Виберіть його коротким проханням."
+          "ru": "Вы сравниваете два известных вам парка: у них похожая планировка. Сообщите «Парки похожи».",
+          "uk": "Ви порівнюєте два відомі вам парки: у них схоже планування. Повідомте «Парки схожі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-31:intro2:r1",
-              "text": "That belt, please."
+              "text": "The parks are similar."
             },
             {
               "responseId": "en:lesson-03:session-31:intro2:r2",
-              "text": "This belt, please."
+              "text": "The parks is similar."
             },
             {
               "responseId": "en:lesson-03:session-31:intro2:r3",
-              "text": "That is belt, please."
+              "text": "The parks are unusual."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-31:intro2:r1",
-              "text": "That belt, please."
+              "text": "The parks are similar."
             },
             {
               "responseId": "en:lesson-03:session-31:intro2:r2",
-              "text": "This belt, please."
+              "text": "The parks is similar."
             },
             {
               "responseId": "en:lesson-03:session-31:intro2:r3",
-              "text": "That is belt, please."
+              "text": "The parks are unusual."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ремень висит у дальней стены. Выберите его короткой просьбой.",
-          "uk": "Ремінь висить біля дальньої стіни. Виберіть його коротким проханням."
+          "ru": "Вы сравниваете два известных вам парка: у них похожая планировка. Сообщите «Парки похожи».",
+          "uk": "Ви порівнюєте два відомі вам парки: у них схоже планування. Повідомте «Парки схожі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сапог меняет место",
-        "uk": "Чобіт змінює місце"
+        "ru": "Парки для города",
+        "uk": "Парки для міста"
       },
       "bodyByLocale": {
-        "ru": "`boot` — «сапог». Для сапога вдали скажите `That boot, please.`, а для сапога перед вами — `This boot, please.`\n\nСмотрите на положение вещи сейчас. Название остаётся тем же, а первое слово меняется вместе с расстоянием.",
-        "uk": "`boot` — «чобіт». Для чобота вдалині скажіть `That boot, please.`, а для чобота перед вами — `This boot, please.`\n\nДивіться на положення речі зараз. Назва залишається тією самою, а перше слово змінюється разом із відстанню."
+        "ru": "`Parks are important` — «Парки важны». Можно сказать так о парках вообще, обсуждая места для прогулок в городе. Перед `parks` тогда нет `the`. `Where are the parks?` — «Где парки?» Здесь с `the` вы спрашиваете об определённых парках, которые выбрали вместе с Анной.",
+        "uk": "`Parks are important` — «Парки важливі». Можна сказати так про парки загалом, обговорюючи місця для прогулянок у місті. Перед `parks` тоді немає `the`. `Where are the parks?` — «Де парки?» Тут із `the` ви запитуєте про певні парки, які вибрали разом з Анною."
       },
       "question": {
         "interactionId": "en:lesson-03:session-31:intro3:q",
         "promptByLocale": {
-          "ru": "Сапог уже поставили прямо перед вами. Выберите его.",
-          "uk": "Чобіт уже поставили просто перед вами. Виберіть його."
+          "ru": "Вы говорите о парках вообще и их пользе для города. Скажите «Парки важны», не указывая на конкретные парки.",
+          "uk": "Ви говорите про парки загалом та їхню користь для міста. Скажіть «Парки важливі», не вказуючи на конкретні парки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-31:intro3:r1",
-              "text": "This boot, please."
+              "text": "Parks are important."
             },
             {
               "responseId": "en:lesson-03:session-31:intro3:r2",
-              "text": "That boot, please."
+              "text": "The parks are important."
             },
             {
               "responseId": "en:lesson-03:session-31:intro3:r3",
-              "text": "This a boot, please."
+              "text": "A parks are important."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-31:intro3:r1",
-              "text": "This boot, please."
+              "text": "Parks are important."
             },
             {
               "responseId": "en:lesson-03:session-31:intro3:r2",
-              "text": "That boot, please."
+              "text": "The parks are important."
             },
             {
               "responseId": "en:lesson-03:session-31:intro3:r3",
-              "text": "This a boot, please."
+              "text": "A parks are important."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сапог уже поставили прямо перед вами. Выберите его.",
-          "uk": "Чобіт уже поставили просто перед вами. Виберіть його."
+          "ru": "Вы говорите о парках вообще и их пользе для города. Скажите «Парки важны», не указывая на конкретные парки.",
+          "uk": "Ви говорите про парки загалом та їхню користь для міста. Скажіть «Парки важливі», не вказуючи на конкретні парки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7ddd5a8fbac321861da3b97d4bd5a208d691431618ceb1c879c103327de7b0ec"
+  "introFingerprint": "a5eee558c9659226bd67228f544b4f8ee26bb5bb8751836535441b6059108ec8"
 }

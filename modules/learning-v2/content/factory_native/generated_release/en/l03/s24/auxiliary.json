@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-24:intro1:r2": {
+          "ru": "Книг несколько: `books`, без `a`.",
+          "uk": "Книжок кілька: `books`, без `a`."
+        },
+        "en:lesson-03:session-24:intro1:r3": {
+          "ru": "С `They` нужно `are`.",
+          "uk": "З `They` потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-24:intro2:r2": {
+          "ru": "Чашек несколько: нужно `are`.",
+          "uk": "Чашок кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-24:intro2:r3": {
+          "ru": "О месте спрашиваем `Where`.",
+          "uk": "Про місце запитуємо `Where`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-24:intro3:r2": {
+          "ru": "Билетов несколько: нужно `are`.",
+          "uk": "Квитків кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-24:intro3:r3": {
+          "ru": "Чтобы узнать место, начинаем с `Where`.",
+          "uk": "Щоб дізнатися місце, починаємо з `Where`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "096c727bec63d145bc33aa5455e06471edb86dbb580337e4315fa91283d51872"
+}

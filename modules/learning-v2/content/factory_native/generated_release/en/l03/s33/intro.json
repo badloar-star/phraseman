@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-33",
   "learningOutcomeByLocale": {
-    "ru": "`these + plural noun` и `These are…` для нескольких предметов рядом",
-    "uk": "`these + plural noun` і `These are…` для кількох предметів поруч"
+    "ru": "показать на один или несколько предметов рядом и дальше: this, that, these, those",
+    "uk": "показати на один або кілька предметів поруч і далі: this, that, these, those"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Показать на несколько туфель",
-        "uk": "Показати на кілька туфель"
+        "ru": "Вот этот и вон тот",
+        "uk": "Ось цей і он той"
       },
       "bodyByLocale": {
-        "ru": "`shoe` — «туфля», `shoes` — «туфли». Волонтёр собрал несколько туфель вместе: одна без пары на ярмарке далеко не уйдёт. Вся группа лежит рядом на столе, поэтому покажите на неё словом `these`: `These are shoes.` — «Это туфли».",
-        "uk": "`shoe` — «туфля», `shoes` — «туфлі». Волонтер зібрав кілька туфель разом: одна без пари на ярмарку далеко не піде. Уся група лежить поруч на столі, тому покажіть на неї словом `these`: `These are shoes.` — «Це туфлі»."
+        "ru": "`phone` — «телефон». `This is a phone` — «Это телефон»: показываем на один телефон рядом. `That is a phone` — тоже «Это телефон», но показываем на один телефон дальше от нас. `this` — «этот, вот это», `that` — «тот, вон то». В обеих фразах сохраняется `is a phone`. Анна спрашивает, какой телефон взять. Ответ «телефон» пока помогает не больше, чем «тот, который звонит»: звонят оба. Покажите точнее — рядом или дальше.",
+        "uk": "`phone` — «телефон». `This is a phone` — «Це телефон»: показуємо на один телефон поруч. `That is a phone` — теж «Це телефон», але показуємо на один телефон далі від нас. `this` — «цей, ось це», `that` — «той, он те». В обох фразах зберігається `is a phone`. Анна запитує, який телефон узяти. Відповідь «телефон» поки допомагає не більше, ніж «той, що дзвонить»: дзвонять обидва. Покажіть точніше — поруч чи далі."
       },
       "question": {
         "interactionId": "en:lesson-03:session-33:intro1:q",
         "promptByLocale": {
-          "ru": "Несколько туфель стоят на столе перед вами. Назовите их.",
-          "uk": "Кілька туфель стоять на столі перед вами. Назвіть їх."
+          "ru": "Телефон лежит прямо перед вами. Назовите его, начиная со слова для одного предмета рядом.",
+          "uk": "Телефон лежить просто перед вами. Назвіть його, починаючи зі слова для одного предмета поруч."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-33:intro1:r1",
-              "text": "These are shoes."
+              "text": "This is a phone."
             },
             {
               "responseId": "en:lesson-03:session-33:intro1:r2",
-              "text": "This is a shoe."
+              "text": "That is a phone."
             },
             {
               "responseId": "en:lesson-03:session-33:intro1:r3",
-              "text": "These is shoes."
+              "text": "This are a phone."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-33:intro1:r1",
-              "text": "These are shoes."
+              "text": "This is a phone."
             },
             {
               "responseId": "en:lesson-03:session-33:intro1:r2",
-              "text": "This is a shoe."
+              "text": "That is a phone."
             },
             {
               "responseId": "en:lesson-03:session-33:intro1:r3",
-              "text": "These is shoes."
+              "text": "This are a phone."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Несколько туфель стоят на столе перед вами. Назовите их.",
-          "uk": "Кілька туфель стоять на столі перед вами. Назвіть їх."
+          "ru": "Телефон лежит прямо перед вами. Назовите его, начиная со слова для одного предмета рядом.",
+          "uk": "Телефон лежить просто перед вами. Назвіть його, починаючи зі слова для одного предмета поруч."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Согласовать указатель и форму",
-        "uk": "Узгодити вказівне слово і форму"
+        "ru": "А если их несколько",
+        "uk": "А якщо їх кілька"
       },
       "bodyByLocale": {
-        "ru": "`sock` — «носок», `socks` — «носки». На столе лежит сразу несколько носков. Для такой группы работают два слова — `these are`: `These are socks.` — «Это носки». Даже если один носок опять потерял пару, словом `these` один предмет не назовёшь.",
-        "uk": "`sock` — «шкарпетка», `socks` — «шкарпетки». На столі лежить відразу кілька шкарпеток. Для такої групи працюють два слова — `these are`: `These are socks.` — «Це шкарпетки». Навіть якщо одна шкарпетка знову втратила пару, словом `these` один предмет не назвеш."
+        "ru": "Для нескольких рядом используем `these` — «эти», для нескольких дальше — `those` — «те». `These are dogs` — «Это собаки», показываем на собак рядом. `Those are dogs` — «Это собаки», показываем на собак дальше. После `these` и `those` в этих фразах нужно `are`, а перед `dogs` нет `a`.",
+        "uk": "Для кількох поруч використовуємо `these` — «ці», для кількох далі — `those` — «ті». `These are dogs` — «Це собаки», показуємо на собак поруч. `Those are dogs` — «Це собаки», показуємо на собак далі. Після `these` і `those` у цих фразах потрібно `are`, а перед `dogs` немає `a`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-33:intro2:q",
         "promptByLocale": {
-          "ru": "На столе перед вами лежат несколько носков. Назовите их.",
-          "uk": "На столі перед вами лежать кілька шкарпеток. Назвіть їх."
+          "ru": "Несколько собак стоят рядом с вами. Назовите их, начиная со слова для нескольких рядом.",
+          "uk": "Кілька собак стоять поруч із вами. Назвіть їх, починаючи зі слова для кількох поруч."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-33:intro2:r1",
-              "text": "These are socks."
+              "text": "These are dogs."
             },
             {
               "responseId": "en:lesson-03:session-33:intro2:r2",
-              "text": "These are sock."
+              "text": "This is a dog."
             },
             {
               "responseId": "en:lesson-03:session-33:intro2:r3",
-              "text": "This are socks."
+              "text": "Those are dogs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-33:intro2:r1",
-              "text": "These are socks."
+              "text": "These are dogs."
             },
             {
               "responseId": "en:lesson-03:session-33:intro2:r2",
-              "text": "These are sock."
+              "text": "This is a dog."
             },
             {
               "responseId": "en:lesson-03:session-33:intro2:r3",
-              "text": "This are socks."
+              "text": "Those are dogs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На столе перед вами лежат несколько носков. Назовите их.",
-          "uk": "На столі перед вами лежать кілька шкарпеток. Назвіть їх."
+          "ru": "Несколько собак стоят рядом с вами. Назовите их, начиная со слова для нескольких рядом.",
+          "uk": "Кілька собак стоять поруч із вами. Назвіть їх, починаючи зі слова для кількох поруч."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не смешать один предмет и несколько",
-        "uk": "Не змішати один предмет і кілька"
+        "ru": "Не только назвать",
+        "uk": "Не тільки назвати"
       },
       "bodyByLocale": {
-        "ru": "`shirt` — «рубашка», `shirts` — «рубашки». Рядом лежит несколько рубашек, поэтому скажите: `These are shirts.` Фраза `This is a shirt.` подходит только для одной. Сначала посчитайте вещи: две рубашки в неё просто не поместятся.",
-        "uk": "`shirt` — «сорочка», `shirts` — «сорочки». Поруч лежить кілька сорочок, тому скажіть: `These are shirts.` Фраза `This is a shirt.` підходить лише для однієї. Спочатку порахуйте речі: дві сорочки в неї просто не помістяться."
+        "ru": "`okay` — «в порядке», `active` — «активный». `This phone is okay` — «Этот телефон в порядке». Между `this` и `phone` не ставим `a`: `this phone`. `Those dogs are active` — «Те собаки активны». Можно назвать нужную группу словами `those dogs`, а потом сказать, какая она. Здесь речь о нескольких собаках, поэтому `are`.",
+        "uk": "`okay` — «у порядку», `active` — «активний». `This phone is okay` — «Цей телефон у порядку». Між `this` і `phone` не ставимо `a`: `this phone`. `Those dogs are active` — «Ті собаки активні». Можна назвати потрібну групу словами `those dogs`, а потім сказати, яка вона. Тут ідеться про кількох собак, тому `are`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-33:intro3:q",
         "promptByLocale": {
-          "ru": "Перед вами лежат несколько рубашек. Выберите точную фразу.",
-          "uk": "Перед вами лежать кілька сорочок. Виберіть точну фразу."
+          "ru": "Телефон у вас в руке исправен. Скажите «Этот телефон в порядке», указывая на телефон рядом.",
+          "uk": "Телефон у вас у руці справний. Скажіть «Цей телефон у порядку», указуючи на телефон поруч."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-33:intro3:r1",
-              "text": "These are shirts."
+              "text": "This phone is okay."
             },
             {
               "responseId": "en:lesson-03:session-33:intro3:r2",
-              "text": "This is a shirt."
+              "text": "This a phone is okay."
             },
             {
               "responseId": "en:lesson-03:session-33:intro3:r3",
-              "text": "These is shirts."
+              "text": "This phone are okay."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-33:intro3:r1",
-              "text": "These are shirts."
+              "text": "This phone is okay."
             },
             {
               "responseId": "en:lesson-03:session-33:intro3:r2",
-              "text": "This is a shirt."
+              "text": "This a phone is okay."
             },
             {
               "responseId": "en:lesson-03:session-33:intro3:r3",
-              "text": "These is shirts."
+              "text": "This phone are okay."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Перед вами лежат несколько рубашек. Выберите точную фразу.",
-          "uk": "Перед вами лежать кілька сорочок. Виберіть точну фразу."
+          "ru": "Телефон у вас в руке исправен. Скажите «Этот телефон в порядке», указывая на телефон рядом.",
+          "uk": "Телефон у вас у руці справний. Скажіть «Цей телефон у порядку», указуючи на телефон поруч."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1bf7df7a59a3049b53c6a7c599df5f37a3d67369380ff30a2854deaaa5c9dc25"
+  "introFingerprint": "a935ac75924cd35ea38b98a64a554f3ae02799b5db83ef7623667dccbb4f6842"
 }

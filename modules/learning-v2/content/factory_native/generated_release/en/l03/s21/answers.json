@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-21:i01",
-    "correctText": "towel",
+    "correctText": "They are pens.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i02",
-    "correctText": "towel",
+    "correctText": "The pens are inside.",
     "correctResponseId": "en:lesson-03:session-21:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-21:i03",
-    "correctText": "curtain",
-    "correctResponseId": null
+    "correctText": "pens",
+    "correctResponseId": "en:lesson-03:session-21:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-21:i04",
-    "correctText": "curtain",
-    "correctResponseId": "en:lesson-03:session-21:i04:r1"
+    "correctText": "en:lesson-03:session-21:i04:p1=pens\nen:lesson-03:session-21:i04:p2=inside\nen:lesson-03:session-21:i04:p3=outside\nen:lesson-03:session-21:i04:p4=upstairs",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i05",
-    "correctText": "It is a towel.",
+    "correctText": "The window is broken.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i06",
-    "correctText": "curtains",
-    "correctResponseId": "en:lesson-03:session-21:i06:r1"
+    "correctText": "Where are the pens?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i07",
-    "correctText": "pillow",
+    "correctText": "They're upstairs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i08",
-    "correctText": "pillow",
+    "correctText": "No",
     "correctResponseId": "en:lesson-03:session-21:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-21:i09",
-    "correctText": "They are pillows.",
-    "correctResponseId": null
+    "correctText": "They are outside.",
+    "correctResponseId": "en:lesson-03:session-21:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-21:i10",
-    "correctText": "a glass",
-    "correctResponseId": "en:lesson-03:session-21:i10:r1"
+    "correctText": "en:lesson-03:session-21:i10:p1=broken\nen:lesson-03:session-21:i10:p2=window\nen:lesson-03:session-21:i10:p3=no\nen:lesson-03:session-21:i10:p4=pens",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i11",
-    "correctText": "a curtain",
-    "correctResponseId": "en:lesson-03:session-21:i11:r1"
+    "correctText": "The pens are upstairs.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i12",
-    "correctText": "They are not towels.",
+    "correctText": "The pens are inside.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i13",
-    "correctText": "pillows",
-    "correctResponseId": "en:lesson-03:session-21:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-21:i14",
-    "correctText": "en:lesson-03:session-21:i14:p1=towels\nen:lesson-03:session-21:i14:p2=curtains\nen:lesson-03:session-21:i14:p3=pillows\nen:lesson-03:session-21:i14:p4=glasses",
+    "correctText": "It's broken.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-21:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-21:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-21:i15",
-    "correctText": "glasses",
+    "correctText": "The window is open.",
     "correctResponseId": "en:lesson-03:session-21:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-21:i16",
-    "correctText": "It is a curtain.",
+    "correctText": "en:lesson-03:session-21:i16:p1=outside\nen:lesson-03:session-21:i16:p2=upstairs\nen:lesson-03:session-21:i16:p3=no\nen:lesson-03:session-21:i16:p4=window",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-21:i17",
-    "correctText": "It is a pillow.",
+    "correctText": "Where are the pens?",
     "correctResponseId": null
   }
 ]

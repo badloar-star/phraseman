@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-27:intro1:r2": {
+          "ru": "`car` — одна машина; несколько — `cars`.",
+          "uk": "`car` — одна машина; кілька — `cars`."
+        },
+        "en:lesson-03:session-27:intro1:r3": {
+          "ru": "Перед названием нескольких машин не ставим `a`.",
+          "uk": "Перед назвою кількох машин не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-27:intro2:r2": {
+          "ru": "`The cars` — определённые машины. Здесь речь о машинах вообще: `Cars`.",
+          "uk": "`The cars` — певні машини. Тут ідеться про машини загалом: `Cars`."
+        },
+        "en:lesson-03:session-27:intro2:r3": {
+          "ru": "Перед `cars` не ставим `a`.",
+          "uk": "Перед `cars` не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-27:intro3:r2": {
+          "ru": "Машин несколько: нужно `are`.",
+          "uk": "Машин кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-27:intro3:r3": {
+          "ru": "О месте спрашиваем `Where` — «Где».",
+          "uk": "Про місце запитуємо `Where` — «Де»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a2d74488e70bf49615927a4bd99e2e96c91835687cc29c58b42b88f4f096acd4"
+}

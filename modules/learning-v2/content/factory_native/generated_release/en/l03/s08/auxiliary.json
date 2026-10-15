@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-08:intro1:r2": {
+          "ru": "Перед гласным звуком в `apple` нужно `an`.",
+          "uk": "Перед голосним звуком у `apple` потрібно `an`."
+        },
+        "en:lesson-03:session-08:intro1:r3": {
+          "ru": "В названии яблока здесь нельзя пропускать `an`.",
+          "uk": "У назві яблука тут не можна пропускати `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-08:intro2:r2": {
+          "ru": "В названии `a book` пропало `a`.",
+          "uk": "У назві `a book` зникло `a`."
+        },
+        "en:lesson-03:session-08:intro2:r3": {
+          "ru": "Это сообщение, а нужен вопрос.",
+          "uk": "Це повідомлення, а потрібне запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-08:intro3:r2": {
+          "ru": "После `not` сохраняем `a map`.",
+          "uk": "Після `not` зберігаємо `a map`."
+        },
+        "en:lesson-03:session-08:intro3:r3": {
+          "ru": "Перед `not` нужно `is`.",
+          "uk": "Перед `not` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9b131f714288782973e369b4a3b2ef9ce3e6458f16a06e4a725e59ae48848a46"
+}

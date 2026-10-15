@@ -1,67 +1,67 @@
 [
   {
     "interactionId": "en:lesson-03:session-08:i01",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-03:session-08:i01:r1"
+    "correctText": "It is an apple.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i02",
-    "correctText": "It is a shelf.",
-    "correctResponseId": null
+    "correctText": "It is a book.",
+    "correctResponseId": "en:lesson-03:session-08:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-08:i03",
-    "correctText": "Is it a shelf?",
-    "correctResponseId": null
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-08:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-08:i04",
-    "correctText": "A basket.",
+    "correctText": "en:lesson-03:session-08:i04:p1=key\nen:lesson-03:session-08:i04:p2=apple\nen:lesson-03:session-08:i04:p3=book\nen:lesson-03:session-08:i04:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i05",
-    "correctText": "It is a basket.",
-    "correctResponseId": "en:lesson-03:session-08:i05:r1"
+    "correctText": "It is a key.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i06",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-08:i06:r1"
+    "correctText": "Where is it?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i07",
-    "correctText": "It is a shelf.",
+    "correctText": "It's a cup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i08",
-    "correctText": "en:lesson-03:session-08:i08:p1=shelf\nen:lesson-03:session-08:i08:p2=mirror\nen:lesson-03:session-08:i08:p3=chair\nen:lesson-03:session-08:i08:p4=key",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-08:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-08:i09",
-    "correctText": "Is it a chair?",
-    "correctResponseId": null
+    "correctText": "Is it a bag?",
+    "correctResponseId": "en:lesson-03:session-08:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-08:i10",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-08:i10:r1"
+    "correctText": "en:lesson-03:session-08:i10:p1=map\nen:lesson-03:session-08:i10:p2=pen\nen:lesson-03:session-08:i10:p3=cup\nen:lesson-03:session-08:i10:p4=key",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i11",
-    "correctText": "It is not a shelf.",
+    "correctText": "It is not a book.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i12",
-    "correctText": "It is a tag.",
+    "correctText": "It is not a map.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i13",
-    "correctText": "Is it a shelf?",
+    "correctText": "It's an apple.",
     "correctResponseId": null
   },
   {
@@ -71,27 +71,17 @@
   },
   {
     "interactionId": "en:lesson-03:session-08:i15",
-    "correctText": "en:lesson-03:session-08:i15:p1=basket\nen:lesson-03:session-08:i15:p2=stool\nen:lesson-03:session-08:i15:p3=door\nen:lesson-03:session-08:i15:p4=tag",
-    "correctResponseId": null
+    "correctText": "It is a pen.",
+    "correctResponseId": "en:lesson-03:session-08:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-08:i16",
-    "correctText": "Is it a mirror?",
+    "correctText": "en:lesson-03:session-08:i16:p1=apple\nen:lesson-03:session-08:i16:p2=book\nen:lesson-03:session-08:i16:p3=map\nen:lesson-03:session-08:i16:p4=cup",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-08:i17:s01",
-    "correctText": "It is a shelf.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-08:i17:s02",
-    "correctText": "Is it a shelf?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-08:i17:s03",
-    "correctText": "It is not a shelf.",
+    "interactionId": "en:lesson-03:session-08:i17",
+    "correctText": "Is it a pen?",
     "correctResponseId": null
   }
 ]

@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-30:i01",
-    "correctText": "sweater",
-    "correctResponseId": "en:lesson-03:session-30:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-30:i03",
-    "correctText": "scarf",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-30:i05",
-    "correctText": "glove",
+    "correctText": "The cups are missing.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i02",
-    "correctText": "sweater",
-    "correctResponseId": null
+    "correctText": "windows",
+    "correctResponseId": "en:lesson-03:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i03",
+    "correctText": "windows",
+    "correctResponseId": "en:lesson-03:session-30:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i04",
-    "correctText": "scarf",
-    "correctResponseId": "en:lesson-03:session-30:i04:r1"
+    "correctText": "en:lesson-03:session-30:i04:p1=windows\nen:lesson-03:session-30:i04:p2=cups\nen:lesson-03:session-30:i04:p3=alive\nen:lesson-03:session-30:i04:p4=dead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i05",
+    "correctText": "The windows are open.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i06",
-    "correctText": "glove",
+    "correctText": "Windows are important.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i07",
-    "correctText": "en:lesson-03:session-30:i07:p1=sweater\nen:lesson-03:session-30:i07:p2=scarf\nen:lesson-03:session-30:i07:p3=glove\nen:lesson-03:session-30:i07:p4=bag",
+    "correctText": "It's alive.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i08",
-    "correctText": "sweater",
-    "correctResponseId": null
+    "correctText": "Windows",
+    "correctResponseId": "en:lesson-03:session-30:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i09",
-    "correctText": "scarf",
-    "correctResponseId": null
+    "correctText": "It is dead.",
+    "correctResponseId": "en:lesson-03:session-30:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i10",
-    "correctText": "glove",
+    "correctText": "en:lesson-03:session-30:i10:p1=missing\nen:lesson-03:session-30:i10:p2=elsewhere\nen:lesson-03:session-30:i10:p3=windows\nen:lesson-03:session-30:i10:p4=cups",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i11",
-    "correctText": "This sweater, please.",
+    "correctText": "The cups are elsewhere.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i12",
-    "correctText": "That scarf, please.",
+    "correctText": "Where are the windows?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i13",
-    "correctText": "This",
-    "correctResponseId": "en:lesson-03:session-30:i13:r1"
+    "correctText": "They're elsewhere.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i14",
-    "correctText": "Тот свитер, пожалуйста",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-30:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i15",
-    "correctText": "That glove, please.",
-    "correctResponseId": null
+    "correctText": "It is alive.",
+    "correctResponseId": "en:lesson-03:session-30:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i16",
-    "correctText": "That",
-    "correctResponseId": "en:lesson-03:session-30:i16:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-30:i17:s01",
-    "correctText": "That sweater, please.",
+    "correctText": "en:lesson-03:session-30:i16:p1=alive\nen:lesson-03:session-30:i16:p2=dead\nen:lesson-03:session-30:i16:p3=missing\nen:lesson-03:session-30:i16:p4=elsewhere",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-30:i17:s02",
-    "correctText": "This scarf, please.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-30:i17:s03",
-    "correctText": "That glove, please.",
+    "interactionId": "en:lesson-03:session-30:i17",
+    "correctText": "Windows are important.",
     "correctResponseId": null
   }
 ]

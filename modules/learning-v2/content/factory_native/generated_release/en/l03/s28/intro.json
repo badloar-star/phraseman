@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-28",
   "learningOutcomeByLocale": {
-    "ru": "различать `this` и `that` в короткой просьбе о вещи рядом или вдали",
-    "uk": "розрізняти `this` та `that` у короткому проханні про річ поруч або вдалині"
+    "ru": "назвать несколько стульев, найти нужные стулья и сказать о предметах в целом",
+    "uk": "назвати кілька стільців, знайти потрібні стільці й сказати про предмети загалом"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выбрать вещь рядом",
-        "uk": "Вибрати річ поруч"
+        "ru": "Место для каждого",
+        "uk": "Місце для кожного"
       },
       "bodyByLocale": {
-        "ru": "`suitcase` — «чемодан». Чемодан стоит рядом с вами у кассы: `This suitcase, please.` — «Этот чемодан, пожалуйста».\n\nПосле `this` сразу идёт название вещи, без `a`: `this suitcase`. Слово `this` показывает, что нужен именно ближний чемодан, а не другой у входа.",
-        "uk": "`suitcase` — «валіза». Валіза стоїть поруч із вами біля каси: `This suitcase, please.` — «Ця валіза, будь ласка».\n\nПісля `this` одразу йде назва речі, без `a`: `this suitcase`. Слово `this` показує, що потрібна саме ближня валіза, а не інша біля входу."
+        "ru": "`chair` — «стул», `chairs` — «стулья». `They are chairs` — «Это стулья». Для нескольких стульев добавляем `s`, перед `chairs` не ставим `a`. Олег принёс один стул на трёх гостей. Если это не игра с музыкой, лучше принести ещё. Нужны `chairs` — стулья.",
+        "uk": "`chair` — «стілець», `chairs` — «стільці». `They are chairs` — «Це стільці». Для кількох стільців додаємо `s`, перед `chairs` не ставимо `a`. Олег приніс один стілець на трьох гостей. Якщо це не гра з музикою, краще принести ще. Потрібні `chairs` — стільці."
       },
       "question": {
         "interactionId": "en:lesson-03:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "Чемодан стоит прямо перед вами у кассы. Выберите этот чемодан короткой просьбой.",
-          "uk": "Валіза стоїть просто перед вами біля каси. Виберіть цю валізу коротким проханням."
+          "ru": "На фотографии несколько стульев. Назовите их одним английским словом.",
+          "uk": "На фотографії кілька стільців. Назвіть їх одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-28:intro1:r1",
-              "text": "This suitcase, please."
+              "text": "chairs"
             },
             {
               "responseId": "en:lesson-03:session-28:intro1:r2",
-              "text": "That suitcase, please."
+              "text": "chair"
             },
             {
               "responseId": "en:lesson-03:session-28:intro1:r3",
-              "text": "This a suitcase, please."
+              "text": "a chairs"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-28:intro1:r1",
-              "text": "This suitcase, please."
+              "text": "chairs"
             },
             {
               "responseId": "en:lesson-03:session-28:intro1:r2",
-              "text": "That suitcase, please."
+              "text": "chair"
             },
             {
               "responseId": "en:lesson-03:session-28:intro1:r3",
-              "text": "This a suitcase, please."
+              "text": "a chairs"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Чемодан стоит прямо перед вами у кассы. Выберите этот чемодан короткой просьбой.",
-          "uk": "Валіза стоїть просто перед вами біля каси. Виберіть цю валізу коротким проханням."
+          "ru": "На фотографии несколько стульев. Назовите их одним английским словом.",
+          "uk": "На фотографії кілька стільців. Назвіть їх одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выбрать вещь вдали",
-        "uk": "Вибрати річ вдалині"
+        "ru": "Стулья вообще и наши стулья",
+        "uk": "Стільці загалом і наші стільці"
       },
       "bodyByLocale": {
-        "ru": "`backpack` — «рюкзак». Рюкзак остался у входа. Для дальней вещи выбираем `that`: `That backpack, please.` — «Тот рюкзак, пожалуйста».\n\nВ короткой просьбе `this` выбирает предмет рядом, а `that` — предмет дальше. В конце называем вещь: `this suitcase`, `that backpack`.",
-        "uk": "`backpack` — «рюкзак». Рюкзак залишився біля входу. Для далекої речі вибираємо `that`: `That backpack, please.` — «Той рюкзак, будь ласка».\n\nУ короткому проханні `this` вибирає предмет поруч, а `that` — предмет далі. Наприкінці називаємо річ: `this suitcase`, `that backpack`."
+        "ru": "`Chairs are different` — «Стулья разные». Можно говорить о стульях вообще: они бывают разной высоты и формы. Перед `chairs` здесь нет `the`. `The chairs are upstairs` — «Стулья наверху»: речь о конкретных стульях для встречи. `Where are the chairs?` — «Где стулья?»",
+        "uk": "`Chairs are different` — «Стільці різні». Можна говорити про стільці загалом: вони бувають різної висоти й форми. Перед `chairs` тут немає `the`. `The chairs are upstairs` — «Стільці нагорі»: ідеться про конкретні стільці для зустрічі. `Where are the chairs?` — «Де стільці?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Рюкзак остался на стойке у входа. Выберите тот рюкзак короткой просьбой.",
-          "uk": "Рюкзак залишився на стійці біля входу. Виберіть той рюкзак коротким проханням."
+          "ru": "Вы говорите о стульях вообще и их разной форме, без указания на определённые стулья. Выберите фразу «Стулья разные».",
+          "uk": "Ви говорите про стільці загалом та їхню різну форму, без указівки на певні стільці. Виберіть фразу «Стільці різні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-28:intro2:r1",
-              "text": "That backpack, please."
+              "text": "Chairs are different."
             },
             {
               "responseId": "en:lesson-03:session-28:intro2:r2",
-              "text": "This backpack, please."
+              "text": "The chairs are different."
             },
             {
               "responseId": "en:lesson-03:session-28:intro2:r3",
-              "text": "That a backpack, please."
+              "text": "A chairs are different."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-28:intro2:r1",
-              "text": "That backpack, please."
+              "text": "Chairs are different."
             },
             {
               "responseId": "en:lesson-03:session-28:intro2:r2",
-              "text": "This backpack, please."
+              "text": "The chairs are different."
             },
             {
               "responseId": "en:lesson-03:session-28:intro2:r3",
-              "text": "That a backpack, please."
+              "text": "A chairs are different."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Рюкзак остался на стойке у входа. Выберите тот рюкзак короткой просьбой.",
-          "uk": "Рюкзак залишився на стійці біля входу. Виберіть той рюкзак коротким проханням."
+          "ru": "Вы говорите о стульях вообще и их разной форме, без указания на определённые стулья. Выберите фразу «Стулья разные».",
+          "uk": "Ви говорите про стільці загалом та їхню різну форму, без указівки на певні стільці. Виберіть фразу «Стільці різні»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Услышать `this` или `that`",
-        "uk": "Почути `this` або `that`"
+        "ru": "Можно переставить",
+        "uk": "Можна переставити"
       },
       "bodyByLocale": {
-        "ru": "`wallet` — «кошелёк». Для вещи рядом скажите `This wallet, please.`, вдали — `That wallet, please.`\n\nНе угадывайте по началу: дослушайте `this` или `that` целиком и смотрите, где лежит вещь. Касса не любит лотерей: одно слово решает, какой кошелёк поедет с вами.",
-        "uk": "`wallet` — «гаманець». Для речі поруч скажіть `This wallet, please.`, вдалині — `That wallet, please.`\n\nНе вгадуйте за початком: дослухайте `this` або `that` до кінця й дивіться, де лежить річ. Каса не любить лотерей: одне слово вирішує, який гаманець поїде з вами."
+        "ru": "`correct` — «верный», `certain` — «уверенный», `serious` — «серьёзный», `flexible` — «гибкий, готовый подстроиться». Анна готова изменить расстановку: `She is flexible` — «Она готова подстроиться». Здесь речь о подходе к планам, а не о растяжке. Олег уверен в своём ответе: `He is certain` — «Он уверен». Вы проверили карты: `The maps are correct` — «Карты верные».",
+        "uk": "`correct` — «правильний», `certain` — «упевнений», `serious` — «серйозний», `flexible` — «гнучкий, готовий пристосуватися». Анна готова змінити розташування: `She is flexible` — «Вона готова пристосуватися». Тут ідеться про підхід до планів, а не про розтяжку. Олег упевнений у своїй відповіді: `He is certain` — «Він упевнений». Ви перевірили карти: `The maps are correct` — «Карти правильні»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Кошелёк лежит прямо перед вами на прилавке. Выберите этот кошелёк короткой просьбой.",
-          "uk": "Гаманець лежить просто перед вами на прилавку. Виберіть цей гаманець коротким проханням."
+          "ru": "Анна знает, какие стулья нужны для встречи. Спросите, где стулья.",
+          "uk": "Анна знає, які стільці потрібні для зустрічі. Запитайте, де стільці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-28:intro3:r1",
-              "text": "This wallet, please."
+              "text": "Where are the chairs?"
             },
             {
               "responseId": "en:lesson-03:session-28:intro3:r2",
-              "text": "That wallet, please."
+              "text": "Where is the chairs?"
             },
             {
               "responseId": "en:lesson-03:session-28:intro3:r3",
-              "text": "This a wallet, please."
+              "text": "What are the chairs?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-28:intro3:r1",
-              "text": "This wallet, please."
+              "text": "Where are the chairs?"
             },
             {
               "responseId": "en:lesson-03:session-28:intro3:r2",
-              "text": "That wallet, please."
+              "text": "Where is the chairs?"
             },
             {
               "responseId": "en:lesson-03:session-28:intro3:r3",
-              "text": "This a wallet, please."
+              "text": "What are the chairs?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кошелёк лежит прямо перед вами на прилавке. Выберите этот кошелёк короткой просьбой.",
-          "uk": "Гаманець лежить просто перед вами на прилавку. Виберіть цей гаманець коротким проханням."
+          "ru": "Анна знает, какие стулья нужны для встречи. Спросите, где стулья.",
+          "uk": "Анна знає, які стільці потрібні для зустрічі. Запитайте, де стільці."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "aa3c62b8dcbc4bc07127f8a3a18dd83f89aac83e5e1bdb6162a88e9986c8d14c"
+  "introFingerprint": "0b32f8661e40def4c1c2940e69767caef77db465d4ffd138e078b65f60d1ad45"
 }

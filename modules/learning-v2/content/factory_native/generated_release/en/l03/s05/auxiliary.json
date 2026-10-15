@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-05:intro1:r2": {
+          "ru": "Перед `map` в этой фразе нужно `a`.",
+          "uk": "Перед `map` у цій фразі потрібно `a`."
+        },
+        "en:lesson-03:session-05:intro1:r3": {
+          "ru": "Перед согласным звуком в `map` нужно `a`, не `an`.",
+          "uk": "Перед приголосним звуком у `map` потрібно `a`, не `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-05:intro2:r2": {
+          "ru": "В названии `a map` пропало `a`.",
+          "uk": "У назві `a map` зникло `a`."
+        },
+        "en:lesson-03:session-05:intro2:r3": {
+          "ru": "Это сообщение. Для вопроса начните с `Is it`.",
+          "uk": "Це повідомлення. Для запитання почніть з `Is it`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-05:intro3:r2": {
+          "ru": "Перед отдельным `warm` здесь не нужно `a`: вы описываете температуру.",
+          "uk": "Перед окремим `warm` тут не потрібно `a`: ви описуєте температуру."
+        },
+        "en:lesson-03:session-05:intro3:r3": {
+          "ru": "С `It` нужно `is`.",
+          "uk": "З `It` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6298bee5871ccf01ca2b75b5f03bb807cfaa5d00a0ac8186e3459092c50ee6e2"
+}

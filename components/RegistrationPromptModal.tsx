@@ -14,7 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, ActivityIndicator, AppState, Modal, View, Text, TextInput, Pressable, StyleSheet, Platform, Linking, ScrollView, useWindowDimensions } from 'react-native';
+import { AccessibilityInfo, AppState, Modal, View, Text, TextInput, Pressable, StyleSheet, Platform, Linking, ScrollView, useWindowDimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
@@ -1663,18 +1663,11 @@ function RegistrationPromptModal({
               accessibilityLabel={signInSlow ? signInSlowLabel : signInBusyLabel}
               accessibilityLiveRegion="polite"
               accessibilityState={{ busy: true }}
-              style={[
-                styles.busyPanel,
-                {
-                  backgroundColor: glass.opaqueControl,
-                },
-              ]}
-            >
-              <ActivityIndicator size="small" color={glass.secondary} />
-              <Text style={[styles.busyText, { color: glass.secondary, fontSize: f.caption }]}>
-                {signInSlow ? signInSlowLabel : signInBusyLabel}
-              </Text>
-            </View>
+              // зачем (владелец 15.10): технические надписи о процессе входа не показываем — индикатор уже на самой кнопке провайдера;
+              // подпись остаётся только для экранного диктора (progressbar + живая область). Узел невидим и места не занимает.
+              collapsable={false}
+              style={styles.busyA11y}
+            />
           )}
 
           {!googleAvail && appleAvail === false && (
@@ -2336,23 +2329,11 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 10,
   },
-  busyPanel: {
-    width: '100%',
-    minHeight: 42,
-    borderRadius: 12,
-    borderWidth: 0,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-  },
-  busyText: {
-    flex: 1,
-    fontWeight: '700',
-    textAlign: 'left',
+  // Только для экранного диктора: точка 1×1 вне потока, без фона.
+  busyA11y: {
+    position: 'absolute',
+    width: 1,
+    height: 1,
   },
   shieldRow: {
     flexDirection: 'row',

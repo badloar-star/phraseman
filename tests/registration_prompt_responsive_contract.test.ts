@@ -34,7 +34,11 @@ describe('RegistrationPromptModal responsive layout contract', () => {
   it('shows an accessible busy state and allows truthful close only after the slow threshold', () => {
     const src = source();
 
-    expect(src).toContain('ActivityIndicator');
+    // зачем (владелец 15.10): видимой строки «Входим…» больше нет — индикатор рисует сама кнопка провайдера (loading),
+    // подпись живёт только в accessibilityLabel невидимого узла прогресса.
+    expect(src).toContain('loading={loadingProvider === ');
+    expect(src.split('signInSlow ? signInSlowLabel : signInBusyLabel').length - 1).toBe(1);
+    expect(src).toContain('accessibilityLabel={signInSlow ? signInSlowLabel : signInBusyLabel}');
     expect(src).toContain("testID={signInSlow ? 'auth-prompt-slow' : 'auth-prompt-busy'}");
     expect(src).toContain('accessibilityRole="progressbar"');
     expect(src).toContain('accessibilityLiveRegion="polite"');

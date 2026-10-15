@@ -1,0 +1,34 @@
+10-15 10:08:32.949 I/ReactNativeJS(19003): [ACC-MUT] firestore_cache_clear check ms=0 marker=1 lock=0 reason=marker source=startup_multiget
+10-15 10:08:32.964 I/ReactNativeJS(19003): [FIRESTORE-FIRST-TOUCH] clear_start ms=14277347 touchesBefore=0
+10-15 10:08:32.984 I/ReactNativeJS(19003): [ACC-MUT] firestore_cache_clear start reason=marker
+10-15 10:08:33.003 I/SVERKA  (19155): === TABSC start 10:09:12 ===
+10-15 10:08:33.199 I/SVERKA  (19158): === TABSC switch 1 lessons 10:09:13 ===
+10-15 10:08:33.736 W/ReactNativeJS(19003): [JS-STALL] +4086ms поток стоял 1084ms (с +3002ms)
+10-15 10:08:33.850 W/ReactNativeJS(19003): [ACC-MUT] firestore_cache_clear failed code=firestore/failed-precondition ms=884 — метка оставлена, повтор на следующем старте (Firestore уже был запущен)
+10-15 10:08:33.855 I/ReactNativeJS(19003): [FIRESTORE-FIRST-TOUCH] clear_end failed touches=0 ms=14278234
+10-15 10:08:34.700 W/ReactNativeJS(19003): [JS-STALL] heartbeat +5051ms splash=hidden@+5032ms
+10-15 10:08:34.741 I/ReactNativeJS(19003): [WELCOME-BACK] signal skip reason=recent awayDays=0.0
+10-15 10:08:36.548 I/ReactNativeJS(19003): [INFO] [PAYWALL-OPEN]: шапка: ctx=generic source=settings_premium текст=generic контекстная=false выгода=есть lang=ru
+10-15 10:08:36.566 I/ReactNativeJS(19003): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"generic","source":"settings_premium","shownContext":"generic","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","rootNavReady":true}'
+10-15 10:08:36.616 W/ReactNativeJS(19003): [JS-STALL] +6967ms поток стоял 412ms (с +6555ms)
+10-15 10:08:36.636 I/ReactNativeJS(19003): [TAP-LAT] → premium_modal (из dev_state) · без касания (редирект/таймер) · коммит→кадр 66.2мс
+10-15 10:08:36.636 I/ReactNativeJS(19003): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (66мс) · рендеры: stack 7×(46/14/31/53/2/…мс, всего 274мс) · screen:premium_modal 1×(111мс, всего 111мс)
+10-15 10:08:36.651 I/ReactNativeJS(19003): [SOUND-V2] flag: sound_v2=false (из кэша remote_config_cache_v1, раньше=null)
+10-15 10:08:36.654 I/ReactNativeJS(19003): [SOUND-V2] prime ms=34 flag=off — файлы не грузим, старые звуки без изменений
+10-15 10:08:37.762 W/ReactNativeJS(19003): [JS-STALL] +8113ms поток стоял 881ms (с +7232ms)
+10-15 10:08:37.859 I/SVERKA  (19204): === TABSC switch 1 settings 10:09:17 ===
+10-15 10:08:40.612 I/ReactNativeJS(19003): [ENSURE-LINK] authoritative_memo miss reason=empty
+10-15 10:08:42.737 I/SVERKA  (19392): === TABSC switch 1 home 10:09:22 ===
+10-15 10:08:45.951 I/ReactNativeJS(19003): [ENSURE-LINK] authoritative_memo hit ageMs=908 generation=1
+10-15 10:08:48.169 I/SVERKA  (19625): === TABSC switch 2 lessons 10:09:28 ===
+10-15 10:08:52.799 I/SVERKA  (19716): === TABSC switch 2 settings 10:09:32 ===
+10-15 10:08:57.973 I/SVERKA  (19784): === TABSC switch 2 home 10:09:37 ===
+10-15 10:09:08.960 I/SVERKA  (19914): === TABSC paywall 1 open-tap 10:09:48 ===
+10-15 10:09:14.843 I/SVERKA  (19974): === TABSC paywall 1 close-tap 10:09:54 ===
+10-15 10:09:19.937 I/SVERKA  (20022): === TABSC paywall 1 tab-tap 10:09:59 ===
+10-15 10:09:30.638 I/SVERKA  (20108): === TABSC paywall 2 open-tap 10:10:10 ===
+10-15 10:09:36.714 I/SVERKA  (20121): === TABSC paywall 2 close-tap 10:10:16 ===
+10-15 10:09:41.782 I/SVERKA  (20146): === TABSC paywall 2 tab-tap 10:10:21 ===
+10-15 10:09:52.178 I/SVERKA  (20243): === TABSC paywall 3 open-tap 10:10:32 ===
+10-15 10:09:57.877 I/SVERKA  (20260): === TABSC paywall 3 close-tap 10:10:37 ===
+10-15 10:10:02.558 I/SVERKA  (20281): === TABSC paywall 3 tab-tap 10:10:42 ===

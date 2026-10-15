@@ -1,0 +1,11 @@
+'' '' app.phraseman:id/action_bar_root (0, 0, 1080, 2400)
+'' '' android:id/content (0, 0, 1080, 2400)
+'' '' legacy-lessons-catalog (0, 0, 1080, 2400)
+'' Traceback (most recent call last):
+  File "C:\Temp\claude\sv\ui.py", line 16, in <module>
+    if t or d or i: print(repr(t)[:50],repr(d)[:50],i[-50:],b)
+                    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 1-5: character maps to <undefined>

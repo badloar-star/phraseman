@@ -1,0 +1,21 @@
+10:53:33 launch
+10:54:41 ready-wait i=14
+10:55:09 предполёт ok (нет DEV-STATE/пейвола)
+10:55:16 аккаунт-проверка: в дампе Настроек нет №1/support
+10:55:30 итог урока открыт
+10:55:43 после «На главную»
+10:55:43 switch 1 lessons
+10:55:46 switch 1 settings
+10:55:50 switch 1 home
+10:55:53 switch 2 lessons
+10:55:56 switch 2 settings
+10:56:00 switch 2 home
+10:56:03 switch 3 lessons
+10:56:06 switch 3 settings
+10:56:09 switch 3 home
+10:56:13 switch 4 lessons
+10:56:16 switch 4 settings
+10:56:19 switch 4 home
+10:56:23 switch 5 lessons
+10:56:26 switch 5 settings
+10:56:29 switch 5 home

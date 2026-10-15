@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-30:i01",
+    "correctText": "It is elsewhere.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i02",
+    "correctText": "signpost",
+    "correctResponseId": "en:lesson-04:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i03",
+    "correctText": "signpost",
+    "correctResponseId": "en:lesson-04:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i04",
+    "correctText": "en:lesson-04:session-30:i04:p1=signpost\nen:lesson-04:session-30:i04:p2=elsewhere\nen:lesson-04:session-30:i04:p3=windows\nen:lesson-04:session-30:i04:p4=carrot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i05",
+    "correctText": "This is a signpost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i06",
+    "correctText": "The carrot is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i07",
+    "correctText": "It's elsewhere.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i08",
+    "correctText": "next to",
+    "correctResponseId": "en:lesson-04:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i09",
+    "correctText": "The windows are next to the door.",
+    "correctResponseId": "en:lesson-04:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i10",
+    "correctText": "en:lesson-04:session-30:i10:p1=signpost\nen:lesson-04:session-30:i10:p2=between\nen:lesson-04:session-30:i10:p3=windows\nen:lesson-04:session-30:i10:p4=carrot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i11",
+    "correctText": "The signpost is between the windows.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i12",
+    "correctText": "The carrot is under the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i13",
+    "correctText": "The signpost is next to the hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i15",
+    "correctText": "That is a signpost.",
+    "correctResponseId": "en:lesson-04:session-30:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i16",
+    "correctText": "en:lesson-04:session-30:i16:p1=signpost\nen:lesson-04:session-30:i16:p2=elsewhere\nen:lesson-04:session-30:i16:p3=windows\nen:lesson-04:session-30:i16:p4=carrot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i17",
+    "correctText": "The signpost is next to the shop.",
+    "correctResponseId": null
+  }
+]

@@ -9,7 +9,8 @@ describe('Б8 · «Мои ошибки»: шторка → тренировка 
   const hub = read('app/mistakes_hub.tsx');
   const session = read('app/mistake_practice_session.tsx');
   it('хаб передаёт from=hub и обещанное число, журнал пишет источник числа', () => {
-    expect(hub).toContain("const flowParams = { length: 'all', from: 'hub', expect: String(sheetReady) };");
+    // + quotaReceipt (Ревизор 15.10): id попытки дня этого тапа — тренировка вернёт её, если не стартует
+    expect(hub).toContain("const flowParams = { length: 'all', from: 'hub', expect: String(sheetReady), ...gate.takeQuotaReceiptParam() };");
     expect(hub).toContain("[MISTAKES-FLOW] хаб → тренировка");
   });
   it('крестик и отказ в энергии: из хаба запасной путь — хаб ошибок', () => {

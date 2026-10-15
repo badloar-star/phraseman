@@ -51,6 +51,16 @@ describe('mistake practice start gate: energy before the daily attempt', () => {
     expect(opened).toBe(true);
     expect(mockPredictCalls).toEqual([]);
     expect(mockConsume).toHaveBeenCalledTimes(1);
+    // id попытки этого тапа уходит в маршрут тренировки ровно один раз (Ревизор 15.10: возврат по чеку своего экрана)
+    expect(result.current.takeQuotaReceiptParam()).toEqual({ quotaReceipt: 'mistakes:uuid-1' });
+    expect(result.current.takeQuotaReceiptParam()).toEqual({});
+  });
+
+  it('a refused tap (no energy) hands no receipt to the route', async () => {
+    mockPredict = 'insufficient';
+    const { result } = await renderHook(() => useMistakePracticeStartGate('mistakes_hub_start'));
+    await act(async () => { result.current.tryStartSession(7); });
+    expect(result.current.takeQuotaReceiptParam()).toEqual({});
   });
 
   it('paid session with energy (or energy not read yet) opens and spends the attempt', async () => {

@@ -195,7 +195,8 @@ export default function MistakesHubScreen() {
     // зачем (бета-тест Б8, координатор 15.10; сперва логи): шторка обещает N ошибок — тренировка сверит это с тем, что получила
     // (expect), а крестик вернёт в хаб, а не на «Карточки» (from=hub). Источник числа: демо-снимок dev или настоящий журнал.
     console.log(`[MISTAKES-FLOW] хаб → тренировка: шторка=${sheetReady} готово=${readyCount} группа=${sheetGroup} источник=${isDevMistakesDemoOn() ? 'демо-снимок dev (mistakes=demo)' : 'журнал ошибок'}`); // guard-ok: журнал входа
-    const flowParams = { length: 'all', from: 'hub', expect: String(sheetReady) };
+    // quotaReceipt — id списанной попытки дня этого тапа: тренировка вернёт её, если не стартует (Ревизор 15.10)
+    const flowParams = { length: 'all', from: 'hub', expect: String(sheetReady), ...gate.takeQuotaReceiptParam() };
     router.push({ pathname: '/mistake_practice_session', params: sheetGroup === 'all' ? flowParams : { ...flowParams, facetGroup: sheetGroup } } as never);
   }, [gate, readyCount, router, sheetGroup, sheetReady, target]);
 

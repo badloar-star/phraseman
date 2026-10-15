@@ -136,7 +136,7 @@ export default function MistakeDetailScreen() {
     trackMistakePracticeEvent('mistake_practice_setup_started', {
       study_target: target, entry_source: 'mistake_detail', requested_length: '1', ready_count: 1, session_count: 1, costs_energy: false,
     });
-    router.push({ pathname: '/mistake_practice_session', params: { focusMistakeId: detail.mistakeId } } as never);
+    router.push({ pathname: '/mistake_practice_session', params: { focusMistakeId: detail.mistakeId, ...gate.takeQuotaReceiptParam() } } as never);
   }, [detail, gate, router, target]);
 
   // зачем (координатор 05.10, «Правильно — переводом»: направление задания, по правилу «сперва логи»): что именно показано на детали ошибки.

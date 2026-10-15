@@ -148,7 +148,8 @@ export default function MistakesListScreen() {
       session_count: readyInGroup,
       costs_energy: readyInGroup >= 5,
     });
-    router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { length: 'all' } : { length: 'all', facetGroup: group } } as never);
+    const receipt = gate.takeQuotaReceiptParam(); // id попытки дня этого тапа — для возврата, если тренировка не стартует
+    router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { length: 'all', ...receipt } : { length: 'all', facetGroup: group, ...receipt } } as never);
   }, [gate, group, readyInGroup, router, target]);
 
   const startReview = useCallback(() => {
@@ -164,7 +165,8 @@ export default function MistakesListScreen() {
       session_count: correctedInGroup,
       costs_energy: correctedInGroup >= 5,
     });
-    router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { pool: 'corrected', length: 'all' } : { pool: 'corrected', length: 'all', facetGroup: group } } as never);
+    const receipt = gate.takeQuotaReceiptParam(); // id попытки дня этого тапа — для возврата, если тренировка не стартует
+    router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { pool: 'corrected', length: 'all', ...receipt } : { pool: 'corrected', length: 'all', facetGroup: group, ...receipt } } as never);
   }, [correctedInGroup, gate, group, router, target]);
 
   // зачем (аудит скорости 13.10): подскролл у низа срабатывал на КАЖДОЕ событие и даже при показанных всех строках двигал limit — лишние перерисовки всего экрана.

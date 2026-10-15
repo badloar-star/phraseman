@@ -409,6 +409,8 @@ function MistakePracticeSessionScreen() {
     pool?: string;
     /** «Ещё N» (координатор 04.10): id ошибок через запятую — только неверные из прошлой сессии. */
     mistakeIds?: string | string[];
+    /** id списанной попытки дня ЭТОГО входа (гейт «Ошибок»): по нему экран вернёт попытку, если тренировка не стартует. */
+    quotaReceipt?: string;
     returnTo?: string;
     /** 'hub' — вход из хаба «Мои ошибки»: крестик без истории возвращает в хаб, а не на «Карточки» (бета Б8). */
     from?: string;
@@ -447,10 +449,12 @@ function MistakePracticeSessionScreen() {
   // но только при УХОДЕ с экрана: на ошибке подготовки есть «Попробовать снова», и возврат сразу дал бы бесплатный повтор.
   const quotaSettledRef = useRef(false);
   const notStartedReasonRef = useRef('left_before_start');
+  // чек СВОЕГО входа (из маршрута): тренировка А, оставшаяся под новой Б, вернёт именно свою попытку (Ревизор 15.10)
+  const quotaReceiptRef = useRef<string | null>(typeof params.quotaReceipt === 'string' && params.quotaReceipt ? params.quotaReceipt : null);
   useEffect(() => () => {
     if (quotaSettledRef.current) return;
     quotaSettledRef.current = true;
-    void settleMistakeQuotaStart('not_started', notStartedReasonRef.current);
+    void settleMistakeQuotaStart('not_started', notStartedReasonRef.current, quotaReceiptRef.current);
   }, []);
   useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
   const [accountScope, setAccountScope] = useState<string | null>(null);
@@ -691,7 +695,7 @@ function MistakePracticeSessionScreen() {
         });
         setAccountScope(scope);
         setSession(prepared.session);
-        if (!quotaSettledRef.current) { quotaSettledRef.current = true; void settleMistakeQuotaStart('started', 'session_started'); }
+        if (!quotaSettledRef.current) { quotaSettledRef.current = true; void settleMistakeQuotaStart('started', 'session_started', quotaReceiptRef.current); }
         setLoading(false);
       }
     })().catch((error: unknown) => {

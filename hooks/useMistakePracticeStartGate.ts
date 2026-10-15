@@ -26,6 +26,11 @@ export type MistakePracticeStartGate = Readonly<{
   /** true — энергии на платную сессию нет: экран показывает NoEnergyModal; суточная попытка НЕ потрачена. */
   noEnergy: boolean;
   dismissNoEnergy: () => void;
+  /**
+   * Параметр маршрута для тренировки, открываемой ЭТИМ тапом: { quotaReceipt } — id списанной попытки, по нему экран
+   * вернёт её, если старт не состоится. Звать сразу после успешного tryStartSession; без списания — пустой объект.
+   */
+  takeQuotaReceiptParam: () => Readonly<{ quotaReceipt?: string }>;
 }>;
 
 /**
@@ -46,7 +51,14 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
   const dismissNoEnergy = useCallback(() => setNoEnergy(false), []);
   const quota = useRevenueDailyQuotaPreview('mistake_practice_starts');
   const inFlightRef = useRef(false);
+  // зачем (Ревизор 15.10): id чека этого тапа уходит в маршрут, а не в общий слот — у каждой тренировки свой возврат
+  const lastReceiptRef = useRef<string | null>(null);
   const locked = quota.status === 'exhausted';
+  const takeQuotaReceiptParam = useCallback((): Readonly<{ quotaReceipt?: string }> => {
+    const receiptId = lastReceiptRef.current;
+    lastReceiptRef.current = null;
+    return receiptId ? { quotaReceipt: receiptId } : {};
+  }, []);
 
   const openPaywall = useCallback(() => {
     void trackEvent('paywall_shown', { context: 'mistake_practice', source });
@@ -54,6 +66,7 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
   }, [router, source]);
 
   const tryStartSession = useCallback((sessionCount?: number): boolean => {
+    lastReceiptRef.current = null; // чек прошлого тапа не должен уехать в маршрут бесплатного входа
     console.log('[MISTAKES-GATE] tap', JSON.stringify({
       surface: source, status: quota.status, used: quota.used, limit: quota.limit, bypass: quota.bypass, sessionCount: sessionCount ?? null,
     }));
@@ -85,6 +98,7 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
     });
     // зачем (хвост R48): тренировка вернёт попытку, если её старт так и не состоится (settleMistakeQuotaStart)
     rememberMistakeQuotaReceipt({ receiptId, token, consume, atMs: Date.now(), surface: source });
+    lastReceiptRef.current = receiptId;
     void consume
       .then((result) => {
         console.log('[MISTAKES-GATE] consume:out', JSON.stringify({ receiptId, status: result.status, used: result.used, limit: result.limit, bypass: result.bypass }));
@@ -96,5 +110,5 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
     return true;
   }, [accessResolved, openPaywall, predictStartRefusal, quota, source]);
 
-  return { quota, locked, tryStartSession, noEnergy, dismissNoEnergy };
+  return { quota, locked, tryStartSession, noEnergy, dismissNoEnergy, takeQuotaReceiptParam };
 }

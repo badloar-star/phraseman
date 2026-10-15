@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-33:intro1:r2": {
+          "ru": "Перед одним звонком нужно `a`: `a doorbell`.",
+          "uk": "Перед одним дзвінком потрібне `a`: `a doorbell`."
+        },
+        "en:lesson-04:session-33:intro1:r3": {
+          "ru": "Здесь один звонок: `This is a doorbell`.",
+          "uk": "Тут один дзвінок: `This is a doorbell`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-33:intro2:r2": {
+          "ru": "`is` сообщает, что телефон есть; для отсутствия нужно `isn’t`.",
+          "uk": "`is` повідомляє, що телефон є; для відсутності потрібне `isn’t`."
+        },
+        "en:lesson-04:session-33:intro2:r3": {
+          "ru": "Один телефон: `There isn’t a phone`.",
+          "uk": "Один телефон: `There isn’t a phone`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-33:intro3:r2": {
+          "ru": "Так вы сообщаете, что стулья есть; здесь их нет: `aren’t any`.",
+          "uk": "Так ви повідомляєте, що стільці є; тут їх немає: `aren’t any`."
+        },
+        "en:lesson-04:session-33:intro3:r3": {
+          "ru": "С несколькими стульями, `chairs`, нужно `aren’t`.",
+          "uk": "З кількома стільцями, `chairs`, потрібне `aren’t`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e95738c560d8a8047bc3fbcb7c28b7b8bfe08e1ea511a5e74a1a31924d161572"
+}

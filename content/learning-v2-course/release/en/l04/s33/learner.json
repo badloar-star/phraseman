@@ -1,0 +1,969 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг активный. Скажите об этом без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг активный. Скажите об этом без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is active.",
+        "localizedMeaning": {
+          "ru": "Друг активный. Скажите об этом без сокращения",
+          "uk": "Друг активний. Скажіть про це без скорочення"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "active"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-33:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг активный. Скажите об этом без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is active.`",
+              "uk": "тут потрібно `is` — `He is active.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-33:i02:r1",
+          "text": "doorbell"
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i02:r2",
+          "text": "doorbells"
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i02:r3",
+          "text": "door"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-33:i02:audio",
+          "transcript": "doorbell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-33:i02:r1",
+            "targetText": "doorbell",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i02:r2",
+            "targetText": "doorbells",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i02:r3",
+            "targetText": "door",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `doorbell`, а в этом варианте — `doorbells`.",
+              "uk": "У записі перше слово — `doorbell`, а в цьому варіанті — `doorbells`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `doorbell`, а в этом варианте — `door`.",
+              "uk": "У записі перше слово — `doorbell`, а в цьому варіанті — `door`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите дверной звонок одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-33:i03:r1",
+          "text": "doorbell"
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i03:r2",
+          "text": "phone"
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i03:r3",
+          "text": "sink"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите дверной звонок одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите дверной звонок одним словом",
+          "uk": "Назвіть дверний дзвінок одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-33:i03:r1",
+            "text": "doorbell"
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i03:r2",
+            "text": "phone"
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i03:r3",
+            "text": "sink"
+          }
+        ],
+        "testedDimension": "Назовите дверной звонок одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите дверной звонок одним словом",
+            "feedbackByLocale": {
+              "ru": "`phone` — телефон; дверной звонок — `doorbell`.",
+              "uk": "`phone` — телефон; дверний дзвінок — `doorbell`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите дверной звонок одним словом",
+            "feedbackByLocale": {
+              "ru": "`sink` — раковина; дверной звонок — `doorbell`.",
+              "uk": "`sink` — раковина; дверний дзвінок — `doorbell`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-33:i04:p1",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i04:p2",
+            "target": "active",
+            "meaningByLocale": {
+              "ru": "активный",
+              "uk": "активний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i04:p3",
+            "target": "phone",
+            "meaningByLocale": {
+              "ru": "телефон",
+              "uk": "телефон"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i04:p4",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "doorbell",
+          "active",
+          "phone",
+          "sink"
+        ],
+        "rightColumn": [
+          "дверной звонок",
+          "активный",
+          "телефон",
+          "раковина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-33:i05:audio",
+          "transcript": "This is a doorbell."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a doorbell.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "doorbell"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-33:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a doorbell.`",
+              "uk": "тут потрібно `is` — `This is a doorbell.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В комнате нет телефона. Соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В комнате нет телефона. Соберите фразу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn't a phone.",
+        "localizedMeaning": {
+          "ru": "В комнате нет телефона. Соберите фразу",
+          "uk": "У кімнаті немає телефона. Складіть фразу"
+        },
+        "orderedTokens": [
+          "There",
+          "isn't",
+          "a",
+          "phone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На кухне нет раковины. Сообщите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "На кухне нет раковины. Сообщите об этом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-33:i07:audio",
+          "transcript": "There isn't a sink."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There isn't a sink.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дверного звонка нет. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-33:i08:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i08:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверного звонка нет. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверного звонка нет. Выберите форму",
+          "uk": "Дверного дзвінка немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a doorbell.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-33:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Дверного звонка нет. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Дверного звонка нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "`is` — есть; здесь нет: `isn’t`.",
+              "uk": "`is` — є; тут немає: `isn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Дверного звонка нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Один звонок: `isn’t a doorbell`.",
+              "uk": "Один дзвінок: `isn’t a doorbell`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чего нет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-33:i09:r1",
+          "text": "There aren't any chairs."
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i09:r2",
+          "text": "There aren't any tables."
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i09:r3",
+          "text": "There aren't any cups."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чего нет",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-33:i09:audio",
+          "transcript": "There aren't any chairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-33:i09:r1",
+            "targetText": "There aren't any chairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i09:r2",
+            "targetText": "There aren't any tables.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i09:r3",
+            "targetText": "There aren't any cups.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чего нет",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `chairs`, а в этом варианте — `tables`.",
+              "uk": "У записі останнє слово — `chairs`, а в цьому варіанті — `tables`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чего нет",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `chairs`, а в этом варианте — `cups`.",
+              "uk": "У записі останнє слово — `chairs`, а в цьому варіанті — `cups`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-33:i10:p1",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i10:p2",
+            "target": "active",
+            "meaningByLocale": {
+              "ru": "активный",
+              "uk": "активний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i10:p3",
+            "target": "phone",
+            "meaningByLocale": {
+              "ru": "телефон",
+              "uk": "телефон"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i10:p4",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "doorbell",
+          "active",
+          "phone",
+          "sink"
+        ],
+        "rightColumn": [
+          "дверной звонок",
+          "активный",
+          "телефон",
+          "раковина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-33:i11:audio",
+          "transcript": "There aren't any tables."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren't any tables.",
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "tables"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В помещении нет чашек. Соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В помещении нет чашек. Соберите фразу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There aren't any cups.",
+        "localizedMeaning": {
+          "ru": "В помещении нет чашек. Соберите фразу",
+          "uk": "У приміщенні немає чашок. Складіть фразу"
+        },
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "cups"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Нет стола. Скажите об одном предмете",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Нет стола. Скажите об одном предмете",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-33:i13:audio",
+          "transcript": "There isn't a table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There isn't a table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В помещении нет окон. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-33:i14:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i14:r3",
+          "text": "isn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В помещении нет окон. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В помещении нет окон. Выберите форму",
+          "uk": "У приміщенні немає вікон. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ any windows.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-33:i14:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i14:r3",
+            "text": "isn't"
+          }
+        ],
+        "testedDimension": "В помещении нет окон. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-33:i14:r2",
+            "correct": false,
+            "testedDimension": "В помещении нет окон. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Здесь отсутствие: `There aren’t any windows`.",
+              "uk": "Тут відсутність: `There aren’t any windows`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i14:r3",
+            "correct": false,
+            "testedDimension": "В помещении нет окон. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Несколько окон, `windows`: нужно `aren’t`.",
+              "uk": "Кілька вікон, `windows`: потрібне `aren’t`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какого предмета нет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-33:i15:r1",
+          "text": "There isn't a chair."
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i15:r2",
+          "text": "There isn't a phone."
+        },
+        {
+          "responseId": "en:lesson-04:session-33:i15:r3",
+          "text": "There isn't a sink."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какого предмета нет",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-33:i15:audio",
+          "transcript": "There isn't a chair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-33:i15:r1",
+            "targetText": "There isn't a chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i15:r2",
+            "targetText": "There isn't a phone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i15:r3",
+            "targetText": "There isn't a sink.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-33:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какого предмета нет",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `chair`, а в этом варианте — `phone`.",
+              "uk": "У записі останнє слово — `chair`, а в цьому варіанті — `phone`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-33:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какого предмета нет",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `chair`, а в этом варианте — `sink`.",
+              "uk": "У записі останнє слово — `chair`, а в цьому варіанті — `sink`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-33:i16:p1",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i16:p2",
+            "target": "active",
+            "meaningByLocale": {
+              "ru": "активный",
+              "uk": "активний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i16:p3",
+            "target": "phone",
+            "meaningByLocale": {
+              "ru": "телефон",
+              "uk": "телефон"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-33:i16:p4",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "doorbell",
+          "active",
+          "phone",
+          "sink"
+        ],
+        "rightColumn": [
+          "дверной звонок",
+          "активный",
+          "телефон",
+          "раковина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-33:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы пришли к другой двери и хотите позвонить, но звонка здесь нет. Сообщите «Дверного звонка нет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Вы пришли к другой двери и хотите позвонить, но звонка здесь нет. Сообщите «Дверного звонка нет»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-33:i17:audio",
+          "transcript": "There isn't a doorbell."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There isn't a doorbell.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4e472663e24d2545006cc6889212fc11fc69ac5cc0938a820a2a0d3a73fdcb12"
+}

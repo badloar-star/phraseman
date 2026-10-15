@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-33:i01",
+    "correctText": "He is active.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i02",
+    "correctText": "doorbell",
+    "correctResponseId": "en:lesson-04:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i03",
+    "correctText": "doorbell",
+    "correctResponseId": "en:lesson-04:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i04",
+    "correctText": "en:lesson-04:session-33:i04:p1=doorbell\nen:lesson-04:session-33:i04:p2=active\nen:lesson-04:session-33:i04:p3=phone\nen:lesson-04:session-33:i04:p4=sink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i05",
+    "correctText": "This is a doorbell.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i06",
+    "correctText": "There isn't a phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i07",
+    "correctText": "There isn't a sink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i09",
+    "correctText": "There aren't any chairs.",
+    "correctResponseId": "en:lesson-04:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i10",
+    "correctText": "en:lesson-04:session-33:i10:p1=doorbell\nen:lesson-04:session-33:i10:p2=active\nen:lesson-04:session-33:i10:p3=phone\nen:lesson-04:session-33:i10:p4=sink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i11",
+    "correctText": "There aren't any tables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i12",
+    "correctText": "There aren't any cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i13",
+    "correctText": "There isn't a table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i14",
+    "correctText": "aren't",
+    "correctResponseId": "en:lesson-04:session-33:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i15",
+    "correctText": "There isn't a chair.",
+    "correctResponseId": "en:lesson-04:session-33:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i16",
+    "correctText": "en:lesson-04:session-33:i16:p1=doorbell\nen:lesson-04:session-33:i16:p2=active\nen:lesson-04:session-33:i16:p3=phone\nen:lesson-04:session-33:i16:p4=sink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-33:i17",
+    "correctText": "There isn't a doorbell.",
+    "correctResponseId": null
+  }
+]

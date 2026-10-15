@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить, что одного или нескольких предметов нет",
+    "uk": "повідомити, що одного чи кількох предметів немає"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Звонок у двери",
+        "uk": "Дзвінок біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "`doorbell` — «дверной звонок». Один звонок — `a doorbell`. `This is a doorbell` — «Это дверной звонок». Даже если нажать десять раз, звонок останется один; изменится только настроение хозяина.",
+        "uk": "`doorbell` — «дверний дзвінок». Один дзвінок — `a doorbell`. `This is a doorbell` — «Це дверний дзвінок». Навіть якщо натиснути десять разів, дзвінок залишиться один; зміниться лише настрій господаря."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один дверной звонок.",
+          "uk": "Назвіть один дверний дзвінок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-33:intro1:r1",
+              "text": "This is a doorbell."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro1:r2",
+              "text": "This is doorbell."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro1:r3",
+              "text": "These are doorbells."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-33:intro1:r1",
+              "text": "This is a doorbell."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro1:r2",
+              "text": "This is doorbell."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro1:r3",
+              "text": "These are doorbells."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один дверной звонок.",
+          "uk": "Назвіть один дверний дзвінок."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одного предмета нет",
+        "uk": "Одного предмета немає"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a doorbell` — «Есть дверной звонок». Чтобы сказать, что его нет, добавьте `not`: `There is not a doorbell`. Обычно говорят короче: `There isn’t a doorbell` — «Дверного звонка нет». `phone` — «телефон», `sink` — «раковина»: `There isn’t a phone`; `There isn’t a sink`. После `isn’t` перед одним таким предметом остаётся `a`.",
+        "uk": "`There is a doorbell` — «Є дверний дзвінок». Щоб сказати, що його немає, додайте `not`: `There is not a doorbell`. Зазвичай кажуть коротше: `There isn’t a doorbell` — «Дверного дзвінка немає». `phone` — «телефон», `sink` — «раковина»: `There isn’t a phone`; `There isn’t a sink`. Після `isn’t` перед одним таким предметом залишається `a`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "В комнате нет телефона. Выберите фразу.",
+          "uk": "У кімнаті немає телефона. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-33:intro2:r1",
+              "text": "There isn’t a phone."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro2:r2",
+              "text": "There is a phone."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro2:r3",
+              "text": "There aren’t a phone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-33:intro2:r1",
+              "text": "There isn’t a phone."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro2:r2",
+              "text": "There is a phone."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro2:r3",
+              "text": "There aren’t a phone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В комнате нет телефона. Выберите фразу.",
+          "uk": "У кімнаті немає телефона. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ни одного из нескольких",
+        "uk": "Жодного з кількох"
+      },
+      "bodyByLocale": {
+        "ru": "Для нескольких предметов: `There aren’t any chairs` — «Нет ни одного стула». `aren’t` — сокращение `are not`, `any` здесь подчёркивает отсутствие: ни одного. Сравните: `There isn’t a chair` и `There aren’t any chairs`. `active` — «активный»: `He is active` — «Он активный». Это описание человека; о наличии вещей говорят с `there`.",
+        "uk": "Для кількох предметів: `There aren’t any chairs` — «Немає жодного стільця». `aren’t` — скорочення `are not`, `any` тут підкреслює відсутність: жодного. Порівняйте: `There isn’t a chair` і `There aren’t any chairs`. `active` — «активний»: `He is active` — «Він активний». Це опис людини; про наявність речей говорять із `there`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "В помещении нет стульев. Выберите фразу с chairs.",
+          "uk": "У приміщенні немає стільців. Виберіть фразу з chairs."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-33:intro3:r1",
+              "text": "There aren’t any chairs."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro3:r2",
+              "text": "There are some chairs."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro3:r3",
+              "text": "There isn’t any chairs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-33:intro3:r1",
+              "text": "There aren’t any chairs."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro3:r2",
+              "text": "There are some chairs."
+            },
+            {
+              "responseId": "en:lesson-04:session-33:intro3:r3",
+              "text": "There isn’t any chairs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В помещении нет стульев. Выберите фразу с chairs.",
+          "uk": "У приміщенні немає стільців. Виберіть фразу з chairs."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "91680451d3b56d5de7c8e900194d2847b40875115f7ee136e91357ac6b9265eb"
+}

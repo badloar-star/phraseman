@@ -23,7 +23,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { redeemPromoCode, normalizePromoCodeInput, type PromoRedeemStatus } from './promo_code_client';
 import { safeRouterBack } from './navigation_back';
-import { invalidatePremiumCache } from './premium_guard';
+import { forcePremiumAccessCloudRestore, getVerifiedVipStatus, invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
 import VipCelebrationModal from '../components/VipCelebrationModal';
@@ -224,6 +224,25 @@ export async function redeemPromoCodeWithPersist(rawCode: string): Promise<{
   return { status: res.status, rewardDays: res.rewardDays, rewardKind: res.rewardKind };
 }
 
+/**
+ * R61c: перечитать доступ из облака мимо TTL, затем ПРОВЕРИТЬ доступ — и только при подтверждении сообщить о VIP.
+ * зачем (ревью Opus R61c): событие покупки в сторе (premium_activated) вслепую ставило Plus и isPremium в публичной
+ * визитке даже при истёкшем VIP. Подтверждённый VIP → vip_activated; «нет» → ничего не выдаём. Не бросает.
+ */
+async function restorePromoAccessFromCloud(reason: 'local_write_failed' | 'already_redeemed'): Promise<void> {
+  try {
+    const confirmed = await forcePremiumAccessCloudRestore(`promo_${reason}`);
+    invalidatePremiumCache();
+    // Именно VIP и мимо кэша (ревью Opus): «да» от другого вида доступа не должно дать VIP в публичной визитке,
+    // а поздний reload от vip_activated не должен подсунуть закэшированное «нет».
+    const ok = await getVerifiedVipStatus({ bypassCache: true });
+    console.log('[PROMO] cloud_restore', JSON.stringify({ reason, confirmed, ok })); // guard-ok: итог
+    if (ok) emitAppEvent('vip_activated');
+  } catch (error) {
+    console.warn('[PROMO] cloud_restore failed', JSON.stringify({ reason, error: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+  }
+}
+
 export default function PromoCodeEntryScreen() {
   const router = useRouter();
   const { f, liquidGlassThemeId } = useTheme();
@@ -285,6 +304,11 @@ export default function PromoCodeEntryScreen() {
       if (res.status !== 'redeemed') {
         setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
       }
+      if (res.status === 'already_redeemed') {
+        // зачем (R61c, Ревизор 61374cf4e): ответ первого погашения мог потеряться — VIP на сервере есть, локальной записи нет.
+        // Перечитываем облако мимо TTL; VIP показываем только если проверка доступа подтвердит (срок мог истечь).
+        void restorePromoAccessFromCloud('already_redeemed');
+      }
       if (res.status === 'redeemed') {
         // зачем (R56, аудит кнопок 15.10): «успех» показывался ДО локальной записи VIP — при сбое записи человек видел
         // ошибку, хотя сервер доступ уже выдал. Сначала запись (один повтор), при провале — синхронизация с сервером
@@ -314,6 +338,8 @@ export default function PromoCodeEntryScreen() {
         invalidatePremiumCache();
         emitAppEvent('vip_activated');
         emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+        // R61c: локальная запись VIP не удалась — без этого полная проверка могла закэшировать «нет» на 30 мин.
+        if (marker === null) void restorePromoAccessFromCloud('local_write_failed');
         setCelebrationVisible(true);
       }
     } catch (error: unknown) {

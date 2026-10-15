@@ -100,6 +100,7 @@ export function beginPremiumAccountTransition(): number {
   invalidatePremiumCache();
   _lastCloudAccessRefreshTime = 0;
   _cloudRefreshConfirmedGeneration = -1;
+  _lastForceCloudRestoreAt = 0;
   _cloudAccessRefreshInFlight = null;
   _premiumAccountDrainEpoch = _premiumAccountTransitionEpoch;
   _premiumAccountTransitionEpoch += 1;
@@ -798,6 +799,62 @@ async function getVerifiedPremiumAccessStatusTraced(
     return false;
   }
   return finish(false);
+}
+
+/** Не чаще раза в 2 мин на устройстве: каждое принудительное восстановление — полное чтение аккаунта (ревью Opus R61c). */
+export const FORCE_CLOUD_RESTORE_MIN_INTERVAL_MS = 2 * 60 * 1000;
+let _lastForceCloudRestoreAt = 0;
+
+/**
+ * Принудительно перечитать доступ из облака — мимо TTL 30 мин и пропуска recent_restore.
+ * зачем (R61c, Ревизор 61374cf4e): промокод погашен на сервере, а локальной записи VIP нет (запись упала или ответ
+ * первого погашения потерялся). Обычная полная проверка после загрузочного восстановления считает облако прочитанным
+ * (confirmed_skip / recent_restore) и кэширует подтверждённое «нет» — человек до 30 мин видит Free после «Готово».
+ * Только по действию человека (ввод кода); идущее восстановление не дублируем, чаще раза в 2 мин не запускаем.
+ * Возвращает, прочитано ли облако. Доступ НЕ выдаёт — решает вызывающий через проверку доступа.
+ */
+export async function forcePremiumAccessCloudRestore(reason: string): Promise<boolean> {
+  const generation = captureAccountGeneration();
+  const startedAt = Date.now();
+  invalidatePremiumCache();
+  try {
+    const cloudSync = await import('./cloud_sync');
+    const inFlight = cloudSync.peekCloudRestoreInFlight();
+    let confirmed: boolean;
+    let via: string;
+    if (inFlight) {
+      // Идёт загрузочное/другое восстановление этого владельца — ждём его, второе не запускаем.
+      const attempt = await inFlight;
+      confirmed = restoreAttemptConfirmed(attempt) ?? cloudSync.lastCloudRestoreCompletedAt() >= startedAt;
+      via = 'joined_in_flight';
+    } else if (startedAt - _lastForceCloudRestoreAt < FORCE_CLOUD_RESTORE_MIN_INTERVAL_MS) {
+      console.log(`[PREMIUM-CLOUD] force_restore skip reason=${reason} cause=throttled sinceMs=${startedAt - _lastForceCloudRestoreAt}`); // guard-ok: ранний выход
+      return _cloudRefreshConfirmedGeneration === generation.generation;
+    } else {
+      _lastForceCloudRestoreAt = startedAt;
+      _lastCloudAccessRefreshTime = 0;
+      _cloudRefreshConfirmedGeneration = -1;
+      const applied = await cloudSync.restoreFromCloud();
+      confirmed = applied === true || cloudSync.lastCloudRestoreCompletedAt() >= startedAt;
+      via = 'own_restore';
+      // Неудача — повтор через 2 мин (как R61b), а не немедленное второе полное чтение из обычной проверки.
+      if (!confirmed) _lastCloudAccessRefreshTime = Date.now() - CLOUD_ACCESS_REFRESH_TTL_MS + CLOUD_ACCESS_REFRESH_FAILED_RETRY_MS;
+    }
+    if (!accountGenerationIsCurrent(generation)) {
+      console.log(`[PREMIUM-CLOUD] force_restore skip reason=${reason} cause=account_changed`); // guard-ok: ранний выход
+      return false;
+    }
+    invalidatePremiumCache();
+    if (confirmed) {
+      _cloudRefreshConfirmedGeneration = generation.generation;
+      _lastCloudAccessRefreshTime = Date.now();
+    }
+    console.log(`[PREMIUM-CLOUD] force_restore done reason=${reason} via=${via} confirmed=${confirmed} ms=${Date.now() - startedAt}`); // guard-ok: итог сети
+    return confirmed;
+  } catch (error) {
+    console.warn(`[PREMIUM-CLOUD] force_restore failed reason=${reason}`, error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+    return false;
+  }
 }
 
 /** Потолок облачной проверки подарка (план §CORE-0165): держатель подарка с копией его не ждёт вовсе. */

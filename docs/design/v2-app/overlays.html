@@ -45,13 +45,13 @@ function announcement(id, remote=false){
 }
 
 function authBusy(id, slow=false){
-  return authPrompt(id,'Быстрый вход. Прогресс синхронизируется между устройствами.',`<div class="ov-panel ov-busy" role="status"><span class="spin" aria-hidden="true"></span><div class="ov-panel-body">${slow?'Вход занимает больше времени. Можно безопасно закрыть это окно — попытка продолжится.':'Входим... подожди пару секунд'}</div></div>`,true);
+  return authPrompt(id,'Быстрый вход. Прогресс будет на всех твоих устройствах.',`<div class="ov-panel ov-busy" role="status"><span class="spin" aria-hidden="true"></span><div class="ov-panel-body">${slow?'Вход занимает больше времени. Можно безопасно закрыть это окно — попытка продолжится.':'Входим... подожди пару секунд'}</div></div>`,true);
 }
 function authNoProvider(){
-  return overlayPhone('OV-AUTH-NO-PROVIDER',`${authHead('Всё в безопасности','Быстрый вход. Прогресс синхронизируется между устройствами.')}<div class="ov-inline-error">Ни один провайдер не доступен на этом устройстве.</div>${later}${trust}`);
+  return overlayPhone('OV-AUTH-NO-PROVIDER',`${authHead('Всё в безопасности','Быстрый вход. Прогресс будет на всех твоих устройствах.')}<div class="ov-inline-error">Вход на этом устройстве сейчас недоступен.</div>${later}${trust}`);
 }
 function authError(){
-  return overlayPhone('OV-AUTH-ERROR',`${authHead('Всё в безопасности','Быстрый вход. Прогресс синхронизируется между устройствами.')}<div style="margin-top:18px">${providerButton('Google')}${providerButton('Apple')}</div><div class="ov-inline-error"><strong>Не получилось</strong><br>Не получилось войти. Попробуй позже.</div><button type="button" class="cta t" style="margin-top:12px">Повторить</button>${later}${trust}`);
+  return overlayPhone('OV-AUTH-ERROR',`${authHead('Всё в безопасности','Быстрый вход. Прогресс будет на всех твоих устройствах.')}<div style="margin-top:18px">${providerButton('Google')}${providerButton('Apple')}</div><div class="ov-inline-error"><strong>Не получилось</strong><br>Не получилось войти. Попробуй позже.</div><button type="button" class="cta t" style="margin-top:12px">Повторить</button>${later}${trust}`);
 }
 function authSwitchRequired(){
   return overlayPhone('OV-AUTH-SWITCH-REQUIRED',`${authHead('Нужно подтвердить смену аккаунта','Локальные данные сохранены. Сначала выбери «Сменить аккаунт» и подтверди безопасное сохранение или очистку данных, затем войди снова.','flag')}<div class="ov-inline-error"><strong>Повтор входа недоступен</strong><br>Вернись к управлению аккаунтом и сначала подтверди смену.</div><button type="button" class="cta gh t" style="margin-top:14px">Закрыть</button>${trust}`);
@@ -165,10 +165,10 @@ const announcementPhones=[
  demo('OV-ANN-REMOTE','supplied remote payload · demo content',announcement('OV-ANN-REMOTE',true)),
 ];
 const authPhones=[
- demo('OV-AUTH-SETTINGS','settings context',authPrompt('OV-AUTH-SETTINGS','Быстрый вход. Прогресс синхронизируется между устройствами.')),
+ demo('OV-AUTH-SETTINGS','settings context',authPrompt('OV-AUTH-SETTINGS','Быстрый вход. Прогресс будет на всех твоих устройствах.')),
  demo('OV-AUTH-LESSON','lesson complete context',authPrompt('OV-AUTH-LESSON','Один клик через Google — и прогресс в безопасности.')),
  demo('OV-AUTH-ONBOARDING','onboarding overlay context',authPrompt('OV-AUTH-ONBOARDING','Можно пропустить, но без аккаунта прогресс легко потерять.')),
- demo('OV-AUTH-HOME','SaveProgressBanner / home context',authPrompt('OV-AUTH-HOME','Быстрый вход. Прогресс синхронизируется между устройствами.')),
+ demo('OV-AUTH-HOME','SaveProgressBanner / home context',authPrompt('OV-AUTH-HOME','Быстрый вход. Прогресс будет на всех твоих устройствах.')),
  demo('OV-AUTH-BUSY','provider busy',authBusy('OV-AUTH-BUSY')),
  demo('OV-AUTH-SLOW','provider slow · safe close',authBusy('OV-AUTH-SLOW',true)),
  demo('OV-AUTH-NO-PROVIDER','no provider',authNoProvider()),
@@ -186,7 +186,7 @@ const recoveryPhones=[
  demo('OV-REC-WORKING','existing account · working · controls disabled',recoveryWorking()),
  demo('OV-REC-RATE-LIMIT','existing account · code_sent + rate-limit copy',recoveryCodeError('OV-REC-RATE-LIMIT','Слишком много попыток. Подожди немного и попробуй снова.')),
  demo('OV-REC-INVALID-CODE','existing account · code_sent + invalid-code copy',recoveryCodeError('OV-REC-INVALID-CODE','Код не подошёл. Проверь все 6 цифр.')),
- demo('OV-REC-NETWORK','existing account · code_sent + network-error copy',recoveryCodeError('OV-REC-NETWORK','Нет связи с сервером. Проверь интернет и попробуй снова.')),
+ demo('OV-REC-NETWORK','existing account · code_sent + network-error copy',recoveryCodeError('OV-REC-NETWORK','Нет связи. Проверь интернет и попробуй снова.')),
  demo('OV-REC-CANCELLED','existing account · provider choice + cancelled copy',recoveryCancelled()),
  demo('OV-REC-SUPPORT-ERROR','existing account · support error · no retry',recoverySupportError()),
  demo('OV-REC-SUPPORT','existing account · support stop',recoverySupport('OV-REC-SUPPORT')),

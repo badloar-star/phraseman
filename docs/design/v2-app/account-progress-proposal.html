@@ -91,7 +91,7 @@ const spin = '<span class="ap-spin"></span>';
 // ---------- 1. шторка входа (RegistrationPromptModal) поверх Главной ----------
 const signSheet = (busy) => `<div class="ap-dim"></div><section class="ap-sheet"><div class="ap-grab"></div><span class="ap-x">${G(GLY.close, 18)}</span>
   <div style="display:flex;justify-content:center;margin-top:6px">${coin(5, 64)}</div>
-  <div class="ap-title">Всё в безопасности</div><div class="ap-sub">Быстрый вход. Прогресс синхронизируется между устройствами.</div>
+  <div class="ap-title">Всё в безопасности</div><div class="ap-sub">Быстрый вход. Прогресс будет на всех твоих устройствах.</div>
   <div style="margin-top:14px"><div class="ap-prov g dis">${G(GLY.google, 18)}Войти через Google</div><div class="ap-prov a dis">${G(GLY.apple, 19)}Войти через Apple</div></div>
   ${busy}
   <div class="ap-trust">${G(GLY.lock, 14)}Данные на устройстве сохранятся</div></section>`;

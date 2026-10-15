@@ -242,7 +242,7 @@ const secLearn = () => ey('ОБУЧЕНИЕ') + grp([row('book', 'Настрой
 const det = (n, t, s) => `<div class="gs-pl2">${tile(n)}<div class="gs-tx"><div class="gs-pt">${t}</div><div class="gs-st">${s}</div></div></div>`;
 const secPlus = (p, details = [], noInvite = false) => ey('PHRASEMAN PLUS', 'plus') + grp([row(p.filled ? 'diamondF' : 'diamond', p.title, { value: p.value }), row('tag', 'Ввести промокод'), ...(noInvite ? [] : [row('gift', 'Пригласить друга')])])
   + (details.length ? `<div class="gs-dets">${details.join('')}</div>` : '');
-const secHelp = (cache) => ey('ПОМОЩЬ') + grp([row('chatbox', 'Написать в поддержку'), row('shield', 'Приватность и данные'), row('trash', 'Очистить кеш', { value: cache }), row('star', 'Оценить в Google Play')]);
+const secHelp = (cache) => ey('ПОМОЩЬ') + grp([row('chatbox', 'Написать в поддержку'), row('shield', 'Приватность и данные'), row('trash', 'Очистить временные файлы', { value: cache }), row('star', 'Оценить в Google Play')]);
 const PLUS_OFF = { title: 'Подписка Plus', value: 'Не активна', filled: false };
 const PLUS_ON = { title: 'Подписка Plus', value: 'Активна', filled: true };
 // зачем (кадры settings-gap-020/021, 12.10): гость — «Профиль · Стажёр · прогресс привязан к этому телефону» + «Войти», «Аккаунт · Не привязан», сверху слот «Новое в Phraseman»; привязанный аккаунт без подмены Авторизации не снять

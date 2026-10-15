@@ -111,7 +111,7 @@ const watchC = (o = {}) => phone(`<div style="margin-top:-6px"></div>${playerBlo
 
 document.getElementById('root').innerHTML =
   block('A', 'Вариант A — закладка справа от названия, число в строке под названием; «Сохранённые» — плашка на Главной', '', [
-    col('Главная', homeA()), col('Плеер', watchA()), col('Сохранено (сразу, тост)', watchA({ saved: true, overlay: toast('Сохранено в избранное') })), col('Сеть отказала — откат', watchA({ overlay: toast('Не удалось сохранить, попробуйте ещё раз', 'close') })),
+    col('Главная', homeA()), col('Плеер', watchA()), col('Сохранено (сразу, тост)', watchA({ saved: true, overlay: toast('Сохранено в избранное') })), col('Сеть отказала — откат', watchA({ overlay: toast('Не удалось сохранить, попробуй ещё раз', 'close') })),
   ]) +
   block('B', 'Вариант B — закладка и число прямо на превью; «Сохранённые» — третья вкладка; в плеере две кнопки', '', [
     col('Главная', homeB()), col('Вкладка «Сохранённые»', savedTabB()), col('Плеер', watchB()), col('Сохранено (сразу)', watchB({ saved: true, overlay: toast('Сохранено в избранное') })),

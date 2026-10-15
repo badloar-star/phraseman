@@ -48,7 +48,7 @@ function energy(id,state,home=false){
 }
 function saveProgress(){
  const id='OM-SAVE-PROGRESS';
- return phone(underlay('Главная'),{time:'10:18',overlay:`<section class="card om-banner ov-anim" role="region" aria-label="Демонстрация оверлея ${id}" data-anim="${id}"><div class="flex">${icon('bookmark','s24')}<div class="grow"><div class="om-banner-title">Сохрани свой путь</div><div class="om-banner-copy">Привяжи аккаунт, чтобы включить синхронизацию учебных данных между поддерживаемыми устройствами.</div></div><button class="rb bare t" type="button" aria-label="Закрыть">${icon('close','s18')}</button></div><button class="chipbtn t" type="button">Привязать</button></section>`});
+ return phone(underlay('Главная'),{time:'10:18',overlay:`<section class="card om-banner ov-anim" role="region" aria-label="Демонстрация оверлея ${id}" data-anim="${id}"><div class="flex">${icon('bookmark','s24')}<div class="grow"><div class="om-banner-title">Сохрани свой путь</div><div class="om-banner-copy">Привяжи аккаунт — и прогресс будет на всех твоих устройствах.</div></div><button class="rb bare t" type="button" aria-label="Закрыть">${icon('close','s18')}</button></div><button class="chipbtn t" type="button">Привязать</button></section>`});
 }
 function promo(id,present){
  const promo=present?`<section class="card om-promo ov-anim" role="region" aria-label="Демонстрация оверлея ${id}" data-anim="${id}"><div class="om-kicker">Скидка действует сейчас</div><div class="om-price-row"><span class="pill">−{percent}%</span><span class="om-price om-placeholder">{promoPrice}</span><span class="om-standard om-placeholder">{standardPrice}</span></div><div class="om-copy ov-left om-placeholder">далее {standardPrice}</div></section>`:'';
@@ -84,7 +84,7 @@ const codeFeedback={
  unknown:'Такой код не найден. Убедитесь, что это код приглашения Phraseman.',
  'too-old':'Этот код можно ввести только на новом аккаунте.',
  self:'Это ваш код. Его нужно отправить другу.',
- 'needs-link':'Код сохранён. Приложение применит его автоматически, как только соединение будет готово.',
+ 'needs-link':'Код сохранён. Он применится сам, как только появится интернет.',
  disabled:'Приглашения сейчас недоступны. Попробуйте позже.',
  error:'Не получилось применить код. Проверьте интернет и попробуйте ещё раз.',
  'friend-request':'Заявка в друзья отправлена — будете видеть прогресс друг друга.',

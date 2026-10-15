@@ -580,7 +580,7 @@ const pocket = (o = {}) => phone(`
 const attempts = () => task(pbBody({ picked: ['I', 'is', 'in'], st: 'bad', badWord: 'is' }), { lost: 3, next: false }).replace('</div><div class="hi">', `${cmodal(`
   <div class="flex" style="justify-content:center;gap:6px;margin-top:6px">${[0, 1, 2].map(() => `<span style="opacity:.22">${icon('heartF', 's28')}</span>`).join('')}</div>
   <div class="ti" style="margin-top:18px">Попытки закончились</div>
-  <div class="ms">Восстановите все 3 попытки и повторите этот вопрос.</div>
+  <div class="ms">Восстанови все 3 попытки и повтори этот вопрос.</div>
   <div class="cta t" style="margin-top:22px">Начать заново<span class="ar" style="display:flex;gap:8px;align-items:center;font-size:14px;font-weight:600">${icon('boltF', 's16')}−1</span></div>
   <span class="sec2 t">Завершить сессию</span>`)}</div><div class="hi">`);
 const unavailable = () => phone(`<div class="shd"><span class="rb t">${icon('close', 's20')}</span></div>

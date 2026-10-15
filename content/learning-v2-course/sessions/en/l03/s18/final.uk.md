@@ -1,159 +1,138 @@
-# Англійська · Урок 3 · Заняття 18 — «Коли потрібні дві літери»
+# Англійська · Урок 3 · Заняття 18 — Коробки для переїзду
 
-**Сцена заняття.** Ви з другом розбираєте коробки після переїзду. У великій — посуд, у маленькій — два наручні годинники й конверт із квитками. Друг відносить порожнє паковання до дверей. Із вікна нової квартири видно автобусну зупинку.
+**Ситуація.** Ви з Анною прийшли допомогти Олегу спакувати речі з майстерні. Ви трохи випередили призначений час. Біля стіни стоять коробки, поруч лежить замок для зберігання речей. Друг Олега не прийшов: він погано почувається.
 
-**Як сказати:** письмова форма для кількох предметів із додаванням `es` у словах `bus`, `dish`, `watch`, `box`; знайомі рамки `They are`, `Are they`, `They are not`  
-**Нові слова:** bus, dish, watch, box  
-**Повертаються:** ticket
+**Що ви опануєте:** назвати кілька коробок з boxes і використати are
+**Нові слова:** boxes
 
 ---
 
 ## Інтро 1
 
-### Автобуси з двома літерами
+### Коробок кілька
 
-`bus` — «автобус». Кілька автобусів — `buses`: до слова дописуємо дві літери, `es`. У цьому слові однієї доданої `s` замало. `They are buses` — «Це автобуси»: початок `They are` стосується всієї групи, а назву автобусів пишемо з `es`.
+`boxes` — «коробки». Одна коробка — `box`; кілька — `boxes`: до `box` додаємо дві літери, `es`. Для `book` вистачало однієї `s`, але написати `boxs` не можна. Анна принесла коробки різних розмірів; до кожної форми `box` однаково додаємо `es`, а не по літері за кожну коробку.
 
-**Друг біля вікна показує на два великі пасажирські автобуси на зупинці; назвіть їх повною фразою.**
+**Біля стіни стоять три порожні коробки. Виберіть назву всієї групи одним словом.**
 
-- ✅ **They are buses.**
-- ❌ They are bus. — *На зупинці два автобуси. Для кількох тут потрібна форма `buses` із доданим `es`.*
-- ❌ They is buses. — *Назву `buses` написано правильно. Про два автобуси починаємо з `They are`, а не `They is`.*
+- ✅ **boxes**
+- ❌ box — *`box` називає одну коробку; тут потрібне `boxes`.*
+- ❌ boxs — *У цьому слові додаємо `es`: правильно `boxes`.*
 
 ---
 
 ## Інтро 2
 
-### Блюда з коробки
+### Назвати всю групу
 
-`dish` — «блюдо», предмет посуду для подавання їжі. Одне блюдо — `dish`, а кілька — `dishes`: у цьому слові після `sh` дописуємо `es`. Хочете впевнитися, що перед вами блюда? Почніть з `Are they` і додайте назву: `Are they dishes?` — «Це блюда?»
+`They are boxes` — «Це коробки». Тут `they` стосується кількох предметів, тому використовуємо `are`. Перед `boxes` не ставимо `a`: це назва кількох коробок. Про зрозумілі вам обом коробки можна сказати `The boxes are here` — «Коробки тут».
 
-**Друг розгортає кілька пласких предметів із кухонної коробки. Запитайте: «Це блюда?»**
+**Олег показує на кілька складених предметів. Ви знаєте, що це коробки. Назвіть їх повною фразою.**
 
-- ✅ **Are they dishes?**
-- ❌ Are they dish? — *Питаємо про кілька предметів посуду. Потрібне `dishes`, із доданим `es`.*
-- ❌ Is they dishes? — *Питання про кілька предметів починається з `Are they`. Назва `dishes` уже правильна.*
+- ✅ **They are boxes.**
+- ❌ They are box. — *Коробок кілька: потрібно `boxes`.*
+- ❌ They is boxes. — *З `They` тут потрібно `are`.*
 
 ---
 
 ## Інтро 3
 
-### Годинники видно одразу
+### Уточнити й допомогти
 
-`watch` — «наручний годинник». В українській тут усе видно відразу: один наручний годинник, кілька — годинники. Англійською один — `watch`, а кілька — `watches`: у цьому слові після `ch` додаємо `es`. Два годинники не сховаються за одним `watch`.
+`Are they boxes?` — «Це коробки?» Для запитання починаємо з `Are they`, а форму `boxes` зберігаємо. Повторимо: `early` — «той, хто прийшов завчасно», `lucky` — «той, кому пощастило», `wrong` — «не має рації», `unwell` — «погано почувається». `You are early` — «Ви прийшли рано», якщо ви вже на місці раніше домовленого часу.
 
-**Друг дістав із маленької коробки два наручні годинники; оберіть англійську назву для обох.**
+**Олег приніс кілька пласких складених предметів. Ви припускаєте, що це коробки. Запитайте про це.**
 
-- ✅ **watches**
-- ❌ watch — *Так називають один наручний годинник. Тут два окремі годинники, тому потрібне `watches`.*
-- ❌ watchs — *До `watch` для кількох годинників дописуємо `es`, а не одну `s`: `watches`.*
+- ✅ **Are they boxes?**
+- ❌ Is they boxes? — *Запитання з `they` тут починається з `Are`.*
+- ❌ Are they boxs? — *Потрібна форма `boxes`, з `es`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — bus**
-<!-- interaction_id: en:lesson-03:session-18:i01; family: listen_choose -->
-Ціль: `bus`
+**1 · Анна принесла кілька складених коробок. Олег запитує, що це. Назвіть їх повною фразою**
+<!-- interaction_id: en:lesson-03:session-18:i01; family: phrase_builder -->
+Плитки: `boxes` `are` `They` `is` → **They are boxes.**
+*(плитка `is` зайва: тут потрібно `are` — `They are boxes.`)*
 
-**2 · Послухайте й оберіть — яке слово сказав друг**
+**2 · Послухайте, що Олег сказав вам під час зустрічі**
 <!-- interaction_id: en:lesson-03:session-18:i02; family: listen_choose -->
-Ціль: `bus`
-Варіанти: `bus` · `fuss` · `buzz`
-- fuss — *`fuss` — «метушня». Спочатку чути «ф», а в `bus` — «б». Решта слова звучить однаково; розрізняйте початок.*
-- buzz — *`buzz` — «гудіння». Наприкінці чути дзвінке «з», а в `bus` — глухе «с». Дослухайте слово до кінця.*
+🔊 *You are early.* → **You are early.** · You are late. · You are lucky.
+- You are late. — *У записі останнє слово — `early`, а в цьому варіанті — `late`.*
+- You are lucky. — *У записі останнє слово — `early`, а в цьому варіанті — `lucky`.*
 
+**3 · Ви називаєте три коробки біля стіни**
+<!-- interaction_id: en:lesson-03:session-18:i03; family: context_gap_grammar -->
+They are ___. → **boxes** · box · boxs
+- box — *`box` — одна коробка, а тут потрібне `boxes`.*
+- boxs — *До `box` додаємо `es`: `boxes`.*
 
-**3 · Картка слова — dish**
-<!-- interaction_id: en:lesson-03:session-18:i03; family: listen_choose -->
-Ціль: `dish`
+**4 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-18:i04; family: speed_match -->
+boxes — коробки · early — той, хто прийшов завчасно · lucky — той, кому пощастило · lock — замок
 
-**4 · Послухайте й оберіть — яке слово вимовив друг**
-<!-- interaction_id: en:lesson-03:session-18:i04; family: listen_choose -->
-Ціль: `dish`
-Варіанти: `dish` · `fish` · `wish`
-- fish — *`fish` — «риба». На початку чути «ф», а в `dish` — «д». Далі слова звучать однаково.*
-- wish — *`wish` — «бажання». На початку губи округлюються, а в `dish` першим звучить «д». Кінець слів збігається.*
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-18:i05; family: listen_build_dictation -->
+🔊 *The lock is here.* Плитки: `here` `is` `lock` `The` `are` → **The lock is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The lock is here.`)*
 
+**6 · Ви бачите кілька складених предметів. Запитайте, чи це коробки**
+<!-- interaction_id: en:lesson-03:session-18:i06; family: phrase_builder -->
+Плитки: `boxes` `they` `Are` `Is` → **Are they boxes?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are they boxes?`)*
 
-**5 · Картка слова — watch**
-<!-- interaction_id: en:lesson-03:session-18:i05; family: listen_choose -->
-Ціль: `watch`
+**7 · Анна безплатно отримала потрібні коробки. Скажіть їй зі скороченням «Тобі пощастило»**
+<!-- interaction_id: en:lesson-03:session-18:i07; family: scripted_repeat_compare -->
+🎙 **You're lucky.**
 
-**6 · Послухайте й оберіть — яке слово сказав друг**
-<!-- interaction_id: en:lesson-03:session-18:i06; family: listen_choose -->
-Ціль: `watch`
-Варіанти: `watch` · `wash` · `witch`
-- wash — *`wash` — «мити». Наприкінці чути «ш», а у `watch` — «ч». Початок схожий, тому слухайте кінець.*
-- witch — *`witch` — «відьма». У британській вимові в середині `watch` губи округлюються, а в `witch` — ні. Початок і кінець збігаються; розрізняйте середину.*
+**8 · Ви показуєте Олегу коробки, які ви обоє шукали. Доповніть «Коробки тут»**
+<!-- interaction_id: en:lesson-03:session-18:i08; family: context_gap_grammar -->
+The boxes ___ here. → **are** · is · am
+- is — *Коробок кілька: `The boxes are here`.*
+- am — *З `The boxes` тут потрібно `are`.*
 
+**9 · Послухайте відповідь Олега на ваше припущення**
+<!-- interaction_id: en:lesson-03:session-18:i09; family: listen_choose -->
+🔊 *You are wrong.* → **You are wrong.** · You are right. · You are lucky.
+- You are right. — *У записі останнє слово — `wrong`, а в цьому варіанті — `right`.*
+- You are lucky. — *У записі останнє слово — `wrong`, а в цьому варіанті — `lucky`.*
 
-**7 · Картка слова — box**
-<!-- interaction_id: en:lesson-03:session-18:i07; family: listen_choose -->
-Ціль: `box`
+**10 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-18:i10; family: speed_match -->
+wrong — не має рації · unwell — той, хто погано почувається · boxes — коробки · books — книжки
 
-**8 · Послухайте й оберіть — яке слово вимовив друг**
-<!-- interaction_id: en:lesson-03:session-18:i08; family: listen_choose -->
-Ціль: `box`
-Варіанти: `box` · `fox` · `pox`
-- fox — *`fox` — «лисиця». Спочатку чути «ф», а в `box` — «б». Решта слова збігається, тому слухайте початок.*
-- pox — *`pox` — «віспа». На початку чути «п», а в `box` — «б». Кінець у слів однаковий.*
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-18:i11; family: listen_build_dictation -->
+🔊 *The boxes are here.* Плитки: `here` `are` `boxes` `The` `is` → **The boxes are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The boxes are here.`)*
 
+**12 · Анна запитує про кілька предметів у кутку. Це коробки. Назвіть їх повною фразою**
+<!-- interaction_id: en:lesson-03:session-18:i12; family: phrase_builder -->
+Плитки: `boxes` `are` `They` `is` → **They are boxes.**
+*(плитка `is` зайва: тут потрібно `are` — `They are boxes.`)*
 
-**9 · Зберіть фразу — до зупинки під’їхали два автобуси; друг питає, що це за транспорт. Відповідайте: «Це автобуси»**
-<!-- interaction_id: en:lesson-03:session-18:i09; family: phrase_builder -->
-Ціль: `They are buses.`
-Варіанти: `bus`
+**13 · Друг Олега сьогодні погано почувається. Повідомте це зі скороченням, почавши з «Він»**
+<!-- interaction_id: en:lesson-03:session-18:i13; family: scripted_repeat_compare -->
+🎙 **He's unwell.**
 
-**10 · Послухайте й зберіть питання — друг тримає два загорнуті предмети з кухонної коробки й запитує, чи це блюда**
-<!-- interaction_id: en:lesson-03:session-18:i10; family: listen_build_dictation -->
-Ціль: `Are they dishes?`
-Варіанти: `dish`
+**14 · Ви запитуєте про кілька складених предметів: чи це коробки**
+<!-- interaction_id: en:lesson-03:session-18:i14; family: context_gap_grammar -->
+Are they ___? → **boxes** · box · a boxes
+- box — *Запитання про кілька коробок потребує форми `boxes`.*
+- a boxes — *Перед назвою кількох коробок не ставимо `a`.*
 
-**11 · Вставте назву — у конверті з маленької коробки лежать квитки на концерт; скажіть другові «Це квитки» (`ticket` — «квиток», `tickets` — «квитки`)**
-<!-- interaction_id: en:lesson-03:session-18:i11; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `tickets` · `ticket` · `is`
-- ticket — *У конверті кілька квитків. У цій фразі потрібна назва з `s`: `tickets`.*
-- is — *Після готового початку `They are` треба назвати предмети: `tickets`. `is` квитками їх не називає.*
-
-
-**12 · Послухайте й зберіть — друг говорить про предмети з маленької коробки**
-<!-- interaction_id: en:lesson-03:session-18:i12; family: listen_build_dictation -->
-Ціль: `They are not watches.`
-Варіанти: `watch`
-
-**13 · Вставте назву — друг показує на три порожні коробки біля дверей; скажіть «Це коробки»**
-<!-- interaction_id: en:lesson-03:session-18:i13; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `boxes` · `box` · `boxs`
-- box — *Коробок три. Для кількох потрібне `boxes`, а не назва однієї коробки.*
-- boxs — *До `box` додаємо дві літери, `es`. Виходить `boxes`; однієї доданої `s` тут замало.*
-
-
-**14 · З’єднайте назви з українськими значеннями — що видно під час розпаковування**
-<!-- interaction_id: en:lesson-03:session-18:i14; family: speed_match -->
-Пари: `buses` — автобуси · `dishes` — блюда для подавання їжі · `watches` — кілька наручних годинників · `boxes` — коробки
-Ціль: `buses · dishes · watches · boxes`
-
-**15 · Послухайте й оберіть — що друг сказав біля кухонної коробки**
+**15 · Послухайте опис замка**
 <!-- interaction_id: en:lesson-03:session-18:i15; family: listen_choose -->
-Ціль: `They are dishes.`
-Варіанти: `They are dishes.` · `Are they dishes?` · `They are boxes.`
-- Are they dishes? — *Тут питання з початком `Are they`. У записі спочатку звучить `They are`: друг називає предмети.*
-- They are boxes. — *Цей варіант називає коробки: `boxes`. У записі звучить `dishes` — блюда для подавання їжі.*
+🔊 *The lock is old.* → **The lock is old.** · The lock is new. · The lock is open.
+- The lock is new. — *У записі останнє слово — `old`, а в цьому варіанті — `new`.*
+- The lock is open. — *У записі останнє слово — `old`, а в цьому варіанті — `open`.*
 
+**16 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-18:i16; family: speed_match -->
+wrong — не має рації · early — той, хто прийшов завчасно · lucky — той, кому пощастило · unwell — той, хто погано почувається
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-18:i16; family: scripted_repeat_compare -->
-Ціль: `They are tickets.`
-
-**17 · Складіть фразу — друг питає, що ви поставили біля дверей; назвіть три порожні картонні коробки**
-<!-- interaction_id: en:lesson-03:session-18:i17; family: phrase_builder -->
-Ціль: `They are boxes.`
-Варіанти: `box`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_choose, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=phrase_builder, 10=listen_build_dictation, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=speed_match, 15=listen_choose, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · В іншій кімнаті Анна знайшла кілька складених картонних предметів. Ви припускаєте, що це коробки. Запитайте про це**
+<!-- interaction_id: en:lesson-03:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Are they boxes?**
 

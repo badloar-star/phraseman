@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-18:intro1:r2": {
+          "ru": "`box` называет одну коробку; здесь нужны `boxes`.",
+          "uk": "`box` називає одну коробку; тут потрібне `boxes`."
+        },
+        "en:lesson-03:session-18:intro1:r3": {
+          "ru": "В этом слове добавляем `es`: правильно `boxes`.",
+          "uk": "У цьому слові додаємо `es`: правильно `boxes`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-18:intro2:r2": {
+          "ru": "Коробок несколько: нужно `boxes`.",
+          "uk": "Коробок кілька: потрібно `boxes`."
+        },
+        "en:lesson-03:session-18:intro2:r3": {
+          "ru": "С `They` здесь нужно `are`.",
+          "uk": "З `They` тут потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-18:intro3:r2": {
+          "ru": "Вопрос с `they` здесь начинается с `Are`.",
+          "uk": "Запитання з `they` тут починається з `Are`."
+        },
+        "en:lesson-03:session-18:intro3:r3": {
+          "ru": "Нужна форма `boxes`, с `es`.",
+          "uk": "Потрібна форма `boxes`, з `es`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5ece12ef49350fed68e7b016ccb62b9ace1814df26c8dd55dd53d84d3fe4b5db"
+}

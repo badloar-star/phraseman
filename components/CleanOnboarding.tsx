@@ -46,6 +46,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { LinearGradient } from './SafeLinearGradient';
+import { memoStylesByPalette, useOnboardingPalette, type OnboardingPalette } from './onboarding_palette';
 import { GoogleSignInButton, AppleSignInButton, AuthProviderButtonPlaceholder } from './AuthProviderButtons';
 import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
@@ -188,7 +189,10 @@ const FORCE_ONBOARDING_QA =
   && process.env.EXPO_PUBLIC_FORCE_ONBOARDING_QA === '1';
 
 async function withOnboardingAuthSlowNotice<T>(task: Promise<T>, onSlow: () => void): Promise<T> {
+  const startedAt = Date.now();
   const timer = setTimeout(() => {
+    // зачем (слово владельца 15.10): видимой подписи про долгий вход нет - долгие входы видны только в журнале.
+    console.log(`[ONB-SIGNIN] slow_ms=${ONBOARDING_AUTH_UI_TIMEOUT_MS} вход всё ещё выполняется`); // guard-ok: журнал долгого входа
     onSlow();
   }, ONBOARDING_AUTH_UI_TIMEOUT_MS);
   try {
@@ -197,6 +201,8 @@ async function withOnboardingAuthSlowNotice<T>(task: Promise<T>, onSlow: () => v
     return await task;
   } finally {
     clearTimeout(timer);
+    const tookMs = Date.now() - startedAt;
+    if (tookMs >= ONBOARDING_AUTH_UI_TIMEOUT_MS) console.log(`[ONB-SIGNIN] slow_ms=${tookMs} вход завершён`); // guard-ok: итог долгого входа
   }
 }
 
@@ -215,11 +221,11 @@ function onboardingSwitchedSignInAgainText(lang: Lang): string {
     pl: 'Konto zmienione. Zaloguj się ponownie w potrzebny sposób.',
   });
 }
-// зачем: D126 (владелец 2026-09-30) — «только включаем экран с выбором языка, он
+// зачем (координатор 15.10 к сборке 16.10, решение владельца): экран уровня включён и рисуется в цветах темы; D126 (владелец 2026-09-30) — «только включаем экран с выбором языка, он
 // уже есть», остальной онбординг не трогается. Поэтому рубильник разделён: выбор
 // языка включён, экран уровня остаётся выключенным (после языка сразу уведомления).
 const SHOW_ONBOARDING_LANGUAGE_STEP = true;
-const SHOW_ONBOARDING_LEVEL_STEP = false;
+const SHOW_ONBOARDING_LEVEL_STEP = true;
 // Флоу ровно по скриншотам Bevel (владелец, 2026-08-17): welcome → privacy (сейф:
 // вход и «данные не передаются») → niceToMeet (приветствие по имени) → promise
 // (график на весь экран) → improve → source → блок языка (выключен, пока язык
@@ -612,7 +618,14 @@ function Background() {
   // Светлая подложка макета (Bevel-стиль, утверждён владельцем 2026-08-16):
   // ровный холодный фон вместо прежнего midnight-градиента со звёздами.
   // Один непрозрачный слой — первый кадр стабилен, перерисовок нет.
-  return <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.backdrop]} />;
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
+  // зачем (макет «Онбординг в темах»): фон экрана - градиент активной темы (верх -> низ); базовый цвет под ним держит первый кадр.
+  return (
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.backdrop]}>
+      <LinearGradient pointerEvents="none" colors={[P.bgTop, P.bg, P.bgBottom]} style={StyleSheet.absoluteFill} />
+    </View>
+  );
 }
 
 // Прогресс между экранами едет плавно: ProgressHeader ремоунтится на каждом
@@ -637,6 +650,8 @@ function ProgressHeader({
   /** Слот справа в топбаре (меню «···» на пейволе). */
   headerRight?: React.ReactNode;
 }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const copy = useOnboardingCopy();
   const enabledOrder = React.useContext(OnboardingOrderContext);
   const { progress, total } = getOnboardingProgress(enabledOrder, step);
@@ -662,7 +677,7 @@ function ProgressHeader({
         accessibilityRole="button"
         accessibilityLabel={onClose ? (closeLabel ?? copy.close) : backLabel}
       >
-        <Ionicons name={onClose ? 'close' : 'chevron-back'} size={22} color="#0C111B" />
+        <Ionicons name={onClose ? 'close' : 'chevron-back'} size={22} color={P.text} />
       </Pressable>
       {headerRight ?? <View style={styles.headerRightSpacer} />}
     </View>
@@ -788,6 +803,7 @@ function useStepSlide(step: CleanOnboardingStep): {
  *  logo_cutout.webp — тень, блик и тело, окрашенные tintColor. Ни плитки, ни
  *  ореола; размер фиксирован — первый кадр = финальная геометрия. */
 function EmbossedMark({ size = 168 }: { size?: number }) {
+  const styles = createStyles(useOnboardingPalette());
   const layer = { position: 'absolute' as const, top: 0, left: 0, width: size, height: size };
   return (
     <View style={{ width: size, height: size, alignSelf: 'center' }} accessible={false}>
@@ -800,6 +816,7 @@ function EmbossedMark({ size = 168 }: { size?: number }) {
 
 /** Статичный индикатор страниц welcome (Bevel: 5 точек, активная тёмная). */
 function PagerDots({ total, active }: { total: number; active: number }) {
+  const styles = createStyles(useOnboardingPalette());
   return (
     <View style={styles.pagerDots} pointerEvents="none" accessible={false}>
       {Array.from({ length: total }, (_, index) => (
@@ -813,6 +830,7 @@ function PagerDots({ total, active }: { total: number; active: number }) {
  *  Дыхание — конечный ping-pong через рекурсию с гейтом фокуса/AppState
  *  (Performance Bible: бесконечные лупы под гейтом). */
 function WelcomeLogo() {
+  const styles = createStyles(useOnboardingPalette());
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
@@ -868,6 +886,8 @@ function WelcomeLogo() {
 }
 
 function CompassBubble({ children, compact = false }: { children: React.ReactNode; compact?: boolean }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   return (
     <View style={[styles.compassRow, compact && styles.compassRowCompact]}>
       <Image source={WELCOME_LOGO_SOURCE} style={styles.logoImageSmall} resizeMode="contain" />
@@ -877,7 +897,7 @@ function CompassBubble({ children, compact = false }: { children: React.ReactNod
           // зачем: TypewriterText родом из тёмной АХ-сцены и по умолчанию печатает
           // почти белым — в белом пузыре светлого макета текст был невидим.
           // Цвет берём тот же, что у обычной реплики рядом (styles.speechText).
-          <TypewriterText key={children} text={children} charMs={12} skipOnPress color="#0C111B" />
+          <TypewriterText key={children} text={children} charMs={12} skipOnPress color={P.text} />
         ) : (
           <Text style={styles.speechText}>{children}</Text>
         )}
@@ -901,6 +921,8 @@ function PrimaryButton({
   testID?: string;
   flat?: boolean;
 }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   return (
     <Pressable
       testID={testID}
@@ -922,12 +944,12 @@ function PrimaryButton({
       {/* Макет Bevel: сплошная чёрная таблетка; disabled — сплошная серая
           (#B8BCC5) с белым текстом, без полупрозрачности. */}
       <LinearGradient
-        colors={disabled ? ['#B8BCC5', '#B8BCC5'] : ['#17191F', '#17191F']}
+        colors={disabled ? [P.ctaFillDisabled, P.ctaFillDisabled] : [P.ctaFill, P.ctaFill]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.primaryButton}
       >
-        {loading ? <ActivityIndicator size="small" color="#FFFFFF" /> : <Text style={styles.primaryButtonText}>{label}</Text>}
+        {loading ? <ActivityIndicator size="small" color={P.ctaInk} /> : <Text style={[styles.primaryButtonText, disabled ? { color: P.ctaInkDisabled } : null]}>{label}</Text>}
       </LinearGradient>
       {flat ? null : <View style={styles.primaryButtonShadow} />}
     </Pressable>
@@ -935,6 +957,7 @@ function PrimaryButton({
 }
 
 function SecondaryButton({ label, onPress, testID }: { label: string; onPress: () => void; testID?: string }) {
+  const styles = createStyles(useOnboardingPalette());
   return (
     <Pressable
       testID={testID}
@@ -961,6 +984,8 @@ function OptionCard<T extends string | number>({
   testID?: string;
   showIcon?: boolean;
 }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const reduceMotion = useReduceMotion();
   // Галочка «ставится» пружиной при выборе (native driver); фон карточки не
   // меняется — состояние показывает только чекбокс (макет Bevel, кадр 6).
@@ -982,11 +1007,14 @@ function OptionCard<T extends string | number>({
       accessibilityRole="button"
       accessibilityState={{ selected: !!selected }}
     >
+      {/* зачем (макет Макетов 15.10, шаг «Сколько английского ты знаешь»): плашка варианта - градиент raisedFill, поверх слой «выбрано». */}
+      <LinearGradient pointerEvents="none" colors={[P.raisedFrom, P.raisedTo]} style={StyleSheet.absoluteFill} />
+      {selected ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: P.selectedLayer }]} /> : null}
       {/* Источники остаются без ведущего слота; уровни используют лёгкую иконку. */}
       {option.asset ? (
         <Image source={option.asset} style={styles.optionAsset} resizeMode="contain" accessible={false} />
       ) : showIcon ? (
-        <Ionicons name={option.icon} size={36} color="#0C111B" style={styles.optionAsset} />
+        <Ionicons name={option.icon} size={36} color={selected ? P.text : P.iconMuted} style={styles.optionAsset} />
       ) : null}
       <View style={styles.optionCopy}>
         <Text style={styles.optionTitle} numberOfLines={2}>{option.title}</Text>
@@ -994,7 +1022,7 @@ function OptionCard<T extends string | number>({
       <View style={[styles.radio, selected && styles.radioSelected]}>
         {selected ? (
           <Animated.View style={{ transform: [{ scale: check }] }}>
-            <Ionicons name="checkmark" size={12} color="#FFFFFF" />
+            <Ionicons name="checkmark" size={12} color={P.ctaInk} />
           </Animated.View>
         ) : null}
       </View>
@@ -1011,6 +1039,8 @@ function LanguageCard({
   selected: boolean;
   onPress: () => void;
 }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   return (
     <Pressable
       testID={`onboarding-language-${option.id}`}
@@ -1023,13 +1053,13 @@ function LanguageCard({
       {option.asset ? (
         <Image source={option.asset} style={styles.languageAsset} resizeMode="contain" />
       ) : (
-        <Ionicons name={option.icon} size={44} color={selected ? '#0C111B' : '#8A93A5'} />
+        <Ionicons name={option.icon} size={44} color={selected ? P.text : P.muted} />
       )}
       <View style={styles.optionCopy}>
         <Text style={styles.languageTitle}>{option.native}</Text>
       </View>
       <View style={[styles.radioLarge, selected && styles.radioLargeSelected]}>
-        {selected ? <Ionicons name="checkmark" size={15} color="#FFFFFF" /> : null}
+        {selected ? <Ionicons name="checkmark" size={15} color={P.ctaInk} /> : null}
       </View>
     </Pressable>
   );
@@ -1055,6 +1085,7 @@ const OnboardingSkipContext = React.createContext<(() => void) | null>(null);
 const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name', 'privacy', 'notifications', 'trialReminder'];
 
 function OnboardingSkipLink({ step }: { step: CleanOnboardingStep }) {
+  const styles = createStyles(useOnboardingPalette());
   const copy = useOnboardingCopy();
   const skip = React.useContext(OnboardingSkipContext);
   // зачем (инцидент владельца 2026-08-29): при застрявшем удалении кнопка
@@ -1120,6 +1151,8 @@ function ScreenFrame({
    */
   phoneBackdrop?: React.ReactNode;
 }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: windowHeight } = useWindowDimensions();
@@ -1165,7 +1198,7 @@ function ScreenFrame({
     // max(30, bottomInset), а без футера — paddingBottom скролла), и с
     // edges bottom нижний inset складывался дважды.
     <SafeAreaView style={styles.safe} edges={['top']}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle={P.isLight ? 'dark-content' : 'light-content'} />
       {phoneLayer ? (
         <View
           pointerEvents="none"
@@ -1181,7 +1214,7 @@ function ScreenFrame({
           <View style={styles.phoneFadeAnchor}>
             {phoneLayer}
             <LinearGradient
-              colors={['rgba(245,246,250,0)', 'rgba(245,246,250,0.85)', '#F5F6FA']}
+              colors={[P.bottomA(0), P.bottomA(0.85), P.bgBottom]}
               locations={[0, 0.55, 1]}
               style={styles.phoneFadeMask}
             />
@@ -1252,6 +1285,7 @@ function ScreenFrame({
 // Эмодзи-приветствие niceToMeet (Bevel, кадр 3): один «взмах» на маунт —
 // конечная последовательность на native driver, без лупов.
 function WaveEmoji({ emoji = '👋' }: { emoji?: string }) {
+  const styles = createStyles(useOnboardingPalette());
   const reduceMotion = useReduceMotion();
   const wave = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -1291,6 +1325,8 @@ const IMPROVE_BUBBLES: readonly { cx: number; cy: number; r: number }[] = [
   { cx: 150, cy: 214, r: 4.5 },
 ];
 function ImproveConstellation() {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
   const anims = useRef([0, 1, 2, 3, 4].map(() => new Animated.Value(0))).current;
@@ -1343,13 +1379,13 @@ function ImproveConstellation() {
     <View style={styles.improveArt}>
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: anims[0] }]}>
         <Svg width={260} height={230} viewBox="0 0 260 230">
-          <Line x1={130} y1={118} x2={130} y2={28} stroke="#C9CDD7" strokeWidth={1.5} strokeDasharray="4 5" strokeLinecap="round" />
-          <Line x1={130} y1={118} x2={42} y2={180} stroke="#C9CDD7" strokeWidth={1.5} strokeDasharray="4 5" strokeLinecap="round" />
-          <Line x1={130} y1={118} x2={218} y2={190} stroke="#C9CDD7" strokeWidth={1.5} strokeDasharray="4 5" strokeLinecap="round" />
+          <Line x1={130} y1={118} x2={130} y2={28} stroke={P.line} strokeWidth={1.5} strokeDasharray="4 5" strokeLinecap="round" />
+          <Line x1={130} y1={118} x2={42} y2={180} stroke={P.line} strokeWidth={1.5} strokeDasharray="4 5" strokeLinecap="round" />
+          <Line x1={130} y1={118} x2={218} y2={190} stroke={P.line} strokeWidth={1.5} strokeDasharray="4 5" strokeLinecap="round" />
           {IMPROVE_BUBBLES.map((b) => (
             <React.Fragment key={`${b.cx}-${b.cy}`}>
               <Circle cx={b.cx} cy={b.cy + 1.5} r={b.r} fill="rgba(12,17,27,0.07)" />
-              <Circle cx={b.cx} cy={b.cy} r={b.r} fill="#FFFFFF" />
+              <Circle cx={b.cx} cy={b.cy} r={b.r} fill={P.card} />
             </React.Fragment>
           ))}
         </Svg>
@@ -1359,8 +1395,8 @@ function ImproveConstellation() {
           <Svg width={96} height={96} viewBox="0 0 24 24">
           <Defs>
             <SvgLinearGradient id="improveHeartFill" x1="0" y1="0" x2="0.4" y2="1">
-              <Stop offset="0" stopColor="#FFFFFF" />
-              <Stop offset="1" stopColor="#F1F3F7" />
+              <Stop offset="0" stopColor={P.card} />
+              <Stop offset="1" stopColor={P.soft} />
             </SvgLinearGradient>
           </Defs>
           <Path d={IMPROVE_HEART_PATH} fill="rgba(12,17,27,0.05)" transform="translate(0 1.4) scale(1.03)" />
@@ -1390,6 +1426,8 @@ function ImproveConstellation() {
 // диск докручивается и «щёлкает» назад; указатель проявляется, когда диск сел.
 const VAULT_TICKS = Array.from({ length: 12 }, (_, index) => index * 30);
 function PrivacyVault() {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
@@ -1447,36 +1485,36 @@ function PrivacyVault() {
     <View style={styles.vaultWrap}>
       <Animated.View style={[styles.vaultShadowHost, { opacity: enter, transform: [{ scale: enterScale }] }]}>
         <Animated.View style={[styles.vaultBreatheLayer, { transform: [{ scale: breatheScale }] }]}>
-          <LinearGradient colors={['#FFFFFF', '#F3F5F8', '#E4E8EE']} locations={[0, 0.55, 1]} start={{ x: 0.15, y: 0 }} end={{ x: 0.85, y: 1 }} style={styles.vaultBody}>
+          <LinearGradient colors={[P.card, P.soft, P.track]} locations={[0, 0.55, 1]} start={{ x: 0.15, y: 0 }} end={{ x: 0.85, y: 1 }} style={styles.vaultBody}>
           {/* Кромки корпуса — светлая верхняя/левая, тёмная нижняя/правая фаски. */}
-          <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0.95)', 'rgba(255,255,255,0)']} style={styles.vaultLipTop} />
-          <LinearGradient pointerEvents="none" colors={['rgba(96,108,130,0)', 'rgba(96,108,130,0.16)']} style={styles.vaultLipBottom} />
-          <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0.7)', 'rgba(255,255,255,0)']} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={styles.vaultLipLeft} />
-          <LinearGradient pointerEvents="none" colors={['rgba(96,108,130,0.12)', 'rgba(96,108,130,0)']} start={{ x: 1, y: 0.5 }} end={{ x: 0, y: 0.5 }} style={styles.vaultLipRight} />
+          <LinearGradient pointerEvents="none" colors={[P.cardA(0.95), P.cardA(0)]} style={styles.vaultLipTop} />
+          <LinearGradient pointerEvents="none" colors={[P.textA(0), P.textA(0.16)]} style={styles.vaultLipBottom} />
+          <LinearGradient pointerEvents="none" colors={[P.cardA(0.7), P.cardA(0)]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={styles.vaultLipLeft} />
+          <LinearGradient pointerEvents="none" colors={[P.textA(0.12), P.textA(0)]} start={{ x: 1, y: 0.5 }} end={{ x: 0, y: 0.5 }} style={styles.vaultLipRight} />
           {/* Петли в зазоре справа. */}
-          <LinearGradient colors={['#CDD3DE', '#F6F8FB', '#C7CDD8']} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={[styles.vaultHinge, styles.vaultHingeTop]} />
-          <LinearGradient colors={['#CDD3DE', '#F6F8FB', '#C7CDD8']} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={[styles.vaultHinge, styles.vaultHingeBottom]} />
+          <LinearGradient colors={[P.track, P.card, P.track]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={[styles.vaultHinge, styles.vaultHingeTop]} />
+          <LinearGradient colors={[P.track, P.card, P.track]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={[styles.vaultHinge, styles.vaultHingeBottom]} />
           {/* Дверца. */}
           <View style={styles.vaultDoor}>
-            <LinearGradient colors={['#FFFFFF', '#F1F3F7']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={styles.vaultDoorFace}>
-              <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,1)', 'rgba(255,255,255,0)']} style={styles.vaultDoorLipTop} />
-              <LinearGradient pointerEvents="none" colors={['rgba(96,108,130,0)', 'rgba(96,108,130,0.10)']} style={styles.vaultDoorLipBottom} />
+            <LinearGradient colors={[P.card, P.soft]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={styles.vaultDoorFace}>
+              <LinearGradient pointerEvents="none" colors={[P.cardA(1), P.cardA(0)]} style={styles.vaultDoorLipTop} />
+              <LinearGradient pointerEvents="none" colors={[P.textA(0), P.textA(0.1)]} style={styles.vaultDoorLipBottom} />
               {/* Оранжевый указатель — треугольник из border'ов (единственный способ
                   нарисовать стрелку View'ом; это не обводка контейнера). */}
               <Animated.View style={[styles.vaultPointer, { opacity: pointer, transform: [{ translateY: pointerY }] }]} />
               {/* Наборный диск: белый обод → безель → углубление с рисками → диск. */}
               <View style={styles.vaultRingRim}>
-                <LinearGradient colors={['#F7F9FC', '#DADFE8']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={styles.vaultRingBezel}>
-                  <LinearGradient colors={['#D9DEE7', '#EEF1F6']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={styles.vaultRingRecess}>
+                <LinearGradient colors={[P.card, P.track]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={styles.vaultRingBezel}>
+                  <LinearGradient colors={[P.track, P.soft]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={styles.vaultRingRecess}>
                     {VAULT_TICKS.map((deg) => (
                       <View key={deg} style={[styles.vaultTickHolder, { transform: [{ rotate: `${deg}deg` }] }]}>
                         <View style={[styles.vaultTick, deg % 90 === 0 && styles.vaultTickMajor]} />
                       </View>
                     ))}
                     <Animated.View style={{ transform: [{ rotate }] }}>
-                      <LinearGradient colors={['#FFFFFF', '#E9EDF3']} start={{ x: 0.3, y: 0 }} end={{ x: 0.7, y: 1 }} style={styles.vaultDial}>
+                      <LinearGradient colors={[P.card, P.track]} start={{ x: 0.3, y: 0 }} end={{ x: 0.7, y: 1 }} style={styles.vaultDial}>
                         <View style={styles.vaultDialMark} />
-                        <LinearGradient colors={['#FFFFFF', '#CDD3DD']} style={styles.vaultDialHub} />
+                        <LinearGradient colors={[P.card, P.line]} style={styles.vaultDialHub} />
                       </LinearGradient>
                     </Animated.View>
                   </LinearGradient>
@@ -1534,6 +1572,8 @@ function chevronPath(pt: Pt, dir: Pt, size: number): string {
 }
 const PROMISE_CHART_MIN_HEIGHT = 280;
 function PromiseChart() {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const copy = useOnboardingCopy();
   const reduceMotion = useReduceMotion();
   const { width, height } = useWindowDimensions();
@@ -1620,23 +1660,23 @@ function PromiseChart() {
       <Svg width={geom.w} height={geom.h} viewBox={`0 0 ${geom.w} ${geom.h}`}>
         <Defs>
           <SvgLinearGradient id="promiseUpFill" x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0" stopColor="#27B36B" stopOpacity="0.26" />
-            <Stop offset="1" stopColor="#27B36B" stopOpacity="0" />
+            <Stop offset="0" stopColor={P.good} stopOpacity="0.26" />
+            <Stop offset="1" stopColor={P.good} stopOpacity="0" />
           </SvgLinearGradient>
         </Defs>
         {geom.grid.map((x) => (
-          <Line key={x} x1={x} y1={8} x2={x} y2={geom.H} stroke="#E3E6EC" strokeWidth={1} />
+          <Line key={x} x1={x} y1={8} x2={x} y2={geom.H} stroke={P.line} strokeWidth={1} />
         ))}
-        <Line x1={0} y1={geom.H} x2={geom.w} y2={geom.H} stroke="#C9CDD7" strokeWidth={1.5} strokeDasharray="3 7" strokeLinecap="round" />
+        <Line x1={0} y1={geom.H} x2={geom.w} y2={geom.H} stroke={P.line} strokeWidth={1.5} strokeDasharray="3 7" strokeLinecap="round" />
         <Path d={geom.upFill} fill="url(#promiseUpFill)" />
         <Path d={geom.downPath} stroke="#F97316" strokeWidth={3} strokeLinecap="round" fill="none" />
         <Path d={geom.downArrow} fill="#F97316" />
-        <Path d={geom.upPath} stroke="#27B36B" strokeWidth={4} strokeLinecap="round" fill="none" />
+        <Path d={geom.upPath} stroke={P.good} strokeWidth={4} strokeLinecap="round" fill="none" />
         {geom.chevrons.map((d) => (
-          <Path key={d} d={d} stroke="#27B36B" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <Path key={d} d={d} stroke={P.good} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" fill="none" />
         ))}
-        <Path d={geom.upArrow} fill="#27B36B" />
-        <Circle cx={geom.P0.x} cy={geom.P0.y} r={4} fill="#27B36B" />
+        <Path d={geom.upArrow} fill={P.good} />
+        <Circle cx={geom.P0.x} cy={geom.P0.y} r={4} fill={P.good} />
         <Circle cx={geom.Q0.x} cy={geom.Q0.y} r={4} fill="#F97316" />
       </Svg>
       {/* Шторка цвета фона экрана: кривые проявляются слева направо. */}
@@ -1700,6 +1740,7 @@ function PhoneMock({
   availableHeight?: number;
   testID?: string;
 }) {
+  const styles = createStyles(useOnboardingPalette());
   const copy = useOnboardingCopy();
   const olang = useOnboardingLang();
   const reduceMotion = useReduceMotion();
@@ -1843,8 +1884,10 @@ function PhoneMock({
 
 // ── Пейвол: выгоды, тарифы, шит «Больше предложений» (Bevel, кадры 11–12) ─────
 /** Контурные SVG-иконки выгод: один цвет, stroke 1.8, круглые концы. */
-const BenefitGlyph = memo(function BenefitGlyph({ id, size = 24, color = '#0C111B' }: { id: BenefitGlyphId; size?: number; color?: string }) {
-  const stroke = { stroke: color, strokeWidth: 1.8, fill: 'none', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+const BenefitGlyph = memo(function BenefitGlyph({ id, size = 24, color }: { id: BenefitGlyphId; size?: number; color?: string }) {
+  const P = useOnboardingPalette();
+  const glyphColor = color ?? P.text;
+  const stroke = { stroke: glyphColor, strokeWidth: 1.8, fill: 'none', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24">
       {id === 'bolt' ? <Path d="M13 2 L4.5 13.5 H11 L10 22 L19.5 10.5 H13 Z" {...stroke} /> : null}
@@ -1873,7 +1916,7 @@ const BenefitGlyph = memo(function BenefitGlyph({ id, size = 24, color = '#0C111
         <>
           <Circle cx={12} cy={12} r={8.5} {...stroke} />
           <Circle cx={12} cy={12} r={5} {...stroke} />
-          <Circle cx={12} cy={12} r={1.4} fill={color} />
+          <Circle cx={12} cy={12} r={1.4} fill={glyphColor} />
         </>
       ) : null}
       {id === 'chart' ? (
@@ -1892,6 +1935,7 @@ const BenefitGlyph = memo(function BenefitGlyph({ id, size = 24, color = '#0C111
 // Строка выгоды: плитка-иконка + заголовок + подпись (подпись — часть макета
 // Bevel, владелец разрешил именно здесь). Каскадный вход, native driver.
 function PaywallBenefitRow({ glyph, title, caption, index = 0 }: { glyph: BenefitGlyphId; title: string; caption: string; index?: number }) {
+  const styles = createStyles(useOnboardingPalette());
   const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -1941,6 +1985,8 @@ function PaywallPlanTile({
   onPress: (plan: PaywallPlan) => void;
   testID: string;
 }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const reduceMotion = useReduceMotion();
   const check = useRef(new Animated.Value(selected ? 1 : 0)).current;
   useEffect(() => {
@@ -1975,7 +2021,7 @@ function PaywallPlanTile({
       <View style={[styles.planRadio, selected && styles.planRadioSelected]}>
         {selected ? (
           <Animated.View style={{ transform: [{ scale: check }] }}>
-            <Ionicons name="checkmark" size={14} color="#FFFFFF" />
+            <Ionicons name="checkmark" size={14} color={P.ctaInk} />
           </Animated.View>
         ) : null}
       </View>
@@ -1990,9 +2036,11 @@ function PaywallPlanTile({
 
 /** «✓ Сейчас ничего не спишем» — серая строка под главной кнопкой (Bevel). */
 function ReassureLine({ label, dark = false, style }: { label: string; dark?: boolean; style?: StyleProp<ViewStyle> }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   return (
     <View style={[styles.reassureRow, style]}>
-      <Ionicons name="checkmark" size={15} color={dark ? 'rgba(255,255,255,0.78)' : '#5B6270'} />
+      <Ionicons name="checkmark" size={15} color={dark ? P.textA(0.78) : P.secondary} />
       <Text style={[styles.reassureText, dark && styles.reassureTextDark]}>{label}</Text>
     </View>
   );
@@ -2018,6 +2066,7 @@ function OfferRow({
   onPress: () => void;
   testID: string;
 }) {
+  const styles = createStyles(useOnboardingPalette());
   return (
     <Pressable
       testID={testID}
@@ -2084,6 +2133,8 @@ function MoreOffersSheet({
   /** null — стор ответил, что триала нет: CTA «Продолжить», без обещания дней. */
   trialDays: number | null;
 }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const copy = useOnboardingCopy();
   const olang = useOnboardingLang();
   const insets = useStableSafeAreaInsets();
@@ -2185,7 +2236,7 @@ function MoreOffersSheet({
             accessibilityRole="button"
             accessibilityLabel={copy.close}
           >
-            <Ionicons name="close" size={18} color="#FFFFFF" />
+            <Ionicons name="close" size={18} color={P.text} />
           </Pressable>
         </View>
         <ScrollView decelerationRate="fast"
@@ -2236,7 +2287,7 @@ function MoreOffersSheet({
           accessibilityRole="button"
           accessibilityState={{ disabled: loading || offeringsFailed || !selectedAvailable, busy: purchasing }}
         >
-          {purchasing ? <ActivityIndicator size="small" color="#17191F" /> : (
+          {purchasing ? <ActivityIndicator size="small" color={P.ctaInk} /> : (
             <Text style={styles.offersCtaText}>{offeringsFailed ? copy.sheetLoadFailed : ctaLabel}</Text>
           )}
         </Pressable>
@@ -2291,6 +2342,7 @@ const CONFETTI_PIECES = Array.from({ length: 24 }, (_, i) => ({
   fall: 260 + ((i * 29) % 80),
 }));
 function ConfettiBurst() {
+  const styles = createStyles(useOnboardingPalette());
   const reduceMotion = useReduceMotion();
   const values = useRef(CONFETTI_PIECES.map(() => new Animated.Value(0))).current;
   useEffect(() => {
@@ -2344,6 +2396,8 @@ function ConfettiBurst() {
  *  сжатие в useEffect давало 1-кадровую вспышку и срабатывало на маунт с
  *  checked=true. Первый рендер не анимируем (mountedRef). */
 function ConsentRing({ checked, pop }: { checked: boolean; pop: Animated.Value }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const reduceMotion = useReduceMotion();
   const mountedRef = useRef(false);
   useEffect(() => {
@@ -2356,12 +2410,13 @@ function ConsentRing({ checked, pop }: { checked: boolean; pop: Animated.Value }
   }, [checked, pop, reduceMotion]);
   return (
     <Animated.View style={[styles.consentDecisionIcon, checked && styles.consentDecisionIconOn, { transform: [{ scale: pop }] }]}>
-      {checked ? <Ionicons name="checkmark" size={14} color="#FFFFFF" /> : null}
+      {checked ? <Ionicons name="checkmark" size={14} color={P.ctaInk} /> : null}
     </Animated.View>
   );
 }
 
 function SuccessCheck() {
+  const styles = createStyles(useOnboardingPalette());
   const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
   const tick = useRef(new Animated.Value(0)).current;
@@ -2395,6 +2450,8 @@ function CleanOnboarding({
   initialLang,
   startAtNameStep,
 }: OnboardingProps) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const lang = initialLang ?? getDeviceBootstrapLocale();
   // зачем (координатор 12.10): тексты онбординга по языку интерфейса; объект из кэша, одинаковый между рендерами
   const oc = onboardingCopy(lang);
@@ -3604,7 +3661,7 @@ function CleanOnboarding({
       <View style={styles.root}>
         <Background />
         <View style={styles.loadingWrap}>
-          <ActivityIndicator size="large" color="#0C111B" />
+          <ActivityIndicator size="large" color={P.text} />
         </View>
       </View>
     );
@@ -3612,12 +3669,12 @@ function CleanOnboarding({
 
   const renderWelcome = () => (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle={P.isLight ? 'dark-content' : 'light-content'} />
       {/* Bevel, кадр 1: вертикальный градиент серо-стального к светлому поверх
           общего фона — только на этом экране. */}
       <LinearGradient
         pointerEvents="none"
-        colors={['#C9CFD6', '#DDE1E7', '#E9ECF0']}
+        colors={[P.track, P.soft, P.bg]}
         locations={[0, 0.55, 1]}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
@@ -3670,7 +3727,7 @@ function CleanOnboarding({
               {googleAvailable ? (
                 <GoogleSignInButton
                   label={oc.signInGoogle}
-                  variant="dark"
+                  variant={P.isLight ? 'light' : 'dark'}
                   loading={authLoading === 'google' && !awaitingSwitchDecision}
                   disabled={!!authLoading}
                   onPress={() => { void handleAuth('google'); }}
@@ -3679,7 +3736,7 @@ function CleanOnboarding({
               {appleAvailable === true ? (
                 <AppleSignInButton
                   label={oc.signInApple}
-                  variant="dark"
+                  variant={P.isLight ? 'light' : 'dark'}
                   loading={authLoading === 'apple'}
                   disabled={!!authLoading}
                   onPress={() => { void handleAuth('apple'); }}
@@ -3691,11 +3748,8 @@ function CleanOnboarding({
               {!googleAvailable && appleAvailable === false ? (
                 <Text style={styles.errorText}>{oc.providersUnavailable}</Text>
               ) : null}
-              {authSlow && !awaitingSwitchDecision ? (
-                <Text style={styles.errorText} accessibilityLiveRegion="polite">
-                  {oc.signInBusy}
-                </Text>
-              ) : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
+              {/* зачем (слово владельца 15.10): текст «Вход всё ещё выполняется…» не показываем - на кнопке остаётся только индикатор загрузки; долгий вход виден в логе [ONB-SIGNIN] slow_ms. */}
+              {authSlow && !awaitingSwitchDecision ? null : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
               <SecondaryButton
                 label={oc.back}
                 onPress={() => {
@@ -3756,7 +3810,7 @@ function CleanOnboarding({
           {appleAvailable === true ? (
             <AppleSignInButton
               label={oc.continueWithApple}
-              variant="dark"
+              variant={P.isLight ? 'light' : 'dark'}
               shape="pill"
               loading={authLoading === 'apple'}
               disabled={!!authLoading}
@@ -3769,18 +3823,15 @@ function CleanOnboarding({
           {googleAvailable ? (
             <GoogleSignInButton
               label={oc.continueWithGoogle}
-              variant="light"
+              variant={P.isLight ? 'light' : 'dark'}
               shape="pill"
               loading={authLoading === 'google' && !awaitingSwitchDecision}
               disabled={!!authLoading}
               onPress={() => { void authFromPrivacy('google'); }}
             />
           ) : null}
-          {authSlow && !awaitingSwitchDecision ? (
-            <Text style={styles.errorText} accessibilityLiveRegion="polite">
-              {oc.signInBusy}
-            </Text>
-          ) : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
+          {/* зачем (слово владельца 15.10): текст «Вход всё ещё выполняется…» не показываем - на кнопке остаётся только индикатор загрузки; долгий вход виден в логе [ONB-SIGNIN] slow_ms. */}
+          {authSlow && !awaitingSwitchDecision ? null : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
           <SecondaryButton
             // зачем triLang: обработчик кнопки стал многострочным, и подпись попала в новую строку —
             // храповик переводов требует переводить тронутую строку, а не двигать базу.
@@ -3969,7 +4020,7 @@ function CleanOnboarding({
         />
       }
     >
-      <Ionicons name="notifications-outline" size={40} color="#5B6270" style={styles.notificationsBell} />
+      <Ionicons name="notifications-outline" size={40} color={P.secondary} style={styles.notificationsBell} />
       <Text style={[styles.sectionTitle, shortScreen && styles.sectionTitleShort]}>{oc.notifTitle}</Text>
       <Text style={[styles.screenSubtitle, styles.screenSubtitleNotifications, shortScreen && styles.screenSubtitleShort]}>{oc.notifBody}</Text>
     </ScreenFrame>
@@ -4117,7 +4168,7 @@ function CleanOnboarding({
             accessibilityRole="button"
             accessibilityLabel={oc.moreLine}
           >
-            <Ionicons name="ellipsis-horizontal" size={22} color="#0C111B" />
+            <Ionicons name="ellipsis-horizontal" size={22} color={P.text} />
           </Pressable>
         )}
         plainTitle
@@ -4255,7 +4306,7 @@ function CleanOnboarding({
                   autoCapitalize="characters"
                   autoCorrect={false}
                   placeholder={codeSheet === 'promo' ? 'PHRASE20' : oc.friendCodeCaps}
-                  placeholderTextColor="#596170"
+                  placeholderTextColor={P.secondary}
                   editable={!codeBusy}
                   accessibilityLabel={codeSheet === 'promo' ? oc.promoCode : oc.friendCodeFrom}
                   onSubmitEditing={() => { void submitCode(); }}
@@ -4432,15 +4483,15 @@ function CleanOnboarding({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#F5F6FA',
+    backgroundColor: P.bg,
   },
   // Светлая подложка макета Bevel — единственный слой фона; welcome кладёт
   // поверх свой градиент.
   backdrop: {
-    backgroundColor: '#F5F6FA',
+    backgroundColor: P.bg,
   },
   safe: {
     flex: 1,
@@ -4487,10 +4538,10 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     alignItems: 'center',
     justifyContent: 'center',
-    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: '#FFFFFF' }),
+    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: P.card }),
   },
   headerRightSpacer: {
     width: 48,
@@ -4522,7 +4573,7 @@ const styles = StyleSheet.create({
   },
   // Макет .h1 — типографика заголовка экрана (lg).
   plainTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 27,
     lineHeight: 31,
     fontWeight: '700',
@@ -4558,7 +4609,7 @@ const styles = StyleSheet.create({
   },
   // Серый подзаголовок под заголовком экрана (privacy, promise).
   screenSubtitle: {
-    color: '#5B6270',
+    color: P.secondary,
     fontSize: 15.5,
     lineHeight: 22,
     fontWeight: '400',
@@ -4568,7 +4619,7 @@ const styles = StyleSheet.create({
   },
   // Вопрос экрана source: 17pt слева (Bevel, кадр 6).
   questionTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 17,
     lineHeight: 22,
     fontWeight: '600',
@@ -4579,7 +4630,7 @@ const styles = StyleSheet.create({
   },
   // Заголовок 22/28/600 в children (notifications).
   sectionTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 22,
     lineHeight: 28,
     fontWeight: '600',
@@ -4637,26 +4688,26 @@ const styles = StyleSheet.create({
     transform: [{ translateY: 2 }],
   },
   embossHighlight: {
-    tintColor: '#FFFFFF',
+    tintColor: P.card,
     opacity: 0.95,
     transform: [{ translateY: -1.5 }],
   },
   embossBody: {
-    tintColor: '#B7BEC8',
+    tintColor: P.track,
   },
   welcomeTitleWrap: {
     alignSelf: 'stretch',
   },
   // Bevel, кадр 1: заголовок серым тиснёным (30/36/700, -0.5, белая тень снизу).
   welcomeTitle: {
-    color: '#6E7683',
+    color: P.secondary,
     fontSize: 30,
     lineHeight: 36,
     fontWeight: '700',
     letterSpacing: -0.5,
     textAlign: 'center',
     paddingHorizontal: 12,
-    textShadowColor: 'rgba(255,255,255,0.85)',
+    textShadowColor: P.bgA(0.85),
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 0,
   },
@@ -4679,10 +4730,10 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: 'rgba(12,17,27,0.18)',
+    backgroundColor: P.textA(0.18),
   },
   pagerDotActive: {
-    backgroundColor: '#17191F',
+    backgroundColor: P.ctaFill,
   },
   authButtons: {
     gap: 11,
@@ -4705,7 +4756,7 @@ const styles = StyleSheet.create({
     height: 0,
   },
   primaryButtonText: {
-    color: '#FFFFFF',
+    color: P.ctaInk,
     fontSize: 17,
     lineHeight: 22,
     fontWeight: '600',
@@ -4723,7 +4774,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   secondaryButtonText: {
-    color: '#596170',
+    color: P.secondary,
     fontSize: 16,
     fontWeight: '500',
     textAlign: 'center',
@@ -4752,13 +4803,13 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 66,
     borderRadius: 18,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     paddingHorizontal: 18,
     paddingVertical: 14,
     justifyContent: 'center',
   },
   speechText: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 18,
     lineHeight: 25,
     fontWeight: '800',
@@ -4770,7 +4821,9 @@ const styles = StyleSheet.create({
   optionCard: {
     minHeight: 62,
     borderRadius: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
+    overflow: 'hidden',
+    ...softShadow({ color: P.raisedShadowSoft, radius: 3, opacity: 1, offsetY: 1, backgroundColor: P.card, elevation: 0 }),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -4786,7 +4839,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   optionTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 16,
     lineHeight: 21,
     fontWeight: '600',
@@ -4797,31 +4850,31 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     borderRadius: 5,
-    backgroundColor: '#E6E8EE',
+    backgroundColor: P.radioEmpty,
     alignItems: 'center',
     justifyContent: 'center',
   },
   radioSelected: {
-    backgroundColor: '#17191F',
+    backgroundColor: P.ctaFill,
   },
   languageCard: {
     minHeight: 88,
     borderRadius: 15,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     flexDirection: 'row',
     alignItems: 'center',
     padding: 12,
     gap: 12,
   },
   languageCardSelected: {
-    backgroundColor: '#F1F3F7',
+    backgroundColor: P.soft,
   },
   languageAsset: {
     width: 76,
     height: 48,
   },
   languageTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 16.5,
     lineHeight: 21,
     fontWeight: '600',
@@ -4832,12 +4885,12 @@ const styles = StyleSheet.create({
     width: 23,
     height: 23,
     borderRadius: 7,
-    backgroundColor: '#EDEFF4',
+    backgroundColor: P.track,
     alignItems: 'center',
     justifyContent: 'center',
   },
   radioLargeSelected: {
-    backgroundColor: '#0C111B',
+    backgroundColor: P.ctaFill,
   },
   textButton: {
     alignItems: 'center',
@@ -4845,7 +4898,7 @@ const styles = StyleSheet.create({
     minHeight: 48,
   },
   textButtonLabel: {
-    color: '#596170',
+    color: P.secondary,
     fontSize: 16,
     fontWeight: '500',
   },
@@ -4859,7 +4912,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   skipLabel: {
-    color: '#596170',
+    color: P.secondary,
     fontSize: 15,
     fontWeight: '500',
   },
@@ -4871,7 +4924,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   niceTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 22,
     lineHeight: 28,
     fontWeight: '600',
@@ -4881,7 +4934,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
   },
   niceSubtitle: {
-    color: '#5B6270',
+    color: P.secondary,
     fontSize: 15.5,
     lineHeight: 22,
     fontWeight: '400',
@@ -5091,7 +5144,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: '#EEF0F5',
+    backgroundColor: P.soft,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -5099,14 +5152,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   benefitTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 16,
     lineHeight: 20,
     fontWeight: '700',
     letterSpacing: -0.2,
   },
   benefitCaption: {
-    color: '#5B6270',
+    color: P.secondary,
     fontSize: 13,
     lineHeight: 17,
     fontWeight: '400',
@@ -5125,7 +5178,7 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 104,
     borderRadius: 18,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     paddingTop: 16,
     paddingBottom: 14,
     paddingHorizontal: 14,
@@ -5134,10 +5187,10 @@ const styles = StyleSheet.create({
     ...noAndroidOutline,
   },
   planTileSelected: {
-    borderColor: '#0C111B',
+    borderColor: P.text,
   },
   planTileTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '700',
@@ -5149,7 +5202,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   planTilePrice: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 19,
     lineHeight: 24,
     fontWeight: '800',
@@ -5165,7 +5218,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   planTileCaption: {
-    color: '#5B6270',
+    color: P.secondary,
     fontSize: 12,
     lineHeight: 16,
   },
@@ -5173,13 +5226,13 @@ const styles = StyleSheet.create({
     width: 72,
     height: 18,
     borderRadius: 6,
-    backgroundColor: '#EDEFF4',
+    backgroundColor: P.track,
   },
   planTileSkeletonCaption: {
     width: 56,
     height: 12,
     borderRadius: 4,
-    backgroundColor: '#EDEFF4',
+    backgroundColor: P.track,
   },
   // Радио — контрол, обводка допустима.
   planRadio: {
@@ -5190,13 +5243,13 @@ const styles = StyleSheet.create({
     height: 22,
     borderRadius: 11,
     borderWidth: 1.5,
-    borderColor: '#C9CDD7',
+    borderColor: P.line,
     alignItems: 'center',
     justifyContent: 'center',
   },
   planRadioSelected: {
-    backgroundColor: '#0C111B',
-    borderColor: '#0C111B',
+    backgroundColor: P.ctaFill,
+    borderColor: P.ctaFill,
   },
   planBadge: {
     position: 'absolute',
@@ -5205,12 +5258,12 @@ const styles = StyleSheet.create({
     height: 22,
     paddingHorizontal: 10,
     borderRadius: 11,
-    backgroundColor: '#17191F',
+    backgroundColor: P.ctaFill,
     alignItems: 'center',
     justifyContent: 'center',
   },
   planBadgeText: {
-    color: '#FFFFFF',
+    color: P.ctaInk,
     fontSize: 10.5,
     lineHeight: 13,
     fontWeight: '700',
@@ -5224,7 +5277,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   moreOffersLinkText: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 15,
     fontWeight: '600',
   },
@@ -5239,13 +5292,13 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   reassureText: {
-    color: '#5B6270',
+    color: P.secondary,
     fontSize: 13.5,
     lineHeight: 18,
     fontWeight: '500',
   },
   reassureTextDark: {
-    color: 'rgba(255,255,255,0.62)',
+    color: P.textA(0.62),
   },
   // ── шит «Больше предложений» (Bevel, кадр 12) ──────────────────────────────
   offersScrim: {
@@ -5257,7 +5310,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#22252D',
+    backgroundColor: P.sheet,
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
     paddingHorizontal: 18,
@@ -5272,7 +5325,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   offersTitle: {
-    color: '#FFFFFF',
+    color: P.text,
     fontSize: 20,
     lineHeight: 26,
     fontWeight: '800',
@@ -5281,7 +5334,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: 'rgba(255,255,255,0.14)',
+    backgroundColor: P.textA(0.14),
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -5298,7 +5351,7 @@ const styles = StyleSheet.create({
   offerRow: {
     minHeight: 64,
     borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: P.textA(0.06),
     paddingHorizontal: 16,
     paddingVertical: 10,
     flexDirection: 'row',
@@ -5308,16 +5361,16 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   offerRowSelected: {
-    borderColor: 'rgba(255,255,255,0.72)',
+    borderColor: P.textA(0.72),
   },
   offerTitle: {
-    color: '#FFFFFF',
+    color: P.text,
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '700',
   },
   offerCaption: {
-    color: 'rgba(255,255,255,0.58)',
+    color: P.textA(0.58),
     fontSize: 12,
     lineHeight: 16,
     marginTop: 2,
@@ -5326,7 +5379,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   offerPrice: {
-    color: '#FFFFFF',
+    color: P.text,
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '700',
@@ -5335,19 +5388,19 @@ const styles = StyleSheet.create({
     width: 56,
     height: 14,
     borderRadius: 4,
-    backgroundColor: 'rgba(255,255,255,0.12)',
+    backgroundColor: P.textA(0.12),
     marginVertical: 3,
   },
   offersCta: {
     marginTop: 18,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.ctaFill,
     alignItems: 'center',
     justifyContent: 'center',
   },
   offersCtaText: {
-    color: '#17191F',
+    color: P.ctaInk,
     fontSize: 17,
     lineHeight: 22,
     fontWeight: '600',
@@ -5364,7 +5417,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   offersFreeLinkText: {
-    color: 'rgba(255,255,255,0.86)',
+    color: P.textA(0.86),
     fontSize: 15,
     fontWeight: '600',
   },
@@ -5383,7 +5436,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   offersLinkText: {
-    color: 'rgba(255,255,255,0.72)',
+    color: P.textA(0.72),
     fontSize: 13,
     fontWeight: '600',
   },
@@ -5396,7 +5449,7 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   finalTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 27,
     lineHeight: 31,
     fontWeight: '700',
@@ -5408,7 +5461,7 @@ const styles = StyleSheet.create({
   },
   finalErrorSlot: {
     minHeight: 22,
-    color: '#0C111B',
+    color: P.text,
     fontSize: 13.5,
     lineHeight: 18,
     fontWeight: '600',
@@ -5440,16 +5493,16 @@ const styles = StyleSheet.create({
   successGlow: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 48,
-    backgroundColor: 'rgba(34,176,125,0.14)',
+    backgroundColor: P.goodA(0.14),
   },
   successCircle: {
     width: 76,
     height: 76,
     borderRadius: 38,
-    backgroundColor: '#22B07D',
+    backgroundColor: P.good,
     alignItems: 'center',
     justifyContent: 'center',
-    ...softShadow({ color: '#22B07D', radius: 18, opacity: 0.35, offsetY: 6, backgroundColor: '#22B07D' }),
+    ...softShadow({ color: P.good, radius: 18, opacity: 0.35, offsetY: 6, backgroundColor: P.good }),
   },
   // Макет: «Да»/«Нет» — белые карточки без обводки; выбранная заливается чернилами.
   ageButtons: {
@@ -5461,22 +5514,22 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 56,
     borderRadius: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
   ageButtonSelected: {
-    backgroundColor: '#0C111B',
+    backgroundColor: P.ctaFill,
   },
   ageButtonText: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 16,
     lineHeight: 21,
     fontWeight: '600',
     letterSpacing: -0.16,
   },
   ageButtonTextSelected: {
-    color: '#FFFFFF',
+    color: P.ctaInk,
   },
   // Bevel «Subscribe to our newsletter»: строка без фона и обводки, кольцо слева.
   consentDecisionRow: {
@@ -5492,19 +5545,19 @@ const styles = StyleSheet.create({
     height: 24,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: '#C9CDD7',
+    borderColor: P.line,
     alignItems: 'center',
     justifyContent: 'center',
   },
   consentDecisionIconOn: {
-    backgroundColor: '#0C111B',
-    borderColor: '#0C111B',
+    backgroundColor: P.ctaFill,
+    borderColor: P.ctaFill,
   },
   consentDecisionCopy: {
     flex: 1,
   },
   consentDecisionTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '500',
@@ -5513,7 +5566,7 @@ const styles = StyleSheet.create({
   // не красный errorText. Тон спокойный и светлый, вес и кегль — на уровне основного
   // текста экрана, чтобы сообщение читалось как утверждение, а не как мелкая сноска.
   unknownAccountText: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 17,
     lineHeight: 24,
     fontWeight: '700',
@@ -5536,8 +5589,8 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     borderRadius: 44,
-    backgroundColor: '#FFFFFF',
-    ...softShadow({ color: '#0C111B', radius: 50, opacity: 0.12, offsetY: 20, backgroundColor: '#FFFFFF', elevation: 16 }),
+    backgroundColor: P.card,
+    ...softShadow({ color: '#0C111B', radius: 50, opacity: 0.12, offsetY: 20, backgroundColor: P.card, elevation: 16 }),
   },
   vaultBody: {
     width: 250,
@@ -5581,8 +5634,8 @@ const styles = StyleSheet.create({
     width: 10,
     height: 36,
     borderRadius: 5,
-    backgroundColor: '#DDE2EA',
-    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.14, offsetY: 1, backgroundColor: '#DDE2EA' }),
+    backgroundColor: P.track,
+    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.14, offsetY: 1, backgroundColor: P.track }),
   },
   vaultHingeTop: {
     top: 54,
@@ -5594,8 +5647,8 @@ const styles = StyleSheet.create({
     width: 186,
     height: 186,
     borderRadius: 34,
-    backgroundColor: '#FFFFFF',
-    ...softShadow({ color: '#0C111B', radius: 12, opacity: 0.10, offsetY: 5, backgroundColor: '#FFFFFF', elevation: 6 }),
+    backgroundColor: P.card,
+    ...softShadow({ color: '#0C111B', radius: 12, opacity: 0.10, offsetY: 5, backgroundColor: P.card, elevation: 6 }),
   },
   vaultDoorFace: {
     width: 186,
@@ -5636,10 +5689,10 @@ const styles = StyleSheet.create({
     width: 116,
     height: 116,
     borderRadius: 58,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     alignItems: 'center',
     justifyContent: 'center',
-    ...softShadow({ color: '#0C111B', radius: 8, opacity: 0.14, offsetY: 4, backgroundColor: '#FFFFFF' }),
+    ...softShadow({ color: '#0C111B', radius: 8, opacity: 0.14, offsetY: 4, backgroundColor: P.card }),
   },
   vaultRingBezel: {
     width: 112,
@@ -5664,26 +5717,26 @@ const styles = StyleSheet.create({
     height: 8,
     marginTop: 5,
     borderRadius: 1.25,
-    backgroundColor: '#A9B1C0',
+    backgroundColor: P.muted,
   },
   vaultTickMajor: {
     height: 11,
-    backgroundColor: '#7C8494',
+    backgroundColor: P.secondary,
   },
   vaultDial: {
     width: 66,
     height: 66,
     borderRadius: 33,
-    backgroundColor: '#F4F6F9',
+    backgroundColor: P.card,
     alignItems: 'center',
-    ...softShadow({ color: '#0C111B', radius: 6, opacity: 0.20, offsetY: 3, backgroundColor: '#F4F6F9' }),
+    ...softShadow({ color: '#0C111B', radius: 6, opacity: 0.20, offsetY: 3, backgroundColor: P.card }),
   },
   vaultDialMark: {
     width: 4,
     height: 14,
     borderRadius: 2,
     marginTop: 6,
-    backgroundColor: '#7C8494',
+    backgroundColor: P.secondary,
   },
   vaultDialHub: {
     position: 'absolute',
@@ -5693,7 +5746,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   vaultLegalNote: {
-    color: '#596170',
+    color: P.secondary,
     fontSize: 12,
     lineHeight: 17,
     textAlign: 'center',
@@ -5724,10 +5777,10 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 18,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     alignItems: 'center',
     justifyContent: 'center',
-    ...softShadow({ color: '#0C111B', radius: 16, opacity: 0.08, offsetY: 6, backgroundColor: '#FFFFFF' }),
+    ...softShadow({ color: '#0C111B', radius: 16, opacity: 0.08, offsetY: 6, backgroundColor: P.card }),
   },
   improveSatelliteEmoji: {
     fontSize: 24,
@@ -5747,7 +5800,7 @@ const styles = StyleSheet.create({
     bottom: 12,
   },
   improveTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 22,
     lineHeight: 28,
     fontWeight: '600',
@@ -5756,7 +5809,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   improveBody: {
-    color: '#5B6270',
+    color: P.secondary,
     fontSize: 15,
     lineHeight: 22,
     fontWeight: '400',
@@ -5784,18 +5837,18 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: '#F5F6FA',
+    backgroundColor: P.bg,
   },
   promiseBadgeUp: {
     position: 'absolute',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
-    backgroundColor: '#27B36B',
+    backgroundColor: P.good,
     borderRadius: 999,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    ...softShadow({ color: '#27B36B', radius: 10, opacity: 0.30, offsetY: 4, backgroundColor: '#27B36B' }),
+    ...softShadow({ color: P.good, radius: 10, opacity: 0.30, offsetY: 4, backgroundColor: P.good }),
   },
   promiseBadgeUpText: {
     color: '#07110A',
@@ -5805,13 +5858,13 @@ const styles = StyleSheet.create({
   },
   promiseBadgeDown: {
     position: 'absolute',
-    backgroundColor: '#E9EBF0',
+    backgroundColor: P.track,
     borderRadius: 999,
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
   promiseBadgeDownText: {
-    color: '#6B7280',
+    color: P.secondary,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -5820,7 +5873,7 @@ const styles = StyleSheet.create({
     right: 4,
     top: '46%',
     transform: [{ rotate: '90deg' }],
-    color: '#596170',
+    color: P.secondary,
     fontSize: 12,
     fontWeight: '600',
     letterSpacing: 0.2,
@@ -5829,12 +5882,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 8,
     alignSelf: 'center',
-    color: '#596170',
+    color: P.secondary,
     fontSize: 12,
     fontWeight: '600',
   },
   ageQuestion: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 17,
     lineHeight: 22,
     fontWeight: '700',
@@ -5843,7 +5896,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   errorText: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 15,
     lineHeight: 22,
     fontWeight: '800',
@@ -5852,7 +5905,7 @@ const styles = StyleSheet.create({
   },
   // ── welcome: sign-in-wrap согласие над кнопкой «Начать» ────────────────────
   welcomeLegalNote: {
-    color: '#5B6270',
+    color: P.secondary,
     fontSize: 12,
     lineHeight: 17,
     textAlign: 'center',
@@ -5860,19 +5913,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   welcomeLegalLink: {
-    color: '#5B6270',
+    color: P.secondary,
     textDecorationLine: 'underline',
   },
   // ── paywall / final: мелкая юридическая строка ─────────────────────────────
   paywallLegalNote: {
-    color: '#596170',
+    color: P.secondary,
     fontSize: 12,
     lineHeight: 17,
     textAlign: 'center',
     marginTop: 0,
   },
   subscriptionDisclosure: {
-    color: '#4F5665',
+    color: P.secondary,
     fontSize: 13,
     lineHeight: 19,
     textAlign: 'center',
@@ -5880,7 +5933,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   paywallLegalLink: {
-    color: '#5B6270',
+    color: P.secondary,
     textDecorationLine: 'underline',
   },
   // ── paywall: кнопка «···» ──────────────────────────────────────────────────
@@ -5888,10 +5941,10 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     alignItems: 'center',
     justifyContent: 'center',
-    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: '#FFFFFF' }),
+    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: P.card }),
   },
   codeScrim: {
     flex: 1,
@@ -5906,14 +5959,14 @@ const styles = StyleSheet.create({
   },
   codeCard: {
     borderRadius: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: P.card,
     paddingHorizontal: 18,
     paddingTop: 22,
     paddingBottom: 20,
-    ...softShadow({ color: '#0C111B', radius: 28, opacity: 0.20, offsetY: 6, backgroundColor: '#FFFFFF' }),
+    ...softShadow({ color: '#0C111B', radius: 28, opacity: 0.20, offsetY: 6, backgroundColor: P.card }),
   },
   codeTitle: {
-    color: '#0C111B',
+    color: P.text,
     fontSize: 19,
     fontWeight: '800',
     letterSpacing: -0.38,
@@ -5922,10 +5975,10 @@ const styles = StyleSheet.create({
   // Поле ввода — контрол, обводка допустима.
   codeInput: {
     borderWidth: 1.5,
-    borderColor: '#E3E6EC',
+    borderColor: P.line,
     borderRadius: 13,
-    backgroundColor: '#F7F8FA',
-    color: '#0C111B',
+    backgroundColor: P.soft,
+    color: P.text,
     fontSize: 17,
     fontWeight: '700',
     letterSpacing: 1.7,
@@ -5942,10 +5995,10 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   codeFeedbackOk: {
-    color: '#12805A',
+    color: P.goodText,
   },
   codeFeedbackError: {
-    color: '#0C111B',
+    color: P.text,
   },
   codeCancel: {
     alignItems: 'center',
@@ -5954,11 +6007,11 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   codeCancelText: {
-    color: '#596170',
+    color: P.secondary,
     fontSize: 15,
     fontWeight: '600',
   },
-});
+}));
 
 // зачем (координатор 12.10): вложенные компоненты (шапка, телефон, шторка предложений) берут тексты и язык из контекста;
 // язык считается так же, как внутри CleanOnboarding (initialLang → язык устройства), поэтому расхождения нет.

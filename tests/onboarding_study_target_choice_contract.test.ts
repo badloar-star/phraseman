@@ -36,7 +36,8 @@ describe('clean onboarding study-target and order contract', () => {
     // D126 (владелец 2026-09-30): экран выбора языка включён, уровень — нет.
     // Рубильники раздельные, чтобы уровень не вернулся «прицепом» к языку.
     expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = true');
-    expect(source).toContain('const SHOW_ONBOARDING_LEVEL_STEP = false');
+    // зачем (координатор 15.10 к сборке 16.10, решение владельца): экран уровня включён и рисуется в цветах темы.
+    expect(source).toContain('const SHOW_ONBOARDING_LEVEL_STEP = true');
     expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language'] as const) : [])");
     expect(source).toContain("...(SHOW_ONBOARDING_LEVEL_STEP ? (['level'] as const) : [])");
     // D164 (вариант А, владелец 12.10): при английском интерфейсе экран языка обязателен — админка его не выключит; иначе порядок прежний.

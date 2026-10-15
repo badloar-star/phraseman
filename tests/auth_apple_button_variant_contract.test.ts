@@ -24,11 +24,10 @@ describe('Sign in with Apple — style follows the surface (dark → white, ligh
     expect(appleButtonColors('light')).toEqual({ background: '#000000', ink: '#FFFFFF' });
   });
 
-  it('onboarding: sign-in plate and privacy pill sit on the always-dark #0C111B background → variant="dark"', () => {
+  it('onboarding: sign-in plate and privacy pill follow the theme surface (light theme → black, dark → white)', () => {
     const calls = appleButtonCalls('components/CleanOnboarding.tsx');
     expect(calls).toHaveLength(2);
-    for (const attrs of calls) expect(attrs).toMatch(/variant="dark"/);
-    expect(read('components/CleanOnboarding.tsx')).toContain("backgroundColor: '#0C111B'");
+    for (const attrs of calls) expect(attrs).toMatch(/variant=\{P\.isLight \? 'light' : 'dark'\}/);
   });
 
   it('registration sheet: variant follows the app theme (light theme → black, dark → white)', () => {

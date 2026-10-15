@@ -2,6 +2,7 @@ import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { handleReferralUsersWrite } from './referral';
 import { handleVipOrphanUsersWrite } from './vip_orphan_reconcile';
 import { handleAdminNewUserWrite } from './admin_alert_sources_people';
+import { handlePushTokenDedupeUsersWrite } from './push_token_dedupe';
 
 /**
  * Единый триггер на users/{userId}.
@@ -20,8 +21,10 @@ export const usersWriteRouter = onDocumentWritten(
       handleReferralUsersWrite(event),
       handleVipOrphanUsersWrite(event),
       handleAdminNewUserWrite(event),
+      // зачем (координатор 15.10, ревью Авторизации (Б)): один push-токен — один владелец; читает только на смену токена
+      handlePushTokenDedupeUsersWrite(event),
     ]);
-    const names = ['referral_qualify', 'vip_orphan_reconcile', 'admin_new_user_alert'];
+    const names = ['referral_qualify', 'vip_orphan_reconcile', 'admin_new_user_alert', 'push_token_dedupe'];
     let firstError: unknown = null;
     results.forEach((r, i) => {
       if (r.status === 'rejected') {

@@ -3,6 +3,7 @@
 Governance-ID: TG-1A378BD80C2C
 Governance-ID: TG-CA123484A208
 Governance-ID: TG-1373F6EB3A5C
+Governance-ID: TG-417BE64996B0
 
 ## Outcome
 Сверка: шов на «Итоге урока» (граница y=132 px, ~9 уровней) и на «Обучении» (только левый край, y=132, ~5 уровней). По пикселям кадра `full_sweep_1015/screens_a/lesson_complete/top.png`: ниже y=132 ВСЁ #eaebfe (плоский `g.bg`), выше — полотно ScreenGradient (градиент и пятно темы слева). 132 px = верхний inset Pixel 8 (≈ 50 dp: статус-бар + вырез; текст часов стоит на середине этой полосы), то есть шов проходит ровно по границе безопасной зоны.

@@ -669,7 +669,6 @@ const LessonContent = React.memo(function LessonContent({
   const reviewGoPrev = useCallback(() => setReviewIndex(i => Math.max(0, i - 1)), []);
   const reviewGoNext = useCallback(() => setReviewIndex(i => Math.min(reviewCount - 1, i + 1)), [reviewCount]);
   const reviewCurrent = reviewOpen ? (reviewPhrases[reviewIndex] ?? null) : null;
-  const startSpeakingHoldRef = useRef<(() => void) | null>(null);
   const startSpeakingHold = useCallback(() => {
     hapticTap();
     if (speechNa) {
@@ -677,7 +676,7 @@ const LessonContent = React.memo(function LessonContent({
       setSpeechNaNoteKey(speakingPhraseKey);
       return;
     }
-    if (!speakingGate.canStartAttempt(() => startSpeakingHoldRef.current?.())) return; // R43: ожидание доступа → после подтверждения Plus запись стартует сама; зачем (координатор 15.10, правило владельца D194 «попытка = НАЧАТАЯ запись»): тап только проверяет лимит (при нуле — пейвол), а попытка списывается, когда запись реально пошла (статус «listening»): отказ микрофона и отмена до старта не списывают; списание — в onSpeakingPanelStatus
+    if (!speakingGate.canStartAttempt()) return; // R43 (Ревизор 15.10): тут удержание — автостарт после ожидания доступа НЕ передаём (палец уже отпущен, запись повисла бы), остаётся подсказка «Проверяем подписку…»; зачем (координатор 15.10, правило владельца D194 «попытка = НАЧАТАЯ запись»): тап только проверяет лимит (при нуле — пейвол), а попытка списывается, когда запись реально пошла (статус «listening»): отказ микрофона и отмена до старта не списывают; списание — в onSpeakingPanelStatus
     // Замораживаем авто-переход у родителя: панель произносит эталон в фоне и даёт
     // «Моя запись» / «Сказать ещё раз», и 4-сек таймер не должен увести урок
     // вперёд, пока панель открыта. Переход дальше — только по явному действию юзера.
@@ -687,7 +686,6 @@ const LessonContent = React.memo(function LessonContent({
     setSpeakingOpen(true);
     setSpeakingHoldActive(true);
   }, [speakingGate, onSpeakingActiveChange, speakingPhraseKey, speechNa]);
-  startSpeakingHoldRef.current = startSpeakingHold;
 
   const endSpeakingHold = useCallback(() => setSpeakingHoldActive(false), []);
   const commitSpeakingAttempt = speakingGate.commitStartedAttempt;

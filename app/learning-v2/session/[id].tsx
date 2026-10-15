@@ -459,7 +459,7 @@ function LearningV2LegacySessionScreen() {
     async (command: "start" | "stop", interaction: "tap" | "hold") => {
       const actionSession = auxiliaryActions.actionSession;
       if (!actionSession?.voiceAvailable) return;
-      if (command === "start" && !legacyVoiceGate.canStartAttempt(() => { void controlReleasedVoiceRef.current?.("start", interaction); })) { // R43: ожидание доступа → после подтверждения Plus запись стартует сама
+      if (command === "start" && !legacyVoiceGate.canStartAttempt(interaction === "tap" ? () => { void controlReleasedVoiceRef.current?.("start", interaction); } : undefined)) { // R43: автостарт после ожидания доступа — только для tap (при hold палец уже отпущен, запись повисла бы)
         console.warn("[VOICE-LIMIT] legacy_mic blocked", JSON.stringify({ screen: "learning-v2/session", interaction })); // guard-ok: ранний выход — лимит, пейвол открыт хуком
         return;
       }

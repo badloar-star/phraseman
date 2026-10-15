@@ -118,8 +118,10 @@ describe('аудит кнопок: добавки Ревизора по 9fa4a483
     expect(read('app/dialogue_v2_freeform.tsx')).toContain('voiceGate.canStartAttempt(() => { void voice.start(); })');
     expect(read('app/dialogue_v2_session.tsx')).toContain('voiceGate.canStartAttempt(() => { void voice.start(); })');
     expect(read('app/ai_dialog_session.tsx')).toContain('voiceInputGate.canStartAttempt(() => { void startVoiceInputRef.current?.(); })');
-    expect(read('app/lesson1.tsx')).toContain('speakingGate.canStartAttempt(() => startSpeakingHoldRef.current?.())');
-    expect(read('app/learning-v2/session/[id].tsx')).toContain('legacyVoiceGate.canStartAttempt(() => { void controlReleasedVoiceRef.current?.("start", interaction); })');
+    // удержание (lesson1, старый курс при hold) — без автостарта: палец уже отпущен
+    expect(read('app/lesson1.tsx')).toContain('speakingGate.canStartAttempt()) return;');
+    expect(read('app/lesson1.tsx')).not.toContain('startSpeakingHoldRef');
+    expect(read('app/learning-v2/session/[id].tsx')).toContain('legacyVoiceGate.canStartAttempt(interaction === "tap" ? () => { void controlReleasedVoiceRef.current?.("start", interaction); } : undefined)');
   });
 
   it('#26/R59: пилюля канала скрыта, пока канал языка неизвестен или его нет', () => {

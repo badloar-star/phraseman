@@ -294,3 +294,17 @@
 | /lesson_irregular_verbs | app/lesson_irregular_verbs.tsx | 0 |
 
 Все 26 маршрутов существуют в app/ (dev_state принимает любой next=, начинающийся с «/», app/dev_state_fixtures.ts:544). /lesson_irregular_verbs нет в DEV_LINKS — ссылка learn-064 собрана Макетами.
+
+
+## Добавлено днём 15.10 — онбординг, шаг «Уровень» (владелец 15.10 включил) — 4
+
+
+Шаг в коде включён (`SHOW_ONBOARDING_LEVEL_STEP = true`), `onbstep=level` открывает его сразу (онбординг ставится в pending). Тема — `theme=` + `appearance=` в той же ссылке. Снимать после коммита перекраски онбординга Темами.
+
+
+| id | экран · состояние | ссылка | тапы | тема | эталон |
+|---|---|---|---|---|---|
+| onboarding-016 | Онбординг · Уровень — «Сколько английского ты знаешь?» | `phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&onbstep=level&theme=ink&appearance=light&overlays=off&next=/(tabs)/home` | wait:2000 | «Сумерки» (ink, светлая) | onboarding-states.html №16 |
+| onboarding-017 | Онбординг · Уровень — выбрано | `phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&onbstep=level&theme=ink&appearance=light&overlays=off&next=/(tabs)/home` | tap:#onboarding-level-a1; wait:800 | «Сумерки» (ink, светлая) | onboarding-states.html №17 |
+| onboarding-031 | Онбординг · Уровень — «Сколько английского ты знаешь?» | `phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&onbstep=level&theme=marine&appearance=dark&overlays=off&next=/(tabs)/home` | wait:2000 | «Океан» (marine, тёмная) | onboarding-states.html №31 |
+| onboarding-032 | Онбординг · Уровень — выбрано | `phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&onbstep=level&theme=marine&appearance=dark&overlays=off&next=/(tabs)/home` | tap:#onboarding-level-a1; wait:800 | «Океан» (marine, тёмная) | onboarding-states.html №32 |

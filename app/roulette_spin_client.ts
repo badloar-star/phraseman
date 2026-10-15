@@ -209,6 +209,19 @@ async function mergeReferralSpinCoins(token: AccountGenerationToken, data: SpinR
 
 // ── Claim: qualified-приглашения → прокруты ──────────────────────────────────
 
+/**
+ * R38 (Ревизор 15.10): кэш состояния приглашений (referral_vip, TTL 15 мин) после получения прокрутов и выигрыша жил
+ * старым — экран показывал «можно получить» и прежние кредиты. Сбрасываем точечно, только для этого владельца.
+ */
+function invalidateReferralStateAfter(stableId: string, reason: string): void {
+  void import('./referral_vip')
+    .then(({ invalidateClaimableReferralStateCache }) => {
+      invalidateClaimableReferralStateCache(stableId);
+      spinTrace('referral_state_invalidated', { reason });
+    })
+    .catch(noteSwallowedHandler('roulette_spin_client:invalidateReferralStateAfter'));
+}
+
 /** Конвертирует все qualified-приглашения в прокруты (капы 30/мес, 3/день — на сервере). */
 export async function claimReferralSpins(): Promise<ClaimSpinResult | null> {
   if (isReferralRouletteEmergencyStopped()) return null;
@@ -220,6 +233,7 @@ export async function claimReferralSpins(): Promise<ClaimSpinResult | null> {
   const res = await fn({ referrerStableId: stableId });
   if (typeof res.data?.spinsTotal === 'number') {
     await cacheClaimedSpinCredits(stableId, res.data.spinsTotal, requestEpoch);
+    invalidateReferralStateAfter(stableId, 'claim');
   }
   return res.data;
 }
@@ -282,6 +296,7 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
         starsSeq: data.starsSeq ?? null,
       });
       await cacheSpinCredits(stableId, outcome.spinsLeft);
+      invalidateReferralStateAfter(stableId, 'spin_win');
       if (outcome.prizeKind === 'coins') {
         // Монеты уже в серверном журнале; вливаем снапшот в кошелёк телефона фоном —
         // экран не ждёт, счётчик монет обновится сам (publishProjection).

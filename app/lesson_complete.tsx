@@ -1239,8 +1239,13 @@ export default function LessonComplete() {
       const tapAt = Date.now();
       void (async () => {
         try {
-          const premium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_complete:goNext.getVerifiedPremiumStatus', false));
+          // зачем (аудит R58 #35, 15.10): тап «Следующий урок» ждал облачную сверку подписки до 5 с без отклика. Быстрый путь — кэш доступа без похода в облако; полную проверку
+          // делаем только если по кэшу пейвол выходит (чтобы платящий не увидел пейвол из-за холодного кэша).
+          let premium = await getVerifiedPremiumAccessStatus({ allowCloudRefresh: false }).catch(noteSwallowedAs('lesson_complete:goNext.getVerifiedPremiumAccessStatus.cache', false));
           const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
+          if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
+            premium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_complete:goNext.getVerifiedPremiumStatus', false));
+          }
           if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
             // Экран результата остаётся единственным: для закрытого урока сразу открываем
             // существующий путь Plus, без промежуточного баннера на завершении урока.
@@ -1290,6 +1295,7 @@ export default function LessonComplete() {
   };
 
   const goBackFromComplete = useCallback(() => {
+    if (!navOnce(`lesson_complete:back:${lessonId}`)) return; // зачем (аудит R58 #31, 15.10): «К урокам»/«Назад» без защиты от двойного тапа — два replace подряд
     hapticTap();
     markNextNavigationAsReplace();
     router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
@@ -1302,6 +1308,7 @@ export default function LessonComplete() {
       DebugLogger.warn('[LESSON-RESULT]', `«Добить» нажато без id ошибок lesson=${lessonId} — ничего не запущено`);
       return;
     }
+    if (!navOnce(`lesson_complete:finish_mistakes:${lessonId}`)) return; // зачем (аудит R58 #31, 15.10): «Добить» — повторный тап не открывает практику дважды
     hapticTap();
     DebugLogger.info('[LESSON-RESULT]', `«Добить» lesson=${lessonId}: ошибок=${ids.length} → /mistake_practice_session`);
     markNextNavigationAsReplace();
@@ -1487,7 +1494,10 @@ export default function LessonComplete() {
                   ? triLang(lang, { ru: 'Повторить урок', en: 'Repeat the lesson', uk: 'Повторити урок', es: 'Repetir la lección', 'pt-BR': 'Repetir a lição', vi: 'Học lại bài', id: 'Ulangi pelajaran', tr: 'Dersi tekrarla', pl: 'Powtórz lekcję' })
                   : isComboCompletion
                     ? triLang(lang, { ru: 'Продолжить', en: 'Continue', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
-                    : triLang(lang, { ru: 'Следующий урок', en: 'Next lesson', uk: 'Наступний урок', es: 'Siguiente lección', 'pt-BR': 'Próxima lição', vi: 'Bài tiếp theo', id: 'Pelajaran berikutnya', tr: 'Sonraki ders', pl: 'Następna lekcja' })}
+                    : lessonId >= 32
+                      // зачем (аудит R58 #35, 15.10): после урока 32 «Следующий урок» нет — кнопка ведёт на Главную, подпись честная
+                      ? triLang(lang, { ru: 'Завершить', en: 'Finish', uk: 'Завершити', es: 'Terminar', 'pt-BR': 'Concluir', vi: 'Hoàn thành', id: 'Selesai', tr: 'Bitir', pl: 'Zakończ' })
+                      : triLang(lang, { ru: 'Следующий урок', en: 'Next lesson', uk: 'Наступний урок', es: 'Siguiente lección', 'pt-BR': 'Próxima lição', vi: 'Bài tiếp theo', id: 'Pelajaran berikutnya', tr: 'Sonraki ders', pl: 'Następna lekcja' })}
               primaryBusy={nextOpening}
               onPrimary={() => {
                 if (!completionRequiresPremium && !isComboCompletion && resultStars === 1) {

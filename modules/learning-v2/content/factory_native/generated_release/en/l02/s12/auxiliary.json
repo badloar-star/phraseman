@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-12:intro1:r2": {
-          "ru": "Это сообщение. Вопрос начинается с `is`.",
-          "uk": "Це повідомлення. Запитання починається з `is`."
+          "ru": "Это означает, что письмо не личное. Здесь нужно `private` без `not`.",
+          "uk": "Це означає, що лист не особистий. Тут потрібно `private` без `not`."
         },
         "en:lesson-02:session-12:intro1:r3": {
-          "ru": "После `is` ставят `he`, затем `available`.",
-          "uk": "Після `is` ставлять `he`, потім `available`."
+          "ru": "Речь об одном письме: `It's private`.",
+          "uk": "Йдеться про один лист: `It's private`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-12:intro2:r2": {
-          "ru": "Это сообщение. Вопрос начинается с `is`.",
-          "uk": "Це повідомлення. Запитання починається з `is`."
+          "ru": "С `it` нужно `is`: `Is it private?`.",
+          "uk": "З `it` потрібно `is`: `Is it private?`."
         },
         "en:lesson-02:session-12:intro2:r3": {
-          "ru": "После `is` ставят `she`, затем `missing`.",
-          "uk": "Після `is` ставлять `she`, потім `missing`."
+          "ru": "После `Is` идёт `it`, затем `private`.",
+          "uk": "Після `Is` йде `it`, потім `private`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-12:intro3:r2": {
-          "ru": "`He` относится к мужчине, а речь о сотруднице.",
-          "uk": "`He` стосується чоловіка, а йдеться про працівницю."
+          "ru": "Это «Личное». Заметка предназначена для всех, нужно `not private`.",
+          "uk": "Це «Особисте». Нотатка призначена для всіх, потрібно `not private`."
         },
         "en:lesson-02:session-12:intro3:r3": {
-          "ru": "Это сообщение, а нужен вопрос с `is` в начале.",
-          "uk": "Це повідомлення, а потрібне запитання з `is` на початку."
+          "ru": "После `It` сохраняем `is`: `It is not private`.",
+          "uk": "Після `It` зберігаємо `is`: `It is not private`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ca8e864895ea3af7c7d7a9dc6e74142400930e0385b4d763e983f8f7d5b774d2"
+  "auxiliaryFingerprint": "741d9eeeb74d58305486095a4ab43fa22bfef1723de2a047abf7274289074b07"
 }

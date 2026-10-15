@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-20:i01",
-    "correctText": "station",
-    "correctResponseId": "en:lesson-02:session-20:i01:r1"
+    "correctText": "He is innocent.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i02",
-    "correctText": "near",
+    "correctText": "Is she prepared?",
     "correctResponseId": "en:lesson-02:session-20:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-20:i03",
-    "correctText": "near",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-20:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-20:i04",
-    "correctText": "behind",
-    "correctResponseId": "en:lesson-02:session-20:i04:r1"
+    "correctText": "en:lesson-02:session-20:i04:p1=yes\nen:lesson-02:session-20:i04:p2=innocent\nen:lesson-02:session-20:i04:p3=prepared\nen:lesson-02:session-20:i04:p4=careful",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i05",
-    "correctText": "crowded",
+    "correctText": "No, they are not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i06",
-    "correctText": "crowded",
-    "correctResponseId": "en:lesson-02:session-20:i06:r1"
+    "correctText": "No, he is not.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i07",
-    "correctText": "en:lesson-02:session-20:i07:p1=station\nen:lesson-02:session-20:i07:p2=street\nen:lesson-02:session-20:i07:p3=near\nen:lesson-02:session-20:i07:p4=behind",
+    "correctText": "She's innocent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i08",
-    "correctText": "Where is the station?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-20:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-20:i09",
-    "correctText": "near",
+    "correctText": "He is not lost.",
     "correctResponseId": "en:lesson-02:session-20:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-20:i10",
-    "correctText": "Where is the street?",
+    "correctText": "en:lesson-02:session-20:i10:p1=lost\nen:lesson-02:session-20:i10:p2=private\nen:lesson-02:session-20:i10:p3=innocent\nen:lesson-02:session-20:i10:p4=yes",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i11",
-    "correctText": "street",
-    "correctResponseId": "en:lesson-02:session-20:i11:r1"
+    "correctText": "We're prepared.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i12",
-    "correctText": "где вокзал",
-    "correctResponseId": "en:lesson-02:session-20:i12:r1"
+    "correctText": "Yes, they are.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i13",
-    "correctText": "crowded",
-    "correctResponseId": "en:lesson-02:session-20:i13:r1"
+    "correctText": "No, I am not.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-20:i14",
-    "correctText": "It is behind the station.",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-20:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-20:i15",
-    "correctText": "It is near.",
-    "correctResponseId": null
+    "correctText": "She is innocent.",
+    "correctResponseId": "en:lesson-02:session-20:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-20:i16",
-    "correctText": "Where is the street?",
+    "correctText": "en:lesson-02:session-20:i16:p1=prepared\nen:lesson-02:session-20:i16:p2=careful\nen:lesson-02:session-20:i16:p3=lost\nen:lesson-02:session-20:i16:p4=private",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-20:i17:s01",
-    "correctText": "Where is the station?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-20:i17:s02",
-    "correctText": "Where is the street?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-20:i17:s03",
-    "correctText": "The street is crowded.",
+    "interactionId": "en:lesson-02:session-20:i17",
+    "correctText": "Yes, I am.",
     "correctResponseId": null
   }
 ]

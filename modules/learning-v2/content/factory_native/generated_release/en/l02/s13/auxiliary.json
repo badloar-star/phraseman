@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-13:intro1:r2": {
-          "ru": "Это вопрос, а нужно сообщение.",
-          "uk": "Це запитання, а потрібне повідомлення."
+          "ru": "Это частный сад с ограниченным доступом. В условии сад для всех.",
+          "uk": "Це приватний сад з обмеженим доступом. За умовою сад для всіх."
         },
         "en:lesson-02:session-13:intro1:r3": {
-          "ru": "В сообщении порядок `he is ashamed`.",
-          "uk": "У повідомленні порядок `he is ashamed`."
+          "ru": "После `It` нужно `is`: `It is public`.",
+          "uk": "Після `It` потрібно `is`: `It is public`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-13:intro2:r2": {
-          "ru": "Это сообщение. Вопрос начинается с `is`.",
-          "uk": "Це повідомлення. Запитання починається з `is`."
+          "ru": "С `it` нужно `is`, в вопросе — `Is it`.",
+          "uk": "З `it` потрібно `is`, у запитанні — `Is it`."
         },
         "en:lesson-02:session-13:intro2:r3": {
-          "ru": "После `is` ставят `she`, затем `surprised`.",
-          "uk": "Після `is` ставлять `she`, потім `surprised`."
+          "ru": "После `Is` ставим `it`, затем `public`.",
+          "uk": "Після `Is` ставимо `it`, потім `public`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-13:intro3:r2": {
-          "ru": "Это вопрос, а нужно сообщение.",
-          "uk": "Це запитання, а потрібне повідомлення."
+          "ru": "Это «Общедоступный». Здесь нужен `not`.",
+          "uk": "Це «Загальнодоступне». Тут потрібно `not`."
         },
         "en:lesson-02:session-13:intro3:r3": {
-          "ru": "В сообщении после `she` ставят `is`.",
-          "uk": "У повідомленні після `she` ставлять `is`."
+          "ru": "Обсуждаем один двор: `It's`, а не `They're`.",
+          "uk": "Обговорюємо одне подвір’я: `It's`, а не `They're`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0e9441a2aa4697fb7e608b5d9f64871297596697f46b2234c94c38f86d83b77b"
+  "auxiliaryFingerprint": "984ce6efa2167d132eb14c647f623a293a56be0321e776deced3a7b5f11a86c1"
 }

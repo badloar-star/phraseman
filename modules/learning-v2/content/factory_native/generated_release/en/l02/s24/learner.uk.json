@@ -1,0 +1,1003 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви показуєте один квиток. Запитайте, чи він дійсний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте один квиток. Запитайте, чи він дійсний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it valid?",
+        "localizedMeaning": {
+          "ru": "Вы показываете один билет. Спросите, действителен ли он",
+          "uk": "Ви показуєте один квиток. Запитайте, чи він дійсний"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "valid"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви показуєте один квиток. Запитайте, чи він дійсний",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is it valid?`",
+              "uk": "тут потрібно `Is` — `Is it valid?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про Анну",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-24:i02:r1",
+          "text": "She is unwell."
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i02:r2",
+          "text": "She is well."
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i02:r3",
+          "text": "She is innocent."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про Анну",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-24:i02:audio",
+          "transcript": "She is unwell."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-24:i02:r1",
+            "targetText": "She is unwell.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i02:r2",
+            "targetText": "She is well.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i02:r3",
+            "targetText": "She is innocent.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про Анну",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unwell`, а в этом варианте — `well`.",
+              "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `well`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про Анну",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unwell`, а в этом варианте — `innocent`.",
+              "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `innocent`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви добре почуваєтеся. На «Are you well?» доповніть коротку відповідь «так»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-24:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви добре почуваєтеся. На «Are you well?» доповніть коротку відповідь «так»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хорошо себя чувствуете. На «Are you well?» дополните короткое «да»",
+          "uk": "Ви добре почуваєтеся. На «Are you well?» доповніть коротку відповідь «так»"
+        },
+        "gappedTargetPhrase": "Yes, I ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-24:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Ви добре почуваєтеся. На «Are you well?» доповніть коротку відповідь «так»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви добре почуваєтеся. На «Are you well?» доповніть коротку відповідь «так»",
+            "feedbackByLocale": {
+              "ru": "Отвечаете о себе: `I am`.",
+              "uk": "Відповідаєте про себе: `I am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви добре почуваєтеся. На «Are you well?» доповніть коротку відповідь «так»",
+            "feedbackByLocale": {
+              "ru": "В ответе с `I` нужно `am`.",
+              "uk": "У відповіді з `I` потрібно `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-24:i04:p1",
+            "target": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i04:p2",
+            "target": "unwell",
+            "meaningByLocale": {
+              "ru": "плохо себя чувствующий",
+              "uk": "той, хто погано почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i04:p3",
+            "target": "yes",
+            "meaningByLocale": {
+              "ru": "да",
+              "uk": "так"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i04:p4",
+            "target": "no",
+            "meaningByLocale": {
+              "ru": "нет",
+              "uk": "ні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "well",
+          "unwell",
+          "yes",
+          "no"
+        ],
+        "rightColumn": [
+          "той, хто добре почувається",
+          "той, хто погано почувається",
+          "так",
+          "ні"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-24:i05:audio",
+          "transcript": "They are not valid."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are not valid.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "valid"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are not valid.`",
+              "uk": "тут потрібно `are` — `They are not valid.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег порушив домовленість і з’їв чуже печиво. Скажіть повною фразою, що він винний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег порушив домовленість і з’їв чуже печиво. Скажіть повною фразою, що він винний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is guilty.",
+        "localizedMeaning": {
+          "ru": "Олег нарушил договорённость и съел чужое печенье. Скажите полной фразой, что он виноват",
+          "uk": "Олег порушив домовленість і з’їв чуже печиво. Скажіть повною фразою, що він винний"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "guilty"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег порушив домовленість і з’їв чуже печиво. Скажіть повною фразою, що він винний",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is guilty.`",
+              "uk": "тут потрібно `is` — `He is guilty.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У застібки сумки відламався зубець, вона не закривається. Коротко скажіть, що вона зламана",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-24:i07:audio"
+      ],
+      "accessibilityLabel": "У застібки сумки відламався зубець, вона не закривається. Коротко скажіть, що вона зламана",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-24:i07:audio",
+          "transcript": "It's broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-24:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна не трогала печенье. На «Is she guilty?» дополните короткое «нет»",
+          "uk": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»"
+        },
+        "gappedTargetPhrase": "No, she ___ not.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-24:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+            "feedbackByLocale": {
+              "ru": "С `she` нужно `is`.",
+              "uk": "З `she` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»",
+            "feedbackByLocale": {
+              "ru": "Ответ — `No, she is not`.",
+              "uk": "Відповідь — `No, she is not`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-24:i09:r1",
+          "text": "It is complete."
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i09:r2",
+          "text": "It is broken."
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i09:r3",
+          "text": "It is valid."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-24:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-24:i09:audio",
+          "transcript": "It is complete."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-24:i09:r1",
+            "targetText": "It is complete.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i09:r2",
+            "targetText": "It is broken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i09:r3",
+            "targetText": "It is valid.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complete`, а в этом варианте — `broken`.",
+              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `broken`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complete`, а в этом варианте — `valid`.",
+              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `valid`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-24:i10:p1",
+            "target": "guilty",
+            "meaningByLocale": {
+              "ru": "виноватый",
+              "uk": "винний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i10:p2",
+            "target": "innocent",
+            "meaningByLocale": {
+              "ru": "невиновный",
+              "uk": "невинний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i10:p3",
+            "target": "broken",
+            "meaningByLocale": {
+              "ru": "сломанный",
+              "uk": "зламаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i10:p4",
+            "target": "complete",
+            "meaningByLocale": {
+              "ru": "полный, завершённый",
+              "uk": "повний, завершений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "guilty",
+          "innocent",
+          "broken",
+          "complete"
+        ],
+        "rightColumn": [
+          "винний",
+          "невинний",
+          "зламаний",
+          "повний, завершений"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку відповідь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-24:i11:audio",
+          "transcript": "Yes, they are."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Yes, they are.",
+        "orderedTokens": [
+          "Yes,",
+          "they",
+          "are"
+        ],
+        "authoredDistractorTokens": [
+          "No,"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Yes,` — `Yes, they are.`",
+              "uk": "тут потрібно `Yes,` — `Yes, they are.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запасна сумка справна. На запитання про її застібку «Is it broken?» дайте коротку відповідь «ні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запасна сумка справна. На запитання про її застібку «Is it broken?» дайте коротку відповідь «ні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, it is not.",
+        "localizedMeaning": {
+          "ru": "Запасная сумка исправна. На вопрос о её застёжке «Is it broken?» ответьте коротким «нет»",
+          "uk": "Запасна сумка справна. На запитання про її застібку «Is it broken?» дайте коротку відповідь «ні»"
+        },
+        "orderedTokens": [
+          "No,",
+          "it",
+          "is",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Запасна сумка справна. На запитання про її застібку «Is it broken?» дайте коротку відповідь «ні»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, it is not.`",
+              "uk": "тут потрібно `No,` — `No, it is not.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви бачили, що Анна не чіпала печиво. Коротко скажіть, що вона невинна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Ви бачили, що Анна не чіпала печиво. Коротко скажіть, що вона невинна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-24:i13:audio",
+          "transcript": "She's innocent."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She's innocent.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг вставляє деталь у пазл. Запитайте, чи він тепер повністю складений",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-24:i14:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i14:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i14:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг вставляє деталь у пазл. Запитайте, чи він тепер повністю складений",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг вставляет деталь в пазл. Спросите, собран ли он теперь полностью",
+          "uk": "Друг вставляє деталь у пазл. Запитайте, чи він тепер повністю складений"
+        },
+        "gappedTargetPhrase": "___ it complete?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-24:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Друг вставляє деталь у пазл. Запитайте, чи він тепер повністю складений",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i14:r2",
+            "correct": false,
+            "testedDimension": "Друг вставляє деталь у пазл. Запитайте, чи він тепер повністю складений",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i14:r3",
+            "correct": false,
+            "testedDimension": "Друг вставляє деталь у пазл. Запитайте, чи він тепер повністю складений",
+            "feedbackByLocale": {
+              "ru": "Вопрос — `Is it complete?`.",
+              "uk": "Запитання — `Is it complete?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-24:i15:r1",
+          "text": "Are you well?"
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i15:r2",
+          "text": "Are you unwell?"
+        },
+        {
+          "responseId": "en:lesson-02:session-24:i15:r3",
+          "text": "Are you guilty?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-24:i15:audio",
+          "transcript": "Are you well?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-24:i15:r1",
+            "targetText": "Are you well?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i15:r2",
+            "targetText": "Are you unwell?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i15:r3",
+            "targetText": "Are you guilty?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-24:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `well`, а в этом варианте — `unwell`.",
+              "uk": "У записі останнє слово — `well`, а в цьому варіанті — `unwell`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-24:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `well`, а в этом варианте — `guilty`.",
+              "uk": "У записі останнє слово — `well`, а в цьому варіанті — `guilty`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-24:i16:p1",
+            "target": "valid",
+            "meaningByLocale": {
+              "ru": "действительный",
+              "uk": "дійсний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i16:p2",
+            "target": "complete",
+            "meaningByLocale": {
+              "ru": "полный, завершённый",
+              "uk": "повний, завершений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i16:p3",
+            "target": "yes",
+            "meaningByLocale": {
+              "ru": "да",
+              "uk": "так"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-24:i16:p4",
+            "target": "no",
+            "meaningByLocale": {
+              "ru": "нет",
+              "uk": "ні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "valid",
+          "complete",
+          "yes",
+          "no"
+        ],
+        "rightColumn": [
+          "дійсний",
+          "повний, завершений",
+          "так",
+          "ні"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви добре почуваєтеся. Анна запитує лише вас: «Are you unwell?» Дайте коротку відповідь «ні», не повторюючи unwell",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Ви добре почуваєтеся. Анна запитує лише вас: «Are you unwell?» Дайте коротку відповідь «ні», не повторюючи unwell",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-24:i17:audio",
+          "transcript": "No, I am not."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, I am not.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5b9d2e8706520b38ac05595b985abf610a6c882c2dd096d65b918e9afbcd25ce"
+}

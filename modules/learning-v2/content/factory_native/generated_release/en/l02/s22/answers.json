@@ -1,92 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-22:i01",
-    "correctText": "downstairs",
+    "correctText": "It is complete.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i02",
-    "correctText": "downstairs",
+    "correctText": "He is rich.",
     "correctResponseId": "en:lesson-02:session-22:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-22:i03",
-    "correctText": "downstairs",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-02:session-22:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-22:i04",
-    "correctText": "upstairs",
+    "correctText": "en:lesson-02:session-22:i04:p1=complete\nen:lesson-02:session-22:i04:p2=rich\nen:lesson-02:session-22:i04:p3=poor\nen:lesson-02:session-22:i04:p4=famous",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i05",
-    "correctText": "upstairs",
-    "correctResponseId": "en:lesson-02:session-22:i05:r1"
+    "correctText": "It is not complete.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i06",
-    "correctText": "upstairs",
-    "correctResponseId": "en:lesson-02:session-22:i06:r1"
+    "correctText": "Is he poor?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i07",
-    "correctText": "toilets",
+    "correctText": "It's complete.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i08",
-    "correctText": "Where are the toilets?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-22:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-22:i09",
-    "correctText": "It is downstairs.",
-    "correctResponseId": null
+    "correctText": "It is obvious.",
+    "correctResponseId": "en:lesson-02:session-22:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-22:i10",
-    "correctText": "en:lesson-02:session-22:i10:p1=downstairs\nen:lesson-02:session-22:i10:p2=upstairs\nen:lesson-02:session-22:i10:p3=toilets\nen:lesson-02:session-22:i10:p4=near",
+    "correctText": "en:lesson-02:session-22:i10:p1=obvious\nen:lesson-02:session-22:i10:p2=complete\nen:lesson-02:session-22:i10:p3=rich\nen:lesson-02:session-22:i10:p4=poor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i11",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-02:session-22:i11:r1"
+    "correctText": "No, he is not.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i12",
-    "correctText": "shops",
+    "correctText": "No, it is not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-22:i13",
-    "correctText": "downstairs",
-    "correctResponseId": "en:lesson-02:session-22:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-22:i14",
-    "correctText": "The shops are upstairs.",
+    "correctText": "He's rich.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-22:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-22:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-22:i15",
-    "correctText": "near",
+    "correctText": "Is it complete?",
     "correctResponseId": "en:lesson-02:session-22:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-22:i16",
-    "correctText": "Where are the shops?",
+    "correctText": "en:lesson-02:session-22:i16:p1=famous\nen:lesson-02:session-22:i16:p2=obvious\nen:lesson-02:session-22:i16:p3=complete\nen:lesson-02:session-22:i16:p4=poor",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-22:i17:s01",
-    "correctText": "Where are the toilets?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-22:i17:s02",
-    "correctText": "They are downstairs.",
+    "interactionId": "en:lesson-02:session-22:i17",
+    "correctText": "Yes, it is.",
     "correctResponseId": null
   }
 ]

@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-14:i01",
-    "correctText": "sold",
+    "correctText": "It is obvious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i02",
-    "correctText": "sold",
+    "correctText": "Is it open?",
     "correctResponseId": "en:lesson-02:session-14:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-14:i03",
-    "correctText": "crowded",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-14:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-14:i04",
-    "correctText": "sold",
-    "correctResponseId": "en:lesson-02:session-14:i04:r1"
+    "correctText": "en:lesson-02:session-14:i04:p1=obvious\nen:lesson-02:session-14:i04:p2=dirty\nen:lesson-02:session-14:i04:p3=open\nen:lesson-02:session-14:i04:p4=closed",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i05",
-    "correctText": "Is it cheap?",
+    "correctText": "It's not obvious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i06",
-    "correctText": "comfortable",
+    "correctText": "It is not closed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i07",
-    "correctText": "Is it sold?",
+    "correctText": "Is it fake?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i08",
-    "correctText": "comfortable",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-14:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-14:i09",
-    "correctText": "pretty",
-    "correctResponseId": null
+    "correctText": "It is fake.",
+    "correctResponseId": "en:lesson-02:session-14:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-14:i10",
-    "correctText": "en:lesson-02:session-14:i10:p1=sold\nen:lesson-02:session-14:i10:p2=cheap\nen:lesson-02:session-14:i10:p3=comfortable\nen:lesson-02:session-14:i10:p4=crowded",
+    "correctText": "en:lesson-02:session-14:i10:p1=fake\nen:lesson-02:session-14:i10:p2=obvious\nen:lesson-02:session-14:i10:p3=open\nen:lesson-02:session-14:i10:p4=dirty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i11",
-    "correctText": "Is",
-    "correctResponseId": "en:lesson-02:session-14:i11:r1"
+    "correctText": "They're closed.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i12",
-    "correctText": "Yes, it is.",
+    "correctText": "It is not obvious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i13",
-    "correctText": "crowded",
-    "correctResponseId": "en:lesson-02:session-14:i13:r1"
+    "correctText": "It's open.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i14",
-    "correctText": "Is it pretty?",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-14:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-14:i15",
-    "correctText": "Is it cheap?",
-    "correctResponseId": null
+    "correctText": "It is not dirty.",
+    "correctResponseId": "en:lesson-02:session-14:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-14:i16",
-    "correctText": "Is it sold?",
+    "correctText": "en:lesson-02:session-14:i16:p1=dirty\nen:lesson-02:session-14:i16:p2=open\nen:lesson-02:session-14:i16:p3=closed\nen:lesson-02:session-14:i16:p4=fake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i17",
-    "correctText": "No, it is not sold.",
+    "correctText": "Is it obvious?",
     "correctResponseId": null
   }
 ]

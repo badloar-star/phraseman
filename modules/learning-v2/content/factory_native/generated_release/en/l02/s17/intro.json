@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-17",
   "learningOutcomeByLocale": {
-    "ru": "`Where is` + место",
-    "uk": "`Where is` + місце"
+    "ru": "коротко ответить да или нет, не повторяя описание из вопроса",
+    "uk": "коротко відповісти так або ні, не повторюючи опис із запитання"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`Where is` — «где находится»",
-        "uk": "`Where is` — «де знаходиться»"
+        "ru": "Как вы себя чувствуете",
+        "uk": "Як ви почуваєтеся"
       },
       "bodyByLocale": {
-        "ru": "`where` — «где». С него начинается любой вопрос про место, и сразу за ним встаёт `is`: `Where is the station?`\n\nВыбросить `is` не выйдет: `Where the station?` — это уже не вопрос, а набор слов. Прохожий поймёт, но переспросит.\n\n`station` — «вокзал, станция».",
-        "uk": "`where` — «де». З нього починається будь-яке питання про місце, і одразу за ним стає `is`: `Where is the station?`\n\nВикинути `is` не вийде: `Where the station?` — це вже не питання, а набір слів. Перехожий зрозуміє, але перепитає.\n\n`station` — «вокзал, станція»."
+        "ru": "`well` здесь — «хорошо себя чувствующий». `I am well` — «Я хорошо себя чувствую». На `Are you well?` можно коротко ответить `Yes, I am`. Спрашивают о вас, поэтому вы отвечаете про себя: `I`, не `you`. Дорожная сумка выглядит уставшей, но вопрос всё-таки вам.",
+        "uk": "`well` тут — «той, хто добре почувається». `I am well` — «Я добре почуваюся». На `Are you well?` можна коротко відповісти `Yes, I am`. Запитують про вас, тому ви відповідаєте про себе: `I`, не `you`. Дорожня сумка має втомлений вигляд, але запитання все-таки до вас."
       },
       "question": {
         "interactionId": "en:lesson-02:session-17:intro1:q",
         "promptByLocale": {
-          "ru": "Вы вышли из метро и не понимаете, куда идти. Спросите прохожего, где вокзал.",
-          "uk": "Ви вийшли з метро і не розумієте, куди йти. Спитайте перехожого, де вокзал."
+          "ru": "Хозяин спрашивает: `Are you well?` Вы хорошо себя чувствуете. Ответьте коротким «да» с `I am`.",
+          "uk": "Господар запитує: `Are you well?` Ви добре почуваєтеся. Дайте коротку відповідь «так» з `I am`."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-17:intro1:r1",
-              "text": "Where is the station?"
+              "text": "Yes, I am."
             },
             {
               "responseId": "en:lesson-02:session-17:intro1:r2",
-              "text": "Where the station?"
+              "text": "Yes, you are."
             },
             {
               "responseId": "en:lesson-02:session-17:intro1:r3",
-              "text": "Where station is?"
+              "text": "Yes, I'm."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-17:intro1:r1",
-              "text": "Where is the station?"
+              "text": "Yes, I am."
             },
             {
               "responseId": "en:lesson-02:session-17:intro1:r2",
-              "text": "Where the station?"
+              "text": "Yes, you are."
             },
             {
               "responseId": "en:lesson-02:session-17:intro1:r3",
-              "text": "Where station is?"
+              "text": "Yes, I'm."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы вышли из метро и не понимаете, куда идти. Спросите прохожего, где вокзал.",
-          "uk": "Ви вийшли з метро і не розумієте, куди йти. Спитайте перехожого, де вокзал."
+          "ru": "Хозяин спрашивает: `Are you well?` Вы хорошо себя чувствуете. Ответьте коротким «да» с `I am`.",
+          "uk": "Господар запитує: `Are you well?` Ви добре почуваєтеся. Дайте коротку відповідь «так» з `I am`."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`the` перед местом",
-        "uk": "`the` перед місцем"
+        "ru": "Нет — после is добавим not",
+        "uk": "Ні — після is додамо not"
       },
       "bodyByLocale": {
-        "ru": "`street` — «улица».\n\nПеред местом ставят маленькое `the`: `Where is the street?` Вы спрашиваете не про улицы вообще, а про ту одну, которую ищете, — `the` это и показывает. Прохожий сразу понимает, что перечислять весь район не нужно.",
-        "uk": "`street` — «вулиця».\n\nПеред місцем ставлять маленьке `the`: `Where is the street?` Ви питаєте не про вулиці взагалі, а про ту одну, яку шукаєте, — `the` це й показує. Перехожий одразу розуміє, що перелічувати весь район не треба."
+        "ru": "Анне нехорошо. На вопрос `Is she well?` можно ответить `No, she is not`. Слово `well` уже прозвучало в вопросе, поэтому его можно не повторять. В ответе сначала `she`, затем `is`, потом `not`.",
+        "uk": "Анні недобре. На запитання `Is she well?` можна відповісти `No, she is not`. Слово `well` уже прозвучало в запитанні, тому його можна не повторювати. У відповіді спочатку `she`, потім `is`, далі `not`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-17:intro2:q",
         "promptByLocale": {
-          "ru": "Вам назвали адрес, но улицу вы не нашли. Спросите, где она.",
-          "uk": "Вам назвали адресу, але вулицю ви не знайшли. Спитайте, де вона."
+          "ru": "Анна говорит, что плохо себя чувствует. Хозяин спрашивает: `Is she well?` Ответьте коротким «нет», не повторяя `well`.",
+          "uk": "Анна каже, що погано почувається. Господар запитує: `Is she well?` Дайте коротку відповідь «ні», не повторюючи `well`."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-17:intro2:r1",
-              "text": "Where is the street?"
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-17:intro2:r2",
-              "text": "Where is street?"
+              "text": "No, she not."
             },
             {
               "responseId": "en:lesson-02:session-17:intro2:r3",
-              "text": "Where the street?"
+              "text": "No, is she not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-17:intro2:r1",
-              "text": "Where is the street?"
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-17:intro2:r2",
-              "text": "Where is street?"
+              "text": "No, she not."
             },
             {
               "responseId": "en:lesson-02:session-17:intro2:r3",
-              "text": "Where the street?"
+              "text": "No, is she not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам назвали адрес, но улицу вы не нашли. Спросите, где она.",
-          "uk": "Вам назвали адресу, але вулицю ви не знайшли. Спитайте, де вона."
+          "ru": "Анна говорит, что плохо себя чувствует. Хозяин спрашивает: `Is she well?` Ответьте коротким «нет», не повторяя `well`.",
+          "uk": "Анна каже, що погано почувається. Господар запитує: `Is she well?` Дайте коротку відповідь «ні», не повторюючи `well`."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`lost` — заблудился",
-        "uk": "`lost` — заблукав"
+        "ru": "Коротко, но с нужной формой",
+        "uk": "Коротко, але з потрібною формою"
       },
       "bodyByLocale": {
-        "ru": "`lost` — «заблудился, потерялся». Про человека, который не понимает, где он стоит.\n\nГоворят это про себя так же, как и всё остальное о себе: `I am lost`. Слово `am` на месте, и без него фраза не собирается.\n\nПро улицу или вокзал так обычно не скажешь: они стоят там, где стояли. `lost` — про того, кто их ищет.",
-        "uk": "`lost` — «заблукав, загубився». Про людину, яка не розуміє, де вона стоїть.\n\nКажуть це про себе так само, як і все інше про себе: `I am lost`. Слово `am` на місці, і без нього фраза не збирається.\n\nПро вулицю чи вокзал так зазвичай не скажеш: вони стоять там, де стояли. `lost` — про того, хто їх шукає."
+        "ru": "`Is he well?` — `Yes, he is`; `Are they well?` — `Yes, they are`. Для себя: `Yes, I am`. Для «нет» сохраняем форму и добавляем `not`: `No, they are not`. Само по себе `Yes` тоже допустимо; здесь тренируем ответы с `am`, `is`, `are`.",
+        "uk": "`Is he well?` — `Yes, he is`; `Are they well?` — `Yes, they are`. Для себе: `Yes, I am`. Для «ні» зберігаємо форму й додаємо `not`: `No, they are not`. Саме по собі `Yes` теж допустиме; тут тренуємо відповіді з `am`, `is`, `are`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-17:intro3:q",
         "promptByLocale": {
-          "ru": "Вы стоите на перекрёстке и совсем не понимаете, куда идти. Скажите это о себе.",
-          "uk": "Ви стоїте на перехресті й геть не розумієте, куди йти. Скажіть це про себе."
+          "ru": "Анна и Олег оба хорошо себя чувствуют. Хозяин спрашивает: `Are they well?` Ответьте коротким «да» с `they are`.",
+          "uk": "Анна й Олег обоє добре почуваються. Господар запитує: `Are they well?` Дайте коротку відповідь «так» з `they are`."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-17:intro3:r1",
-              "text": "I am lost."
+              "text": "Yes, they are."
             },
             {
               "responseId": "en:lesson-02:session-17:intro3:r2",
-              "text": "I lost."
+              "text": "Yes, they is."
             },
             {
               "responseId": "en:lesson-02:session-17:intro3:r3",
-              "text": "I am lost?"
+              "text": "Yes, they're."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-17:intro3:r1",
-              "text": "I am lost."
+              "text": "Yes, they are."
             },
             {
               "responseId": "en:lesson-02:session-17:intro3:r2",
-              "text": "I lost."
+              "text": "Yes, they is."
             },
             {
               "responseId": "en:lesson-02:session-17:intro3:r3",
-              "text": "I am lost?"
+              "text": "Yes, they're."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы стоите на перекрёстке и совсем не понимаете, куда идти. Скажите это о себе.",
-          "uk": "Ви стоїте на перехресті й геть не розумієте, куди йти. Скажіть це про себе."
+          "ru": "Анна и Олег оба хорошо себя чувствуют. Хозяин спрашивает: `Are they well?` Ответьте коротким «да» с `they are`.",
+          "uk": "Анна й Олег обоє добре почуваються. Господар запитує: `Are they well?` Дайте коротку відповідь «так» з `they are`."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "74f1eb546d26b4923538774bcd30ec9a98bcb9e5d904b65041bda6deaee9cf9d"
+  "introFingerprint": "73ae56f451c041d61b4095920218ac81c70e8a4595ea7f19eb457e9a97baba88"
 }

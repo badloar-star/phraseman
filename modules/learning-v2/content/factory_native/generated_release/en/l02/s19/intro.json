@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-19",
   "learningOutcomeByLocale": {
-    "ru": "ответ `It is` + слово о месте",
-    "uk": "відповідь `It is` + слово про місце"
+    "ru": "признать вину или отрицать её, используя полные фразы и короткие ответы",
+    "uk": "визнати провину або заперечити її, використовуючи повні фрази й короткі відповіді"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`near` — «рядом»",
-        "uk": "`near` — «поруч»"
+        "ru": "Это я",
+        "uk": "Це я"
       },
       "bodyByLocale": {
-        "ru": "`near` — «рядом, близко». Полный ответ звучит так: `It is near`.\n\n`It` здесь заменяет место, о котором спросили: вокзал, улица, магазин — всё это `it`. Между `it` и словом о месте стоит `is`, и без него фраза не держится.",
-        "uk": "`near` — «поруч, близько». Повна відповідь звучить так: `It is near`.\n\n`It` тут заміняє місце, про яке запитали: вокзал, вулиця, крамниця — усе це `it`. Між `it` і словом про місце стоїть `is`, і без нього фраза не тримається."
+        "ru": "`guilty` — «виновный». `I am guilty` — «Я виноват», коротко `I'm guilty`. Здесь речь о бытовой шалости: вы съели печенье для гостей. Крошки на вашей рубашке уже почти дали показания, осталось признаться самому.",
+        "uk": "`guilty` — «винний». `I am guilty` — «Я винний», коротко `I'm guilty`. Тут ідеться про побутову витівку: ви з’їли печиво для гостей. Крихти на вашій сорочці вже майже дали свідчення, залишилося зізнатися самому."
       },
       "question": {
         "interactionId": "en:lesson-02:session-19:intro1:q",
         "promptByLocale": {
-          "ru": "Вы спросили, где вокзал. Прохожий машет рукой: идти тут пару минут.",
-          "uk": "Ви запитали, де вокзал. Перехожий махає рукою: іти хвилини дві."
+          "ru": "Вы съели печенье, оставленное для гостей. Коротко признайте свою вину.",
+          "uk": "Ви з’їли печиво, залишене для гостей. Коротко визнайте свою провину."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-19:intro1:r1",
-              "text": "It is near."
+              "text": "I'm guilty."
             },
             {
               "responseId": "en:lesson-02:session-19:intro1:r2",
-              "text": "It near."
+              "text": "He's guilty."
             },
             {
               "responseId": "en:lesson-02:session-19:intro1:r3",
-              "text": "Is it near."
+              "text": "I'm not guilty."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-19:intro1:r1",
-              "text": "It is near."
+              "text": "I'm guilty."
             },
             {
               "responseId": "en:lesson-02:session-19:intro1:r2",
-              "text": "It near."
+              "text": "He's guilty."
             },
             {
               "responseId": "en:lesson-02:session-19:intro1:r3",
-              "text": "Is it near."
+              "text": "I'm not guilty."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы спросили, где вокзал. Прохожий машет рукой: идти тут пару минут.",
-          "uk": "Ви запитали, де вокзал. Перехожий махає рукою: іти хвилини дві."
+          "ru": "Вы съели печенье, оставленное для гостей. Коротко признайте свою вину.",
+          "uk": "Ви з’їли печиво, залишене для гостей. Коротко визнайте свою провину."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`behind` — «за», «позади»",
-        "uk": "`behind` — «за», «позаду»"
+        "ru": "Не обвиняйте невиновного",
+        "uk": "Не звинувачуйте невинного"
       },
       "bodyByLocale": {
-        "ru": "`behind` — «за, позади». Одно слово, а объясняет всё: искать надо с другой стороны.\n\n`It is behind the station` — «это за вокзалом». После `behind` говорят, за чем именно, и перед местом ставят маленькое `the`: не «за каким-то вокзалом», а за тем, про который спрашивали.",
-        "uk": "`behind` — «за, позаду». Одне слово, а пояснює все: шукати треба з іншого боку.\n\n`It is behind the station` — «це за вокзалом». Після `behind` кажуть, за чим саме, і перед місцем ставлять маленьке `the`: не «за якимось вокзалом», а за тим, про який запитували."
+        "ru": "`She is not guilty` — «Она не виновата». `Not` стоит после `is`. На вопрос `Is she guilty?` можно ответить короче: `No, she is not`. Здесь мы говорим о том, кто съел печенье, а не угадываем по выражению лица.",
+        "uk": "`She is not guilty` — «Вона не винна». `Not` стоїть після `is`. На запитання `Is she guilty?` можна відповісти коротше: `No, she is not`. Тут ми говоримо про те, хто з’їв печиво, а не вгадуємо за виразом обличчя."
       },
       "question": {
         "interactionId": "en:lesson-02:session-19:intro2:q",
         "promptByLocale": {
-          "ru": "Вы ищете туалеты, вам показывают: они с другой стороны вокзала.",
-          "uk": "Ви шукаєте туалети, вам показують: вони з іншого боку вокзалу."
+          "ru": "Анна печенье не трогала. Друг спрашивает: `Is she guilty?` Ответьте коротким «нет».",
+          "uk": "Анна печиво не чіпала. Друг запитує: `Is she guilty?` Дайте коротку відповідь «ні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-19:intro2:r1",
-              "text": "It is behind the station."
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-19:intro2:r2",
-              "text": "It is behind station."
+              "text": "Yes, she is."
             },
             {
               "responseId": "en:lesson-02:session-19:intro2:r3",
-              "text": "It behind the station."
+              "text": "No, she not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-19:intro2:r1",
-              "text": "It is behind the station."
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-19:intro2:r2",
-              "text": "It is behind station."
+              "text": "Yes, she is."
             },
             {
               "responseId": "en:lesson-02:session-19:intro2:r3",
-              "text": "It behind the station."
+              "text": "No, she not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы ищете туалеты, вам показывают: они с другой стороны вокзала.",
-          "uk": "Ви шукаєте туалети, вам показують: вони з іншого боку вокзалу."
+          "ru": "Анна печенье не трогала. Друг спрашивает: `Is she guilty?` Ответьте коротким «нет».",
+          "uk": "Анна печиво не чіпала. Друг запитує: `Is she guilty?` Дайте коротку відповідь «ні»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начало не трогают",
-        "uk": "Початок не чіпають"
+        "ru": "Кто отвечает?",
+        "uk": "Хто відповідає?"
       },
       "bodyByLocale": {
-        "ru": "`street` — «улица», `shops` — «магазины». Место в ответе меняется, а начало остаётся тем же.\n\n`It is near the shops` — «это рядом с магазинами». `It is behind the shops` — «это за магазинами». Первые два слова одни и те же, дальше — сторона и место.",
-        "uk": "`street` — «вулиця», `shops` — «крамниці». Місце у відповіді змінюється, а початок лишається той самий.\n\n`It is near the shops` — «це поруч із крамницями». `It is behind the shops` — «це за крамницями». Перші два слова однакові, далі — бік і місце."
+        "ru": "На `Are you guilty?` о себе отвечаем `Yes, I am`. А если друг спрашивает о себе `Am I guilty?`, ответ ему начинается `Yes, you are`. Вопрос и ответ могут называть одного человека разными словами: для него это `I`, для вас — `you`.",
+        "uk": "На `Are you guilty?` про себе відповідаємо `Yes, I am`. А якщо друг запитує про себе `Am I guilty?`, відповідь йому починається `Yes, you are`. Запитання й відповідь можуть називати одну людину різними словами: для нього це `I`, для вас — `you`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-19:intro3:q",
         "promptByLocale": {
-          "ru": "Вы ищете кафе, вам отвечают: оно недалеко от магазинов.",
-          "uk": "Ви шукаєте кав'ярню, вам відповідають: вона недалеко від крамниць."
+          "ru": "Олег съел последнее печенье и спрашивает о себе: `Am I guilty?` Ответьте ему коротким «да».",
+          "uk": "Олег з’їв останнє печиво й запитує про себе: `Am I guilty?` Дайте йому коротку відповідь «так»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-19:intro3:r1",
-              "text": "It is near the shops."
+              "text": "Yes, you are."
             },
             {
               "responseId": "en:lesson-02:session-19:intro3:r2",
-              "text": "It is near shops."
+              "text": "Yes, I am."
             },
             {
               "responseId": "en:lesson-02:session-19:intro3:r3",
-              "text": "It near the shops."
+              "text": "Yes, you is."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-19:intro3:r1",
-              "text": "It is near the shops."
+              "text": "Yes, you are."
             },
             {
               "responseId": "en:lesson-02:session-19:intro3:r2",
-              "text": "It is near shops."
+              "text": "Yes, I am."
             },
             {
               "responseId": "en:lesson-02:session-19:intro3:r3",
-              "text": "It near the shops."
+              "text": "Yes, you is."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы ищете кафе, вам отвечают: оно недалеко от магазинов.",
-          "uk": "Ви шукаєте кав'ярню, вам відповідають: вона недалеко від крамниць."
+          "ru": "Олег съел последнее печенье и спрашивает о себе: `Am I guilty?` Ответьте ему коротким «да».",
+          "uk": "Олег з’їв останнє печиво й запитує про себе: `Am I guilty?` Дайте йому коротку відповідь «так»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e4734f77f83bae86523ac856d116240b70f2f2ec83d587f8e003fe820459a5cc"
+  "introFingerprint": "6c35032a57b321f6782567cfa36e860397006519612d1c4048e635499c35246c"
 }

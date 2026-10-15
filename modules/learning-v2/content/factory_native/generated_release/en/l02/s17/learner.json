@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-02:session-17:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — station",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хозяин спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — station",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хозяин спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i01:audio",
-          "transcript": "station"
+        "family": "phrase_builder",
+        "targetPhrase": "Yes, I am.",
+        "localizedMeaning": {
+          "ru": "Хозяин спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
+          "uk": "Господар запитує: «Are you well?» Ви добре почуваєтеся. Складіть коротку відповідь «так»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "Yes,",
+          "I",
+          "am"
+        ],
+        "authoredDistractorTokens": [
+          "No,"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-17:i01:r1",
-            "targetText": "station",
-            "meaningByLocale": {
-              "ru": "«вокзал, станция». Место, откуда уезжают поезда.",
-              "uk": "«вокзал, станція». Місце, звідки від'їжджають потяги."
+            "responseId": "en:lesson-02:session-17:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Хозяин спрашивает: «Are you well?» Вы хорошо себя чувствуете. Соберите короткое «да»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Yes,` — `Yes, I am.`",
+              "uk": "тут потрібно `Yes,` — `Yes, I am.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "station",
-          "definitionByLocale": {
-            "ru": "«вокзал, станция». Место, откуда уезжают поезда.",
-            "uk": "«вокзал, станція». Місце, звідки від'їжджають потяги."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте фразу об Анне",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i02:r1",
-          "text": "station"
+          "text": "She is well."
         },
         {
           "responseId": "en:lesson-02:session-17:i02:r2",
-          "text": "stand"
+          "text": "She is safe."
         },
         {
           "responseId": "en:lesson-02:session-17:i02:r3",
-          "text": "nation"
+          "text": "She is right."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте фразу об Анне",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-17:i02:audio",
-          "transcript": "station"
+          "transcript": "She is well."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-17:i02:r1",
-            "targetText": "station",
+            "targetText": "She is well.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-17:i02:r2",
-            "targetText": "stand",
+            "targetText": "She is safe.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-17:i02:r3",
-            "targetText": "nation",
+            "targetText": "She is right.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-02:session-17:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — station",
+            "testedDimension": "Послушайте фразу об Анне",
             "feedbackByLocale": {
-              "ru": "Это «стоять». Короче: в `station` два слога, в `stand` один.",
-              "uk": "Це «стояти». Коротше: у `station` два склади, у `stand` один."
+              "ru": "В записи последнее слово — `well`, а в этом варианте — `safe`.",
+              "uk": "У записі останнє слово — `well`, а в цьому варіанті — `safe`."
             }
           },
           {
             "responseId": "en:lesson-02:session-17:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — station",
+            "testedDimension": "Послушайте фразу об Анне",
             "feedbackByLocale": {
-              "ru": "«Нация». Отличается началом: `station` начинается со «с», `nation` — с «н».",
-              "uk": "«Нація». На початку `station` два приголосні поспіль — `st-`, язик спершу впирається в піднебіння. У `nation` одразу `n-`, звук іде в ніс."
+              "ru": "В записи последнее слово — `well`, а в этом варианте — `right`.",
+              "uk": "У записі останнє слово — `well`, а в цьому варіанті — `right`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-02:session-17:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — street",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — street",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i03:audio",
-          "transcript": "street"
+      "prompt": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i03:r1",
+          "text": "is"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-02:session-17:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+          "uk": "Олег добре почувається. На «Is he well?» доповніть коротку відповідь «так»"
+        },
+        "gappedTargetPhrase": "Yes, he ___.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-02:session-17:i03:r1",
-            "targetText": "street",
-            "meaningByLocale": {
-              "ru": "«улица». Та, где по обеим сторонам дома, а на углу висит табличка с названием.",
-              "uk": "«вулиця». Та, де обабіч будинки, а на розі висить табличка з назвою."
-            }
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i03:r3",
+            "text": "are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "street",
-          "definitionByLocale": {
-            "ru": "«улица». Та, где по обеим сторонам дома, а на углу висит табличка с названием.",
-            "uk": "«вулиця». Та, де обабіч будинки, а на розі висить табличка з назвою."
+        "testedDimension": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+            "feedbackByLocale": {
+              "ru": "С `he` нужно `is`.",
+              "uk": "З `he` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Олег хорошо себя чувствует. На «Is he well?» дополните короткое «да»",
+            "feedbackByLocale": {
+              "ru": "Короткий ответ: `Yes, he is`.",
+              "uk": "Коротка відповідь: `Yes, he is`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,75 +196,72 @@
       "interactionId": "en:lesson-02:session-17:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-17:i04:r1",
-          "text": "street"
-        },
-        {
-          "responseId": "en:lesson-02:session-17:i04:r2",
-          "text": "treat"
-        },
-        {
-          "responseId": "en:lesson-02:session-17:i04:r3",
-          "text": "sweet"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините значения слов о людях",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините значения слов о людях",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i04:audio",
-          "transcript": "street"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-17:i04:p1",
+            "target": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i04:p2",
+            "target": "welcome",
+            "meaningByLocale": {
+              "ru": "желанный гость",
+              "uk": "бажаний гість"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i04:p3",
+            "target": "safe",
+            "meaningByLocale": {
+              "ru": "в безопасности",
+              "uk": "у безпеці"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i04:p4",
+            "target": "right",
+            "meaningByLocale": {
+              "ru": "правый, не ошибающийся",
+              "uk": "правий, той, хто не помиляється"
+            }
+          }
+        ],
+        "leftColumn": [
+          "well",
+          "welcome",
+          "safe",
+          "right"
+        ],
+        "rightColumn": [
+          "хорошо себя чувствующий",
+          "желанный гость",
+          "в безопасности",
+          "правый, не ошибающийся"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-17:i04:r1",
-            "targetText": "street",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i04:r2",
-            "targetText": "treat",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i04:r3",
-            "targetText": "sweet",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-17:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — street",
-            "feedbackByLocale": {
-              "ru": "«Угощение». Начинается с «тр», а `street` — со «стр».",
-              "uk": "«Частування». Починається на «тр», а `street` — на «стр»."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — street",
-            "feedbackByLocale": {
-              "ru": "«Сладкий». После «с» в `street` идёт «тр», а в `sweet` — «в».",
-              "uk": "«Солодкий». Після «с» у `street` іде «тр», а в `sweet` — «в»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -245,28 +269,47 @@
       "interactionId": "en:lesson-02:session-17:i05",
       "ordinal": 8,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — спросите про вокзал",
+      "prompt": "Послушайте и соберите короткий ответ",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — спросите про вокзал",
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткий ответ",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where is the station?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — спросите про вокзал",
-          "uk": "Складіть фразу — спитайте про вокзал"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i05:audio",
+          "transcript": "No, she is not."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No, she is not.",
         "orderedTokens": [
-          "Where",
+          "No,",
+          "she",
           "is",
-          "the",
-          "station"
+          "not"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткий ответ",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, she is not.`",
+              "uk": "тут потрібно `No,` — `No, she is not.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -274,68 +317,44 @@
       "interactionId": "en:lesson-02:session-17:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы ищете улицу из адреса",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-17:i06:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-02:session-17:i06:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-02:session-17:i06:r3",
-          "text": "am"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перенести встречу нельзя. На «Is it possible?» ответьте коротким «нет»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы ищете улицу из адреса",
+      "accessibilityLabel": "Перенести встречу нельзя. На «Is it possible?» ответьте коротким «нет»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы ищете улицу из адреса",
-          "uk": "Вставте слово — ви шукаєте вулицю з адреси"
+        "family": "phrase_builder",
+        "targetPhrase": "No, it is not.",
+        "localizedMeaning": {
+          "ru": "Перенести встречу нельзя. На «Is it possible?» ответьте коротким «нет»",
+          "uk": "Перенести зустріч не можна. На «Is it possible?» дайте коротку відповідь «ні»"
         },
-        "gappedTargetPhrase": "Where ___ the street?",
-        "gapOptions": [
+        "orderedTokens": [
+          "No,",
+          "it",
+          "is",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-17:i06:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i06:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i06:r3",
-            "text": "am"
+            "responseId": "en:lesson-02:session-17:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Перенести встречу нельзя. На «Is it possible?» ответьте коротким «нет»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, it is not.`",
+              "uk": "тут потрібно `No,` — `No, it is not.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — вы ищете улицу из адрес",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-17:i06:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы ищете улицу из адрес",
-            "feedbackByLocale": {
-              "ru": "`are` идёт с `you` и `they`. Про одну улицу — `is`.",
-              "uk": "`are` іде з `you` і `they`. Про одну вулицю — `is`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i06:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы ищете улицу из адрес",
-            "feedbackByLocale": {
-              "ru": "`am` бывает только рядом с `I`. Про улицу — `is`.",
-              "uk": "`am` буває тільки поруч з `I`. Про вулицю — `is`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -343,75 +362,32 @@
       "interactionId": "en:lesson-02:session-17:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-17:i07:r1",
-          "text": "cold"
-        },
-        {
-          "responseId": "en:lesson-02:session-17:i07:r2",
-          "text": "gold"
-        },
-        {
-          "responseId": "en:lesson-02:session-17:i07:r3",
-          "text": "call"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о себе: «Am I welcome?» Ему здесь рады. Ответьте ему коротким «да»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Друг спрашивает о себе: «Am I welcome?» Ему здесь рады. Ответьте ему коротким «да»",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-17:i07:audio",
-          "transcript": "cold"
+          "transcript": "Yes, you are."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-17:i07:r1",
-            "targetText": "cold",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i07:r2",
-            "targetText": "gold",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i07:r3",
-            "targetText": "call",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-17:i07:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — cold",
-            "feedbackByLocale": {
-              "ru": "«Золото». Первый звук другой: `cold` начинается с «к», `gold` — с «г».",
-              "uk": "«Золото». Перший звук інший: `cold` починається на «к», `gold` — на «ґ»."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i07:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — cold",
-            "feedbackByLocale": {
-              "ru": "«Звонить». Гласная другая: в `cold` слышно «оу», в `call` — долгое «о».",
-              "uk": "«Дзвонити». Голосна інша: у `cold` чути «оу», у `call` — довге «о»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "Yes, you are.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -419,28 +395,68 @@
       "interactionId": "en:lesson-02:session-17:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — спросите про улицу",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i08:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i08:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — спросите про улицу",
+      "accessibilityLabel": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where is the street?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — спросите про улицу",
-          "uk": "Складіть фразу — спитайте про вулицю"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+          "uk": "Ви помилилися з адресою. На «Are you right?» доповніть коротку відповідь «ні» про себе"
         },
-        "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "street"
+        "gappedTargetPhrase": "No, I ___ not.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i08:r3",
+            "text": "are"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+            "feedbackByLocale": {
+              "ru": "Про себя — `I am not`.",
+              "uk": "Про себе — `I am not`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы ошиблись с адресом. На «Are you right?» дополните короткое «нет» о себе",
+            "feedbackByLocale": {
+              "ru": "С `I` нужно `am`, даже если в вопросе было `Are you`.",
+              "uk": "З `I` потрібно `am`, навіть якщо в запитанні було `Are you`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -448,68 +464,75 @@
       "interactionId": "en:lesson-02:session-17:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — прохожему надо объяснить, почему вы к нему пристаёте",
+      "prompt": "Послушайте вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i09:r1",
-          "text": "lost"
+          "text": "Is it possible?"
         },
         {
           "responseId": "en:lesson-02:session-17:i09:r2",
-          "text": "cold"
+          "text": "Is it safe?"
         },
         {
           "responseId": "en:lesson-02:session-17:i09:r3",
-          "text": "noisy"
+          "text": "Is it right?"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — прохожему надо объяснить, почему вы к нему пристаёте",
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — прохожему надо объяснить, почему вы к нему пристаёте",
-          "uk": "Вставте слово — перехожому треба пояснити, чому ви до нього чіпляєтесь"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i09:audio",
+          "transcript": "Is it possible?"
         },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-17:i09:r1",
-            "text": "lost"
+            "targetText": "Is it possible?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-17:i09:r2",
-            "text": "cold"
+            "targetText": "Is it safe?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-17:i09:r3",
-            "text": "noisy"
+            "targetText": "Is it right?",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставьте слово — прохожему надо объяснит",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-17:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — прохожему надо объяснит",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "Это «замёрз». Про холод вы ничего не говорили — вы не понимаете, где находитесь.",
-              "uk": "Це «змерз». Про холод ви нічого не казали — ви не розумієте, де ви."
+              "ru": "В записи последнее слово — `possible`, а в этом варианте — `safe`.",
+              "uk": "У записі останнє слово — `possible`, а в цьому варіанті — `safe`."
             }
           },
           {
             "responseId": "en:lesson-02:session-17:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — прохожему надо объяснит",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "«Шумный». Так говорят про место, а не про человека, который ищет дорогу.",
-              "uk": "«Гучний». Так кажуть про місце, а не про людину, яка шукає дорогу."
+              "ru": "В записи последнее слово — `possible`, а в этом варианте — `right`.",
+              "uk": "У записі останнє слово — `possible`, а в цьому варіанті — `right`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -519,58 +542,58 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-17:i10:p1",
-            "target": "station",
+            "target": "possible",
             "meaningByLocale": {
-              "ru": "вокзал",
-              "uk": "вокзал"
+              "ru": "возможный",
+              "uk": "можливий"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i10:p2",
-            "target": "street",
+            "target": "well",
             "meaningByLocale": {
-              "ru": "улица",
-              "uk": "вулиця"
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i10:p3",
-            "target": "lost",
+            "target": "safe",
             "meaningByLocale": {
-              "ru": "заблудился",
-              "uk": "заблукав"
+              "ru": "в безопасности",
+              "uk": "у безпеці"
             }
           },
           {
             "pairId": "en:lesson-02:session-17:i10:p4",
-            "target": "cold",
+            "target": "welcome",
             "meaningByLocale": {
-              "ru": "замёрз",
-              "uk": "змерз"
+              "ru": "желанный гость",
+              "uk": "бажаний гість"
             }
           }
         ],
         "leftColumn": [
-          "station",
-          "street",
-          "lost",
-          "cold"
+          "possible",
+          "well",
+          "safe",
+          "welcome"
         ],
         "rightColumn": [
-          "вокзал",
-          "улица",
-          "заблудился",
-          "замёрз"
+          "возможный",
+          "хорошо себя чувствующий",
+          "в безопасности",
+          "желанный гость"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -592,31 +615,44 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «где вокзал?»",
+      "prompt": "Послушайте и соберите короткий ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-17:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «где вокзал?»",
+      "accessibilityLabel": "Послушайте и соберите короткий ответ",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-17:i11:audio",
-          "transcript": "Where is the station?"
+          "transcript": "Yes, they are."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the station?",
+        "hiddenTargetPhrase": "Yes, they are.",
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "station"
-        ],
-        "authoredDistractorTokens": [
+          "Yes,",
+          "they",
           "are"
         ],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "No,"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткий ответ",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Yes,` — `Yes, they are.`",
+              "uk": "тут потрібно `Yes,` — `Yes, they are.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -624,98 +660,77 @@
       "interactionId": "en:lesson-02:session-17:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — на вокзале в час пик не протолкнуться",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-17:i12:r1",
-          "text": "crowded"
-        },
-        {
-          "responseId": "en:lesson-02:session-17:i12:r2",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-02:session-17:i12:r3",
-          "text": "street"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анне и Олегу нехорошо. На «Are they well?» ответьте коротким «нет»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — на вокзале в час пик не протолкнуться",
+      "accessibilityLabel": "Анне и Олегу нехорошо. На «Are they well?» ответьте коротким «нет»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — на вокзале в час пик не протолкнуться",
-          "uk": "Вставте слово — на вокзалі в час пік не проштовхнутися"
+        "family": "phrase_builder",
+        "targetPhrase": "No, they are not.",
+        "localizedMeaning": {
+          "ru": "Анне и Олегу нехорошо. На «Are they well?» ответьте коротким «нет»",
+          "uk": "Анні й Олегу недобре. На «Are they well?» дайте коротку відповідь «ні»"
         },
-        "gappedTargetPhrase": "The station is ___ .",
-        "gapOptions": [
+        "orderedTokens": [
+          "No,",
+          "they",
+          "are",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-17:i12:r1",
-            "text": "crowded"
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i12:r2",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i12:r3",
-            "text": "street"
+            "responseId": "en:lesson-02:session-17:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Анне и Олегу нехорошо. На «Are they well?» ответьте коротким «нет»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, they are not.`",
+              "uk": "тут потрібно `No,` — `No, they are not.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — на вокзале в час пик не",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-17:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — на вокзале в час пик не",
-            "feedbackByLocale": {
-              "ru": "«Заблудился» — про человека, который не понимает, где он. Вокзал стоит на месте.",
-              "uk": "«Заблукав» — про людину, яка не розуміє, де вона. Вокзал стоїть на місці."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-17:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — на вокзале в час пик не",
-            "feedbackByLocale": {
-              "ru": "Это «улица», отдельное место. А тут надо сказать, какой вокзал.",
-              "uk": "Це «вулиця», окреме місце. А тут треба сказати, який вокзал."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-02:session-17:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — сначала о себе, потом вопрос",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с другом уже добрались до безопасного места. Хозяин спрашивает вас обоих: «Are you safe?» Ответьте коротким «да» за двоих",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — сначала о себе, потом вопрос",
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Вы с другом уже добрались до безопасного места. Хозяин спрашивает вас обоих: «Are you safe?» Ответьте коротким «да» за двоих",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am lost.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — сначала о себе, потом вопрос",
-          "uk": "Складіть фразу — спершу про себе, потім питання"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i13:audio",
+          "transcript": "Yes, we are."
         },
-        "orderedTokens": [
-          "I",
-          "am",
-          "lost"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yes, we are.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -725,63 +740,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — мимо идут машины, и вы не слышите ответа",
+      "prompt": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-17:i14:r1",
-          "text": "noisy"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-17:i14:r2",
-          "text": "lost"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-17:i14:r3",
-          "text": "station"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — мимо идут машины, и вы не слышите ответа",
+      "accessibilityLabel": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — мимо идут машины, и вы не слышите ответа",
-          "uk": "Вставте слово — повз їдуть машини, і ви не чуєте відповіді"
+          "ru": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
+          "uk": "Перенести зустріч можна. На «Is it possible?» доповніть коротку відповідь «так»"
         },
-        "gappedTargetPhrase": "The street is ___ .",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-17:i14:r1",
-            "text": "noisy"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-17:i14:r2",
-            "text": "lost"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-17:i14:r3",
-            "text": "station"
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — мимо идут машины, и вы ",
+        "testedDimension": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-17:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — мимо идут машины, и вы ",
+            "testedDimension": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Про улицу так не говорят: `lost` — это про того, кто не понимает, где он.",
-              "uk": "Про вулицю так не кажуть: `lost` — це про того, хто не розуміє, де він."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-17:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — мимо идут машины, и вы ",
+            "testedDimension": "Перенести встречу можно. На «Is it possible?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "`station` — вокзал, само место. А тут надо сказать, какая улица.",
-              "uk": "`station` — вокзал, саме місце. А тут треба сказати, яка вулиця."
+              "ru": "В ответе — `it is`.",
+              "uk": "У відповіді — `it is`."
             }
           }
         ]
@@ -789,225 +804,186 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-17:i15:s01",
+      "interactionId": "en:lesson-02:session-17:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу об Олеге",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i15:r1",
+          "text": "He is not well."
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i15:r2",
+          "text": "He is not right."
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i15:r3",
+          "text": "He is not safe."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-17:i15:s01:audio"
+        "en:lesson-02:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте фразу об Олеге",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i15:s01:audio",
-          "transcript": "I am lost."
+          "audioTargetId": "en:lesson-02:session-17:i15:audio",
+          "transcript": "He is not well."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am lost.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-17:i15:s02",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:i15:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i15:s02:audio",
-          "transcript": "Where is the station?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Where is the station?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:i15:r1",
+            "targetText": "He is not well.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i15:r2",
+            "targetText": "He is not right.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i15:r3",
+            "targetText": "He is not safe.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу об Олеге",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `well`, а в этом варианте — `right`.",
+              "uk": "У записі останнє слово — `well`, а в цьому варіанті — `right`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу об Олеге",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `well`, а в этом варианте — `safe`.",
+              "uk": "У записі останнє слово — `well`, а в цьому варіанті — `safe`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-02:session-17:i16",
-      "ordinal": 20,
+      "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — вы подошли к прохожему и не знаете, куда идти; спросите про улицу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — вы подошли к прохожему и не знаете, куда идти; спросите про улицу",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where is the street?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — вы подошли к прохожему и не знаете, куда идти; спросите про улицу",
-          "uk": "Складіть запитання — ви підійшли до перехожого і не знаєте, куди йти; запитайте про вулицю"
-        },
-        "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "street"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-17:i16:p1",
+            "target": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i16:p2",
+            "target": "right",
+            "meaningByLocale": {
+              "ru": "правый, не ошибающийся",
+              "uk": "правий, той, хто не помиляється"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i16:p3",
+            "target": "possible",
+            "meaningByLocale": {
+              "ru": "возможный",
+              "uk": "можливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i16:p4",
+            "target": "welcome",
+            "meaningByLocale": {
+              "ru": "желанный гость",
+              "uk": "бажаний гість"
+            }
+          }
         ],
-        "authoredDistractorTokens": [
-          "am"
+        "leftColumn": [
+          "well",
+          "right",
+          "possible",
+          "welcome"
         ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-17:i17:s01",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:i17:s01:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i17:s01:audio",
-          "transcript": "I am lost."
+        "rightColumn": [
+          "хорошо себя чувствующий",
+          "правый, не ошибающийся",
+          "возможный",
+          "желанный гость"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am lost.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-17:i17:s02",
-      "ordinal": 22,
+      "interactionId": "en:lesson-02:session-17:i17",
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "После дороги вы плохо себя чувствуете. Хозяин спрашивает: «Are you well?» Ответьте коротким «нет», не повторяя well",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-17:i17:s02:audio"
+        "en:lesson-02:session-17:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "После дороги вы плохо себя чувствуете. Хозяин спрашивает: «Are you well?» Ответьте коротким «нет», не повторяя well",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i17:s02:audio",
-          "transcript": "Where is the station?"
+          "audioTargetId": "en:lesson-02:session-17:i17:audio",
+          "transcript": "No, I am not."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the station?",
+        "targetPhrase": "No, I am not.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-17:i17:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i17:s03:audio",
-          "transcript": "Where is the street?"
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Where is the street?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-17:i17:s04",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:i17:s04:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:i17:s04:audio",
-          "transcript": "The station is crowded."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "The station is crowded.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1018,11 +994,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "630c5d805e328bf5db237b57a6beb10ad072e8d86b8cd8e206cf008ec0d55ffe"
+  "learnerFingerprint": "bd0c5c179b489916e26d8a5482b314f407010f97f3cd8f5ab1a16c65015325b5"
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-42:intro1:r2": {
+          "ru": "Это «точная». В записи есть ошибка.",
+          "uk": "Це «точний». У записі є помилка."
+        },
+        "en:lesson-02:session-42:intro1:r3": {
+          "ru": "Между `It` и `inaccurate` нужно `is`.",
+          "uk": "Між `It` і `inaccurate` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-42:intro2:r2": {
+          "ru": "Это отрицает неточность, а адрес действительно неверный.",
+          "uk": "Це заперечує неточність, а адреса справді неправильна."
+        },
+        "en:lesson-02:session-42:intro2:r3": {
+          "ru": "С `it` нужно `is`: `Yes, it is`.",
+          "uk": "З `it` потрібно `is`: `Yes, it is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-42:intro3:r2": {
+          "ru": "Это о бездействии, а нужно отметить вежливость.",
+          "uk": "Це про бездіяльність, а потрібно відзначити ввічливість."
+        },
+        "en:lesson-02:session-42:intro3:r3": {
+          "ru": "Речь об Олеге: `He's`.",
+          "uk": "Йдеться про Олега: `He's`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c95cc99e5b1b4934a03b1a41664bcb393f169f3c50a478d8dcbbd85b8aacd2d"
+}

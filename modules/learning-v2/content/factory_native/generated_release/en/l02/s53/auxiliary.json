@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-53:intro1:r2": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        },
+        "en:lesson-02:session-53:intro1:r3": {
+          "ru": "Это «справедливо», а вы оцениваете решение наоборот.",
+          "uk": "Це «справедливо», а ви оцінюєте рішення навпаки."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-53:intro2:r2": {
+          "ru": "Это ваша оценка, а нужен вопрос.",
+          "uk": "Це ваша оцінка, а потрібне запитання."
+        },
+        "en:lesson-02:session-53:intro2:r3": {
+          "ru": "Это «Это справедливо?» В задании вопрос именно о несправедливости.",
+          "uk": "Це «Це справедливо?» У завданні запитання саме про несправедливість."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-53:intro3:r2": {
+          "ru": "Это оценка справедливости, а речь о занятых местах.",
+          "uk": "Це оцінка справедливості, а йдеться про зайняті місця."
+        },
+        "en:lesson-02:session-53:intro3:r3": {
+          "ru": "Это «незаконно», а вы сообщаете, что зал полон.",
+          "uk": "Це «незаконно», а ви повідомляєте, що зал повний."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6fb04e524fc0d799c0eb89ebcfd99a25376e32695c862e86938df0580121e638"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-51:intro1:r2": {
+          "ru": "Это «эффективный». В условии способ не помогает достичь цели.",
+          "uk": "Це «ефективний». За умовою спосіб не допомагає досягти мети."
+        },
+        "en:lesson-02:session-51:intro1:r3": {
+          "ru": "Между `It` и `ineffective` нужно `is`.",
+          "uk": "Між `It` і `ineffective` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-51:intro2:r2": {
+          "ru": "Это отрицает неэффективность. По условию способ не помогает.",
+          "uk": "Це заперечує неефективність. За умовою спосіб не допомагає."
+        },
+        "en:lesson-02:session-51:intro2:r3": {
+          "ru": "С `it` нужно `is`.",
+          "uk": "З `it` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-51:intro3:r2": {
+          "ru": "Вы говорите об Анне: `She's`.",
+          "uk": "Ви говорите про Анну: `She's`."
+        },
+        "en:lesson-02:session-51:intro3:r3": {
+          "ru": "Это о весе коробки. Нужно сказать о сомнении Анны.",
+          "uk": "Це про вагу коробки. Потрібно сказати про сумнів Анни."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a985a80af0b16387a3c62e03eb194d04c7d9c4406deaed277f6114f68e4f643e"
+}

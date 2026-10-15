@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-29:i01",
-    "correctText": "which",
-    "correctResponseId": "en:lesson-02:session-29:i01:r1"
+    "correctText": "He is away.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i02",
-    "correctText": "what",
+    "correctText": "It is local.",
     "correctResponseId": "en:lesson-02:session-29:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-29:i03",
-    "correctText": "one",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-29:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-29:i04",
-    "correctText": "one",
-    "correctResponseId": "en:lesson-02:session-29:i04:r1"
+    "correctText": "en:lesson-02:session-29:i04:p1=away\nen:lesson-02:session-29:i04:p2=local\nen:lesson-02:session-29:i04:p3=foreign\nen:lesson-02:session-29:i04:p4=online",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i05",
-    "correctText": "Which street?",
+    "correctText": "They are not online.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i06",
-    "correctText": "cheap",
-    "correctResponseId": "en:lesson-02:session-29:i06:r1"
+    "correctText": "Where is he?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i07",
-    "correctText": "which",
-    "correctResponseId": "en:lesson-02:session-29:i07:r1"
+    "correctText": "They're away.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i08",
-    "correctText": "What is the price?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-29:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-29:i09",
-    "correctText": "Which one?",
-    "correctResponseId": null
+    "correctText": "It is foreign.",
+    "correctResponseId": "en:lesson-02:session-29:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-29:i10",
-    "correctText": "elegant",
+    "correctText": "en:lesson-02:session-29:i10:p1=broken\nen:lesson-02:session-29:i10:p2=no\nen:lesson-02:session-29:i10:p3=away\nen:lesson-02:session-29:i10:p4=online",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i11",
-    "correctText": "What",
-    "correctResponseId": "en:lesson-02:session-29:i11:r1"
+    "correctText": "Is she away?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i12",
-    "correctText": "en:lesson-02:session-29:i12:p1=what\nen:lesson-02:session-29:i12:p2=which\nen:lesson-02:session-29:i12:p3=elegant\nen:lesson-02:session-29:i12:p4=price",
+    "correctText": "They are local.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i13",
-    "correctText": "cheap",
-    "correctResponseId": "en:lesson-02:session-29:i13:r1"
+    "correctText": "It's not broken.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i14",
-    "correctText": "elegant",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-29:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-29:i15",
-    "correctText": "Which one is cheap?",
-    "correctResponseId": null
+    "correctText": "Who is online?",
+    "correctResponseId": "en:lesson-02:session-29:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-29:i16",
-    "correctText": "Which one is elegant?",
+    "correctText": "en:lesson-02:session-29:i16:p1=local\nen:lesson-02:session-29:i16:p2=foreign\nen:lesson-02:session-29:i16:p3=broken\nen:lesson-02:session-29:i16:p4=no",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-29:i17:s01",
-    "correctText": "Which one?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-29:i17:s02",
-    "correctText": "What is the price?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-29:i17:s03",
-    "correctText": "What is the name?",
+    "interactionId": "en:lesson-02:session-29:i17",
+    "correctText": "Is he away?",
     "correctResponseId": null
   }
 ]

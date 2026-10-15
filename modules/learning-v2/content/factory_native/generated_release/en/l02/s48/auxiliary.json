@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-48:intro1:r2": {
+          "ru": "Это утверждение об ошибке в подписи. Вы пока только сомневаетесь.",
+          "uk": "Це твердження про помилку в підписі. Ви поки лише сумніваєтеся."
+        },
+        "en:lesson-02:session-48:intro1:r3": {
+          "ru": "Это «Я терпеливый». Нужно сказать о сомнении.",
+          "uk": "Це «Я терплячий». Потрібно сказати про сумнів."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-48:intro2:r2": {
+          "ru": "Это «законно». По условию второй способ запрещён.",
+          "uk": "Це «законно». За умовою другий спосіб заборонений."
+        },
+        "en:lesson-02:session-48:intro2:r3": {
+          "ru": "Между `It` и `illegal` нужно `is`.",
+          "uk": "Між `It` і `illegal` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-48:intro3:r2": {
+          "ru": "Это «неточный». Здесь вы оцениваете приемлемость качества печати.",
+          "uk": "Це «неточний». Тут ви оцінюєте прийнятність якості друку."
+        },
+        "en:lesson-02:session-48:intro3:r3": {
+          "ru": "Это «незаконно». О нарушении закона в условии ничего нет.",
+          "uk": "Це «незаконно». Про порушення закону в умові нічого немає."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "426df27a2796b587d59053ab1f1d18c78425b97ca04f1d125b022834be4d4005"
+}

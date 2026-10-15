@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-29",
   "learningOutcomeByLocale": {
-    "ru": "`what` ↔ `which` — когда вариантов сколько угодно, а когда их два-три и они известны",
-    "uk": "`what` ↔ `which` — коли варіантів скільки завгодно, а коли їх два-три і вони відомі"
+    "ru": "сообщить, что человека нет на месте, и уточнить, где он",
+    "uk": "повідомити, що людини немає на місці, й уточнити, де вона"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`what` — когда ждёшь, что назовут",
-        "uk": "`what` — коли чекаєш, що назвуть"
+        "ru": "Сейчас его здесь нет",
+        "uk": "Зараз його тут немає"
       },
       "bodyByLocale": {
-        "ru": "`what` — «что». Его берут, когда в ответ ждут слово или цифру: `What is the price?` — «сколько стоит?» Вам назовут число.\n\nТак же про название: `What is the name?` В обоих вопросах начало `What is the` одно и то же — меняется только последнее слово.",
-        "uk": "`what` — «що». Його беруть, коли у відповідь чекають слово або цифру: `What is the price?` — «скільки це коштує?» Вам назвуть число.\n\nТак само про назву: `What is the name?` В обох питаннях початок `What is the` однаковий — змінюється тільки останнє слово."
+        "ru": "`away` — «не здесь, в отъезде». Хозяин мастерской уехал на несколько дней: `He is away`. Это не обязательно значит, что он далеко: он может быть в соседнем городе. Расстояние до человека этим словом не измерить.",
+        "uk": "`away` — «не тут, у від’їзді». Господар майстерні поїхав на кілька днів: `He is away`. Це не обов’язково означає, що він далеко: він може бути в сусідньому місті. Відстані до людини цим словом не виміряти."
       },
       "question": {
         "interactionId": "en:lesson-02:session-29:intro1:q",
         "promptByLocale": {
-          "ru": "На бирке цифры нет. Спросите продавца, сколько это стоит.",
-          "uk": "На бирці цифри немає. Спитайте продавця, скільки це коштує."
+          "ru": "Хозяин уехал и сегодня в мастерской не появится. Сообщите полной фразой, что он в отъезде.",
+          "uk": "Господар поїхав і сьогодні в майстерні не з’явиться. Повідомте повною фразою, що він у від’їзді."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-29:intro1:r1",
-              "text": "What is the price?"
+              "text": "He is away."
             },
             {
               "responseId": "en:lesson-02:session-29:intro1:r2",
-              "text": "What the price is?"
+              "text": "He away."
             },
             {
               "responseId": "en:lesson-02:session-29:intro1:r3",
-              "text": "Price what is?"
+              "text": "He is not away."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-29:intro1:r1",
-              "text": "What is the price?"
+              "text": "He is away."
             },
             {
               "responseId": "en:lesson-02:session-29:intro1:r2",
-              "text": "What the price is?"
+              "text": "He away."
             },
             {
               "responseId": "en:lesson-02:session-29:intro1:r3",
-              "text": "Price what is?"
+              "text": "He is not away."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На бирке цифры нет. Спросите продавца, сколько это стоит.",
-          "uk": "На бирці цифри немає. Спитайте продавця, скільки це коштує."
+          "ru": "Хозяин уехал и сегодня в мастерской не появится. Сообщите полной фразой, что он в отъезде.",
+          "uk": "Господар поїхав і сьогодні в майстерні не з’явиться. Повідомте повною фразою, що він у від’їзді."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`which` — когда надо ткнуть в одну",
-        "uk": "`which` — коли треба вказати на одну"
+        "ru": "В отъезде, но на связи",
+        "uk": "У від’їзді, але на зв’язку"
       },
       "bodyByLocale": {
-        "ru": "`which` — «который из этих». Его берут, когда выбирают из нескольких уже названных или видимых вещей: `Which bag?` — «которая сумка?» (`bag` — «сумка».)\n\n`What bag?` — «Что за сумка?» или «О какой сумке речь?» Когда обе перед вами и нужно выбрать одну, естественнее `Which bag?`.",
-        "uk": "`which` — «котра з цих». Його беруть, коли обирають із кількох уже названих або видимих речей: `Which bag?` — «котра сумка?» (`bag` — «сумка».)\n\n`What bag?` — «Що за сумка?» або «Про яку сумку йдеться?» Коли обидві перед вами й треба вибрати одну, природніше `Which bag?`."
+        "ru": "`online` — «в сети». Человек может быть `away` и одновременно `online`: его нет в мастерской, зато он отвечает в интернете. `Is he online?` — «Он в сети?» Сайт не посадит его обратно за рабочий стол, но вопрос задать поможет.",
+        "uk": "`online` — «у мережі». Людина може бути `away` і водночас `online`: її немає в майстерні, зате вона відповідає в інтернеті. `Is he online?` — «Він у мережі?» Сайт не посадить його назад за робочий стіл, але поставити запитання допоможе."
       },
       "question": {
         "interactionId": "en:lesson-02:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Продавец выложил две сумки. Спросите, которая из них.",
-          "uk": "Продавець виклав дві сумки. Спитайте, котра з них."
+          "ru": "Хозяин уехал. Вы хотите написать ему сейчас. Спросите, в сети ли он.",
+          "uk": "Господар поїхав. Ви хочете написати йому зараз. Запитайте, чи він у мережі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-29:intro2:r1",
-              "text": "Which bag?"
+              "text": "Is he online?"
             },
             {
               "responseId": "en:lesson-02:session-29:intro2:r2",
-              "text": "What bag?"
+              "text": "Is he away?"
             },
             {
               "responseId": "en:lesson-02:session-29:intro2:r3",
-              "text": "Which the bag?"
+              "text": "He is online."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-29:intro2:r1",
-              "text": "Which bag?"
+              "text": "Is he online?"
             },
             {
               "responseId": "en:lesson-02:session-29:intro2:r2",
-              "text": "What bag?"
+              "text": "Is he away?"
             },
             {
               "responseId": "en:lesson-02:session-29:intro2:r3",
-              "text": "Which the bag?"
+              "text": "He is online."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Продавец выложил две сумки. Спросите, которая из них.",
-          "uk": "Продавець виклав дві сумки. Спитайте, котра з них."
+          "ru": "Хозяин уехал. Вы хотите написать ему сейчас. Спросите, в сети ли он.",
+          "uk": "Господар поїхав. Ви хочете написати йому зараз. Запитайте, чи він у мережі."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`Which one?` — учите целиком",
-        "uk": "`Which one?` — вчіть цілком"
+        "ru": "Узнать место",
+        "uk": "Дізнатися місце"
       },
       "bodyByLocale": {
-        "ru": "`one` — заменяет вещь, которую уже назвали. Вместо `Which bag?` («которая сумка?») — `Which one?`\n\nТак спрашивают, когда сумки уже на прилавке и называть их второй раз незачем. Продавец сам поймёт, о чём речь: вещи-то перед ним. Учите эту пару целиком.",
-        "uk": "`one` — заміняє річ, яку вже назвали. Замість `Which bag?` («котра сумка?») — `Which one?`\n\nТак питають, коли сумки вже на прилавку і називати їх удруге ні до чого. Продавець і сам зрозуміє, про що мова: речі ж перед ним. Вчіть цю пару цілком."
+        "ru": "`Where is he?` — «Где он?» После `Where` стоит `is`, затем `he`. Если уехали хозяин и его жена, вопрос будет `Where are they?`. А `Are they away?` только уточняет, в отъезде ли они; конкретное место он не спрашивает.",
+        "uk": "`Where is he?` — «Де він?» Після `Where` стоїть `is`, потім `he`. Якщо поїхали господар і його дружина, запитання буде `Where are they?`. А `Are they away?` лише уточнює, чи вони у від’їзді; конкретного місця воно не запитує."
       },
       "question": {
         "interactionId": "en:lesson-02:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Продавец держит две сумки и ждёт. Спросите, которая из них.",
-          "uk": "Продавець тримає дві сумки і чекає. Спитайте, котра з них."
+          "ru": "Помощник сообщил, что хозяин с женой уехали. Спросите, где они.",
+          "uk": "Помічник повідомив, що господар із дружиною поїхали. Запитайте, де вони."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-29:intro3:r1",
-              "text": "Which one?"
+              "text": "Where are they?"
             },
             {
               "responseId": "en:lesson-02:session-29:intro3:r2",
-              "text": "Which bag one?"
+              "text": "Where they are?"
             },
             {
               "responseId": "en:lesson-02:session-29:intro3:r3",
-              "text": "What one?"
+              "text": "Are they away?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-29:intro3:r1",
-              "text": "Which one?"
+              "text": "Where are they?"
             },
             {
               "responseId": "en:lesson-02:session-29:intro3:r2",
-              "text": "Which bag one?"
+              "text": "Where they are?"
             },
             {
               "responseId": "en:lesson-02:session-29:intro3:r3",
-              "text": "What one?"
+              "text": "Are they away?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Продавец держит две сумки и ждёт. Спросите, которая из них.",
-          "uk": "Продавець тримає дві сумки і чекає. Спитайте, котра з них."
+          "ru": "Помощник сообщил, что хозяин с женой уехали. Спросите, где они.",
+          "uk": "Помічник повідомив, що господар із дружиною поїхали. Запитайте, де вони."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "50ab327f87c93a40a4b5072da4b8f4ed420cc6a1b8a924d604a3d0024b7d2e1e"
+  "introFingerprint": "db23829760a2f0fcf1a81a7e8eca7b78e24e380de1e8bd8b4930b426a67cbf1d"
 }

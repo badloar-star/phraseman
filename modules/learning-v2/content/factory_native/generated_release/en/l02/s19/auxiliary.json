@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-19:intro1:r2": {
+          "ru": "Это обвинение в его адрес. Здесь признаётесь вы: `I'm`.",
+          "uk": "Це звинувачення на його адресу. Тут зізнаєтеся ви: `I'm`."
+        },
+        "en:lesson-02:session-19:intro1:r3": {
+          "ru": "Это отрицание вины. В условии печенье съели вы.",
+          "uk": "Це заперечення провини. За умовою печиво з’їли ви."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-19:intro2:r2": {
+          "ru": "Так вы подтвердите её вину. Анна печенье не трогала.",
+          "uk": "Так ви підтвердите її провину. Анна печиво не чіпала."
+        },
+        "en:lesson-02:session-19:intro2:r3": {
+          "ru": "Между `she` и `not` нужно `is`.",
+          "uk": "Між `she` і `not` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-19:intro3:r2": {
+          "ru": "Это признание вашей вины. Отвечаем Олегу про него: `you are`.",
+          "uk": "Це визнання вашої провини. Відповідаємо Олегові про нього: `you are`."
+        },
+        "en:lesson-02:session-19:intro3:r3": {
+          "ru": "С `you` нужно `are`.",
+          "uk": "З `you` потрібно `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a77264d12fc406f74068d8b6ddad0b78ce1e29f5190d73280e1bfaf148954507"
+}

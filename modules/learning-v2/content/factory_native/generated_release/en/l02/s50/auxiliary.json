@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-50:intro1:r2": {
+          "ru": "Между `It` и `effective` нужно `is`.",
+          "uk": "Між `It` і `effective` потрібно `is`."
+        },
+        "en:lesson-02:session-50:intro1:r3": {
+          "ru": "Это отрицает результативность. По условию способ помог.",
+          "uk": "Це заперечує результативність. За умовою спосіб допоміг."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-50:intro2:r2": {
+          "ru": "Это вопрос о цене, которая уже известна. Сейчас нужен результат.",
+          "uk": "Це запитання про ціну, яка вже відома. Зараз потрібен результат."
+        },
+        "en:lesson-02:session-50:intro2:r3": {
+          "ru": "Это утверждение. Вы ещё спрашиваете.",
+          "uk": "Це твердження. Ви ще запитуєте."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-50:intro3:r2": {
+          "ru": "Здесь речь о нескольких номерах: `They're`.",
+          "uk": "Тут ідеться про кілька номерів: `They're`."
+        },
+        "en:lesson-02:session-50:intro3:r3": {
+          "ru": "Это о цене, а вы обнаружили неточности.",
+          "uk": "Це про ціну, а ви виявили неточності."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8da72ab9bcd71ecf7bd314246ff6c5d80c84ef7ef8dc0eddba0bb53718fd6681"
+}

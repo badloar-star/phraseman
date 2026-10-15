@@ -7,41 +7,43 @@
       "interactionId": "en:lesson-02:session-03:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — worried",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег ще не знає про перенесення. Ви обговорюєте цю новину. Скажіть, що він не в курсі",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-03:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — worried",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег ще не знає про перенесення. Ви обговорюєте цю новину. Скажіть, що він не в курсі",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-03:i01:audio",
-          "transcript": "worried"
+        "family": "phrase_builder",
+        "targetPhrase": "He is not aware.",
+        "localizedMeaning": {
+          "ru": "Олег ещё не знает о переносе. Вы обсуждаете эту новость. Скажите, что он не в курсе",
+          "uk": "Олег ще не знає про перенесення. Ви обговорюєте цю новину. Скажіть, що він не в курсі"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "He",
+          "is",
+          "not",
+          "aware"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i01:r1",
-            "targetText": "worried",
-            "meaningByLocale": {
-              "ru": "«обеспокоенный, встревоженный». Когда вы не знаете, всё ли будет хорошо.",
-              "uk": "«стурбований, схвильований». Коли ви не знаєте, чи все буде добре."
+            "responseId": "en:lesson-02:session-03:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег ще не знає про перенесення. Ви обговорюєте цю новину. Скажіть, що він не в курсі",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is not aware.`",
+              "uk": "тут потрібно `is` — `He is not aware.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "worried",
-          "definitionByLocale": {
-            "ru": "«обеспокоенный, встревоженный». Когда вы не знаете, всё ли будет хорошо.",
-            "uk": "«стурбований, схвильований». Коли ви не знаєте, чи все буде добре."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — worried",
+      "prompt": "Послухайте й виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-03:i02:r1",
-          "text": "worried"
+          "text": "I am not convinced."
         },
         {
           "responseId": "en:lesson-02:session-03:i02:r2",
-          "text": "prepared"
+          "text": "I am not concerned."
         },
         {
           "responseId": "en:lesson-02:session-03:i02:r3",
-          "text": "ready"
+          "text": "I am not aware."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й оберіть — worried",
+      "accessibilityLabel": "Послухайте й виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-03:i02:audio",
-          "transcript": "worried"
+          "transcript": "I am not convinced."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-03:i02:r1",
-            "targetText": "worried",
+            "targetText": "I am not convinced.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-03:i02:r2",
-            "targetText": "prepared",
+            "targetText": "I am not concerned.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-03:i02:r3",
-            "targetText": "ready",
+            "targetText": "I am not aware.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +103,19 @@
           {
             "responseId": "en:lesson-02:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й оберіть — worried",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи звучит `worried`.",
-              "uk": "У записі звучить `worried`."
+              "ru": "В записи последнее слово — `convinced`, а в этом варианте — `concerned`.",
+              "uk": "У записі останнє слово — `convinced`, а в цьому варіанті — `concerned`."
             }
           },
           {
             "responseId": "en:lesson-02:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й оберіть — worried",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи звучит `worried`.",
-              "uk": "У записі звучить `worried`."
+              "ru": "В записи последнее слово — `convinced`, а в этом варианте — `aware`.",
+              "uk": "У записі останнє слово — `convinced`, а в цьому варіанті — `aware`."
             }
           }
         ],
@@ -126,42 +128,68 @@
       "interactionId": "en:lesson-02:session-03:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — prepared",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-03:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — prepared",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-03:i03:audio",
-          "transcript": "prepared"
+      "prompt": "Вас обох перенесення не тривожить. Доповніть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i03:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-02:session-03:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вас обох перенесення не тривожить. Доповніть фразу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вас обоих перенос не тревожит. Дополните фразу",
+          "uk": "Вас обох перенесення не тривожить. Доповніть фразу"
+        },
+        "gappedTargetPhrase": "We ___ not concerned.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-02:session-03:i03:r1",
-            "targetText": "prepared",
-            "meaningByLocale": {
-              "ru": "«подготовленный, готовый». Когда нужные вещи собраны и вы знаете, что делать дальше.",
-              "uk": "«підготовлений, готовий». Коли потрібні речі зібрані й ви знаєте, що робити далі."
-            }
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i03:r3",
+            "text": "is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "prepared",
-          "definitionByLocale": {
-            "ru": "«подготовленный, готовый». Когда нужные вещи собраны и вы знаете, что делать дальше.",
-            "uk": "«підготовлений, готовий». Коли потрібні речі зібрані й ви знаєте, що робити далі."
+        "testedDimension": "Вас обох перенесення не тривожить. Доповніть фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Вас обох перенесення не тривожить. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "После `We` нужно `are`.",
+              "uk": "Після `We` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Вас обох перенесення не тривожить. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Про нас — `We are not`.",
+              "uk": "Про нас — `We are not`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,136 +197,60 @@
       "interactionId": "en:lesson-02:session-03:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — prepared",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-03:i04:r1",
-          "text": "prepared"
-        },
-        {
-          "responseId": "en:lesson-02:session-03:i04:r2",
-          "text": "worried"
-        },
-        {
-          "responseId": "en:lesson-02:session-03:i04:r3",
-          "text": "ready"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-03:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте й оберіть — prepared",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-03:i04:audio",
-          "transcript": "prepared"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-03:i04:r1",
-            "targetText": "prepared",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i04:r2",
-            "targetText": "worried",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i04:r3",
-            "targetText": "ready",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-03:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — prepared",
-            "feedbackByLocale": {
-              "ru": "В записи звучит `prepared`.",
-              "uk": "У записі звучить `prepared`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — prepared",
-            "feedbackByLocale": {
-              "ru": "В записи звучит `prepared`.",
-              "uk": "У записі звучить `prepared`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-03:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова та значення",
+      "prompt": "З’єднайте слова з їхніми значеннями тут",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова та значення",
+      "accessibilityLabel": "З’єднайте слова з їхніми значеннями тут",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-03:i05:p1",
-            "target": "worried",
+            "pairId": "en:lesson-02:session-03:i04:p1",
+            "target": "aware",
+            "meaningByLocale": {
+              "ru": "в курсе",
+              "uk": "у курсі"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i04:p2",
+            "target": "convinced",
+            "meaningByLocale": {
+              "ru": "убеждённый",
+              "uk": "переконаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i04:p3",
+            "target": "concerned",
             "meaningByLocale": {
               "ru": "обеспокоенный",
               "uk": "стурбований"
             }
           },
           {
-            "pairId": "en:lesson-02:session-03:i05:p2",
-            "target": "prepared",
+            "pairId": "en:lesson-02:session-03:i04:p4",
+            "target": "confident",
             "meaningByLocale": {
-              "ru": "подготовленный",
-              "uk": "підготовлений"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-03:i05:p3",
-            "target": "hungry",
-            "meaningByLocale": {
-              "ru": "голодный",
-              "uk": "голодний"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-03:i05:p4",
-            "target": "lost",
-            "meaningByLocale": {
-              "ru": "заблудившийся",
-              "uk": "заблукалий"
+              "ru": "уверенный в себе",
+              "uk": "впевнений у собі"
             }
           }
         ],
         "leftColumn": [
-          "worried",
-          "prepared",
-          "hungry",
-          "lost"
+          "aware",
+          "convinced",
+          "concerned",
+          "confident"
         ],
         "rightColumn": [
+          "у курсі",
+          "переконаний",
           "стурбований",
-          "підготовлений",
-          "голодний",
-          "заблукалий"
+          "впевнений у собі"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -315,33 +267,94 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i05:audio",
+          "transcript": "I'm not convinced."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'm not convinced.",
+        "orderedTokens": [
+          "I'm",
+          "not",
+          "convinced"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `I'm` — `I'm not convinced.`",
+              "uk": "тут потрібно `I'm` — `I'm not convinced.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-03:i06",
       "ordinal": 9,
-      "purpose": "guided_practice",
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротке «ні» — на запитання `Are you worried?` ви спокійні",
+      "prompt": "Анна ще не знає про нове місце зустрічі. Скажіть, що вона не в курсі обговорюваної зміни",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротке «ні» — на запитання `Are you worried?` ви спокійні",
+      "accessibilityLabel": "Анна ще не знає про нове місце зустрічі. Скажіть, що вона не в курсі обговорюваної зміни",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "No, I am not.",
+        "targetPhrase": "She is not aware.",
         "localizedMeaning": {
-          "ru": "На вопрос `Are you worried?` вы спокойны.",
-          "uk": "На запитання `Are you worried?` ви спокійні."
+          "ru": "Анна ещё не знает о новом месте встречи. Скажите, что она не в курсе обсуждаемого изменения",
+          "uk": "Анна ще не знає про нове місце зустрічі. Скажіть, що вона не в курсі обговорюваної зміни"
         },
         "orderedTokens": [
-          "No,",
-          "I",
-          "am",
-          "not"
+          "She",
+          "is",
+          "not",
+          "aware"
         ],
         "authoredDistractorTokens": [
-          "worried"
+          "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна ще не знає про нове місце зустрічі. Скажіть, що вона не в курсі обговорюваної зміни",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is not aware.`",
+              "uk": "тут потрібно `is` — `She is not aware.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -349,32 +362,32 @@
       "interactionId": "en:lesson-02:session-03:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажіть, що ви із сестрою не стурбовані перенесенням, яке зараз обговорюєте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-03:i07:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Коротко скажіть, що ви із сестрою не стурбовані перенесенням, яке зараз обговорюєте",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-03:i07:audio",
-          "transcript": "Are you prepared?"
+          "transcript": "We're not concerned."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Are you prepared?",
-        "orderedTokens": [
-          "Are",
-          "you",
-          "prepared?"
-        ],
-        "authoredDistractorTokens": [
-          "worried?"
-        ],
-        "slotFeedback": []
+        "targetPhrase": "We're not concerned.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -384,63 +397,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — квиток і речі вже зібрані",
+      "prompt": "Зараз ви не зайняті. Доповніть фразу про себе",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-03:i08:r1",
-          "text": "prepared"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-03:i08:r2",
-          "text": "worried"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-03:i08:r3",
-          "text": "cold"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — квиток і речі вже зібрані",
+      "accessibilityLabel": "Зараз ви не зайняті. Доповніть фразу про себе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Билет и вещи уже собраны.",
-          "uk": "Квиток і речі вже зібрані."
+          "ru": "Сейчас вы не заняты. Дополните фразу о себе",
+          "uk": "Зараз ви не зайняті. Доповніть фразу про себе"
         },
-        "gappedTargetPhrase": "I am ___ .",
+        "gappedTargetPhrase": "I ___ not busy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-03:i08:r1",
-            "text": "prepared"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-03:i08:r2",
-            "text": "worried"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-03:i08:r3",
-            "text": "cold"
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставте слово — квиток і речі вже зібрані",
+        "testedDimension": "Зараз ви не зайняті. Доповніть фразу про себе",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-03:i08:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — квиток і речі вже зібрані",
+            "testedDimension": "Зараз ви не зайняті. Доповніть фразу про себе",
             "feedbackByLocale": {
-              "ru": "Здесь всё готово, поэтому подходит `prepared`.",
-              "uk": "Тут усе готове, тому підходить `prepared`."
+              "ru": "Про себя — `I am not`.",
+              "uk": "Про себе — `I am not`."
             }
           },
           {
             "responseId": "en:lesson-02:session-03:i08:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — квиток і речі вже зібрані",
+            "testedDimension": "Зараз ви не зайняті. Доповніть фразу про себе",
             "feedbackByLocale": {
-              "ru": "В сцене не говорится о холоде.",
-              "uk": "У сцені не йдеться про холод."
+              "ru": "После `I` нужно `am`.",
+              "uk": "Після `I` потрібно `am`."
             }
           }
         ]
@@ -451,68 +464,75 @@
       "interactionId": "en:lesson-02:session-03:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — квиток ще на стійці; на запитання `Are you prepared?` дайте заперечну відповідь",
+      "prompt": "Послухайте фразу про друзів",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-03:i09:r1",
-          "text": "am"
+          "text": "They are not late."
         },
         {
           "responseId": "en:lesson-02:session-03:i09:r2",
-          "text": "are"
+          "text": "They are not free."
         },
         {
           "responseId": "en:lesson-02:session-03:i09:r3",
-          "text": "is"
+          "text": "They are not relaxed."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — квиток ще на стійці; на запитання `Are you prepared?` дайте заперечну відповідь",
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про друзів",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Билет ещё на стойке. На вопрос `Are you prepared?` ответьте отрицательно.",
-          "uk": "Квиток ще на стійці. На запитання `Are you prepared?` дайте заперечну відповідь."
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i09:audio",
+          "transcript": "They are not late."
         },
-        "gappedTargetPhrase": "No, I ___ not.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-03:i09:r1",
-            "text": "am"
+            "targetText": "They are not late.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-03:i09:r2",
-            "text": "are"
+            "targetText": "They are not free.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-03:i09:r3",
-            "text": "is"
+            "targetText": "They are not relaxed.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставте слово — квиток ще на стійці; на запитання `Are you prepared?` дайте заперечну відповідь",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-03:i09:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — квиток ще на стійці; на запитання `Are you prepared?` дайте заперечну відповідь",
+            "testedDimension": "Послухайте фразу про друзів",
             "feedbackByLocale": {
-              "ru": "С `I` в ответе нужна форма `am`.",
-              "uk": "З `I` у відповіді потрібна форма `am`."
+              "ru": "В записи последнее слово — `late`, а в этом варианте — `free`.",
+              "uk": "У записі останнє слово — `late`, а в цьому варіанті — `free`."
             }
           },
           {
             "responseId": "en:lesson-02:session-03:i09:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — квиток ще на стійці; на запитання `Are you prepared?` дайте заперечну відповідь",
+            "testedDimension": "Послухайте фразу про друзів",
             "feedbackByLocale": {
-              "ru": "С `I` в ответе нужна форма `am`.",
-              "uk": "З `I` у відповіді потрібна форма `am`."
+              "ru": "В записи последнее слово — `late`, а в этом варианте — `relaxed`.",
+              "uk": "У записі останнє слово — `late`, а в цьому варіанті — `relaxed`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -520,257 +540,60 @@
       "interactionId": "en:lesson-02:session-03:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротке «так» — рюкзак закритий, квиток у кишені; запитання: `Are you prepared?`",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротке «так» — рюкзак закритий, квиток у кишені; запитання: `Are you prepared?`",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Yes, I am.",
-        "localizedMeaning": {
-          "ru": "Рюкзак закрыт, билет в кармане. На вопрос `Are you prepared?` ответьте коротко.",
-          "uk": "Рюкзак закритий, квиток у кишені. На запитання `Are you prepared?` дайте коротку відповідь."
-        },
-        "orderedTokens": [
-          "Yes,",
-          "I",
-          "am"
-        ],
-        "authoredDistractorTokens": [
-          "prepared"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-03:i11",
-      "ordinal": 14,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — автобус запізнюється, а телефон розряджений",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-03:i11:r1",
-          "text": "worried"
-        },
-        {
-          "responseId": "en:lesson-02:session-03:i11:r2",
-          "text": "prepared"
-        },
-        {
-          "responseId": "en:lesson-02:session-03:i11:r3",
-          "text": "hungry"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — автобус запізнюється, а телефон розряджений",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Автобус опаздывает, а телефон разряжен.",
-          "uk": "Автобус запізнюється, а телефон розряджений."
-        },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-03:i11:r1",
-            "text": "worried"
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i11:r2",
-            "text": "prepared"
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i11:r3",
-            "text": "hungry"
-          }
-        ],
-        "testedDimension": "Вставте слово — автобус запізнюється, а телефон розряджений",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-03:i11:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — автобус запізнюється, а телефон розряджений",
-            "feedbackByLocale": {
-              "ru": "Вещи могут быть собраны, но сейчас вы волнуетесь.",
-              "uk": "Речі можуть бути зібрані, але зараз ви хвилюєтеся."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i11:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — автобус запізнюється, а телефон розряджений",
-            "feedbackByLocale": {
-              "ru": "В сцене причина для тревоги, не для голода.",
-              "uk": "У сцені є причина для тривоги, а не для голоду."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-03:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть повну фразу — усе для дороги готове",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повну фразу — усе для дороги готове",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Yes, I am prepared.",
-        "localizedMeaning": {
-          "ru": "Всё для дороги готово.",
-          "uk": "Усе для дороги готове."
-        },
-        "orderedTokens": [
-          "Yes,",
-          "I",
-          "am",
-          "prepared."
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-03:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви не знайшли бронювання й хвилюєтеся",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-03:i13:r1",
-          "text": "worried"
-        },
-        {
-          "responseId": "en:lesson-02:session-03:i13:r2",
-          "text": "awake"
-        },
-        {
-          "responseId": "en:lesson-02:session-03:i13:r3",
-          "text": "lost"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви не знайшли бронювання й хвилюєтеся",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы не нашли бронь и волнуетесь.",
-          "uk": "Ви не знайшли бронювання й хвилюєтеся."
-        },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-03:i13:r1",
-            "text": "worried"
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i13:r2",
-            "text": "awake"
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i13:r3",
-            "text": "lost"
-          }
-        ],
-        "testedDimension": "Вставте слово — ви не знайшли бронювання й хвилюєтеся",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-03:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — ви не знайшли бронювання й хвилюєтеся",
-            "feedbackByLocale": {
-              "ru": "Вы можете не спать, но сцена говорит о тревоге.",
-              "uk": "Ви можете не спати, але сцена говорить про тривогу."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-03:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — ви не знайшли бронювання й хвилюєтеся",
-            "feedbackByLocale": {
-              "ru": "Бронь потерялась, но вы не заблудились сами.",
-              "uk": "Бронювання загубилося, але ви самі не заблукали."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-03:i14",
-      "ordinal": 17,
-      "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте пари",
+      "prompt": "З’єднайте знайомі слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте пари",
+      "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-03:i14:p1",
-            "target": "yes",
+            "pairId": "en:lesson-02:session-03:i10:p1",
+            "target": "relaxed",
             "meaningByLocale": {
-              "ru": "да",
-              "uk": "так"
+              "ru": "расслабленный",
+              "uk": "розслаблений"
             }
           },
           {
-            "pairId": "en:lesson-02:session-03:i14:p2",
-            "target": "no",
+            "pairId": "en:lesson-02:session-03:i10:p2",
+            "target": "satisfied",
             "meaningByLocale": {
-              "ru": "нет",
-              "uk": "ні"
+              "ru": "довольный результатом",
+              "uk": "задоволений результатом"
             }
           },
           {
-            "pairId": "en:lesson-02:session-03:i14:p3",
-            "target": "ok",
+            "pairId": "en:lesson-02:session-03:i10:p3",
+            "target": "free",
             "meaningByLocale": {
-              "ru": "нормально",
-              "uk": "нормально"
+              "ru": "свободный",
+              "uk": "вільний"
             }
           },
           {
-            "pairId": "en:lesson-02:session-03:i14:p4",
-            "target": "awake",
+            "pairId": "en:lesson-02:session-03:i10:p4",
+            "target": "heavy",
             "meaningByLocale": {
-              "ru": "не спит",
-              "uk": "не спить"
+              "ru": "тяжёлый по весу",
+              "uk": "важкий за вагою"
             }
           }
         ],
         "leftColumn": [
-          "yes",
-          "no",
-          "ok",
-          "awake"
+          "relaxed",
+          "satisfied",
+          "free",
+          "heavy"
         ],
         "rightColumn": [
-          "так",
-          "ні",
-          "нормально",
-          "не спить"
+          "розслаблений",
+          "задоволений результатом",
+          "вільний",
+          "важкий за вагою"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -787,57 +610,118 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-03:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-02:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i11:audio",
+          "transcript": "She's not aware."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She's not aware.",
+        "orderedTokens": [
+          "She's",
+          "not",
+          "aware"
+        ],
+        "authoredDistractorTokens": [
+          "They're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `She's` — `She's not aware.`",
+              "uk": "тут потрібно `She's` — `She's not aware.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Мапа відкрита, квиток у вас, часу достатньо. Запитання: `Are you worried?` Складіть коротку відповідь.",
+      "prompt": "Анну й Олега не влаштовує результат обговорення. Скажіть, що вони незадоволені результатом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Мапа відкрита, квиток у вас, часу достатньо. Запитання: `Are you worried?` Складіть коротку відповідь.",
+      "accessibilityLabel": "Анну й Олега не влаштовує результат обговорення. Скажіть, що вони незадоволені результатом",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "No, I am not.",
+        "targetPhrase": "They are not satisfied.",
         "localizedMeaning": {
-          "ru": "Карта открыта, билет у вас, времени достаточно. Вопрос: `Are you worried?`",
-          "uk": "Мапа відкрита, квиток у вас, часу достатньо. Запитання: `Are you worried?`"
+          "ru": "Анну и Олега не устраивает результат обсуждения. Скажите, что они недовольны результатом",
+          "uk": "Анну й Олега не влаштовує результат обговорення. Скажіть, що вони незадоволені результатом"
         },
         "orderedTokens": [
-          "No,",
-          "I",
-          "am",
-          "not"
+          "They",
+          "are",
+          "not",
+          "satisfied"
         ],
         "authoredDistractorTokens": [
-          "worried"
+          "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Анну й Олега не влаштовує результат обговорення. Скажіть, що вони незадоволені результатом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are not satisfied.`",
+              "uk": "тут потрібно `are` — `They are not satisfied.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-03:i16:s01",
-      "ordinal": 19,
+      "interactionId": "en:lesson-02:session-03:i13",
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Квиток у кишені, рюкзак закритий, усе для дороги зібрано. Скажіть уголос, що ви готові.",
+      "prompt": "Сумка з речами для зустрічі мало важить. Скажіть, що вона не важка",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-03:i16:s01:audio"
+        "en:lesson-02:session-03:i13:audio"
       ],
-      "accessibilityLabel": "Квиток у кишені, рюкзак закритий, усе для дороги зібрано. Скажіть уголос, що ви готові.",
+      "accessibilityLabel": "Сумка з речами для зустрічі мало важить. Скажіть, що вона не важка",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-03:i16:s01:audio",
-          "transcript": "I am prepared."
+          "audioTargetId": "en:lesson-02:session-03:i13:audio",
+          "transcript": "It is not heavy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am prepared.",
+        "targetPhrase": "It is not heavy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -851,113 +735,270 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-03:i16:s02",
-      "ordinal": 20,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Ви знайшли квиток і встигаєте на автобус. Скажіть уголос, що ви не хвилюєтеся.",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-03:i16:s02:audio"
-      ],
-      "accessibilityLabel": "Ви знайшли квиток і встигаєте на автобус. Скажіть уголос, що ви не хвилюєтеся.",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-03:i16:s02:audio",
-          "transcript": "No, I am not worried."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "No, I am not worried.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-03:i16:s03",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-02:session-03:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Фінал — ви прокинулися, перевірили квиток і закрили рюкзак. Вставте відповідну фразу: повідомте сусіду, що ви готові й уже не спите.",
+      "prompt": "Аргументи поки не переконали Олега. Доповніть фразу про нього",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-03:i16:s03:r1",
-          "text": "I am prepared and awake."
+          "responseId": "en:lesson-02:session-03:i14:r1",
+          "text": "is"
         },
         {
-          "responseId": "en:lesson-02:session-03:i16:s03:r2",
-          "text": "I prepared am and awake."
+          "responseId": "en:lesson-02:session-03:i14:r2",
+          "text": "am"
         },
         {
-          "responseId": "en:lesson-02:session-03:i16:s03:r3",
-          "text": "I am prepared awake and."
+          "responseId": "en:lesson-02:session-03:i14:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Фінал — ви прокинулися, перевірили квиток і закрили рюкзак. Вставте відповідну фразу: повідомте сусіду, що ви готові й уже не спите.",
+      "accessibilityLabel": "Аргументи поки не переконали Олега. Доповніть фразу про нього",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы проснулись, проверили билет и закрыли рюкзак. Скажите соседу, что вы готовы и уже не спите.",
-          "uk": "Ви прокинулися, перевірили квиток і закрили рюкзак. Скажіть сусіду, що ви готові й уже не спите."
+          "ru": "Доводы пока не убедили Олега. Дополните фразу о нём",
+          "uk": "Аргументи поки не переконали Олега. Доповніть фразу про нього"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "He ___ not convinced.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-02:session-03:i16:s03:r1",
-            "text": "I am prepared and awake."
+            "responseId": "en:lesson-02:session-03:i14:r1",
+            "text": "is"
           },
           {
-            "responseId": "en:lesson-02:session-03:i16:s03:r2",
-            "text": "I prepared am and awake."
+            "responseId": "en:lesson-02:session-03:i14:r2",
+            "text": "am"
           },
           {
-            "responseId": "en:lesson-02:session-03:i16:s03:r3",
-            "text": "I am prepared awake and."
+            "responseId": "en:lesson-02:session-03:i14:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Фінал — ви прокинулися, перевірили квиток і закрили рюкзак. Вставте відповідну фразу: повідомте сусіду, що ви готові й уже не спите.",
+        "testedDimension": "Аргументи поки не переконали Олега. Доповніть фразу про нього",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i16:s03:r2",
+            "responseId": "en:lesson-02:session-03:i14:r2",
             "correct": false,
-            "testedDimension": "Фінал — ви прокинулися, перевірили квиток і закрили рюкзак. Вставте відповідну фразу: повідомте сусіду, що ви готові й уже не спите.",
+            "testedDimension": "Аргументи поки не переконали Олега. Доповніть фразу про нього",
             "feedbackByLocale": {
-              "ru": "После `I` сначала нужна форма `am`; `prepared` описывает ваше состояние.",
-              "uk": "Після `I` спочатку потрібна форма `am`; `prepared` описує ваш стан."
+              "ru": "После `He` нужно `is`.",
+              "uk": "Після `He` потрібно `is`."
             }
           },
           {
-            "responseId": "en:lesson-02:session-03:i16:s03:r3",
+            "responseId": "en:lesson-02:session-03:i14:r3",
             "correct": false,
-            "testedDimension": "Фінал — ви прокинулися, перевірили квиток і закрили рюкзак. Вставте відповідну фразу: повідомте сусіду, що ви готові й уже не спите.",
+            "testedDimension": "Аргументи поки не переконали Олега. Доповніть фразу про нього",
             "feedbackByLocale": {
-              "ru": "После `prepared` нужно `and`, чтобы соединить два состояния: `prepared and awake`.",
-              "uk": "Після `prepared` потрібно `and`, щоб з’єднати два стани: `prepared and awake`."
+              "ru": "Про Олега — `He is not`.",
+              "uk": "Про Олега — `He is not`."
             }
           }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте коротку фразу й виберіть її",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i15:r1",
+          "text": "We're not concerned."
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i15:r2",
+          "text": "We're not convinced."
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i15:r3",
+          "text": "We're not aware."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте коротку фразу й виберіть її",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i15:audio",
+          "transcript": "We're not concerned."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:i15:r1",
+            "targetText": "We're not concerned.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i15:r2",
+            "targetText": "We're not convinced.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i15:r3",
+            "targetText": "We're not aware.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте коротку фразу й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `concerned`, а в этом варианте — `convinced`.",
+              "uk": "У записі останнє слово — `concerned`, а в цьому варіанті — `convinced`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте коротку фразу й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `concerned`, а в этом варианте — `aware`.",
+              "uk": "У записі останнє слово — `concerned`, а в цьому варіанті — `aware`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-03:i16:p1",
+            "target": "aware",
+            "meaningByLocale": {
+              "ru": "осведомлённый",
+              "uk": "обізнаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i16:p2",
+            "target": "convinced",
+            "meaningByLocale": {
+              "ru": "убеждённый",
+              "uk": "переконаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i16:p3",
+            "target": "concerned",
+            "meaningByLocale": {
+              "ru": "обеспокоенный",
+              "uk": "стурбований"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i16:p4",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "занятый",
+              "uk": "зайнятий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "aware",
+          "convinced",
+          "concerned",
+          "busy"
+        ],
+        "rightColumn": [
+          "обізнаний",
+          "переконаний",
+          "стурбований",
+          "зайнятий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Удома друг пояснює, чому варто переставити стіл. Його аргументи вас поки не переконали. Скажіть, що ви не переконані",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Удома друг пояснює, чому варто переставити стіл. Його аргументи вас поки не переконали. Скажіть, що ви не переконані",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i17:audio",
+          "transcript": "I am not convinced."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not convinced.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 18,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ec91cb2afbd9c52ed0dd223bc448f2832c4d5cd9b802647a551cf4843f602d24"
+  "learnerFingerprint": "bc0e2364d20f57efe6c70e7db28b22b1643357b967b28184c17b70e67961fe9e"
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-01:intro1:r2": {
+          "ru": "Здесь нет отрицания. Для «не уверен» нужно `not` после `am`.",
+          "uk": "Тут немає заперечення. Для «не впевнений» потрібно `not` після `am`."
+        },
+        "en:lesson-02:session-01:intro1:r3": {
+          "ru": "`not` не заменяет `am`: нужно `I am not sure`.",
+          "uk": "`not` не замінює `am`: потрібно `I am not sure`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-01:intro2:r2": {
+          "ru": "Это «Ей интересно». Для отрицания добавьте `not` после `is`.",
+          "uk": "Це «Їй цікаво». Для заперечення додайте `not` після `is`."
+        },
+        "en:lesson-02:session-01:intro2:r3": {
+          "ru": "После `She` сохраняем `is`: `She is not interested`.",
+          "uk": "Після `She` зберігаємо `is`: `She is not interested`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-01:intro3:r2": {
+          "ru": "Это «Нам удобно». Здесь нужно отрицание: `are not`.",
+          "uk": "Це «Нам зручно». Тут потрібне заперечення: `are not`."
+        },
+        "en:lesson-02:session-01:intro3:r3": {
+          "ru": "`are` не исчезает: `We are not comfortable`.",
+          "uk": "`are` не зникає: `We are not comfortable`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "94b71698b29387d61dd94126f80c26e8a994a40bc2ea8b4273882744c34cca52"
+}

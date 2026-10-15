@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-10",
   "learningOutcomeByLocale": {
-    "ru": "`Is it + слово` — вопрос про вещь, место или погоду",
-    "uk": "`Is it + слово` — запитання про річ, місце або погоду"
+    "ru": "различать impossible и not impossible, повторить вопросы и короткие формы",
+    "uk": "розрізняти impossible і not impossible, повторити запитання та короткі форми"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`it` — про всё, что не человек",
-        "uk": "`it` — про все, що не людина"
+        "ru": "Не получится",
+        "uk": "Не вийде"
       },
       "bodyByLocale": {
-        "ru": "`it` — «оно». Так говорят про место, вещь, погоду: не про человека напротив, а про кафе, про стул, про дождь за окном.\n\nЧтобы спросить, ставим `is` первым, `it` сразу за ним: `Is it cold?`. Поменяйте эти два слова местами — `It is cold.` — и вы уже не спрашиваете, а отвечаете.",
-        "uk": "`it` — «воно». Так кажуть про місце, річ, погоду: не про людину навпроти, а про кафе, про стілець, про дощ за вікном.\n\nЩоб запитати, ставимо `is` першим, `it` одразу за ним: `Is it cold?`. Поміняйте ці два слова місцями — `It is cold.` — і ви вже не питаєте, а відповідаєте."
+        "ru": "`impossible` — «невозможный». `It is impossible` — «Это невозможно», коротко `It's impossible`. Собранный шкаф шире дверного проёма. Уговаривать дверь бесполезно: от «ну пожалуйста» она шире не станет.",
+        "uk": "`impossible` — «неможливий». `It is impossible` — «Це неможливо», коротко `It's impossible`. Зібрана шафа ширша за дверний отвір. Умовляти двері марно: від «ну будь ласка» вони ширшими не стануть."
       },
       "question": {
         "interactionId": "en:lesson-02:session-10:intro1:q",
         "promptByLocale": {
-          "ru": "За окном люди в куртках и шарфах, хотя ещё сентябрь. Спросите, холодно ли там.",
-          "uk": "За вікном люди в куртках і шарфах, хоч іще вересень. Запитайте, чи там холодно."
+          "ru": "Собранный шкаф шире проёма, и повернуть его не удастся. Пронести его так невозможно. Коротко скажите об этом.",
+          "uk": "Зібрана шафа ширша за отвір, і повернути її не вдасться. Пронести її так неможливо. Коротко скажіть про це."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-10:intro1:r1",
-              "text": "Is it cold?"
+              "text": "It's impossible."
             },
             {
               "responseId": "en:lesson-02:session-10:intro1:r2",
-              "text": "It is cold?"
+              "text": "It's possible."
             },
             {
               "responseId": "en:lesson-02:session-10:intro1:r3",
-              "text": "Is cold it?"
+              "text": "They're impossible."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-10:intro1:r1",
-              "text": "Is it cold?"
+              "text": "It's impossible."
             },
             {
               "responseId": "en:lesson-02:session-10:intro1:r2",
-              "text": "It is cold?"
+              "text": "It's possible."
             },
             {
               "responseId": "en:lesson-02:session-10:intro1:r3",
-              "text": "Is cold it?"
+              "text": "They're impossible."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За окном люди в куртках и шарфах, хотя ещё сентябрь. Спросите, холодно ли там.",
-          "uk": "За вікном люди в куртках і шарфах, хоч іще вересень. Запитайте, чи там холодно."
+          "ru": "Собранный шкаф шире проёма, и повернуть его не удастся. Пронести его так невозможно. Коротко скажите об этом.",
+          "uk": "Зібрана шафа ширша за отвір, і повернути її не вдасться. Пронести її так неможливо. Коротко скажіть про це."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`crowded` — «людно»",
-        "uk": "`crowded` — «людно»"
+        "ru": "А если разобрать?",
+        "uk": "А якщо розібрати?"
       },
       "bodyByLocale": {
-        "ru": "`crowded` — «людно, битком». Не «большое», не «шумное»: просто людей столько, что между столиками не пройти.\n\nРядом есть похожее `crowd` — «толпа», то есть сами люди. А `crowded` — про место, где этих людей много. Спрашивая про кафе, берём `crowded`.",
-        "uk": "`crowded` — «людно, повно людей». Не «велике», не «гучне»: просто людей стільки, що між столиками не пройти.\n\nПоруч є схоже `crowd` — «натовп», тобто самі люди. А `crowded` — про місце, де цих людей багато. Питаючи про кафе, беремо `crowded`."
+        "ru": "`It is not impossible` — «Это не невозможно», то есть такая возможность есть. Это ещё не обещание лёгкой работы. Здесь `not` отрицает именно невозможность. Чтобы сказать «Невозможно», достаточно `It is impossible`, без `not`.",
+        "uk": "`It is not impossible` — «Це не неможливо», тобто така можливість є. Це ще не обіцянка легкої роботи. Тут `not` заперечує саме неможливість. Щоб сказати «Неможливо», достатньо `It is impossible`, без `not`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-10:intro2:q",
         "promptByLocale": {
-          "ru": "Вы заглянули в зал: все столики заняты, у бара стоят. Спросите спутника, всегда ли тут так.",
-          "uk": "Ви зазирнули в залу: усі столики зайняті, біля бару стоять. Запитайте супутника, чи завжди тут так."
+          "ru": "После разборки детали пройдут в дверь. Скажите, что перенос не невозможен.",
+          "uk": "Після розбирання деталі пройдуть у двері. Скажіть, що перенесення не є неможливим."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-10:intro2:r1",
-              "text": "Is it crowded?"
+              "text": "It is not impossible."
             },
             {
               "responseId": "en:lesson-02:session-10:intro2:r2",
-              "text": "Is it crowd?"
+              "text": "It is impossible."
             },
             {
               "responseId": "en:lesson-02:session-10:intro2:r3",
-              "text": "It crowded?"
+              "text": "It not impossible."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-10:intro2:r1",
-              "text": "Is it crowded?"
+              "text": "It is not impossible."
             },
             {
               "responseId": "en:lesson-02:session-10:intro2:r2",
-              "text": "Is it crowd?"
+              "text": "It is impossible."
             },
             {
               "responseId": "en:lesson-02:session-10:intro2:r3",
-              "text": "It crowded?"
+              "text": "It not impossible."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы заглянули в зал: все столики заняты, у бара стоят. Спросите спутника, всегда ли тут так.",
-          "uk": "Ви зазирнули в залу: усі столики зайняті, біля бару стоять. Запитайте супутника, чи завжди тут так."
+          "ru": "После разборки детали пройдут в дверь. Скажите, что перенос не невозможен.",
+          "uk": "Після розбирання деталі пройдуть у двері. Скажіть, що перенесення не є неможливим."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`noisy` — «шумно»",
-        "uk": "`noisy` — «шумно»"
+        "ru": "Сначала уточним",
+        "uk": "Спочатку уточнімо"
       },
       "bodyByLocale": {
-        "ru": "`noisy` — «шумно». Место, где вас переспрашивают, а вы переспрашиваете в ответ.\n\nСлово годится и для зала, и для улицы, и для соседнего столика — всюду, где речь про громкость, а не про людей и не про погоду. Стоит оно там же, где `cold` и `crowded`: сразу после `is it`.",
-        "uk": "`noisy` — «шумно». Місце, де вас перепитують, а ви перепитуєте у відповідь.\n\nСлово годиться і для зали, і для вулиці, і для сусіднього столика — усюди, де мова про гучність, а не про людей і не про погоду. Стоїть воно там само, де `cold` і `crowded`: одразу після `is it`."
+        "ru": "`Is it impossible?` — «Это невозможно?» Вы ещё не делаете вывод, а спрашиваете. Про уверенность друга можно спросить `Are you confident?` — «Ты уверен в себе?» А после работы — `Are you satisfied?`: «Ты доволен результатом?»",
+        "uk": "`Is it impossible?` — «Це неможливо?» Ви ще не робите висновку, а запитуєте. Про впевненість друга можна запитати `Are you confident?` — «Ти впевнений у собі?» А після роботи — `Are you satisfied?`: «Ти задоволений результатом?»"
       },
       "question": {
         "interactionId": "en:lesson-02:session-10:intro3:q",
         "promptByLocale": {
-          "ru": "Спутник наклоняется к вам через стол и переспрашивает уже второй раз. Спросите, всегда ли тут так шумно.",
-          "uk": "Супутник нахиляється до вас через стіл і перепитує вже вдруге. Запитайте, чи завжди тут так шумно."
+          "ru": "Друг сомневается, можно ли снять дверцы шкафа. Спросите, невозможно ли это.",
+          "uk": "Друг сумнівається, чи можна зняти дверцята шафи. Запитайте, чи це неможливо."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-10:intro3:r1",
-              "text": "Is it noisy?"
+              "text": "Is it impossible?"
             },
             {
               "responseId": "en:lesson-02:session-10:intro3:r2",
-              "text": "Is it comfortable?"
+              "text": "Are it impossible?"
             },
             {
               "responseId": "en:lesson-02:session-10:intro3:r3",
-              "text": "Is noisy?"
+              "text": "Is impossible it?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-10:intro3:r1",
-              "text": "Is it noisy?"
+              "text": "Is it impossible?"
             },
             {
               "responseId": "en:lesson-02:session-10:intro3:r2",
-              "text": "Is it comfortable?"
+              "text": "Are it impossible?"
             },
             {
               "responseId": "en:lesson-02:session-10:intro3:r3",
-              "text": "Is noisy?"
+              "text": "Is impossible it?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спутник наклоняется к вам через стол и переспрашивает уже второй раз. Спросите, всегда ли тут так шумно.",
-          "uk": "Супутник нахиляється до вас через стіл і перепитує вже вдруге. Запитайте, чи завжди тут так шумно."
+          "ru": "Друг сомневается, можно ли снять дверцы шкафа. Спросите, невозможно ли это.",
+          "uk": "Друг сумнівається, чи можна зняти дверцята шафи. Запитайте, чи це неможливо."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "37e4ab41b6d597b666cf548b2bc75d3ce426ce980db063bce492efb4de18567f"
+  "introFingerprint": "a48dcc0082c857597b57b1befd72e5e6852dd861bb765c0e8ec71a4f0476b972"
 }

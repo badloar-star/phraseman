@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-46:i01",
-    "correctText": "audible",
+    "correctText": "It is appropriate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i02",
-    "correctText": "audible",
+    "correctText": "It is useless.",
     "correctResponseId": "en:lesson-02:session-46:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-46:i03",
-    "correctText": "clear",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-46:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-46:i04",
-    "correctText": "clear",
-    "correctResponseId": "en:lesson-02:session-46:i04:r1"
+    "correctText": "en:lesson-02:session-46:i04:p1=appropriate\nen:lesson-02:session-46:i04:p2=useless\nen:lesson-02:session-46:i04:p3=unofficial\nen:lesson-02:session-46:i04:p4=useful",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i05",
-    "correctText": "Am I audible?",
+    "correctText": "No, it is not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i06",
-    "correctText": "clear",
-    "correctResponseId": "en:lesson-02:session-46:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-46:i07",
-    "correctText": "Am I clear?",
-    "correctResponseId": "en:lesson-02:session-46:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-46:i08",
-    "correctText": "I am not sure.",
+    "correctText": "What is appropriate?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-46:i07",
+    "correctText": "It's appropriate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-46:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-46:i09",
-    "correctText": "ready",
+    "correctText": "Is it unofficial?",
     "correctResponseId": "en:lesson-02:session-46:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-46:i10",
-    "correctText": "en:lesson-02:session-46:i10:p1=audible\nen:lesson-02:session-46:i10:p2=clear\nen:lesson-02:session-46:i10:p3=ready\nen:lesson-02:session-46:i10:p4=sure",
+    "correctText": "en:lesson-02:session-46:i10:p1=unofficial\nen:lesson-02:session-46:i10:p2=useful\nen:lesson-02:session-46:i10:p3=appropriate\nen:lesson-02:session-46:i10:p4=useless",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i11",
-    "correctText": "You are clear.",
+    "correctText": "It is not appropriate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i12",
-    "correctText": "Am",
-    "correctResponseId": "en:lesson-02:session-46:i12:r1"
+    "correctText": "Is it useless?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i13",
-    "correctText": "We are not ready.",
+    "correctText": "It's unofficial.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i14",
-    "correctText": "ready",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-46:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-46:i15",
-    "correctText": "You are clear.",
-    "correctResponseId": null
+    "correctText": "Is it appropriate?",
+    "correctResponseId": "en:lesson-02:session-46:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-46:i16",
-    "correctText": "I am ready.",
+    "correctText": "en:lesson-02:session-46:i16:p1=useless\nen:lesson-02:session-46:i16:p2=appropriate\nen:lesson-02:session-46:i16:p3=useful\nen:lesson-02:session-46:i16:p4=unofficial",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i17",
-    "correctText": "Am I clear?",
+    "correctText": "Is it appropriate?",
     "correctResponseId": null
   }
 ]

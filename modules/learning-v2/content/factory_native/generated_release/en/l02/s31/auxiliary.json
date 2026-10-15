@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-31:intro1:r2": {
+          "ru": "Между `It` и `unusual` нужно `is`.",
+          "uk": "Між `It` і `unusual` потрібно `is`."
+        },
+        "en:lesson-02:session-31:intro1:r3": {
+          "ru": "Это отрицает необычность. В условии нужно её отметить.",
+          "uk": "Це заперечує незвичайність. За умовою потрібно її відзначити."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-31:intro2:r2": {
+          "ru": "Это «Они похожи». Здесь нужно сказать точнее: цены равны.",
+          "uk": "Це «Вони схожі». Тут потрібно сказати точніше: ціни рівні."
+        },
+        "en:lesson-02:session-31:intro2:r3": {
+          "ru": "С `They` нужно `are`.",
+          "uk": "З `They` потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-31:intro3:r2": {
+          "ru": "Так вы скажете, что билет не действует. Кассир подтвердил обратное.",
+          "uk": "Так ви скажете, що квиток не діє. Касир підтвердив протилежне."
+        },
+        "en:lesson-02:session-31:intro3:r3": {
+          "ru": "С `it` нужно `is`.",
+          "uk": "З `it` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e4c18a2b990d5675839809c08161f82f235f67366959c0e3047643b7c9355b03"
+}

@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-02:session-23:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — corner",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кассир подтвердил, что билет действует. Сообщите это полной фразой",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-23:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — corner",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кассир подтвердил, что билет действует. Сообщите это полной фразой",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-23:i01:audio",
-          "transcript": "corner"
+        "family": "phrase_builder",
+        "targetPhrase": "It is valid.",
+        "localizedMeaning": {
+          "ru": "Кассир подтвердил, что билет действует. Сообщите это полной фразой",
+          "uk": "Касир підтвердив, що квиток дійсний. Повідомте це повною фразою"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "valid"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-23:i01:r1",
-            "targetText": "corner",
-            "meaningByLocale": {
-              "ru": "«угол». Место, где одна улица упирается в другую. «Встретимся на углу» — вот про этот `corner`.",
-              "uk": "«ріг». Місце, де одна вулиця впирається в іншу. «Зустрінемось на розі» — це про цей `corner`."
+            "responseId": "en:lesson-02:session-23:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Кассир подтвердил, что билет действует. Сообщите это полной фразой",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is valid.`",
+              "uk": "тут потрібно `is` — `It is valid.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "corner",
-          "definitionByLocale": {
-            "ru": "«угол». Место, где одна улица упирается в другую. «Встретимся на углу» — вот про этот `corner`.",
-            "uk": "«ріг». Місце, де одна вулиця впирається в іншу. «Зустрінемось на розі» — це про цей `corner`."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте фразу об Анне",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-23:i02:r1",
-          "text": "corner"
+          "text": "She is married."
         },
         {
           "responseId": "en:lesson-02:session-23:i02:r2",
-          "text": "corn"
+          "text": "She is single."
         },
         {
           "responseId": "en:lesson-02:session-23:i02:r3",
-          "text": "cover"
+          "text": "She is silent."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-23:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте фразу об Анне",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-23:i02:audio",
-          "transcript": "corner"
+          "transcript": "She is married."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-23:i02:r1",
-            "targetText": "corner",
+            "targetText": "She is married.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-23:i02:r2",
-            "targetText": "corn",
+            "targetText": "She is single.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-23:i02:r3",
-            "targetText": "cover",
+            "targetText": "She is silent.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-02:session-23:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — corner",
+            "testedDimension": "Послушайте фразу об Анне",
             "feedbackByLocale": {
-              "ru": "Это «кукуруза». Короче на слог: в `corner` два, в `corn` один.",
-              "uk": "Це «кукурудза». Коротше на склад: у `corner` два, у `corn` один."
+              "ru": "В записи последнее слово — `married`, а в этом варианте — `single`.",
+              "uk": "У записі останнє слово — `married`, а в цьому варіанті — `single`."
             }
           },
           {
             "responseId": "en:lesson-02:session-23:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — corner",
+            "testedDimension": "Послушайте фразу об Анне",
             "feedbackByLocale": {
-              "ru": "«Накрывать». Из этой тройки про угол улицы только `corner`.",
-              "uk": "«Накривати». З цієї трійки про ріг вулиці лише `corner`."
+              "ru": "В записи последнее слово — `married`, а в этом варианте — `silent`.",
+              "uk": "У записі останнє слово — `married`, а в цьому варіанті — `silent`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-02:session-23:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — bridge",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-23:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — bridge",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-23:i03:audio",
-          "transcript": "bridge"
+      "prompt": "Спросите, действительны ли два билета",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i03:r1",
+          "text": "Are"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-02:session-23:i03:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i03:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, действительны ли два билета",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, действительны ли два билета",
+          "uk": "Запитайте, чи дійсні два квитки"
+        },
+        "gappedTargetPhrase": "___ they valid?",
+        "gapOptions": [
           {
             "responseId": "en:lesson-02:session-23:i03:r1",
-            "targetText": "bridge",
-            "meaningByLocale": {
-              "ru": "«мост». То, по чему переходят реку. В Дублине без этого слова далеко не уйдёте.",
-              "uk": "«міст». Те, по чому переходять річку. У Дубліні без цього слова далеко не зайдете."
-            }
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i03:r3",
+            "text": "Is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "bridge",
-          "definitionByLocale": {
-            "ru": "«мост». То, по чему переходят реку. В Дублине без этого слова далеко не уйдёте.",
-            "uk": "«міст». Те, по чому переходять річку. У Дубліні без цього слова далеко не зайдете."
+        "testedDimension": "Спросите, действительны ли два билета",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите, действительны ли два билета",
+            "feedbackByLocale": {
+              "ru": "С `they` нужно `Are`.",
+              "uk": "З `they` потрібно `Are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите, действительны ли два билета",
+            "feedbackByLocale": {
+              "ru": "Вопрос о двух билетах — `Are they valid?`.",
+              "uk": "Запитання про два квитки — `Are they valid?`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,75 +196,72 @@
       "interactionId": "en:lesson-02:session-23:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-23:i04:r1",
-          "text": "bridge"
-        },
-        {
-          "responseId": "en:lesson-02:session-23:i04:r2",
-          "text": "fridge"
-        },
-        {
-          "responseId": "en:lesson-02:session-23:i04:r3",
-          "text": "bread"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-23:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-23:i04:audio",
-          "transcript": "bridge"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-23:i04:p1",
+            "target": "valid",
+            "meaningByLocale": {
+              "ru": "действительный",
+              "uk": "дійсний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i04:p2",
+            "target": "married",
+            "meaningByLocale": {
+              "ru": "женатый, замужняя",
+              "uk": "одружений, заміжня"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i04:p3",
+            "target": "single",
+            "meaningByLocale": {
+              "ru": "без пары",
+              "uk": "без пари"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i04:p4",
+            "target": "different",
+            "meaningByLocale": {
+              "ru": "разный, другой",
+              "uk": "різний, інший"
+            }
+          }
+        ],
+        "leftColumn": [
+          "valid",
+          "married",
+          "single",
+          "different"
+        ],
+        "rightColumn": [
+          "действительный",
+          "женатый, замужняя",
+          "без пары",
+          "разный, другой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-23:i04:r1",
-            "targetText": "bridge",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i04:r2",
-            "targetText": "fridge",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i04:r3",
-            "targetText": "bread",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-23:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — bridge",
-            "feedbackByLocale": {
-              "ru": "«Холодильник». Отличается первым звуком: `f` против `b`.",
-              "uk": "«Холодильник». Відрізняється першим звуком: `f` проти `b`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — bridge",
-            "feedbackByLocale": {
-              "ru": "«Хлеб». Гласная другая: в `bridge` слышно «и», в `bread` — «э».",
-              "uk": "«Хліб». Голосний інший: у `bridge` чути «і», у `bread` — «е»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -245,68 +269,47 @@
       "interactionId": "en:lesson-02:session-23:i05",
       "ordinal": 8,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вам сказали «ждите на углу», а вы не поняли на каком",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-23:i05:r1",
-          "text": "corner"
-        },
-        {
-          "responseId": "en:lesson-02:session-23:i05:r2",
-          "text": "station"
-        },
-        {
-          "responseId": "en:lesson-02:session-23:i05:r3",
-          "text": "shops"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вам сказали «ждите на углу», а вы не поняли на каком",
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вам сказали «ждите на углу», а вы не поняли на каком",
-          "uk": "Вставте слово — вам сказали «чекайте на розі», а ви не зрозуміли на якому"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i05:audio",
+          "transcript": "It is not valid."
         },
-        "gappedTargetPhrase": "Where is the ___ ?",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not valid.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "valid"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-23:i05:r1",
-            "text": "corner"
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i05:r2",
-            "text": "station"
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i05:r3",
-            "text": "shops"
+            "responseId": "en:lesson-02:session-23:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is not valid.`",
+              "uk": "тут потрібно `is` — `It is not valid.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — вам сказали «ждите на у",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-23:i05:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вам сказали «ждите на у",
-            "feedbackByLocale": {
-              "ru": "«Вокзал» — вас про него не просили, встреча назначена на углу.",
-              "uk": "«Вокзал» — про нього вас не просили, зустріч призначено на розі."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i05:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вам сказали «ждите на у",
-            "feedbackByLocale": {
-              "ru": "«Магазины» — тоже не то место, вам назвали угол.",
-              "uk": "«Магазини» — теж не те місце, вам назвали ріг."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -316,26 +319,41 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «где мост?»",
+      "prompt": "У вас с Олегом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «где мост?»",
+      "accessibilityLabel": "У вас с Олегом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the bridge?",
+        "targetPhrase": "They are different.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «где мост?»",
-          "uk": "Складіть фразу — «де міст?»"
+          "ru": "У вас с Олегом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
+          "uk": "У вас з Олегом квитки на різні фільми. Скажіть повною фразою, що квитки різні"
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "bridge"
+          "They",
+          "are",
+          "different"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "У вас с Олегом билеты на разные фильмы. Скажите полной фразой, что билеты разные",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are different.`",
+              "uk": "тут потрібно `are` — `They are different.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -343,32 +361,32 @@
       "interactionId": "en:lesson-02:session-23:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «он рядом»",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У Олега нет партнёра, он ни с кем не встречается. Коротко скажите, что он без пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-23:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «он рядом»",
+      "accessibilityLabel": "У Олега нет партнёра, он ни с кем не встречается. Коротко скажите, что он без пары",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-23:i07:audio",
-          "transcript": "It is near."
+          "transcript": "He's single."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is near.",
-        "orderedTokens": [
-          "It",
-          "is",
-          "near"
-        ],
-        "authoredDistractorTokens": [
-          "behind"
-        ],
-        "slotFeedback": []
+        "targetPhrase": "He's single.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -378,63 +396,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вокзал стоит прямо за рядом магазинов",
+      "prompt": "Анна замужем. На «Is she married?» дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-23:i08:r1",
-          "text": "behind"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-23:i08:r2",
-          "text": "near"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-23:i08:r3",
-          "text": "corner"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вокзал стоит прямо за рядом магазинов",
+      "accessibilityLabel": "Анна замужем. На «Is she married?» дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вокзал стоит прямо за рядом магазинов",
-          "uk": "Вставте слово — вокзал стоїть просто за рядом магазинів"
+          "ru": "Анна замужем. На «Is she married?» дополните короткое «да»",
+          "uk": "Анна заміжня. На «Is she married?» доповніть коротку відповідь «так»"
         },
-        "gappedTargetPhrase": "The station is ___ the shops.",
+        "gappedTargetPhrase": "Yes, she ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-23:i08:r1",
-            "text": "behind"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-23:i08:r2",
-            "text": "near"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-23:i08:r3",
-            "text": "corner"
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — вокзал стоит прямо за р",
+        "testedDimension": "Анна замужем. На «Is she married?» дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-23:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вокзал стоит прямо за р",
+            "testedDimension": "Анна замужем. На «Is she married?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "«Рядом» — но вам сказали конкретнее: вокзал именно за магазинами.",
-              "uk": "«Поруч» — але вам сказали конкретніше: вокзал саме за магазинами."
+              "ru": "С `she` нужно `is`.",
+              "uk": "З `she` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-23:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вокзал стоит прямо за р",
+            "testedDimension": "Анна замужем. На «Is she married?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Это «угол», а не слово о том, где что стоит.",
-              "uk": "Це «ріг», а не слово про те, де що стоїть."
+              "ru": "Короткий ответ — `Yes, she is`.",
+              "uk": "Коротка відповідь — `Yes, she is`."
             }
           }
         ]
@@ -445,51 +463,75 @@
       "interactionId": "en:lesson-02:session-23:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "sound_contrast",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Различите звуки — какое из двух про «мост»?",
+      "prompt": "Послушайте фразу о фильме",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-23:i09:r1",
-          "text": "bridge"
+          "text": "It is silent."
         },
         {
           "responseId": "en:lesson-02:session-23:i09:r2",
-          "text": "fridge"
+          "text": "It is valid."
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i09:r3",
+          "text": "It is different."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-23:i09:audioA",
-        "en:lesson-02:session-23:i09:audioB"
+        "en:lesson-02:session-23:i09:audio"
       ],
-      "accessibilityLabel": "Различите звуки — какое из двух про «мост»?",
+      "accessibilityLabel": "Послушайте фразу о фильме",
       "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "bridge",
-        "contrastB": "fridge",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-02:session-23:i09:audioA",
-          "transcript": "bridge"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i09:audio",
+          "transcript": "It is silent."
         },
-        "audioB": {
-          "audioTargetId": "en:lesson-02:session-23:i09:audioB",
-          "transcript": "fridge"
-        },
-        "testedPhoneticContrast": "Различите звуки — какое из двух про «мос",
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-23:i09:r1",
+            "targetText": "It is silent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i09:r2",
+            "targetText": "It is valid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i09:r3",
+            "targetText": "It is different.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-23:i09:r2",
             "correct": false,
-            "testedDimension": "Различите звуки — какое из двух про «мос",
+            "testedDimension": "Послушайте фразу о фильме",
             "feedbackByLocale": {
-              "ru": "Это «холодильник». Первый звук другой: `f` вместо `b`.",
-              "uk": "Це «холодильник». Перший звук інший: `f` замість `b`."
+              "ru": "В записи последнее слово — `silent`, а в этом варианте — `valid`.",
+              "uk": "У записі останнє слово — `silent`, а в цьому варіанті — `valid`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу о фильме",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `silent`, а в этом варианте — `different`.",
+              "uk": "У записі останнє слово — `silent`, а в цьому варіанті — `different`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -499,58 +541,58 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-23:i10:p1",
-            "target": "corner",
+            "target": "silent",
             "meaningByLocale": {
-              "ru": "угол",
-              "uk": "ріг"
+              "ru": "беззвучный, немой",
+              "uk": "беззвучний, німий"
             }
           },
           {
             "pairId": "en:lesson-02:session-23:i10:p2",
-            "target": "bridge",
+            "target": "valid",
             "meaningByLocale": {
-              "ru": "мост",
-              "uk": "міст"
+              "ru": "действительный",
+              "uk": "дійсний"
             }
           },
           {
             "pairId": "en:lesson-02:session-23:i10:p3",
-            "target": "near",
+            "target": "different",
             "meaningByLocale": {
-              "ru": "рядом",
-              "uk": "поруч"
+              "ru": "разный, другой",
+              "uk": "різний, інший"
             }
           },
           {
             "pairId": "en:lesson-02:session-23:i10:p4",
-            "target": "behind",
+            "target": "married",
             "meaningByLocale": {
-              "ru": "за",
-              "uk": "за"
+              "ru": "женатый, замужняя",
+              "uk": "одружений, заміжня"
             }
           }
         ],
         "leftColumn": [
-          "corner",
-          "bridge",
-          "near",
-          "behind"
+          "silent",
+          "valid",
+          "different",
+          "married"
         ],
         "rightColumn": [
-          "угол",
-          "мост",
-          "рядом",
-          "за"
+          "беззвучный, немой",
+          "действительный",
+          "разный, другой",
+          "женатый, замужняя"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -570,68 +612,47 @@
       "interactionId": "en:lesson-02:session-23:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — магазины видно, только когда перейдёшь мост",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-23:i11:r1",
-          "text": "behind"
-        },
-        {
-          "responseId": "en:lesson-02:session-23:i11:r2",
-          "text": "near"
-        },
-        {
-          "responseId": "en:lesson-02:session-23:i11:r3",
-          "text": "station"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткий ответ",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — магазины видно, только когда перейдёшь мост",
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткий ответ",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — магазины видно, только когда перейдёшь мост",
-          "uk": "Вставте слово — магазини видно, тільки коли перейдеш міст"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i11:audio",
+          "transcript": "No, they are not."
         },
-        "gappedTargetPhrase": "The shops are ___ the bridge.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No, they are not.",
+        "orderedTokens": [
+          "No,",
+          "they",
+          "are",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-23:i11:r1",
-            "text": "behind"
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i11:r2",
-            "text": "near"
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i11:r3",
-            "text": "station"
+            "responseId": "en:lesson-02:session-23:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткий ответ",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, they are not.`",
+              "uk": "тут потрібно `No,` — `No, they are not.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — магазины видно, только ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-23:i11:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — магазины видно, только ",
-            "feedbackByLocale": {
-              "ru": "Тогда бы вы их увидели с этого берега. Магазины открываются только за мостом.",
-              "uk": "Тоді б ви їх побачили з цього берега. Магазини відкриваються тільки за мостом."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i11:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — магазины видно, только ",
-            "feedbackByLocale": {
-              "ru": "«Вокзал» — это место, а не слово о том, где оно.",
-              "uk": "«Вокзал» — це місце, а не слово про те, де воно."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -641,96 +662,73 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район",
+      "prompt": "Вы выбираете фильм. Спросите, немой ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район",
+      "accessibilityLabel": "Вы выбираете фильм. Спросите, немой ли он",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the street?",
+        "targetPhrase": "Is it silent?",
         "localizedMeaning": {
-          "ru": "Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район",
-          "uk": "Складіть запитання — у руці записка з назвою вулиці, а навколо незнайомий район"
+          "ru": "Вы выбираете фильм. Спросите, немой ли он",
+          "uk": "Ви обираєте фільм. Запитайте, чи він німий"
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "street"
+          "Is",
+          "it",
+          "silent"
         ],
         "authoredDistractorTokens": [
-          "it"
+          "Are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы выбираете фильм. Спросите, немой ли он",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is it silent?`",
+              "uk": "тут потрібно `Is` — `Is it silent?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-02:session-23:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы спрашиваете, как пройти к поездам",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-23:i13:r1",
-          "text": "station"
-        },
-        {
-          "responseId": "en:lesson-02:session-23:i13:r2",
-          "text": "corner"
-        },
-        {
-          "responseId": "en:lesson-02:session-23:i13:r3",
-          "text": "bridge"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Кассир проверил билет: он подходит на этот сеанс. Коротко сообщите, что он действителен",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы спрашиваете, как пройти к поездам",
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Кассир проверил билет: он подходит на этот сеанс. Коротко сообщите, что он действителен",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы спрашиваете, как пройти к поездам",
-          "uk": "Вставте слово — ви питаєте, як пройти до поїздів"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i13:audio",
+          "transcript": "It's valid."
         },
-        "gappedTargetPhrase": "Where is the ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-23:i13:r1",
-            "text": "station"
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i13:r2",
-            "text": "corner"
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i13:r3",
-            "text": "bridge"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вы спрашиваете, как про",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-23:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы спрашиваете, как про",
-            "feedbackByLocale": {
-              "ru": "«Угол» — к поездам он не ведёт.",
-              "uk": "«Ріг» — до поїздів він не веде."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-23:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы спрашиваете, как про",
-            "feedbackByLocale": {
-              "ru": "«Мост» — тоже не то место, где ходят поезда.",
-              "uk": "«Міст» — теж не те місце, де ходять поїзди."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's valid.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -739,33 +737,68 @@
       "interactionId": "en:lesson-02:session-23:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «магазины за вокзалом»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-23:i14:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — «магазины за вокзалом»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-23:i14:audio",
-          "transcript": "The shops are behind the station."
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Олег не женат. Дополните фразу об этом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i14:r1",
+          "text": "is"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The shops are behind the station.",
-        "orderedTokens": [
-          "The",
-          "shops",
-          "are",
-          "behind",
-          "the",
-          "station"
+        {
+          "responseId": "en:lesson-02:session-23:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег не женат. Дополните фразу об этом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Олег не женат. Дополните фразу об этом",
+          "uk": "Олег не одружений. Доповніть фразу про це"
+        },
+        "gappedTargetPhrase": "He ___ not married.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i14:r3",
+            "text": "are"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Олег не женат. Дополните фразу об этом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i14:r2",
+            "correct": false,
+            "testedDimension": "Олег не женат. Дополните фразу об этом",
+            "feedbackByLocale": {
+              "ru": "После `He` нужно `is`.",
+              "uk": "Після `He` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i14:r3",
+            "correct": false,
+            "testedDimension": "Олег не женат. Дополните фразу об этом",
+            "feedbackByLocale": {
+              "ru": "Про Олега — `He is not married`.",
+              "uk": "Про Олега — `He is not married`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -773,29 +806,75 @@
       "interactionId": "en:lesson-02:session-23:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите ответ — у вас спросили про вокзал, а он в двух шагах",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите ответ — у вас спросили про вокзал, а он в двух шагах",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is near.",
-        "localizedMeaning": {
-          "ru": "Соберите ответ — у вас спросили про вокзал, а он в двух шагах",
-          "uk": "Складіть відповідь — у вас запитали про вокзал, а він за два кроки"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i15:r1",
+          "text": "Are they different?"
         },
-        "orderedTokens": [
-          "It",
-          "is",
-          "near"
+        {
+          "responseId": "en:lesson-02:session-23:i15:r2",
+          "text": "Are they valid?"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i15:r3",
+          "text": "Are they silent?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i15:audio",
+          "transcript": "Are they different?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-23:i15:r1",
+            "targetText": "Are they different?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i15:r2",
+            "targetText": "Are they valid?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i15:r3",
+            "targetText": "Are they silent?",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "are"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `different`, а в этом варианте — `valid`.",
+              "uk": "У записі останнє слово — `different`, а в цьому варіанті — `valid`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `different`, а в этом варианте — `silent`.",
+              "uk": "У записі останнє слово — `different`, а в цьому варіанті — `silent`."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -803,123 +882,107 @@
       "interactionId": "en:lesson-02:session-23:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «улица за вокзалом»",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «улица за вокзалом»",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The street is behind the station.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «улица за вокзалом»",
-          "uk": "Складіть фразу — «вулиця за вокзалом»"
-        },
-        "orderedTokens": [
-          "The",
-          "street",
-          "is",
-          "behind",
-          "the",
-          "station"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-23:i16:p1",
+            "target": "single",
+            "meaningByLocale": {
+              "ru": "без пары",
+              "uk": "без пари"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i16:p2",
+            "target": "different",
+            "meaningByLocale": {
+              "ru": "разный, другой",
+              "uk": "різний, інший"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i16:p3",
+            "target": "silent",
+            "meaningByLocale": {
+              "ru": "беззвучный, немой",
+              "uk": "беззвучний, німий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i16:p4",
+            "target": "valid",
+            "meaningByLocale": {
+              "ru": "действительный",
+              "uk": "дійсний"
+            }
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "leftColumn": [
+          "single",
+          "different",
+          "silent",
+          "valid"
+        ],
+        "rightColumn": [
+          "без пары",
+          "разный, другой",
+          "беззвучный, немой",
+          "действительный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-23:i17:s01",
+      "interactionId": "en:lesson-02:session-23:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Кассир подтвердил: оба билета действуют. Анна спрашивает вас о билетах: «Are they valid?» Ответьте коротким «да», не повторяя valid",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-23:i17:s01:audio"
+        "en:lesson-02:session-23:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Кассир подтвердил: оба билета действуют. Анна спрашивает вас о билетах: «Are they valid?» Ответьте коротким «да», не повторяя valid",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-23:i17:s01:audio",
-          "transcript": "Where is the bridge?"
+          "audioTargetId": "en:lesson-02:session-23:i17:audio",
+          "transcript": "Yes, they are."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the bridge?",
+        "targetPhrase": "Yes, they are.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-23:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-23:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-23:i17:s02:audio",
-          "transcript": "It is near."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It is near.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-23:i17:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-23:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-23:i17:s03:audio",
-          "transcript": "It is behind the shops."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It is behind the shops.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -930,11 +993,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5c16df7711a6fa36a76bc83401ffb3f6e6da549c804cde46a2ef001c35bd2fc1"
+  "learnerFingerprint": "c71999ab65c6054bfb73d2fdbd92fe7c5403f09f5f1d22c66e4cd12b2b3dbc18"
 }

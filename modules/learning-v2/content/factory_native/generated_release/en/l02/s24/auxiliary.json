@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-24:intro1:r2": {
+          "ru": "Так вы отрицаете плохое самочувствие Анны.",
+          "uk": "Так ви заперечуєте погане самопочуття Анни."
+        },
+        "en:lesson-02:session-24:intro1:r3": {
+          "ru": "С `she` нужно `is`.",
+          "uk": "З `she` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-24:intro2:r2": {
+          "ru": "Это подтвердит, что всё собрано. Детали пока не хватает.",
+          "uk": "Це підтвердить, що все складено. Деталі поки бракує."
+        },
+        "en:lesson-02:session-24:intro2:r3": {
+          "ru": "С `it` нужно `is`.",
+          "uk": "З `it` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-24:intro3:r2": {
+          "ru": "Анна не трогала печенье. Здесь нужно `innocent`.",
+          "uk": "Анна не чіпала печиво. Тут потрібно `innocent`."
+        },
+        "en:lesson-02:session-24:intro3:r3": {
+          "ru": "Речь об Анне: `She's`.",
+          "uk": "Йдеться про Анну: `She's`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "66f853154be1440ac85fe812c9fae971d5b8012c66c3d1f6ffef9ecdb9ecb278"
+}

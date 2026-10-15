@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-25:intro1:r2": {
+          "ru": "Это вопрос, отсутствует ли она. Вы пока не знаете, кого нет.",
+          "uk": "Це запитання, чи вона відсутня. Ви поки не знаєте, кого немає."
+        },
+        "en:lesson-02:session-25:intro1:r3": {
+          "ru": "После `Who` здесь нужно `is`.",
+          "uk": "Після `Who` тут потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-25:intro2:r2": {
+          "ru": "В этом вопросе `is` ставим перед `he`.",
+          "uk": "У цьому запитанні `is` ставимо перед `he`."
+        },
+        "en:lesson-02:session-25:intro2:r3": {
+          "ru": "Это «Кто он?», а вы спрашиваете, где Олег.",
+          "uk": "Це «Хто він?», а ви запитуєте, де Олег."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-25:intro3:r2": {
+          "ru": "Это «Где это?» Предмет перед вами; вы хотите понять, что он такое.",
+          "uk": "Це «Де це?» Предмет перед вами; ви хочете зрозуміти, що він таке."
+        },
+        "en:lesson-02:session-25:intro3:r3": {
+          "ru": "Для этого вопроса нужен порядок `What is it?`.",
+          "uk": "Для цього запитання потрібен порядок `What is it?`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "89668c8edef3713adbdcbc0c6b82cea63dbc9590cf0c6dea5b1ee444646aa6f0"
+}

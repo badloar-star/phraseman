@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-18",
   "learningOutcomeByLocale": {
-    "ru": "`Where are` + несколько предметов",
-    "uk": "`Where are` + кілька предметів"
+    "ru": "сказать о плохом самочувствии и выбрать короткий ответ по смыслу вопроса",
+    "uk": "сказати про погане самопочуття й вибрати коротку відповідь за змістом запитання"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`shops` — магазины, а не один магазин",
-        "uk": "`shops` — магазини, а не один магазин"
+        "ru": "Мне нездоровится",
+        "uk": "Мені нездужається"
       },
       "bodyByLocale": {
-        "ru": "`shop` — «магазин». Добавили `-s` — `shops`, стало «магазины».\n\nПока предмет один, рядом стоит `is`. Как только их несколько, на его место встаёт `are`: `Where are the shops?`\n\nОдно место — `is`, несколько — `are`. Больше во фразе ничего не меняется.",
-        "uk": "`shop` — «магазин». Додали `-s` — `shops`, стало «магазини».\n\nПоки предмет один, поряд стоїть `is`. Щойно їх кілька, на його місце стає `are`: `Where are the shops?`\n\nОдне місце — `is`, кілька — `are`. Більше у фразі нічого не змінюється."
+        "ru": "`unwell` — «плохо себя чувствующий». `I am unwell` — «Мне нездоровится», коротко `I'm unwell`. Слово не называет причину или болезнь. Сегодня можно объяснить своё состояние одной фразой; монолог на три страницы подождёт репетиции.",
+        "uk": "`unwell` — «той, хто погано почувається». `I am unwell` — «Мені нездужається», коротко `I'm unwell`. Слово не називає причину чи хворобу. Сьогодні можна пояснити свій стан однією фразою; монолог на три сторінки зачекає репетиції."
       },
       "question": {
         "interactionId": "en:lesson-02:session-18:intro1:q",
         "promptByLocale": {
-          "ru": "Вы у входа, магазины где-то дальше. Спросите охранника.",
-          "uk": "Ви біля входу, магазини десь далі. Запитайте охоронця."
+          "ru": "Вы плохо себя чувствуете и хотите уйти домой. Коротко сообщите о самочувствии.",
+          "uk": "Ви погано почуваєтеся й хочете піти додому. Коротко повідомте про самопочуття."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-18:intro1:r1",
-              "text": "Where are the shops?"
+              "text": "I'm unwell."
             },
             {
               "responseId": "en:lesson-02:session-18:intro1:r2",
-              "text": "Where is the shops?"
+              "text": "I'm well."
             },
             {
               "responseId": "en:lesson-02:session-18:intro1:r3",
-              "text": "Where the shops are?"
+              "text": "He's unwell."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-18:intro1:r1",
-              "text": "Where are the shops?"
+              "text": "I'm unwell."
             },
             {
               "responseId": "en:lesson-02:session-18:intro1:r2",
-              "text": "Where is the shops?"
+              "text": "I'm well."
             },
             {
               "responseId": "en:lesson-02:session-18:intro1:r3",
-              "text": "Where the shops are?"
+              "text": "He's unwell."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы у входа, магазины где-то дальше. Спросите охранника.",
-          "uk": "Ви біля входу, магазини десь далі. Запитайте охоронця."
+          "ru": "Вы плохо себя чувствуете и хотите уйти домой. Коротко сообщите о самочувствии.",
+          "uk": "Ви погано почуваєтеся й хочете піти додому. Коротко повідомте про самопочуття."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`toilets` — их несколько",
-        "uk": "`toilets` — їх кілька"
+        "ru": "Да — на какой вопрос?",
+        "uk": "Так — на яке запитання?"
       },
       "bodyByLocale": {
-        "ru": "`toilets` — «туалеты». В торговом центре их несколько, поэтому и спрашивают про все сразу: `Where are the toilets?`\n\nПеред `toilets` и `shops` стоит `the` — как и в прошлых вопросах про улицу и вокзал. Оно маленькое и на слух теряется, но во фразе нужно.",
-        "uk": "`toilets` — «туалети». У торговому центрі їх кілька, тому й питають про всі одразу: `Where are the toilets?`\n\nПеред `toilets` і `shops` стоїть `the` — як і в минулих питаннях про вулицю та вокзал. В українській артикля немає взагалі, тому рука сама його пропускає. А в англійській без нього фраза неповна."
+        "ru": "`Are you unwell?` — «Вам нездоровится?» Если вам плохо, ответ `Yes, I am` подтверждает это. А на `Are you well?` в той же ситуации нужен ответ `No, I am not`. Сначала услышьте, о чём спрашивают: о хорошем самочувствии или о плохом.",
+        "uk": "`Are you unwell?` — «Вам нездужається?» Якщо вам недобре, відповідь `Yes, I am` це підтверджує. А на `Are you well?` у тій самій ситуації потрібна відповідь `No, I am not`. Спочатку почуйте, про що запитують: про добре самопочуття чи про погане."
       },
       "question": {
         "interactionId": "en:lesson-02:session-18:intro2:q",
         "promptByLocale": {
-          "ru": "Вам срочно нужно. Спросите женщину у стойки.",
-          "uk": "Вам терміново потрібно. Запитайте жінку біля стійки."
+          "ru": "Вам нездоровится. Друг спрашивает: `Are you unwell?` Ответьте коротким «да».",
+          "uk": "Вам нездужається. Друг запитує: `Are you unwell?` Дайте коротку відповідь «так»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-18:intro2:r1",
-              "text": "Where are the toilets?"
+              "text": "Yes, I am."
             },
             {
               "responseId": "en:lesson-02:session-18:intro2:r2",
-              "text": "Where are toilets?"
+              "text": "No, I am not."
             },
             {
               "responseId": "en:lesson-02:session-18:intro2:r3",
-              "text": "Where is the toilets?"
+              "text": "Yes, you are."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-18:intro2:r1",
-              "text": "Where are the toilets?"
+              "text": "Yes, I am."
             },
             {
               "responseId": "en:lesson-02:session-18:intro2:r2",
-              "text": "Where are toilets?"
+              "text": "No, I am not."
             },
             {
               "responseId": "en:lesson-02:session-18:intro2:r3",
-              "text": "Where is the toilets?"
+              "text": "Yes, you are."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам срочно нужно. Спросите женщину у стойки.",
-          "uk": "Вам терміново потрібно. Запитайте жінку біля стійки."
+          "ru": "Вам нездоровится. Друг спрашивает: `Are you unwell?` Ответьте коротким «да».",
+          "uk": "Вам нездужається. Друг запитує: `Are you unwell?` Дайте коротку відповідь «так»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одно место или несколько",
-        "uk": "Одне місце чи кілька"
+        "ru": "Слово уже содержит плохое самочувствие",
+        "uk": "Слово вже містить погане самопочуття"
       },
       "bodyByLocale": {
-        "ru": "Выбор между `is` и `are` решает одно: ищете вы одно место или несколько. Одно — `is`, несколько — `are`.\n\n`street` — «улица», одна: `Where is the street?` Магазинов много: `Where are the shops?` Слово при этом тоже меняется — `shop` превращается в `shops`.",
-        "uk": "Вибір між `is` і `are` вирішує одне: ви шукаєте одне місце чи кілька. Одне — `is`, кілька — `are`.\n\n`street` — «вулиця», одна: `Where is the street?` Магазинів багато: `Where are the shops?` Слово при цьому теж змінюється — `shop` перетворюється на `shops`."
+        "ru": "`She is unwell` — «Ей нездоровится». Добавлять `not`, чтобы получить этот смысл, не нужно. `She is not unwell` отрицает плохое самочувствие. На `Is she unwell?` можно коротко ответить `No, she is not`, если ей хорошо.",
+        "uk": "`She is unwell` — «Їй нездужається». Додавати `not`, щоб отримати цей зміст, не потрібно. `She is not unwell` заперечує погане самопочуття. На `Is she unwell?` можна коротко відповісти `No, she is not`, якщо їй добре."
       },
       "question": {
         "interactionId": "en:lesson-02:session-18:intro3:q",
         "promptByLocale": {
-          "ru": "Вы не находите нужную улицу. Спросите прохожего у выхода.",
-          "uk": "Ви ніяк не знайдете потрібну вулицю. Запитайте перехожого біля виходу."
+          "ru": "Анна хорошо себя чувствует. Друг спрашивает: `Is she unwell?` Ответьте коротким «нет».",
+          "uk": "Анна добре почувається. Друг запитує: `Is she unwell?` Дайте коротку відповідь «ні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-18:intro3:r1",
-              "text": "Where is the street?"
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-18:intro3:r2",
-              "text": "Where are the street?"
+              "text": "Yes, she is."
             },
             {
               "responseId": "en:lesson-02:session-18:intro3:r3",
-              "text": "Where the street is?"
+              "text": "No, she not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-18:intro3:r1",
-              "text": "Where is the street?"
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-18:intro3:r2",
-              "text": "Where are the street?"
+              "text": "Yes, she is."
             },
             {
               "responseId": "en:lesson-02:session-18:intro3:r3",
-              "text": "Where the street is?"
+              "text": "No, she not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы не находите нужную улицу. Спросите прохожего у выхода.",
-          "uk": "Ви ніяк не знайдете потрібну вулицю. Запитайте перехожого біля виходу."
+          "ru": "Анна хорошо себя чувствует. Друг спрашивает: `Is she unwell?` Ответьте коротким «нет».",
+          "uk": "Анна добре почувається. Друг запитує: `Is she unwell?` Дайте коротку відповідь «ні»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "dda220c2ebf7486b1c06452be3b2ac19c1e711132a7f5999d85a3d4a8bc40b98"
+  "introFingerprint": "acf5f5a46557810394f4f263a0a111f64b8ced6f6b190ca09e30946342b1905c"
 }

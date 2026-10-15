@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-26",
   "learningOutcomeByLocale": {
-    "ru": "`What is + вещь` (время и погода)",
-    "uk": "`What is + річ` (час і погода)"
+    "ru": "сказать о неосторожности и повторить вопросы о людях",
+    "uk": "сказати про необережність і повторити запитання про людей"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Как спросить, что там за окном",
-        "uk": "Як запитати, що там за вікном"
+        "ru": "Не хватает внимания",
+        "uk": "Бракує уваги"
       },
       "bodyByLocale": {
-        "ru": "`weather` — «погода». Дождь, солнце, ветер, туман.\n\nСпрашивают про неё так: `What is the weather?` Сначала `what`, потом `is`, потом само слово. Перед словом стоит маленькое `the` — пока просто запоминайте вопрос вместе с ним, когда оно нужно, разберём позже.",
-        "uk": "`weather` — «погода». Дощ, сонце, вітер, туман.\n\nПитають про неї так: `What is the weather?` Спершу `what`, потім `is`, потім саме слово. Перед словом стоїть маленьке `the` — поки просто запам'ятовуйте питання разом із ним, а коли воно потрібне, розберемо згодом."
+        "ru": "`careless` — «неосторожный, небрежный». Олег ставит открытую краску на самый край стола и машет рядом рукавом: `He is careless`. Это не значит, что он обязательно плохой человек. Просто за рукавом сейчас стоит следить внимательнее, чем за рисунком.",
+        "uk": "`careless` — «необережний, недбалий». Олег ставить відкриту фарбу на самий край столу й махає поруч рукавом: `He is careless`. Це не означає, що він обов’язково погана людина. Просто за рукавом зараз варто стежити уважніше, ніж за малюнком."
       },
       "question": {
         "interactionId": "en:lesson-02:session-26:intro1:q",
         "promptByLocale": {
-          "ru": "За окном серо, и вы не понимаете, что там. Спросите спутника.",
-          "uk": "За вікном сіро, і ви не розумієте, що там. Запитайте попутника."
+          "ru": "Олег снова оставил открытую банку там, где легко её задеть. Скажите полной фразой, что он неосторожен.",
+          "uk": "Олег знову залишив відкриту банку там, де її легко зачепити. Скажіть повною фразою, що він необережний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-26:intro1:r1",
-              "text": "What is the weather?"
+              "text": "He is careless."
             },
             {
               "responseId": "en:lesson-02:session-26:intro1:r2",
-              "text": "What the weather is?"
+              "text": "He careless."
             },
             {
               "responseId": "en:lesson-02:session-26:intro1:r3",
-              "text": "What the weather?"
+              "text": "He is not careless."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-26:intro1:r1",
-              "text": "What is the weather?"
+              "text": "He is careless."
             },
             {
               "responseId": "en:lesson-02:session-26:intro1:r2",
-              "text": "What the weather is?"
+              "text": "He careless."
             },
             {
               "responseId": "en:lesson-02:session-26:intro1:r3",
-              "text": "What the weather?"
+              "text": "He is not careless."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За окном серо, и вы не понимаете, что там. Спросите спутника.",
-          "uk": "За вікном сіро, і ви не розумієте, що там. Запитайте попутника."
+          "ru": "Олег снова оставил открытую банку там, где легко её задеть. Скажите полной фразой, что он неосторожен.",
+          "uk": "Олег знову залишив відкриту банку там, де її легко зачепити. Скажіть повною фразою, що він необережний."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "То же начало, другое слово",
-        "uk": "Той самий початок, інше слово"
+        "ru": "Чувство и поведение",
+        "uk": "Почуття й поведінка"
       },
       "bodyByLocale": {
-        "ru": "`time` — «время». Про часы на стене, про минуты, про «сколько сейчас».\n\nВопрос собирается из тех же деталей: `What is the time?` Начало то же, что и в вопросе про погоду, — меняется только последнее слово. Так же спрашивают про цену: `What is the price?` — «сколько стоит?»",
-        "uk": "`time` — «час». Про годинник на стіні, про хвилини, про «котра зараз».\n\nПитання складається з тих самих деталей: `What is the time?` Початок такий самий, як у питанні про погоду, — змінюється тільки останнє слово. Так само питають про ціну: `What is the price?` — «скільки коштує?»"
+        "ru": "`worried` — «обеспокоенный», `confused` — «растерянный, запутавшийся». Анна не понимает инструкцию: `She is confused`. Вы волнуетесь за новый рукав Олега: `I am worried`. Эти слова не означают `careless`: можно волноваться и при этом быть внимательным.",
+        "uk": "`worried` — «стурбований», `confused` — «розгублений, спантеличений». Анна не розуміє інструкції: `She is confused`. Ви хвилюєтеся за новий рукав Олега: `I am worried`. Ці слова не означають `careless`: можна хвилюватися й водночас бути уважним."
       },
       "question": {
         "interactionId": "en:lesson-02:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Телефон разрядился, часов на стене нет. Спросите спутника, сколько сейчас.",
-          "uk": "Телефон розрядився, годинника на стіні немає. Запитайте попутника, котра година."
+          "ru": "Вы переживаете, что краска попадёт на новую одежду. Скажите коротко, что вы обеспокоены.",
+          "uk": "Ви переживаєте, що фарба потрапить на новий одяг. Коротко скажіть, що ви стурбовані."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-26:intro2:r1",
-              "text": "What is the time?"
+              "text": "I'm worried."
             },
             {
               "responseId": "en:lesson-02:session-26:intro2:r2",
-              "text": "What is time?"
+              "text": "I'm careless."
             },
             {
               "responseId": "en:lesson-02:session-26:intro2:r3",
-              "text": "Is what the time?"
+              "text": "He's worried."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-26:intro2:r1",
-              "text": "What is the time?"
+              "text": "I'm worried."
             },
             {
               "responseId": "en:lesson-02:session-26:intro2:r2",
-              "text": "What is time?"
+              "text": "I'm careless."
             },
             {
               "responseId": "en:lesson-02:session-26:intro2:r3",
-              "text": "Is what the time?"
+              "text": "He's worried."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Телефон разрядился, часов на стене нет. Спросите спутника, сколько сейчас.",
-          "uk": "Телефон розрядився, годинника на стіні немає. Запитайте попутника, котра година."
+          "ru": "Вы переживаете, что краска попадёт на новую одежду. Скажите коротко, что вы обеспокоены.",
+          "uk": "Ви переживаєте, що фарба потрапить на новий одяг. Коротко скажіть, що ви стурбовані."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Отвечаем про погоду",
-        "uk": "Відповідаємо про погоду"
+        "ru": "Кто и где",
+        "uk": "Хто й де"
       },
       "bodyByLocale": {
-        "ru": "`cold` — «холодно». Про погоду за окном, про воду в кране, про руки без перчаток.\n\nСпросили `What is the weather?` — отвечают коротко: `It is cold.` По-русски хватило бы одного «холодно», а по-английски перед словом ставят `It is`.",
-        "uk": "`cold` — «холодно». Про погоду за вікном, про воду в крані, про руки без рукавичок.\n\nЗапитали `What is the weather?` — відповідають коротко: `It is cold.` Українською вистачило б одного «холодно», а англійською перед словом ставлять `It is`."
+        "ru": "`Who is careless?` — «Кто неосторожен?» Здесь нужно назвать человека. `Where is he?` — «Где он?» Здесь нужно назвать место. А на `Is he careless?` можно ответить коротко: `Yes, he is` или `No, he is not`. Начало вопроса показывает, какого ответа ждут.",
+        "uk": "`Who is careless?` — «Хто необережний?» Тут потрібно назвати людину. `Where is he?` — «Де він?» Тут потрібно назвати місце. А на `Is he careless?` можна відповісти коротко: `Yes, he is` або `No, he is not`. Початок запитання показує, якої відповіді чекають."
       },
       "question": {
         "interactionId": "en:lesson-02:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Вы высунули руку в окно. Пальцы мёрзнут за пять секунд. Скажите спутнику, как там.",
-          "uk": "Ви висунули руку у вікно. Пальці мерзнуть за п'ять секунд. Скажіть попутникові, як там."
+          "ru": "Вы не видели, кто оставляет банки на краю. Спросите, кто неосторожен.",
+          "uk": "Ви не бачили, хто залишає банки на краю. Запитайте, хто необережний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-26:intro3:r1",
-              "text": "It is cold."
+              "text": "Who is careless?"
             },
             {
               "responseId": "en:lesson-02:session-26:intro3:r2",
-              "text": "It cold."
+              "text": "Where is he?"
             },
             {
               "responseId": "en:lesson-02:session-26:intro3:r3",
-              "text": "Is it cold."
+              "text": "Is he careless?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-26:intro3:r1",
-              "text": "It is cold."
+              "text": "Who is careless?"
             },
             {
               "responseId": "en:lesson-02:session-26:intro3:r2",
-              "text": "It cold."
+              "text": "Where is he?"
             },
             {
               "responseId": "en:lesson-02:session-26:intro3:r3",
-              "text": "Is it cold."
+              "text": "Is he careless?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы высунули руку в окно. Пальцы мёрзнут за пять секунд. Скажите спутнику, как там.",
-          "uk": "Ви висунули руку у вікно. Пальці мерзнуть за п'ять секунд. Скажіть попутникові, як там."
+          "ru": "Вы не видели, кто оставляет банки на краю. Спросите, кто неосторожен.",
+          "uk": "Ви не бачили, хто залишає банки на краю. Запитайте, хто необережний."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7fbf477d6473cdce3385ef6bb20d6ff9755bd67d205dcec959f1774f10a89edf"
+  "introFingerprint": "1f0c396a84f7444cb1b99cc4c05cc9da0ec854c75056713b28c721d137fc1b1b"
 }

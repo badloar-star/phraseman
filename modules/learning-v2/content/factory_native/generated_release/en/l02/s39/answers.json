@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-39:i01",
-    "correctText": "couple",
+    "correctText": "It is relevant.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i02",
-    "correctText": "couple",
+    "correctText": "He is brave.",
     "correctResponseId": "en:lesson-02:session-39:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-39:i03",
-    "correctText": "crowd",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-39:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-39:i04",
-    "correctText": "crowd",
-    "correctResponseId": "en:lesson-02:session-39:i04:r1"
+    "correctText": "en:lesson-02:session-39:i04:p1=relevant\nen:lesson-02:session-39:i04:p2=brave\nen:lesson-02:session-39:i04:p3=unusual\nen:lesson-02:session-39:i04:p4=weak",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i05",
-    "correctText": "Who is the host?",
+    "correctText": "Yes, it is.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i06",
-    "correctText": "host",
-    "correctResponseId": "en:lesson-02:session-39:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-39:i07",
-    "correctText": "The crowd is outside.",
-    "correctResponseId": "en:lesson-02:session-39:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-39:i08",
-    "correctText": "The couple is here.",
+    "correctText": "What is relevant?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-39:i07",
+    "correctText": "It's relevant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-39:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-39:i09",
-    "correctText": "strangers",
+    "correctText": "It is unusual.",
     "correctResponseId": "en:lesson-02:session-39:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-39:i10",
-    "correctText": "en:lesson-02:session-39:i10:p1=couple\nen:lesson-02:session-39:i10:p2=crowd\nen:lesson-02:session-39:i10:p3=host\nen:lesson-02:session-39:i10:p4=guests",
+    "correctText": "en:lesson-02:session-39:i10:p1=unusual\nen:lesson-02:session-39:i10:p2=weak\nen:lesson-02:session-39:i10:p3=relevant\nen:lesson-02:session-39:i10:p4=brave",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i11",
-    "correctText": "Where is the crowd?",
+    "correctText": "They are not relevant.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i12",
-    "correctText": "guests",
-    "correctResponseId": "en:lesson-02:session-39:i12:r1"
+    "correctText": "Who is brave?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i13",
-    "correctText": "Are they guests?",
+    "correctText": "It's unusual.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i14",
-    "correctText": "We are not strangers.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-39:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-39:i15",
-    "correctText": "They are not strangers.",
-    "correctResponseId": null
+    "correctText": "Are they brave?",
+    "correctResponseId": "en:lesson-02:session-39:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-39:i16",
-    "correctText": "Where is the couple?",
+    "correctText": "en:lesson-02:session-39:i16:p1=brave\nen:lesson-02:session-39:i16:p2=relevant\nen:lesson-02:session-39:i16:p3=weak\nen:lesson-02:session-39:i16:p4=unusual",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-39:i17",
-    "correctText": "Who are these people?",
+    "correctText": "Is it relevant?",
     "correctResponseId": null
   }
 ]

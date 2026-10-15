@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-18:i01",
-    "correctText": "shops",
+    "correctText": "I am unwell.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-18:i02",
-    "correctText": "shops",
+    "correctText": "Is he unwell?",
     "correctResponseId": "en:lesson-02:session-18:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-18:i03",
-    "correctText": "toilets",
-    "correctResponseId": null
+    "correctText": "am",
+    "correctResponseId": "en:lesson-02:session-18:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-18:i04",
-    "correctText": "toilets",
-    "correctResponseId": "en:lesson-02:session-18:i04:r1"
+    "correctText": "en:lesson-02:session-18:i04:p1=unwell\nen:lesson-02:session-18:i04:p2=wrong\nen:lesson-02:session-18:i04:p3=early\nen:lesson-02:session-18:i04:p4=lucky",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-18:i05",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-02:session-18:i05:r1"
+    "correctText": "No, she is not.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-18:i06",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-02:session-18:i06:r1"
+    "correctText": "Yes, he is.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-18:i07",
-    "correctText": "Where are the toilets?",
+    "correctText": "She's unwell.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-18:i08",
-    "correctText": "crowded",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-18:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-18:i09",
-    "correctText": "crowded",
+    "correctText": "She is not wrong.",
     "correctResponseId": "en:lesson-02:session-18:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-18:i10",
-    "correctText": "Where are the shops?",
+    "correctText": "en:lesson-02:session-18:i10:p1=impossible\nen:lesson-02:session-18:i10:p2=unwell\nen:lesson-02:session-18:i10:p3=wrong\nen:lesson-02:session-18:i10:p4=lucky",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-18:i11",
-    "correctText": "en:lesson-02:session-18:i11:p1=shops\nen:lesson-02:session-18:i11:p2=toilets\nen:lesson-02:session-18:i11:p3=crowded\nen:lesson-02:session-18:i11:p4=station",
+    "correctText": "We're not early.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-18:i12",
-    "correctText": "street",
-    "correctResponseId": "en:lesson-02:session-18:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-18:i13",
-    "correctText": "lost",
-    "correctResponseId": "en:lesson-02:session-18:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-18:i14",
-    "correctText": "Where is the station?",
+    "correctText": "No, I am not.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-18:i13",
+    "correctText": "Yes, we are.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-18:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-18:i15",
-    "correctText": "shops",
+    "correctText": "Is it impossible?",
     "correctResponseId": "en:lesson-02:session-18:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-18:i16",
-    "correctText": "Where are the toilets?",
+    "correctText": "en:lesson-02:session-18:i16:p1=well\nen:lesson-02:session-18:i16:p2=unwell\nen:lesson-02:session-18:i16:p3=early\nen:lesson-02:session-18:i16:p4=impossible",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-18:i17:s01",
-    "correctText": "I am lost.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-18:i17:s02",
-    "correctText": "Where are the shops?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-18:i17:s03",
-    "correctText": "Where are the toilets?",
+    "interactionId": "en:lesson-02:session-18:i17",
+    "correctText": "Yes, I am.",
     "correctResponseId": null
   }
 ]

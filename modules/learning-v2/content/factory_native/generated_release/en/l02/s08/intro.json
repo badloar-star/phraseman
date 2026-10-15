@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-08",
   "learningOutcomeByLocale": {
-    "ru": "повторение `Are you + слово?` и ответов `Yes, I am` / `No, I am not`",
-    "uk": "повторення `Are you + слово?` та відповідей `Yes, I am` / `No, I am not`"
+    "ru": "выбрать точное отрицание с am, is или are и словами первой главы второго урока",
+    "uk": "вибрати точне заперечення з am, is або are та словами першого розділу другого уроку"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вопрос начинается с `are`",
-        "uk": "Питання починається з `are`"
+        "ru": "Связка остаётся",
+        "uk": "Зв’язка залишається"
       },
       "bodyByLocale": {
-        "ru": "`awake` — «проснулся, не спит». Не «бодрый» — просто глаза открыты.\n\nНачать хочется с `you` — мы же про него и спрашиваем. Но в вопросе первым идёт `are`, а `you` сразу за ним: `Are you awake?` Переставите их — и вопрос перестанет быть вопросом.",
-        "uk": "`awake` — «прокинувся, не спить». Не «бадьорий» — просто очі розплющені.\n\nПочати хочеться з `you` — ми ж про нього й питаємо. Але в питанні першим іде `are`, а `you` одразу за ним: `Are you awake?` Переставите їх — і питання перестане бути питанням."
+        "ru": "Для отрицания `not` стоит после `am`, `is` или `are`. `I am not sure` — «Я не уверен», `She is not interested` — «Ей неинтересно». Не выбрасывайте связку: `not` занимает своё место, а не чужое.",
+        "uk": "Для заперечення `not` стоїть після `am`, `is` або `are`. `I am not sure` — «Я не впевнений», `She is not interested` — «Їй нецікаво». Не викидайте зв’язку: `not` займає своє місце, а не чуже."
       },
       "question": {
         "interactionId": "en:lesson-02:session-08:intro1:q",
         "promptByLocale": {
-          "ru": "Сосед за столом не открывает глаз уже минуту. Спросите, проснулся ли он.",
-          "uk": "Сусід за столом не розплющує очей уже хвилину. Спитайте, чи він прокинувся."
+          "ru": "Вы не уверены, во сколько начнётся показ. Скажите об этом.",
+          "uk": "Ви не впевнені, о котрій почнеться показ. Скажіть про це."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-08:intro1:r1",
-              "text": "Are you awake?"
+              "text": "I am not sure."
             },
             {
               "responseId": "en:lesson-02:session-08:intro1:r2",
-              "text": "You are awake?"
+              "text": "I not sure."
             },
             {
               "responseId": "en:lesson-02:session-08:intro1:r3",
-              "text": "Are awake you?"
+              "text": "I am sure."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-08:intro1:r1",
-              "text": "Are you awake?"
+              "text": "I am not sure."
             },
             {
               "responseId": "en:lesson-02:session-08:intro1:r2",
-              "text": "You are awake?"
+              "text": "I not sure."
             },
             {
               "responseId": "en:lesson-02:session-08:intro1:r3",
-              "text": "Are awake you?"
+              "text": "I am sure."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сосед за столом не открывает глаз уже минуту. Спросите, проснулся ли он.",
-          "uk": "Сусід за столом не розплющує очей уже хвилину. Спитайте, чи він прокинувся."
+          "ru": "Вы не уверены, во сколько начнётся показ. Скажите об этом.",
+          "uk": "Ви не впевнені, о котрій почнеться показ. Скажіть про це."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Короткий ответ вместо полного",
-        "uk": "Коротка відповідь замість повної"
+        "ru": "Сокращаем начало",
+        "uk": "Скорочуємо початок"
       },
       "bodyByLocale": {
-        "ru": "На `Are you hungry?` («голодный?») можно ответить полностью: `Yes, I am hungry.` Но слово из вопроса обычно не повторяют — оно прозвучало секунду назад.\n\nОстаётся `Yes, I am.` В вопросе про вас было `are`, а про себя вы говорите `am`: к `you` идёт `are`, к `I` — `am`.",
-        "uk": "На `Are you hungry?` («голодний?») можна відповісти повністю: `Yes, I am hungry.` Але слово з питання зазвичай не повторюють — воно прозвучало секунду тому.\n\nЛишається `Yes, I am.` У питанні про вас було `are`, а про себе ви кажете `am`: до `you` іде `are`, до `I` — `am`."
+        "ru": "`We are not comfortable` и `We're not comfortable` значат «Нам неудобно». В сокращении `not` по-прежнему отдельно. Про сестру можно сказать `She's not relaxed`: она не расслаблена.",
+        "uk": "`We are not comfortable` і `We're not comfortable` означають «Нам незручно». У скороченні `not` і далі окремо. Про сестру можна сказати `She's not relaxed`: вона не розслаблена."
       },
       "question": {
         "interactionId": "en:lesson-02:session-08:intro2:q",
         "promptByLocale": {
-          "ru": "Сосед пододвигает тарелку и спрашивает: «Are you hungry?» Вы голодны. Ответьте коротко.",
-          "uk": "Сусід підсуває тарілку й питає: «Are you hungry?» Ви голодні. Відповідайте коротко."
+          "ru": "Вам с другом неудобно на узкой скамье. Коротко скажите за вас обоих.",
+          "uk": "Вам із другом незручно на вузькій лаві. Коротко скажіть за вас обох."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-08:intro2:r1",
-              "text": "Yes, I am."
+              "text": "We're not comfortable."
             },
             {
               "responseId": "en:lesson-02:session-08:intro2:r2",
-              "text": "Yes, I hungry."
+              "text": "We're comfortable."
             },
             {
               "responseId": "en:lesson-02:session-08:intro2:r3",
-              "text": "Yes, I am hungry am."
+              "text": "She's not comfortable."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-08:intro2:r1",
-              "text": "Yes, I am."
+              "text": "We're not comfortable."
             },
             {
               "responseId": "en:lesson-02:session-08:intro2:r2",
-              "text": "Yes, I hungry."
+              "text": "We're comfortable."
             },
             {
               "responseId": "en:lesson-02:session-08:intro2:r3",
-              "text": "Yes, I am hungry am."
+              "text": "She's not comfortable."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сосед пододвигает тарелку и спрашивает: «Are you hungry?» Вы голодны. Ответьте коротко.",
-          "uk": "Сусід підсуває тарілку й питає: «Are you hungry?» Ви голодні. Відповідайте коротко."
+          "ru": "Вам с другом неудобно на узкой скамье. Коротко скажите за вас обоих.",
+          "uk": "Вам із другом незручно на вузькій лаві. Коротко скажіть за вас обох."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Отказ добавляет `not`",
-        "uk": "Відмова додає `not`"
+        "ru": "Что именно отрицаем",
+        "uk": "Що саме заперечуємо"
       },
       "bodyByLocale": {
-        "ru": "Отказ строится так же, как согласие, только с добавленным `not`: `No, I am not.`\n\n`not` идёт после `am`, не перед ним. Всё остальное как в `Yes, I am`, поэтому и учить заново нечего. Зато забудете `not` — и вместо отказа согласитесь.",
-        "uk": "Відмова будується так само, як згода, тільки з доданим `not`: `No, I am not.`\n\n`not` іде після `am`, не перед ним. Решта — як у `Yes, I am`, тому й вчити наново нічого. Зате забудете `not` — і замість відмови погодитеся."
+        "ru": "`It is not real` — не настоящее; `It is not fake` — не подделка; `It is not necessary` — необязательно. Одно маленькое `not` меняет смысл. Перед вами настоящий букет среди пластиковых декораций: цветам повезло, им досталась настоящая вода.",
+        "uk": "`It is not real` — не справжнє; `It is not fake` — не підробка; `It is not necessary` — необов’язково. Одне маленьке `not` змінює зміст. Перед вами справжній букет серед пластикових декорацій: квітам пощастило, їм дісталася справжня вода."
       },
       "question": {
         "interactionId": "en:lesson-02:session-08:intro3:q",
         "promptByLocale": {
-          "ru": "Сосед берёт второй стакан и спрашивает: «Are you thirsty?» («хочешь пить?») Пить вы не хотите. Откажитесь.",
-          "uk": "Сусід бере другу склянку й питає: «Are you thirsty?» («хочеш пити?») Пити ви не хочете. Відмовтеся."
+          "ru": "Букет настоящий. Друг принял его за искусственный. Скажите, что он не искусственный.",
+          "uk": "Букет справжній. Друг сприйняв його як штучний. Скажіть, що він не штучний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-08:intro3:r1",
-              "text": "No, I am not."
+              "text": "It is not fake."
             },
             {
               "responseId": "en:lesson-02:session-08:intro3:r2",
-              "text": "No, I not am."
+              "text": "It is not real."
             },
             {
               "responseId": "en:lesson-02:session-08:intro3:r3",
-              "text": "No, I am."
+              "text": "It is fake."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-08:intro3:r1",
-              "text": "No, I am not."
+              "text": "It is not fake."
             },
             {
               "responseId": "en:lesson-02:session-08:intro3:r2",
-              "text": "No, I not am."
+              "text": "It is not real."
             },
             {
               "responseId": "en:lesson-02:session-08:intro3:r3",
-              "text": "No, I am."
+              "text": "It is fake."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сосед берёт второй стакан и спрашивает: «Are you thirsty?» («хочешь пить?») Пить вы не хотите. Откажитесь.",
-          "uk": "Сусід бере другу склянку й питає: «Are you thirsty?» («хочеш пити?») Пити ви не хочете. Відмовтеся."
+          "ru": "Букет настоящий. Друг принял его за искусственный. Скажите, что он не искусственный.",
+          "uk": "Букет справжній. Друг сприйняв його як штучний. Скажіть, що він не штучний."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2db83e7dfddad7807cbd9c22ec010ba35fa36ba4de983815788ba0a5662040c4"
+  "introFingerprint": "07172c692ceaa1ed2385957132eeb7e26ad5206b339ef483f2dbad11f7d059fd"
 }

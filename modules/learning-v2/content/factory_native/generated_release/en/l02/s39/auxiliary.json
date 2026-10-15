@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-39:intro1:r2": {
+          "ru": "Между `It` и `relevant` нужно `is`.",
+          "uk": "Між `It` і `relevant` потрібно `is`."
+        },
+        "en:lesson-02:session-39:intro1:r3": {
+          "ru": "Это отрицает связь с темой, а фото показывает историю площади.",
+          "uk": "Це заперечує зв’язок із темою, а фото показує історію площі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-39:intro2:r2": {
+          "ru": "Это вопрос о необычности. Вам нужна связь с темой.",
+          "uk": "Це запитання про незвичайність. Вам потрібен зв’язок із темою."
+        },
+        "en:lesson-02:session-39:intro2:r3": {
+          "ru": "Это утверждение. Вы пока уточняете.",
+          "uk": "Це твердження. Ви поки уточнюєте."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-39:intro3:r2": {
+          "ru": "Вы говорите об Олеге: `He's`.",
+          "uk": "Ви говорите про Олега: `He's`."
+        },
+        "en:lesson-02:session-39:intro3:r3": {
+          "ru": "Это «Он слабый». Здесь вы отмечаете его смелость.",
+          "uk": "Це «Він слабкий». Тут ви відзначаєте його сміливість."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "535ae1b24f6068a1828a1ced5d0800c8e3054fc6799471bbeae4601bad241323"
+}

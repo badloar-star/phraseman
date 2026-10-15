@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-23:intro1:r2": {
+          "ru": "Между `It` и `valid` нужно `is`.",
+          "uk": "Між `It` і `valid` потрібно `is`."
+        },
+        "en:lesson-02:session-23:intro1:r3": {
+          "ru": "Это значит, что билет недействителен. Кассир подтвердил обратное.",
+          "uk": "Це означає, що квиток недійсний. Касир підтвердив протилежне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-23:intro2:r2": {
+          "ru": "С `they` нужно `are`.",
+          "uk": "З `they` потрібно `are`."
+        },
+        "en:lesson-02:session-23:intro2:r3": {
+          "ru": "Это сообщение. Для вопроса поставьте `Are` перед `they`.",
+          "uk": "Це повідомлення. Для запитання поставте `Are` перед `they`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-23:intro3:r2": {
+          "ru": "Так вы подтвердите, что билет действует. В условии он был только на вчера.",
+          "uk": "Так ви підтвердите, що квиток діє. За умовою він був лише на вчора."
+        },
+        "en:lesson-02:session-23:intro3:r3": {
+          "ru": "После `it` нужно `is`.",
+          "uk": "Після `it` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2cec080d9b79c578a5df75e893a87fc0ed34e29702eede95dcf872ffbca84bea"
+}

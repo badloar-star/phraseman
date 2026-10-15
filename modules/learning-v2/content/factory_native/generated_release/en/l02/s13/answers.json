@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-13:i01",
-    "correctText": "thirsty",
+    "correctText": "Is it public?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i02",
-    "correctText": "thirsty",
+    "correctText": "Is it big?",
     "correctResponseId": "en:lesson-02:session-13:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-13:i03",
-    "correctText": "Is",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-13:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-13:i04",
-    "correctText": "Is she hungry?",
+    "correctText": "en:lesson-02:session-13:i04:p1=public\nen:lesson-02:session-13:i04:p2=private\nen:lesson-02:session-13:i04:p3=big\nen:lesson-02:session-13:i04:p4=small",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i05",
-    "correctText": "he",
-    "correctResponseId": "en:lesson-02:session-13:i05:r1"
+    "correctText": "It's not public.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i06",
-    "correctText": "He is lost.",
+    "correctText": "It is not small.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i07",
-    "correctText": "Is she tired?",
+    "correctText": "Is it clean?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i08",
-    "correctText": "thirsty",
+    "correctText": "Are",
     "correctResponseId": "en:lesson-02:session-13:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-13:i09",
-    "correctText": "Is he lost?",
-    "correctResponseId": null
+    "correctText": "It is public.",
+    "correctResponseId": "en:lesson-02:session-13:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-13:i10",
-    "correctText": "hungry",
-    "correctResponseId": "en:lesson-02:session-13:i10:r1"
+    "correctText": "en:lesson-02:session-13:i10:p1=real\nen:lesson-02:session-13:i10:p2=clean\nen:lesson-02:session-13:i10:p3=small\nen:lesson-02:session-13:i10:p4=public",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i11",
-    "correctText": "en:lesson-02:session-13:i11:p1=tired\nen:lesson-02:session-13:i11:p2=hungry\nen:lesson-02:session-13:i11:p3=lost\nen:lesson-02:session-13:i11:p4=thirsty",
+    "correctText": "They're not real.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i12",
-    "correctText": "cheerful",
+    "correctText": "It is not public.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i13",
-    "correctText": "upset",
+    "correctText": "It's big.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i14",
-    "correctText": "cheerful",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-02:session-13:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-13:i15",
-    "correctText": "comfortable",
-    "correctResponseId": null
+    "correctText": "It is not clean.",
+    "correctResponseId": "en:lesson-02:session-13:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-13:i16",
-    "correctText": "comfortable",
-    "correctResponseId": "en:lesson-02:session-13:i16:r1"
+    "correctText": "en:lesson-02:session-13:i16:p1=big\nen:lesson-02:session-13:i16:p2=small\nen:lesson-02:session-13:i16:p3=clean\nen:lesson-02:session-13:i16:p4=real",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-13:i17",
-    "correctText": "She is thirsty.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-13:i18",
-    "correctText": "No, he is not upset.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-13:i19",
-    "correctText": "en:lesson-02:session-13:i19:p1=upset\nen:lesson-02:session-13:i19:p2=cheerful\nen:lesson-02:session-13:i19:p3=comfortable\nen:lesson-02:session-13:i19:p4=thirsty",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-13:i20",
-    "correctText": "Is she comfortable?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-13:i21:s01",
-    "correctText": "Is he lost?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-13:i21:s02",
-    "correctText": "Yes, he is.",
+    "correctText": "Is it public?",
     "correctResponseId": null
   }
 ]

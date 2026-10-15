@@ -1,67 +1,67 @@
 [
   {
     "interactionId": "en:lesson-02:session-50:i01",
-    "correctText": "Are you ready?",
-    "correctResponseId": "en:lesson-02:session-50:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-50:i02",
-    "correctText": "Yes, I am.",
+    "correctText": "It is effective.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-50:i02",
+    "correctText": "It is expensive.",
+    "correctResponseId": "en:lesson-02:session-50:i02:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-50:i03",
-    "correctText": "Is she free?",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-02:session-50:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-50:i04",
-    "correctText": "No, she is not.",
+    "correctText": "en:lesson-02:session-50:i04:p1=effective\nen:lesson-02:session-50:i04:p2=expensive\nen:lesson-02:session-50:i04:p3=inaccurate\nen:lesson-02:session-50:i04:p4=cheap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i05",
-    "correctText": "Is it near?",
+    "correctText": "Yes, it is.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i06",
-    "correctText": "Yes, it is.",
-    "correctResponseId": "en:lesson-02:session-50:i06:r1"
+    "correctText": "What is effective?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i07",
-    "correctText": "Are you sure?",
-    "correctResponseId": "en:lesson-02:session-50:i07:r1"
+    "correctText": "It's effective.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i08",
-    "correctText": "No, I am not.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-50:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-50:i09",
-    "correctText": "en:lesson-02:session-50:i09:p1=ready\nen:lesson-02:session-50:i09:p2=free\nen:lesson-02:session-50:i09:p3=near\nen:lesson-02:session-50:i09:p4=sure",
-    "correctResponseId": null
+    "correctText": "They are inaccurate.",
+    "correctResponseId": "en:lesson-02:session-50:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-50:i10",
-    "correctText": "I am not ready.",
+    "correctText": "en:lesson-02:session-50:i10:p1=inaccurate\nen:lesson-02:session-50:i10:p2=cheap\nen:lesson-02:session-50:i10:p3=effective\nen:lesson-02:session-50:i10:p4=expensive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i11",
-    "correctText": "ready",
-    "correctResponseId": "en:lesson-02:session-50:i11:r1"
+    "correctText": "It is not effective.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i12",
-    "correctText": "Yes, I am.",
-    "correctResponseId": "en:lesson-02:session-50:i12:r1"
+    "correctText": "Is it expensive?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i13",
-    "correctText": "Is he new?",
+    "correctText": "They're inaccurate.",
     "correctResponseId": null
   },
   {
@@ -71,17 +71,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-50:i15",
-    "correctText": "I am ready.",
-    "correctResponseId": null
+    "correctText": "Is it effective?",
+    "correctResponseId": "en:lesson-02:session-50:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-50:i16",
-    "correctText": "Are you sure?",
-    "correctResponseId": "en:lesson-02:session-50:i16:r1"
+    "correctText": "en:lesson-02:session-50:i16:p1=expensive\nen:lesson-02:session-50:i16:p2=effective\nen:lesson-02:session-50:i16:p3=cheap\nen:lesson-02:session-50:i16:p4=inaccurate",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i17",
-    "correctText": "Yes, I am.",
+    "correctText": "Is it effective?",
     "correctResponseId": null
   }
 ]

@@ -7,75 +7,43 @@
       "interactionId": "en:lesson-02:session-47:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какой вопрос друг задал за столиком",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-47:i01:r1",
-          "text": "Am I polite?"
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i01:r2",
-          "text": "Are you polite?"
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i01:r3",
-          "text": "Am I rude?"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Отпечаток отвечает требованиям, хотя не идеален. Скажите полной фразой, что он приемлемый",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-47:i01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какой вопрос друг задал за столиком",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Отпечаток отвечает требованиям, хотя не идеален. Скажите полной фразой, что он приемлемый",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-47:i01:audio",
-          "transcript": "Am I polite?"
+        "family": "phrase_builder",
+        "targetPhrase": "It is acceptable.",
+        "localizedMeaning": {
+          "ru": "Отпечаток отвечает требованиям, хотя не идеален. Скажите полной фразой, что он приемлемый",
+          "uk": "Відбиток відповідає вимогам, хоча не ідеальний. Скажіть повною фразою, що він прийнятний"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-47:i01:r1",
-            "targetText": "Am I polite?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i01:r2",
-            "targetText": "Are you polite?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i01:r3",
-            "targetText": "Am I rude?",
-            "meaningByLocale": null
-          }
+        "orderedTokens": [
+          "It",
+          "is",
+          "acceptable"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-47:i01:r2",
+            "responseId": "en:lesson-02:session-47:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "testedDimension": "Отпечаток отвечает требованиям, хотя не идеален. Скажите полной фразой, что он приемлемый",
             "feedbackByLocale": {
-              "ru": "Это вопрос к собеседнику. В записи начало `Am I`: друг спрашивает о себе.",
-              "uk": "Це запитання до співрозмовника. Запис починається з `Am I`: друг запитує про себе."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i01:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос дру",
-            "feedbackByLocale": {
-              "ru": "Это вопрос о грубости. На записи последнее слово `polite` — «вежливый».",
-              "uk": "Це запитання про грубість. Останнє слово в записі — `polite`, «ввічливий»."
+              "ru": "здесь нужно `is` — `It is acceptable.`",
+              "uk": "тут потрібно `is` — `It is acceptable.`"
             }
           }
         ],
-        "isWordCard": false,
-        "wordCard": null
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -83,68 +51,75 @@
       "interactionId": "en:lesson-02:session-47:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — попросите друга оценить вашу вежливость: «Я вежливый?»",
+      "prompt": "Послушайте фразу о подставке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i02:r1",
-          "text": "polite"
+          "text": "It is dangerous."
         },
         {
           "responseId": "en:lesson-02:session-47:i02:r2",
-          "text": "rude"
+          "text": "It is relevant."
         },
         {
           "responseId": "en:lesson-02:session-47:i02:r3",
-          "text": "ready"
+          "text": "It is acceptable."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — попросите друга оценить вашу вежливость: «Я вежливый?»",
+      "audioTargetIds": [
+        "en:lesson-02:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте фразу о подставке",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — попросите друга оценить вашу вежливость: «Я вежливый?»",
-          "uk": "Вставте слово — попросіть друга оцінити вашу ввічливість: «Я ввічливий?»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:i02:audio",
+          "transcript": "It is dangerous."
         },
-        "gappedTargetPhrase": "Am I ___ ?",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-47:i02:r1",
-            "text": "polite"
+            "targetText": "It is dangerous.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-47:i02:r2",
-            "text": "rude"
+            "targetText": "It is relevant.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-47:i02:r3",
-            "text": "ready"
+            "targetText": "It is acceptable.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставьте слово — попросите друга оценить",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — попросите друга оценить",
+            "testedDimension": "Послушайте фразу о подставке",
             "feedbackByLocale": {
-              "ru": "Это «грубый». Вы спрашиваете именно о вежливости, поэтому нужно `polite`.",
-              "uk": "Це «грубий». Ви запитуєте саме про ввічливість, тому потрібне `polite`."
+              "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `relevant`.",
+              "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `relevant`."
             }
           },
           {
             "responseId": "en:lesson-02:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — попросите друга оценить",
+            "testedDimension": "Послушайте фразу о подставке",
             "feedbackByLocale": {
-              "ru": "Это «готов». Здесь вопрос о вашей манере общения, а не о готовности.",
-              "uk": "Це «готовий». Тут запитання про вашу манеру спілкування, а не про готовність."
+              "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `acceptable`.",
+              "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `acceptable`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -152,27 +127,68 @@
       "interactionId": "en:lesson-02:session-47:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вам важно мнение друга о том, насколько вы вежливы; спросите его",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, приемлемо ли качество нового отпечатка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-47:i03:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-02:session-47:i03:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-47:i03:r3",
+          "text": "Are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вам важно мнение друга о том, насколько вы вежливы; спросите его",
+      "accessibilityLabel": "Уточните, приемлемо ли качество нового отпечатка",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Am I polite?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вам важно мнение друга о том, насколько вы вежливы; спросите его",
-          "uk": "Складіть фразу — вам важлива думка друга про те, наскільки ви ввічливі; запитайте його"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, приемлемо ли качество нового отпечатка",
+          "uk": "Уточніть, чи прийнятна якість нового відбитка"
         },
-        "orderedTokens": [
-          "Am",
-          "I",
-          "polite"
+        "gappedTargetPhrase": "___ it acceptable?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-47:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i03:r3",
+            "text": "Are"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Уточните, приемлемо ли качество нового отпечатка",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Уточните, приемлемо ли качество нового отпечатка",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Уточните, приемлемо ли качество нового отпечатка",
+            "feedbackByLocale": {
+              "ru": "Вопрос — `Is it acceptable?`.",
+              "uk": "Запитання — `Is it acceptable?`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -180,379 +196,60 @@
       "interactionId": "en:lesson-02:session-47:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какой вопрос прозвучал за столом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-47:i04:r1",
-          "text": "Are we rude?"
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i04:r2",
-          "text": "Am I rude?"
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i04:r3",
-          "text": "Are we ready?"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-47:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какой вопрос прозвучал за столом",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-47:i04:audio",
-          "transcript": "Are we rude?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-47:i04:r1",
-            "targetText": "Are we rude?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i04:r2",
-            "targetText": "Am I rude?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i04:r3",
-            "targetText": "Are we ready?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-47:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос про",
-            "feedbackByLocale": {
-              "ru": "Это вопрос только о себе. В записи начало `Are we` — «мы».",
-              "uk": "Це запитання лише про себе. Запис починається з `Are we` — «ми»."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос про",
-            "feedbackByLocale": {
-              "ru": "Это «Мы готовы?» На записи последнее слово `rude` — вопрос о грубости.",
-              "uk": "Це «Ми готові?» Останнє слово в записі — `rude`: запитують про грубість."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-47:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — посетитель за соседним столом оскорбляет официанта; скажите другу: «Он грубый»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-47:i05:r1",
-          "text": "rude"
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i05:r2",
-          "text": "polite"
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i05:r3",
-          "text": "hungry"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — посетитель за соседним столом оскорбляет официанта; скажите другу: «Он грубый»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — посетитель за соседним столом оскорбляет официанта; скажите другу: «Он грубый»",
-          "uk": "Вставте слово — відвідувач за сусіднім столиком ображає офіціанта; скажіть другові: «Він грубий»"
-        },
-        "gappedTargetPhrase": "He is ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-47:i05:r1",
-            "text": "rude"
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i05:r2",
-            "text": "polite"
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i05:r3",
-            "text": "hungry"
-          }
-        ],
-        "testedDimension": "Вставьте слово — посетитель за соседним ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-47:i05:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — посетитель за соседним ",
-            "feedbackByLocale": {
-              "ru": "Это «вежливый». Оскорбительное обращение здесь описывает слово `rude`.",
-              "uk": "Це «ввічливий». Образливе звертання тут описує слово `rude`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i05:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — посетитель за соседним ",
-            "feedbackByLocale": {
-              "ru": "Это «голодный». Вы оцениваете обращение с официантом, а не причину недовольства.",
-              "uk": "Це «голодний». Ви оцінюєте поводження з офіціантом, а не причину невдоволення."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-47:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — друг спрашивает, довольны ли вы своей манерой разговора; вы сомневаетесь",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — друг спрашивает, довольны ли вы своей манерой разговора; вы сомневаетесь",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am not sure.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — друг спрашивает, довольны ли вы своей манерой разговора; вы сомневаетесь",
-          "uk": "Складіть фразу — друг запитує, чи задоволені ви своєю манерою розмовляти; ви сумніваєтеся"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "not",
-          "sure"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-47:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы выбрали блюдо, и официант подошёл принять заказ; скажите: «Я готов»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-47:i07:r1",
-          "text": "ready"
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i07:r2",
-          "text": "sure"
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i07:r3",
-          "text": "late"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы выбрали блюдо, и официант подошёл принять заказ; скажите: «Я готов»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы выбрали блюдо, и официант подошёл принять заказ; скажите: «Я готов»",
-          "uk": "Вставте слово — ви вибрали страву, й офіціант підійшов прийняти замовлення; скажіть: «Я готовий»"
-        },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-47:i07:r1",
-            "text": "ready"
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i07:r2",
-            "text": "sure"
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i07:r3",
-            "text": "late"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вы выбрали блюдо, и офи",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-47:i07:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы выбрали блюдо, и офи",
-            "feedbackByLocale": {
-              "ru": "Это «уверен». Сейчас вы сообщаете, что готовы сделать заказ: `ready`.",
-              "uk": "Це «впевнений». Зараз ви повідомляєте, що готові зробити замовлення: `ready`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i07:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы выбрали блюдо, и офи",
-            "feedbackByLocale": {
-              "ru": "Это «опоздал» или «опаздываю». Вы говорите о готовности, поэтому нужно `I am ready`.",
-              "uk": "Це «запізнився» або «запізнююся». Ви говорите про готовність, тому потрібне `I am ready`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-47:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — что официант сказал вашему другу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-47:i08:r1",
-          "text": "You are polite."
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i08:r2",
-          "text": "You are not polite."
-        },
-        {
-          "responseId": "en:lesson-02:session-47:i08:r3",
-          "text": "Are you polite?"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-47:i08:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — что официант сказал вашему другу",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-47:i08:audio",
-          "transcript": "You are polite."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-47:i08:r1",
-            "targetText": "You are polite.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i08:r2",
-            "targetText": "You are not polite.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i08:r3",
-            "targetText": "Are you polite?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-47:i08:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — что официант ска",
-            "feedbackByLocale": {
-              "ru": "Слово `not` меняет оценку на отрицательную. На записи его нет.",
-              "uk": "Слово `not` змінює оцінку на негативну. У записі його немає."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-47:i08:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — что официант ска",
-            "feedbackByLocale": {
-              "ru": "Это вопрос. На записи сначала `You are`: официант даёт оценку.",
-              "uk": "Це запитання. Запис починається з `You are`: офіціант дає оцінку."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-47:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — слова для разговора за обедом",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — слова для разговора за обедом",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-47:i09:p1",
-            "target": "polite",
+            "pairId": "en:lesson-02:session-47:i04:p1",
+            "target": "acceptable",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "приемлемый",
+              "uk": "прийнятний"
             }
           },
           {
-            "pairId": "en:lesson-02:session-47:i09:p2",
-            "target": "rude",
+            "pairId": "en:lesson-02:session-47:i04:p2",
+            "target": "dangerous",
             "meaningByLocale": {
-              "ru": "грубый",
-              "uk": "грубий"
+              "ru": "опасный",
+              "uk": "небезпечний"
             }
           },
           {
-            "pairId": "en:lesson-02:session-47:i09:p3",
-            "target": "sure",
+            "pairId": "en:lesson-02:session-47:i04:p3",
+            "target": "relevant",
             "meaningByLocale": {
-              "ru": "уверен",
-              "uk": "впевнений"
+              "ru": "относящийся к теме",
+              "uk": "такий, що стосується теми"
             }
           },
           {
-            "pairId": "en:lesson-02:session-47:i09:p4",
-            "target": "ready",
+            "pairId": "en:lesson-02:session-47:i04:p4",
+            "target": "appropriate",
             "meaningByLocale": {
-              "ru": "готов",
-              "uk": "готовий"
+              "ru": "уместный",
+              "uk": "доречний"
             }
           }
         ],
         "leftColumn": [
-          "polite",
-          "rude",
-          "sure",
-          "ready"
+          "acceptable",
+          "dangerous",
+          "relevant",
+          "appropriate"
         ],
         "rightColumn": [
-          "вежливый",
-          "грубый",
-          "уверен",
-          "готов"
+          "приемлемый",
+          "опасный",
+          "относящийся к теме",
+          "уместный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -569,97 +266,192 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-47:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-02:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — друг боится показаться грубым, если спокойно напомнит о забытом заказе; скажите ему: «Вы не грубый»",
+      "prompt": "Послушайте и соберите короткий ответ",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — друг боится показаться грубым, если спокойно напомнит о забытом заказе; скажите ему: «Вы не грубый»",
+      "audioTargetIds": [
+        "en:lesson-02:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткий ответ",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "You are not rude.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — друг боится показаться грубым, если спокойно напомнит о забытом заказе; скажите ему: «Вы не грубый»",
-          "uk": "Складіть фразу — друг боїться здатися грубим, якщо спокійно нагадає про забуте замовлення; скажіть йому: «Ти не грубий»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:i05:audio",
+          "transcript": "Yes, it is."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Yes, it is.",
         "orderedTokens": [
-          "You",
-          "are",
-          "not",
-          "rude"
+          "Yes,",
+          "it",
+          "is"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "No,"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-47:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткий ответ",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Yes,` — `Yes, it is.`",
+              "uk": "тут потрібно `Yes,` — `Yes, it is.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-47:i11",
-      "ordinal": 14,
+      "interactionId": "en:lesson-02:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед организатором несколько вариантов печати. Спросите, что приемлемо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед организатором несколько вариантов печати. Спросите, что приемлемо",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What is acceptable?",
+        "localizedMeaning": {
+          "ru": "Перед организатором несколько вариантов печати. Спросите, что приемлемо",
+          "uk": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно"
+        },
+        "orderedTokens": [
+          "What",
+          "is",
+          "acceptable"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-47:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Перед организатором несколько вариантов печати. Спросите, что приемлемо",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `What` — `What is acceptable?`",
+              "uk": "тут потрібно `What` — `What is acceptable?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Организатор согласен принять отпечаток по качеству. Коротко скажите, что он приемлемый",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Организатор согласен принять отпечаток по качеству. Коротко скажите, что он приемлемый",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:i07:audio",
+          "transcript": "It's acceptable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's acceptable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i08",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы хотите узнать мнение друга о вашей вежливости; задайте вопрос о себе",
+      "prompt": "Снимок показывает историю района, которой посвящена выставка. На «Is it relevant?» дополните короткое «да»",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-47:i11:r1",
-          "text": "Am"
+          "responseId": "en:lesson-02:session-47:i08:r1",
+          "text": "is"
         },
         {
-          "responseId": "en:lesson-02:session-47:i11:r2",
-          "text": "Is"
+          "responseId": "en:lesson-02:session-47:i08:r2",
+          "text": "am"
         },
         {
-          "responseId": "en:lesson-02:session-47:i11:r3",
-          "text": "Are"
+          "responseId": "en:lesson-02:session-47:i08:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы хотите узнать мнение друга о вашей вежливости; задайте вопрос о себе",
+      "accessibilityLabel": "Снимок показывает историю района, которой посвящена выставка. На «Is it relevant?» дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы хотите узнать мнение друга о вашей вежливости; задайте вопрос о себе",
-          "uk": "Вставте слово — ви хочете дізнатися думку друга про вашу ввічливість; поставте запитання про себе"
+          "ru": "Снимок показывает историю района, которой посвящена выставка. На «Is it relevant?» дополните короткое «да»",
+          "uk": "Знімок показує історію району, якій присвячена виставка. На «Is it relevant?» доповніть коротку відповідь «так»"
         },
-        "gappedTargetPhrase": "___ I polite?",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-02:session-47:i11:r1",
-            "text": "Am"
+            "responseId": "en:lesson-02:session-47:i08:r1",
+            "text": "is"
           },
           {
-            "responseId": "en:lesson-02:session-47:i11:r2",
-            "text": "Is"
+            "responseId": "en:lesson-02:session-47:i08:r2",
+            "text": "am"
           },
           {
-            "responseId": "en:lesson-02:session-47:i11:r3",
-            "text": "Are"
+            "responseId": "en:lesson-02:session-47:i08:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+        "testedDimension": "Снимок показывает историю района, которой посвящена выставка. На «Is it relevant?» дополните короткое «да»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-47:i11:r2",
+            "responseId": "en:lesson-02:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+            "testedDimension": "Снимок показывает историю района, которой посвящена выставка. На «Is it relevant?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Вопрос о себе здесь начинается с `Am I`.",
-              "uk": "Запитання про себе тут починається з `Am I`."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
-            "responseId": "en:lesson-02:session-47:i11:r3",
+            "responseId": "en:lesson-02:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+            "testedDimension": "Снимок показывает историю района, которой посвящена выставка. На «Is it relevant?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Сочетание `Are I` не подходит для этого вопроса. Скажите `Am I polite?`",
-              "uk": "Сполучення `Are I` не підходить для цього запитання. Скажіть `Am I polite?`"
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -667,73 +459,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-47:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-02:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какая реплика друга прозвучала за столом",
+      "prompt": "Послушайте вопрос",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-47:i12:r1",
-          "text": "Am I ready?"
+          "responseId": "en:lesson-02:session-47:i09:r1",
+          "text": "Is it relevant?"
         },
         {
-          "responseId": "en:lesson-02:session-47:i12:r2",
-          "text": "I am ready."
+          "responseId": "en:lesson-02:session-47:i09:r2",
+          "text": "Is it dangerous?"
         },
         {
-          "responseId": "en:lesson-02:session-47:i12:r3",
-          "text": "Are we ready?"
+          "responseId": "en:lesson-02:session-47:i09:r3",
+          "text": "Is it appropriate?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-47:i12:audio"
+        "en:lesson-02:session-47:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какая реплика друга прозвучала за столом",
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-47:i12:audio",
-          "transcript": "Am I ready?"
+          "audioTargetId": "en:lesson-02:session-47:i09:audio",
+          "transcript": "Is it relevant?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-02:session-47:i12:r1",
-            "targetText": "Am I ready?",
+            "responseId": "en:lesson-02:session-47:i09:r1",
+            "targetText": "Is it relevant?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-47:i12:r2",
-            "targetText": "I am ready.",
+            "responseId": "en:lesson-02:session-47:i09:r2",
+            "targetText": "Is it dangerous?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-47:i12:r3",
-            "targetText": "Are we ready?",
+            "responseId": "en:lesson-02:session-47:i09:r3",
+            "targetText": "Is it appropriate?",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-47:i12:r2",
+            "responseId": "en:lesson-02:session-47:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "Это сообщение. На записи сначала `Am I`: друг задаёт вопрос.",
-              "uk": "Це повідомлення. Запис починається з `Am I`: друг ставить запитання."
+              "ru": "В записи последнее слово — `relevant`, а в этом варианте — `dangerous`.",
+              "uk": "У записі останнє слово — `relevant`, а в цьому варіанті — `dangerous`."
             }
           },
           {
-            "responseId": "en:lesson-02:session-47:i12:r3",
+            "responseId": "en:lesson-02:session-47:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "Это вопрос о вас обоих. В записи друг говорит `I` и спрашивает о себе.",
-              "uk": "Це запитання про вас обох. У записі друг говорить `I` і запитує про себе."
+              "ru": "В записи последнее слово — `relevant`, а в этом варианте — `appropriate`.",
+              "uk": "У записі останнє слово — `relevant`, а в цьому варіанті — `appropriate`."
             }
           }
         ],
@@ -743,85 +535,191 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-47:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-02:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-47:i10:p1",
+            "target": "relevant",
+            "meaningByLocale": {
+              "ru": "относящийся к теме",
+              "uk": "такий, що стосується теми"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-47:i10:p2",
+            "target": "appropriate",
+            "meaningByLocale": {
+              "ru": "уместный",
+              "uk": "доречний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-47:i10:p3",
+            "target": "dangerous",
+            "meaningByLocale": {
+              "ru": "опасный",
+              "uk": "небезпечний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-47:i10:p4",
+            "target": "acceptable",
+            "meaningByLocale": {
+              "ru": "приемлемый",
+              "uk": "прийнятний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "relevant",
+          "appropriate",
+          "dangerous",
+          "acceptable"
+        ],
+        "rightColumn": [
+          "относящийся к теме",
+          "уместный",
+          "опасный",
+          "приемлемый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — друг обращается к официанту",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:i11:audio",
+          "transcript": "It is not acceptable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not acceptable.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "acceptable"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-47:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is not acceptable.`",
+              "uk": "тут потрібно `is` — `It is not acceptable.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы заметили повреждение другой подставки. Спросите Анну, опасна ли она",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы заметили повреждение другой подставки. Спросите Анну, опасна ли она",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it dangerous?",
+        "localizedMeaning": {
+          "ru": "Вы заметили повреждение другой подставки. Спросите Анну, опасна ли она",
+          "uk": "Ви помітили пошкодження іншої підставки. Запитайте Анну, чи вона небезпечна"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "dangerous"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-47:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы заметили повреждение другой подставки. Спросите Анну, опасна ли она",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is it dangerous?`",
+              "uk": "тут потрібно `Is` — `Is it dangerous?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Снимок старой площади относится к теме выставки об истории района. Коротко сообщите об этой связи",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i13:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — друг обращается к официанту",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-47:i13:audio",
-          "transcript": "We are ready."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are ready.",
-        "orderedTokens": [
-          "We",
-          "are",
-          "ready"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-47:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — друг говорит, что оставил телефон в куртке; уточните, уверен ли он",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — друг говорит, что оставил телефон в куртке; уточните, уверен ли он",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Are you sure?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — друг говорит, что оставил телефон в куртке; уточните, уверен ли он",
-          "uk": "Складіть фразу — друг каже, що залишив телефон у куртці; уточніть, чи він упевнений"
-        },
-        "orderedTokens": [
-          "Are",
-          "you",
-          "sure"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-47:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-47:i15:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Снимок старой площади относится к теме выставки об истории района. Коротко сообщите об этой связи",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-47:i15:audio",
-          "transcript": "Are we rude?"
+          "audioTargetId": "en:lesson-02:session-47:i13:audio",
+          "transcript": "It's relevant."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are we rude?",
+        "targetPhrase": "It's relevant.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -835,34 +733,219 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-47:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Другой отпечаток сильно размыт и не отвечает требованиям. Скажите, что он неприемлемый",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-47:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-47:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-47:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Другой отпечаток сильно размыт и не отвечает требованиям. Скажите, что он неприемлемый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Другой отпечаток сильно размыт и не отвечает требованиям. Скажите, что он неприемлемый",
+          "uk": "Інший відбиток дуже розмитий і не відповідає вимогам. Скажіть, що він неприйнятний"
+        },
+        "gappedTargetPhrase": "It ___ not acceptable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-47:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Другой отпечаток сильно размыт и не отвечает требованиям. Скажите, что он неприемлемый",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-47:i14:r2",
+            "correct": false,
+            "testedDimension": "Другой отпечаток сильно размыт и не отвечает требованиям. Скажите, что он неприемлемый",
+            "feedbackByLocale": {
+              "ru": "С `It` нужно `is`.",
+              "uk": "З `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i14:r3",
+            "correct": false,
+            "testedDimension": "Другой отпечаток сильно размыт и не отвечает требованиям. Скажите, что он неприемлемый",
+            "feedbackByLocale": {
+              "ru": "Фраза — `It is not acceptable`.",
+              "uk": "Фраза — `It is not acceptable`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-47:i15:r1",
+          "text": "Is it acceptable?"
+        },
+        {
+          "responseId": "en:lesson-02:session-47:i15:r2",
+          "text": "Is it relevant?"
+        },
+        {
+          "responseId": "en:lesson-02:session-47:i15:r3",
+          "text": "Is it dangerous?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:i15:audio",
+          "transcript": "Is it acceptable?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-47:i15:r1",
+            "targetText": "Is it acceptable?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i15:r2",
+            "targetText": "Is it relevant?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i15:r3",
+            "targetText": "Is it dangerous?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-47:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `acceptable`, а в этом варианте — `relevant`.",
+              "uk": "У записі останнє слово — `acceptable`, а в цьому варіанті — `relevant`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-47:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `acceptable`, а в этом варианте — `dangerous`.",
+              "uk": "У записі останнє слово — `acceptable`, а в цьому варіанті — `dangerous`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-47:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-47:i16:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-47:i16:audio",
-          "transcript": "I am sorry."
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-47:i16:p1",
+            "target": "dangerous",
+            "meaningByLocale": {
+              "ru": "опасный",
+              "uk": "небезпечний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-47:i16:p2",
+            "target": "acceptable",
+            "meaningByLocale": {
+              "ru": "приемлемый",
+              "uk": "прийнятний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-47:i16:p3",
+            "target": "appropriate",
+            "meaningByLocale": {
+              "ru": "уместный",
+              "uk": "доречний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-47:i16:p4",
+            "target": "relevant",
+            "meaningByLocale": {
+              "ru": "относящийся к теме",
+              "uk": "такий, що стосується теми"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dangerous",
+          "acceptable",
+          "appropriate",
+          "relevant"
+        ],
+        "rightColumn": [
+          "опасный",
+          "приемлемый",
+          "уместный",
+          "относящийся к теме"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am sorry.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -871,29 +954,40 @@
       "interactionId": "en:lesson-02:session-47:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — за обедом вы возвращаетесь к вопросу о своей манере общения; попросите друга оценить, не грубый ли вы человек",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы принесли новый отпечаток. Спросите организатора, приемлемо ли его качество",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — за обедом вы возвращаетесь к вопросу о своей манере общения; попросите друга оценить, не грубый ли вы человек",
+      "audioTargetIds": [
+        "en:lesson-02:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Вы принесли новый отпечаток. Спросите организатора, приемлемо ли его качество",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Am I rude?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — за обедом вы возвращаетесь к вопросу о своей манере общения; попросите друга оценить, не грубый ли вы человек",
-          "uk": "Складіть фразу — за обідом ви повертаєтеся до питання про свою манеру спілкування; попросіть друга оцінити, чи здаєтеся ви грубою людиною"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:i17:audio",
+          "transcript": "Is it acceptable?"
         },
-        "orderedTokens": [
-          "Am",
-          "I",
-          "rude"
-        ],
-        "authoredDistractorTokens": [
-          "Are"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it acceptable?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
@@ -904,5 +998,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0d5f474321aa77ac08233c2a83784fcd5404e3c311f0b207aea1b4276e19784c"
+  "learnerFingerprint": "5b9b48d562fea57b56c108a2d7f0352d0088f74df332a05f34701d6304bd9fa6"
 }

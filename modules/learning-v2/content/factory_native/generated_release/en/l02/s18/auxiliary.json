@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-18:intro1:r2": {
+          "ru": "Это хорошее самочувствие. Здесь нужно `unwell`.",
+          "uk": "Це добре самопочуття. Тут потрібно `unwell`."
+        },
+        "en:lesson-02:session-18:intro1:r3": {
+          "ru": "Это про него. О себе — `I'm`.",
+          "uk": "Це про нього. Про себе — `I'm`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-18:intro2:r2": {
+          "ru": "Это отрицало бы плохое самочувствие. Здесь подтвердите: `Yes, I am`.",
+          "uk": "Це заперечувало б погане самопочуття. Тут підтвердьте: `Yes, I am`."
+        },
+        "en:lesson-02:session-18:intro2:r3": {
+          "ru": "Вопрос к вам. Ответ о себе — `I am`.",
+          "uk": "Запитання до вас. Відповідь про себе — `I am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-18:intro3:r2": {
+          "ru": "Так вы подтвердите плохое самочувствие, а Анне хорошо.",
+          "uk": "Так ви підтвердите погане самопочуття, а Анні добре."
+        },
+        "en:lesson-02:session-18:intro3:r3": {
+          "ru": "После `she` нужно `is`: `No, she is not`.",
+          "uk": "Після `she` потрібно `is`: `No, she is not`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d0f47403d8a51ab44a95d88daeb6c4dcc75f1d2cfb79b1b7bde4b0759ce844c5"
+}

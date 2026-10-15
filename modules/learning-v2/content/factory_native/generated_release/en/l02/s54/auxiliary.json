@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-54:intro1:r2": {
+          "ru": "Между `He` и `reliable` нужно `is`.",
+          "uk": "Між `He` і `reliable` потрібно `is`."
+        },
+        "en:lesson-02:session-54:intro1:r3": {
+          "ru": "С `He` нужно `is`, не `are`.",
+          "uk": "З `He` потрібно `is`, не `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-54:intro2:r2": {
+          "ru": "Это сообщение, а вы пока спрашиваете.",
+          "uk": "Це повідомлення, а ви поки запитуєте."
+        },
+        "en:lesson-02:session-54:intro2:r3": {
+          "ru": "Это вопрос о том, знакомо ли что-то. Вы спрашиваете о надёжности мужчины.",
+          "uk": "Це запитання про те, чи щось знайоме. Ви запитуєте про надійність чоловіка."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-54:intro3:r2": {
+          "ru": "Это «знакомо», а имя автора не установлено.",
+          "uk": "Це «знайоме», а ім’я автора не встановлено."
+        },
+        "en:lesson-02:session-54:intro3:r3": {
+          "ru": "Это «уместно», а вы говорите, что имя неизвестно.",
+          "uk": "Це «доречне», а ви кажете, що ім’я невідоме."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "235d722f071f06849687a252ec88146a0b207bdb00cadb00b56d1b586e6f9f87"
+}

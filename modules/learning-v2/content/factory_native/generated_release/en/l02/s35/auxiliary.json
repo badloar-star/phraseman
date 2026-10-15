@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-35:intro1:r2": {
+          "ru": "Между `It` и `formal` нужно `is`.",
+          "uk": "Між `It` і `formal` потрібно `is`."
+        },
+        "en:lesson-02:session-35:intro1:r3": {
+          "ru": "Это отрицает официальный формат. Организатор подтвердил обратное.",
+          "uk": "Це заперечує офіційний формат. Організатор підтвердив протилежне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-35:intro2:r2": {
+          "ru": "Это сообщение, а нужно уточнить вопросом.",
+          "uk": "Це повідомлення, а потрібно уточнити запитанням."
+        },
+        "en:lesson-02:session-35:intro2:r3": {
+          "ru": "Вопрос начинается с `Is it`, а `formal` идёт после них.",
+          "uk": "Запитання починається з `Is it`, а `formal` іде після них."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-35:intro3:r2": {
+          "ru": "Это вопрос о щедрости, а нужно узнать, кто заболел.",
+          "uk": "Це запитання про щедрість, а потрібно дізнатися, хто захворів."
+        },
+        "en:lesson-02:session-35:intro3:r3": {
+          "ru": "После `Who` здесь нужно `is`.",
+          "uk": "Після `Who` тут потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d841c176e95eb366581ba74f0aa10beaf8a21537cbb816c26e972fbc232844cb"
+}

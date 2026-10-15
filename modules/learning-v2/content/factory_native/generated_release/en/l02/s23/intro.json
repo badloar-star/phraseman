@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-23",
   "learningOutcomeByLocale": {
-    "ru": "повторение `Where is + место` и ответа `it is + предлог места`",
-    "uk": "повторення `Where is + місце` та відповіді `it is + прийменник місця`"
+    "ru": "уточнить, действует ли билет, и ответить коротко",
+    "uk": "уточнити, чи дійсний квиток, і відповісти коротко"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`corner` — «угол»",
-        "uk": "`corner` — «ріг, кут»"
+        "ru": "Билетом можно пользоваться",
+        "uk": "Квитком можна користуватися"
       },
       "bodyByLocale": {
-        "ru": "`corner` — «угол». И угол комнаты, и угол улицы, где одна упирается в другую. На карте это второе: место, куда вам скажут свернуть.\n\nСпросить про него просто: `Where is the corner?` `is` стоит вторым, сразу за `where`.",
-        "uk": "У нас на це два слова: `кут` — у кімнаті, `ріг` — на вулиці, де одна впирається в іншу. В англійській обидва — `corner`. На карті йдеться про ріг: місце, де вам скажуть повернути.\n\nСпитати про нього просто: `Where is the corner?` `is` стоїть другим, одразу за `where`."
+        "ru": "`valid` — «действительный». Про билет это значит, что им можно воспользоваться по его условиям: `It is valid` — «Он действителен». У вас билет только на вчерашний сеанс. Сегодня он уже не `valid`, даже если вчера вы очень хотели пойти.",
+        "uk": "`valid` — «дійсний». Про квиток це означає, що ним можна скористатися за його умовами: `It is valid` — «Він дійсний». У вас квиток лише на вчорашній сеанс. Сьогодні він уже не `valid`, навіть якщо вчора ви дуже хотіли піти."
       },
       "question": {
         "interactionId": "en:lesson-02:session-23:intro1:q",
         "promptByLocale": {
-          "ru": "Вы у реки, вам сказали свернуть на углу. Спросите прохожего, где этот угол.",
-          "uk": "Ви біля річки, вам сказали повернути на розі. Спитайте перехожого, де цей ріг."
+          "ru": "Кассир подтвердил, что ваш билет подходит на сегодняшний сеанс. Сообщите это полной фразой.",
+          "uk": "Касир підтвердив, що ваш квиток підходить на сьогоднішній сеанс. Повідомте це повною фразою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-23:intro1:r1",
-              "text": "Where is the corner?"
+              "text": "It is valid."
             },
             {
               "responseId": "en:lesson-02:session-23:intro1:r2",
-              "text": "Where the corner is?"
+              "text": "It valid."
             },
             {
               "responseId": "en:lesson-02:session-23:intro1:r3",
-              "text": "What is the corner?"
+              "text": "It is not valid."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-23:intro1:r1",
-              "text": "Where is the corner?"
+              "text": "It is valid."
             },
             {
               "responseId": "en:lesson-02:session-23:intro1:r2",
-              "text": "Where the corner is?"
+              "text": "It valid."
             },
             {
               "responseId": "en:lesson-02:session-23:intro1:r3",
-              "text": "What is the corner?"
+              "text": "It is not valid."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы у реки, вам сказали свернуть на углу. Спросите прохожего, где этот угол.",
-          "uk": "Ви біля річки, вам сказали повернути на розі. Спитайте перехожого, де цей ріг."
+          "ru": "Кассир подтвердил, что ваш билет подходит на сегодняшний сеанс. Сообщите это полной фразой.",
+          "uk": "Касир підтвердив, що ваш квиток підходить на сьогоднішній сеанс. Повідомте це повною фразою."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`bridge` — «мост»",
-        "uk": "`bridge` — «міст»"
+        "ru": "Уточнить у кассира",
+        "uk": "Уточнити в касира"
       },
       "bodyByLocale": {
-        "ru": "`bridge` — «мост». В Дублине их через реку столько, что «идите к мосту» — почти не подсказка, и вам придётся уточнять, к какому.\n\nПеред местом ставят маленькое `the`: `Where is the bridge?` Так показывают, что речь про один определённый мост, а не про мосты вообще.",
-        "uk": "`bridge` — «міст». У Дубліні їх через річку стільки, що «йдіть до мосту» — майже не підказка, і вам доведеться уточнювати, до якого саме.\n\nПеред місцем ставлять маленьке `the`: `Where is the bridge?` Так показують, що йдеться про один певний міст, а не про мости взагалі."
+        "ru": "Вы не уверены, подходит ли билет: `Is it valid?` — «Он действителен?» Если показываете два билета, спросите `Are they valid?`. Здесь `they` — билеты, и с ним нужно `are`.",
+        "uk": "Ви не впевнені, чи підходить квиток: `Is it valid?` — «Він дійсний?» Якщо показуєте два квитки, запитайте `Are they valid?`. Тут `they` — квитки, і з ним потрібно `are`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-23:intro2:q",
         "promptByLocale": {
-          "ru": "Женщина у витрины машет рукой куда-то вперёд. Спросите, где мост.",
-          "uk": "Жінка біля вітрини махає рукою кудись уперед. Спитайте, де міст."
+          "ru": "Вы показываете кассиру два билета. Спросите, действительны ли они.",
+          "uk": "Ви показуєте касиру два квитки. Запитайте, чи вони дійсні."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-23:intro2:r1",
-              "text": "Where is the bridge?"
+              "text": "Are they valid?"
             },
             {
               "responseId": "en:lesson-02:session-23:intro2:r2",
-              "text": "Where is bridge?"
+              "text": "Is they valid?"
             },
             {
               "responseId": "en:lesson-02:session-23:intro2:r3",
-              "text": "Where the bridge?"
+              "text": "They are valid."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-23:intro2:r1",
-              "text": "Where is the bridge?"
+              "text": "Are they valid?"
             },
             {
               "responseId": "en:lesson-02:session-23:intro2:r2",
-              "text": "Where is bridge?"
+              "text": "Is they valid?"
             },
             {
               "responseId": "en:lesson-02:session-23:intro2:r3",
-              "text": "Where the bridge?"
+              "text": "They are valid."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Женщина у витрины машет рукой куда-то вперёд. Спросите, где мост.",
-          "uk": "Жінка біля вітрини махає рукою кудись уперед. Спитайте, де міст."
+          "ru": "Вы показываете кассиру два билета. Спросите, действительны ли они.",
+          "uk": "Ви показуєте касиру два квитки. Запитайте, чи вони дійсні."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Как отвечают про место",
-        "uk": "Як відповідають про місце"
+        "ru": "Ответ про свой билет",
+        "uk": "Відповідь про свій квиток"
       },
       "bodyByLocale": {
-        "ru": "Ответ про место начинается с `it is`, и только потом идёт где: `It is near.` — «он рядом», `It is behind the shops.` — «он за магазинами».\n\nОдно `near` тоже поймут, но полный ответ звучит естественнее — и его вы услышите чаще.",
-        "uk": "Відповідь про місце починається з `it is`, і тільки потім іде де: `It is near.` — «він поруч», `It is behind the shops.` — «він за магазинами».\n\nСаме лише `near` теж зрозуміють, але повна відповідь звучить природніше — і саме її ви чутимете найчастіше."
+        "ru": "На `Is it valid?` можно ответить `Yes, it is` — «Да» или `No, it is not` — «Нет». А сообщить о билете без вопроса можно коротко: `It's valid`. В коротком ответе «да» остаётся полное `is`: `Yes, it is`.",
+        "uk": "На `Is it valid?` можна відповісти `Yes, it is` — «Так» або `No, it is not` — «Ні». А повідомити про квиток без запитання можна коротко: `It's valid`. У короткій відповіді «так» залишається повне `is`: `Yes, it is`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-23:intro3:q",
         "promptByLocale": {
-          "ru": "Парень с рюкзаком тормозит вас: где вокзал? Он в двух шагах — ответьте целиком.",
-          "uk": "Хлопець із рюкзаком зупиняє вас: де вокзал? Він за два кроки — відповідайте повністю."
+          "ru": "Друг спрашивает: `Is it valid?` Ваш билет действует только на вчерашний сеанс. Ответьте коротким «нет».",
+          "uk": "Друг запитує: `Is it valid?` Ваш квиток діє лише на вчорашній сеанс. Дайте коротку відповідь «ні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-23:intro3:r1",
-              "text": "It is near."
+              "text": "No, it is not."
             },
             {
               "responseId": "en:lesson-02:session-23:intro3:r2",
-              "text": "Is near."
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-02:session-23:intro3:r3",
-              "text": "It near."
+              "text": "No, it not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-23:intro3:r1",
-              "text": "It is near."
+              "text": "No, it is not."
             },
             {
               "responseId": "en:lesson-02:session-23:intro3:r2",
-              "text": "Is near."
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-02:session-23:intro3:r3",
-              "text": "It near."
+              "text": "No, it not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Парень с рюкзаком тормозит вас: где вокзал? Он в двух шагах — ответьте целиком.",
-          "uk": "Хлопець із рюкзаком зупиняє вас: де вокзал? Він за два кроки — відповідайте повністю."
+          "ru": "Друг спрашивает: `Is it valid?` Ваш билет действует только на вчерашний сеанс. Ответьте коротким «нет».",
+          "uk": "Друг запитує: `Is it valid?` Ваш квиток діє лише на вчорашній сеанс. Дайте коротку відповідь «ні»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3f4bd0c72f8c31366d89192d7a685f4278b22da55602dd663da48c00787d7724"
+  "introFingerprint": "592cc1bc785e49c35bae93f790759e80fc4a2496a2239c60979670be6a042edb"
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-32:intro1:r2": {
+          "ru": "Это вопрос, кого нет. Вы уже знаете, что нет Олега.",
+          "uk": "Це запитання, кого немає. Ви вже знаєте, що немає Олега."
+        },
+        "en:lesson-02:session-32:intro1:r3": {
+          "ru": "В этом вопросе `is` ставим перед `he`.",
+          "uk": "У цьому запитанні `is` ставимо перед `he`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-32:intro2:r2": {
+          "ru": "Это «Она неосторожна». Здесь речь о щедрости.",
+          "uk": "Це «Вона необережна». Тут ідеться про щедрість."
+        },
+        "en:lesson-02:session-32:intro2:r3": {
+          "ru": "Речь об Анне: `She's`.",
+          "uk": "Йдеться про Анну: `She's`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-32:intro3:r2": {
+          "ru": "С `I` нужно `am`.",
+          "uk": "З `I` потрібно `am`."
+        },
+        "en:lesson-02:session-32:intro3:r3": {
+          "ru": "Это отрицает готовность подстроиться. Вы готовы изменить время.",
+          "uk": "Це заперечує готовність підлаштуватися. Ви готові змінити час."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4da4b90a7236fc8170c31cc8203c1b8a85b07f80dc7ac182f9b3ff68a7aa5035"
+}

@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-43:i01",
-    "correctText": "Are we lost?",
-    "correctResponseId": "en:lesson-02:session-43:i01:r1"
+    "correctText": "I am uncertain.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i02",
-    "correctText": "we",
+    "correctText": "He is patient.",
     "correctResponseId": "en:lesson-02:session-43:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i03",
-    "correctText": "Are we lost?",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-43:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i04",
-    "correctText": "sure",
-    "correctResponseId": "en:lesson-02:session-43:i04:r1"
+    "correctText": "en:lesson-02:session-43:i04:p1=uncertain\nen:lesson-02:session-43:i04:p2=patient\nen:lesson-02:session-43:i04:p3=formal\nen:lesson-02:session-43:i04:p4=informal",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i05",
-    "correctText": "Are we here?",
-    "correctResponseId": "en:lesson-02:session-43:i05:r1"
+    "correctText": "Yes, I am.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i06",
-    "correctText": "I am not sure.",
+    "correctText": "Who is uncertain?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i07",
-    "correctText": "Are",
-    "correctResponseId": "en:lesson-02:session-43:i07:r1"
+    "correctText": "I'm uncertain.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i08",
-    "correctText": "Where is the station?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-43:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i09",
-    "correctText": "en:lesson-02:session-43:i09:p1=lost\nen:lesson-02:session-43:i09:p2=sure\nen:lesson-02:session-43:i09:p3=here\nen:lesson-02:session-43:i09:p4=near",
-    "correctResponseId": null
+    "correctText": "Is it formal?",
+    "correctResponseId": "en:lesson-02:session-43:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i10",
-    "correctText": "here",
-    "correctResponseId": "en:lesson-02:session-43:i10:r1"
+    "correctText": "en:lesson-02:session-43:i10:p1=formal\nen:lesson-02:session-43:i10:p2=informal\nen:lesson-02:session-43:i10:p3=patient\nen:lesson-02:session-43:i10:p4=uncertain",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i11",
-    "correctText": "We are not lost.",
-    "correctResponseId": "en:lesson-02:session-43:i11:r1"
+    "correctText": "It is not formal.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i12",
-    "correctText": "sure",
-    "correctResponseId": "en:lesson-02:session-43:i12:r1"
+    "correctText": "Is he patient?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i13",
-    "correctText": "We are here.",
+    "correctText": "It's formal.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i14",
-    "correctText": "we",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-43:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i15",
-    "correctText": "Are we sure?",
-    "correctResponseId": null
+    "correctText": "Are they uncertain?",
+    "correctResponseId": "en:lesson-02:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i16",
-    "correctText": "Where is it?",
+    "correctText": "en:lesson-02:session-43:i16:p1=patient\nen:lesson-02:session-43:i16:p2=uncertain\nen:lesson-02:session-43:i16:p3=informal\nen:lesson-02:session-43:i16:p4=formal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i17",
-    "correctText": "Are we near?",
+    "correctText": "Are you uncertain?",
     "correctResponseId": null
   }
 ]

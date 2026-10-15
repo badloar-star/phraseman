@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-24",
   "learningOutcomeByLocale": {
-    "ru": "повторение — `Where is + место`, `Are you + слово`, ответ `it is + предлог места`",
-    "uk": "повторення — `Where is + місце`, `Are you + слово`, відповідь `it is + прийменник місця`"
+    "ru": "повторить короткие ответы о людях и вещах",
+    "uk": "повторити короткі відповіді про людей і речі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`lost` — «заблудился»",
-        "uk": "`lost` — «заблукав»"
+        "ru": "Отвечаем на сам вопрос",
+        "uk": "Відповідаємо на саме запитання"
       },
       "bodyByLocale": {
-        "ru": "`lost` — «заблудился», «не понимаю, где я». Слово про человека, а не про место: город на своём месте, потерялись вы.\n\nЧтобы спросить об этом, `are` выходит вперёд, а `you` встаёт сразу за ним: `Are you lost?` Порядок и есть весь вопрос — больше ничего добавлять не нужно.",
-        "uk": "`lost` — «заблукав», «не розумію, де я». Слово про людину, а не про місце: місто стоїть там, де стояло, загубилися ви.\n\nЩоб про це запитати, `are` виходить наперед, а `you` стає одразу за ним: `Are you lost?` Порядок — і є все запитання, більше нічого додавати не треба."
+        "ru": "`well` — «хорошо себя чувствующий», `unwell` — «плохо себя чувствующий». Вам нехорошо. На `Are you well?` ответьте `No, I am not`. Но на `Are you unwell?` — `Yes, I am`: вы подтверждаете плохое самочувствие. `Yes` не обещает, что всё хорошо: оно подтверждает то, о чём спросили.",
+        "uk": "`well` — «той, хто добре почувається», `unwell` — «той, хто погано почувається». Вам недобре. На `Are you well?` дайте відповідь `No, I am not`. Але на `Are you unwell?` — `Yes, I am`: ви підтверджуєте погане самопочуття. `Yes` не обіцяє, що все добре: воно підтверджує те, про що запитали."
       },
       "question": {
         "interactionId": "en:lesson-02:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Спутник третий раз оглядывается по сторонам и молчит. Спросите прямо.",
-          "uk": "Супутник утретє озирається на всі боки й мовчить. Запитайте прямо."
+          "ru": "Анне нехорошо. Олег спрашивает вас: `Is she unwell?` Ответьте коротким «да».",
+          "uk": "Анні недобре. Олег запитує вас: `Is she unwell?` Дайте коротку відповідь «так»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-24:intro1:r1",
-              "text": "Are you lost?"
+              "text": "Yes, she is."
             },
             {
               "responseId": "en:lesson-02:session-24:intro1:r2",
-              "text": "You are lost?"
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-24:intro1:r3",
-              "text": "Are you lose?"
+              "text": "Yes, she are."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-24:intro1:r1",
-              "text": "Are you lost?"
+              "text": "Yes, she is."
             },
             {
               "responseId": "en:lesson-02:session-24:intro1:r2",
-              "text": "You are lost?"
+              "text": "No, she is not."
             },
             {
               "responseId": "en:lesson-02:session-24:intro1:r3",
-              "text": "Are you lose?"
+              "text": "Yes, she are."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спутник третий раз оглядывается по сторонам и молчит. Спросите прямо.",
-          "uk": "Супутник утретє озирається на всі боки й мовчить. Запитайте прямо."
+          "ru": "Анне нехорошо. Олег спрашивает вас: `Is she unwell?` Ответьте коротким «да».",
+          "uk": "Анні недобре. Олег запитує вас: `Is she unwell?` Дайте коротку відповідь «так»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`where` спрашивает про место",
-        "uk": "`where` запитує про місце"
+        "ru": "Проверяем вещи",
+        "uk": "Перевіряємо речі"
       },
       "bodyByLocale": {
-        "ru": "`where` — «где». За ним сразу `is`, потом само место: `Where is the station?` — «где вокзал?». `station` — «вокзал», `bridge` — «мост», `corner` — «угол».\n\n`is` держится второго места крепко. Отправите его в конец — фразу поймут, но звучать будет ломано.",
-        "uk": "`where` — «де». За ним одразу `is`, потім саме місце: `Where is the station?` — «де вокзал?». `station` — «вокзал», `bridge` — «міст», `corner` — «ріг» (там, де сходяться дві вулиці).\n\n`is` тримається другого місця міцно. Відправите його в кінець — фразу зрозуміють, але звучатиме поламано."
+        "ru": "`broken` — «сломанный», `complete` — «полный, завершённый», `valid` — «действительный». Пазл со всеми деталями — `complete`, билет на нужный сеанс — `valid`. Пазл с дыркой ещё не собран полностью. Ковёр, который виден в этой дырке, за последнюю деталь не считается.",
+        "uk": "`broken` — «зламаний», `complete` — «повний, завершений», `valid` — «дійсний». Пазл з усіма деталями — `complete`, квиток на потрібний сеанс — `valid`. Пазл із діркою ще не повністю складений. Килим, який видно в цій дірці, за останню деталь не рахується."
       },
       "question": {
         "interactionId": "en:lesson-02:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "Вам сказали идти к мосту, но какому — непонятно. Спросите прохожего.",
-          "uk": "Вам сказали йти до мосту, але до якого — незрозуміло. Запитайте перехожого."
+          "ru": "В пазле не хватает детали. Друг спрашивает: `Is it complete?` Ответьте коротким «нет».",
+          "uk": "У пазлі бракує деталі. Друг запитує: `Is it complete?` Дайте коротку відповідь «ні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-24:intro2:r1",
-              "text": "Where is the bridge?"
+              "text": "No, it is not."
             },
             {
               "responseId": "en:lesson-02:session-24:intro2:r2",
-              "text": "Where the bridge is?"
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-02:session-24:intro2:r3",
-              "text": "What is the bridge?"
+              "text": "No, it are not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-24:intro2:r1",
-              "text": "Where is the bridge?"
+              "text": "No, it is not."
             },
             {
               "responseId": "en:lesson-02:session-24:intro2:r2",
-              "text": "Where the bridge is?"
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-02:session-24:intro2:r3",
-              "text": "What is the bridge?"
+              "text": "No, it are not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам сказали идти к мосту, но какому — непонятно. Спросите прохожего.",
-          "uk": "Вам сказали йти до мосту, але до якого — незрозуміло. Запитайте перехожого."
+          "ru": "В пазле не хватает детали. Друг спрашивает: `Is it complete?` Ответьте коротким «нет».",
+          "uk": "У пазлі бракує деталі. Друг запитує: `Is it complete?` Дайте коротку відповідь «ні»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`near` и `behind` — ответ про место",
-        "uk": "`near` і `behind` — відповідь про місце"
+        "ru": "Кто виноват",
+        "uk": "Хто винен"
       },
       "bodyByLocale": {
-        "ru": "Вам ответят коротко. `near` — «рядом», `behind` — «позади», `shops` — «магазины». Перед ними стоит `it is`: `It is near`, `It is behind the shops`.\n\nПосле `behind` называют, за чем именно: `It is behind the shops` — «за магазинами». После `near` можно и не уточнять.",
-        "uk": "Вам відповідять коротко. `near` — «поряд», `behind` — «позаду», `shops` — «крамниці». Перед ними стоїть `it is`: `It is near`, `It is behind the shops`.\n\nПісля `behind` називають, за чим саме: `It is behind the shops` — «за крамницями». Після `near` можна й не уточнювати."
+        "ru": "`guilty` — «виноватый», `innocent` — «невиновный». Анна не трогала печенье: `She is innocent`. Олег нарушил договорённость и съел его без спроса: `He is guilty`. Сокращённо — `He's guilty`. Чтобы спросить, поставьте `is` перед `he`: `Is he guilty?`.",
+        "uk": "`guilty` — «винний», `innocent` — «невинний». Анна не чіпала печиво: `She is innocent`. Олег порушив домовленість і з’їв його без дозволу: `He is guilty`. Скорочено — `He's guilty`. Щоб запитати, поставте `is` перед `he`: `Is he guilty?`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Прохожий кивает: вокзал прямо за магазинами. Скажите это его словами.",
-          "uk": "Перехожий киває: вокзал прямо за крамницями. Скажіть це його словами."
+          "ru": "Вы узнали, что печенье без спроса съел Олег, а Анна его не трогала. Коротко скажите, что она невиновна.",
+          "uk": "Ви дізналися, що печиво без дозволу з’їв Олег, а Анна його не чіпала. Коротко скажіть, що вона невинна."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-24:intro3:r1",
-              "text": "It is behind the shops."
+              "text": "She's innocent."
             },
             {
               "responseId": "en:lesson-02:session-24:intro3:r2",
-              "text": "It behind the shops."
+              "text": "She's guilty."
             },
             {
               "responseId": "en:lesson-02:session-24:intro3:r3",
-              "text": "It is near the shops."
+              "text": "He's innocent."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-24:intro3:r1",
-              "text": "It is behind the shops."
+              "text": "She's innocent."
             },
             {
               "responseId": "en:lesson-02:session-24:intro3:r2",
-              "text": "It behind the shops."
+              "text": "She's guilty."
             },
             {
               "responseId": "en:lesson-02:session-24:intro3:r3",
-              "text": "It is near the shops."
+              "text": "He's innocent."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Прохожий кивает: вокзал прямо за магазинами. Скажите это его словами.",
-          "uk": "Перехожий киває: вокзал прямо за крамницями. Скажіть це його словами."
+          "ru": "Вы узнали, что печенье без спроса съел Олег, а Анна его не трогала. Коротко скажите, что она невиновна.",
+          "uk": "Ви дізналися, що печиво без дозволу з’їв Олег, а Анна його не чіпала. Коротко скажіть, що вона невинна."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d710aed6efce726fa25ce934d630c35b553699e4ff0cce4c261d042a3cf4c9a4"
+  "introFingerprint": "f6ddd608cc658a94eaa8516c388e918dc7e88c8c217af301ce623a2f1a7384c9"
 }

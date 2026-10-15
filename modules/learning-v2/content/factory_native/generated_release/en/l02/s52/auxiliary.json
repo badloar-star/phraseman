@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-52:intro1:r2": {
+          "ru": "Между `It` и `fair` нужно `is`.",
+          "uk": "Між `It` і `fair` потрібно `is`."
+        },
+        "en:lesson-02:session-52:intro1:r3": {
+          "ru": "Это отрицает справедливость, а в условии её признают все.",
+          "uk": "Це заперечує справедливість, а за умовою її визнають усі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-52:intro2:r2": {
+          "ru": "Это вопрос о законности. Вы хотите узнать оценку справедливости.",
+          "uk": "Це запитання про законність. Ви хочете дізнатися оцінку справедливості."
+        },
+        "en:lesson-02:session-52:intro2:r3": {
+          "ru": "Это утверждение, а вы пока спрашиваете мнение.",
+          "uk": "Це твердження, а ви поки запитуєте думку."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-52:intro3:r2": {
+          "ru": "Это «тяжёлая». По условию коробка мало весит.",
+          "uk": "Це «важка». За умовою коробка мало важить."
+        },
+        "en:lesson-02:session-52:intro3:r3": {
+          "ru": "Это «справедливо». Здесь речь о весе.",
+          "uk": "Це «справедливо». Тут ідеться про вагу."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d0d4833d3e00c3b138475c8bb2da640f29548d312fbb39f7e653a9c2dee479e7"
+}

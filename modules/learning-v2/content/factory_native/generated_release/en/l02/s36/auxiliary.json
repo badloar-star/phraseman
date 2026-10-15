@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-36:intro1:r2": {
+          "ru": "Между `It` и `informal` нужно `is`.",
+          "uk": "Між `It` і `informal` потрібно `is`."
+        },
+        "en:lesson-02:session-36:intro1:r3": {
+          "ru": "Это официальный формат, а в условии обычная домашняя встреча.",
+          "uk": "Це офіційний формат, а за умовою звичайна домашня зустріч."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-36:intro2:r2": {
+          "ru": "Так вы отрицаете неформальный формат. В условии он неформальный.",
+          "uk": "Так ви заперечуєте неформальний формат. За умовою він неформальний."
+        },
+        "en:lesson-02:session-36:intro2:r3": {
+          "ru": "С `it` нужно `is`.",
+          "uk": "З `it` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-36:intro3:r2": {
+          "ru": "Это «Он спит». Олег пока разговаривает.",
+          "uk": "Це «Він спить». Олег поки розмовляє."
+        },
+        "en:lesson-02:session-36:intro3:r3": {
+          "ru": "Речь об Олеге: `He's`.",
+          "uk": "Йдеться про Олега: `He's`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f40f72517114de3476e4cfb30b47efae23f30cfe3b8cc0780bb256f78d85219b"
+}

@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-15:i01",
-    "correctText": "elegant",
+    "correctText": "She is silent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i02",
-    "correctText": "elegant",
+    "correctText": "Is it easy?",
     "correctResponseId": "en:lesson-02:session-15:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-15:i03",
-    "correctText": "plain",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-15:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-15:i04",
-    "correctText": "plain",
-    "correctResponseId": "en:lesson-02:session-15:i04:r1"
+    "correctText": "en:lesson-02:session-15:i04:p1=silent\nen:lesson-02:session-15:i04:p2=easy\nen:lesson-02:session-15:i04:p3=difficult\nen:lesson-02:session-15:i04:p4=important",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i05",
-    "correctText": "handsome",
+    "correctText": "It's silent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i06",
-    "correctText": "crowded",
+    "correctText": "They are not silent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i07",
-    "correctText": "elegant",
-    "correctResponseId": "en:lesson-02:session-15:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-15:i08",
-    "correctText": "Is it plain?",
+    "correctText": "Is it necessary?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-15:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-15:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-15:i09",
-    "correctText": "crowded",
+    "correctText": "It is important.",
     "correctResponseId": "en:lesson-02:session-15:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-15:i10",
-    "correctText": "plain",
-    "correctResponseId": "en:lesson-02:session-15:i10:r1"
+    "correctText": "en:lesson-02:session-15:i10:p1=necessary\nen:lesson-02:session-15:i10:p2=silent\nen:lesson-02:session-15:i10:p3=easy\nen:lesson-02:session-15:i10:p4=difficult",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i11",
-    "correctText": "handsome",
-    "correctResponseId": "en:lesson-02:session-15:i11:r1"
+    "correctText": "We're not silent.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i12",
-    "correctText": "Is she pretty?",
+    "correctText": "Is it silent?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i13",
-    "correctText": "en:lesson-02:session-15:i13:p1=elegant\nen:lesson-02:session-15:i13:p2=plain\nen:lesson-02:session-15:i13:p3=handsome\nen:lesson-02:session-15:i13:p4=crowded",
+    "correctText": "It's not necessary.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i14",
-    "correctText": "noisy",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-15:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-15:i15",
-    "correctText": "noisy",
+    "correctText": "It is not easy.",
     "correctResponseId": "en:lesson-02:session-15:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-15:i16",
-    "correctText": "Is he hungry?",
+    "correctText": "en:lesson-02:session-15:i16:p1=easy\nen:lesson-02:session-15:i16:p2=difficult\nen:lesson-02:session-15:i16:p3=important\nen:lesson-02:session-15:i16:p4=necessary",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i17",
-    "correctText": "thirsty",
-    "correctResponseId": "en:lesson-02:session-15:i17:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-15:i18",
-    "correctText": "Yes, she is.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-15:i19",
-    "correctText": "Is it plain?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-15:i20:s01",
-    "correctText": "Is he elegant?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-15:i20:s02",
-    "correctText": "Is it plain?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-15:i20:s03",
-    "correctText": "The cafe is noisy.",
+    "correctText": "Is it silent?",
     "correctResponseId": null
   }
 ]

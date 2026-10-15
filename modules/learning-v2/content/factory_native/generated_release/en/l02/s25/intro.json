@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-25",
   "learningOutcomeByLocale": {
-    "ru": "`What is + вещь`",
-    "uk": "`What is + річ`"
+    "ru": "спросить кто, что и где, а не только получить ответ да или нет",
+    "uk": "запитати хто, що й де, а не лише отримати відповідь так чи ні"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`What is` — «что это»",
-        "uk": "`What is` — «що це»"
+        "ru": "Кого нет",
+        "uk": "Кого немає"
       },
       "bodyByLocale": {
-        "ru": "`What` — «что». Дальше идёт `is`, и только потом сама вещь: `What is this?`\n\nПо-русски «что это?» — два слова, и между ними ничего не нужно. Отсюда и ошибка: так и тянет сказать `What this?` По-английски без `is` вопрос не собирается.",
-        "uk": "`What` — «що». Далі йде `is`, і аж потім сама річ: `What is this?`\n\nУкраїнською питання коротке: «що це?». Англійською між `what` і `this` мусить стояти `is` — без нього речення не тримається. Звідси й помилка: так і тягне сказати `What this?`"
+        "ru": "`absent` — «отсутствующий»: человека здесь нет, хотя его ожидали. `She is absent` — «Она отсутствует». Чтобы узнать, кого именно нет, спросите `Who is absent?` — «Кто отсутствует?» `Who` значит «кто». На этот вопрос нужно назвать человека: одного «да» будет маловато.",
+        "uk": "`absent` — «відсутній»: людини тут немає, хоча на неї чекали. `She is absent` — «Вона відсутня». Щоб дізнатися, кого саме немає, запитайте `Who is absent?` — «Хто відсутній?» `Who` означає «хто». На це запитання потрібно назвати людину: одного «так» буде замало."
       },
       "question": {
         "interactionId": "en:lesson-02:session-25:intro1:q",
         "promptByLocale": {
-          "ru": "Вы ткнули пальцем в строчку меню. Спросите официанта, что это.",
-          "uk": "Ви тицьнули пальцем у рядок меню. Спитайте офіціанта, що це."
+          "ru": "Режиссёр сообщил, что пришли не все. Спросите, кто отсутствует.",
+          "uk": "Режисер повідомив, що прийшли не всі. Запитайте, хто відсутній."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-25:intro1:r1",
-              "text": "What is this?"
+              "text": "Who is absent?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro1:r2",
-              "text": "What this is?"
+              "text": "Is she absent?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro1:r3",
-              "text": "What this?"
+              "text": "Who absent?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-25:intro1:r1",
-              "text": "What is this?"
+              "text": "Who is absent?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro1:r2",
-              "text": "What this is?"
+              "text": "Is she absent?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro1:r3",
-              "text": "What this?"
+              "text": "Who absent?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы ткнули пальцем в строчку меню. Спросите официанта, что это.",
-          "uk": "Ви тицьнули пальцем у рядок меню. Спитайте офіціанта, що це."
+          "ru": "Режиссёр сообщил, что пришли не все. Спросите, кто отсутствует.",
+          "uk": "Режисер повідомив, що прийшли не всі. Запитайте, хто відсутній."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`price` — «цена»",
-        "uk": "`price` — «ціна»"
+        "ru": "Где человек",
+        "uk": "Де людина"
       },
       "bodyByLocale": {
-        "ru": "`price` — «цена». Цифра справа от строчки в меню.\n\nСпросить про неё можно так же: `What is the price?` Перед словом встаёт маленькое `the`. Когда именно оно нужно, разберём позже — пока запоминайте вопрос целиком, вместе с ним.",
-        "uk": "`price` — «ціна». Цифра праворуч від рядка в меню.\n\nСпитати про неї можна так само: `What is the price?` Перед словом з'являється маленьке `the`. Коли саме воно потрібне, розберемо згодом — поки запам'ятовуйте питання цілком, разом із ним."
+        "ru": "`where` — «где». `Where is she?` — «Где она?» Сначала `Where`, затем `is`, затем `she`. Про нескольких: `Where are they?` — «Где они?» Пустой стул Анны показывает, что её нет в комнате. Адрес её нынешнего местонахождения стул, увы, не сообщает.",
+        "uk": "`where` — «де». `Where is she?` — «Де вона?» Спочатку `Where`, потім `is`, потім `she`. Про кількох: `Where are they?` — «Де вони?» Порожній стілець Анни показує, що її немає в кімнаті. Адреси її теперішнього місцеперебування стілець, на жаль, не повідомляє."
       },
       "question": {
         "interactionId": "en:lesson-02:session-25:intro2:q",
         "promptByLocale": {
-          "ru": "В меню строчка без цифры. Спросите про цену.",
-          "uk": "У меню рядок без цифри. Спитайте про ціну."
+          "ru": "Олег вышел за Анной. Теперь вы ищете Олега. Спросите, где он.",
+          "uk": "Олег вийшов по Анну. Тепер ви шукаєте Олега. Запитайте, де він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-25:intro2:r1",
-              "text": "What is the price?"
+              "text": "Where is he?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro2:r2",
-              "text": "What the price?"
+              "text": "Where he is?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro2:r3",
-              "text": "What is price?"
+              "text": "Who is he?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-25:intro2:r1",
-              "text": "What is the price?"
+              "text": "Where is he?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro2:r2",
-              "text": "What the price?"
+              "text": "Where he is?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro2:r3",
-              "text": "What is price?"
+              "text": "Who is he?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В меню строчка без цифры. Спросите про цену.",
-          "uk": "У меню рядок без цифри. Спитайте про ціну."
+          "ru": "Олег вышел за Анной. Теперь вы ищете Олега. Спросите, где он.",
+          "uk": "Олег вийшов по Анну. Тепер ви шукаєте Олега. Запитайте, де він."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`name` — «имя, название»",
-        "uk": "`name` — «ім'я, назва»"
+        "ru": "Что за предмет",
+        "uk": "Що за предмет"
       },
       "bodyByLocale": {
-        "ru": "`name` — сразу и «имя», и «название»: так спрашивают и про человека, и про блюдо.\n\nВопрос строится так же: `What is the name?` Перед `name` снова стоит `the` — как и перед `price`. Ответом будет само название: `It is soda bread` — «это содовый хлеб».",
-        "uk": "`name` — це водночас і «ім'я», і «назва»: так питають і про людину, і про страву.\n\nПитаємо так само: `What is the name?` Перед `name` знову стоїть `the` — як і перед `price`. Відповіддю буде сама назва: `It is soda bread` — «це содовий хліб»."
+        "ru": "`what` — «что». Вы показываете на непонятный предмет: `What is it?` — «Что это?» `What is it?` спрашивает о вещи, а `Who is he?` — о человеке: «Кто он?» В этих вопросах после `What` или `Who` стоит `is`.",
+        "uk": "`what` — «що». Ви показуєте на незрозумілий предмет: `What is it?` — «Що це?» `What is it?` запитує про річ, а `Who is he?` — про людину: «Хто він?» У цих запитаннях після `What` або `Who` стоїть `is`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-25:intro3:q",
         "promptByLocale": {
-          "ru": "Вам принесли что-то незнакомое и вкусное. Спросите название.",
-          "uk": "Вам принесли щось незнайоме і смачне. Спитайте назву."
+          "ru": "Среди декораций лежит предмет, которого вы не узнаёте. Спросите, что это.",
+          "uk": "Серед декорацій лежить предмет, якого ви не впізнаєте. Запитайте, що це."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-25:intro3:r1",
-              "text": "What is the name?"
+              "text": "What is it?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro3:r2",
-              "text": "What is name?"
+              "text": "Where is it?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro3:r3",
-              "text": "What name is?"
+              "text": "What it is?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-25:intro3:r1",
-              "text": "What is the name?"
+              "text": "What is it?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro3:r2",
-              "text": "What is name?"
+              "text": "Where is it?"
             },
             {
               "responseId": "en:lesson-02:session-25:intro3:r3",
-              "text": "What name is?"
+              "text": "What it is?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам принесли что-то незнакомое и вкусное. Спросите название.",
-          "uk": "Вам принесли щось незнайоме і смачне. Спитайте назву."
+          "ru": "Среди декораций лежит предмет, которого вы не узнаёте. Спросите, что это.",
+          "uk": "Серед декорацій лежить предмет, якого ви не впізнаєте. Запитайте, що це."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c6fd371a967b906282a295c7fbd229a9420b6138b28af83062ff70ad00106fac"
+  "introFingerprint": "6ead371b89f171ad22db496e4f80a883955958bf7ba6f3f9be8e4f6ffe448753"
 }

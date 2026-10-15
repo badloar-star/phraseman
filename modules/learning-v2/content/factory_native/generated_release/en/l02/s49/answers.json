@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-49:i01",
-    "correctText": "Are you tired?",
-    "correctResponseId": "en:lesson-02:session-49:i01:r1"
+    "correctText": "It is unacceptable.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i02",
-    "correctText": "am",
+    "correctText": "It is cheap.",
     "correctResponseId": "en:lesson-02:session-49:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-49:i03",
-    "correctText": "Who is he?",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-49:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-49:i04",
-    "correctText": "manager",
-    "correctResponseId": "en:lesson-02:session-49:i04:r1"
+    "correctText": "en:lesson-02:session-49:i04:p1=unacceptable\nen:lesson-02:session-49:i04:p2=acceptable\nen:lesson-02:session-49:i04:p3=cheap\nen:lesson-02:session-49:i04:p4=accurate",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i05",
-    "correctText": "What",
-    "correctResponseId": "en:lesson-02:session-49:i05:r1"
+    "correctText": "Yes, it is.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i06",
-    "correctText": "Where is the station?",
+    "correctText": "What is unacceptable?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i07",
-    "correctText": "Is he new?",
-    "correctResponseId": "en:lesson-02:session-49:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-49:i08",
-    "correctText": "No, he is not.",
+    "correctText": "It's unacceptable.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-49:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-49:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-49:i09",
-    "correctText": "near",
+    "correctText": "Are they accurate?",
     "correctResponseId": "en:lesson-02:session-49:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-49:i10",
-    "correctText": "en:lesson-02:session-49:i10:p1=tired\nen:lesson-02:session-49:i10:p2=manager\nen:lesson-02:session-49:i10:p3=near\nen:lesson-02:session-49:i10:p4=ready",
+    "correctText": "en:lesson-02:session-49:i10:p1=cheap\nen:lesson-02:session-49:i10:p2=accurate\nen:lesson-02:session-49:i10:p3=acceptable\nen:lesson-02:session-49:i10:p4=unacceptable",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i11",
-    "correctText": "Is it near?",
+    "correctText": "It is not acceptable.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i12",
-    "correctText": "I am not sure.",
-    "correctResponseId": "en:lesson-02:session-49:i12:r1"
+    "correctText": "Is it cheap?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i13",
-    "correctText": "It is not near.",
+    "correctText": "They're accurate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i14",
-    "correctText": "we",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-49:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-49:i15",
-    "correctText": "Am I wrong?",
-    "correctResponseId": null
+    "correctText": "Is it unacceptable?",
+    "correctResponseId": "en:lesson-02:session-49:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-49:i16",
-    "correctText": "I am ready.",
+    "correctText": "en:lesson-02:session-49:i16:p1=accurate\nen:lesson-02:session-49:i16:p2=unacceptable\nen:lesson-02:session-49:i16:p3=cheap\nen:lesson-02:session-49:i16:p4=acceptable",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i17",
-    "correctText": "What is the time?",
+    "correctText": "Is it unacceptable?",
     "correctResponseId": null
   }
 ]

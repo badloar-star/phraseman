@@ -1,0 +1,1002 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is careless.",
+        "localizedMeaning": {
+          "ru": "Олег не следит, куда ставит открытую краску. Скажите полной фразой, что он неосторожен",
+          "uk": "Олег не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "careless"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег не стежить, куди ставить відкриту фарбу. Скажіть повною фразою, що він необережний",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is careless.`",
+              "uk": "тут потрібно `is` — `He is careless.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про Анну",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i02:r1",
+          "text": "She is confused."
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i02:r2",
+          "text": "She is worried."
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i02:r3",
+          "text": "She is bored."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про Анну",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i02:audio",
+          "transcript": "She is confused."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i02:r1",
+            "targetText": "She is confused.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i02:r2",
+            "targetText": "She is worried.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i02:r3",
+            "targetText": "She is bored.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про Анну",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `confused`, а в этом варианте — `worried`.",
+              "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `worried`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про Анну",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `confused`, а в этом варианте — `bored`.",
+              "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `bored`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хочете дізнатися, хто поводиться з фарбою необережно. Доповніть запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i03:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете дізнатися, хто поводиться з фарбою необережно. Доповніть запитання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотите узнать, кто обращается с краской неосторожно. Дополните вопрос",
+          "uk": "Ви хочете дізнатися, хто поводиться з фарбою необережно. Доповніть запитання"
+        },
+        "gappedTargetPhrase": "Who ___ careless?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-26:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i03:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви хочете дізнатися, хто поводиться з фарбою необережно. Доповніть запитання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви хочете дізнатися, хто поводиться з фарбою необережно. Доповніть запитання",
+            "feedbackByLocale": {
+              "ru": "Здесь вопрос `Who is careless?`.",
+              "uk": "Тут запитання `Who is careless?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви хочете дізнатися, хто поводиться з фарбою необережно. Доповніть запитання",
+            "feedbackByLocale": {
+              "ru": "После `Who` нужно `is`, а не ещё одно слово о человеке или вещи.",
+              "uk": "Після `Who` потрібно `is`, а не ще одне слово про людину чи річ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-26:i04:p1",
+            "target": "careless",
+            "meaningByLocale": {
+              "ru": "неосторожный, небрежный",
+              "uk": "необережний, недбалий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i04:p2",
+            "target": "bored",
+            "meaningByLocale": {
+              "ru": "скучающий",
+              "uk": "той, кому нудно"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i04:p3",
+            "target": "confused",
+            "meaningByLocale": {
+              "ru": "растерянный, запутавшийся",
+              "uk": "розгублений, спантеличений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i04:p4",
+            "target": "worried",
+            "meaningByLocale": {
+              "ru": "обеспокоенный",
+              "uk": "стурбований"
+            }
+          }
+        ],
+        "leftColumn": [
+          "careless",
+          "bored",
+          "confused",
+          "worried"
+        ],
+        "rightColumn": [
+          "необережний, недбалий",
+          "той, кому нудно",
+          "розгублений, спантеличений",
+          "стурбований"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i05:audio",
+          "transcript": "Where is she?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is she?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "she"
+        ],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is she?`",
+              "uk": "тут потрібно `Where` — `Where is she?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег каже, що погано почувається. Уточніть в Анни, чи йому недобре",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег каже, що погано почувається. Уточніть в Анни, чи йому недобре",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is he unwell?",
+        "localizedMeaning": {
+          "ru": "Олег говорит о плохом самочувствии. Уточните у Анны, нездоровится ли ему",
+          "uk": "Олег каже, що погано почувається. Уточніть в Анни, чи йому недобре"
+        },
+        "orderedTokens": [
+          "Is",
+          "he",
+          "unwell"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег каже, що погано почувається. Уточніть в Анни, чи йому недобре",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is he unwell?`",
+              "uk": "тут потрібно `Is` — `Is he unwell?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви давно закінчили свою іграшку, чекати на інших нудно. Скажіть про це коротко",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i07:audio"
+      ],
+      "accessibilityLabel": "Ви давно закінчили свою іграшку, чекати на інших нудно. Скажіть про це коротко",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i07:audio",
+          "transcript": "I'm bored."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm bored.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна внимательно закрывает банки и убирает их с края. На «Is she careless?» дополните короткое «нет»",
+          "uk": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»"
+        },
+        "gappedTargetPhrase": "No, she ___ not.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-26:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+            "feedbackByLocale": {
+              "ru": "С `she` нужно `is`.",
+              "uk": "З `she` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Анна уважно закриває банки й прибирає їх із краю. На «Is she careless?» доповніть коротку відповідь «ні»",
+            "feedbackByLocale": {
+              "ru": "Ответ — `No, she is not`.",
+              "uk": "Відповідь — `No, she is not`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про Олега",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i09:r1",
+          "text": "He is unwell."
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i09:r2",
+          "text": "He is careless."
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i09:r3",
+          "text": "He is bored."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про Олега",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i09:audio",
+          "transcript": "He is unwell."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i09:r1",
+            "targetText": "He is unwell.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i09:r2",
+            "targetText": "He is careless.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i09:r3",
+            "targetText": "He is bored.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про Олега",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unwell`, а в этом варианте — `careless`.",
+              "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `careless`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про Олега",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unwell`, а в этом варианте — `bored`.",
+              "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `bored`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-26:i10:p1",
+            "target": "unwell",
+            "meaningByLocale": {
+              "ru": "плохо себя чувствующий",
+              "uk": "той, хто погано почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i10:p2",
+            "target": "careless",
+            "meaningByLocale": {
+              "ru": "неосторожный, небрежный",
+              "uk": "необережний, недбалий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i10:p3",
+            "target": "worried",
+            "meaningByLocale": {
+              "ru": "обеспокоенный",
+              "uk": "стурбований"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i10:p4",
+            "target": "confused",
+            "meaningByLocale": {
+              "ru": "растерянный, запутавшийся",
+              "uk": "розгублений, спантеличений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "unwell",
+          "careless",
+          "worried",
+          "confused"
+        ],
+        "rightColumn": [
+          "той, хто погано почувається",
+          "необережний, недбалий",
+          "стурбований",
+          "розгублений, спантеличений"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i11:audio",
+          "transcript": "They are not worried."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are not worried.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "worried"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are not worried.`",
+              "uk": "тут потрібно `are` — `They are not worried.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте свій пензлик. Запитайте, де він",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте свій пензлик. Запитайте, де він",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is it?",
+        "localizedMeaning": {
+          "ru": "Вы ищете свою кисть. Спросите, где она",
+          "uk": "Ви шукаєте свій пензлик. Запитайте, де він"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "it"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте свій пензлик. Запитайте, де він",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is it?`",
+              "uk": "тут потрібно `Where` — `Where is it?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна заплуталася в інструкції. Коротко скажіть, що вона розгублена",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Анна заплуталася в інструкції. Коротко скажіть, що вона розгублена",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i13:audio",
+          "transcript": "She's confused."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She's confused.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Двое друзей аккуратно убрали все банки. Отрицайте, что они небрежны",
+          "uk": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі"
+        },
+        "gappedTargetPhrase": "They ___ not careless.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-26:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i14:r2",
+            "correct": false,
+            "testedDimension": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+            "feedbackByLocale": {
+              "ru": "С `They` нужно `are`.",
+              "uk": "З `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i14:r3",
+            "correct": false,
+            "testedDimension": "Двоє друзів акуратно прибрали всі банки. Заперечте, що вони недбалі",
+            "feedbackByLocale": {
+              "ru": "Фраза — `They are not careless`.",
+              "uk": "Фраза — `They are not careless`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i15:r1",
+          "text": "Who is worried?"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i15:r2",
+          "text": "Who is bored?"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i15:r3",
+          "text": "Who is careless?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i15:audio",
+          "transcript": "Who is worried?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i15:r1",
+            "targetText": "Who is worried?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i15:r2",
+            "targetText": "Who is bored?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i15:r3",
+            "targetText": "Who is careless?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `worried`, а в этом варианте — `bored`.",
+              "uk": "У записі останнє слово — `worried`, а в цьому варіанті — `bored`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `worried`, а в этом варианте — `careless`.",
+              "uk": "У записі останнє слово — `worried`, а в цьому варіанті — `careless`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-26:i16:p1",
+            "target": "bored",
+            "meaningByLocale": {
+              "ru": "скучающий",
+              "uk": "той, кому нудно"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i16:p2",
+            "target": "confused",
+            "meaningByLocale": {
+              "ru": "растерянный, запутавшийся",
+              "uk": "розгублений, спантеличений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i16:p3",
+            "target": "unwell",
+            "meaningByLocale": {
+              "ru": "плохо себя чувствующий",
+              "uk": "той, хто погано почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i16:p4",
+            "target": "careless",
+            "meaningByLocale": {
+              "ru": "неосторожный, небрежный",
+              "uk": "необережний, недбалий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bored",
+          "confused",
+          "unwell",
+          "careless"
+        ],
+        "rightColumn": [
+          "той, кому нудно",
+          "розгублений, спантеличений",
+          "той, хто погано почувається",
+          "необережний, недбалий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Відкрита фарба знову стоїть на самому краю столу. Ви не бачили, хто її поставив. Запитайте, хто необережний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Відкрита фарба знову стоїть на самому краю столу. Ви не бачили, хто її поставив. Запитайте, хто необережний",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i17:audio",
+          "transcript": "Who is careless?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who is careless?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4d0c281fedaebcf27326100c96374711c5f4b068af39378762d983510583bc90"
+}

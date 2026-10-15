@@ -7,75 +7,43 @@
       "interactionId": "en:lesson-02:session-52:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какая реплика прозвучала у входа",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-52:i01:r1",
-          "text": "Are you ready?"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i01:r2",
-          "text": "Are we ready?"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i01:r3",
-          "text": "You are ready."
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Распределение соблюдает общую договорённость, все считают его справедливым. Скажите это полной фразой",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-52:i01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какая реплика прозвучала у входа",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Распределение соблюдает общую договорённость, все считают его справедливым. Скажите это полной фразой",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i01:audio",
-          "transcript": "Are you ready?"
+        "family": "phrase_builder",
+        "targetPhrase": "It is fair.",
+        "localizedMeaning": {
+          "ru": "Распределение соблюдает общую договорённость, все считают его справедливым. Скажите это полной фразой",
+          "uk": "Розподіл відповідає спільній домовленості, усі вважають його справедливим. Скажіть це повною фразою"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-52:i01:r1",
-            "targetText": "Are you ready?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i01:r2",
-            "targetText": "Are we ready?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i01:r3",
-            "targetText": "You are ready.",
-            "meaningByLocale": null
-          }
+        "orderedTokens": [
+          "It",
+          "is",
+          "fair"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-52:i01:r2",
+            "responseId": "en:lesson-02:session-52:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Распределение соблюдает общую договорённость, все считают его справедливым. Скажите это полной фразой",
             "feedbackByLocale": {
-              "ru": "В этом вопросе звучит `we` — «мы». В записи сотрудник обращается к вам: `Are you`.",
-              "uk": "У цьому запитанні звучить `we` — «ми». У записі працівник звертається до вас: `Are you`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i01:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
-            "feedbackByLocale": {
-              "ru": "Это сообщение. В записи первые слова стоят иначе: `Are you`.",
-              "uk": "Це повідомлення. У записі перші слова стоять інакше: `Are you`."
+              "ru": "здесь нужно `is` — `It is fair.`",
+              "uk": "тут потрібно `is` — `It is fair.`"
             }
           }
         ],
-        "isWordCard": false,
-        "wordCard": null
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -83,28 +51,75 @@
       "interactionId": "en:lesson-02:session-52:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — сотрудник спросил, готовы ли вы показать билет; вы ещё ищете его в телефоне, ответьте коротко «Нет»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — сотрудник спросил, готовы ли вы показать билет; вы ещё ищете его в телефоне, ответьте коротко «Нет»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "No, I am not.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — сотрудник спросил, готовы ли вы показать билет; вы ещё ищете его в телефоне, ответьте коротко «Нет»",
-          "uk": "Складіть фразу — працівник запитав, чи готові ви показати квиток; ви ще шукаєте його в телефоні, дайте коротку відповідь «Ні»"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу о коробке",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-52:i02:r1",
+          "text": "It is light."
         },
-        "orderedTokens": [
-          "No,",
-          "I",
-          "am",
-          "not"
+        {
+          "responseId": "en:lesson-02:session-52:i02:r2",
+          "text": "It is heavy."
+        },
+        {
+          "responseId": "en:lesson-02:session-52:i02:r3",
+          "text": "It is fair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте фразу о коробке",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-52:i02:audio",
+          "transcript": "It is light."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-52:i02:r1",
+            "targetText": "It is light.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i02:r2",
+            "targetText": "It is heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i02:r3",
+            "targetText": "It is fair.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу о коробке",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `light`, а в этом варианте — `heavy`.",
+              "uk": "У записі останнє слово — `light`, а в цьому варіанті — `heavy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу о коробке",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `light`, а в этом варианте — `fair`.",
+              "uk": "У записі останнє слово — `light`, а в цьому варіанті — `fair`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -112,75 +127,68 @@
       "interactionId": "en:lesson-02:session-52:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какая реплика друга прозвучала рядом с вами",
+      "prompt": "Спросите, справедливо ли новое распределение",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-52:i03:r1",
-          "text": "Who is he?"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-02:session-52:i03:r2",
-          "text": "Where is he?"
+          "text": "Am"
         },
         {
           "responseId": "en:lesson-02:session-52:i03:r3",
-          "text": "Who is she?"
+          "text": "Are"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-52:i03:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какая реплика друга прозвучала рядом с вами",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, справедливо ли новое распределение",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i03:audio",
-          "transcript": "Who is he?"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, справедливо ли новое распределение",
+          "uk": "Запитайте, чи справедливий новий розподіл"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "gappedTargetPhrase": "___ it fair?",
+        "gapOptions": [
           {
             "responseId": "en:lesson-02:session-52:i03:r1",
-            "targetText": "Who is he?",
-            "meaningByLocale": null
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-02:session-52:i03:r2",
-            "targetText": "Where is he?",
-            "meaningByLocale": null
+            "text": "Am"
           },
           {
             "responseId": "en:lesson-02:session-52:i03:r3",
-            "targetText": "Who is she?",
-            "meaningByLocale": null
+            "text": "Are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
+        "testedDimension": "Спросите, справедливо ли новое распределение",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-52:i03:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Спросите, справедливо ли новое распределение",
             "feedbackByLocale": {
-              "ru": "Это вопрос о месте. В записи первое слово `Who` — «кто».",
-              "uk": "Це запитання про місце. У записі перше слово — `Who`, «хто»."
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-52:i03:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Спросите, справедливо ли новое распределение",
             "feedbackByLocale": {
-              "ru": "Это вопрос о женщине. В записи в конце звучит `he` — «он».",
-              "uk": "Це запитання про жінку. Наприкінці запису звучить `he` — «він»."
+              "ru": "Вопрос — `Is it fair?`.",
+              "uk": "Запитання — `Is it fair?`."
             }
           }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        ]
       },
       "scriptedAlternate": null
     },
@@ -188,510 +196,60 @@
       "interactionId": "en:lesson-02:session-52:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — друг спросил о мужчине с ключами; вы знаете, что он руководитель клуба, объясните, кто он",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — друг спросил о мужчине с ключами; вы знаете, что он руководитель клуба, объясните, кто он",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is the manager.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — друг спросил о мужчине с ключами; вы знаете, что он руководитель клуба, объясните, кто он",
-          "uk": "Складіть фразу — друг запитав про чоловіка з ключами; ви знаєте, що він керівник клубу, поясніть, хто він"
-        },
-        "orderedTokens": [
-          "He",
-          "is",
-          "the",
-          "manager"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-52:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — руководитель отошёл, и вы потеряли его из виду; спросите сотрудницу, где он",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-52:i05:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i05:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i05:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — руководитель отошёл, и вы потеряли его из виду; спросите сотрудницу, где он",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — руководитель отошёл, и вы потеряли его из виду; спросите сотрудницу, где он",
-          "uk": "Вставте слово — керівник відійшов, і ви втратили його з поля зору; запитайте працівницю, де він"
-        },
-        "gappedTargetPhrase": "Where ___ he?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-52:i05:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i05:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i05:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте слово — руководитель отошёл, и ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-52:i05:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — руководитель отошёл, и ",
-            "feedbackByLocale": {
-              "ru": "В этом вопросе о мужчине нужно `is`: `Where is he?`.",
-              "uk": "У цьому запитанні про чоловіка потрібне `is`: `Where is he?`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i05:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — руководитель отошёл, и ",
-            "feedbackByLocale": {
-              "ru": "Форма `am` подходит к `I`. Здесь вопрос с `he`, поэтому выбираем `is`.",
-              "uk": "Форма `am` поєднується з `I`. Тут запитання з `he`, тому обираємо `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-52:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какая реплика сотрудницы прозвучала в ответ",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-52:i06:r1",
-          "text": "He is inside."
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i06:r2",
-          "text": "He is outside."
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i06:r3",
-          "text": "Is he inside?"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-52:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какая реплика сотрудницы прозвучала в ответ",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i06:audio",
-          "transcript": "He is inside."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-52:i06:r1",
-            "targetText": "He is inside.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i06:r2",
-            "targetText": "He is outside.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i06:r3",
-            "targetText": "Is he inside?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-52:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика со",
-            "feedbackByLocale": {
-              "ru": "Это «Он снаружи». В записи последнее слово `inside` — «внутри».",
-              "uk": "Це «Він зовні». Останнє слово в записі — `inside`, «усередині»."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика со",
-            "feedbackByLocale": {
-              "ru": "Это вопрос. На записи сотрудница сообщает: сначала `He is`.",
-              "uk": "Це запитання. У записі працівниця повідомляє: спочатку `He is`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-52:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы показываете на зал; спросите сотрудницу, открыт ли он",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-52:i07:r1",
-          "text": "open"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i07:r2",
-          "text": "ready"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i07:r3",
-          "text": "sure"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы показываете на зал; спросите сотрудницу, открыт ли он",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы показываете на зал; спросите сотрудницу, открыт ли он",
-          "uk": "Вставте слово — ви показуєте на залу; запитайте працівницю, чи відкрита вона"
-        },
-        "gappedTargetPhrase": "Is it ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-52:i07:r1",
-            "text": "open"
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i07:r2",
-            "text": "ready"
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i07:r3",
-            "text": "sure"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вы показываете на зал; ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-52:i07:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы показываете на зал; ",
-            "feedbackByLocale": {
-              "ru": "Это вопрос о готовности. По условию вы уточняете, открыт ли зал: `open`.",
-              "uk": "Це запитання про готовність. За умовою ви уточнюєте, чи відкрита зала: `open`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i07:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы показываете на зал; ",
-            "feedbackByLocale": {
-              "ru": "Это «уверен». Для вопроса об открытом зале нужно `Is it open?`.",
-              "uk": "Це «впевнений». Для запитання про відкриту залу потрібне `Is it open?`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-52:i08:s01",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-52:i08:s01:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i08:s01:audio",
-          "transcript": "Excuse me."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Excuse me.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-52:i08:s02",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 2 из 2",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "What is the price?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — другу тоже нужен билет; обратитесь к сотруднице и спросите цену",
-          "uk": "Складіть фразу — другові теж потрібен квиток; зверніться до працівниці й запитайте ціну"
-        },
-        "orderedTokens": [
-          "What",
-          "is",
-          "the",
-          "price"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-52:i09",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какая реплика друга прозвучала над планом здания",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-52:i09:r1",
-          "text": "Are we here?"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i09:r2",
-          "text": "We are here."
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i09:r3",
-          "text": "Are you here?"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-52:i09:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какая реплика друга прозвучала над планом здания",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i09:audio",
-          "transcript": "Are we here?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-52:i09:r1",
-            "targetText": "Are we here?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i09:r2",
-            "targetText": "We are here.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i09:r3",
-            "targetText": "Are you here?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-52:i09:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
-            "feedbackByLocale": {
-              "ru": "Это сообщение. В записи первые слова `Are we`: друг спрашивает.",
-              "uk": "Це повідомлення. У записі перші слова — `Are we`: друг запитує."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i09:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
-            "feedbackByLocale": {
-              "ru": "Это вопрос с `you`. В записи звучит `we`, включающее вас обоих.",
-              "uk": "Це запитання з `you`. У записі звучить `we`, що охоплює вас обох."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-52:i10",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — друг показал ваше место на плане и спросил «Мы здесь?»; место указано верно, ответьте коротко «Да»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-52:i10:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i10:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-02:session-52:i10:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — друг показал ваше место на плане и спросил «Мы здесь?»; место указано верно, ответьте коротко «Да»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — друг показал ваше место на плане и спросил «Мы здесь?»; место указано верно, ответьте коротко «Да»",
-          "uk": "Вставте слово — друг показав ваше місце на плані й запитав «Ми тут?»; місце вказано правильно, дайте коротку відповідь «Так»"
-        },
-        "gappedTargetPhrase": "Yes, we ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-52:i10:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i10:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i10:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте слово — друг показал ваше место",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-52:i10:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — друг показал ваше место",
-            "feedbackByLocale": {
-              "ru": "В этом коротком ответе с `we` нужна форма `are`: `Yes, we are`.",
-              "uk": "У цій короткій відповіді з `we` потрібна форма `are`: `Yes, we are`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-52:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — друг показал ваше место",
-            "feedbackByLocale": {
-              "ru": "Форма `am` сочетается с `I`. Здесь сохраняем `we are`.",
-              "uk": "Форма `am` поєднується з `I`. Тут зберігаємо `we are`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-52:i11",
-      "ordinal": 15,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — слова для разговора у входа",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — слова для разговора у входа",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-52:i11:p1",
-            "target": "ready",
+            "pairId": "en:lesson-02:session-52:i04:p1",
+            "target": "fair",
             "meaningByLocale": {
-              "ru": "готов",
-              "uk": "готовий"
+              "ru": "справедливый",
+              "uk": "справедливий"
             }
           },
           {
-            "pairId": "en:lesson-02:session-52:i11:p2",
-            "target": "manager",
+            "pairId": "en:lesson-02:session-52:i04:p2",
+            "target": "light",
             "meaningByLocale": {
-              "ru": "руководитель",
-              "uk": "керівник"
+              "ru": "лёгкий по весу",
+              "uk": "легкий за вагою"
             }
           },
           {
-            "pairId": "en:lesson-02:session-52:i11:p3",
-            "target": "open",
+            "pairId": "en:lesson-02:session-52:i04:p3",
+            "target": "legal",
             "meaningByLocale": {
-              "ru": "открыто",
-              "uk": "відкрито"
+              "ru": "законный",
+              "uk": "законний"
             }
           },
           {
-            "pairId": "en:lesson-02:session-52:i11:p4",
-            "target": "here",
+            "pairId": "en:lesson-02:session-52:i04:p4",
+            "target": "heavy",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "тяжёлый",
+              "uk": "важкий"
             }
           }
         ],
         "leftColumn": [
-          "ready",
-          "manager",
-          "open",
-          "here"
+          "fair",
+          "light",
+          "legal",
+          "heavy"
         ],
         "rightColumn": [
-          "готов",
-          "руководитель",
-          "открыто",
-          "здесь"
+          "справедливый",
+          "лёгкий по весу",
+          "законный",
+          "тяжёлый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -708,104 +266,266 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-52:i12",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-02:session-52:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — друг спрашивает о сотруднице, которая проверяет билеты",
+      "prompt": "Послушайте и соберите короткий ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-52:i12:audio"
+        "en:lesson-02:session-52:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — друг спрашивает о сотруднице, которая проверяет билеты",
+      "accessibilityLabel": "Послушайте и соберите короткий ответ",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i12:audio",
-          "transcript": "Is she new?"
+          "audioTargetId": "en:lesson-02:session-52:i05:audio",
+          "transcript": "Yes, it is."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is she new?",
+        "hiddenTargetPhrase": "Yes, it is.",
         "orderedTokens": [
-          "Is",
-          "she",
-          "new"
+          "Yes,",
+          "it",
+          "is"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "No,"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткий ответ",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Yes,` — `Yes, it is.`",
+              "uk": "тут потрібно `Yes,` — `Yes, it is.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-52:i13",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
+      "interactionId": "en:lesson-02:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы обсуждаете разные варианты распределения заданий. Спросите Анну, что справедливо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы обсуждаете разные варианты распределения заданий. Спросите Анну, что справедливо",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What is fair?",
+        "localizedMeaning": {
+          "ru": "Вы обсуждаете разные варианты распределения заданий. Спросите Анну, что справедливо",
+          "uk": "Ви обговорюєте різні варіанти розподілу завдань. Запитайте Анну, що справедливо"
+        },
+        "orderedTokens": [
+          "What",
+          "is",
+          "fair"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-52:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы обсуждаете разные варианты распределения заданий. Спросите Анну, что справедливо",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `What` — `What is fair?`",
+              "uk": "тут потрібно `What` — `What is fair?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы согласны с оценкой Анны: распределение справедливое. Коротко сообщите это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Вы согласны с оценкой Анны: распределение справедливое. Коротко сообщите это",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-52:i07:audio",
+          "transcript": "It's fair."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's fair.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какая следующая реплика сотрудницы прозвучала у двери",
+      "prompt": "В отдельной учебной истории действие разрешено законом. На «Is it legal?» дополните короткое «да»",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-52:i13:r1",
-          "text": "Is he ready?"
+          "responseId": "en:lesson-02:session-52:i08:r1",
+          "text": "is"
         },
         {
-          "responseId": "en:lesson-02:session-52:i13:r2",
-          "text": "He is ready."
+          "responseId": "en:lesson-02:session-52:i08:r2",
+          "text": "am"
         },
         {
-          "responseId": "en:lesson-02:session-52:i13:r3",
-          "text": "Is she ready?"
+          "responseId": "en:lesson-02:session-52:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В отдельной учебной истории действие разрешено законом. На «Is it legal?» дополните короткое «да»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В отдельной учебной истории действие разрешено законом. На «Is it legal?» дополните короткое «да»",
+          "uk": "В окремій навчальній історії дія дозволена законом. На «Is it legal?» доповніть коротку відповідь «так»"
+        },
+        "gappedTargetPhrase": "Yes, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В отдельной учебной истории действие разрешено законом. На «Is it legal?» дополните короткое «да»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "В отдельной учебной истории действие разрешено законом. На «Is it legal?» дополните короткое «да»",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "В отдельной учебной истории действие разрешено законом. На «Is it legal?» дополните короткое «да»",
+            "feedbackByLocale": {
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-52:i09:r1",
+          "text": "Is it legal?"
+        },
+        {
+          "responseId": "en:lesson-02:session-52:i09:r2",
+          "text": "Is it fair?"
+        },
+        {
+          "responseId": "en:lesson-02:session-52:i09:r3",
+          "text": "Is it light?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-52:i13:audio"
+        "en:lesson-02:session-52:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какая следующая реплика сотрудницы прозвучала у двери",
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i13:audio",
-          "transcript": "Is he ready?"
+          "audioTargetId": "en:lesson-02:session-52:i09:audio",
+          "transcript": "Is it legal?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-02:session-52:i13:r1",
-            "targetText": "Is he ready?",
+            "responseId": "en:lesson-02:session-52:i09:r1",
+            "targetText": "Is it legal?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-52:i13:r2",
-            "targetText": "He is ready.",
+            "responseId": "en:lesson-02:session-52:i09:r2",
+            "targetText": "Is it fair?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-52:i13:r3",
-            "targetText": "Is she ready?",
+            "responseId": "en:lesson-02:session-52:i09:r3",
+            "targetText": "Is it light?",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-52:i13:r2",
+            "responseId": "en:lesson-02:session-52:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая следующая ",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "Это сообщение. В записи сначала `Is he`: сотрудница задаёт вопрос.",
-              "uk": "Це повідомлення. У записі спочатку `Is he`: працівниця ставить запитання."
+              "ru": "В записи последнее слово — `legal`, а в этом варианте — `fair`.",
+              "uk": "У записі останнє слово — `legal`, а в цьому варіанті — `fair`."
             }
           },
           {
-            "responseId": "en:lesson-02:session-52:i13:r3",
+            "responseId": "en:lesson-02:session-52:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая следующая ",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "Это вопрос о женщине. В записи после `Is` звучит `he`.",
-              "uk": "Це запитання про жінку. У записі після `Is` звучить `he`."
+              "ru": "В записи последнее слово — `legal`, а в этом варианте — `light`.",
+              "uk": "У записі останнє слово — `legal`, а в цьому варіанті — `light`."
             }
           }
         ],
@@ -815,55 +535,191 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-52:i14",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — руководитель вернулся к двери и стоит рядом с вами; сообщите другу «Руководитель здесь»",
+      "interactionId": "en:lesson-02:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — руководитель вернулся к двери и стоит рядом с вами; сообщите другу «Руководитель здесь»",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The manager is here.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — руководитель вернулся к двери и стоит рядом с вами; сообщите другу «Руководитель здесь»",
-          "uk": "Складіть фразу — керівник повернувся до дверей і стоїть поруч із вами; повідомте другові «Керівник тут»"
-        },
-        "orderedTokens": [
-          "The",
-          "manager",
-          "is",
-          "here"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-52:i10:p1",
+            "target": "legal",
+            "meaningByLocale": {
+              "ru": "законный",
+              "uk": "законний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-52:i10:p2",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый",
+              "uk": "важкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-52:i10:p3",
+            "target": "fair",
+            "meaningByLocale": {
+              "ru": "справедливый",
+              "uk": "справедливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-52:i10:p4",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "лёгкий по весу",
+              "uk": "легкий за вагою"
+            }
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "leftColumn": [
+          "legal",
+          "heavy",
+          "fair",
+          "light"
+        ],
+        "rightColumn": [
+          "законный",
+          "тяжёлый",
+          "справедливый",
+          "лёгкий по весу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-52:i15",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "interactionId": "en:lesson-02:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите оценку распределения",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-52:i15:audio"
+        "en:lesson-02:session-52:i11:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и соберите оценку распределения",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-52:i11:audio",
+          "transcript": "It is not fair."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not fair.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "fair"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-52:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите оценку распределения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is not fair.`",
+              "uk": "тут потрібно `is` — `It is not fair.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна показывает закрытую коробку. Спросите, лёгкая ли она по весу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна показывает закрытую коробку. Спросите, лёгкая ли она по весу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it light?",
+        "localizedMeaning": {
+          "ru": "Анна показывает закрытую коробку. Спросите, лёгкая ли она по весу",
+          "uk": "Анна показує закриту коробку. Запитайте, чи вона легка за вагою"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "light"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-52:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна показывает закрытую коробку. Спросите, лёгкая ли она по весу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is it light?`",
+              "uk": "тут потрібно `Is` — `Is it light?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В учебной истории подтвердили, что действие разрешено законом. Коротко сообщите, что это законно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "В учебной истории подтвердили, что действие разрешено законом. Коротко сообщите, что это законно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i15:audio",
-          "transcript": "Am I wrong?"
+          "audioTargetId": "en:lesson-02:session-52:i13:audio",
+          "transcript": "It's legal."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Am I wrong?",
+        "targetPhrase": "It's legal.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -877,75 +733,270 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-52:i16",
-      "ordinal": 20,
+      "interactionId": "en:lesson-02:session-52:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Олег нарушил общую договорённость ради преимущества для себя. Вы считаете это несправедливым. Скажите об этом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-52:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-52:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-52:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег нарушил общую договорённость ради преимущества для себя. Вы считаете это несправедливым. Скажите об этом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Олег нарушил общую договорённость ради преимущества для себя. Вы считаете это несправедливым. Скажите об этом",
+          "uk": "Олег порушив спільну домовленість заради переваги для себе. Ви вважаєте це несправедливим. Скажіть про це"
+        },
+        "gappedTargetPhrase": "It ___ not fair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Олег нарушил общую договорённость ради преимущества для себя. Вы считаете это несправедливым. Скажите об этом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-52:i14:r2",
+            "correct": false,
+            "testedDimension": "Олег нарушил общую договорённость ради преимущества для себя. Вы считаете это несправедливым. Скажите об этом",
+            "feedbackByLocale": {
+              "ru": "С `It` нужно `is`.",
+              "uk": "З `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i14:r3",
+            "correct": false,
+            "testedDimension": "Олег нарушил общую договорённость ради преимущества для себя. Вы считаете это несправедливым. Скажите об этом",
+            "feedbackByLocale": {
+              "ru": "Фраза — `It is not fair`.",
+              "uk": "Фраза — `It is not fair`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i15",
+      "ordinal": 18,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-52:i15:r1",
+          "text": "Is it fair?"
+        },
+        {
+          "responseId": "en:lesson-02:session-52:i15:r2",
+          "text": "Is it legal?"
+        },
+        {
+          "responseId": "en:lesson-02:session-52:i15:r3",
+          "text": "Is it heavy?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-52:i16:audio"
+        "en:lesson-02:session-52:i15:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-52:i16:audio",
-          "transcript": "Excuse me."
+          "audioTargetId": "en:lesson-02:session-52:i15:audio",
+          "transcript": "Is it fair?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Excuse me.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-52:i15:r1",
+            "targetText": "Is it fair?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i15:r2",
+            "targetText": "Is it legal?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i15:r3",
+            "targetText": "Is it heavy?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-52:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fair`, а в этом варианте — `legal`.",
+              "uk": "У записі останнє слово — `fair`, а в цьому варіанті — `legal`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fair`, а в этом варианте — `heavy`.",
+              "uk": "У записі останнє слово — `fair`, а в цьому варіанті — `heavy`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-52:i16:p1",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "лёгкий по весу",
+              "uk": "легкий за вагою"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-52:i16:p2",
+            "target": "fair",
+            "meaningByLocale": {
+              "ru": "справедливый",
+              "uk": "справедливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-52:i16:p3",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый",
+              "uk": "важкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-52:i16:p4",
+            "target": "legal",
+            "meaningByLocale": {
+              "ru": "законный",
+              "uk": "законний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "light",
+          "fair",
+          "heavy",
+          "legal"
+        ],
+        "rightColumn": [
+          "лёгкий по весу",
+          "справедливый",
+          "тяжёлый",
+          "законный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-02:session-52:i17",
-      "ordinal": 21,
+      "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — сотрудница вас слушает; спросите, где туалеты",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна предложила ещё один вариант распределения. Спросите Олега, справедливо ли это",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — сотрудница вас слушает; спросите, где туалеты",
+      "audioTargetIds": [
+        "en:lesson-02:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Анна предложила ещё один вариант распределения. Спросите Олега, справедливо ли это",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where are the toilets?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — сотрудница вас слушает; спросите, где туалеты",
-          "uk": "Складіть фразу — працівниця вас слухає; запитайте, де туалети"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-52:i17:audio",
+          "transcript": "Is it fair?"
         },
-        "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "toilets"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it fair?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 18,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0a9d2492d41715096f3ae5534bceaefc67eb1c80ab0d0a27c6d931e2ff1694b7"
+  "learnerFingerprint": "5cfdcf4e68c814573dd966af4fa682d8378b9ecb9d12dd156ff232a581aed00c"
 }

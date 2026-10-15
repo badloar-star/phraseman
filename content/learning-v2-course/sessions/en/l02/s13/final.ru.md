@@ -1,177 +1,138 @@
-# Английский · Урок 2 · Занятие 13 — «Is he ↔ He is»
+# Английский · Урок 2 · Занятие 13 — Для всех или для своих
 
-**Сцена занятия.** Вы ждёте коллегу в кафе. Администратор просит помочь с посетителями: Том взял чужой заказ, Мире принесли торт, а Денис ищет выход. Вы то спрашиваете администратора о ком-то из них, то коротко сообщаете, что происходит.
-**Как сказать:** различить вопрос `Is he / Is she …?` и сообщение `He is / She is …`
-**Новые слова:** ashamed, surprised
-**Возвращаются:** tired, hungry
+**Ситуация.** Вы выбираете с другом место для встречи. Рядом есть общедоступный сад и двор только для жильцов; на сайте лежат фотографии обоих.
+
+**Что вы освоите:** уточнить, доступно ли место всем, и отличить public от private
+**Новые слова:** public
 
 ---
 
 ## Интро 1
 
-### `ashamed` — стыдно за свой поступок
+### Доступно всем
 
-`ashamed` — «испытывающий стыд». Так человек чувствует себя, когда понимает, что сделал что-то плохое или неловкое. Это сильнее простого смущения и относится к чувству человека, а не к самому поступку. Том взял чужой заказ и теперь смотрит на поднос особенно виновато. Сообщение: `He is ashamed.`.
+`public` — «общедоступный, общественный». Про сад, куда могут приходить все, можно сказать `It is public`. Это не обещает, что сад открыт круглосуточно: даже общедоступные ворота вечером иногда хотят закрыться. Здесь говорим о доступе для людей, а не о часах работы.
 
-**Том понимает, что взял чужой заказ, и ему стыдно. Сообщите об этом.**
+**В этот сад могут приходить все, не только жильцы соседнего дома. Скажите, что он общедоступный.**
 
-- ✅ **He is ashamed.**
-- ❌ Is he ashamed? — *Это вопрос, а нужно сообщение.*
-- ❌ He ashamed is. — *В сообщении порядок `he is ashamed`.*
+- ✅ **It is public.**
+- ❌ It is private. — *Это частный сад с ограниченным доступом. В условии сад для всех.*
+- ❌ It public. — *После `It` нужно `is`: `It is public`.*
 
 ---
 
 ## Интро 2
 
-### `surprised` — случилось неожиданное
+### Сначала спросите
 
-`surprised` — «удивлённый»: произошло то, чего человек не ожидал. Удивление может быть приятным или неприятным; слово само по себе этого не решает. Чтобы спросить о Мире, ставим `is` перед `she`: `Is she surprised?`. Чтобы сообщить, меняем первые слова местами: `She is surprised.`.
+`Is it public?` — «Это общедоступное место?» Так можно уточнить про сад или двор, прежде чем назначать там встречу. `Public` и `private` говорят о доступе, а `big` и `small` — о размере. Большие ворота ещё не означают «заходите все».
 
-**Мире неожиданно принесли праздничный торт. Спросите, удивлена ли она.**
+**Вы видите сад за воротами, но не знаете, разрешён ли вход всем. Спросите друга, общедоступный ли он.**
 
-- ✅ **Is she surprised?**
-- ❌ She is surprised. — *Это сообщение. Вопрос начинается с `is`.*
-- ❌ Is surprised she? — *После `is` ставят `she`, затем `surprised`.*
+- ✅ **Is it public?**
+- ❌ Are it public? — *С `it` нужно `is`, в вопросе — `Is it`.*
+- ❌ Is public it? — *После `Is` ставим `it`, затем `public`.*
 
 ---
 
 ## Интро 3
 
-### Первые два слова задают смысл
+### Можно сказать «не для всех»
 
-`Is he ashamed?` — вопрос: сначала стоит `is`. `He is ashamed.` — сообщение: сначала стоит `he`. Тот же контраст работает с новым словом `surprised`: `Is she surprised?` спрашивает, а `She is surprised.` сообщает. Знак вопроса помогает при чтении, но в речи смысл держит порядок первых двух слов.
+`It is not public` — «Это не общедоступное место». Например, двор предназначен только для жильцов. Коротко — `It's not public`. И ещё: `public` само по себе не означает «бесплатный». У общедоступного места могут быть свои условия посещения.
 
-**Мира широко раскрыла глаза, когда увидела торт. Выберите сообщение о ней.**
+**Двор предназначен только для жильцов дома. Коротко скажите, что он не общедоступный.**
 
-- ✅ **She is surprised.**
-- ❌ Is she surprised? — *Это вопрос, а нужно сообщение.*
-- ❌ She surprised is. — *В сообщении после `she` ставят `is`.*
+- ✅ **It's not public.**
+- ❌ It's public. — *Это «Общедоступный». Здесь нужен `not`.*
+- ❌ They're not public. — *Обсуждаем один двор: `It's`, а не `They're`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — thirsty**
-<!-- interaction_id: en:lesson-02:session-13:i01; family: listen_choose -->
-Цель: `thirsty`
+**1 · Друг предлагает встретиться в саду за воротами. Спросите, общедоступный ли он**
+<!-- interaction_id: en:lesson-02:session-13:i01; family: phrase_builder -->
+Плитки: `public` `it` `Is` `Are` → **Is it public?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it public?`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте вопрос о саде**
 <!-- interaction_id: en:lesson-02:session-13:i02; family: listen_choose -->
-Цель: `thirsty`
-Варианты: `thirsty` · `dirty` · `thirty`
-- dirty — *Это «грязный» — про пятно на скатерти, а не про жажду.*
-- thirty — *Это «тридцать», число. А тут про человека, которому хочется пить.*
+🔊 *Is it big?* → **Is it big?** · Is it small? · Is it clean?
+- Is it small? — *В записи последнее слово — `big`, а в этом варианте — `small`.*
+- Is it clean? — *В записи последнее слово — `big`, а в этом варианте — `clean`.*
 
-
-**3 · Вставьте слово — вопрос или сообщение?**
+**3 · Сад открыт для всех посетителей. Дополните фразу о его общедоступности**
 <!-- interaction_id: en:lesson-02:session-13:i03; family: context_gap_grammar -->
-Цель: `___ he tired?`
-Варианты: `Is` · `He` · `Are`
-- He — *Тогда получится сообщение `He is tired`, а тут спрашивают.*
-- Are — *`Are` идёт с другими словами. С `he` — `is`.*
+It ___ public. → **is** · am · are
+- am — *После `It` нужно `is`.*
+- are — *Про один сад — `It is`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-13:i04; family: speed_match -->
+public — общедоступный · private — частный, не для всех · big — большой · small — маленький
 
-**4 · Соберите фразу — спросите про Миру у стойки, голодна ли она**
-<!-- interaction_id: en:lesson-02:session-13:i04; family: phrase_builder -->
-Цель: `Is she hungry?`
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-13:i05; family: listen_build_dictation -->
+🔊 *It's not public.* Плитки: `public` `not` `It's` `They're` → **It's not public.**
+*(плитка `They're` лишняя: здесь нужно `It's` — `It's not public.`)*
 
-**5 · Вставьте слово — вы отвечаете спутнику, а не спрашиваете**
-<!-- interaction_id: en:lesson-02:session-13:i05; family: context_gap_grammar -->
-Цель: `Yes, ___ is.`
-Варианты: `he` · `is` · `him`
-- is — *В ответе сначала `he`, потом `is`. Вперёд `is` выходит в вопросе.*
-- him — *В начале фразы стоит `he`. `Him` тут не годится.*
-
-
-**6 · Соберите фразу — сообщите: Денис заблудился**
+**6 · Сад просторный. Скажите, что он не маленький**
 <!-- interaction_id: en:lesson-02:session-13:i06; family: phrase_builder -->
-Цель: `He is lost.`
+Плитки: `small` `not` `is` `It` `are` → **It is not small.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not small.`)*
 
-**7 · Послушайте и соберите — «Мира устала?»**
-<!-- interaction_id: en:lesson-02:session-13:i07; family: listen_build_dictation -->
-Цель: `Is she tired?`
+**7 · Вы хотите посидеть в саду, но ещё там не были. Спросите друга, чисто ли там**
+<!-- interaction_id: en:lesson-02:session-13:i07; family: scripted_repeat_compare -->
+🎙 **Is it clean?**
 
-**8 · Вставьте слово — Том у стойки третий раз просит воду**
+**8 · На фото два дерева кажутся искусственными. Спросите, настоящие ли они**
 <!-- interaction_id: en:lesson-02:session-13:i08; family: context_gap_grammar -->
-Цель: `Is he ___ ?`
-Варианты: `thirsty` · `lost` · `cheerful`
-- lost — *«Заблудился». Про воду это ничего не говорит.*
-- cheerful — *«Весёлый». Тоже не про жажду.*
+___ they real? → **Are** · Am · Is
+- Am — *С `they` нужно `Are`.*
+- Is — *Про два дерева — `Are they`.*
 
+**9 · Послушайте фразу о саде**
+<!-- interaction_id: en:lesson-02:session-13:i09; family: listen_choose -->
+🔊 *It is public.* → **It is public.** · It is private. · It is small.
+- It is private. — *В записи последнее слово — `public`, а в этом варианте — `private`.*
+- It is small. — *В записи последнее слово — `public`, а в этом варианте — `small`.*
 
-**9 · Соберите фразу — спросите про Дениса, не заблудился ли он**
-<!-- interaction_id: en:lesson-02:session-13:i09; family: phrase_builder -->
-Цель: `Is he lost?`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-13:i10; family: speed_match -->
+real — настоящий · clean — чистый · small — маленький · public — общедоступный
 
-**10 · Различите звуки — какое из двух про «голодный»?**
-<!-- interaction_id: en:lesson-02:session-13:i10; family: sound_contrast -->
-Варианты: `hungry` · `angry`
-- angry — *Это «сердитый», про настроение. А про голод — `hungry`.*
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-13:i11; family: listen_build_dictation -->
+🔊 *They're not real.* Плитки: `real` `not` `They're` `It's` → **They're not real.**
+*(плитка `It's` лишняя: здесь нужно `They're` — `They're not real.`)*
 
+**12 · Двор доступен только жильцам дома. Скажите, что он не общедоступный**
+<!-- interaction_id: en:lesson-02:session-13:i12; family: phrase_builder -->
+Плитки: `public` `not` `is` `It` `are` → **It is not public.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not public.`)*
 
-**11 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-13:i11; family: speed_match -->
-Цель: `tired · hungry · lost · thirsty`
-Пары: `tired` — устал · `hungry` — голодный · `lost` — заблудился · `thirsty` — хочет пить
+**13 · На фотографии большой сад. Коротко скажите, что он большой**
+<!-- interaction_id: en:lesson-02:session-13:i13; family: scripted_repeat_compare -->
+🎙 **It's big.**
 
-**12 · Карточка слова — cheerful**
-<!-- interaction_id: en:lesson-02:session-13:i12; family: listen_choose -->
-Цель: `cheerful`
-
-**13 · Карточка слова — upset**
-<!-- interaction_id: en:lesson-02:session-13:i13; family: listen_choose -->
-Цель: `upset`
-
-**14 · Вставьте слово — Мира смеётся и машет знакомым через зал**
+**14 · На калитке табличка, но её не разобрать. Спросите друга, частный ли это сад**
 <!-- interaction_id: en:lesson-02:session-13:i14; family: context_gap_grammar -->
-Цель: `She is ___ .`
-Варианты: `cheerful` · `upset` · `lost`
-- upset — *«Расстроен». Тот, кто смеётся, вряд ли расстроен.*
-- lost — *«Заблудился». Она никого не ищет, она здоровается.*
+___ it private? → **Is** · Am · Are
+- Am — *С `it` нужно `Is`.*
+- Are — *Вопрос про сад — `Is it`.*
 
-
-**15 · Карточка слова — comfortable**
+**15 · Послушайте фразу о дворе**
 <!-- interaction_id: en:lesson-02:session-13:i15; family: listen_choose -->
-Цель: `comfortable`
+🔊 *It is not clean.* → **It is not clean.** · It is not big. · It is not public.
+- It is not big. — *В записи последнее слово — `clean`, а в этом варианте — `big`.*
+- It is not public. — *В записи последнее слово — `clean`, а в этом варианте — `public`.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-13:i16; family: listen_choose -->
-Цель: `comfortable`
-Варианты: `comfortable` · `cheerful` · `cold`
-- cheerful — *«Весёлый». Это про настроение, а не про удобное кресло.*
-- cold — *«Холодно». Короткое слово в один слог, а `comfortable` длинное.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-13:i16; family: speed_match -->
+big — большой · small — маленький · clean — чистый · real — настоящий
 
+**17 · На сайте красивый сад, но не сказано, кто может туда приходить. Спросите друга, общедоступный ли он**
+<!-- interaction_id: en:lesson-02:session-13:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it public?**
 
-**17 · Соберите фразу — сообщите: Мира хочет пить**
-<!-- interaction_id: en:lesson-02:session-13:i17; family: phrase_builder -->
-Цель: `She is thirsty.`
-
-**18 · Послушайте и соберите — «нет, Том не расстроен»**
-<!-- interaction_id: en:lesson-02:session-13:i18; family: listen_build_dictation -->
-Цель: `No, he is not upset.`
-
-**19 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-13:i19; family: speed_match -->
-Цель: `upset · cheerful · comfortable · thirsty`
-Пары: `upset` — расстроен · `cheerful` — весёлый · `comfortable` — удобно · `thirsty` — хочет пить
-
-**20 · Соберите фразу — спросите про Миру в кресле: ей удобно?**
-<!-- interaction_id: en:lesson-02:session-13:i20; family: phrase_builder -->
-Цель: `Is she comfortable?`
-
-**21 · Скажите вслух — Денис стоит у двери; спросите администратора, не заблудился ли он**
-<!-- interaction_id: en:lesson-02:session-13:i21:s01; family: scripted_repeat_compare -->
-Цель: `Is he lost?`
-
-**22 · Скажите вслух — администратор повторяет вопрос о Денисе; подтвердите коротко**
-<!-- interaction_id: en:lesson-02:session-13:i21:s02; family: scripted_repeat_compare -->
-Цель: `Yes, he is.`
-
-## Для сборщика
-
-atomic_practice: practice.atomic.json
-new_words:
-ashamed — стыдно — Понимает, что сделал что-то плохое или неловкое.
-surprised — удивлённый — Произошло то, чего человек не ожидал.
-
-modes: 1=listen_choose, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=phrase_builder, 7=listen_build_dictation, 8=context_gap_grammar, 9=phrase_builder, 10=sound_contrast, 11=speed_match, 12=listen_choose, 13=listen_choose, 14=context_gap_grammar, 15=listen_choose, 16=listen_choose, 17=phrase_builder, 18=listen_build_dictation, 19=speed_match, 20=phrase_builder, 21=scripted_repeat_compare, 22=scripted_repeat_compare

@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-01:session-39:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — early",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-39:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — early",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i01:audio",
-          "transcript": "early"
+        "family": "phrase_builder",
+        "targetPhrase": "You are brave.",
+        "localizedMeaning": {
+          "ru": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
+          "uk": "Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "You",
+          "are",
+          "brave"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-39:i01:r1",
-            "targetText": "early",
-            "meaningByLocale": {
-              "ru": "«рано». Часы показывают меньше, чем вы обещали. Приятный вид ошибки.",
-              "uk": "«рано». Годинник показує менше, ніж ви обіцяли. Приємний вид помилки."
+            "responseId": "en:lesson-01:session-39:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга решилась выступить. Обратитесь к ней и назовите её смелой",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `You are brave.`",
+              "uk": "тут потрібно `are` — `You are brave.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "early",
-          "definitionByLocale": {
-            "ru": "«рано». Часы показывают меньше, чем вы обещали. Приятный вид ошибки.",
-            "uk": "«рано». Годинник показує менше, ніж ви обіцяли. Приємний вид помилки."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-39:i02:r1",
-          "text": "early"
+          "text": "He is brave."
         },
         {
           "responseId": "en:lesson-01:session-39:i02:r2",
-          "text": "earl"
+          "text": "She is brave."
         },
         {
           "responseId": "en:lesson-01:session-39:i02:r3",
-          "text": "ear"
+          "text": "He is afraid."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-39:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-39:i02:audio",
-          "transcript": "early"
+          "transcript": "He is brave."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-39:i02:r1",
-            "targetText": "early",
+            "targetText": "He is brave.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-39:i02:r2",
-            "targetText": "earl",
+            "targetText": "She is brave.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-39:i02:r3",
-            "targetText": "ear",
+            "targetText": "He is afraid.",
             "meaningByLocale": null
           }
         ],
@@ -101,28 +102,19 @@
           {
             "responseId": "en:lesson-01:session-39:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — early",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "Оборван хвост. `early` длиннее, с «-ли» на конце.",
-              "uk": "Обірваний хвіст. `early` довше, з «-лі» на кінці."
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
             }
           },
           {
             "responseId": "en:lesson-01:session-39:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — early",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "Только начало слова. Это «ухо».",
-              "uk": "Тільки початок слова. Це «вухо»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i02:r1",
-            "correct": true,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "Вы слышите `early`: в конце есть `-ly`.",
-              "uk": "Ви чуєте `early`: у кінці є `-ly`."
+              "ru": "В записи последнее слово — `brave`, а в этом варианте — `afraid`.",
+              "uk": "У записі останнє слово — `brave`, а в цьому варіанті — `afraid`."
             }
           }
         ],
@@ -135,117 +127,65 @@
       "interactionId": "en:lesson-01:session-39:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — right",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-39:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — right",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i03:audio",
-          "transcript": "right"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-39:i03:r1",
-            "targetText": "right",
-            "meaningByLocale": {
-              "ru": "«прав, правильно». Сказал — и попал в точку.",
-              "uk": "«правий, правильно». Сказав — і влучив у ціль."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "right",
-          "definitionByLocale": {
-            "ru": "«прав, правильно». Сказал — и попал в точку.",
-            "uk": "«правий, правильно». Сказав — і влучив у ціль."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-39:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы пришли, а в комнате пусто",
+      "prompt": "Вы рассказываете о смелости подруги. Вставьте слово",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-39:i04:r1",
-          "text": "early"
+          "responseId": "en:lesson-01:session-39:i03:r1",
+          "text": "is"
         },
         {
-          "responseId": "en:lesson-01:session-39:i04:r2",
-          "text": "late"
+          "responseId": "en:lesson-01:session-39:i03:r2",
+          "text": "am"
         },
         {
-          "responseId": "en:lesson-01:session-39:i04:r3",
-          "text": "fine"
+          "responseId": "en:lesson-01:session-39:i03:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы пришли, а в комнате пусто",
+      "accessibilityLabel": "Вы рассказываете о смелости подруги. Вставьте слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы пришли, а в комнате пусто",
-          "uk": "Вставте слово — ви прийшли, а в кімнаті порожньо"
+          "ru": "Вы рассказываете о смелости подруги. Вставьте слово",
+          "uk": "Ви розповідаєте про сміливість подруги. Вставте слово"
         },
-        "gappedTargetPhrase": "We are ___ .",
+        "gappedTargetPhrase": "She ___ brave.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-39:i04:r1",
-            "text": "early"
+            "responseId": "en:lesson-01:session-39:i03:r1",
+            "text": "is"
           },
           {
-            "responseId": "en:lesson-01:session-39:i04:r2",
-            "text": "late"
+            "responseId": "en:lesson-01:session-39:i03:r2",
+            "text": "am"
           },
           {
-            "responseId": "en:lesson-01:session-39:i04:r3",
-            "text": "fine"
+            "responseId": "en:lesson-01:session-39:i03:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — вы пришли, а в комнате ",
+        "testedDimension": "Вы рассказываете о смелости подруги. Вставьте слово",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-39:i04:r1",
-            "correct": true,
-            "testedDimension": "Вставьте слово — вы пришли, а в комнате пусто",
+            "responseId": "en:lesson-01:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы рассказываете о смелости подруги. Вставьте слово",
             "feedbackByLocale": {
-              "ru": "Комната ещё пуста, значит вы пришли рано: `We are early.`",
-              "uk": "Кімната ще порожня, отже ви прийшли рано: `We are early.`"
+              "ru": "После `She` нужно `is`.",
+              "uk": "Після `She` потрібно `is`."
             }
           },
           {
-            "responseId": "en:lesson-01:session-39:i04:r2",
+            "responseId": "en:lesson-01:session-39:i03:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы пришли, а в комнате ",
+            "testedDimension": "Вы рассказываете о смелости подруги. Вставьте слово",
             "feedbackByLocale": {
-              "ru": "«Опоздали» — наоборот. Вы пришли раньше, чем нужно.",
-              "uk": "«Запізнилися» — навпаки. Ви прийшли раніше, ніж треба."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i04:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы пришли, а в комнате ",
-            "feedbackByLocale": {
-              "ru": "«Нормально» — правда, но вопрос про время, а не про самочувствие.",
-              "uk": "«Нормально» — правда, але питання про час, а не про самопочуття."
+              "ru": "Здесь `She is brave`.",
+              "uk": "Тут `She is brave`."
             }
           }
         ]
@@ -253,191 +193,63 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-39:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-01:session-39:i04",
+      "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — wrong",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-39:i05:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — wrong",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i05:audio",
-          "transcript": "wrong"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-39:i05:r1",
-            "targetText": "wrong",
-            "meaningByLocale": {
-              "ru": "«не прав, ошибся». Назвал не тот адрес, не то время, не то имя.",
-              "uk": "«неправий, помилковий». Назвав не ту адресу, не той час, не те ім'я."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "wrong",
-          "definitionByLocale": {
-            "ru": "«не прав, ошибся». Назвал не тот адрес, не то время, не то имя.",
-            "uk": "«неправий, помилковий». Назвав не ту адресу, не той час, не те ім'я."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-39:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-39:i06:r1",
-          "text": "right"
-        },
-        {
-          "responseId": "en:lesson-01:session-39:i06:r2",
-          "text": "rice"
-        },
-        {
-          "responseId": "en:lesson-01:session-39:i06:r3",
-          "text": "ride"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-39:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i06:audio",
-          "transcript": "right"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-39:i06:r1",
-            "targetText": "right",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i06:r2",
-            "targetText": "rice",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i06:r3",
-            "targetText": "ride",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-39:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — right",
-            "feedbackByLocale": {
-              "ru": "«Рис». Конец другой.",
-              "uk": "«Рис». Кінець інший."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — right",
-            "feedbackByLocale": {
-              "ru": "Тоже похоже, но это «поездка».",
-              "uk": "Теж схоже, але це «поїздка»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i06:r1",
-            "correct": true,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "Вы слышите `right` — «правы».",
-              "uk": "Ви чуєте `right` — «маєте рацію»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-39:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-39:i07:p1",
-            "target": "early",
+            "pairId": "en:lesson-01:session-39:i04:p1",
+            "target": "brave",
             "meaningByLocale": {
-              "ru": "рано",
-              "uk": "рано"
+              "ru": "смелый",
+              "uk": "сміливий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-39:i07:p2",
-            "target": "right",
+            "pairId": "en:lesson-01:session-39:i04:p2",
+            "target": "equal",
             "meaningByLocale": {
-              "ru": "прав",
-              "uk": "правий"
+              "ru": "равный",
+              "uk": "рівний"
             }
           },
           {
-            "pairId": "en:lesson-01:session-39:i07:p3",
-            "target": "wrong",
+            "pairId": "en:lesson-01:session-39:i04:p3",
+            "target": "similar",
             "meaningByLocale": {
-              "ru": "ошибся",
-              "uk": "неправий"
+              "ru": "похожий",
+              "uk": "схожий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-39:i07:p4",
-            "target": "late",
+            "pairId": "en:lesson-01:session-39:i04:p4",
+            "target": "separate",
             "meaningByLocale": {
-              "ru": "поздно",
-              "uk": "пізно"
+              "ru": "отдельный",
+              "uk": "окремий"
             }
           }
         ],
         "leftColumn": [
-          "early",
-          "right",
-          "wrong",
-          "late"
+          "brave",
+          "equal",
+          "similar",
+          "separate"
         ],
         "rightColumn": [
-          "рано",
-          "прав",
-          "ошибся",
-          "поздно"
+          "смелый",
+          "равный",
+          "похожий",
+          "отдельный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -454,39 +266,191 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-39:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-01:session-39:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткую фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-39:i05:audio",
+          "transcript": "She's brave."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She's brave.",
+        "orderedTokens": [
+          "She's",
+          "brave"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `She's` — `She's brave.`",
+              "uk": "тут потрібно `She's` — `She's brave.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «они ошиблись»",
+      "prompt": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «они ошиблись»",
+      "accessibilityLabel": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are wrong.",
+        "targetPhrase": "They are brave.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «они ошиблись»",
-          "uk": "Складіть фразу — «вони помилилися»"
+          "ru": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
+          "uk": "Двоє друзів подолали страх і вийшли на сцену. Ви розповідаєте про них. Складіть фразу про їхню сміливість"
         },
         "orderedTokens": [
           "They",
           "are",
-          "wrong"
+          "brave"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "We"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-39:i08:tile:d1",
+            "responseId": "en:lesson-01:session-39:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — «они ошиблись»",
+            "testedDimension": "Двое друзей преодолели страх и вышли на сцену. Вы рассказываете о них. Соберите фразу об их смелости",
             "feedbackByLocale": {
-              "ru": "`is` лишнее: с `They` говорят `They are wrong.`",
-              "uk": "`is` зайве: з `They` кажуть `They are wrong.`"
+              "ru": "здесь нужно `They` — `They are brave.`",
+              "uk": "тут потрібно `They` — `They are brave.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Похвалите друга за смелость короткой фразой, обращаясь прямо к нему",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "Похвалите друга за смелость короткой фразой, обращаясь прямо к нему",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-39:i07:audio",
+          "transcript": "You're brave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You're brave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-39:i08:r1",
+          "text": "separate"
+        },
+        {
+          "responseId": "en:lesson-01:session-39:i08:r2",
+          "text": "equal"
+        },
+        {
+          "responseId": "en:lesson-01:session-39:i08:r3",
+          "text": "similar"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+          "uk": "У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі"
+        },
+        "gappedTargetPhrase": "They are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i08:r1",
+            "text": "separate"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i08:r2",
+            "text": "equal"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i08:r3",
+            "text": "similar"
+          }
+        ],
+        "testedDimension": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+            "feedbackByLocale": {
+              "ru": "`equal` — «равные». Здесь важно, что выступления отдельные: `separate`.",
+              "uk": "`equal` — «рівні». Тут важливо, що виступи окремі: `separate`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "У вас два выступления по очереди, а не один общий номер. Скажите именно о том, что они отдельные",
+            "feedbackByLocale": {
+              "ru": "`similar` — «похожие». Отдельность передаёт `separate`.",
+              "uk": "`similar` — «схожі». Окремість передає `separate`."
             }
           }
         ]
@@ -499,40 +463,73 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — fine",
-      "responseOptions": [],
+      "prompt": "Послушайте фразу об отрезках времени",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-39:i09:r1",
+          "text": "They are equal."
+        },
+        {
+          "responseId": "en:lesson-01:session-39:i09:r2",
+          "text": "They are similar."
+        },
+        {
+          "responseId": "en:lesson-01:session-39:i09:r3",
+          "text": "They are separate."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-39:i09:audio"
       ],
-      "accessibilityLabel": "Карточка слова — fine",
+      "accessibilityLabel": "Послушайте фразу об отрезках времени",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-39:i09:audio",
-          "transcript": "fine"
+          "transcript": "They are equal."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-39:i09:r1",
-            "targetText": "fine",
-            "meaningByLocale": {
-              "ru": "«хорошо, нормально». Не «прекрасно», а «жалоб нет».",
-              "uk": "«добре, нормально». Не «чудово», а «скарг немає»."
-            }
+            "targetText": "They are equal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i09:r2",
+            "targetText": "They are similar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i09:r3",
+            "targetText": "They are separate.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "fine",
-          "definitionByLocale": {
-            "ru": "«хорошо, нормально». Не «прекрасно», а «жалоб нет».",
-            "uk": "«добре, нормально». Не «чудово», а «скарг немає»."
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу об отрезках времени",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `equal`, а в этом варианте — `similar`.",
+              "uk": "У записі останнє слово — `equal`, а в цьому варіанті — `similar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу об отрезках времени",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `equal`, а в этом варианте — `separate`.",
+              "uk": "У записі останнє слово — `equal`, а в цьому варіанті — `separate`."
+            }
           }
-        }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -540,42 +537,72 @@
       "interactionId": "en:lesson-01:session-39:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — sorry",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините короткие начала с полными",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-39:i10:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — sorry",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините короткие начала с полными",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i10:audio",
-          "transcript": "sorry"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-01:session-39:i10:r1",
-            "targetText": "sorry",
+            "pairId": "en:lesson-01:session-39:i10:p1",
+            "target": "You're",
             "meaningByLocale": {
-              "ru": "«извините, нам жаль». Слово, которым в Британии начинают половину разговоров.",
-              "uk": "«вибачте, нам шкода». Слово, яким у Британії починають половину розмов."
+              "ru": "You are",
+              "uk": "You are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-39:i10:p2",
+            "target": "She's",
+            "meaningByLocale": {
+              "ru": "She is",
+              "uk": "She is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-39:i10:p3",
+            "target": "We're",
+            "meaningByLocale": {
+              "ru": "We are",
+              "uk": "We are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-39:i10:p4",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sorry",
-          "definitionByLocale": {
-            "ru": "«извините, нам жаль». Слово, которым в Британии начинают половину разговоров.",
-            "uk": "«вибачте, нам шкода». Слово, яким у Британії починають половину розмов."
-          }
-        }
+        "leftColumn": [
+          "You're",
+          "She's",
+          "We're",
+          "They're"
+        ],
+        "rightColumn": [
+          "You are",
+          "She is",
+          "We are",
+          "They are"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -583,77 +610,46 @@
       "interactionId": "en:lesson-01:session-39:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Выберите форму после `we` — вы извиняетесь вдвоём",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-39:i11:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-01:session-39:i11:r2",
-          "text": "am"
-        },
-        {
-          "responseId": "en:lesson-01:session-39:i11:r3",
-          "text": "is"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму после `we` — вы извиняетесь вдвоём",
+      "audioTargetIds": [
+        "en:lesson-01:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите форму после `we` — вы извиняетесь вдвоём",
-          "uk": "Виберіть форму після `we` — ви вибачаєтеся вдвох"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-39:i11:audio",
+          "transcript": "We are brave."
         },
-        "gappedTargetPhrase": "We ___ sorry.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are brave.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "brave"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-39:i11:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i11:r2",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i11:r3",
-            "text": "is"
+            "responseId": "en:lesson-01:session-39:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are brave.`",
+              "uk": "тут потрібно `are` — `We are brave.`"
+            }
           }
         ],
-        "testedDimension": "Выберите форму после `we` — вы извиняетесь вдвоём",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-39:i11:r1",
-            "correct": true,
-            "testedDimension": "Выберите форму после `we` — вы извиняетесь вдвоём",
-            "feedbackByLocale": {
-              "ru": "С `we` говорят `We are sorry.`",
-              "uk": "З `we` кажуть `We are sorry.`"
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i11:r2",
-            "correct": false,
-            "testedDimension": "Выберите форму после `we` — вы извиняетесь вдвоём",
-            "feedbackByLocale": {
-              "ru": "`am` только про себя одного. Вас двое.",
-              "uk": "`am` тільки про себе одного. Вас двоє."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i11:r3",
-            "correct": false,
-            "testedDimension": "Выберите форму после `we` — вы извиняетесь вдвоём",
-            "feedbackByLocale": {
-              "ru": "`is` про одного со стороны. Про «мы» — `are`.",
-              "uk": "`is` про одного збоку. Про «ми» — `are`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -661,119 +657,75 @@
       "interactionId": "en:lesson-01:session-39:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
+      "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «мы пришли рано»",
+      "prompt": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-39:i12:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — «мы пришли рано»",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i12:audio",
-          "transcript": "We are early."
+        "family": "phrase_builder",
+        "targetPhrase": "They are similar.",
+        "localizedMeaning": {
+          "ru": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
+          "uk": "Малюнки на двох афішах схожі, хоча відрізняються деталями. Складіть фразу про їхню схожість"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are early.",
         "orderedTokens": [
-          "We",
+          "They",
           "are",
-          "early"
+          "similar"
         ],
         "authoredDistractorTokens": [
-          "late"
+          "am"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-39:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — «мы пришли рано»",
+            "testedDimension": "Рисунки на двух афишах похожи, хотя отличаются деталями. Соберите фразу об их сходстве",
             "feedbackByLocale": {
-              "ru": "`late` здесь лишнее: в аудио `We are early.` — «мы пришли рано».",
-              "uk": "`late` тут зайве: в аудіо `We are early.` — «ми прийшли рано»."
+              "ru": "здесь нужно `are` — `They are similar.`",
+              "uk": "тут потрібно `are` — `They are similar.`"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-39:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — про двоих из соседнего отдела: вне работы не общаются",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-39:i13:r1",
-          "text": "colleagues"
-        },
-        {
-          "responseId": "en:lesson-01:session-39:i13:r2",
-          "text": "friends"
-        },
-        {
-          "responseId": "en:lesson-01:session-39:i13:r3",
-          "text": "early"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы тоже решились выступить несмотря на страх. Назовите себя смелым человеком знакомой короткой фразой",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — про двоих из соседнего отдела: вне работы не общаются",
+      "audioTargetIds": [
+        "en:lesson-01:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Вы тоже решились выступить несмотря на страх. Назовите себя смелым человеком знакомой короткой фразой",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — про двоих из соседнего отдела: вне работы не общаются",
-          "uk": "Вставте слово — про двох із сусіднього відділу: поза роботою не спілкуються"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-39:i13:audio",
+          "transcript": "I am brave."
         },
-        "gappedTargetPhrase": "They are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-39:i13:r1",
-            "text": "colleagues"
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i13:r2",
-            "text": "friends"
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i13:r3",
-            "text": "early"
-          }
-        ],
-        "testedDimension": "Вставьте слово — про двоих из соседнего ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-39:i13:r1",
-            "correct": true,
-            "testedDimension": "Вставьте слово — про двоих из соседнего отдела: вне работы не общаются",
-            "feedbackByLocale": {
-              "ru": "Они работают вместе: `They are colleagues.`",
-              "uk": "Вони працюють разом: `They are colleagues.`"
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — про двоих из соседнего ",
-            "feedbackByLocale": {
-              "ru": "«Друзья». Они не дружат, они вместе работают.",
-              "uk": "«Друзі». Вони не дружать, вони разом працюють."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-39:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — про двоих из соседнего ",
-            "feedbackByLocale": {
-              "ru": "Это про время, а не про то, кто они друг другу.",
-              "uk": "Це про час, а не про те, ким вони є одне одному."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am brave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -782,28 +734,68 @@
       "interactionId": "en:lesson-01:session-39:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «они не правы», внимание на порядок",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-39:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-39:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-39:i14:r3",
+          "text": "is"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «они не правы», внимание на порядок",
+      "accessibilityLabel": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They are not right.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «они не правы», внимание на порядок",
-          "uk": "Складіть фразу — «вони неправі», увага на порядок"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+          "uk": "Ви та подруга подолали страх. Похваліть вас обох за сміливість"
         },
-        "orderedTokens": [
-          "They",
-          "are",
-          "not",
-          "right"
+        "gappedTargetPhrase": "We ___ brave.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-39:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i14:r3",
+            "text": "is"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+            "feedbackByLocale": {
+              "ru": "После `We` нужно `are`.",
+              "uk": "Після `We` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+            "feedbackByLocale": {
+              "ru": "Здесь `We are brave`.",
+              "uk": "Тут `We are brave`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -811,77 +803,75 @@
       "interactionId": "en:lesson-01:session-39:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — эти двое всё время вместе вне работы",
+      "prompt": "Послушайте и выберите короткую фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-39:i15:r1",
-          "text": "friends"
+          "text": "They're brave."
         },
         {
           "responseId": "en:lesson-01:session-39:i15:r2",
-          "text": "colleagues"
+          "text": "We're brave."
         },
         {
           "responseId": "en:lesson-01:session-39:i15:r3",
-          "text": "sorry"
+          "text": "They're afraid."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — эти двое всё время вместе вне работы",
+      "audioTargetIds": [
+        "en:lesson-01:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите короткую фразу",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — эти двое всё время вместе вне работы",
-          "uk": "Вставте слово — ці двоє весь час разом поза роботою"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-39:i15:audio",
+          "transcript": "They're brave."
         },
-        "gappedTargetPhrase": "They are ___ .",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-39:i15:r1",
-            "text": "friends"
+            "targetText": "They're brave.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-39:i15:r2",
-            "text": "colleagues"
+            "targetText": "We're brave.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-39:i15:r3",
-            "text": "sorry"
+            "targetText": "They're afraid.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставьте слово — эти двое всё время вмес",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-39:i15:r1",
-            "correct": true,
-            "testedDimension": "Вставьте слово — эти двое всё время вместе вне работы",
-            "feedbackByLocale": {
-              "ru": "Они проводят время вместе вне работы: `They are friends.`",
-              "uk": "Вони проводять час разом поза роботою: `They are friends.`"
-            }
-          },
           {
             "responseId": "en:lesson-01:session-39:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — эти двое всё время вмес",
+            "testedDimension": "Послушайте и выберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "«Коллеги» — про работу. А эти общаются просто так.",
-              "uk": "«Колеги» — про роботу. А ці спілкуються просто так."
+              "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
+              "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
             }
           },
           {
             "responseId": "en:lesson-01:session-39:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — эти двое всё время вмес",
+            "testedDimension": "Послушайте и выберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "«Извините» — не про то, кто они друг другу.",
-              "uk": "«Вибачте» — не про те, ким вони є одне одному."
+              "ru": "В записи последнее слово — `brave`, а в этом варианте — `afraid`.",
+              "uk": "У записі останнє слово — `brave`, а в цьому варіанті — `afraid`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -889,133 +879,107 @@
       "interactionId": "en:lesson-01:session-39:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы вдвоём успели к началу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы вдвоём успели к началу",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are not late.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы вдвоём успели к началу",
-          "uk": "Складіть фразу — ви вдвох устигли до початку"
-        },
-        "orderedTokens": [
-          "We",
-          "are",
-          "not",
-          "late"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-01:session-39:i16:tile:d1",
-            "correct": false,
-            "testedDimension": "Соберите фразу — вы вдвоём успели к нача",
-            "feedbackByLocale": {
-              "ru": "`is` лишнее: с `We` говорят `We are not late.`",
-              "uk": "`is` зайве: з `We` кажуть `We are not late.`"
+            "pairId": "en:lesson-01:session-39:i16:p1",
+            "target": "similar",
+            "meaningByLocale": {
+              "ru": "похожие по виду",
+              "uk": "схожі на вигляд"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-39:i16:p2",
+            "target": "separate",
+            "meaningByLocale": {
+              "ru": "отдельные",
+              "uk": "окремі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-39:i16:p3",
+            "target": "equal",
+            "meaningByLocale": {
+              "ru": "равные по величине",
+              "uk": "рівні за величиною"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-39:i16:p4",
+            "target": "brave",
+            "meaningByLocale": {
+              "ru": "смелые",
+              "uk": "сміливі"
             }
           }
+        ],
+        "leftColumn": [
+          "similar",
+          "separate",
+          "equal",
+          "brave"
+        ],
+        "rightColumn": [
+          "похожие по виду",
+          "отдельные",
+          "равные по величине",
+          "смелые"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-39:i17:s01",
+      "interactionId": "en:lesson-01:session-39:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Сестра боялась признаться в своей ошибке, но всё же честно рассказала о ней. Отметьте её смелость в разговоре с братом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-39:i17:s01:audio"
+        "en:lesson-01:session-39:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Сестра боялась признаться в своей ошибке, но всё же честно рассказала о ней. Отметьте её смелость в разговоре с братом",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i17:s01:audio",
-          "transcript": "We are early."
+          "audioTargetId": "en:lesson-01:session-39:i17:audio",
+          "transcript": "She is brave."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are early.",
+        "targetPhrase": "She is brave.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-39:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-39:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i17:s02:audio",
-          "transcript": "We are fine."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "We are fine.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-39:i17:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-39:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i17:s03:audio",
-          "transcript": "We are sorry."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "We are sorry.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1026,11 +990,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "64dbce8984e7f10a589a53b213674affa443dd71307ff5b83f3b7433b65636b8"
+  "learnerFingerprint": "8dd4645b9721e0ed0f8e572de4c64824d5f9e2dab4a3d079353219c801d711ff"
 }

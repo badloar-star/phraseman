@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-39:i01",
-    "correctText": "early",
+    "correctText": "You are brave.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i02",
-    "correctText": "early",
+    "correctText": "He is brave.",
     "correctResponseId": "en:lesson-01:session-39:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-39:i03",
-    "correctText": "right",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-39:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-39:i04",
-    "correctText": "early",
-    "correctResponseId": "en:lesson-01:session-39:i04:r1"
+    "correctText": "en:lesson-01:session-39:i04:p1=brave\nen:lesson-01:session-39:i04:p2=equal\nen:lesson-01:session-39:i04:p3=similar\nen:lesson-01:session-39:i04:p4=separate",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i05",
-    "correctText": "wrong",
+    "correctText": "She's brave.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i06",
-    "correctText": "right",
-    "correctResponseId": "en:lesson-01:session-39:i06:r1"
+    "correctText": "They are brave.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i07",
-    "correctText": "en:lesson-01:session-39:i07:p1=early\nen:lesson-01:session-39:i07:p2=right\nen:lesson-01:session-39:i07:p3=wrong\nen:lesson-01:session-39:i07:p4=late",
+    "correctText": "You're brave.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i08",
-    "correctText": "They are wrong.",
-    "correctResponseId": null
+    "correctText": "separate",
+    "correctResponseId": "en:lesson-01:session-39:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-39:i09",
-    "correctText": "fine",
-    "correctResponseId": null
+    "correctText": "They are equal.",
+    "correctResponseId": "en:lesson-01:session-39:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-39:i10",
-    "correctText": "sorry",
+    "correctText": "en:lesson-01:session-39:i10:p1=You're\nen:lesson-01:session-39:i10:p2=She's\nen:lesson-01:session-39:i10:p3=We're\nen:lesson-01:session-39:i10:p4=They're",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i11",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-39:i11:r1"
+    "correctText": "We are brave.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i12",
-    "correctText": "We are early.",
+    "correctText": "They are similar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i13",
-    "correctText": "colleagues",
-    "correctResponseId": "en:lesson-01:session-39:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-39:i14",
-    "correctText": "They are not right.",
+    "correctText": "I am brave.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-39:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-39:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-39:i15",
-    "correctText": "friends",
+    "correctText": "They're brave.",
     "correctResponseId": "en:lesson-01:session-39:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-39:i16",
-    "correctText": "We are not late.",
+    "correctText": "en:lesson-01:session-39:i16:p1=similar\nen:lesson-01:session-39:i16:p2=separate\nen:lesson-01:session-39:i16:p3=equal\nen:lesson-01:session-39:i16:p4=brave",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-39:i17:s01",
-    "correctText": "We are early.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-39:i17:s02",
-    "correctText": "We are fine.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-39:i17:s03",
-    "correctText": "We are sorry.",
+    "interactionId": "en:lesson-01:session-39:i17",
+    "correctText": "She is brave.",
     "correctResponseId": null
   }
 ]

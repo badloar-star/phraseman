@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro1:r2": {
-          "ru": "После `we` нужно `are`: We are early.",
-          "uk": "Після `we` потрібне `are`: We are early."
+          "ru": "После `You` нужно `are`, даже если обращаетесь к одному человеку.",
+          "uk": "Після `You` потрібно `are`, навіть якщо звертаєтеся до однієї людини."
         },
         "en:lesson-01:session-39:intro1:r3": {
-          "ru": "`is` — про одного. Вас двое, значит `are`.",
-          "uk": "`is` — про одного. Вас двоє, отже `are`."
+          "ru": "Это про страх. Здесь вы отмечаете смелость: `brave`.",
+          "uk": "Це про страх. Тут ви відзначаєте сміливість: `brave`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro2:r2": {
-          "ru": "Сначала `are`, затем `not`: They are not right.",
-          "uk": "Спочатку `are`, потім `not`: They are not right."
+          "ru": "Это про неё. Про Олега нужно `He`.",
+          "uk": "Це про неї. Про Олега потрібно `He`."
         },
         "en:lesson-01:session-39:intro2:r3": {
-          "ru": "Это «они не ошиблись» — ровно наоборот. С `wrong` отрицание переворачивает смысл.",
-          "uk": "Це «вони не помилилися» — рівно навпаки. З `wrong` заперечення перевертає зміст."
+          "ru": "После `He` нужна форма `is`.",
+          "uk": "Після `He` потрібна форма `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro3:r2": {
-          "ru": "После `we` поставьте `are`: We are fine.",
-          "uk": "Після `we` поставте `are`: We are fine."
+          "ru": "`similar` говорит о сходстве. Здесь указана точно равная длительность: `equal`.",
+          "uk": "`similar` говорить про схожість. Тут указано точно рівну тривалість: `equal`."
         },
         "en:lesson-01:session-39:intro3:r3": {
-          "ru": "`am` — только про себя одного. Про «мы» — `are`.",
-          "uk": "`am` — тільки про себе одного. Про «ми» — `are`."
+          "ru": "`separate` — «отдельные». Здесь нужно назвать равенство времени: `equal`.",
+          "uk": "`separate` — «окремі». Тут треба назвати рівність часу: `equal`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8232ed05d868fc147bc74b519979cdc9d12b9c469221867a0f8706639f3563d6"
+  "auxiliaryFingerprint": "334a68c3628c80677d2310d2fb64d9425324dc512150c3e6bed06946ed5b579b"
 }

@@ -1,200 +1,138 @@
-# Англійська · Урок 1 · Заняття 39 — «Ранок команди»
+# Англійська · Урок 1 · Заняття 39 — Перший вихід до мікрофона
 
-**Ситуація.** Після обіду Іра питає вас з Олегом, як минув ранок: чи встигли ви, чи все гаразд і чи треба вибачитися.
-**Сьогодні.** Скажете про вашу та іншу групу: `we/they are` і `we/they are not`.
-**Нові слова:** —
-**Повертаються:** wrong, late, colleagues, friends, early, right, fine, sorry
+**Ситуація.** Ви з друзями берете участь у вечорі коротких виступів. Підтримуєте одне одного, порівнюєте час виступів і перевіряєте, які номери йдуть окремо.
+
+**Що ви опануєте:** назвати сміливість і повторити різницю між рівним, схожим та окремим
+**Нові слова:** brave
 
 ---
 
 ## Інтро 1
 
-### `early` — «рано»
+### Сміливий — не обов’язково безстрашний
 
-`early` — «рано, раніше, ніж треба». Прийшли, а в кімнаті ще нікого.
+`brave` — «сміливий». `You are brave` — «Ти сміливий» або «Ви сміливі». Людина може боятися й усе ж учинити сміливо. Подруга вийшла до мікрофона, хоча в неї тремтять коліна. Коліна поки не в курсі, що вона вже смілива.
 
-Про вас двох або про всю команду кажуть `we are early`: після `we` ставимо `are`.
+**Подруга наважилася виступити, хоча їй страшно. Ви звертаєтеся до неї та відзначаєте її сміливість.**
 
-**Ви з Олегом прийшли до столика, а Іра й Мія ще в дорозі. Скажіть за себе й Олега.**
-
-- ✅ **We are early.**
-- ❌ We early. — *Після `we` потрібне `are`: We are early.*
-- ❌ We is early. — *`is` — про одного. Вас двоє, отже `are`.*
+- ✅ **You are brave.**
+- ❌ You is brave. — *Після `You` потрібно `are`, навіть якщо звертаєтеся до однієї людини.*
+- ❌ You are afraid. — *Це про страх. Тут ви відзначаєте сміливість: `brave`.*
 
 ---
 
 ## Інтро 2
 
-### `right` і `wrong`
+### Розповідаємо про іншого
 
-`right` — «правий, правильно». `wrong` — «неправий, помилковий».
+Про подругу: `She is brave`. Про друга: `He is brave`. Коротко: `She's brave` і `He's brave`. Про двох друзів — `They are brave`. До слова `brave` не додається `s`, хоч скількох людей ви хвалите.
 
-Одне можна сказати через інше: `they are not right` і `they are wrong`. Перше м'якше — воно не звинувачує, а заперечує.
+**Олег першим наважився вийти на сцену. Розкажіть Маші про його сміливість.**
 
-А от `not` посеред фрази — найлегше місце, де спотикаються: він іде одразу за `are`, а не перед ним.
-
-**За столом сперечалися про адресу. Виявилося, ці двоє помилилися. Скажіть про них м'яко — через `not`.**
-
-- ✅ **They are not right.**
-- ❌ They not are right. — *Спочатку `are`, потім `not`: They are not right.*
-- ❌ They are not wrong. — *Це «вони не помилилися» — рівно навпаки. З `wrong` заперечення перевертає зміст.*
+- ✅ **He is brave.**
+- ❌ She is brave. — *Це про неї. Про Олега потрібно `He`.*
+- ❌ He are brave. — *Після `He` потрібна форма `is`.*
 
 ---
 
 ## Інтро 3
 
-### `fine` і `sorry` — на всю команду
+### Рівні, схожі, окремі
 
-`fine` — «добре, нормально». `sorry` — «вибачте».
+`equal` — «рівні», наприклад проміжки часу. `similar` — «схожі», наприклад малюнки на афішах. `separate` — «окремі», наприклад два виступи замість одного спільного. Два окремі виступи можуть тривати порівну: слова описують різні речі.
 
-Обидва слова можна сказати й про групу: `we are fine`, `we are sorry`.
+**Кожному з двох учасників дали рівно по п’ять хвилин. Скажіть, що відрізки часу рівні.**
 
-Одне `sorry` у дверях англійці кидають на бігу. Але якщо вибачається вся команда — цілком: `we are sorry`.
-
-**Іра питає, як минув ранок. У вас з Олегом усе гаразд. Відповідайте за двох.**
-
-- ✅ **We are fine.**
-- ❌ We fine. — *Після `we` поставте `are`: We are fine.*
-- ❌ We am fine. — *`am` — тільки про себе одного. Про «ми» — `are`.*
+- ✅ **They are equal.**
+- ❌ They are similar. — *`similar` говорить про схожість. Тут указано точно рівну тривалість: `equal`.*
+- ❌ They are separate. — *`separate` — «окремі». Тут треба назвати рівність часу: `equal`.*
 
 ---
 
-## Практика (19 завдань, підтримка поступово зменшується)
+## Практика (17 завдань)
 
-**1 · Картка слова — early**
-<!-- interaction_id: en:lesson-01:session-39:i01; family: listen_choose -->
-> **early** — «рано». Годинник показує менше, ніж ви обіцяли. Приємний вид помилки.
+**1 · Подруга наважилася виступити. Зверніться до неї й назвіть її сміливою**
+<!-- interaction_id: en:lesson-01:session-39:i01; family: phrase_builder -->
+Плитки: `brave` `are` `You` `is` → **You are brave.**
+*(плитка `is` зайва: тут потрібно `are` — `You are brave.`)*
 
-**2 · Послухайте й виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-39:i02; family: listen_choose -->
-🔊 *early* → **early** · earl · ear
-- earl — *Обірваний хвіст. `early` довше, з «-лі» на кінці.*
-- ear — *Тільки початок слова. Це «вухо».*
+🔊 *He is brave.* → **He is brave.** · She is brave. · He is afraid.
+- She is brave. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
+- He is afraid. — *У записі останнє слово — `brave`, а в цьому варіанті — `afraid`.*
 
-**3 · Картка слова — right**
-<!-- interaction_id: en:lesson-01:session-39:i03; family: listen_choose -->
-> **right** — «правий, правильно». Сказав — і влучив у ціль.
+**3 · Ви розповідаєте про сміливість подруги. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-39:i03; family: context_gap_grammar -->
+She ___ brave. → **is** · am · are
+- am — *Після `She` потрібно `is`.*
+- are — *Тут `She is brave`.*
 
-**4 · Вставте слово — ви прийшли, а в кімнаті порожньо**
-<!-- interaction_id: en:lesson-01:session-39:i04; family: context_gap_grammar -->
-We are ___ . → **early** · late · fine
-- late — *«Запізнилися» — навпаки. Ви прийшли раніше, ніж треба.*
-- fine — *«Нормально» — правда, але питання про час, а не про самопочуття.*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-39:i04; family: speed_match -->
+brave — сміливий · equal — рівний · similar — схожий · separate — окремий
 
-**5 · Картка слова — wrong**
-<!-- interaction_id: en:lesson-01:session-39:i05; family: listen_choose -->
-> **wrong** — «неправий, помилковий». Назвав не ту адресу, не той час, не те ім'я.
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-39:i05; family: listen_build_dictation -->
+🔊 *She's brave.* Плитки: `brave` `She's` `He's` → **She's brave.**
+*(плитка `He's` зайва: тут потрібно `She's` — `She's brave.`)*
 
-**6 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-01:session-39:i06; family: listen_choose -->
-🔊 *right* → **right** · rice · ride
-- rice — *«Рис». Кінець інший.*
-- ride — *Теж схоже, але це «поїздка».*
+**6 · Двоє друзів подолали страх і вийшли на сцену. Ви розповідаєте про них. Складіть фразу про їхню сміливість**
+<!-- interaction_id: en:lesson-01:session-39:i06; family: phrase_builder -->
+Плитки: `brave` `are` `They` `We` → **They are brave.**
+*(плитка `We` зайва: тут потрібно `They` — `They are brave.`)*
 
-**7 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-39:i07; family: speed_match -->
-early — рано · right — правий · wrong — неправий · late — пізно
+**7 · Похваліть друга за сміливість короткою фразою, звертаючись просто до нього**
+<!-- interaction_id: en:lesson-01:session-39:i07; family: scripted_repeat_compare -->
+🎙 **You're brave.**
 
-**8 · Складіть фразу — «вони помилилися»**
-<!-- interaction_id: en:lesson-01:session-39:i08; family: phrase_builder -->
-Плитки: `wrong` `they` `are` `is` → **They are wrong.**
-*(плитка `is` зайва: `is` зайве: з `They` кажуть `They are wrong.`)*
+**8 · У вас два виступи по черзі, а не один спільний номер. Скажіть саме про те, що вони окремі**
+<!-- interaction_id: en:lesson-01:session-39:i08; family: context_gap_grammar -->
+They are ___ . → **separate** · equal · similar
+- equal — *`equal` — «рівні». Тут важливо, що виступи окремі: `separate`.*
+- similar — *`similar` — «схожі». Окремість передає `separate`.*
 
-
-**9 · Картка слова — fine**
+**9 · Послухайте фразу про відрізки часу**
 <!-- interaction_id: en:lesson-01:session-39:i09; family: listen_choose -->
-> **fine** — «добре, нормально». Не «чудово», а «скарг немає».
+🔊 *They are equal.* → **They are equal.** · They are similar. · They are separate.
+- They are similar. — *У записі останнє слово — `equal`, а в цьому варіанті — `similar`.*
+- They are separate. — *У записі останнє слово — `equal`, а в цьому варіанті — `separate`.*
 
-**10 · Картка слова — sorry**
-<!-- interaction_id: en:lesson-01:session-39:i10; family: listen_choose -->
-> **sorry** — «вибачте, нам шкода». Слово, яким у Британії починають половину розмов.
+**10 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-01:session-39:i10; family: speed_match -->
+You're — You are · She's — She is · We're — We are · They're — They are
 
-**11 · Виберіть форму після `we` — ви вибачаєтеся вдвох**
-<!-- interaction_id: en:lesson-01:session-39:i11; family: context_gap_grammar -->
-We ___ sorry. → **are** · am · is
-- am — *`am` тільки про себе одного. Вас двоє.*
-- is — *`is` про одного збоку. Про «ми» — `are`.*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-01:session-39:i11; family: listen_build_dictation -->
+🔊 *We are brave.* Плитки: `brave` `are` `We` `is` → **We are brave.**
+*(плитка `is` зайва: тут потрібно `are` — `We are brave.`)*
 
-**12 · Послухайте й складіть — «ми прийшли рано»**
-<!-- interaction_id: en:lesson-01:session-39:i12; family: listen_build_dictation -->
-🔊 *We are early.* Плитки: `are` `early` `we` `late` → **We are early.**
-*(плитка `late` зайва: `late` тут зайве: в аудіо `We are early.` — «ми прийшли рано».)*
+**12 · Малюнки на двох афішах схожі, хоча відрізняються деталями. Складіть фразу про їхню схожість**
+<!-- interaction_id: en:lesson-01:session-39:i12; family: phrase_builder -->
+Плитки: `similar` `are` `They` `am` → **They are similar.**
+*(плитка `am` зайва: тут потрібно `are` — `They are similar.`)*
 
+**13 · Ви теж наважилися виступити попри страх. Назвіть себе сміливою людиною знайомою короткою фразою**
+<!-- interaction_id: en:lesson-01:session-39:i13; family: scripted_repeat_compare -->
+🎙 **I am brave.**
 
-**13 · Вставте слово — про двох із сусіднього відділу: поза роботою не спілкуються**
-<!-- interaction_id: en:lesson-01:session-39:i13; family: context_gap_grammar -->
-They are ___ . → **colleagues** · friends · early
-- friends — *«Друзі». Вони не дружать, вони разом працюють.*
-- early — *Це про час, а не про те, ким вони є одне одному.*
+**14 · Ви та подруга подолали страх. Похваліть вас обох за сміливість**
+<!-- interaction_id: en:lesson-01:session-39:i14; family: context_gap_grammar -->
+We ___ brave. → **are** · am · is
+- am — *Після `We` потрібно `are`.*
+- is — *Тут `We are brave`.*
 
-**14 · Складіть фразу — «вони неправі», увага на порядок**
-<!-- interaction_id: en:lesson-01:session-39:i14; family: phrase_builder -->
-Плитки: `right` `not` `they` `are` → **They are not right.**
+**15 · Послухайте й виберіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-39:i15; family: listen_choose -->
+🔊 *They're brave.* → **They're brave.** · We're brave. · They're afraid.
+- We're brave. — *У записі перше слово — `They're`, а в цьому варіанті — `We're`.*
+- They're afraid. — *У записі останнє слово — `brave`, а в цьому варіанті — `afraid`.*
 
-**15 · Вставте слово — ці двоє весь час разом поза роботою**
-<!-- interaction_id: en:lesson-01:session-39:i15; family: context_gap_grammar -->
-They are ___ . → **friends** · colleagues · sorry
-- colleagues — *«Колеги» — про роботу. А ці спілкуються просто так.*
-- sorry — *«Вибачте» — не про те, ким вони є одне одному.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-39:i16; family: speed_match -->
+similar — схожі на вигляд · separate — окремі · equal — рівні за величиною · brave — сміливі
 
-**16 · Складіть фразу — ви вдвох устигли до початку**
-<!-- interaction_id: en:lesson-01:session-39:i16; family: phrase_builder -->
-Плитки: `late` `we` `not` `are` `is` → **We are not late.**
-*(плитка `is` зайва: `is` зайве: з `We` кажуть `We are not late.`)*
-
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-39:i17:s01; family: scripted_repeat_compare -->
-Ви з Олегом прийшли до початку зустрічі. 🎙 **We are early.**
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-39:i17:s02; family: scripted_repeat_compare -->
-Іра питає, чи все у вас гаразд після суперечки. 🎙 **We are fine.**
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-39:i17:s03; family: scripted_repeat_compare -->
-Ви з Олегом перебили Мію та вибачаєтеся. 🎙 **We are sorry.**
-
----
-
-## Для сборщика
-new_words:
-early — рано — «рано». Годинник показує менше, ніж ви обіцяли. Приємний вид помилки.
-right — правий — «правий, правильно». Сказав — і влучив у ціль.
-fine — добре — «добре, нормально». Не «чудово», а «скарг немає».
-sorry — вибачте — «вибачте, нам шкода». Слово, яким у Британії починають половину розмов.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=context_gap_grammar, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=word_card, 10=word_card, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| wrong | 5 (картка-нагадування), 7 (дошка), 8 | 8 — складання `They are wrong.` |
-| late | 4 (пастка), 7 (дошка), 12 (пастка), 16 | 16 — складання `We are not late.` |
-| colleagues | 13, 15 (пастка) | 13 — `They are colleagues.` |
-| friends | 13 (пастка), 15 | 15 — `They are friends.` |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | early | так — `early` і `we are early` в тексті |
-| Інтро 2 | right (+ not) | так — `right`, `they are not right` в тексті |
-| Інтро 3 | fine | так — `fine`, `we are fine` в тексті |
-
-**3. Дошка пар (завдання 7)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| early | 1 | 2 (слух), 4 (пропуск) |
-| right | 3 | 6 (слух) |
-| wrong | 5 | — з минулих сесій (проходилося раніше), картка 5 як нагадування |
-| late | з минулих сесій | 4 (розбір пастки) |
-
----
+**17 · Сестра боялася зізнатися у своїй помилці, але все ж чесно розповіла про неї. Відзначте її сміливість у розмові з братом**
+<!-- interaction_id: en:lesson-01:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **She is brave.**
 

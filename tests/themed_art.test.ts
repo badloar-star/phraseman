@@ -15,8 +15,9 @@ const ROOT = path.join(__dirname, '..');
 
 describe('themed art registry', () => {
   it('has the 110 names from ASSETS_V2_PROMPTS.md + intro_profile_card (06dd77148) + spire_tile (плитка Шпиль, заказ Codex 15.10)', () => {
-    expect(THEMED_ART_ALL_NAMES).toHaveLength(112);
-    expect(new Set(THEMED_ART_ALL_NAMES).size).toBe(112);
+    expect(THEMED_ART_ALL_NAMES).toHaveLength(118);
+    expect(new Set(THEMED_ART_ALL_NAMES).size).toBe(118);
+    for (let rank = 1; rank <= 6; rank += 1) expect(THEMED_ART_ALL_NAMES).toContain(`spire_rank_${rank}`);
     expect(THEMED_ART_ALL_NAMES).toContain('spire_tile');
     for (const n of ['lessons', 'today', 'mistakes_done', 'cards_from_video', 'course_map', 'league_diamond',
       'streak_10', 'streak_freeze_overlay', 'ach_special', 'prize_1y', 'shop', 'intro_mistake_practice', 'lesson_01', 'lesson_50']) {

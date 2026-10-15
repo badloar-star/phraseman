@@ -42,6 +42,8 @@ export const THEMED_ART_NAMES = [
   'intro_training_blitz', 'intro_ai_dialog', 'intro_mistake_practice', 'intro_profile_card',
   // Плитка «Шпиль» на Главной (1): арт заказан у Codex (ICONS_FOR_CODEX_2026-10-12.md, A1); пока файла нет — плитка берёт intro_arena
   'spire_tile',
+  // Значки рангов Шпиля: каждая иконка относится к двум соседним камням (макет workbench).
+  'spire_rank_1', 'spire_rank_2', 'spire_rank_3', 'spire_rank_4', 'spire_rank_5', 'spire_rank_6',
 ] as const;
 
 type LessonCoverName = `lesson_${'0' | '1' | '2' | '3' | '4'}${'0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'}` | 'lesson_50';
@@ -50,7 +52,7 @@ export type ThemedArtName = typeof THEMED_ART_NAMES[number] | Exclude<LessonCove
 
 const LESSON_COVER_NAMES = Array.from({ length: 50 }, (_, i) => `lesson_${String(i + 1).padStart(2, '0')}` as ThemedArtName);
 
-/** Все 112 имён: 110 из ТЗ + intro_profile_card + spire_tile. */
+/** Все 118 имён: 110 из ТЗ + intro_profile_card + spire_tile + шесть рангов Шпиля. */
 export const THEMED_ART_ALL_NAMES: readonly ThemedArtName[] = Object.freeze([...THEMED_ART_NAMES, ...LESSON_COVER_NAMES]);
 
 export type ThemedArtBrightness = 'dark' | 'light';

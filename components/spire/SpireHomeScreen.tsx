@@ -34,6 +34,7 @@ import { SPIRE_CONFIG_DEFAULTS, type SpireConfigDoc } from '../../modules/spire/
 import type { SpireWeekLocal } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
 import { spireTierName } from '../../modules/spire/tier_names';
+import SpireWeekSubtitle from './SpireWeekSubtitle';
 import EnergyBar from '../EnergyBar';
 import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
@@ -295,7 +296,7 @@ export default function SpireHomeScreen() {
                 </View>
               ) : null}
             </View>
-            <Text style={[s.subtitle, { color: p.textSecondary }]}>{subtitle}</Text>
+            <SpireWeekSubtitle text={subtitle} tier={game.tier !== null ? (devWeekResult?.newTier ?? game.tier ?? week?.tier) : null} color={p.textSecondary} />
           </View>
           <SpireEnergyPill ownerActive={runtimeOwnerId === 'spire'} />
         </View>
@@ -389,7 +390,6 @@ const s = StyleSheet.create({
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   betaPill: { borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3 },
   betaText: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 0.3 }, // зачем (аудит D145, 11.10): межстрочный ≥ 1.25× — шкала V2_TYPE 13/17
-  subtitle: { fontSize: 16, lineHeight: 20, marginTop: 6 },
   note: { marginTop: 16, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
   noteText: { flex: 1, fontSize: 16, lineHeight: 21 },
   towerWrap: { marginTop: 18 },

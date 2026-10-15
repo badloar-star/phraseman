@@ -54,7 +54,31 @@ test('light appearance: edu off-track tone reaches ~3:1 on the card, no border n
   expect(weak).toEqual([]);
 });
 
-test('dark appearance keeps the opaque control track and the secondary knob', () => {
+test('dark appearance: off track is buttonFillDisabled (>= 1.5:1 to surfaces) with the secondary knob', () => {
   const g = liquidGlassTokens('grad_aurora', { level: 'calm', appearance: 'dark', intensity: 0 });
-  expect(switchOffTrackTone(g)).toEqual({ track: g.opaqueControl, knob: g.secondary });
+  expect(switchOffTrackTone(g)).toEqual({ track: g.buttonFillDisabled, knob: g.secondary });
+});
+
+// зачем (координатор 15.10, аудит «не сливается» для выключенных переключателей): по ВСЕМ темам × оформлениям × шагам дорожка выключенного отличима от поверхности (≥ 1,5 : 1; в светлых ≥ 2,9),
+// а ручка читается на дорожке (≥ 3 : 1). До правки в тёмных темах дорожка была 1,00–1,15 : 1.
+test('off switch never merges with the surface in any theme', () => {
+  const bad: string[] = [];
+  for (const appearance of ['dark', 'light'] as const) {
+    for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
+      for (const intensity of [0, 0.25, 0.5, 0.75, 1]) {
+        const g = liquidGlassTokens(id, { appearance, intensity } as never) as unknown as Record<string, string>;
+        const tone = switchOffTrackTone(g as never);
+        for (const key of ['bg', 'bgTop', 'bgBottom', 'opaqueCard', 'opaqueSheet']) {
+          const surface = rgb(g[key]!);
+          const track = over(tone.track, g[key]!);
+          const min = appearance === 'light' ? 2.9 : 1.5;
+          const r = ratio(track, surface);
+          if (r < min) bad.push(`${id}/${appearance}/${intensity} дорожка к ${key}: ${r.toFixed(2)} < ${min}`);
+          const k = ratio(rgb(tone.knob), track);
+          if (k < 3) bad.push(`${id}/${appearance}/${intensity} ручка на дорожке к ${key}: ${k.toFixed(2)} < 3`);
+        }
+      }
+    }
+  }
+  expect(bad).toEqual([]);
 });

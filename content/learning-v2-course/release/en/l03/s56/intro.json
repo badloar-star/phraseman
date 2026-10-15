@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-56",
   "learningOutcomeByLocale": {
-    "ru": "соединяем знакомые слова `a`, `the`, `this`, `that`, `these`, `those`, `is` и `are` в одной понятной сцене.",
-    "uk": "поєднуємо знайомі слова `a`, `the`, `this`, `that`, `these`, `those`, `is` і `are` в одній зрозумілій сцені."
+    "ru": "соединить знакомые названия мест с a, the, this, those, is и are",
+    "uk": "поєднати знайомі назви місць з a, the, this, those, is та are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Коврик у двери",
-        "uk": "Килимок біля дверей"
+        "ru": "Одно место",
+        "uk": "Одне місце"
       },
       "bodyByLocale": {
-        "ru": "`mat` — «небольшой коврик у двери». `rug` чаще называют ковром или ковриком в комнате; у двери у вас лежит `mat`. Когда вы показываете на один коврик рядом и называете его впервые, скажите `This is a mat.` — «Это коврик». `This` показывает рядом, `is` связывает с названием, а `a` вводит один предмет.",
-        "uk": "`mat` — «невеликий килимок біля дверей». `rug` частіше називають килимом або килимком у кімнаті; біля дверей у вас лежить `mat`. Коли ви показуєте на один килимок поруч і називаєте його вперше, скажіть `This is a mat.` — «Це килимок». `This` показує поруч, `is` поєднує з назвою, а `a` вводить один предмет."
+        "ru": "Вспомним `hospital` — «больница», `cinema` — «кинотеатр» и `museum` — «музей». Чтобы назвать одно незнакомое место: `This is a hospital` — «Это больница». Чтобы спросить о выбранном музее: `Where is the museum?` — «Где музей?» Одно место — `is`; `a` называет одно из таких мест, `the` указывает на понятное собеседникам.",
+        "uk": "Згадаймо `hospital` — «лікарня», `cinema` — «кінотеатр» і `museum` — «музей». Щоб назвати одне незнайоме місце: `This is a hospital` — «Це лікарня». Щоб запитати про вибраний музей: `Where is the museum?` — «Де музей?» Одне місце — `is`; `a` називає одне з таких місць, `the` вказує на зрозуміле співрозмовникам."
       },
       "question": {
         "interactionId": "en:lesson-03:session-56:intro1:q",
         "promptByLocale": {
-          "ru": "Друг держит коврик у двери. Выберите точную фразу.",
-          "uk": "Друг тримає килимок біля дверей. Виберіть точну фразу."
+          "ru": "Вы показываете на незнакомое другу здание: «Это больница».",
+          "uk": "Ви показуєте на незнайому другові будівлю: «Це лікарня»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-56:intro1:r1",
-              "text": "This is a mat."
+              "text": "This is a hospital."
             },
             {
               "responseId": "en:lesson-03:session-56:intro1:r2",
-              "text": "This are a mat."
+              "text": "This are a hospital."
             },
             {
               "responseId": "en:lesson-03:session-56:intro1:r3",
-              "text": "These are a mat."
+              "text": "These are a hospital."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-56:intro1:r1",
-              "text": "This is a mat."
+              "text": "This is a hospital."
             },
             {
               "responseId": "en:lesson-03:session-56:intro1:r2",
-              "text": "This are a mat."
+              "text": "This are a hospital."
             },
             {
               "responseId": "en:lesson-03:session-56:intro1:r3",
-              "text": "These are a mat."
+              "text": "These are a hospital."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг держит коврик у двери. Выберите точную фразу.",
-          "uk": "Друг тримає килимок біля дверей. Виберіть точну фразу."
+          "ru": "Вы показываете на незнакомое другу здание: «Это больница».",
+          "uk": "Ви показуєте на незнайому другові будівлю: «Це лікарня»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поднос на стойке",
-        "uk": "Таця на стійці"
+        "ru": "Несколько мест",
+        "uk": "Кілька місць"
       },
       "bodyByLocale": {
-        "ru": "`tray` — «поднос»: на нём переносят чашки и еду. На дальней стойке стоит один деревянный поднос. `That tray is wooden.` — «Тот поднос деревянный». `That` показывает на один предмет дальше; после него артикль не нужен. Дальняя стойка бережёт чашки от локтей — и помогает честно сказать `That`.",
-        "uk": "`tray` — «таця»: на ній переносять чашки й їжу. На дальній стійці стоїть одна дерев’яна таця. `That tray is wooden.` — «Та таця дерев’яна». `That` показує на один предмет далі; після нього артикль не потрібен. Дальня стійка береже чашки від ліктів — і допомагає чесно сказати `That`."
+        "ru": "`libraries` — «библиотеки», `stations` — «станции», `cafes` — «кафе», когда их несколько. Для группы нужно `are`: `The libraries are here` — «Библиотеки здесь». `Those stations are there` — «Те станции там»: показываем несколько дальше на карте. `Where are the cafes?` — «Где кафе?» — спрашиваем о выбранных кафе.",
+        "uk": "`libraries` — «бібліотеки», `stations` — «станції», `cafes` — «кафе», коли їх кілька. Для групи потрібне `are`: `The libraries are here` — «Бібліотеки тут». `Those stations are there` — «Ті станції там»: показуємо кілька далі на карті. `Where are the cafes?` — «Де кафе?» — запитуємо про вибрані кафе."
       },
       "question": {
         "interactionId": "en:lesson-03:session-56:intro2:q",
         "promptByLocale": {
-          "ru": "Вы смотрите на один поднос на дальней стойке. Выберите точную фразу.",
-          "uk": "Ви дивитеся на одну тацю на дальній стійці. Виберіть точну фразу."
+          "ru": "Вы уже обсудили библиотеки. Покажите их: «Библиотеки здесь».",
+          "uk": "Ви вже обговорили бібліотеки. Покажіть їх: «Бібліотеки тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-56:intro2:r1",
-              "text": "That tray is wooden."
+              "text": "The libraries are here."
             },
             {
               "responseId": "en:lesson-03:session-56:intro2:r2",
-              "text": "Those tray are wooden."
+              "text": "The libraries is here."
             },
             {
               "responseId": "en:lesson-03:session-56:intro2:r3",
-              "text": "That tray are wooden."
+              "text": "The library is here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-56:intro2:r1",
-              "text": "That tray is wooden."
+              "text": "The libraries are here."
             },
             {
               "responseId": "en:lesson-03:session-56:intro2:r2",
-              "text": "Those tray are wooden."
+              "text": "The libraries is here."
             },
             {
               "responseId": "en:lesson-03:session-56:intro2:r3",
-              "text": "That tray are wooden."
+              "text": "The library is here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы смотрите на один поднос на дальней стойке. Выберите точную фразу.",
-          "uk": "Ви дивитеся на одну тацю на дальній стійці. Виберіть точну фразу."
+          "ru": "Вы уже обсудили библиотеки. Покажите их: «Библиотеки здесь».",
+          "uk": "Ви вже обговорили бібліотеки. Покажіть їх: «Бібліотеки тут»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Крючки в прихожей",
-        "uk": "Гачки в передпокої"
+        "ru": "Встречаемся с другом",
+        "uk": "Зустрічаємося з другом"
       },
       "bodyByLocale": {
-        "ru": "`hook` — «крючок»: на него можно повесить куртку или сумку. В прихожей рядом висят несколько металлических крючков. `These hooks are metal.` означает «Эти крючки металлические». `These` показывает на несколько предметов рядом, поэтому у `hooks` появляется `-s`, а в середине стоит `are`.",
-        "uk": "`hook` — «гачок»: на нього можна повісити куртку або сумку. У передпокої поруч висять кілька металевих гачків. `These hooks are metal.` означає «Ці гачки металеві». `These` показує на кілька предметів поруч, тому у `hooks` з’являється `-s`, а посередині стоїть `are`."
+        "ru": "`striped` — «полосатый»: `This bag is striped` — «Эта сумка полосатая». После `This` перед `bag` артикль не добавляем. Полосы помогают узнать сумку, но адрес музея на ней не написан. Для адреса снова нужна карта: `The museum is there` — «Музей там».",
+        "uk": "`striped` — «смугастий»: `This bag is striped` — «Ця сумка смугаста». Після `This` перед `bag` артикля не додаємо. Смуги допомагають упізнати сумку, але адресу музею на ній не написано. Для адреси знову потрібна карта: `The museum is there` — «Музей там»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-56:intro3:q",
         "promptByLocale": {
-          "ru": "Друг показывает на несколько крючков в прихожей. Выберите точную фразу.",
-          "uk": "Друг показує на кілька гачків у передпокої. Виберіть точну фразу."
+          "ru": "Покажите на сумку рядом: «Эта сумка полосатая».",
+          "uk": "Покажіть на сумку поруч: «Ця сумка смугаста»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-56:intro3:r1",
-              "text": "These hooks are metal."
+              "text": "This bag is striped."
             },
             {
               "responseId": "en:lesson-03:session-56:intro3:r2",
-              "text": "This hooks are metal."
+              "text": "This bag are striped."
             },
             {
               "responseId": "en:lesson-03:session-56:intro3:r3",
-              "text": "These hooks is metal."
+              "text": "This a bag is striped."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-56:intro3:r1",
-              "text": "These hooks are metal."
+              "text": "This bag is striped."
             },
             {
               "responseId": "en:lesson-03:session-56:intro3:r2",
-              "text": "This hooks are metal."
+              "text": "This bag are striped."
             },
             {
               "responseId": "en:lesson-03:session-56:intro3:r3",
-              "text": "These hooks is metal."
+              "text": "This a bag is striped."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг показывает на несколько крючков в прихожей. Выберите точную фразу.",
-          "uk": "Друг показує на кілька гачків у передпокої. Виберіть точну фразу."
+          "ru": "Покажите на сумку рядом: «Эта сумка полосатая».",
+          "uk": "Покажіть на сумку поруч: «Ця сумка смугаста»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "59daaf3894c94c641cd8ce0cae8c78697b9ac6abae67733c4013fce1fb69899c"
+  "introFingerprint": "efc4e3a76dddcb09b878891a9c856b40299eed45f21392d0394a48b3985bfcf3"
 }

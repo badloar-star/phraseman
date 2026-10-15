@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-56:intro1:r2": {
+          "ru": "Одна больница: `This is a hospital`.",
+          "uk": "Одна лікарня: `This is a hospital`."
+        },
+        "en:lesson-03:session-56:intro1:r3": {
+          "ru": "`These are` для нескольких; здесь одна больница.",
+          "uk": "`These are` для кількох; тут одна лікарня."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-56:intro2:r2": {
+          "ru": "Библиотек несколько: `are`.",
+          "uk": "Бібліотек кілька: `are`."
+        },
+        "en:lesson-03:session-56:intro2:r3": {
+          "ru": "Так говорят об одной библиотеке. Здесь несколько: `libraries are`.",
+          "uk": "Так говорять про одну бібліотеку. Тут кілька: `libraries are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-56:intro3:r2": {
+          "ru": "Одна сумка: `is`.",
+          "uk": "Одна сумка: `is`."
+        },
+        "en:lesson-03:session-56:intro3:r3": {
+          "ru": "После `This` сразу идёт `bag`, без `a`.",
+          "uk": "Після `This` одразу йде `bag`, без `a`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7ff52428af205290f3e2bd197598c020a168aec8f70192c833884cf9cd08715d"
+}

@@ -14,7 +14,7 @@ import {
 } from '../app/account_generation';
 import { accountScopeKey } from '../app/account_scope_key';
 import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../app/accounts_v2_client_flag';
-import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
+import { normalizePackLanguage, PACK_LANGUAGES, type PackLanguage } from '../app/flashcards/pack_languages';
 import { FREE_CUSTOM_CARD_LIMIT, PLUS_CUSTOM_CARD_LIMIT } from '../app/flashcards/custom_card_access';
 import { forgetCardDeletions, recordCardDeletions } from '../app/flashcards/card_deletion_journal';
 import { noteSwallowed, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -263,9 +263,10 @@ export const loadFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<
 };
 
 /** Logical language contours over existing sync-compatible device stores. */
+// зачем (аудит кнопок Карточек #1, координатор 15.10): сохранённые карточки es/de/it НЕ загружались — читались только en и fr. Теперь все пять языков наборов (PACK_LANGUAGES).
 export const loadAllSavedFlashcards = async (): Promise<Flashcard[]> => {
   const token = captureAccountGeneration();
-  const lists = await Promise.all(['en', 'fr'].map(target => loadFlashcardsForAccount(target, token)));
+  const lists = await Promise.all(PACK_LANGUAGES.map(target => loadFlashcardsForAccount(target, token)));
   return isAccountOperationCurrent(token) ? lists.flat() : [];
 };
 
@@ -353,7 +354,7 @@ export const alignSavedVideoFlashcardsWithChannel = async (input: {
 
   return withWriteLock(accountToken, async () => {
     let changedCount = 0;
-    for (const target of ['en', 'fr'] as const) {
+    for (const target of PACK_LANGUAGES) { // зачем (аудит #1): все пять языков, а не только en и fr
       const current = await loadFlashcardsForAccount(target, accountToken);
       if (!isAccountOperationCurrent(accountToken)) return 0;
       const next = current.map((card) => {
@@ -379,7 +380,7 @@ export const alignSavedVideoFlashcardsWithChannel = async (input: {
 /** Merge enrichment only into cards that still exist; a delayed migration cannot undo a deletion. */
 export const mergeSavedFlashcardRepairs = async (updates: Flashcard[], accountToken: AccountGenerationToken): Promise<void> => {
   await withWriteLock(accountToken, async () => {
-    for (const target of ['en', 'fr'] as const) {
+    for (const target of PACK_LANGUAGES) { // зачем (аудит #1): все пять языков, а не только en и fr
       const current = await loadFlashcardsForAccount(target, accountToken);
       if (!isAccountOperationCurrent(accountToken)) return;
       const byId = new Map(updates.filter(card => card.studyTarget === target).map(card => [card.id, card]));

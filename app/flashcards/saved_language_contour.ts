@@ -1,6 +1,6 @@
 import { loadAllSavedFlashcards, peekFlashcardsCache } from '../../hooks/use-flashcards';
 import { getStoredPackLanguage, peekStoredPackLanguage } from './pack_language_preferences';
-import { filterCardsByPackLanguage, normalizePackLanguage } from './pack_languages';
+import { filterCardsByPackLanguage, normalizePackLanguage, PACK_LANGUAGES } from './pack_languages';
 
 /** Saved training follows the flag selected in Saved, never a physical storage bucket. */
 export async function loadSelectedSavedContour(fallbackLanguage?: unknown) {
@@ -46,8 +46,10 @@ function notePeek(diagnostics: SavedContourPeekDiagnostics): void {
 export function peekSelectedSavedContour(fallbackLanguage?: unknown) {
   const storedLanguage = peekStoredPackLanguage();
   const language = storedLanguage ?? normalizePackLanguage(fallbackLanguage);
-  const en = peekFlashcardsCache('en');
-  const fr = peekFlashcardsCache('fr');
+  // зачем (аудит кнопок Карточек #1, координатор 15.10): прогретый кэш всех пяти языков, а не только en и fr — сохранённые es/de/it иначе не попадали в первый кадр.
+  const buckets = PACK_LANGUAGES.map((code) => ({ code, cards: peekFlashcardsCache(code) }));
+  const en = buckets.find((bucket) => bucket.code === 'en')?.cards ?? null;
+  const fr = buckets.find((bucket) => bucket.code === 'fr')?.cards ?? null;
   const base = {
     language,
     languageSource: storedLanguage
@@ -56,14 +58,14 @@ export function peekSelectedSavedContour(fallbackLanguage?: unknown) {
     enLen: en ? en.length : null,
     frLen: fr ? fr.length : null,
   };
-  if (!en && !fr) {
+  if (buckets.every((bucket) => !bucket.cards)) {
     notePeek({ ...base, result: 'no_cache', filteredLen: null });
     return null;
   }
-  const filtered = filterCardsByPackLanguage([
-    ...(en ?? []).map(card => ({ ...card, packLanguage: normalizePackLanguage(card.packLanguage ?? 'en') })),
-    ...(fr ?? []).map(card => ({ ...card, packLanguage: normalizePackLanguage(card.packLanguage ?? 'fr') })),
-  ], language);
+  const filtered = filterCardsByPackLanguage(
+    buckets.flatMap((bucket) => (bucket.cards ?? []).map((card) => ({ ...card, packLanguage: normalizePackLanguage(card.packLanguage ?? bucket.code) }))),
+    language,
+  );
   notePeek({ ...base, result: filtered.length > 0 ? 'ok' : 'empty_after_filter', filteredLen: filtered.length });
   return filtered;
 }
@@ -74,7 +76,11 @@ export function peekSelectedSavedContour(fallbackLanguage?: unknown) {
  * настоящую. null — кэша нет совсем (no_cache).
  */
 export function peekFirstSavedCardAnyLanguage() {
-  return peekFlashcardsCache('en')?.[0] ?? peekFlashcardsCache('fr')?.[0] ?? null;
+  for (const code of PACK_LANGUAGES) {
+    const first = peekFlashcardsCache(code)?.[0];
+    if (first) return first;
+  }
+  return null;
 }
 
 export default function __RouteShim() { return null; }

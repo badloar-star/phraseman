@@ -25,7 +25,7 @@ describe('Cards collection ready-snapshot contract', () => {
     const repairStart = hookSource.indexOf('export const mergeSavedFlashcardRepairs');
     const repairBody = hookSource.slice(repairStart, repairStart + 1800);
     expect(repairBody).toContain('withWriteLock(accountToken');
-    expect(repairBody).toContain("for (const target of ['en', 'fr'] as const)");
+    expect(repairBody).toContain('for (const target of PACK_LANGUAGES)'); // зачем (аудит #1, 15.10): ремонт идёт по всем пяти языкам, а не только en и fr
     expect(repairBody).toContain('updates.filter(card => card.studyTarget === target)');
     expect(repairBody).toContain('persistFlashcards(next, target, accountToken)');
     expect(source).toContain('loadBuiltMarketplaceCardsCache(studyTarget, lang)');

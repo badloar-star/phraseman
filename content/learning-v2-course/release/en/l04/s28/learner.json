@@ -1,0 +1,1012 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг готов менять планы. Скажите это без сокращения со словом flexible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг готов менять планы. Скажите это без сокращения со словом flexible",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is flexible.",
+        "localizedMeaning": {
+          "ru": "Друг готов менять планы. Скажите это без сокращения со словом flexible",
+          "uk": "Друг готовий змінювати плани. Скажіть це без скорочення зі словом flexible"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "flexible"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг готов менять планы. Скажите это без сокращения со словом flexible",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is flexible.`",
+              "uk": "тут потрібно `is` — `He is flexible.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i02:r1",
+          "text": "alley"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i02:r2",
+          "text": "awning"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i02:r3",
+          "text": "table"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i02:audio",
+          "transcript": "alley"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-28:i02:r1",
+            "targetText": "alley",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i02:r2",
+            "targetText": "awning",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i02:r3",
+            "targetText": "table",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `alley`, а в этом варианте — `awning`.",
+              "uk": "У записі перше слово — `alley`, а в цьому варіанті — `awning`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `alley`, а в этом варианте — `table`.",
+              "uk": "У записі перше слово — `alley`, а в цьому варіанті — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите узкий переулок одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i03:r1",
+          "text": "alley"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i03:r2",
+          "text": "awning"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i03:r3",
+          "text": "window"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите узкий переулок одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите узкий переулок одним словом",
+          "uk": "Назвіть вузький провулок одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-28:i03:r1",
+            "text": "alley"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i03:r2",
+            "text": "awning"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i03:r3",
+            "text": "window"
+          }
+        ],
+        "testedDimension": "Назовите узкий переулок одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите узкий переулок одним словом",
+            "feedbackByLocale": {
+              "ru": "`awning` — навес; переулок — `alley`.",
+              "uk": "`awning` — навіс; провулок — `alley`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите узкий переулок одним словом",
+            "feedbackByLocale": {
+              "ru": "`window` — окно; переулок — `alley`.",
+              "uk": "`window` — вікно; провулок — `alley`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-28:i04:p1",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "переулок",
+              "uk": "провулок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i04:p2",
+            "target": "flexible",
+            "meaningByLocale": {
+              "ru": "гибкий",
+              "uk": "гнучкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i04:p3",
+            "target": "chairs",
+            "meaningByLocale": {
+              "ru": "стулья",
+              "uk": "стільці"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i04:p4",
+            "target": "mushroom",
+            "meaningByLocale": {
+              "ru": "гриб",
+              "uk": "гриб"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alley",
+          "flexible",
+          "chairs",
+          "mushroom"
+        ],
+        "rightColumn": [
+          "переулок",
+          "гибкий",
+          "стулья",
+          "гриб"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите описание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите описание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i05:audio",
+          "transcript": "The chairs are in the alley."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The chairs are in the alley.",
+        "orderedTokens": [
+          "The",
+          "chairs",
+          "are",
+          "in",
+          "the",
+          "alley"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите описание",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The chairs are in the alley.`",
+              "uk": "тут потрібно `are` — `The chairs are in the alley.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гриб лежит на столе. Скажите, где он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гриб лежит на столе. Скажите, где он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The mushroom is on the table.",
+        "localizedMeaning": {
+          "ru": "Гриб лежит на столе. Скажите, где он",
+          "uk": "Гриб лежить на столі. Скажіть, де він"
+        },
+        "orderedTokens": [
+          "The",
+          "mushroom",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Гриб лежит на столе. Скажите, где он",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The mushroom is on the table.`",
+              "uk": "тут потрібно `is` — `The mushroom is on the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг легко согласился изменить планы. Опишите его со словом flexible и сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Друг легко согласился изменить планы. Опишите его со словом flexible и сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i07:audio",
+          "transcript": "He's flexible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He's flexible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Переулок проходит между двумя зданиями, не под ними. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i08:r1",
+          "text": "between"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i08:r2",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i08:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Переулок проходит между двумя зданиями, не под ними. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Переулок проходит между двумя зданиями, не под ними. Выберите слово",
+          "uk": "Провулок проходить між двома будівлями, не під ними. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The alley is ___ the buildings.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-28:i08:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i08:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i08:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Переулок проходит между двумя зданиями, не под ними. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Переулок проходит между двумя зданиями, не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`on` — на поверхности; между — `between`.",
+              "uk": "`on` — на поверхні; між — `between`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Переулок проходит между двумя зданиями, не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; здесь между зданиями: `between the buildings`.",
+              "uk": "`under` — під; тут між будівлями: `between the buildings`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где стулья",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i09:r1",
+          "text": "The chairs are under the awning."
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i09:r2",
+          "text": "The chairs are under the table."
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i09:r3",
+          "text": "The chairs are under the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где стулья",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i09:audio",
+          "transcript": "The chairs are under the awning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-28:i09:r1",
+            "targetText": "The chairs are under the awning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i09:r2",
+            "targetText": "The chairs are under the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i09:r3",
+            "targetText": "The chairs are under the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где стулья",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `awning`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где стулья",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `awning`, а в этом варианте — `window`.",
+              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `window`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-28:i10:p1",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "переулок",
+              "uk": "провулок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i10:p2",
+            "target": "in",
+            "meaningByLocale": {
+              "ru": "внутри",
+              "uk": "усередині"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i10:p3",
+            "target": "under",
+            "meaningByLocale": {
+              "ru": "под",
+              "uk": "під"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i10:p4",
+            "target": "between",
+            "meaningByLocale": {
+              "ru": "между",
+              "uk": "між"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alley",
+          "in",
+          "under",
+          "between"
+        ],
+        "rightColumn": [
+          "переулок",
+          "внутри",
+          "под",
+          "между"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите описание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите описание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i11:audio",
+          "transcript": "The mushroom is next to the cup."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The mushroom is next to the cup.",
+        "orderedTokens": [
+          "The",
+          "mushroom",
+          "is",
+          "next",
+          "to",
+          "the",
+          "cup"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите описание",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The mushroom is next to the cup.`",
+              "uk": "тут потрібно `is` — `The mushroom is next to the cup.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите на узкий проход между зданиями: «Это переулок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите на узкий проход между зданиями: «Это переулок»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is an alley.",
+        "localizedMeaning": {
+          "ru": "Покажите на узкий проход между зданиями: «Это переулок»",
+          "uk": "Покажіть на вузький прохід між будівлями: «Це провулок»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "an",
+          "alley"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Покажите на узкий проход между зданиями: «Это переулок»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `an` — `This is an alley.`",
+              "uk": "тут потрібно `an` — `This is an alley.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Стулья рядом со столом. Скажите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Стулья рядом со столом. Скажите, где они",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i13:audio",
+          "transcript": "The chairs are next to the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The chairs are next to the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Гриб лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i14:r1",
+          "text": "between"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i14:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гриб лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Гриб лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+          "uk": "Гриб лежить між двома чашками, не всередині й не під ними. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The mushroom is ___ the cups.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-28:i14:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i14:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Гриб лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i14:r2",
+            "correct": false,
+            "testedDimension": "Гриб лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; между чашками — `between the cups`.",
+              "uk": "`in` — усередині; між чашками — `between the cups`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i14:r3",
+            "correct": false,
+            "testedDimension": "Гриб лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; между — `between`.",
+              "uk": "`under` — під; між — `between`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что показывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i15:r1",
+          "text": "That is an alley."
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i15:r2",
+          "text": "This is an alley."
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i15:r3",
+          "text": "That is an awning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что показывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i15:audio",
+          "transcript": "That is an alley."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-28:i15:r1",
+            "targetText": "That is an alley.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i15:r2",
+            "targetText": "This is an alley.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i15:r3",
+            "targetText": "That is an awning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `alley`, а в этом варианте — `awning`.",
+              "uk": "У записі останнє слово — `alley`, а в цьому варіанті — `awning`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-28:i16:p1",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "переулок",
+              "uk": "провулок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i16:p2",
+            "target": "flexible",
+            "meaningByLocale": {
+              "ru": "гибкий",
+              "uk": "гнучкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i16:p3",
+            "target": "chairs",
+            "meaningByLocale": {
+              "ru": "стулья",
+              "uk": "стільці"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-28:i16:p4",
+            "target": "mushroom",
+            "meaningByLocale": {
+              "ru": "гриб",
+              "uk": "гриб"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alley",
+          "flexible",
+          "chairs",
+          "mushroom"
+        ],
+        "rightColumn": [
+          "переулок",
+          "гибкий",
+          "стулья",
+          "гриб"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом кафе друг ищет вынесенные стулья. Они в узком переулке. Скажите «Стулья в переулке»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "В другом кафе друг ищет вынесенные стулья. Они в узком переулке. Скажите «Стулья в переулке»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i17:audio",
+          "transcript": "The chairs are in the alley."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The chairs are in the alley.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a26a6363141eda596e38370036ce198bc7ccdd4954dda6a43e3d301d3642928e"
+}

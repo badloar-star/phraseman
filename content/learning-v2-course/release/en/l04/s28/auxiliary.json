@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-28:intro1:r2": {
+          "ru": "О месте в переулке говорим `in the alley`.",
+          "uk": "Про місце в провулку кажемо `in the alley`."
+        },
+        "en:lesson-04:session-28:intro1:r3": {
+          "ru": "Стульев несколько: `The chairs are`.",
+          "uk": "Стільців кілька: `The chairs are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-28:intro2:r2": {
+          "ru": "Один переулок: `The alley is`.",
+          "uk": "Один провулок: `The alley is`."
+        },
+        "en:lesson-04:session-28:intro2:r3": {
+          "ru": "`on` — на поверхности; между зданиями — `between the buildings`.",
+          "uk": "`on` — на поверхні; між будівлями — `between the buildings`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-28:intro3:r2": {
+          "ru": "`careless` — неосторожный; готовый подстраиваться — `flexible`.",
+          "uk": "`careless` — необережний; готовий підлаштовуватися — `flexible`."
+        },
+        "en:lesson-04:session-28:intro3:r3": {
+          "ru": "С `He` нужно `is`: `He’s flexible`.",
+          "uk": "З `He` потрібне `is`: `He’s flexible`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c18b84643f2a3e6a0feeb2133cf467f1411db3c1973436779e3fb5d8626e3234"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "назвать переулок и описать, где находятся стулья и знакомые предметы",
+    "uk": "назвати провулок і описати, де розташовані стільці та знайомі предмети"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узкий проход между зданиями",
+        "uk": "Вузький прохід між будівлями"
+      },
+      "bodyByLocale": {
+        "ru": "`alley` — «переулок, узкий проход между зданиями». Не путайте с русским «аллея»: деревья здесь не обязательны. Один переулок — `an alley`, потому что первый звук гласный. `The chairs are in the alley` — «Стулья в переулке». Для слова `alley` достаточно узкого прохода: сажать деревья ради перевода не надо.",
+        "uk": "`alley` — «провулок, вузький прохід між будівлями». Не плутайте з українським «алея»: дерева тут не обов’язкові. Один провулок — `an alley`, бо перший звук голосний. `The chairs are in the alley` — «Стільці в провулку». Для слова `alley` достатньо вузького проходу: садити дерева заради перекладу не треба."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Стулья стоят в переулке. Выберите описание.",
+          "uk": "Стільці стоять у провулку. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-28:intro1:r1",
+              "text": "The chairs are in the alley."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro1:r2",
+              "text": "The chairs are on the alley."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro1:r3",
+              "text": "The chairs is in the alley."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-28:intro1:r1",
+              "text": "The chairs are in the alley."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro1:r2",
+              "text": "The chairs are on the alley."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro1:r3",
+              "text": "The chairs is in the alley."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Стулья стоят в переулке. Выберите описание.",
+          "uk": "Стільці стоять у провулку. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Переулок и стулья",
+        "uk": "Провулок і стільці"
+      },
+      "bodyByLocale": {
+        "ru": "`chairs` — «стулья». `The chairs are next to the table` — «Стулья рядом со столом». `The alley is between the buildings` — «Переулок между зданиями». `mushroom` — «гриб»: `The mushroom is on the table` — «Гриб на столе». Для нескольких стульев — `are`, для одного гриба или переулка — `is`.",
+        "uk": "`chairs` — «стільці». `The chairs are next to the table` — «Стільці поруч зі столом». `The alley is between the buildings` — «Провулок між будівлями». `mushroom` — «гриб»: `The mushroom is on the table` — «Гриб на столі». Для кількох стільців — `are`, для одного гриба чи провулка — `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Переулок проходит между зданиями. Выберите описание.",
+          "uk": "Провулок проходить між будівлями. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-28:intro2:r1",
+              "text": "The alley is between the buildings."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro2:r2",
+              "text": "The alley are between the buildings."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro2:r3",
+              "text": "The alley is on the buildings."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-28:intro2:r1",
+              "text": "The alley is between the buildings."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro2:r2",
+              "text": "The alley are between the buildings."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro2:r3",
+              "text": "The alley is on the buildings."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Переулок проходит между зданиями. Выберите описание.",
+          "uk": "Провулок проходить між будівлями. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Можно договориться",
+        "uk": "Можна домовитися"
+      },
+      "bodyByLocale": {
+        "ru": "`flexible` — «гибкий». О человеке это может значить, что он готов менять планы и подстраиваться. Встречу перенесли, друг без проблем согласился: `He is flexible` — «Он гибкий, готов подстроиться». Сокращённо: `He’s flexible`. Здесь речь о планах, а не о том, умеет ли он садиться на шпагат.",
+        "uk": "`flexible` — «гнучкий». Про людину це може означати, що вона готова змінювати плани й підлаштовуватися. Зустріч перенесли, друг без проблем погодився: `He is flexible` — «Він гнучкий, готовий підлаштуватися». Скорочено: `He’s flexible`. Тут ідеться про плани, а не про те, чи вміє він сідати на шпагат."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг готов менять время встречи. Скажите «Он готов подстроиться» с сокращением и словом flexible.",
+          "uk": "Друг готовий змінювати час зустрічі. Скажіть «Він готовий підлаштуватися» зі скороченням і словом flexible."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-28:intro3:r1",
+              "text": "He's flexible."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro3:r2",
+              "text": "He's careless."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro3:r3",
+              "text": "He are flexible."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-28:intro3:r1",
+              "text": "He's flexible."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro3:r2",
+              "text": "He's careless."
+            },
+            {
+              "responseId": "en:lesson-04:session-28:intro3:r3",
+              "text": "He are flexible."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг готов менять время встречи. Скажите «Он готов подстроиться» с сокращением и словом flexible.",
+          "uk": "Друг готовий змінювати час зустрічі. Скажіть «Він готовий підлаштуватися» зі скороченням і словом flexible."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "36b28fb1b6a0038f35e976b45419e19d0cf07cdce362b27c5c55599c3872188b"
+}

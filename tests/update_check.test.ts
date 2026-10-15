@@ -122,3 +122,15 @@ describe('checkForUpdate platform-specific version manifest', () => {
     });
   });
 });
+
+// R58 #4 (аудит кнопок 15.10): markUpdateSeen нигде не вызывался — окно обновления всплывало на КАЖДОМ холодном старте.
+describe('окно обновления — не чаще раза в сутки', () => {
+  it('после показа повторная проверка (новый холодный старт) окна не даёт и в сеть не ходит', async () => {
+    global.fetch.mockResolvedValue({ ok: true, json: async () => ({ versionCode: 76, message: 'Shared release' }) });
+    await expect(checkForUpdate()).resolves.toEqual(expect.objectContaining({ available: true }));
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    await expect(checkForUpdate()).resolves.toBeNull();
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+});
+

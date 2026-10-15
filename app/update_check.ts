@@ -86,7 +86,8 @@ async function shouldShow(): Promise<boolean> {
     const raw = await AsyncStorage.getItem(LAST_CHECK_KEY);
     if (!raw) return true;
     return Date.now() - parseInt(raw, 10) >= CHECK_INTERVAL_MS;
-  } catch {
+  } catch (error) {
+    console.warn('[UPDATE-CHECK] shouldShow: метка не прочитана — проверяем', error instanceof Error ? error.message : String(error)); // guard-ok: немой catch запрещён
     return true;
   }
 }
@@ -123,11 +124,16 @@ export async function checkForUpdate(): Promise<UpdateInfo | null> {
 
     if (target.versionCode > currentCode) {
       const storeUrl = Platform.OS === 'ios' ? STORE_URL_IOS : STORE_URL_ANDROID;
+      // зачем (R58 #4, аудит кнопок 15.10): markUpdateSeen нигде не вызывался — метка интервала не ставилась, и окно
+      // обновления всплывало на КАЖДОМ холодном старте. Найденное обновление запускает интервал (не чаще раза в сутки).
+      await markUpdateSeen();
+      console.log(`[UPDATE-CHECK] show target=${target.versionCode} current=${currentCode} — следующий показ не раньше чем через ${CHECK_INTERVAL_MS} мс`); // guard-ok: итог проверки
       return { available: true, storeUrl, message: target.message };
     }
 
     return null;
-  } catch {
+  } catch (error) {
+    console.warn('[UPDATE-CHECK] check failed — окно не показываем', error instanceof Error ? error.message : String(error)); // guard-ok: немой catch запрещён
     return null;
   }
 }

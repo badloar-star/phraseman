@@ -1,177 +1,138 @@
-# Англійська · Урок 3 · Заняття 31 — «Костюм потрібен зараз»
+# Англійська · Урок 3 · Заняття 31 — Два парки на вихідні
 
-**Сцена заняття.** Перед репетицією ви разом із костюмером шукаєте в театральній костюмерній капелюх, ремінь і чобіт. Речі лежать у різних місцях, актори вже чекають, тому вам треба швидко вказати, що подати.
+**Ситуація.** Ви з Анною вибираєте місця для прогулянки. На карті позначено два парки по різні боки річки. Олег готує квитки на виставку в одному з них; ви порівнюєте парки й уточнюєте, де вони розташовані.
 
-**Як сказати:** словникове тренування зі швидким перенесенням — `This/That + один предмет, please` у театральній костюмерній
-**Нові слова:** hat, belt, boot
-**Для повторення:** bag, box, key, this, that, please
+**Що ви опануєте:** назвати кілька парків, порівняти їх і відрізнити парки загалом від конкретних парків
+**Нові слова:** parks
 
 ---
 
 ## Інтро 1
 
-### Капелюх перед вами
+### Один парк чи кілька
 
-`hat` — «капелюх». Він лежить на столі перед вами, тому скажіть костюмерові: `This hat, please.` — «Цей капелюх, будь ласка».
+`park` — «парк», `parks` — «парки». `They are parks` — «Це парки». Для кількох парків додаємо `s`, перед `parks` не ставимо `a`. Олег позначив один парк і оголосив, що знає всі парки міста. На карті залишилося ще кілька зелених плям, які псують йому статистику. Потрібні `parks` — парки.
 
-Якщо його перенесуть до дальньої стіни, скажіть `That hat, please.` Перше слово вказує на відстань: `this` — поруч, `that` — далі. `hat` не змінюється, `please` залишається в кінці. Сцена не чекає.
+**На карті позначено кілька парків. Назвіть їх одним англійським словом.**
 
-**Потрібний капелюх лежить просто перед вами. Виберіть його.**
-
-- ✅ **This hat, please.**
-- ❌ That hat, please. — *`that` відправить костюмера до дальньої стіни. Капелюх перед вами, тому потрібне `this`.*
-- ❌ This is a hat. — *Так ви просто називаєте предмет. Для короткого вибору скажіть `This hat, please`.*
+- ✅ **parks**
+- ❌ park — *`park` — один парк; кілька — `parks`.*
+- ❌ a parks — *Перед назвою кількох парків не ставимо `a`.*
 
 ---
 
 ## Інтро 2
 
-### Ремінь біля дальньої стіни
+### Схожі, але не один парк
 
-`belt` — «ремінь». Потрібний ремінь висить біля дальньої стіни, тому почніть із `that` і скажіть: `That belt, please.` — «Той ремінь, будь ласка».
+`similar` — «схожий», `separate` — «окремий», `unusual` — «незвичайний». `The parks are similar` — «Парки схожі». В обох є доріжки та ставок, але це два окремі парки: `They are separate` — «Вони окремі». `equal` — «рівний»: це не те саме, що «схожий». Наприклад, дві однакові суми рівні, а два парки можуть бути схожі, хоча один більший за інший.
 
-Між `that` і `belt` не потрібні ані `is`, ані `a`. Це коротке прохання: вказівне слово, один предмет, `please`.
+**Ви порівнюєте два відомі вам парки: у них схоже планування. Повідомте «Парки схожі».**
 
-Не додавайте артикль навіть поспіхом: `that belt`, а не `that a belt`.
-
-**Ремінь висить біля дальньої стіни. Виберіть його коротким проханням.**
-
-- ✅ **That belt, please.**
-- ❌ This belt, please. — *`this` вибирає ремінь поруч, а потрібний висить біля дальньої стіни.*
-- ❌ That is belt, please. — *Після `is` знадобилося б `a belt`, але тут потрібна інша модель: `That belt, please`.*
+- ✅ **The parks are similar.**
+- ❌ The parks is similar. — *Парків кілька: потрібно `are`.*
+- ❌ The parks are unusual. — *`unusual` — «незвичайні». Тут важливо, що парки схожі: `similar`.*
 
 ---
 
 ## Інтро 3
 
-### Чобіт змінює місце
+### Парки для міста
 
-`boot` — «чобіт». Для чобота вдалині скажіть `That boot, please.`, а для чобота перед вами — `This boot, please.`
+`Parks are important` — «Парки важливі». Можна сказати так про парки загалом, обговорюючи місця для прогулянок у місті. Перед `parks` тоді немає `the`. `Where are the parks?` — «Де парки?» Тут із `the` ви запитуєте про певні парки, які вибрали разом з Анною.
 
-Дивіться на положення речі зараз. Назва залишається тією самою, а перше слово змінюється разом із відстанню.
+**Ви говорите про парки загалом та їхню користь для міста. Скажіть «Парки важливі», не вказуючи на конкретні парки.**
 
-**Чобіт уже поставили просто перед вами. Виберіть його.**
-
-- ✅ **This boot, please.**
-- ❌ That boot, please. — *Чобіт уже поруч. Після переміщення потрібне `this`, а не попереднє `that`.*
-- ❌ This a boot, please. — *Після `this` назва вибраної речі йде одразу: `this boot`, без `a`.*
+- ✅ **Parks are important.**
+- ❌ The parks are important. — *`The parks` — певні парки. Тут говоримо про парки загалом: `Parks`.*
+- ❌ A parks are important. — *Перед `parks` не ставимо `a`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — hat**
-<!-- interaction_id: en:lesson-03:session-31:i01; family: listen_choose -->
-Ціль: `hat`
+**1 · Олег шукає квитки на виставку. Повідомте «Квитки тут»**
+<!-- interaction_id: en:lesson-03:session-31:i01; family: phrase_builder -->
+Плитки: `here` `are` `tickets` `The` `is` → **The tickets are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The tickets are here.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-31:i03; family: scripted_repeat_compare -->
-Ціль: `belt`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-31:i02; family: listen_choose -->
+🔊 *parks* → **parks** · pens · cars
+- pens — *У записі перше слово — `parks`, а в цьому варіанті — `pens`.*
+- cars — *У записі перше слово — `parks`, а в цьому варіанті — `cars`.*
 
-**3 · Виберіть назву — на ближній полиці стоїть чобіт**
-<!-- interaction_id: en:lesson-03:session-31:i05; family: context_gap_grammar -->
-Ціль: `___`
-Варіанти: `boot` · `belt` · `hat`
-- belt — *Belt — ремінь. Тут потрібен чобіт: boot.*
-- hat — *Hat — капелюх. Тут потрібен чобіт: boot.*
+**3 · Назвіть кілька парків одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-31:i03; family: context_gap_grammar -->
+___ → **parks** · park · a parks
+- park — *Кілька парків — `parks`.*
+- a parks — *Перед `parks` не ставимо `a`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-31:i04; family: speed_match -->
+parks — парки · tickets — квитки · equal — рівний · similar — схожий
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-31:i02; family: scripted_repeat_compare -->
-Ціль: `hat`
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-31:i05; family: listen_build_dictation -->
+🔊 *The parks are similar.* Плитки: `similar` `are` `parks` `The` `is` → **The parks are similar.**
+*(плитка `is` зайва: тут потрібно `are` — `The parks are similar.`)*
 
-**5 · Послухайте й виберіть — яке слово назвав костюмер**
-<!-- interaction_id: en:lesson-03:session-31:i04; family: listen_choose -->
-Значення варіантів: `belt` — ремінь · `built` — побудував · `bench` — лава · `bolt` — засув
-Ціль: `belt`
-Варіанти: `belt` · `built` · `bench` · `bolt`
-- built — *У `built` звучить /ɪ/, а в `belt` — /e/. Кінцевий `t` є в обох словах.*
-- bench — *`bench` закінчується /ntʃ/, а `belt` — /lt/.*
-- bolt — *У `bolt` середина звучить як /oʊ~əʊ/, а в `belt` — короткий /e/.*
+**6 · Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом**
+<!-- interaction_id: en:lesson-03:session-31:i06; family: phrase_builder -->
+Плитки: `important` `are` `Parks` `is` → **Parks are important.**
+*(плитка `is` зайва: тут потрібно `are` — `Parks are important.`)*
 
+**7 · Олег сприйняв два парки на карті як один. Скажіть про них «Вони окремі» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-31:i07; family: scripted_repeat_compare -->
+🎙 **They're separate.**
 
-**6 · Розрізніть слово — boot або book**
-<!-- interaction_id: en:lesson-03:session-31:i06; family: sound_contrast -->
-Ціль: `boot`
-Варіанти: `boot` · `book`
-- book — *Book — книга. У boot голосний довший: boot.*
-
-
-**7 · З’єднайте слова зі значеннями — театральний костюм**
-<!-- interaction_id: en:lesson-03:session-31:i07; family: speed_match -->
-Пари: `hat` — капелюх · `belt` — ремінь · `boot` — чобіт · `key` — ключ
-Ціль: `hat · belt · boot · key`
-
-**8 · Виберіть форму — ця річ лежить тут**
+**8 · Ви говорите про користь парків загалом, не про конкретні парки**
 <!-- interaction_id: en:lesson-03:session-31:i08; family: context_gap_grammar -->
-Ціль: `This ___ here.`
-Варіанти: `is` · `are`
-- are — *Are — для кількох предметів. Тут один предмет: This is here.*
+___ are important. → **Parks** · The parks · A parks
+- The parks — *`The parks` — певні парки. Тут потрібне загальне `Parks`.*
+- A parks — *Перед `parks` не ставимо `a`.*
 
+**9 · Послухайте опис вибраних парків**
+<!-- interaction_id: en:lesson-03:session-31:i09; family: listen_choose -->
+🔊 *They are unusual.* → **They are unusual.** · They are similar. · They are separate.
+- They are similar. — *У записі останнє слово — `unusual`, а в цьому варіанті — `similar`.*
+- They are separate. — *У записі останнє слово — `unusual`, а в цьому варіанті — `separate`.*
 
-**9 · Розрізніть слово — This або That**
-<!-- interaction_id: en:lesson-03:session-31:i09; family: sound_contrast -->
-Ціль: `This`
-Варіанти: `This` · `That`
-- That — *That використовують для предмета далі. Тут предмет поруч: This.*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-31:i10; family: speed_match -->
+separate — окремий · unusual — незвичайний · parks — парки · tickets — квитки
 
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-31:i11; family: listen_build_dictation -->
+🔊 *The tickets are valid.* Плитки: `valid` `are` `tickets` `The` `is` → **The tickets are valid.**
+*(плитка `is` зайва: тут потрібно `are` — `The tickets are valid.`)*
 
-**10 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i10; family: scripted_repeat_compare -->
-Ціль: `This boot, please.`
+**12 · Анна знає, які парки ви вибрали. Запитайте, де парки**
+<!-- interaction_id: en:lesson-03:session-31:i12; family: phrase_builder -->
+Плитки: `parks` `the` `are` `Where` `What` → **Where are the parks?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where are the parks?`)*
 
-**11 · Складіть прохання — капелюх лежить на столі перед вами**
-<!-- interaction_id: en:lesson-03:session-31:i11; family: phrase_builder -->
-Ціль: `This hat, please.`
+**13 · Ви порівняли дві суми за квитки: суми однакові. Скажіть про суми «Вони рівні» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-31:i13; family: scripted_repeat_compare -->
+🎙 **They're equal.**
 
-**12 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i12; family: listen_build_dictation -->
-Ціль: `That belt, please.`
+**14 · Ви повідомляєте, що два вибрані парки схожі**
+<!-- interaction_id: en:lesson-03:session-31:i14; family: context_gap_grammar -->
+The parks ___ similar. → **are** · is · am
+- is — *Парків кілька: потрібно `are`.*
+- am — *З `the parks` тут потрібно `are`.*
 
-**13 · Вставте вказівне слово — чобіт стоїть просто перед вами**
-<!-- interaction_id: en:lesson-03:session-31:i13; family: context_gap_grammar -->
-Ціль: `___ boot, please.`
-Варіанти: `This` · `That` · `It` · `Is`
-- That — *`that` вибирає річ вдалині. Чобіт перед вами, тому потрібне `This`.*
-- It — *`it boot` не утворює прохання. Перед назвою близької речі ставимо `This`.*
-- Is — *`Is boot` — неправильний початок запитання. Тут потрібне прохання `This boot, please`.*
+**15 · Послухайте повідомлення про вибрані парки**
+<!-- interaction_id: en:lesson-03:session-31:i15; family: listen_choose -->
+🔊 *They are separate.* → **They are separate.** · They are similar. · They are unusual.
+- They are similar. — *У записі останнє слово — `separate`, а в цьому варіанті — `similar`.*
+- They are unusual. — *У записі останнє слово — `separate`, а в цьому варіанті — `unusual`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-31:i16; family: speed_match -->
+equal — рівний · similar — схожий · separate — окремий · unusual — незвичайний
 
-**14 · Послухайте й виберіть точне значення прохання**
-<!-- interaction_id: en:lesson-03:session-31:i14; family: listen_choose -->
-Ціль: `That hat, please.`
-Варіанти: `Той капелюх, будь ласка.` · `Цей капелюх, будь ласка.` · `Той ремінь, будь ласка.` · `Цей ремінь, будь ласка.`
-- Цей капелюх, будь ласка. — *У записі прозвучало `That`, а цей варіант передає `This`.*
-- Той ремінь, будь ласка. — *Вказівне слово передано правильно, але в записі назвали `hat` — капелюх, а не `belt` — ремінь.*
-- Цей ремінь, будь ласка. — *Тут не збігаються обидва ключові слова: прозвучали `That hat`, а не `This belt`.*
-
-
-**15 · Складіть прохання — чобіт стоїть біля дальньої стіни**
-<!-- interaction_id: en:lesson-03:session-31:i15; family: phrase_builder -->
-Ціль: `That boot, please.`
-
-**16 · Вставте вказівне слово — ремінь уже поклали на стіл перед вами**
-<!-- interaction_id: en:lesson-03:session-31:i16; family: context_gap_grammar -->
-Ціль: `___ belt, please.`
-Варіанти: `This` · `That` · `It` · `Am`
-- That — *Ремінь уже поруч. Після переміщення вибираємо `This`, а не попереднє `That`.*
-- It — *`it belt` не утворює прохання. Перед назвою вибраної речі потрібне вказівне слово `This`.*
-- Am — *`am` уживаємо з `I`, коли говоримо про себе. Тут вибираємо ремінь словом `This`.*
-
-
-**17 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i17:s01; family: listen_build_dictation -->
-Ціль: `That hat, please.`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i17:s02; family: scripted_repeat_compare -->
-Ціль: `This belt, please.`
-
-**19 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i17:s03; family: listen_build_dictation -->
-Ціль: `That boot, please.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=context_gap_grammar, 9=sound_contrast, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=listen_build_dictation
+**17 · В іншому місті Анна вибрала кілька парків для прогулянок. Запитайте, де парки**
+<!-- interaction_id: en:lesson-03:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where are the parks?**
 

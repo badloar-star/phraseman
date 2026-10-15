@@ -1,178 +1,138 @@
-# Английский · Урок 3 · Занятие 31 — «Костюм нужен сейчас»
+# Английский · Урок 3 · Занятие 31 — Два парка на выходные
 
-**Сцена занятия.** Перед репетицией вы вместе с костюмером ищете в театральной костюмерной шляпу, ремень и сапог. Вещи лежат в разных местах, актёры уже ждут, поэтому вам нужно быстро указать, что подать.
+**Ситуация.** Вы с Анной выбираете места для прогулки. На карте отмечены два парка по разные стороны реки. Олег готовит билеты на выставку в одном из них; вы сравниваете парки и уточняете, где они находятся.
 
-**Как сказать:** словарная отработка с быстрым переносом — `This/That + один предмет, please` в театральной костюмерной
-**Новые слова:** hat, belt, boot
-**Для повторения:** bag, box, key, this, that, please
+**Что вы освоите:** назвать несколько парков, сравнить их и отличить парки вообще от конкретных парков
+**Новые слова:** parks
 
 ---
 
 ## Интро 1
 
-### Шляпа перед вами
+### Один парк или несколько
 
-`hat` — «шляпа». Она лежит на столе перед вами, поэтому скажите костюмеру: `This hat, please.` — «Эту шляпу, пожалуйста».
+`park` — «парк», `parks` — «парки». `They are parks` — «Это парки». Для нескольких парков добавляем `s`, перед `parks` не ставим `a`. Олег отметил один парк и объявил, что знает все парки города. На карте осталось ещё несколько зелёных пятен, которые портят ему статистику. Нужны `parks` — парки.
 
-Если её перенесут к дальней стене, скажите `That hat, please.` Первое слово показывает расстояние: `this` — рядом, `that` — дальше. `hat` не меняется, `please` остаётся в конце. Сцена не ждёт.
+**На карте отмечены несколько парков. Назовите их одним английским словом.**
 
-**Нужная шляпа лежит прямо перед вами. Выберите её.**
-
-- ✅ **This hat, please.**
-- ❌ That hat, please. — *`that` отправит костюмера к дальней стене. Шляпа перед вами, поэтому нужен `this`.*
-- ❌ This is a hat. — *Так вы просто называете предмет. Для короткого выбора скажите `This hat, please`.*
+- ✅ **parks**
+- ❌ park — *`park` — один парк; несколько — `parks`.*
+- ❌ a parks — *Перед названием нескольких парков не ставим `a`.*
 
 ---
 
 ## Интро 2
 
-### Ремень у дальней стены
+### Похожи, но не один парк
 
-`belt` — «ремень». Нужный ремень висит у дальней стены, поэтому начните с `that` и скажите: `That belt, please.` — «Тот ремень, пожалуйста».
+`similar` — «похожий», `separate` — «отдельный», `unusual` — «необычный». `The parks are similar` — «Парки похожи». У обоих есть дорожки и пруд, но это два отдельных парка: `They are separate` — «Они отдельные». `equal` — «равный»: это не то же самое, что «похожий». Например, две одинаковые суммы равны, а два парка могут быть похожи, хотя один больше другого.
 
-Между `that` и `belt` не нужны ни `is`, ни `a`. Это короткая просьба: указатель, один предмет, `please`.
+**Вы сравниваете два известных вам парка: у них похожая планировка. Сообщите «Парки похожи».**
 
-Не добавляйте артикль даже в спешке: `that belt`, а не `that a belt`.
-
-**Ремень висит у дальней стены. Выберите его короткой просьбой.**
-
-- ✅ **That belt, please.**
-- ❌ This belt, please. — *`this` выбирает ремень рядом, а нужный висит у дальней стены.*
-- ❌ That is belt, please. — *После `is` понадобилось бы `a belt`, но здесь нужна другая модель: `That belt, please`.*
+- ✅ **The parks are similar.**
+- ❌ The parks is similar. — *Парков несколько: нужно `are`.*
+- ❌ The parks are unusual. — *`unusual` — «необычные». Здесь важно, что парки похожи: `similar`.*
 
 ---
 
 ## Интро 3
 
-### Сапог меняет место
+### Парки для города
 
-`boot` — «сапог». Для сапога вдали скажите `That boot, please.`, а для сапога перед вами — `This boot, please.`
+`Parks are important` — «Парки важны». Можно сказать так о парках вообще, обсуждая места для прогулок в городе. Перед `parks` тогда нет `the`. `Where are the parks?` — «Где парки?» Здесь с `the` вы спрашиваете об определённых парках, которые выбрали вместе с Анной.
 
-Смотрите на положение вещи сейчас. Название остаётся тем же, а первое слово меняется вместе с расстоянием.
+**Вы говорите о парках вообще и их пользе для города. Скажите «Парки важны», не указывая на конкретные парки.**
 
-**Сапог уже поставили прямо перед вами. Выберите его.**
-
-- ✅ **This boot, please.**
-- ❌ That boot, please. — *Сапог уже рядом. После перемещения нужен `this`, а не прежнее `that`.*
-- ❌ This a boot, please. — *После `this` название выбранной вещи идёт сразу: `this boot`, без `a`.*
+- ✅ **Parks are important.**
+- ❌ The parks are important. — *`The parks` — определённые парки. Здесь говорим о парках вообще: `Parks`.*
+- ❌ A parks are important. — *Перед `parks` не ставим `a`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — hat**
-<!-- interaction_id: en:lesson-03:session-31:i01; family: listen_choose -->
-Цель: `hat`
+**1 · Олег ищет билеты на выставку. Сообщите «Билеты здесь»**
+<!-- interaction_id: en:lesson-03:session-31:i01; family: phrase_builder -->
+Плитки: `here` `are` `tickets` `The` `is` → **The tickets are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `The tickets are here.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-31:i03; family: scripted_repeat_compare -->
-Цель: `belt`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-31:i02; family: listen_choose -->
+🔊 *parks* → **parks** · pens · cars
+- pens — *В записи первое слово — `parks`, а в этом варианте — `pens`.*
+- cars — *В записи первое слово — `parks`, а в этом варианте — `cars`.*
 
-**3 · Выберите название — на ближней полке стоит сапог**
-<!-- interaction_id: en:lesson-03:session-31:i05; family: context_gap_grammar -->
-Цель: `___`
-Варианты: `boot` · `belt` · `hat`
-- belt — *Belt — ремень. Здесь нужен сапог: boot.*
-- hat — *Hat — шляпа. Здесь нужен сапог: boot.*
+**3 · Назовите несколько парков одним английским словом**
+<!-- interaction_id: en:lesson-03:session-31:i03; family: context_gap_grammar -->
+___ → **parks** · park · a parks
+- park — *Несколько парков — `parks`.*
+- a parks — *Перед `parks` не ставим `a`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-31:i04; family: speed_match -->
+parks — парки · tickets — билеты · equal — равный · similar — похожий
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-31:i02; family: scripted_repeat_compare -->
-Цель: `hat`
+**5 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-03:session-31:i05; family: listen_build_dictation -->
+🔊 *The parks are similar.* Плитки: `similar` `are` `parks` `The` `is` → **The parks are similar.**
+*(плитка `is` лишняя: здесь нужно `are` — `The parks are similar.`)*
 
-**5 · Послушайте и выберите — какое слово назвал костюмер**
-<!-- interaction_id: en:lesson-03:session-31:i04; family: listen_choose -->
-Значения вариантов: `belt` — ремень · `built` — построил · `bench` — скамья · `bolt` — засов
-Цель: `belt`
-Варианты: `belt` · `built` · `bench` · `bolt`
-- built — *В `built` звучит /ɪ/, а в `belt` — /e/. Конечный `t` есть в обоих словах.*
-- bench — *`bench` заканчивается /ntʃ/, а `belt` — /lt/.*
-- bolt — *В `bolt` середина звучит как /oʊ~əʊ/, а в `belt` — короткий /e/.*
+**6 · Обсуждая места для прогулок, скажите «Парки важны» о парках вообще**
+<!-- interaction_id: en:lesson-03:session-31:i06; family: phrase_builder -->
+Плитки: `important` `are` `Parks` `is` → **Parks are important.**
+*(плитка `is` лишняя: здесь нужно `are` — `Parks are important.`)*
 
+**7 · Олег принял два парка на карте за один. Скажите о них «Они отдельные» с сокращением**
+<!-- interaction_id: en:lesson-03:session-31:i07; family: scripted_repeat_compare -->
+🎙 **They're separate.**
 
-**6 · Различите слово — boot или book**
-<!-- interaction_id: en:lesson-03:session-31:i06; family: sound_contrast -->
-Цель: `boot`
-Варианты: `boot` · `book`
-- book — *Book — книга. В boot гласный длиннее: boot.*
-
-
-**7 · Соедините слова со значениями — театральный костюм**
-<!-- interaction_id: en:lesson-03:session-31:i07; family: speed_match -->
-Пары: `hat` — шляпа · `belt` — ремень · `boot` — сапог · `key` — ключ
-Цель: `hat · belt · boot · key`
-
-**8 · Выберите форму — эта вещь лежит здесь**
+**8 · Вы говорите о пользе парков вообще, не о конкретных парках**
 <!-- interaction_id: en:lesson-03:session-31:i08; family: context_gap_grammar -->
-Цель: `This ___ here.`
-Варианты: `is` · `are`
-- are — *Are — для нескольких предметов. Здесь один предмет: This is here.*
+___ are important. → **Parks** · The parks · A parks
+- The parks — *`The parks` — определённые парки. Здесь нужно общее `Parks`.*
+- A parks — *Перед `parks` не ставим `a`.*
 
+**9 · Послушайте описание выбранных парков**
+<!-- interaction_id: en:lesson-03:session-31:i09; family: listen_choose -->
+🔊 *They are unusual.* → **They are unusual.** · They are similar. · They are separate.
+- They are similar. — *В записи последнее слово — `unusual`, а в этом варианте — `similar`.*
+- They are separate. — *В записи последнее слово — `unusual`, а в этом варианте — `separate`.*
 
-**9 · Различите слово — This или That**
-<!-- interaction_id: en:lesson-03:session-31:i09; family: sound_contrast -->
-Цель: `This`
-Варианты: `This` · `That`
-- That — *That используют для предмета дальше. Здесь предмет рядом: This.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-31:i10; family: speed_match -->
+separate — отдельный · unusual — необычный · parks — парки · tickets — билеты
 
+**11 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-03:session-31:i11; family: listen_build_dictation -->
+🔊 *The tickets are valid.* Плитки: `valid` `are` `tickets` `The` `is` → **The tickets are valid.**
+*(плитка `is` лишняя: здесь нужно `are` — `The tickets are valid.`)*
 
-**10 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i10; family: scripted_repeat_compare -->
-Цель: `This boot, please.`
+**12 · Анна знает, какие парки вы выбрали. Спросите, где парки**
+<!-- interaction_id: en:lesson-03:session-31:i12; family: phrase_builder -->
+Плитки: `parks` `the` `are` `Where` `What` → **Where are the parks?**
+*(плитка `What` лишняя: здесь нужно `Where` — `Where are the parks?`)*
 
-**11 · Соберите просьбу — шляпа лежит на столе перед вами**
-<!-- interaction_id: en:lesson-03:session-31:i11; family: phrase_builder -->
-Цель: `This hat, please.`
+**13 · Вы сравнили две суммы за билеты: суммы одинаковые. Скажите о суммах «Они равны» с сокращением**
+<!-- interaction_id: en:lesson-03:session-31:i13; family: scripted_repeat_compare -->
+🎙 **They're equal.**
 
-**12 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i12; family: listen_build_dictation -->
-Цель: `That belt, please.`
+**14 · Вы сообщаете, что два выбранных парка похожи**
+<!-- interaction_id: en:lesson-03:session-31:i14; family: context_gap_grammar -->
+The parks ___ similar. → **are** · is · am
+- is — *Парков несколько: нужно `are`.*
+- am — *С `the parks` здесь нужно `are`.*
 
-**13 · Вставьте указатель — сапог стоит прямо перед вами**
-<!-- interaction_id: en:lesson-03:session-31:i13; family: context_gap_grammar -->
-Цель: `___ boot, please.`
-Варианты: `This` · `That` · `It` · `Is`
-- That — *`that` выбирает вещь вдали. Сапог перед вами, поэтому нужен `This`.*
-- It — *`it boot` не образует просьбу. Перед названием близкой вещи ставим `This`.*
-- Is — *`Is boot` — сломанное начало вопроса. Здесь нужна просьба `This boot, please`.*
+**15 · Послушайте сообщение о выбранных парках**
+<!-- interaction_id: en:lesson-03:session-31:i15; family: listen_choose -->
+🔊 *They are separate.* → **They are separate.** · They are similar. · They are unusual.
+- They are similar. — *В записи последнее слово — `separate`, а в этом варианте — `similar`.*
+- They are unusual. — *В записи последнее слово — `separate`, а в этом варианте — `unusual`.*
 
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-31:i16; family: speed_match -->
+equal — равный · similar — похожий · separate — отдельный · unusual — необычный
 
-**14 · Послушайте и выберите точное значение просьбы**
-<!-- interaction_id: en:lesson-03:session-31:i14; family: listen_choose -->
-Цель: `That hat, please.`
-Варианты: `Ту шляпу, пожалуйста.` · `Эту шляпу, пожалуйста.` · `Тот ремень, пожалуйста.` · `Этот ремень, пожалуйста.`
-- Эту шляпу, пожалуйста. — *В записи прозвучало `That`, а этот вариант передаёт `This`.*
-- Тот ремень, пожалуйста. — *Указатель передан верно, но в записи назвали `hat` — шляпу, а не `belt` — ремень.*
-- Этот ремень, пожалуйста. — *Здесь не совпадают оба ключевых слова: прозвучали `That hat`, а не `This belt`.*
+**17 · В другом городе Анна выбрала несколько парков для прогулок. Спросите, где парки**
+<!-- interaction_id: en:lesson-03:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where are the parks?**
 
-
-**15 · Соберите просьбу — сапог стоит у дальней стены**
-<!-- interaction_id: en:lesson-03:session-31:i15; family: phrase_builder -->
-Цель: `That boot, please.`
-
-**16 · Вставьте указатель — ремень уже положили на стол перед вами**
-<!-- interaction_id: en:lesson-03:session-31:i16; family: context_gap_grammar -->
-Цель: `___ belt, please.`
-Варианты: `This` · `That` · `It` · `Am`
-- That — *Ремень уже рядом. После перемещения выбираем `This`, а не прежнее `That`.*
-- It — *`it belt` не образует просьбу. Перед названием выбранной вещи нужен указатель `This`.*
-- Am — *`am` используется с `I`, когда говорим о себе. Здесь выбираем ремень словом `This`.*
-
-
-**17 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i17:s01; family: listen_build_dictation -->
-Цель: `That hat, please.`
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i17:s02; family: scripted_repeat_compare -->
-Цель: `This belt, please.`
-
-**19 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-31:i17:s03; family: listen_build_dictation -->
-Цель: `That boot, please.`
-
-## Для сборщика
-new_words: hat — шляпа — Головной убор с полями, который надевают на голову.
-new_words: belt — ремень — Полоса из кожи или ткани, которую носят на талии.
-new_words: boot — сапог — Высокая обувь, закрывающая стопу и часть ноги.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=context_gap_grammar, 9=sound_contrast, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=listen_build_dictation

@@ -7,242 +7,115 @@
       "interactionId": "en:lesson-03:session-31:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — hat",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег шукає квитки на виставку. Повідомте «Квитки тут»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-31:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — hat",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег шукає квитки на виставку. Повідомте «Квитки тут»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i01:audio",
-          "transcript": "hat"
+        "family": "phrase_builder",
+        "targetPhrase": "The tickets are here.",
+        "localizedMeaning": {
+          "ru": "Олег ищет билеты на выставку. Сообщите «Билеты здесь»",
+          "uk": "Олег шукає квитки на виставку. Повідомте «Квитки тут»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "The",
+          "tickets",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-31:i01:r1",
-            "targetText": "hat",
-            "meaningByLocale": {
-              "ru": "«шляпа». Головной убор с полями, который надевают на голову.",
-              "uk": "«капелюх». Головний убір із крисами, який надягають на голову."
+            "responseId": "en:lesson-03:session-31:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег шукає квитки на виставку. Повідомте «Квитки тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The tickets are here.`",
+              "uk": "тут потрібно `are` — `The tickets are here.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "hat",
-          "definitionByLocale": {
-            "ru": "«шляпа». Головной убор с полями, который надевают на голову.",
-            "uk": "«капелюх». Головний убір із крисами, який надягають на голову."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i03",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-31:i03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i03:audio",
-          "transcript": "belt"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "belt",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i05",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-31:i05:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i05:audio",
-          "transcript": "boot"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "boot",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-31:i02",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-31:i02:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i02:audio",
-          "transcript": "hat"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "hat",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i04",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав костюмер",
+      "prompt": "Послухайте й виберіть слово",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-31:i04:r1",
-          "text": "belt"
+          "responseId": "en:lesson-03:session-31:i02:r1",
+          "text": "parks"
         },
         {
-          "responseId": "en:lesson-03:session-31:i04:r2",
-          "text": "built"
+          "responseId": "en:lesson-03:session-31:i02:r2",
+          "text": "pens"
         },
         {
-          "responseId": "en:lesson-03:session-31:i04:r3",
-          "text": "bench"
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i04:r4",
-          "text": "bolt"
+          "responseId": "en:lesson-03:session-31:i02:r3",
+          "text": "cars"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-31:i04:audio"
+        "en:lesson-03:session-31:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав костюмер",
+      "accessibilityLabel": "Послухайте й виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i04:audio",
-          "transcript": "belt"
+          "audioTargetId": "en:lesson-03:session-31:i02:audio",
+          "transcript": "parks"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-31:i04:r1",
-            "targetText": "belt",
-            "meaningByLocale": {
-              "ru": "ремень",
-              "uk": "ремінь"
-            }
+            "responseId": "en:lesson-03:session-31:i02:r1",
+            "targetText": "parks",
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-31:i04:r2",
-            "targetText": "built",
-            "meaningByLocale": {
-              "ru": "построил",
-              "uk": "побудував"
-            }
+            "responseId": "en:lesson-03:session-31:i02:r2",
+            "targetText": "pens",
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-31:i04:r3",
-            "targetText": "bench",
-            "meaningByLocale": {
-              "ru": "скамья",
-              "uk": "лава"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i04:r4",
-            "targetText": "bolt",
-            "meaningByLocale": {
-              "ru": "засов",
-              "uk": "засув"
-            }
+            "responseId": "en:lesson-03:session-31:i02:r3",
+            "targetText": "cars",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-31:i04:r2",
+            "responseId": "en:lesson-03:session-31:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В `built` звучит /ɪ/, а в `belt` — /e/. Конечный `t` есть в обоих словах.",
-              "uk": "У `built` звучить /ɪ/, а в `belt` — /e/. Кінцевий `t` є в обох словах."
+              "ru": "В записи первое слово — `parks`, а в этом варианте — `pens`.",
+              "uk": "У записі перше слово — `parks`, а в цьому варіанті — `pens`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-31:i04:r3",
+            "responseId": "en:lesson-03:session-31:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "`bench` заканчивается /ntʃ/, а `belt` — /lt/.",
-              "uk": "`bench` закінчується /ntʃ/, а `belt` — /lt/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i04:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "В `bolt` середина звучит как /oʊ~əʊ/, а в `belt` — короткий /e/.",
-              "uk": "У `bolt` середина звучить як /oʊ~əʊ/, а в `belt` — короткий /e/."
+              "ru": "В записи первое слово — `parks`, а в этом варианте — `cars`.",
+              "uk": "У записі перше слово — `parks`, а в цьому варіанті — `cars`."
             }
           }
         ],
@@ -252,96 +125,132 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-03:session-31:i03",
+      "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-31:i06:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i06:audio",
-          "transcript": "boot"
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть кілька парків одним англійським словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i03:r1",
+          "text": "parks"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "boot",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-03:session-31:i03:r2",
+          "text": "park"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i03:r3",
+          "text": "a parks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть кілька парків одним англійським словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите несколько парков одним английским словом",
+          "uk": "Назвіть кілька парків одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i03:r1",
+            "text": "parks"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i03:r2",
+            "text": "park"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i03:r3",
+            "text": "a parks"
+          }
+        ],
+        "testedDimension": "Назвіть кілька парків одним англійським словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть кілька парків одним англійським словом",
+            "feedbackByLocale": {
+              "ru": "Несколько парков — `parks`.",
+              "uk": "Кілька парків — `parks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть кілька парків одним англійським словом",
+            "feedbackByLocale": {
+              "ru": "Перед `parks` не ставим `a`.",
+              "uk": "Перед `parks` не ставимо `a`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями — театральний костюм",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями — театральний костюм",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-31:i07:p1",
-            "target": "hat",
+            "pairId": "en:lesson-03:session-31:i04:p1",
+            "target": "parks",
             "meaningByLocale": {
-              "ru": "шляпа",
-              "uk": "капелюх"
+              "ru": "парки",
+              "uk": "парки"
             }
           },
           {
-            "pairId": "en:lesson-03:session-31:i07:p2",
-            "target": "belt",
+            "pairId": "en:lesson-03:session-31:i04:p2",
+            "target": "tickets",
             "meaningByLocale": {
-              "ru": "ремень",
-              "uk": "ремінь"
+              "ru": "билеты",
+              "uk": "квитки"
             }
           },
           {
-            "pairId": "en:lesson-03:session-31:i07:p3",
-            "target": "boot",
+            "pairId": "en:lesson-03:session-31:i04:p3",
+            "target": "equal",
             "meaningByLocale": {
-              "ru": "сапог",
-              "uk": "чобіт"
+              "ru": "равный",
+              "uk": "рівний"
             }
           },
           {
-            "pairId": "en:lesson-03:session-31:i07:p4",
-            "target": "key",
+            "pairId": "en:lesson-03:session-31:i04:p4",
+            "target": "similar",
             "meaningByLocale": {
-              "ru": "ключ",
-              "uk": "ключ"
+              "ru": "похожий",
+              "uk": "схожий"
             }
           }
         ],
         "leftColumn": [
-          "hat",
-          "belt",
-          "boot",
-          "key"
+          "parks",
+          "tickets",
+          "equal",
+          "similar"
         ],
         "rightColumn": [
-          "капелюх",
-          "ремінь",
-          "чобіт",
-          "ключ"
+          "парки",
+          "квитки",
+          "рівний",
+          "схожий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -358,26 +267,118 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "interactionId": "en:lesson-03:session-31:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-31:i08:audio"
+        "en:lesson-03:session-31:i05:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i05:audio",
+          "transcript": "The parks are similar."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The parks are similar.",
+        "orderedTokens": [
+          "The",
+          "parks",
+          "are",
+          "similar"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть повідомлення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The parks are similar.`",
+              "uk": "тут потрібно `are` — `The parks are similar.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Parks are important.",
+        "localizedMeaning": {
+          "ru": "Обсуждая места для прогулок, скажите «Парки важны» о парках вообще",
+          "uk": "Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом"
+        },
+        "orderedTokens": [
+          "Parks",
+          "are",
+          "important"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Parks are important.`",
+              "uk": "тут потрібно `are` — `Parks are important.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Олег сприйняв два парки на карті як один. Скажіть про них «Вони окремі» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Олег сприйняв два парки на карті як один. Скажіть про них «Вони окремі» зі скороченням",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i08:audio",
-          "transcript": "hat"
+          "audioTargetId": "en:lesson-03:session-31:i07:audio",
+          "transcript": "They're separate."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "hat",
+        "targetPhrase": "They're separate.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -386,6 +387,75 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви говорите про користь парків загалом, не про конкретні парки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i08:r1",
+          "text": "Parks"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i08:r2",
+          "text": "The parks"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i08:r3",
+          "text": "A parks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорите про користь парків загалом, не про конкретні парки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите о пользе парков вообще, не о конкретных парках",
+          "uk": "Ви говорите про користь парків загалом, не про конкретні парки"
+        },
+        "gappedTargetPhrase": "___ are important.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i08:r1",
+            "text": "Parks"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i08:r2",
+            "text": "The parks"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i08:r3",
+            "text": "A parks"
+          }
+        ],
+        "testedDimension": "Ви говорите про користь парків загалом, не про конкретні парки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви говорите про користь парків загалом, не про конкретні парки",
+            "feedbackByLocale": {
+              "ru": "`The parks` — определённые парки. Здесь нужно общее `Parks`.",
+              "uk": "`The parks` — певні парки. Тут потрібне загальне `Parks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви говорите про користь парків загалом, не про конкретні парки",
+            "feedbackByLocale": {
+              "ru": "Перед `parks` не ставим `a`.",
+              "uk": "Перед `parks` не ставимо `a`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -394,301 +464,70 @@
       "interactionId": "en:lesson-03:session-31:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте опис вибраних парків",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i09:r1",
+          "text": "They are unusual."
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i09:r2",
+          "text": "They are similar."
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i09:r3",
+          "text": "They are separate."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i09:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i09:audio",
-          "transcript": "belt"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "belt",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-31:i10:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i10:audio",
-          "transcript": "boot"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "boot",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть прохання — капелюх лежить на столі перед вами",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть прохання — капелюх лежить на столі перед вами",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This hat, please.",
-        "localizedMeaning": {
-          "ru": "Соберите просьбу — шляпа лежит на столе перед вами",
-          "uk": "Складіть прохання — капелюх лежить на столі перед вами"
-        },
-        "orderedTokens": [
-          "This",
-          "hat,",
-          "please"
-        ],
-        "authoredDistractorTokens": [
-          "That",
-          "a"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте та складіть одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-31:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте та складіть одну фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i12:audio",
-          "transcript": "That belt, please."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That belt, please.",
-        "orderedTokens": [
-          "That",
-          "belt,",
-          "please."
-        ],
-        "distractorTokens": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте вказівне слово — чобіт стоїть просто перед вами",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-31:i13:r1",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i13:r2",
-          "text": "That"
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i13:r3",
-          "text": "It"
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i13:r4",
-          "text": "Is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте вказівне слово — чобіт стоїть просто перед вами",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — сапог стоит прямо перед вами",
-          "uk": "Вставте вказівне слово — чобіт стоїть просто перед вами"
-        },
-        "gappedTargetPhrase": "___ boot, please.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-31:i13:r1",
-            "text": "This"
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i13:r2",
-            "text": "That"
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i13:r3",
-            "text": "It"
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i13:r4",
-            "text": "Is"
-          }
-        ],
-        "testedDimension": "Вставьте указатель — сапог стоит прямо п",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-31:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — сапог стоит прямо п",
-            "feedbackByLocale": {
-              "ru": "`that` выбирает вещь вдали. Сапог перед вами, поэтому нужен `This`.",
-              "uk": "`that` вибирає річ вдалині. Чобіт перед вами, тому потрібне `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — сапог стоит прямо п",
-            "feedbackByLocale": {
-              "ru": "`it boot` не образует просьбу. Перед названием близкой вещи ставим `This`.",
-              "uk": "`it boot` не утворює прохання. Перед назвою близької речі ставимо `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i13:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — сапог стоит прямо п",
-            "feedbackByLocale": {
-              "ru": "`Is boot` — сломанное начало вопроса. Здесь нужна просьба `This boot, please`.",
-              "uk": "`Is boot` — неправильний початок запитання. Тут потрібне прохання `This boot, please`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точне значення прохання",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-31:i14:r1",
-          "text": "Ту шляпу, пожалуйста."
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i14:r2",
-          "text": "Эту шляпу, пожалуйста."
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i14:r3",
-          "text": "Тот ремень, пожалуйста."
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i14:r4",
-          "text": "Этот ремень, пожалуйста."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-31:i14:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть точне значення прохання",
+      "accessibilityLabel": "Послухайте опис вибраних парків",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i14:audio",
-          "transcript": "That hat, please."
+          "audioTargetId": "en:lesson-03:session-31:i09:audio",
+          "transcript": "They are unusual."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-31:i14:r1",
-            "targetText": "Ту шляпу, пожалуйста.",
+            "responseId": "en:lesson-03:session-31:i09:r1",
+            "targetText": "They are unusual.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-31:i14:r2",
-            "targetText": "Эту шляпу, пожалуйста.",
+            "responseId": "en:lesson-03:session-31:i09:r2",
+            "targetText": "They are similar.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-31:i14:r3",
-            "targetText": "Тот ремень, пожалуйста.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i14:r4",
-            "targetText": "Этот ремень, пожалуйста.",
+            "responseId": "en:lesson-03:session-31:i09:r3",
+            "targetText": "They are separate.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-31:i14:r2",
+            "responseId": "en:lesson-03:session-31:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послухайте опис вибраних парків",
             "feedbackByLocale": {
-              "ru": "В записи прозвучало `That`, а этот вариант передаёт `This`.",
-              "uk": "У записі прозвучало `That`, а цей варіант передає `This`."
+              "ru": "В записи последнее слово — `unusual`, а в этом варианте — `similar`.",
+              "uk": "У записі останнє слово — `unusual`, а в цьому варіанті — `similar`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-31:i14:r3",
+            "responseId": "en:lesson-03:session-31:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послухайте опис вибраних парків",
             "feedbackByLocale": {
-              "ru": "Указатель передан верно, но в записи назвали `hat` — шляпу, а не `belt` — ремень.",
-              "uk": "Вказівне слово передано правильно, але в записі назвали `hat` — капелюх, а не `belt` — ремінь."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i14:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
-            "feedbackByLocale": {
-              "ru": "Здесь не совпадают оба ключевых слова: прозвучали `That hat`, а не `This belt`.",
-              "uk": "Тут не збігаються обидва ключові слова: прозвучали `That hat`, а не `This belt`."
+              "ru": "В записи последнее слово — `unusual`, а в этом варианте — `separate`.",
+              "uk": "У записі останнє слово — `unusual`, а в цьому варіанті — `separate`."
             }
           }
         ],
@@ -698,173 +537,192 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть прохання — чобіт стоїть біля дальньої стіни",
+      "interactionId": "en:lesson-03:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть прохання — чобіт стоїть біля дальньої стіни",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "That boot, please.",
-        "localizedMeaning": {
-          "ru": "Соберите просьбу — сапог стоит у дальней стены",
-          "uk": "Складіть прохання — чобіт стоїть біля дальньої стіни"
-        },
-        "orderedTokens": [
-          "That",
-          "boot,",
-          "please"
-        ],
-        "authoredDistractorTokens": [
-          "This",
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-31:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте вказівне слово — ремінь уже поклали на стіл перед вами",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-31:i16:r1",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i16:r2",
-          "text": "That"
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i16:r3",
-          "text": "It"
-        },
-        {
-          "responseId": "en:lesson-03:session-31:i16:r4",
-          "text": "Am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте вказівне слово — ремінь уже поклали на стіл перед вами",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — ремень уже положили на стол перед вами",
-          "uk": "Вставте вказівне слово — ремінь уже поклали на стіл перед вами"
-        },
-        "gappedTargetPhrase": "___ belt, please.",
-        "gapOptions": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-03:session-31:i16:r1",
-            "text": "This"
+            "pairId": "en:lesson-03:session-31:i10:p1",
+            "target": "separate",
+            "meaningByLocale": {
+              "ru": "отдельный",
+              "uk": "окремий"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-31:i16:r2",
-            "text": "That"
+            "pairId": "en:lesson-03:session-31:i10:p2",
+            "target": "unusual",
+            "meaningByLocale": {
+              "ru": "необычный",
+              "uk": "незвичайний"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-31:i16:r3",
-            "text": "It"
+            "pairId": "en:lesson-03:session-31:i10:p3",
+            "target": "parks",
+            "meaningByLocale": {
+              "ru": "парки",
+              "uk": "парки"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-31:i16:r4",
-            "text": "Am"
+            "pairId": "en:lesson-03:session-31:i10:p4",
+            "target": "tickets",
+            "meaningByLocale": {
+              "ru": "билеты",
+              "uk": "квитки"
+            }
           }
         ],
-        "testedDimension": "Вставьте указатель — ремень уже положили",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-31:i16:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — ремень уже положили",
-            "feedbackByLocale": {
-              "ru": "Ремень уже рядом. После перемещения выбираем `This`, а не прежнее `That`.",
-              "uk": "Ремінь уже поруч. Після переміщення вибираємо `This`, а не попереднє `That`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — ремень уже положили",
-            "feedbackByLocale": {
-              "ru": "`it belt` не образует просьбу. Перед названием выбранной вещи нужен указатель `This`.",
-              "uk": "`it belt` не утворює прохання. Перед назвою вибраної речі потрібне вказівне слово `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-31:i16:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — ремень уже положили",
-            "feedbackByLocale": {
-              "ru": "`am` используется с `I`, когда говорим о себе. Здесь выбираем ремень словом `This`.",
-              "uk": "`am` уживаємо з `I`, коли говоримо про себе. Тут вибираємо ремінь словом `This`."
-            }
-          }
+        "leftColumn": [
+          "separate",
+          "unusual",
+          "parks",
+          "tickets"
+        ],
+        "rightColumn": [
+          "окремий",
+          "незвичайний",
+          "парки",
+          "квитки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i17:s01",
-      "ordinal": 20,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "prompt": "Послухайте й складіть повідомлення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-31:i17:s01:audio"
+        "en:lesson-03:session-31:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i17:s01:audio",
-          "transcript": "That hat, please."
+          "audioTargetId": "en:lesson-03:session-31:i11:audio",
+          "transcript": "The tickets are valid."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That hat, please.",
+        "hiddenTargetPhrase": "The tickets are valid.",
         "orderedTokens": [
-          "That",
-          "hat,",
-          "please."
+          "The",
+          "tickets",
+          "are",
+          "valid"
         ],
-        "distractorTokens": []
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть повідомлення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The tickets are valid.`",
+              "uk": "тут потрібно `are` — `The tickets are valid.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-31:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна знає, які парки ви вибрали. Запитайте, де парки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна знає, які парки ви вибрали. Запитайте, де парки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the parks?",
+        "localizedMeaning": {
+          "ru": "Анна знает, какие парки вы выбрали. Спросите, где парки",
+          "uk": "Анна знає, які парки ви вибрали. Запитайте, де парки"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "parks"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна знає, які парки ви вибрали. Запитайте, де парки",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where are the parks?`",
+              "uk": "тут потрібно `Where` — `Where are the parks?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "prompt": "Ви порівняли дві суми за квитки: суми однакові. Скажіть про суми «Вони рівні» зі скороченням",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-31:i17:s02:audio"
+        "en:lesson-03:session-31:i13:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Ви порівняли дві суми за квитки: суми однакові. Скажіть про суми «Вони рівні» зі скороченням",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i17:s02:audio",
-          "transcript": "This belt, please."
+          "audioTargetId": "en:lesson-03:session-31:i13:audio",
+          "transcript": "They're equal."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This belt, please.",
+        "targetPhrase": "They're equal.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -878,41 +736,270 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i17:s03",
-      "ordinal": 22,
+      "interactionId": "en:lesson-03:session-31:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви повідомляєте, що два вибрані парки схожі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повідомляєте, що два вибрані парки схожі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете, что два выбранных парка похожи",
+          "uk": "Ви повідомляєте, що два вибрані парки схожі"
+        },
+        "gappedTargetPhrase": "The parks ___ similar.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви повідомляєте, що два вибрані парки схожі",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте, що два вибрані парки схожі",
+            "feedbackByLocale": {
+              "ru": "Парков несколько: нужно `are`.",
+              "uk": "Парків кілька: потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте, що два вибрані парки схожі",
+            "feedbackByLocale": {
+              "ru": "С `the parks` здесь нужно `are`.",
+              "uk": "З `the parks` тут потрібно `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i15",
+      "ordinal": 18,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте повідомлення про вибрані парки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i15:r1",
+          "text": "They are separate."
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i15:r2",
+          "text": "They are similar."
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i15:r3",
+          "text": "They are unusual."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про вибрані парки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i15:audio",
+          "transcript": "They are separate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:i15:r1",
+            "targetText": "They are separate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i15:r2",
+            "targetText": "They are similar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i15:r3",
+            "targetText": "They are unusual.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте повідомлення про вибрані парки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `separate`, а в этом варианте — `similar`.",
+              "uk": "У записі останнє слово — `separate`, а в цьому варіанті — `similar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте повідомлення про вибрані парки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `separate`, а в этом варианте — `unusual`.",
+              "uk": "У записі останнє слово — `separate`, а в цьому варіанті — `unusual`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-31:i16:p1",
+            "target": "equal",
+            "meaningByLocale": {
+              "ru": "равный",
+              "uk": "рівний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-31:i16:p2",
+            "target": "similar",
+            "meaningByLocale": {
+              "ru": "похожий",
+              "uk": "схожий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-31:i16:p3",
+            "target": "separate",
+            "meaningByLocale": {
+              "ru": "отдельный",
+              "uk": "окремий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-31:i16:p4",
+            "target": "unusual",
+            "meaningByLocale": {
+              "ru": "необычный",
+              "uk": "незвичайний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "equal",
+          "similar",
+          "separate",
+          "unusual"
+        ],
+        "rightColumn": [
+          "рівний",
+          "схожий",
+          "окремий",
+          "незвичайний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В іншому місті Анна вибрала кілька парків для прогулянок. Запитайте, де парки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-31:i17:s03:audio"
+        "en:lesson-03:session-31:i17:audio"
       ],
-      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "accessibilityLabel": "В іншому місті Анна вибрала кілька парків для прогулянок. Запитайте, де парки",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-31:i17:s03:audio",
-          "transcript": "That boot, please."
+          "audioTargetId": "en:lesson-03:session-31:i17:audio",
+          "transcript": "Where are the parks?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That boot, please.",
-        "orderedTokens": [
-          "That",
-          "boot,",
-          "please."
-        ],
-        "distractorTokens": []
+        "targetPhrase": "Where are the parks?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d210204e527c48d86529b82b9fae8741896105032053bde14b7aadc484c6c443"
+  "learnerFingerprint": "fb2314de6de4165cdbbb948f05110582eff2b0278e932811dc765ca754209b30"
 }

@@ -61,7 +61,10 @@ test('share is a full-width 48 capsule and close is an accessible icon action', 
 test('premium restyle preserves share telemetry without a pearl claim action', () => {
   expect(modal).toContain('buildAchievementShareMessage(lang, name, STORE_URL)');
   expect(modal).toContain('Share.share({ message: msg })');
-  expect(modal).toContain("checkAchievements({ type: 'achievement_shared', studyTarget })");
+  // зачем (разбор красных 15.10): 258cde253 (R56) убрал мёртвый checkAchievements('achievement_shared') — такого события нет в
+  // FOUNDATION_ACHIEVEMENT_EVENT_TYPES; телеметрия «поделился» теперь журнал [ACH-SHARE]. Жемчужины за «поделиться» по-прежнему нет.
+  expect(modal).toContain('[ACH-SHARE] итог action=');
+  expect(modal).not.toContain("checkAchievements({ type: 'achievement_shared'");
   expect(modal).not.toContain('onShardClaimed');
   expect(modal).not.toContain('claimAchievementShardReward');
   expect(modal).not.toContain('+1 жемчужина');

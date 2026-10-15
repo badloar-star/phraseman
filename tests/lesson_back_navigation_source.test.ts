@@ -61,10 +61,10 @@ describe('lesson complete back loop guard', () => {
   it('header back and hardware back share one safe destination (lessons_list)', () => {
     const source = completeSource();
     expect(source).toContain('const goBackFromComplete = useCallback(');
-    const backFn = source.slice(
-      source.indexOf('const goBackFromComplete = useCallback('),
-      source.indexOf('const goBackFromComplete = useCallback(') + 220,
-    );
+    // зачем (разбор красных 15.10): 31029c044 добавил строку замка двойного тапа (navOnce) — фиксированные 220 символов больше
+    // не доставали до перехода; режем по концу колбэка, проверки ниже прежние
+    const backStart = source.indexOf('const goBackFromComplete = useCallback(');
+    const backFn = source.slice(backStart, source.indexOf('}, [router, lessonId]);', backStart));
     expect(backFn).toContain("pathname: '/lessons_list'");
     expect(backFn.indexOf('markNextNavigationAsReplace()')).toBeLessThan(backFn.indexOf('router.replace'));
   });

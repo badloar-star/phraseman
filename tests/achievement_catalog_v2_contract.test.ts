@@ -25,5 +25,6 @@ test('events for definitions absent from the catalog cannot create orphan unlock
   const unlockDispatch = source.match(/const u = \(id: string\) => \{[\s\S]*?\n    \};/)?.[0] ?? '';
 
   expect(unlockDispatch).toContain('if (!def || def.retired) return;');
-  expect(source).toContain('if (!FOUNDATION_ACHIEVEMENT_EVENT_TYPES.has(event.type)) return [];');
+  // зачем (разбор красных 15.10): 258cde253 (R56) — ранний выход получил одноразовый лог [ACH-CHECK] перед return []; смысл прежний
+  expect(source).toMatch(/if \(!FOUNDATION_ACHIEVEMENT_EVENT_TYPES\.has\(event\.type\)\) \{[\s\S]*?return \[\];\s*\}/);
 });

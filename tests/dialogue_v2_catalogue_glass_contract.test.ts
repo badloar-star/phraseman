@@ -11,7 +11,10 @@ describe('Dialogue V2 catalogue liquid-glass contract', () => {
     expect(source).toContain("useState<string | null>(null)");
     expect(source).toContain('const expanded = activeWorldId === world.id;');
     expect(source).toContain('onPress={() => toggleWorld(world.id)}');
-    expect(source).toContain('setActiveWorldId((current) => current === worldId ? null : worldId);');
+    // зачем (разбор красных 15.10): aee10c22a — тот же тумблер мира, плюс шапка хаба сворачивается, пока категория открыта
+    expect(source).toContain('const next = activeWorldId === worldId ? null : worldId;');
+    expect(source).toContain('setActiveWorldId(next);');
+    expect(source).toContain('collapseActions?.setCategoryOpen(next !== null);');
     expect(source).toContain('animateNextLayoutTransition();');
     expect(source).toContain('{expanded ? (');
   });

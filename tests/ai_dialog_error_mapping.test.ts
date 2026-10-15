@@ -49,8 +49,10 @@ describe('ai dialog callable error mapping', () => {
     const network = getPremiumDialogErrorMessage(new Error('network request failed'), { lang: 'uk' });
     const unknown = getPremiumDialogErrorMessage(new Error('unexpected failure'), { lang: 'uk' });
 
-    expect(provider).toContain('Сервіс діалогів тимчасово недоступний');
-    expect(network).toContain('Не вдалося зв’язатися із сервером');
+    // зачем (разбор красных 15.10): 52d27aeb4/3dc472258 убрали из текстов системные слова («сервіс», «сервер») — смысл тот же:
+    // сбой провайдера ≠ нет связи ≠ неизвестная ошибка, и ни одной выдуманной истории
+    expect(provider).toContain('Повідомлення не надіслалося');
+    expect(network).toContain('Немає зв’язку');
     expect(unknown).toContain('Не вдалося надіслати повідомлення');
     for (const message of [provider, network, unknown]) {
       expect(message).not.toMatch(/луна|місяць|гора|посилк|кур’єр/i);
@@ -71,7 +73,7 @@ describe('ai dialog callable error mapping', () => {
 
     expect(getPremiumDialogErrorMessage(freeLimit, { lang: 'pt-BR' })).toContain('Plus');
     expect(getPremiumDialogErrorMessage(freeLimit, { hasPremiumAccess: true, lang: 'vi' }))
-      .toContain('máy chủ chưa nhận ra quyền này');
+      .toContain('Quyền truy cập đầy đủ đã bật nhưng chưa áp dụng ở mọi nơi'); // без слова «máy chủ» (сервер), 3dc472258
     // network теперь показывает забавную (рандомную) плашку из aiErrorToast.
     // Проверяем не конкретную формулировку, а что локализация случилась: польский
     // вариант непустой и БЕЗ кириллицы (русский фолбэк был бы на кириллице).

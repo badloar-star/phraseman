@@ -96,7 +96,8 @@ describe('Шпиль: ручное обновление друзей — кон�
   });
 
   it('экран: RefreshControl на списке Шпиля вызывает refreshFriends', () => {
-    expect(screen).toMatch(/refreshControl=\{<RefreshControl refreshing=\{friendsRefreshing\} onRefresh=\{onPullRefreshFriends\}/);
+    // зачем (разбор красных 15.10): 690a67f59 добавил enabled={!towerTouch.locked} перед refreshing — связка «потянул → refreshFriends» та же
+    expect(screen).toMatch(/<RefreshControl[^>]*refreshing=\{friendsRefreshing\} onRefresh=\{onPullRefreshFriends\}/);
     expect(screen).toMatch(/void game\.refreshFriends\(\)\.finally\(\(\) => setFriendsRefreshing\(false\)\)/);
   });
 });

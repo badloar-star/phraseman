@@ -12,13 +12,16 @@ describe('Шпиль: смена изучаемого языка', () => {
     const reset = game.indexOf('const prevLangRef');
     expect(reset).toBeGreaterThan(0);
     expect(reset).toBeLessThan(game.indexOf('// ── Идентичность'));
-    expect(game).toMatch(/if \(before === lang\) return;/);
+    // зачем (разбор красных 15.10): 32775e418 (R39) — ключ сброса теперь `язык|владелец`: при смене владельца сбрасываются и ids,
+    // а при смене ТОЛЬКО языка идентичность и идущий старт по-прежнему не трогаются
+    expect(game).toMatch(/if \(before === `\$\{lang\}\|\$\{ownerEpoch\}`\) return;/);
     for (const s of ['setRoomLoad(null)', 'setFriends([])', 'setWeekResult(null)', 'setSession(null)', 'setPending(null)', 'setOutcome(null)', 'setStartBlock(null)']) {
       const body = game.slice(reset, game.indexOf('// ── Идентичность'));
       expect(body).toContain(s);
     }
     const body = game.slice(reset, game.indexOf('// ── Идентичность'));
-    expect(body).not.toContain('setIds(');
+    expect(body).toContain('if (ownerChanged) setIds(null);');
+    expect(body.replace('if (ownerChanged) setIds(null);', '')).not.toContain('setIds(');
     expect(body).not.toContain('startingRef.current =');
   });
 
@@ -32,7 +35,7 @@ describe('Шпиль: смена изучаемого языка', () => {
   });
 
   it('оба сброса пишут [SPIRE-TARGET] с было/стало', () => {
-    expect(game).toMatch(/\[SPIRE-TARGET\] use_spire_game: язык[\s\S]*from: before, to: lang/);
+    expect(game).toMatch(/\[SPIRE-TARGET\] use_spire_game: язык\/владелец[\s\S]*from: before, to: `\$\{lang\}\|\$\{ownerEpoch\}`/);
     expect(home).toMatch(/\[SPIRE-TARGET\] home: язык[\s\S]*from: before, to: spireLang/);
   });
 });

@@ -100,6 +100,39 @@ export function resolveSlotMistake(
   };
 }
 
+// зачем (Сверка 15.10, evidence/replay_1015 p3): ответ «she's safe» против «She is tired» сравнивался по позициям слов — «she's» ≠ «She»,
+// и промахом записывалось «She» (строка «She · she's → She» в «Ошибках» и в «Моих ошибках»), хотя ошибка — «tired». Сокращения
+// раскрываются в единицы сравнения («she's» = «she» + «is|has»), а в ответ идёт ИСХОДНОЕ слово и его позиция в эталоне.
+type CompareUnit = Readonly<{ alts: readonly string[]; source: number }>;
+
+const CONTRACTION_SUBJECTS = new Set(['i', 'you', 'he', 'she', 'it', 'we', 'they', 'that', 'there', 'here', 'what', 'who', 'where', 'how', 'when', 'why']);
+const CONTRACTION_TAILS: Readonly<Record<string, readonly string[]>> = { s: ['is', 'has'], re: ['are'], m: ['am'], ve: ['have'], ll: ['will'], d: ['would', 'had'] };
+const IRREGULAR_NEGATIVES: Readonly<Record<string, string>> = { "can't": 'can', "won't": 'will', "shan't": 'shall', "ain't": 'am' };
+
+function expandToken(token: string, source: number): CompareUnit[] {
+  const key = normalizeTokenKey(token).replace(/[’ʼ]/g, "'");
+  const irregular = IRREGULAR_NEGATIVES[key];
+  if (irregular) return [{ alts: [irregular], source }, { alts: ['not'], source }];
+  const negative = /^([a-z]+)n't$/.exec(key);
+  if (negative) return [{ alts: [negative[1]!], source }, { alts: ['not'], source }];
+  if (key === 'cannot') return [{ alts: ['can'], source }, { alts: ['not'], source }];
+  if (key === "let's") return [{ alts: ['let'], source }, { alts: ['us'], source }];
+  const contraction = /^([a-z]+)'(s|re|m|ve|ll|d)$/.exec(key);
+  if (contraction && CONTRACTION_SUBJECTS.has(contraction[1]!)) {
+    return [{ alts: [contraction[1]!], source }, { alts: CONTRACTION_TAILS[contraction[2]!]!, source }];
+  }
+  return [{ alts: [key], source }];
+}
+
+function expandPhrase(tokens: readonly string[]): CompareUnit[] {
+  return tokens.flatMap((token, index) => expandToken(token, index));
+}
+
+function sameUnit(a?: CompareUnit, b?: CompareUnit): boolean {
+  if (!a || !b) return false;
+  return a.alts.some((alt) => alt !== '' && b.alts.includes(alt));
+}
+
 export function resolvePhraseMistakeToken(
   expectedPhrase: string,
   actualPhrase?: string | null,
@@ -108,26 +141,30 @@ export function resolvePhraseMistakeToken(
   const expectedTokens = splitPhrase(expectedPhrase);
   if (expectedTokens.length === 0) return undefined;
   const actualTokens = splitPhrase(actualPhrase ?? '');
+  const expectedUnits = expandPhrase(expectedTokens);
+  const actualUnits = expandPhrase(actualTokens);
 
-  for (let i = 0; i < expectedTokens.length; i += 1) {
-    if (!sameToken(expectedTokens[i], actualTokens[i])) {
+  for (let i = 0; i < expectedUnits.length; i += 1) {
+    if (!sameUnit(expectedUnits[i], actualUnits[i])) {
+      const tokenIndex = expectedUnits[i]!.source;
+      const actualSource = actualUnits[i]?.source;
       return {
-        tokenText: expectedTokens[i]!,
-        tokenIndex: i,
-        expected: expectedTokens[i]!,
-        picked: actualTokens[i],
+        tokenText: expectedTokens[tokenIndex]!,
+        tokenIndex,
+        expected: expectedTokens[tokenIndex]!,
+        picked: actualSource === undefined ? undefined : actualTokens[actualSource],
         rawCategory,
       };
     }
   }
 
-  if (actualTokens.length > expectedTokens.length) {
+  if (actualUnits.length > expectedUnits.length) {
     const lastIndex = expectedTokens.length - 1;
     return {
       tokenText: expectedTokens[lastIndex]!,
       tokenIndex: lastIndex,
       expected: expectedTokens[lastIndex]!,
-      picked: actualTokens[expectedTokens.length],
+      picked: actualTokens[actualUnits[expectedUnits.length]!.source],
       rawCategory,
     };
   }

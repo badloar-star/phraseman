@@ -78,3 +78,7 @@ Governance-ID: TG-2EC38B4B985A
 энергия появилась (`[M22-SHOW] reset reason=energy_restored`), открытие пишет `[M22-SHOW] open source=dock_link`.
 Второй пункт Ревизора (закрытие + push в одном тике) — так же устроен общий `navigateAfterModalClose`, путь не меняем.
 Проверка: наборы Шпиля, читающие док (ts/tsx/mjs). Откат: `git revert`.
+
+Ревизор 15.10 (после d95fddb8e ✅): `sheetToPaywall` зовёт `router.push('/premium_modal')` напрямую — перевести на общий
+`navigateAfterModalClose` (сейчас то же поведение, но будущая iOS-правка помощника доедет и сюда). Окно 16:30, после P24.
+iOS: переход в пейвол в одном тике с закрытием Modal — «проверить на устройстве» (владелец/Сверка).

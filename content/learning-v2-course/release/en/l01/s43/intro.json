@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-43",
   "learningOutcomeByLocale": {
-    "ru": "Скажете `we're`, `they're`, `isn't` и `aren't`.",
-    "uk": "Скажете `we're`, `they're`, `isn't` та `aren't`."
+    "ru": "назвать терпение человека знакомой фразой и отличить это описание от сообщения о болезни",
+    "uk": "назвати терплячість людини знайомою фразою й відрізнити цей опис від повідомлення про хворобу"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`we are` в баре звучит как `we're`",
-        "uk": "`we are` у барі звучить як `we're`"
+        "ru": "Терпеливый",
+        "uk": "Терплячий"
       },
       "bodyByLocale": {
-        "ru": "`we` — «мы». После `we` ставим `are`: `we are ready`.\n\nВ шуме это долго. Два слова слипаются в одно: `we're ready`. Значок `'` стоит там, где пропал кусок.\n\nЗначок мелкий, и рука его пропускает первым. А зря: без него получается `were` — «были», и вы уже говорите про прошлое.",
-        "uk": "`we` — «ми». Після `we` ставимо `are`: `we are ready`.\n\nУ гаморі це задовго. Два слова злипаються в одне: `we're ready`. Значок `'` стоїть там, де зник шматок.\n\nЗначок дрібний, і рука пропускає саме його. І дарма: без нього виходить `were` — «були», і ви вже говорите про минуле."
+        "ru": "`patient` — «терпеливый»: умеет спокойно ждать или объяснять без раздражения. `She is patient` — «Она терпеливая». Маша спокойно ждёт Олега. Вы пока только учитесь: часы за последнюю минуту проверены уже три раза.",
+        "uk": "`patient` — «терплячий»: уміє спокійно чекати або пояснювати без роздратування. `She is patient` — «Вона терпляча». Маша спокійно чекає на Олега. Ви поки лише вчитеся: на годинник за останню хвилину подивилися вже тричі."
       },
       "question": {
         "interactionId": "en:lesson-01:session-43:intro1:q",
         "promptByLocale": {
-          "ru": "Друзья зовут за столик, вы с приятелем встали. Скажите коротко: «мы готовы».",
-          "uk": "Друзі кличуть за столик, ви з приятелем підвелися. Скажіть коротко: «ми готові»."
+          "ru": "Маша спокойно ждёт друга и не раздражается. Назовите её терпеливой.",
+          "uk": "Маша спокійно чекає на друга й не дратується. Назвіть її терплячою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-43:intro1:r1",
-              "text": "We're ready."
+              "text": "She is patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro1:r2",
-              "text": "Were ready."
+              "text": "She are patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro1:r3",
-              "text": "We're are ready."
+              "text": "She is ill."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-43:intro1:r1",
-              "text": "We're ready."
+              "text": "She is patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro1:r2",
-              "text": "Were ready."
+              "text": "She are patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro1:r3",
-              "text": "We're are ready."
+              "text": "She is ill."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друзья зовут за столик, вы с приятелем встали. Скажите коротко: «мы готовы».",
-          "uk": "Друзі кличуть за столик, ви з приятелем підвелися. Скажіть коротко: «ми готові»."
+          "ru": "Маша спокойно ждёт друга и не раздражается. Назовите её терпеливой.",
+          "uk": "Маша спокійно чекає на друга й не дратується. Назвіть її терплячою."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`they're` — про тех, кого несколько",
-        "uk": "`they're` — про тих, кого кілька"
+        "ru": "Про себя и про нас",
+        "uk": "Про себе й про нас"
       },
       "bodyByLocale": {
-        "ru": "`they` — «они»: их больше одного, и вас среди них нет. `funny` — «смешные». Полностью — `they are funny`, коротко — `they're funny`.\n\nВ `they're` уже есть `are`. Поэтому `they funny` — не английская фраза.",
-        "uk": "`they` — «вони»: їх більше ніж один, і вас серед них немає. `funny` — «смішні». Повністю — `they are funny`, коротко — `they're funny`.\n\nУ `they're` уже є `are`. Тому `they funny` — не англійська фраза."
+        "ru": "`I am patient` — «Я терпеливый». `We are patient` — «Мы терпеливые». Слово `patient` не меняется. Коротко: `I'm patient` и `We're patient`. Терпение — не только про ожидание: можно спокойно объяснить правило человеку, который пока не понял.",
+        "uk": "`I am patient` — «Я терплячий». `We are patient` — «Ми терплячі». Слово `patient` не змінюється. Коротко: `I'm patient` і `We're patient`. Терплячість — не лише про очікування: можна спокійно пояснити правило людині, яка поки не зрозуміла."
       },
       "question": {
         "interactionId": "en:lesson-01:session-43:intro2:q",
         "promptByLocale": {
-          "ru": "За соседним столом хохочут весь вечер. Скажите приятелю про них: «они смешные».",
-          "uk": "За сусіднім столом регочуть увесь вечір. Скажіть приятелеві про них: «вони смішні»."
+          "ru": "Вы и Маша спокойно ждёте, не сердитесь на Олега. Назовите вас обоих терпеливыми.",
+          "uk": "Ви та Маша спокійно чекаєте, не сердитеся на Олега. Назвіть вас обох терплячими."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-43:intro2:r1",
-              "text": "They're funny."
+              "text": "We are patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro2:r2",
-              "text": "They funny."
+              "text": "They are patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro2:r3",
-              "text": "They're are funny."
+              "text": "We am patient."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-43:intro2:r1",
-              "text": "They're funny."
+              "text": "We are patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro2:r2",
-              "text": "They funny."
+              "text": "They are patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro2:r3",
-              "text": "They're are funny."
+              "text": "We am patient."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За соседним столом хохочут весь вечер. Скажите приятелю про них: «они смешные».",
-          "uk": "За сусіднім столом регочуть увесь вечір. Скажіть приятелеві про них: «вони смішні»."
+          "ru": "Вы и Маша спокойно ждёте, не сердитесь на Олега. Назовите вас обоих терпеливыми.",
+          "uk": "Ви та Маша спокійно чекаєте, не сердитеся на Олега. Назвіть вас обох терплячими."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`not` тоже сжимается: `isn't` и `aren't`",
-        "uk": "`not` теж стискається: `isn't` і `aren't`"
+        "ru": "Терпение и болезнь",
+        "uk": "Терплячість і хвороба"
       },
       "bodyByLocale": {
-        "ru": "`bad` — «плохой». Чтобы сказать «он не плохой», ставят `is not`: `He is not bad`.\n\nВ живой речи `is not` становится `isn't`, а `are not` — `aren't`. Получается `He isn't bad`.\n\n`isn't` — когда человек один. `aren't` — когда их несколько. Перепутать легко: обе формы одинаково короткие и одинаково хочется сказать первую попавшуюся.",
-        "uk": "`bad` — «поганий». Щоб сказати «він не поганий», ставлять `is not`: `He is not bad`.\n\nУ живій мові `is not` стає `isn't`, а `are not` — `aren't`. Виходить `He isn't bad`.\n\n`isn't` — коли людина одна. `aren't` — коли їх кілька. Переплутати легко: обидві форми однаково короткі, і однаково хочеться сказати першу-ліпшу."
+        "ru": "В нашей фразе `He is patient` слово `patient` означает «терпеливый». Это не сообщение, что человек болен. Для болезни у нас уже есть `ill`: `He is ill`. Человек может и болеть, и быть терпеливым — отвечаем именно о том, о чём спрашивают.",
+        "uk": "У нашій фразі `He is patient` слово `patient` означає «терплячий». Це не повідомлення, що людина хвора. Для хвороби в нас уже є `ill`: `He is ill`. Людина може і хворіти, і бути терплячою — відповідаємо саме про те, про що запитують."
       },
       "question": {
         "interactionId": "en:lesson-01:session-43:intro3:q",
         "promptByLocale": {
-          "ru": "Приятель ворчит, что новый начальник ужасный. Вы не согласны — скажите про него: «он не плохой».",
-          "uk": "Приятель бурчить, що новий начальник жахливий. Ви не згодні — скажіть про нього: «він не поганий»."
+          "ru": "Подруга заболела и поэтому не придёт в кино. Сообщите именно о её болезни.",
+          "uk": "Подруга захворіла й тому не прийде в кіно. Повідомте саме про її хворобу."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-43:intro3:r1",
-              "text": "He isn't bad."
+              "text": "She is ill."
             },
             {
               "responseId": "en:lesson-01:session-43:intro3:r2",
-              "text": "He is'nt bad."
+              "text": "She is patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro3:r3",
-              "text": "He aren't bad."
+              "text": "He is ill."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-43:intro3:r1",
-              "text": "He isn't bad."
+              "text": "She is ill."
             },
             {
               "responseId": "en:lesson-01:session-43:intro3:r2",
-              "text": "He is'nt bad."
+              "text": "She is patient."
             },
             {
               "responseId": "en:lesson-01:session-43:intro3:r3",
-              "text": "He aren't bad."
+              "text": "He is ill."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Приятель ворчит, что новый начальник ужасный. Вы не согласны — скажите про него: «он не плохой».",
-          "uk": "Приятель бурчить, що новий начальник жахливий. Ви не згодні — скажіть про нього: «він не поганий»."
+          "ru": "Подруга заболела и поэтому не придёт в кино. Сообщите именно о её болезни.",
+          "uk": "Подруга захворіла й тому не прийде в кіно. Повідомте саме про її хворобу."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "97ab39a504e2b35ece5c3b811587a50a0cf128cc4ccaf59243e7bd87b964ddbf"
+  "introFingerprint": "07e7dd133ce8f0b271ed8709fa262ad89d2b072ab4f68404c74298fc47b926e7"
 }

@@ -1,204 +1,138 @@
-# Англійська · Урок 1 · Заняття 43 — «We're, they're і коротке ні»
+# Англійська · Урок 1 · Заняття 43 — Чекаємо на друга, який запізнюється
 
-**Ситуація.** У кафе Іра, Олег і ви закінчуєте зустріч. Іра питає, чи готові ви, а Олег розповідає про колег за сусіднім столом.
-**Сьогодні.** Скажете `we're`, `they're`, `isn't` та `aren't`.
-**Нові слова:** bad, real, true
-**Повертаються:** ok, ready, late, funny, wrong
+**Ситуація.** Ви з Машею чекаєте на Олега біля кінотеатру. Він затримується, а ще одна подруга захворіла й залишиться вдома. Ви обговорюєте новини та спокійно вирішуєте, що робити.
+
+**Що ви опануєте:** назвати терплячість людини знайомою фразою й відрізнити цей опис від повідомлення про хворобу
+**Нові слова:** patient
 
 ---
 
 ## Інтро 1
 
-### `we are` у барі звучить як `we're`
+### Терплячий
 
-`we` — «ми». Після `we` ставимо `are`: `we are ready`.
+`patient` — «терплячий»: уміє спокійно чекати або пояснювати без роздратування. `She is patient` — «Вона терпляча». Маша спокійно чекає на Олега. Ви поки лише вчитеся: на годинник за останню хвилину подивилися вже тричі.
 
-У гаморі це задовго. Два слова злипаються в одне: `we're ready`. Значок `'` стоїть там, де зник шматок.
+**Маша спокійно чекає на друга й не дратується. Назвіть її терплячою.**
 
-Значок дрібний, і рука пропускає саме його. І дарма: без нього виходить `were` — «були», і ви вже говорите про минуле.
-
-**Друзі кличуть за столик, ви з приятелем підвелися. Скажіть коротко: «ми готові».**
-
-- ✅ **We're ready.**
-- ❌ Were ready. — *Без значка це «були». Фраза поїхала в минуле.*
-- ❌ We're are ready. — *`are` уже сховане всередині `we're`. Удруге його ставити не треба.*
+- ✅ **She is patient.**
+- ❌ She are patient. — *Після `She` потрібно `is`.*
+- ❌ She is ill. — *`ill` — «хворіє». Тут треба назвати терплячість: `patient`.*
 
 ---
 
 ## Інтро 2
 
-### `they're` — про тих, кого кілька
+### Про себе й про нас
 
-`they` — «вони»: їх більше ніж один, і вас серед них немає. `funny` — «смішні». Повністю — `they are funny`, коротко — `they're funny`.
+`I am patient` — «Я терплячий». `We are patient` — «Ми терплячі». Слово `patient` не змінюється. Коротко: `I'm patient` і `We're patient`. Терплячість — не лише про очікування: можна спокійно пояснити правило людині, яка поки не зрозуміла.
 
-У `they're` уже є `are`. Тому `they funny` — не англійська фраза.
+**Ви та Маша спокійно чекаєте, не сердитеся на Олега. Назвіть вас обох терплячими.**
 
-**За сусіднім столом регочуть увесь вечір. Скажіть приятелеві про них: «вони смішні».**
-
-- ✅ **They're funny.**
-- ❌ They funny. — *Після `they` потрібне `are`: повна форма `They are funny`, коротка — `They're funny`.*
-- ❌ They're are funny. — *`are` уже всередині `they're`. Досить одного.*
+- ✅ **We are patient.**
+- ❌ They are patient. — *Це про них. Ви включаєте себе: `We are patient`.*
+- ❌ We am patient. — *Після `We` потрібна форма `are`.*
 
 ---
 
 ## Інтро 3
 
-### `not` теж стискається: `isn't` і `aren't`
+### Терплячість і хвороба
 
-`bad` — «поганий». Щоб сказати «він не поганий», ставлять `is not`: `He is not bad`.
+У нашій фразі `He is patient` слово `patient` означає «терплячий». Це не повідомлення, що людина хвора. Для хвороби в нас уже є `ill`: `He is ill`. Людина може і хворіти, і бути терплячою — відповідаємо саме про те, про що запитують.
 
-У живій мові `is not` стає `isn't`, а `are not` — `aren't`. Виходить `He isn't bad`.
+**Подруга захворіла й тому не прийде в кіно. Повідомте саме про її хворобу.**
 
-`isn't` — коли людина одна. `aren't` — коли їх кілька. Переплутати легко: обидві форми однаково короткі, і однаково хочеться сказати першу-ліпшу.
-
-**Приятель бурчить, що новий начальник жахливий. Ви не згодні — скажіть про нього: «він не поганий».**
-
-- ✅ **He isn't bad.**
-- ❌ He is'nt bad. — *Значок став не туди. Він стоїть на місці зниклої `o`: `isn't`.*
-- ❌ He aren't bad. — *`aren't` — про кількох. Про одну людину — `isn't`.*
+- ✅ **She is ill.**
+- ❌ She is patient. — *Це про терплячість. Причина відсутності тут — хвороба: `ill`.*
+- ❌ He is ill. — *Це про нього. Про подругу потрібно `She`.*
 
 ---
 
-## Практика (19 завдань, підказок стає менше)
+## Практика (17 завдань)
 
-**1 · Картка слова — bad**
-<!-- interaction_id: en:lesson-01:session-43:i01; family: listen_choose -->
-> **bad** — «поганий, кепський». Не катастрофа, просто так собі: погода, кава, настрій.
+**1 · Маша спокійно чекає на друга. Назвіть її терплячою**
+<!-- interaction_id: en:lesson-01:session-43:i01; family: phrase_builder -->
+Плитки: `patient` `is` `She` `are` → **She is patient.**
+*(плитка `are` зайва: тут потрібно `is` — `She is patient.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-43:i02; family: listen_choose -->
-🔊 *bad* → **bad** · bed · bag
-- bed — *Це «ліжко». У `bad` рот відкритий ширше.*
-- bag — *«Сумка». Різниця в останньому звуці: `bad` закінчується на «д».*
+🔊 *He is patient.* → **He is patient.** · She is patient. · He is ill.
+- She is patient. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
+- He is ill. — *У записі останнє слово — `patient`, а в цьому варіанті — `ill`.*
 
-**3 · Складіть фразу — «ми готові»**
-<!-- interaction_id: en:lesson-01:session-43:i03; family: phrase_builder -->
-Плитки: `ready` `we're` `are` → **We're ready.**
-*(плитка `are` зайва: це слово вже сховане всередині `we're`)*
+**3 · Ви вмієте чекати без роздратування. Скажіть про себе**
+<!-- interaction_id: en:lesson-01:session-43:i03; family: context_gap_grammar -->
+I ___ patient. → **am** · is · are
+- is — *Після `I` потрібно `am`.*
+- are — *Тут `I am patient`.*
 
-**4 · Картка слова — real**
-<!-- interaction_id: en:lesson-01:session-43:i04; family: listen_choose -->
-> **real** — «справжній». Те, що існує насправді, а не вигадка і не підробка.
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-43:i04; family: speed_match -->
+patient — терплячий · ill — хворіє · polite — ввічливий · honest — чесний
 
-**5 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-43:i05; family: listen_choose -->
-🔊 *real* → **real** · rail · reel
-- rail — *«Рейка». Звучить «рейл» — з «ей» посередині. У `real` чути «рі-ел».*
-- reel — *«Котушка». Один довгий «і». У `real` два звуки: «рі-ел».*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-43:i05; family: listen_build_dictation -->
+🔊 *We're patient.* Плитки: `patient` `We're` `They're` → **We're patient.**
+*(плитка `They're` зайва: тут потрібно `We're` — `We're patient.`)*
 
-**6 · Картка слова — true**
-<!-- interaction_id: en:lesson-01:session-43:i06; family: listen_choose -->
-> **true** — «правда, правдиво». Так і є, ніхто не прибрехав.
+**6 · Двоє друзів спокійно чекають у черзі. Ви розповідаєте про них. Назвіть їх терплячими**
+<!-- interaction_id: en:lesson-01:session-43:i06; family: phrase_builder -->
+Плитки: `patient` `are` `They` `We` → **They are patient.**
+*(плитка `We` зайва: тут потрібно `They` — `They are patient.`)*
 
-**7 · Вставте слово — приятель клянеться, що це не вигадка**
-<!-- interaction_id: en:lesson-01:session-43:i07; family: context_gap_grammar -->
-It's ___ . → **true** · bad · ready
-- bad — *Це «поганий». Про «так і є» — `true`.*
-- ready — *«Готовий», можна починати. Про правдивість історії — `true`.*
+**7 · Маша спокійно чекає на вас, поки ви шукаєте квитки. Коротко похваліть її терплячість, звертаючись до неї**
+<!-- interaction_id: en:lesson-01:session-43:i07; family: scripted_repeat_compare -->
+🎙 **You're patient.**
 
-**8 · Складіть фразу — кілька колег за сусіднім столом усіх розсмішили**
-<!-- interaction_id: en:lesson-01:session-43:i08; family: phrase_builder -->
-Плитки: `They` `are` `funny` `is` → **They are funny.**
-*(плитка `is` зайва: `is` не підходить до `They`: потрібно `They are funny`.)*
+**8 · Брат захворів і залишається вдома. Назвіть саме хворобу**
+<!-- interaction_id: en:lesson-01:session-43:i08; family: context_gap_grammar -->
+He is ___ . → **ill** · patient · honest
+- patient — *`patient` тут — «терплячий». Про хворобу — `ill`.*
+- honest — *`honest` — «чесний». Тут потрібно `ill`: хворіє.*
 
+**9 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-43:i09; family: listen_choose -->
+🔊 *She is ill.* → **She is ill.** · He is ill. · She is patient.
+- He is ill. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
+- She is patient. — *У записі останнє слово — `ill`, а в цьому варіанті — `patient`.*
 
-**9 · Послухайте і складіть — «вони не запізнюються»**
-<!-- interaction_id: en:lesson-01:session-43:i09; family: listen_build_dictation -->
-🔊 *They aren't late.* Плитки: `aren't` `They` `late` `isn't` → **They aren't late.**
-*(`late` — «запізнився»)*
-*(плитка `isn't` зайва: `isn't` не підходить до `They`: в аудіо `They aren't late`.)*
+**10 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-01:session-43:i10; family: speed_match -->
+I'm — I am · You're — You are · We're — We are · They're — They are
 
-
-**10 · Вставте слово — приятель боїться, що історія вигадана. Заспокойте: вона справжня**
-<!-- interaction_id: en:lesson-01:session-43:i10; family: context_gap_grammar -->
-It ___ real. → **is** · are · am
-- are — *`are` — про кількох. Про одну річ — `is`.*
-- am — *`am` іде тільки з `I`. Про річ — `is`.*
-
-**11 · Послухайте і складіть — одна колега всіх розсмішила**
+**11 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-43:i11; family: listen_build_dictation -->
-🔊 *She is funny.* Плитки: `She` `is` `funny` → **She is funny.**
+🔊 *He's patient.* Плитки: `patient` `He's` `She's` → **He's patient.**
+*(плитка `She's` зайва: тут потрібно `He's` — `He's patient.`)*
 
-**12 · Складіть фразу — «ми не запізнюємося»**
+**12 · Ви з Машею спокійно чекаєте, поки Олег знайде вхід. Назвіть вас обох терплячими**
 <!-- interaction_id: en:lesson-01:session-43:i12; family: phrase_builder -->
-Плитки: `late` `We` `aren't` → **We aren't late.**
-*(`late` — «запізнився»)*
+Плитки: `patient` `are` `We` `is` → **We are patient.**
+*(плитка `is` зайва: тут потрібно `are` — `We are patient.`)*
 
-**13 · Послухайте і складіть — приятель помилково каже, що ви неправі**
-<!-- interaction_id: en:lesson-01:session-43:i13; family: listen_build_dictation -->
-🔊 *I am not wrong.* Плитки: `I` `am` `not` `wrong` → **I am not wrong.**
+**13 · Іншого дня ви самі захворіли й скасовуєте зустріч. Назвіть причину**
+<!-- interaction_id: en:lesson-01:session-43:i13; family: scripted_repeat_compare -->
+🎙 **I am ill.**
 
-**14 · Вставте слово — приятель називає вашу відповідь хибною, а вона правильна**
+**14 · Назвіть співрозмовника терплячим, звертаючись до нього**
 <!-- interaction_id: en:lesson-01:session-43:i14; family: context_gap_grammar -->
-You aren't ___ . → **wrong** · true · real
-- true — *«Правда» — про історію, а не про того, хто має рацію в суперечці.*
-- real — *«Справжній» — про речі й історії, а не про правоту в суперечці.*
+You ___ patient. → **are** · am · is
+- am — *Після `You` потрібно `are`.*
+- is — *До однієї людини теж звертаємося `You are`.*
 
-**15 · Послухайте і виберіть**
+**15 · Послухайте й виберіть коротку фразу**
 <!-- interaction_id: en:lesson-01:session-43:i15; family: listen_choose -->
-🔊 *ok* → **ok** · oak · old
-- oak — *«Дуб». Один склад замість двох: `ok` — «оу-кей».*
-- old — *«Старий». Закінчується на «д», а `ok` — на «й».*
+🔊 *They're patient.* → **They're patient.** · We're patient. · They're ill.
+- We're patient. — *У записі перше слово — `They're`, а в цьому варіанті — `We're`.*
+- They're ill. — *У записі останнє слово — `patient`, а в цьому варіанті — `ill`.*
 
-**16 · З'єднайте пари**
+**16 · З’єднайте форми та слова з відповідниками**
 <!-- interaction_id: en:lesson-01:session-43:i16; family: speed_match -->
-bad — поганий · real — справжній · true — правда · ok — нормально
+He's — He is · She's — She is · patient — терплячий · ill — хворіє
 
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-43:i17:s01; family: scripted_repeat_compare -->
-Іра питає, чи готові ви з Олегом іти. 🎙 **We're ready.**
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-43:i17:s02; family: scripted_repeat_compare -->
-Олег говорить про колег за сусіднім столом: вони прийшли вчасно. 🎙 **They aren't late.**
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-43:i17:s03; family: scripted_repeat_compare -->
-Іра куштує каву й каже, що вона не така вже погана. 🎙 **It isn't bad.**
-
----
-
-## Для сборщика
-
-new_words:
-bad — поганий — «поганий, кепський». Не катастрофа, просто так собі: погода, кава, настрій.
-real — справжній — «справжній». Те, що існує насправді, а не вигадка і не підробка.
-true — правда — «правда, правдиво». Так і є, ніхто не прибрехав.
-
-modes: 1=word_card, 2=listen_choose, 3=phrase_builder, 4=word_card, 5=listen_choose, 6=word_card, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=context_gap_grammar, 11=listen_build_dictation, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=listen_choose, 16=speed_match, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| ok | 15 (слух), 16 (дошка) | 15 — правильний варіант на слух |
-| ready | 3 (складання), 7 (пастка) | 3 — `We're ready.` |
-| late | 9 (диктант), 12 (складання), 17 (голос) | 9 і 12 — частина правильної відповіді |
-| funny | 8 (пропуск), 11 (пропуск) | 8 і 11 — фраза з `funny` складається правильно |
-| wrong | 13 (складання), 14 (пропуск) | 13 і 14 — `wrong` у правильній відповіді |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | `We're ready` | так — `we're ready` розібрано в тексті |
-| Інтро 2 | `They're funny` | так — `funny` і `they're funny` розібрано |
-| Інтро 3 | `He isn't bad` | так — `bad`, `isn't` і `He isn't bad` у тексті |
-
-**3. Дошка пар (завдання 16)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| bad | 1 | 2 (слух) + Інтро 3 |
-| real | 4 | 5 (слух) + 10 (пропуск) |
-| true | 6 | 7 (правильна відповідь) + 14 (розібрана пастка) |
-| ok | з минулих сесій | 15 (слух) |
-
-Дошка стоїть передостанньою — усі чотири слова на цей момент пройшли і картку, і відпрацювання.
-
----
+**17 · Викладач спокійно пояснює правило ще раз і не дратується. Розкажіть подрузі про його терплячість**
+<!-- interaction_id: en:lesson-01:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **He is patient.**
 

@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-53:i01",
-    "correctText": "Is he busy?",
-    "correctResponseId": "en:lesson-02:session-53:i01:r1"
+    "correctText": "It is unfair.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i02",
-    "correctText": "free",
+    "correctText": "It is full.",
     "correctResponseId": "en:lesson-02:session-53:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-53:i03",
-    "correctText": "What is the price?",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-53:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-53:i04",
-    "correctText": "Are they wet?",
-    "correctResponseId": "en:lesson-02:session-53:i04:r1"
+    "correctText": "en:lesson-02:session-53:i04:p1=unfair\nen:lesson-02:session-53:i04:p2=full\nen:lesson-02:session-53:i04:p3=illegal\nen:lesson-02:session-53:i04:p4=fair",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i05",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-02:session-53:i05:r1"
+    "correctText": "No, it is not.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i06",
-    "correctText": "I am not sure.",
+    "correctText": "What is unfair?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i07",
-    "correctText": "Who",
-    "correctResponseId": "en:lesson-02:session-53:i07:r1"
+    "correctText": "It's unfair.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i08",
-    "correctText": "She is the manager.",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-53:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-53:i09",
-    "correctText": "en:lesson-02:session-53:i09:p1=free\nen:lesson-02:session-53:i09:p2=dry\nen:lesson-02:session-53:i09:p3=price\nen:lesson-02:session-53:i09:p4=sure",
-    "correctResponseId": null
+    "correctText": "Is it illegal?",
+    "correctResponseId": "en:lesson-02:session-53:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-53:i10",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-02:session-53:i10:r1"
+    "correctText": "en:lesson-02:session-53:i10:p1=illegal\nen:lesson-02:session-53:i10:p2=fair\nen:lesson-02:session-53:i10:p3=unfair\nen:lesson-02:session-53:i10:p4=full",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i11",
-    "correctText": "Is she sure?",
-    "correctResponseId": "en:lesson-02:session-53:i11:r1"
+    "correctText": "It is not unfair.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i12",
-    "correctText": "The price is wrong.",
+    "correctText": "Is it full?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i13",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-02:session-53:i13:r1"
+    "correctText": "It's illegal.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i14",
-    "correctText": "She is not here.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-53:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-53:i15",
-    "correctText": "Am I wrong?",
-    "correctResponseId": null
+    "correctText": "Is it unfair?",
+    "correctResponseId": "en:lesson-02:session-53:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-53:i16",
-    "correctText": "Are we ready?",
+    "correctText": "en:lesson-02:session-53:i16:p1=full\nen:lesson-02:session-53:i16:p2=unfair\nen:lesson-02:session-53:i16:p3=fair\nen:lesson-02:session-53:i16:p4=illegal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i17",
-    "correctText": "Where is the manager?",
+    "correctText": "Is it unfair?",
     "correctResponseId": null
   }
 ]

@@ -64,7 +64,8 @@ html, body { margin: 0; padding: 0; background: var(--page); }
 .title { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.4px; margin: 6px 0 4px; text-align: center; color: var(--tx); }
 .conv { margin-top: 6px; }
 .conv .h { font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; color: var(--tx); text-align: center; }
-.conv .sub { font-size: 16px; line-height: 22px; color: var(--sc); margin: 4px 0 14px; text-align: center; }
+/* зачем (координатор 15.10): подзаголовок «Всё, что ты накопил раньше, не пропадает — вот итог.» убран — после решения 09:12 (только начисленное сервером) это неправда для многих; заголовок блока и «Итого» остаются */
+.conv .h { margin-bottom: 14px; }
 .plate { border-radius: 18px; padding: 14px; background: var(--card); box-shadow: var(--sh); position: relative; }
 .hero { display: flex; align-items: center; gap: 16px; padding: 2px 2px 12px; }
 .bigcoin { position: relative; width: 64px; height: 64px; flex: none; border-radius: 50%; filter: drop-shadow(0 10px 18px rgba(0,0,0,.35)); }
@@ -123,7 +124,7 @@ html, body { margin: 0; padding: 0; background: var(--page); }
   'use strict';
   var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // тексты — из кода (modules/legacy_bonus/legacy_bonus_strings.ts, ru)
-  var T = { title: 'Встречайте PhraseMan 2.0', convert: 'Твои бонусы переходят в монеты', convertSub: 'Всё, что ты накопил раньше, не пропадает — вот итог.', total: 'Итого', cta: 'Понятно',
+  var T = { title: 'Встречайте PhraseMan 2.0', convert: 'Твои бонусы переходят в монеты', total: 'Итого', cta: 'Понятно',
     coin: ['монета', 'монеты', 'монет'], rows: { xp: 'Опыт (XP)', pearls: 'Жемчуг', spins: 'Вращения колеса' } };
   // примеры начислений сервера (числа — пример; в приложении — ровно то, что вернул сервер; строк с нулём нет)
   var STATES = {
@@ -218,7 +219,7 @@ html, body { margin: 0; padding: 0; background: var(--page); }
         '<div class="dim"></div>' +
         '<div class="sheet" data-id="sheet" role="dialog" aria-modal="true"><div class="grab"><i></i></div><div class="body">' +
           '<h1 class="title rv" style="--d:120ms">' + T.title + '</h1>' +
-          '<div class="conv rv" style="--d:200ms"><div class="h">' + T.convert + '</div><div class="sub">' + T.convertSub + '</div>' +
+          '<div class="conv rv" style="--d:200ms"><div class="h">' + T.convert + '</div>' +
             '<div class="plate"><div class="hero"><div class="bigcoin" data-id="bigcoin"><span class="coinimg"></span><span class="mask"></span><span class="ring"></span></div>' +
             '<div class="hnum"><div class="k">' + T.total + '</div><div class="num" data-id="total">0</div><div class="unit" data-id="unit"></div></div></div>' +
             '<div class="rows" data-id="rows"></div></div></div>' +

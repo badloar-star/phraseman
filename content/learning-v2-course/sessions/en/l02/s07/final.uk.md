@@ -1,207 +1,138 @@
-# Англійська · Урок 2 · Заняття 7 — «anxious і relaxed»
+# Англійська · Урок 2 · Заняття 7 — Без зайвих клопотів
 
-**Сцена заняття.** У дворі хостелу Том чекає автобус за місто й нервує, що запізниться. Міра спокійно сидить на лавці з кавою. Ви питаєте кожного, як він почувається.
-**Як сказати:** повторення `Are you + слово?` і відповідей `Yes, I am` / `No, I am not`
-**Нові слова:** anxious, relaxed
-**Повертаються:** cold, thirsty, ok, hungry
+**Ситуація.** Ви готуєте домашній вечір настільних ігор. Обговорюєте, які приготування обов’язкові, а без яких можна обійтися.
+
+**Що ви опануєте:** сказати, що річ або дія не обов’язкова, зберігаючи not після be
+**Нові слова:** necessary
 
 ---
 
 ## Інтро 1
 
-### `anxious` — «тривожно»
+### Можна обійтися
 
-`anxious` — «тривожний, на нервах». Не страх, а той стан, коли начебто все гаразд, а всередині крутиться «а раптом».
+`necessary` — «необхідний», «потрібний». `It is not necessary` — «Це не обов’язково» або «У цьому немає потреби». Для вечора у друзів не потрібно друкувати запрошення. Особливо якщо друг уже сидить у вас на кухні.
 
-Питають про це так само, як про все інше: `are` першим, `you` слідом, слово в кінці — `Are you anxious?` Окремого «тривожишся?» одним словом в англійській не вийде.
+**Друкувати запрошення на домашню зустріч не потрібно. Скажіть, що це необов’язково.**
 
-**Том біля воріт удесяте дивиться на годинник і на розклад. Запитайте, чи він не нервує.**
-
-- ✅ **Are you anxious?**
-- ❌ You are anxious? — *Так ви повідомляєте йому новину. Питання починається з `are`.*
-- ❌ Are anxious you? — *`you` відірвали від `are`. Ці двоє йдуть парою: `are you`, і лише потім слово.*
+- ✅ **It is not necessary.**
+- ❌ It is necessary. — *Це «Необхідно». Тут потрібно `not` після `is`.*
+- ❌ It not necessary. — *Зберігаємо `is`: `It is not necessary`.*
 
 ---
 
 ## Інтро 2
 
-### `relaxed` — «спокійний»
+### Не обов’язково — не означає заборонено
 
-`relaxed` — «розслаблений, спокійний». Людина нікуди не поспішає, плечі опущені.
+`It's not necessary` — коротка форма `It is not necessary`. Фраза дозволяє обійтися без дії, але сама по собі не забороняє її. Якщо можна прийти без подарунка, це ще не заборона приносити подарунок.
 
-Хвостик «-ed» тут обов'язковий. Без нього вийде `relax` — «розслабся», тобто порада замість питання про людину. І `are` в питанні так само стоїть першим: `Are you relaxed?`
+**Для цього вечора подарунок не обов’язковий, але принести його можна. Коротко скажіть, що в ньому немає потреби.**
 
-**Міра на лавці допиває каву і на автобус навіть не дивиться. Запитайте, чи вона спокійна.**
-
-- ✅ **Are you relaxed?**
-- ❌ Are you relax? — *Хвостик «-ed» відірвали. Про стан людини — `relaxed`.*
-- ❌ You relaxed? — *`are` загубилося. Без нього це уривок, а не питання.*
+- ✅ **It's not necessary.**
+- ❌ It's necessary. — *Це обов’язковість. Тут потрібно `not necessary`.*
+- ❌ They're not necessary. — *Обговорюється один подарунок: `It's`.*
 
 ---
 
 ## Інтро 3
 
-### Відповідь — два слова або три
+### Кілька речей
 
-На питання `Are you ok?` короткого «так» замало. Відповідають `Yes, I am` — з `am`, якому в українській відповіді просто немає пари.
+Про кілька необов’язкових речей — `They are not necessary`, коротко `They're not necessary`. Слово `necessary` залишається тим самим. Наприклад, додаткові стільці не потрібні, якщо місць уже достатньо.
 
-Якщо ні — `No, I am not`. Порядок жорсткий: спочатку `I am`, потім `not`. Зате ці дві відповіді годяться на будь-яке питання з `Are you` — хоч про голод, хоч про холод, і слово з питання повторювати не треба.
+**Стільців вистачає всім гостям. Два додаткові стільці не потрібні. Скажіть про ці два стільці.**
 
-**Сусід по кімнаті питає: «`Are you thirsty?`» Пити не хочеться. Відповідайте.**
-
-- ✅ **No, I am not.**
-- ❌ No, I not. — *`am` випало. Про себе — `I am`, і `not` стає після нього.*
-- ❌ No, I am no. — *`no` відповідає на питання, а всередині фрази працює `not`.*
+- ✅ **They are not necessary.**
+- ❌ They is not necessary. — *Після `They` потрібно `are`.*
+- ❌ They are necessary. — *Це «Вони потрібні». Тут потрібне `not`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — anxious**
-<!-- interaction_id: en:lesson-02:session-07:i01; family: listen_choose -->
-Ціль: `anxious`
+**1 · Друкувати запрошення для домашнього вечора не потрібно. Скажіть, що це необов’язково**
+<!-- interaction_id: en:lesson-02:session-07:i01; family: phrase_builder -->
+Плитки: `necessary` `not` `is` `It` `are` → **It is not necessary.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not necessary.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-02:session-07:i02; family: listen_choose -->
-Ціль: `anxious`
-Варіанти: `anxious` · `angry` · `ankle`
-- angry — *Це «злий» — інший стан. Початок `an-` збігається, далі слова розходяться.*
-- ankle — *Це «щиколотка». Збігається лише початок.*
+🔊 *It is not necessary.* → **It is not necessary.** · It is not familiar. · It is not real.
+- It is not familiar. — *У записі останнє слово — `necessary`, а в цьому варіанті — `familiar`.*
+- It is not real. — *У записі останнє слово — `necessary`, а в цьому варіанті — `real`.*
 
+**3 · Два додаткові стільці не потрібні: місць достатньо. Доповніть фразу**
+<!-- interaction_id: en:lesson-02:session-07:i03; family: context_gap_grammar -->
+They ___ not necessary. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про два стільці — `They are not`.*
 
-**3 · Картка слова — relaxed**
-<!-- interaction_id: en:lesson-02:session-07:i03; family: listen_choose -->
-Ціль: `relaxed`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-07:i04; family: speed_match -->
+necessary — необхідний · responsible — відповідальний · independent — незалежний · dependent — залежний
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-07:i04; family: listen_choose -->
-Ціль: `relaxed`
-Варіанти: `relaxed` · `relax` · `related`
-- relax — *Без хвостика «-ed». Це «розслабся», а про стан людини — `relaxed`.*
-- related — *Інше слово, «пов'язаний». Збігається лише початок.*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-07:i05; family: listen_build_dictation -->
+🔊 *It's not necessary.* Плитки: `necessary` `not` `It's` `He's` → **It's not necessary.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's not necessary.`)*
 
+**6 · Додаткові тарілки не потрібні: посуду вистачає. Скажіть про ці тарілки**
+<!-- interaction_id: en:lesson-02:session-07:i06; family: phrase_builder -->
+Плитки: `necessary` `not` `are` `They` `is` → **They are not necessary.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not necessary.`)*
 
-**5 · Складіть фразу — запитайте Тома біля воріт про нерви**
-<!-- interaction_id: en:lesson-02:session-07:i05; family: phrase_builder -->
-Ціль: `Are you anxious?`
-Плитки: `Are` · `you` · `anxious` · `is`
-*Плитка `is` зайва: з `you` потрібна форма `are`: `Are you anxious?`*
+**7 · Друг пропонує роздрукувати правила, але ви можете читати їх з екрана. Коротко скажіть, що друкувати необов’язково**
+<!-- interaction_id: en:lesson-02:session-07:i07; family: scripted_repeat_compare -->
+🎙 **It's not necessary.**
 
-**6 · Вставте слово — Міра на лавці нікуди не поспішає**
-<!-- interaction_id: en:lesson-02:session-07:i06; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `relaxed` · `hungry` · `cold`
-- hungry — *Це «голодний». Про їжу вона нічого не показувала — вона просто сидить і не квапиться.*
-- cold — *Це «змерз». Ідеться про спокій, а не про температуру.*
+**8 · Друг запізнився, але ви не сердитеся. Доповніть фразу про себе**
+<!-- interaction_id: en:lesson-02:session-07:i08; family: context_gap_grammar -->
+I ___ not angry. → **am** · is · are
+- is — *Про себе — `I am not`.*
+- are — *Після `I` потрібно `am`.*
 
+**9 · Послухайте фразу про друга**
+<!-- interaction_id: en:lesson-02:session-07:i09; family: listen_choose -->
+🔊 *He is not scared.* → **He is not scared.** · He is not angry. · He is not responsible.
+- He is not angry. — *У записі останнє слово — `scared`, а в цьому варіанті — `angry`.*
+- He is not responsible. — *У записі останнє слово — `scared`, а в цьому варіанті — `responsible`.*
 
-**7 · Складіть запитання — сусід допив пляшку до дна і питає, де кран**
-<!-- interaction_id: en:lesson-02:session-07:i07; family: phrase_builder -->
-Ціль: `Are you thirsty?`
+**10 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-02:session-07:i10; family: speed_match -->
+It's — It is · They're — They are · I'm — I am · He's — He is
 
-**8 · Послухайте і складіть — «ти спокійний?»**
-<!-- interaction_id: en:lesson-02:session-07:i08; family: listen_build_dictation -->
-Ціль: `Are you relaxed?`
-🔊 *Are you relaxed?* Плитки: `Are` · `you` · `relaxed` · `anxious`
-*Плитка `anxious` зайва: тут питають, чи людина спокійна, тому потрібне `relaxed`: `Are you relaxed?`*
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-07:i11; family: listen_build_dictation -->
+🔊 *They're not necessary.* Плитки: `necessary` `not` `They're` `He's` → **They're not necessary.**
+*(плитка `He's` зайва: тут потрібно `They're` — `They're not necessary.`)*
 
-**9 · Вставте слово — відповідь «так» про себе**
-<!-- interaction_id: en:lesson-02:session-07:i09; family: context_gap_grammar -->
-Ціль: `Yes, I ___ .`
-Варіанти: `am` · `are` · `is`
-- are — *`are` іде з `you`. Про себе — `am`.*
-- is — *У відповіді про себе потрібне `am`.*
+**12 · Малюк поки не обходиться без постійної турботи дорослих. Скажіть, що він ще не незалежний**
+<!-- interaction_id: en:lesson-02:session-07:i12; family: phrase_builder -->
+Плитки: `independent` `not` `is` `He` `are` → **He is not independent.**
+*(плитка `are` зайва: тут потрібно `is` — `He is not independent.`)*
 
+**13 · У грі попереду несподіване завдання, але вам не страшно. Коротко скажіть про це**
+<!-- interaction_id: en:lesson-02:session-07:i13; family: scripted_repeat_compare -->
+🎙 **I'm not scared.**
 
-**10 · Складіть відповідь — вас запитали «`Are you cold?`», а вам не холодно**
-<!-- interaction_id: en:lesson-02:session-07:i10; family: phrase_builder -->
-Ціль: `No, I am not.`
-
-**11 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-07:i11; family: speed_match -->
-Пари: `anxious` — тривожний · `relaxed` — спокійний · `thirsty` — хочу пити · `cold` — холодно
-Ціль: `anxious · relaxed · thirsty · cold`
-
-**12 · Вставте слово — у дворі вітер, Том стоїть в одній футболці й обхопив себе руками**
-<!-- interaction_id: en:lesson-02:session-07:i12; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `cold` · `relaxed` · `thirsty`
-- relaxed — *Це «спокійний». Людина, яка обхопила себе руками на вітрі, виглядає як завгодно, тільки не розслаблено.*
-- thirsty — *Це «хочу пити». Про воду тут нічого не говорить.*
-
-
-**13 · вам справді хочеться їсти**
-<!-- interaction_id: en:lesson-02:session-07:i13; family: phrase_builder -->
-Ціль: `Yes, I am.`
-Плитки: `Yes,` · `I` · `am` · `not`
-*Плитка `not` зайва: це стверджувальна коротка відповідь: `Yes, I am.`*
-
-**14 · Вставте слово — приятель спіткнувся на сходах і тримається за коліно**
+**14 · Купувати нову гру не потрібно: у вас уже є відповідна. Доповніть фразу**
 <!-- interaction_id: en:lesson-02:session-07:i14; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `ok` · `hungry` · `thirsty`
-- hungry — *Це «голодний». Ви питаєте приятеля, чи все з ним гаразд, а не чи він голодний.*
-- thirsty — *Це «хочу пити». Про воду цієї миті ніхто не думає.*
+It ___ not necessary. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Про цю дію — `It is not`.*
 
+**15 · Послухайте коротку фразу й виберіть її**
+<!-- interaction_id: en:lesson-02:session-07:i15; family: listen_choose -->
+🔊 *It's not necessary.* → **It's not necessary.** · It's not real. · It's not fake.
+- It's not real. — *У записі останнє слово — `necessary`, а в цьому варіанті — `real`.*
+- It's not fake. — *У записі останнє слово — `necessary`, а в цьому варіанті — `fake`.*
 
-**15 · Складіть фразу — запитайте приятеля, чи він не голодний**
-<!-- interaction_id: en:lesson-02:session-07:i15; family: phrase_builder -->
-Ціль: `Are you hungry?`
-Плитки: `Are` · `you` · `hungry` · `am`
-*Плитка `am` зайва: з `you` потрібна форма `are`; `am` уживається з `I`.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-07:i16; family: speed_match -->
+necessary — потрібний · angry — сердитий · scared — наляканий · responsible — відповідальний
 
-**16 · Біля автобуса ваш друг увесь час дивиться на табло й мнеться з квитком. Скажіть йому англійською, що хочете дізнатися, чи він тривожиться.**
-<!-- interaction_id: en:lesson-02:session-07:i16:s01; family: scripted_repeat_compare -->
-Ціль: `Are you anxious?`
+**17 · У поїздці друг пропонує роздрукувати карту, але потрібний маршрут уже збережений у вас у телефоні. За умовою паперова копія не потрібна. Скажіть, що друкувати необов’язково**
+<!-- interaction_id: en:lesson-02:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is not necessary.**
 
-**17 · Вікно зачинене, на вас тепла куртка. Скажіть, що вам не холодно.**
-<!-- interaction_id: en:lesson-02:session-07:i16:s02; family: scripted_repeat_compare -->
-Ціль: `No, I am not cold.`
-
-**18 · Друг спокійно п’є чай і нікуди не поспішає. Скажіть йому англійською, що хочете дізнатися, чи він розслаблений.**
-<!-- interaction_id: en:lesson-02:session-07:i17:s01; family: scripted_repeat_compare -->
-Ціль: `Are you relaxed?`
-
-**19 · Друг не їв із ранку й дивиться на меню. Скажіть йому англійською, що хочете дізнатися, чи він голодний.**
-<!-- interaction_id: en:lesson-02:session-07:i17:s02; family: scripted_repeat_compare -->
-Ціль: `Are you hungry?`
-
-**20 · Після сніданку й короткої прогулянки ви спокійні. Скажіть, що ви розслаблені.**
-<!-- interaction_id: en:lesson-02:session-07:i17:s03; family: scripted_repeat_compare -->
-Ціль: `Yes, I am relaxed.`
-
-## Для сборщика
-
-new_words:
-anxious — тривожний, на нервах — «тривожний, на нервах». Коли нічого поганого не сталося, а всередині все одно крутиться «а раптом».
-relaxed — розслаблений, спокійний — «розслаблений, спокійний». Нікуди не поспішає, плечі опущені.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=listen_build_dictation, 9=context_gap_grammar, 10=phrase_builder, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| cold | 6 (пастка), 10 (у репліці), 11 (дошка), 12 | 12 |
-| thirsty | Інтро 3 (у питанні), 7, 11 (дошка), 14 (пастка) | 7 |
-| ok | Інтро 3 (у тексті), 14, 17 (у репліці) | 14 |
-| hungry | 6 (пастка), 14 (пастка), 15, 17 | 15, 17 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | anxious | так — «`anxious` — „тривожний“», «`are` стоїть першим» |
-| Інтро 2 | relaxed | так — «`relaxed` — „розслаблений“», хвостик «-ed», `are` першим |
-| Інтро 3 | No, I am not | так — «Якщо ні — `No, I am not`» |
-
-**3. Дошка пар (завдання 11)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| anxious | 1 | 2 (слух), 5 (складання), 7 (пастка) |
-| relaxed | 3 | 4 (слух), 6 (вибір), 8 (складання) |
-| thirsty | з минулих занять | 7 (вибір), Інтро 3 |
-| cold | з минулих занять | 6 (пастка), 10 (репліка завдання) |

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-07",
   "learningOutcomeByLocale": {
-    "ru": "повторение `Are you + слово?` и ответов `Yes, I am` / `No, I am not`",
-    "uk": "повторення `Are you + слово?` і відповідей `Yes, I am` / `No, I am not`"
+    "ru": "сказать, что вещь или действие не обязательно, сохраняя not после be",
+    "uk": "сказати, що річ або дія не обов’язкова, зберігаючи not після be"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`anxious` — «тревожно»",
-        "uk": "`anxious` — «тривожно»"
+        "ru": "Можно обойтись",
+        "uk": "Можна обійтися"
       },
       "bodyByLocale": {
-        "ru": "`anxious` — «тревожный, на нервах». Не страх, а то состояние, когда всё вроде нормально, а внутри крутится «а вдруг».\n\nСпрашивают об этом так же, как про всё остальное: `are` первым, `you` следом, слово в конце — `Are you anxious?` Отдельного «тревожишься?» одним словом в английском не выйдет.",
-        "uk": "`anxious` — «тривожний, на нервах». Не страх, а той стан, коли начебто все гаразд, а всередині крутиться «а раптом».\n\nПитають про це так само, як про все інше: `are` першим, `you` слідом, слово в кінці — `Are you anxious?` Окремого «тривожишся?» одним словом в англійській не вийде."
+        "ru": "`necessary` — «необходимый», «нужный». `It is not necessary` — «Это не обязательно» или «В этом нет необходимости». Для вечера у друзей не требуется распечатывать приглашение. Особенно если друг уже сидит у вас на кухне.",
+        "uk": "`necessary` — «необхідний», «потрібний». `It is not necessary` — «Це не обов’язково» або «У цьому немає потреби». Для вечора у друзів не потрібно друкувати запрошення. Особливо якщо друг уже сидить у вас на кухні."
       },
       "question": {
         "interactionId": "en:lesson-02:session-07:intro1:q",
         "promptByLocale": {
-          "ru": "Парень у ворот десятый раз смотрит на часы и на расписание. Спросите, не нервничает ли он.",
-          "uk": "Хлопець біля воріт удесяте дивиться на годинник і на розклад. Запитайте, чи він не нервує."
+          "ru": "Распечатывать приглашение для домашней встречи не требуется. Скажите, что это необязательно.",
+          "uk": "Друкувати запрошення на домашню зустріч не потрібно. Скажіть, що це необов’язково."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-07:intro1:r1",
-              "text": "Are you anxious?"
+              "text": "It is not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro1:r2",
-              "text": "You are anxious?"
+              "text": "It is necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro1:r3",
-              "text": "Are anxious you?"
+              "text": "It not necessary."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-07:intro1:r1",
-              "text": "Are you anxious?"
+              "text": "It is not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro1:r2",
-              "text": "You are anxious?"
+              "text": "It is necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro1:r3",
-              "text": "Are anxious you?"
+              "text": "It not necessary."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Парень у ворот десятый раз смотрит на часы и на расписание. Спросите, не нервничает ли он.",
-          "uk": "Хлопець біля воріт удесяте дивиться на годинник і на розклад. Запитайте, чи він не нервує."
+          "ru": "Распечатывать приглашение для домашней встречи не требуется. Скажите, что это необязательно.",
+          "uk": "Друкувати запрошення на домашню зустріч не потрібно. Скажіть, що це необов’язково."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`relaxed` — «спокойный»",
-        "uk": "`relaxed` — «спокійний»"
+        "ru": "Не обязательно — не значит запрещено",
+        "uk": "Не обов’язково — не означає заборонено"
       },
       "bodyByLocale": {
-        "ru": "`relaxed` — «расслаблен, спокоен». Человек никуда не спешит, плечи опущены.\n\nХвост «-ed» тут обязателен. Без него получится `relax` — «расслабься», то есть совет вместо вопроса о человеке. И `are` в вопросе всё так же стоит первым: `Are you relaxed?`",
-        "uk": "`relaxed` — «розслаблений, спокійний». Людина нікуди не поспішає, плечі опущені.\n\nХвостик «-ed» тут обов'язковий. Без нього вийде `relax` — «розслабся», тобто порада замість питання про людину. І `are` в питанні так само стоїть першим: `Are you relaxed?`"
+        "ru": "`It's not necessary` — короткая форма `It is not necessary`. Фраза позволяет обойтись без действия, но сама по себе не запрещает его. Если можно прийти без подарка, это ещё не запрет приносить подарок.",
+        "uk": "`It's not necessary` — коротка форма `It is not necessary`. Фраза дозволяє обійтися без дії, але сама по собі не забороняє її. Якщо можна прийти без подарунка, це ще не заборона приносити подарунок."
       },
       "question": {
         "interactionId": "en:lesson-02:session-07:intro2:q",
         "promptByLocale": {
-          "ru": "Девушка на скамейке допивает кофе и на автобус даже не смотрит. Спросите, спокойна ли она.",
-          "uk": "Дівчина на лавці допиває каву і на автобус навіть не дивиться. Запитайте, чи вона спокійна."
+          "ru": "Для этого вечера подарок не обязателен, но принести его можно. Коротко скажите, что в нём нет необходимости.",
+          "uk": "Для цього вечора подарунок не обов’язковий, але принести його можна. Коротко скажіть, що в ньому немає потреби."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-07:intro2:r1",
-              "text": "Are you relaxed?"
+              "text": "It's not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro2:r2",
-              "text": "Are you relax?"
+              "text": "It's necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro2:r3",
-              "text": "You relaxed?"
+              "text": "They're not necessary."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-07:intro2:r1",
-              "text": "Are you relaxed?"
+              "text": "It's not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro2:r2",
-              "text": "Are you relax?"
+              "text": "It's necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro2:r3",
-              "text": "You relaxed?"
+              "text": "They're not necessary."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Девушка на скамейке допивает кофе и на автобус даже не смотрит. Спросите, спокойна ли она.",
-          "uk": "Дівчина на лавці допиває каву і на автобус навіть не дивиться. Запитайте, чи вона спокійна."
+          "ru": "Для этого вечера подарок не обязателен, но принести его можно. Коротко скажите, что в нём нет необходимости.",
+          "uk": "Для цього вечора подарунок не обов’язковий, але принести його можна. Коротко скажіть, що в ньому немає потреби."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ответ — два слова или три",
-        "uk": "Відповідь — два слова або три"
+        "ru": "Несколько вещей",
+        "uk": "Кілька речей"
       },
       "bodyByLocale": {
-        "ru": "На вопрос `Are you ok?` короткого «да» мало. Отвечают `Yes, I am` — с `am`, которому в русском ответе просто нет пары.\n\nЕсли нет — `No, I am not`. Порядок жёсткий: сначала `I am`, потом `not`. Зато эти два ответа годятся на любой вопрос с `Are you` — хоть про голод, хоть про холод, и слово из вопроса повторять не надо.",
-        "uk": "На питання `Are you ok?` короткого «так» замало. Відповідають `Yes, I am` — з `am`, якому в українській відповіді просто немає пари.\n\nЯкщо ні — `No, I am not`. Порядок жорсткий: спочатку `I am`, потім `not`. Зате ці дві відповіді годяться на будь-яке питання з `Are you` — хоч про голод, хоч про холод, і слово з питання повторювати не треба."
+        "ru": "Про несколько необязательных вещей — `They are not necessary`, коротко `They're not necessary`. Слово `necessary` остаётся тем же. Например, дополнительные стулья не нужны, если мест уже достаточно.",
+        "uk": "Про кілька необов’язкових речей — `They are not necessary`, коротко `They're not necessary`. Слово `necessary` залишається тим самим. Наприклад, додаткові стільці не потрібні, якщо місць уже достатньо."
       },
       "question": {
         "interactionId": "en:lesson-02:session-07:intro3:q",
         "promptByLocale": {
-          "ru": "Сосед по комнате спрашивает: «`Are you thirsty?`» Пить не хочется. Ответьте.",
-          "uk": "Сусід по кімнаті питає: «`Are you thirsty?`» Пити не хочеться. Відповідайте."
+          "ru": "Стульев хватает всем гостям. Два дополнительных стула не нужны. Скажите об этих двух стульях.",
+          "uk": "Стільців вистачає всім гостям. Два додаткові стільці не потрібні. Скажіть про ці два стільці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-07:intro3:r1",
-              "text": "No, I am not."
+              "text": "They are not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro3:r2",
-              "text": "No, I not."
+              "text": "They is not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro3:r3",
-              "text": "No, I am no."
+              "text": "They are necessary."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-07:intro3:r1",
-              "text": "No, I am not."
+              "text": "They are not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro3:r2",
-              "text": "No, I not."
+              "text": "They is not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro3:r3",
-              "text": "No, I am no."
+              "text": "They are necessary."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сосед по комнате спрашивает: «`Are you thirsty?`» Пить не хочется. Ответьте.",
-          "uk": "Сусід по кімнаті питає: «`Are you thirsty?`» Пити не хочеться. Відповідайте."
+          "ru": "Стульев хватает всем гостям. Два дополнительных стула не нужны. Скажите об этих двух стульях.",
+          "uk": "Стільців вистачає всім гостям. Два додаткові стільці не потрібні. Скажіть про ці два стільці."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "160c5b64b508f3550c7e37f3e209a48f89246fe59333e0ecab6dc9e9fcba45ab"
+  "introFingerprint": "d55e250923a9b879d1b11b9b47e10f2cf394f26c89840025e265c084e01ca433"
 }

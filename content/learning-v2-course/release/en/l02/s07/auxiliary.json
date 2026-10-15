@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-07:intro1:r2": {
-          "ru": "Так вы сообщаете ему новость. Вопрос начинается с `are`.",
-          "uk": "Так ви повідомляєте йому новину. Питання починається з `are`."
+          "ru": "Это «Необходимо». Здесь нужно `not` после `is`.",
+          "uk": "Це «Необхідно». Тут потрібно `not` після `is`."
         },
         "en:lesson-02:session-07:intro1:r3": {
-          "ru": "`you` оторвали от `are`. Эти двое идут парой: `are you`, и только потом слово.",
-          "uk": "`you` відірвали від `are`. Ці двоє йдуть парою: `are you`, і лише потім слово."
+          "ru": "Сохраняем `is`: `It is not necessary`.",
+          "uk": "Зберігаємо `is`: `It is not necessary`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-07:intro2:r2": {
-          "ru": "Хвост «-ed» оторвали. Про состояние человека — `relaxed`.",
-          "uk": "Хвостик «-ed» відірвали. Про стан людини — `relaxed`."
+          "ru": "Это обязательность. Здесь нужно `not necessary`.",
+          "uk": "Це обов’язковість. Тут потрібно `not necessary`."
         },
         "en:lesson-02:session-07:intro2:r3": {
-          "ru": "`are` потерялось. Без него это обрывок, а не вопрос.",
-          "uk": "`are` загубилося. Без нього це уривок, а не питання."
+          "ru": "Обсуждается один подарок: `It's`.",
+          "uk": "Обговорюється один подарунок: `It's`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-07:intro3:r2": {
-          "ru": "`am` выпало. Про себя — `I am`, и `not` встаёт после него.",
-          "uk": "`am` випало. Про себе — `I am`, і `not` стає після нього."
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
         },
         "en:lesson-02:session-07:intro3:r3": {
-          "ru": "`no` отвечает на вопрос, а внутри фразы работает `not`.",
-          "uk": "`no` відповідає на питання, а всередині фрази працює `not`."
+          "ru": "Это «Они нужны». Здесь нужен `not`.",
+          "uk": "Це «Вони потрібні». Тут потрібне `not`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1938361c7f9166a270610d6d3951b188a6bc2d8124308bc8424ff06108b4f8c7"
+  "auxiliaryFingerprint": "8dca7db3ea852a16a8701ebbadb924986edc97137930a914e7421dfcf421f1fd"
 }

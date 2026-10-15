@@ -404,7 +404,9 @@
      по которому списываются деньги; меняются в админке «Сайт»). site-config.js
      webPrices — только офлайн-фоллбек до ответа сервера. */
   var remotePrices = null;
-  var remoteCurrency = 'usd';
+  // зачем: все цены сайта в евро; при холодном старте сервера цен (>2,5 с) PayPal рисовался в USD и
+  // перерисовывался в EUR («Detected container element removed from DOM»). Валюта по умолчанию — евро.
+  var remoteCurrency = 'eur';
   var paypalRenderedCurrency = null;
   var PRICE_CACHE_KEY = 'pm_web_prices_cache_v1';
   var PRICE_CACHE_TTL_MS = 60 * 60 * 1000;

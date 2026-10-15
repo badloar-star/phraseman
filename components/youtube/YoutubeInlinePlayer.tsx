@@ -94,6 +94,7 @@ export default function YoutubeInlinePlayer({
   useEffect(() => { videoOpenMark('player mount'); }, []);
   const [playerKey, setPlayerKey] = useState(0);
   const webViewRef = useRef<WebView>(null);
+  const pauseRequestedAtRef = useRef<number | null>(null);
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
   // зачем (Q9, координатор 01.10; D07, PM-080-A3): видео не даёт ни монет, ни рун, ни
   // ускорения энергии. Отсчёт просмотра под награду (use_video_watch_energy_boost) снят
@@ -120,7 +121,10 @@ export default function YoutubeInlinePlayer({
     const unregister = registerYoutubeSeekHandler(videoId, seekController.requestSeek);
     // мгновенная пауза без выгрузки WebView (экран ролика зовёт её на «Тренировать»)
     const unregisterPause = registerYoutubePauseHandler(videoId, () => {
-      webViewRef.current?.injectJavaScript('(function(){try{var p=window.__lingmanPlayer;if(p&&p.pauseVideo)p.pauseVideo();}catch(e){}})();true;');
+      pauseRequestedAtRef.current = Date.now();
+      console.log(`[VIDEO-PAUSE] inject videoId=${videoId} webView=${webViewRef.current ? 'yes' : 'no'}`); // guard-ok: пауза отправлена в плеер
+      // зачем (Ревизор 2.77, Макеты: «пауза не работает»): сбой во внедрённом JS больше не немой — причина уходит мостом в журнал; подтверждение — playing=false от плеера (ниже)
+      webViewRef.current?.injectJavaScript(`(function(){try{var p=window.__lingmanPlayer;if(!p||!p.pauseVideo){window.ReactNativeWebView&&window.ReactNativeWebView.postMessage(JSON.stringify({source:'${LINGMAN_PLAYER_BRIDGE_SOURCE}',type:'pause_error',message:'player_missing'}));return;}p.pauseVideo();}catch(e){window.ReactNativeWebView&&window.ReactNativeWebView.postMessage(JSON.stringify({source:'${LINGMAN_PLAYER_BRIDGE_SOURCE}',type:'pause_error',message:String(e)}));}})();true;`);
     });
     return () => {
       unregister();
@@ -220,6 +224,10 @@ export default function YoutubeInlinePlayer({
         }
         return;
       }
+      if (parsed.type === 'pause_error') {
+        console.warn(`[VIDEO-PAUSE] ERROR videoId=${videoId} message=${String((parsed as { message?: unknown }).message ?? '')}`); // guard-ok: причина сбоя паузы из плеера
+        return;
+      }
       if (parsed.type !== 'playback') return;
       // Арбитраж звука: playing=true — взять аренду (если её нет или её отняли);
       // playing=false — снять. Пробы раз в секунду идемпотентны.
@@ -239,6 +247,10 @@ export default function YoutubeInlinePlayer({
           });
         }
       } else {
+        if (pauseRequestedAtRef.current !== null) {
+          console.log(`[VIDEO-PAUSE] ack playing=false videoId=${videoId} afterMs=${Date.now() - pauseRequestedAtRef.current}`); // guard-ok: плеер подтвердил паузу
+          pauseRequestedAtRef.current = null;
+        }
         releaseAudioClaim('paused_or_ended');
       }
       // YT state 0 = ended: ролик досмотрен — следующее открытие с начала.

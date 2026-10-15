@@ -34,7 +34,8 @@ describe('подключение', () => {
     expect(read('app/flashcards_my_packs.tsx')).toContain('setPendingTrainIntent({ deckId: `pack:${pack.id}`');
     const collection = read('app/flashcards_collection.tsx');
     expect((collection.match(/setPendingTrainIntent\(/g) ?? []).length).toBe(3);
-    expect(read('app/lingman_video_watch.tsx')).toContain('setPendingTrainIntent({ deckId, count: pack?.cardCount ?? 0 });');
+    // 15.10: «Тренировать» на ролике больше не ходит через хаб — намерение не нужно (шторка прямо на экране ролика)
+    expect(read('app/lingman_video_watch.tsx')).not.toContain('setPendingTrainIntent(');
   });
   it('экран ролика ищет набор и в наборах фраз, поиск не обрывается на непустом кэше каталога', () => {
     const watch = read('app/lingman_video_watch.tsx');
@@ -94,18 +95,28 @@ describe('«Видео → Наборы»: тап по набору ролика
 });
 
 describe('плеер ролика: пауза мгновенно, переход сразу, выгрузка после (⚡ Макеты c1_video2)', () => {
-  it('пауза без выгрузки → push СРАЗУ (ролик остаётся в стеке); WebView выгружается после перехода; на возврате снова открывается', () => {
+  it('«Тренировать»: пауза и запомненная позиция, шторка режимов на самом экране ролика (без перехода на хаб); WebView выгружается после перехода; на возврате плеер снова открывается', () => {
     const src = read('app/lingman_video_watch.tsx');
     const body = src.slice(src.indexOf('const trainVideo = useCallback'), src.indexOf('useFocusEffect(useCallback(() => {'));
-    expect(body.indexOf('requestYoutubePause(videoId)')).toBeLessThan(body.indexOf('router.push('));
-    expect(body).not.toContain('setPlayerOpen(false);');
-    expect(body).not.toContain('requestAnimationFrame(');
+    expect(body.indexOf('requestYoutubePause(videoId)')).toBeLessThan(body.indexOf('trainSheet.open()'));
+    expect(body).not.toContain('router.push(');
     expect(body).not.toContain('router.navigate(');
+    expect(body).not.toContain('setPlayerOpen(false);');
+    expect(src).toContain('useDeckTrainSheet({ deckId: trainDeckId');
+    expect(src).toContain('{trainSheet.sheet}');
     expect(src).toContain('InteractionManager.runAfterInteractions(() => {');
     expect(src).toContain('trainNavMark(\'player released after transition\');');
     expect(src).toContain('setPlayerOpen(true); // вернулись на экран ролика');
     expect(read('components/youtube/YoutubeInlinePlayer.tsx')).toContain('registerYoutubePauseHandler(videoId');
     expect(read('app/youtube_player_seek_bus.ts')).toContain('export function requestYoutubePause');
+  });
+  it('шторка режимов: те же ворота, что на хабе (квота → пейвол, блиц только при достаточном числе карточек), старт — push на экран тренировки', () => {
+    const hook = read('app/flashcards/use_deck_train_sheet.tsx');
+    expect(hook).toContain("quotaPreview.status === 'exhausted'");
+    expect(hook).toContain("openPremiumPaywall(router, { context: 'flashcard_training'");
+    expect(hook).toContain("mode === 'blitz' && !canStartBlitz(options.count)");
+    expect(hook).toContain('router.push({ pathname: route.pathname, params: route.params } as never);');
+    expect(hook).toContain('FlashcardsTrainingModeSheet');
   });
   it('чип канала: пока ждём каталог, имя ожидаемого канала не показывается (без промежуточного «Английский»)', () => {
     expect(read('app/lingman_videos.tsx')).toContain("? { ...pendingChannel, displayName: '' }");
@@ -133,15 +144,6 @@ describe('R59 «Видео» (координатор 15.10)', () => {
   });
 });
 
-describe('Макеты c1_video3: «Назад» с хаба возвращает на ролик', () => {
-  it('push несёт returnTo, хаб при нём делает штатный шаг назад по стеку', () => {
-    expect(read('app/lingman_video_watch.tsx')).toContain("returnTo: 'video_watch'");
-    const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
-    expect(hub).toContain("hubParams.returnTo === 'video_watch' && router.canGoBack()");
-    expect(hub).toContain('router.back();');
-  });
-});
-
 describe('Макеты c1_video3: фразы порциями, пауза успевает дойти до плеера', () => {
   it('YoutubeVideoPhrases рисует первые строки в первом кадре, остальное порциями после перехода', () => {
     const src = read('components/youtube/YoutubeVideoPhrases.tsx');
@@ -150,11 +152,17 @@ describe('Макеты c1_video3: фразы порциями, пауза усп
     expect(src).toContain('InteractionManager.runAfterInteractions(() => {');
     expect(src).toContain('activeIndex >= renderLimit');
   });
-  it('push на хаб — после короткой паузы (команда паузы уходит в WebView раньше тяжёлого перехода)', () => {
-    const src = read('app/lingman_video_watch.tsx');
-    expect(src).toContain('TRAIN_PAUSE_HEAD_START_MS = 80');
-    const body = src.slice(src.indexOf('const trainVideo = useCallback'), src.indexOf('useFocusEffect(useCallback(() => {'));
-    expect(body.indexOf('requestYoutubePause(videoId)')).toBeLessThan(body.indexOf('setTimeout(() => {'));
-    expect(body.indexOf('setTimeout(() => {')).toBeLessThan(body.indexOf('router.push('));
+});
+
+describe('плеер: отмена отложенной выгрузки и журнал паузы (Ревизор 2.77)', () => {
+  it('на возврате запоздавшая задача выгрузки отменяется; пауза пишет отправку, ошибку и подтверждение', () => {
+    const watch = read('app/lingman_video_watch.tsx');
+    expect(watch).toContain('releaseHandleRef.current.cancel();');
+    expect(watch).toContain('releaseHandleRef.current = InteractionManager.runAfterInteractions(() => {');
+    const player = read('components/youtube/YoutubeInlinePlayer.tsx');
+    expect(player).toContain('[VIDEO-PAUSE] inject');
+    expect(player).toContain("type:'pause_error'");
+    expect(player).toContain('[VIDEO-PAUSE] ERROR');
+    expect(player).toContain('[VIDEO-PAUSE] ack playing=false');
   });
 });

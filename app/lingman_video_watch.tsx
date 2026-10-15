@@ -30,7 +30,7 @@ import { captureAccountGeneration } from './account_generation';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
 import { useOwnedPack } from './community_packs/useOwnedPack';
 import { PanelDock } from '../components/mistakes-panel/PanelKit';
-import { setPendingTrainIntent } from './flashcards/train_intent';
+import { useDeckTrainSheet } from './flashcards/use_deck_train_sheet';
 import { trainNavMark, trainNavTraceStart } from './train_nav_trace';
 import { videoOpenMark } from './video_open_trace';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from './video_phrase_set_packs';
@@ -186,40 +186,39 @@ export default function LingmanVideoWatchScreen() {
   // зачем (координатор 11.10): после «Добавить набор себе» кнопка внизу становится «Тренировать» и ведёт к карточкам ролика —
   // тот же путь, что раньше шёл из встроенного плеера ленты.
   const trainLabel = triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати вислови ролика', en: 'Practice this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' });
+  // зачем (решение координатора 15.10, Макеты c1_video3): «Тренировать» НЕ уходит на хаб-вкладку (она сворачивала стек, ролик выгружался, «Назад» вёл мимо, первый рендер хаба +2,9 с).
+  // Окно режимов — шторкой прямо на экране ролика (тот же компонент, те же ворота квоты/пейвола); выбор режима → push на экран тренировки; «Назад» возвращает на ролик с той же секунды.
+  const trainDeckId = `pack:video_${videoId}`;
+  const trainSheet = useDeckTrainSheet({ deckId: trainDeckId, count: pack?.cardCount ?? 0, lang, source: 'video_watch' });
   const trainVideo = useCallback(() => {
     console.log(LOG, 'train', JSON.stringify({ videoId })); // guard-ok: вход в тренировку логируется
     console.log(`[VIDEO-PACK-TRAIN] tap videoId=${videoId} packId=${pack?.id ?? 'none'} cards=${pack?.cardCount ?? 0} owned=${String(packOwned)}`); // guard-ok: цепочка ролик → набор → Тренировать
-    // зачем (🔴 Ц1, 15.10): документа набора ролика может не быть — страница набора пустая. «Тренировать» ведёт в окно режимов хаба на колоду этого набора
-    // (карточки — из документа или из фраз ролика); намерение идёт через train_intent, потому что navigate в открытый хаб теряет параметры.
     trainNavTraceStart('video_watch_train_tap');
-    const deckId = `pack:video_${videoId}`;
-    setPendingTrainIntent({ deckId, count: pack?.cardCount ?? 0 });
-    // зачем (Макеты c1_r60b, ⚡ ~760 мс от navigate до первого рендера хаба — плеер/WebView на экране ролика): сперва освобождаем плеер, переход — в следующем кадре.
-    // Вернулись назад — плеер снова открывается (useFocusEffect ниже).
+    // пауза сразу (шторка открывается поверх, звук глохнет); позиция запоминается — на «Назад» ролик встанет на ту же секунду
     const savedPosition = Math.floor(lastPositionRef.current);
     setResumeSec(savedPosition > 0 ? savedPosition : null);
-    // зачем (Макеты c1_video2, 15.10): прежний порядок «выгрузить WebView → navigate» держал переход ~2,5 с, и ролик это время играл. Теперь: пауза мгновенно (звук глохнет сразу),
-    // позиция запомнена, navigate СРАЗУ; WebView выгружается после перехода (useFocusEffect ниже). «Назад» возвращает ролик на ту же секунду.
     const paused = requestYoutubePause(videoId);
-    // зачем (Макеты c1_video3: ролик играл ещё ~2 с после «paused»): команда паузы уходит в нативный слой, только когда JS-поток отдаёт управление, а push сразу занимал его на секунды —
-    // даём паузе дойти (короткая пауза перед push), потом переход.
     console.log(`[VIDEO-PACK-TRAIN] player paused videoId=${videoId} resumeSec=${savedPosition} pauseSent=${String(paused)}`); // guard-ok: позиция запомнена, пауза отправлена
-    trainNavMark('player paused (not unmounted) before navigate');
-    // push, а не navigate: navigate к уже существующему хабу ниже в стеке ВЫБРАСЫВАЛ экран ролика («Назад» вело в список «Видео»); push оставляет ролик в стеке
-    setTimeout(() => {
-      router.push({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0), returnTo: 'video_watch' } } as never);
-      trainNavMark('router.push called');
-    }, TRAIN_PAUSE_HEAD_START_MS);
-  }, [pack?.cardCount, router, videoId]);
+    trainSheet.open();
+    trainNavMark('train sheet opened');
+  }, [pack?.cardCount, pack?.id, packOwned, trainSheet, videoId]);
 
   // зачем ([NAV-PAINT-TRACE], 15.10): когда экран ролика теряет фокус и когда размонтируется — отдельные отметки цепочки «Тренировать → первый кадр хаба»
+  const releaseHandleRef = useRef<{ cancel: () => void } | null>(null);
   useFocusEffect(useCallback(() => {
+    // зачем (Ревизор 2.77 🟡): «Назад» до конца interactions — запоздавшая задача выгрузки не должна выключить уже включённый плеер (пустой плеер)
+    if (releaseHandleRef.current) {
+      releaseHandleRef.current.cancel();
+      releaseHandleRef.current = null;
+      trainNavMark('deferred player release cancelled on refocus');
+    }
     setPlayerOpen(true); // вернулись на экран ролика (в том числе после «Тренировать») — плеер встаёт на запомненную секунду
     return () => {
       trainNavMark('video screen blur');
       // зачем (Макеты c1_video2): тяжёлую выгрузку WebView не ставим на путь первого кадра следующего экрана — после перехода (idle); позицию запоминаем, «Назад» вернёт на ту же секунду
       const position = Math.floor(lastPositionRef.current);
-      InteractionManager.runAfterInteractions(() => {
+      releaseHandleRef.current = InteractionManager.runAfterInteractions(() => {
+        releaseHandleRef.current = null;
         setResumeSec(position > 0 ? position : null);
         setPlayerOpen(false);
         trainNavMark('player released after transition');
@@ -279,6 +278,7 @@ export default function LingmanVideoWatchScreen() {
             </View>
           </PanelDock>
         ) : null}
+      {trainSheet.sheet}
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -288,8 +288,6 @@ export default function LingmanVideoWatchScreen() {
  * Полоса прогресса под плеером (`.bar` макета: 5, радиус 3). Позиция приходит раз в секунду из канала плеера, пока ролик играет;
  * длительность — из каталога (нет её — полосы нет, ничего не выдумываем).
  */
-/** Время, за которое команда паузы успевает уйти в WebView до тяжёлого перехода на хаб (Макеты c1_video3). */
-const TRAIN_PAUSE_HEAD_START_MS = 80;
 
 function WatchProgress({ videoId, durationSec, trackColor, fillColor }: { videoId: string; durationSec?: number; trackColor: string; fillColor: string }) {
   const [positionSec, setPositionSec] = useState(0);

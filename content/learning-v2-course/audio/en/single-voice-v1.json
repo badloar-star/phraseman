@@ -47131,6 +47131,309 @@
           "byteSize": 50688
         }
       ]
+    },
+    "l03/s44/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "hotels",
+          "file": "f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "contentHash": "a042cae9fdf3b3dc5f7d39f857106075bab6cfc6a86b031b68fab8f010f70e0b",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l03/s44/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The hotels are here.",
+          "file": "616fd69e3122bed16649398fa80f8b5a9b8c028a1c0e6e6821f54417f0df9d08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/616fd69e3122bed16649398fa80f8b5a9b8c028a1c0e6e6821f54417f0df9d08.mp3",
+          "contentHash": "7743ce12c31826c46bce34ffe367d72a16326983441d08284900f95df3a258c7",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l03/s44/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The children are curious.",
+          "file": "6a37e8db109e72217e256867d4155e7d081f73f6ff84f3940e7f6553e813b830.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a37e8db109e72217e256867d4155e7d081f73f6ff84f3940e7f6553e813b830.mp3",
+          "contentHash": "03486c42ceee55df7f1f0f07e5b669099a1195579d732a718dda30725d6b2a89",
+          "byteSize": 60288
+        }
+      ]
+    },
+    "l03/s44/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The children are here.",
+          "file": "e0bcbccbcbbbd1e49393abe26637e8cdd2c315444c9e09b10ae69d09b9a3dbd1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0bcbccbcbbbd1e49393abe26637e8cdd2c315444c9e09b10ae69d09b9a3dbd1.mp3",
+          "contentHash": "c12338370901ea9b925242a834cd9061b7724236b19726607b0a8ceab20ec89a",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l03/s44/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "hotels",
+          "file": "f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "contentHash": "a042cae9fdf3b3dc5f7d39f857106075bab6cfc6a86b031b68fab8f010f70e0b",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l03/s44/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "hotels",
+          "file": "c86cf28c736b6e58ec675c89bc74780b26be2e8281b24d183dcade067127ca2e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c86cf28c736b6e58ec675c89bc74780b26be2e8281b24d183dcade067127ca2e.mp3",
+          "contentHash": "f58d4f735d9a80e63d4889475fa9010a70b13883d81f9d2de4b87ff0a993defa",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l03/s44/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "hotels",
+          "file": "f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "contentHash": "a042cae9fdf3b3dc5f7d39f857106075bab6cfc6a86b031b68fab8f010f70e0b",
+          "byteSize": 24192
+        },
+        {
+          "text": "curious",
+          "file": "0225c310571ade4baf51d16873e4b682b231a7fe2463708c9b44f56725c46ad2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a9e7a8af89a3e21f6b9ed2fc-nova.mp3",
+          "contentHash": "1b1c8958f7678106dec808df91602853e2169c3d150b667e3d013832576bb032",
+          "byteSize": 25344
+        },
+        {
+          "text": "legal",
+          "file": "42a98757ee1395419ce249149bae879c87d0241ea71fe75ca12fe3f977d7173a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/42a98757ee1395419ce249149bae879c87d0241ea71fe75ca12fe3f977d7173a.mp3",
+          "contentHash": "d69c090bfb90b0a39899c10a93f622c2027f8009969bbda4913acfe2146b9215",
+          "byteSize": 43008
+        },
+        {
+          "text": "children",
+          "file": "fe62380c7012354fe379a39015968f6efe3f0af04fc465d7c570dcae56f29724.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe62380c7012354fe379a39015968f6efe3f0af04fc465d7c570dcae56f29724.mp3",
+          "contentHash": "1cb9506a5799277c68c6fe67ed17e516a9a8c62b45147e0e07ecbec2536d3a49",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l03/s44/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "These are hotels.",
+          "file": "2cbf4580ea8fd1811b4edf05254c1d01bb5ff13086ee761bfb5c961b3ec6db9b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2cbf4580ea8fd1811b4edf05254c1d01bb5ff13086ee761bfb5c961b3ec6db9b.mp3",
+          "contentHash": "b230813f931481533b0c8eadb902ae1e16f7c821052245faca32c8a19abe7c49",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l03/s44/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The hotels are here.",
+          "file": "616fd69e3122bed16649398fa80f8b5a9b8c028a1c0e6e6821f54417f0df9d08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/616fd69e3122bed16649398fa80f8b5a9b8c028a1c0e6e6821f54417f0df9d08.mp3",
+          "contentHash": "7743ce12c31826c46bce34ffe367d72a16326983441d08284900f95df3a258c7",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l03/s44/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They're curious.",
+          "file": "c7c607e546afff23bd9257e0ada7e1570d19546ba8704854238400f0d4b3325c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c7c607e546afff23bd9257e0ada7e1570d19546ba8704854238400f0d4b3325c.mp3",
+          "contentHash": "8a9a95cfe6e5ecdfff4d3c39d538856476578ecdb3096aa99e1af79a3c4cacb8",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l03/s44/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Those are hotels.",
+          "file": "f0ba511c3f95caa30aa7841c1e16700d4e755ff66739a75e13bb11468273dcf9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0ba511c3f95caa30aa7841c1e16700d4e755ff66739a75e13bb11468273dcf9.mp3",
+          "contentHash": "0b4bdcc6644790bb5fde7c9fd5277db489268e76ab7bc1045555875a8065b303",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l03/s44/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is legal.",
+          "file": "86e3f02e7c1d89b726bb2bd4e4a22480d108ad86ec4aef89306f61aca0c39c8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/86e3f02e7c1d89b726bb2bd4e4a22480d108ad86ec4aef89306f61aca0c39c8b.mp3",
+          "contentHash": "9f210bc5c74c9099a327c1af9dd8916b128ba335cc26c5c6591b7e5e514b6544",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l03/s44/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "hotels",
+          "file": "f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0c199150dc86454f7f428342ac4ccff8379242fbadd01584a12af99239ba095.mp3",
+          "contentHash": "a042cae9fdf3b3dc5f7d39f857106075bab6cfc6a86b031b68fab8f010f70e0b",
+          "byteSize": 24192
+        },
+        {
+          "text": "children",
+          "file": "fe62380c7012354fe379a39015968f6efe3f0af04fc465d7c570dcae56f29724.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe62380c7012354fe379a39015968f6efe3f0af04fc465d7c570dcae56f29724.mp3",
+          "contentHash": "1cb9506a5799277c68c6fe67ed17e516a9a8c62b45147e0e07ecbec2536d3a49",
+          "byteSize": 32640
+        },
+        {
+          "text": "here",
+          "file": "c085a062a5e60c0367830011bfd636d3a4d6ec7896f47a8bad0c59f984917fd4.mp3",
+          "assetPath": "assets/audio/learning-v2/session1-production-v1/here-nova.mp3",
+          "contentHash": "b14fc6fc4012cc40fe11944f0d5bb0dd0523d45f02a8ceed6b0a8c3f11c0c7c7",
+          "byteSize": 22656
+        },
+        {
+          "text": "there",
+          "file": "cbeace6992782d5bce3eed2b9c32dc6e7e38aefeb5ceca0b94e52ffa80926fc0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e244f187f696561d5fd7e00f-nova.mp3",
+          "contentHash": "ab6003d569a4b745a57ab0266af5dc85789297e0153aca206b7599166f491d80",
+          "byteSize": 14208
+        }
+      ]
+    },
+    "l03/s44/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The children are curious.",
+          "file": "6a37e8db109e72217e256867d4155e7d081f73f6ff84f3940e7f6553e813b830.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a37e8db109e72217e256867d4155e7d081f73f6ff84f3940e7f6553e813b830.mp3",
+          "contentHash": "03486c42ceee55df7f1f0f07e5b669099a1195579d732a718dda30725d6b2a89",
+          "byteSize": 60288
+        }
+      ]
+    },
+    "l03/s44/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Those hotels are there.",
+          "file": "758f3dc46189bb5ee6f2385fb8ced4a5509ae16092227ab8e2c711a2f12058e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/758f3dc46189bb5ee6f2385fb8ced4a5509ae16092227ab8e2c711a2f12058e0.mp3",
+          "contentHash": "91b53b80f9f37ad17fba21de5501427b3541a09139657731958316dd8ea698e4",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l03/s44/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's legal.",
+          "file": "50257ee4a67dd711813879b90ae0f62921804be06ca3ed19e3564eccbed5120a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50257ee4a67dd711813879b90ae0f62921804be06ca3ed19e3564eccbed5120a.mp3",
+          "contentHash": "6f1195ce13bd0b9666785123359717c1e453beba9f4dfe9098ad40331187c4a9",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l03/s44/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The hotels are here.",
+          "file": "ccdee73a41fc84c2db0b23dfe0dfc6255d2fb35b04a4605fd93e94b2f69d1de0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ccdee73a41fc84c2db0b23dfe0dfc6255d2fb35b04a4605fd93e94b2f69d1de0.mp3",
+          "contentHash": "856519eb85fb150f862d1c60b6f024d8d013ec875a744213232ee2f5aee21787",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l03/s44/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They are curious.",
+          "file": "4f4445e6a63fa279ac0c312c3a0ae4fce7b373447c42713ceafa06e886d2e7de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f4445e6a63fa279ac0c312c3a0ae4fce7b373447c42713ceafa06e886d2e7de.mp3",
+          "contentHash": "92dc544869f090ac23ed286e2f505ee52a6b435f0f044f3806aabd39deb737b0",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l03/s44/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "hotels",
+          "file": "c86cf28c736b6e58ec675c89bc74780b26be2e8281b24d183dcade067127ca2e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c86cf28c736b6e58ec675c89bc74780b26be2e8281b24d183dcade067127ca2e.mp3",
+          "contentHash": "f58d4f735d9a80e63d4889475fa9010a70b13883d81f9d2de4b87ff0a993defa",
+          "byteSize": 32640
+        },
+        {
+          "text": "curious",
+          "file": "4f42e641f87bad486b3804041220abc17a089b5b5a9c36acbc922ef32ea5adad.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a9e7a8af89a3e21f6b9ed2fc-coral.mp3",
+          "contentHash": "9f1b305a669bdc8517003036cc4737da478e0d003090031fd062fb0006aa2f3f",
+          "byteSize": 34560
+        },
+        {
+          "text": "legal",
+          "file": "6798af4aff018738901ec0cdd455d4ef04c2c11f7891ec9341407188af6eadf4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6798af4aff018738901ec0cdd455d4ef04c2c11f7891ec9341407188af6eadf4.mp3",
+          "contentHash": "fe2575d0250a1ac1e7850a196fcec81723e3c4e5af65df9dc25fa4b0a76c4359",
+          "byteSize": 41088
+        },
+        {
+          "text": "children",
+          "file": "684c14ce9755f891156b8fa7bc3acf698ed4f8ff24434dd95e71ece6d8841374.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/684c14ce9755f891156b8fa7bc3acf698ed4f8ff24434dd95e71ece6d8841374.mp3",
+          "contentHash": "5c1c3b2ab9ab8ab4f55553c422ab2dd4249cf5262957092cfb913aab6dc2c516",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l03/s44/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The hotels are there.",
+          "file": "826457643ac7d94dcf85a11406db3044803cda7f2ae89878d52ddaf0ed0d0ecc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/826457643ac7d94dcf85a11406db3044803cda7f2ae89878d52ddaf0ed0d0ecc.mp3",
+          "contentHash": "dd45b130da37a8d0c0dc04025a91efc8ba645e96ecb7ab9bc513f4db6368f7ca",
+          "byteSize": 31488
+        }
+      ]
     }
   },
   "settings": {

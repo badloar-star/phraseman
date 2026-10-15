@@ -1,0 +1,16 @@
+[SHOT-AT] cards-gap-006 shot_at=2026-10-15T15:16:32.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-gap-005 shot_at=2026-10-15T15:17:36.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-076 shot_at=2026-10-15T15:18:24.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-section-043 shot_at=2026-10-15T15:19:12.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-047 shot_at=2026-10-15T15:19:54.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-gap-001 shot_at=2026-10-15T15:20:42.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-section-032 shot_at=2026-10-15T15:21:29.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-gap-011 shot_at=2026-10-15T15:22:17.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-section-032 shot_at=2026-10-15T15:24:11.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-gap-011 shot_at=2026-10-15T15:24:54.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-section-040 shot_at=2026-10-15T15:25:59.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-section-046 shot_at=2026-10-15T15:27:01.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] cards-section-041 shot_at=2026-10-15T15:27:44.000Z source=shoot_log replace=yes rc=0
+[SHOT-AT] settings-gap-035 shot_at=2026-10-15T15:28:57.000Z source=shoot_log replace=manual rc=0
+[SHOT-AT] cards-section-038 shot_at=2026-10-15T15:18:24.000Z source=shoot_log dup=cards-076
+[SHOT-AT] cards-v2-027 shot_at=2026-10-15T15:24:11.000Z source=shoot_log dup=cards-section-032

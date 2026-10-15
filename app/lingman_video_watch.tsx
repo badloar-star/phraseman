@@ -11,7 +11,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { InteractionManager, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -41,7 +41,7 @@ import { formatRelativeVideoDate } from '../components/video/formatRelativeVideo
 import { LINGMAN_BACK_FALLBACK, safeRouterBack } from './navigation_back';
 import { peekYoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
 import type { VideoPhrasesSource } from './video_phrases_client';
-import { peekYoutubeResume, subscribeYoutubePosition } from './youtube_player_seek_bus';
+import { peekYoutubeResume, requestYoutubePause, subscribeYoutubePosition } from './youtube_player_seek_bus';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useVideoFavorites } from '../hooks/use_video_favorites';
 import { actionToastTri, emitAppEvent } from './events';
@@ -198,19 +198,29 @@ export default function LingmanVideoWatchScreen() {
     // Вернулись назад — плеер снова открывается (useFocusEffect ниже).
     const savedPosition = Math.floor(lastPositionRef.current);
     setResumeSec(savedPosition > 0 ? savedPosition : null);
-    console.log(`[VIDEO-PACK-TRAIN] player paused+released videoId=${videoId} resumeSec=${savedPosition}`); // guard-ok: позиция запомнена
-    setPlayerOpen(false);
-    trainNavMark('player closed before navigate');
-    requestAnimationFrame(() => {
-      router.navigate({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
-      trainNavMark('router.navigate called');
-    });
+    // зачем (Макеты c1_video2, 15.10): прежний порядок «выгрузить WebView → navigate» держал переход ~2,5 с, и ролик это время играл. Теперь: пауза мгновенно (звук глохнет сразу),
+    // позиция запомнена, navigate СРАЗУ; WebView выгружается после перехода (useFocusEffect ниже). «Назад» возвращает ролик на ту же секунду.
+    const paused = requestYoutubePause(videoId);
+    console.log(`[VIDEO-PACK-TRAIN] player paused videoId=${videoId} resumeSec=${savedPosition} pauseSent=${String(paused)}`); // guard-ok: позиция запомнена, пауза отправлена
+    trainNavMark('player paused (not unmounted) before navigate');
+    // push, а не navigate: navigate к уже существующему хабу ниже в стеке ВЫБРАСЫВАЛ экран ролика («Назад» вело в список «Видео»); push оставляет ролик в стеке
+    router.push({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
+    trainNavMark('router.push called');
   }, [pack?.cardCount, router, videoId]);
 
   // зачем ([NAV-PAINT-TRACE], 15.10): когда экран ролика теряет фокус и когда размонтируется — отдельные отметки цепочки «Тренировать → первый кадр хаба»
   useFocusEffect(useCallback(() => {
-    setPlayerOpen(true); // вернулись на экран ролика (в том числе после «Тренировать») — плеер снова на месте
-    return () => trainNavMark('video screen blur');
+    setPlayerOpen(true); // вернулись на экран ролика (в том числе после «Тренировать») — плеер встаёт на запомненную секунду
+    return () => {
+      trainNavMark('video screen blur');
+      // зачем (Макеты c1_video2): тяжёлую выгрузку WebView не ставим на путь первого кадра следующего экрана — после перехода (idle); позицию запоминаем, «Назад» вернёт на ту же секунду
+      const position = Math.floor(lastPositionRef.current);
+      InteractionManager.runAfterInteractions(() => {
+        setResumeSec(position > 0 ? position : null);
+        setPlayerOpen(false);
+        trainNavMark('player released after transition');
+      });
+    };
   }, []));
   useEffect(() => () => trainNavMark('video screen unmount'), []);
 

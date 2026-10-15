@@ -24,6 +24,30 @@ let pendingSeek: { videoId: string; seconds: number; atMs: number } | null = nul
 /** Отложенная перемотка живёт недолго: иначе старый тап сработал бы через минуты. */
 const PENDING_TTL_MS = 15_000;
 
+// зачем (Макеты c1_video2, 15.10: выгрузка WebView занимала ~2,5 с и ролик это время играл, navigate ждал выгрузки): мгновенная пауза БЕЗ выгрузки — звук глохнет в тот же кадр,
+// тяжёлую выгрузку делаем уже после перехода. Плеер регистрирует обработчик паузы, пока он на экране.
+const pauseHandlers = new Map<string, () => void>();
+
+export function registerYoutubePauseHandler(videoId: string, handler: () => void): () => void {
+  pauseHandlers.set(videoId, handler);
+  return () => {
+    if (pauseHandlers.get(videoId) === handler) pauseHandlers.delete(videoId);
+  };
+}
+
+/** Поставить ролик на паузу сразу. false — плеера этого ролика нет (пауза не нужна). */
+export function requestYoutubePause(videoId: string): boolean {
+  const handler = pauseHandlers.get(videoId);
+  if (!handler) return false;
+  try {
+    handler();
+    return true;
+  } catch (error: unknown) {
+    console.warn(`[VIDEO-PAUSE] ${videoId} пауза не удалась reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+    return false;
+  }
+}
+
 export function registerYoutubeSeekHandler(videoId: string, handler: SeekHandler): () => void {
   seekHandlers.set(videoId, handler);
   return () => {

@@ -11,7 +11,7 @@ import {
   LINGMAN_YOUTUBE_EMBED_BASE_URL,
 } from '../../app/lingman_youtube';
 import { getLingmanYoutubeChrome } from '../../app/lingman_youtube_chrome';
-import { publishYoutubePosition, registerYoutubeSeekHandler, takePendingYoutubeSeek } from '../../app/youtube_player_seek_bus';
+import { publishYoutubePosition, registerYoutubePauseHandler, registerYoutubeSeekHandler, takePendingYoutubeSeek } from '../../app/youtube_player_seek_bus';
 import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { forgetYoutubePosition, readYoutubeResumeSec, rememberYoutubePosition } from '../../app/youtube_resume_position';
 import { triLang } from '../../constants/i18n';
@@ -118,8 +118,13 @@ export default function YoutubeInlinePlayer({
     if (!active) return undefined;
     console.log(`[VIDEO-SEEK] ${videoId} плеер зарегистрировал обработчик`);
     const unregister = registerYoutubeSeekHandler(videoId, seekController.requestSeek);
+    // мгновенная пауза без выгрузки WebView (экран ролика зовёт её на «Тренировать»)
+    const unregisterPause = registerYoutubePauseHandler(videoId, () => {
+      webViewRef.current?.injectJavaScript('(function(){try{var p=window.__lingmanPlayer;if(p&&p.pauseVideo)p.pauseVideo();}catch(e){}})();true;');
+    });
     return () => {
       unregister();
+      unregisterPause();
       console.log(`[VIDEO-SEEK] ${videoId} обработчик снят`);
     };
   }, [active, seekController, videoId]);

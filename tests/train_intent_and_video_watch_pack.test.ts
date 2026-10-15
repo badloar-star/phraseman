@@ -93,13 +93,22 @@ describe('«Видео → Наборы»: тап по набору ролика
   });
 });
 
-describe('плеер ролика освобождается до перехода на хаб (⚡ Макеты c1_r60b)', () => {
-  it('setPlayerOpen(false) до navigate (в следующем кадре), на возврате плеер снова открывается', () => {
+describe('плеер ролика: пауза мгновенно, переход сразу, выгрузка после (⚡ Макеты c1_video2)', () => {
+  it('пауза без выгрузки → push СРАЗУ (ролик остаётся в стеке); WebView выгружается после перехода; на возврате снова открывается', () => {
     const src = read('app/lingman_video_watch.tsx');
     const body = src.slice(src.indexOf('const trainVideo = useCallback'), src.indexOf('useFocusEffect(useCallback(() => {'));
-    expect(body.indexOf('setPlayerOpen(false);')).toBeLessThan(body.indexOf('router.navigate('));
-    expect(body).toContain('requestAnimationFrame(() => {');
+    expect(body.indexOf('requestYoutubePause(videoId)')).toBeLessThan(body.indexOf('router.push('));
+    expect(body).not.toContain('setPlayerOpen(false);');
+    expect(body).not.toContain('requestAnimationFrame(');
+    expect(body).not.toContain('router.navigate(');
+    expect(src).toContain('InteractionManager.runAfterInteractions(() => {');
+    expect(src).toContain('trainNavMark(\'player released after transition\');');
     expect(src).toContain('setPlayerOpen(true); // вернулись на экран ролика');
+    expect(read('components/youtube/YoutubeInlinePlayer.tsx')).toContain('registerYoutubePauseHandler(videoId');
+    expect(read('app/youtube_player_seek_bus.ts')).toContain('export function requestYoutubePause');
+  });
+  it('чип канала: ожидаемый канал Lingman сразу под именем «Professor Lingman»', () => {
+    expect(read('app/lingman_videos.tsx')).toContain('pendingChannel.youtubeChannelId === LINGMAN_CHANNEL_ID ? { ...pendingChannel, displayName: LINGMAN_CHANNEL_DISPLAY_NAME }');
   });
 });
 

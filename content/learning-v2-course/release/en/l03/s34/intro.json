@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-34",
   "learningOutcomeByLocale": {
-    "ru": "`those + plural noun` и `Those are…` для нескольких предметов вдали",
-    "uk": "`those + plural noun` і `Those are…` для кількох предметів удалині"
+    "ru": "указать на кошелёк рядом или дальше и на нескольких кошек",
+    "uk": "указати на гаманець поруч або далі й на кількох котів"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Показать на несколько пледов вдали",
-        "uk": "Показати на кілька пледів удалині"
+        "ru": "Кошелёк на столе",
+        "uk": "Гаманець на столі"
       },
       "bodyByLocale": {
-        "ru": "`blanket` — «плед», `blankets` — «пледы». Продавец показывает на несколько пледов на дальней полке. Назовите эту группу: `Those are blankets.` — «Это пледы». `Those` указывает на несколько предметов вдали, поэтому после него стоит `are`. Пледов несколько — слову `a` здесь некуда садиться.",
-        "uk": "`blanket` — «плед», `blankets` — «пледи». Продавець показує на кілька пледів на дальній полиці. Назвіть цю групу: `Those are blankets.` — «Це пледи». `Those` указує на кілька предметів удалині, тому після нього стоїть `are`. Пледів кілька — слову `a` тут уже ніде вмоститися."
+        "ru": "`wallet` — «кошелёк». `This is a wallet` — «Это кошелёк»: показываем на один кошелёк рядом. Для одного дальше — `That is a wallet`. В обеих фразах перед `wallet` нужно `a`. Олег проверил все карманы, кроме того, в котором лежал кошелёк. Последний карман снова оказался самым полезным.",
+        "uk": "`wallet` — «гаманець». `This is a wallet` — «Це гаманець»: показуємо на один гаманець поруч. Для одного далі — `That is a wallet`. В обох фразах перед `wallet` потрібне `a`. Олег перевірив усі кишені, крім тієї, у якій лежав гаманець. Остання кишеня знову виявилася найкориснішою."
       },
       "question": {
         "interactionId": "en:lesson-03:session-34:intro1:q",
         "promptByLocale": {
-          "ru": "Несколько пледов лежат в дальней витрине. Назовите их.",
-          "uk": "Кілька пледів лежать у дальній вітрині. Назвіть їх."
+          "ru": "Кошелёк лежит прямо перед вами. Назовите его полной фразой со словом для одного предмета рядом.",
+          "uk": "Гаманець лежить просто перед вами. Назвіть його повною фразою зі словом для одного предмета поруч."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-34:intro1:r1",
-              "text": "Those are blankets."
+              "text": "This is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-34:intro1:r2",
-              "text": "That is a blanket."
+              "text": "That is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-34:intro1:r3",
-              "text": "Those is blankets."
+              "text": "This is wallet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-34:intro1:r1",
-              "text": "Those are blankets."
+              "text": "This is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-34:intro1:r2",
-              "text": "That is a blanket."
+              "text": "That is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-34:intro1:r3",
-              "text": "Those is blankets."
+              "text": "This is wallet."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Несколько пледов лежат в дальней витрине. Назовите их.",
-          "uk": "Кілька пледів лежать у дальній вітрині. Назвіть їх."
+          "ru": "Кошелёк лежит прямо перед вами. Назовите его полной фразой со словом для одного предмета рядом.",
+          "uk": "Гаманець лежить просто перед вами. Назвіть його повною фразою зі словом для одного предмета поруч."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Согласовать указатель и число",
-        "uk": "Узгодити вказівне слово й число"
+        "ru": "Не тот предмет",
+        "uk": "Не той предмет"
       },
       "bodyByLocale": {
-        "ru": "`sheet` — «простыня», `sheets` — «простыни». На дальней полке лежит целая стопка, и вы говорите продавцу: `Those are sheets.` — «Это простыни». Вся фраза считает вместе с вами: `those`, `are` и `sheets` говорят о нескольких вещах. Без `s` одна простыня попыталась бы отвечать за всю стопку.",
-        "uk": "`sheet` — «простирадло», `sheets` — «простирадла». На дальній полиці лежить ціла стопка, і ви кажете продавцеві: `Those are sheets.` — «Це простирадла». Уся фраза рахує разом із вами: `those`, `are` і `sheets` говорять про кілька речей. Без `s` одне простирадло відповідало б за всю стопку."
+        "ru": "`That is a wallet` — показываем на один кошелёк дальше. Если называем вещь сразу после `that`, слово `a` между ними не ставим: `that wallet` — «тот кошелёк». Например, `That wallet is here` — «Тот кошелёк здесь»: тот, о котором говорили раньше, нашёлся здесь. Расстояние — не единственный повод выбрать `that`, но в упражнениях этой встречи смотрим, где лежит предмет.",
+        "uk": "`That is a wallet` — показуємо на один гаманець далі. Якщо називаємо річ одразу після `that`, слово `a` між ними не ставимо: `that wallet` — «той гаманець». Наприклад, `That wallet is here` — «Той гаманець тут»: той, про який говорили раніше, знайшовся тут. Відстань — не єдиний привід вибрати `that`, але у вправах цієї зустрічі дивимося, де лежить предмет."
       },
       "question": {
         "interactionId": "en:lesson-03:session-34:intro2:q",
         "promptByLocale": {
-          "ru": "На дальней полке лежат несколько простыней. Назовите их.",
-          "uk": "На дальній полиці лежать кілька простирадл. Назвіть їх."
+          "ru": "Кошелёк лежит на полке в другом конце комнаты. Назовите его полной фразой со словом для одного предмета дальше.",
+          "uk": "Гаманець лежить на полиці в іншому кінці кімнати. Назвіть його повною фразою зі словом для одного предмета далі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-34:intro2:r1",
-              "text": "Those are sheets."
+              "text": "That is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-34:intro2:r2",
-              "text": "Those are sheet."
+              "text": "This is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-34:intro2:r3",
-              "text": "That are sheets."
+              "text": "Those are a wallet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-34:intro2:r1",
-              "text": "Those are sheets."
+              "text": "That is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-34:intro2:r2",
-              "text": "Those are sheet."
+              "text": "This is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-34:intro2:r3",
-              "text": "That are sheets."
+              "text": "Those are a wallet."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На дальней полке лежат несколько простыней. Назовите их.",
-          "uk": "На дальній полиці лежать кілька простирадл. Назвіть їх."
+          "ru": "Кошелёк лежит на полке в другом конце комнаты. Назовите его полной фразой со словом для одного предмета дальше.",
+          "uk": "Гаманець лежить на полиці в іншому кінці кімнати. Назвіть його повною фразою зі словом для одного предмета далі."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Назвать или выбрать группу",
-        "uk": "Назвати або вибрати групу"
+        "ru": "Кошки не помогают",
+        "uk": "Коти не допомагають"
       },
       "bodyByLocale": {
-        "ru": "`duvet` — «пуховое одеяло», `duvets` — «пуховые одеяла». На дальней полке скажите: `Those are duvets.` — «Это пуховые одеяла». Чтобы выбрать их, скажите `Those duvets, please.` — «Те пуховые одеяла, пожалуйста». Здесь `are` не нужно: вы выбираете товар, и короткой просьбы хватит.",
-        "uk": "`duvet` — «пухова ковдра», `duvets` — «пухові ковдри». На дальній полиці скажіть: `Those are duvets.` — «Це пухові ковдри». Щоб вибрати їх, скажіть `Those duvets, please.` — «Ті пухові ковдри, будь ласка». Тут `are` не потрібне: ви вибираєте товар, і короткого прохання вистачить."
+        "ru": "`afraid` — «боится, испуганный», `inactive` — «неактивный». Шум напугал кошек у дальней двери: `Those cats are afraid` — «Те кошки боятся». Кошки рядом спокойно лежат и ничего не делают: `These cats are inactive` — «Эти кошки неактивны». `these` выбирает нескольких рядом, `those` — нескольких дальше; с обеими группами здесь нужно `are`.",
+        "uk": "`afraid` — «боїться, наляканий», `inactive` — «неактивний». Шум налякав котів біля дальніх дверей: `Those cats are afraid` — «Ті коти бояться». Коти поруч спокійно лежать і нічого не роблять: `These cats are inactive` — «Ці коти неактивні». `these` вибирає кількох поруч, `those` — кількох далі; з обома групами тут потрібно `are`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-34:intro3:q",
         "promptByLocale": {
-          "ru": "На дальней полке лежат несколько пуховых одеял. Выберите точную фразу.",
-          "uk": "На дальній полиці лежать кілька пухових ковдр. Виберіть точну фразу."
+          "ru": "Несколько кошек лежат рядом и совсем не двигаются. Скажите «Эти кошки неактивны».",
+          "uk": "Кілька котів лежать поруч і зовсім не рухаються. Скажіть «Ці коти неактивні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-34:intro3:r1",
-              "text": "Those are duvets."
+              "text": "These cats are inactive."
             },
             {
               "responseId": "en:lesson-03:session-34:intro3:r2",
-              "text": "That is a duvet."
+              "text": "This cats are inactive."
             },
             {
               "responseId": "en:lesson-03:session-34:intro3:r3",
-              "text": "Those is duvets."
+              "text": "These cats is inactive."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-34:intro3:r1",
-              "text": "Those are duvets."
+              "text": "These cats are inactive."
             },
             {
               "responseId": "en:lesson-03:session-34:intro3:r2",
-              "text": "That is a duvet."
+              "text": "This cats are inactive."
             },
             {
               "responseId": "en:lesson-03:session-34:intro3:r3",
-              "text": "Those is duvets."
+              "text": "These cats is inactive."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На дальней полке лежат несколько пуховых одеял. Выберите точную фразу.",
-          "uk": "На дальній полиці лежать кілька пухових ковдр. Виберіть точну фразу."
+          "ru": "Несколько кошек лежат рядом и совсем не двигаются. Скажите «Эти кошки неактивны».",
+          "uk": "Кілька котів лежать поруч і зовсім не рухаються. Скажіть «Ці коти неактивні»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7359e885ade470c65f32d9e1dc0512ed3fbfeb4dced66fcf11e375e105c3a6e2"
+  "introFingerprint": "965ad9487708b4b9ee2f342779560c24e662600995cac0f530b69868019dece2"
 }

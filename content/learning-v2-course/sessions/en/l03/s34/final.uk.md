@@ -1,158 +1,138 @@
-# Англійська · Урок 3 · Заняття 34 — «Кілька речей у дальній вітрині»
+# Англійська · Урок 3 · Заняття 34 — Гаманець після зустрічі
 
-**Сцена заняття.** У магазині домашнього текстилю ви вибираєте речі для гостьової кімнати. Поруч на ближній полиці лежить одна подушка, а на дальній стіні — кілька пледів, простирадл, пухових ковдр і подушок; вам треба назвати кожну групу й попросити зняти потрібну з полиці.
+**Ситуація.** Після зустрічі в клубі Анна збирає забуті речі. Один гаманець лежить поруч на столі, інший — на дальній полиці. Олег шукає свій гаманець, а клубні коти спостерігають за пошуками.
 
-**Як сказати:** `those + plural noun` і `Those are…` для кількох предметів удалині
-**Нові слова:** blanket, sheet, duvet
-**Для повторення:** pillow, that, these, are, please
+**Що ви опануєте:** указати на гаманець поруч або далі й на кількох котів
+**Нові слова:** wallet
 
 ---
 
 ## Інтро 1
 
-### Показати на кілька пледів удалині
+### Гаманець на столі
 
-`blanket` — «плед», `blankets` — «пледи». Продавець показує на кілька пледів на дальній полиці. Назвіть цю групу: `Those are blankets.` — «Це пледи». `Those` указує на кілька предметів удалині, тому після нього стоїть `are`. Пледів кілька — слову `a` тут уже ніде вмоститися.
+`wallet` — «гаманець». `This is a wallet` — «Це гаманець»: показуємо на один гаманець поруч. Для одного далі — `That is a wallet`. В обох фразах перед `wallet` потрібне `a`. Олег перевірив усі кишені, крім тієї, у якій лежав гаманець. Остання кишеня знову виявилася найкориснішою.
 
-**Кілька пледів лежать у дальній вітрині. Назвіть їх.**
+**Гаманець лежить просто перед вами. Назвіть його повною фразою зі словом для одного предмета поруч.**
 
-- ✅ **Those are blankets.**
-- ❌ That is a blanket. — *Так називають один плед удалині. У вітрині їх кілька, тому потрібні `those are` і `blankets`.*
-- ❌ Those is blankets. — *`those` указує на кілька предметів і потребує форми `are`, а не `is`.*
+- ✅ **This is a wallet.**
+- ❌ That is a wallet. — *Тут вибираємо за відстанню: гаманець поруч, тому `This`.*
+- ❌ This is wallet. — *Називаючи предмет у цій фразі, кажемо `a wallet`.*
 
 ---
 
 ## Інтро 2
 
-### Узгодити вказівне слово й число
+### Не той предмет
 
-`sheet` — «простирадло», `sheets` — «простирадла». На дальній полиці лежить ціла стопка, і ви кажете продавцеві: `Those are sheets.` — «Це простирадла». Уся фраза рахує разом із вами: `those`, `are` і `sheets` говорять про кілька речей. Без `s` одне простирадло відповідало б за всю стопку.
+`That is a wallet` — показуємо на один гаманець далі. Якщо називаємо річ одразу після `that`, слово `a` між ними не ставимо: `that wallet` — «той гаманець». Наприклад, `That wallet is here` — «Той гаманець тут»: той, про який говорили раніше, знайшовся тут. Відстань — не єдиний привід вибрати `that`, але у вправах цієї зустрічі дивимося, де лежить предмет.
 
-**На дальній полиці лежать кілька простирадл. Назвіть їх.**
+**Гаманець лежить на полиці в іншому кінці кімнати. Назвіть його повною фразою зі словом для одного предмета далі.**
 
-- ✅ **Those are sheets.**
-- ❌ Those are sheet. — *Після `those are` потрібна назва кількох предметів: `sheets`, а не `sheet`.*
-- ❌ That are sheets. — *`that` указує на один предмет. Для кількох простирадл удалині потрібне `those`.*
+- ✅ **That is a wallet.**
+- ❌ This is a wallet. — *Для предмета далі в цій вправі потрібне `That`.*
+- ❌ Those are a wallet. — *`Those` — кілька далі. Гаманець один: `That is a wallet`.*
 
 ---
 
 ## Інтро 3
 
-### Назвати або вибрати групу
+### Коти не допомагають
 
-`duvet` — «пухова ковдра», `duvets` — «пухові ковдри». На дальній полиці скажіть: `Those are duvets.` — «Це пухові ковдри». Щоб вибрати їх, скажіть `Those duvets, please.` — «Ті пухові ковдри, будь ласка». Тут `are` не потрібне: ви вибираєте товар, і короткого прохання вистачить.
+`afraid` — «боїться, наляканий», `inactive` — «неактивний». Шум налякав котів біля дальніх дверей: `Those cats are afraid` — «Ті коти бояться». Коти поруч спокійно лежать і нічого не роблять: `These cats are inactive` — «Ці коти неактивні». `these` вибирає кількох поруч, `those` — кількох далі; з обома групами тут потрібно `are`.
 
-**На дальній полиці лежать кілька пухових ковдр. Виберіть точну фразу.**
+**Кілька котів лежать поруч і зовсім не рухаються. Скажіть «Ці коти неактивні».**
 
-- ✅ **Those are duvets.**
-- ❌ That is a duvet. — *Фраза підходить для однієї пухової ковдри. Тут їх кілька, тому потрібно `Those are duvets`.*
-- ❌ Those is duvets. — *Після вказівного слова для кількох предметів `those` потрібна форма `are`.*
+- ✅ **These cats are inactive.**
+- ❌ This cats are inactive. — *`This` — один предмет. Для кількох поруч потрібне `These`.*
+- ❌ These cats is inactive. — *Котів кілька: потрібно `are`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-34:i01; family: listen_choose -->
-Ціль: `blanket`
-Варіанти: `blanket`
+**1 · Шум налякав котів. Повідомте «Коти бояться»**
+<!-- interaction_id: en:lesson-03:session-34:i01; family: phrase_builder -->
+Плитки: `afraid` `are` `cats` `The` `is` → **The cats are afraid.**
+*(плитка `is` зайва: тут потрібно `are` — `The cats are afraid.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-34:i03; family: scripted_repeat_compare -->
-Ціль: `sheet`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-34:i02; family: listen_choose -->
+🔊 *wallet* → **wallet** · window · phone
+- window — *У записі перше слово — `wallet`, а в цьому варіанті — `window`.*
+- phone — *У записі перше слово — `wallet`, а в цьому варіанті — `phone`.*
 
-**3 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-34:i05; family: listen_choose -->
-Ціль: `duvet`
-Варіанти: `duvet` · `blanket` · `sheet`
-- blanket — *`blanket` — плед. У записі звучить `duvet` — пухова ковдра.*
-- sheet — *`sheet` — простирадло. У записі звучить `duvet` — пухова ковдра.*
+**3 · Назвіть гаманець одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-34:i03; family: context_gap_grammar -->
+___ → **wallet** · window · phone
+- window — *`window` — вікно. Гаманець — `wallet`.*
+- phone — *`phone` — телефон. Гаманець — `wallet`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-34:i04; family: speed_match -->
+wallet — гаманець · cats — коти · afraid — боїться, наляканий · inactive — неактивний
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-34:i02; family: scripted_repeat_compare -->
-Ціль: `blanket`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-34:i05; family: listen_build_dictation -->
+🔊 *This is a wallet.* Плитки: `wallet` `a` `is` `This` `are` → **This is a wallet.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a wallet.`)*
 
-**5 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-34:i04; family: listen_choose -->
-Ціль: `sheet`
-Варіанти: `sheet`
+**6 · Гаманець лежить на дальній полиці. Назвіть його зі словом для одного предмета далі**
+<!-- interaction_id: en:lesson-03:session-34:i06; family: phrase_builder -->
+Плитки: `wallet` `a` `is` `That` `are` → **That is a wallet.**
+*(плитка `are` зайва: тут потрібно `is` — `That is a wallet.`)*
 
-**6 · Розрізніть слово — duvet або duty**
-<!-- interaction_id: en:lesson-03:session-34:i06; family: sound_contrast -->
-Ціль: `duvet`
-Варіанти: `duvet` · `duty`
-- duty — *`duty` — обов'язок. У записі після du чути `vet`: `duvet`.*
+**7 · Коти просто поруч лежать без руху. Скажіть «Ці коти неактивні»**
+<!-- interaction_id: en:lesson-03:session-34:i07; family: scripted_repeat_compare -->
+🎙 **These cats are inactive.**
 
+**8 · Ви називаєте один гаманець перед собою**
+<!-- interaction_id: en:lesson-03:session-34:i08; family: context_gap_grammar -->
+This is ___ wallet. → **a** · an · are
+- an — *Перед `wallet` тут потрібне `a`: `a wallet`.*
+- are — *У цій фразі перед `wallet` потрібне `a`.*
 
-**7 · Складіть коротке прохання — подушка лежить поруч**
-<!-- interaction_id: en:lesson-03:session-34:i08; family: phrase_builder -->
-Ціль: `This pillow, please.`
+**9 · Послухайте й виберіть точну фразу**
+<!-- interaction_id: en:lesson-03:session-34:i09; family: listen_choose -->
+🔊 *Those cats are afraid.* → **Those cats are afraid.** · These cats are afraid. · The cats are afraid.
+- These cats are afraid. — *У записі перше слово — `Those`, а в цьому варіанті — `These`.*
+- The cats are afraid. — *У записі перше слово — `Those`, а в цьому варіанті — `The`.*
 
-**8 · Послухайте та складіть коротке прохання**
-<!-- interaction_id: en:lesson-03:session-34:i09; family: listen_build_dictation -->
-Ціль: `Those pillows, please.`
+**10 · З’єднайте слова зі значеннями для наших прикладів**
+<!-- interaction_id: en:lesson-03:session-34:i10; family: speed_match -->
+this — цей, один поруч · that — той, один далі · these — ці, кілька поруч · those — ті, кілька далі
 
-**9 · Промовте коротке прохання**
-<!-- interaction_id: en:lesson-03:session-34:i10; family: scripted_repeat_compare -->
-Ціль: `That pillow, please.`
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-34:i11; family: listen_build_dictation -->
+🔊 *Those cats are inactive.* Плитки: `inactive` `are` `cats` `Those` `is` → **Those cats are inactive.**
+*(плитка `is` зайва: тут потрібно `are` — `Those cats are inactive.`)*
 
-**10 · З'єднайте слова зі значеннями — відділ постільних товарів**
-<!-- interaction_id: en:lesson-03:session-34:i07; family: speed_match -->
-Пари: `blanket` — плед · `sheet` — простирадло · `duvet` — пухова ковдра · `pillow` — подушка
-Ціль: `blanket · sheet · duvet · pillow`
+**12 · Ви показуєте на гаманець просто перед собою. Скажіть «Цей гаманець тут»**
+<!-- interaction_id: en:lesson-03:session-34:i12; family: phrase_builder -->
+Плитки: `here` `is` `wallet` `This` `are` → **This wallet is here.**
+*(плитка `are` зайва: тут потрібно `is` — `This wallet is here.`)*
 
-**11 · Складіть твердження — кілька пледів лежать у дальній вітрині**
-<!-- interaction_id: en:lesson-03:session-34:i11; family: phrase_builder -->
-Ціль: `Those are blankets.`
+**13 · Несподіваний шум налякав і вас. Скажіть «Я боюся» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-34:i13; family: scripted_repeat_compare -->
+🎙 **I'm afraid.**
 
-**12 · Послухайте й виберіть точне значення фрази**
-<!-- interaction_id: en:lesson-03:session-34:i12; family: listen_choose -->
-Ціль: `Those are shoes.`
-Варіанти: `Он ті туфлі.` · `Це туфля.` · `Це шкарпетки.` · `Ті туфлі, будь ласка.`
-- Це туфля. — *Так називають один предмет. У записі `those are` і форма `shoes` указують на кілька туфель.*
-- Це шкарпетки. — *Число збігається, але в записі назвали `shoes` — туфлі, а не шкарпетки.*
-- Ті туфлі, будь ласка. — *Це прохання вибрати туфлі. У записі їх просто називають: `Those are shoes`.*
+**14 · Ви показуєте на кількох наляканих котів у дальньому кінці кімнати**
+<!-- interaction_id: en:lesson-03:session-34:i14; family: context_gap_grammar -->
+___ cats are afraid. → **Those** · That · This
+- That — *`That` — один. Для кількох далі потрібно `Those`.*
+- This — *`This` — один поруч. Тут кілька далі: `Those`.*
 
+**15 · Послухайте й виберіть точну фразу**
+<!-- interaction_id: en:lesson-03:session-34:i15; family: listen_choose -->
+🔊 *That is a wallet.* → **That is a wallet.** · This is a wallet. · It is a wallet.
+- This is a wallet. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
+- It is a wallet. — *У записі перше слово — `That`, а в цьому варіанті — `It`.*
 
-**13 · Вставте вказівне слово — кілька подушок лежать на дальній полиці**
-<!-- interaction_id: en:lesson-03:session-34:i13; family: context_gap_grammar -->
-Ціль: `___ are pillows.`
-Варіанти: `Those` · `That` · `These` · `Are`
-- That — *`that` указує на один предмет і поєднується з `is`. Для кількох подушок потрібне `those`.*
-- These — *`these` указує на кілька предметів поруч. Тут подушки розташовані вдалині, тому потрібне `those`.*
-- Are — *`Are are pillows` не утворює фразу. На початку потрібне вказівне слово `Those`.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-34:i16; family: speed_match -->
+wallet — гаманець · afraid — боїться, наляканий · inactive — неактивний · cats — коти
 
-
-**14 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-34:i14; family: scripted_repeat_compare -->
-Ціль: `Those are sheets.`
-
-**15 · Послухайте й складіть фразу про кілька пухових ковдр**
-<!-- interaction_id: en:lesson-03:session-34:i15; family: listen_build_dictation -->
-Ціль: `Those are duvets.`
-
-**16 · Складіть коротке прохання — продавець має зняти кілька пледів із дальньої полиці**
-<!-- interaction_id: en:lesson-03:session-34:i16; family: phrase_builder -->
-Ціль: `Those blankets, please.`
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-34:i17:s01; family: scripted_repeat_compare -->
-Ціль: `Those are blankets.`
-
-**18 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-34:i17:s02; family: phrase_builder -->
-Ціль: `Those are sheets.`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-34:i17:s03; family: scripted_repeat_compare -->
-Ціль: `Those are duvets.`
-
-**20 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-34:i17:s04; family: listen_build_dictation -->
-Ціль: `Those blankets, please.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=phrase_builder, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation
+**17 · На іншій зустрічі ви показуєте гостю гаманець у руці. Назвіть його повною фразою зі словом для одного предмета поруч**
+<!-- interaction_id: en:lesson-03:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **This is a wallet.**
 

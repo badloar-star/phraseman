@@ -87,6 +87,7 @@ function completionLabels(lang: Lang) {
     errorsTitle: triLang(lang, { ru: 'Ошибки', uk: 'Помилки', en: 'Mistakes', es: 'Errores', 'pt-BR': 'Erros', vi: 'Lỗi', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy', fr: 'Erreurs', de: 'Fehler' }),
     loading: triLang(lang, { ru: 'Собеседник готовит итог…', uk: 'Співрозмовник готує підсумок…', en: 'Your partner is preparing the summary…', es: 'Tu interlocutor prepara el resumen…', 'pt-BR': 'Seu interlocutor prepara o resumo…', vi: 'Đang chuẩn bị tổng kết…', id: 'Ringkasan sedang disiapkan…', tr: 'Özet hazırlanıyor…', pl: 'Rozmówca przygotowuje podsumowanie…', fr: 'Ton interlocuteur prépare le bilan…', de: 'Die Auswertung wird vorbereitet…' }),
     unavailable: triLang(lang, { ru: 'Итог пока недоступен', uk: 'Підсумок поки недоступний', en: 'The summary is unavailable', es: 'El resumen no está disponible', 'pt-BR': 'O resumo está indisponível', vi: 'Chưa có tổng kết', id: 'Ringkasan belum tersedia', tr: 'Özet şu an yok', pl: 'Podsumowanie jest niedostępne', fr: 'Le bilan est indisponible', de: 'Die Auswertung ist nicht verfügbar' }),
+    noTurns: triLang(lang, { ru: 'Разговор не начался', uk: 'Розмова не почалася', en: "The conversation didn't start", es: 'La conversación no empezó', 'pt-BR': 'A conversa não começou', vi: 'Cuộc trò chuyện chưa bắt đầu', id: 'Percakapan belum dimulai', tr: 'Konuşma başlamadı', pl: 'Rozmowa się nie zaczęła', fr: "La conversation n'a pas commencé", de: 'Das Gespräch hat nicht begonnen' }),
     retryFailed: triLang(lang, { ru: 'Не получилось, попробуй ещё раз', uk: 'Не вийшло, спробуй ще раз', en: "That didn't work, try again", es: 'No ha funcionado, inténtalo de nuevo', 'pt-BR': 'Não deu certo, tente de novo', vi: 'Chưa được, hãy thử lại', id: 'Belum berhasil, coba lagi', tr: 'Olmadı, tekrar dene', pl: 'Nie udało się, spróbuj ponownie', fr: "Ça n'a pas marché, réessaie", de: 'Hat nicht geklappt, versuch es noch einmal' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów', fr: 'Réessayer', de: 'Erneut versuchen' }),
     done: triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe', fr: 'Terminé', de: 'Fertig' }),
@@ -134,6 +135,8 @@ export default function DialogueV2CompletionRoute() {
   const endedByParam = single(params.endedBy);
   const endedBy: EndedBy = endedByParam === 'bot' || endedByParam === 'limit' ? endedByParam : 'manual';
   const learnerTurns = Math.max(0, Math.min(200, Number.parseInt(single(params.learnerTurns) ?? '', 10) || 0));
+  // «ноль реплик» считаем известным, только если число пришло явно (параметр) — пропавший параметр не равен пустому разговору
+  const learnerTurnsKnown = /^\d+$/.test(single(params.learnerTurns) ?? '');
   const moodParam = single(params.mood);
   const mood = moodParam && MOODS.has(moodParam) ? moodParam as DialogueV2CoachingMood : null;
   const sceneTitle = (single(params.title) ?? '').slice(0, 120);
@@ -179,6 +182,15 @@ export default function DialogueV2CompletionRoute() {
       setState({ kind: 'unavailable' });
       return;
     }
+    // зачем (Сверка 0fb6d9eac, координатор 15.10): при нуле реплик итог считать не из чего — сервер отвечал отказом через ~30 с, а «Повторить»
+    // повторял то же ожидание. Ноль реплик известен локально: сразу понятное состояние «Разговор не начался» с «Начать заново».
+    const localOutcomeTurns = sessionId ? readDialogueV2SessionOutcome(sessionId)?.learnerTurns : undefined;
+    const localTurns = localOutcomeTurns ?? (learnerTurnsKnown ? learnerTurns : null);
+    if (localTurns === 0) {
+      console.warn('[DIALOG-RETRY] zero_turns → итог без запроса к серверу', JSON.stringify({ session: sessionId ? sessionId.slice(0, 12) : null, scenarioId })); // guard-ok: ранний выход называет причину
+      setState({ kind: 'unavailable' });
+      return;
+    }
     const generation = requestGenerationRef.current + 1;
     requestGenerationRef.current = generation;
     setState({ kind: 'loading' });
@@ -211,7 +223,7 @@ export default function DialogueV2CompletionRoute() {
       console.warn(`[DIALOG-SUMMARY] → ${current ? 'unavailable' : 'ошибка устаревшего запроса, экран не тронут'} reason=${error instanceof Error ? error.message : String(error)} ms=${Date.now() - startedAt}`);
       if (current) setState({ kind: 'unavailable' });
     });
-  }, [scenarioId, sessionId, studyTarget]);
+  }, [learnerTurns, learnerTurnsKnown, scenarioId, sessionId, studyTarget]);
 
   useEffect(() => {
     runCompletion();
@@ -274,6 +286,7 @@ export default function DialogueV2CompletionRoute() {
     : review?.corrections.map((item) => ({ original: item.original, corrected: item.corrected })) ?? [];
   const mistakes = errorRows.length;
   const turns = Math.max(outcome?.learnerTurns ?? learnerTurns, mistakes);
+  const knownZeroTurns = turns === 0 && (outcome !== null || learnerTurnsKnown); // [DIALOG-RETRY]: разговор точно пустой
   const correct = Math.max(0, turns - mistakes);
   const accuracy = turns > 0 ? Math.round((correct / turns) * 100) : 0;
   // зачем (владелец 13.10 «Да, как в макете», dialogs.html D1–D4): монеты за диалог — +30 без ошибок, +25 с ошибками, +10 при
@@ -462,8 +475,13 @@ export default function DialogueV2CompletionRoute() {
           ) : null}
           {state.kind === 'unavailable' || (retrying && state.kind === 'loading') ? (
             <View style={[dialogueGlassCardStyle(glass, 16), styles.stateCard]}>
-              <Text maxFontSizeMultiplier={1.3} style={[styles.stateText, { color: glass.secondary }]}>{retryFailed ? labels.retryFailed : labels.unavailable}</Text>
-              <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.retry} onPress={retryCompletion} busy={retrying} testID="dialogue-v2-completion-retry" />
+              <Text maxFontSizeMultiplier={1.3} style={[styles.stateText, { color: glass.secondary }]}>{knownZeroTurns ? labels.noTurns : retryFailed ? labels.retryFailed : labels.unavailable}</Text>
+              {knownZeroTurns ? (
+                // ноль реплик: «Повторить» итог бессмысленно — сразу «Ещё раз» (брифинг этого же разговора)
+                <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.again} onPress={() => { console.log('[DIALOG-RETRY] zero_turns → restart dialogue', JSON.stringify({ scenarioId })); again(); }} testID="dialogue-v2-completion-restart" />
+              ) : (
+                <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.retry} onPress={retryCompletion} busy={retrying} testID="dialogue-v2-completion-retry" />
+              )}
             </View>
           ) : null}
 

@@ -58,6 +58,9 @@ export function useDialogueV2CoinReward(input: Readonly<{
       setReward({ coins: 0, status: 'skipped' });
       return;
     }
+    // TODO(R50, после релиза, владелец — Ядро): выход в первые доли секунды, пока копилка читается с диска (hydrating), теряет монеты диалога.
+    // Лечение — намерение в очереди отложенных расчётов копилки (markPracticeRuneSettlementPending) с её id операции; до выпуска НЕ делаем
+    // (решение координатора 15.10: риск двойного начисления выше пользы).
     if (!ready || practiceRunes.hydrating) return;
     startedRef.current = true;
     const amount = dialogueV2CoinAward({ endedBy, mistakes });

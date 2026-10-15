@@ -1,0 +1,90 @@
+#!/bin/bash
+# Выкладка Firebase ТОЛЬКО из чистой выгрузки HEAD (координатор 15.10, сухой прогон выкладки 17.10).
+#
+# зачем: `firebase deploy` собирает functions/ из рабочего дерева как есть. 15.10 там лежали незакоммиченные правки Codex
+# (content_factory/v2_activity_session_projection.ts входит в замыкание набора default) — выкладка из дерева увезла бы их в прод.
+# Здесь сборка и выкладка идут из копии ровно одного коммита: git archive HEAD → временная папка вне репо.
+#
+# По умолчанию СУХОЙ ПРОГОН: выгрузка + сборка functions + проверка паритета рантайма + печать команды. Ничего не выкладывает.
+# Выкладка — только с явным --execute (решение владельца; 17.10 выкладывает владелец). --force запрещён всегда.
+#
+#   bash scripts/deploy_from_clean_head.sh --only "functions:default:legacyBonusConvertMine,functions:default:onboardingLevelRecord"
+#   bash scripts/deploy_from_clean_head.sh --only "firestore:rules"
+#   bash scripts/deploy_from_clean_head.sh --only "<…>" --execute          ← только по слову владельца
+#
+# Цели --only: firestore:rules | firestore:indexes | functions:default | functions:default:<имя> | hosting:admin | hosting:knowlywww.
+# Голое «functions» (все кодовые базы, включая content Codex) отклоняется.
+set -u
+PROJECT=phraseman-ea0b3
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
+ONLY=""; EXECUTE=0
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --only) ONLY="${2:-}"; shift 2 ;;
+    --execute) EXECUTE=1; shift ;;
+    --force|-f) echo "[DEPLOY-CLEAN] ОТКАЗ: --force запрещён (удаляет функции без вопроса; их зовут старые сборки)"; exit 2 ;;
+    *) echo "[DEPLOY-CLEAN] ОТКАЗ: неизвестный аргумент «$1»"; exit 2 ;;
+  esac
+done
+[ -n "$ONLY" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: нужен --only \"<цели через запятую>\""; exit 2; }
+IFS=',' read -r -a TARGETS <<< "$ONLY"
+for t in "${TARGETS[@]}"; do
+  if ! [[ "$t" =~ ^(firestore:rules|firestore:indexes|functions:default|functions:default:[A-Za-z0-9_]+|hosting:admin|hosting:knowlywww)$ ]]; then
+    echo "[DEPLOY-CLEAN] ОТКАЗ: цель «$t» не из разрешённого списка (см. шапку скрипта)"; exit 2
+  fi
+done
+
+cd "$ROOT" || exit 1
+SHA=$(git rev-parse HEAD); SHORT=${SHA:0:9}
+X=${DEPLOY_CLEAN_DIR:-/c/Temp/claude/deploy_clean_$SHORT}
+echo "[DEPLOY-CLEAN] HEAD=$SHORT цели=$ONLY режим=$([ $EXECUTE -eq 1 ] && echo ВЫКЛАДКА || echo 'сухой прогон') папка=$X"
+DIRTY=$(git status --porcelain -- functions/ firestore.rules firestore.indexes.json admin/v2 knowly-www | wc -l)
+echo "[DEPLOY-CLEAN] грязных путей в рабочем дереве (в выкладку НЕ попадут): $DIRTY"
+
+# 1) выгрузка HEAD: только то, что нужно сборке functions, правилам и хостингам
+# functions-* — прочие кодовые базы firebase.json: CLI проверяет их папки, сами они не собираются и не выкладываются.
+PATHS=(functions functions-admin functions-content functions-english-test modules shared content/arena-multilingual tests scripts app components constants specs knowly-www admin/v2
+  package.json package-lock.json app.config.js app.json tsconfig.json firebase.json .firebaserc firestore.rules firestore.indexes.json storage.rules)
+EXIST=()
+for p in "${PATHS[@]}"; do [ -n "$(git ls-tree --name-only HEAD -- "$p")" ] && EXIST+=("$p"); done
+for nm in "$X/node_modules" "$X/functions/node_modules"; do
+  if [ -e "$nm" ]; then cmd //c "rmdir $(cygpath -w "$nm")" > /dev/null 2>&1; fi
+  if [ -e "$nm" ]; then echo "[DEPLOY-CLEAN] ОТКАЗ: не снять ссылку $nm — папку не трогаю"; exit 1; fi
+done
+cmd //c "rmdir /s /q $(cygpath -w "$X")" > /dev/null 2>&1
+mkdir -p "$X"
+# Выгрузка через временный индекс (общий индекс не трогается) — тот же путь, что у scripts/build_rehearsal.sh.
+TMP_INDEX="$X.index"
+rm -f "$TMP_INDEX"
+GIT_INDEX_FILE="$TMP_INDEX" git read-tree "$SHA" || { echo "[DEPLOY-CLEAN] ОТКАЗ: read-tree"; exit 1; }
+git ls-tree -r --name-only "$SHA" -- "${EXIST[@]}" | GIT_INDEX_FILE="$TMP_INDEX" git checkout-index --prefix="$(cygpath -m "$X")/" --stdin \
+  || { echo "[DEPLOY-CLEAN] ОТКАЗ: checkout-index"; rm -f "$TMP_INDEX"; exit 1; }
+rm -f "$TMP_INDEX"
+echo "[DEPLOY-CLEAN] выгружено файлов: $(find "$X" -type f | wc -l)"
+
+# 2) зависимости — ссылки на основное дерево (только чтение; Cloud Build ставит пакеты сам по package-lock функций)
+cmd //c "mklink /J $(cygpath -w "$X/node_modules") $(cygpath -w "$ROOT/node_modules")" > /dev/null
+cmd //c "mklink /J $(cygpath -w "$X/functions/node_modules") $(cygpath -w "$ROOT/functions/node_modules")" > /dev/null
+[ -f "$X/functions/node_modules/typescript/package.json" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: functions/node_modules"; exit 1; }
+
+# 3) сборка functions, как predeploy (контекст поддержки — режим архива: .git нет, коммит задан явно)
+export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT="$SHA"
+cd "$X" || exit 1
+if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions'; then
+  npm --prefix functions run build > "$X.build.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL сборка functions — $X.build.log"; tail -15 "$X.build.log"; exit 1; }
+  node scripts/functions_runtime_parity_gate.mjs > "$X.parity.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL паритет рантайма — $X.parity.log"; tail -10 "$X.parity.log"; exit 1; }
+  echo "[DEPLOY-CLEAN] сборка functions и паритет рантайма — OK"
+fi
+
+CMD=(firebase deploy --only "$ONLY" --project "$PROJECT")
+if [ $EXECUTE -ne 1 ]; then
+  echo "[DEPLOY-CLEAN] PASS сухой прогон HEAD=$SHORT. Выкладка (только по слову владельца): bash scripts/deploy_from_clean_head.sh --only \"$ONLY\" --execute"
+  echo "[DEPLOY-CLEAN] Команда, которая выполнится в $X: ${CMD[*]}"
+  exit 0
+fi
+echo "[DEPLOY-CLEAN] ВЫКЛАДКА из $X: ${CMD[*]}"
+echo "[DEPLOY-CLEAN] Если CLI спросит про УДАЛЕНИЕ функций — отвечать «N»."
+"${CMD[@]}"
+rc=$?
+echo "[DEPLOY-CLEAN] firebase deploy exit=$rc"
+exit $rc

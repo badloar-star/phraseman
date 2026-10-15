@@ -1,0 +1,46 @@
+10-15 17:17:53.512 I/ReactNativeJS( 7353): [COLD-START] layout.module_eval:self_top proc=11974649ms src=_layout {"modules":3015,"selfSumMs":2483,"top":"116ms node_modules/@revenuecat/purchases-js-hybrid-mappings/dist/index.umd.js | 80ms node_modules/expo-modul
+10-15 17:17:55.221 I/ReactNativeJS( 7353): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/dialogue_v2_completion","initial":true,"out":"/dev_state?uiLang=ru&onboarding=done&intros=seen&ov
+10-15 17:17:56.071 W/ReactNativeJS( 7353): '[DEV-STATE] route: старт', '{"request":{"onboarding":"done","intros":"seen","overlays":"off","uiLang":"ru","next":"/dialogue_v2_completion"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-15 17:17:56.266 I/ReactNativeJS( 7353): [FIRST-FRAME] deferred:register label=lv2_completion_scheduler_install fallbackMs=2500 proc=11977401ms
+10-15 17:17:57.603 I/ReactNativeJS( 7353): '[DEV-STATE] applied', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/dialogue_v2_completion"}'
+10-15 17:17:57.607 W/ReactNativeJS( 7353): '[DEV-STATE] route: фикстуры применены', '1538мс', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/dialogue_v2_completion"}'
+10-15 17:17:57.629 W/ReactNativeJS( 7353): '[DEV-STATE] route: replace через 300 мс →', '/dialogue_v2_completion', '1557мс'
+10-15 17:17:57.762 I/ReactNativeJS( 7353): [REMOTE-GATES] lessons=default flashcards=default dialog=default energy=default speaking=default stats=default themes=default mistakes=default extra_languages=default spire_tab=true accounts_v2_client=default boot_res
+10-15 17:17:58.066 W/ReactNativeJS( 7353): '[DEV-STATE] route: replace вызван →', '/dialogue_v2_completion', 'canDismiss=false (возможна вторая копия вкладок — артефакт dev)'
+10-15 17:17:58.463 W/ReactNativeJS( 7353): '[DIALOGUE-V2] i18n', '{"event":"scenario_invalid","uiLang":"ru"}', { [Stack] name: 'Stack' }
+10-15 17:17:58.806 I/ReactNativeJS( 7353): '[DIALOG-SUMMARY] enter', '{"session":null,"scenarioId":null,"studyTarget":"en","endedBy":"manual","learnerTurnsParam":0,"localOutcome":"missing","source":"network"}'
+10-15 17:17:58.829 W/ReactNativeJS( 7353): '[DIALOGUE-V2] completion:run → invalid route data', { hasSession: false, scenarioId: null, studyTarget: 'en' }, { [Stack] name: 'Stack' }
+10-15 17:17:58.842 W/ReactNativeJS( 7353): '[DIALOG-SUMMARY] → unavailable reason=invalid_route_data session=no scenario=no target=en', { [Stack] name: 'Stack' }
+10-15 17:17:58.851 I/ReactNativeJS( 7353): [DIALOGS-FIRST-FRAME] completion first kind=loading localStats=false errorsLocal=0 goals=false ms=388
+10-15 17:17:58.863 W/ReactNativeJS( 7353): '[COINS-EARN] dialog: нет id сессии — монеты не начисляются', { [Stack] name: 'Stack' }
+10-15 17:17:58.932 W/ReactNativeJS( 7353): '[DIALOG-MISTAKES] skip reason=no_session_id', { [Stack] name: 'Stack' }
+10-15 17:17:58.937 I/ReactNativeJS( 7353): '[COINS-EARN] dialog: источник итога', '{"local":false,"server":"loading","turns":0,"mistakes":0}'
+10-15 17:17:58.964 W/ReactNativeJS( 7353): '[COINS-EARN] dialog: ошибки неизвестны → минимальная сумма', { [Stack] name: 'Stack' }
+10-15 17:17:59.157 I/ReactNativeJS( 7353): [DIALOGS-FIRST-FRAME] completion update kind=unavailable localStats=false errorsLocal=0 goals=false ms=696
+10-15 17:17:59.164 I/ReactNativeJS( 7353): '[COINS-EARN] dialog: источник итога', '{"local":false,"server":"unavailable","turns":0,"mistakes":0}'
+10-15 17:17:59.172 I/ReactNativeJS( 7353): [COINS-EARN] dialog: экран итога статус=skipped монеты=+0
+10-15 17:17:59.358 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":6,"route":"/dialogue_v2_completion","heapMb":36,"gc":"21gc/402ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeouts
+10-15 17:17:59.449 W/ReactNativeJS( 7353): [NAV-PAINT] group=training route=/dialogue_v2_completion ms=493
+10-15 17:17:59.490 W/ReactNativeJS( 7353): '[COINS-EARN] dialog: ошибки неизвестны → минимальная сумма', { [Stack] name: 'Stack' }
+10-15 17:17:59.644 W/ReactNativeJS( 7353): [FIRST-FRAME] deferred:release label=lv2_completion_scheduler_install trigger=fallback splash=hidden waitedMs=3378
+10-15 17:17:59.647 W/ReactNativeJS( 7353): [FIRST-FRAME] deferred:start label=lv2_completion_scheduler_install proc=11980784ms
+10-15 17:17:59.686 I/ReactNativeJS( 7353): [WINBACK-FREEZE] t=79686 check decision show=false isPremium=false introPending=false path=/dialogue_v2_completion
+10-15 17:18:02.501 W/ReactNativeJS( 7353): '[COINS-EARN] dialog: ошибки неизвестны → минимальная сумма', { [Stack] name: 'Stack' }
+10-15 17:18:02.721 W/ReactNativeJS( 7353): [PLUS-TRANSFER] restore result {"result":"retry","reason":"restore_failed","code":"3","attempt":3,"appUserID":"h:de10a251","t":11983858}
+10-15 17:18:02.725 W/ReactNativeJS( 7353): [WARNING] [PLUS-TRANSFER] restore result: [PLUS-TRANSFER] restore result {"result":"retry","reason":"restore_failed","code":"3","attempt":3,"appUserID":"h:de10a251","t":11983858}
+10-15 17:18:04.371 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":11,"route":"/dialogue_v2_completion","heapMb":36,"gc":"5gc/40ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsC
+10-15 17:18:05.668 W/ReactNativeJS( 7353): [FIRST-FRAME] deferred:done label=lv2_completion_scheduler_install taskMs=6021 syncMs=1 proc=11986805ms
+10-15 17:18:09.394 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":16,"route":"/dialogue_v2_completion","heapMb":36,"gc":"4gc/34ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsC
+10-15 17:18:14.405 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":21,"route":"/dialogue_v2_completion","heapMb":40,"gc":"2gc/13ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsC
+10-15 17:18:19.432 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":26,"route":"/dialogue_v2_completion","heapMb":40,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCr
+10-15 17:18:19.528 I/ReactNativeJS( 7353): '[DIALOG-SUMMARY] enter', '{"session":null,"scenarioId":null,"studyTarget":"en","endedBy":"manual","learnerTurnsParam":0,"localOutcome":"missing","source":"network"}'
+10-15 17:18:19.542 W/ReactNativeJS( 7353): '[DIALOGUE-V2] completion:run → invalid route data', { hasSession: false, scenarioId: null, studyTarget: 'en' }, { [Stack] name: 'Stack' }
+10-15 17:18:19.551 W/ReactNativeJS( 7353): '[DIALOG-SUMMARY] → unavailable reason=invalid_route_data session=no scenario=no target=en', { [Stack] name: 'Stack' }
+10-15 17:18:19.579 W/ReactNativeJS( 7353): '[COINS-EARN] dialog: ошибки неизвестны → минимальная сумма', { [Stack] name: 'Stack' }
+10-15 17:18:24.441 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":31,"route":"/dialogue_v2_completion","heapMb":40,"gc":"5gc/37ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsC
+10-15 17:18:29.466 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":36,"route":"/dialogue_v2_completion","heapMb":44,"gc":"26gc/186ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeout
+10-15 17:18:34.486 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":41,"route":"/dialogue_v2_completion","heapMb":44,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCr
+10-15 17:18:38.011 I/ReactNativeJS( 7353): [PHONE-STATE-DB] deferred_integrity:busy route=/dialogue_v2_completion — повтор через 60000мс
+10-15 17:18:39.509 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":46,"route":"/dialogue_v2_completion","heapMb":44,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCr
+10-15 17:18:44.529 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":51,"route":"/dialogue_v2_completion","heapMb":44,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCr
+10-15 17:18:49.537 I/ReactNativeJS( 7353): '[MEM-TICK]', '{"tSec":56,"route":"/dialogue_v2_completion","heapMb":44,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCr

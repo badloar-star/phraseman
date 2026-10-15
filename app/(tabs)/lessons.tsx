@@ -193,7 +193,9 @@ import {
 } from "../../modules/learning-v2/map/course_accordion_map_model_v1";
 import { createLearningV2CourseLocalProgressStoreV1 } from "../../modules/learning-v2/progress/course_local_progress_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../../modules/learning-v2/progress/progress_account_scope";
-import { logFounderNick, nextFounderNickState, visibleFounderNickname, type FounderNickState } from "../founder_nickname_scope";
+import { founderPassNicknameForModal, logFounderNick, logFounderPassNickname, nextFounderNickState, visibleFounderNickname, type FounderNickState } from "../founder_nickname_scope";
+import { onAppEvent } from "../events";
+import { GENERATED_NICKNAME_PENDING_KEY } from "../nickname_guard";
 
 /** Область текущего аккаунта для ника «Пропуска основателя» (null — аккаунт ещё не активен). */
 function currentFounderAccountScope(): string | null {
@@ -2717,7 +2719,31 @@ export default function LessonsTab({
     });
     return () => subscription.remove();
   }, []);
-  const learningV2FounderNickname = visibleFounderNickname(learningV2FounderNickState, learningV2FounderAccountScope);
+  const learningV2FounderNicknameRaw = visibleFounderNickname(learningV2FounderNickState, learningV2FounderAccountScope);
+  // зачем (координатор 15.10): пока сгенерированный ник не подтверждён сервером, пропуск печатается без имени (временное
+  // «＠Neon 39486» через ~20 с сменялось другим). Флаг перечитываем при подтверждении профиля и при смене аккаунта.
+  const [learningV2FounderNickPending, setLearningV2FounderNickPending] = useState<boolean | null>(null);
+  useEffect(() => {
+    let alive = true;
+    const readPending = (reason: string) => {
+      void AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY)
+        .then((value) => {
+          if (!alive) return;
+          setLearningV2FounderNickPending(value !== null);
+          console.log("[FOUNDER-PASS] pending:read", JSON.stringify({ reason, pending: value !== null })); // guard-ok: одна строка на чтение
+        })
+        .catch((error: unknown) => {
+          // не прочитали — ник не печатаем (как «ещё не подтверждён»), окно от этого не зависит
+          console.warn("[FOUNDER-PASS] pending:read failed", reason, error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
+        });
+    };
+    readPending("mount");
+    const hydrated = onAppEvent("cloud_profile_hydrated", () => readPending("cloud_profile_hydrated"));
+    const account = subscribeAccountGeneration(() => { setLearningV2FounderNickPending(null); readPending("account_changed"); });
+    return () => { alive = false; hydrated.remove(); account.remove(); };
+  }, []);
+  const learningV2FounderPassNick = founderPassNicknameForModal(learningV2FounderNicknameRaw, learningV2FounderNickPending);
+  const learningV2FounderNickname = learningV2FounderPassNick.nickname;
   const [learningV2FounderReceipt, setLearningV2FounderReceipt] = useState<{
     accountScopeHash: string | null;
     seen: boolean | null;
@@ -2862,6 +2888,10 @@ export default function LessonsTab({
         learningV2FounderReceipt.accountScopeHash,
   });
   const learningV2FounderPassVisible = learningV2FounderPassGate.visible;
+  useEffect(() => {
+    if (!learningV2FounderPassVisible) return;
+    logFounderPassNickname(learningV2FounderPassNick.source, learningV2FounderNickPending);
+  }, [learningV2FounderPassVisible, learningV2FounderPassNick.source, learningV2FounderNickPending]);
   // зачем (аудит 2026-09-21): поиск по урокам открывается ЛУПОЙ в ряду чипов,
   // а не живёт постоянной строкой — владелец: «не фулл строка ввода, а просто
   // кнопочка». Поле раскрывается НАД рядом, поэтому ряд чипов не сдвигается.

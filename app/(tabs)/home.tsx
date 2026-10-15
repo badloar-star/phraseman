@@ -1257,7 +1257,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (координатор 15.10, «Обучение» 0 при Главной 53): что плашка монет Главной показывает сейчас и знает ли баланс — одна строка на смену
     useEffect(() => {
         const t = captureAccountGeneration();
-        console.log('[COIN-PILL]', JSON.stringify({ screen: 'home', source: 'snapshot', shown: runesKnown ? runesBalance : '—', value: runesBalance, hydrated: runesKnown, accountStableId: t.stableId?.trim().slice(0, 8) ?? null, generation: t.generation })); // guard-ok: временная трассировка
+        console.log('[COIN-PILL]', JSON.stringify({ screen: 'home', source: 'snapshot', shown: runesKnown ? runesBalance : '—', value: runesBalance, hydrated: runesKnown, hasAccount: Boolean(t.stableId?.trim()), generation: t.generation })); // зачем (координатор 15.10): без идентификатора аккаунта — журнал может уйти в отчёты // guard-ok: временная трассировка
     }, [runesBalance, runesKnown]);
     const reconcileHomeRunes = useCallback((token = captureAccountGeneration()) => {
         const stableId = token.stableId?.trim();
@@ -1271,7 +1271,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setRunesBalance(balance);
                 setRunesKnown(true);
             }
-            console.log('[COIN-PILL]', JSON.stringify({ screen: 'home', source: 'wallet_cache', value: balance, applied: current, accountStableId: stableId.slice(0, 8), generation: token.generation })); // guard-ok: временная трассировка расхождения плашек (координатор 15.10)
+            console.log('[COIN-PILL]', JSON.stringify({ screen: 'home', source: 'wallet_cache', value: balance, applied: current, hasAccount: stableId.length > 0, generation: token.generation })); // guard-ok: временная трассировка расхождения плашек (координатор 15.10)
         }).catch((error: unknown) => {
             // Первый кадр уже взят из snapshot; durable-сверка может безопасно повториться на focus.
             console.warn('[HOME-COINS] reconcile:failed', error instanceof Error ? error.message : String(error));

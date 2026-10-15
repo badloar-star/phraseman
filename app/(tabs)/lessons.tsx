@@ -2423,7 +2423,7 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
         return;
       }
       durableReadValidated = true;
-      console.log('[COIN-PILL]', JSON.stringify({ screen: 'lessons', source: 'wallet_cache', value: read.wallet.balance, quality: read.quality, accountStableId: ownerStableId.slice(0, 8), generation: token.generation })); // guard-ok: временная трассировка (координатор 15.10)
+      console.log('[COIN-PILL]', JSON.stringify({ screen: 'lessons', source: 'wallet_cache', value: read.wallet.balance, quality: read.quality, hasAccount: ownerStableId.length > 0, generation: token.generation })); // guard-ok: временная трассировка (координатор 15.10)
       const durable = Object.freeze({
         ownerStableId,
         accountGeneration: token.generation,
@@ -2691,8 +2691,10 @@ export default function LessonsTab({
       snapshotValue: peekRunes(),
       trusted: legacyCoinProjectionTrusted,
       hydrated: legacyCoinBalanceBinding !== null,
-      rankBinding: legacyCoinRankBinding ? `${legacyCoinRankBinding.ownerStableId.slice(0, 8)}#${legacyCoinRankBinding.accountGeneration}` : null,
-      accountStableId: legacyCoinBalanceBinding ? `${legacyCoinBalanceBinding.ownerStableId.slice(0, 8)}#${legacyCoinBalanceBinding.accountGeneration}` : null,
+      // зачем (координатор 15.10): без идентификатора аккаунта в журнале — только поколение и совпадение владельца баланса и ранга
+      rankGeneration: legacyCoinRankBinding?.accountGeneration ?? null,
+      rankSameOwner: legacyCoinRankBinding && legacyCoinBalanceBinding ? legacyCoinRankBinding.ownerStableId === legacyCoinBalanceBinding.ownerStableId : null,
+      balanceGeneration: legacyCoinBalanceBinding?.accountGeneration ?? null,
     })); // guard-ok: временная трассировка
   }, [legacyCoinBalance, legacyCoinBalanceBinding, legacyCoinProjectionTrusted, legacyCoinRankBinding]);
   const legacyCoinRankSource = isValidCoinRank(legacyCoinRank)

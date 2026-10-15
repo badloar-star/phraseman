@@ -31,13 +31,13 @@ assert.match(
 );
 assert.match(
   player,
-  /onScore=\{\(\{ score, passed, transcript: heard \}\)[\s\S]{0,800}forcePedagogicalWrong:\s*!passed/,
+  /onScore=\{\(\{ score, passed, transcript: heard[^}]*\}\)[\s\S]{0,800}forcePedagogicalWrong:\s*!passed/,
   "a failed shared pronunciation verdict must be registered as a pedagogical error",
 );
 assert.match(panel, /onTranscriptChange\?: \(transcript: string\) => void/);
 assert.match(
   panel,
-  /onScore\?: \(result: \{ score: number; passed: boolean; transcript: string \}\) => void/,
+  /onScore\?: \(result: \{[\s\S]{0,400}transcript: string[\s\S]{0,400}\}\) => void/,
 );
 
 console.log("LEARNING V2 SPEAKING ENGINE PARITY CONTRACT: PASS");

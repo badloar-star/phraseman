@@ -43,7 +43,7 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import AddToFlashcard from '../components/AddToFlashcard';
 import TapScale from '../components/TapScale';
 import LessonReviewSheet from '../components/LessonReviewSheet';
-import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
+import SpeakingPanel, { buildSpeakingPanelTheme, type SpeakingVerdictReason } from '../components/SpeakingPanel';
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
 import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from './speech_device_availability';
@@ -646,7 +646,7 @@ const LessonContent = React.memo(function LessonContent({
   const [speakingOpen, setSpeakingOpen] = useState(false);
   const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
   // зачем (координатор 15.10, «не засчитано»): панель в onScore отдаёт ещё и пропущенные слова строгой проверки (`missingWords`) — по ним блок по эталону Макетов
-  const [speakingResult, setSpeakingResult] = useState<(SpeakingAttemptResult & { transcript?: string; missingWords?: readonly string[] }) | null>(null);
+  const [speakingResult, setSpeakingResult] = useState<(SpeakingAttemptResult & { transcript?: string; missingWords?: readonly string[]; reason?: SpeakingVerdictReason }) | null>(null);
   const speakingOpenedForPhraseRef = useRef<string | null>(null);
   // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя «Устно»
   // заранее отключено (перечёркнутый микрофон); тап не тратит попытку и не ведёт
@@ -706,7 +706,7 @@ const LessonContent = React.memo(function LessonContent({
     onSpeakingActiveChange?.(false);
   }, [onSpeakingActiveChange]);
 
-  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult & { transcript?: string; missingWords?: readonly string[] }) => {
+  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult & { transcript?: string; missingWords?: readonly string[]; reason?: SpeakingVerdictReason }) => {
     setSpeakingResult(result);
     closeSpeaking();
   }, [closeSpeaking]);
@@ -990,6 +990,7 @@ const LessonContent = React.memo(function LessonContent({
   // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале с названным словом вместо звёзд — фраза целиком, пропущенные слова мягким красным и строка
   // «Не услышали слово «X» — скажи фразу целиком»; пропущенные слова — из результата панели (`missingWords`). Пусто (слово не названо) — прежний вид.
   const speakingFailWords: readonly string[] = speakingResult && !speakingResult.passed && status !== 'result' && spokenTargetLine
+    && speakingResult.reason === 'missing_words'
     ? (speakingResult.missingWords ?? [])
     : [];
   const interactiveAnswerText = settings.hardMode

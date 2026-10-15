@@ -46,3 +46,11 @@ describe('«не засчитано»: проводка блока', () => {
     expect(block).toContain('glass.bad,');
   });
 });
+
+describe('«не услышали слово»: только при reason === missing_words (R11)', () => {
+  it('Карточки, урок и курс V2 строят блок только по причине missing_words', () => {
+    expect(read('app/flashcards_speaking_session.tsx')).toContain("reason?: unknown }).reason !== 'missing_words'");
+    expect(read('app/lesson1.tsx')).toContain("speakingResult.reason === 'missing_words'");
+    expect(read('app/learning_v2_direct_session_player_v1.tsx')).toContain('voiceAttemptResult.reason === "missing_words"');
+  });
+});

@@ -63,6 +63,7 @@ import SessionAttemptsHud from "../components/session_attempts/SessionAttemptsHu
 import SpeakingPanel, {
   buildSpeakingPanelTheme,
   type SpeakingPanelStatus,
+  type SpeakingVerdictReason,
 } from "../components/SpeakingPanel";
 import SpeakingInlineResultStars from "../components/SpeakingInlineResultStars";
 import SpeechFailBlock from "../components/speech/SpeechFailBlock";
@@ -305,6 +306,8 @@ type LearningV2VoiceAttemptResult = Readonly<{
   transcript: string;
   /** Пропущенные слова цели от строгой проверки панели (экран «не засчитано»). */
   missingWords: readonly string[];
+  /** Причина вердикта панели (R11): «не услышали слово» показываем только при 'missing_words' — иначе все слова сказаны. */
+  reason: SpeakingVerdictReason;
 }>;
 
 function learningV2VoiceUiStatusFromSpeakingPanel(
@@ -1992,7 +1995,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале — фраза целиком с подсвеченными пропущенными словами и строкой «Не услышали слово «X» — скажи
   // фразу целиком»; пропущенные слова — из результата панели (`missingWords`). Пусто (слово не названо) — прежняя карточка «Ты сказал(а)».
   const voiceFailWords: readonly string[] =
-    voiceAttemptResult && !voiceAttemptResult.passed && voiceTargetText ? voiceAttemptResult.missingWords : [];
+    voiceAttemptResult && !voiceAttemptResult.passed && voiceTargetText && voiceAttemptResult.reason === "missing_words" ? voiceAttemptResult.missingWords : [];
   const voiceResultAccessibilityLabel = voiceAttemptResult
     ? (() => {
         const stars = starsForScore(
@@ -3400,12 +3403,12 @@ export default function LearningV2DirectSessionPlayerV1() {
                     setVoiceHoldActive(false);
                   }
                 }}
-                onScore={({ score, passed, transcript: heard, missingWords }) => {
+                onScore={({ score, passed, transcript: heard, missingWords, reason }) => {
                   if (!practice || !runSummary || !heard.trim()) return;
                   setSelectedChoiceId(null);
                   setOrderedIds([]);
                   setTranscript(heard);
-                  setVoiceAttemptResult({ score, passed, transcript: heard, missingWords });
+                  setVoiceAttemptResult({ score, passed, transcript: heard, missingWords, reason });
                   setVoiceAttemptSubmitted(true);
                   evaluate(
                     learningV2CourseSessionVoiceResponseV1(

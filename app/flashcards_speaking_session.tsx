@@ -171,6 +171,8 @@ function retainedSpeakingTranscript(attempt: SpeakingAttempt | null): string | n
 // зачем (координатор 15.10, «не засчитано»): панель в `onScore` отдаёт `missingWords` — пропущенные слова цели от строгой проверки; сессия хранит попытку как есть, берём оттуда
 function retainedMissingWords(attempt: SpeakingAttempt | null): readonly string[] {
   if (!attempt) return [];
+  // зачем (R11, «Сайт»): «не услышали слово» — только при причине 'missing_words'; при control_disagrees / below_threshold все слова сказаны, и «не услышали X» было бы неправдой
+  if ((attempt as SpeakingAttempt & { reason?: unknown }).reason !== 'missing_words') return [];
   const words = (attempt as SpeakingAttempt & { missingWords?: unknown }).missingWords;
   return Array.isArray(words) ? words.filter((w): w is string => typeof w === 'string') : [];
 }

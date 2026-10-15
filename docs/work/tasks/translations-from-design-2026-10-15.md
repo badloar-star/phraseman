@@ -79,3 +79,39 @@ Governance-ID: TG-DC3BA22506F3
 
 ### 5. К сведению — тексты m06 (`components/spire/moments/step_moment_strings.ts`), решение Макетов
 retrySet pt-BR «Outro conjunto», pl «Inny zestaw»; failHearts uk «Сходинку не пройдено». ru не тронут.
+
+## ПРАВКИ ПЕРЕВОДЧИКА (15.10, сверка «Специалиста по переводам»)
+
+Русский не тронут. Всё, что не перечислено ниже, проверено и **принято как есть**.
+
+| № | язык | было | стало | почему |
+|---|---|---|---|---|
+| 1 | pl | Na dziś głos się skończył | Na dziś koniec prób głosowych | калька с ru: «głos się skończył» по-польски звучит как «голос сорвался», а не как исчерпанный лимит |
+| 2 | en | Could not restore the card. | Couldn’t restore the card. | единый тон ошибок приложения — сокращённая форма, как в пейволе («Couldn’t restore purchases») |
+| 3 | en | Could not open the card. | Couldn’t open the card. | то же |
+| 3 | pl | Nie udało się otworzyć fiszki. | Nie udało się otworzyć karty. | в Карточках pl везде «karta» (Dodaj kartę, Nowa karta, Nie udało się usunąć karty); в пункте 2 той же поставки тоже «karty» — «fiszki» выбивалось |
+| 4 | en | Saved on this device, but the pack could not be unpublished. Save again when connected. | Saved on this device, but couldn’t unpublish the pack. Tap “Save” again when you’re online. | как в ru — с названием кнопки; живой порядок слов |
+| 4 | es | … Vuelve a guardar con conexión. | … Toca «Guardar» otra vez cuando tengas conexión. | ru называет кнопку «Сохранить» — кнопка в es «Guardar» |
+| 4 | pt-BR | … Salve de novo quando estiver conectado. | … Toque em “Salvar” de novo quando estiver on-line. | название кнопки; «conectado» без «к чему» звучит неполно; кавычки pt-BR — “…” |
+| 4 | vi | Đã lưu trên thiết bị này nhưng chưa gỡ được bản xuất bản. Hãy lưu lại khi có kết nối. | Đã lưu trên thiết bị này nhưng chưa hủy công khai được bộ thẻ. Hãy nhấn “Lưu” lại khi có mạng. | «gỡ bản xuất bản» — машинный оборот; «bộ thẻ» = набор; название кнопки |
+| 4 | id | … Simpan lagi saat terhubung. | … Ketuk “Simpan” lagi saat online. | название кнопки |
+| 4 | tr | … Bağlanınca tekrar kaydet. | … İnternete bağlanınca “Kaydet” düğmesine yeniden dokun. | название кнопки; «bağlanınca» без «к интернету» неполно |
+| 4 | pl | … Zapisz ponownie po połączeniu. | … Dotknij „Zapisz” ponownie, gdy będziesz online. | название кнопки; кавычки pl — „…” |
+| 4 | uk | … Натисни «Зберегти» ще раз після підключення. | … Натисни «Зберегти» ще раз, коли буде інтернет. | «після підключення» — к чему? в ru «при подключении» тоже про сеть |
+
+Итоговые строки для вставки (только изменённые):
+- D194 pl: `Na dziś koniec prób głosowych`
+- Карточка «вернуть» en: `Couldn’t restore the card.`
+- Карточка «открыть» en: `Couldn’t open the card.` · pl: `Nie udało się otworzyć karty.`
+- Набор, публикация не снята:
+  - uk: `Набір збережено на пристрої, але зняти публікацію не вдалося. Натисни «Зберегти» ще раз, коли буде інтернет.`
+  - en: `Saved on this device, but couldn’t unpublish the pack. Tap “Save” again when you’re online.`
+  - es: `Guardado en este dispositivo, pero no se pudo retirar la publicación. Toca «Guardar» otra vez cuando tengas conexión.`
+  - pt-BR: `Salvo neste dispositivo, mas não foi possível retirar a publicação. Toque em “Salvar” de novo quando estiver on-line.`
+  - vi: `Đã lưu trên thiết bị này nhưng chưa hủy công khai được bộ thẻ. Hãy nhấn “Lưu” lại khi có mạng.`
+  - id: `Tersimpan di perangkat ini, tetapi publikasi belum bisa dicabut. Ketuk “Simpan” lagi saat online.`
+  - tr: `Bu cihaza kaydedildi ama yayın kaldırılamadı. İnternete bağlanınca “Kaydet” düğmesine yeniden dokun.`
+  - pl: `Zapisano na tym urządzeniu, ale nie udało się cofnąć publikacji. Dotknij „Zapisz” ponownie, gdy będziesz online.`
+
+Длина: самая длинная строка (pl, п. 4) — тост, переносится по строкам; кнопок и заголовков среди правок нет.
+Пункт 5 (m06) — к сведению, правки Тем/Макетов, не трогаю.

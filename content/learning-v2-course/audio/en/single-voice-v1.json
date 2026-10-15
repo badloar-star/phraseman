@@ -50464,6 +50464,309 @@
           "byteSize": 50688
         }
       ]
+    },
+    "l03/s55/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "cafes",
+          "file": "eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "contentHash": "83239ea1fd67f48167ac52415bace9c76dbe79f81dc6a2a66bcd796bf20b46c1",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l03/s55/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where are the cafes?",
+          "file": "cb70477a27557883ba29da402c88c5c8ce1b9557a82f6b570c61e59b2bca4408.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb70477a27557883ba29da402c88c5c8ce1b9557a82f6b570c61e59b2bca4408.mp3",
+          "contentHash": "98ce81184ad6a326e0dbccc831d392af597b258141b72487d6e272009263b77e",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l03/s55/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She is responsible.",
+          "file": "7ad12b482276646dcb84576af3f8704435ac61ad54a3758e32893e30578fcc58.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ad12b482276646dcb84576af3f8704435ac61ad54a3758e32893e30578fcc58.mp3",
+          "contentHash": "56f7f572ce27dd5a6bf25fff4adf46c03be767fb262e2b26e57432ec404aba5a",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l03/s55/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The restaurants are there.",
+          "file": "4f297ee843b50cb24811489e4e30897a5b26d8a7fce9438b3e196153fda9cee2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f297ee843b50cb24811489e4e30897a5b26d8a7fce9438b3e196153fda9cee2.mp3",
+          "contentHash": "67c837652d684538ea93382306547e8e656b2f38216f6901078e600ebf865d97",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l03/s55/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "cafes",
+          "file": "eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "contentHash": "83239ea1fd67f48167ac52415bace9c76dbe79f81dc6a2a66bcd796bf20b46c1",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l03/s55/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cafes",
+          "file": "7875748d2b5e9191f0d0406f14db09e37cd968461fe8122c7938338441d50f8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7875748d2b5e9191f0d0406f14db09e37cd968461fe8122c7938338441d50f8c.mp3",
+          "contentHash": "4af84bf4c0fdf640e985468b81fb8a821b1a24e614594cba03dfc87722679f5b",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l03/s55/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "cafes",
+          "file": "eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "contentHash": "83239ea1fd67f48167ac52415bace9c76dbe79f81dc6a2a66bcd796bf20b46c1",
+          "byteSize": 27648
+        },
+        {
+          "text": "responsible",
+          "file": "15a79e07c9810bbb009864613312ec173cf864283fe76aa64fc5f316a3feaec8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/15a79e07c9810bbb009864613312ec173cf864283fe76aa64fc5f316a3feaec8.mp3",
+          "contentHash": "4a416e5b04e78f9849f13a2945b2e4802c55985372c0ca330bc5a9328d074b70",
+          "byteSize": 26112
+        },
+        {
+          "text": "independent",
+          "file": "94092b20130c25764d0ef85bfba3be173b7c1bb28867733c16d38ffb269fc481.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/94092b20130c25764d0ef85bfba3be173b7c1bb28867733c16d38ffb269fc481.mp3",
+          "contentHash": "aa59d2677d3c1d52107b3080b45c554de8246472c02dc726848555868ca6be9e",
+          "byteSize": 20352
+        },
+        {
+          "text": "restaurants",
+          "file": "fc5fb454cf09f332683f308075ff153d15482f1015cd114441ed2e96f26809e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc5fb454cf09f332683f308075ff153d15482f1015cd114441ed2e96f26809e8.mp3",
+          "contentHash": "ab085c348f1971cba71413076081853c3ba39b66bf7382a0bb3dbceea8ff9b09",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l03/s55/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "These are cafes.",
+          "file": "11ad41f650969e97fed7c96a0b248796ab0129670e0e6757895e9b4d4a5581ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11ad41f650969e97fed7c96a0b248796ab0129670e0e6757895e9b4d4a5581ac.mp3",
+          "contentHash": "088fb56848243ff8eee750065d409cfab4ee2a6e8254b5390dc7a14712651e2c",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l03/s55/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where are the cafes?",
+          "file": "2bf59735ecfa798e23e2c660a4f15f5a1ab3f3b20ef0ac29cea9910822a5136b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2bf59735ecfa798e23e2c660a4f15f5a1ab3f3b20ef0ac29cea9910822a5136b.mp3",
+          "contentHash": "96709328327084e1799c4e3f70ab7c1926e7f270bab164c99a6e72fbeb9cfda7",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l03/s55/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She's responsible.",
+          "file": "bd83db5ba64fea99a9ce0efaa32113c973141d98c2f641ce15a0c2941f433b84.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bd83db5ba64fea99a9ce0efaa32113c973141d98c2f641ce15a0c2941f433b84.mp3",
+          "contentHash": "bfc8392115b452f1a0d15b70a29d7e37b98c83decf5a8e7a019de98ce2bf6037",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l03/s55/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Those are cafes.",
+          "file": "a12af44c5dddab032ad7931f6723e12472b99f7b93d959245564cb8da9bf92a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a12af44c5dddab032ad7931f6723e12472b99f7b93d959245564cb8da9bf92a2.mp3",
+          "contentHash": "3eb34511b07465c518e87e6bbd4d26bf39cf3abfe9233ce09caadb4c22c36fc3",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l03/s55/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He is dependent.",
+          "file": "e9eaaccabc4fa1fe52eb28a3af00772e2d2f86eb54b1809d71309a01b7e55487.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e9eaaccabc4fa1fe52eb28a3af00772e2d2f86eb54b1809d71309a01b7e55487.mp3",
+          "contentHash": "8d009da89b601276febed05a4de110fa1ba563a375afd4a76cf6a243ff30e674",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l03/s55/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "dependent",
+          "file": "e04bc9bbee85783755407324762dd1c86130fa9f19846da64a4f04664e053932.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e04bc9bbee85783755407324762dd1c86130fa9f19846da64a4f04664e053932.mp3",
+          "contentHash": "3892ae5e1ce55fbbe3f1cd9fbe0d6e9c08643a241aa38ce2de079280f3578f7a",
+          "byteSize": 26880
+        },
+        {
+          "text": "unreliable",
+          "file": "c3eb0704e9392053accb472851968977964bf672233b7d8402d3bfe03959d82b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3eb0704e9392053accb472851968977964bf672233b7d8402d3bfe03959d82b.mp3",
+          "contentHash": "48d868ce5561d11775bc00f092a584299b46852823e25aa97a8a887d4a269c1d",
+          "byteSize": 26880
+        },
+        {
+          "text": "restaurants",
+          "file": "44b9cbc95acdf9e8745549cbc6ddcc5c30195663c5b41146edb10e3f2920cd51.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44b9cbc95acdf9e8745549cbc6ddcc5c30195663c5b41146edb10e3f2920cd51.mp3",
+          "contentHash": "19c052cccaa4045705e71d7efe4d0d755640aeb70f9c4067fff52559aa48b40e",
+          "byteSize": 31488
+        },
+        {
+          "text": "responsible",
+          "file": "9320df69d360af6730d5941421b33b182e5f5e40dc0282b8ec17e1d975437fe2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9320df69d360af6730d5941421b33b182e5f5e40dc0282b8ec17e1d975437fe2.mp3",
+          "contentHash": "c8520223c48233e10599f49d07275fc7ce8c99c2f3340afd95492edaaa0af5a1",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l03/s55/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The cafes are here.",
+          "file": "e0287244fe31ecb6f925b61ffd7e49633c3968c7b1d5d1e0b80bfb2995bf36db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0287244fe31ecb6f925b61ffd7e49633c3968c7b1d5d1e0b80bfb2995bf36db.mp3",
+          "contentHash": "80349c87da9d93e37bcd5155603757fdf9fbb9abb340b2f04ca387bf55ad334d",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l03/s55/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She is independent.",
+          "file": "fed8605aed342b6f1e5f16573b3bb784c0c2b20e1845986da2c0d34701dd897d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fed8605aed342b6f1e5f16573b3bb784c0c2b20e1845986da2c0d34701dd897d.mp3",
+          "contentHash": "98684300a98907fede5e1746a2c329180383f6cbdf8848b66de7f9b1fddee113",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l03/s55/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's unreliable.",
+          "file": "44583c6866d38e0042a4638aac78c70eb54a337cf9ade5a9c33e790b7099fd09.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44583c6866d38e0042a4638aac78c70eb54a337cf9ade5a9c33e790b7099fd09.mp3",
+          "contentHash": "34a32666a924d78539d94be352c7e429b1af1a287bb40756daae6813af6692ee",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l03/s55/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The cafes are here.",
+          "file": "309d6fd39ed8b54b20fdf8041c69ce71cae78902bff89973f6f076ee7e16eab9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/309d6fd39ed8b54b20fdf8041c69ce71cae78902bff89973f6f076ee7e16eab9.mp3",
+          "contentHash": "3aebd1bf10622d280baf10cf7a1360e94ad273aaef7e06d722ff2607007f9ca9",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l03/s55/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She is independent.",
+          "file": "7330fc0d765ff3e13f7b9620652f1a0a6a63f4eaba231814d2631537b5ccd7c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7330fc0d765ff3e13f7b9620652f1a0a6a63f4eaba231814d2631537b5ccd7c3.mp3",
+          "contentHash": "c7fa92e1b785394db04d9ad4f6a06ae04d810ff01e881d0c09221a0496b45e17",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l03/s55/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cafes",
+          "file": "7875748d2b5e9191f0d0406f14db09e37cd968461fe8122c7938338441d50f8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7875748d2b5e9191f0d0406f14db09e37cd968461fe8122c7938338441d50f8c.mp3",
+          "contentHash": "4af84bf4c0fdf640e985468b81fb8a821b1a24e614594cba03dfc87722679f5b",
+          "byteSize": 21120
+        },
+        {
+          "text": "independent",
+          "file": "86dc3f008dc61140444c932b17ab1910014386c8b92c910b5ecdda290b72fd55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/86dc3f008dc61140444c932b17ab1910014386c8b92c910b5ecdda290b72fd55.mp3",
+          "contentHash": "13db0b6da7079dbe9b17207d86aefdf01880dc6474020a32206481be887b6c63",
+          "byteSize": 21888
+        },
+        {
+          "text": "dependent",
+          "file": "50a545711d9ae041662202e510144441b9d7527769af7e7d05c974ba01205447.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50a545711d9ae041662202e510144441b9d7527769af7e7d05c974ba01205447.mp3",
+          "contentHash": "366991fa19b614d82a7b400d26a9b282fb0b071956897d822107f7a74a3c9a63",
+          "byteSize": 19584
+        },
+        {
+          "text": "unreliable",
+          "file": "036f7691ef1c2f99fdf2b65878e95d4ee95aedb62a9d73ab53b8dc13f2c5c126.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/036f7691ef1c2f99fdf2b65878e95d4ee95aedb62a9d73ab53b8dc13f2c5c126.mp3",
+          "contentHash": "e76709799378969d5726ffa8884c0a2939303e5cdc730aeef59288c4b88ca4ea",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l03/s55/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The cafes are there.",
+          "file": "ac7f101dca42b3ccd6fea2a74fa3960f824259927c6e53550047720e55a27c0c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ac7f101dca42b3ccd6fea2a74fa3960f824259927c6e53550047720e55a27c0c.mp3",
+          "contentHash": "8d3c4875441155533767ff4efedb8cd9b85d986dac115630addad0ac46099396",
+          "byteSize": 30720
+        }
+      ]
     }
   },
   "settings": {

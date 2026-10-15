@@ -9,6 +9,7 @@ jest.mock('@react-native-firebase/functions', () => ({
 jest.mock('../app/level_spin_star_grants', () => ({ mergeLevelSpinServerStars: (...args: unknown[]) => mockMerge(...(args as [])) }));
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { act, renderHook } from '@testing-library/react-native';
 import { beginAccountGeneration } from '../app/account_generation';
 import { dismissLegacyBonusWelcome, resetLegacyBonusClientForTests, runLegacyBonusConvertOnce, useLegacyBonusWelcome } from '../app/legacy_bonus_client';
 
@@ -59,7 +60,6 @@ describe('legacy_bonus_client', () => {
   });
 
   it('окно: show только после начисления, закрытие убирает', async () => {
-    const { renderHook, act } = await import('@testing-library/react-native');
     const hook = await renderHook(() => useLegacyBonusWelcome());
     expect(hook.result.current.kind).toBe('none');
     mockCall.mockResolvedValueOnce({ data: converted });

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-13:intro1:r2": {
+          "ru": "Перед `window` нужно `a`: первый звук согласный.",
+          "uk": "Перед `window` потрібно `a`: перший звук приголосний."
+        },
+        "en:lesson-03:session-13:intro1:r3": {
+          "ru": "В этой фразе перед названием одного окна нужно `a`.",
+          "uk": "У цій фразі перед назвою одного вікна потрібно `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-13:intro2:r2": {
+          "ru": "С одним окном здесь нужно `is`.",
+          "uk": "З одним вікном тут потрібно `is`."
+        },
+        "en:lesson-03:session-13:intro2:r3": {
+          "ru": "После `The window` нужно `is`.",
+          "uk": "Після `The window` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-13:intro3:r2": {
+          "ru": "О месте спрашиваем `Where`, а не `What`.",
+          "uk": "Про місце запитуємо `Where`, а не `What`."
+        },
+        "en:lesson-03:session-13:intro3:r3": {
+          "ru": "С одной картой здесь нужно `is`.",
+          "uk": "З однією картою тут потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "69699214365e2a32e58342a88c1395797cda2ddccf875c9564b3e017fbd279eb"
+}

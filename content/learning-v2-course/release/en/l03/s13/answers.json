@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-13:i01",
-    "correctText": "earring",
+    "correctText": "It is a window.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i02",
-    "correctText": "earring",
+    "correctText": "The window is clean.",
     "correctResponseId": "en:lesson-03:session-13:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-13:i03",
-    "correctText": "necklace",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-13:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-13:i04",
-    "correctText": "necklace",
-    "correctResponseId": "en:lesson-03:session-13:i04:r1"
+    "correctText": "en:lesson-03:session-13:i04:p1=window\nen:lesson-03:session-13:i04:p2=map\nen:lesson-03:session-13:i04:p3=big\nen:lesson-03:session-13:i04:p4=small",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i05",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-03:session-13:i05:r1"
+    "correctText": "The map is here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i06",
-    "correctText": "bracelet",
+    "correctText": "The window is clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i07",
-    "correctText": "bracelet",
-    "correctResponseId": "en:lesson-03:session-13:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-13:i08",
-    "correctText": "An earring.",
+    "correctText": "It's big.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-13:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-13:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-13:i09",
-    "correctText": "a",
+    "correctText": "It is small.",
     "correctResponseId": "en:lesson-03:session-13:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-13:i10",
-    "correctText": "en:lesson-03:session-13:i10:p1=earring\nen:lesson-03:session-13:i10:p2=necklace\nen:lesson-03:session-13:i10:p3=bracelet\nen:lesson-03:session-13:i10:p4=vase",
+    "correctText": "en:lesson-03:session-13:i10:p1=clean\nen:lesson-03:session-13:i10:p2=public\nen:lesson-03:session-13:i10:p3=window\nen:lesson-03:session-13:i10:p4=map",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i11",
-    "correctText": "It is an earring.",
+    "correctText": "Where is the map?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i12",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-03:session-13:i12:r1"
+    "correctText": "Is the window clean?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i13",
-    "correctText": "Is it a bracelet?",
+    "correctText": "It is public.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i14",
-    "correctText": "It is not an earring.",
+    "correctText": "The",
     "correctResponseId": "en:lesson-03:session-13:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-13:i15",
-    "correctText": "It is not a necklace.",
-    "correctResponseId": null
+    "correctText": "The window is big.",
+    "correctResponseId": "en:lesson-03:session-13:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-13:i16",
-    "correctText": "It is a radio.",
+    "correctText": "en:lesson-03:session-13:i16:p1=small\nen:lesson-03:session-13:i16:p2=big\nen:lesson-03:session-13:i16:p3=clean\nen:lesson-03:session-13:i16:p4=public",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-13:i17",
-    "correctText": "It is a bracelet.",
+    "correctText": "Is the window clean?",
     "correctResponseId": null
   }
 ]

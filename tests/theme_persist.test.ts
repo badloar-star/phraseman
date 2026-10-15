@@ -76,7 +76,9 @@ describe('сохранение выбора темы (Optimistic UI)', () => {
     await flush();
     expect(t.rollbacks).toEqual([]);
     expect(t.failures).toEqual([]);
-    expect(t.logs).toContain('write_failed_stale');
+    // зачем (аудит Optimistic UI, координатор 15.10, дыра №3): повтор старого выбора пропущен: на диске остаётся новый, лишней записи нет
+    expect(t.logs).toContain('write_retry_skipped_stale');
+    expect(t.writes).toEqual([['theme', 'rose'], ['theme', 'sage']]);
   });
 
   it('виды выбора независимы: сбой оформления не откатывает тему', async () => {

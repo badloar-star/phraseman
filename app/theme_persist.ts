@@ -45,7 +45,14 @@ export function createThemePersister(deps: Deps): ThemePersister {
       const reason = error instanceof Error ? error.message : String(error);
       if (n === 0) {
         log('write_failed_retry', { kind, value, reason, retryInMs: delay });
-        setTimeout(() => attempt(kind, value, previous, mySeq, 1, startedAt), delay);
+        // зачем (аудит Optimistic UI, координатор 15.10, дыра №3): отложенный повтор старого выбора не должен перезаписать на диске более новый (тап A, сбой, тап B, повтор A затирал B)
+        setTimeout(() => {
+          if (mySeq !== seq[kind]) {
+            log('write_retry_skipped_stale', { kind, value, note: 'есть более новый выбор — повтор старого не пишем' });
+            return;
+          }
+          attempt(kind, value, previous, mySeq, 1, startedAt);
+        }, delay);
         return;
       }
       if (mySeq !== seq[kind]) {

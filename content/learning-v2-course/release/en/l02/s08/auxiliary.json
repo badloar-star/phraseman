@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-08:intro1:r2": {
+          "ru": "Перед `not` нужно `am`: `I am not sure`.",
+          "uk": "Перед `not` потрібно `am`: `I am not sure`."
+        },
+        "en:lesson-02:session-08:intro1:r3": {
+          "ru": "Без `not` это уверенность. В условии вы сомневаетесь.",
+          "uk": "Без `not` це впевненість. За умовою ви сумніваєтеся."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-08:intro2:r2": {
+          "ru": "Без `not` получается «Нам удобно».",
+          "uk": "Без `not` виходить «Нам зручно»."
+        },
+        "en:lesson-02:session-08:intro2:r3": {
+          "ru": "Это про неё. Про вас обоих — `We're`.",
+          "uk": "Це про неї. Про вас обох — `We're`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-08:intro3:r2": {
+          "ru": "Это «Не настоящий», а букет настоящий. Нужно `not fake`.",
+          "uk": "Це «Не справжній», а букет справжній. Потрібно `not fake`."
+        },
+        "en:lesson-02:session-08:intro3:r3": {
+          "ru": "Это искусственный букет. Здесь требуется отрицание.",
+          "uk": "Це штучний букет. Тут потрібне заперечення."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e5489923b6757d46d1430b2fa52c512e6c9923a667a59feb82ea4a8313859cdc"
+}

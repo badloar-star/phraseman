@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-01:session-20:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — married",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вода, карта й взуття готові. Складіть фразу за вашу компанію: «Ми підготувалися»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — married",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вода, карта й взуття готові. Складіть фразу за вашу компанію: «Ми підготувалися»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i01:audio",
-          "transcript": "married"
+        "family": "phrase_builder",
+        "targetPhrase": "We are prepared.",
+        "localizedMeaning": {
+          "ru": "Вода, карта и обувь готовы. Соберите фразу за вашу компанию: «Мы подготовились»",
+          "uk": "Вода, карта й взуття готові. Складіть фразу за вашу компанію: «Ми підготувалися»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "We",
+          "are",
+          "prepared"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i01:r1",
-            "targetText": "married",
-            "meaningByLocale": {
-              "ru": "«женат», «замужем». Одно слово на обоих.",
-              "uk": "«одружений», «заміжня». Одне слово на обох."
+            "responseId": "en:lesson-01:session-20:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Вода, карта й взуття готові. Складіть фразу за вашу компанію: «Ми підготувалися»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are prepared.`",
+              "uk": "тут потрібно `are` — `We are prepared.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "married",
-          "definitionByLocale": {
-            "ru": "«женат», «замужем». Одно слово на обоих.",
-            "uk": "«одружений», «заміжня». Одне слово на обох."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
+      "prompt": "Послухайте й виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-20:i02:r1",
-          "text": "married"
+          "text": "He is lost."
         },
         {
           "responseId": "en:lesson-01:session-20:i02:r2",
-          "text": "merry"
+          "text": "She is lost."
         },
         {
           "responseId": "en:lesson-01:session-20:i02:r3",
-          "text": "marred"
+          "text": "He is prepared."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-20:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть",
+      "accessibilityLabel": "Послухайте й виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-20:i02:audio",
-          "transcript": "married"
+          "transcript": "He is lost."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-20:i02:r1",
-            "targetText": "married",
+            "targetText": "He is lost.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-20:i02:r2",
-            "targetText": "merry",
+            "targetText": "She is lost.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-20:i02:r3",
-            "targetText": "marred",
+            "targetText": "He is prepared.",
             "meaningByLocale": null
           }
         ],
@@ -101,28 +102,19 @@
           {
             "responseId": "en:lesson-01:session-20:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — married",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "Кончается на гласную: «мэ-ри». У `married` в конце добавляется «д»: «мэ-рид».",
-              "uk": "Закінчується на голосну: «ме-рі». У `married` в кінці додається «д»: «ме-рід»."
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
             }
           },
           {
             "responseId": "en:lesson-01:session-20:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — married",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "Один слог, «маад». `married` длиннее — два слога: «МЭ-рид».",
-              "uk": "Один склад, «маад». `married` довше — два склади: «МЕ-рід»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i02:r1",
-            "correct": true,
-            "testedDimension": "Послухайте і виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи два слога `married` и в конце слышно `д`: «мэ-рид».",
-              "uk": "У записі два склади `married` і наприкінці чути `д`: «ме-рід"
+              "ru": "В записи последнее слово — `lost`, а в этом варианте — `prepared`.",
+              "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `prepared`."
             }
           }
         ],
@@ -135,42 +127,68 @@
       "interactionId": "en:lesson-01:session-20:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — single",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — single",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i03:audio",
-          "transcript": "single"
+      "prompt": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i03:r1",
+          "text": "am"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-01:session-20:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы внимательно идёте по скользкой тропинке. Скажите о себе: «Я осторожный»",
+          "uk": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»"
+        },
+        "gappedTargetPhrase": "I ___ careful.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-20:i03:r1",
-            "targetText": "single",
-            "meaningByLocale": {
-              "ru": "«не женат», «не замужем». В этой анкете это значит: человек не состоит в браке.",
-              "uk": "«неодружений», «незаміжня». У цій анкеті це означає: людина не перебуває у шлюбі."
-            }
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i03:r3",
+            "text": "are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "single",
-          "definitionByLocale": {
-            "ru": "«не женат», «не замужем». В этой анкете это значит: человек не состоит в браке.",
-            "uk": "«неодружений», «незаміжня». У цій анкеті це означає: людина не перебуває у шлюбі."
+        "testedDimension": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+            "feedbackByLocale": {
+              "ru": "С `I` нужно `am`.",
+              "uk": "Із `I` потрібно `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+            "feedbackByLocale": {
+              "ru": "Здесь вы говорите о себе: `I am`.",
+              "uk": "Тут ви говорите про себе: `I am`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -178,683 +196,60 @@
       "interactionId": "en:lesson-01:session-20:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-20:i04:r1",
-          "text": "single"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i04:r2",
-          "text": "simple"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i04:r3",
-          "text": "sing"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте і виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i04:audio",
-          "transcript": "single"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:i04:r1",
-            "targetText": "single",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i04:r2",
-            "targetText": "simple",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i04:r3",
-            "targetText": "sing",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-20:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — single",
-            "feedbackByLocale": {
-              "ru": "В середине «м»: «симпл». У `single` — «нг»: «сингл».",
-              "uk": "Усередині «м»: «сімпл». У `single` — «нг»: «сінгл»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — single",
-            "feedbackByLocale": {
-              "ru": "Обрублен конец. У `single` в хвосте ещё «л».",
-              "uk": "Обрубаний кінець. У `single` у хвості ще «л»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i04:r1",
-            "correct": true,
-            "testedDimension": "Послухайте і виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи `single`: в середине слышно «нг», а в конце — `l`.",
-              "uk": "У записі `single`: у середині чути «нг», а наприкінці — `l`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — funny",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i05:audio"
-      ],
-      "accessibilityLabel": "Картка слова — funny",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i05:audio",
-          "transcript": "funny"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:i05:r1",
-            "targetText": "funny",
-            "meaningByLocale": {
-              "ru": "«смешной». С ним смеются, а не над ним.",
-              "uk": "«смішний». З ним сміються, а не з нього."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "funny",
-          "definitionByLocale": {
-            "ru": "«смешной». С ним смеются, а не над ним.",
-            "uk": "«смішний». З ним сміються, а не з нього."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — в анкеті гостя вказано, що він перебуває у шлюбі",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-20:i06:r1",
-          "text": "married"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i06:r2",
-          "text": "single"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i06:r3",
-          "text": "funny"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — в анкеті гостя вказано, що він перебуває у шлюбі",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "В анкете гостя указано, что он состоит в браке. Вставьте слово.",
-          "uk": "Вставте слово — в анкеті гостя вказано, що він перебуває у шлюбі"
-        },
-        "gappedTargetPhrase": "He is ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-20:i06:r1",
-            "text": "married"
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i06:r2",
-            "text": "single"
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i06:r3",
-            "text": "funny"
-          }
-        ],
-        "testedDimension": "Вибір married за прямо вказаним сімейним станом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-20:i06:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — в анкеті гостя вказано, що він перебуває у шлюбі",
-            "feedbackByLocale": {
-              "ru": "В анкете прямо указано, что он состоит в браке: `He is married.`",
-              "uk": "В анкеті прямо вказано, що він перебуває у шлюбі: `He is married`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i06:r2",
-            "correct": false,
-            "testedDimension": "Вибір married за прямо вказаним сімейним станом",
-            "feedbackByLocale": {
-              "ru": "Ровно наоборот: `single` — когда пары нет. В анкете указано, что он состоит в браке.",
-              "uk": "Рівно навпаки: `single` — коли пари немає. В анкеті вказано, що він перебуває у шлюбі."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i06:r3",
-            "correct": false,
-            "testedDimension": "Вибір married за прямо вказаним сімейним станом",
-            "feedbackByLocale": {
-              "ru": "«Смешной». Анкета сообщает о семейном положении, а не о чувстве юмора.",
-              "uk": "«Смішний». Анкета повідомляє про сімейний стан, а не про почуття гумору."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — «вона незаміжня»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — «вона незаміжня»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She is single.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «она не замужем»",
-          "uk": "Складіть фразу — «вона незаміжня»"
-        },
-        "orderedTokens": [
-          "She",
-          "is",
-          "single"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-20:i07:tile:d1",
-            "correct": false,
-            "testedDimension": "Соберите фразу — «она не замужем»",
-            "feedbackByLocale": {
-              "ru": "`are` лишнее: после `She` здесь нужно `is` — `She is single.`",
-              "uk": "`are` зайве: після `She` тут потрібне `is` — `She is single`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — famous",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i08:audio"
-      ],
-      "accessibilityLabel": "Картка слова — famous",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i08:audio",
-          "transcript": "famous"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:i08:r1",
-            "targetText": "famous",
-            "meaningByLocale": {
-              "ru": "«знаменитый». Его знают в лицо люди, которых он никогда не видел.",
-              "uk": "«відомий». Його знають в обличчя люди, яких він ніколи не бачив."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "famous",
-          "definitionByLocale": {
-            "ru": "«знаменитый». Его знают в лицо люди, которых он никогда не видел.",
-            "uk": "«відомий». Його знають в обличчя люди, яких він ніколи не бачив."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-20:i09:r1",
-          "text": "famous"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i09:r2",
-          "text": "family"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i09:r3",
-          "text": "farmer"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте і виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i09:audio",
-          "transcript": "famous"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:i09:r1",
-            "targetText": "famous",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i09:r2",
-            "targetText": "family",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i09:r3",
-            "targetText": "farmer",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-20:i09:r2",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — famous",
-            "feedbackByLocale": {
-              "ru": "Первый слог не такой: `family` начинается с «фэ», а `famous` — с «фэй».",
-              "uk": "Перший склад інший: `family` починається з «фе», а `famous` — з «фей»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i09:r3",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — famous",
-            "feedbackByLocale": {
-              "ru": "Первый слог долгий, «фаа». У `famous` он звучит как «фэй».",
-              "uk": "Перший склад довгий, «фаа». У `famous` він звучить як «фей»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i09:r1",
-            "correct": true,
-            "testedDimension": "Послухайте і виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи `famous` начинается со звука «фэй», не как `family` и не как `farmer`.",
-              "uk": "У записі `famous` починається зі звуку «фей», не як `family` і не як `farmer`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — rich",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i10:audio"
-      ],
-      "accessibilityLabel": "Картка слова — rich",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i10:audio",
-          "transcript": "rich"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:i10:r1",
-            "targetText": "rich",
-            "meaningByLocale": {
-              "ru": "«богатый».",
-              "uk": "«багатий»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "rich",
-          "definitionByLocale": {
-            "ru": "«богатый».",
-            "uk": "«багатий»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-20:i11:r1",
-          "text": "rich"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i11:r2",
-          "text": "reach"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i11:r3",
-          "text": "ridge"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте і виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i11:audio",
-          "transcript": "rich"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:i11:r1",
-            "targetText": "rich",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i11:r2",
-            "targetText": "reach",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i11:r3",
-            "targetText": "ridge",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-20:i11:r2",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — rich",
-            "feedbackByLocale": {
-              "ru": "Гласная длинная, «риич». У `rich` она короткая и резкая.",
-              "uk": "Голосна довга, «рііч». У `rich` вона коротка й різка."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i11:r3",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — rich",
-            "feedbackByLocale": {
-              "ru": "Кончается на звонкое «дж» — как в «джем». У `rich` в конце глухое «ч».",
-              "uk": "Закінчується на дзвінке «дж» — як у «джем». У `rich` в кінці глухе «ч»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i11:r1",
-            "correct": true,
-            "testedDimension": "Послухайте і виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи короткое `rich`: не длинное `reach` и не `ridge` с «дж» в конце.",
-              "uk": "У записі коротке `rich`: не довге `reach` і не `ridge` із «дж» наприкінці."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — «він багатий»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте і складіть — «він багатий»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i12:audio",
-          "transcript": "He is rich."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "He is rich.",
-        "orderedTokens": [
-          "He",
-          "is",
-          "rich"
-        ],
-        "authoredDistractorTokens": [
-          "famous"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-20:i12:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите — «он богат»",
-            "feedbackByLocale": {
-              "ru": "`famous` лишнее: в записи и фразе сказано `He is rich.`",
-              "uk": "`famous` зайве: у записі й фразі сказано `He is rich`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — Ліна каже: гостю впізнають на вулиці після реклами, у якій вона знялася",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-20:i13:r1",
-          "text": "famous"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i13:r2",
-          "text": "rich"
-        },
-        {
-          "responseId": "en:lesson-01:session-20:i13:r3",
-          "text": "quiet"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Ліна каже: гостю впізнають на вулиці після реклами, у якій вона знялася",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — Лина говорит: гостью узнают на улице после рекламы, в которой она снялась",
-          "uk": "Вставте слово — Ліна каже: гостю впізнають на вулиці після реклами, у якій вона знялася"
-        },
-        "gappedTargetPhrase": "She is ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-20:i13:r1",
-            "text": "famous"
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i13:r2",
-            "text": "rich"
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i13:r3",
-            "text": "quiet"
-          }
-        ],
-        "testedDimension": "Ліна каже: перехожі впізнають гостю",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-20:i13:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — Ліна каже: гостю впізнають на вулиці після реклами, у якій вона знялася",
-            "feedbackByLocale": {
-              "ru": "Гостью узнают после рекламы, в которой она снялась: это `famous`, а не `rich` или `quiet`.",
-              "uk": "Гостю впізнають після реклами, у якій вона знялася: це `famous`, а не `rich` чи `quiet`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i13:r2",
-            "correct": false,
-            "testedDimension": "Ліна каже: перехожі впізнають гостю",
-            "feedbackByLocale": {
-              "ru": "«Богатая». Про деньги нам ничего не сказали, сказали про узнавание.",
-              "uk": "«Багата». Про гроші нам нічого не сказали, сказали про впізнавання."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-20:i13:r3",
-            "correct": false,
-            "testedDimension": "Ліна каже: перехожі впізнають гостю",
-            "feedbackByLocale": {
-              "ru": "«Тихая». Про известность это ничего не говорит.",
-              "uk": "«Тиха». Про відомість це нічого не говорить."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте пари",
+      "prompt": "З’єднайте слова та значення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З'єднайте пари",
+      "accessibilityLabel": "З’єднайте слова та значення",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-20:i14:p1",
-            "target": "married",
+            "pairId": "en:lesson-01:session-20:i04:p1",
+            "target": "lost",
             "meaningByLocale": {
-              "ru": "женат",
-              "uk": "одружений"
+              "ru": "заблудившийся",
+              "uk": "той, хто заблукав"
             }
           },
           {
-            "pairId": "en:lesson-01:session-20:i14:p2",
-            "target": "single",
+            "pairId": "en:lesson-01:session-20:i04:p2",
+            "target": "prepared",
             "meaningByLocale": {
-              "ru": "не женат",
-              "uk": "неодружений"
+              "ru": "подготовленный",
+              "uk": "підготовлений"
             }
           },
           {
-            "pairId": "en:lesson-01:session-20:i14:p3",
-            "target": "famous",
+            "pairId": "en:lesson-01:session-20:i04:p3",
+            "target": "careful",
             "meaningByLocale": {
-              "ru": "знаменитый",
-              "uk": "відомий"
+              "ru": "осторожный",
+              "uk": "обережний"
             }
           },
           {
-            "pairId": "en:lesson-01:session-20:i14:p4",
-            "target": "rich",
+            "pairId": "en:lesson-01:session-20:i04:p4",
+            "target": "together",
             "meaningByLocale": {
-              "ru": "богатый",
-              "uk": "багатий"
+              "ru": "вместе",
+              "uk": "разом"
             }
           }
         ],
         "leftColumn": [
-          "married",
-          "single",
-          "famous",
-          "rich"
+          "lost",
+          "prepared",
+          "careful",
+          "together"
         ],
         "rightColumn": [
-          "женат",
-          "не женат",
-          "знаменитый",
-          "богатый"
+          "той, хто заблукав",
+          "підготовлений",
+          "обережний",
+          "разом"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -871,77 +266,608 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-20:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-01:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i05:audio",
+          "transcript": "They are careful."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are careful.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "careful"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are careful.`",
+              "uk": "тут потрібно `are` — `They are careful.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з подругою загубили дорогу. Складіть фразу для туриста, якого зустріли: «Ми заблукали»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з подругою загубили дорогу. Складіть фразу для туриста, якого зустріли: «Ми заблукали»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are lost.",
+        "localizedMeaning": {
+          "ru": "Вы с подругой потеряли дорогу. Соберите фразу для встреченного туриста: «Мы заблудились»",
+          "uk": "Ви з подругою загубили дорогу. Складіть фразу для туриста, якого зустріли: «Ми заблукали»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "lost"
+        ],
+        "authoredDistractorTokens": [
+          "He"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви з подругою загубили дорогу. Складіть фразу для туриста, якого зустріли: «Ми заблукали»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `We` — `We are lost.`",
+              "uk": "тут потрібно `We` — `We are lost.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга заздалегідь зібрала все для прогулянки. Скажіть уголос про неї: «Вона підготувалася»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Подруга заздалегідь зібрала все для прогулянки. Скажіть уголос про неї: «Вона підготувалася»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i07:audio",
+          "transcript": "She is prepared."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is prepared.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — Антон увесь вечір мовчить за столом",
+      "prompt": "Друг уважно перевіряє стежку. Опишіть його, звертаючись до нього: «Ти обережний»",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-20:i15:r1",
-          "text": "quiet"
+          "responseId": "en:lesson-01:session-20:i08:r1",
+          "text": "are"
         },
         {
-          "responseId": "en:lesson-01:session-20:i15:r2",
-          "text": "funny"
+          "responseId": "en:lesson-01:session-20:i08:r2",
+          "text": "am"
         },
         {
-          "responseId": "en:lesson-01:session-20:i15:r3",
-          "text": "rich"
+          "responseId": "en:lesson-01:session-20:i08:r3",
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Антон увесь вечір мовчить за столом",
+      "accessibilityLabel": "Друг уважно перевіряє стежку. Опишіть його, звертаючись до нього: «Ти обережний»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Антон весь день молчит за столом. Вставьте слово.",
-          "uk": "Вставте слово — Антон увесь вечір мовчить за столом"
+          "ru": "Друг внимательно проверяет тропинку. Опишите его, обращаясь к нему: «Ты осторожный»",
+          "uk": "Друг уважно перевіряє стежку. Опишіть його, звертаючись до нього: «Ти обережний»"
         },
-        "gappedTargetPhrase": "He is ___.",
+        "gappedTargetPhrase": "You ___ careful.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-20:i15:r1",
-            "text": "quiet"
+            "responseId": "en:lesson-01:session-20:i08:r1",
+            "text": "are"
           },
           {
-            "responseId": "en:lesson-01:session-20:i15:r2",
-            "text": "funny"
+            "responseId": "en:lesson-01:session-20:i08:r2",
+            "text": "am"
           },
           {
-            "responseId": "en:lesson-01:session-20:i15:r3",
-            "text": "rich"
+            "responseId": "en:lesson-01:session-20:i08:r3",
+            "text": "is"
           }
         ],
-        "testedDimension": "quiet за ясним спостережуваним фактом",
+        "testedDimension": "Друг уважно перевіряє стежку. Опишіть його, звертаючись до нього: «Ти обережний»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i15:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — Антон увесь вечір мовчить за столом",
+            "responseId": "en:lesson-01:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Друг уважно перевіряє стежку. Опишіть його, звертаючись до нього: «Ти обережний»",
             "feedbackByLocale": {
-              "ru": "Антон весь вечер молчит за столом, поэтому он `quiet`.",
-              "uk": "Антон увесь вечір мовчить за столом, тому він `quiet`."
+              "ru": "После `You` нужно `are`; `am` ставим с `I`.",
+              "uk": "Після `You` потрібно `are`; `am` ставимо з `I`."
             }
           },
           {
+            "responseId": "en:lesson-01:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Друг уважно перевіряє стежку. Опишіть його, звертаючись до нього: «Ти обережний»",
+            "feedbackByLocale": {
+              "ru": "Вы обращаетесь к другу: `You are`.",
+              "uk": "Ви звертаєтеся до друга: `You are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу туриста й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i09:r1",
+          "text": "I am lost."
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i09:r2",
+          "text": "I am alone."
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i09:r3",
+          "text": "I am prepared."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу туриста й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i09:audio",
+          "transcript": "I am lost."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i09:r1",
+            "targetText": "I am lost.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i09:r2",
+            "targetText": "I am alone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i09:r3",
+            "targetText": "I am prepared.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу туриста й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `lost`, а в этом варианте — `alone`.",
+              "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `alone`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу туриста й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `lost`, а в этом варианте — `prepared`.",
+              "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `prepared`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте знайомі слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-20:i10:p1",
+            "target": "alone",
+            "meaningByLocale": {
+              "ru": "без других людей",
+              "uk": "без інших людей"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i10:p2",
+            "target": "nearby",
+            "meaningByLocale": {
+              "ru": "поблизости",
+              "uk": "поблизу"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i10:p3",
+            "target": "friendly",
+            "meaningByLocale": {
+              "ru": "дружелюбный",
+              "uk": "привітний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i10:p4",
+            "target": "helpful",
+            "meaningByLocale": {
+              "ru": "готовый помочь",
+              "uk": "готовий допомогти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alone",
+          "nearby",
+          "friendly",
+          "helpful"
+        ],
+        "rightColumn": [
+          "без інших людей",
+          "поблизу",
+          "привітний",
+          "готовий допомогти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть почуте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть почуте",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i11:audio",
+          "transcript": "You are prepared."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are prepared.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "prepared"
+        ],
+        "authoredDistractorTokens": [
+          "They"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть почуте",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `You` — `You are prepared.`",
+              "uk": "тут потрібно `You` — `You are prepared.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він готовий допомогти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він готовий допомогти»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is helpful.",
+        "localizedMeaning": {
+          "ru": "Турист охотно помогает вам найти маршрут. Соберите фразу о нём: «Он готов помочь»",
+          "uk": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він готовий допомогти»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "helpful"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він готовий допомогти»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is helpful.`",
+              "uk": "тут потрібно `is` — `He is helpful.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друзі вже на сусідній стежці. Скажіть уголос про них: «Вони поблизу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Друзі вже на сусідній стежці. Скажіть уголос про них: «Вони поблизу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i13:audio",
+          "transcript": "They are nearby."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are nearby.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i14:r1",
+          "text": "together"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i14:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i14:r3",
+          "text": "careful"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Все из вашей компании снова собрались в одном месте. Скажите: «Мы вместе»",
+          "uk": "Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»"
+        },
+        "gappedTargetPhrase": "We are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-20:i14:r1",
+            "text": "together"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i14:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i14:r3",
+            "text": "careful"
+          }
+        ],
+        "testedDimension": "Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i14:r2",
+            "correct": false,
+            "testedDimension": "Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»",
+            "feedbackByLocale": {
+              "ru": "`lost` — «заблудились». Здесь нужно сказать, что вы вместе: `together`.",
+              "uk": "`lost` — «заблукали». Тут треба сказати, що ви разом: `together`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i14:r3",
+            "correct": false,
+            "testedDimension": "Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»",
+            "feedbackByLocale": {
+              "ru": "`careful` — «осторожные». Совместное присутствие — `together`.",
+              "uk": "`careful` — «обережні». Спільна присутність — `together`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про гучного туриста",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i15:r1",
+          "text": "He is loud."
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i15:r2",
+          "text": "She is loud."
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i15:r3",
+          "text": "He is careful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про гучного туриста",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i15:audio",
+          "transcript": "He is loud."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i15:r1",
+            "targetText": "He is loud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i15:r2",
+            "targetText": "She is loud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i15:r3",
+            "targetText": "He is careful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
             "responseId": "en:lesson-01:session-20:i15:r2",
             "correct": false,
-            "testedDimension": "quiet за ясним спостережуваним фактом",
+            "testedDimension": "Послухайте фразу про гучного туриста",
             "feedbackByLocale": {
-              "ru": "«Смешной» — но нам сказали только, что Антон молчит. Про шутки речи не было.",
-              "uk": "«Смішний» — але нам сказали лише, що Антон мовчить. Про жарти не йшлося."
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
             }
           },
           {
             "responseId": "en:lesson-01:session-20:i15:r3",
             "correct": false,
-            "testedDimension": "quiet за ясним спостережуваним фактом",
+            "testedDimension": "Послухайте фразу про гучного туриста",
             "feedbackByLocale": {
-              "ru": "«Богатый». Из молчания нельзя понять ничего о деньгах.",
-              "uk": "«Багатий». З мовчання не можна дізнатися нічого про гроші."
+              "ru": "В записи последнее слово — `loud`, а в этом варианте — `careful`.",
+              "uk": "У записі останнє слово — `loud`, а в цьому варіанті — `careful`."
             }
           }
         ],
@@ -954,41 +880,71 @@
       "interactionId": "en:lesson-01:session-20:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — «вона добра»",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:i16:audio"
-      ],
-      "accessibilityLabel": "Послухайте і складіть — «вона добра»",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:i16:audio",
-          "transcript": "She is kind."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She is kind.",
-        "orderedTokens": [
-          "She",
-          "is",
-          "kind"
-        ],
-        "authoredDistractorTokens": [
-          "young"
-        ],
-        "slotFeedback": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-01:session-20:i16:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите — «она добрая»",
-            "feedbackByLocale": {
-              "ru": "`young` лишнее: в записи и фразе сказано `She is kind.`",
-              "uk": "`young` зайве: у записі й фразі сказано `She is kind`."
+            "pairId": "en:lesson-01:session-20:i16:p1",
+            "target": "loud",
+            "meaningByLocale": {
+              "ru": "громкий",
+              "uk": "гучний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i16:p2",
+            "target": "prepared",
+            "meaningByLocale": {
+              "ru": "подготовленный",
+              "uk": "підготовлений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i16:p3",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудившийся",
+              "uk": "той, хто заблукав"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i16:p4",
+            "target": "careful",
+            "meaningByLocale": {
+              "ru": "осторожный",
+              "uk": "обережний"
             }
           }
+        ],
+        "leftColumn": [
+          "loud",
+          "prepared",
+          "lost",
+          "careful"
+        ],
+        "rightColumn": [
+          "гучний",
+          "підготовлений",
+          "той, хто заблукав",
+          "обережний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -997,38 +953,39 @@
       "interactionId": "en:lesson-01:session-20:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — Антон цілий вечір усіх смішить",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Завтра співбесіда. Ви заздалегідь вивчили запитання й зібрали документи. Скажіть про себе: «Я підготувався»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — Антон цілий вечір усіх смішить",
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Завтра співбесіда. Ви заздалегідь вивчили запитання й зібрали документи. Скажіть про себе: «Я підготувався»",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is funny.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — Антон весь вечер всех смешит",
-          "uk": "Складіть фразу — Антон цілий вечір усіх смішить"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i17:audio",
+          "transcript": "I am prepared."
         },
-        "orderedTokens": [
-          "He",
-          "is",
-          "funny"
-        ],
-        "authoredDistractorTokens": [
-          "young"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-01:session-20:i17:tile:d1",
-            "correct": false,
-            "testedDimension": "Соберите фразу — Антон весь вечер всех с",
-            "feedbackByLocale": {
-              "ru": "`young` лишнее: Антон смешит всех, поэтому `He is funny.`",
-              "uk": "`young` зайве: Антон смішить усіх, тому `He is funny`."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am prepared.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -1040,5 +997,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "86677fec91c71db1f45cb822223abcaff466110017fc681bd85bb2220951bdd7"
+  "learnerFingerprint": "a6095e85ff23821f0aa77aecf5d4f991136ba98839a18100d60a378723af8db6"
 }

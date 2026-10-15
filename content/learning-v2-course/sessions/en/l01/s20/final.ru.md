@@ -1,163 +1,138 @@
-# Английский · Урок 1 · Занятие 20 — «Он женат, она знаменита»
+# Английский · Урок 1 · Занятие 20 — На развилке в лесу
 
-**Ситуация.** Вы помогаете Лине подготовить подписи к фотографиям гостей благотворительного вечера. Лина сверяет с вами сведения, которые гости сами указали в анкетах: кто состоит в браке, кто не состоит и кого узнают по рекламе.
+**Ситуация.** Вы с друзьями собрались на короткую прогулку по лесному маршруту. Проверяете вещи, выбираете тропинку и обращаетесь за помощью, когда теряете дорогу.
 
-**Как сказать:** `he is` / `she is` + слово
-**Новые слова:** married, single, famous, rich
-**Возвращаются:** quiet, funny, kind
+**Что вы освоите:** самостоятельно построить знакомую фразу с am, is или are о подготовке, осторожности и потерянной дороге
+**Новые слова:** lost, prepared, careful
 
 ---
 
 ## Интро 1
 
-### `married` — женат и замужем одним словом
+### Мы заблудились
 
-`married` — и «женат», и «замужем». Английский не стал придумывать два слова: `He is married`, `She is married`, меняется только `he` или `she`.
+`lost` здесь значит «заблудившийся». `We are lost` — «Мы заблудились». Это описание того, что с вами сейчас: вы не знаете, где находитесь. Если дорогу потерял только ваш друг, скажите `He is lost`.
 
-Рядом живёт `marry` — «жениться»: это действие, один день и много гостей. А `married` — состояние, которое началось после.
+**Вы с друзьями не можете найти своё место на карте. Скажите за всю вашу компанию: «Мы заблудились».**
 
-**В анкете гостя Антона указано, что он состоит в браке. Скажите: «он женат».**
-
-- ✅ **He is married.**
-- ❌ He married. — *По-русски мы говорим просто «он женат». По-английски между `he` и `married` обязательно стоит `is`.*
-- ❌ He is marry. — *Хвост оборвали. `marry` — «жениться», а состояние — `married`, с `-ed`.*
+- ✅ **We are lost.**
+- ❌ We is lost. — *После `We` нужно `are`.*
+- ❌ He is lost. — *Это только о нём. Здесь потеряла дорогу вся ваша компания: `We are lost`.*
 
 ---
 
 ## Интро 2
 
-### `single` — не состоит в браке
+### Подготовились
 
-`single` — «не женат», «не замужем»: в этой анкете человек не состоит в браке.
+`prepared` — «подготовленный». Карта, вода и подходящая обувь уже есть: `We are prepared` — «Мы подготовились». `ready` значит «готов», а `prepared` подчёркивает, что вы заранее всё подготовили. Рюкзак лучше проверить дома: забытая бутылка воды сама вас не догонит.
 
-Ни печали, ни диагноза в слове нет, это просто факт: в анкетах `single` стоит соседним квадратиком с `married`.
+**Подруга заранее изучила маршрут и собрала вещи. Скажите о ней: «Она подготовилась».**
 
-Звучит «СИНГЛ», через «нг» — как в слове «сингл» про песню.
-
-**Лина показывает анкету Марины: в ней указано, что Марина не состоит в браке. Скажите: «она не замужем».**
-
-- ✅ **She is single.**
-- ❌ She single. — *Без `is` фраза не стоит. Про одного человека — `he is` или `she is`.*
-- ❌ She are single. — *`are` не для `she`. После `she` нужна форма `is`.*
+- ✅ **She is prepared.**
+- ❌ She are prepared. — *После `She` ставим `is`.*
+- ❌ She is lost. — *`lost` — «заблудилась». Здесь речь о подготовке: `prepared`.*
 
 ---
 
 ## Интро 3
 
-### `famous` и `rich` — знаменит и богат
+### Осторожный
 
-`famous` — «знаменитый»: человека узнают люди, с которыми он не знаком. `rich` — «богатый».
+`careful` — «осторожный, внимательный». Друг смотрит под ноги на скользкой тропинке: `He is careful` — «Он осторожный». Слово описывает, как он себя ведёт. `You are careful` — «Ты осторожный»; это описание собеседника, а не просьба быть осторожнее.
 
-`famous` звучит «ФЭЙ-мас»: первый слог тянется, второй проглатывается. Не «фамоус», как читается глазами.
+**Двое друзей внимательно проверяют каждый шаг на мокрых камнях. Скажите про них: «Они осторожные».**
 
-Схема прежняя: `He is famous`, `She is rich`. Новое тут только слово в конце.
-
-**Лина говорит, что гостью Софию узнают на улице после рекламы, в которой она снялась. Скажите: «она знаменита».**
-
-- ✅ **She is famous.**
-- ❌ She is rich. — *Это «богатая». Её узнают на улице — про деньги ничего не сказали.*
-- ❌ She famous. — *После `she` нужна форма `is`: `She is famous`.*
+- ✅ **They are careful.**
+- ❌ They is careful. — *После `They` нужно `are`.*
+- ❌ They are prepared. — *`prepared` означает, что они подготовились. Здесь речь об осторожности на камнях: `careful`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Карточка слова — married**
-<!-- interaction_id: en:lesson-01:session-20:i01; family: listen_choose -->
-> **married** — «женат», «замужем». Одно слово на обоих.
+**1 · Вода, карта и обувь готовы. Соберите фразу за вашу компанию: «Мы подготовились»**
+<!-- interaction_id: en:lesson-01:session-20:i01; family: phrase_builder -->
+Плитки: `prepared` `are` `We` `is` → **We are prepared.**
+*(плитка `is` лишняя: здесь нужно `are` — `We are prepared.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-20:i02; family: listen_choose -->
-🔊 *married* → **married** · merry · marred
-- merry — *Кончается на гласную: «мэ-ри». У `married` в конце добавляется «д»: «мэ-рид».*
-- marred — *Один слог, «маад». `married` длиннее — два слога: «МЭ-рид».*
+🔊 *He is lost.* → **He is lost.** · She is lost. · He is prepared.
+- She is lost. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is prepared. — *В записи последнее слово — `lost`, а в этом варианте — `prepared`.*
 
-**3 · Карточка слова — single**
-<!-- interaction_id: en:lesson-01:session-20:i03; family: listen_choose -->
-> **single** — «не женат», «не замужем». В этой анкете это значит: человек не состоит в браке.
+**3 · Вставьте слово — вы внимательно идёте по скользкой тропинке. Скажите о себе: «Я осторожный»**
+<!-- interaction_id: en:lesson-01:session-20:i03; family: context_gap_grammar -->
+I ___ careful. → **am** · is · are
+- is — *С `I` нужно `am`.*
+- are — *Здесь вы говорите о себе: `I am`.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-20:i04; family: listen_choose -->
-🔊 *single* → **single** · simple · sing
-- single — *В записи `single`: в середине слышно «нг», а в конце — `l`.*
-- simple — *В середине «м»: «симпл». У `single` — «нг»: «сингл».*
-- sing — *Обрублен конец. У `single` в хвосте ещё «л».*
+**4 · Соедините слова и значения**
+<!-- interaction_id: en:lesson-01:session-20:i04; family: speed_match -->
+lost — заблудившийся · prepared — подготовленный · careful — осторожный · together — вместе
 
-**5 · Карточка слова — funny**
-<!-- interaction_id: en:lesson-01:session-20:i05; family: listen_choose -->
-> **funny** — «смешной». С ним смеются, а не над ним.
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-20:i05; family: listen_build_dictation -->
+🔊 *They are careful.* Плитки: `careful` `are` `They` `is` → **They are careful.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are careful.`)*
 
-**6 · Вставьте слово — в анкете гостя указано, что он состоит в браке**
-<!-- interaction_id: en:lesson-01:session-20:i06; family: context_gap_grammar -->
-He is ___ . → **married** · single · funny
-- married — *В анкете прямо указано, что он состоит в браке: `He is married.`*
-- single — *Ровно наоборот: `single` — когда пары нет. В анкете указано, что он состоит в браке.*
-- funny — *«Смешной». Анкета сообщает о семейном положении, а не о чувстве юмора.*
+**6 · Вы с подругой потеряли дорогу. Соберите фразу для встреченного туриста: «Мы заблудились»**
+<!-- interaction_id: en:lesson-01:session-20:i06; family: phrase_builder -->
+Плитки: `lost` `are` `We` `He` → **We are lost.**
+*(плитка `He` лишняя: здесь нужно `We` — `We are lost.`)*
 
-**7 · Соберите фразу — «она не замужем»**
-<!-- interaction_id: en:lesson-01:session-20:i07; family: phrase_builder -->
-Плитки: `single` `she` `is` `are` → **She is single.**
-*`are` лишнее: после `She` здесь нужно `is` — `She is single.`*
-*(плитка `are` лишняя: `are` лишнее: после `She` здесь нужно `is` — `She is single.`)*
+**7 · Подруга заранее собрала всё для прогулки. Скажите вслух о ней: «Она подготовилась»**
+<!-- interaction_id: en:lesson-01:session-20:i07; family: scripted_repeat_compare -->
+🎙 **She is prepared.**
 
+**8 · Друг внимательно проверяет тропинку. Опишите его, обращаясь к нему: «Ты осторожный»**
+<!-- interaction_id: en:lesson-01:session-20:i08; family: context_gap_grammar -->
+You ___ careful. → **are** · am · is
+- am — *После `You` нужно `are`; `am` ставим с `I`.*
+- is — *Вы обращаетесь к другу: `You are`.*
 
-**8 · Карточка слова — famous**
-<!-- interaction_id: en:lesson-01:session-20:i08; family: listen_choose -->
-> **famous** — «знаменитый». Его знают в лицо люди, которых он никогда не видел.
-
-**9 · Послушайте и выберите**
+**9 · Послушайте фразу туриста и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-20:i09; family: listen_choose -->
-🔊 *famous* → **famous** · family · farmer
-- famous — *В записи `famous` начинается со звука «фэй», не как `family` и не как `farmer`.*
-- family — *Первый слог не такой: `family` начинается с «фэ», а `famous` — с «фэй».*
-- farmer — *Первый слог долгий, «фаа». У `famous` он звучит как «фэй».*
+🔊 *I am lost.* → **I am lost.** · I am alone. · I am prepared.
+- I am alone. — *В записи последнее слово — `lost`, а в этом варианте — `alone`.*
+- I am prepared. — *В записи последнее слово — `lost`, а в этом варианте — `prepared`.*
 
-**10 · Карточка слова — rich**
-<!-- interaction_id: en:lesson-01:session-20:i10; family: listen_choose -->
-> **rich** — «богатый».
+**10 · Соедините знакомые слова со значениями**
+<!-- interaction_id: en:lesson-01:session-20:i10; family: speed_match -->
+alone — без других людей · nearby — поблизости · friendly — дружелюбный · helpful — готовый помочь
 
-**11 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-20:i11; family: listen_choose -->
-🔊 *rich* → **rich** · reach · ridge
-- rich — *В записи короткое `rich`: не длинное `reach` и не `ridge` с «дж» в конце.*
-- reach — *Гласная длинная, «риич». У `rich` она короткая и резкая.*
-- ridge — *Кончается на звонкое «дж» — как в «джем». У `rich` в конце глухое «ч».*
+**11 · Послушайте и соберите услышанное**
+<!-- interaction_id: en:lesson-01:session-20:i11; family: listen_build_dictation -->
+🔊 *You are prepared.* Плитки: `prepared` `are` `You` `They` → **You are prepared.**
+*(плитка `They` лишняя: здесь нужно `You` — `You are prepared.`)*
 
-**12 · Послушайте и соберите — «он богат»**
-<!-- interaction_id: en:lesson-01:session-20:i12; family: listen_build_dictation -->
-🔊 *He is rich.* Плитки: `is` `rich` `he` `famous` → **He is rich.**
-*`famous` лишнее: в записи и фразе сказано `He is rich.`*
-*(плитка `famous` лишняя: `famous` лишнее: в записи и фразе сказано `He is rich.`)*
+**12 · Турист охотно помогает вам найти маршрут. Соберите фразу о нём: «Он готов помочь»**
+<!-- interaction_id: en:lesson-01:session-20:i12; family: phrase_builder -->
+Плитки: `helpful` `is` `He` `are` → **He is helpful.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is helpful.`)*
 
+**13 · Друзья уже на соседней тропинке. Скажите вслух про них: «Они поблизости»**
+<!-- interaction_id: en:lesson-01:session-20:i13; family: scripted_repeat_compare -->
+🎙 **They are nearby.**
 
-**13 · Вставьте слово — Лина говорит: гостью узнают на улице после рекламы, в которой она снялась**
-<!-- interaction_id: en:lesson-01:session-20:i13; family: context_gap_grammar -->
-She is ___ . → **famous** · rich · quiet
-- famous — *Гостью узнают после рекламы, в которой она снялась: это `famous`, а не `rich` или `quiet`.*
-- rich — *«Богатая». Про деньги нам ничего не сказали, сказали про узнавание.*
-- quiet — *«Тихая». Про известность это ничего не говорит.*
+**14 · Все из вашей компании снова собрались в одном месте. Скажите: «Мы вместе»**
+<!-- interaction_id: en:lesson-01:session-20:i14; family: context_gap_grammar -->
+We are ___ . → **together** · lost · careful
+- lost — *`lost` — «заблудились». Здесь нужно сказать, что вы вместе: `together`.*
+- careful — *`careful` — «осторожные». Совместное присутствие — `together`.*
 
-**14 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-20:i14; family: speed_match -->
-married — женат · single — не женат · famous — знаменитый · rich — богатый
+**15 · Послушайте фразу о громком туристе**
+<!-- interaction_id: en:lesson-01:session-20:i15; family: listen_choose -->
+🔊 *He is loud.* → **He is loud.** · She is loud. · He is careful.
+- She is loud. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is careful. — *В записи последнее слово — `loud`, а в этом варианте — `careful`.*
 
-**15 · Вставьте слово — Антон весь вечер молчит за столом**
-<!-- interaction_id: en:lesson-01:session-20:i15; family: context_gap_grammar -->
-He is ___. → **quiet** · funny · rich
-- quiet — *Антон весь вечер молчит за столом, поэтому он `quiet`.*
-- funny — *«Смешной» — но нам сказали только, что Антон молчит. Про шутки речи не было.*
-- rich — *«Богатый». Из молчания нельзя понять ничего о деньгах.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-20:i16; family: speed_match -->
+loud — громкий · prepared — подготовленный · lost — заблудившийся · careful — осторожный
 
-**16 · Послушайте и соберите — «она добрая»**
-<!-- interaction_id: en:lesson-01:session-20:i16; family: listen_build_dictation -->
-🔊 *She is kind.* Плитки: `kind` `she` `is` `young` → **She is kind.**
-*`young` лишнее: в записи и фразе сказано `She is kind.`*
-*(плитка `young` лишняя: `young` лишнее: в записи и фразе сказано `She is kind.`)*
-
-
-**17 · Соберите фразу — Антон весь вечер всех смешит**
-<!-- interaction_id: en:lesson-01:session-20:i17; family: phrase_builder -->
-Плитки: `funny` `he` `is` `young` → **He is funny.**
-*`young` лишнее: Антон смешит всех, поэтому `He is funny.`*
-*(плитка `young` лишняя: `young` лишнее: Антон смешит всех, поэтому `He is funny.`)*
+**17 · Завтра собеседование. Вы заранее изучили вопросы и собрали документы. Скажите о себе: «Я подготовился»**
+<!-- interaction_id: en:lesson-01:session-20:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am prepared.**
 

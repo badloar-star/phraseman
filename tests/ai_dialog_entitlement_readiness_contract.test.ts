@@ -96,7 +96,9 @@ describe('AI-dialog entitlement readiness contract', () => {
     // 2026-09-13: голосовой ввод идёт через дневную квоту речи, а не через Plus-замок.
     // зачем: проверка права стала canStartAttempt() (списание — commitStartedAttempt() уже
     // после старта распознавателя), но гейт по-прежнему стоит после разрешения доступа.
-    expectResolutionGuardBefore(voice, 'if (!voiceInputGate.canStartAttempt())');
+    // ebacc519e (R43): canStartAttempt принимает колбэк «после подтверждения Plus запись стартует сама» — сторожим сам вызов
+    // гейта (с аргументом или без), а не точный текст скобок
+    expectResolutionGuardBefore(voice, 'if (!voiceInputGate.canStartAttempt(');
 
     const analysisMarker = scenario.indexOf("source: 'dialog_analysis'");
     const analysisPaywall = scenario.slice(analysisMarker - 220, analysisMarker + 360);

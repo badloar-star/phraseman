@@ -196,9 +196,12 @@ test('committed multilingual artifacts are byte-for-byte reproducible from the c
     assert.equal(run.status, 0, run.stderr);
     for (const target of ['es', 'fr', 'de', 'it']) {
       for (const file of ['tasks.jsonl', 'manifest.json']) {
+        // зачем (сухой прогон выкладки 15.10): в HEAD эти файлы лежат с CRLF, генератор пишет LF; рабочее дерево (autocrlf) — LF,
+        // а чистая выгрузка HEAD — CRLF, и сборка functions из чистой копии падала. Содержимое сверяем точно, вид перевода строки — нет.
+        const eol = (text) => text.replace(/\r\n/g, '\n');
         assert.equal(
-          readFileSync(join(root, 'content', 'arena-multilingual', 'generated', target, file), 'utf8'),
-          readFileSync(join(output, target, file), 'utf8'),
+          eol(readFileSync(join(root, 'content', 'arena-multilingual', 'generated', target, file), 'utf8')),
+          eol(readFileSync(join(output, target, file), 'utf8')),
           `${target}/${file} is stale`,
         );
       }

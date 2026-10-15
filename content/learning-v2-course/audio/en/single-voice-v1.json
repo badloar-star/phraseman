@@ -59251,6 +59251,309 @@
           "byteSize": 44160
         }
       ]
+    },
+    "l04/s28/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The chairs are in the alley.",
+          "file": "ae4271ed81474200bc654cd8a157f2f235b621d8f1a1fd44217faff0f196873e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae4271ed81474200bc654cd8a157f2f235b621d8f1a1fd44217faff0f196873e.mp3",
+          "contentHash": "529fd48f7bf2e4d7fcce3239dbe79500d27162bf4dba679dda08c4612849bbb1",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s28/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The alley is between the buildings.",
+          "file": "75a0b81dffcd92591db4c5db4d15f2b80f11af5304d400237c0830bf37678540.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75a0b81dffcd92591db4c5db4d15f2b80f11af5304d400237c0830bf37678540.mp3",
+          "contentHash": "3d638c0309874a6ae881d5eda016aa4d2e24e0bc03d9309574014c4023f83fae",
+          "byteSize": 54528
+        }
+      ]
+    },
+    "l04/s28/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He's flexible.",
+          "file": "143c07440cc65df9899959f7b24ae9eebbc7c315ea61b7de6c3a3e3b0d075cab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/143c07440cc65df9899959f7b24ae9eebbc7c315ea61b7de6c3a3e3b0d075cab.mp3",
+          "contentHash": "edca58b0702af63fb1299a16059d379b4b0fc82fa243ee0ad75b1aee4fa8b5e4",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s28/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He is flexible.",
+          "file": "f635e9b341f9074e69cd6f8628e3b0adcf486f42785314479a0a9998cb1b0b4f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f635e9b341f9074e69cd6f8628e3b0adcf486f42785314479a0a9998cb1b0b4f.mp3",
+          "contentHash": "4cea4419771751902ab037cec24a229c2df1c3e1729b94f8e2db2c71cd95fcef",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l04/s28/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "alley",
+          "file": "7341022799710e8fa98b6d844cb4a80711dd3b9a883fc8d1d8ea3b006b47f549.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7341022799710e8fa98b6d844cb4a80711dd3b9a883fc8d1d8ea3b006b47f549.mp3",
+          "contentHash": "17dbfaa384c590d8faa6790a9ae0a660a960c9753e6bbbbf1dab8e21d641c394",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s28/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "alley",
+          "file": "afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "contentHash": "a555637052bc5ebd18e23d14e9f4429fc4f76ee7b9e89758a02e3243b86a0b7e",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s28/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "alley",
+          "file": "964429130e0eaabf814dfc525c594c3e0cf8b4258aa1202be83c6f86a4aa3bb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/964429130e0eaabf814dfc525c594c3e0cf8b4258aa1202be83c6f86a4aa3bb7.mp3",
+          "contentHash": "b943619998720d7f881c26395752dd9dacc846abe2c8af08ca785c1869a6fa81",
+          "byteSize": 14976
+        },
+        {
+          "text": "flexible",
+          "file": "e243247dfacb64543285d89bbb4c50f8736af5cb3e020665ef3877da78ce20f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e243247dfacb64543285d89bbb4c50f8736af5cb3e020665ef3877da78ce20f9.mp3",
+          "contentHash": "3fd18ff13b79427db63d6df956ac33990f1e8c75090b603020385d7939cb840d",
+          "byteSize": 19584
+        },
+        {
+          "text": "chairs",
+          "file": "a23215cdb58f87df718c51cb9d237949298d9c8ad6f6aca06f24bc36379bb44f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a23215cdb58f87df718c51cb9d237949298d9c8ad6f6aca06f24bc36379bb44f.mp3",
+          "contentHash": "734fa80afe936df928ed00330e2595a6c6a8bff772c680636bff084a97926ee1",
+          "byteSize": 21888
+        },
+        {
+          "text": "mushroom",
+          "file": "ca21fb9016dd4bda2201aecd7a150ba19dcb34fccee18dc96df15cf54a32104f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca21fb9016dd4bda2201aecd7a150ba19dcb34fccee18dc96df15cf54a32104f.mp3",
+          "contentHash": "9905f83c06a73307b09d30991881f7edd7729c662e0957d2fc1b94aaa647660b",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l04/s28/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The chairs are in the alley.",
+          "file": "ae4271ed81474200bc654cd8a157f2f235b621d8f1a1fd44217faff0f196873e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae4271ed81474200bc654cd8a157f2f235b621d8f1a1fd44217faff0f196873e.mp3",
+          "contentHash": "529fd48f7bf2e4d7fcce3239dbe79500d27162bf4dba679dda08c4612849bbb1",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s28/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The mushroom is on the table.",
+          "file": "8a784ff0bae2bb538e356560a958e1d28bba31a705e54d9c8d27da4ff61064ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a784ff0bae2bb538e356560a958e1d28bba31a705e54d9c8d27da4ff61064ae.mp3",
+          "contentHash": "a014fa7ebf1d48af18016bfcffff0dfe893d5aca0ca54bb21846256fa52e221c",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s28/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He's flexible.",
+          "file": "cae2d5e8bab4c81f814e1ac07a5ad6be54184ae2e26c0c646e242343017cf0b2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cae2d5e8bab4c81f814e1ac07a5ad6be54184ae2e26c0c646e242343017cf0b2.mp3",
+          "contentHash": "4486b4a5c6cdf017e4eaf3e93c65e379d554b429346522dab48002a4474ea14b",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s28/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The alley is between the buildings.",
+          "file": "a02fe24a88638d137a1210cf8c493c47e386a533e327edfcb0cfc13a63d1f333.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a02fe24a88638d137a1210cf8c493c47e386a533e327edfcb0cfc13a63d1f333.mp3",
+          "contentHash": "6bbc6ec850f50bec16691c2a7c63252f80c15bf1b3700e7c5f22a50f5efa2498",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s28/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The chairs are under the awning.",
+          "file": "0f2407f60c5ce5b50caff12a56d79870916aee3deacec97c28a0c065e3be90a4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f2407f60c5ce5b50caff12a56d79870916aee3deacec97c28a0c065e3be90a4.mp3",
+          "contentHash": "8438afa99d38b9a7a968c8931b1daecbbec2bed854c65256ad48cd6f3de055cd",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s28/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "alley",
+          "file": "7341022799710e8fa98b6d844cb4a80711dd3b9a883fc8d1d8ea3b006b47f549.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7341022799710e8fa98b6d844cb4a80711dd3b9a883fc8d1d8ea3b006b47f549.mp3",
+          "contentHash": "17dbfaa384c590d8faa6790a9ae0a660a960c9753e6bbbbf1dab8e21d641c394",
+          "byteSize": 18816
+        },
+        {
+          "text": "in",
+          "file": "d2b831cfa9122534c02c0e3204e28b04c4670a73662256abfe350556d640ab16.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2b831cfa9122534c02c0e3204e28b04c4670a73662256abfe350556d640ab16.mp3",
+          "contentHash": "57d346f8fa9e4136653de380f097fbc131415bcc5f0938acdd028533812840e0",
+          "byteSize": 20352
+        },
+        {
+          "text": "under",
+          "file": "4358b8648b99877018e043798821873dd4b2d7edd670506c0e0b400580a4c29c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4358b8648b99877018e043798821873dd4b2d7edd670506c0e0b400580a4c29c.mp3",
+          "contentHash": "806387c866d5f5ba759f18aa142f81caa3c80bc764f1b96f4782861ec3b5f341",
+          "byteSize": 18048
+        },
+        {
+          "text": "between",
+          "file": "b2d9abd82fabbeecebb9bda9dcbdd9422b664e836c01b0c0acf06ac202ddb2cb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b2d9abd82fabbeecebb9bda9dcbdd9422b664e836c01b0c0acf06ac202ddb2cb.mp3",
+          "contentHash": "471093a79793b4ff96d1892006bbf4014cb1d132f352977cb4e403cc0fdc1371",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l04/s28/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The mushroom is next to the cup.",
+          "file": "b61e1a94bad518602a3ef00a5c4b550fed7daebb0c4d76e84f5ee827a1a9b89f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b61e1a94bad518602a3ef00a5c4b550fed7daebb0c4d76e84f5ee827a1a9b89f.mp3",
+          "contentHash": "2aff2bad550d57882ae764d3a546c4ccd38536186fa83beb77daccefc1a4d162",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l04/s28/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is an alley.",
+          "file": "5747a0067a2866ad8a6af8fd4437cf3ec4e7ddc392c7dc948d0d097dfd431aed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5747a0067a2866ad8a6af8fd4437cf3ec4e7ddc392c7dc948d0d097dfd431aed.mp3",
+          "contentHash": "a3e6670e09024741392d8f771d6f2770c504db766bb4f3a132094e91bbe7554f",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s28/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The chairs are next to the table.",
+          "file": "09bcc36553af56521cfd8a998653f961bcf0d36b1e051f1571dd3e19c7de7544.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09bcc36553af56521cfd8a998653f961bcf0d36b1e051f1571dd3e19c7de7544.mp3",
+          "contentHash": "9b89d2a3a1b7693d08be4af59505954381def8fcf483547d6862fdf1adc30ba0",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s28/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The mushroom is between the cups.",
+          "file": "a1bea30a86e017bafc8382ee2be38deda97bb635ba83b04d92c8b68b39385d0d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a1bea30a86e017bafc8382ee2be38deda97bb635ba83b04d92c8b68b39385d0d.mp3",
+          "contentHash": "8791ebdcb731d59766322e9a74a5f1c46e73237d62338f4f03c7ff67c68eb7b6",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s28/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "That is an alley.",
+          "file": "10a4ef2878ffa0714eac36ffd619d7bd6ac21cfe98e031052a08975fbf24015b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10a4ef2878ffa0714eac36ffd619d7bd6ac21cfe98e031052a08975fbf24015b.mp3",
+          "contentHash": "84ecab28109dde8c95ad3c9abe7c14052a6a7c94d885d3ad2f9150f1dabeae2c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s28/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "alley",
+          "file": "afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "contentHash": "a555637052bc5ebd18e23d14e9f4429fc4f76ee7b9e89758a02e3243b86a0b7e",
+          "byteSize": 18816
+        },
+        {
+          "text": "flexible",
+          "file": "99b39a805fd7498cfa17d8abfc59fbe803e38f9ec3d6e47a8f51e05bf5f73790.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99b39a805fd7498cfa17d8abfc59fbe803e38f9ec3d6e47a8f51e05bf5f73790.mp3",
+          "contentHash": "6cc652e4cd8db7bf73e7f0b99de3569d28dae9e5216635375ce22ac112499413",
+          "byteSize": 19584
+        },
+        {
+          "text": "chairs",
+          "file": "3a4c5603e1bda39c9b843e7665819b267b16ab1b45bf4abd07d09e6a845f9c58.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a4c5603e1bda39c9b843e7665819b267b16ab1b45bf4abd07d09e6a845f9c58.mp3",
+          "contentHash": "ec106e2e3d323d3481d9f54055994dbd25115d9b5fd9c8e6fde97a7552ce03b9",
+          "byteSize": 29952
+        },
+        {
+          "text": "mushroom",
+          "file": "d5d4ecba740cc84f8980fe1d23244b34bc09ae3e47e06199f17a76e03510aac7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5d4ecba740cc84f8980fe1d23244b34bc09ae3e47e06199f17a76e03510aac7.mp3",
+          "contentHash": "01c0be834de20a4f76a97ff1a556e01db6c350a0f5ac703f5bacaab9dd5d7651",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l04/s28/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The chairs are in the alley.",
+          "file": "ae4271ed81474200bc654cd8a157f2f235b621d8f1a1fd44217faff0f196873e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae4271ed81474200bc654cd8a157f2f235b621d8f1a1fd44217faff0f196873e.mp3",
+          "contentHash": "529fd48f7bf2e4d7fcce3239dbe79500d27162bf4dba679dda08c4612849bbb1",
+          "byteSize": 27648
+        }
+      ]
     }
   },
   "settings": {

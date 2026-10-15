@@ -71,7 +71,7 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
       surface: source, status: quota.status, used: quota.used, limit: quota.limit, bypass: quota.bypass, sessionCount: sessionCount ?? null,
     }));
     // зачем (координатор 15.10, Ревизор 2.76): одна строка решения на каждый тап — откуда вход, Plus ли, что с квотой и чем кончилось
-    const decide = (decision: 'paywall' | 'no_energy' | 'start_unlimited' | 'start_stale_account' | 'start_double_tap' | 'start_with_receipt') => {
+    const decide = (decision: 'paywall' | 'no_energy' | 'start_unlimited' | 'start_stale_account' | 'blocked_double_tap' | 'start_with_receipt') => {
       console.log('[MISTAKES-GATE] decision', JSON.stringify({
         source, premium: quota.limit === null, quota: { status: quota.status, used: quota.used, limit: quota.limit }, sessionCount: sessionCount ?? null, decision,
       }));
@@ -93,7 +93,9 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
     }
     if (quota.limit === null) { decide('start_unlimited'); return true; } // Plus / «Фри» — чек не нужен.
     if (quota.status === 'stale_account') { decide('start_stale_account'); return true; } // смена аккаунта: не блокируем, чек не пишем.
-    if (inFlightRef.current) { decide('start_double_tap'); return true; } // двойной тап: одна сессия, один чек.
+    // зачем (Ревизор 2.78): повторный тап, пока чек пишется, раньше пускал (true) — второй экран уходил БЕЗ чека, а первый при
+    // размонтировании возвращал попытку → бесплатная сессия. Теперь второй тап ничего не открывает: сессия первого уже открывается.
+    if (inFlightRef.current) { decide('blocked_double_tap'); return false; }
     decide('start_with_receipt');
     inFlightRef.current = true;
     const receiptId = `mistakes:${Crypto.randomUUID()}`;

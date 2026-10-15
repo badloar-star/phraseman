@@ -78,6 +78,7 @@ import { prewarmMistakeSessionExplanations } from './mistake_explain_prewarm';
 import { commitPreparedMistakePracticeSession, prepareMistakePracticeSession } from './mistake_practice_session_runtime';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { navOnce } from './nav_once';
 import { isDevMistakesDemoOn } from './dev_mistakes_demo';
 import {
   flushPendingMistakeCorrectionRewards,
@@ -1406,6 +1407,11 @@ function MistakePracticeSessionScreen() {
   // Цену списывает сам экран сессии по общим правилам (от 5 ошибок 1 ⚡, 1–4 бесплатно).
   const startMissedAgain = () => {
     if (missedIds.length < 1) return;
+    // зачем (Ревизор 2.78): второй тап «Ещё N» не открывает вторую тренировку (вторая шла бы без чека квоты)
+    if (!navOnce(`mistake_finale:more:${quotaOwnerRef.current}`)) {
+      console.log('[MISTAKES-GATE] finale_more:double_tap — повторный тап проигнорирован'); // guard-ok: ранний выход
+      return;
+    }
     hapticTap();
     if (!moreGate.tryStartSession(missedIds.length)) {
       console.log('[MISTAKES-GATE] finale_more:blocked', JSON.stringify({ missed: missedIds.length })); // guard-ok: ранний выход — пейвол или «Нужна энергия»

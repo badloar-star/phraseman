@@ -56,6 +56,26 @@ describe('mistake practice start gate: energy before the daily attempt', () => {
     expect(result.current.takeQuotaReceiptParam()).toEqual({});
   });
 
+  // зачем (Ревизор 2.78): второй тап, пока чек пишется, раньше пускал без чека — второй экран шёл бесплатно,
+  // а первый при уходе возвращал попытку. Теперь второй тап не открывает ничего и не пишет второй чек.
+  it('a second tap while the receipt is being written opens nothing and writes no second receipt', async () => {
+    mockConsume.mockImplementationOnce(() => new Promise(() => {}));
+    const { result } = await renderHook(() => useMistakePracticeStartGate('mistake_finale_more'));
+    let first = false;
+    let firstReceipt: Readonly<{ quotaReceipt?: string }> = {};
+    let second = true;
+    await act(async () => {
+      first = result.current.tryStartSession(3);
+      firstReceipt = result.current.takeQuotaReceiptParam();
+      second = result.current.tryStartSession(3);
+    });
+    expect(first).toBe(true);
+    expect(firstReceipt).toEqual({ quotaReceipt: 'mistakes:uuid-1' });
+    expect(second).toBe(false);
+    expect(mockConsume).toHaveBeenCalledTimes(1);
+    expect(result.current.takeQuotaReceiptParam()).toEqual({});
+  });
+
   it('a refused tap (no energy) hands no receipt to the route', async () => {
     mockPredict = 'insufficient';
     const { result } = await renderHook(() => useMistakePracticeStartGate('mistakes_hub_start'));

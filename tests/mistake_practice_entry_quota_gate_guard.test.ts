@@ -72,6 +72,19 @@ describe('every entry into mistake practice goes through the daily-quota gate', 
     expect(receiptSpread).toBe(true);
   });
 
+  // зачем (Ревизор 2.78): второй тап не должен открыть вторую тренировку — у каждого входа свой замок (navOnce или openingRef)
+  // ДО гейта, а сам гейт на повторный тап во время записи чека отвечает false
+  it.each(navigationSites().map((site) => [`${site.file}:${site.line}`, site] as const))('%s: double-tap lock before the gate', (_label, site) => {
+    const gateAt = site.fnBody.search(/\w+\.tryStartSession\(/);
+    const head = site.fnBody.slice(0, gateAt);
+    expect(/navOnce\(|if \(openingRef\.current\b/.test(head)).toBe(true);
+  });
+
+  it('the gate refuses a repeated tap while the receipt is being written', () => {
+    const gate = fs.readFileSync(path.join(ROOT, 'hooks', 'useMistakePracticeStartGate.ts'), 'utf8');
+    expect(gate).toContain("if (inFlightRef.current) { decide('blocked_double_tap'); return false; }");
+  });
+
   it('lesson finish and dialogue finish keep the lesson/dialogue mistake ids (finish exactly these mistakes)', () => {
     const lesson = sites.find((site) => site.file.endsWith('lesson_complete.tsx'));
     const dialogue = sites.find((site) => site.file.endsWith('useDialogueV2MistakeCapture.ts'));

@@ -1,0 +1,5 @@
+10-15 23:16:42.638 I/ReactNativeJS( 4134): '[DIALOG-REPEAT] retry tap', '{"session":null,"retrying":false,"stateKind":"unavailable","retryFailed":false,"attempt":1}'
+10-15 23:16:42.639 I/ReactNativeJS( 4134): '[DIALOG-SUMMARY] enter', '{"session":null,"scenarioId":null,"studyTarget":"en","endedBy":"manual","learnerTurnsParam":0,"localOutcome":"missing","source":"network"}'
+10-15 23:16:42.644 W/ReactNativeJS( 4134): '[DIALOGUE-V2] completion:run → invalid route data', { hasSession: false, scenarioId: null, studyTarget: 'en' }, { [Stack] name: 'Stack' }
+10-15 23:16:42.652 W/ReactNativeJS( 4134): '[DIALOG-SUMMARY] → unavailable reason=invalid_route_data session=no scenario=no target=en', { [Stack] name: 'Stack' }
+10-15 23:16:43.363 I/ReactNativeJS( 4134): '[DIALOG-REPEAT] retry result', '{"shown":"unavailable","attempt":1,"answeredMs":63,"heldMs":637}'

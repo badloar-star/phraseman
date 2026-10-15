@@ -1,0 +1,5 @@
+10-15 23:15:39.046 I/ReactNativeJS( 4134): '[MISTAKES-GATE] tap', '{"surface":"mistake_finale_more","status":"exhausted","used":1,"limit":1,"bypass":null,"sessionCount":2}'
+10-15 23:15:39.047 I/ReactNativeJS( 4134): '[MISTAKES-GATE] decision', '{"source":"mistake_finale_more","premium":false,"quota":{"status":"exhausted","used":1,"limit":1},"sessionCount":2,"decision":"paywall"}'
+10-15 23:15:39.067 I/ReactNativeJS( 4134): '[DEV-STATE] mistakesFinale: тап «Ещё N»', '{"wrong":2,"locked":true,"opened":false}'
+10-15 23:15:39.207 I/ReactNativeJS( 4134): [INFO] [PAYWALL-OPEN]: шапка: ctx=mistake_practice source=mistake_finale_more текст=mistake_practice контекстная=true выгода=есть lang=ru
+10-15 23:15:39.219 I/ReactNativeJS( 4134): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"mistake_practice","source":"mistake_finale_more","shownContext":"mistake_practice","accessResolved":true,"hasPremiumAccess":false,"cachedE

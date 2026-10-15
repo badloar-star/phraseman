@@ -2,6 +2,7 @@
 
 Governance-ID: TG-56FE89D82EB3
 Governance-ID: TG-498E8DBC6369
+Governance-ID: TG-531395C62788
 Status: In progress (заплатка готовится вне app/, на диск — после №7)
 Owner: Ядро (сессия 1)
 Related epic/enabler: docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md (bf8fa36b6), координатор 15.10 — 🔴 №1 к сборке 16.10
@@ -34,6 +35,15 @@ Out of scope:
 ## Architecture
 
 Источник правды — списки стирания в `cloud_sync.ts` (SYNC_KEYS, `accountLocalDataKeysForToday`, префиксы, WIPE_ONLY), они дополняются. Модульные кэши сбрасываются подписчиками смены поколения аккаунта, как уже сделано у energy_peek и story_events. Выход использует те же вызовы, что и удаление (`cancelAllNotifications`, `clearPushTokenForServerPush`, `markFirestoreCacheClearPending`). Новых путей нет.
+
+### Поправка координатора 15.10: перевход A не сбрасывает лимиты
+
+- Ключи-утечки идут в аварийную копию A при её создании (`saveAccountSwitchEmergencyBackup`).
+- При входе ТОГО ЖЕ владельца существующий `restoreAccountSwitchEmergencyBackupIfSafe` возвращает недостающие ключи: голосовые попытки, заморозки Plus, история диалогов, лайки.
+- Чужому владельцу копия не отдаётся (`different_account`). Лог: `[ACC-SWITCH-RESTORE] owner_match=… restored=[…]`.
+- В опись аккаунта (`accountOwnedStorageKeysFrom`) ключи НЕ кладутся: по ней вход решает «гость чист?», и кэши сделали бы каждого гостя «грязным».
+- Список вынесен в `app/account_switch_leak_keys.ts`: его читают и стирание, и восстановление, без цикла импорта.
+- Тест: `tests/aa_account_switch_roundtrip_scenario.test.ts` — A → выход → Б (ничего от A) → выход Б → A (ключи вернулись из копии).
 
 ## Security and privacy
 

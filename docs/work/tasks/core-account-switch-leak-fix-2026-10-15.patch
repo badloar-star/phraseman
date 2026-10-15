@@ -1,38 +1,38 @@
 --- a/app/cloud_sync.ts
 +++ b/app/cloud_sync.ts
-@@ -852,7 +852,30 @@
+@@ -320,6 +320,7 @@
+   type CustomCardsMergeStats,
+ } from './flashcards/restore_merge';
+ import { warmCallableViaFetch } from './auth_warm_fetch';
++import { ACCOUNT_SWITCH_LEAK_KEYS } from './account_switch_leak_keys';
+ import { invokeAuthCallable } from './auth_callable_fetch'; // зачем: вызовы входа мимо однопоточной очереди RNFirebase — под флагом auth_callables_fetch_v1 (выкл) // зачем: прогрев входа мимо однопоточной очереди RNFirebase (прогон №5)
+ import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
+ 
+@@ -852,7 +853,10 @@
  const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
    ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
  ];
 -const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set(APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS);
-+/**
-+ * Ключи без владельца в имени, которые переживали выход и смену аккаунта и доставались следующему человеку.
-+ * зачем (координатор 15.10, docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md, 🔴 №1 к сборке 16.10): серия (отложенная
-+ * заморозка Plus, маркеры недели, отметка отправки на сервер), уроки за жемчуг (материализуются заново из журнала покупок при входе),
-+ * история и лимиты Диалогов, кэш статистики с именем и серией, кэш бана, заморозки Plus месяца, ОЖИДАЮЩИЕ поздравления (флаги
-+ * «уже показано» намеренно не трогаем — иначе A при повторном входе увидит поздравление снова), лайки наборов, счётчики пейвола.
-+ * Стираются шагом «только стирание» (как сообщения аккаунта): остаток проверяется сразу, поздняя запись живого писателя убирается
-+ * тихо — новых причин отказа выхода нет. Устройство (study_target_v1, onboarding_*, app_lang) — решение владельца, здесь нет.
-+ */
-+export const ACCOUNT_SWITCH_LEAK_KEYS: readonly string[] = [
-+  'streak_plus_freeze_pending_v1',
-+  'lessons_pearl_unlocked_v1', 'lessons_pearl_unlocked_v1_fr',
-+  'dialogs_completed_ids_v1', 'dialogs_free_lifetime_used_v2', 'dialogs_free_lifetime_count_v3',
-+  'dialogue_v2_voice_attempts_v1', 'dialogue_v2_why_allowance:v1',
-+  'stats_preload_cache_v5', 'lifetime_profile_stats_snapshot_v1',
-+  'streak_server_sync_day_v1', 'streak_week_day_markers_v1',
-+  'ban_status_cached_v1', 'ban_status_cached_at_v1',
-+  'premium_free_freeze_used', 'premium_free_freeze_month_v1',
-+  'premium_celebration_pending_v1', 'premium_celebration_pending_marker_v1', 'premium_celebration_pending_variant_v1',
-+  'vip_celebration_pending_v1', 'vip_celebration_pending_marker_v1',
-+  'community_pack_liked_ids_v1', 'community_pack_added_registered_ids_v1',
-+  'energy_zero_count_v1', 'streak_lost_count_v1',
-+];
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): ключи-утечки (список и смысл — app/account_switch_leak_keys.ts) стираются шагом
++// «только стирание»; реэкспорт — для сторожей и журнала.
++export { ACCOUNT_SWITCH_LEAK_KEYS };
 +const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set([...APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS, ...ACCOUNT_SWITCH_LEAK_KEYS]);
  
  /** Префикс стирания для ключа или null (ключ — `prefix` или `prefix:<владелец>`). Экспорт — для сторожа. */
  export function wipeOnlyAccountKeyPrefix(key: string): string | null {
-@@ -6081,6 +6104,8 @@
+@@ -5804,6 +5808,11 @@
+   const keySet = new Set([
+     ...await collectAccountLocalDataKeys(),
+     shardQueueKey,
++    // зачем (координатор 15.10): ключи-утечки стираются при выходе, но принадлежат A — в копию, чтобы при входе ТОГО ЖЕ владельца
++    // restoreAccountSwitchEmergencyBackupIfSafe вернул их (лимит голоса и заморозки — без сброса перевходом, история диалогов,
++    // лайки); чужому владельцу копия не отдаётся (different_account). В опись аккаунта (accountOwnedStorageKeysFrom) их НЕ кладём:
++    // по ней вход решает «гость чист?», и кэши вроде energy_zero_count_v1 сделали бы каждого гостя «грязным».
++    ...ACCOUNT_SWITCH_LEAK_KEYS,
+   ]);
+   // Reject before the potentially expensive sort. The underlying native
+   // getAllKeys allocation remains a platform boundary, but this function never
+@@ -6081,6 +6090,8 @@
    cancelPendingGeneratedNicknameRetry();
    const accountKeys = await collectAccountLocalDataKeys();
    markWipeStage('collectKeys', accountKeys.length);
@@ -41,7 +41,7 @@
    // зачем (AA 2.0, S1e-2 п.2): непустой ключ S1e, не попавший в копию, стирается — делаем это видимым.
    await noteFutureKeptStashBeforeWipe(receiptOwnerStableId);
    markWipeStage('noteStash');
-@@ -6211,6 +6236,39 @@
+@@ -6211,6 +6222,39 @@
    if (receiptOwnerStableId) {
      await assertNoOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
    }
@@ -131,6 +131,48 @@
  async function performCurrentProviderSignOut(): Promise<void> {
    if (__DEV__) console.log('[auth_provider] signOutCurrentProvider: start');
    // Сбрасываем PostHog-идентичность, чтобы события следующего юзера не приписались прошлому
+--- a/app/account_switch_backup_restore.ts
++++ b/app/account_switch_backup_restore.ts
+@@ -35,6 +35,7 @@
+ } from '../modules/learning-v2/policies/decision_registry';
+ import { DebugLogger, reportSwallowed } from './debug-logger';
+ import { identityErrorCode, identityTag, identityTrace } from './identity_trace';
++import { ACCOUNT_SWITCH_LEAK_KEYS } from './account_switch_leak_keys';
+ 
+ // Литерал продублирован из app/cloud_sync.ts (ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY):
+ // константа там не экспортируется. При смене ключа менять в обоих местах.
+@@ -319,9 +320,29 @@
+       () => restoreUnderLock(generationIsCurrent, options),
+       options.lockTimeoutMs,
+     );
+-    return locked.completed ? locked.value : { status: 'lock_busy' };
++    const lockedResult: BackupRestoreResult = locked.completed ? locked.value : { status: 'lock_busy' };
++    await logLeakKeysAfterRestore(lockedResult.status);
++    return lockedResult;
++  }
++  const result = await withAccountTransitionLock(() => restoreUnderLock(generationIsCurrent, options));
++  await logLeakKeysAfterRestore(result.status);
++  return result;
++}
++
++/**
++ * Что из ключей-утечек вернулось к владельцу после долива копии.
++ * зачем (координатор 15.10): A при повторном входе получает свои лимиты, историю диалогов и лайки из копии, B — ничего.
++ * Лог показывает, совпал ли владелец (status restored / different_account) и какие ключи-утечки теперь на телефоне. Не бросает.
++ */
++async function logLeakKeysAfterRestore(status: string): Promise<void> {
++  try {
++    const rows = await AsyncStorage.multiGet([...ACCOUNT_SWITCH_LEAK_KEYS]);
++    const present = rows.filter(([, value]) => value != null).map(([key]) => key);
++    const ownerMatch = status === 'restored' ? 'true' : status === 'different_account' ? 'false' : 'n/a';
++    console.log(`[ACC-SWITCH-RESTORE] owner_match=${ownerMatch} status=${status} restored=${JSON.stringify(status === 'restored' ? present : [])} present=${present.length}`); // guard-ok: одна строка на вход
++  } catch (error: unknown) {
++    console.warn(`[ACC-SWITCH-RESTORE] scan_failed status=${status} code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+   }
+-  return withAccountTransitionLock(() => restoreUnderLock(generationIsCurrent, options));
+ }
+ 
+ /** Канонический id читается не больше одного раза за восстановление (слот + полки). */
 --- a/app/statsCache.ts
 +++ b/app/statsCache.ts
 @@ -13,6 +13,7 @@
@@ -538,6 +580,35 @@
  
  /* зачем (PM-191): «Прочность памяти»/CEFR-строка (MemoryGauge, CefrLine) и её
   * JournalMemorySnapshot peek удалены целиком — «Закреплено фраз» была непонятной
+--- a/tests/aa_account_switch_roundtrip_scenario.test.ts
++++ b/tests/aa_account_switch_roundtrip_scenario.test.ts
+@@ -339,6 +339,10 @@
+     { label: 'Ранг монеты', key: `coin_rank_v1:${A.stable}`, value: '{"schemaVersion":"coin-rank-state.v1","rank":3}' },
+     { label: 'Визитка «Про»', key: `profile_card_pro_v1:${A.stable}`, value: '{"schemaVersion":"profile-card-pro.v1","owned":true}' },
+     { label: 'Карта Learning V2', key: lv2Key, value: lv2Value },
++    // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT): ключи без владельца в имени — раньше доставались Б; теперь стираются при выходе
++    // и возвращаются к A из аварийной копии (лимит голоса без сброса перевходом, отложенная заморозка серии).
++    { label: 'Голосовые попытки Диалогов (лимит дня)', key: 'dialogue_v2_voice_attempts_v1', value: '{"day":"2026-10-15","count":3}' },
++    { label: 'Отложенная заморозка Plus', key: 'streak_plus_freeze_pending_v1', value: '{"gapDay":"2026-10-14","keptStreak":12,"createdDay":"2026-10-15","reason":"premium_check_timeout"}' },
+   ];
+ }
+ 
+@@ -816,6 +820,7 @@
+     const fromBackup = result.observations.filter((item) => item.source === 'аварийная копия');
+     expect(fromBackup.map((item) => item.key.split(':')[0]).sort()).toEqual([
+       'coin_rank_v1',
++      'dialogue_v2_voice_attempts_v1',
+       'level_spin_star_grant_outbox_v1',
+       'level_spin_star_operation_v1',
+       'level_spin_star_prepared_v1',
+@@ -823,6 +828,7 @@
+       'mistake_practice_v2',
+       'practice_rune_journal_v1',
+       'profile_card_pro_v1',
++      'streak_plus_freeze_pending_v1',
+     ]);
+     for (const item of fromBackup) {
+       expect({ key: item.key, cloud: item.inCloudAfterAExit, backup: item.inAFirstBackup })
 --- /dev/null
 +++ b/app/account_owner_change.ts
 @@ -0,0 +1,42 @@
@@ -584,8 +655,45 @@
 +  return null;
 +}
 --- /dev/null
++++ b/app/account_switch_leak_keys.ts
+@@ -0,0 +1,34 @@
++/**
++ * Ключи без владельца в имени, которые переживали выход и смену аккаунта и доставались следующему человеку.
++ *
++ * зачем (координатор 15.10, docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md, 🔴 №1 к сборке 16.10): серия (отложенная
++ * заморозка Plus, маркеры недели, отметка отправки на сервер), уроки за жемчуг (материализуются заново из журнала покупок при входе),
++ * история и лимиты Диалогов, кэш статистики с именем и серией, кэш бана, заморозки Plus месяца, ОЖИДАЮЩИЕ поздравления (флаги
++ * «уже показано» намеренно не трогаем — иначе A при повторном входе увидит поздравление снова), лайки наборов, счётчики пейвола.
++ *
++ * Что с ними делает приложение:
++ *  - стирание при выходе/смене (app/cloud_sync.ts, шаг «только стирание»: остаток проверяется сразу, поздняя запись убирается тихо);
++ *  - аварийная копия уходящего A их сохраняет, и при входе ТОГО ЖЕ владельца restoreAccountSwitchEmergencyBackupIfSafe возвращает
++ *    их (лимиты не сбрасываются перевходом, история и лайки на месте); чужому владельцу копия не отдаётся.
++ * Отдельный модуль — чтобы читать список и из cloud_sync, и из восстановления копии без циклического импорта.
++ * Устройство (study_target_v1, onboarding_*, app_lang) — решение владельца, здесь нет.
++ */
++export const ACCOUNT_SWITCH_LEAK_KEYS: readonly string[] = Object.freeze([
++  'streak_plus_freeze_pending_v1',
++  'lessons_pearl_unlocked_v1', 'lessons_pearl_unlocked_v1_fr',
++  'dialogs_completed_ids_v1', 'dialogs_free_lifetime_used_v2', 'dialogs_free_lifetime_count_v3',
++  'dialogue_v2_voice_attempts_v1', 'dialogue_v2_why_allowance:v1',
++  'stats_preload_cache_v5', 'lifetime_profile_stats_snapshot_v1',
++  'streak_server_sync_day_v1', 'streak_week_day_markers_v1',
++  'ban_status_cached_v1', 'ban_status_cached_at_v1',
++  'premium_free_freeze_used', 'premium_free_freeze_month_v1',
++  'premium_celebration_pending_v1', 'premium_celebration_pending_marker_v1', 'premium_celebration_pending_variant_v1',
++  'vip_celebration_pending_v1', 'vip_celebration_pending_marker_v1',
++  'community_pack_liked_ids_v1', 'community_pack_added_registered_ids_v1',
++  'energy_zero_count_v1', 'streak_lost_count_v1',
++]);
++
++/* expo-router: keep this utility from being treated as a screen */
++export default function __AccountSwitchLeakKeysRouteShim() {
++  return null;
++}
+--- /dev/null
 +++ b/tests/account_switch_leak_fix.test.ts
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,75 @@
 +// Утечка между аккаунтами (координатор 15.10, docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md, 🔴 №1 к 16.10).
 +// Сторож ключей хранилища — tests/account_switch_no_survivors.test.ts (Дизайн). Здесь: сброс памяти при смене владельца,
 +// снятие push при выходе/смене и лог survivors. Сработал — чини логику, а не сторожа.
@@ -637,8 +745,11 @@
 +
 +  it('стирание: ключи-утечки в шаге «только стирание», лог survivors и метка очистки кэша Firestore', () => {
 +    const src = read('app/cloud_sync.ts');
-+    expect(src).toContain('export const ACCOUNT_SWITCH_LEAK_KEYS');
-+    expect(src).toContain("'streak_plus_freeze_pending_v1'");
++    expect(src).toContain('export { ACCOUNT_SWITCH_LEAK_KEYS };');
++    expect(read('app/account_switch_leak_keys.ts')).toContain("'streak_plus_freeze_pending_v1'");
++    // копия A несёт ключи-утечки (A получает их обратно при своём входе), опись аккаунта — нет (иначе гость «грязный» при входе)
++    expect(src).toMatch(/shardQueueKey,[\s\S]{0,700}\.\.\.ACCOUNT_SWITCH_LEAK_KEYS,\n  \]\);/);
++    expect(read('app/account_switch_backup_restore.ts')).toContain('[ACC-SWITCH-RESTORE] owner_match=');
 +    expect(src).toContain('new Set([...APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS, ...ACCOUNT_SWITCH_LEAK_KEYS])');
 +    expect(src).toContain('[ACC-SWITCH-WIPE] survivors=');
 +    expect(src).toContain("markFirestoreCacheClearPending('account_wipe')");

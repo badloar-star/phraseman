@@ -18,6 +18,13 @@ describe('R58: окна — кнопки без дублей и без «лож�
     expect(modal).toMatch(/\[UPDATE-MODAL\] стор не открылся[\s\S]{0,200}openingStoreRef\.current = false;/);
   });
 
+  it('#21 «Включить напоминания»: замок от двойного тапа и общий catch с причиной', () => {
+    const layout = read('app/_layout.tsx');
+    expect(layout).toContain('let notifNudgeConfirmInFlight = false;');
+    expect(layout).toMatch(/if \(notifNudgeConfirmInFlight\) \{[\s\S]{0,160}return;\s*\}\s*notifNudgeConfirmInFlight = true;\s*try \{/);
+    expect(layout).toMatch(/\[SMART-REMINDER\] notifNudge:confirm failed[\s\S]{0,200}finally \{\s*notifNudgeConfirmInFlight = false;/);
+  });
+
   it('#22 «Понятно» в «Что нового»: окно закрывается сразу, отметка пишется фоном с причиной сбоя', () => {
     const layout = read('app/_layout.tsx');
     expect(layout).toMatch(/const variant = releaseNotesVariant;\s*setReleaseNotesVariant\(null\);/);

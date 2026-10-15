@@ -1014,6 +1014,9 @@ function bootCommitProfilerOnRender(id: string, phase: string, actualDuration: n
   console.warn('[BOOT-COMMIT]', JSON.stringify({ id, phase, actualMs: Math.round(actualDuration), baseMs: Math.round(baseDuration), atEpochMs: Date.now() })); // guard-ok: временная трассировка старта
 }
 
+// R58 #21: замок «Включить напоминания» от двойного тапа (AppContent — единственный экземпляр)
+let notifNudgeConfirmInFlight = false;
+
 function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [ready, setReady]           = useState(false);
   const reduceMotion = useReduceMotion();
@@ -3715,6 +3718,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       cancelLabel={notifNudgeCopy(lang, notifNudgeMissedDays).cancelLabel}
       onCancel={() => setNotifNudgeVisible(false)}
       onConfirm={async () => {
+        // зачем (R58 #21, аудит кнопок 15.10): двойной тап «Включить» запускал два запроса разрешения, а сбой любого шага
+        // (разрешение, планирование) уходил в никуда — окно оставалось и молчало. Замок + общий catch с причиной.
+        if (notifNudgeConfirmInFlight) {
+          console.log('[SMART-REMINDER] notifNudge:confirm повторный тап — уже идёт'); // guard-ok: ранний выход
+          return;
+        }
+        notifNudgeConfirmInFlight = true;
+        try {
         const notifications = await loadNotificationsModule().catch(noteSwallowedAs('_layout:AppContent.loadNotificationsModule', null));
         if (!notifications) {
           setNotifNudgeVisible(false);
@@ -3749,6 +3760,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // зачем (владелец 13.10, вариант (а)): раньше здесь звалась отключённая scheduleDailyReminder и ничего не планировалось.
         // Теперь «включить напоминания» = расписание на все 7 дней с умным временем (пока мало данных — 20:00).
         await notifications.enableSmartDailyReminder(lang, { studyTarget, caller: 'notif_nudge' });
+        } catch (error: unknown) {
+          console.warn(`[SMART-REMINDER] notifNudge:confirm failed reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
+          setNotifNudgeVisible(false);
+        } finally {
+          notifNudgeConfirmInFlight = false;
+        }
       }}
     />
 

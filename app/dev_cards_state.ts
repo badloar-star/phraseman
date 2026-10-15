@@ -63,8 +63,10 @@ type State = {
   voices: DevCardsVoices | null;
   /** «Правда/ложь» и «Напиши»: какой ответ дать роботу (`answer=correct|wrong`), см. getDevAnswerTarget. */
   answer: DevBlitzAnswer | null;
+  /** «Скажи вслух»: точный текст, который «услышал» микрофон (`speak_transcript=…`), — для кадров «не засчитано» с нужным словом. */
+  speechText: string | null;
 };
-const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null, blitzAnswer: null, voices: null, answer: null };
+const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null, blitzAnswer: null, voices: null, answer: null, speechText: null };
 let state: State = EMPTY;
 // зачем (координатор 12.10, «сперва логи», cards-v2-033): подмены живут в памяти процесса и переживают переход на следующую ссылку робота — в журнале старта нужно видеть, когда и какими ключами их выставили
 let lastPatch: { atMs: number; keys: string[]; count: number } | null = null;
@@ -74,7 +76,7 @@ function devCardsAvailable(): boolean {
 }
 
 /** Выставить флаги. Любое поле необязательно: не переданное не меняется. В стор-сборке — отказ с логом, ничего не меняется. */
-export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]; fails: readonly DevCardsFail[]; speech: DevSpeechMode | null; trainGate: DevTrainGate | null; blitzAnswer: DevBlitzAnswer | null; voices: DevCardsVoices | null; answer: DevBlitzAnswer | null }>): boolean {
+export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]; fails: readonly DevCardsFail[]; speech: DevSpeechMode | null; trainGate: DevTrainGate | null; blitzAnswer: DevBlitzAnswer | null; voices: DevCardsVoices | null; answer: DevBlitzAnswer | null; speechText: string | null }>): boolean {
   if (!devCardsAvailable()) {
     console.warn(`${LOG} cards: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
     return false;
@@ -87,9 +89,10 @@ export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]
     blitzAnswer: patch.blitzAnswer !== undefined ? patch.blitzAnswer : state.blitzAnswer,
     voices: patch.voices !== undefined ? patch.voices : state.voices,
     answer: patch.answer !== undefined ? patch.answer : state.answer,
+    speechText: patch.speechText !== undefined ? patch.speechText : state.speechText,
   };
   lastPatch = { atMs: Date.now(), keys: Object.keys(patch), count: (lastPatch?.count ?? 0) + 1 };
-  console.log(`${LOG} cards: ${JSON.stringify({ holds: [...state.holds], fails: [...state.fails], speech: state.speech, trainGate: state.trainGate, blitzAnswer: state.blitzAnswer, answer: state.answer })}`); // guard-ok: единичный лог на ссылку
+  console.log(`${LOG} cards: ${JSON.stringify({ holds: [...state.holds], fails: [...state.fails], speech: state.speech, trainGate: state.trainGate, blitzAnswer: state.blitzAnswer, answer: state.answer, speechText: state.speechText })}`); // guard-ok: единичный лог на ссылку
   return true;
 }
 
@@ -154,6 +157,8 @@ export function describeDevCardsState(): Record<string, unknown> {
 /** Фраза, которую «распознал» несуществующий микрофон: верная — сама цель, неверная — заведомо чужие слова. */
 export function devSpeechTranscriptFor(targetText: string): string | null {
   const mode = getDevSpeechMode();
+  // зачем (координатор 15.10, R11): Сверке нужны кадры «не засчитано» с конкретным пропущенным словом — свой текст важнее correct/wrong
+  if ((mode === 'correct' || mode === 'wrong') && state.speechText) return state.speechText;
   if (mode === 'correct') return targetText;
   if (mode === 'wrong') return 'banana window river';
   return null;

@@ -67,6 +67,21 @@ describe('dev cards states', () => {
     expect(devSpeechTranscriptFor('Good morning')).toBeNull();
   });
 
+  // координатор 15.10 (R11): Сверке нужны кадры «не засчитано» с конкретным пропущенным словом без голоса на эмуляторе
+  it('speak_transcript: exact text instead of the microphone, turns speech=correct on, off restores', async () => {
+    expect(parseDevStateParams({ speak_transcript: 'I do not the number' }).request.speakTranscript).toBe('I do not the number');
+    expect(parseDevStateParams({ speak_transcript: 'off' }).request.speakTranscript).toBe('off');
+    expect(parseDevStateParams({ speak_transcript: 'x'.repeat(201) }).rejected.speak_transcript).toMatch(/1..200/);
+    await applyDevState({ speakTranscript: 'I do not the number' });
+    expect(getDevSpeechMode()).toBe('correct');
+    expect(devSpeechTranscriptFor('I do not remember the number')).toBe('I do not the number');
+    await applyDevState({ speakTranscript: 'off' });
+    expect(devSpeechTranscriptFor('I do not remember the number')).toBe('I do not remember the number');
+    await applyDevState({ speech: 'denied', speakTranscript: 'hello' });
+    expect(getDevSpeechMode()).toBe('denied'); // явный speech= не перетирается
+    expect(devSpeechTranscriptFor('hello there')).toBeNull();
+  });
+
   it('does nothing in a store build', async () => {
     mockStoreRelease = true;
     expect(setDevCardsState({ holds: ['hub_loading'], fails: ['card_write'], speech: 'correct', trainGate: 'fail_blitz' })).toBe(false);

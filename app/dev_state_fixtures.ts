@@ -140,6 +140,8 @@ export type DevStateRequest = Readonly<{
   fail?: readonly DevCardsFail[] | 'off';
   /** «Устно» (Н-9): что подставить вместо микрофона. */
   speech?: DevSpeechMode | 'off';
+  /** «Скажи вслух» (R11): точный текст вместо микрофона, до 200 знаков; без `speech=` включает `speech=correct`. */
+  speakTranscript?: string | 'off';
   /** Отказ слоя отложенной выдачи тренировки (Н-10). */
   trainGate?: DevTrainGate | 'off';
   /** Блиц: пометить верный (`correct`) или неверный (`wrong`) вариант testID `fc-blitz-opt-target` для робота (app/dev_cards_state.ts). Только память. */
@@ -501,6 +503,14 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.hold = list('hold', [...DEV_CARDS_HOLDS, 'freeform_loading', 'dialog_language_gate'] as const);
   request.fail = list('fail', DEV_CARDS_FAILS);
   request.speech = pick('speech', [...DEV_SPEECH_MODES, 'off'] as const);
+  // не через one(): тот приводит к нижнему регистру, а текст попадает в кадр как есть
+  const speakTranscriptRaw = Array.isArray(params.speak_transcript) ? params.speak_transcript[0] : params.speak_transcript;
+  if (speakTranscriptRaw !== undefined) {
+    const text = String(speakTranscriptRaw).trim();
+    if (text.toLowerCase() === 'off') request.speakTranscript = 'off';
+    else if (text.length >= 1 && text.length <= 200) request.speakTranscript = text;
+    else rejected.speak_transcript = `ожидалось 1..200 знаков или off, пришло ${text.length}`;
+  }
   request.trainGate = pick('train_gate', [...DEV_TRAIN_GATES, 'off'] as const);
   request.blitzAnswer = pick('blitz_answer', [...DEV_BLITZ_ANSWERS, 'off'] as const);
   request.answer = pick('answer', [...DEV_BLITZ_ANSWERS, 'off'] as const);
@@ -1195,6 +1205,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.speech !== undefined) {
     await step('speech', request.speech, async () => setDevCardsState({ speech: request.speech === 'off' ? null : request.speech! }));
+  }
+  if (request.speakTranscript !== undefined) {
+    const text = request.speakTranscript;
+    await step('speak_transcript', text, async () => setDevCardsState(text === 'off'
+      ? { speechText: null }
+      : { speechText: text, ...(request.speech === undefined ? { speech: 'correct' as const } : {}) }));
   }
   if (request.blitzAnswer !== undefined) {
     await step('blitz_answer', request.blitzAnswer, async () => setDevCardsState({ blitzAnswer: request.blitzAnswer === 'off' ? null : request.blitzAnswer! }));

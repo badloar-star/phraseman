@@ -253,6 +253,9 @@ export function buildSpeakingPanelTheme(t: SpeakingPanelThemeSource): SpeakingPa
   };
 }
 
+/** Почему такой вердикт попытки (то же значение, что reason в логе [SPEAK-SCORE]). */
+export type SpeakingVerdictReason = 'pass' | 'missing_words' | 'control_disagrees' | 'below_threshold';
+
 export interface SpeakingPanelProps {
   /** Canonical target phrase the user must say (English). */
   targetText: string;
@@ -265,7 +268,16 @@ export interface SpeakingPanelProps {
   onPass?: (result: { score: number; transcript: string }) => void;
   /** Called after every scored attempt, including a failed pronunciation. */
   // зачем (координатор 15.10, «не засчитано»): `missingWords` — пропущенные слова цели от строгой проверки; хост рисует по ним красное и строку «Не услышали слово «X»» (раньше пересчитывал по тексту)
-  onScore?: (result: { score: number; passed: boolean; transcript: string; missingWords: readonly string[] }) => void;
+  // зачем (координатор 15.10, R11): экраны брали пропущенные слова повторным подсчётом — он мог разойтись с вердиктом панели
+  // (контрольный прогон, выбор альтернативы, аварийный флаг). Теперь всё — из ТОГО ЖЕ расчёта, что решил зачёт.
+  onScore?: (result: {
+    score: number;
+    passed: boolean;
+    transcript: string;
+    missingWords: readonly string[];
+    strictWordsOk: boolean;
+    reason: SpeakingVerdictReason;
+  }) => void;
   /** Live transcript from the exact same recognizer used by the oral mode. */
   onTranscriptChange?: (transcript: string) => void;
   /**
@@ -626,6 +638,8 @@ export function SpeakingPanel({
       segments: ReadonlyArray<{ segment?: string; confidence?: number }> | undefined,
       control: number | null,
       captureGeneration: number,
+      // dev_override — текст подставлен dev_state (speech=… / speak_transcript=…), микрофон не слушали
+      source: 'mic' | 'dev_override' = 'mic',
     ) => {
       if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
         micTrace('score:ignored', { reason: !mountedRef.current ? 'unmounted' : !runtimeActiveRef.current ? 'background' : 'stale_generation', captureGeneration, current: captureGenerationRef.current });
@@ -638,7 +652,7 @@ export function SpeakingPanel({
       // чужое слово во фразе проходило. Теперь нужны оба условия. Если контрольный прогон не запустился
       // (control === null), поправки нет — решает основная строгая проверка biased.passed.
       const passed = biased.passed && honestScore >= biased.threshold;
-      const verdictReason = passed
+      const verdictReason: SpeakingVerdictReason = passed
         ? 'pass'
         : !biased.strictWordsOk
           ? 'missing_words'
@@ -652,7 +666,7 @@ export function SpeakingPanel({
       // Лог (владелец 15.10, «сначала логи»): эталон, что услышал телефон, что ему подсказывали, балл,
       // какие значимые слова не найдены, режим проверки, был ли контроль и ПОЧЕМУ такой вердикт.
       console.warn('[SPEAK-SCORE]', JSON.stringify({ // guard-ok: одна строка на попытку, нужна в релизе (диагностика вердикта)
-        target: targetText.slice(0, 120), transcript: text.slice(0, 120),
+        source, target: targetText.slice(0, 120), transcript: text.slice(0, 120),
         hints: buildContextualStrings(targetText),
         // уверенность ОС по каждому слову цели (null — не услышано / ОС не отдаёт); порог — после релиза по этим данным
         wordConfidence: biased.wordConfidence.slice(0, 16),
@@ -682,7 +696,14 @@ export function SpeakingPanel({
       );
       setScore(honestScore);
       setFailMissing(passed ? [] : biased.missingWords);
-      onScore?.({ score: honestScore, passed, transcript: text, missingWords: passed ? [] : biased.missingWords });
+      onScore?.({
+        score: honestScore,
+        passed,
+        transcript: text,
+        missingWords: passed ? [] : biased.missingWords,
+        strictWordsOk: biased.strictWordsOk,
+        reason: verdictReason,
+      });
       if (passed) {
         setStatus('passed');
         hapticSuccess();
@@ -1762,7 +1783,7 @@ export function SpeakingPanel({
           playNoSpeech();
         } else if (devMode !== 'denied') {
           setStatus('scoring');
-          setTimeout(() => applyScoredResult(devSpeechTranscriptFor(targetText) ?? '', undefined, null, generation), 500);
+          setTimeout(() => applyScoredResult(devSpeechTranscriptFor(targetText) ?? '', undefined, null, generation, 'dev_override'), 500);
         }
         return;
       }

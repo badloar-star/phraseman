@@ -37,50 +37,63 @@ const ceilingMatch = /LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = (\d+);/u.exec(f
 if (!ceilingMatch) throw new Error(`learning_v2_bootstrap_audio_ceiling_unreadable:${availabilityPath}`);
 const BOOTSTRAP_SESSION_COUNT = Math.max(LAUNCH_SEED_SESSION_COUNT, Number(ceilingMatch[1]));
 
-const audioIndexPath = path.join(root, "app/learning_v2_factory_lesson_audio_index_v1.generated.ts");
+const contentDirectory = path.join(root, "modules/learning-v2/content/factory_native/generated_release/en/l01");
 const manifestPath = path.join(root, "assets/audio/learning-v2/factory-production-v1/manifest.json");
 const outputDirectory = path.join(root, "assets/audio/learning-v2-bootstrap-v1");
 const outputModule = path.join(root, "app/learning_v2_bootstrap_audio_assets_v1.generated.ts");
+const voices = ["ash", "onyx", "nova", "coral"];
 
 /**
- * Файлы занятий урока 1 берём из ТАБЛИЦЫ ОЗВУЧКИ, которую читает само приложение
- * (learning_v2_lesson_audio_pack_v1 → индекс → по contentHash сюда).
+ * Фразы занятий берём из ТЕКСТОВ, которые приложение реально показывает (generated_release — его читает
+ * factory_native_manifest_v1), и кладём их записи во всех четырёх голосах.
  *
- * зачем (15.10): прежде набор пересобирался из content/learning-v2-course/release, а тот меняется
- * фабрикой независимо от сборки (14:27 в s04/s06/s08 появилась фраза без озвучки — генератор падал).
- * Приложению нужны ровно те файлы, что в его таблице; лишнее — вес, недостающее — голос телефона.
+ * зачем (15.10, сверка координатора): таблица озвучки app/learning_v2_factory_lesson_audio_index_v1 собрана
+ * 20.09 под старые тексты, а content/learning-v2-course/release фабрика меняет независимо от сборки. По обоим
+ * источникам в сборку шли не те файлы: из нынешних s01–s15 в набор не попадало 60 записанных файлов
+ * (звучали телефоном). Источник истины для сборки — то, что играет плеер: referenceAudio/audioA/audioB
+ * заданий (buildLearningV2FactoryBundledAudioChildV1) и слова карточек.
+ * Фразы без записи хотя бы в одном голосе пропускаются: такие задания приложение само выключает
+ * (resolveLearningV2FactoryRuntimeAudioOmissionsV1). Число пропусков печатается — немого пропуска нет.
  */
-const indexText = fs.readFileSync(audioIndexPath, "utf8");
-const lessonStart = indexText.indexOf("\n  1: Object.freeze({ sessionCount");
-if (lessonStart < 0) throw new Error(`learning_v2_bootstrap_audio_index_lesson_missing:${audioIndexPath}`);
-const lessonEnd = indexText.indexOf("\n  2: Object.freeze({ sessionCount", lessonStart + 1);
-const lessonText = indexText.slice(lessonStart, lessonEnd > 0 ? lessonEnd : undefined);
-const hashesBySession = new Map();
-for (const match of lessonText.matchAll(/(\d+): Object\.freeze\(\{ contentHashes: Object\.freeze\(\[([^\]]*)\]/gu))
-  hashesBySession.set(Number(match[1]), [...match[2].matchAll(/"([0-9a-f]{64})"/gu)].map((hash) => hash[1]));
-
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-const byContentHash = new Map(manifest.entries.map((entry) => [entry.contentHash, entry]));
-const bundledHashes = new Set();
+const byCoordinate = new Map(
+  manifest.entries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),
+);
+const collectTranscripts = (value, into) => {
+  if (Array.isArray(value)) return value.forEach((item) => collectTranscripts(item, into));
+  if (!value || typeof value !== "object") return;
+  if (value.isWordCard === true && typeof value.wordCard?.word === "string")
+    into.add(value.wordCard.word.normalize("NFKC").trim());
+  if (typeof value.audioTargetId === "string" && typeof value.transcript === "string")
+    into.add(value.transcript);
+  Object.values(value).forEach((item) => collectTranscripts(item, into));
+};
+const bundledEntries = new Map();
 const launchSeedHashes = new Set();
+const unvoiced = new Set();
 for (let sessionOrdinal = 1; sessionOrdinal <= BOOTSTRAP_SESSION_COUNT; sessionOrdinal += 1) {
-  const sessionHashes = hashesBySession.get(sessionOrdinal);
+  const learnerPath = path.join(contentDirectory, `s${String(sessionOrdinal).padStart(2, "0")}`, "learner.json");
   // Немой пропуск запрещён: молча собранный неполный пак — это ровно тот баг,
   // который чиним (занятие открывается у автора и звучит телефоном у человека).
-  if (!sessionHashes || sessionHashes.length === 0)
-    throw new Error(`learning_v2_bootstrap_audio_session_missing:l01:s${sessionOrdinal}`);
-  for (const contentHash of sessionHashes) {
-    bundledHashes.add(contentHash);
-    if (sessionOrdinal <= LAUNCH_SEED_SESSION_COUNT) launchSeedHashes.add(contentHash);
+  if (!fs.existsSync(learnerPath))
+    throw new Error(`learning_v2_bootstrap_audio_session_missing:${learnerPath}`);
+  const transcripts = new Set();
+  collectTranscripts(JSON.parse(fs.readFileSync(learnerPath, "utf8")).interactions, transcripts);
+  for (const transcript of transcripts) {
+    const voiced = voices.map((voiceId) => byCoordinate.get(`${transcript}\u0000${voiceId}`));
+    if (voiced.some((entry) => !entry)) {
+      unvoiced.add(transcript);
+      continue;
+    }
+    for (const entry of voiced) {
+      bundledEntries.set(entry.contentHash, entry);
+      if (sessionOrdinal <= LAUNCH_SEED_SESSION_COUNT) launchSeedHashes.add(entry.contentHash);
+    }
   }
 }
+console.log(`[V2-BOOTSTRAP-AUDIO] sessions=1..${BOOTSTRAP_SESSION_COUNT} files=${bundledEntries.size} launchSeed=${launchSeedHashes.size} unvoicedTranscripts=${unvoiced.size}`);
 
-const entries = [];
-for (const contentHash of bundledHashes) {
-  const entry = byContentHash.get(contentHash);
-  if (!entry) throw new Error(`learning_v2_bootstrap_audio_missing:${contentHash}`);
-  entries.push(entry);
-}
+const entries = [...bundledEntries.values()];
 entries.sort((left, right) => left.contentHash.localeCompare(right.contentHash));
 
 const moduleText = [

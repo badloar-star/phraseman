@@ -30,12 +30,14 @@ async function readIds(key: string): Promise<string[]> {
   }
 }
 
-async function writeIds(key: string, ids: string[]): Promise<void> {
+async function writeIds(key: string, ids: string[]): Promise<boolean> {
   try {
     await AsyncStorage.setItem(key, JSON.stringify([...new Set(ids)]));
+    return true;
   } catch (e) {
       // ignore
       DebugLogger.error('packSocialStorage:writeIds', e instanceof Error ? e : new Error(String(e)), 'warning');
+      return false;
     }
 }
 
@@ -55,7 +57,12 @@ export async function setCommunityPackLikedLocally(packId: string, liked: boolea
   const cur = await loadLikedCommunityPackIds();
   const has = cur.includes(packId);
   if (has === liked) return false;
-  await writeIds(LIKED_KEY, liked ? [...cur, packId] : cur.filter((id) => id !== packId));
+  const written = await writeIds(LIKED_KEY, liked ? [...cur, packId] : cur.filter((id) => id !== packId));
+  if (!written) {
+    // зачем (аудит Optimistic UI, координатор 15.10, дыра №5): сбой диска раньше молча возвращал true: сердце оставалось, а лайка нет. Бросаем — экран (CommunityPackSocialBar) откатит сердце и цифру и покажет тост
+    console.warn(`[PACK-LIKE] ${packId}: локальная запись лайка не удалась liked=${String(liked)} — бросаю, экран откатит`); // guard-ok: ветка отказа называет причину
+    throw new Error('pack_like_local_write_failed');
+  }
   return true;
 }
 

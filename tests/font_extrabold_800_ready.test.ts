@@ -29,6 +29,47 @@ function nameAndWeight(file: string): { names: Record<number, string>; weight: n
   return { names, weight: d.readUInt16BE(tabs['OS/2']! + 4) };
 }
 
+// зачем (решение координатора 15.10, вариант A): четыре файла репозитория — нехинтованная сборка Inter 4.001 (git-66647c0bb), в официальном архиве v4.1
+// статические ttf — хинтованная сборка той же версии (git-9221beed3). Хеш сборки не сравниваем: «Version 4.001» + метрики строки + кириллица.
+function metrics(file: string): { upm: number; asc: number; desc: number; gap: number; cyrillic: Set<number> } {
+  const d = fs.readFileSync(file);
+  const num = d.readUInt16BE(4);
+  const tabs: Record<string, number> = {};
+  for (let i = 0; i < num; i += 1) tabs[d.toString('latin1', 12 + 16 * i, 16 + 16 * i)] = d.readUInt32BE(20 + 16 * i);
+  const cyrillic = new Set<number>();
+  const cmap = tabs.cmap!;
+  const n = d.readUInt16BE(cmap + 2);
+  for (let i = 0; i < n; i += 1) {
+    const pid = d.readUInt16BE(cmap + 4 + 8 * i);
+    const eid = d.readUInt16BE(cmap + 6 + 8 * i);
+    if (!((pid === 3 && eid === 1) || (pid === 3 && eid === 10))) continue;
+    const sub = cmap + d.readUInt32BE(cmap + 8 + 8 * i);
+    const fmt = d.readUInt16BE(sub);
+    if (fmt === 12) {
+      const groups = d.readUInt32BE(sub + 12);
+      for (let g = 0; g < groups; g += 1) {
+        const s = d.readUInt32BE(sub + 16 + 12 * g);
+        const e = d.readUInt32BE(sub + 20 + 12 * g);
+        for (let c = Math.max(s, 0x400); c <= Math.min(e, 0x4ff); c += 1) cyrillic.add(c);
+      }
+    } else if (fmt === 4) {
+      const seg = d.readUInt16BE(sub + 6) / 2;
+      for (let g = 0; g < seg; g += 1) {
+        const e = d.readUInt16BE(sub + 14 + 2 * g);
+        const s = d.readUInt16BE(sub + 16 + 2 * seg + 2 * g);
+        for (let c = Math.max(s, 0x400); c <= Math.min(e, 0x4ff); c += 1) cyrillic.add(c);
+      }
+    }
+  }
+  return {
+    upm: d.readUInt16BE(tabs.head! + 18),
+    asc: d.readInt16BE(tabs.hhea! + 4),
+    desc: d.readInt16BE(tabs.hhea! + 6),
+    gap: d.readInt16BE(tabs.hhea! + 8),
+    cyrillic,
+  };
+}
+
 describe('Inter ExtraBold (800): готовность', () => {
   if (!fs.existsSync(FONT)) {
     it('файл ещё не добавлен (ждём слова владельца): сейчас 800 рисуется как 700, это зафиксировано картой весов', () => {
@@ -43,7 +84,12 @@ describe('Inter ExtraBold (800): готовность', () => {
     const extra = nameAndWeight(FONT);
     const bold = nameAndWeight(path.join(ROOT, 'assets/fonts/Inter-Bold.ttf'));
     expect(extra.weight).toBe(800);
-    expect(extra.names[5]).toBe(bold.names[5]);
+    expect(extra.names[5]!.split(';')[0]).toBe(bold.names[5]!.split(';')[0]); // «Version 4.001»; хеш сборки после «;» не сравниваем
+    const a = metrics(FONT);
+    const b = metrics(path.join(ROOT, 'assets/fonts/Inter-Bold.ttf'));
+    expect([a.upm, a.asc, a.desc, a.gap]).toEqual([b.upm, b.asc, b.desc, b.gap]);
+    expect(a.cyrillic.size).toBeGreaterThanOrEqual(Math.floor(b.cyrillic.size * 0.95));
+    for (const cp of [0x0416, 0x0430, 0x044f, 0x0451]) expect(a.cyrillic.has(cp)).toBe(true);
     expect(extra.names[6]).toBe('Inter-ExtraBold');
   });
 

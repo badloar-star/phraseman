@@ -51,6 +51,40 @@ def font_info(path):
     return names, weight
 
 
+def font_metrics(path):
+    """upm, ascent, descent, lineGap (hhea) и набор кириллицы (cmap) — то, что реально определяет вид строки."""
+    d = open(path, 'rb').read()
+    num = struct.unpack('>H', d[4:6])[0]
+    tabs = {}
+    for i in range(num):
+        tag, _, off, ln = struct.unpack('>4sIII', d[12 + 16 * i:28 + 16 * i])
+        tabs[tag.decode()] = off
+    upm = struct.unpack('>H', d[tabs['head'] + 18:tabs['head'] + 20])[0]
+    asc, desc, gap = struct.unpack('>hhh', d[tabs['hhea'] + 4:tabs['hhea'] + 10])
+    off = tabs['cmap']
+    n = struct.unpack('>H', d[off + 2:off + 4])[0]
+    cps = set()
+    for i in range(n):
+        pid, eid, so = struct.unpack('>HHI', d[off + 4 + 8 * i:off + 12 + 8 * i])
+        if (pid, eid) not in ((3, 1), (3, 10)):
+            continue
+        sub = off + so
+        fmt = struct.unpack('>H', d[sub:sub + 2])[0]
+        if fmt == 12:
+            groups = struct.unpack('>I', d[sub + 12:sub + 16])[0]
+            for g in range(groups):
+                s, e, _ = struct.unpack('>III', d[sub + 16 + 12 * g:sub + 28 + 12 * g])
+                cps.update(c for c in range(s, e + 1) if 0x400 <= c <= 0x4FF)
+        elif fmt == 4:
+            segx2 = struct.unpack('>H', d[sub + 6:sub + 8])[0]
+            seg = segx2 // 2
+            ends = struct.unpack('>%dH' % seg, d[sub + 14:sub + 14 + segx2])
+            starts = struct.unpack('>%dH' % seg, d[sub + 16 + segx2:sub + 16 + 2 * segx2])
+            for s, e in zip(starts, ends):
+                cps.update(c for c in range(s, e + 1) if 0x400 <= c <= 0x4FF and c != 0xFFFF)
+    return upm, asc, desc, gap, cps
+
+
 EDITS = {
     'app.json': [
         ('                  {\n                    "path": "./assets/fonts/Inter-Bold.ttf",\n                    "weight": 700\n                  },\n',
@@ -84,7 +118,13 @@ if not CHECK:
     names, weight = font_info(ROOT + FONT)
     ref_names, _ = font_info(ROOT + 'assets/fonts/Inter-Bold.ttf')
     assert weight == 800, f'usWeightClass={weight}, ожидалось 800'
-    assert names.get(5) == ref_names.get(5), f'версия {names.get(5)!r} не совпадает с остальными начертаниями {ref_names.get(5)!r}'
+    # зачем (решение координатора 15.10, вариант A): четыре файла в репозитории — нехинтованная сборка Inter 4.001 (git-66647c0bb), в официальном
+    # архиве v4.1 статические ttf — хинтованная сборка той же версии (git-9221beed3). Хеш сборки не сравниваем: сверяем «Version 4.001» и метрики строки.
+    assert names.get(5, '').split(';')[0] == ref_names.get(5, '').split(';')[0], f'версия {names.get(5)!r} не совпадает с остальными начертаниями {ref_names.get(5)!r}'
+    m_new = font_metrics(ROOT + FONT)
+    m_ref = font_metrics(ROOT + 'assets/fonts/Inter-Bold.ttf')
+    assert m_new[:4] == m_ref[:4], f'метрики (upm, ascent, descent, lineGap) {m_new[:4]} не совпадают с остальными {m_ref[:4]}'
+    assert len(m_new[4]) >= 0.95 * len(m_ref[4]) and {0x0416, 0x0430, 0x044F, 0x0451} <= m_new[4], 'кириллица в файле неполная'
     assert names.get(6) == 'Inter-ExtraBold', f'PostScript-имя {names.get(6)!r}, ожидалось Inter-ExtraBold'
     print('файл проверен:', names.get(4), '|', names.get(5), '| вес', weight)
 

@@ -1,210 +1,138 @@
-# Английский · Урок 1 · Занятие 38 — «Мы заблудились»
+# Английский · Урок 1 · Занятие 38 — Дома после долгой дороги
 
-**Ситуация.** После обеда Ира, Олег и вы свернули не туда в Дублине. Вы находите знакомую улицу и объясняете, что произошло.
-**Сегодня.** Скажете, где вы: `We are` / `They are` + слово.
-**Новые слова:** —
-**Возвращаются:** together, far, lost, safe, home, back
+**Ситуация.** Вы с братом вернулись из долгой поездки. Сил мало, нужно разобрать вещи и проверить растения, за которыми присматривала соседка.
+
+**Что вы освоите:** описать слабость знакомыми формами be и повторить слова о жизни и пропаже
+**Новые слова:** weak
 
 ---
 
 ## Интро 1
 
-### `lost` — «заблудились»
+### Мало сил
 
-`lost` — «заблудился», «потерялся». Про одного человека и про целую компанию одинаково: `we are lost`.
+`weak` — «слабый». `I am weak` — «Я слабый», а в разговоре о самочувствии — «У меня мало сил». Коротко: `I'm weak`. Это не просто «устал»: вы именно чувствуете нехватку сил. Чемодан всё тот же, но поднять его на обратном пути почему-то гораздо труднее.
 
-Перед ним нужно `are`, и это не мелочь. Скажете `we lost` — получится «мы проиграли»: это уже другая фраза, прошедшее время от «терять».
+**После дороги вы чувствуете слабость. Скажите именно о нехватке сил.**
 
-**Ира и Олег сворачивают с улицы, но никто из вас не узнаёт место. Скажите за всех.**
-
-- ✅ **We are lost.**
-- ❌ We lost. — *Это «мы проиграли, мы потеряли». Про своё состояние — `we are lost`.*
-- ❌ We is lost. — *`is` — про одного. Вас несколько, значит `are`.*
+- ✅ **I am weak.**
+- ❌ I weak. — *После `I` нужно `am`: `I am weak`.*
+- ❌ I am missing. — *`missing` — «пропавший». Вы дома; сейчас речь о слабости: `weak`.*
 
 ---
 
 ## Интро 2
 
-### `safe` — «в безопасности»
+### Он слабый, они слабые
 
-`safe` — «в безопасности», «ничего не угрожает». Не «спасён из огня», а обычное: район нормальный, никто не пристаёт, идти можно.
+Про брата — `He is weak`, про сестру — `She is weak`. Про вас вместе — `We are weak`. Слово `weak` остаётся тем же. Можно описывать и предметы: например, про слабый сигнал связи скажем `It is weak`.
 
-После `we` ставим `are`: `We are safe`. Не путайте с `save`: это «спасать, сохранять», действие, а `safe` описывает состояние.
+**Сигнал интернета дома слабый. Скажите о сигнале.**
 
-**Олег нервничает, но Ира видит вокруг людей, свет и знакомый магазин. Успокойте Олега.**
-
-- ✅ **We are safe.**
-- ❌ We safe. — *После `we` нужно `are`: We are safe.*
-- ❌ We are save. — *`save` — «спасать», действие. Нужно `safe`.*
+- ✅ **It is weak.**
+- ❌ He is weak. — *`He` — про него, человека. Здесь про сигнал: `It is weak`.*
+- ❌ It are weak. — *После `It` нужна форма `is`.*
 
 ---
 
 ## Интро 3
 
-### `home` — «дома»
+### Живое и пропавшее
 
-`home` — «дома» или «домой».
+`alive` — «живой», `dead` — «мёртвый», `missing` — «пропавший», «отсутствующий». Растение может выглядеть слабым, но оставаться живым: `It is alive`. А если горшка нет на месте, это ещё не значит, что растение погибло: его могли переставить.
 
-Перед ним ничего не ставят: `They are home` — и всё. Рука тянется добавить `in`, как в `in the office`, но с `home` так не говорят.
+**Соседка подтвердила, что растение живое: у него появились новые листья. Скажите именно об этом.**
 
-**Двое из компании ушли раньше, вы им написали — уже дошли. Скажите про них.**
-
-- ✅ **They are home.**
-- ❌ They are in home. — *Лишнее `in`. С `home` оно не нужно: `They are home`.*
-- ❌ They is home. — *`is` — про одного человека. Их двое: `they are`.*
+- ✅ **It is alive.**
+- ❌ It is dead. — *`dead` означает, что растение погибло. Здесь оно живое: `alive`.*
+- ❌ It is missing. — *Растение перед вами. Нужно сообщить, что оно живое: `alive`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Карточка слова — lost**
-<!-- interaction_id: en:lesson-01:session-38:i01; family: listen_choose -->
-> **lost** — «заблудился». Шли уверенно, а теперь смотрите по сторонам и не узнаёте ни одного дома.
+**1 · Вы чувствуете нехватку сил после дороги. Соберите фразу о себе**
+<!-- interaction_id: en:lesson-01:session-38:i01; family: phrase_builder -->
+Плитки: `weak` `am` `I` `is` → **I am weak.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am weak.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-38:i02; family: listen_choose -->
-🔊 *lost* → **lost** · lot · last
-- lot — *Без «с» на конце. `lot` — «много», совсем про другое.*
-- last — *Похоже, но гласная другая. `last` — «последний».*
+🔊 *He is weak.* → **He is weak.** · She is weak. · He is alive.
+- She is weak. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is alive. — *В записи последнее слово — `weak`, а в этом варианте — `alive`.*
 
-**3 · Карточка слова — safe**
-<!-- interaction_id: en:lesson-01:session-38:i03; family: listen_choose -->
-> **safe** — «в безопасности». Ничего страшного не происходит и не собирается.
+**3 · Сестра говорит, что чувствует слабость. Дополните фразу о ней**
+<!-- interaction_id: en:lesson-01:session-38:i03; family: context_gap_grammar -->
+She ___ weak. → **is** · am · are
+- am — *После `She` нужно `is`.*
+- are — *Про сестру здесь `She is`.*
 
-**4 · Соберите фразу — «мы заблудились»**
-<!-- interaction_id: en:lesson-01:session-38:i04; family: phrase_builder -->
-Плитки: `lost` `are` `we` `is` → **We are lost.**
-*(плитка `is` лишняя: `is` лишнее: с `We` говорят `We are lost.`)*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-38:i04; family: speed_match -->
+weak — слабый · alive — живой · dead — мёртвый · missing — пропавший
 
+**5 · Послушайте и соберите фразу о сигнале**
+<!-- interaction_id: en:lesson-01:session-38:i05; family: listen_build_dictation -->
+🔊 *It is weak.* Плитки: `weak` `is` `It` `are` → **It is weak.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is weak.`)*
 
-**5 · Карточка слова — home**
-<!-- interaction_id: en:lesson-01:session-38:i05; family: listen_choose -->
-> **home** — «дома, домой». Место, куда возвращаются в конце дня.
+**6 · Вы и брат оба чувствуете нехватку сил. Соберите фразу от вас двоих**
+<!-- interaction_id: en:lesson-01:session-38:i06; family: phrase_builder -->
+Плитки: `weak` `are` `We` `They` → **We are weak.**
+*(плитка `They` лишняя: здесь нужно `We` — `We are weak.`)*
 
-**6 · Карточка слова — back**
-<!-- interaction_id: en:lesson-01:session-38:i06; family: listen_choose -->
-> **back** — «обратно, назад». Туда, откуда вышли.
+**7 · Коротко скажите о своём состоянии: у вас мало сил**
+<!-- interaction_id: en:lesson-01:session-38:i07; family: scripted_repeat_compare -->
+🎙 **I'm weak.**
 
-**7 · Вставьте слово — вокруг спокойно, никто никуда не бежит**
-<!-- interaction_id: en:lesson-01:session-38:i07; family: context_gap_grammar -->
-We are ___ . → **safe** · lost · home
-- lost — *Заблудились вы раньше. Сейчас надо сказать, что вокруг спокойно.*
-- home — *Дома вас как раз нет — вы посреди чужой улицы.*
+**8 · Кошелька нет среди вещей, и вы его ищете. Назовите пропажу**
+<!-- interaction_id: en:lesson-01:session-38:i08; family: context_gap_grammar -->
+It is ___ . → **missing** · alive · dead
+- alive — *`alive` — «живой». Про пропавший кошелёк нужно `missing`.*
+- dead — *`dead` — «мёртвый». Здесь кошелька нет: `missing`.*
 
-**8 · Различите звуки — вы добрались домой без происшествий. Какое слово подходит?**
-<!-- interaction_id: en:lesson-01:session-38:i08; family: sound_contrast -->
-🔊 Два слова подряд.
-*safe · save* → **safe**
-- save — *Это «спасать». Здесь конец слова звонкий, тянется — а нужен короткий и глухой.*
+**9 · Послушайте фразу о растении**
+<!-- interaction_id: en:lesson-01:session-38:i09; family: listen_choose -->
+🔊 *It is alive.* → **It is alive.** · It is dead. · It is missing.
+- It is dead. — *В записи последнее слово — `alive`, а в этом варианте — `dead`.*
+- It is missing. — *В записи последнее слово — `alive`, а в этом варианте — `missing`.*
 
-**9 · Послушайте и соберите — «они дома»**
-<!-- interaction_id: en:lesson-01:session-38:i09; family: listen_build_dictation -->
-🔊 *They are home.* Плитки: `home` `are` `they` `safe` → **They are home.**
-*(плитка `safe` лишняя: `safe` здесь лишнее: в фразе `They are home.` говорят, что они дома.)*
+**10 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-01:session-38:i10; family: speed_match -->
+I'm — I am · He's — He is · It's — It is · We're — We are
 
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-38:i11; family: listen_build_dictation -->
+🔊 *She's weak.* Плитки: `weak` `She's` `He's` → **She's weak.**
+*(плитка `He's` лишняя: здесь нужно `She's` — `She's weak.`)*
 
-**10 · Вставьте слово — все развернулись и идут той же дорогой**
-<!-- interaction_id: en:lesson-01:session-38:i10; family: context_gap_grammar -->
-We are ___ . → **back** · lost · safe
-- lost — *Заблудились вы раньше, а сейчас дорогу нашли и идёте обратно.*
-- safe — *«В безопасности» — правда, но здесь надо сказать про направление.*
+**12 · Одно растение, к сожалению, погибло. Соберите фразу об этом растении**
+<!-- interaction_id: en:lesson-01:session-38:i12; family: phrase_builder -->
+Плитки: `dead` `is` `It` `are` → **It is dead.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is dead.`)*
 
-**11 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-38:i11; family: speed_match -->
-lost — заблудился · safe — в безопасности · home — дома · back — обратно
+**13 · Два других растения сохранились и растут. Скажите о них: «Они живы»**
+<!-- interaction_id: en:lesson-01:session-38:i13; family: scripted_repeat_compare -->
+🎙 **They are alive.**
 
-**12 · Карточка слова — together**
-<!-- interaction_id: en:lesson-01:session-38:i12; family: listen_choose -->
-> **together** — «вместе». Идёте одной кучкой и никого не потеряли по дороге.
+**14 · Двое друзей тоже вернулись без сил. Дополните фразу об их слабости**
+<!-- interaction_id: en:lesson-01:session-38:i14; family: context_gap_grammar -->
+They ___ weak. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Здесь `They are weak`.*
 
-**13 · Вставьте слово — идёте всей толпой, не разбредаясь**
-<!-- interaction_id: en:lesson-01:session-38:i13; family: context_gap_grammar -->
-We are ___ . → **together** · home · back
-- home — *Дома вы окажетесь позже, сейчас вы посреди улицы.*
-- back — *«Обратно» — про направление. А сказать надо, что вы одной кучкой.*
+**15 · Послушайте и выберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-38:i15; family: listen_choose -->
+🔊 *We're weak.* → **We're weak.** · They're weak. · We're alive.
+- They're weak. — *В записи первое слово — `We're`, а в этом варианте — `They're`.*
+- We're alive. — *В записи последнее слово — `weak`, а в этом варианте — `alive`.*
 
-**14 · Карточка слова — far**
-<!-- interaction_id: en:lesson-01:session-38:i14; family: listen_choose -->
-> **far** — «далеко». До нужного места ещё идти и идти.
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-38:i16; family: speed_match -->
+missing — отсутствует, пропал · weak — слабый · dead — мёртвый · alive — живой
 
-**15 · Соберите фразу — до дома ещё ехать и ехать**
-<!-- interaction_id: en:lesson-01:session-38:i15; family: phrase_builder -->
-Плитки: `far` `we` `are` `is` → **We are far.**
-*(плитка `is` лишняя: `is` лишнее: с `We` говорят `We are far.`)*
+**17 · В кафе связь едва работает. Вы описываете другу именно слабый сигнал. Скажите короткую фразу о нём**
+<!-- interaction_id: en:lesson-01:session-38:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is weak.**
 
-
-**16 · Послушайте и соберите — «они в безопасности»**
-<!-- interaction_id: en:lesson-01:session-38:i16; family: listen_build_dictation -->
-🔊 *They are safe.* Плитки: `safe` `they` `are` `home` → **They are safe.**
-*(плитка `home` лишняя: `home` здесь лишнее: в фразе `They are safe.` говорят, что они в безопасности.)*
-
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-38:i17:s01; family: scripted_repeat_compare -->
-Вы с Олегом не узнаёте улицу. 🎙 **We are lost.**
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-38:i17:s02; family: scripted_repeat_compare -->
-Вы с Олегом идёте рядом и не разделяетесь. 🎙 **We are together.**
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-38:i17:s03; family: scripted_repeat_compare -->
-Ира находит вас у знакомого магазина, вокруг спокойно. 🎙 **We are safe.**
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-38:i17:s04; family: scripted_repeat_compare -->
-Вы с Олегом вернулись к станции. 🎙 **We are back.**
-
----
-
-## Для сборщика
-
-new_words:
-lost — заблудился — «заблудился». Шли уверенно, а теперь смотрите по сторонам и не узнаёте ни одного дома.
-safe — в безопасности — «в безопасности». Ничего страшного не происходит и не собирается.
-home — дома, домой — «дома, домой». Место, куда возвращаются в конце дня.
-back — обратно, назад — «обратно, назад». Туда, откуда вышли.
-together — вместе — «вместе». Идёте одной кучкой и никого не потеряли по дороге.
-far — далеко — «далеко». До нужного места ещё идти и идти.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=phrase_builder, 5=word_card, 6=word_card, 7=context_gap_grammar, 8=sound_contrast, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=word_card, 13=context_gap_grammar, 14=word_card, 15=phrase_builder, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| together | 12 (карточка), 13, 17 | 13, 17 |
-| far | 14 (карточка), 15 | 15 |
-
-`right` и `wrong` убраны из шапки: в заданиях их нет.
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | lost | да |
-| Интро 2 | safe | да |
-| Интро 3 | home | да |
-
-**3. Доска пар (задание 11)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| lost | 1 | 2, 4 |
-| safe | 3 | 7, 8 |
-| home | 5 | 9 |
-| back | 6 | 10 |
-
-**4. Длина интро**
-
-| страница | знаков в объяснении |
-|---|---|
-| Интро 1 | 248 |
-| Интро 2 | 289 |
-| Интро 3 | 245 |
-
----

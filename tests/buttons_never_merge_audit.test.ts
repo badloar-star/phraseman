@@ -1,5 +1,7 @@
 // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»; поручение координатора 15.10): аудит контраста КАЖДОЙ кнопки к поверхности под ней во ВСЕХ темах.
-// Порог: фон кнопки к самой светлой и самой тёмной поверхности под ней ≥ 3:1 (графика), подпись кнопки к её фону ≥ 4,5:1.
+// Два уровня (координатор 15.10): ОСНОВНЫЕ кнопки (V2 primary/accent, главная кнопка окон моментов) — фон к самой светлой и самой тёмной поверхности под ней ≥ 3:1;
+// ТОНОВЫЕ плашки (V2 вторичная, опасная, отключённая, плашки окон моментов на buttonFill) — ≥ 1,5:1, принятый порог button_tokens_contrast, стиль «Тень». Подпись везде ≥ 4,5:1.
+// Красным остаётся только то, что ниже СВОЕГО уровня — это и есть настоящее «сливается» (как 1,00 на шторке).
 // Поверхности под кнопкой: страница (bg, bgTop, bgBottom — края градиента), карточка (opaqueCard), шторка/окно (opaqueSheet).
 // Кнопки: V2Button primary/accent (ctaFill/ctaInk), secondary (buttonFill), ghost (без заливки — только подпись), disabled (buttonFillDisabled/Ink), danger (dangerFill/Ink),
 // кнопка окон моментов Пика (SpirePalette: cta = accent, ctaText = accentInk) и вторичная плашка окон (opaqueControl).
@@ -24,15 +26,18 @@ const SURFACES: ReadonlyArray<readonly [string, readonly string[]]> = [
 ];
 const INTENSITIES = [0, 0.25, 0.5, 0.75, 1];
 
-type ButtonDef = Readonly<{ name: string; fill: string | null; ink: string; inkOn?: string }>;
+type ButtonDef = Readonly<{ name: string; fill: string | null; ink: string; min: number }>;
+const MAIN_MIN = 3;
+const TONAL_MIN = 1.5;
 const BUTTONS: readonly ButtonDef[] = [
-  { name: 'V2 основная/акцентная', fill: 'ctaFill', ink: 'ctaInk' },
-  { name: 'V2 вторичная', fill: 'buttonFill', ink: 'text' },
-  { name: 'V2 прозрачная (ghost)', fill: null, ink: 'text' },
-  { name: 'V2 отключённая', fill: 'buttonFillDisabled', ink: 'buttonInkDisabled' },
-  { name: 'опасная', fill: 'dangerFill', ink: 'dangerInk' },
-  { name: 'окна моментов: основная (accent)', fill: 'accent', ink: 'accentInk' },
-  { name: 'окна моментов: вторичная плашка', fill: 'opaqueControl', ink: 'text' },
+  { name: 'V2 основная/акцентная', fill: 'ctaFill', ink: 'ctaInk', min: MAIN_MIN },
+  { name: 'V2 вторичная', fill: 'buttonFill', ink: 'text', min: TONAL_MIN },
+  { name: 'V2 прозрачная (ghost)', fill: null, ink: 'text', min: TONAL_MIN },
+  { name: 'V2 отключённая', fill: 'buttonFillDisabled', ink: 'buttonInkDisabled', min: TONAL_MIN },
+  { name: 'опасная', fill: 'dangerFill', ink: 'dangerInk', min: TONAL_MIN },
+  { name: 'окна моментов: основная (ctaFill)', fill: 'ctaFill', ink: 'accentInk', min: MAIN_MIN },
+  // зачем: плашки окон (в т.ч. «Пропустить») берут buttonFill, а не control/opaqueControl (на нём было 1,00 к шторке)
+  { name: 'окна моментов: плашка (buttonFill)', fill: 'buttonFill', ink: 'text', min: TONAL_MIN },
 ];
 
 type Row = { theme: string; appearance: string; button: string; surface: string; fillMin: number | null; inkRatio: number; fillRed: boolean; inkRed: boolean };
@@ -58,7 +63,7 @@ function compute(): Row[] {
               for (const k of keys) inkMin = Math.min(inkMin, ratio(t[b.ink]!, t[k]!));
             }
           }
-          rows.push({ theme: id, appearance, button: b.name, surface: surfaceName, fillMin, inkRatio: inkMin, fillRed: fillMin !== null && fillMin < 3, inkRed: inkMin < 4.5 });
+          rows.push({ theme: id, appearance, button: b.name, surface: surfaceName, fillMin, inkRatio: inkMin, fillRed: fillMin !== null && fillMin < b.min, inkRed: inkMin < 4.5 });
         }
       }
     }
@@ -68,7 +73,7 @@ function compute(): Row[] {
 
 const keyOf = (r: Row): string => `${r.theme}|${r.appearance}|${r.button}|${r.surface}|${r.fillRed ? 'fill' : ''}${r.inkRed ? 'ink' : ''}`;
 
-describe('кнопки нигде не сливаются: фон ≥ 3:1 к поверхности, подпись ≥ 4,5:1', () => {
+describe('кнопки нигде не сливаются: основные ≥ 3:1, тоновые ≥ 1,5:1 к поверхности, подпись ≥ 4,5:1', () => {
   const rows = compute();
   const red = rows.filter((r) => r.fillRed || r.inkRed);
 
@@ -82,7 +87,7 @@ describe('кнопки нигде не сливаются: фон ≥ 3:1 к п�
     const fmt = (n: number | null) => (n === null ? '—' : n.toFixed(2));
     const lines: string[] = [];
     lines.push('# Аудит «кнопки нигде не сливаются» (владелец 13.10) — контраст по всем темам', '');
-    lines.push('Порог: фон кнопки к фону под ней ≥ 3 : 1 (худший из краёв градиента bg/bgTop/bgBottom, карточки, шторки), подпись ≥ 4,5 : 1; худшее по 5 шагам ползунка.');
+    lines.push('Пороги: основные кнопки ≥ 3 : 1, тоновые плашки ≥ 1,5 : 1 (худший из краёв градиента bg/bgTop/bgBottom, карточки, шторки), подпись ≥ 4,5 : 1; худшее по 5 шагам ползунка.');
     lines.push(`Строк: ${rows.length}; красных: ${red.length}. Источник: tests/buttons_never_merge_audit.test.ts (BUTTON_AUDIT_WRITE=1).`, '');
     lines.push('## Красное (отдельным списком)', '', '| тема | оформление | кнопка | поверхность | фон/поверхность | подпись/фон |', '|---|---|---|---|---|---|');
     for (const r of red) lines.push(`| ${r.theme} | ${r.appearance} | ${r.button} | ${r.surface} | ${fmt(r.fillMin)}${r.fillRed ? ' 🔴' : ''} | ${fmt(r.inkRatio)}${r.inkRed ? ' 🔴' : ''} |`);

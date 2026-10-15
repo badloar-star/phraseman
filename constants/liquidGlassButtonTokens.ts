@@ -35,7 +35,8 @@ export type LiquidGlassButtonRoles = Readonly<{
 
 const SURFACE_MIN = 1.6;
 const TEXT_MIN = 4.6;
-const CTA_SURFACE_MIN = 1.8;
+// зачем: правило владельца 13.10 "кнопки не сливаются", аудит 15.10 — заливка главной кнопки не слабее 3 : 1 к странице, карточке и шторке (фон кнопки как графика); раньше 1,8 и в 10 светлых градиентных темах было 2,1–2,9
+const CTA_SURFACE_MIN = 3.0;
 const CTA_INK_MIN = 4.5;
 const CTA_VS_SECONDARY_MIN = 1.3;
 const DISABLED_INK_TARGET = 4.6;
@@ -102,15 +103,21 @@ function secondaryFill(t: Surfaces): string {
 function primaryFill(t: Surfaces, secondary: string): string {
   const under = underSurfaces(t);
   const cta = hex6(t.cta);
-  // зачем (закон владельца 13.10: вторичная и основная не сливаются): основная должна и отличаться от поверхностей, и быть заметно иной, чем вторичная
+  // зачем (закон владельца 13.10: вторичная и основная не сливаются): основная должна и отличаться от поверхностей, и быть отличимой от вторичной.
   const ok = (c: string): boolean => minOver(c, under) >= CTA_SURFACE_MIN && ratio(c, secondary) >= CTA_VS_SECONDARY_MIN;
   if (ok(cta)) return cta;
-  for (let k = 0.04; k <= 0.9001; k += 0.02) {
+  // зачем (аудит 15.10): если порог недостижим при читаемой подписи (окно «фон ≥ 3 : 1» и «подпись ≥ 4,5 : 1» у светлых градиентных тем почти закрыто) —
+  // берём ЛУЧШИЙ по отличию от поверхностей вариант с читаемой подписью, а не исходный пастельный cta, который сливался с фоном до 1,00 : 1.
+  let best = cta;
+  let bestSurface = minOver(cta, under);
+  for (let k = 0.04; k <= 0.9001; k += 0.004) {
     const c = mix(cta, t.text, k);
-    if (ratio(t.ctaInk, c) < CTA_INK_MIN) break; // дальше подпись не читается — оставляем лучшее из достигнутого
+    if (ratio(t.ctaInk, c) < CTA_INK_MIN) break; // дальше подпись не читается
     if (ok(c)) return c;
+    const surface = minOver(c, under);
+    if (ratio(c, secondary) >= CTA_VS_SECONDARY_MIN && surface > bestSurface) { bestSurface = surface; best = c; }
   }
-  return cta;
+  return best;
 }
 
 /** Опасная кнопка: заливка — bad, растворённый в шторке (от слабого к сильному), подпись — bad, сдвинутый к тексту темы, пока не станет читаемой. */

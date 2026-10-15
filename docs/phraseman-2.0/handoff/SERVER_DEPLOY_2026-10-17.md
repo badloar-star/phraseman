@@ -126,6 +126,72 @@
 - **Правила Firestore**: выложить `firestore.rules` из `06d520e25`. Счётчики лимита просто перестанут быть закрытыми явно (по умолчанию правила и так всё запрещают).
 - **Хостинг**: `firebase hosting:clone` прошлой версии или повторная выкладка из `06d520e25`.
 
+## Точечные команды и откат по четырём одобренным пунктам (Ядро, 15.10 ~06:10)
+
+Проверено 15.10 ~06:00, ничего не выкладывалось.
+
+### Проверки
+
+- **Сборка.** `npm --prefix functions run build` — код 0. Проверка паритета рантайма зелёная.
+- **Тесты functions пунктов выкладки** — 332 из 332 (один поток).
+  - Два красных теста студии ассетов были устаревшими: звали `generateImage` без таймаута. Боевой вызов верный. Тест поправлен.
+
+### Перед выкладкой
+
+⚠️ **Перед выкладкой папка `functions/` должна быть чистой.** `firebase deploy` собирает её как есть.
+
+Проверка (пустой вывод = можно):
+
+```bash
+git status --short functions/
+```
+
+На 15.10 06:10 там незакоммиченные правки Codex в `functions/src/content_factory/` (v2…v4). Либо Codex их закоммитит или уберёт до выкладки, либо выкладку делать из отдельной чистой копии нужного коммита.
+
+### Как выкладывать
+
+Основной путь остаётся прежним: шаг 2 выше, `functions:default` целиком. Все пункты набора одобрены.
+
+Точечные команды ниже — для поэтапной выкладки или повторной выкладки одного пункта. Имена — экспорты набора `default`, где живёт изменение поведения. Транзитивные импортёры несут тот же код, но их поведение не меняется.
+
+| Пункт | Команда (из корня чистой копии) | Откат |
+|---|---|---|
+| **1. OpenAI: nano → gpt-4o-mini, картинки** (fb1c86ff5, 4d4fcc412) | см. ниже | Ревизии Cloud Run этих функций (см. «Откат» выше). ⚠️ После **23.10** откат бессмыслен: старая модель у OpenAI выключена, вызовы упадут. |
+| **2. D189: гость удаляется сразу** (aadca729d, c1516a23e; лестница 3d38cd00b) | см. ниже | Ревизии `accountDeleteEnqueue` и `accountDeleteWorker`: новые гости снова ждут 14 дней. ⚠️ Уже удалённых гостей не вернуть — удаление необратимо, так и одобрено. |
+| **3. D162/D190: лига Пика по монетам с W43** (fdc33942b, 368c2e669; D191 3ed0dcf5f, выплата 3864d6d23) | см. ниже | **Без деплоя:** в админке `config/spire_v1.rankBy = 'steps'` — лига снова по ступеням (рубильник D162), действует со следующего подведения недели. Иначе — ревизии этих функций. |
+| **4. Пуши «вернись» по поясам** (e8315d20a, 6de07c0b9, 8eadd82f2) | см. ниже | Ревизия `reEngagePushCron`: прежний один прогон в 10:00 UTC, Америка снова без пуша. |
+
+Пункт 1 (OpenAI):
+
+```bash
+firebase deploy --only "functions:default:premiumDialogTranslate,functions:default:premiumDialogSend,functions:default:premiumDialogStream,functions:default:premiumDialogReview,functions:default:supportInboxOnNewMail,functions:default:adminSupportGenerateReply,functions:default:adminSupportPrepareReply,functions:default:adminSupportPrepareReplyBatch,functions:default:jarvisDailyDepartmentsCron,functions:default:jarvisDailyBusinessHistoryCron,functions:default:jarvisProductKnowledgeReviewCron,functions:default:adminCreateAssetJob,functions:default:adminRunAssetJob,functions:default:openAiDialogModelConfig,functions:default:openAiDialogQuotaConfig,functions:default:openAiJobsConfig" --project phraseman-ea0b3
+```
+
+Пункт 2 (D189, удаление гостя):
+
+```bash
+firebase deploy --only "functions:default:accountDeleteEnqueue,functions:default:accountDeleteMine,functions:default:accountDeleteWorker,functions:default:accountDeleteRetryCron" --project phraseman-ea0b3
+```
+
+Пункт 3 (лига Пика по монетам):
+
+```bash
+firebase deploy --only "functions:default:spireFinalizeCron,functions:default:spireJoinRoom,functions:default:spireReportSteps,functions:default:adminSpireConfigGet,functions:default:adminSpireConfigSet" --project phraseman-ea0b3
+```
+
+Пункт 4 (пуши «вернись»):
+
+```bash
+firebase deploy --only "functions:default:reEngagePushCron" --project phraseman-ea0b3
+```
+
+### Порядок и зависимости
+
+- Пункт 3 выкладывать **вместе** с лестницей и снимком кошелька (они в тех же `spireFinalizeCron` / `spire_finalize_core`).
+- Обезличивание лестницы (3d38cd00b) — в пункте 2 (`accountDeleteWorker`). Его выкладывать не позже пункта 3, чтобы удаление аккаунта уже чистило ник в лестницах, которые начнёт писать крон.
+- Правила Firestore (шаг 1 выше) — первыми, как и было.
+- Функции, не попавшие в точечные списки (вход `authEnsureStableLink`, `authRecoveryHint`, подарочные сертификаты и др.), выкладываются основным путём `functions:default`.
+
 ## Чего НЕ делать
 
 - Не использовать `--force` и не соглашаться на удаление функций.

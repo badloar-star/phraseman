@@ -44710,6 +44710,442 @@
       "blocked_reason": null,
       "release": "r1",
       "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+    },
+    {
+      "id": "moments-v3-m04-a",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m04-A · Карточка над башней (как в коде)",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: моменты v3, вошедшие в код за флагом moments_v3 — эталон = вариант на engagement-moments-v3-all.html (телефон по id варианта, нумерации нет)",
+      "screen": "Пик · «Итог недели» — карточка",
+      "state": "башня с монетой выпрыгивает (emPop 600 мс), хаптик + звук new_week",
+      "code": [
+        "components/spire/SpireWeekResultCard.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "башня выпрыгивает: scale .55 → 1,12 → 1, 600 мс; reduced-motion — сразу на месте"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&next=/dev_spire_preview?state=weekresult%26spirePanel=off",
+        "taps": "—; анимация — видео с открытия",
+        "log": "[MOMENT-m04]"
+      },
+      "added_reason": "код 697f99ad0 (за moments_v3)"
+    },
+    {
+      "id": "moments-v3-m08-a",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m08-A · 3 → 5 → 10 → ошибка (сброс)",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: моменты v3, вошедшие в код за флагом moments_v3 — эталон = вариант на engagement-moments-v3-all.html (телефон по id варианта, нумерации нет)",
+      "screen": "Урок · «Молния» — серия верных ответов на кольце серии",
+      "state": "кольцо греется 3 → 5 → 10, плашка «N подряд», молния на 10, сброс при ошибке",
+      "code": [
+        "app/lesson1.tsx",
+        "components/feedback/ComboHeatSlot.tsx",
+        "components/feedback/ComboMomentLayer.tsx",
+        "components/feedback/ComboRing.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "кольцо «Искра/Молния/Гроза»; плашка emPop 400 мс; на 10 — встряска, молния 420 мс и вспышка; обрыв — виньетка 1,6 с; монета ранга выглядывает 1,8 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "3, 5, 10 верных подряд → затем ошибка; видео",
+        "log": "прямой dev-ссылки нет — запрошена у сессии моментов"
+      },
+      "added_reason": "код d0ce00931 (за moments_v3)",
+      "note": "по решению владельца эффекты на кольце серии в шапке, а не на полосе; «вспышка выбранного ответа» (burn) не перенесена — заменена общей вспышкой"
+    },
+    {
+      "id": "moments-v3-m10-a",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m10-A · Семь ударов",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: моменты v3, вошедшие в код за флагом moments_v3 — эталон = вариант на engagement-moments-v3-all.html (телефон по id варианта, нумерации нет)",
+      "screen": "Итог урока — цепная реакция",
+      "state": "восемь блоков с 300 мс через 620 мс: пройден → звёзды → название → цифры → +монеты → серия → «Сегодня» → кнопки",
+      "code": [
+        "app/lesson_complete.tsx",
+        "components/completion/V2DoneChain.tsx",
+        "components/completion/V2DoneScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "emUp 500 мс на блок; монеты летят в баланс; огонь серии из контура в залитый; reduced-motion — сразу финальный кадр"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца; видео итога",
+        "log": "строки серии и «Сегодня» есть только если переход сделал этот урок; прямой dev-ссылки нет — запрошена у сессии моментов"
+      },
+      "added_reason": "код bb55a3c2c (за moments_v3)"
+    },
+    {
+      "id": "moments-v3-m18-a",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m18-A · «думает…» → довольна → каскад",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: моменты v3, вошедшие в код за флагом moments_v3 — эталон = вариант на engagement-moments-v3-all.html (телефон по id варианта, нумерации нет)",
+      "screen": "Итог диалога",
+      "state": "«{Имя} думает…» → реакция (≥1,0 с) → каскад целей по 300 мс → +монеты → цифры → кнопки",
+      "code": [
+        "app/dialogue_v2_completion.tsx",
+        "components/completion/DialogueDoneChain.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "думает… с 0,2 с; реакция не раньше 1,0 с и ответа; цели каскадом по 300 мс с +0,6 с; reduced-motion — без задержек"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&mode=b&energy=5&dquota=reset&coinRank=6&aiConsent=granted&dev_dialog_send=ok&moments=v3&next=/ai_dialog_home",
+        "taps": "начать диалог → закрыть цели → «Завершить»; видео итога",
+        "log": "прямой dev-ссылки нет — запрошена у сессии моментов"
+      },
+      "added_reason": "код 525653c66 (за moments_v3)",
+      "note": "тексты реакции без рода («{Имя}: отлично!») — вариант (б), ждёт «да» владельца (docs/work/tasks/moments-v3-m18-strings.md)"
+    },
+    {
+      "id": "moments-v3-m22-a",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m22-A · Шторка пейвола (контекст «Энергия»)",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: моменты v3, вошедшие в код за флагом moments_v3 — эталон = вариант на engagement-moments-v3-all.html (телефон по id варианта, нумерации нет)",
+      "screen": "Энергия закончилась → Plus",
+      "state": "шторка с контекстом «Энергия»; «Попробовать Plus» → полный пейвол",
+      "code": [
+        "components/spire/SpireClimbDock.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает снизу"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&energy=0&moments=v3&next=/premium_modal?context=no_energy%26source=spire_no_energy",
+        "taps": "кадр шторки; тап «Попробовать Plus» → полный пейвол",
+        "log": ""
+      },
+      "added_reason": "координатор 15.10",
+      "note": "второй шаг («Попробовать Plus») = действующий полный пейвол (all-modals-plus-energy.html / paywall_copy) — он и есть эталон; отдельный кадр «шторка → полный пейвол» не нужен"
+    },
+    {
+      "id": "voice-limit-001",
+      "source": "OWNER_D194_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/learning-v2-voice-limit.html",
+        "phone": 1,
+        "label": "Free — осталось 3",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10 (D194): голос в курсе — цифра остатка на микрофоне 3→2→1→0, на нуле бейдж PLUS и пейвол, у Plus цифры нет",
+      "screen": "Курс V2 · голосовое задание — остаток попыток на микрофоне",
+      "state": "кнопка микрофона с цифрой 3",
+      "code": [
+        "app/voice_daily_allowance.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "новый день, попыток не тратить",
+        "log": ""
+      },
+      "added_reason": "владелец D194 15.10 через координатора",
+      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+    },
+    {
+      "id": "voice-limit-002",
+      "source": "OWNER_D194_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/learning-v2-voice-limit.html",
+        "phone": 2,
+        "label": "Free — идёт запись: 3 → 2",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10 (D194): голос в курсе — цифра остатка на микрофоне 3→2→1→0, на нуле бейдж PLUS и пейвол, у Plus цифры нет",
+      "screen": "Курс V2 · голосовое задание — остаток попыток на микрофоне",
+      "state": "запись идёт, цифра 3 → 2",
+      "code": [
+        "app/voice_daily_allowance.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "цифра меняется 3 → 2 при старте записи"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "зажать микрофон",
+        "log": ""
+      },
+      "added_reason": "владелец D194 15.10 через координатора",
+      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+    },
+    {
+      "id": "voice-limit-003",
+      "source": "OWNER_D194_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/learning-v2-voice-limit.html",
+        "phone": 3,
+        "label": "Free — осталось 1",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10 (D194): голос в курсе — цифра остатка на микрофоне 3→2→1→0, на нуле бейдж PLUS и пейвол, у Plus цифры нет",
+      "screen": "Курс V2 · голосовое задание — остаток попыток на микрофоне",
+      "state": "цифра 1",
+      "code": [
+        "app/voice_daily_allowance.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "потратить 2 попытки",
+        "log": ""
+      },
+      "added_reason": "владелец D194 15.10 через координатора",
+      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+    },
+    {
+      "id": "voice-limit-004",
+      "source": "OWNER_D194_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/learning-v2-voice-limit.html",
+        "phone": 4,
+        "label": "Free — 0: бейдж PLUS, тап → пейвол",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10 (D194): голос в курсе — цифра остатка на микрофоне 3→2→1→0, на нуле бейдж PLUS и пейвол, у Plus цифры нет",
+      "screen": "Курс V2 · голосовое задание — остаток попыток на микрофоне",
+      "state": "на нуле бейдж PLUS вместо цифры",
+      "code": [
+        "app/voice_daily_allowance.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "потратить 3 попытки",
+        "log": ""
+      },
+      "added_reason": "владелец D194 15.10 через координатора",
+      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+    },
+    {
+      "id": "voice-limit-005",
+      "source": "OWNER_D194_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/learning-v2-voice-limit.html",
+        "phone": 5,
+        "label": "Plus — без цифры и без лимита",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10 (D194): голос в курсе — цифра остатка на микрофоне 3→2→1→0, на нуле бейдж PLUS и пейвол, у Plus цифры нет",
+      "screen": "Курс V2 · голосовое задание — остаток попыток на микрофоне",
+      "state": "у Plus цифры нет",
+      "code": [
+        "app/voice_daily_allowance.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "ссылка с plus=on",
+        "log": ""
+      },
+      "added_reason": "владелец D194 15.10 через координатора",
+      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+    },
+    {
+      "id": "voice-limit-006",
+      "source": "OWNER_D194_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/learning-v2-voice-limit.html",
+        "phone": 6,
+        "label": "Пейвол сейчас (context dialog_limit)",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10 (D194): голос в курсе — цифра остатка на микрофоне 3→2→1→0, на нуле бейдж PLUS и пейвол, у Plus цифры нет",
+      "screen": "Курс V2 · голосовое задание — остаток попыток на микрофоне",
+      "state": "тап по микрофону на нуле → пейвол",
+      "code": [
+        "app/voice_daily_allowance.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "пейвол выезжает"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "0 попыток → тап по микрофону",
+        "log": ""
+      },
+      "added_reason": "владелец D194 15.10 через координатора",
+      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong; в коде контекст пейвола ai_voice_input (VOICE_LIMIT_PAYWALL_CONTEXT), на макете подпись context dialog_limit — сверить текст пейвола"
     }
   ]
 }

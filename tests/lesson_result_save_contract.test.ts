@@ -49,7 +49,14 @@ describe('сводка прохождения для ачивок: тот же �
     for (const lessonId of [1, 2, 3, 8, 9]) {
       const mine = summarizeLessonProgress(rows, lessonId);
       const legacy = legacySummary(rows, lessonId);
-      expect({ lessonCount: mine.lessonCount, perfectCount: mine.perfectCount, wasPerfect: mine.wasPerfect }).toEqual(legacy);
+      expect({ lessonCount: mine.lessonCount, perfectCount: mine.perfectCount }).toEqual({ lessonCount: legacy.lessonCount, perfectCount: legacy.perfectCount });
+      // зачем (координатор 15.10, Сверка c17199343): wasPerfect текущего урока — новое правило «все задания верно с первой попытки»,
+      // без порога 45 и без 'replay_correct'; счётчики по всем урокам — как прежний цикл
+      const current = rows.find(([id]) => id === lessonId)?.[1] ?? null;
+      let cells: unknown = null;
+      try { cells = current ? JSON.parse(current) : null; } catch { cells = null; }
+      const expectedPerfect = Array.isArray(cells) && cells.length > 0 && cells.every((cell) => cell === 'correct');
+      expect([lessonId, mine.wasPerfect]).toEqual([lessonId, expectedPerfect]);
     }
     expect(LESSON_PROGRESS_PASS_CORRECT).toBe(45);
   });

@@ -102,6 +102,11 @@ export type UsePracticeRunesResult = Readonly<{
   startNewCompletionIfSettled: () => boolean;
   /** Копилка ещё не подтянута с диска (первый кадр). */
   hydrating: boolean;
+  /**
+   * Только для журнала итога (координатор 15.10, разбор «ИДЕАЛ» и монет): из чего сложилась сумма — база до воскресного ×2, цена за ответ
+   * (3 — первое прохождение, 1 — повтор) и число оплаченных ответов. На начисление не влияет.
+   */
+  breakdown?: Readonly<{ baseRunes: number; awardPerItem: number | null; creditedItems: number | null }>;
 }>;
 
 export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunesResult {
@@ -620,5 +625,6 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     return true;
   }, [enabled, devFakeStartRunes, startNewCompletion]);
 
-  return { runes, onCorrectAnswer, settle, forfeitPendingRunes, startNewCompletion, startNewCompletionIfSettled, hydrating };
+  const breakdown = { baseRunes, awardPerItem: earningsRef.current?.awardPerItem ?? null, creditedItems: earningsRef.current?.creditedItemIds.length ?? null };
+  return { runes, onCorrectAnswer, settle, forfeitPendingRunes, startNewCompletion, startNewCompletionIfSettled, hydrating, breakdown };
 }

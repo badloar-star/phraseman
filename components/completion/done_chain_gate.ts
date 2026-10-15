@@ -87,7 +87,8 @@ export function captureDoneChainBefore(): DoneChainBefore {
 }
 
 /** «После» — состояние сторов серии и задач дня; в бою живое, в dev-превью — готовое. */
-export type DoneChainAfter = Readonly<{ streak: StreakDayState | null; today: TodayTasksDayState | null }>;
+/** `balance` — только dev-превью: баланс после урока вместо кошелька устройства (в бою не задаётся). */
+export type DoneChainAfter = Readonly<{ streak: StreakDayState | null; today: TodayTasksDayState | null; balance?: number }>;
 
 export type DoneChainStreakRow = Readonly<{
   /** Что показать при появлении строки (дни и засчитан ли сегодня). */

@@ -68,7 +68,8 @@ export function DoneChainPreview({ lang }: Readonly<{ lang: Lang }>) {
       onClose={noop}
       chain={{
         before: { streak: { dayKey: day, counted: false, days: 5 }, lessonProgress: 0, dayKey: day },
-        previewAfter: { streak: { dayKey: day, counted: true, days: 6 }, today: today(1) },
+        // зачем (Сверка 15.10): баланс образца «после урока» — плашка бежит 1 090 → 1 240, а не стоит на кошельке эмулятора
+        previewAfter: { streak: { dayKey: day, counted: true, days: 6 }, today: today(1), balance: 1240 },
       }}
     />
   );

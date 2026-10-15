@@ -60,7 +60,8 @@ const RISE_ROWS: readonly MomentRoomRow[] = [
   { uid: 'p3', name: 'Соня', coinRank: 8, coins: 520, isMe: false },
   { uid: 'p4', name: 'Олег', coinRank: 4, coins: 500, isMe: false },
   { uid: 'p6', name: 'Лена', coinRank: 9, coins: 450, isMe: false },
-  { uid: 'me', name: 'Ты', coinRank: 5, coins: 440, isMe: true },
+  // зачем (Сверка 15.10): строки — порядок ДО ступени, монеты — ПОСЛЕ (+10): «Ты» обгоняет «Лену», значит у него больше 450 (было 445)
+  { uid: 'me', name: 'Ты', coinRank: 5, coins: 455, isMe: true },
 ];
 // моки итога ступени (m06/m07): числа образца — 10 из 10, 1:12 из 2:00, ступень 7 на этаже 4, этаж 4 = 40 монет (10 × N), вершина +200
 const MOCK_COINS = { perStep: 10, perFloorPerLevel: 10, guardianMultiplier: 2, summitBonus: 200 } as unknown as SpireCoinsConfig;

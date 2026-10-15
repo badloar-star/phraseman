@@ -53,9 +53,11 @@ type ChainState = Readonly<{
   instant: boolean;
   streak: DoneChainStreakRow | null;
   today: (DoneChainTodayRow & { title: string }) | null;
+  /** Только dev-превью: баланс из моков вместо кошелька устройства (null — живой баланс). */
+  previewBalance: number | null;
 }>;
 
-const ChainCtx = createContext<ChainState>({ revealed: T.beats, instant: true, streak: null, today: null });
+const ChainCtx = createContext<ChainState>({ revealed: T.beats, instant: true, streak: null, today: null, previewBalance: null });
 
 function useLiveStreak(): StreakDayState | null {
   const [v, setV] = useState<StreakDayState | null>(() => peekStreakDayState());
@@ -133,7 +135,8 @@ export const DoneChainProvider = memo(function DoneChainProvider({ before, lang,
     finish('skipped');
   }, [finish, revealed]);
 
-  const value = useMemo<ChainState>(() => ({ revealed, instant: reduced || skipped, streak, today }), [reduced, revealed, skipped, streak, today]);
+  const previewBalance = previewAfter?.balance ?? null;
+  const value = useMemo<ChainState>(() => ({ revealed, instant: reduced || skipped, streak, today, previewBalance }), [previewBalance, reduced, revealed, skipped, streak, today]);
   return <ChainCtx.Provider value={value}>{children(skip)}</ChainCtx.Provider>;
 });
 
@@ -216,12 +219,14 @@ const FlyCoin = memo(function FlyCoin({ k, dx, color }: { k: number; dx: number;
 
 /** Строка «+N монет» с плашкой баланса справа: монеты летят в баланс, счёт 0 → N, баланс бежит. */
 export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { amount: number; g: Lv2Glass; lang: Lang }) {
-  const { revealed, instant } = useContext(ChainCtx);
+  const { revealed, instant, previewBalance } = useContext(ChainCtx);
   const c = useStreakColors();
   const on = revealed > DONE_CHAIN_BEAT.coins;
   const animate = on && !instant;
-  const [balance, setBalance] = useState(() => Math.max(0, Math.round(Number(peekRunes()) || 0))); // guard-ok: только показ баланса, ничего не пишет
+  const [liveBalance, setBalance] = useState(() => Math.max(0, Math.round(Number(peekRunes()) || 0))); // guard-ok: только показ баланса, ничего не пишет
   useEffect(() => subscribeAppSnapshot(() => setBalance(Math.max(0, Math.round(Number(peekRunes()) || 0)))), []); // guard-ok: только показ баланса, ничего не пишет
+  // зачем (Сверка 15.10): превью показывало настоящий кошелёк эмулятора (53 при +150) — баланс не бежал. Моки задают баланс «после урока».
+  const balance = previewBalance ?? liveBalance;
   // зачем: баланс уже включает монеты урока — «бежит» от (баланс − N) к балансу; если ещё не включает (баланс < N), не выдумываем и показываем как есть
   const credited = balance >= amount;
   const phase: CountPhase = !on ? 'hold' : animate ? 'run' : 'final';

@@ -9,6 +9,7 @@
 //   {rankEnough.visible && rankEnough.offer ? <CoinRankEnoughDialog coinRank={rankEnough.offer.rank} coins={rankEnough.offer.balance}
 //      onUpgrade={() => { rankEnough.close(); /* на экран ранга */ }} onLater={rankEnough.close} /> : null}
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { getDevCoinBalanceOverride } from './dev_coin_rank';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { decideRankEnough, markRankOffered, readOfferedRanks, readRankEnoughFlag } from './coin_rank_enough_gate';
@@ -43,7 +44,11 @@ export function useCoinRankEnoughMoment(input: Readonly<{ active: boolean }>): R
       const owner = token.phase === 'active' ? token.stableId?.trim() ?? '' : '';
       if (!owner) { DebugLogger.info(LOG, `нет (${reason}): аккаунт не активен (${token.phase})`); return; }
       const rank = peekCoinRank(owner) ?? await readCoinRank(owner);
-      const balance = peekRunes();
+      // зачем (координатор 15.10, прогон моментов v3 на эмуляторе): dev_state?coins=N подменяет баланс только для показа — окно «хватает на ранг»
+      // берёт его же, иначе на эмуляторе не набрать 1000+ монет. Только dev: в стор-сборке заглушка отдаёт null; повышение при подмене отказывает.
+      const devBalance = getDevCoinBalanceOverride();
+      const balance = devBalance ?? peekRunes();
+      if (devBalance !== null) DebugLogger.info(LOG, `dev: баланс подменён dev_state?coins=${devBalance}`);
       const offered = await readOfferedRanks(owner);
       const decision = decideRankEnough({ rank, balance, offeredRanks: offered });
       if (!decision.show) {

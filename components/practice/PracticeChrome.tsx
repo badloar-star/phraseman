@@ -88,7 +88,7 @@ export function PracticeRoundIconButton({
 
 /** Заголовок занятия 20/700 и необязательный подзаголовок 15 (`.hd .tt` / `.hd .su`). */
 export function PracticeHeaderTitle({
-  title, subtitle, glass, align = 'left', children,
+  title, subtitle, glass, align = 'left', children, oneLine
 }: {
   title: string;
   subtitle?: string;
@@ -96,10 +96,18 @@ export function PracticeHeaderTitle({
   align?: 'left' | 'center';
   /** Слот под подзаголовок (скелет или прокрутка длинного названия набора). */
   children?: React.ReactNode;
+  /**
+   * Короткий заголовок в одну строку по своей ширине: не сжимается и не переносится — место отдаёт правый блок шапки.
+   * зачем (Сверка моментов v3, 15.10): с `flex: 1` у заголовка нулевая база, и «Урок 1» переносилось на две строки, как только справа
+   * появлялось кольцо серии m08 — шапка прыгала. По умолчанию выключено: остальные 23 места не меняются.
+   */
+  oneLine?: boolean;
 }) {
   return (
-    <View style={{ flex: 1, minWidth: 0, alignItems: align === 'center' ? 'center' : 'flex-start' }}>
-      <Text style={[styles.title, { color: glass.text }]}>{title}</Text>
+    <View style={oneLine
+      ? { flexGrow: 1, flexShrink: 0, alignItems: align === 'center' ? 'center' : 'flex-start' }
+      : { flex: 1, minWidth: 0, alignItems: align === 'center' ? 'center' : 'flex-start' }}>
+      <Text numberOfLines={oneLine ? 1 : undefined} style={[styles.title, { color: glass.text }]}>{title}</Text>
       {children ?? (subtitle ? (
         <Text style={[styles.subtitle, { color: glass.secondary }]}>{subtitle}</Text>
       ) : null)}

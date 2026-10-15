@@ -25,6 +25,11 @@ import { useSpirePalette } from '../../spire/useSpirePalette';
 import StreakConfetti from './StreakConfetti';
 import StreakGlowSpot from './StreakGlowSpot';
 import StreakMomentFlame from './StreakMomentFlame';
+import { STREAK_FLAME_FULL_DAYS } from '../StreakFlameFill';
+
+// зачем (Сверка моментов v3 15.10, эталон engagement-moments-v3-all m19): на окне рубежа огонь залит целиком — стадию несут цвет и число.
+// StreakFlameFill заливает по дням (7 из 10 = 70 %), и на рубеже 7 верх огня оставался пустым контуром. Число на плашке — настоящее.
+const milestoneFlameDays = (days: number): number => Math.max(days, STREAK_FLAME_FULL_DAYS);
 import { HalfRing, MonthCalendar, MonthRing } from './StreakMomentRings';
 import {
   STREAK_MILESTONES_WITH_SHARE, STREAK_MONTH_ARCS, STREAK_MOMENT_TIMELINE, streakAchievementId, streakFlameStage, streakMomentKind,
@@ -138,7 +143,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     glow = glowColor(baseStage);
     body = (
       <>
-        <StreakMomentFlame days={milestone} label={milestone} size={150} stage={baseStage} burstKey={burstKey || undefined} accessibilityLabel={flameA11y} />
+        <StreakMomentFlame days={milestoneFlameDays(milestone)} label={milestone} size={150} stage={baseStage} burstKey={burstKey || undefined} accessibilityLabel={flameA11y} />
         {has('text') ? <Beat i={0}><View style={s.col}>{T(overline, 'ov')}{T(title, 'xl')}{T(sub, 'p')}</View></Beat> : null}
       </>
     );
@@ -150,7 +155,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     body = (
       <>
         <View style={s.fireRow}>
-          <StreakMomentFlame days={morphed ? milestone : before} label={morphed ? milestone : before} size={160} stage={st} morphKey={morphKey || undefined} accessibilityLabel={flameA11y} />
+          <StreakMomentFlame days={milestoneFlameDays(morphed ? milestone : before)} label={morphed ? milestone : before} size={160} stage={st} morphKey={morphKey || undefined} accessibilityLabel={flameA11y} />
           <View style={s.coinBeside}><MomentCoin rank={coinRank} size={60} mood={morphed ? 'cheer' : 'idle'} shadow={false} emote={morphed ? 'star' : null} emoteKey={morphKey} emoteCount={3} /></View>
         </View>
         {has('text') ? (
@@ -173,7 +178,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     body = (
       <>
         <HalfRing size={250} run={has('ring')}>
-          <StreakMomentFlame days={milestone} label={milestone} size={150} stage={baseStage} burstKey={has('burst') ? burstKey || undefined : undefined} accessibilityLabel={flameA11y} />
+          <StreakMomentFlame days={milestoneFlameDays(milestone)} label={milestone} size={150} stage={baseStage} burstKey={has('burst') ? burstKey || undefined : undefined} accessibilityLabel={flameA11y} />
         </HalfRing>
         {has('text') ? <Beat i={0}><View style={s.col}>{T(overline, 'ov')}{T(title, 'xl')}{T(sub, 'p')}</View></Beat> : null}
       </>
@@ -195,7 +200,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
       <>{T(overline, 'ov')}{T(streakMomentText(lang, 'yearAct1'), 'md')}<View style={s.extra}><MonthRing rings={1} size={250} center={String(milestone)} lit={has('months')} stepMs={STREAK_MONTH_ARCS.year.stepMs} /></View></>
     ) : (
       <>
-        <StreakMomentFlame days={milestone} label={milestone} size={act === 2 ? 180 : 150} stage={st} morphKey={morphKey || undefined} accessibilityLabel={flameA11y} />
+        <StreakMomentFlame days={milestoneFlameDays(milestone)} label={milestone} size={act === 2 ? 180 : 150} stage={st} morphKey={morphKey || undefined} accessibilityLabel={flameA11y} />
         {act === 2 ? T(streakMomentText(lang, 'stageNew', { next: 1000 }), 'ov') : null}
         {T(title, 'xl')}
         {act === 3 ? T(sub, 'p') : null}

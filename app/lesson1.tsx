@@ -1083,6 +1083,7 @@ const LessonContent = React.memo(function LessonContent({
         />
         <PracticeHeaderTitle
           glass={glass}
+          oneLine
           title={`${triLang(lang, {
             uk: 'Урок',
             ru: 'Урок',

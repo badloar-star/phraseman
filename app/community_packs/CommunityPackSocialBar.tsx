@@ -595,7 +595,7 @@ export default function CommunityPackSocialBar({
           alignItems: 'center',
           justifyContent: 'center',
           gap: 8,
-          backgroundColor: isAdded && !ownedAction ? g.buttonFill : t.accent,
+          backgroundColor: isAdded && !ownedAction ? g.buttonFill : g.ctaFill,
         }}
       >
         {isAdded ? <Ionicons name={ownedAction ? 'layers-outline' : 'checkmark'} size={18} color={ownedAction ? t.textOnGold : g.text} /> : null}

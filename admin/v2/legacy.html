@@ -15973,6 +15973,30 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div id="onboarding-source-grid" class="analytics-grid">
     <div class="chart-card revenue-empty-state"><h3>Источники</h3><div class="reports-empty" style="padding:12px 0">Ожидание данных…</div></div>
   </div>
+  <!-- зачем (владелец 15.10): «Онбординг · уровень» — ответы экрана «Сколько английского ты знаешь». Серверные дневные счётчики
+       onboarding_level_daily (один ответ на человека, onboardingLevelRecord); уровень конкретного человека на сервере не хранится. -->
+  <div class="reports-toolbar" style="padding:18px 0 12px 0;align-items:flex-start">
+    <div style="flex:1;min-width:260px">
+      <h2 style="margin:0 0 4px;color:#fff;font-size:20px">🎯 Онбординг · уровень</h2>
+      <div class="tab-desc" style="font-size:13px;color:#888;line-height:1.45">Сколько английского знают новые люди: по уровням, по дням и языкам изучения, доля пропустивших.</div>
+    </div>
+    <div class="revenue-controls">
+      <div class="revenue-field">
+        <label for="onboarding-level-range">Период</label>
+        <select id="onboarding-level-range" onchange="loadOnboardingLevels(true)">
+          <option value="7">7 дней</option>
+          <option value="28" selected>28 дней</option>
+          <option value="90">90 дней</option>
+          <option value="180">180 дней</option>
+        </select>
+      </div>
+      <button type="button" onclick="loadOnboardingLevels(true)">Обновить</button>
+    </div>
+  </div>
+  <div id="onboarding-level-summary" class="stats" style="padding:0;margin-bottom:12px"></div>
+  <div id="onboarding-level-grid" class="analytics-grid">
+    <div class="chart-card revenue-empty-state"><h3>Уровни</h3><div class="reports-empty" style="padding:12px 0">Ожидание данных…</div></div>
+  </div>
 </div>
 
 <!-- ANALYTICS TAB -->
@@ -22361,6 +22385,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     // only when the administrator asks for that view. This avoids hidden Firestore reads.
     if (tab === 'onboarding-sources' && typeof window.loadOnboardingSources === 'function') {
       void window.loadOnboardingSources();
+    }
+    if (tab === 'onboarding-sources' && typeof window.loadOnboardingLevels === 'function') {
+      void window.loadOnboardingLevels();
     }
     if (tab === 'onboarding-screens') {
       if (typeof window.loadOnboardingScreens === 'function') void window.loadOnboardingScreens();
@@ -39785,6 +39812,67 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       </div>
     </div>`;
   }
+
+  // зачем (владелец 15.10, «Онбординг · уровень»): читаем ДНИ (onboarding_level_daily/{YYYY-MM-DD}, ≤ 180 документов), а не людей.
+  const ONB_LEVEL_LABELS = { a0: 'С нуля', a1: 'A1', a2: 'A2', b1: 'B1', b2: 'B2', skipped: 'Пропустили' };
+  const ONB_LEVEL_ORDER = ['a0', 'a1', 'a2', 'b1', 'b2', 'skipped'];
+  let _onboardingLevelsLoaded = false;
+  window.loadOnboardingLevels = async function loadOnboardingLevels(force = false) {
+    const grid = document.getElementById('onboarding-level-grid');
+    const summary = document.getElementById('onboarding-level-summary');
+    if (!grid || !summary) return;
+    if (_onboardingLevelsLoaded && !force) return;
+    const days = Math.max(1, Math.min(180, Number(document.getElementById('onboarding-level-range')?.value || 28)));
+    const fromKey = new Date(Date.now() - (days - 1) * 86400000).toISOString().slice(0, 10);
+    grid.innerHTML = '<div class="chart-card revenue-empty-state"><h3>Уровни</h3><div class="reports-empty" style="padding:12px 0">Загрузка данных…</div></div>';
+    let docs = [];
+    try {
+      const snap = await getDocs(query(collection(db, 'onboarding_level_daily'), where(documentId(), '>=', fromKey), orderBy(documentId()), limit(200)));
+      docs = snap.docs.map((d) => ({ day: d.id, ...d.data() }));
+    } catch (error) {
+      console.warn('[ONB-LEVEL] admin load_failed', error);
+      grid.innerHTML = '<div class="chart-card"><h3>Не получилось</h3><div class="reports-empty" style="padding:12px 0">Попробуй ещё раз.<br><button type="button" onclick="loadOnboardingLevels(true)" style="margin-top:8px">Повторить</button></div></div>';
+      return;
+    }
+    _onboardingLevelsLoaded = true;
+    const byLevel = {};
+    const byTarget = {};
+    let total = 0;
+    let skipped = 0;
+    docs.forEach((d) => {
+      total += Number(d.total || 0);
+      skipped += Number(d.skipped || 0);
+      Object.entries(d.byLevel || {}).forEach(([k, v]) => { byLevel[k] = (byLevel[k] || 0) + Number(v || 0); });
+      Object.entries(d.byTarget || {}).forEach(([t, m]) => {
+        byTarget[t] = byTarget[t] || {};
+        Object.entries(m || {}).forEach(([k, v]) => { byTarget[t][k] = (byTarget[t][k] || 0) + Number(v || 0); });
+      });
+    });
+    const pct = (n) => (total ? `${Math.round((n / total) * 100)}%` : '–');
+    const top = ONB_LEVEL_ORDER.filter((k) => k !== 'skipped').sort((a, b) => (byLevel[b] || 0) - (byLevel[a] || 0))[0];
+    summary.innerHTML = revenueSummaryCards([
+      ['Ответов', String(total)],
+      ['Пропустили', `${skipped} · ${pct(skipped)}`],
+      ['Чаще всего', total && top && byLevel[top] ? `${ONB_LEVEL_LABELS[top]} · ${pct(byLevel[top])}` : '–'],
+      ['Дней с ответами', String(docs.length)],
+    ]);
+    if (!total) {
+      grid.innerHTML = '<div class="chart-card revenue-empty-state"><h3>Уровни</h3><div class="reports-empty" style="padding:12px 0">Пока нет ответов за этот период.</div></div>';
+      return;
+    }
+    const bars = ONB_LEVEL_ORDER.map((k) => {
+      const n = byLevel[k] || 0;
+      const w = Math.round((n / total) * 100);
+      return `<div style="display:flex;align-items:center;gap:10px;margin:6px 0"><div style="width:96px;color:#cbd5e1">${escapeHtml(ONB_LEVEL_LABELS[k])}</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:6px;height:14px"><div style="width:${w}%;height:14px;border-radius:6px;background:#34d399"></div></div><div style="width:84px;text-align:right;color:#e2e8f0">${n} · ${pct(n)}</div></div>`;
+    }).join('');
+    const targets = Object.keys(byTarget).sort();
+    const targetRows = targets.map((t) => `<tr><td>${escapeHtml(t.replace('_', '-'))}</td>${ONB_LEVEL_ORDER.map((k) => `<td style="text-align:right">${byTarget[t][k] || 0}</td>`).join('')}</tr>`).join('');
+    const dayRows = docs.slice().reverse().map((d) => `<tr><td>${escapeHtml(d.day)}</td><td style="text-align:right">${Number(d.total || 0)}</td>${ONB_LEVEL_ORDER.map((k) => `<td style="text-align:right">${Number((d.byLevel || {})[k] || 0)}</td>`).join('')}</tr>`).join('');
+    const head = ONB_LEVEL_ORDER.map((k) => `<th style="text-align:right">${escapeHtml(ONB_LEVEL_LABELS[k])}</th>`).join('');
+    grid.innerHTML = `<div class="chart-card"><h3>По уровням</h3>${bars}</div>`
+      + `<div class="chart-card"><h3>По языку изучения</h3><table style="width:100%;font-size:13px"><tr><th style="text-align:left">Язык</th>${head}</tr>${targetRows}</table></div>`
+      + `<div class="chart-card"><h3>По дням</h3><table style="width:100%;font-size:13px"><tr><th style="text-align:left">День</th><th style="text-align:right">Всего</th>${head}</tr>${dayRows}</table></div>`;
+  };
 
   window.loadOnboardingSources = async function loadOnboardingSources(force = false) {
     const grid = document.getElementById('onboarding-source-grid');

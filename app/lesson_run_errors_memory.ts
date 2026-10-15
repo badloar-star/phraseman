@@ -26,6 +26,12 @@ export function beginLessonRunErrors(lessonId: number): void {
   }
   sealedLessonId = null;
   collecting = null;
+  // зачем (координатор 15.10, счёт по первым попыткам): список «Ошибки» прошлого прохода этого урока не доживает до нового —
+  // иначе брошенный на середине проход оставил бы старые промахи, и итог следующего (без ошибок) показал бы их как свои.
+  if (remembered && remembered.lessonId === lessonId) {
+    console.log(`[LESSON-RESULT] новый проход lesson=${lessonId}: список ошибок прошлого прохода (${remembered.rows.length}) забыт`); // guard-ok: журнал начала прохода
+    remembered = null;
+  }
 }
 
 /** Строки «слово → было → стало» из промахов урока: без повторов по слову, только там, где известен выбранный ответ. */

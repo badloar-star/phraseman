@@ -53797,6 +53797,309 @@
           "byteSize": 29952
         }
       ]
+    },
+    "l04/s10/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a hotel here?",
+          "file": "bc0b83b9cc7b6abd3f101c287f24224b951d8ec1db60d9d4b9488979d35a00ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc0b83b9cc7b6abd3f101c287f24224b951d8ec1db60d9d4b9488979d35a00ae.mp3",
+          "contentHash": "758744d4fe67d160dce89ee804e5cb588ca0f03a1e80e48c8e4bd620574f5bdd",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s10/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a lock?",
+          "file": "fa7e7632d20a9fb19921789a17726dbd21ba6918a45ba77c3aad09f680caf32a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fa7e7632d20a9fb19921789a17726dbd21ba6918a45ba77c3aad09f680caf32a.mp3",
+          "contentHash": "df798589c0cc1cce4c789f3d479b240aab4e232bf9a95236a679ad34aeded415",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s10/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's impossible.",
+          "file": "b99b07fb010a972cf0735928f09c33e304992603087490266d0d5e6a9f50201b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b99b07fb010a972cf0735928f09c33e304992603087490266d0d5e6a9f50201b.mp3",
+          "contentHash": "5385b45f151f27c9face69d481e0d0a74ab6b25c1b5dd1acc02009a999d665ae",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s10/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a garden.",
+          "file": "52bdf267496bc140763c4e0b3ca414fbe55377132b264ebabe72122029fc17b4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52bdf267496bc140763c4e0b3ca414fbe55377132b264ebabe72122029fc17b4.mp3",
+          "contentHash": "a5b35d1a90c8e25e46291a723e08cf14d01a820ecbc093fe0856560f506bed32",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s10/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "hotel",
+          "file": "602a1ffa7d865a24ad54642dd3253bba45411673b8ba898a279575791d432d63.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/602a1ffa7d865a24ad54642dd3253bba45411673b8ba898a279575791d432d63.mp3",
+          "contentHash": "fb91d6938fc357f135f1ef150a68b53e52864db4f1d481a4a61d8a729bf2691a",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s10/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "hotel",
+          "file": "b81809471586972da643a909fa32dfc97d2dbb9d62b5dd83890e44edb8b3d45e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b81809471586972da643a909fa32dfc97d2dbb9d62b5dd83890e44edb8b3d45e.mp3",
+          "contentHash": "66133122937e9698e1599d82c18c16f6c3e39dd0b42726d550a938c6df0ff4a8",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l04/s10/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "hotel",
+          "file": "34e93b1803296b46fa47146642d31309f486f028359681e313e3bf020d8f7978.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34e93b1803296b46fa47146642d31309f486f028359681e313e3bf020d8f7978.mp3",
+          "contentHash": "e9e6f772bb88a884607a44bb909906476eb501efae635fa29a325d1de4b92a6c",
+          "byteSize": 23040
+        },
+        {
+          "text": "impossible",
+          "file": "582fb3ccfb25fd19669abdfbec1c692e7a5beb125df9f62225f17d934c939c87.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/582fb3ccfb25fd19669abdfbec1c692e7a5beb125df9f62225f17d934c939c87.mp3",
+          "contentHash": "3aae76d6610165ed685bd524b7241820ededb58fb3c3fc0e691b8d1bee146347",
+          "byteSize": 31488
+        },
+        {
+          "text": "lock",
+          "file": "89f648d6bf6169ad9b4a1e41a218ee197395a2333dc4c573bcc6857627a1eb94.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/89f648d6bf6169ad9b4a1e41a218ee197395a2333dc4c573bcc6857627a1eb94.mp3",
+          "contentHash": "1e3916e209435acf0abd5017bd5a6630e9a9301fa77c139289e5b31aff76b497",
+          "byteSize": 27648
+        },
+        {
+          "text": "garden",
+          "file": "b78f1df6f1671b6a0cbc9b686ea511ddebd9d14f001a9c18239fb47d8dd7c98a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b78f1df6f1671b6a0cbc9b686ea511ddebd9d14f001a9c18239fb47d8dd7c98a.mp3",
+          "contentHash": "73593e6decfb4ea710d48d9eefadb074cca74d9af900798fb5b897eb72967c7b",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l04/s10/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a hotel?",
+          "file": "0f129ab335e72bb6cd2ef883d9066e1b8ff6f5eb1f74d67e8549ce16a39df064.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f129ab335e72bb6cd2ef883d9066e1b8ff6f5eb1f74d67e8549ce16a39df064.mp3",
+          "contentHash": "a3a321935b37365ef9f5873595e3dde082ec9223e8325b2646863a7fa2a0fce4",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l04/s10/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a garden here?",
+          "file": "84e646423973552f1b9cd6eeaae3c0bf7913a6a092c252471d6fb4bee1b389d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84e646423973552f1b9cd6eeaae3c0bf7913a6a092c252471d6fb4bee1b389d2.mp3",
+          "contentHash": "be988aaefac210d949d7fe99be12e59f4b18c9b381e73105647abab1851e3d1f",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s10/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's impossible.",
+          "file": "610c774ed636e3f3f225d966dd3c234f2d8ada0f5a0213a859ff994d6e6f99fe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/610c774ed636e3f3f225d966dd3c234f2d8ada0f5a0213a859ff994d6e6f99fe.mp3",
+          "contentHash": "cd80386051b274e755cbfc92aada0cea7b19eb03dfcb9dd630350239814a45e7",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l04/s10/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a hotel here?",
+          "file": "bc0b83b9cc7b6abd3f101c287f24224b951d8ec1db60d9d4b9488979d35a00ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc0b83b9cc7b6abd3f101c287f24224b951d8ec1db60d9d4b9488979d35a00ae.mp3",
+          "contentHash": "758744d4fe67d160dce89ee804e5cb588ca0f03a1e80e48c8e4bd620574f5bdd",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s10/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a lock?",
+          "file": "71ad4a31f25bc9780a4c344967d4cb4bbc8c3da93344bfa552d837c6b59cca0f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/71ad4a31f25bc9780a4c344967d4cb4bbc8c3da93344bfa552d837c6b59cca0f.mp3",
+          "contentHash": "041a307e75c4ee9891b74015327ab702f1caf034c0b4962d69adf79ec1093a8b",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s10/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "hotel",
+          "file": "9e05ad558a084504a2d6d72db0f3d8f527296c22291abfbeeb7f4d93ac19a64f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e05ad558a084504a2d6d72db0f3d8f527296c22291abfbeeb7f4d93ac19a64f.mp3",
+          "contentHash": "836a3197644af67a5433b0c1111333ca3fc3da2ffef890f11a49fddb902cd3ea",
+          "byteSize": 17280
+        },
+        {
+          "text": "lock",
+          "file": "d7f2fb69f9c1e205262625207509b89611acb813746eb4fdf8cfe8e14365cbd1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d7f2fb69f9c1e205262625207509b89611acb813746eb4fdf8cfe8e14365cbd1.mp3",
+          "contentHash": "9641b97d761882c1663af4cef6b26edfcff6f9f56b2705561bbb7196fc8b00df",
+          "byteSize": 22656
+        },
+        {
+          "text": "here",
+          "file": "c085a062a5e60c0367830011bfd636d3a4d6ec7896f47a8bad0c59f984917fd4.mp3",
+          "assetPath": "assets/audio/learning-v2/session1-production-v1/here-nova.mp3",
+          "contentHash": "b14fc6fc4012cc40fe11944f0d5bb0dd0523d45f02a8ceed6b0a8c3f11c0c7c7",
+          "byteSize": 22656
+        },
+        {
+          "text": "there",
+          "file": "cbeace6992782d5bce3eed2b9c32dc6e7e38aefeb5ceca0b94e52ffa80926fc0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e244f187f696561d5fd7e00f-nova.mp3",
+          "contentHash": "ab6003d569a4b745a57ab0266af5dc85789297e0153aca206b7599166f491d80",
+          "byteSize": 14208
+        }
+      ]
+    },
+    "l04/s10/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a lock here.",
+          "file": "70cf6fba48a951043a0c19eee82bbd3e1c5f11c6190fe318c470eb0d8dc4f366.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/70cf6fba48a951043a0c19eee82bbd3e1c5f11c6190fe318c470eb0d8dc4f366.mp3",
+          "contentHash": "0e5ce1cdbb18a6752f75ce3d18b4a9bc0b94e4b15aced8ff725780b79030446e",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s10/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a hotel.",
+          "file": "a9400e55632754bd5de82aae4d86787acdfc4a86c76ee77e0aef2b828edf2c3e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a9400e55632754bd5de82aae4d86787acdfc4a86c76ee77e0aef2b828edf2c3e.mp3",
+          "contentHash": "11646b97ab59c178a8d329fa120851310ed3285cbff76cf0359a45c915c6415c",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l04/s10/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a lock here?",
+          "file": "d1d586ad67c04ef855b77282793d69bc678ae7d76cc980456b19257e20b7e40f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d1d586ad67c04ef855b77282793d69bc678ae7d76cc980456b19257e20b7e40f.mp3",
+          "contentHash": "a1ad56453a1a04a551faa045e94db40ecfac9e6868aadb8d19ff41f33137d0f5",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s10/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a garden there?",
+          "file": "04ee6294a3a5470a7c8560425893180fdf1b9e84945525eebc7354ac02a162c7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04ee6294a3a5470a7c8560425893180fdf1b9e84945525eebc7354ac02a162c7.mp3",
+          "contentHash": "a69822143a7565e862e146e41f67931911be3fb1c0d5a59bc284b58d4d3f9426",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l04/s10/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is impossible.",
+          "file": "9e6881fcfc0a7b2ab0808094fadbf5b93caf7f681736de4c22f1e2376f9c963b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e6881fcfc0a7b2ab0808094fadbf5b93caf7f681736de4c22f1e2376f9c963b.mp3",
+          "contentHash": "b66caccf52f60e7189bfe121d43023ebcd9052dbff4f5eb3596e9093c5e14319",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s10/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "hotel",
+          "file": "b81809471586972da643a909fa32dfc97d2dbb9d62b5dd83890e44edb8b3d45e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b81809471586972da643a909fa32dfc97d2dbb9d62b5dd83890e44edb8b3d45e.mp3",
+          "contentHash": "66133122937e9698e1599d82c18c16f6c3e39dd0b42726d550a938c6df0ff4a8",
+          "byteSize": 22656
+        },
+        {
+          "text": "impossible",
+          "file": "a8cd5dfb4ae2d03e5342d42e5b7330e68e86aec5e7548567d1ceb24a479183a9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a8cd5dfb4ae2d03e5342d42e5b7330e68e86aec5e7548567d1ceb24a479183a9.mp3",
+          "contentHash": "6db8ceb61593041f32080ca01bdbf8f103a5d368289080d077f962de8408f5d4",
+          "byteSize": 19584
+        },
+        {
+          "text": "lock",
+          "file": "904a20ea6fc0adf6d05611d2c996ebebde4b4cf39ba9ad79f7712f6582f88987.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/904a20ea6fc0adf6d05611d2c996ebebde4b4cf39ba9ad79f7712f6582f88987.mp3",
+          "contentHash": "7b0c4cb3fd7169a1ebf539210c9f787d58afcf865ca7434c01e052020fa4bad0",
+          "byteSize": 29952
+        },
+        {
+          "text": "garden",
+          "file": "6d7239d8133a52b6accccd5ac0ced2cf47eab793e66a76a8a67d5848ceaf6ce9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d7239d8133a52b6accccd5ac0ced2cf47eab793e66a76a8a67d5848ceaf6ce9.mp3",
+          "contentHash": "83c3e45c7bfea8dae7f2e8343fd5766aecb1b32df5b08f68525e9c032143dbc7",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l04/s10/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a hotel here?",
+          "file": "bc0b83b9cc7b6abd3f101c287f24224b951d8ec1db60d9d4b9488979d35a00ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc0b83b9cc7b6abd3f101c287f24224b951d8ec1db60d9d4b9488979d35a00ae.mp3",
+          "contentHash": "758744d4fe67d160dce89ee804e5cb588ca0f03a1e80e48c8e4bd620574f5bdd",
+          "byteSize": 32256
+        }
+      ]
     }
   },
   "settings": {

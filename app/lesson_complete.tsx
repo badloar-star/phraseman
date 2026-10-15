@@ -317,6 +317,18 @@ interface Notif {
   cefrLevel?: string; // for level_exam_unlock
 }
 
+// зачем (аудит кнопок R58 #3, решение координатора 15.10, вариант «а»): на итоге 2.0 — одна поверхность без окон (сторож
+// lesson_complete_single_finish_surface); «экзамен уровня/Lingman открыт» — строкой рядом с «Следующий урок открыт» в starsNote.
+type ExamUnlockNote = 'level' | 'lingman';
+function examUnlockNoteText(lang: Lang, kind: ExamUnlockNote): string {
+  return kind === 'level'
+    ? triLang(lang, { ru: 'Экзамен уровня открыт', en: 'Level exam unlocked', uk: 'Іспит рівня відкрито', es: 'Examen de nivel abierto', 'pt-BR': 'Exame de nível liberado', vi: 'Đã mở bài thi cấp độ', id: 'Ujian level terbuka', tr: 'Seviye sınavı açıldı', pl: 'Egzamin poziomu otwarty' })
+    : triLang(lang, { ru: 'Экзамен Lingman открыт', en: 'Lingman exam unlocked', uk: 'Іспит Lingman відкрито', es: 'Examen Lingman abierto', 'pt-BR': 'Exame Lingman liberado', vi: 'Đã mở bài thi Lingman', id: 'Ujian Lingman terbuka', tr: 'Lingman sınavı açıldı', pl: 'Egzamin Lingman otwarty' });
+}
+function joinResultNotes(first: string | undefined, second: string | undefined): string | undefined {
+  return first && second ? `${first} · ${second}` : first ?? second;
+}
+
 // ── AchievementNotifModal ─────────────────────────────────────────────────────
 function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCefr, onDismiss }: {
   notif: Notif; lang: Lang; t: any; f: any; themeMode: string;
@@ -746,6 +758,7 @@ export default function LessonComplete() {
 
   // Notification queue
   const [, setNotifQueue] = useState<Notif[]>([]);
+  const [examUnlockNote, setExamUnlockNote] = useState<ExamUnlockNote | null>(null); // R58 #3: строка в итоге 2.0
   const [activeNotif, setActiveNotif] = useState<Notif | null>(null);
   const activeNotifVisible = useOverlayVisible('lessonCompleteNotif', activeNotif != null);
 
@@ -1167,11 +1180,15 @@ export default function LessonComplete() {
         const unlockedLevel = await tryUnlockLevelExam(lessonId, studyTarget);
         if (unlockedLevel) {
           queue.push({ kind: 'level_exam_unlock', cefrLevel: unlockedLevel });
+          if (!cancelled) setExamUnlockNote('level');
+          console.log('[LESSON-RESULT] exam_unlock_note', JSON.stringify({ lessonId, kind: 'level', cefr: unlockedLevel })); // guard-ok: одна строка на разблокировку
         }
         // Экзамен Лингмана: все 32 урока = 5.0 + все зачёты сданы
         const lingmanUnlocked = await tryUnlockLingmanExam(studyTarget);
         if (lingmanUnlocked) {
           queue.push({ kind: 'lingman_exam_unlock' });
+          if (!cancelled) setExamUnlockNote('lingman');
+          console.log('[LESSON-RESULT] exam_unlock_note', JSON.stringify({ lessonId, kind: 'lingman' })); // guard-ok: одна строка на разблокировку
         }
 
         if (!cancelled && queue.length > 0) {
@@ -1419,11 +1436,11 @@ export default function LessonComplete() {
                 lessonNamesForLang(lang)[lessonId - 1],
               ].filter(Boolean).join(' · ')}
               stars={isComboCompletion ? null : resultStars}
-              starsNote={!isComboCompletion && resultStars === 1
+              starsNote={joinResultNotes(!isComboCompletion && resultStars === 1
                 ? triLang(lang, { ru: 'Для следующего урока нужно 2★', en: 'You need 2★ for the next lesson', uk: 'Для наступного уроку потрібно 2★', es: 'Necesitas 2★ para la siguiente lección', 'pt-BR': 'Você precisa de 2★ para a próxima lição', vi: 'Cần 2★ để mở bài tiếp theo', id: 'Butuh 2★ untuk pelajaran berikutnya', tr: 'Sonraki ders için 2★ gerekir', pl: 'Do następnej lekcji potrzeba 2★' })
                 : nextLessonUnlockHint
                   ? triLang(lang, { ru: 'Следующий урок открыт', en: 'The next lesson is open', uk: 'Наступний урок відкрито', es: 'La siguiente lección está abierta', 'pt-BR': 'A próxima lição está aberta', vi: 'Bài tiếp theo đã mở', id: 'Pelajaran berikutnya terbuka', tr: 'Sonraki ders açıldı', pl: 'Następna lekcja jest otwarta' })
-                  : undefined}
+                  : undefined, examUnlockNote ? examUnlockNoteText(lang, examUnlockNote) : undefined)}
               correct={lessonCounts?.correct ?? null}
               wrong={lessonCounts?.wrong ?? null}
               // зачем (владелец 13.10): список «Ошибки» из макета practice.html#done — промахи только что пройденного урока (память процесса, см. lesson_run_errors_memory); у комбо и без промахов блока нет.

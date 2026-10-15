@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-44:intro1:r2": {
+          "ru": "`hotel` — один отель. Несколько — `hotels`.",
+          "uk": "`hotel` — один готель. Кілька — `hotels`."
+        },
+        "en:lesson-03:session-44:intro1:r3": {
+          "ru": "`bedrooms` — спальни. Отели — `hotels`.",
+          "uk": "`bedrooms` — спальні. Готелі — `hotels`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-44:intro2:r2": {
+          "ru": "Отелей несколько: нужно `are`.",
+          "uk": "Готелів кілька: потрібне `are`."
+        },
+        "en:lesson-03:session-44:intro2:r3": {
+          "ru": "Так говорят об одном отеле. Здесь несколько: `The hotels are here`.",
+          "uk": "Так говорять про один готель. Тут кілька: `The hotels are here`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-44:intro3:r2": {
+          "ru": "Детей несколько: нужно `are`.",
+          "uk": "Дітей кілька: потрібне `are`."
+        },
+        "en:lesson-03:session-44:intro3:r3": {
+          "ru": "`sleepy` — сонные. Здесь детям интересно: `curious`.",
+          "uk": "`sleepy` — сонні. Тут дітям цікаво: `curious`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b7ba7f59ea0d14bfebe204324b9483c45b67d18681419ee564c03ebc0b4b638e"
+}

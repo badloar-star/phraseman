@@ -1,148 +1,138 @@
-# Английский · Урок 3 · Занятие 44 — «У кассы»
+# Английский · Урок 3 · Занятие 44 — Отели на плане города
 
-**Сцена занятия.** Перед открытием ярмарки вы помогаете кассиру отмечать прибывших у стойки: покупателя, продавца и помощника. Кассир впервые называет человека, когда тот подходит, а в следующей реплике уточняет сведения о том же человеке.
-**Как сказать:** `a/an` для нового человека, `the` для уже названного.
-**Новые слова:** customer, seller, assistant
+**Ситуация.** Вы с Анной выбираете отель для поездки с детьми. На плане города отмечены несколько отелей. Детям любопытно, где они будут жить. Анна уточнила правила парковки: оставлять машину в выбранном месте разрешено.
+
+**Что вы освоите:** назвать несколько отелей и указать место конкретной группы с the и are
+**Новые слова:** hotels
+
+---
 
 ## Интро 1
-### Новый покупатель
 
-`customer` — «покупатель». К стойке впервые подошёл покупатель: `A customer is here.` Кассир отмечает его в списке. В следующей реплике этот покупатель уже назван, поэтому кассир говорит `The customer is here.`
+### Несколько отелей
 
-**Сотрудник впервые замечает покупателя. Что он скажет?**
-- ✅ **A customer is here.**
-- ❌ The customer is here. — *Покупателя ещё не называли.*
-- ❌ An customer is here. — *`customer` начинается со звука /k/, поэтому нужен `a`.*
+`hotels` — «отели, гостиницы», один — `hotel`. Для нескольких добавляем `s`: `These are hotels` — «Это отели», показываем на несколько рядом на плане. Один отель может иметь сто комнат, но это всё ещё один `hotel`: считаем отели, а не комнаты.
+
+**Назовите несколько отелей одним английским словом.**
+
+- ✅ **hotels**
+- ❌ hotel — *`hotel` — один отель. Несколько — `hotels`.*
+- ❌ bedrooms — *`bedrooms` — спальни. Отели — `hotels`.*
 
 ---
 
 ## Интро 2
-### Новый продавец
 
-`seller` — «продавец». Впервые: `A seller is here.` Кассир отмечает в списке нового продавца. В следующей реплике о том же продавце будет `The seller is here.`, потому что его уже назвали.
+### Какие именно отели
 
-**Помощник впервые называет продавца. Выберите фразу.**
-- ✅ **A seller is here.**
-- ❌ The seller is here. — *Продавца ещё не называли.*
-- ❌ An seller is here. — *`seller` начинается со звука /s/.*
+`The hotels are here` — «Отели здесь»: вы говорите о конкретных отелях, которые уже выбрали для сравнения. `The` подходит и для нескольких, а после `hotels` нужно `are`. Если показываете на другую группу дальше на плане: `Those hotels are there` — «Те отели там».
+
+**Вы уже выбрали несколько отелей для сравнения. Покажите их место на плане: «Отели здесь».**
+
+- ✅ **The hotels are here.**
+- ❌ The hotels is here. — *Отелей несколько: нужно `are`.*
+- ❌ The hotel is here. — *Так говорят об одном отеле. Здесь несколько: `The hotels are here`.*
 
 ---
 
 ## Интро 3
-### Новый помощник
 
-`assistant` — «помощник». Кассир ещё не говорил о помощнике, поэтому впервые ставит `an`: `An assistant is here.` Когда помощник уже появился в разговоре, будет `The assistant is here.` Перед гласным звуком в `assistant` нужен `an`.
+### Любопытство и правила
 
-**Сотрудник впервые говорит о помощнике. Что он скажет?**
-- ✅ **An assistant is here.**
-- ❌ The assistant is here. — *Помощника ещё не называли.*
-- ❌ A assistant is here. — *`assistant` начинается с гласного звука.*
+`curious` — «любопытный»: детям хочется узнать больше о поездке. `The children are curious` — «Детям любопытно». `legal` — «законный, разрешённый законом». Анна проверила, можно ли парковаться в выбранном месте. Об этом действии: `It is legal` — «Это законно». Здесь `legal` не означает, что место удобное или бесплатное.
+
+**Дети хотят узнать больше о поездке. Скажите «Детям любопытно».**
+
+- ✅ **The children are curious.**
+- ❌ The children is curious. — *Детей несколько: нужно `are`.*
+- ❌ The children are sleepy. — *`sleepy` — сонные. Здесь детям интересно: `curious`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-44:i01; family: listen_choose -->
-Цель: `customer`
-Варианты: `customer`
+**1 · Анна ищет детей. Они рядом с вами. Скажите «Дети здесь»**
+<!-- interaction_id: en:lesson-03:session-44:i01; family: phrase_builder -->
+Плитки: `here` `are` `children` `The` `is` → **The children are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `The children are here.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-44:i03; family: scripted_repeat_compare -->
-Цель: `seller`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-44:i02; family: listen_choose -->
+🔊 *hotels* → **hotels** · bedrooms · bottles
+- bedrooms — *В записи первое слово — `hotels`, а в этом варианте — `bedrooms`.*
+- bottles — *В записи первое слово — `hotels`, а в этом варианте — `bottles`.*
 
-**3 · Вставьте слово — помощник стоит рядом с кассиром**
-<!-- interaction_id: en:lesson-03:session-44:i05; family: context_gap_grammar -->
-Цель: `___`
-Варианты: `assistant` · `seller` · `customer`
-- ✅ assistant — *Рядом с кассиром стоит помощник: `assistant`.*
-- seller — *`seller` — продавец. В условии назван помощник, поэтому нужен `assistant`.*
-- customer — *`customer` — покупатель. Рядом с кассиром стоит помощник: `assistant`.*
+**3 · Назовите несколько отелей одним английским словом**
+<!-- interaction_id: en:lesson-03:session-44:i03; family: context_gap_grammar -->
+___ → **hotels** · hotel · bedrooms
+- hotel — *`hotel` — один отель. Несколько — `hotels`.*
+- bedrooms — *`bedrooms` — спальни. Отели — `hotels`.*
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-44:i02; family: scripted_repeat_compare -->
-Цель: `customer`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-44:i04; family: speed_match -->
+hotels — отели · curious — любопытный · legal — законный · children — дети
 
-**5 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-44:i04; family: listen_choose -->
-Цель: `seller`
-Варианты: `seller`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-44:i05; family: listen_build_dictation -->
+🔊 *These are hotels.* Плитки: `hotels` `are` `These` `is` → **These are hotels.**
+*(плитка `is` лишняя: здесь нужно `are` — `These are hotels.`)*
 
-**6 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-44:i06; family: scripted_repeat_compare -->
-Цель: `assistant`
+**6 · Вы уже выбрали отели для сравнения. Укажите их на плане: «Отели здесь»**
+<!-- interaction_id: en:lesson-03:session-44:i06; family: phrase_builder -->
+Плитки: `here` `are` `hotels` `The` `is` → **The hotels are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `The hotels are here.`)*
 
-**7 · Соедините слово со значением**
-<!-- interaction_id: en:lesson-03:session-44:i07; family: speed_match -->
-Пары: `customer` — покупатель · `seller` — продавец · `assistant` — помощник · `receipt` — чек
-Цель: `customer · seller · assistant · receipt`
+**7 · Дети хотят узнать больше о поездке. Скажите о них «Им любопытно» с сокращением**
+<!-- interaction_id: en:lesson-03:session-44:i07; family: scripted_repeat_compare -->
+🎙 **They're curious.**
 
-**8 · Соберите фразу — кассир впервые отмечает пришедшего покупателя**
-<!-- interaction_id: en:lesson-03:session-44:i08; family: phrase_builder -->
-Цель: `A customer is here.`
+**8 · Вы показываете на несколько отелей в дальней части плана города**
+<!-- interaction_id: en:lesson-03:session-44:i08; family: context_gap_grammar -->
+___ are hotels. → **Those** · That · This
+- That — *`That` — один. Для нескольких дальше нужно `Those`.*
+- This — *`This` — один рядом. Здесь несколько дальше: `Those`.*
 
-**9 · Послушайте и соберите фразу — продавец у кассы**
-<!-- interaction_id: en:lesson-03:session-44:i10; family: listen_build_dictation -->
-Цель: `A seller is here.`
+**9 · Послушайте ответ о соблюдении правил парковки**
+<!-- interaction_id: en:lesson-03:session-44:i09; family: listen_choose -->
+🔊 *It is legal.* → **It is legal.** · It is official. · It is accurate.
+- It is official. — *В записи последнее слово — `legal`, а в этом варианте — `official`.*
+- It is accurate. — *В записи последнее слово — `legal`, а в этом варианте — `accurate`.*
 
-**10 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-44:i11; family: scripted_repeat_compare -->
-Цель: `receipt`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-44:i10; family: speed_match -->
+hotels — отели · children — дети · here — здесь · there — там
 
-**11 · Вставьте начало — покупателя уже назвали**
-<!-- interaction_id: en:lesson-03:session-44:i09; family: context_gap_grammar -->
-Цель: `___ customer is here.`
-Варианты: `The` · `A` · `An` · `без артикля`
-- ✅ The — *Покупателя уже назвали, поэтому нужен `The customer`.*
-- A — *Покупателя уже назвали.*
-- An — *Перед `customer` нужен не `an`.*
-- без артикля — *Нужен артикль: речь о названном покупателе.*
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-44:i11; family: listen_build_dictation -->
+🔊 *The children are curious.* Плитки: `curious` `are` `children` `The` `is` → **The children are curious.**
+*(плитка `is` лишняя: здесь нужно `are` — `The children are curious.`)*
 
-**12 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-44:i12; family: scripted_repeat_compare -->
-Цель: `A seller is here.`
+**12 · Вы показываете на отели в дальней части плана. Скажите «Те отели там»**
+<!-- interaction_id: en:lesson-03:session-44:i12; family: phrase_builder -->
+Плитки: `there` `are` `hotels` `Those` `is` → **Those hotels are there.**
+*(плитка `is` лишняя: здесь нужно `are` — `Those hotels are there.`)*
 
-**13 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-44:i13; family: listen_build_dictation -->
-Цель: `An assistant is here.`
-Плитки: `An` `assistant` `is` `here` `The`
-*(плитка `The` лишняя: помощника называют впервые, поэтому нужен `An assistant`.)*
+**13 · Анна проверила правила: парковаться в выбранном месте разрешено законом. Скажите об этом действии «Это законно» с сокращением**
+<!-- interaction_id: en:lesson-03:session-44:i13; family: scripted_repeat_compare -->
+🎙 **It's legal.**
 
-**14 · Соберите фразу — помощника уже назвали**
-<!-- interaction_id: en:lesson-03:session-44:i14; family: phrase_builder -->
-Цель: `The assistant is here.`
-Плитки: `The` `assistant` `is` `here` `An`
-*(плитка `An` лишняя: помощника уже назвали, поэтому нужен `The assistant`.)*
+**14 · Вы говорите о нескольких уже выбранных отелях**
+<!-- interaction_id: en:lesson-03:session-44:i14; family: context_gap_grammar -->
+The hotels ___ here. → **are** · is · am
+- is — *Отелей несколько: `The hotels are here`.*
+- am — *С `The hotels` нужно `are`.*
 
-**15 · Вставьте начало — новый помощник**
-<!-- interaction_id: en:lesson-03:session-44:i15; family: context_gap_grammar -->
-Цель: `___ assistant is here.`
-Варианты: `An` · `A` · `The` · `без артикля`
-- ✅ An — *Перед новым `assistant` нужен `An`: слово начинается с гласного звука.*
-- A — *Перед `assistant` нужен `an`.*
-- The — *Помощника ещё не называли.*
-- без артикля — *Нужен артикль.*
+**15 · Послушайте описание детей**
+<!-- interaction_id: en:lesson-03:session-44:i15; family: listen_choose -->
+🔊 *They are curious.* → **They are curious.** · They are sleepy. · They are patient.
+- They are sleepy. — *В записи последнее слово — `curious`, а в этом варианте — `sleepy`.*
+- They are patient. — *В записи последнее слово — `curious`, а в этом варианте — `patient`.*
 
-**16 · Послушайте и выберите точное значение фразы**
-<!-- interaction_id: en:lesson-03:session-44:i16; family: listen_choose -->
-Цель: `The customer is here.`
-Варианты: `Этот покупатель здесь` · `Здесь покупатель` · `Этот продавец здесь` · `Где покупатель?`
-- ✅ Этот покупатель здесь — *`The customer is here.` — это утверждение о конкретном покупателе.*
-- Здесь покупатель — *В записи есть `the`.*
-- Этот продавец здесь — *Звучит `customer`, не `seller`.*
-- Где покупатель? — *Это утверждение.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-44:i16; family: speed_match -->
+hotels — отели · curious — любопытный · legal — законный · children — дети
 
-**17 · Вставьте маленькое слово — кассир впервые сообщает, что покупатель готов к обслуживанию**
-<!-- interaction_id: en:lesson-03:session-44:i17; family: context_gap_grammar -->
-Цель: `___ customer is ready.`
-Варианты: `A` · `The` · `An` · `без артикля`
-- ✅ A — *Кассир видит нового одного покупателя впервые: `A customer is ready.`*
-- The — *`the customer` может казаться знакомой формой для конкретного человека. Но кассир видит этого покупателя впервые, поэтому сначала нужен `a customer`. В новой сцене выбирайте `the` только для человека, который уже понятен обоим.*
-- An — *`an` — тоже артикль для одного человека, поэтому его легко вспомнить. Но `customer` начинается со звука /k/, не с гласного, поэтому нужен `a`. В новой фразе сначала слушайте первый звук следующего слова.*
-- без артикля — *Форма без артикля бывает во множественном числе или с неисчисляемыми словами. Здесь один новый покупатель, поэтому перед `customer` нужен `a`. В новой фразе проверьте: предмет один и исчисляемый? Тогда артикль обязателен.*
+**17 · В другом городе вы с другом уже выбрали несколько отелей. Друг спрашивает, где они на карте. Вы показываете на дальнюю часть карты. Скажите «Отели там», говоря о той же группе**
+<!-- interaction_id: en:lesson-03:session-44:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The hotels are there.**
 
-## Для сборщика
-new_words: customer — покупатель — Человек, который покупает товар.
-new_words: seller — продавец — Человек, который продаёт товар.
-new_words: assistant — помощник — Человек, который помогает.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=phrase_builder, 9=listen_build_dictation, 10=scripted_repeat_compare, 11=context_gap_grammar, 12=scripted_repeat_compare, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar

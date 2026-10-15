@@ -228,6 +228,8 @@ describe('рубежи серии — флаг, подключение, исхо
     'app/dev_moments_preview.tsx', 'app/lesson1.tsx', 'components/dialog_moments/FirstDialogMoment.tsx', 'components/home/v2/HomeV2TodayCard.tsx',
     'components/lesson_moments/LessonPerfectMoment.tsx', 'components/spire/SpireHomeScreen.tsx', 'components/spire/moments/MomentPromotionShort.tsx', 'components/spire/moments/SpireFloorMoment.tsx',
     'components/stories/StorySlides.tsx', 'modules/story_events/story_event_sources.ts',
+    // зачем (координатор 15.10, m10 «семь ударов» за moments_v3): цепочка итога урока берёт цвет огня/отметки (use_streak_colors) и слово «день» (streakDayWord) — грузится только require'ом при включённом флаге
+    'components/completion/V2DoneChain.tsx', 'components/completion/done_chain_strings.ts',
   ];
   it('components/streak/moments импортируют только перечисленные места; новый импортёр — осознанное решение Ядра', () => {
     const offenders: string[] = [];

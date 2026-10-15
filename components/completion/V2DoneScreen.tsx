@@ -21,6 +21,8 @@ import { subscribeAppSnapshot } from '../../app/app_snapshot_store';
 import { triLang, type Lang } from '../../constants/i18n';
 import { runeWord } from '../../constants/runes';
 import { hapticTap } from '../../hooks/use-haptics';
+import { V2_TYPE } from '../../constants/v2Style';
+import type { DoneChainBefore } from './done_chain_gate';
 
 /**
  * Общий экран завершения 2.0 — макет docs/design/v2-app/learn.html раздел E
@@ -60,6 +62,11 @@ export type V2DoneScreenProps = Readonly<{
   onSecondary?: () => void;
   onClose: () => void;
   testID?: string;
+  /**
+   * m10 «семь ударов» (moments_v3): блоки всплывают по очереди, монеты летят в баланс, серия и «Сегодня · Пройти урок» закрываются.
+   * Нет — экран ровно прежний. before — снимок серии и задачи дня с первого кадра итога (captureDoneChainBefore).
+   */
+  chain?: Readonly<{ before: DoneChainBefore; onFinished?: () => void }>;
 }>;
 
 const copy = (lang: Lang) => ({
@@ -146,9 +153,23 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
   const total = (correct ?? 0) + (wrong ?? 0);
   const accuracy = total > 0 ? Math.round(((correct ?? 0) / total) * 100) : 0;
   const hasStats = correct != null && wrong != null;
+  // зачем (координатор 15.10, m10 за флагом moments_v3): цепочка грузится require'ом только когда экран её попросил — прежние итоги (слова, глаголы, предлоги, диалоги) её не тянут
+  const Chain = props.chain ? (require('./V2DoneChain') as typeof import('./V2DoneChain')) : null;
+  const beat = (i: number, node: ReactNode): ReactNode => (Chain ? <Chain.ChainBeat index={i}>{node}</Chain.ChainBeat> : node);
+  const FOOT = 7;
 
+  if (Chain && props.chain) {
+    return (
+      <Chain.DoneChainProvider before={props.chain.before} lang={lang} onFinished={props.chain.onFinished}>
+        {(skip) => renderBody(skip)}
+      </Chain.DoneChainProvider>
+    );
+  }
+  return renderBody(undefined);
+
+  function renderBody(skip: (() => void) | undefined) {
   return (
-    <View testID={props.testID ?? 'v2-done-screen'} style={[s.root, { backgroundColor: g.bg }]}>
+    <View testID={props.testID ?? 'v2-done-screen'} onTouchStart={skip} style={[s.root, { backgroundColor: g.bg }]}>
       <ScrollView
         contentContainerStyle={[s.content, { paddingTop: insets.top + 8, paddingBottom: 170 + insets.bottom }]}
         showsVerticalScrollIndicator={false}
@@ -166,10 +187,24 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
           >
             <Ionicons name="close" size={20} color={g.text} />
           </Pressable>
-          <BalancePill g={g} lang={lang} />
+          {/* зачем (эталон m10): в цепочке баланс живёт в строке монет — туда летят монеты; второй плашки в шапке нет */}
+          {Chain ? null : <BalancePill g={g} lang={lang} />}
         </View>
 
-        <View style={s.titleBox}>
+        {Chain ? (
+          <>
+            {beat(0, <Text accessibilityRole="header" style={[s.chainOv, { color: g.secondary }]}>{props.title}</Text>)}
+            {stars != null ? beat(1, <Chain.ChainStars stars={stars} g={g} accessibilityLabel={c.stars(stars)} />) : null}
+            {beat(2, (
+              <>
+                {props.subtitle ? <Text style={[s.chainName, { color: g.text }]}>{props.subtitle}</Text> : null}
+                {props.starsNote ? <Text style={[s.starsNote, { color: g.secondary }]}>{props.starsNote}</Text> : null}
+              </>
+            ))}
+          </>
+        ) : null}
+
+        {Chain ? null : <View style={s.titleBox}>
           <Text accessibilityRole="header" style={[s.title, { color: g.text }]}>{props.title}</Text>
           {props.subtitle ? <Text style={[s.sub, { color: g.secondary }]}>{props.subtitle}</Text> : null}
           {props.scoreLabel ? (
@@ -177,16 +212,16 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
               <Text style={[s.scoreText, { color: g.text }]}>{props.scoreLabel}</Text>
             </View>
           ) : null}
-        </View>
+        </View>}
 
-        {stars != null ? (
+        {!Chain && stars != null ? (
           <View style={s.stars} accessible accessibilityLabel={c.stars(stars)}>
             {[0, 1, 2].map((i) => <Star key={i} index={i} on={i < stars} g={g} animate={animate} />)}
           </View>
         ) : null}
-        {props.starsNote ? <Text style={[s.starsNote, { color: g.secondary }]}>{props.starsNote}</Text> : null}
+        {!Chain && props.starsNote ? <Text style={[s.starsNote, { color: g.secondary }]}>{props.starsNote}</Text> : null}
 
-        {hasStats ? (
+        {hasStats ? beat(3, (
           <View style={[s.stats, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
             <View style={s.stat}>
               <Text style={[s.statNum, { color: g.good }]}>{correct}</Text>
@@ -201,11 +236,18 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
               <Text style={[s.statLabel, { color: g.secondary }]}>{c.accuracy}</Text>
             </View>
           </View>
-        ) : null}
+        )) : null}
 
         {/* guard-ok: только отображение начисленного, баланс не меняется */}
-        <CoinAward amount={Math.max(0, Math.round(props.coinsGained))} lang={lang} g={g} animate={animate} />
+        {Chain ? (
+          <>
+            {beat(4, <Chain.ChainCoinRow amount={Math.max(0, Math.round(props.coinsGained))} g={g} lang={lang} />)}
+            {beat(5, <Chain.ChainStreakRow g={g} lang={lang} />)}
+            {beat(6, <Chain.ChainTodayRow g={g} />)}
+          </>
+        ) : <CoinAward amount={Math.max(0, Math.round(props.coinsGained))} lang={lang} g={g} animate={animate} />}
 
+        {beat(FOOT, (<>
         {props.plusNote ? (
           <View style={[s.panel, s.plusNote, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
             <View style={[s.tile, { backgroundColor: g.opaqueControl }]}>
@@ -249,9 +291,11 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         ) : null}
 
         {props.feedbackSlot ? <View style={{ marginTop: 14 }}>{props.feedbackSlot}</View> : null}
+        </>))}
       </ScrollView>
 
-      <View style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>
+      {dock(
+        <>
         <Pressable
           testID="v2-done-primary"
           accessibilityRole="button"
@@ -273,9 +317,16 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
             <Text style={[s.quiet, { color: g.secondary }]}>{props.secondaryLabel}</Text>
           </Pressable>
         ) : null}
-      </View>
+        </>,
+      )}
     </View>
   );
+  }
+
+  function dock(children: ReactNode) {
+    if (Chain) return <Chain.ChainBeat index={FOOT} style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{children}</Chain.ChainBeat>;
+    return <View style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{children}</View>;
+  }
 }
 
 const s = StyleSheet.create({
@@ -324,5 +375,8 @@ const s = StyleSheet.create({
   cta: { minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, fontWeight: '700' },
   ctaArrow: { position: 'absolute', right: 22 },
+  // зачем (эталон m10 `.ov` / `.h-lg`): «Урок пройден» — надстрочник, название урока — крупный заголовок под звёздами
+  chainOv: { ...V2_TYPE.overline, textTransform: 'uppercase', textAlign: 'center', marginTop: 24 },
+  chainName: { ...V2_TYPE.title, textAlign: 'center', marginTop: 14 },
   quiet: { textAlign: 'center', fontSize: 16, fontWeight: '600', marginTop: 14, minHeight: 22 },
 });

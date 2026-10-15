@@ -10,6 +10,7 @@ import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, T
 import KitTouchable from '../components/KitTouchable';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { decidePerfectMoment, perfectMomentKey } from '../components/lesson_moments/perfect_moment_gate';
+import { captureDoneChainBefore, decideDoneChain, DONE_CHAIN_LOG, type DoneChainBefore } from '../components/completion/done_chain_gate';
 // зачем (координатор 15.10, m09 за флагом moments_v3): окно «Идеальный урок» грузится лениво и только когда решение сказало «показать»
 const LessonPerfectHost = lazy(() => import('../components/lesson_moments/LessonPerfectHost'));
 import { Image } from 'expo-image';
@@ -756,7 +757,24 @@ export default function LessonComplete() {
   const momentsV3 = useMomentsV3Enabled();
   const [perfectMomentOpen, setPerfectMomentOpen] = useState(false);
   const perfectDecision = decidePerfectMoment({ momentsV3, isCombo: isComboCompletion, counts: lessonCounts, coinsHydrating: practiceRunes.hydrating });
-  const perfectMomentOn = sequenceShowing && perfectDecision.show;
+  // зачем (координатор 15.10, m10 «семь ударов» за moments_v3): снимок серии и задачи «Сегодня» — на ПЕРВОМ кадре экрана, до того как grantBonus запишет урок
+  // (recordTodayTaskActivity засчитывает и день серии) — иначе «5 → 6» и «0/1 → 1/1» не с чего было бы показать. Синхронное чтение памяти, без диска и сети.
+  const doneChainBeforeRef = useRef<DoneChainBefore | null>(null);
+  if (doneChainBeforeRef.current === null) doneChainBeforeRef.current = captureDoneChainBefore();
+  const doneChainDecision = decideDoneChain({ momentsV3, isCombo: isComboCompletion, counts: lessonCounts, stars: isComboCompletion ? null : resultStars });
+  // зачем: решение защёлкивается в момент показа итога — флаг/счёт, пришедшие позже, не переключают экран посреди показа
+  const doneChainLatchRef = useRef<boolean | null>(null);
+  if (sequenceShowing && doneChainLatchRef.current === null) doneChainLatchRef.current = doneChainDecision.play;
+  const doneChainOn = doneChainLatchRef.current === true;
+  const [doneChainFinished, setDoneChainFinished] = useState(false);
+  const onDoneChainFinished = useCallback(() => setDoneChainFinished(true), []);
+  useEffect(() => {
+    if (!sequenceShowing) return;
+    console.log(`${DONE_CHAIN_LOG} решение lesson=${lessonId}: ${doneChainLatchRef.current ? 'играем' : 'прежний итог'} — ${doneChainDecision.reason}`); // guard-ok: единичный журнал решения показа
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: решение пишется один раз, в момент показа итога
+  }, [sequenceShowing]);
+  // зачем (координатор 15.10, очередь показов): окно m09 «ИДЕАЛ» открывается ПОСЛЕ цепочки m10, а не поверх неё; без цепочки — как раньше, сразу
+  const perfectMomentOn = sequenceShowing && perfectDecision.show && (!doneChainOn || doneChainFinished);
   // зачем (координатор 13.10, paywalls-009/010, макет embedded-plus-states.html экраны 2–3 — приказ владельца 11.10): карточка
   // «Первый урок — готово» / «Три урока — отличный старт» жила только в старом варианте итога (legacyCompletionSurfacesEnabled=false),
   // а seqDone ставит лишь старая секвенция — на экране 2.0 предложение Plus не показывалось НИКОГДА. Экран итога 2.0 сам и есть
@@ -1462,6 +1480,7 @@ export default function LessonComplete() {
                     : triLang(lang, { ru: 'Пройти ещё раз', en: 'Try again', uk: 'Пройти ще раз', es: 'Repetir', 'pt-BR': 'Fazer de novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar yap', pl: 'Jeszcze raz' })}
               onSecondary={isComboCompletion ? undefined : (completionRequiresPremium || resultStars === 1) ? goBackFromComplete : runMistakeIds.length > 0 ? finishMistakes : handleRepeatLesson}
               onClose={goBackFromComplete}
+              chain={doneChainOn && doneChainBeforeRef.current ? { before: doneChainBeforeRef.current, onFinished: onDoneChainFinished } : undefined}
             />
             {perfectMomentOn && lessonCounts ? (
               <Suspense fallback={null}>

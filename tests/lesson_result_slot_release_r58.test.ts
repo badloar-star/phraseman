@@ -18,6 +18,9 @@ describe('R58 #2 · итог урока 2.0 отпускает слот арби
     const effect = src.slice(src.indexOf("// R58 #2: слот «секвенция наград» отпускаем"), src.indexOf("console.log('[LESSON-RESULT] slot_release'") + 200);
     expect(effect).toContain('const chainPending = doneChainOn && !doneChainFinished;');
     expect(effect).toContain('const perfectPending = perfectDecision.show && !perfectMomentSettled;');
+    // R58 #36: окно рубежа серии — нативный Modal вне арбитра; пока оно открыто, слот держится
+    expect(effect).toContain('const milestonePending = milestoneHold;');
+    expect(effect).toContain('if (chainPending || perfectPending || milestonePending) {');
     expect(effect).toContain("'[LESSON-RESULT] slot_hold'");
     expect(effect).toContain('setSeqDone(true);');
   });

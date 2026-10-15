@@ -805,13 +805,15 @@ export default function LessonComplete() {
     if (!sequenceShowing) return;
     const chainPending = doneChainOn && !doneChainFinished;
     const perfectPending = perfectDecision.show && !perfectMomentSettled;
-    if (chainPending || perfectPending) {
-      console.log('[LESSON-RESULT] slot_hold', JSON.stringify({ lessonId, chainPending, perfectPending })); // guard-ok: решение держать слот, одна строка на смену
+    // R58 #36: окно рубежа серии — нативный Modal вне арбитра; пока оно на экране, слот держим, чтобы оценка/тосты не встали поверх
+    const milestonePending = milestoneHold;
+    if (chainPending || perfectPending || milestonePending) {
+      console.log('[LESSON-RESULT] slot_hold', JSON.stringify({ lessonId, chainPending, perfectPending, milestonePending })); // guard-ok: решение держать слот, одна строка на смену
       return;
     }
     console.log('[LESSON-RESULT] slot_release', JSON.stringify({ lessonId, chain: doneChainOn, perfect: perfectDecision.show })); // guard-ok: один раз на экран итога
     setSeqDone(true);
-  }, [seqDone, sequenceShowing, doneChainOn, doneChainFinished, perfectDecision.show, perfectMomentSettled, lessonId]);
+  }, [seqDone, sequenceShowing, doneChainOn, doneChainFinished, perfectDecision.show, perfectMomentSettled, milestoneHold, lessonId]);
   // зачем (координатор 13.10, paywalls-009/010, макет embedded-plus-states.html экраны 2–3 — приказ владельца 11.10): карточка
   // «Первый урок — готово» / «Три урока — отличный старт» жила только в старом варианте итога (legacyCompletionSurfacesEnabled=false),
   // а seqDone ставит лишь старая секвенция — на экране 2.0 предложение Plus не показывалось НИКОГДА. Экран итога 2.0 сам и есть

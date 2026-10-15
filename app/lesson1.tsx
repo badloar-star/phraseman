@@ -48,6 +48,8 @@ import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
 import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from './speech_device_availability';
 import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
+import SpeechFailBlock from '../components/speech/SpeechFailBlock';
+import { scorePronunciationTranscript } from './pronunciation_scoring_core';
 import { getVerifiedPremiumAccessStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 import MicAllowanceBadge from '../components/MicAllowanceBadge';
@@ -644,7 +646,8 @@ const LessonContent = React.memo(function LessonContent({
   const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
   const [speakingOpen, setSpeakingOpen] = useState(false);
   const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
-  const [speakingResult, setSpeakingResult] = useState<SpeakingAttemptResult | null>(null);
+  // зачем (координатор 15.10, «не засчитано»): панель в onScore отдаёт ещё и распознанный текст — по нему считаем пропущенные слова для блока по эталону Макетов
+  const [speakingResult, setSpeakingResult] = useState<(SpeakingAttemptResult & { transcript?: string }) | null>(null);
   const speakingOpenedForPhraseRef = useRef<string | null>(null);
   // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя «Устно»
   // заранее отключено (перечёркнутый микрофон); тап не тратит попытку и не ведёт
@@ -704,7 +707,7 @@ const LessonContent = React.memo(function LessonContent({
     onSpeakingActiveChange?.(false);
   }, [onSpeakingActiveChange]);
 
-  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult) => {
+  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult & { transcript?: string }) => {
     setSpeakingResult(result);
     closeSpeaking();
   }, [closeSpeaking]);
@@ -986,6 +989,11 @@ const LessonContent = React.memo(function LessonContent({
   const speakingPrimaryLine = speakingResult
     ? (speakingResult.passed ? spokenTargetLine : maskSpokenPhraseKeepInitial(spokenTargetLine))
     : '';
+  // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале с названным словом вместо красной маски `t____` и звёзд — фраза целиком, пропущенные слова мягким
+  // красным и строка «Не услышали слово «X» — скажи фразу целиком»; пропущенные слова — тем же оценщиком по распознанному тексту. Пусто (ничего не распознано) — прежний вид.
+  const speakingFailWords: readonly string[] = speakingResult && !speakingResult.passed && status !== 'result' && spokenTargetLine && speakingResult.transcript?.trim()
+    ? (scorePronunciationTranscript({ targetText: spokenTargetLine, transcript: speakingResult.transcript }).missingWords ?? [])
+    : [];
   const interactiveAnswerText = settings.hardMode
     ? typedText
     : selectedWords.map((word) => stripMarkers(word)).filter(Boolean).join(' ');
@@ -1193,7 +1201,21 @@ const LessonContent = React.memo(function LessonContent({
             collapsable={false}
             testID="lesson1-answer-divider"
             style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1 /* shadow-ok: линия-подчёркивание зоны ответа, не контейнер */, borderBottomColor: emptyTapFlash ? glass.warn : glass.line, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? `${glass.warn.slice(0, 7)}14` : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
-            {(status === 'result' || speakingResult) ? (
+            {speakingFailWords.length > 0 ? (
+              <View testID="lesson1-primary-answer-row" style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                <SpeechFailBlock
+                  targetText={spokenTargetLine}
+                  missingWords={speakingFailWords}
+                  lang={lang}
+                  glass={glass}
+                  kicker={triLang(lang, {
+                    ru: 'Сказано', uk: 'Сказано', en: 'Spoken', es: 'Dicho', 'pt-BR': 'Falado',
+                    vi: 'Đã nói', id: 'Diucapkan', tr: 'Söylenen', pl: 'Powiedziano',
+                  })}
+                  testID="lesson1-speech-fail"
+                />
+              </View>
+            ) : (status === 'result' || speakingResult) ? (
               <View testID="lesson1-primary-answer-row" style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', maxWidth: '100%' }}>
                   {/* зачем: ученики писали «нажал waist — появилось waste», «нажал know — вышло
@@ -1294,7 +1316,7 @@ const LessonContent = React.memo(function LessonContent({
             )}
           </View>
 
-          {speakingResult && (
+          {speakingResult && speakingFailWords.length === 0 && (
             <View testID="lesson1-speaking-score-below-divider" style={{ minHeight: 24, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center' }}>
               <SpeakingInlineResultStars
                 testID="lesson1-speaking-score"

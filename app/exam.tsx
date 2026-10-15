@@ -72,6 +72,7 @@ import { lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime';
 import { DebugLogger } from './debug-logger';
+import { notifyActivityStartFailed, useScreenOpenRef } from './activity_start_failed_toast';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
@@ -479,6 +480,7 @@ export default function ExamScreen() {
   );
   const examEnergyGate = useFirstQuestionEnergyGate({ intent: examEnergyIntent, screen: 'exam' });
   const examStartCommitInFlightRef = useRef(false);
+  const screenOpenRef = useScreenOpenRef();
   const countdownAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -578,6 +580,8 @@ export default function ExamScreen() {
       const energyResult = await examEnergyGate.charge();
       if (energyResult === 'cancelled') {
         setPhase('intro');
+        // зачем (координатор 15.10, п.3): отказ списания — тост «Не получилось начать», если экран ещё открыт.
+        notifyActivityStartFailed('exam', screenOpenRef);
         return;
       }
       if (energyResult === 'insufficient') {

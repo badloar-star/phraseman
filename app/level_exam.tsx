@@ -57,6 +57,7 @@ import {
   ExamFooter, ExamHeader, ExamHero, ExamKvCard, ExamOption, ExamQuietButton, ExamStatRow,
   ExamTrack, examCardStyle, type ExamOptionState,
 } from '../components/level-exam/ExamGlassParts';
+import { notifyActivityStartFailed, useScreenOpenRef } from './activity_start_failed_toast';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 
@@ -592,6 +593,7 @@ export default function LevelExam() {
   // Энергия: залог уровня стоит фиксированную сумму ЗА ПОПЫТКУ (аванс), а не за ошибку.
   // Премиум/тестер обходят подтверждение внутри confirmSpendAmount.
   const { isUnlimited: energyUnlimited, confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy } = useEnergy();
+  const screenOpenRef = useScreenOpenRef();
   const examEnergyMountIdRef = React.useRef(
     `level-exam-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`,
   );
@@ -805,7 +807,11 @@ export default function LevelExam() {
       let energyCharged = false;
       {
         const energyResult = await confirmSpendAmount(LEVEL_EXAM_ENERGY, levelExamEnergyIntent);
-        if (energyResult === 'cancelled') return;
+        if (energyResult === 'cancelled') {
+          // зачем (координатор 15.10, п.3): отказ списания — тост «Не получилось начать», если экран ещё открыт.
+          notifyActivityStartFailed('level_exam', screenOpenRef);
+          return;
+        }
         if (energyResult === 'insufficient') {
           void trackFeatureBlocked('level_exam', 'start', 'energy_spend_failed', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
           setNoEnergy(true);

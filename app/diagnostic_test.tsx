@@ -62,6 +62,7 @@ import {
   ExamFooter, ExamHeader, ExamKvCard, ExamOption, ExamPill, ExamQuietButton, ExamStatRow,
   ExamTile, ExamTrack, ExamVerdict, GlassTimerRing, examCardStyle, type ExamOptionState,
 } from '../components/level-exam/ExamGlassParts';
+import { notifyActivityStartFailed, useScreenOpenRef } from './activity_start_failed_toast';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const TIMER_SEC = 30;
@@ -900,6 +901,7 @@ export default function DiagnosticTest() {
   // требованию владельца, а своей защиты у диагностики не было вовсе —
   // синхронный латч закрывает окно между тапом и сменой фазы экрана.
   const diagnosticChargeInFlightRef = useRef(false);
+  const screenOpenRef = useScreenOpenRef();
 
   const captureDiagnosticWrong = (question: Question, questionIndex: number, mode: string) => {
     // зачем (22.09): ранний выход пропускал запись ошибки для испанского и
@@ -961,7 +963,11 @@ export default function DiagnosticTest() {
     diagnosticChargeInFlightRef.current = true;
     try {
       const energyResult = await confirmSpendOne(diagnosticEnergyIntent);
-      if (energyResult === 'cancelled') return;
+      if (energyResult === 'cancelled') {
+        // зачем (координатор 15.10, п.3): отказ списания — тост «Не получилось начать», если экран ещё открыт.
+        notifyActivityStartFailed('diagnostic_start', screenOpenRef);
+        return;
+      }
       if (energyResult === 'insufficient') {
         void trackFeatureBlocked('diagnostic', 'start', 'no_energy', { total: questions.length }, 'diagnostic_test');
         setNoEnergy(true);
@@ -996,7 +1002,11 @@ export default function DiagnosticTest() {
     diagnosticChargeInFlightRef.current = true;
     try {
       const energyResult = await confirmSpendOne(diagnosticEnergyIntent);
-      if (energyResult === 'cancelled') return;
+      if (energyResult === 'cancelled') {
+        // зачем (координатор 15.10, п.3): отказ списания — тост «Не получилось начать», если экран ещё открыт.
+        notifyActivityStartFailed('diagnostic_restart', screenOpenRef);
+        return;
+      }
       if (energyResult === 'insufficient') {
         void trackFeatureBlocked('diagnostic', 'restart', 'no_energy', { total: questions.length }, 'diagnostic_test');
         setNoEnergy(true);

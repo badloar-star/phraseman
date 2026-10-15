@@ -1,72 +1,20 @@
 # Project Rules
 
-## ⛔ LEARNING V2 AUTHORING: СНАЧАЛА ПАПКА CODEX НА РАБОЧЕМ СТОЛЕ (владелец, 2026-09-19)
+## ⛔ LEARNING V2 — КУРС ПИШЕТСЯ ТОЛЬКО ПО ЗАДАНИЮ (владелец, 2026-10-15)
 
-При любом написании, продолжении, изменении, проверке или показе learner-facing
-сессий Learning V2 исполнитель обязан **до любых действий** прочитать:
+Написание, правка, проверка и выпуск занятий курса Learning V2 (английский,
+немецкий, испанский) идут **только** по
+`content/learning-v2-course/ЗАДАНИЕ_CODEX_2026-10-15.md`. Оно заменяет прежние
+маршруты чтения («папка Codex на рабочем столе», `СТАРТ В2`, `СТАРТ ES`,
+drift-check каждые 10 минут, полное чтение `IMPROVEMENT_LOG.md`, обязательная
+запись в него после каждого шага, квитанции и HOLD по отпечаткам).
 
-1. `C:\Users\badlo\OneDrive\Desktop\Codex\00_ПРОЧТИ_ПЕРВЫМ.txt`;
-2. `C:\Users\badlo\OneDrive\Desktop\Codex\00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md`;
-3. `C:\Users\badlo\OneDrive\Desktop\Codex\НАЧНИ_ОТСЮДА.md`;
-4. актуальные документы фабрики в `content/learning-v2-course`: сначала
-   `ГЛАВНОЕ_ТРЕБОВАНИЕ.md`, `КОНСТИТУЦИЯ.md`, `МЕТОД_РАБОТЫ.md`, затем три
-   эталона `exemplars/en/l01_s01.ru.md`–`l01_s03.ru.md` и все файлы
-   `judgements/owner/`;
-5. применимый план курса и карточку слова.
-
-Папка Desktop Codex — стартовый пакет и обязательный источник порядка работы;
-редактировать её нельзя. Рабочая копия фабрики находится только в репозитории.
-`docs/v2/СТАРТ В2.md` и связанные runtime/contracts читаются дополнительно,
-когда задача затрагивает приложение, gates или native-проекцию, но не заменяют
-фабричную Конституцию, эталоны и дословные owner-вердикты при написании текста.
-После compaction, restart, handoff и перед каждой новой сессией этот маршрут
-проходится заново. Пропуск любого пункта означает `HOLD`: новую сессию нельзя
-выпускать или добавлять в макет.
-
-Перед learner-facing authoring каждой новой сессии обязателен отдельный свежий
-`PREAUTHORING GUARDIAN`. Это независимый read-only агент: он полностью проходит
-маршрут выше, сверяет точную строку плана, Cambridge, все предыдущие
-learner-facing сессии урока, новые слова, новую ситуацию и каждое применимое
-требование. Автору запрещено выдавать или заполнять эту квитанцию самому.
-Guardian возвращает `preauthoring.json`, привязанный к текущим хэшам документов
-и предыдущего контента; только после его PASS фабрика может запустить
-`draft`, `edit` или `full`. После compaction/restart/handoff старый ответ агента
-не считается чтением: запускается новый guardian и выпускается свежая
-квитанция. Любой BLOCK/HOLD, неполный чек-лист или незакрытая предыдущая сессия
-останавливает authoring до исправления; root/автор не вправе переопределить
-вердикт.
-
-## ⛔ LEARNING V2: СНАЧАЛА `СТАРТ В2` (владелец, 2026-08-21)
-
-При любом запросе найти, продолжить, написать, изменить, проверить или показать
-работу по Learning V2 исполнитель обязан **до любых действий** полностью
-прочитать `docs/v2/СТАРТ В2.md` и пройти указанный там маршрут чтения. Этот файл
-фиксирует обязательные правила интро, типов сессий и заданий, восьми локалей,
-диагностических дистракторов, feedback, owner-макета, gates и защиты от ухода от
-спецификации.
-
-Во время authoring каждые 10 минут или после каждой готовой сессии (что раньше)
-выполняется короткий drift-check. После каждых пяти сессий, любой новой ошибки,
-решения владельца, compaction, restart или handoff полностью перечитывается
-применимый набор документов из `СТАРТ В2`. Без `ON TRACK` работа не
-продолжается; drift-check не является PASS и не заменяет независимое review.
-
-## ⛔ LEARNING V2 ИСПАНСКИЙ: СНАЧАЛА `СТАРТ ES` (владелец, 2026-08-23)
-
-Испанский — независимый, параллельный target-language контур Learning V2. При
-любом запросе найти, продолжить, написать, изменить, проверить или показать
-работу по испанскому курсу исполнитель обязан **до любых действий** полностью
-прочитать `docs/v2/СТАРТ ES.md` и пройти указанный там маршрут чтения (который
-сам ссылается на общую дисциплину `docs/v2/СТАРТ В2.md`, не дублируя её).
-
-Испанская и английская сессии могут работать одновременно в одном рабочем
-дереве. Испанская сессия никогда не редактирует файлы, чьё имя начинается с
-`episode_01_`, и никогда не редактирует английский экспорт
-`LESSON1_AUTHORING_REGISTRY_V1` — только `authoringRegistryForTargetLanguage
-("es")` и файлы своего собственного контура. Машинная проверка:
-`npm run learning-v2:es-authoring-preflight` для испанского,
-`npm run learning-v2:lesson1-authoring-preflight` для английского — команды
-не пересекаются и не влияют друг на друга.
+Перед началом работы один раз прочитать: это задание,
+`content/learning-v2-course/ГЛАВНОЕ_ТРЕБОВАНИЕ.md`, `КОНСТИТУЦИЯ.md`, эталоны
+`exemplars/en/l01_s01–s03.ru.md`, `judgements/owner/*`, `ХОД_КУРСА.md`.
+Повторно не перечитывать перед каждым занятием. Ход работы — в `ХОД_КУРСА.md`.
+Прежние тексты этого раздела — в git-истории и в
+`~/.codex/_backup_learning_v2_2026-10-15/project_AGENTS.md`.
 
 ## ⛔ Economy Constitution — client authority, no orphan debits (owner, 2026-08-13)
 
@@ -620,6 +568,8 @@ EAS_BUILD_PROFILE=production EAS_BUILD_PLATFORM=android EXPO_PUBLIC_STORE_RELEAS
 - End every completed work report with a section titled `Находки и предложения` containing concise, actionable observations about improvements, risks, cleanup, or features that may be worth adding or removing. Do not present suggestions as completed work, and do not remove anything unless the user explicitly requests it.
 
 ## Learning V2 Session Handover Protocol
+
+- Не применяется к написанию занятий курса Learning V2: там действует только `content/learning-v2-course/ЗАДАНИЕ_CODEX_2026-10-15.md` (владелец, 2026-10-15).
 
 - Any session that researches, plans, implements, reviews, tests, integrates, or releases Phraseman Learning V2, its 32-episode curriculum, stars/access economy, voice activities, Speaking Club integration, Personal Review, dialogs, or Admin Content Studio must start by reading `docs/v2/HANDOVER.md`, `docs/v2/README.md`, `docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md`, and `docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md` completely.
 - Treat `docs/v2/HANDOVER.md` as the living cross-session execution record. Update it before ending a V2 session, before a planned compaction/handoff, and immediately after a completed numbered task or a material plan/decision change.

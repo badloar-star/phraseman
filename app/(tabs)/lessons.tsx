@@ -5942,7 +5942,8 @@ export default function LessonsTab({
                       ? `e-${item.level}`
                       : "attestation"
               }
-              initialNumToRender={12}
+              // зачем (бета-тест Б3, 15.10; [PERF-R1] lessons mount actualMs 318 при 12 стартовых строках): на экране помещается ~6–7 строк, остальное доезжает следующим батчем (maxToRenderPerBatch) — первый кадр строит 8, а не 12
+              initialNumToRender={8}
               windowSize={7}
               maxToRenderPerBatch={8}
               // зачем: scrollToIndex на длинном списке бьётся, если целевая

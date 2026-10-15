@@ -463,6 +463,9 @@ export default function FlashcardsScreen() {
   }, [routeCat]);
   const [activeFilter, setActiveFilter]   = useState<string>('all');
   const [filterOpen, setFilterOpen]       = useState(false);
+  // зачем (cards-gap-023, Макеты 15.10; сперва логи): шапка измеряется при раскладке, меню фильтра встаёт под её измеренный низ
+  const filterHeaderRef = useRef<View>(null);
+  const filterHeaderBottomRef = useRef<number | null>(null);
   const [savedContentKind, setSavedContentKind] = useState<SavedCardContentKind>('all');
   // E11: режим просмотра «Список / Стопка» (персист fc_collection_view_v1)
   const [viewMode, setViewMode] = useState<FcCollectionViewMode>('list');
@@ -1486,6 +1489,11 @@ export default function FlashcardsScreen() {
             cardsLoading={deeplinkCardsState === 'pending' && listCards.length === 0}
           />
         ) : (<>
+        <View ref={filterHeaderRef} collapsable={false} onLayout={() => {
+          filterHeaderRef.current?.measureInWindow((_x, y, _w, h) => {
+            if (Number.isFinite(y) && h > 0) filterHeaderBottomRef.current = y + h;
+          });
+        }}>
         {savedSurface ? (
           <CollectionTopBar
             lang={lang}
@@ -1546,6 +1554,7 @@ export default function FlashcardsScreen() {
           onSearchInput={setSearchInput}
         />
         )}
+        </View>
 
         {/*
           Лайк и «Добавить себе» — на самом наборе.
@@ -1788,6 +1797,8 @@ export default function FlashcardsScreen() {
       <FlashcardsFilterDropdown
         visible={filterOpen && !selectionMode && (activeCat !== 'saved' || savedContentKind === 'phrase')}
         savedGlass={activeCat === 'saved' && !packDeeplink}
+        headerRef={filterHeaderRef}
+        anchorBottomRef={filterHeaderBottomRef}
         lang={lang}
         activeFilter={activeFilter}
         filterGroups={filterGroups}

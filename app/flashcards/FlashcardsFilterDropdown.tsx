@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
@@ -22,9 +22,16 @@ type Props = {
   t: Theme;
   f: Record<string, number>;
   savedGlass?: boolean;
+  /** Шапка экрана: меню берёт верх от её измеренного низа (cards-gap-023). */
+  headerRef?: React.RefObject<View | null>;
+  /** Низ шапки в окне, посчитанный экраном при раскладке (кэш для первого кадра меню). */
+  anchorBottomRef?: React.MutableRefObject<number | null>;
   onClose: () => void;
   onSelect: (key: string) => void;
 };
+
+// зачем (cards-gap-023, Макеты 15.10; сперва логи): зазор между низом шапки и верхом меню из образца (106 - 95).
+const FILTER_MENU_GAP = 11;
 
 export default function FlashcardsFilterDropdown({
   visible,
@@ -34,6 +41,8 @@ export default function FlashcardsFilterDropdown({
   t,
   f,
   savedGlass = false,
+  headerRef,
+  anchorBottomRef,
   onClose,
   onSelect,
 }: Props) {
@@ -43,6 +52,30 @@ export default function FlashcardsFilterDropdown({
   // по строке [FILTER-MENU] видно, лежит ли меню поверх шапки (y < insets.top + высота шапки) и надо ли сдвигать на insets.top.
   const insets = useStableSafeAreaInsets();
   const menuRef = useRef<View>(null);
+  // зачем (cards-gap-023, Макеты 15.10; сперва логи): верх меню = низ шапки + зазор образца (cards-gaps-states №23: низ шапки 95, меню 106), а не константа 56;
+  // без замера — insets.top + 56 (как меню действий в CollectionHeader). Замер повторяется при каждом открытии.
+  const [measuredBottom, setMeasuredBottom] = useState<number | null>(null);
+  const anchor = measuredBottom ?? anchorBottomRef?.current ?? null;
+  const menuTop = anchor != null ? anchor + FILTER_MENU_GAP : insets.top + 56;
+  useEffect(() => {
+    if (!visible) return;
+    const node = headerRef?.current;
+    if (!node) {
+      DebugLogger.info('[CARDS-FILTER-MENU]', `measure skipped: no header ref; cached=${String(anchorBottomRef?.current ?? null)} menuTop=${Math.round(menuTop)} insets.top=${Math.round(insets.top)}`);
+      return;
+    }
+    node.measureInWindow((x, y, w, h) => {
+      const bottom = y + h;
+      if (!Number.isFinite(bottom) || h <= 0 || bottom < insets.top) {
+        DebugLogger.info('[CARDS-FILTER-MENU]', `measure ignored: bad value y=${String(y)} h=${String(h)} bottom=${String(bottom)} insets.top=${Math.round(insets.top)}`);
+        return;
+      }
+      if (anchorBottomRef) anchorBottomRef.current = bottom;
+      setMeasuredBottom(bottom);
+      DebugLogger.info('[CARDS-FILTER-MENU]', `opened: headerY=${Math.round(y)} headerH=${Math.round(h)} headerBottom=${Math.round(bottom)} menuTop=${Math.round(bottom + FILTER_MENU_GAP)} insets.top=${Math.round(insets.top)} savedGlass=${String(savedGlass)}`);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
   useEffect(() => {
     if (!visible) return undefined;
     const timer = setTimeout(() => {
@@ -62,7 +95,7 @@ export default function FlashcardsFilterDropdown({
         collapsable={false}
         style={{
           position: 'absolute',
-          top: 56,
+          top: menuTop,
           right: 16,
           zIndex: 9999,
           backgroundColor: savedGlass ? g.sheet : t.bgSurface,

@@ -2,6 +2,7 @@
 
 Governance-ID: TG-22C218C3BE77
 Governance-ID: TG-7E9855736D15
+Governance-ID: TG-C04A72BCCA62
 Status: В работе — коммит в окно 08:00
 Owner: 5 · АВТОРИЗАЦИЯ
 
@@ -40,3 +41,13 @@ Out of scope: логика переключения вкладок (до лог�
 ## Rollback
 
 `git revert`.
+
+## Итоги r7f (Сверка, 08:29) и шаг 2 — номер экземпляра
+
+Каждый тап: тап → navigate → render (новая) → pathname → route_effect с pending=тап (no-op «1→1») → render со СТАРЫМИ
+active/visual/page БЕЗ единой записи индекса → route_effect с pending=null, ставит обратно. Гипотеза: два экземпляра
+ReleasedTabLayout (у второго своё состояние, тап он не получает, догоняет по pathname; общий журнал перемешивает их рендеры),
+либо выброшенный рендер (ссылки active/visual/page присваиваются в фазе рендера). Шаг 2 (только логи, окно 09:00): `inst=` в
+[TABS-RENDER]/[TABS-IDX] (prev для «changed» — свой на экземпляр), [TABS-INST] mount/unmount, [TABS-COMMIT] — что реально
+показано (useLayoutEffect без зависимостей, тот же флаг трассировки). Починка — по фактам повтора.
+

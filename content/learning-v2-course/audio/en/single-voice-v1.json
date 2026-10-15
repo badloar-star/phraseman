@@ -51373,6 +51373,309 @@
           "byteSize": 33792
         }
       ]
+    },
+    "l04/s02/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a garden here.",
+          "file": "b684c8c6f660f38209660dcc32953c74095d9f32a9fbe6dee9294ace63beeb04.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b684c8c6f660f38209660dcc32953c74095d9f32a9fbe6dee9294ace63beeb04.mp3",
+          "contentHash": "ade9d85c720c639f34161d66ae4ae3d1ad8d85b342303e4fc1d88376c6189dd7",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s02/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I'm relaxed.",
+          "file": "60119ddafa9a5551473479b53d1e21304b8488382055ba55a44b720b4e0a5f35.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60119ddafa9a5551473479b53d1e21304b8488382055ba55a44b720b4e0a5f35.mp3",
+          "contentHash": "c0e067b43873a253664bb4e728a210a9d91c64f72c79ae29c9352c230b99bd17",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s02/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I am satisfied.",
+          "file": "41525b51c17291435b11b49d63550a6ab5d100625c966bd7273b5f280b3330f1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41525b51c17291435b11b49d63550a6ab5d100625c966bd7273b5f280b3330f1.mp3",
+          "contentHash": "a182e729b25061a9fc1730b2dc64ea1b5f369fd49df43c868b25adcfa91e209e",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s02/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is an apple.",
+          "file": "decba0752b2e0c1d2b86a4921e222526b669d38f8dd433b254f0d83b471f6dc9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/decba0752b2e0c1d2b86a4921e222526b669d38f8dd433b254f0d83b471f6dc9.mp3",
+          "contentHash": "dc4d2bb88bdedd85943898c211ddb762eb6558d3610c5abdb95048cd1fb0138f",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s02/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "garden",
+          "file": "fe5e87762b4787f6e7627e6b77441155eaf3ee6624aacb479d48fa45c382d506.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe5e87762b4787f6e7627e6b77441155eaf3ee6624aacb479d48fa45c382d506.mp3",
+          "contentHash": "d4d615ad3f3ab25c4396c3b0c380de822dace9ca8c826d8f789b9cf6a2558816",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l04/s02/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "garden",
+          "file": "2299d634582f58cd6847735be86f620e499bb0bf3d6940914f9985c5f1602f40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2299d634582f58cd6847735be86f620e499bb0bf3d6940914f9985c5f1602f40.mp3",
+          "contentHash": "23f57003c4d4cfdfd45a8ad07e6b806737ac0a7296b0820eed50be3816f79d70",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l04/s02/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "garden",
+          "file": "2299d634582f58cd6847735be86f620e499bb0bf3d6940914f9985c5f1602f40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2299d634582f58cd6847735be86f620e499bb0bf3d6940914f9985c5f1602f40.mp3",
+          "contentHash": "23f57003c4d4cfdfd45a8ad07e6b806737ac0a7296b0820eed50be3816f79d70",
+          "byteSize": 21888
+        },
+        {
+          "text": "confident",
+          "file": "0dd174fbd8e18e69bc012378d97d12549826166dbf6c855dd483fab58ed13e5a.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/26c8cca6e668df65cc08a02e-onyx.mp3",
+          "contentHash": "e63bd1825ca83d66e99b2b4408350ba23a3d8a257199240b93cb7970812817da",
+          "byteSize": 16512
+        },
+        {
+          "text": "relaxed",
+          "file": "0087fee8109a4cf74cc8be04b560acb828a7fc27271ba99ad0744e27a01d937d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/acd85c97bf4d40bd2747f60b-onyx.mp3",
+          "contentHash": "ffc2442fcf191d1864460039059c227c1ff55cdac286caa998af08b08c1cd4f5",
+          "byteSize": 19584
+        },
+        {
+          "text": "cinema",
+          "file": "b104359e98bda543e4ccae3b5bdeef3ece7027cd25484ddbbd756d7698f33cca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b104359e98bda543e4ccae3b5bdeef3ece7027cd25484ddbbd756d7698f33cca.mp3",
+          "contentHash": "8348377857dccf823d2daf66707412d270216cf791017279590589c70b7409e6",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l04/s02/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a garden.",
+          "file": "52bdf267496bc140763c4e0b3ca414fbe55377132b264ebabe72122029fc17b4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52bdf267496bc140763c4e0b3ca414fbe55377132b264ebabe72122029fc17b4.mp3",
+          "contentHash": "a5b35d1a90c8e25e46291a723e08cf14d01a820ecbc093fe0856560f506bed32",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s02/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a cinema here.",
+          "file": "9a7f9fcd3a260d881b3ea46c7df358be6ff50ae1c396f9bdab9a5f2e43a1ee7b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a7f9fcd3a260d881b3ea46c7df358be6ff50ae1c396f9bdab9a5f2e43a1ee7b.mp3",
+          "contentHash": "298f46e6b5d82b4ecb6cd20d978b05f05e4661533552ea40ac4a7048b37be986",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s02/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I'm confident.",
+          "file": "f4a6a77c0aeedbd37107aaaa810ad20bf4d74f5a073c1425ba1b03696baa461d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f4a6a77c0aeedbd37107aaaa810ad20bf4d74f5a073c1425ba1b03696baa461d.mp3",
+          "contentHash": "bce4ae9bda30dcc94670d46deb7dfce66a4531f935bbf42ef2958c4fe90ce2c9",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l04/s02/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a garden here.",
+          "file": "11ba10f228c89133c37c9f3a64dd8f4a0f1a9a088f30584ef519a8553d67d02f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11ba10f228c89133c37c9f3a64dd8f4a0f1a9a088f30584ef519a8553d67d02f.mp3",
+          "contentHash": "b53f5f8baf170af7cff14953dcd922265b0af051494bcee2a2b7bb35efc75482",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s02/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am satisfied.",
+          "file": "d32125d0ae6606cea6ff99d99b5fe84c45eef5c0a714c9a71f84834ea70e537d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d32125d0ae6606cea6ff99d99b5fe84c45eef5c0a714c9a71f84834ea70e537d.mp3",
+          "contentHash": "c33d7fdd262607de7ed80e927c2789cc7e4b5abc15c784b43f02a4562c0a4f7a",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s02/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "satisfied",
+          "file": "cb1b17ee3d917eefca26752a6a634f21cb0b10421f9a6bd167ad7de9aec2ac6b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb1b17ee3d917eefca26752a6a634f21cb0b10421f9a6bd167ad7de9aec2ac6b.mp3",
+          "contentHash": "3b26faab172edb217082d1a47ac43e2e4a4d64929956dc8a30ea8c0f6166a979",
+          "byteSize": 33792
+        },
+        {
+          "text": "apple",
+          "file": "40e9ed99c1c7c0fd6f183091085655d8f9b344159c3326138f94b406b4aa4784.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-onyx.mp3",
+          "contentHash": "0983816144ee97e2a5a3953242763ff44214e36d91a4f859750e05671bd868f2",
+          "byteSize": 25344
+        },
+        {
+          "text": "cinema",
+          "file": "b104359e98bda543e4ccae3b5bdeef3ece7027cd25484ddbbd756d7698f33cca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b104359e98bda543e4ccae3b5bdeef3ece7027cd25484ddbbd756d7698f33cca.mp3",
+          "contentHash": "8348377857dccf823d2daf66707412d270216cf791017279590589c70b7409e6",
+          "byteSize": 24192
+        },
+        {
+          "text": "relaxed",
+          "file": "0087fee8109a4cf74cc8be04b560acb828a7fc27271ba99ad0744e27a01d937d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/acd85c97bf4d40bd2747f60b-onyx.mp3",
+          "contentHash": "ffc2442fcf191d1864460039059c227c1ff55cdac286caa998af08b08c1cd4f5",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l04/s02/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a garden.",
+          "file": "5d8e7431998c700cae9d3e7577b8456956aaf84794c1ec7b9b12e8caeb09fa60.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d8e7431998c700cae9d3e7577b8456956aaf84794c1ec7b9b12e8caeb09fa60.mp3",
+          "contentHash": "61ac8fd4c5866047b9f2b446aa1d72c396a49cde23619d21296dfa25ea992b66",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s02/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am relaxed.",
+          "file": "16b76dc4a05f335e0a14b28d1a086c035988db774304b5aeef9d4972de2c6e63.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/16b76dc4a05f335e0a14b28d1a086c035988db774304b5aeef9d4972de2c6e63.mp3",
+          "contentHash": "64a55fee393466b4a507cc64a11635ebda85daa40f99a599267b0f8a24945246",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s02/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I'm satisfied.",
+          "file": "204ab2d192f7b849d2938461463d5d7adac43e5957d5fd42e008a8687bf337a3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/204ab2d192f7b849d2938461463d5d7adac43e5957d5fd42e008a8687bf337a3.mp3",
+          "contentHash": "afbd477bf554a62c6bc6d2870b12b879e5aedc7b6ad3909969e6e2c3112e2664",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s02/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a garden there.",
+          "file": "b04ee57ab1b68b8b3029b9047be5e33ec0227cf1a0481d27bd66e4f0541f5381.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b04ee57ab1b68b8b3029b9047be5e33ec0227cf1a0481d27bd66e4f0541f5381.mp3",
+          "contentHash": "2d8aaf4d5b95231443590884d915bb2e1585712b108ab7bbd7a5390a9dffcc4f",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s02/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am confident.",
+          "file": "8fb523e36484d3c2541e16f177e7b30f59c6d3a32b96deec61eb4a9464c4cf7f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8fb523e36484d3c2541e16f177e7b30f59c6d3a32b96deec61eb4a9464c4cf7f.mp3",
+          "contentHash": "232a787b47a9f77113c082ed6d1badbfa5678ab77b50dc030b14c11658355e50",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s02/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "garden",
+          "file": "6d7239d8133a52b6accccd5ac0ced2cf47eab793e66a76a8a67d5848ceaf6ce9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d7239d8133a52b6accccd5ac0ced2cf47eab793e66a76a8a67d5848ceaf6ce9.mp3",
+          "contentHash": "83c3e45c7bfea8dae7f2e8343fd5766aecb1b32df5b08f68525e9c032143dbc7",
+          "byteSize": 21120
+        },
+        {
+          "text": "confident",
+          "file": "5d29554a1305cc47c0af4a26a4696fd182452eb80ee3020205754ca05d97cc52.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/26c8cca6e668df65cc08a02e-coral.mp3",
+          "contentHash": "97b3034c86d296042a6d301eaa86f9e2e5c1036f4f3ef1b4c0a9d1452f49dbd0",
+          "byteSize": 28416
+        },
+        {
+          "text": "satisfied",
+          "file": "3f84c9cd216f12ec79dac4eff833221acd5a694f577df5858c5e8132b4508b79.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f84c9cd216f12ec79dac4eff833221acd5a694f577df5858c5e8132b4508b79.mp3",
+          "contentHash": "74c97de59a7cdd667a259d6221e0953367de2614bbb1f45907f661629afa39d0",
+          "byteSize": 43008
+        },
+        {
+          "text": "apple",
+          "file": "003d7900555913ff462f1a455539f2cdc3600e3611bf432d3ef33debe5844a9d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-coral.mp3",
+          "contentHash": "2df6e10e97f3b31bc39b6421626e890d08b6511726ddc4ef5c5b73ca3b001c9b",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l04/s02/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a garden here.",
+          "file": "4794c336e63ce2fbe550c5cf092136e0388ac7851c9668034e5820739522e674.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4794c336e63ce2fbe550c5cf092136e0388ac7851c9668034e5820739522e674.mp3",
+          "contentHash": "ca4d889afe1a87e8d863da2930cdad0bb1d7a0a9b2aa801f3625203d7af27b1c",
+          "byteSize": 42624
+        }
+      ]
     }
   },
   "settings": {

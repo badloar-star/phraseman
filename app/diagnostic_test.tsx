@@ -976,6 +976,9 @@ export default function DiagnosticTest() {
     } finally {
       diagnosticChargeInFlightRef.current = false;
     }
+    // зачем (аудит R58 #11): ответы прошлой попытки (если экран не размонтировался) не должны попасть в новую
+    console.log('[DIAG-TEST] start: ответы сброшены', JSON.stringify({ previousAnswers: answersRef.current.length, total: questions.length })); // guard-ok: одна строка на старт
+    answersRef.current = [];
     diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
     void acknowledgeSessionStart(diagnosticEnergyIntent.operationId);
     setDiagnosticEnergyRevision((revision) => revision + 1);
@@ -1020,6 +1023,10 @@ export default function DiagnosticTest() {
     setChosen(null);
     setTypedAnswer('');
     setTypeSubmitted(false);
+    // зачем (аудит R58 #11, координатор 15.10): «Пройти ещё раз» сбрасывал счёт, но не ответы — массив рос вдвое (2×N),
+    // getResult уходил с поуровневого расчёта на грубый по баллу, и сохранялся неверный уровень.
+    console.log('[DIAG-TEST] restart: ответы сброшены', JSON.stringify({ previousAnswers: answersRef.current.length, total: questions.length })); // guard-ok: одна строка на повтор
+    answersRef.current = [];
     diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
     void acknowledgeSessionStart(diagnosticEnergyIntent.operationId);
     setDiagnosticEnergyRevision((revision) => revision + 1);

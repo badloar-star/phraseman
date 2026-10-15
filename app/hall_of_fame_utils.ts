@@ -27,6 +27,7 @@ import type { Lang } from '../constants/i18n';
 import { resolveNotificationLang } from './notification_lang';
 import type { AccountGenerationToken } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { onAccountOwnerChanged } from './account_owner_change';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем (§AUTH-0110): прежде `uk ? uk : es ? es : ru` — пуш «серия потеряна» по-русски для 6 языков интерфейса.
@@ -167,6 +168,11 @@ let streakTouchedDayKey: string | null = null;
 let streakSweptDayKey: string | null = null;
 let streakCountInFlight: Promise<number> | null = null;
 let streakPassiveInFlight: Promise<number> | null = null;
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): «день уже отмечен» — память ВЛАДЕЛЬЦА; без сброса B после смены не засчитывал день до завтра.
+onAccountOwnerChanged('streak_day_marks', () => {
+  streakTouchedDayKey = null;
+  streakSweptDayKey = null;
+});
 export function touchStreakForToday(reason: string): Promise<number> | null {
   const day = getLocalDayKey();
   if (streakTouchedDayKey === day) return null;

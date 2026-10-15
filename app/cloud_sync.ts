@@ -320,6 +320,7 @@ import {
   type CustomCardsMergeStats,
 } from './flashcards/restore_merge';
 import { warmCallableViaFetch } from './auth_warm_fetch';
+import { ACCOUNT_SWITCH_LEAK_KEYS } from './account_switch_leak_keys';
 import { invokeAuthCallable } from './auth_callable_fetch'; // зачем: вызовы входа мимо однопоточной очереди RNFirebase — под флагом auth_callables_fetch_v1 (выкл) // зачем: прогрев входа мимо однопоточной очереди RNFirebase (прогон №5)
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
@@ -852,7 +853,10 @@ const PROFILE_CARD_PUBLIC_CACHE_PREFIX = 'profile_card_public_v1';
 const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
   ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
 ];
-const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set(APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS);
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): ключи-утечки (список и смысл — app/account_switch_leak_keys.ts) стираются шагом
+// «только стирание»; реэкспорт — для сторожей и журнала.
+export { ACCOUNT_SWITCH_LEAK_KEYS };
+const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set([...APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS, ...ACCOUNT_SWITCH_LEAK_KEYS]);
 
 /** Префикс стирания для ключа или null (ключ — `prefix` или `prefix:<владелец>`). Экспорт — для сторожа. */
 export function wipeOnlyAccountKeyPrefix(key: string): string | null {
@@ -5804,6 +5808,11 @@ export async function saveAccountSwitchEmergencyBackup(
   const keySet = new Set([
     ...await collectAccountLocalDataKeys(),
     shardQueueKey,
+    // зачем (координатор 15.10): ключи-утечки стираются при выходе, но принадлежат A — в копию, чтобы при входе ТОГО ЖЕ владельца
+    // restoreAccountSwitchEmergencyBackupIfSafe вернул их (лимит голоса и заморозки — без сброса перевходом, история диалогов,
+    // лайки); чужому владельцу копия не отдаётся (different_account). В опись аккаунта (accountOwnedStorageKeysFrom) их НЕ кладём:
+    // по ней вход решает «гость чист?», и кэши вроде energy_zero_count_v1 сделали бы каждого гостя «грязным».
+    ...ACCOUNT_SWITCH_LEAK_KEYS,
   ]);
   // Reject before the potentially expensive sort. The underlying native
   // getAllKeys allocation remains a platform boundary, but this function never
@@ -6081,6 +6090,8 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   cancelPendingGeneratedNicknameRetry();
   const accountKeys = await collectAccountLocalDataKeys();
   markWipeStage('collectKeys', accountKeys.length);
+  // зачем (координатор 15.10): сколько ключей было ДО стирания — для лога survivors в конце.
+  const wipeKeysBefore = await listAllAccountLocalStorageKeys().then((keys) => keys.length, () => -1);
   // зачем (AA 2.0, S1e-2 п.2): непустой ключ S1e, не попавший в копию, стирается — делаем это видимым.
   await noteFutureKeptStashBeforeWipe(receiptOwnerStableId);
   markWipeStage('noteStash');
@@ -6210,6 +6221,39 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   }
   if (receiptOwnerStableId) {
     await assertNoOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
+  }
+  // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT): что пережило стирание — по факту, а не по списку. knownLeak обязан быть пуст;
+  // other — живой список ключей без владельца в имени (решать: устройство или утечка); ownerScoped — привязанные к владельцу.
+  // Только имена (id владельца → <owner>), без значений. Лог не меняет исход стирания.
+  try {
+    const left = (await listAllAccountLocalStorageKeys()).filter((key) => !KEEP.has(key));
+    const leakSet = new Set(ACCOUNT_SWITCH_LEAK_KEYS);
+    const knownLeak = left.filter((key) => leakSet.has(key));
+    const ownerScoped: Record<string, number> = {};
+    const other: string[] = [];
+    for (const key of left) {
+      if (leakSet.has(key)) continue;
+      if (receiptOwnerStableId && key.includes(receiptOwnerStableId)) {
+        const shape = key.split(receiptOwnerStableId).join('<owner>');
+        ownerScoped[shape] = (ownerScoped[shape] ?? 0) + 1;
+        continue;
+      }
+      other.push(redactStorageKey(key));
+    }
+    console.log(`[ACC-SWITCH-WIPE] survivors=${JSON.stringify({ before: wipeKeysBefore, knownLeak, otherCount: other.length, other: other.slice(0, 150), ownerScoped })}`); // guard-ok: одна строка на стирание, только имена
+    if (knownLeak.length > 0) {
+      identityTrace('[ACC-SWITCH-WIPE]', 'survivors_known_leak', { count: knownLeak.length, keys: knownLeak.slice(0, 5).join(',') }, { persist: true });
+    }
+  } catch (error: unknown) {
+    console.warn(`[ACC-SWITCH-WIPE] survivors scan_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+  }
+  // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴 приватность): кэш документов Firestore SDK прошлого аккаунта — очистка на следующем
+  // холодном старте, как при удалении (clearPersistence возможна только до первого обращения к Firestore). Метка переживает стирание.
+  try {
+    const { markFirestoreCacheClearPending } = await import('./firestore_cache_clear');
+    await markFirestoreCacheClearPending('account_wipe');
+  } catch (error: unknown) {
+    console.warn(`[ACC-SWITCH-WIPE] firestore_cache_mark_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
   }
   // Сбрасываем in-memory bookkeeping синка
   lastSuccessfulSyncAt = 0;

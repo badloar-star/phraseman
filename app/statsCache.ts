@@ -13,6 +13,7 @@ import { getMistakePracticeReadyCount } from './mistake_practice_insights';
 import { isStreakFreezeActiveToday, streakFreezeDateKey } from './streak_freeze';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { buildStatsActivityRows, type StatsActivityDay, type StatsActivityTimeDay } from '../modules/stats_activity_rows';
+import { onAccountOwnerChanged } from './account_owner_change';
 
 type StatsCacheStudyTarget = ReturnType<typeof storageStudyTarget>;
 
@@ -242,6 +243,12 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
 // зачем (аудит Optimistic UI, 04.10): общий промис не различал studyTarget — вызов для цели B получал результат, собранный для цели A.
 // Дедупликация теперь по цели; одновременные вызовы ОДНОЙ цели по-прежнему делят один рефреш.
 const _refreshPromises = new Map<string, Promise<StatsPreloadData | null>>();
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
+onAccountOwnerChanged('stats_preload', () => {
+  _cache = { ...DEFAULT_CACHE };
+  _hydratePromise = null;
+  _refreshPromises.clear();
+});
 
 export async function refreshStatsCache(studyTarget?: RuntimeStudyTarget): Promise<StatsPreloadData | null> {
   await hydrateStatsCacheFromStorage();

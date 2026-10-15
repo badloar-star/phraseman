@@ -34,6 +34,7 @@ import {
   type TodayTaskKindCore,
   type TodayTasksDayState,
 } from './today_tasks_core';
+import { onAccountOwnerChanged } from '../../app/account_owner_change';
 
 const LOG = '[TODAY-TASKS]';
 const STATE_KEY_PREFIX = 'today_tasks_v1:';
@@ -84,6 +85,11 @@ let current: TodayTasksDayState | null = null;
 let availableKinds: readonly TodayTaskKindCore[] | null = null;
 let queue: Promise<unknown> = Promise.resolve();
 const listeners = new Set<(state: TodayTasksDayState | null) => void>();
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
+onAccountOwnerChanged('today_tasks', () => {
+  current = null;
+  listeners.forEach((listener) => listener(null));
+});
 /**
  * зачем (аудит Optimistic UI «Главная и Уроки», 99ba26b1e; координатор 12.10): раньше при сбое записи на диск событие
  * отбрасывалось (`event:dropped`) — прогресс дня тихо терялся. Теперь состояние показывается сразу, держится в памяти

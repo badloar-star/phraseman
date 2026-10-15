@@ -35,6 +35,7 @@ import {
 } from '../modules/learning-v2/policies/decision_registry';
 import { DebugLogger, reportSwallowed } from './debug-logger';
 import { identityErrorCode, identityTag, identityTrace } from './identity_trace';
+import { ACCOUNT_SWITCH_LEAK_KEYS } from './account_switch_leak_keys';
 
 // Литерал продублирован из app/cloud_sync.ts (ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY):
 // константа там не экспортируется. При смене ключа менять в обоих местах.
@@ -319,9 +320,29 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
       () => restoreUnderLock(generationIsCurrent, options),
       options.lockTimeoutMs,
     );
-    return locked.completed ? locked.value : { status: 'lock_busy' };
+    const lockedResult: BackupRestoreResult = locked.completed ? locked.value : { status: 'lock_busy' };
+    await logLeakKeysAfterRestore(lockedResult.status);
+    return lockedResult;
   }
-  return withAccountTransitionLock(() => restoreUnderLock(generationIsCurrent, options));
+  const result = await withAccountTransitionLock(() => restoreUnderLock(generationIsCurrent, options));
+  await logLeakKeysAfterRestore(result.status);
+  return result;
+}
+
+/**
+ * Что из ключей-утечек вернулось к владельцу после долива копии.
+ * зачем (координатор 15.10): A при повторном входе получает свои лимиты, историю диалогов и лайки из копии, B — ничего.
+ * Лог показывает, совпал ли владелец (status restored / different_account) и какие ключи-утечки теперь на телефоне. Не бросает.
+ */
+async function logLeakKeysAfterRestore(status: string): Promise<void> {
+  try {
+    const rows = await AsyncStorage.multiGet([...ACCOUNT_SWITCH_LEAK_KEYS]);
+    const present = rows.filter(([, value]) => value != null).map(([key]) => key);
+    const ownerMatch = status === 'restored' ? 'true' : status === 'different_account' ? 'false' : 'n/a';
+    console.log(`[ACC-SWITCH-RESTORE] owner_match=${ownerMatch} status=${status} restored=${JSON.stringify(status === 'restored' ? present : [])} present=${present.length}`); // guard-ok: одна строка на вход
+  } catch (error: unknown) {
+    console.warn(`[ACC-SWITCH-RESTORE] scan_failed status=${status} code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+  }
 }
 
 /** Канонический id читается не больше одного раза за восстановление (слот + полки). */

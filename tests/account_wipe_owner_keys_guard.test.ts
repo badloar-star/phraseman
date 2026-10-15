@@ -34,6 +34,9 @@ const OWNER_KEY_DECISIONS: Record<string, { decision: 'wiped' | 'kept'; how: str
   practice_rune_journal_v1: { decision: 'kept', how: 'деньги: журнал рун практики' },
   community_pack_paid_ids_v1: { decision: 'kept', how: 'покупки наборов (деньги) — решение координатора: стирать при УДАЛЕНИИ, не при смене (§AUTH-0180)' },
   community_pack_sale_outbox_v1: { decision: 'kept', how: 'очередь продаж автора (деньги) — решение координатора (§AUTH-0180)' },
+  // зачем (Ядро 15.10, окна m05 Пика 3b3f7db6b): ключи с uid и языком — в чужой интерфейс не попадают (утечки нет), пересчитываются по данным Пика.
+  spire_position_seen_v1: { decision: 'kept', how: 'последняя виденная позиция в комнате Пика (uid+язык) — для окна «Тебя обогнали»' },
+  spire_last_chance_shown_v1: { decision: 'kept', how: 'неделя, в которую показан «Последний шанс» (uid+язык) — раз в неделю' },
 };
 
 describe('account wipe covers every owner-keyed local key', () => {

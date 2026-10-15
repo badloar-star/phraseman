@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { getLocalDayKey } from './local_date';
 import { recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
+import { onAccountOwnerChanged } from './account_owner_change';
 
 /**
  * Вид задания «Сегодня» для ступеней Шпиля. Шпиль по смыслу тоже засчитывает день, но это зона Codex:
@@ -61,6 +62,8 @@ export type StreakDayState = Readonly<{ dayKey: string; counted: boolean; days: 
 
 let state: StreakDayState | null = null;
 const listeners = new Set<(next: StreakDayState) => void>();
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
+onAccountOwnerChanged('streak_day_signal', () => { state = null; });
 
 /**
  * Синхронно: засчитан ли сегодняшний день. null — ещё неизвестно (до первой сверки на старте):

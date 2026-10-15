@@ -3877,7 +3877,13 @@ function accountSwitchRecoveryDependencies() {
       return premiumIdle && restoreIdle && cloudIdle;
     },
     // зачем (шаг 3): выход внутри смены сохраняет пропуск, выбранный перед сменой.
-    signOut: async (): Promise<void> => { await signOutCurrentProviderKeepingSwitchResume(); },
+    // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴 приватность): push-токен и запланированные уведомления A снимались только при
+    // УДАЛЕНИИ — телефон после выхода/смены получал пуши A. Снимаем ДО signOut (запись токена требует живой авторизации).
+    // Только здесь: общий выход провайдера зовёт и ветка восстановления, где аккаунт сохраняется.
+    signOut: async (): Promise<void> => {
+      await clearAccountPushBeforeSwitchSignOut();
+      await signOutCurrentProviderKeepingSwitchResume();
+    },
     wipeLocalData: async (): Promise<void> => { await wipeLocalAccountData(); },
     clearStableId: async (): Promise<void> => {
       await clearStableId();
@@ -5160,6 +5166,32 @@ export async function signOutCurrentProvider(): Promise<void> {
  */
 function signOutCurrentProviderKeepingSwitchResume(): Promise<void> {
   return runAccountAuthorityProviderSignOutTransition(performCurrentProviderSignOut);
+}
+
+/** Потолок ожидания снятия push при выходе: выход не должен стоять на медленной сети (токен снимет и сервер по удалённой связке). */
+const SWITCH_PUSH_CLEANUP_CAP_MS = 4_000;
+
+/** Снять локальные уведомления и push-токен уходящего аккаунта. Никогда не бросает; итог — [ACC-SWITCH-WIPE] push_cleanup. */
+async function clearAccountPushBeforeSwitchSignOut(): Promise<void> {
+  const startedAtMs = Date.now();
+  const step = (name: string, run: () => Promise<void>): Promise<string> => run().then(
+    () => `${name}:ok`,
+    (error: unknown) => {
+      console.warn(`[ACC-SWITCH-WIPE] push_cleanup step=${name} failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+      return `${name}:failed`;
+    },
+  );
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const capped = new Promise<string[]>((resolve) => { timer = setTimeout(() => resolve(['timeout']), SWITCH_PUSH_CLEANUP_CAP_MS); });
+  const result = await Promise.race([
+    Promise.all([
+      step('notifications', async () => { const { cancelAllNotifications } = await import('./notifications'); await cancelAllNotifications(); }),
+      step('push_token', async () => { const { clearPushTokenForServerPush } = await import('./push_token_registration'); await clearPushTokenForServerPush(); }),
+    ]),
+    capped,
+  ]);
+  if (timer) clearTimeout(timer);
+  console.log(`[ACC-SWITCH-WIPE] push_cleanup result=${result.join(',')} ms=${Date.now() - startedAtMs}`); // guard-ok: одна строка на выход
 }
 
 async function performCurrentProviderSignOut(): Promise<void> {

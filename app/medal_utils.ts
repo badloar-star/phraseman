@@ -11,6 +11,7 @@ import {
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { onAccountOwnerChanged } from './account_owner_change';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
@@ -224,6 +225,8 @@ let _medalsCacheByTarget: Partial<Record<string, MedalTier[]>> = {};
 
 /** Invalidate medal cache (call after saveMedalProgress / saveExamProgress) */
 export const invalidateMedalsCache = () => { _medalsCacheByTarget = {}; };
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
+onAccountOwnerChanged('medals', invalidateMedalsCache);
 
 // Загружает медали для всех 32 уроков разом (cached in memory)
 export const loadAllMedals = async (studyTarget?: RuntimeStudyTarget): Promise<MedalTier[]> => {

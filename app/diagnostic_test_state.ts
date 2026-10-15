@@ -10,6 +10,7 @@
  * вместо ложного нуля.
  */
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { onAccountOwnerChanged } from './account_owner_change';
 
 export type DiagnosticReadinessPeek = {
   examLessonsDone: number;
@@ -17,6 +18,8 @@ export type DiagnosticReadinessPeek = {
 };
 
 let peekByTarget: Partial<Record<string, DiagnosticReadinessPeek>> = {};
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
+onAccountOwnerChanged('diagnostic_peek', () => { peekByTarget = {}; });
 
 export function peekDiagnosticReadiness(studyTarget?: RuntimeStudyTarget): DiagnosticReadinessPeek | null {
   return peekByTarget[storageStudyTarget(studyTarget)] ?? null;

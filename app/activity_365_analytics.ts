@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { statsDailyBreakdownKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { onAccountOwnerChanged } from './account_owner_change';
 
 export const ACTIVITY_365_GOAL_KEY = 'activity_365_goal_v1';
 export const STATS_DAILY_BREAKDOWN_KEY = 'stats_daily_breakdown_v1';
@@ -537,6 +538,8 @@ export function computeActivity365Analytics(params: {
 const ANALYTICS_CACHE_TTL_MS = 60_000; // 1 min — avoids recompute on every tab focus
 const ANALYTICS_CACHE_MAX_TARGETS = 4;
 const _analyticsCache = new Map<string, { result: Activity365Analytics; expiresAt: number }>();
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
+onAccountOwnerChanged('activity_365', () => { _analyticsCache.clear(); });
 const _analyticsInFlight = new Map<string, Promise<Activity365Analytics>>();
 
 export type Activity365AnalyticsSnapshot = {

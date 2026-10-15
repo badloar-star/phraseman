@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { isDevDialogVoiceSpent } from './dev_dialog_state';
 import { getLocalDayKey } from './local_date';
+import { onAccountOwnerChanged } from './account_owner_change';
 
 export const FREE_DIALOG_VOICE_DAILY_LIMIT = 3;
 export const DIALOG_VOICE_ATTEMPTS_KEY = 'dialogue_v2_voice_attempts_v1';
@@ -26,6 +27,12 @@ function localDayKey(nowMs: number): string {
 let memory: DialogVoiceAttempts | null = null;
 let hydrated = false;
 const listeners = new Set<() => void>();
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
+onAccountOwnerChanged('dialog_voice_attempts', () => {
+  memory = null;
+  hydrated = false;
+  emit();
+});
 
 function emit(): void {
   for (const listener of listeners) listener();

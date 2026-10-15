@@ -339,6 +339,10 @@ function aProgressKeys(lv2Key: string, lv2Value: string): ProbeKey[] {
     { label: 'Ранг монеты', key: `coin_rank_v1:${A.stable}`, value: '{"schemaVersion":"coin-rank-state.v1","rank":3}' },
     { label: 'Визитка «Про»', key: `profile_card_pro_v1:${A.stable}`, value: '{"schemaVersion":"profile-card-pro.v1","owned":true}' },
     { label: 'Карта Learning V2', key: lv2Key, value: lv2Value },
+    // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT): ключи без владельца в имени — раньше доставались Б; теперь стираются при выходе
+    // и возвращаются к A из аварийной копии (лимит голоса без сброса перевходом, отложенная заморозка серии).
+    { label: 'Голосовые попытки Диалогов (лимит дня)', key: 'dialogue_v2_voice_attempts_v1', value: '{"day":"2026-10-15","count":3}' },
+    { label: 'Отложенная заморозка Plus', key: 'streak_plus_freeze_pending_v1', value: '{"gapDay":"2026-10-14","keptStreak":12,"createdDay":"2026-10-15","reason":"premium_check_timeout"}' },
   ];
 }
 
@@ -816,6 +820,7 @@ describe('AA: A → выход → Б → выход → A на том же те
     const fromBackup = result.observations.filter((item) => item.source === 'аварийная копия');
     expect(fromBackup.map((item) => item.key.split(':')[0]).sort()).toEqual([
       'coin_rank_v1',
+      'dialogue_v2_voice_attempts_v1',
       'level_spin_star_grant_outbox_v1',
       'level_spin_star_operation_v1',
       'level_spin_star_prepared_v1',
@@ -823,6 +828,7 @@ describe('AA: A → выход → Б → выход → A на том же те
       'mistake_practice_v2',
       'practice_rune_journal_v1',
       'profile_card_pro_v1',
+      'streak_plus_freeze_pending_v1',
     ]);
     for (const item of fromBackup) {
       expect({ key: item.key, cloud: item.inCloudAfterAExit, backup: item.inAFirstBackup })

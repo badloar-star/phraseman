@@ -3,7 +3,8 @@
 Governance-ID: TG-56FE89D82EB3
 Governance-ID: TG-498E8DBC6369
 Governance-ID: TG-531395C62788
-Status: In progress (заплатка готовится вне app/, на диск — после №7)
+Governance-ID: TG-756D964D8F35
+Status: Applying (координатор 07:08: №7 не стартовал — применить сейчас)
 Owner: Ядро (сессия 1)
 Related epic/enabler: docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md (bf8fa36b6), координатор 15.10 — 🔴 №1 к сборке 16.10
 

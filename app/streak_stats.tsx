@@ -76,6 +76,7 @@ const EXEMPT_COLOR_2 = '#35D07F'; // theme-exempt: семантические ц
 const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.08)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { accentGraphicOf } from '../constants/themeAccentRoles';
+import { onAccountOwnerChanged } from './account_owner_change';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -1088,6 +1089,11 @@ function mergeDevRandomSumsIntoLifetime(base: LifetimeProfileStats, sums: DevLif
  * приложения, так что повторные визиты сразу показывают верное число. */
 let achievementCountPeek: number | null = null;
 let recentAchievementIdsPeek: string[] | null = null;
+// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
+onAccountOwnerChanged('streak_stats_peeks', () => {
+  achievementCountPeek = null;
+  recentAchievementIdsPeek = null;
+});
 
 /* зачем (PM-191): «Прочность памяти»/CEFR-строка (MemoryGauge, CefrLine) и её
  * JournalMemorySnapshot peek удалены целиком — «Закреплено фраз» была непонятной

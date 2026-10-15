@@ -46,3 +46,29 @@
 ## Дальше
 
 - ~21:00 — `build_rehearsal.sh` на итоговом HEAD (R26). Последняя строка `[REHEARSAL]` будет здесь и в ответе владельцу.
+
+## Дополнение 19:15 — R68 (Пик), m08, ES, Reanimated
+
+- R68 ✅ 8b6174b3c — `spire_pack_client`: 403 → `reason=forbidden` с громким логом про правила Storage, 404 → `not_found`.
+  Пакеты: 5 языков × 12 ярусов × W41/W42 есть. **W43 (следующая неделя) нет** — крон собирает её по своему расписанию.
+  Минимальное действие — `firebase deploy --only storage --project phraseman-ea0b3`. Разница с продом — только блок
+  `spire_packs`. Откат — переопубликовать `rulesets/21ed09d6-1ca2-42d0-8c9f-c756ae8eef2b`.
+- `moments_v3=false` — задумано: по D197 включается 17.10 вместе со сторис (SERVER_DEPLOY, шаг флагов, строки 234–244).
+- `combo_moment_m08` — в HEAD зелёный (8/8). Краснел от промежуточного состояния чужой незакоммиченной правки
+  `lesson1.tsx` (+12/−2 в рабочей копии), регрессии кода нет.
+- `learning_v2_es_bundle_reachability_guard` красный и на текущем дереве. В рабочей копии чужая незакоммиченная правка
+  `modules/learning-v2/content/source/episode_01_session_05_v1.ts`: `generationInputFingerprint` → SHA-256. Комментарий
+  на английском — стиль Codex (на машине 64 процесса codex). Второй кандидат — сессия «Learning V2 сессии: анализ и
+  переписывание [a1cd94]». Автор по рабочей копии не определяется. В `buildEsPlayableShard` 4 немых `return null` —
+  почему потолок ES = 0, по журналу не видно; нужны логи веток.
+- Reanimated `ANDROID_SYNCHRONOUSLY_UPDATE_UI_PROPS` — правка подготовлена, НЕ применена:
+  ```json
+  "reanimated": { "staticFeatureFlags": { "ANDROID_SYNCHRONOUSLY_UPDATE_UI_PROPS": true } }
+  ```
+  Риски по документации Reanimated:
+  - (1) касания по компонентам с анимированным transform — у нас нажатия с анимацией масштаба
+    (TapScale/Pressable) повсюду; docs советуют `Pressable` из gesture-handler;
+  - (2) рассинхронизация на один кадр с коммитом React — исправлена только в 4.7.1, у нас 4.1.7.
+
+  Рекомендация Ядра: в сборку 16.10 не включать без ручного прогона нажатий на эмуляторе в dev-клиенте с флагом.
+  Флаг требует нативной пересборки.

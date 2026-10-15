@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-17:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-17:intro1:r2": {
-          "ru": "В записи слышно название одной ёмкости: `container`, без окончания множественного числа.",
-          "uk": "У записі чути назву однієї ємності: `container`, без закінчення множини."
+          "ru": "Это несколько ягод, а здесь одна: `This is a berry`.",
+          "uk": "Це кілька ягід, а тут одна: `This is a berry`."
         },
         "en:lesson-04:session-17:intro1:r3": {
-          "ru": "`Berry` — ягода, а не ёмкость для хранения.",
-          "uk": "`Berry` — ягода, а не ємність для зберігання."
+          "ru": "После `a` нужна одна ягода: `a berry`.",
+          "uk": "Після `a` потрібна одна ягода: `a berry`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-17:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-17:intro2:r2": {
-          "ru": "Здесь контейнеров несколько, поэтому нужны `There are` и `some containers`.",
-          "uk": "Тут контейнерів кілька, тому потрібні `There are` і `some containers`."
+          "ru": "Ягод несколько: `There are some berries here`.",
+          "uk": "Ягід кілька: `There are some berries here`."
         },
         "en:lesson-04:session-17:intro2:r3": {
-          "ru": "`A` бывает перед одним контейнером; здесь нужно `some containers`.",
-          "uk": "`A` буває перед одним контейнером; тут потрібно `some containers`."
+          "ru": "`a` относится к одной вещи; для некоторого количества ягод нужно `some berries`.",
+          "uk": "`a` стосується однієї речі; для певної кількості ягід потрібне `some berries`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-17:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-17:intro3:r2": {
-          "ru": "Это сообщение об одном контейнере, а здесь контейнеров несколько.",
-          "uk": "Це повідомлення про один контейнер, а тут контейнерів кілька."
+          "ru": "`berries` — несколько: `Are there any berries here?`.",
+          "uk": "`berries` — кілька: `Are there any berries here?`."
         },
         "en:lesson-04:session-17:intro3:r3": {
-          "ru": "В записи есть слово количества `some`, поэтому нужна полная фраза.",
-          "uk": "У записі є слово кількості `some`, тому потрібна повна фраза."
+          "ru": "В этом вопросе сначала `Are there`: `Are there any berries here?`.",
+          "uk": "У цьому запитанні спочатку `Are there`: `Are there any berries here?`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "af2b1939da484e6486f003711e3eee745630124758352c8d9520a9bff9c3eabb"
+  "auxiliaryFingerprint": "8301e988f1b87e939f707bf2bb471718fd5ce4ed7c3944c80f34094594babb86"
 }

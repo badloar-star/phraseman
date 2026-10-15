@@ -1,127 +1,137 @@
-# Английский · Урок 4 · Занятие 17 — «Контейнеры после рынка»
+# Английский · Урок 4 · Занятие 17 — Ягоды для гостей
 
-**Сцена занятия.** После рынка вы раскладываете ягоды в контейнеры общего холодильника. Сначала называете новый предмет, затем сообщаете, что таких предметов несколько.
-**Как сказать:** сообщить об ограниченном количестве предметов через `There are some + plural noun`.
-**Новое слово:** container
-**Возвращается:** berry
+**Ситуация.** Вы помогаете другу подготовиться к приходу гостей: проверяете ягоды и книги для детей. Друг недавно был у стоматолога, и вы рассказываете, что теперь он хорошо себя чувствует.
+
+**Что вы освоите:** сообщить о нескольких предметах с some и спросить об их наличии с any
+**Новые слова:** berry
+
+---
 
 ## Интро 1
 
-### `container` — контейнер
+### Одна ягода
 
-`container` — «контейнер», ёмкость для хранения еды или вещей. Когда контейнеров несколько, слово получает окончание `-s`: `containers`.
+`berry` — «ягода». Несколько — `berries`: в конце вместо `y` пишем `ies`. `This is a berry` — «Это ягода». Клубника крупная, но одна клубника всё равно одна ягода. Размер не превращает `berry` в `berries`.
 
-Образец на столе один: назовите одну ёмкость, прежде чем говорить о нескольких в следующем шаге.
+**Назовите одну ягоду рядом: «Это ягода».**
 
-**После рынка на столе стоит одна ёмкость для ягод. Выберите слово.**
+- ✅ **This is a berry.**
+- ❌ These are berries. — *Это несколько ягод, а здесь одна: `This is a berry`.*
+- ❌ This is a berries. — *После `a` нужна одна ягода: `a berry`.*
 
-- ✅ **container**
-- ❌ containers — *В записи слышно название одной ёмкости: `container`, без окончания множественного числа.*
-- ❌ berry — *`Berry` — ягода, а не ёмкость для хранения.*
+---
 
 ## Интро 2
 
-### `some` перед несколькими предметами
+### Есть немного
 
-`There are some containers.` — «Есть несколько контейнеров». `There are` показывает несколько, а `some` — ограниченное количество. Перед одним контейнером говорим `There is a container`. Полная фраза звучит так: `There are some containers.`
+`There are some berries` — «Есть немного ягод». `some` здесь означает некоторое количество; точное число мы не называем. Слова без `some` тоже возможны: `There are berries` — «Есть ягоды». Сегодня потренируем вариант с `some`. Со знакомыми книгами так же: `There are some books` — «Есть несколько книг».
 
-**Выберите полное сообщение.**
+**Сообщите, что здесь есть немного ягод. Используйте `some`.**
 
-- ✅ **There are some containers**
-- ❌ There is a container. — *Здесь контейнеров несколько, поэтому нужны `There are` и `some containers`.*
-- ❌ There are a container. — *`A` бывает перед одним контейнером; здесь нужно `some containers`.*
+- ✅ **There are some berries here.**
+- ❌ There is some berries here. — *Ягод несколько: `There are some berries here`.*
+- ❌ There are a berries here. — *`a` относится к одной вещи; для некоторого количества ягод нужно `some berries`.*
+
+---
 
 ## Интро 3
 
-### Ягоды возвращаются в новой конструкции
+### А есть ли вообще?
 
-`berry` мы уже встречали. Для ягод на столе есть несколько новых контейнеров: `There are some containers for berries.` Новая цель занятия — поставить `some` перед множественным числом и начать сообщение с `There are`; `berry` здесь остаётся знакомым словом.
+Когда вы ещё не знаете, есть ли ягоды, обычный вопрос: `Are there any berries?` — «Есть ли ягоды?» Здесь `any` помогает спросить, есть ли хоть какие-нибудь. `Are there any books?` — «Есть ли книги?» Это не правило «в вопросах всегда any»: `some` тоже бывает в вопросах, но сейчас мы просто выясняем наличие, не предполагая ответа.
 
-**На столе стоит несколько контейнеров для ягод. Выберите сообщение о них.**
+**Вы не знаете, остались ли ягоды. Спросите с `any`, есть ли они здесь.**
 
-- ✅ **There are some containers for berries.**
-- ❌ There is a container. — *Это сообщение об одном контейнере, а здесь контейнеров несколько.*
-- ❌ There are containers. — *В записи есть слово количества `some`, поэтому нужна полная фраза.*
+- ✅ **Are there any berries here?**
+- ❌ Is there any berries here? — *`berries` — несколько: `Are there any berries here?`.*
+- ❌ There are any berries here? — *В этом вопросе сначала `Are there`: `Are there any berries here?`.*
 
-## Практика — по одной цели
+---
 
-**1 · Послушайте и выберите новое слово**
-<!-- interaction_id: en:lesson-04:session-17:i01; family: listen_choose -->
-Цель: `container`
-🔊 *container*
-Значения вариантов: container — контейнер · containers — контейнеры · berry — ягода
-→ **container** · containers · berry
-- containers — *В записи слышно название одной ёмкости: `container`, без окончания множественного числа.*
-- berry — *В записи назван контейнер, а не ягода.*
+## Практика (17 заданий)
 
-**2 · Произнесите новое слово**
-<!-- interaction_id: en:lesson-04:session-17:i02; family: scripted_repeat_compare -->
-Цель: `container`
-🎙 **container**
+**1 · Друг после визита к стоматологу хорошо себя чувствует. Скажите «Он здоров»**
+<!-- interaction_id: en:lesson-04:session-17:i01; family: phrase_builder -->
+Плитки: `well` `is` `He` `are` → **He is well.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is well.`)*
 
-**3 · Соедините слова с переводами**
-<!-- interaction_id: en:lesson-04:session-17:i03; family: speed_match -->
-Пары: `container` — контейнер · `berry` — ягода · `basket` — корзина · `bag` — сумка
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-04:session-17:i02; family: listen_choose -->
+🔊 *berry* → **berry** · berries · book
+- berries — *В записи первое слово — `berry`, а в этом варианте — `berries`.*
+- book — *В записи первое слово — `berry`, а в этом варианте — `book`.*
 
-**4 · Послушайте сообщение о нескольких контейнерах**
-<!-- interaction_id: en:lesson-04:session-17:i04; family: listen_choose -->
-Цель: `There are some containers here.`
-🔊 *There are some containers here.*
-Значения вариантов: There are some containers here. — Здесь есть несколько контейнеров. · There is a container here. — Здесь есть один контейнер. · There are containers here. — Здесь есть контейнеры.
-→ **There are some containers here.** · There is a container here. · There are containers here.
-- There is a container here. — *В записи несколько контейнеров: нужны `There are` и `some containers`.*
-- There are containers here. — *Число верное, но в записи есть ещё ограниченное количество `some`.*
+**3 · Назовите одну ягоду**
+<!-- interaction_id: en:lesson-04:session-17:i03; family: context_gap_grammar -->
+___ → **berry** · berries · books
+- berries — *`berries` — несколько ягод; одна — `berry`.*
+- books — *`books` — книги; ягода — `berry`.*
 
-**5 · Соберите сообщение о нескольких контейнерах**
-<!-- interaction_id: en:lesson-04:session-17:i05; family: phrase_builder -->
-Цель: `There are some containers on the table.`
-Плитки: `There` · `are` · `some` · `containers` · `on` · `the` · `table` · `is` · `a`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-17:i04; family: speed_match -->
+berry — ягода · well — здоровый, хорошо себя чувствующий · books — книги · dentist — стоматолог
 
-**6 · Вставьте слово количества**
-<!-- interaction_id: en:lesson-04:session-17:i06; family: context_gap_grammar -->
-There are ___ containers by the door. → **some** · the · a
-- the — *В этой утвердительной фразе ограниченное количество передаём через `some`.*
-- a — *`A` не ставим перед множественным числом `containers`.*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-17:i05; family: listen_build_dictation -->
+🔊 *This is a berry.* Плитки: `berry` `a` `is` `This` `are` → **This is a berry.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a berry.`)*
 
-**7 · Послушайте сообщение о нескольких ягодах**
-<!-- interaction_id: en:lesson-04:session-17:i07; family: listen_build_dictation -->
-Цель: `There are some berries in the basket.`
-🔊 *There are some berries in the basket.*
-Плитки: `There` · `are` · `some` · `berries` · `in` · `the` · `basket` · `is` · `a`
+**6 · Для детей нашлись книги. Сообщите «Есть несколько книг» с some**
+<!-- interaction_id: en:lesson-04:session-17:i06; family: phrase_builder -->
+Плитки: `books` `some` `are` `There` `is` → **There are some books.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are some books.`)*
 
-**8 · Послушайте и выберите полное сообщение**
-<!-- interaction_id: en:lesson-04:session-17:i08; family: listen_choose -->
-Цель: `There are some containers for berries.`
-🔊 *There are some containers for berries.*
-Значения вариантов: There are some containers for berries. — Для ягод есть несколько контейнеров. · There are containers for berries. — Для ягод есть контейнеры. · There is a container for berries. — Для ягод есть один контейнер.
-→ **There are some containers for berries.** · There are containers for berries. · There is a container for berries.
-- There are containers for berries. — *В записи слышно `some`: количество ограничено, поэтому выбирайте полную фразу.*
-- There is a container for berries. — *В записи контейнеров несколько, поэтому нужны `There are some containers`.*
+**7 · Вы не знаете, есть ли ягоды для гостей. Спросите «Есть ли ягоды?» с any**
+<!-- interaction_id: en:lesson-04:session-17:i07; family: scripted_repeat_compare -->
+🎙 **Are there any berries?**
 
-**9 · Соберите сообщение о нескольких ягодах**
-<!-- interaction_id: en:lesson-04:session-17:i09; family: phrase_builder -->
-Цель: `There are some berries on the table.`
-Плитки: `There` · `are` · `some` · `berries` · `on` · `the` · `table` · `is` · `a`
+**8 · Сообщите «Здесь есть немного ягод»**
+<!-- interaction_id: en:lesson-04:session-17:i08; family: context_gap_grammar -->
+There are ___ berries here. → **some** · a · an
+- a — *`a` относится к одной вещи; здесь несколько ягод: `some berries`.*
+- an — *`an` тоже относится к одной вещи; здесь нужно `some berries`.*
 
-**10 · Послушайте и соберите сообщение о контейнерах**
-<!-- interaction_id: en:lesson-04:session-17:i10; family: listen_build_dictation -->
-Цель: `There are some containers near the basket.`
-🔊 *There are some containers near the basket.*
-Плитки: `There` · `are` · `some` · `containers` · `near` · `the` · `basket` · `is` · `a`
+**9 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-04:session-17:i09; family: listen_choose -->
+🔊 *Are there any books?* → **Are there any books?** · Are there any berries? · Are there any coats?
+- Are there any berries? — *В записи последнее слово — `books`, а в этом варианте — `berries`.*
+- Are there any coats? — *В записи последнее слово — `books`, а в этом варианте — `coats`.*
 
-**11 · выберите слово количества**
-<!-- interaction_id: en:lesson-04:session-17:i11; family: context_gap_grammar -->
-There are ___ berries near the basket. → **some** · the · a
-- the — *`The` указывает на конкретные ягоды, уже известные собеседнику. Здесь речь просто о нескольких ягодах, поэтому нужно `some`.*
-- a — *`A` бывает с одной ягодой, а `berries` — множественное число.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-17:i10; family: speed_match -->
+berry — ягода · berries — ягоды · books — книги · dentist — стоматолог
 
-**12 · сообщите о контейнерах возле стола**
+**11 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-04:session-17:i11; family: listen_build_dictation -->
+🔊 *There are some berries.* Плитки: `berries` `some` `are` `There` `is` → **There are some berries.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are some berries.`)*
+
+**12 · Вы осматриваете комнату для гостей. Спросите «Здесь есть книги?» с any**
 <!-- interaction_id: en:lesson-04:session-17:i12; family: phrase_builder -->
-Цель: `There are some containers near the table.`
-Плитки: `There` · `are` · `some` · `containers` · `near` · `the` · `table` · `is` · `a`
+Плитки: `here` `books` `any` `there` `Are` → **Are there any books here?**
 
-## Для сборщика
+**13 · Друг теперь хорошо себя чувствует. Скажите «Он здоров» с сокращением**
+<!-- interaction_id: en:lesson-04:session-17:i13; family: scripted_repeat_compare -->
+🎙 **He's well.**
 
-atomic_practice: practice.atomic.json
-new_words: container — контейнер — Ёмкость для хранения еды или вещей.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=speed_match, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=listen_choose, 9=phrase_builder, 10=listen_build_dictation, 11=context_gap_grammar, 12=phrase_builder
+**14 · Спросите, есть ли здесь ягоды**
+<!-- interaction_id: en:lesson-04:session-17:i14; family: context_gap_grammar -->
+___ there any berries here? → **Are** · Is · Am
+- Is — *Ягод несколько: `Are there any berries here?`.*
+- Am — *Вопрос о ягодах начинается с `Are there`.*
+
+**15 · Послушайте, кем работает один из гостей**
+<!-- interaction_id: en:lesson-04:session-17:i15; family: listen_choose -->
+🔊 *He is a dentist.* → **He is a dentist.** · He is a doctor. · He is a teacher.
+- He is a doctor. — *В записи последнее слово — `dentist`, а в этом варианте — `doctor`.*
+- He is a teacher. — *В записи последнее слово — `dentist`, а в этом варианте — `teacher`.*
+
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-17:i16; family: speed_match -->
+berry — ягода · well — здоровый, хорошо себя чувствующий · books — книги · dentist — стоматолог
+
+**17 · В другой день вы выбираете продукты для завтрака и не знаете, есть ли ягоды. Спросите «Здесь есть ягоды?» с any**
+<!-- interaction_id: en:lesson-04:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Are there any berries here?**
+

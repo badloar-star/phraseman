@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import React, { memo, useEffect, useState, type ReactNode } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useEffect, useRef, useState, type ReactNode } from 'react';
+import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Reanimated, {
   useAnimatedStyle,
   useReducedMotion,
@@ -171,6 +171,8 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
   const insets = useStableSafeAreaInsets();
   // зачем (Макеты 06b311f0d, 🟡 б: «УРОК ПРОЙДЕН» заезжает под значки статус-бара при прокрутке — следствие 80c6cc2e0): верхний скрим цвета фона экрана, только после прокрутки (порог 6 dp, одно переключение на пересечение)
   const [scrolled, setScrolled] = useState(false);
+  const fadeOpacity = useRef(new Animated.Value(0)).current;
+  useEffect(() => { Animated.timing(fadeOpacity, { toValue: scrolled ? 1 : 0, duration: scrolled ? 160 : 220, useNativeDriver: true }).start(); }, [scrolled, fadeOpacity]);
   const reduced = useReducedMotion();
   const animate = !reduced;
   const c = copy(lang);
@@ -182,6 +184,10 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
   const Chain = props.chain ? (require('./V2DoneChain') as typeof import('./V2DoneChain')) : null;
   const beat = (i: number, node: ReactNode): ReactNode => (Chain ? <Chain.ChainBeat index={i}>{node}</Chain.ChainBeat> : node);
   const FOOT = 7;
+  // высота закреплённой шапки (inset + отступ 8 + строка 44) и скрима: непрозрачно до низа шапки, ниже растворение TOP_FADE_FEATHER
+  const topFadeSolidH = insets.top + 8 + HEAD_H;
+  const topFadeH = topFadeSolidH + TOP_FADE_FEATHER;
+  const topFadeSolid = topFadeSolidH / topFadeH;
   const DOCK_BEAT = 1;
 
   if (Chain && props.chain) {
@@ -205,19 +211,8 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         keyboardShouldPersistTaps="handled"
         automaticallyAdjustKeyboardInsets decelerationRate="fast"
       >
-        <View style={s.head}>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={c.close}
-            hitSlop={8}
-            onPress={() => { hapticTap(); props.onClose(); }}
-            style={[s.round, { backgroundColor: g.opaqueCard }]}
-          >
-            <Ionicons name="close" size={20} color={g.text} />
-          </Pressable>
-          {/* зачем (эталон m10): в цепочке баланс живёт в строке монет — туда летят монеты; второй плашки в шапке нет */}
-          {Chain ? null : <BalancePill g={g} lang={lang} />}
-        </View>
+        {/* зачем (Сверка lc3_marine_b, 🔴 б: при прокрутке «×» уходила под статус-бар): шапка закреплена поверх прокрутки (ниже), а здесь — пустое место её высоты, чтобы раскладка не изменилась */}
+        <View style={s.headSpacer} />
 
         {Chain ? (
           <>
@@ -323,15 +318,25 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         {props.feedbackSlot ? <View style={{ marginTop: 14 }}>{props.feedbackSlot}</View> : null}
         </>))}
       </ScrollView>
-      {scrolled ? (
-        <LinearGradient
-          pointerEvents="none"
-          testID="v2-done-top-fade"
-          colors={[g.bg, g.bg, alphaHex(g.bg, 0)]}
-          locations={[0, insets.top / (insets.top + TOP_FADE_FEATHER), 1]}
-          style={[s.topFade, { height: insets.top + TOP_FADE_FEATHER }]}
-        />
-      ) : null}
+      {/* зачем (Макеты 06b311f0d + Сверка): скрим сверху — непрозрачный на высоту шапки (inset + отступ + кнопка), ниже растворяется; плавно (160/220 мс) после прокрутки; шапка лежит поверх */}
+      <Animated.View pointerEvents="none" testID="v2-done-top-fade" style={[s.topFade, { height: topFadeH, opacity: fadeOpacity }]}>
+        <LinearGradient pointerEvents="none" colors={[g.bg, g.bg, alphaHex(g.bg, 0)]} locations={[0, topFadeSolid, 1]} style={StyleSheet.absoluteFill} />
+      </Animated.View>
+      <View pointerEvents="box-none" testID="v2-done-head" style={[s.headPinned, { paddingTop: insets.top + 8 }]}>
+        <View style={s.head}>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={c.close}
+            hitSlop={8}
+            onPress={() => { hapticTap(); props.onClose(); }}
+            style={[s.round, { backgroundColor: g.opaqueCard }]}
+          >
+            <Ionicons name="close" size={20} color={g.text} />
+          </Pressable>
+          {/* зачем (эталон m10): в цепочке баланс живёт в строке монет — туда летят монеты; второй плашки в шапке нет */}
+          {Chain ? null : <BalancePill g={g} lang={lang} />}
+        </View>
+      </View>
 
       {dock(
         <>
@@ -364,18 +369,27 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
 
   function dock(children: ReactNode) {
     // зачем (Ревизор 15.10): кнопки не ждут конца цепочки (было 4,6 с) — всплывают вторым ударом, на 0,92 с, и сразу принимают тап
-    if (Chain) return <Chain.ChainBeat index={DOCK_BEAT} style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{children}</Chain.ChainBeat>;
-    return <View style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{children}</View>;
+    // зачем (Сверка c1_reset2, г: карточка «Ошибки» обрезалась доком, не видно, что ниже есть контент): нижнее затухание над доком — прозрачный → цвет фона на DOCK_FADE_H
+    const fade = <LinearGradient pointerEvents="none" testID="v2-done-dock-fade" colors={[alphaHex(g.bg, 0), g.bg]} style={s.dockFade} />;
+    if (Chain) return <Chain.ChainBeat index={DOCK_BEAT} style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{fade}{children}</Chain.ChainBeat>;
+    return <View style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{fade}{children}</View>;
   }
 }
 
 /** Порог прокрутки (dp), с которого включается верхний скрим, и высота растворения под inset. */
 const TOP_FADE_SHOW_AT = 6;
 const TOP_FADE_FEATHER = 28;
+/** Высота строки шапки (крестик 44 / баланс): совпадает с minHeight s.head и местом-заглушкой в прокрутке. */
+const HEAD_H = 44;
+/** Нижнее затухание над доком (Сверка: карточка «Ошибки» обрезалась доком, не видно, что ниже есть контент). */
+const DOCK_FADE_H = 28;
 
 const s = StyleSheet.create({
   root: { flex: 1 },
   topFade: { position: 'absolute', top: 0, left: 0, right: 0 },
+  headPinned: { position: 'absolute', top: 0, left: 0, right: 0, paddingHorizontal: 20 },
+  headSpacer: { height: HEAD_H },
+  dockFade: { position: 'absolute', left: 0, right: 0, top: -DOCK_FADE_H, height: DOCK_FADE_H },
   content: { paddingHorizontal: 20 },
   head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 44 },
   // зачем («Тень» 12.10): плашки без обводок — заливка и тень из ShadowSurface

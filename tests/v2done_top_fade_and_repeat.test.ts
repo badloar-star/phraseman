@@ -5,23 +5,43 @@ import path from 'node:path';
 
 const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
-describe('«Итог урока»: верхний скрим при прокрутке', () => {
+describe('«Итог урока»: шапка закреплена, скрим сверху и затухание над доком', () => {
   const src = read('components/completion/V2DoneScreen.tsx');
 
-  it('скрим цвета фона экрана, прозрачный к низу, высота = inset + 28; включается порогом 6 dp, в покое скрыт', () => {
-    expect(src).toContain('const [scrolled, setScrolled] = useState(false);');
-    expect(src).toContain('const next = e.nativeEvent.contentOffset.y > TOP_FADE_SHOW_AT;');
-    expect(src).toContain('setScrolled((prev) => (prev === next ? prev : next));');
-    expect(src).toContain('colors={[g.bg, g.bg, alphaHex(g.bg, 0)]}');
-    expect(src).toContain('locations={[0, insets.top / (insets.top + TOP_FADE_FEATHER), 1]}');
-    expect(src).toContain('const TOP_FADE_SHOW_AT = 6;');
-    expect(src).toContain('const TOP_FADE_FEATHER = 28;');
-    expect(src).toContain('{scrolled ? (');
+  it('🔴 «×» не прокручивается под статус-бар: шапка (крестик и баланс) вынесена из прокрутки и закреплена, в прокрутке — пустое место её высоты', () => {
+    expect(src).toContain('<View pointerEvents="box-none" testID="v2-done-head" style={[s.headPinned, { paddingTop: insets.top + 8 }]}>');
+    expect(src).toContain('<View style={s.headSpacer} />');
+    expect(src).toContain("headPinned: { position: 'absolute', top: 0, left: 0, right: 0, paddingHorizontal: 20 },");
+    expect(src).toContain('headSpacer: { height: HEAD_H },');
+    expect(src).toContain('const HEAD_H = 44;');
+    // крестик живёт только в закреплённой шапке — не дублируется в прокрутке
+    expect(src.match(/accessibilityLabel=\{c\.close\}/g)?.length).toBe(1);
   });
 
-  it('скрим — того же цвета, что корень экрана (шва нет); не перехватывает касания', () => {
+  it('верхний скрим: цвет фона экрана, непрозрачный до низа шапки, ниже растворение 28; плавно (160/220 мс) после прокрутки >6 dp; в покое скрыт', () => {
+    expect(src).toContain('const [scrolled, setScrolled] = useState(false);');
+    expect(src).toContain('const next = e.nativeEvent.contentOffset.y > TOP_FADE_SHOW_AT;');
+    expect(src).toContain('colors={[g.bg, g.bg, alphaHex(g.bg, 0)]}');
+    expect(src).toContain('const topFadeSolidH = insets.top + 8 + HEAD_H;');
+    expect(src).toContain('const topFadeH = topFadeSolidH + TOP_FADE_FEATHER;');
+    expect(src).toContain('locations={[0, topFadeSolid, 1]}');
+    expect(src).toContain('toValue: scrolled ? 1 : 0, duration: scrolled ? 160 : 220');
+    expect(src).toContain('const TOP_FADE_SHOW_AT = 6;');
+    expect(src).toContain('const TOP_FADE_FEATHER = 28;');
+  });
+
+  it('скрим того же цвета, что корень экрана (шва нет); не перехватывает касания; шапка лежит поверх скрима', () => {
     expect(src).toContain('style={[s.root, { backgroundColor: g.bg }]}');
-    expect(src).toMatch(/<LinearGradient\s+pointerEvents="none"\s+testID="v2-done-top-fade"/);
+    expect(src).toMatch(/<Animated\.View pointerEvents="none" testID="v2-done-top-fade"/);
+    expect(src.indexOf('testID="v2-done-top-fade"')).toBeLessThan(src.indexOf('testID="v2-done-head"'));
+  });
+
+  it('(г) нижнее затухание над доком: прозрачный → цвет фона, 28 dp, не перехватывает касания, в обоих вариантах дока', () => {
+    expect(src).toContain('const DOCK_FADE_H = 28;');
+    expect(src).toContain("dockFade: { position: 'absolute', left: 0, right: 0, top: -DOCK_FADE_H, height: DOCK_FADE_H },");
+    expect(src).toContain('colors={[alphaHex(g.bg, 0), g.bg]} style={s.dockFade}');
+    expect(src).toContain('>{fade}{children}</Chain.ChainBeat>');
+    expect(src).toContain('>{fade}{children}</View>');
   });
 });
 

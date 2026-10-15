@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-02:session-25:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — price",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На репетицию пришли не все. Спросите, кто отсутствует",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — price",
+      "audioTargetIds": [],
+      "accessibilityLabel": "На репетицию пришли не все. Спросите, кто отсутствует",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i01:audio",
-          "transcript": "price"
+        "family": "phrase_builder",
+        "targetPhrase": "Who is absent?",
+        "localizedMeaning": {
+          "ru": "На репетицию пришли не все. Спросите, кто отсутствует",
+          "uk": "На репетицію прийшли не всі. Запитайте, хто відсутній"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "Who",
+          "is",
+          "absent"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-25:i01:r1",
-            "targetText": "price",
-            "meaningByLocale": {
-              "ru": "«цена». Цифра справа от строчки в меню.",
-              "uk": "«ціна». Цифра праворуч від рядка в меню."
+            "responseId": "en:lesson-02:session-25:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "На репетицию пришли не все. Спросите, кто отсутствует",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Who` — `Who is absent?`",
+              "uk": "тут потрібно `Who` — `Who is absent?`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "price",
-          "definitionByLocale": {
-            "ru": "«цена». Цифра справа от строчки в меню.",
-            "uk": "«ціна». Цифра праворуч від рядка в меню."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-25:i02:r1",
-          "text": "price"
+          "text": "Where is she?"
         },
         {
           "responseId": "en:lesson-02:session-25:i02:r2",
-          "text": "press"
+          "text": "Who is she?"
         },
         {
           "responseId": "en:lesson-02:session-25:i02:r3",
-          "text": "prize"
+          "text": "Where is he?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-25:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-25:i02:audio",
-          "transcript": "price"
+          "transcript": "Where is she?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-25:i02:r1",
-            "targetText": "price",
+            "targetText": "Where is she?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-25:i02:r2",
-            "targetText": "press",
+            "targetText": "Who is she?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-25:i02:r3",
-            "targetText": "prize",
+            "targetText": "Where is he?",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-02:session-25:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — price",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "Это «нажать». Гласная другая: в `price` слышно «ай», в `press` — «э».",
-              "uk": "Це «натиснути». Голосний інший: у `price` чути «ай», у `press` — «е»."
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."
             }
           },
           {
             "responseId": "en:lesson-02:session-25:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — price",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "Это «приз». Конец другой: `price` заканчивается глухо, `prize` — звонко.",
-              "uk": "Це «приз». Кінець інший: `price` закінчується глухо, `prize` — дзвінко."
+              "ru": "В записи последнее слово — `she`, а в этом варианте — `he`.",
+              "uk": "У записі останнє слово — `she`, а в цьому варіанті — `he`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-02:session-25:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — name",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — name",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i03:audio",
-          "transcript": "name"
+      "prompt": "Вы ищете Анну и Олега. Спросите, где они",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i03:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-02:session-25:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете Анну и Олега. Спросите, где они",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ищете Анну и Олега. Спросите, где они",
+          "uk": "Ви шукаєте Анну й Олега. Запитайте, де вони"
+        },
+        "gappedTargetPhrase": "Where ___ they?",
+        "gapOptions": [
           {
             "responseId": "en:lesson-02:session-25:i03:r1",
-            "targetText": "name",
-            "meaningByLocale": {
-              "ru": "«имя, название». Годится и для человека, и для блюда, и для улицы.",
-              "uk": "«ім'я, назва». Годиться і для людини, і для страви, і для вулиці."
-            }
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i03:r3",
+            "text": "is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "name",
-          "definitionByLocale": {
-            "ru": "«имя, название». Годится и для человека, и для блюда, и для улицы.",
-            "uk": "«ім'я, назва». Годиться і для людини, і для страви, і для вулиці."
+        "testedDimension": "Вы ищете Анну и Олега. Спросите, где они",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы ищете Анну и Олега. Спросите, где они",
+            "feedbackByLocale": {
+              "ru": "С `they` нужно `are`.",
+              "uk": "З `they` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы ищете Анну и Олега. Спросите, где они",
+            "feedbackByLocale": {
+              "ru": "Про двоих — `Where are they?`.",
+              "uk": "Про двох — `Where are they?`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,529 +196,60 @@
       "interactionId": "en:lesson-02:session-25:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-25:i04:r1",
-          "text": "name"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i04:r2",
-          "text": "near"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i04:r3",
-          "text": "nine"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i04:audio",
-          "transcript": "name"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-25:i04:r1",
-            "targetText": "name",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i04:r2",
-            "targetText": "near",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i04:r3",
-            "targetText": "nine",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-25:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — name",
-            "feedbackByLocale": {
-              "ru": "«Рядом», про расстояние. Спрашивая название, вы говорите `name`.",
-              "uk": "«Поруч», про відстань. Питаючи назву, ви кажете `name`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — name",
-            "feedbackByLocale": {
-              "ru": "Это «девять». Счёт, а не название.",
-              "uk": "Це «дев'ять». Лічба, а не назва."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы показали на строчку в меню",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы показали на строчку в меню",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "What is this?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы показали на строчку в меню",
-          "uk": "Складіть фразу — ви показали на рядок у меню"
-        },
-        "orderedTokens": [
-          "What",
-          "is",
-          "this"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — спрашиваете про цифру рядом со строчкой",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-25:i06:r1",
-          "text": "price"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i06:r2",
-          "text": "name"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i06:r3",
-          "text": "street"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — спрашиваете про цифру рядом со строчкой",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — спрашиваете про цифру рядом со строчкой",
-          "uk": "Вставте слово — питаєте про цифру поруч із рядком"
-        },
-        "gappedTargetPhrase": "What is the ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-25:i06:r1",
-            "text": "price"
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i06:r2",
-            "text": "name"
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i06:r3",
-            "text": "street"
-          }
-        ],
-        "testedDimension": "Вставьте слово — спрашиваете про цифру р",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-25:i06:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — спрашиваете про цифру р",
-            "feedbackByLocale": {
-              "ru": "Так вы спросите название блюда, а не сколько оно стоит.",
-              "uk": "Так ви спитаєте назву страви, а не скільки вона коштує."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i06:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — спрашиваете про цифру р",
-            "feedbackByLocale": {
-              "ru": "Улица тут ни при чём: вы смотрите в меню.",
-              "uk": "Вулиця тут ні до чого: ви дивитесь у меню."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вопрос про то, что стоит на столе",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-25:i07:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i07:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i07:r3",
-          "text": "this"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вопрос про то, что стоит на столе",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вопрос про то, что стоит на столе",
-          "uk": "Вставте слово — питання про те, що стоїть на столі"
-        },
-        "gappedTargetPhrase": "What ___ this?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-25:i07:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i07:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i07:r3",
-            "text": "this"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вопрос про то, что стои",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-25:i07:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вопрос про то, что стои",
-            "feedbackByLocale": {
-              "ru": "Не для одной вещи. Про одну — `is`.",
-              "uk": "Не для однієї речі. Про одну — `is`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i07:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вопрос про то, что стои",
-            "feedbackByLocale": {
-              "ru": "`this` уже стоит в конце. Второе не нужно, нужно `is`.",
-              "uk": "`this` уже стоїть у кінці. Другого не треба, треба `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "sound_contrast",
-      "inputMode": "single_choice",
-      "prompt": "Различите звуки — какое из двух про цену?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-25:i08:r1",
-          "text": "price"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i08:r2",
-          "text": "press"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i08:audioA",
-        "en:lesson-02:session-25:i08:audioB"
-      ],
-      "accessibilityLabel": "Различите звуки — какое из двух про цену?",
-      "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "price",
-        "contrastB": "press",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-02:session-25:i08:audioA",
-          "transcript": "price"
-        },
-        "audioB": {
-          "audioTargetId": "en:lesson-02:session-25:i08:audioB",
-          "transcript": "press"
-        },
-        "testedPhoneticContrast": "Различите звуки — какое из двух про цену",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-25:i08:r2",
-            "correct": false,
-            "testedDimension": "Различите звуки — какое из двух про цену",
-            "feedbackByLocale": {
-              "ru": "Это «нажать». Гласная другая: в `price` слышно «ай», в `press` — «э».",
-              "uk": "Це «натиснути». Голосний інший: у `price` чути «ай», у `press` — «е»."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — cheap",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i09:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — cheap",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i09:audio",
-          "transcript": "cheap"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-25:i09:r1",
-            "targetText": "cheap",
-            "meaningByLocale": {
-              "ru": "«дёшево, недорого». Цена, из-за которой не жалко.",
-              "uk": "«дешево, недорого». Ціна, через яку не шкода."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "cheap",
-          "definitionByLocale": {
-            "ru": "«дёшево, недорого». Цена, из-за которой не жалко.",
-            "uk": "«дешево, недорого». Ціна, через яку не шкода."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «какая цена?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i10:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — «какая цена?»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i10:audio",
-          "transcript": "What is the price?"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "What is the price?",
-        "orderedTokens": [
-          "What",
-          "is",
-          "the",
-          "price"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы заблудились и хотите узнать, где стоите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-25:i11:r1",
-          "text": "street"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i11:r2",
-          "text": "price"
-        },
-        {
-          "responseId": "en:lesson-02:session-25:i11:r3",
-          "text": "this"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы заблудились и хотите узнать, где стоите",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы заблудились и хотите узнать, где стоите",
-          "uk": "Вставте слово — ви заблукали і хочете дізнатися, де стоїте"
-        },
-        "gappedTargetPhrase": "What is the ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-25:i11:r1",
-            "text": "street"
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i11:r2",
-            "text": "price"
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i11:r3",
-            "text": "this"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вы заблудились и хотите",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-25:i11:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы заблудились и хотите",
-            "feedbackByLocale": {
-              "ru": "У улицы цены нет. Вы спрашиваете, как она называется.",
-              "uk": "У вулиці ціни немає. Ви питаєте, як вона зветься."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-25:i11:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы заблудились и хотите",
-            "feedbackByLocale": {
-              "ru": "`this` — «это», оно не встаёт после `the`.",
-              "uk": "`this` — «це», воно не стає після `the`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — спросите название блюда",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — спросите название блюда",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "What is the name?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — спросите название блюда",
-          "uk": "Складіть фразу — спитайте назву страви"
-        },
-        "orderedTokens": [
-          "What",
-          "is",
-          "the",
-          "name"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-25:i13:p1",
-            "target": "price",
+            "pairId": "en:lesson-02:session-25:i04:p1",
+            "target": "absent",
             "meaningByLocale": {
-              "ru": "цена",
-              "uk": "ціна"
+              "ru": "отсутствующий",
+              "uk": "відсутній"
             }
           },
           {
-            "pairId": "en:lesson-02:session-25:i13:p2",
-            "target": "name",
+            "pairId": "en:lesson-02:session-25:i04:p2",
+            "target": "proud",
             "meaningByLocale": {
-              "ru": "название",
-              "uk": "назва"
+              "ru": "гордый",
+              "uk": "гордий"
             }
           },
           {
-            "pairId": "en:lesson-02:session-25:i13:p3",
-            "target": "cheap",
+            "pairId": "en:lesson-02:session-25:i04:p3",
+            "target": "ashamed",
             "meaningByLocale": {
-              "ru": "дёшево",
-              "uk": "дешево"
+              "ru": "испытывающий стыд",
+              "uk": "той, кому соромно"
             }
           },
           {
-            "pairId": "en:lesson-02:session-25:i13:p4",
-            "target": "street",
+            "pairId": "en:lesson-02:session-25:i04:p4",
+            "target": "surprised",
             "meaningByLocale": {
-              "ru": "улица",
-              "uk": "вулиця"
+              "ru": "удивлённый",
+              "uk": "здивований"
             }
           }
         ],
         "leftColumn": [
-          "price",
-          "name",
-          "cheap",
-          "street"
+          "absent",
+          "proud",
+          "ashamed",
+          "surprised"
         ],
         "rightColumn": [
-          "цена",
-          "название",
-          "дёшево",
-          "улица"
+          "отсутствующий",
+          "гордый",
+          "испытывающий стыд",
+          "удивлённый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -708,68 +266,534 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i05:audio",
+          "transcript": "Who is she?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Who is she?",
+        "orderedTokens": [
+          "Who",
+          "is",
+          "she"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Who` — `Who is she?`",
+              "uk": "тут потрібно `Who` — `Who is she?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анны нет на репетиции. Сообщите полной фразой, что она отсутствует",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анны нет на репетиции. Сообщите полной фразой, что она отсутствует",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is absent.",
+        "localizedMeaning": {
+          "ru": "Анны нет на репетиции. Сообщите полной фразой, что она отсутствует",
+          "uk": "Анни немає на репетиції. Повідомте повною фразою, що вона відсутня"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "absent"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Анны нет на репетиции. Сообщите полной фразой, что она отсутствует",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is absent.`",
+              "uk": "тут потрібно `is` — `She is absent.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Олег вышел из комнаты. Спросите, где он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Олег вышел из комнаты. Спросите, где он",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i07:audio",
+          "transcript": "Where is he?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is he?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы показываете на незнакомый предмет среди декораций. Спросите, что это",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i08:r1",
+          "text": "What"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i08:r2",
+          "text": "Who"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i08:r3",
+          "text": "Where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете на незнакомый предмет среди декораций. Спросите, что это",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете на незнакомый предмет среди декораций. Спросите, что это",
+          "uk": "Ви показуєте на незнайомий предмет серед декорацій. Запитайте, що це"
+        },
+        "gappedTargetPhrase": "___ is it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-25:i08:r1",
+            "text": "What"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i08:r2",
+            "text": "Who"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i08:r3",
+            "text": "Where"
+          }
+        ],
+        "testedDimension": "Вы показываете на незнакомый предмет среди декораций. Спросите, что это",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы показываете на незнакомый предмет среди декораций. Спросите, что это",
+            "feedbackByLocale": {
+              "ru": "`Who` спрашивает о человеке. Здесь предмет: `What`.",
+              "uk": "`Who` запитує про людину. Тут предмет: `What`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы показываете на незнакомый предмет среди декораций. Спросите, что это",
+            "feedbackByLocale": {
+              "ru": "`Where` — «где». Вы уже видите предмет и спрашиваете, что это.",
+              "uk": "`Where` — «де». Ви вже бачите предмет і запитуєте, що це."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу об Олеге",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i09:r1",
+          "text": "He is proud."
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i09:r2",
+          "text": "He is ashamed."
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i09:r3",
+          "text": "He is surprised."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i09:audio",
+          "transcript": "He is proud."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:i09:r1",
+            "targetText": "He is proud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i09:r2",
+            "targetText": "He is ashamed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i09:r3",
+            "targetText": "He is surprised.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу об Олеге",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `proud`, а в этом варианте — `ashamed`.",
+              "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `ashamed`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу об Олеге",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `proud`, а в этом варианте — `surprised`.",
+              "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `surprised`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-25:i10:p1",
+            "target": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i10:p2",
+            "target": "absent",
+            "meaningByLocale": {
+              "ru": "отсутствующий",
+              "uk": "відсутній"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i10:p3",
+            "target": "proud",
+            "meaningByLocale": {
+              "ru": "гордый",
+              "uk": "гордий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i10:p4",
+            "target": "ashamed",
+            "meaningByLocale": {
+              "ru": "испытывающий стыд",
+              "uk": "той, кому соромно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "well",
+          "absent",
+          "proud",
+          "ashamed"
+        ],
+        "rightColumn": [
+          "хорошо себя чувствующий",
+          "отсутствующий",
+          "гордый",
+          "испытывающий стыд"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i11:audio",
+          "transcript": "She is surprised."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is surprised.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "surprised"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is surprised.`",
+              "uk": "тут потрібно `is` — `She is surprised.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна и Олег всё ещё не вернулись. Спросите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна и Олег всё ещё не вернулись. Спросите, где они",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are they?",
+        "localizedMeaning": {
+          "ru": "Анна и Олег всё ещё не вернулись. Спросите, где они",
+          "uk": "Анна й Олег досі не повернулися. Запитайте, де вони"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "they"
+        ],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна и Олег всё ещё не вернулись. Спросите, где они",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where are they?`",
+              "uk": "тут потрібно `Where` — `Where are they?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы забыли принести обещанную декорацию, и вам стыдно. Скажите об этом коротко",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Вы забыли принести обещанную декорацию, и вам стыдно. Скажите об этом коротко",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i13:audio",
+          "transcript": "I'm ashamed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm ashamed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-25:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — цена оказалась маленькой, вы довольны",
+      "prompt": "Анна сообщила, что хорошо себя чувствует. Передайте это полной фразой",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-25:i14:r1",
-          "text": "cheap"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-25:i14:r2",
-          "text": "price"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-25:i14:r3",
-          "text": "what"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — цена оказалась маленькой, вы довольны",
+      "accessibilityLabel": "Анна сообщила, что хорошо себя чувствует. Передайте это полной фразой",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — цена оказалась маленькой, вы довольны",
-          "uk": "Вставте слово — ціна виявилася маленькою, ви задоволені"
+          "ru": "Анна сообщила, что хорошо себя чувствует. Передайте это полной фразой",
+          "uk": "Анна повідомила, що добре почувається. Передайте це повною фразою"
         },
-        "gappedTargetPhrase": "It is ___ .",
+        "gappedTargetPhrase": "She ___ well.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-25:i14:r1",
-            "text": "cheap"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-25:i14:r2",
-            "text": "price"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-25:i14:r3",
-            "text": "what"
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — цена оказалась маленько",
+        "testedDimension": "Анна сообщила, что хорошо себя чувствует. Передайте это полной фразой",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-25:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — цена оказалась маленько",
+            "testedDimension": "Анна сообщила, что хорошо себя чувствует. Передайте это полной фразой",
             "feedbackByLocale": {
-              "ru": "`price` — сама цена, а не оценка «дёшево».",
-              "uk": "`price` — сама ціна, а не оцінка «дешево»."
+              "ru": "После `She` нужно `is`.",
+              "uk": "Після `She` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-25:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — цена оказалась маленько",
+            "testedDimension": "Анна сообщила, что хорошо себя чувствует. Передайте это полной фразой",
             "feedbackByLocale": {
-              "ru": "`what` начинает вопрос, а вы говорите утверждение.",
-              "uk": "`what` починає питання, а ви кажете твердження."
+              "ru": "Фраза об Анне — `She is well`.",
+              "uk": "Фраза про Анну — `She is well`."
             }
           }
         ]
@@ -780,188 +804,183 @@
       "interactionId": "en:lesson-02:session-25:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — обманка: вам показали блюдо, вы спрашиваете, что это",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — обманка: вам показали блюдо, вы спрашиваете, что это",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "What is this?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — обманка: вам показали блюдо, вы спрашиваете, что это",
-          "uk": "Складіть фразу — пастка: вам показали страву, ви питаєте, що це"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i15:r1",
+          "text": "Who is absent?"
         },
-        "orderedTokens": [
-          "What",
-          "is",
-          "this"
+        {
+          "responseId": "en:lesson-02:session-25:i15:r2",
+          "text": "Who is surprised?"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i15:r3",
+          "text": "Who is ashamed?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i15:audio",
+          "transcript": "Who is absent?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:i15:r1",
+            "targetText": "Who is absent?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i15:r2",
+            "targetText": "Who is surprised?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i15:r3",
+            "targetText": "Who is ashamed?",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "the"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `absent`, а в этом варианте — `surprised`.",
+              "uk": "У записі останнє слово — `absent`, а в цьому варіанті — `surprised`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `absent`, а в этом варианте — `ashamed`.",
+              "uk": "У записі останнє слово — `absent`, а в цьому варіанті — `ashamed`."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-25:i16:s01",
+      "interactionId": "en:lesson-02:session-25:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i16:s01:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i16:s01:audio",
-          "transcript": "What is this?"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-25:i16:p1",
+            "target": "absent",
+            "meaningByLocale": {
+              "ru": "отсутствующий",
+              "uk": "відсутній"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i16:p2",
+            "target": "surprised",
+            "meaningByLocale": {
+              "ru": "удивлённый",
+              "uk": "здивований"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i16:p3",
+            "target": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий",
+              "uk": "той, хто добре почувається"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i16:p4",
+            "target": "proud",
+            "meaningByLocale": {
+              "ru": "гордый",
+              "uk": "гордий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "absent",
+          "surprised",
+          "well",
+          "proud"
+        ],
+        "rightColumn": [
+          "отсутствующий",
+          "удивлённый",
+          "хорошо себя чувствующий",
+          "гордый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What is this?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-25:i16:s02",
+      "interactionId": "en:lesson-02:session-25:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Олег принёс странный предмет для спектакля и держит его перед вами. Спросите, что это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-25:i16:s02:audio"
+        "en:lesson-02:session-25:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Олег принёс странный предмет для спектакля и держит его перед вами. Спросите, что это",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i16:s02:audio",
-          "transcript": "What is the price?"
+          "audioTargetId": "en:lesson-02:session-25:i17:audio",
+          "transcript": "What is it?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "What is the price?",
+        "targetPhrase": "What is it?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i17:s01",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i17:s01:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i17:s01:audio",
-          "transcript": "What is the name?"
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What is the name?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i17:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i17:s02:audio",
-          "transcript": "What is the price?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What is the price?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-25:i17:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-25:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-25:i17:s03:audio",
-          "transcript": "It is cheap."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It is cheap.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -972,11 +991,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "58da465c2af1cf2c02b9c31596aa40fe72a7f0fdeaba6591242610cbe3df8e73"
+  "learnerFingerprint": "f25bee14905ce935a7390a4320921bcc75dcab38663db47fb923787ae3f66d50"
 }

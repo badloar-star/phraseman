@@ -1,215 +1,138 @@
-# Англійська · Урок 2 · Заняття 25 — «What is this?»
+# Англійська · Урок 2 · Заняття 25 — Кого бракує на репетиції
 
-**Сцена заняття.** Вихідний у Дубліні, ви в кафе. У меню рядки, яких ви не розумієте, і цифри поруч. Доводиться питати.
-**Як сказати:** `What is + річ`
-**Нові слова:** price, name
-**Повертаються:** cheap, street
+**Ситуація.** Ви прийшли на репетицію аматорської вистави. Анни поки немає, Олег шукає її й розбирається з незнайомим предметом серед декорацій.
+
+**Що ви опануєте:** запитати хто, що й де, а не лише отримати відповідь так чи ні
+**Нові слова:** absent
 
 ---
 
 ## Інтро 1
 
-### `What is` — «що це»
+### Кого немає
 
-`What` — «що». Далі йде `is`, і аж потім сама річ: `What is this?`
+`absent` — «відсутній»: людини тут немає, хоча на неї чекали. `She is absent` — «Вона відсутня». Щоб дізнатися, кого саме немає, запитайте `Who is absent?` — «Хто відсутній?» `Who` означає «хто». На це запитання потрібно назвати людину: одного «так» буде замало.
 
-Українською питання коротке: «що це?». Англійською між `what` і `this` мусить стояти `is` — без нього речення не тримається. Звідси й помилка: так і тягне сказати `What this?`
+**Режисер повідомив, що прийшли не всі. Запитайте, хто відсутній.**
 
-**Ви тицьнули пальцем у рядок меню. Спитайте офіціанта, що це.**
-
-- ✅ **What is this?**
-- ❌ What this is? — *`is` поїхало в кінець. Його місце друге, одразу за `what`.*
-- ❌ What this? — *`is` зникло зовсім. Без нього це не питання, а два слова поспіль.*
+- ✅ **Who is absent?**
+- ❌ Is she absent? — *Це запитання, чи вона відсутня. Ви поки не знаєте, кого немає.*
+- ❌ Who absent? — *Після `Who` тут потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### `price` — «ціна»
+### Де людина
 
-`price` — «ціна». Цифра праворуч від рядка в меню.
+`where` — «де». `Where is she?` — «Де вона?» Спочатку `Where`, потім `is`, потім `she`. Про кількох: `Where are they?` — «Де вони?» Порожній стілець Анни показує, що її немає в кімнаті. Адреси її теперішнього місцеперебування стілець, на жаль, не повідомляє.
 
-Спитати про неї можна так само: `What is the price?` Перед словом з'являється маленьке `the`. Коли саме воно потрібне, розберемо згодом — поки запам'ятовуйте питання цілком, разом із ним.
+**Олег вийшов по Анну. Тепер ви шукаєте Олега. Запитайте, де він.**
 
-**У меню рядок без цифри. Спитайте про ціну.**
-
-- ✅ **What is the price?**
-- ❌ What the price? — *`is` загубилося. У питанні воно стоїть другим: `What is the price?`*
-- ❌ What is price? — *Бракує `the`. Перед словом воно потрібне: `the price`.*
+- ✅ **Where is he?**
+- ❌ Where he is? — *У цьому запитанні `is` ставимо перед `he`.*
+- ❌ Who is he? — *Це «Хто він?», а ви запитуєте, де Олег.*
 
 ---
 
 ## Інтро 3
 
-### `name` — «ім'я, назва»
+### Що за предмет
 
-`name` — це водночас і «ім'я», і «назва»: так питають і про людину, і про страву.
+`what` — «що». Ви показуєте на незрозумілий предмет: `What is it?` — «Що це?» `What is it?` запитує про річ, а `Who is he?` — про людину: «Хто він?» У цих запитаннях після `What` або `Who` стоїть `is`.
 
-Питаємо так само: `What is the name?` Перед `name` знову стоїть `the` — як і перед `price`. Відповіддю буде сама назва: `It is soda bread` — «це содовий хліб».
+**Серед декорацій лежить предмет, якого ви не впізнаєте. Запитайте, що це.**
 
-**Вам принесли щось незнайоме і смачне. Спитайте назву.**
-
-- ✅ **What is the name?**
-- ❌ What is name? — *`the` зникло. Ідеться про конкретну річ на столі — отже `the`.*
-- ❌ What name is? — *`is` втекло в кінець. Після `what` воно йде одразу.*
+- ✅ **What is it?**
+- ❌ Where is it? — *Це «Де це?» Предмет перед вами; ви хочете зрозуміти, що він таке.*
+- ❌ What it is? — *Для цього запитання потрібен порядок `What is it?`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — price**
-<!-- interaction_id: en:lesson-02:session-25:i01; family: listen_choose -->
-Ціль: `price`
+**1 · На репетицію прийшли не всі. Запитайте, хто відсутній**
+<!-- interaction_id: en:lesson-02:session-25:i01; family: phrase_builder -->
+Плитки: `absent` `is` `Who` `What` → **Who is absent?**
+*(плитка `What` зайва: тут потрібно `Who` — `Who is absent?`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте запитання**
 <!-- interaction_id: en:lesson-02:session-25:i02; family: listen_choose -->
-Ціль: `price`
-Варіанти: `price` · `press` · `prize`
-- press — *Це «натиснути». Голосний інший: у `price` чути «ай», у `press` — «е».*
-- prize — *Це «приз». Кінець інший: `price` закінчується глухо, `prize` — дзвінко.*
+🔊 *Where is she?* → **Where is she?** · Who is she? · Where is he?
+- Who is she? — *У записі перше слово — `Where`, а в цьому варіанті — `Who`.*
+- Where is he? — *У записі останнє слово — `she`, а в цьому варіанті — `he`.*
 
+**3 · Ви шукаєте Анну й Олега. Запитайте, де вони**
+<!-- interaction_id: en:lesson-02:session-25:i03; family: context_gap_grammar -->
+Where ___ they? → **are** · am · is
+- am — *З `they` потрібно `are`.*
+- is — *Про двох — `Where are they?`.*
 
-**3 · Картка слова — name**
-<!-- interaction_id: en:lesson-02:session-25:i03; family: listen_choose -->
-Ціль: `name`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-25:i04; family: speed_match -->
+absent — відсутній · proud — гордий · ashamed — той, кому соромно · surprised — здивований
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-25:i04; family: listen_choose -->
-Ціль: `name`
-Варіанти: `name` · `near` · `nine`
-- near — *«Поруч», про відстань. Питаючи назву, ви кажете `name`.*
-- nine — *Це «дев'ять». Лічба, а не назва.*
+**5 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-02:session-25:i05; family: listen_build_dictation -->
+🔊 *Who is she?* Плитки: `she` `is` `Who` `Where` → **Who is she?**
+*(плитка `Where` зайва: тут потрібно `Who` — `Who is she?`)*
 
+**6 · Анни немає на репетиції. Повідомте повною фразою, що вона відсутня**
+<!-- interaction_id: en:lesson-02:session-25:i06; family: phrase_builder -->
+Плитки: `absent` `is` `She` `are` → **She is absent.**
+*(плитка `are` зайва: тут потрібно `is` — `She is absent.`)*
 
-**5 · Складіть фразу — ви показали на рядок у меню**
-<!-- interaction_id: en:lesson-02:session-25:i05; family: phrase_builder -->
-Ціль: `What is this?`
+**7 · Олег вийшов із кімнати. Запитайте, де він**
+<!-- interaction_id: en:lesson-02:session-25:i07; family: scripted_repeat_compare -->
+🎙 **Where is he?**
 
-**6 · Послухайте і виберіть — про що ви питаєте в меню**
-<!-- interaction_id: en:lesson-02:session-25:i06; family: listen_choose -->
-Ціль: `What is the price?`
-Варіанти: `ціна` · `назва` · `вулиця`
-- назва — *Тут звучить `price` — «ціна». `Name` питає назву.*
-- вулиця — *`Street` — «вулиця». Запитання стосується цифри біля страви.*
+**8 · Ви показуєте на незнайомий предмет серед декорацій. Запитайте, що це**
+<!-- interaction_id: en:lesson-02:session-25:i08; family: context_gap_grammar -->
+___ is it? → **What** · Who · Where
+- Who — *`Who` запитує про людину. Тут предмет: `What`.*
+- Where — *`Where` — «де». Ви вже бачите предмет і запитуєте, що це.*
 
-
-**7 · Вставте слово — питання про те, що стоїть на столі**
-<!-- interaction_id: en:lesson-02:session-25:i07; family: context_gap_grammar -->
-Ціль: `What ___ this?`
-Варіанти: `is` · `are` · `this`
-- are — *`Are` кажуть про кілька речей. Тут одна річ, тому потрібно `is`.*
-- this — *`This` уже стоїть наприкінці запитання. У пропуску потрібне дієслово `is`.*
-
-
-**8 · Розрізніть звуки — яке з двох про ціну?**
-<!-- interaction_id: en:lesson-02:session-25:i08; family: sound_contrast -->
-Варіанти: `price` · `press`
-- press — *Це «натиснути». Голосний інший: у `price` чути «ай», у `press` — «е».*
-
-
-**9 · Картка слова — cheap**
+**9 · Послухайте фразу про Олега**
 <!-- interaction_id: en:lesson-02:session-25:i09; family: listen_choose -->
-Ціль: `cheap`
+🔊 *He is proud.* → **He is proud.** · He is ashamed. · He is surprised.
+- He is ashamed. — *У записі останнє слово — `proud`, а в цьому варіанті — `ashamed`.*
+- He is surprised. — *У записі останнє слово — `proud`, а в цьому варіанті — `surprised`.*
 
-**10 · Послухайте і складіть — «яка ціна?»**
-<!-- interaction_id: en:lesson-02:session-25:i10; family: listen_build_dictation -->
-Ціль: `What is the price?`
-🔊 *What is the price?* Плитки: `What` `is` `the` `price` `are`
-*Плитка `are` зайва: `price` — одна ціна, тому в запитанні потрібна форма `is`.*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-25:i10; family: speed_match -->
+well — той, хто добре почувається · absent — відсутній · proud — гордий · ashamed — той, кому соромно
 
-**11 · Вставте слово — ви заблукали і хочете дізнатися, де стоїте**
-<!-- interaction_id: en:lesson-02:session-25:i11; family: context_gap_grammar -->
-Ціль: `What is the ___ ?`
-Варіанти: `street` · `price` · `this`
-- price — *У вулиці ціни немає. Ви питаєте, як вона зветься.*
-- this — *`this` — «це», воно не стає після `the`.*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-25:i11; family: listen_build_dictation -->
+🔊 *She is surprised.* Плитки: `surprised` `is` `She` `are` → **She is surprised.**
+*(плитка `are` зайва: тут потрібно `is` — `She is surprised.`)*
 
-
-**12 · Складіть фразу — спитайте назву страви**
+**12 · Анна й Олег досі не повернулися. Запитайте, де вони**
 <!-- interaction_id: en:lesson-02:session-25:i12; family: phrase_builder -->
-Ціль: `What is the name?`
+Плитки: `they` `are` `Where` `Who` → **Where are they?**
+*(плитка `Who` зайва: тут потрібно `Where` — `Where are they?`)*
 
-**13 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-25:i13; family: speed_match -->
-Пари: `price` — ціна · `name` — назва · `cheap` — дешево · `street` — вулиця
-Ціль: `price · name · cheap · street`
+**13 · Ви забули принести обіцяну декорацію, і вам соромно. Скажіть про це коротко**
+<!-- interaction_id: en:lesson-02:session-25:i13; family: scripted_repeat_compare -->
+🎙 **I'm ashamed.**
 
-**14 · Вставте слово — ціна виявилася маленькою, ви задоволені**
+**14 · Анна повідомила, що добре почувається. Передайте це повною фразою**
 <!-- interaction_id: en:lesson-02:session-25:i14; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `cheap` · `price` · `what`
-- price — *`price` — сама ціна, а не оцінка «дешево».*
-- what — *`what` починає питання, а ви кажете твердження.*
+She ___ well. → **is** · am · are
+- am — *Після `She` потрібно `is`.*
+- are — *Фраза про Анну — `She is well`.*
 
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-25:i15; family: listen_choose -->
+🔊 *Who is absent?* → **Who is absent?** · Who is surprised? · Who is ashamed?
+- Who is surprised? — *У записі останнє слово — `absent`, а в цьому варіанті — `surprised`.*
+- Who is ashamed? — *У записі останнє слово — `absent`, а в цьому варіанті — `ashamed`.*
 
-**15 · Скажіть уголос — офіціант приносить незнайому страву, і ви уточнюєте, що це**
-<!-- interaction_id: en:lesson-02:session-25:i15; family: scripted_repeat_compare -->
-Ціль: `What is this?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-25:i16; family: speed_match -->
+absent — відсутній · surprised — здивований · well — той, хто добре почувається · proud — гордий
 
-**16 · Послухайте — Ліна показує офіціантові незнайомий предмет. Виберіть зміст почутого запитання**
-<!-- interaction_id: en:lesson-02:session-25:i16:s01; family: listen_choose -->
-Ціль: `What is this?`
-Варіанти: `що це` · `скільки це коштує` · `як це називається`
-- скільки це коштує — *Про ціну питають `What is the price?`.*
-- як це називається — *Про назву питають `What is the name?`.*
+**17 · Олег приніс дивний предмет для вистави й тримає його перед вами. Запитайте, що це**
+<!-- interaction_id: en:lesson-02:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **What is it?**
 
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-25:i16:s02; family: scripted_repeat_compare -->
-Ціль: `What is the price?`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-25:i17:s01; family: scripted_repeat_compare -->
-Ціль: `What is the name?`
-
-**19 · Складіть запитання — офіціант назвав страву, але не сказав, скільки вона коштує**
-<!-- interaction_id: en:lesson-02:session-25:i17:s02; family: phrase_builder -->
-Ціль: `What is the price?`
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-25:i17:s03; family: scripted_repeat_compare -->
-Ціль: `It is cheap.`
-
-## Для сборщика
-
-new_words:
-price — цена — «цена». Цифра справа от строчки в меню.
-name — имя, название — «имя, название». Годится и для человека, и для блюда, и для улицы.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=context_gap_grammar, 8=sound_contrast, 9=listen_choose, 10=listen_build_dictation, 11=context_gap_grammar, 12=phrase_builder, 13=speed_match, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=listen_choose, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=phrase_builder, 20=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| cheap | 9 (картка), 13 (пари), 14 (вставте слово), 17 (фінал) | 14 — вірна відповідь, 17 — у вимовленій фразі |
-| street | 11 (вставте слово), 13 (пари) | 11 — вірна відповідь |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | `What is this?` | так — фразу наведено цілком |
-| Інтро 2 | `What is the price?` | так — `price` і `the` пояснено вище, фразу наведено |
-| Інтро 3 | `What is the name?` | так — `name` пояснено, фразу наведено дослівно |
-
-**3. Довжина інтро (ціль 240–290, допуск 210–320)**
-
-| сторінка | знаків |
-|---|---|
-| Інтро 1 | ~276 |
-| Інтро 2 | ~292 |
-| Інтро 3 | ~247 |
-
-**4. Дошка пар (завдання 13)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| price | 1 | 2 (слух), 6 (вставте), 8 (звуки), 10 (складання) |
-| name | 3 | 4 (слух), 12 (складання) |
-| cheap | 9 — нагадування, слово з минулих занять | з минулих занять |
-| street | з минулих занять | 11 (вставте слово) |

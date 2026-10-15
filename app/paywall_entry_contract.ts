@@ -26,6 +26,8 @@ export const PAYWALL_SOURCE_VALUES = [
   'flashcards_hub_speaking',
   'flashcards_hub_training_mode',
   'flashcards_hub_train',
+  // зачем (координатор 15.10): шторка режимов на экране ролика открывает пейвол со своим источником — воронка отличает «Тренировать» из ролика от хаба Карточек
+  'video_watch_train',
   'flashcards_training_setup_direct',
   'flashcards_training_direct',
   'flashcards_training_start',

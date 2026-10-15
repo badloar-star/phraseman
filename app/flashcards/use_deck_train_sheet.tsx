@@ -52,7 +52,7 @@ export function useDeckTrainSheet(options: Readonly<{ deckId: string; count: num
     if (trainingLocked) {
       if (paywallOpeningRef.current) return;
       paywallOpeningRef.current = true;
-      openPremiumPaywall(router, { context: 'flashcard_training', source: options.source });
+      openPremiumPaywall(router, { context: 'flashcard_training', source: 'video_watch_train' }); // зачем: литерал из реестра, а не проп — денежный сторож требует замкнутый source
       setTimeout(() => { paywallOpeningRef.current = false; }, 1500);
       return;
     }
@@ -66,7 +66,7 @@ export function useDeckTrainSheet(options: Readonly<{ deckId: string; count: num
 
   const choose = useCallback((mode: CardsTrainingMode) => {
     if (trainingLocked) {
-      openPremiumPaywall(router, { context: 'flashcard_training', source: options.source });
+      openPremiumPaywall(router, { context: 'flashcard_training', source: 'video_watch_train' }); // зачем: литерал из реестра, а не проп — денежный сторож требует замкнутый source
       return;
     }
     if (!trainingEntryReady) {

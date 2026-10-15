@@ -1,0 +1,220 @@
+10-15 08:28:45.191 I/SVERKA  (27159): === TABSC start 08:29:25 ===
+10-15 08:28:45.299 I/SVERKA  (27163): === TABSC switch 1 lessons 08:29:25 ===
+10-15 08:28:45.471 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=25471 tab_tap requested=1 active=0 page=0
+10-15 08:28:45.474 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=26 t=25472 source=tap {"requestedIdx":1,"idx":1,"active":"0→1","page":0,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:28:45.476 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=27 t=25475 source=navigate {"idx":1,"pathname":"/home","segments":"(tabs)/home","alreadyShown":false,"pendingBefore":null}
+10-15 08:28:45.488 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #19 seq=28 t=25486 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 08:28:46.489 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":49309,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:28:46.494 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":49314,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:28:46.542 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #20 seq=29 t=26538 changed=pathname:/home→/lessons segments:(tabs)/home→(tabs)/lessons
+10-15 08:28:46.708 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=30 t=26702 source=route_effect {"pathname":"/lessons","segments":"(tabs)/lessons","rawFromRouter":1,"fromRouter":1,"pending":1,"active":1,"visual":1,"page":1,"layoutChanged":false}
+10-15 08:28:46.711 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=31 t=26709 source=route_effect:from_router {"fromRouter":1,"active":"1→1","visual":"1→1"}
+10-15 08:28:46.730 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":49551}'
+10-15 08:28:46.734 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":49556}'
+10-15 08:28:46.742 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #21 seq=32 t=26742 changed=activeIdx:1→0 visualIdx:1→0 physicalPageIdx:1→0 visited:4→5 mounted:4→5
+10-15 08:28:46.873 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=33 t=26867 source=route_effect {"pathname":"/lessons","segments":"(tabs)/lessons","rawFromRouter":1,"fromRouter":1,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 08:28:46.879 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=34 t=26874 source=route_effect:from_router {"fromRouter":1,"active":"0→1","visual":"0→1"}
+10-15 08:28:46.892 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #22 seq=35 t=26890 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 08:28:47.150 W/ReactNativeJS(26917): [JS-STALL] +48839ms поток стоял 1818ms (с +47021ms)
+10-15 08:28:47.150 W/ReactNativeJS(26917): [JS-STALL] heartbeat +48839ms splash=hidden@+3541ms
+10-15 08:28:47.513 W/ReactNativeJS(26917): [JS-STALL] +49202ms поток стоял 356ms (с +48846ms)
+10-15 08:28:47.867 W/ReactNativeJS(26917): [JS-STALL] +49556ms поток стоял 347ms (с +49209ms)
+10-15 08:28:47.936 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #23 seq=36 t=27926 changed=none (parent/context)
+10-15 08:28:48.434 W/ReactNativeJS(26917): [JS-STALL] +50122ms поток стоял 507ms (с +49615ms)
+10-15 08:28:48.473 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=28472 focus active=false dirty=true authReady=false shown=none focusTick=1
+10-15 08:28:49.069 W/ReactNativeJS(26917): [JS-STALL] +50758ms поток стоял 633ms (с +50125ms)
+10-15 08:28:50.277 I/SVERKA  (27178): === TABSC switch 1 settings 08:29:30 ===
+10-15 08:28:50.502 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=30499 tab_tap requested=4 active=1 page=1
+10-15 08:28:50.505 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=37 t=30503 source=tap {"requestedIdx":4,"idx":4,"active":"1→4","page":1,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:28:50.507 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=38 t=30507 source=navigate {"idx":4,"pathname":"/lessons","segments":"(tabs)/lessons","alreadyShown":false,"pendingBefore":null}
+10-15 08:28:50.524 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #24 seq=39 t=30523 changed=activeIdx:1→4 visualIdx:1→4 physicalPageIdx:1→4
+10-15 08:28:51.010 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=30996 focus active=true dirty=true authReady=false shown=none focusTick=1
+10-15 08:28:51.018 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=31010 refresh enter active=true inflight=false dirty=true gen=1
+10-15 08:28:51.029 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":53847,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:28:51.033 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":53854,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:28:51.073 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #25 seq=40 t=31069 changed=pathname:/lessons→/settings segments:(tabs)/lessons→(tabs)/settings
+10-15 08:28:51.440 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=41 t=31437 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":4,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:28:51.444 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=42 t=31442 source=route_effect:from_router {"fromRouter":4,"active":"4→4","visual":"4→4"}
+10-15 08:28:51.465 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":54287}'
+10-15 08:28:51.469 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":54290}'
+10-15 08:28:51.489 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #26 seq=43 t=31488 changed=activeIdx:4→1 visualIdx:4→1 physicalPageIdx:4→1
+10-15 08:28:51.648 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=44 t=31645 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":null,"active":1,"visual":1,"page":1,"layoutChanged":false}
+10-15 08:28:51.651 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=45 t=31648 source=route_effect:from_router {"fromRouter":4,"active":"1→4","visual":"1→4"}
+10-15 08:28:51.681 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #27 seq=46 t=31680 changed=activeIdx:1→4 visualIdx:1→4 physicalPageIdx:1→4
+10-15 08:28:52.352 W/ReactNativeJS(26917): [JS-STALL] +54041ms поток стоял 1999ms (с +52042ms)
+10-15 08:28:52.353 W/ReactNativeJS(26917): [JS-STALL] heartbeat +54041ms splash=hidden@+3541ms
+10-15 08:28:53.079 W/ReactNativeJS(26917): [JS-STALL] +54768ms поток стоял 711ms (с +54057ms)
+10-15 08:28:53.084 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=33084 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=2061
+10-15 08:28:53.086 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=33085 refresh result=none applied=true gen=1/1 active=true
+10-15 08:28:53.190 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=33187 focus active=true dirty=false authReady=true shown=none focusTick=1
+10-15 08:28:53.998 W/ReactNativeJS(26917): [JS-STALL] +55684ms поток стоял 496ms (с +55188ms)
+10-15 08:28:54.898 W/ReactNativeJS(26917): [JS-STALL] +56586ms поток стоял 556ms (с +56030ms)
+10-15 08:28:55.070 I/SVERKA  (27195): === TABSC switch 1 home 08:29:35 ===
+10-15 08:28:55.145 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=35145 tab_tap requested=0 active=4 page=4
+10-15 08:28:55.146 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=47 t=35145 source=tap {"requestedIdx":0,"idx":0,"active":"4→0","page":4,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:28:55.146 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=48 t=35146 source=navigate {"idx":0,"pathname":"/settings","segments":"(tabs)/settings","alreadyShown":false,"pendingBefore":null}
+10-15 08:28:55.166 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #28 seq=49 t=35166 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 08:28:55.679 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=35677 focus active=false dirty=false authReady=true shown=none focusTick=1
+10-15 08:28:55.692 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":58514,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:28:55.693 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":58515,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:28:55.745 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #29 seq=50 t=35745 changed=pathname:/settings→/home segments:(tabs)/settings→(tabs)/home
+10-15 08:28:55.960 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=51 t=35959 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":0,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 08:28:55.963 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=52 t=35961 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 08:28:55.989 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":58811}'
+10-15 08:28:55.991 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":58813}'
+10-15 08:28:55.998 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #30 seq=53 t=35997 changed=activeIdx:0→4 visualIdx:0→4 physicalPageIdx:0→4
+10-15 08:28:56.145 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=54 t=36142 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":null,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:28:56.148 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=55 t=36145 source=route_effect:from_router {"fromRouter":0,"active":"4→0","visual":"4→0"}
+10-15 08:28:56.166 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #31 seq=56 t=36165 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 08:28:56.878 W/ReactNativeJS(26917): [JS-STALL] +58567ms поток стоял 1846ms (с +56721ms)
+10-15 08:28:56.882 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T07:28:56.881Z
+10-15 08:28:56.883 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 08:28:56.883 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 08:28:56.885 I/ReactNativeJS(26917): [WELCOME-BACK] вход study=en rank=0 energy=5/5
+10-15 08:28:56.885 I/ReactNativeJS(26917): [WELCOME-BACK] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 08:28:56.885 I/ReactNativeJS(26917): [WELCOME-BACK] не показываем: флаг moments_v3 выключен
+10-15 08:28:57.821 W/ReactNativeJS(26917): [JS-STALL] +59510ms поток стоял 933ms (с +58577ms)
+10-15 08:28:57.822 W/ReactNativeJS(26917): [JS-STALL] heartbeat +59510ms splash=hidden@+3541ms
+10-15 08:28:58.384 W/ReactNativeJS(26917): [JS-STALL] watchdog stop +60074ms
+10-15 08:28:59.728 I/SVERKA  (27209): === TABSC switch 2 lessons 08:29:39 ===
+10-15 08:28:59.846 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=39845 tab_tap requested=1 active=0 page=0
+10-15 08:28:59.847 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=57 t=39846 source=tap {"requestedIdx":1,"idx":1,"active":"0→1","page":0,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:28:59.848 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=58 t=39848 source=navigate {"idx":1,"pathname":"/home","segments":"(tabs)/home","alreadyShown":false,"pendingBefore":null}
+10-15 08:28:59.863 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #32 seq=59 t=39863 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 08:29:00.123 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":62946,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:00.125 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":62947,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:00.145 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #33 seq=60 t=40144 changed=pathname:/home→/lessons segments:(tabs)/home→(tabs)/lessons
+10-15 08:29:00.304 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=61 t=40302 source=route_effect {"pathname":"/lessons","segments":"(tabs)/lessons","rawFromRouter":1,"fromRouter":1,"pending":1,"active":1,"visual":1,"page":1,"layoutChanged":false}
+10-15 08:29:00.306 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=62 t=40304 source=route_effect:from_router {"fromRouter":1,"active":"1→1","visual":"1→1"}
+10-15 08:29:00.312 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":63134}'
+10-15 08:29:00.314 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":63136}'
+10-15 08:29:00.320 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #34 seq=63 t=40317 changed=activeIdx:1→0 visualIdx:1→0 physicalPageIdx:1→0
+10-15 08:29:00.412 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=64 t=40411 source=route_effect {"pathname":"/lessons","segments":"(tabs)/lessons","rawFromRouter":1,"fromRouter":1,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 08:29:00.415 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=65 t=40413 source=route_effect:from_router {"fromRouter":1,"active":"0→1","visual":"0→1"}
+10-15 08:29:00.424 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #35 seq=66 t=40424 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 08:29:04.426 I/SVERKA  (27223): === TABSC switch 2 settings 08:29:44 ===
+10-15 08:29:04.650 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=44649 tab_tap requested=4 active=1 page=1
+10-15 08:29:04.653 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=67 t=44652 source=tap {"requestedIdx":4,"idx":4,"active":"1→4","page":1,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:29:04.656 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=68 t=44653 source=navigate {"idx":4,"pathname":"/lessons","segments":"(tabs)/lessons","alreadyShown":false,"pendingBefore":null}
+10-15 08:29:04.672 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #36 seq=69 t=44671 changed=activeIdx:1→4 visualIdx:1→4 physicalPageIdx:1→4
+10-15 08:29:04.974 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=44970 focus active=true dirty=true authReady=true shown=none focusTick=1
+10-15 08:29:04.977 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=44975 refresh enter active=true inflight=false dirty=true gen=2
+10-15 08:29:04.983 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":67805,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:04.989 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":67806,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:05.008 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #37 seq=70 t=45007 changed=pathname:/lessons→/settings segments:(tabs)/lessons→(tabs)/settings
+10-15 08:29:05.197 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=71 t=45196 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":4,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:29:05.201 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=72 t=45197 source=route_effect:from_router {"fromRouter":4,"active":"4→4","visual":"4→4"}
+10-15 08:29:05.215 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":68037}'
+10-15 08:29:05.222 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":68041}'
+10-15 08:29:05.228 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #38 seq=73 t=45227 changed=activeIdx:4→1 visualIdx:4→1 physicalPageIdx:4→1
+10-15 08:29:05.363 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=74 t=45359 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":null,"active":1,"visual":1,"page":1,"layoutChanged":false}
+10-15 08:29:05.368 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=75 t=45363 source=route_effect:from_router {"fromRouter":4,"active":"1→4","visual":"1→4"}
+10-15 08:29:05.403 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #39 seq=76 t=45402 changed=activeIdx:1→4 visualIdx:1→4 physicalPageIdx:1→4
+10-15 08:29:06.764 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=46760 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=1783
+10-15 08:29:06.766 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=46764 refresh result=none applied=true gen=2/2 active=true
+10-15 08:29:09.047 I/SVERKA  (27238): === TABSC switch 2 home 08:29:49 ===
+10-15 08:29:09.196 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=49192 tab_tap requested=0 active=4 page=4
+10-15 08:29:09.196 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=77 t=49196 source=tap {"requestedIdx":0,"idx":0,"active":"4→0","page":4,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:29:09.197 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=78 t=49197 source=navigate {"idx":0,"pathname":"/settings","segments":"(tabs)/settings","alreadyShown":false,"pendingBefore":null}
+10-15 08:29:09.203 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #40 seq=79 t=49202 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 08:29:09.498 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=49497 focus active=false dirty=false authReady=true shown=none focusTick=1
+10-15 08:29:09.503 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":72325,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:09.504 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":72326,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:09.535 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #41 seq=80 t=49535 changed=pathname:/settings→/home segments:(tabs)/settings→(tabs)/home
+10-15 08:29:09.662 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=81 t=49660 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":0,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 08:29:09.664 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=82 t=49662 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 08:29:09.671 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":72494}'
+10-15 08:29:09.674 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":72495}'
+10-15 08:29:09.689 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #42 seq=83 t=49688 changed=activeIdx:0→4 visualIdx:0→4 physicalPageIdx:0→4
+10-15 08:29:09.777 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=84 t=49776 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":null,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:29:09.778 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=85 t=49777 source=route_effect:from_router {"fromRouter":0,"active":"4→0","visual":"4→0"}
+10-15 08:29:09.787 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #43 seq=86 t=49787 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 08:29:10.277 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T07:29:10.276Z
+10-15 08:29:10.277 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 08:29:10.277 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 08:29:10.279 I/ReactNativeJS(26917): [WELCOME-BACK] вход study=en rank=0 energy=5/5
+10-15 08:29:10.279 I/ReactNativeJS(26917): [WELCOME-BACK] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 08:29:10.280 I/ReactNativeJS(26917): [WELCOME-BACK] не показываем: флаг moments_v3 выключен
+10-15 08:29:13.805 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=53804 tab_tap requested=4 active=0 page=0
+10-15 08:29:13.805 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=87 t=53805 source=tap {"requestedIdx":4,"idx":4,"active":"0→4","page":0,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:29:13.806 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=88 t=53805 source=navigate {"idx":4,"pathname":"/home","segments":"(tabs)/home","alreadyShown":false,"pendingBefore":null}
+10-15 08:29:13.814 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #44 seq=89 t=53813 changed=activeIdx:0→4 visualIdx:0→4 physicalPageIdx:0→4
+10-15 08:29:14.102 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=54100 focus active=true dirty=true authReady=true shown=none focusTick=1
+10-15 08:29:14.110 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=54104 refresh enter active=true inflight=false dirty=true gen=3
+10-15 08:29:14.113 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":76935,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:14.116 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":76938,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:14.144 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #45 seq=90 t=54144 changed=pathname:/home→/settings segments:(tabs)/home→(tabs)/settings
+10-15 08:29:14.322 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=91 t=54320 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":4,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:29:14.325 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=92 t=54323 source=route_effect:from_router {"fromRouter":4,"active":"4→4","visual":"4→4"}
+10-15 08:29:14.338 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":77160}'
+10-15 08:29:14.342 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":77162}'
+10-15 08:29:14.358 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #46 seq=93 t=54357 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 08:29:14.455 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=94 t=54452 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 08:29:14.457 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=95 t=54455 source=route_effect:from_router {"fromRouter":4,"active":"0→4","visual":"0→4"}
+10-15 08:29:14.472 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #47 seq=96 t=54472 changed=activeIdx:0→4 visualIdx:0→4 physicalPageIdx:0→4
+10-15 08:29:15.827 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=55826 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=1715
+10-15 08:29:15.827 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=55827 refresh result=none applied=true gen=3/3 active=true
+10-15 08:29:19.478 I/SVERKA  (27273): === TABSC paywall 1 open-tap 08:29:59 ===
+10-15 08:29:25.073 I/SVERKA  (27289): === TABSC paywall 1 close-tap 08:30:05 ===
+10-15 08:29:29.829 I/SVERKA  (27315): === TABSC paywall 1 tab-tap 08:30:09 ===
+10-15 08:29:30.022 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=70022 tab_tap requested=0 active=4 page=4
+10-15 08:29:30.028 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=97 t=70023 source=tap {"requestedIdx":0,"idx":0,"active":"4→0","page":4,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:29:30.031 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=98 t=70028 source=navigate {"idx":0,"pathname":"/settings","segments":"(tabs)/settings","alreadyShown":false,"pendingBefore":null}
+10-15 08:29:30.055 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #48 seq=99 t=70054 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 08:29:30.634 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=70619 focus active=false dirty=false authReady=true shown=none focusTick=1
+10-15 08:29:30.637 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":93459,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:30.637 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":93460,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:30.683 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #49 seq=100 t=70683 changed=pathname:/settings→/home segments:(tabs)/settings→(tabs)/home
+10-15 08:29:30.881 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=101 t=70876 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":0,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 08:29:30.888 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=102 t=70881 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 08:29:30.897 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":93719}'
+10-15 08:29:30.905 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":93725}'
+10-15 08:29:30.918 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #50 seq=103 t=70918 changed=activeIdx:0→4 visualIdx:0→4 physicalPageIdx:0→4
+10-15 08:29:31.072 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=104 t=71070 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":null,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:29:31.075 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=105 t=71072 source=route_effect:from_router {"fromRouter":0,"active":"4→0","visual":"4→0"}
+10-15 08:29:31.093 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #51 seq=106 t=71092 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 08:29:31.816 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T07:29:31.815Z
+10-15 08:29:31.816 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 08:29:31.816 I/ReactNativeJS(26917): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 08:29:31.821 I/ReactNativeJS(26917): [WELCOME-BACK] вход study=en rank=0 energy=5/5
+10-15 08:29:31.822 I/ReactNativeJS(26917): [WELCOME-BACK] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 08:29:31.824 I/ReactNativeJS(26917): [WELCOME-BACK] не показываем: флаг moments_v3 выключен
+10-15 08:29:35.139 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=75138 tab_tap requested=4 active=0 page=0
+10-15 08:29:35.139 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=107 t=75139 source=tap {"requestedIdx":4,"idx":4,"active":"0→4","page":0,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 08:29:35.141 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=108 t=75140 source=navigate {"idx":4,"pathname":"/home","segments":"(tabs)/home","alreadyShown":false,"pendingBefore":null}
+10-15 08:29:35.152 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #52 seq=109 t=75151 changed=activeIdx:0→4 visualIdx:0→4 physicalPageIdx:0→4
+10-15 08:29:35.519 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=75517 focus active=true dirty=true authReady=true shown=none focusTick=1
+10-15 08:29:35.537 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=75535 refresh enter active=true inflight=false dirty=true gen=4
+10-15 08:29:35.542 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":98364,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:35.543 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":98366,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 08:29:35.585 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #53 seq=110 t=75585 changed=pathname:/home→/settings segments:(tabs)/home→(tabs)/settings
+10-15 08:29:35.909 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=111 t=75895 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":4,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:29:35.914 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=112 t=75909 source=route_effect:from_router {"fromRouter":4,"active":"4→4","visual":"4→4"}
+10-15 08:29:35.935 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":98755}'
+10-15 08:29:35.940 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT*]","atMs":98759}'
+10-15 08:29:35.951 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #54 seq=113 t=75950 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 08:29:36.146 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=114 t=76142 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 08:29:36.148 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=115 t=76147 source=route_effect:from_router {"fromRouter":4,"active":"0→4","visual":"0→4"}
+10-15 08:29:36.157 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #55 seq=116 t=76156 changed=activeIdx:0→4 visualIdx:0→4 physicalPageIdx:0→4
+10-15 08:29:37.686 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=77686 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=2148
+10-15 08:29:37.687 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=77686 refresh result=none applied=true gen=4/4 active=true
+10-15 08:29:40.685 I/SVERKA  (27347): === TABSC paywall 2 open-tap 08:30:20 ===
+10-15 08:29:46.232 I/SVERKA  (27366): === TABSC paywall 2 close-tap 08:30:26 ===
+10-15 08:29:46.570 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":109391,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&
+10-15 08:29:46.574 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":109396,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&
+10-15 08:29:46.909 I/ReactNativeJS(26917): [SETTINGS-ACCOUNT-CARD] t=86908 focus active=false dirty=false authReady=true shown=none focusTick=1
+10-15 08:29:46.914 I/ReactNativeJS(26917): [INFO] [PAYWALL-OPEN]: шапка: ctx=generic source=settings_premium текст=generic контекстная=false выгода=есть lang=ru
+10-15 08:29:46.937 I/ReactNativeJS(26917): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"generic","source":"settings_premium","shownContext":"generic","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","rootNavReady":true}'
+10-15 08:29:46.941 I/ReactNativeJS(26917): [PAYWALL-CLOSE-FREEZE] t=86939 tabs blur
+10-15 08:29:46.942 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT,premium_modal#WlTTOI*]","atMs":109764}'
+10-15 08:29:46.946 I/ReactNativeJS(26917): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Yr9eE0*[(tabs)#_qdfe-,(tabs)#fRRXKT,premium_modal#WlTTOI*]","atMs":109767}'
+10-15 08:29:46.955 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #56 seq=117 t=86954 changed=pathname:/settings→/premium_modal segments:(tabs)/settings→premium_modal
+10-15 08:29:46.993 I/ReactNativeJS(26917): [TAP-LAT] [TABS-RENDER] #57 seq=118 t=86992 changed=none (parent/context)
+10-15 08:29:47.097 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=119 t=87096 source=route_effect {"pathname":"/premium_modal","segments":"premium_modal","rawFromRouter":null,"fromRouter":null,"pending":null,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:29:47.102 I/ReactNativeJS(26917): [TAP-LAT] [TABS-IDX] seq=120 t=87100 source=route_effect {"pathname":"/premium_modal","segments":"premium_modal","rawFromRouter":null,"fromRouter":null,"pending":null,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 08:29:47.191 I/ReactNativeJS(26917): [TAP-LAT] → premium_modal (из (tabs)) · палец 12.1мс · JS-лаг на отпускании 12.1мс · отпускание→обработчик — · обработчик→коммит 438.5мс · коммит→кадр 246.7мс · ОТ ОТПУСКАНИЯ ДО КАДРА 685.3мс ⚠️ МЕДЛЕННО
+10-15 08:29:47.191 I/ReactNativeJS(26917): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (247мс) · рендеры от касания: stack 3×(293/163/3мс, всего 458мс) · layout:tabs 3×(166/78/74мс, всего 318мс) · screen:premium_modal 1×(87мс, всего 87мс) · tab:settings 1×(59мс, всего 59мс)
+10-15 08:29:50.766 I/SVERKA  (27390): === TABSC paywall 2 tab-tap 08:30:30 ===
+10-15 08:30:01.264 I/SVERKA  (27692): === TABSC paywall 3 open-tap 08:30:41 ===
+10-15 08:30:07.435 I/SVERKA  (27796): === TABSC paywall 3 close-tap 08:30:47 ===
+10-15 08:30:11.820 I/SVERKA  (27844): === TABSC paywall 3 tab-tap 08:30:51 ===

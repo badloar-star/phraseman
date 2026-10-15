@@ -1,0 +1,105 @@
+10-15 08:41:00.855 I/ReactNativeJS(29414): [AUTH-FETCH] dev_override=on
+10-15 08:41:01.191 W/ReactNativeJS(29414): [JS-STALL] skipped_background ms=1102 gap=1541ms counted=439ms at=+26633ms
+10-15 08:41:01.195 W/ReactNativeJS(29414): [JS-STALL] +26633ms поток стоял 439ms (с +26194ms)
+10-15 08:41:01.195 W/ReactNativeJS(29414): [JS-STALL] heartbeat +26633ms splash=hidden@+5794ms
+10-15 08:41:01.196 W/ReactNativeJS(29414): [JS-STALL] onboarding step=welcome поток стоял 1548ms
+10-15 08:41:01.987 W/ReactNativeJS(29414): [JS-STALL] +27430ms поток стоял 269ms (с +27161ms)
+10-15 08:41:01.987 W/ReactNativeJS(29414): [JS-STALL] onboarding step=welcome поток стоял 270ms
+10-15 08:41:02.003 I/ReactNativeJS(29414): [ENSURE-LINK] authoritative_memo hit ageMs=5136 generation=1
+10-15 08:41:03.211 W/ReactNativeJS(29414): [JS-STALL] onboarding step=welcome поток стоял 687ms
+10-15 08:41:03.213 W/ReactNativeJS(29414): [JS-STALL] +28655ms поток стоял 688ms (с +27967ms)
+10-15 08:41:03.958 W/ReactNativeJS(29414): [JS-STALL] +29402ms поток стоял 450ms (с +28952ms)
+10-15 08:41:03.959 W/ReactNativeJS(29414): [JS-STALL] onboarding step=welcome поток стоял 450ms
+10-15 08:41:05.342 W/ReactNativeJS(29414): [JS-STALL] +30786ms поток стоял 556ms (с +30230ms)
+10-15 08:41:05.343 W/ReactNativeJS(29414): [JS-STALL] onboarding step=welcome поток стоял 557ms
+10-15 08:41:05.903 W/ReactNativeJS(29414): [JS-STALL] +31347ms поток стоял 389ms (с +30958ms)
+10-15 08:41:05.904 W/ReactNativeJS(29414): [JS-STALL] onboarding step=welcome поток стоял 389ms
+10-15 08:41:06.268 W/ReactNativeJS(29414): [JS-STALL] heartbeat +31711ms splash=hidden@+5794ms
+10-15 08:41:07.812 I/SVERKA  (29678): === AFon COLD-DONE 08:41:47 ===
+10-15 08:41:11.301 W/ReactNativeJS(29414): [JS-STALL] heartbeat +36744ms splash=hidden@+5794ms
+10-15 08:41:16.335 W/ReactNativeJS(29414): [JS-STALL] heartbeat +41778ms splash=hidden@+5794ms
+10-15 08:41:21.396 W/ReactNativeJS(29414): [JS-STALL] heartbeat +46839ms splash=hidden@+5794ms
+10-15 08:41:23.328 W/ReactNativeJS(29414): [JS-STALL] +48769ms поток стоял 290ms (с +48479ms)
+10-15 08:41:23.329 W/ReactNativeJS(29414): [JS-STALL] onboarding step=welcome поток стоял 293ms
+10-15 08:41:26.475 W/ReactNativeJS(29414): [JS-STALL] heartbeat +51916ms splash=hidden@+5794ms
+10-15 08:41:31.533 W/ReactNativeJS(29414): [JS-STALL] heartbeat +56964ms splash=hidden@+5794ms
+10-15 08:41:34.613 W/ReactNativeJS(29414): [JS-STALL] watchdog stop +60053ms
+10-15 08:41:56.260 I/SVERKA  (29757): === AFon SIGNIN-TAP 08:42:36 ===
+10-15 08:42:09.520 I/ReactNativeJS(29414): [ACC-SPEED] warm skip source=onboarding reason=throttled sinceLastMs=86089
+10-15 08:42:09.675 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 983ms
+10-15 08:42:10.615 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 506ms
+10-15 08:42:11.069 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 255ms
+10-15 08:42:11.496 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 289ms
+10-15 08:42:12.784 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 256ms
+10-15 08:42:12.915 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] start {"provider":"apple","authState":"anonymous","authUid":"h:be383f32","localStable":"h:5cdeebb1","requireOwnership":false,"t":9097295}
+10-15 08:42:13.191 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 258ms
+10-15 08:42:18.725 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] native cancelled {"provider":"apple","t":9103101}
+10-15 08:42:18.756 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 5564ms
+10-15 08:42:19.293 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 500ms
+10-15 08:42:20.248 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:be383f32","localStable":"h:5cdeebb1","requireOwnership":false,"t":9104628}
+10-15 08:42:28.689 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":9113071}
+10-15 08:42:28.689 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:be383f32","preProviderStable":"h:5cdeebb1","t":9113072}
+10-15 08:42:30.038 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 9715ms
+10-15 08:42:30.250 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":9114633}
+10-15 08:42:30.741 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":600,"getAllKeysMs":118,"selected":2217,"filterMs":77,"multiGetMs":253,"bytes":49094,"top5":"cloud_last_sync_snapshot_v1=44967 achievements_v1=2504 customization_selection_o","t":9115123}
+10-15 08:42:30.776 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":22,"t":9115158}
+10-15 08:42:30.802 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 1/3 {"keys":"user_avatar=1 user_frame=plain unlocked_lessons=[1] legacy_free_lesson_cap_v1=3 ","t":9115164}
+10-15 08:42:30.804 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 2/3 {"keys":"lesson_progress_v2::fr::legacy_free_lesson_cap_v1(len=1) lesson_progress_v2::fr:","t":9115186}
+10-15 08:42:30.804 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 3/3 {"keys":"install_date(len=13) client_shard_phone_state_outbox_v1:<id>:1(len=169) customiz","t":9115187}
+10-15 08:42:30.974 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":true,"t":9115355}
+10-15 08:42:32.472 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 1495ms
+10-15 08:42:33.268 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 792ms
+10-15 08:42:33.363 W/ReactNativeJS(29414): '[ACC-SPEED]', '{"step":"switch:handoff_credential_ready","ms":2387}'
+10-15 08:42:33.367 I/ReactNativeJS(29414): [AUTH-FETCH] путь по dev_override=on
+10-15 08:42:33.932 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 603ms
+10-15 08:42:34.367 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 309ms
+10-15 08:42:35.862 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 875ms
+10-15 08:42:36.874 I/ReactNativeJS(29414): [AUTH-FETCH] fn=authStampAnonOwnership path=fetch outcome=ok code=200 ms=3508
+10-15 08:42:36.879 W/ReactNativeJS(29414): '[ACC-SPEED]', '{"step":"switch:stamp_anon_ownership","ms":3514}'
+10-15 08:42:37.684 W/ReactNativeJS(29414): '[ACC-SPEED]', '{"step":"switch:signInWithCredential","ms":803}'
+10-15 08:42:37.715 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:be383f32","targetUid":"h:d9408b9b","uidChanged":true,"t":9122068}
+10-15 08:42:38.197 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 515ms
+10-15 08:42:38.474 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 263ms
+10-15 08:42:39.551 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:5cdeebb1","remoteStable":"h:de10a251","branch":"remote","t":9123933}
+10-15 08:42:39.571 I/ReactNativeJS(29414): [AUTH-FETCH] путь по dev_override=on
+10-15 08:42:43.189 I/ReactNativeJS(29414): [AUTH-FETCH] fn=authEnsureStableLink path=fetch outcome=ok code=200 ms=3617
+10-15 08:42:43.203 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":9127584}
+10-15 08:42:43.205 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":9127587}
+10-15 08:42:43.210 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage local_data_checked {"provider":"google","tookMs":0,"sinceStartMs":22964,"preserveLocalProgress":false,"handoff":true,"t":9127592}
+10-15 08:42:43.211 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":9127594}
+10-15 08:42:43.215 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage presync_phase_done {"provider":"google","tookMs":6,"sinceStartMs":22970,"t":9127598}
+10-15 08:42:43.216 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage server_merge_done {"provider":"google","tookMs":1,"sinceStartMs":22971,"called":false,"t":9127599}
+10-15 08:42:43.216 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":9127599}
+10-15 08:42:43.223 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage authoritative_link_reused {"provider":"google","tookMs":4,"sinceStartMs":22975,"source":"callable","ageMs":16,"t":9127604}
+10-15 08:42:43.224 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":9127607}
+10-15 08:42:43.229 W/ReactNativeJS(29414): [WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":9127607}
+10-15 08:42:43.251 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage sync_quiesced {"provider":"google","tookMs":28,"sinceStartMs":23003,"t":9127631}
+10-15 08:42:43.267 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage entitlement_transition_begun {"provider":"google","tookMs":18,"sinceStartMs":23021,"t":9127649}
+10-15 08:42:43.270 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage transition_lock_acquired {"provider":"google","tookMs":4,"sinceStartMs":23025,"t":9127653}
+10-15 08:42:44.438 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 1248ms
+10-15 08:42:47.193 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 283ms
+10-15 08:42:47.265 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage wipe_done {"provider":"google","tookMs":3995,"sinceStartMs":27020,"t":9131648}
+10-15 08:42:47.826 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 564ms
+10-15 08:42:48.028 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage set_stable_id_done {"provider":"google","tookMs":762,"sinceStartMs":27782,"t":9132410}
+10-15 08:42:48.181 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage handoff_cleared {"provider":"google","tookMs":153,"sinceStartMs":27935,"t":9132563}
+10-15 08:42:48.208 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage generation_begun {"provider":"google","tookMs":25,"sinceStartMs":27960,"t":9132588}
+10-15 08:42:48.218 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage stable_id_installed {"provider":"google","tookMs":6,"sinceStartMs":27966,"t":9132594}
+10-15 08:42:48.220 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] swap stage auth_user_ready {"provider":"google","tookMs":8,"sinceStartMs":27974,"t":9132602}
+10-15 08:42:48.236 W/ReactNativeJS(29414): [AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:5cdeebb1","to":"h:de10a251","tookMs":27988,"t":9132616}
+10-15 08:42:49.367 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 1221ms
+10-15 08:42:49.751 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 373ms
+10-15 08:42:49.775 I/ReactNativeJS(29414): [AUTH-FETCH] путь по dev_override=on
+10-15 08:42:52.486 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 2726ms
+10-15 08:42:53.253 W/ReactNativeJS(29414): [JS-STALL] onboarding step=privacy поток стоял 767ms
+10-15 08:42:59.072 I/ReactNativeJS(29414): [AUTH-FETCH] dev_override=on
+10-15 08:43:00.509 I/ReactNativeJS(29414): [AUTH-FETCH] fn=authEnsureStableLink path=fetch outcome=ok code=200 ms=10736
+10-15 08:43:08.611 W/ReactNativeJS(29414): [SIGNIN] bg:swap_restore:restoreFromCloud FAIL 20381ms reason=timeout_swap_restore_20000ms
+10-15 08:43:11.801 I/ReactNativeJS(29414): '[LOGIN-BONUS-RESTORE]', '{"local":null,"cloud":null,"winner":"local_kept_no_cloud"}'
+10-15 08:43:25.354 I/SVERKA  (30079): === AFon SIGNIN-DONE 08:44:05 ===
+10-15 08:43:45.192 I/ReactNativeJS(29414): [SIGNIN] bg:swap_restore:switchBackup ok 36556ms
+10-15 08:43:45.213 I/ReactNativeJS(29414): [SIGNIN] bg:swap_restore:markOnboarded ok 21ms
+10-15 08:43:45.221 I/ReactNativeJS(29414): [SIGNIN] bg:swap_restore:revenueCat ok 7ms
+10-15 08:43:45.222 I/ReactNativeJS(29414): [SIGNIN] bg:swap_restore done total=56995ms restore=failed
+10-15 08:43:46.721 I/ReactNativeJS(29414): '[LOGIN-BONUS-RESTORE]', '{"local":null,"cloud":null,"winner":"local_kept_no_cloud"}'
+10-15 08:43:47.730 I/ReactNativeJS(29414): '[LOGIN-BONUS-RESTORE]', '{"local":null,"cloud":null,"winner":"local_kept_no_cloud"}'
+10-15 08:44:15.170 I/SVERKA  (30178): === AFon SIGNOUT-TAP 08:44:55 ===

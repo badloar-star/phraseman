@@ -21,9 +21,9 @@ const CRITICAL_FUNNEL_EVENTS = [
   'onboarding_plan_trial_cta',
   'intro_full_access_started',
   // главный момент конверсии
-  'intro_ended_shown',
   // зачем (D186, владелец 14.10): «Бонус на старт» 72 ч снят (INTRO_FULL_ACCESS_REMOVED) — окна «72 часа закончились» нет, кнопки «Открыть
-  // полный доступ» тоже: intro_ended_cta больше не шлётся. intro_ended_shown / intro_full_access_started остались в коде недостижимыми — уберёт этап 2 D186.
+  // полный доступ» тоже: intro_ended_cta и (этап 2, 15.10) intro_ended_shown больше не шлются. intro_full_access_started остался в
+  // app/intro_full_access.ts недостижимым — уйдёт вместе с модулем.
   'intro_ended_dismiss',
   // пейвол
   'paywall_shown',

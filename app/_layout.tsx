@@ -319,8 +319,6 @@ import { getDevAppMessage, subscribeDevAppMessage } from './dev_social_state';
 import { readFreshInstallVerdict, skipAnnouncementsForFreshInstall } from './fresh_install_gate';
 import {
   getIntroFullAccessState,
-  markIntroFullAccessEndedSeen,
-  shouldShowIntroFullAccessWelcome,
   startIntroFullAccessAfterOnboarding,
 } from './intro_full_access';
 import { resumePendingGeneratedNickname } from './nickname_guard';
@@ -1032,7 +1030,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // НАСТОЯЩЕГО кадра Главной (событие, а не запасной таймер homeScreenReady 550 мс); если Главная
   // не появится (онбординг, другой экран) — свой потолок PHONE_STATE_BOOTSTRAP_FALLBACK_MS.
   const [homePaintedForPhoneState, setHomePaintedForPhoneState] = useState(false);
-  const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
   // undefined — ссылку холодного старта ещё не забирали; null — забрали, её нет (app/initial_deep_link_store.ts).
@@ -3208,42 +3205,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     return realPremium || vip;
   }, [hasPremiumAccess]);
 
-  // зачем (D186, координатор 14.10): окно «72 часа» снято — функция закрытия с переходом на пейвол intro_ended удалена (мёртвая ветка).
-
-  const checkIntroFullAccessEndedModal = useCallback(async () => {
-    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
-    const state = await getIntroFullAccessState().catch(noteSwallowedAs('_layout:useCallback.getIntroFullAccessState', null));
-    if (!state?.expiredUnseen) return;
-    if (await hasVerifiedRealPremiumOrVip()) {
-      await markIntroFullAccessEndedSeen().catch(noteSwallowedHandler('_layout:useCallback.markIntroFullAccessEndedSeen_2'));
-      return;
-    }
-    if (state?.expiredUnseen) {
-      setIntroFullAccessModal('ended');
-      // Воронка: показана модалка «72 часа закончились» — главный момент конверсии.
-      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_shown', {})).catch(noteSwallowedHandler('_layout:useCallback.call_5'));
-      void import('./firebase').then(({ logIntroEndedShown }) => logIntroEndedShown()).catch(noteSwallowedHandler('_layout:useCallback.call_6'));
-    }
-  }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
-
-  const lastForegroundIntroCheckAtRef = useRef(0);
-  useEffect(() => {
-    void checkIntroFullAccessEndedModal();
-    const introSub = onAppEvent('intro_full_access_changed', () => {
-      void checkIntroFullAccessEndedModal();
-    });
-    const appSub = AppState.addEventListener('change', (state) => {
-      if (state !== 'active') return;
-      const now = Date.now();
-      if (now - lastForegroundIntroCheckAtRef.current < FOREGROUND_MODAL_CHECK_MIN_MS) return;
-      lastForegroundIntroCheckAtRef.current = now;
-      void checkIntroFullAccessEndedModal();
-    });
-    return () => {
-      introSub.remove();
-      appSub.remove();
-    };
-  }, [checkIntroFullAccessEndedModal]);
+  // зачем (D186 этап 2, координатор 15.10): окно «72 часа» не рисуется с 4f6334b20 — его проверка «закончилось», открытие «welcome»
+  // и запрос слота очереди окон удалены целиком: при возврате флага без окна слот занял бы невидимый держатель и заблокировал остальные окна.
 
   // План #7: winback-оффер вернувшимся после 7+ дней неактивности.
   // ВАЖНО: сначала ОЦЕНИВАЕМ по сохранённой активности, ПОТОМ записываем свежую —
@@ -3353,12 +3316,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         await startIntroFullAccessAfterOnboarding(Date.now(), lang).catch(noteSwallowedAs('_layout:useCallback.startIntroFullAccessAfterOnboarding', false));
         emitAppEvent('intro_full_access_changed');
       }
-      const showIntroGift = !hasPaidOrVipAfterOnboarding
-        && await shouldShowIntroFullAccessWelcome().catch(noteSwallowedAs('_layout:useCallback.shouldShowIntroFullAccessWelcome', false));
-      if (showIntroGift) {
-        // pm.app.welcome (2.3s) должен закончиться до открытия модалки.
-        setTimeout(() => setIntroFullAccessModal('welcome'), 1800);
-      }
     })();
   }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, lang, router]);
 
@@ -3455,9 +3412,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
   // Приоритет: update > authRecovery > releaseNotes > broadcast > appMessageModal > personalAdminMessage > ...
   // ВАЖНО: эти хуки должны вызываться до любых условных return ниже.
-  // introFullAccess — нативный <Modal statusBarTranslucent>: его обязательно
-  // гейтить через арбитр, иначе на холодном старте он может наложиться на другую такую же
-  // модалку (update/broadcast/levelUp) → мерцание/зависание System UI (ANR) на Android.
+  // Нативные <Modal statusBarTranslucent> обязательно гейтить через арбитр, иначе на холодном старте одна может наложиться
+  // на другую (update/broadcast/levelUp) → мерцание/зависание System UI (ANR) на Android.
   const updateModalVisible = useOverlayVisible('update', !!updateInfo && !updateModalHiddenForStore);
   const releaseNotesModalVisible = useOverlayVisible('releaseNotes', releaseNotesVariant !== null);
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
@@ -3465,14 +3421,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const personalAdminMessageVisible = useOverlayVisible('personalAdminMessage', !!personalAdminMessage);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const startupAuthRecoveryModalVisible = useOverlayVisible('authRecovery', startupAuthRecoveryVisible);
-  // A queued offer may have won the overlay slot immediately before the user
-  // entered a tournament. Active tournament screens are an uninterrupted flow:
-  // do not let that stale request cover the lobby or a live question.
-  const introFullAccessModalVisible = useOverlayVisible(
-    'introFullAccess',
-    introFullAccessModal !== null,
-  );
-  // зачем (координатор 12.10, «сперва логи» и защита новичка): кто просит окно, в каком порядке очередь и кто сейчас держит слот арбитра — [OVERLAY-QUEUE] (dev). Порядок приоритета: update > authRecovery > releaseNotes > broadcast > appMessageModal > personalAdminMessage > notifNudge > introFullAccess.
+  // зачем (координатор 12.10, «сперва логи» и защита новичка): кто просит окно, в каком порядке очередь и кто сейчас держит слот арбитра — [OVERLAY-QUEUE] (dev). Порядок приоритета: update > authRecovery > releaseNotes > broadcast > appMessageModal > personalAdminMessage > notifNudge.
   const overlayHolder = useOverlayActiveKey();
   useEffect(() => {
     if (!__DEV__) return;
@@ -3484,12 +3433,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       appMessageModal: appMessageModalQueue.length > 0 ? appMessageModalQueue.map((m) => m.id).join(',') : null,
       personalAdminMessage: personalAdminMessage?.id ?? null,
       notifNudge: notifNudgeVisible,
-      introFullAccess: introFullAccessModal !== null,
     };
     const asking = Object.keys(wants).filter((key) => wants[key] !== null && wants[key] !== false);
     console.log('[OVERLAY-QUEUE]', JSON.stringify({ holder: overlayHolder ?? 'никто', asking, waiting: asking.filter((key) => key !== overlayHolder), wants, onboarding: effectiveShowOnboarding })); // guard-ok: срез очереди окон
   }, [
-    appMessageModalQueue, effectiveShowOnboarding, globalBroadcastModal, introFullAccessModal, notifNudgeVisible, overlayHolder,
+    appMessageModalQueue, effectiveShowOnboarding, globalBroadcastModal, notifNudgeVisible, overlayHolder,
     personalAdminMessage, releaseNotesVariant, startupAuthRecoveryVisible, updateInfo, updateModalHiddenForStore,
   ]);
   const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({

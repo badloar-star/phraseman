@@ -55,6 +55,8 @@ const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([
   // an owner approves removing their compatibility keys.
   'arenaInvite',
   'arenaRoomConfirm',
+  // зачем (D186 этап 2, 15.10): окно «72 часа» снято, запрос слота из app/_layout.tsx удалён; ключ остаётся в арбитре до удаления модуля intro.
+  'introFullAccess',
   'coinsMigration',
   'compassBriefing',
   'matchFoundToast',

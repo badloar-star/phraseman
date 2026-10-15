@@ -1,42 +1,35 @@
 import fs from 'fs';
 import path from 'path';
 
-describe('intro full access layout orchestration', () => {
+// зачем (D186, владелец 14.10; этап 2 — координатор 15.10): «Бонус на старт» 72 ч снят (INTRO_FULL_ACCESS_REMOVED). Окно «72 часа» не рисуется,
+// а его разводка в корневом layout (состояние, проверка «закончилось», открытие «welcome», запрос слота очереди окон) удалена: при возврате флага
+// без окна слот занял бы невидимый держатель и заблокировал остальные окна. Сторож держит именно это; запуск из онбординга остаётся (no-op под флагом).
+describe('intro full access — root layout after D186', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
   const onboardingSource = fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
 
-  it('starts the intro gift from onboarding completion and shows the welcome modal once', () => {
-    expect(source).toContain('startIntroFullAccessAfterOnboarding');
-    expect(source).toContain('shouldShowIntroFullAccessWelcome');
-    // зачем (D186, координатор 14.10): окно «72 часа» снято — функция его закрытия (markIntroFullAccessWelcomeSeen, переход intro_ended) удалена.
+  it('mounts no intro window and asks for no overlay slot', () => {
+    expect(source).not.toContain('<IntroFullAccessModal');
+    expect(source).not.toContain("useOverlayVisible(\n    'introFullAccess'");
+    expect(source).not.toMatch(/useOverlayVisible\(\s*'introFullAccess'/);
+    expect(source).not.toContain('introFullAccessModal');
+    expect(source).not.toContain('setIntroFullAccessModal');
+  });
+
+  it('runs no «72 hours ended» check and opens no welcome window', () => {
+    expect(source).not.toContain('checkIntroFullAccessEndedModal');
+    expect(source).not.toContain('shouldShowIntroFullAccessWelcome');
+    expect(source).not.toContain('markIntroFullAccessEndedSeen');
     expect(source).not.toContain('markIntroFullAccessWelcomeSeen');
-    expect(source).toContain("setIntroFullAccessModal('welcome')");
+    expect(source).not.toContain("trackEvent('intro_ended_shown'");
+    expect(source).not.toContain("context: 'intro_ended'");
   });
 
-  it('shows the expired gift modal without stacking it over onboarding', () => {
-    expect(source).toContain('getIntroFullAccessState');
-    expect(source).toContain('expiredUnseen');
-    expect(source).toContain('IntroFullAccessModal');
-    // FirstLessonSheet был удалён отдельной сессией — гейт стэкинга к нему больше
-    // не относится; достаточно проверить, что модал интро рисуется по состоянию.
-    expect(source).toContain('setIntroFullAccessModal');
-  });
-
-  it('suppresses intro gift modals for users who already have real Premium or VIP', () => {
-    expect(source).toContain('hasVerifiedRealPremiumOrVip');
-    // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
+  it('still starts the (retired, no-op) intro from onboarding completion for paid-or-VIP-aware flow', () => {
+    expect(source).toContain('const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip()');
+    expect(source).toContain('startIntroFullAccessAfterOnboarding');
     expect(source).toMatch(/getVerifiedRealPremiumStatus\(\)\.catch\((\(\) => false|noteSwallowedAs\('[^']+', false\))\)/);
     expect(source).toMatch(/getVerifiedVipStatus\(\)\.catch\((\(\) => false|noteSwallowedAs\('[^']+', false\))\)/);
-    expect(source).toContain('const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip()');
-    // зачем (04.10): PM-229 (62c7b2fc4) перенёс вызов на новую строку и дописал лог причины в .catch — условие то же.
-    expect(source).toMatch(/!hasPaidOrVipAfterOnboarding\s*&& await shouldShowIntroFullAccessWelcome\(\)/);
-    expect(source).toMatch(/await markIntroFullAccessEndedSeen\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
-  });
-
-  // зачем (D186): окна «72 часа» нет — перехода на пейвол intro_ended из корневого layout больше нет (мёртвая ветка удалена 14.10).
-  it('no longer routes an expiration CTA to the paywall (D186)', () => {
-    expect(source).not.toContain("context: 'intro_ended'");
-    expect(source).toContain('markIntroFullAccessEndedSeen');
   });
 
   it('does not use the intro gift to skip the onboarding paywall', () => {

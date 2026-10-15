@@ -80,3 +80,47 @@ describe('язык раздела: локальный выбор', () => {
     expect(lines[1]).toContain('"event":"reset"');
   });
 });
+
+describe('язык раздела: вкладки и маршруты (🔴 R70, Ревизор a9486a249)', () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const section = require('../app/section_language') as typeof import('../app/section_language');
+  beforeEach(() => {
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    section.resetSectionLanguage('video', 'test');
+    section.resetSectionLanguage('cards', 'test');
+    section.__resetSectionLanguageForTests();
+  });
+  afterEach(() => jest.restoreAllMocks());
+
+  it('«Видео es → вкладка Главная → вкладка Видео» = язык из Настроек, хотя pathname не менялся', () => {
+    const inTabs = (activeTabIdx: number) => ({ pathname: '/video', routeIsTab: true, activeTabIdx });
+    section.trackCurrentSection(inTabs(2));
+    section.setSectionLanguageOverride('video', 'es');
+    section.trackCurrentSection(inTabs(0)); // тап по Главной: путь тот же, активна вкладка 0
+    expect(section.getSectionLanguageOverride('video')).toBeNull();
+    section.trackCurrentSection(inTabs(2));
+    expect(section.getSectionLanguageOverride('video')).toBeNull();
+  });
+
+  it('экраны поверх таббара внутри раздела не сбрасывают: ролик, плейлист, открытие набора', () => {
+    section.trackCurrentSection({ pathname: '/video', routeIsTab: true, activeTabIdx: 2 });
+    section.setSectionLanguageOverride('video', 'es');
+    section.trackCurrentSection({ pathname: '/lingman_video_watch', routeIsTab: false, activeTabIdx: 2 });
+    section.trackCurrentSection({ pathname: '/lingman_playlist', routeIsTab: false, activeTabIdx: 2 });
+    expect(section.getSectionLanguageOverride('video')).toBe('es');
+    expect(section.sectionOfPathname('/pack_opening')).toBe('cards');
+  });
+
+  it('внутри разделов эффективный язык — локальный выбор, иначе из Настроек', () => {
+    expect(section.effectiveStudyTargetNow('en')).toBe('en');
+    section.setSectionLanguageOverride('video', 'es');
+    expect(section.effectiveStudyTargetNow('en')).toBe('es');
+  });
+
+  it('набор из ролика, ролик на es: «добавить» и «уже добавлен» читают язык раздела', () => {
+    const { readFileSync } = require('fs') as typeof import('fs');
+    for (const file of ['app/community_packs/CommunityPackSocialBar.tsx', 'app/community_packs/useOwnedPack.ts', 'app/lingman_video_watch.tsx', 'app/flashcards_video_packs.tsx']) {
+      expect(readFileSync(file, 'utf8')).toContain('useEffectiveStudyTarget(globalStudyTarget)');
+    }
+  });
+});

@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   AccessibilityInfo,
   findNodeHandle,
+  InteractionManager,
   StatusBar,
   StyleSheet,
   View,
@@ -260,6 +261,8 @@ export default function FlashcardsHubScreen() {
    */
   const hubWarmRef = useRef<{ key: string; atMs: number }>({ key: '', atMs: 0 });
   const [modeSheetVisible, setModeSheetVisible] = useState(false);
+  const modeSheetVisibleRef = useRef(false);
+  modeSheetVisibleRef.current = modeSheetVisible;
   // зачем (координатор §90, 02.10): ранний тап, пока квота читается ('waiting' — на слабом устройстве
   // несколько секунд очереди AsyncStorage), открывает окно режимов СРАЗУ; режимы ждут и оживают сами.
   const [earlyTap, setEarlyTap] = useState<'waiting' | 'failed' | null>(null);
@@ -692,8 +695,16 @@ export default function FlashcardsHubScreen() {
     if (!intent) return;
     autoTrainHandledRef.current = true;
     pendingDeckRef.current = intent.deckId ? { deckId: intent.deckId, count: intent.count } : null;
-    console.log(`[BLITZ-AUTOOPEN] hub:focus intent deck=${String(intent.deckId)} count=${intent.count} → окно режимов`); // guard-ok: путь через намерение
-    onTrainIntentRef.current();
+    console.log(`[BLITZ-AUTOOPEN] hub:focus intent deck=${String(intent.deckId)} count=${intent.count} → окно режимов после перехода`); // guard-ok: путь через намерение
+    // зачем (🔴 Ц1 Макетов, 15.10): намерение доходило до хаба (consume ✓), но окно режимов не появлялось — оно открывалось В ТЕКУЩИЙ кадр возврата на хаб, пока шёл переход назад,
+    // и нативное окно в этот момент не показывается. Открываем после перехода (InteractionManager) и пишем, видно ли окно через 700 мс.
+    let cancelled = false;
+    const handle = InteractionManager.runAfterInteractions(() => {
+      if (cancelled) { console.log('[TRAIN-INTENT] hub: отменено (экран ушёл) до открытия окна'); return; } // guard-ok: ранний выход
+      onTrainIntentRef.current();
+      setTimeout(() => console.log(`[TRAIN-INTENT] hub:sheet-state через 700мс visible=${String(modeSheetVisibleRef.current)} deck=${String(intent.deckId)}`), 700); // guard-ok: итог открытия окна
+    });
+    return () => { cancelled = true; handle.cancel(); };
   }, []));
 
   // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.

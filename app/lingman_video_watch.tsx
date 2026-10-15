@@ -18,6 +18,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useEffectiveStudyTarget } from './section_language';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
 import YoutubeVideoPhrases from '../components/youtube/YoutubeVideoPhrases';
 import { formatViewCount } from '../components/video/formatViewCount';
@@ -60,7 +61,9 @@ export default function LingmanVideoWatchScreen() {
   const { lang } = useLang();
   const { theme: t, liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
-  const { studyTarget } = useStudyTarget();
+  const { studyTarget: globalStudyTarget } = useStudyTarget();
+  // зачем (владелец 15.10, Ревизор a9486a249): внутри раздела «Видео»/«Карточки» язык — локальный выбор раздела, иначе набор из ролика на es лёг бы в чужой язык
+  const studyTarget = useEffectiveStudyTarget(globalStudyTarget);
   const runtimeActive = useRuntimeActive(true);
   const token = useMemo(() => captureAccountGeneration(), []);
   const insets = useStableSafeAreaInsets();

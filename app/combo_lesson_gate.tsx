@@ -22,7 +22,11 @@ export function comboGateDecision(input: Readonly<{ comboActive: boolean; hasPre
   return input.accessResolved ? 'deny' : 'pending';
 }
 
+/** Потолок ожидания статуса Plus / активации после пейвола. */
+export const COMBO_GATE_CAP_MS = 5000;
+
 export function withComboPlusGate<P extends object>(Inner: React.ComponentType<P>): React.ComponentType<P> {
+  const MemoInner = React.memo(Inner) as unknown as React.ComponentType<P>;
   function ComboPlusGate(props: P) {
     const router = useRouter();
     const params = useLocalSearchParams<{ combo?: string | string[]; from?: string | string[] }>();
@@ -41,6 +45,29 @@ export function withComboPlusGate<P extends object>(Inner: React.ComponentType<P
       console.log(`[COMBO-GATE] ${JSON.stringify({ source, premium: hasPremiumAccess, resolved: accessResolved, decision })}`); // guard-ok: решение о границе доступа
     }, [accessResolved, comboActive, decision, hasPremiumAccess, source]);
 
+    const leave = useCallback((reason: string) => {
+      console.log(`[COMBO-GATE] выход reason=${reason}`); // guard-ok: ветка выхода
+      safeRouterBack(router, '/(tabs)/lessons' as never);
+    }, [router]);
+
+    // зачем (Ревизор c3271a1c0): статус не прояснился за потолок — закрыто и выход (не вечный пустой фон)
+    useEffect(() => {
+      if (decision !== 'pending') return undefined;
+      const timer = setTimeout(() => leave(`pending_cap_${COMBO_GATE_CAP_MS}ms`), COMBO_GATE_CAP_MS);
+      return () => clearTimeout(timer);
+    }, [decision, leave]);
+
+    // зачем (Ревизор c3271a1c0): после покупки на пейволе статус Plus приходит с задержкой (premium_activated) — сразу выходить нельзя; ждём потолок и решаем
+    const afterPaywallTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    useEffect(() => {
+      if (decision === 'allow' && afterPaywallTimerRef.current) {
+        clearTimeout(afterPaywallTimerRef.current);
+        afterPaywallTimerRef.current = null;
+        console.log('[COMBO-GATE] Plus подтвердился после пейвола → пускаем'); // guard-ok: ветка допуска
+      }
+    }, [decision]);
+    useEffect(() => () => { if (afterPaywallTimerRef.current) clearTimeout(afterPaywallTimerRef.current); }, []);
+
     useFocusEffect(useCallback(() => {
       if (decision !== 'deny') return;
       if (!paywallShownRef.current) {
@@ -48,11 +75,15 @@ export function withComboPlusGate<P extends object>(Inner: React.ComponentType<P
         openPremiumPaywall(router, { context: 'combined_lesson' });
         return;
       }
-      console.log('[COMBO-GATE] paywall закрыт без Plus → выход'); // guard-ok: ветка выхода
-      safeRouterBack(router, '/(tabs)/lessons' as never);
-    }, [decision, router]));
+      if (afterPaywallTimerRef.current) return;
+      console.log(`[COMBO-GATE] paywall закрыт, Plus ещё не виден — жду до ${COMBO_GATE_CAP_MS}мс`); // guard-ok: ожидание активации
+      afterPaywallTimerRef.current = setTimeout(() => {
+        afterPaywallTimerRef.current = null;
+        leave('paywall_closed_without_plus');
+      }, COMBO_GATE_CAP_MS);
+    }, [decision, leave, router]));
 
-    if (decision === 'allow') return <Inner {...props} />;
+    if (decision === 'allow') return <MemoInner {...props} />;
     // ждём или отказ: обычный фон экрана, содержимого комбо нет
     return <ScreenGradient>{null}</ScreenGradient>;
   }

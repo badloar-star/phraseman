@@ -62,20 +62,50 @@ function subscribe(listener: () => void): () => void {
 /** Раздел по пути экрана (null — вне разделов с локальным языком). */
 export function sectionOfPathname(pathname: string | null | undefined): LanguageSection | null {
   const path = String(pathname ?? '');
-  if (path === '/video' || path.startsWith('/video/') || path.startsWith('/lingman_video')) return 'video';
-  if (path.startsWith('/flashcards') || path.startsWith('/community_pack')) return 'cards';
+  // зачем (Ревизор a9486a249): /lingman_playlist (плейлист ролика) — часть «Видео», /pack_opening (открытие набора) — часть «Карточек»; ухода из раздела там нет
+  if (path === '/video' || path.startsWith('/video/') || path.startsWith('/lingman_video') || path.startsWith('/lingman_playlist')) return 'video';
+  if (path.startsWith('/flashcards') || path.startsWith('/community_pack') || path.startsWith('/pack_opening')) return 'cards';
   return null;
+}
+
+/**
+ * Раздел с учётом активной ВКЛАДКИ. зачем (🔴 R70, Ц1 Макетов): вкладки у приложения свои, не маршрутизатор — usePathname при переключении вкладок не меняется
+ * и «Главная → Видео» оставляла выбранный es. Внутри таббара (маршрут — вкладка) раздел определяет активная вкладка, поверх таббара (экраны ролика, наборы) — путь экрана.
+ */
+export const VIDEO_TAB_INDEX = 2;
+export function currentSection(input: Readonly<{ pathname: string | null | undefined; routeIsTab: boolean; activeTabIdx: number }>): LanguageSection | null {
+  if (input.routeIsTab) return input.activeTabIdx === VIDEO_TAB_INDEX ? 'video' : null;
+  return sectionOfPathname(input.pathname);
+}
+
+/** Зовётся при смене вкладки или пути. */
+export function trackCurrentSection(input: Parameters<typeof currentSection>[0]): void {
+  trackSection(currentSection(input), `pathname=${String(input.pathname)} tab=${input.activeTabIdx} routeIsTab=${input.routeIsTab}`);
+}
+
+/** Язык, по которому сейчас живёт раздел (локальный выбор «Видео»/«Карточек» или язык из Настроек). Вне разделов выборов нет, значит всегда язык из Настроек. */
+export function effectiveStudyTargetNow(globalLanguage: string): string {
+  return overrides.video ?? overrides.cards ?? globalLanguage;
 }
 
 let lastSection: LanguageSection | null = null;
 
 /** Зовётся при смене пути: ушли из раздела — его локальный язык сбрасывается. */
 export function trackSectionPathname(pathname: string | null | undefined): void {
-  const next = sectionOfPathname(pathname);
+  trackSection(sectionOfPathname(pathname), `pathname=${String(pathname)}`);
+}
+
+function trackSection(next: LanguageSection | null, where: string): void {
   if (next === lastSection) return;
   const left = lastSection;
   lastSection = next;
-  if (left) resetSectionLanguage(left, `left_section_to=${next ?? String(pathname)}`);
+  if (left) resetSectionLanguage(left, `left_section_to=${next ?? 'none'} ${where}`);
+}
+
+/** Язык обучения для компонентов внутри разделов: локальный выбор раздела, иначе язык из Настроек. */
+export function useEffectiveStudyTarget<T extends string>(globalLanguage: T): T {
+  useSyncExternalStore(subscribe, () => version, () => version);
+  return effectiveStudyTargetNow(globalLanguage) as T;
 }
 
 /** Язык раздела: локальный выбор, иначе язык из Настроек. */

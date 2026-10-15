@@ -23,3 +23,13 @@ describe('замок комбо-ссылки', () => {
     expect(read('app/combo_lesson_gate.tsx')).toContain('[COMBO-GATE]');
   });
 });
+
+describe('потолки замка (Ревизор c3271a1c0)', () => {
+  it('pending и ожидание после пейвола ограничены потолком, Inner в memo', () => {
+    const src = read('app/combo_lesson_gate.tsx');
+    expect(src).toContain('COMBO_GATE_CAP_MS = 5000');
+    expect(src).toContain('pending_cap_');
+    expect(src).toContain('paywall_closed_without_plus');
+    expect(src).toContain('React.memo(Inner)');
+  });
+});

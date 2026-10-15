@@ -30,6 +30,7 @@ import { PackCta, PackGhostCta, PackRoundButton } from '../../components/packs/P
 import { triLang, type Lang } from '../../constants/i18n';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { useStudyTarget } from '../../components/StudyTargetContext';
+import { useEffectiveStudyTarget } from '../section_language';
 import { getCanonicalUserId } from '../user_id_policy';
 import { communityPackPriceRunes, type FlashcardMarketPack } from '../flashcards/marketplace';
 import { addCommunityPackToLibrary, toggleCommunityPackLike } from './communityPackActions';
@@ -125,7 +126,9 @@ export default function CommunityPackSocialBar({
   const isScreen = mode === 'screen';
 
   /** Изоляция целей обучения: «Добавить себе» пишет владение по ТЕКУЩЕЙ цели. */
-  const { studyTarget } = useStudyTarget();
+  const { studyTarget: globalStudyTarget } = useStudyTarget();
+  // зачем (владелец 15.10, Ревизор a9486a249): внутри раздела «Видео»/«Карточки» язык — локальный выбор раздела, иначе набор из ролика на es лёг бы в чужой язык
+  const studyTarget = useEffectiveStudyTarget(globalStudyTarget);
 
   const [snapshot, setSnapshot] = useState<PackSocialSnapshot>(() => ({
     likesCount: pack.likesCount ?? 0,

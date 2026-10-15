@@ -76,7 +76,7 @@ import {
   type TabPageLayout,
 } from '../tab_page_model';
 import { useStudyTarget } from '../../components/StudyTargetContext';
-import { trackSectionPathname } from '../section_language';
+import { trackCurrentSection } from '../section_language';
 import { isLearnTabVisibleForTarget } from '../learning_language_surface_readiness';
 import { shouldLoadTabScreen } from '../tab_mount_policy';
 import { whenOnboardingSettled } from '../onboarding_defer_gate';
@@ -817,7 +817,6 @@ function ReleasedTabLayout() {
   const { theme: t } = useTheme();
   const pathname = usePathname();
   // зачем (владелец 15.10): язык, выбранный пилюлей раздела («Видео», «Карточки»), живёт только пока человек в разделе — ушёл, и раздел снова на языке из Настроек.
-  useEffect(() => { trackSectionPathname(pathname); }, [pathname]);
   // зачем: useSegments() в expo-router 6 типизирован union'ом ВСЕХ маршрутов —
   // в массивах зависимостей TS падает с TS2590 («union слишком сложный»).
   // Помощники ниже и так принимают readonly string[], поэтому сужаем тип здесь.
@@ -1266,6 +1265,10 @@ function ReleasedTabLayout() {
   // держать перехват дальше значило бы ломать штатный выход из приложения.
 
   const currentRouteIsTab = tabIdxFromRouter(pathname, segments) !== null;
+  // зачем (владелец 15.10, 🔴 R70): язык, выбранный пилюлей раздела, живёт пока человек в разделе; вкладки свои (usePathname на их смене не меняется) — следим за активной вкладкой
+  useEffect(() => {
+    trackCurrentSection({ pathname, routeIsTab: currentRouteIsTab, activeTabIdx: activeIdx });
+  }, [activeIdx, currentRouteIsTab, pathname]);
   const markTouchForPremount = useCallback(() => {
     lastTouchAtRef.current = Date.now();
     return false;

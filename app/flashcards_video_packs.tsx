@@ -39,6 +39,7 @@ import ContentWrap from '../components/ContentWrap';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useEffectiveStudyTarget } from './section_language';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -178,7 +179,9 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
   // зачем (аудит Карточек 🟡, 15.10): нижний край отдельного экрана «Видео» не учитывал жестовую полосу — последняя карточка садилась под неё
   const standaloneInsets = useStableSafeAreaInsets();
   const { lang } = useLang();
-  const { studyTarget } = useStudyTarget();
+  const { studyTarget: globalStudyTarget } = useStudyTarget();
+  // зачем (владелец 15.10, Ревизор a9486a249): внутри раздела «Видео»/«Карточки» язык — локальный выбор раздела, иначе набор из ролика на es лёг бы в чужой язык
+  const studyTarget = useEffectiveStudyTarget(globalStudyTarget);
   const { theme: t, liquidGlassThemeId, statusBarLight } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const cloudEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;

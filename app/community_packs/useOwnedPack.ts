@@ -8,6 +8,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { useEffect, useState } from 'react';
 import { useStudyTarget } from '../../components/StudyTargetContext';
+import { useEffectiveStudyTarget } from '../section_language';
 import { onAccountOwnerChanged } from '../account_owner_change';
 import { onAppEvent } from '../events';
 import { loadCommunityOwnedPackIds } from './communityOwnedStorage';
@@ -51,7 +52,9 @@ export function communityIdForRow(packId: string): string {
 }
 
 export function useOwnedPack(packId: string): boolean {
-  const { studyTarget } = useStudyTarget();
+  const { studyTarget: globalStudyTarget } = useStudyTarget();
+  // зачем (владелец 15.10, Ревизор a9486a249): внутри раздела «Видео»/«Карточки» язык — локальный выбор раздела, иначе набор из ролика на es лёг бы в чужой язык
+  const studyTarget = useEffectiveStudyTarget(globalStudyTarget);
   const target = String(studyTarget ?? 'en');
   const communityId = communityIdForRow(packId);
   const [owned, setOwned] = useState(false);

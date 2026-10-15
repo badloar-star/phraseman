@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-32:i01",
-    "correctText": "postcard",
-    "correctResponseId": "en:lesson-03:session-32:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-32:i03",
-    "correctText": "magnet",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-32:i05",
-    "correctText": "keyring",
+    "correctText": "They are dogs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i02",
-    "correctText": "postcard",
-    "correctResponseId": null
+    "correctText": "The cars are available.",
+    "correctResponseId": "en:lesson-03:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i03",
+    "correctText": "cats",
+    "correctResponseId": "en:lesson-03:session-32:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-32:i04",
-    "correctText": "magnet",
-    "correctResponseId": "en:lesson-03:session-32:i04:r1"
+    "correctText": "en:lesson-03:session-32:i04:p1=dogs\nen:lesson-03:session-32:i04:p2=cats\nen:lesson-03:session-32:i04:p3=cars\nen:lesson-03:session-32:i04:p4=chairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i05",
+    "correctText": "The windows are open.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i06",
-    "correctText": "keyring",
+    "correctText": "Where are the tables?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i07",
-    "correctText": "en:lesson-03:session-32:i07:p1=postcard\nen:lesson-03:session-32:i07:p2=magnet\nen:lesson-03:session-32:i07:p3=keyring\nen:lesson-03:session-32:i07:p4=key",
+    "correctText": "Parks are important.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i08",
-    "correctText": "postcard",
-    "correctResponseId": null
+    "correctText": "Windows",
+    "correctResponseId": "en:lesson-03:session-32:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-32:i09",
-    "correctText": "magnet",
-    "correctResponseId": null
+    "correctText": "The chairs are upstairs.",
+    "correctResponseId": "en:lesson-03:session-32:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-32:i10",
-    "correctText": "keyring",
+    "correctText": "en:lesson-03:session-32:i10:p1=tables\nen:lesson-03:session-32:i10:p2=windows\nen:lesson-03:session-32:i10:p3=parks\nen:lesson-03:session-32:i10:p4=cats",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i11",
-    "correctText": "This is a postcard.",
+    "correctText": "The parks are nearby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i12",
-    "correctText": "Вон магнит.",
-    "correctResponseId": "en:lesson-03:session-32:i12:r1"
+    "correctText": "Where are the cars?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i13",
-    "correctText": "this",
-    "correctResponseId": "en:lesson-03:session-32:i13:r1"
+    "correctText": "Dogs are helpful.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i14",
-    "correctText": "That postcard, please.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-32:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-32:i15",
-    "correctText": "Is that a magnet?",
-    "correctResponseId": null
+    "correctText": "The tables are here.",
+    "correctResponseId": "en:lesson-03:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-32:i16",
-    "correctText": "Этот брелок, пожалуйста.",
-    "correctResponseId": "en:lesson-03:session-32:i16:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-32:i17:s01",
-    "correctText": "That is a postcard.",
+    "correctText": "en:lesson-03:session-32:i16:p1=cars\nen:lesson-03:session-32:i16:p2=chairs\nen:lesson-03:session-32:i16:p3=tables\nen:lesson-03:session-32:i16:p4=windows",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-32:i17:s02",
-    "correctText": "Is this a magnet?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-32:i17:s03",
-    "correctText": "That keyring, please.",
+    "interactionId": "en:lesson-03:session-32:i17",
+    "correctText": "Where are the chairs?",
     "correctResponseId": null
   }
 ]

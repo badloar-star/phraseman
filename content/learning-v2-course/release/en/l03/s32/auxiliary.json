@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-32:intro1:r2": {
+          "ru": "Собак несколько: нужно `dogs`, без `a`.",
+          "uk": "Собак кілька: потрібно `dogs`, без `a`."
+        },
+        "en:lesson-03:session-32:intro1:r3": {
+          "ru": "С `They` нужно `are`.",
+          "uk": "З `They` потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-32:intro2:r2": {
+          "ru": "`The parks` — конкретные парки. Здесь говорим о парках вообще: `Parks`.",
+          "uk": "`The parks` — конкретні парки. Тут говоримо про парки загалом: `Parks`."
+        },
+        "en:lesson-03:session-32:intro2:r3": {
+          "ru": "Перед `parks` не ставим `a`.",
+          "uk": "Перед `parks` не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-32:intro3:r2": {
+          "ru": "Стульев несколько: нужно `are`.",
+          "uk": "Стільців кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-32:intro3:r3": {
+          "ru": "О месте спрашиваем `Where` — «Где».",
+          "uk": "Про місце запитуємо `Where` — «Де»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d925f9a3446317c164fb59ae768dbc1851300277873058b5440310a5fd125b06"
+}

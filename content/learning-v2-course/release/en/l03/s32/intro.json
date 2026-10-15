@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-32",
   "learningOutcomeByLocale": {
-    "ru": "checkpoint — выбор между утверждением, вопросом и короткой просьбой с `this/that`",
-    "uk": "checkpoint — вибір між твердженням, запитанням і коротким проханням із `this/that`"
+    "ru": "повторить названия нескольких предметов и животных, общие высказывания и вопросы о конкретных вещах",
+    "uk": "повторити назви кількох предметів і тварин, загальні висловлювання та запитання про конкретні речі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Назвать открытку перед вами",
-        "uk": "Назвати листівку перед вами"
+        "ru": "Один и несколько",
+        "uk": "Один і кілька"
       },
       "bodyByLocale": {
-        "ru": "`postcard` — «открытка». Она лежит перед вами: `This is a postcard.` — «Это открытка».\n\nПорядок: `this + is + a + предмет`. `This` указывает, `is` соединяет, `a` показывает один предмет. Открытка иногда добирается домой позже вас, но `a` в этой фразе опаздывать не должно.",
-        "uk": "`postcard` — «листівка». Вона лежить перед вами: `This is a postcard.` — «Це листівка».\n\nПорядок: `this + is + a + предмет`. `This` указує, `is` з’єднує, `a` показує один предмет. Листівка іноді дістається додому пізніше за вас, але `a` в цій фразі запізнюватися не повинно."
+        "ru": "Повторим `dogs` — «собаки», `cats` — «кошки», `cars` — «машины». Несколько собак — `They are dogs`, «Это собаки». Одна — `It is a dog`, «Это собака». Перед `dogs` не ставим `a`. Олег подписал фотографию трёх собак словом `dog`. Две собаки пока не учтены. Исправим подпись: `dogs`.",
+        "uk": "Повторимо `dogs` — «собаки», `cats` — «коти», `cars` — «машини». Кілька собак — `They are dogs`, «Це собаки». Одна — `It is a dog`, «Це собака». Перед `dogs` не ставимо `a`. Олег підписав фотографію трьох собак словом `dog`. Двох собак поки не враховано. Виправимо підпис: `dogs`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-32:intro1:q",
         "promptByLocale": {
-          "ru": "Открытка лежит на стойке перед вами. Назовите её.",
-          "uk": "Листівка лежить на стійці перед вами. Назвіть її."
+          "ru": "На фотографии несколько собак. Назовите их полной фразой «Это собаки».",
+          "uk": "На фотографії кілька собак. Назвіть їх повною фразою «Це собаки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-32:intro1:r1",
-              "text": "This is a postcard."
+              "text": "They are dogs."
             },
             {
               "responseId": "en:lesson-03:session-32:intro1:r2",
-              "text": "That is a postcard."
+              "text": "They are a dog."
             },
             {
               "responseId": "en:lesson-03:session-32:intro1:r3",
-              "text": "This is postcard."
+              "text": "They is dogs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-32:intro1:r1",
-              "text": "This is a postcard."
+              "text": "They are dogs."
             },
             {
               "responseId": "en:lesson-03:session-32:intro1:r2",
-              "text": "That is a postcard."
+              "text": "They are a dog."
             },
             {
               "responseId": "en:lesson-03:session-32:intro1:r3",
-              "text": "This is postcard."
+              "text": "They is dogs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Открытка лежит на стойке перед вами. Назовите её.",
-          "uk": "Листівка лежить на стійці перед вами. Назвіть її."
+          "ru": "На фотографии несколько собак. Назовите их полной фразой «Это собаки».",
+          "uk": "На фотографії кілька собак. Назвіть їх повною фразою «Це собаки»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уточнить магнит в витрине",
-        "uk": "Уточнити магніт у вітрині"
+        "ru": "Важны вообще",
+        "uk": "Важливі загалом"
       },
       "bodyByLocale": {
-        "ru": "`magnet` — «магнит». В дальней витрине его легко принять за значок. Уточните: `Is that a magnet?` — «Вон там магнит?»\n\nВопрос меняет порядок первых двух слов: `that is` превращается в `is that`. `That` по-прежнему указывает на дальний предмет; меняется действие — теперь вы спрашиваете.",
-        "uk": "`magnet` — «магніт». У дальній вітрині магніт легко сплутати зі значком. Уточніть: `Is that a magnet?` — «Он магніт?»\n\nЗапитання змінює порядок перших двох слів: `that is` перетворюється на `is that`. `That` і далі вказує на далекий предмет; змінюється дія — тепер ви запитуєте."
+        "ru": "`parks` — «парки», `windows` — «окна». `Parks are important` — «Парки важны»: говорим о парках вообще, без `the`. `The parks are nearby` — «Парки рядом»: говорим о тех парках, которые выбрали для прогулки. Так же различаем окна вообще и окна конкретной комнаты.",
+        "uk": "`parks` — «парки», `windows` — «вікна». `Parks are important` — «Парки важливі»: говоримо про парки загалом, без `the`. `The parks are nearby` — «Парки поруч»: говоримо про ті парки, які вибрали для прогулянки. Так само розрізняємо вікна загалом і вікна конкретної кімнати."
       },
       "question": {
         "interactionId": "en:lesson-03:session-32:intro2:q",
         "promptByLocale": {
-          "ru": "Вы показываете на дальнюю вещь и хотите уточнить, магнит ли это.",
-          "uk": "Ви показуєте на далеку річ і хочете уточнити, чи це магніт."
+          "ru": "Вы говорите о пользе парков для города вообще. Выберите «Парки важны» без указания на определённые парки.",
+          "uk": "Ви говорите про користь парків для міста загалом. Виберіть «Парки важливі» без указівки на певні парки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-32:intro2:r1",
-              "text": "Is that a magnet?"
+              "text": "Parks are important."
             },
             {
               "responseId": "en:lesson-03:session-32:intro2:r2",
-              "text": "That is a magnet."
+              "text": "The parks are important."
             },
             {
               "responseId": "en:lesson-03:session-32:intro2:r3",
-              "text": "Is this a magnet?"
+              "text": "A parks are important."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-32:intro2:r1",
-              "text": "Is that a magnet?"
+              "text": "Parks are important."
             },
             {
               "responseId": "en:lesson-03:session-32:intro2:r2",
-              "text": "That is a magnet."
+              "text": "The parks are important."
             },
             {
               "responseId": "en:lesson-03:session-32:intro2:r3",
-              "text": "Is this a magnet?"
+              "text": "A parks are important."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы показываете на дальнюю вещь и хотите уточнить, магнит ли это.",
-          "uk": "Ви показуєте на далеку річ і хочете уточнити, чи це магніт."
+          "ru": "Вы говорите о пользе парков для города вообще. Выберите «Парки важны» без указания на определённые парки.",
+          "uk": "Ви говорите про користь парків для міста загалом. Виберіть «Парки важливі» без указівки на певні парки."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Выбрать брелок",
-        "uk": "Вибрати брелок"
+        "ru": "Где нужные вещи",
+        "uk": "Де потрібні речі"
       },
       "bodyByLocale": {
-        "ru": "`keyring` — «брелок». Для короткого выбора не нужны `is` и `a`: `This keyring, please.` — «Вот этот брелок, пожалуйста».\n\nСравните: `This is a keyring` называет вещь, `Is this a keyring?` уточняет, а `This keyring, please` выбирает её. В музейном киоске одна перестановка слов меняет весь разговор.",
-        "uk": "`keyring` — «брелок». Для короткого вибору не потрібні `is` та `a`: `This keyring, please.` — «Оцей брелок, будь ласка».\n\nПорівняйте: `This is a keyring` називає річ, `Is this a keyring?` уточнює, а `This keyring, please` вибирає її. У музейному кіоску одна перестановка слів змінює всю розмову."
+        "ru": "`chairs` — «стулья», `tables` — «столы». `Where are the chairs?` — «Где стулья?» Спрашиваем о конкретных стульях для встречи: `the chairs`. Стульев несколько, поэтому нужно `are`. Точно так же можно спросить о машинах для поездки: `Where are the cars?` — «Где машины?»",
+        "uk": "`chairs` — «стільці», `tables` — «столи». `Where are the chairs?` — «Де стільці?» Запитуємо про конкретні стільці для зустрічі: `the chairs`. Стільців кілька, тому потрібно `are`. Так само можна запитати про машини для поїздки: `Where are the cars?` — «Де машини?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-32:intro3:q",
         "promptByLocale": {
-          "ru": "Брелок лежит перед вами. Попросите именно его.",
-          "uk": "Брелок лежить перед вами. Попросіть саме його."
+          "ru": "Анна знает, какие стулья выделены для встречи. Спросите, где стулья.",
+          "uk": "Анна знає, які стільці виділені для зустрічі. Запитайте, де стільці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-32:intro3:r1",
-              "text": "This keyring, please."
+              "text": "Where are the chairs?"
             },
             {
               "responseId": "en:lesson-03:session-32:intro3:r2",
-              "text": "This is a keyring."
+              "text": "Where is the chairs?"
             },
             {
               "responseId": "en:lesson-03:session-32:intro3:r3",
-              "text": "That keyring, please."
+              "text": "What are the chairs?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-32:intro3:r1",
-              "text": "This keyring, please."
+              "text": "Where are the chairs?"
             },
             {
               "responseId": "en:lesson-03:session-32:intro3:r2",
-              "text": "This is a keyring."
+              "text": "Where is the chairs?"
             },
             {
               "responseId": "en:lesson-03:session-32:intro3:r3",
-              "text": "That keyring, please."
+              "text": "What are the chairs?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Брелок лежит перед вами. Попросите именно его.",
-          "uk": "Брелок лежить перед вами. Попросіть саме його."
+          "ru": "Анна знает, какие стулья выделены для встречи. Спросите, где стулья.",
+          "uk": "Анна знає, які стільці виділені для зустрічі. Запитайте, де стільці."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "864dd25b194eb42bd60c60aaf70a9e6e836872d1d947328b9e3f2e236eddd0ac"
+  "introFingerprint": "e558db3a0a361ffbf9e099007a1ad087079f2971b8e3b2ef24cda687e6a77c34"
 }

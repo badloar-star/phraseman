@@ -1,67 +1,67 @@
 [
   {
     "interactionId": "en:lesson-02:session-37:i01",
-    "correctText": "Whose is it?",
-    "correctResponseId": "en:lesson-02:session-37:i01:r1"
+    "correctText": "It is official.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i02",
-    "correctText": "Who",
+    "correctText": "He is lonely.",
     "correctResponseId": "en:lesson-02:session-37:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-37:i03",
-    "correctText": "Who is he?",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-37:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-37:i04",
-    "correctText": "strangers",
-    "correctResponseId": "en:lesson-02:session-37:i04:r1"
+    "correctText": "en:lesson-02:session-37:i04:p1=official\nen:lesson-02:session-37:i04:p2=formal\nen:lesson-02:session-37:i04:p3=lonely\nen:lesson-02:session-37:i04:p4=away",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i05",
-    "correctText": "They are strangers.",
+    "correctText": "No, it is not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i06",
-    "correctText": "Whose",
-    "correctResponseId": "en:lesson-02:session-37:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-37:i07",
-    "correctText": "twins",
-    "correctResponseId": "en:lesson-02:session-37:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-37:i08",
-    "correctText": "We are not twins.",
+    "correctText": "Where is he?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-37:i07",
+    "correctText": "It's official.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-37:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-37:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-37:i09",
-    "correctText": "sure",
+    "correctText": "Is it formal?",
     "correctResponseId": "en:lesson-02:session-37:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-37:i10",
-    "correctText": "en:lesson-02:session-37:i10:p1=strangers\nen:lesson-02:session-37:i10:p2=twins\nen:lesson-02:session-37:i10:p3=sure\nen:lesson-02:session-37:i10:p4=host",
+    "correctText": "en:lesson-02:session-37:i10:p1=lonely\nen:lesson-02:session-37:i10:p2=away\nen:lesson-02:session-37:i10:p3=official\nen:lesson-02:session-37:i10:p4=formal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i11",
-    "correctText": "Who are these people?",
-    "correctResponseId": "en:lesson-02:session-37:i11:r1"
+    "correctText": "They are not away.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i12",
-    "correctText": "Who are these people?",
+    "correctText": "Who is lonely?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i13",
-    "correctText": "Is he the host?",
+    "correctText": "He's away.",
     "correctResponseId": null
   },
   {
@@ -71,17 +71,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-37:i15",
-    "correctText": "Who is she?",
-    "correctResponseId": null
+    "correctText": "Are you lonely?",
+    "correctResponseId": "en:lesson-02:session-37:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-37:i16",
-    "correctText": "Where is the host?",
+    "correctText": "en:lesson-02:session-37:i16:p1=formal\nen:lesson-02:session-37:i16:p2=official\nen:lesson-02:session-37:i16:p3=away\nen:lesson-02:session-37:i16:p4=lonely",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-37:i17",
-    "correctText": "Whose is it?",
+    "correctText": "Is it official?",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-37:intro1:r2": {
+          "ru": "Между `It` и `official` нужно `is`.",
+          "uk": "Між `It` і `official` потрібно `is`."
+        },
+        "en:lesson-02:session-37:intro1:r3": {
+          "ru": "Это отрицает официальный статус. В условии дату подтвердили организаторы.",
+          "uk": "Це заперечує офіційний статус. За умовою дату підтвердили організатори."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-37:intro2:r2": {
+          "ru": "Это вопрос о стиле или формате, а вам нужно подтверждение даты.",
+          "uk": "Це запитання про стиль чи формат, а вам потрібне підтвердження дати."
+        },
+        "en:lesson-02:session-37:intro2:r3": {
+          "ru": "Это сообщение. Вы пока не знаете и хотите спросить.",
+          "uk": "Це повідомлення. Ви поки не знаєте й хочете запитати."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-37:intro3:r2": {
+          "ru": "Это сообщает об отъезде, а нужно сказать о чувстве одиночества.",
+          "uk": "Це повідомляє про від’їзд, а потрібно сказати про відчуття самотності."
+        },
+        "en:lesson-02:session-37:intro3:r3": {
+          "ru": "Речь об Олеге: `He's`.",
+          "uk": "Йдеться про Олега: `He's`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e636b0f9b7c29aa08d2f5da73117e1011e60308400981a28c2c8bf10c816001d"
+}

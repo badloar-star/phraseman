@@ -1,159 +1,138 @@
-# Англійська · Урок 2 · Заняття 37 — «Хто він? Чиє це?»
+# Англійська · Урок 2 · Заняття 37 — Дата від організаторів
 
-**Сцена заняття.** На вечірці в сусідів гості вже збираються йти. У передпокої перемішалися знайомі й незнайомі люди, а на лавці залишилися речі. Ви з другом з’ясовуєте, хто є хто й кому повернути забуте.
+**Ситуація.** Ви з Анною чекаєте оголошення про міське свято. У чаті з’явилася нова дата, але ви хочете перевірити, чи підтвердили її організатори. Олег поїхав і сумує без друзів.
 
-**Як сказати:** контраст `who` ↔ `whose` у знайомих питаннях про людей і належність речі
-**Нові слова:** —
-**Повертаються:** strangers, twins, sure, host
+**Що ви опануєте:** уточнити, чи офіційна інформація, і не плутати official із formal
+**Нові слова:** official
 
 ---
 
 ## Інтро 1
 
-### Два різні «хто»
+### Підтвердили організатори
 
-`Who is he?` — «Хто він?» Так з’ясовують, що це за людина. А `Whose is it?` — «Чиє це?» — допомагає знайти власника речі. Українською можна сказати «Хто власник цієї речі?», але тут беремо запитання з `Whose`. Спершу вирішіть, що вас цікавить: сама людина чи чиясь річ.
+`official` — «офіційний»: від того, хто має право оголошувати чи підтверджувати. Дату свята підтвердили організатори: `It is official`. У повідомленні з чату можна намалювати три печатки й начепити на аватарку краватку — від цього воно ще не стане `official`.
 
-**У передпокої Алекс надягає куртку. Ви хочете дізнатися в друга Іллі, хто Алекс.**
+**Організатори підтвердили нову дату. Скажіть повною фразою, що вона офіційна.**
 
-- ✅ **Who is he?**
-- ❌ Whose is it? — *Це «Чиє це?». Зараз ви знайомитеся з людиною, а не шукаєте власника речі.*
-- ❌ Where is he? — *Це «Де він?». Чоловік перед вами; ви хочете дізнатися, хто він.*
+- ✅ **It is official.**
+- ❌ It official. — *Між `It` і `official` потрібно `is`.*
+- ❌ It is not official. — *Це заперечує офіційний статус. За умовою дату підтвердили організатори.*
 
 ---
 
 ## Інтро 2
 
-### Річ можна просто показати
+### Не про костюм
 
-`Whose is it?` — «Чиє це?» Можна вказати на річ і поставити це запитання повністю. Забута англійська назва не завадить знайти того, хто забув саму річ. Тут `it` означає «це», а `is` лишається перед ним. Про куртку й шарф запитуємо однаково: `Whose is it?`
+`formal` описує офіційний або строгий стиль. `official` — офіційний статус чи джерело. Офіційне повідомлення може бути написане простими словами, без урочистого стилю. `Is it official?` запитує, чи інформацію підтверджено офіційно, а не чи потрібен вам костюм.
 
-**Гість показує вам залишений шарф. Ви не знаєте, чий він. Запитайте про це господаря вечірки.**
+**Ви побачили нову дату лише в чаті друзів. Запитайте, чи вона офіційна.**
 
-- ✅ **Whose is it?**
-- ❌ Who is it? — *Це «Хто це?». Щоб дізнатися, кому належить шарф, почніть із `Whose`.*
-- ❌ Whose it? — *Із повного питання випало `is`. Тут потрібні всі три слова: `Whose is it?`*
+- ✅ **Is it official?**
+- ❌ Is it formal? — *Це запитання про стиль чи формат, а вам потрібне підтвердження дати.*
+- ❌ It is official. — *Це повідомлення. Ви поки не знаєте й хочете запитати.*
 
 ---
 
 ## Інтро 3
 
-### Людей кілька, а питання все одно «хто»
+### У від’їзді й самотньо
 
-`Who are these people?` — «Хто ці люди?» Ви хочете дізнатися, хто вони, тому починаємо з `Who`. Людей кілька: далі ставимо `are`, а потім `these people`. Навіть якщо незнайомців багато, запитання «хто?» не перетворюється на «чиї?». Коли хочемо дізнатися, кому належить річ, беремо `whose`.
+`away` — «не тут, у від’їзді». `lonely` — «самотньо». Олег поїхав: `He is away`. Він каже, що йому бракує друзів: `He is lonely`. Від’їзд не обов’язково означає самотність: про почуття краще дізнатися в самої людини.
 
-**До передпокою зайшла незнайома компанія. Покажіть на них другові й запитайте: «Хто ці люди?»**
+**Олег написав, що сумує без спілкування й почувається самотнім. Коротко скажіть, що йому самотньо.**
 
-- ✅ **Who are these people?**
-- ❌ Whose are these people? — *Ви хочете дізнатися, хто ці люди. Для такого питання потрібне `Who`, а не «чиї» — `Whose`.*
-- ❌ Who is these people? — *Сполука `these people` означає кількох людей. У цьому питанні потрібне `are`.*
+- ✅ **He's lonely.**
+- ❌ He's away. — *Це повідомляє про від’їзд, а потрібно сказати про відчуття самотності.*
+- ❌ She's lonely. — *Йдеться про Олега: `He's`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть — яке питання гість поставив про шарф**
-<!-- interaction_id: en:lesson-02:session-37:i01; family: listen_choose -->
-Ціль: `Whose is it?`
-Варіанти: `Whose is it?` · `Who is it?` · `Where is it?`
-- Who is it? — *Це «Хто це?». У записі перше слово — `Whose`: гість питає, чия це річ.*
-- Where is it? — *Це «Де це?». Прозвучало питання про те, кому належить річ, — `Whose is it?`*
+**1 · Організатори підтвердили дату. Скажіть повною фразою, що вона офіційна**
+<!-- interaction_id: en:lesson-02:session-37:i01; family: phrase_builder -->
+Плитки: `official` `is` `It` `are` → **It is official.**
+*(плитка `are` зайва: тут потрібно `is` — `It is official.`)*
 
+**2 · Послухайте фразу про Олега**
+<!-- interaction_id: en:lesson-02:session-37:i02; family: listen_choose -->
+🔊 *He is lonely.* → **He is lonely.** · He is away. · He is active.
+- He is away. — *У записі останнє слово — `lonely`, а в цьому варіанті — `away`.*
+- He is active. — *У записі останнє слово — `lonely`, а в цьому варіанті — `active`.*
 
-**2 · Вставте слово — Алекс махає Іллі; дізнайтеся, хто він**
-<!-- interaction_id: en:lesson-02:session-37:i02; family: context_gap_grammar -->
-Ціль: `___ is he?`
-Варіанти: `Who` · `Whose` · `Where`
-- Whose — *Ви з’ясовуєте, хто цей чоловік. Почніть із `Who`; `Whose` означає «чий».*
-- Where — *Вийде «Де він?». Вам потрібно дізнатися, хто той чоловік, що зараз махає другові.*
+**3 · Уточніть, чи офіційна інформація про дату**
+<!-- interaction_id: en:lesson-02:session-37:i03; family: context_gap_grammar -->
+___ it official? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it official?`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-37:i04; family: speed_match -->
+official — офіційний за статусом чи джерелом · formal — офіційний, строгий за стилем · lonely — самотній · away — не тут, у від’їзді
 
-**3 · Складіть фразу — запитайте Іллю про Алекса біля дверей: «Хто він?»**
-<!-- interaction_id: en:lesson-02:session-37:i03; family: phrase_builder -->
-Ціль: `Who is he?`
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-37:i05; family: listen_build_dictation -->
+🔊 *No, it is not.* Плитки: `not` `is` `it` `No,` `Yes,` → **No, it is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, it is not.`)*
 
-**4 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-02:session-37:i04; family: listen_choose -->
-Ціль: `strangers`
-Варіанти: `strangers` · `rangers` · `dangers`
-- rangers — *`Rangers` — «рейнджери». Послухайте початок слова: у записі `strangers`.*
-- dangers — *`Dangers` — «небезпеки». Послухайте початок слова: у записі `strangers`.*
+**6 · Ви знаєте, що Олег поїхав, але не знаєте куди. Запитайте Анну, де він**
+<!-- interaction_id: en:lesson-02:session-37:i06; family: phrase_builder -->
+Плитки: `he` `is` `Where` `Who` → **Where is he?**
+*(плитка `Who` зайва: тут потрібно `Where` — `Where is he?`)*
 
+**7 · На сайті організаторів підтвердили дату. Коротко повідомте, що вона офіційна**
+<!-- interaction_id: en:lesson-02:session-37:i07; family: scripted_repeat_compare -->
+🎙 **It's official.**
 
-**5 · Складіть фразу — господар питає, чи знаєте ви двох людей біля дверей; скажіть: «Вони незнайомці»**
-<!-- interaction_id: en:lesson-02:session-37:i05; family: phrase_builder -->
-Ціль: `They are strangers.`
+**8 · Олег досі в поїздці. На «Is he away?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-37:i08; family: context_gap_grammar -->
+Yes, he ___. → **is** · am · are
+- am — *З `he` потрібно `is`.*
+- are — *Відповідь — `Yes, he is`.*
 
-**6 · Вставте слово — ви тримаєте залишений шарф і питаєте гостей, чий він**
-<!-- interaction_id: en:lesson-02:session-37:i06; family: context_gap_grammar -->
-Ціль: `___ is it?`
-Варіанти: `Whose` · `Who` · `What`
-- Who — *Вийде «Хто це?». Ви шукаєте власника шарфа, тому потрібне `Whose`.*
-- What — *Вийде «Що це?». Ви вже бачите, що це шарф; тепер з’ясовуєте, чий він.*
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-37:i09; family: listen_choose -->
+🔊 *Is it formal?* → **Is it formal?** · Is it official? · Is it unusual?
+- Is it official? — *У записі останнє слово — `formal`, а в цьому варіанті — `official`.*
+- Is it unusual? — *У записі останнє слово — `formal`, а в цьому варіанті — `unusual`.*
 
-
-**7 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-02:session-37:i07; family: listen_choose -->
-Ціль: `twins`
-Варіанти: `twins` · `pins` · `sins`
-- pins — *`Pins` — «шпильки». Послухайте початок слова: у записі `twins`.*
-- sins — *`Sins` — «гріхи». Послухайте початок слова: у записі `twins`.*
-
-
-**8 · Складіть фразу — гість прийняв вас із другом за близнюків; виправте його: «Ми не близнюки»**
-<!-- interaction_id: en:lesson-02:session-37:i08; family: phrase_builder -->
-Ціль: `We are not twins.`
-
-**9 · Вставте слово — ви точно знаєте, хто господар вечірки; підтвердьте другові: «Я впевнений»**
-<!-- interaction_id: en:lesson-02:session-37:i09; family: context_gap_grammar -->
-Ціль: `I am ___ .`
-Варіанти: `sure` · `twins` · `host`
-- twins — *Це «близнюки». Щоб підтвердити впевненість, скажіть `I am sure`.*
-- host — *Це «господар вечірки». Тут ви кажете, що точно знаєте відповідь: потрібне `sure`.*
-
-
-**10 · З’єднайте пари — пригадайте слова з розмови в передпокої**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-37:i10; family: speed_match -->
-Пари: `strangers` — незнайомці · `twins` — близнюки · `sure` — впевнений · `host` — господар вечірки
-Ціль: `strangers · twins · sure · host`
+lonely — самотній · away — не тут, у від’їзді · official — офіційний за статусом чи джерелом · formal — офіційний, строгий за стилем
 
-**11 · Послухайте й виберіть — про що сусід запитав, побачивши компанію, яка підійшла**
-<!-- interaction_id: en:lesson-02:session-37:i11; family: listen_choose -->
-Ціль: `Who are these people?`
-Варіанти: `Who are these people?` · `Where are these people?` · `Who is the host?`
-- Where are these people? — *Це питання про місце. На початку запису `Who`: сусід хоче дізнатися, хто ці люди.*
-- Who is the host? — *Це питання про одного господаря вечірки. Наприкінці запису чути `these people` — «ці люди».*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-37:i11; family: listen_build_dictation -->
+🔊 *They are not away.* Плитки: `away` `not` `are` `They` `is` → **They are not away.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not away.`)*
 
-
-**12 · Складіть фразу — запитайте друга про компанію, яка чекає біля дверей: «Хто ці люди?»**
+**12 · Анна згадала друга, якому самотньо. Запитайте, хто почувається самотнім**
 <!-- interaction_id: en:lesson-02:session-37:i12; family: phrase_builder -->
-Ціль: `Who are these people?`
+Плитки: `lonely` `is` `Who` `Where` → **Who is lonely?**
+*(плитка `Where` зайва: тут потрібно `Who` — `Who is lonely?`)*
 
-**13 · Послухайте й складіть — гість говорить про чоловіка, який допомагає знайти шарф**
-<!-- interaction_id: en:lesson-02:session-37:i13; family: listen_build_dictation -->
-Ціль: `Is he the host?`
+**13 · Олег поїхав на тиждень. Коротко повідомте, що він у від’їзді**
+<!-- interaction_id: en:lesson-02:session-37:i13; family: scripted_repeat_compare -->
+🎙 **He's away.**
 
-**14 · Вставте слово — Ілля каже, що Алекс не господар; запитайте Іллю, хто тоді господар вечірки**
+**14 · Дату вигадали в чаті; організатори її не оголошували й не підтверджували. Скажіть, що вона неофіційна**
 <!-- interaction_id: en:lesson-02:session-37:i14; family: context_gap_grammar -->
-Ціль: `Who ___ the host?`
-Варіанти: `is` · `are` · `am`
-- are — *З `are` запитання не складається: йдеться про одного господаря. Правильно: `Who is the host?`*
-- am — *`Am` ставимо після `I`. Тут запитання починається з `Who`, тому потрібне `is`: `Who is the host?`*
+It ___ not official. → **is** · am · are
+- am — *З `It` потрібно `is`.*
+- are — *Фраза — `It is not official`.*
 
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-37:i15; family: listen_choose -->
+🔊 *Are you lonely?* → **Are you lonely?** · Are you away? · Are you sleepy?
+- Are you away? — *У записі останнє слово — `lonely`, а в цьому варіанті — `away`.*
+- Are you sleepy? — *У записі останнє слово — `lonely`, а в цьому варіанті — `sleepy`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-37:i15; family: scripted_repeat_compare -->
-Ціль: `Who is she?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-37:i16; family: speed_match -->
+formal — офіційний, строгий за стилем · official — офіційний за статусом чи джерелом · away — не тут, у від’їзді · lonely — самотній
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-37:i16; family: scripted_repeat_compare -->
-Ціль: `Where is the host?`
-
-**17 · Складіть фразу — гості вже біля дверей; на лавці залишилася рукавичка, підніміть її та з’ясуйте, кому її повернути**
-<!-- interaction_id: en:lesson-02:session-37:i17; family: phrase_builder -->
-Ціль: `Whose is it?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=listen_choose, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Анна надіслала нове повідомлення про свято. Запитайте, чи воно офіційне**
+<!-- interaction_id: en:lesson-02:session-37:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it official?**
 

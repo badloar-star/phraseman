@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle } from "react-native";
+import { ScrollView, StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 import { lv2Alpha, lv2CardStyle, lv2NodePaint, useLv2Glass } from "./LearningV2Glass";
@@ -72,11 +72,12 @@ const NODE_SIZE = 64;
  * opacity/transform — первый кадр уже в финальной геометрии, ничего не прыгает.
  * play=false (reduceMotion или повторный показ) — сразу финальный кадр.
  */
-function Lv2Reveal({ index, play, style, children }: Readonly<{
+function Lv2Reveal({ index, play, style, children, onLayout }: Readonly<{
   index: number;
   play: boolean;
   style?: StyleProp<ViewStyle>;
   children: React.ReactNode;
+  onLayout?: (e: LayoutChangeEvent) => void;
 }>) {
   const playOnMount = useRef(play).current;
   const progress = useSharedValue(playOnMount ? 0 : 1);
@@ -94,7 +95,7 @@ function Lv2Reveal({ index, play, style, children }: Readonly<{
       { scale: 0.985 + progress.value * 0.015 },
     ],
   }));
-  return <Animated.View style={[style, revealStyle]}>{children}</Animated.View>;
+  return <Animated.View onLayout={onLayout} style={[style, revealStyle]}>{children}</Animated.View>;
 }
 
 function currentLessonOrdinal(currentSessionId: string | null): number {
@@ -195,6 +196,18 @@ export default function LearningV2ChaptersCourse(props: Props) {
     console.log("[V2-MAP] chapters:layout", JSON.stringify({ x, y, width, height, allLessonsOpen }));
     setNativeReady(true);
   }, [allLessonsOpen]);
+  // зачем (координатор 15.10, Сверка 🔴: на 97572a3e4 React рисует карту, нативно нет — chapters:layout=0): сперва логи [V2-MAP-LAYOUT].
+  // onLayout КАЖДОГО уровня (корень, шапка, заголовок, скролл, содержимое, каждая глава) с размерами и мс от монтирования, число глав и
+  // откуда данные. Нет строки уровня = он не выложен нативно; height=0 = выложен, но без высоты (контейнер 0 до измерения / скролл без размера).
+  const layoutMountedAtRef = useRef(Date.now());
+  const layoutCtxRef = useRef({ chapters: 0, sessions: 0, rows: 0, allLessonsOpen, nativeReady, introReveal: false, progressSource: "none" });
+  const logLayout = useCallback((level: string) => (e: LayoutChangeEvent) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    console.log("[V2-MAP-LAYOUT] onLayout", JSON.stringify({ level, x: Math.round(x), y: Math.round(y), width: Math.round(width), height: Math.round(height), zero: width === 0 || height === 0, sinceMountMs: Date.now() - layoutMountedAtRef.current, ...layoutCtxRef.current })); // guard-ok: зонд R08, по строке на раскладку уровня
+  }, []);
+  const logContentSize = useCallback((width: number, height: number) => {
+    console.log("[V2-MAP-LAYOUT] scroll:contentSize", JSON.stringify({ width: Math.round(width), height: Math.round(height), zero: width === 0 || height === 0, sinceMountMs: Date.now() - layoutMountedAtRef.current, ...layoutCtxRef.current })); // guard-ok: зонд R08
+  }, []);
   useEffect(() => {
     console.log("[V2-MAP] chapters:mount", JSON.stringify({ scopeKey: props.scopeKey, atMs: Date.now() }));
     return () => console.log("[V2-MAP] chapters:unmount", JSON.stringify({ scopeKey: props.scopeKey }));
@@ -204,6 +217,13 @@ export default function LearningV2ChaptersCourse(props: Props) {
     console.log("[V2-MAP] chapters:rows", JSON.stringify({ titles: props.titles.length, visibleLessons: visibleLessonOrdinals.length, selectedLessonOrdinal, rows: rows.length, lessonRows: lessonRows.length, chapters: chapterRows.length, sessions: sessionRows.length, allLessonsOpen, active: props.active }));
   }, [props.titles.length, visibleLessonOrdinals.length, selectedLessonOrdinal, rows.length, lessonRows.length, chapterRows.length, sessionRows.length, allLessonsOpen, props.active]);
   const currentLessonTitle = props.titles[selectedLessonOrdinal - 1] ?? "";
+  const progressSource = `prepared:completed=${props.completedSessionIds.length}`; // зачем: откуда данные карты — подготовленный прогресс из вкладки Уроки (источник прогресса пишет [V2-MAP-LAYOUT] page)
+  layoutCtxRef.current = { chapters: chapterRows.length, sessions: sessionRows.length, rows: rows.length, allLessonsOpen, nativeReady, introReveal, progressSource };
+  useEffect(() => {
+    // зачем (R08 [V2-MAP-LAYOUT]): что React отдал на рендер и на какой мс от монтирования — сверять с тем, пришёл ли onLayout
+    console.log("[V2-MAP-LAYOUT] render", JSON.stringify({ sinceMountMs: Date.now() - layoutMountedAtRef.current, scopeKey: props.scopeKey, active: props.active, ...layoutCtxRef.current })); // guard-ok: по строке на смену данных карты
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал на смену того, что видно в строке
+  }, [chapterRows.length, sessionRows.length, rows.length, allLessonsOpen, nativeReady, progressSource, props.active, props.scopeKey]);
 
   const toggleChapter = useCallback((chapterOrdinal: number) => {
     const next = expandedChapter === chapterOrdinal ? null : chapterOrdinal;
@@ -247,19 +267,19 @@ export default function LearningV2ChaptersCourse(props: Props) {
     </View>;
   }
 
-  return <View testID="learning-v2-chapters-course" onLayout={logChaptersLayout} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
+  return <View testID="learning-v2-chapters-course" onLayout={(e) => { logChaptersLayout(e); logLayout("root")(e); }} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
     {/* зачем (владелец 04.10, раунд 2 → вариант A «Два этажа»): строка 1 — «назад» + HUD (словарь, монеты, энергия);
         строка 2 — «Урок N» и тема 22px на всю ширину: длинная тема помещается в две строки и ничего не пересекает. */}
-    <View style={styles.header}>
+    <View style={styles.header} onLayout={logLayout("header")}>
       {props.navigationControl}
       <View style={styles.headerSpacer} />
       <View ref={headerAccessoryRef} collapsable={false}>{props.headerAccessory}</View>
     </View>
-    <View style={styles.lessonTitleBlock}>
+    <View style={styles.lessonTitleBlock} onLayout={logLayout("titleBlock")}>
       <Text style={[styles.lessonKicker, { color: g.secondary }]}>{triLang(props.lang, { ru: `Урок ${selectedLessonOrdinal}`, en: `Lesson ${selectedLessonOrdinal}`, uk: `Урок ${selectedLessonOrdinal}`, es: `Lección ${selectedLessonOrdinal}`, "pt-BR": `Lição ${selectedLessonOrdinal}`, vi: `Bài ${selectedLessonOrdinal}`, id: `Pelajaran ${selectedLessonOrdinal}`, tr: `Ders ${selectedLessonOrdinal}`, pl: `Lekcja ${selectedLessonOrdinal}` })}</Text>
       <Text accessibilityRole="header" style={[styles.lessonTitleWide, { color: g.text }]}>{currentLessonTitle}</Text>
     </View>
-    <ScrollView contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
+    <ScrollView onLayout={logLayout("scroll")} onContentSizeChange={logContentSize} contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
       {chapterRows.map((chapter, chapterIndex) => {
         const chapterSessions = sessionRows.filter((row) => row.chapterOrdinal === chapter.chapterOrdinal);
         if (chapterSessions.length === 0) return null;
@@ -271,7 +291,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
         const firstOrdinal = chapterSessions[0]?.sessionOrdinal ?? (chapter.chapterOrdinal - 1) * 8 + 1;
         const lastOrdinal = chapterSessions[chapterSessions.length - 1]?.sessionOrdinal ?? chapter.chapterOrdinal * 8;
         const sessionsWord = triLang(props.lang, { ru: "Занятия", en: "Sessions", uk: "Заняття", es: "Sesiones", "pt-BR": "Sessões", vi: "Phiên", id: "Sesi", tr: "Oturumlar", pl: "Sesje" });
-        return <Lv2Reveal key={chapter.id} index={chapterIndex} play={introReveal} style={[styles.chapter, lv2CardStyle(g, 22)]}>
+        return <Lv2Reveal key={chapter.id} index={chapterIndex} play={introReveal} onLayout={logLayout(`chapter:${chapter.chapterOrdinal}`)} style={[styles.chapter, lv2CardStyle(g, 22)]}>
           <PressableHybrid variant="card" testID={`learning-v2-chapter-${chapter.chapterOrdinal}`} accessibilityLabel={`${triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} ${chapter.chapterOrdinal}`} onPress={() => toggleChapter(chapter.chapterOrdinal)} style={styles.chapterPress} contentStyle={styles.chapterPressContent}>
             <View style={[styles.chapterTile, { backgroundColor: g.opaqueControl }]}><Ionicons name={chapterState === "done" ? "checkmark" : chapterState === "locked" ? "lock-closed" : "trophy-outline"} size={24} color={chapterState === "locked" ? g.mutedText : g.text} /></View>
             <View style={styles.chapterCopy}><Text style={[styles.chapterTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} {chapter.chapterOrdinal}</Text><Text style={[styles.chapterSub, { color: g.secondary }]}>{sessionsWord} {firstOrdinal}–{lastOrdinal}</Text></View>

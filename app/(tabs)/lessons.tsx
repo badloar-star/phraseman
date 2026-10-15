@@ -5569,6 +5569,8 @@ export default function LessonsTab({
             display: dialogsEnabled && page === "dialogs" ? "none" : "flex",
           }}
           onTouchStart={() => { lastLessonsTouchAtRef.current = Date.now(); }}
+          // зачем (координатор 15.10, R08 🔴 [V2-MAP-LAYOUT]): контейнер страницы — высота 0 здесь = карте некуда выложиться; display/страница/прогрев прогресса — что решило
+          onLayout={(e) => { const { width, height } = e.nativeEvent.layout; console.log("[V2-MAP-LAYOUT] onLayout", JSON.stringify({ level: "lessonsPage", width: Math.round(width), height: Math.round(height), zero: width === 0 || height === 0, page, display: dialogsEnabled && page === "dialogs" ? "none" : "flex", progressHydrated: learningV2ProgressHydrated, completed: learningV2Progress.completedSessionIds.length, visible: lessonsTabVisible, atMs: Date.now() })); }} // guard-ok: зонд R08
         >
           {page === "v2" ? (
             // зачем: владелец 20.09 — «открываем раздел, запускается анимация

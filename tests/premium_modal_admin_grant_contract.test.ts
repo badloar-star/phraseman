@@ -14,7 +14,9 @@ describe('premium modal dispatcher contract', () => {
     // единственный пейвол Plus после проверки доступа.
     expect(navigation).not.toContain('PAYWALL_ROUTES');
     expect(dispatcher).toContain('openPremiumPaywall');
-    expect(dispatcher).toContain('<PaywallPlusScreen entry={entryResolution.entry} />');
+    // зачем (разбор красных 15.10): 6e1b16df6 (R58 #12) — экран берёт entryToShow: решение «show» или удержание после своей покупки
+    expect(dispatcher).toMatch(/const entryToShow = entryResolution\?\.decision === 'show'\s*\n\s*\? entryResolution\.entry\s*\n\s*: \(keepShownForSelfClose \? shownEntryRef\.current : null\);/);
+    expect(dispatcher).toContain('<PaywallPlusScreen entry={entryToShow} />');
     expect(dispatcher).not.toMatch(/\/paywall_[a-g]\b/);
     // Replace на целевой пейвол идёт через openPremiumPaywall (object-form replace
     // живёт внутри paywall_navigation).

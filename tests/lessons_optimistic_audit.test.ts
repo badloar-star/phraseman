@@ -53,7 +53,9 @@ describe('тип ошибки из урока считается по факти
 describe('замки и таймеры экранов уроков', () => {
   it('lesson1: таймер перехода на итог без озвучки лежит в ref, а «Теория» защищена замком', () => {
     const src = read('app/lesson1.tsx');
-    expect(src).toMatch(/lessonCompletionFallbackTimerRef\.current = setTimeout\(\(\) => \{\n\s*lessonCompletionFallbackTimerRef\.current = null;\n\s*void runLessonCompletionNavigation\(\);\n\s*\}, 1500\);/);
+    // зачем (разбор красных 15.10): 936585ecb (R58 #2/#10) увёл переход в lessonCompletionNavigateRef, чтобы «Назад» в паузе
+    // открывал итог, а не терял его. Смысл сторожа прежний: таймер лежит в ref, обнуляется в колбэке и ведёт на итог через 1,5 с.
+    expect(src).toMatch(/lessonCompletionNavigateRef\.current = \(\) => \{ void runLessonCompletionNavigation\(\); \};\n\s*lessonCompletionFallbackTimerRef\.current = setTimeout\(\(\) => \{\n\s*lessonCompletionFallbackTimerRef\.current = null;\n\s*const navigate = lessonCompletionNavigateRef\.current;\n\s*lessonCompletionNavigateRef\.current = null;\n\s*navigate\?\.\(\);\n\s*\}, 1500\);/);
     expect(src).not.toMatch(/setTimeout\(\(\) => \{ void runLessonCompletionNavigation\(\); \}, 1500\)/);
     expect(src).toMatch(/navOnce\(`lesson1:theory:\$\{topicLessonId\}`\)/);
   });

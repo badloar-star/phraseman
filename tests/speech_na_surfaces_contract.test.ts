@@ -84,7 +84,8 @@ describe('отключённое состояние на всех голосов
 
   it('ИИ-диалог: микрофон перечёркнут, тап не открывает пейвол квоты', () => {
     const source = read('app', 'ai_dialog_session.tsx');
-    expectBefore(source, 'if (speechNa) {', 'if (!voiceInputGate.canStartAttempt()) {');
+    // зачем (разбор красных 15.10): ebacc519e (R43) передаёт в canStartAttempt колбэк «запустить после Plus» — порядок проверок прежний
+    expectBefore(source, 'if (speechNa) {', 'if (!voiceInputGate.canStartAttempt(');
     expect(source).toContain("name={speechNa ? 'mic-off-outline'");
   });
 

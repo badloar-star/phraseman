@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-30",
   "learningOutcomeByLocale": {
-    "ru": "`It is`, когда описываете место вокруг себя.",
-    "uk": "`It is`, коли описуєте місце довкола себе."
+    "ru": "распознавать на слух знакомые формы be и точно называть состояние человека или предмета",
+    "uk": "розпізнавати на слух знайомі форми be й точно називати стан людини або предмета"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`busy` — «занято»",
-        "uk": "`busy` — «зайнято»"
+        "ru": "Жив",
+        "uk": "Живий"
       },
       "bodyByLocale": {
-        "ru": "`busy` — «занято». Про человека это «занят делом», про место — «полно народу».\n\n`It` — «оно», и место тоже `it`. Кафе, улица, автобус — всё `it`, род выдумывать не надо.\n\nПо-русски «тут людно» обходится без глагола. По-английски между `it` и словом нужна форма `is`.",
-        "uk": "`busy` — «зайнято». Про людину це «має справи», про місце — «повно народу».\n\n`It` — «воно», і місце теж `it`. Кав'ярня, вулиця, автобус — усе `it`, рід вигадувати не треба.\n\nУкраїнською «тут повно людей» обходиться без дієслова. Англійською між `it` і словом потрібна форма `is`."
+        "ru": "`alive` — «жив». Героя нашли и подтвердили, что он жив: `He is alive`. Про героиню — `She is alive`, про двоих — `They are alive`. Само слово `alive` не меняется.",
+        "uk": "`alive` — «живий». Героя знайшли й підтвердили, що він живий: `He is alive`. Про героїню — `She is alive`, про двох — `They are alive`. Саме слово `alive` не змінюється."
       },
       "question": {
         "interactionId": "en:lesson-01:session-30:intro1:q",
         "promptByLocale": {
-          "ru": "В кафе ни одного свободного столика. Спутник спрашивает, что там. Ответьте.",
-          "uk": "У кав'ярні жодного вільного столика. Супутник питає, що там. Відповідайте."
+          "ru": "В фильме спасатели нашли героиню живой. Скажите другу об этом.",
+          "uk": "У фільмі рятувальники знайшли героїню живою. Скажіть другові про це."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-30:intro1:r1",
-              "text": "It is busy."
+              "text": "She is alive."
             },
             {
               "responseId": "en:lesson-01:session-30:intro1:r2",
-              "text": "It busy."
+              "text": "She alive."
             },
             {
               "responseId": "en:lesson-01:session-30:intro1:r3",
-              "text": "It are busy."
+              "text": "She are alive."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-30:intro1:r1",
-              "text": "It is busy."
+              "text": "She is alive."
             },
             {
               "responseId": "en:lesson-01:session-30:intro1:r2",
-              "text": "It busy."
+              "text": "She alive."
             },
             {
               "responseId": "en:lesson-01:session-30:intro1:r3",
-              "text": "It are busy."
+              "text": "She are alive."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В кафе ни одного свободного столика. Спутник спрашивает, что там. Ответьте.",
-          "uk": "У кав'ярні жодного вільного столика. Супутник питає, що там. Відповідайте."
+          "ru": "В фильме спасатели нашли героиню живой. Скажите другу об этом.",
+          "uk": "У фільмі рятувальники знайшли героїню живою. Скажіть другові про це."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`quiet` и `loud` — тихо и громко",
-        "uk": "`quiet` і `loud` — тихо і гучно"
+        "ru": "Умер",
+        "uk": "Помер"
       },
       "bodyByLocale": {
-        "ru": "`quiet` — «тихо», `loud` — «громко». Два слова на весь шум мира: от библиотеки до отбойного молотка.\n\n`It is loud` — три слова в этом порядке. Скажете просто `Is loud` — и спутник не поймёт, что вы про автобус, а не про его телефон.",
-        "uk": "`quiet` — «тихо», `loud` — «гучно». Два слова на весь шум світу: від бібліотеки до відбійного молотка.\n\n`It is loud` — три слова саме в такому порядку. Скажете просто `Is loud` — і супутник не зрозуміє, що ви про автобус, а не про його телефон."
+        "ru": "`dead` — «мёртв». `He is dead` — «Он мёртв», то есть он умер. Это противоположно `alive`. Используйте это слово, когда факт смерти известен; молчание и отсутствие ответа сами по себе этого не доказывают.",
+        "uk": "`dead` — «мертвий». `He is dead` — «Він мертвий», тобто він помер. Це протилежне до `alive`. Уживайте це слово, коли факт смерті відомий; мовчання й відсутність відповіді самі по собі цього не доводять."
       },
       "question": {
         "interactionId": "en:lesson-01:session-30:intro2:q",
         "promptByLocale": {
-          "ru": "Марк и Лена едут в шумном автобусе: вокруг разговоры и музыка. Лена описывает автобус.",
-          "uk": "Марк і Лена їдуть у гучному автобусі: довкола розмови й музика. Лена описує автобус."
+          "ru": "По сюжету врач подтвердил смерть героя. Скажите другу о герое.",
+          "uk": "За сюжетом лікар підтвердив смерть героя. Скажіть другові про героя."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-30:intro2:r1",
-              "text": "It is loud."
+              "text": "He is dead."
             },
             {
               "responseId": "en:lesson-01:session-30:intro2:r2",
-              "text": "It is quiet."
+              "text": "He is alive."
             },
             {
               "responseId": "en:lesson-01:session-30:intro2:r3",
-              "text": "Is loud."
+              "text": "He am dead."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-30:intro2:r1",
-              "text": "It is loud."
+              "text": "He is dead."
             },
             {
               "responseId": "en:lesson-01:session-30:intro2:r2",
-              "text": "It is quiet."
+              "text": "He is alive."
             },
             {
               "responseId": "en:lesson-01:session-30:intro2:r3",
-              "text": "Is loud."
+              "text": "He am dead."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Марк и Лена едут в шумном автобусе: вокруг разговоры и музыка. Лена описывает автобус.",
-          "uk": "Марк і Лена їдуть у гучному автобусі: довкола розмови й музика. Лена описує автобус."
+          "ru": "По сюжету врач подтвердил смерть героя. Скажите другу о герое.",
+          "uk": "За сюжетом лікар підтвердив смерть героя. Скажіть другові про героя."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`free` — свободно и бесплатно",
-        "uk": "`free` — вільно і безкоштовно"
+        "ru": "Пропал",
+        "uk": "Зник"
       },
       "bodyByLocale": {
-        "ru": "`free` — «свободно»: столик никто не занял. `It is free.`\n\nТем же словом говорят «бесплатно». Так что `It is free.` про кофе — это уже не про стул, а про счёт. Что именно вы имеете в виду, понятно из того, о чём разговор.",
-        "uk": "`free` — «вільно»: столик ніхто не зайняв. `It is free.`\n\nТим самим словом кажуть «безкоштовно». Тож `It is free.` про каву — це вже не про стілець, а про рахунок. Що саме ви маєте на увазі, зрозуміло з того, про що розмова."
+        "ru": "`missing` — «пропал, отсутствует там, где должен быть». `He is missing` — «Он пропал». Где он и что с ним, пока неизвестно. О пропавшем ключе можно сказать `It is missing`. Иногда весь детектив заканчивается проверкой второго кармана.",
+        "uk": "`missing` — «зник, відсутній там, де має бути». `He is missing` — «Він зник». Де він і що з ним, поки невідомо. Про зниклий ключ можна сказати `It is missing`. Іноді весь детектив закінчується перевіркою другої кишені."
       },
       "question": {
         "interactionId": "en:lesson-01:session-30:intro3:q",
         "promptByLocale": {
-          "ru": "Спутник кивает на пустой столик у окна: занят или нет? Ответьте.",
-          "uk": "Супутник киває на порожній столик біля вікна: зайнятий чи ні? Відповідайте."
+          "ru": "Героиню ищут, но пока не знают, где она. Скажите только, что она пропала.",
+          "uk": "Героїню шукають, але поки не знають, де вона. Скажіть лише, що вона зникла."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-30:intro3:r1",
-              "text": "It is free."
+              "text": "She is missing."
             },
             {
               "responseId": "en:lesson-01:session-30:intro3:r2",
-              "text": "It free."
+              "text": "She is dead."
             },
             {
               "responseId": "en:lesson-01:session-30:intro3:r3",
-              "text": "It is busy."
+              "text": "She are missing."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-30:intro3:r1",
-              "text": "It is free."
+              "text": "She is missing."
             },
             {
               "responseId": "en:lesson-01:session-30:intro3:r2",
-              "text": "It free."
+              "text": "She is dead."
             },
             {
               "responseId": "en:lesson-01:session-30:intro3:r3",
-              "text": "It is busy."
+              "text": "She are missing."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спутник кивает на пустой столик у окна: занят или нет? Ответьте.",
-          "uk": "Супутник киває на порожній столик біля вікна: зайнятий чи ні? Відповідайте."
+          "ru": "Героиню ищут, но пока не знают, где она. Скажите только, что она пропала.",
+          "uk": "Героїню шукають, але поки не знають, де вона. Скажіть лише, що вона зникла."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2107a115de9934868af6c2eeb7c1333961151e90e731671f161af46601d40b28"
+  "introFingerprint": "112a839dab23f9273aa7641073011215b2d3bb2e6f5964481d63b32960fed70d"
 }

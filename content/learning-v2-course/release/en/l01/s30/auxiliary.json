@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-30:intro1:r2": {
-          "ru": "Между `it` и словом нужна форма `is`.",
-          "uk": "Між `it` і словом потрібна форма `is`."
+          "ru": "Между `She` и `alive` нужно `is`.",
+          "uk": "Між `She` і `alive` потрібно `is`."
         },
         "en:lesson-01:session-30:intro1:r3": {
-          "ru": "С `it` используют `is`, а не `are`.",
-          "uk": "З `it` використовують `is`, а не `are`."
+          "ru": "После `She` ставим `is`.",
+          "uk": "Після `She` ставимо `is`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-30:intro2:r2": {
-          "ru": "Ровно наоборот: `quiet` — это тишина, а в автобусе шум.",
-          "uk": "Рівно навпаки: `quiet` — це тиша, а в автобусі гамір."
+          "ru": "`alive` — «жив». Здесь подтверждено обратное: `dead`.",
+          "uk": "`alive` — «живий». Тут підтверджено протилежне: `dead`."
         },
         "en:lesson-01:session-30:intro2:r3": {
-          "ru": "`It` потерялось, и непонятно, что громкое. Место надо назвать.",
-          "uk": "`It` загубилося, і незрозуміло, що гучне. Місце треба назвати."
+          "ru": "После `He` нужно `is`.",
+          "uk": "Після `He` потрібно `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-30:intro3:r2": {
-          "ru": "Между `it` и словом нужна форма `is`.",
-          "uk": "Між `it` і словом потрібна форма `is`."
+          "ru": "Смерть не установлена. Известно только, что она пропала: `missing`.",
+          "uk": "Смерть не встановлено. Відомо лише, що вона зникла: `missing`."
         },
         "en:lesson-01:session-30:intro3:r3": {
-          "ru": "`busy` — это «занято», а столик как раз пустой.",
-          "uk": "`busy` — це «зайнято», а столик якраз порожній."
+          "ru": "После `She` нужна форма `is`.",
+          "uk": "Після `She` потрібна форма `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1ee003507fa27e17919a381715598f32a2e60561d5e6a75979d72f7ed7651529"
+  "auxiliaryFingerprint": "ae71d3d0bd124c0c356f7d8bc8dae961014f64ad6c9d90f8fceceed6f0098878"
 }

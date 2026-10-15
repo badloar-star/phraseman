@@ -1,92 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-30:i01",
-    "correctText": "busy",
+    "correctText": "He is alive.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i02",
-    "correctText": "busy",
+    "correctText": "She is missing.",
     "correctResponseId": "en:lesson-01:session-30:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-30:i03",
-    "correctText": "quiet",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-30:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-30:i04",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-30:i04:r1"
+    "correctText": "en:lesson-01:session-30:i04:p1=alive\nen:lesson-01:session-30:i04:p2=dead\nen:lesson-01:session-30:i04:p3=missing\nen:lesson-01:session-30:i04:p4=famous",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i05",
-    "correctText": "busy",
-    "correctResponseId": "en:lesson-01:session-30:i05:r1"
+    "correctText": "They are alive.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i06",
-    "correctText": "It is quiet.",
+    "correctText": "It is missing.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i07",
-    "correctText": "loud",
+    "correctText": "She is dead.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i08",
-    "correctText": "loud",
+    "correctText": "am",
     "correctResponseId": "en:lesson-01:session-30:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-30:i09",
-    "correctText": "free",
-    "correctResponseId": null
+    "correctText": "He is dead.",
+    "correctResponseId": "en:lesson-01:session-30:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-30:i10",
-    "correctText": "free",
-    "correctResponseId": "en:lesson-01:session-30:i10:r1"
+    "correctText": "en:lesson-01:session-30:i10:p1=local\nen:lesson-01:session-30:i10:p2=foreign\nen:lesson-01:session-30:i10:p3=online\nen:lesson-01:session-30:i10:p4=rich",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i11",
-    "correctText": "en:lesson-01:session-30:i11:p1=busy\nen:lesson-01:session-30:i11:p2=quiet\nen:lesson-01:session-30:i11:p3=loud\nen:lesson-01:session-30:i11:p4=free",
+    "correctText": "We are alive.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i12",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-30:i12:r1"
+    "correctText": "They are missing.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i13",
-    "correctText": "It is free.",
+    "correctText": "He is poor.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i14",
-    "correctText": "open",
+    "correctText": "missing",
     "correctResponseId": "en:lesson-01:session-30:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-30:i15",
-    "correctText": "It is small.",
-    "correctResponseId": null
+    "correctText": "You are alive.",
+    "correctResponseId": "en:lesson-01:session-30:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-30:i16",
-    "correctText": "It is closed.",
+    "correctText": "en:lesson-01:session-30:i16:p1=poor\nen:lesson-01:session-30:i16:p2=alive\nen:lesson-01:session-30:i16:p3=dead\nen:lesson-01:session-30:i16:p4=missing",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-30:i17:s01",
-    "correctText": "It is loud.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-30:i17:s02",
-    "correctText": "It is quiet.",
+    "interactionId": "en:lesson-01:session-30:i17",
+    "correctText": "It is alive.",
     "correctResponseId": null
   }
 ]

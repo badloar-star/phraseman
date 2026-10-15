@@ -1,206 +1,138 @@
-# Английский · Урок 1 · Занятие 30 — «Как описать место»
+# Английский · Урок 1 · Занятие 30 — Что случилось с героем
 
-**Ситуация.** Лена встретилась с Марком у кафе. Они выбирают столик, идут к автобусу и описывают, где шумно, тихо или свободно.
-**Как сказать:** `It is`, когда описываете место вокруг себя.
-**Новые слова:** busy, quiet, loud, free
-**Возвращаются:** small, warm, open, closed, busy, quiet, loud, free
+**Ситуация.** Вы с другом смотрите детективный фильм. Он пропустил несколько сцен, и вы объясняете, кто жив, кто умер по сюжету и кто пропал.
+
+**Что вы освоите:** распознавать на слух знакомые формы be и точно называть состояние человека или предмета
+**Новые слова:** alive, dead, missing
 
 ---
 
 ## Интро 1
 
-### `busy` — «занято»
+### Жив
 
-`busy` — «занято». Про человека это «занят делом», про место — «полно народу».
+`alive` — «жив». Героя нашли и подтвердили, что он жив: `He is alive`. Про героиню — `She is alive`, про двоих — `They are alive`. Само слово `alive` не меняется.
 
-`It` — «оно», и место тоже `it`. Кафе, улица, автобус — всё `it`, род выдумывать не надо.
+**В фильме спасатели нашли героиню живой. Скажите другу об этом.**
 
-По-русски «тут людно» обходится без глагола. По-английски между `it` и словом нужна форма `is`.
-
-**В кафе ни одного свободного столика. Спутник спрашивает, что там. Ответьте.**
-
-- ✅ **It is busy.**
-- ❌ It busy. — *Между `it` и словом нужна форма `is`.*
-- ❌ It are busy. — *С `it` используют `is`, а не `are`.*
+- ✅ **She is alive.**
+- ❌ She alive. — *Между `She` и `alive` нужно `is`.*
+- ❌ She are alive. — *После `She` ставим `is`.*
 
 ---
 
 ## Интро 2
 
-### `quiet` и `loud` — тихо и громко
+### Умер
 
-`quiet` — «тихо», `loud` — «громко». Два слова на весь шум мира: от библиотеки до отбойного молотка.
+`dead` — «мёртв». `He is dead` — «Он мёртв», то есть он умер. Это противоположно `alive`. Используйте это слово, когда факт смерти известен; молчание и отсутствие ответа сами по себе этого не доказывают.
 
-`It is loud` — три слова в этом порядке. Скажете просто `Is loud` — и спутник не поймёт, что вы про автобус, а не про его телефон.
+**По сюжету врач подтвердил смерть героя. Скажите другу о герое.**
 
-**Марк и Лена едут в шумном автобусе: вокруг разговоры и музыка. Лена описывает автобус.**
-
-- ✅ **It is loud.**
-- ❌ It is quiet. — *Ровно наоборот: `quiet` — это тишина, а в автобусе шум.*
-- ❌ Is loud. — *`It` потерялось, и непонятно, что громкое. Место надо назвать.*
+- ✅ **He is dead.**
+- ❌ He is alive. — *`alive` — «жив». Здесь подтверждено обратное: `dead`.*
+- ❌ He am dead. — *После `He` нужно `is`.*
 
 ---
 
 ## Интро 3
 
-### `free` — свободно и бесплатно
+### Пропал
 
-`free` — «свободно»: столик никто не занял. `It is free.`
+`missing` — «пропал, отсутствует там, где должен быть». `He is missing` — «Он пропал». Где он и что с ним, пока неизвестно. О пропавшем ключе можно сказать `It is missing`. Иногда весь детектив заканчивается проверкой второго кармана.
 
-Тем же словом говорят «бесплатно». Так что `It is free.` про кофе — это уже не про стул, а про счёт. Что именно вы имеете в виду, понятно из того, о чём разговор.
+**Героиню ищут, но пока не знают, где она. Скажите только, что она пропала.**
 
-**Спутник кивает на пустой столик у окна: занят или нет? Ответьте.**
-
-- ✅ **It is free.**
-- ❌ It free. — *Между `it` и словом нужна форма `is`.*
-- ❌ It is busy. — *`busy` — это «занято», а столик как раз пустой.*
+- ✅ **She is missing.**
+- ❌ She is dead. — *Смерть не установлена. Известно только, что она пропала: `missing`.*
+- ❌ She are missing. — *После `She` нужна форма `is`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Карточка слова — busy**
-<!-- interaction_id: en:lesson-01:session-30:i01; family: listen_choose -->
-> **busy** — «занято, людно». Про место — очередь, гул, ни одного свободного стула.
+**1 · Героя нашли живым. Соберите сообщение об этом**
+<!-- interaction_id: en:lesson-01:session-30:i01; family: phrase_builder -->
+Плитки: `alive` `is` `He` `are` → **He is alive.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is alive.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-30:i02; family: listen_choose -->
-🔊 *busy* → **busy** · bus · bee
-- bus — *«Автобус». Хвост «-зи» обрублен.*
-- bee — *Один слог. `busy` — два: «би-зи».*
+🔊 *She is missing.* → **She is missing.** · He is missing. · She is alive.
+- He is missing. — *В записи первое слово — `She`, а в этом варианте — `He`.*
+- She is alive. — *В записи последнее слово — `missing`, а в этом варианте — `alive`.*
 
-**3 · Карточка слова — quiet**
-<!-- interaction_id: en:lesson-01:session-30:i03; family: listen_choose -->
-> **quiet** — «тихо». Никто не кричит, слышно, как закрывается дверь.
+**3 · По сюжету врач подтвердил смерть двух персонажей. Вставьте слово в сообщение о них**
+<!-- interaction_id: en:lesson-01:session-30:i03; family: context_gap_grammar -->
+They ___ dead. → **are** · is · am
+- is — *После `They` нужно `are`.*
+- am — *`am` подходит к `I`. О них говорим `They are`.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-30:i04; family: listen_choose -->
-🔊 *quiet* → **quiet** · white · queen
-- white — *Похожий хвост, но начало другое. `quiet` начинается на «ку».*
-- queen — *Начало то же, дальше расходятся. `quiet` — два слога.*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-30:i04; family: speed_match -->
+alive — живой · dead — мёртвый · missing — пропавший · famous — знаменитый
 
-**5 · Вставьте слово — в кафе очередь до двери и гул голосов**
-<!-- interaction_id: en:lesson-01:session-30:i05; family: context_gap_grammar -->
-It is ___ . → **busy** · quiet · small
-- quiet — *«Тихо» — но там очередь и гул.*
-- small — *«Маленькое» — про размер, а вы говорите про толпу.*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-30:i05; family: listen_build_dictation -->
+🔊 *They are alive.* Плитки: `alive` `are` `They` `We` → **They are alive.**
+*(плитка `We` лишняя: здесь нужно `They` — `They are alive.`)*
 
-**6 · Соберите фразу — «тут тихо»**
+**6 · Ключа нет на месте, герой его ищет. Соберите фразу о ключе: «Он пропал»**
 <!-- interaction_id: en:lesson-01:session-30:i06; family: phrase_builder -->
-Плитки: `quiet` `is` `It` `are` → **It is quiet.**
-*(плитка `are` лишняя: `are` лишнее: после `It` ставят `is` — `It is quiet.`)*
+Плитки: `missing` `is` `It` `He` → **It is missing.**
+*(плитка `He` лишняя: здесь нужно `It` — `It is missing.`)*
 
+**7 · Врач в фильме подтвердил, что героиня умерла. Скажите о ней одной фразой**
+<!-- interaction_id: en:lesson-01:session-30:i07; family: scripted_repeat_compare -->
+🎙 **She is dead.**
 
-**7 · Карточка слова — loud**
-<!-- interaction_id: en:lesson-01:session-30:i07; family: listen_choose -->
-> **loud** — «громко». Приходится повышать голос, чтобы вас услышали рядом.
+**8 · Герой звонит после спасения и сообщает о себе: «Я жив». Вставьте слово в его реплику**
+<!-- interaction_id: en:lesson-01:session-30:i08; family: context_gap_grammar -->
+I ___ alive. → **am** · is · are
+- is — *О себе герой говорит `I am`.*
+- are — *После `I` нужна форма `am`.*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-30:i08; family: listen_choose -->
-🔊 *loud* → **loud** · lot · low
-- lot — *Конец другой. В `loud` слышно «-ауд».*
-- low — *Без «-д» на конце. `loud` заканчивается на «д».*
-
-**9 · Карточка слова — free**
+**9 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-01:session-30:i09; family: listen_choose -->
-> **free** — «свободно». А ещё «бесплатно» — то же слово, два значения.
+🔊 *He is dead.* → **He is dead.** · She is dead. · He is missing.
+- She is dead. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is missing. — *В записи последнее слово — `dead`, а в этом варианте — `missing`.*
 
-**10 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-30:i10; family: listen_choose -->
-🔊 *free* → **free** · three · tree
-- three — *Начинается не так: язык между зубами, а в `free` — губы и «ф».*
-- tree — *«Дерево». Первый звук «т», а нужен «ф».*
+**10 · Соедините знакомые слова и значения**
+<!-- interaction_id: en:lesson-01:session-30:i10; family: speed_match -->
+local — местный · foreign — иностранный · online — в интернете · rich — богатый
 
-**11 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-30:i11; family: speed_match -->
-busy — людно · quiet — тихо · loud — громко · free — свободно
+**11 · Послушайте реплику спасённых героев и соберите её**
+<!-- interaction_id: en:lesson-01:session-30:i11; family: listen_build_dictation -->
+🔊 *We are alive.* Плитки: `alive` `are` `We` `They` → **We are alive.**
+*(плитка `They` лишняя: здесь нужно `We` — `We are alive.`)*
 
-**12 · Вставьте слово — в кафе никого, играет одна тихая песня**
-<!-- interaction_id: en:lesson-01:session-30:i12; family: context_gap_grammar -->
-It is ___ . → **quiet** · loud · warm
-- loud — *«Громко» — а там одна тихая песня и пустой зал.*
-- warm — *«Тепло» — про печку, а вы говорите про тишину.*
+**12 · Двух героев ищут; где они, неизвестно. Соберите фразу о них**
+<!-- interaction_id: en:lesson-01:session-30:i12; family: phrase_builder -->
+Плитки: `missing` `are` `They` `is` → **They are missing.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are missing.`)*
 
-**13 · Соберите фразу — за столиком никого, он свободен**
-<!-- interaction_id: en:lesson-01:session-30:i13; family: phrase_builder -->
-Плитки: `free` `It` `is` `are` → **It is free.**
-*(плитка `are` лишняя: `are` лишнее: про один столик говорят `It is free.`)*
+**13 · У героя по сюжету почти нет денег. Скажите о его положении**
+<!-- interaction_id: en:lesson-01:session-30:i13; family: scripted_repeat_compare -->
+🎙 **He is poor.**
 
-
-**14 · Вставьте слово — кафе работает, дверь открыта и горит вывеска**
+**14 · Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта**
 <!-- interaction_id: en:lesson-01:session-30:i14; family: context_gap_grammar -->
-It is ___ . → **open** · closed · free
-- closed — *«Закрыто» — а дверь как раз открыта.*
-- free — *«Свободно» — про столик, а вы говорите про само кафе.*
+She is ___ . → **missing** · dead · famous
+- dead — *Нет сведений, что она умерла. Она пропала: `missing`.*
+- famous — *`famous` — «знаменитая». Здесь речь об исчезновении: `missing`.*
 
-**15 · Соберите фразу — в кафе всего четыре стола, и они стоят вплотную**
-<!-- interaction_id: en:lesson-01:session-30:i15; family: phrase_builder -->
-Плитки: `small` `It` `is` `are` → **It is small.**
-*(плитка `are` лишняя: `are` лишнее: про одно кафе говорят `It is small.`)*
+**15 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-30:i15; family: listen_choose -->
+🔊 *You are alive.* → **You are alive.** · We are alive. · You are famous.
+- We are alive. — *В записи первое слово — `You`, а в этом варианте — `We`.*
+- You are famous. — *В записи последнее слово — `alive`, а в этом варианте — `famous`.*
 
+**16 · Соедините слова и значения**
+<!-- interaction_id: en:lesson-01:session-30:i16; family: speed_match -->
+poor — бедный · alive — живой · dead — мёртвый · missing — пропавший
 
-**16 · Послушайте и соберите — «уже закрыто»**
-<!-- interaction_id: en:lesson-01:session-30:i16; family: listen_build_dictation -->
-🔊 *It is closed.* Плитки: `closed` `is` `It` `open` → **It is closed.**
-*(плитка `open` лишняя: `open` лишнее: в записи сказано `It is closed.` — «уже закрыто».)*
+**17 · После отпуска вы осмотрели растение: оно живое, на нём новые листья. Скажите соседу о растении одной фразой**
+<!-- interaction_id: en:lesson-01:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is alive.**
 
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-30:i17:s01; family: scripted_repeat_compare -->
-🎙 **It is loud.**
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-30:i17:s02; family: scripted_repeat_compare -->
-🎙 **It is quiet.**
-
----
-
-## Для сборщика
-
-new_words:
-busy — людно, занято — «занято, людно». Про место — очередь, гул, ни одного свободного стула.
-quiet — тихо — «тихо». Никто не кричит, слышно, как закрывается дверь.
-loud — громко — «громко». Приходится повышать голос, чтобы вас услышали рядом.
-free — свободно — «свободно». А ещё «бесплатно» — то же слово, два значения.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| small | 5 (ловушка), 15 | 15 |
-| warm | 12 (ловушка) | — (только ловушка, второе касание) |
-| open | 14, 16 (ловушка) | 14 |
-| closed | 14 (ловушка), 16 | 16 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | busy | да |
-| Интро 2 | loud | да |
-| Интро 3 | free | да |
-
-**3. Доска пар (задание 11)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| busy | 1 | 2 (слух), 5 (выбор) |
-| quiet | 3 | 4 (слух), 6 (сборка) |
-| loud | 7 | 8 (слух) |
-| free | 9 | 10 (слух) |
-
-**4. Длина интро (норма 240–290)**
-
-| страница | знаков |
-|---|---|
-| Интро 1 | 270 |
-| Интро 2 | 264 |
-| Интро 3 | 276 |
-
----

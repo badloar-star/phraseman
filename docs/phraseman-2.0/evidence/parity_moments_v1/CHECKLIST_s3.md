@@ -45,7 +45,7 @@
 | 24 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x247 y576 · 20×20 · радиус 50% | 86 |
 | 25 | текст «1» | «1» · число из данных | 14/auto · 700 | цвет text / mediaInk | цвет text | цвет text | x134 y582 · 4×6 | 86 |
 | 26 | текст «Итог недели · Этаж 1» | ru «Итог недели · Этаж 1» · `promoWeekOverline` (moments_strings.ts) · uk-шаблон «Підсумок тижня · {league}» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет accentText | цвет accentText / accentBright | цвет accentText / accentBright | x115 y645 · 183×17 | 86 |
-| 27 | текст «Ты поднимаешься в Базальт» | ru «Ты поднимаешься в Базальт» · `weekUp` (story_strings.ts) · uk-шаблон «Ти піднімаєшся в {league}» | 34/40 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x28 y670 · 356×80 | 86 |
+| 27 | текст «Ты поднимаешься в Базальт» | ru «Ты поднимаешься в Базальт» · `weekUp` (story_strings.ts) · uk-шаблон «Ти піднімаєшся в {league}» | 34/40 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x28 y670 · 356×80 | 86 |
 | 28 | текст «5 место · 470 монет за неделю · +100» | ru «5 место · 470 монет за неделю · +100» · составлено из `stayBody` + `stayBodyNoGap` + `weekCoins` | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x59 y756 · 294×22 | 86 |
 
 ## Вариант 2 — Серия
@@ -69,9 +69,9 @@
 | 7 | текст «» | символ анимации «» | 150/150 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет mutedText | x131 y359 · 150×150 | 82 |
 | 8 | текст «» | символ анимации «» | 150/150 · 400 | цвет — · фон-градиент/картинка | цвет — · фон-градиент/картинка | цвет — · фон-градиент/картинка | x129 y363 · 158×146 | 82 |
 | 9 | текст «» | символ анимации «» | 75/75 · 400 | цвет text / mediaInk | цвет opaqueCard / opaqueSheet | цвет opaqueCard / opaqueSheet | x168 y417 · 80×71 | 82 |
-| 10 | текст «30» | «30» · число из данных | 36/45 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.5 | цвет text / mediaInk · фон STREAK_PLATE_BG (StreakMomentFlame.tsx, постоянная кода) | цвет opaqueCard / opaqueSheet · фон STREAK_PLATE_BG (StreakMomentFlame.tsx, постоянная кода) | цвет opaqueCard / opaqueSheet · фон STREAK_PLATE_BG (StreakMomentFlame.tsx, постоянная кода) | x170 y446 · 72×45 · радиус 999 · отступы 0 11.52 | 82 |
+| 10 | текст «30» | «30» · число из данных | 36/45 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.5 | цвет text / mediaInk · фон STREAK_PLATE_BG (StreakMomentFlame.tsx, постоянная кода) | цвет opaqueCard / opaqueSheet · фон STREAK_PLATE_BG (StreakMomentFlame.tsx, постоянная кода) | цвет opaqueCard / opaqueSheet · фон STREAK_PLATE_BG (StreakMomentFlame.tsx, постоянная кода) | x170 y446 · 72×45 · радиус 999 · отступы 0 11.52 | 82 |
 | 11 | текст «Серия · 30 дней» | ru «Серия · 30 дней» · `overline` (streak_moments_strings.ts) · uk-шаблон «Серія · {n} {dn}» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет accentText | цвет accentText / accentBright | цвет accentText / accentBright | x139 y523 · 135×17 | 82 |
-| 12 | текст «Месяц подряд» | ru «Месяц подряд» · `TITLES[30]` (streak_moments_strings.ts) · uk «Місяць поспіль» | 34/40 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x81 y548 · 250×40 | 82 |
+| 12 | текст «Месяц подряд» | ru «Месяц подряд» · `TITLES[30]` (streak_moments_strings.ts) · uk «Місяць поспіль» | 34/40 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x81 y548 · 250×40 | 82 |
 | 13 | текст «Новая стадия огня — до 100 дней» | ru «Новая стадия огня — до 100 дней» · `stageNew` (streak_moments_strings.ts) · uk-шаблон «Нова стадія вогню — до {next} {dx}» | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x74 y594 · 264×22 | 82 |
 
 ## Вариант 3 — Ранг монеты
@@ -94,7 +94,7 @@
 | 6 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x98 y404 · 56×56 · радиус 50% | 85 |
 | 7 | иконка Ionicons **arrow-forward** | — | 22/22 · 400 | цвет text / mediaInk | цвет text | цвет text | x168 y421 · 22×22 | 85 |
 | 8 | текст «Ранг монеты» | ru «Ранг монеты» · `rankOverline` (story_strings.ts) · uk «Ранг монети» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет accentText | цвет accentText / accentBright | цвет accentText / accentBright | x149 y505 · 113×17 | 85 |
-| 9 | текст «Ранг 6» | ru «Ранг 6» · `rankTitle` (story_strings.ts) · uk-шаблон «Ранг {n}» | 34/40 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x153 y530 · 106×40 | 85 |
+| 9 | текст «Ранг 6» | ru «Ранг 6» · `rankTitle` (story_strings.ts) · uk-шаблон «Ранг {n}» | 34/40 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x153 y530 · 106×40 | 85 |
 | 10 | текст «Куплен за 6 000 монет» | ru «Куплен за 6 000 монет» · `rankPaid` (story_strings.ts) · uk-шаблон «Куплений за {price} монет» | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x116 y576 · 180×22 | 85 |
 
 ## Вариант 4 — Ачивка
@@ -115,5 +115,5 @@
 | 4 | текст «сегодня» | ru «сегодня» · `today` (streak_moments_strings.ts) · uk «Сьогодні» | 13/auto · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x58 y91 · 105×16 | 84 |
 | 5 | картинка `assets/images/achievements/streak_7.webp` | — | — | — | — | — | x146 y372 · 120×120 · радиус 28 · тень | 84 |
 | 6 | текст «Ачивка» | ru «Ачивка» · `achOverline` (story_strings.ts) · uk «Ачівка» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет accentText | цвет accentText / accentBright | цвет accentText / accentBright | x174 y510 · 65×17 | 84 |
-| 7 | текст «7 дней подряд» | ru «7 дней подряд» · `DAYS_IN_A_ROW` (streak_moments_strings.ts) · uk-шаблон «{n} {dn} поспіль» | 34/40 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x82 y535 · 247×40 | 84 |
+| 7 | текст «7 дней подряд» | ru «7 дней подряд» · `DAYS_IN_A_ROW` (streak_moments_strings.ts) · uk-шаблон «{n} {dn} поспіль» | 34/40 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x82 y535 · 247×40 | 84 |
 | 8 | текст «Следующая — 30 дней» | ru «Следующая — 30 дней» · **нет в строках кода** | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x116 y581 · 181×22 | 84 |

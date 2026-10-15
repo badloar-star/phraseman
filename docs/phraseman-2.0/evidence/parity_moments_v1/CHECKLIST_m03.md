@@ -22,7 +22,7 @@
 |---|---|---|---|---|---|---|---|---|
 | 1 | блок .cc | — | — | — | — | — | x151 y300 · 110×126 | 85 |
 | 2 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x151 y300 · 110×110 · радиус 50% | 85 |
-| 3 | текст «Новая неделя» | ru «Новая неделя» · `downWakeTitle` (moments_strings.ts) · uk «Новий тиждень» | 24/30 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.3 | цвет text / mediaInk | цвет text | цвет text | x122 y440 · 167×30 | 85 |
+| 3 | текст «Новая неделя» | ru «Новая неделя» · `downWakeTitle` (moments_strings.ts) · uk «Новий тиждень» | 24/30 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.3 | цвет text / mediaInk | цвет text | цвет text | x122 y440 · 167×30 | 85 |
 | 4 | текст «Гранит · все с 1 этажа.» | ru «Гранит · все с 1 этажа.» · `downWakeBody` (moments_strings.ts) · uk-шаблон «{league} · усі з 1 поверху.» | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x118 y484 · 176×22 | 85 |
 | 5 | текст «Играть» | ru «Играть» · `play` (moments_strings.ts) · uk «Грати» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x20 y763 · 372×52 · радиус 26 · отступы 0 24 · тень | 85 |
 | 6 | иконка Ionicons **arrow-forward** | — | 20/20 · 700 | цвет accentInk / ctaInk | цвет accentInk / ctaInk | цвет accentInk / ctaInk | x229 y778 · 20×20 | 85 |

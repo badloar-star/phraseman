@@ -48,7 +48,7 @@
 | 21 | текст «Этаж 1» | ru «Этаж 1» · `floorTag` (moments_strings.ts) · uk-шаблон «Поверх {n}» | 13/28 · 700 | цвет text / mediaInk · фон opaqueSheet / opaqueControl | цвет text · фон opaqueControl / deepBaseAlt | цвет text · фон opaqueControl / deepBaseAlt | x296 y570 · 64×28 · радиус 14 · отступы 0 10 | 7761 |
 | 22 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x259 y571 · 26×26 · радиус 50% | 7363 |
 | 23 | текст «1» | «1» · число из данных | 14/auto · 700 | цвет text / mediaInk | цвет text | цвет text | x114 y579 · 3×9 | 6325 |
-| 24 | текст «Базальт» | ru «Базальт» · **нет в строках кода** | 34/40 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x24 y743 · 364×40 | 8824 |
+| 24 | текст «Базальт» | ru «Базальт» · **нет в строках кода** | 34/40 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x24 y743 · 364×40 | 8824 |
 | 25 | текст «+100 монет за повышение» | ru «+100 монет за повышение» · `promoBonus` (moments_strings.ts) · uk-шаблон «+{n} монет за підвищення» | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x24 y789 · 364×22 | 8824 |
 | 26 | текст «Играть» | ru «Играть» · `play` (moments_strings.ts) · uk «Грати» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x24 y827 · 364×52 · радиус 26 · отступы 0 24 · тень | 8824 |
 | 27 | иконка Ionicons **arrow-forward** | — | 20/20 · 700 | цвет accentInk / ctaInk | цвет accentInk / ctaInk | цвет accentInk / ctaInk | x229 y842 · 20×20 | 8824 |
@@ -117,7 +117,7 @@
 | 2 | блок .cc | — | — | — | — | — | x146 y290 · 120×136 | 82 |
 | 3 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x146 y290 · 120×120 · радиус 50% | 82 |
 | 4 | текст «Топ-5 · Базальт» | ru «Топ-5 · Базальт» · **нет в строках кода** | 13/17 · 700 · трекинг 1.4 · uppercase | цвет accentText | цвет accentText / accentBright | цвет accentText / accentBright | x138 y446 · 136×17 | 488 |
-| 5 | текст «Поднимаешься» | ru «Поднимаешься» · **нет в строках кода** | 34/40 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x71 y469 · 269×40 | 653 |
+| 5 | текст «Поднимаешься» | ru «Поднимаешься» · **нет в строках кода** | 34/40 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x71 y469 · 269×40 | 653 |
 | 6 | текст «5 место · 470 монет за неделю · +100» | ru «5 место · 470 монет за неделю · +100» · составлено из `stayBody` + `stayBodyNoGap` + `weekCoins` | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x59 y515 · 294×22 | 889 |
 | 7 | текст «Играть» | ru «Играть» · `play` (moments_strings.ts) · uk «Грати» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x24 y751 · 364×52 · радиус 26 · отступы 0 24 · тень | 1127 |
 | 8 | иконка Ionicons **arrow-forward** | — | 20/20 · 700 | цвет accentInk / ctaInk | цвет accentInk / ctaInk | цвет accentInk / ctaInk | x229 y766 · 20×20 | 1127 |

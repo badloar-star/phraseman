@@ -49858,6 +49858,309 @@
           "byteSize": 41856
         }
       ]
+    },
+    "l03/s53/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a museum.",
+          "file": "c6488d5d1e148df875426251a834cd74fa2f8bd9caedf75e2de94d0bad621a3d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c6488d5d1e148df875426251a834cd74fa2f8bd9caedf75e2de94d0bad621a3d.mp3",
+          "contentHash": "95b205d2b9d99cdb8398b9fcfc2f934866d4eb0230fe9d590451a4ecc1b16b39",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l03/s53/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the museum?",
+          "file": "de9782b3bcc7b3c2a8af4a16d7efe35d43431fe65369850d90b1846888811075.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de9782b3bcc7b3c2a8af4a16d7efe35d43431fe65369850d90b1846888811075.mp3",
+          "contentHash": "0c52a318d1370b54da1ab84825276f4550f6079605ded96e9702a79ad4a374d0",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l03/s53/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It is full.",
+          "file": "4a8a52f41fc38f0b761c7eb98abcebcab83520bf932aced9b0ee61a8899a9518.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a8a52f41fc38f0b761c7eb98abcebcab83520bf932aced9b0ee61a8899a9518.mp3",
+          "contentHash": "b8f03aacdc8f19834ed1978db4e164f5e9a6830f72e53f57dc9ad1dbd9f56cee",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s53/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The office is there.",
+          "file": "2271da97a63e6b0f711550b35cfc3152a585d4080b4ec4a4d6579811722e6bd8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2271da97a63e6b0f711550b35cfc3152a585d4080b4ec4a4d6579811722e6bd8.mp3",
+          "contentHash": "abd914358991d81315cd8bbc9daaf877b632dddd99e183aa69b7aa1e78a34f69",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l03/s53/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "museum",
+          "file": "0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "contentHash": "bfc575ef089820dbd46858c187249f260843dbe7d0d7ba2c481b2f2a2fe542a7",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l03/s53/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "museum",
+          "file": "0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "contentHash": "bfc575ef089820dbd46858c187249f260843dbe7d0d7ba2c481b2f2a2fe542a7",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l03/s53/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "museum",
+          "file": "0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "contentHash": "bfc575ef089820dbd46858c187249f260843dbe7d0d7ba2c481b2f2a2fe542a7",
+          "byteSize": 29184
+        },
+        {
+          "text": "full",
+          "file": "8a4dcae8882875da92fc3e4ce2b887eb5bd2171fd40ed0478ef97f623d7dae1f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a18b869b2e81c0c529552a3c-onyx.mp3",
+          "contentHash": "a36fb6453a692fd915d3a02b5886044c2acfb943d149874f3fc6122fdd196dbe",
+          "byteSize": 6912
+        },
+        {
+          "text": "unfair",
+          "file": "98b173da84c745e44af23d53a3922df007bb9e75a12c7d7da1afb24d00884310.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98b173da84c745e44af23d53a3922df007bb9e75a12c7d7da1afb24d00884310.mp3",
+          "contentHash": "a9da0f429b2f3b42c06693d6d61499fbced807df123a4b9a29eeeb36b1c1301e",
+          "byteSize": 25344
+        },
+        {
+          "text": "office",
+          "file": "dc059ca5a4f3896301ee5d94f6b620098e38794a3a3cbc7613f0c06cb04f02fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc059ca5a4f3896301ee5d94f6b620098e38794a3a3cbc7613f0c06cb04f02fd.mp3",
+          "contentHash": "47495d463e6136eff2ef55b3b9183db34efc8b3e6fcfad34fe0b1b38b597191c",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l03/s53/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a museum.",
+          "file": "55a65c33a0719c954e8979c216f4ddede28f229c84ee59e37f32f5a88f7fc17b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/55a65c33a0719c954e8979c216f4ddede28f229c84ee59e37f32f5a88f7fc17b.mp3",
+          "contentHash": "0f5d189434f23727cbc41cdbc0189b0e5d65cb4fd2a93caeef34a2765b21cfcb",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l03/s53/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is the museum?",
+          "file": "09752b066995917ac7f706efdd5011e491063fca20fb0d8efc99f193a026d477.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09752b066995917ac7f706efdd5011e491063fca20fb0d8efc99f193a026d477.mp3",
+          "contentHash": "51a35b95beadc82aa1895b200f8f5b823591643bbbc18248efa6466af3c437e9",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s53/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's full.",
+          "file": "39cf7ecf4757d3aef0550a7b78d5bf7cf27d1156fca30b3fa73a94041f38ee96.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/39cf7ecf4757d3aef0550a7b78d5bf7cf27d1156fca30b3fa73a94041f38ee96.mp3",
+          "contentHash": "6eeeda31bfe2cf269f07a85747ce95d700c24c3039232fa0ff3b39ed153941c5",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l03/s53/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a museum.",
+          "file": "c6488d5d1e148df875426251a834cd74fa2f8bd9caedf75e2de94d0bad621a3d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c6488d5d1e148df875426251a834cd74fa2f8bd9caedf75e2de94d0bad621a3d.mp3",
+          "contentHash": "95b205d2b9d99cdb8398b9fcfc2f934866d4eb0230fe9d590451a4ecc1b16b39",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l03/s53/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is unfair.",
+          "file": "514141bbe5f03452add13957c1495c0c2cd2c11dd13333cc3e4ada0225b8eab0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/514141bbe5f03452add13957c1495c0c2cd2c11dd13333cc3e4ada0225b8eab0.mp3",
+          "contentHash": "220961449f937b4fc7ea698aa18dd1d3b5a9add9ed77c55ecf0d68121c9c0841",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s53/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "museum",
+          "file": "0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "contentHash": "bfc575ef089820dbd46858c187249f260843dbe7d0d7ba2c481b2f2a2fe542a7",
+          "byteSize": 29184
+        },
+        {
+          "text": "office",
+          "file": "dc059ca5a4f3896301ee5d94f6b620098e38794a3a3cbc7613f0c06cb04f02fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc059ca5a4f3896301ee5d94f6b620098e38794a3a3cbc7613f0c06cb04f02fd.mp3",
+          "contentHash": "47495d463e6136eff2ef55b3b9183db34efc8b3e6fcfad34fe0b1b38b597191c",
+          "byteSize": 39552
+        },
+        {
+          "text": "here",
+          "file": "de3734eb9148ae497907a90c2446fa2f79cc974cc87c2dee5e10950d4c11ce5b.mp3",
+          "assetPath": "assets/audio/learning-v2/session1-production-v1/here-onyx.mp3",
+          "contentHash": "466763eb8efaae21630ce58e33301e771417bd0ac7ff21702afc6321efa8942f",
+          "byteSize": 21888
+        },
+        {
+          "text": "there",
+          "file": "b58c3078acecc660e1cac0b0e3e2c7eb5d500fd6c4d5c65cc20f3061e0c70a76.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e244f187f696561d5fd7e00f-onyx.mp3",
+          "contentHash": "423cf31ed87aa7fa64ad507ce6b916b752688225cd64696463af1a4ec85a566d",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s53/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The museum is here.",
+          "file": "1ebf7f63a03a7a092355121ede89232ee2eca6dc150cc186dfe2aebce4d9fb17.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1ebf7f63a03a7a092355121ede89232ee2eca6dc150cc186dfe2aebce4d9fb17.mp3",
+          "contentHash": "93cf5af1aa6309127c2050e88cd91b3caca822cac70fdad51d2c2390bea8e01e",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l03/s53/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the office?",
+          "file": "c7fd20e7488c1722b35b336171a1661d12c97ab5bed57a9a60949b7331ef474e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c7fd20e7488c1722b35b336171a1661d12c97ab5bed57a9a60949b7331ef474e.mp3",
+          "contentHash": "18e0857922cd70f555e084aba2417581237e1b795f40b7c69f793aad5d46a131",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l03/s53/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's unfair.",
+          "file": "6360fe829b0e5b5ce4d478f7b0e7e387314781b609046882e936e249715f262f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6360fe829b0e5b5ce4d478f7b0e7e387314781b609046882e936e249715f262f.mp3",
+          "contentHash": "3e46649d69b71b33691a59d912ed8a9e7123241b9dd07190c620d58f12fa49b5",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s53/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the museum?",
+          "file": "48ed5b3da2f337fa68883e84364df08c75527b542e1226f662cd93ed3138aab3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/48ed5b3da2f337fa68883e84364df08c75527b542e1226f662cd93ed3138aab3.mp3",
+          "contentHash": "5b8648a049c5df59c8f45f6a5b89d9a5281ddd3f5b6ff8f7affeedc2965e8d22",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l03/s53/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is full.",
+          "file": "173fef388a144a9b53051cda1e8dd663e7dfcc6a6a172828d0aa8c3a0f855581.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/173fef388a144a9b53051cda1e8dd663e7dfcc6a6a172828d0aa8c3a0f855581.mp3",
+          "contentHash": "030f2aab14f2eefab89c217e670211e99ac729b3420da17075aa297cd6ca68d6",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l03/s53/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "museum",
+          "file": "d39d8fbd1d93cd84e9e5df939bd9090af1174f78cea1312e7bbc8e58d753f747.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d39d8fbd1d93cd84e9e5df939bd9090af1174f78cea1312e7bbc8e58d753f747.mp3",
+          "contentHash": "d846d8123ecbfa87043a009346595eb6139a24caaa2d93fae0f1cdb7a9758c5b",
+          "byteSize": 36480
+        },
+        {
+          "text": "full",
+          "file": "ed88c695b3339dfc37e3e3604463c73a1ce8aaa750e53da16db6b6a048a8777a.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a18b869b2e81c0c529552a3c-ash.mp3",
+          "contentHash": "42c52ffbdb84977191c22ff02098aa1fde9736d9f759bd7b48e146ee99caa7d2",
+          "byteSize": 25344
+        },
+        {
+          "text": "unfair",
+          "file": "8288bde32bd06ef66c502d4cde69c646726c592fc3152e44c837846bb86d5979.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8288bde32bd06ef66c502d4cde69c646726c592fc3152e44c837846bb86d5979.mp3",
+          "contentHash": "c64ff267a7fd0143f1fb396d8373adadd490e593defadbcfddcf8106cb2d2a66",
+          "byteSize": 23040
+        },
+        {
+          "text": "office",
+          "file": "b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "contentHash": "b68ccd0b389740553ec28b78745ef14e0ad9a91af4c102e31a584f32c1c57bd9",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l03/s53/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The museum is there.",
+          "file": "c13dc3ffae2e52f3754d210443317517f39e2585dbf2285ac2004d5534f54f72.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c13dc3ffae2e52f3754d210443317517f39e2585dbf2285ac2004d5534f54f72.mp3",
+          "contentHash": "8cd21b0087139c2d44cf192a8eb8785f1b6932437de9300ef6f99e0092e3fd50",
+          "byteSize": 34944
+        }
+      ]
     }
   },
   "settings": {

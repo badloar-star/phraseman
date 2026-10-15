@@ -18,7 +18,9 @@ const speakingPanel = readFileSync("components/SpeakingPanel.tsx", "utf8");
 
 assert.match(
   player,
-  /<SpeakHoldButton[\s\S]{0,800}testID="learning-v2-inline-hold-to-talk"/,
+  // зачем (15.10): D194/D196 добавили кнопке пропсы цифры «осталось голоса» (label/allowance) — testID уехал на ~1550 знаков;
+  // кнопка и testID на месте, окно поиска расширено (это сторож наличия, а не длины пропсов).
+  /<SpeakHoldButton[\s\S]{0,2400}testID="learning-v2-inline-hold-to-talk"/,
   "Learning V2 must reuse the proven on-screen Oral hold control",
 );
 assert.doesNotMatch(
@@ -58,8 +60,8 @@ assert.doesNotMatch(
 );
 assert.match(
   player,
-  /<SpeakingPanel[\s\S]{0,500}renderInlineSurface=\{!voiceAttemptResult\}/,
-  "the warmed SpeakingPanel must stay mounted behind the scored result for retry",
+  /<SpeakingPanel[\s\S]{0,500}renderInlineSurface=\{\s*practiceAnswerBearingContentRevealed\s*&&\s*!voiceAttemptResult\s*\}/,
+  "the warmed SpeakingPanel must stay mounted for retry without exposing strict independent target feedback before the first scored attempt",
 );
 assert.match(
   player,
@@ -133,7 +135,9 @@ assert.match(
 );
 assert.match(
   player,
-  /onStatusChange=\{\(status\)\s*=>\s*\{[\s\S]{0,500}nextStatus\s*!==\s*"requesting"[\s\S]{0,700}setVoiceHoldActive\(false\)/u,
+  // зачем (15.10): D194 вставил в начало обработчика списание голосовой попытки на первом 'listening' (~810 знаков) — окно до проверки
+  // статуса расширено; сброс удержания на месте.
+  /onStatusChange=\{\(status\)\s*=>\s*\{[\s\S]{0,1500}nextStatus\s*!==\s*"requesting"[\s\S]{0,700}setVoiceHoldActive\(false\)/u,
   "permission and terminal statuses must release the controlled hold latch for the next assistive activation",
 );
 assert.match(

@@ -21,12 +21,12 @@
 
 | # | элемент | текст ru / ключ / uk | шрифт кегль/строка · вес | цвет: Аврора тёмная | Аврора светлая | Ирис светлая | место, размер, радиус, отступы | появляется, мс |
 |---|---|---|---|---|---|---|---|---|
-| 1 | блок .full | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x0 y0 · 412×915 · отступы 76 24 36 | 87 |
-| 2 | текст «Серия · 730 дней» | ru «Серия · 730 дней» · `overline` (streak_moments_strings.ts) · uk-шаблон «Серія · {n} {dn}» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x134 y227 · 144×17 | 87 |
-| 3 | svg-графика | — | — | — | — | — | x81 y262 · 250×250 | 87 |
-| 4 | текст «730» | «730» · число из данных | 40/auto · 800 (на Android сейчас 700 — известное расхождение, шрифт) | цвет text / mediaInk | цвет text | цвет text | x167 y362 · 78×49 | 87 |
-| 5 | текст «Два года» | ru «Два года» · **нет в строках кода** | 34/40 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x129 y532 · 153×40 | 4253 |
-| 6 | текст «До Легенды — 270 дней» | ru «До Легенды — 270 дней» · `untilLegend` (streak_moments_strings.ts) · uk-шаблон «До Легенди — {left} {dl}» | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x110 y578 · 192×22 | 4405 |
-| 7 | текст «Дальше» | ru «Дальше» · `next` (streak_moments_strings.ts) · uk «Далі» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x24 y751 · 364×52 · радиус 26 · отступы 0 24 · тень | 4567 |
-| 8 | иконка Ionicons **arrow-forward** | — | 20/20 · 700 | цвет accentInk / ctaInk | цвет accentInk / ctaInk | цвет accentInk / ctaInk | x234 y766 · 20×20 | 4567 |
-| 9 | текст «Поделиться» | ru «Поделиться» · `share` (streak_moments_strings.ts) · uk «Поділитися» | 16/22 · 700 | цвет text / mediaInk · фон buttonFill | цвет text · фон buttonFill | цвет text · фон buttonFill | x24 y827 · 364×52 · радиус 26 · отступы 0 24 · тень | 4567 |
+| 1 | блок .full | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x0 y0 · 412×915 · отступы 76 24 36 | 83 |
+| 2 | текст «Серия · 730 дней» | ru «Серия · 730 дней» · `overline` (streak_moments_strings.ts) · uk-шаблон «Серія · {n} {dn}» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x134 y227 · 144×17 | 83 |
+| 3 | svg-графика | — | — | — | — | — | x81 y262 · 250×250 | 83 |
+| 4 | текст «730» | «730» · число из данных | 40/auto · 800 (на Android сейчас 700 — известное расхождение, шрифт) | цвет text / mediaInk | цвет text | цвет text | x167 y362 · 78×49 | 83 |
+| 5 | текст «Два года» | ru «Два года» · `TITLES[730]` (streak_moments_strings.ts) · uk «Два роки» | 34/40 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x129 y532 · 153×40 | 4254 |
+| 6 | текст «До Легенды — 270 дней» | ru «До Легенды — 270 дней» · `untilLegend` (streak_moments_strings.ts) · uk-шаблон «До Легенди — {left} {dl}» | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x110 y578 · 192×22 | 4400 |
+| 7 | текст «Дальше» | ru «Дальше» · `next` (streak_moments_strings.ts) · uk «Далі» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x24 y751 · 364×52 · радиус 26 · отступы 0 24 · тень | 4566 |
+| 8 | иконка Ionicons **arrow-forward** | — | 20/20 · 700 | цвет accentInk / ctaInk | цвет accentInk / ctaInk | цвет accentInk / ctaInk | x234 y766 · 20×20 | 4566 |
+| 9 | текст «Поделиться» | ru «Поделиться» · `share` (streak_moments_strings.ts) · uk «Поділитися» | 16/22 · 700 | цвет text / mediaInk · фон buttonFill | цвет text · фон buttonFill | цвет text · фон buttonFill | x24 y827 · 364×52 · радиус 26 · отступы 0 24 · тень | 4566 |

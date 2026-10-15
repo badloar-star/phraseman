@@ -20,10 +20,10 @@
 
 | # | элемент | текст ru / ключ / uk | шрифт кегль/строка · вес | цвет: Аврора тёмная | Аврора светлая | Ирис светлая | место, размер, радиус, отступы | появляется, мс |
 |---|---|---|---|---|---|---|---|---|
-| 1 | текст «Держимся.» | ru «Держимся.» · `staySay` (moments_strings.ts) · uk «Тримаємось.» | 16/21 · 700 | цвет text / mediaInk · фон-градиент/картинка | цвет text · фон opaqueCard / opaqueSheet | цвет text · фон opaqueCard / opaqueSheet | x145 y281 · 122×41 · радиус 18 18 18 6 · отступы 10 14 · тень | 401 |
-| 2 | блок .modal | — | — | фон-градиент/картинка | фон opaqueCard / opaqueSheet | фон opaqueCard / opaqueSheet | x24 y312 · 364×292 · радиус 25 · отступы 20 · тень | 85 |
-| 3 | блок .cc | — | — | — | — | — | x166 y332 · 80×96 | 85 |
-| 4 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x166 y332 · 80×80 · радиус 50% | 85 |
-| 5 | текст «Остаёшься в Граните» | ru «Остаёшься в Граните» · `stayTitle` (moments_strings.ts) · uk-шаблон «Залишаєшся в {league}» | 23/29 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.3 | цвет text / mediaInk | цвет text | цвет text | x44 y440 · 324×29 | 85 |
-| 6 | текст «12 место · 1 180 монет за неделю. До топ-5 не хватило 240.» | ru «12 место · 1 180 монет за неделю. До топ-5 не хватило 240.» · `stayBody` (moments_strings.ts) · uk-шаблон «{place} місце · {coins} монет за тиждень. До топ-5 не вистачило {gap}.» · выделено: «240» 600 | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x44 y478 · 324×44 | 85 |
-| 7 | текст «Играть» | ru «Играть» · `play` (moments_strings.ts) · uk «Грати» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x44 y540 · 324×44 · радиус 22 · отступы 8 12 · тень | 85 |
+| 1 | текст «Держимся.» | ru «Держимся.» · `staySay` (moments_strings.ts) · uk «Тримаємось.» | 16/21 · 700 | цвет text / mediaInk · фон-градиент/картинка | цвет text · фон opaqueCard / opaqueSheet | цвет text · фон opaqueCard / opaqueSheet | x145 y281 · 122×41 · радиус 18 18 18 6 · отступы 10 14 · тень | 415 |
+| 2 | блок .modal | — | — | фон-градиент/картинка | фон opaqueCard / opaqueSheet | фон opaqueCard / opaqueSheet | x24 y312 · 364×292 · радиус 25 · отступы 20 · тень | 80 |
+| 3 | блок .cc | — | — | — | — | — | x166 y332 · 80×96 | 80 |
+| 4 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x166 y332 · 80×80 · радиус 50% | 80 |
+| 5 | текст «Остаёшься в Граните» | ru «Остаёшься в Граните» · `stayTitle` (moments_strings.ts) · uk-шаблон «Залишаєшся в {league}» | 23/29 · 800 (на Android сейчас 700 — известное расхождение, шрифт) · трекинг -0.3 | цвет text / mediaInk | цвет text | цвет text | x44 y440 · 324×29 | 80 |
+| 6 | текст «12 место · 1 180 монет за неделю. До топ-5 не хватило 240.» | ru «12 место · 1 180 монет за неделю. До топ-5 не хватило 240.» · `stayBody` (moments_strings.ts) · uk-шаблон «{place} місце · {coins} монет за тиждень. До топ-5 не вистачило {gap}.» · выделено: «240» 600 | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x44 y478 · 324×44 | 80 |
+| 7 | текст «Играть» | ru «Играть» · `play` (moments_strings.ts) · uk «Грати» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x44 y540 · 324×44 · радиус 22 · отступы 8 12 · тень | 80 |

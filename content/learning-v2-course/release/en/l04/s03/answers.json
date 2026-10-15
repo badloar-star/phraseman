@@ -1,13 +1,13 @@
 [
   {
     "interactionId": "en:lesson-04:session-03:i01",
-    "correctText": "bank",
-    "correctResponseId": "en:lesson-04:session-03:i01:r1"
+    "correctText": "This is a book.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i02",
     "correctText": "bank",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-04:session-03:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-03:i03",
@@ -16,72 +16,72 @@
   },
   {
     "interactionId": "en:lesson-04:session-03:i04",
-    "correctText": "There are banks here.",
+    "correctText": "en:lesson-04:session-03:i04:p1=bank\nen:lesson-04:session-03:i04:p2=aware\nen:lesson-04:session-03:i04:p3=convinced\nen:lesson-04:session-03:i04:p4=libraries",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i05",
-    "correctText": "There are banks behind the station.",
-    "correctResponseId": "en:lesson-04:session-03:i05:r1"
+    "correctText": "There is a bank.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i06",
-    "correctText": "There are small banks near the building.",
+    "correctText": "There are libraries here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i07",
-    "correctText": "There are banks behind the house.",
+    "correctText": "I'm aware.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i08",
-    "correctText": "There are banks near the building.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-03:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-03:i09",
-    "correctText": "are",
+    "correctText": "I am concerned.",
     "correctResponseId": "en:lesson-04:session-03:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-03:i10",
-    "correctText": "There are small banks near the station.",
-    "correctResponseId": "en:lesson-04:session-03:i10:r1"
+    "correctText": "en:lesson-04:session-03:i10:p1=concerned\nen:lesson-04:session-03:i10:p2=book\nen:lesson-04:session-03:i10:p3=libraries\nen:lesson-04:session-03:i10:p4=aware",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i11",
-    "correctText": "en:lesson-04:session-03:i11:p1=banks\nen:lesson-04:session-03:i11:p2=near\nen:lesson-04:session-03:i11:p3=behind\nen:lesson-04:session-03:i11:p4=here",
+    "correctText": "There is a book here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i12",
-    "correctText": "There are new banks near the house.",
+    "correctText": "I am convinced.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i13",
-    "correctText": "banks",
-    "correctResponseId": "en:lesson-04:session-03:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-03:i14",
-    "correctText": "There are small banks behind the building.",
+    "correctText": "I'm concerned.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-03:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-03:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-03:i15",
-    "correctText": "There are quiet banks near the house.",
+    "correctText": "I am aware.",
     "correctResponseId": "en:lesson-04:session-03:i15:r1"
   },
   {
     "interactionId": "en:lesson-04:session-03:i16",
-    "correctText": "There are new banks behind the station.",
+    "correctText": "en:lesson-04:session-03:i16:p1=bank\nen:lesson-04:session-03:i16:p2=convinced\nen:lesson-04:session-03:i16:p3=concerned\nen:lesson-04:session-03:i16:p4=book",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i17",
-    "correctText": "There are banks",
-    "correctResponseId": "en:lesson-04:session-03:i17:r1"
+    "correctText": "There is a bank here.",
+    "correctResponseId": null
   }
 ]

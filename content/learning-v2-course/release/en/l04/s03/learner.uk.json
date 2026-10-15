@@ -1,6 +1,5 @@
 {
   "schemaVersion": "learning_v2_course_session_learner_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-03",
   "targetLanguage": "en",
   "interactions": [
@@ -8,105 +7,44 @@
       "interactionId": "en:lesson-04:session-03:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть, що прозвучало",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-03:i01:r1",
-          "text": "bank"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i01:r2",
-          "text": "bag"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i01:r3",
-          "text": "back"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i01:r4",
-          "text": "bench"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назвіть предмет у руках друга: «Це книга»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-03:i01:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть, що прозвучало",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть предмет у руках друга: «Це книга»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-03:i01:audio",
-          "transcript": "bank"
+        "family": "phrase_builder",
+        "targetPhrase": "This is a book.",
+        "localizedMeaning": {
+          "ru": "Назовите предмет в руках друга: «Это книга»",
+          "uk": "Назвіть предмет у руках друга: «Це книга»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "book"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-03:i01:r1",
-            "targetText": "bank",
-            "meaningByLocale": {
-              "ru": "банк",
-              "uk": "банк"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i01:r2",
-            "targetText": "bag",
-            "meaningByLocale": {
-              "ru": "сумка",
-              "uk": "сумка"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i01:r3",
-            "targetText": "back",
-            "meaningByLocale": {
-              "ru": "спина",
-              "uk": "спина"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i01:r4",
-            "targetText": "bench",
-            "meaningByLocale": {
-              "ru": "скамейка",
-              "uk": "лавка"
+            "responseId": "en:lesson-04:session-03:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Назвіть предмет у руках друга: «Це книга»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a book.`",
+              "uk": "тут потрібно `is` — `This is a book.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-03:i01:r2",
-            "correct": false,
-            "testedDimension": "услышанное слово bank",
-            "feedbackByLocale": {
-              "ru": "В записи звучит bank, а не bag: в конце слышно /ŋk/.",
-              "uk": "У записі звучить bank, а не bag: наприкінці чути /ŋk/."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i01:r3",
-            "correct": false,
-            "testedDimension": "услышанное слово bank",
-            "feedbackByLocale": {
-              "ru": "Back — «спина». В bank перед последним /k/ слышно /ŋ/.",
-              "uk": "Back — «спина». У bank перед останнім /k/ чути /ŋ/."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i01:r4",
-            "correct": false,
-            "testedDimension": "услышанное слово bank",
-            "feedbackByLocale": {
-              "ru": "Bench — «скамейка». В записи короткое bank, без звука /tʃ/ в конце.",
-              "uk": "Bench — «лавка». У записі коротке bank, без звука /tʃ/ наприкінці."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -114,32 +52,75 @@
       "interactionId": "en:lesson-04:session-03:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте нове слово «банк»",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-03:i02:r1",
+          "text": "bank"
+        },
+        {
+          "responseId": "en:lesson-04:session-03:i02:r2",
+          "text": "book"
+        },
+        {
+          "responseId": "en:lesson-04:session-03:i02:r3",
+          "text": "garden"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Промовте нове слово «банк»",
+      "accessibilityLabel": "Послухайте й виберіть слово",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-03:i02:audio",
           "transcript": "bank"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "bank",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-03:i02:r1",
+            "targetText": "bank",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i02:r2",
+            "targetText": "book",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i02:r3",
+            "targetText": "garden",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `bank`, а в этом варианте — `book`.",
+              "uk": "У записі перше слово — `bank`, а в цьому варіанті — `book`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `bank`, а в этом варианте — `garden`.",
+              "uk": "У записі перше слово — `bank`, а в цьому варіанті — `garden`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -149,7 +130,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте нове слово «банк»",
+      "prompt": "Назвіть банк одним англійським словом",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-03:i03:r1",
@@ -157,25 +138,21 @@
         },
         {
           "responseId": "en:lesson-04:session-03:i03:r2",
-          "text": "bag"
+          "text": "book"
         },
         {
           "responseId": "en:lesson-04:session-03:i03:r3",
-          "text": "back"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i03:r4",
-          "text": "bench"
+          "text": "cinema"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте нове слово «банк»",
+      "accessibilityLabel": "Назвіть банк одним англійським словом",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте новое слово «банк»",
-          "uk": "Вставте нове слово «банк»"
+          "ru": "Назовите банк одним английским словом",
+          "uk": "Назвіть банк одним англійським словом"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
@@ -185,44 +162,31 @@
           },
           {
             "responseId": "en:lesson-04:session-03:i03:r2",
-            "text": "bag"
+            "text": "book"
           },
           {
             "responseId": "en:lesson-04:session-03:i03:r3",
-            "text": "back"
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i03:r4",
-            "text": "bench"
+            "text": "cinema"
           }
         ],
-        "testedDimension": "точное слово bank",
+        "testedDimension": "Назвіть банк одним англійським словом",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-04:session-03:i03:r2",
             "correct": false,
-            "testedDimension": "звучание и значение bank",
+            "testedDimension": "Назвіть банк одним англійським словом",
             "feedbackByLocale": {
-              "ru": "Bag — «сумка». Для банка нужно bank с /ŋk/ в конце.",
-              "uk": "Bag — «сумка». Для банку потрібне bank із /ŋk/ наприкінці."
+              "ru": "`book` — книга; банк — `bank`.",
+              "uk": "`book` — книга; банк — `bank`."
             }
           },
           {
             "responseId": "en:lesson-04:session-03:i03:r3",
             "correct": false,
-            "testedDimension": "звучание и значение bank",
+            "testedDimension": "Назвіть банк одним англійським словом",
             "feedbackByLocale": {
-              "ru": "Back — «спина, сзади». В слове bank перед /k/ слышно /ŋ/.",
-              "uk": "Back — «спина, позаду». У слові bank перед /k/ чути /ŋ/."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i03:r4",
-            "correct": false,
-            "testedDimension": "звучание и значение bank",
-            "feedbackByLocale": {
-              "ru": "Bench — «скамейка». Для банка нужно короткое bank.",
-              "uk": "Bench — «лавка». Для банку потрібне коротке bank."
+              "ru": "`cinema` — кинотеатр; банк — `bank`.",
+              "uk": "`cinema` — кінотеатр; банк — `bank`."
             }
           }
         ]
@@ -232,496 +196,61 @@
     {
       "interactionId": "en:lesson-04:session-03:i04",
       "ordinal": 7,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть повідомлення: на карті тут є банки",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повідомлення: на карті тут є банки",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There are banks here.",
-        "localizedMeaning": {
-          "ru": "Соберите сообщение: на карте здесь есть банки",
-          "uk": "Складіть повідомлення: на карті тут є банки"
-        },
-        "orderedTokens": [
-          "There",
-          "are",
-          "banks",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "is",
-          "a"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-03:i05",
-      "ordinal": 8,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точний зміст повідомлення",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-03:i05:r1",
-          "text": "There are banks behind the station."
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i05:r2",
-          "text": "There are banks near the station."
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i05:r3",
-          "text": "There are gardens behind the station."
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i05:r4",
-          "text": "There are banks behind the house."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-03:i05:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть точний зміст повідомлення",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-03:i05:audio",
-          "transcript": "There are banks behind the station."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-03:i05:r1",
-            "targetText": "There are banks behind the station.",
-            "meaningByLocale": {
-              "ru": "За станцией есть банки.",
-              "uk": "За станцією є банки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i05:r2",
-            "targetText": "There are banks near the station.",
-            "meaningByLocale": {
-              "ru": "Рядом со станцией есть банки.",
-              "uk": "Поруч зі станцією є банки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i05:r3",
-            "targetText": "There are gardens behind the station.",
-            "meaningByLocale": {
-              "ru": "За станцией есть сады.",
-              "uk": "За станцією є сади."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i05:r4",
-            "targetText": "There are banks behind the house.",
-            "meaningByLocale": {
-              "ru": "За домом есть банки.",
-              "uk": "За будинком є банки."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-03:i05:r2",
-            "correct": false,
-            "testedDimension": "положение банков",
-            "feedbackByLocale": {
-              "ru": "В записи звучит behind the station, а не near the station.",
-              "uk": "У записі звучить behind the station, а не near the station."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i05:r3",
-            "correct": false,
-            "testedDimension": "названные места",
-            "feedbackByLocale": {
-              "ru": "В записи названы banks, а не gardens.",
-              "uk": "У записі названо banks, а не gardens."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i05:r4",
-            "correct": false,
-            "testedDimension": "ориентир",
-            "feedbackByLocale": {
-              "ru": "В записи ориентир — the station, а не the house.",
-              "uk": "У записі орієнтир — the station, а не the house."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-03:i06",
-      "ordinal": 9,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення про маленькі банки",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-03:i06:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення про маленькі банки",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-03:i06:audio",
-          "transcript": "There are small banks near the building."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There are small banks near the building.",
-        "orderedTokens": [
-          "There",
-          "are",
-          "small",
-          "banks",
-          "near",
-          "the",
-          "building"
-        ],
-        "authoredDistractorTokens": [
-          "is",
-          "a"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-03:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть повідомлення про банки за будинком",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повідомлення про банки за будинком",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There are banks behind the house.",
-        "localizedMeaning": {
-          "ru": "Соберите сообщение о банках за домом",
-          "uk": "Складіть повідомлення про банки за будинком"
-        },
-        "orderedTokens": [
-          "There",
-          "are",
-          "banks",
-          "behind",
-          "the",
-          "house"
-        ],
-        "authoredDistractorTokens": [
-          "is",
-          "a"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-03:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "На районній карті є банки поруч із будівлею. Промовте повідомлення",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-03:i08:audio"
-      ],
-      "accessibilityLabel": "На районній карті є банки поруч із будівлею. Промовте повідомлення",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-03:i08:audio",
-          "transcript": "There are banks near the building."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "There are banks near the building.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-03:i09",
-      "ordinal": 12,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Поруч із будинком позначено кілька маленьких банків. Вставте правильну форму",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-03:i09:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i09:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i09:r3",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i09:r4",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Поруч із будинком позначено кілька маленьких банків. Вставте правильну форму",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Рядом с домом отмечено несколько маленьких банков. Вставьте правильную форму",
-          "uk": "Поруч із будинком позначено кілька маленьких банків. Вставте правильну форму"
-        },
-        "gappedTargetPhrase": "There ___ small banks near the house.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-03:i09:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i09:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i09:r3",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i09:r4",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "форма there are для plural noun",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-03:i09:r2",
-            "correct": false,
-            "testedDimension": "число существительного",
-            "feedbackByLocale": {
-              "ru": "Small banks всё равно означает несколько банков, поэтому нужно are.",
-              "uk": "Small banks однаково означає кілька банків, тому потрібне are."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i09:r3",
-            "correct": false,
-            "testedDimension": "артикль с plural noun",
-            "feedbackByLocale": {
-              "ru": "Перед множественным small banks артикль a не ставят; в пропуске нужна форма are.",
-              "uk": "Перед множиною small banks артикль a не ставлять; у пропуску потрібна форма are."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i09:r4",
-            "correct": false,
-            "testedDimension": "форма am",
-            "feedbackByLocale": {
-              "ru": "Am относится к I. Здесь начало для нескольких мест — There are.",
-              "uk": "Am стосується I. Тут початок для кількох місць — There are."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-03:i10",
-      "ordinal": 13,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точний зміст повідомлення",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-03:i10:r1",
-          "text": "There are small banks near the station."
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i10:r2",
-          "text": "There are small banks behind the station."
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i10:r3",
-          "text": "There are new banks near the station."
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i10:r4",
-          "text": "There are small banks near the house."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-03:i10:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть точний зміст повідомлення",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-03:i10:audio",
-          "transcript": "There are small banks near the station."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-03:i10:r1",
-            "targetText": "There are small banks near the station.",
-            "meaningByLocale": {
-              "ru": "Рядом со станцией есть маленькие банки.",
-              "uk": "Поруч зі станцією є маленькі банки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i10:r2",
-            "targetText": "There are small banks behind the station.",
-            "meaningByLocale": {
-              "ru": "За станцией есть маленькие банки.",
-              "uk": "За станцією є маленькі банки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i10:r3",
-            "targetText": "There are new banks near the station.",
-            "meaningByLocale": {
-              "ru": "Рядом со станцией есть новые банки.",
-              "uk": "Поруч зі станцією є нові банки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i10:r4",
-            "targetText": "There are small banks near the house.",
-            "meaningByLocale": {
-              "ru": "Рядом с домом есть маленькие банки.",
-              "uk": "Поруч із будинком є маленькі банки."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-03:i10:r2",
-            "correct": false,
-            "testedDimension": "положение банков",
-            "feedbackByLocale": {
-              "ru": "В записи звучит near the station, а не behind the station.",
-              "uk": "У записі звучить near the station, а не behind the station."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i10:r3",
-            "correct": false,
-            "testedDimension": "признак банков",
-            "feedbackByLocale": {
-              "ru": "В записи банки small, а не new.",
-              "uk": "У записі банки small, а не new."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i10:r4",
-            "correct": false,
-            "testedDimension": "ориентир",
-            "feedbackByLocale": {
-              "ru": "В записи ориентир — the station, а не the house.",
-              "uk": "У записі орієнтир — the station, а не the house."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-03:i11",
-      "ordinal": 14,
-      "purpose": "retrieval_practice",
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте слова районної карти з їхніми значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З'єднайте слова районної карти з їхніми значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-03:i11:p1",
-            "target": "banks",
+            "pairId": "en:lesson-04:session-03:i04:p1",
+            "target": "bank",
             "meaningByLocale": {
-              "ru": "банки",
-              "uk": "банки"
+              "ru": "банк",
+              "uk": "банк"
             }
           },
           {
-            "pairId": "en:lesson-04:session-03:i11:p2",
-            "target": "near",
+            "pairId": "en:lesson-04:session-03:i04:p2",
+            "target": "aware",
             "meaningByLocale": {
-              "ru": "рядом",
-              "uk": "поруч"
+              "ru": "осведомлённый",
+              "uk": "обізнаний"
             }
           },
           {
-            "pairId": "en:lesson-04:session-03:i11:p3",
-            "target": "behind",
+            "pairId": "en:lesson-04:session-03:i04:p3",
+            "target": "convinced",
             "meaningByLocale": {
-              "ru": "за, позади",
-              "uk": "за, позаду"
+              "ru": "убеждённый",
+              "uk": "переконаний"
             }
           },
           {
-            "pairId": "en:lesson-04:session-03:i11:p4",
-            "target": "here",
+            "pairId": "en:lesson-04:session-03:i04:p4",
+            "target": "libraries",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
             }
           }
         ],
         "leftColumn": [
-          "banks",
-          "near",
-          "behind",
-          "here"
+          "bank",
+          "aware",
+          "convinced",
+          "libraries"
         ],
         "rightColumn": [
-          "банки",
-          "поруч",
-          "за, позаду",
-          "тут"
+          "банк",
+          "обізнаний",
+          "переконаний",
+          "бібліотеки"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -738,26 +267,119 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-03:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "На стенді позначено нові банки поруч із будинком. Промовте повідомлення",
+      "interactionId": "en:lesson-04:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-03:i12:audio"
+        "en:lesson-04:session-03:i05:audio"
       ],
-      "accessibilityLabel": "На стенді позначено нові банки поруч із будинком. Промовте повідомлення",
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-03:i05:audio",
+          "transcript": "There is a bank."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a bank.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-03:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a bank.`",
+              "uk": "тут потрібно `is` — `There is a bank.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг не знає району. Повідомте «Тут є бібліотеки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не знає району. Повідомте «Тут є бібліотеки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are libraries here.",
+        "localizedMeaning": {
+          "ru": "Друг не знает район. Сообщите «Здесь есть библиотеки»",
+          "uk": "Друг не знає району. Повідомте «Тут є бібліотеки»"
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "libraries",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-03:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг не знає району. Повідомте «Тут є бібліотеки»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `There are libraries here.`",
+              "uk": "тут потрібно `are` — `There are libraries here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна нагадує про зміну розкладу, але ви вже знаєте. Скажіть «Я в курсі» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Анна нагадує про зміну розкладу, але ви вже знаєте. Скажіть «Я в курсі» зі скороченням",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-03:i12:audio",
-          "transcript": "There are new banks near the house."
+          "audioTargetId": "en:lesson-04:session-03:i07:audio",
+          "transcript": "I'm aware."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are new banks near the house.",
+        "targetPhrase": "I'm aware.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -771,87 +393,345 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-03:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-04:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Поруч зі станцією позначено кілька банків. Вставте назву місць",
+      "prompt": "Повідомте, що тут є один банк",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-03:i13:r1",
-          "text": "banks"
+          "responseId": "en:lesson-04:session-03:i08:r1",
+          "text": "a"
         },
         {
-          "responseId": "en:lesson-04:session-03:i13:r2",
-          "text": "bank"
+          "responseId": "en:lesson-04:session-03:i08:r2",
+          "text": "an"
         },
         {
-          "responseId": "en:lesson-04:session-03:i13:r3",
-          "text": "a bank"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i13:r4",
-          "text": "is"
+          "responseId": "en:lesson-04:session-03:i08:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поруч зі станцією позначено кілька банків. Вставте назву місць",
+      "accessibilityLabel": "Повідомте, що тут є один банк",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Рядом со станцией отмечено несколько банков. Вставьте название мест",
-          "uk": "Поруч зі станцією позначено кілька банків. Вставте назву місць"
+          "ru": "Сообщите, что здесь есть один банк",
+          "uk": "Повідомте, що тут є один банк"
         },
-        "gappedTargetPhrase": "There are ___ near the station.",
+        "gappedTargetPhrase": "There is ___ bank here.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-03:i13:r1",
-            "text": "banks"
+            "responseId": "en:lesson-04:session-03:i08:r1",
+            "text": "a"
           },
           {
-            "responseId": "en:lesson-04:session-03:i13:r2",
-            "text": "bank"
+            "responseId": "en:lesson-04:session-03:i08:r2",
+            "text": "an"
           },
           {
-            "responseId": "en:lesson-04:session-03:i13:r3",
-            "text": "a bank"
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i13:r4",
-            "text": "is"
+            "responseId": "en:lesson-04:session-03:i08:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "plural noun после there are",
+        "testedDimension": "Повідомте, що тут є один банк",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-03:i13:r2",
+            "responseId": "en:lesson-04:session-03:i08:r2",
             "correct": false,
-            "testedDimension": "форма числа",
+            "testedDimension": "Повідомте, що тут є один банк",
             "feedbackByLocale": {
-              "ru": "После There are здесь нужна форма множественного числа banks.",
-              "uk": "Після There are тут потрібна форма множини banks."
+              "ru": "Перед согласным звуком в `bank` нужно `a`.",
+              "uk": "Перед приголосним звуком у `bank` потрібне `a`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-03:i13:r3",
+            "responseId": "en:lesson-04:session-03:i08:r3",
             "correct": false,
-            "testedDimension": "единственное число с артиклем",
+            "testedDimension": "Повідомте, що тут є один банк",
             "feedbackByLocale": {
-              "ru": "A bank означает один банк, а условие говорит о нескольких.",
-              "uk": "A bank означає один банк, а умова говорить про кілька."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i13:r4",
-            "correct": false,
-            "testedDimension": "позиция существительного",
-            "feedbackByLocale": {
-              "ru": "В пропуске нужно название мест. Форма are уже стоит после There.",
-              "uk": "У пропуску потрібна назва місць. Форма are вже стоїть після There."
+              "ru": "`is` уже есть; здесь нужен артикль `a`.",
+              "uk": "`is` уже є; тут потрібен артикль `a`."
             }
           }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, як людина описує свій стан",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-03:i09:r1",
+          "text": "I am concerned."
+        },
+        {
+          "responseId": "en:lesson-04:session-03:i09:r2",
+          "text": "I am convinced."
+        },
+        {
+          "responseId": "en:lesson-04:session-03:i09:r3",
+          "text": "I am aware."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як людина описує свій стан",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-03:i09:audio",
+          "transcript": "I am concerned."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-03:i09:r1",
+            "targetText": "I am concerned.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i09:r2",
+            "targetText": "I am convinced.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i09:r3",
+            "targetText": "I am aware.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, як людина описує свій стан",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `concerned`, а в этом варианте — `convinced`.",
+              "uk": "У записі останнє слово — `concerned`, а в цьому варіанті — `convinced`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, як людина описує свій стан",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `concerned`, а в этом варианте — `aware`.",
+              "uk": "У записі останнє слово — `concerned`, а в цьому варіанті — `aware`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-03:i10:p1",
+            "target": "concerned",
+            "meaningByLocale": {
+              "ru": "обеспокоенный",
+              "uk": "стурбований"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-03:i10:p2",
+            "target": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книга"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-03:i10:p3",
+            "target": "libraries",
+            "meaningByLocale": {
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-03:i10:p4",
+            "target": "aware",
+            "meaningByLocale": {
+              "ru": "осведомлённый",
+              "uk": "обізнаний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "concerned",
+          "book",
+          "libraries",
+          "aware"
+        ],
+        "rightColumn": [
+          "стурбований",
+          "книга",
+          "бібліотеки",
+          "обізнаний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-03:i11:audio",
+          "transcript": "There is a book here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a book here.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "book",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-03:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a book here.`",
+              "uk": "тут потрібно `is` — `There is a book here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Доводи Анни переконали вас, що її план підходить. Скажіть «Я переконаний» повною формою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доводи Анни переконали вас, що її план підходить. Скажіть «Я переконаний» повною формою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am convinced.",
+        "localizedMeaning": {
+          "ru": "Доводы Анны убедили вас, что её план подходит. Скажите «Я убеждён» полной формой",
+          "uk": "Доводи Анни переконали вас, що її план підходить. Скажіть «Я переконаний» повною формою"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "convinced"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-03:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Доводи Анни переконали вас, що її план підходить. Скажіть «Я переконаний» повною формою",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am convinced.`",
+              "uk": "тут потрібно `am` — `I am convinced.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви хвилюєтеся через загублену книгу. Скажіть «Я стурбований» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-03:i13:audio"
+      ],
+      "accessibilityLabel": "Ви хвилюєтеся через загублену книгу. Скажіть «Я стурбований» зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-03:i13:audio",
+          "transcript": "I'm concerned."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm concerned.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -860,109 +740,119 @@
       "interactionId": "en:lesson-04:session-03:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-03:i14:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-03:i14:audio",
-          "transcript": "There are small banks behind the building."
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг показує інший район на карті. Повідомте «Там є бібліотеки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-03:i14:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There are small banks behind the building.",
-        "orderedTokens": [
-          "There",
-          "are",
-          "small",
-          "banks",
-          "behind",
-          "the",
-          "building"
+        {
+          "responseId": "en:lesson-04:session-03:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-03:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг показує інший район на карті. Повідомте «Там є бібліотеки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг показывает другой район на карте. Сообщите «Там есть библиотеки»",
+          "uk": "Друг показує інший район на карті. Повідомте «Там є бібліотеки»"
+        },
+        "gappedTargetPhrase": "There ___ libraries there.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-03:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i14:r3",
+            "text": "am"
+          }
         ],
-        "authoredDistractorTokens": [
-          "is",
-          "a"
-        ],
-        "slotFeedback": []
+        "testedDimension": "Друг показує інший район на карті. Повідомте «Там є бібліотеки»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-03:i14:r2",
+            "correct": false,
+            "testedDimension": "Друг показує інший район на карті. Повідомте «Там є бібліотеки»",
+            "feedbackByLocale": {
+              "ru": "Библиотек несколько: `There are libraries there`. Последнее `there` — «там».",
+              "uk": "Бібліотек кілька: `There are libraries there`. Останнє `there` — «там»."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-03:i14:r3",
+            "correct": false,
+            "testedDimension": "Друг показує інший район на карті. Повідомте «Там є бібліотеки»",
+            "feedbackByLocale": {
+              "ru": "Для нескольких библиотек нужно `There are`.",
+              "uk": "Для кількох бібліотек потрібне `There are`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-03:i15",
       "ordinal": 18,
-      "purpose": "retrieval_practice",
+      "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точний зміст повідомлення",
+      "prompt": "Послухайте відповідь на нагадування",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-03:i15:r1",
-          "text": "There are quiet banks near the house."
+          "text": "I am aware."
         },
         {
           "responseId": "en:lesson-04:session-03:i15:r2",
-          "text": "There are quiet banks behind the house."
+          "text": "I am concerned."
         },
         {
           "responseId": "en:lesson-04:session-03:i15:r3",
-          "text": "There are small banks near the house."
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i15:r4",
-          "text": "There are quiet banks near the building."
+          "text": "I am convinced."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-03:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть точний зміст повідомлення",
+      "accessibilityLabel": "Послухайте відповідь на нагадування",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-03:i15:audio",
-          "transcript": "There are quiet banks near the house."
+          "transcript": "I am aware."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-04:session-03:i15:r1",
-            "targetText": "There are quiet banks near the house.",
-            "meaningByLocale": {
-              "ru": "Рядом с домом есть тихие банки.",
-              "uk": "Поруч із будинком є тихі банки."
-            }
+            "targetText": "I am aware.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-04:session-03:i15:r2",
-            "targetText": "There are quiet banks behind the house.",
-            "meaningByLocale": {
-              "ru": "За домом есть тихие банки.",
-              "uk": "За будинком є тихі банки."
-            }
+            "targetText": "I am concerned.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-04:session-03:i15:r3",
-            "targetText": "There are small banks near the house.",
-            "meaningByLocale": {
-              "ru": "Рядом с домом есть маленькие банки.",
-              "uk": "Поруч із будинком є маленькі банки."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i15:r4",
-            "targetText": "There are quiet banks near the building.",
-            "meaningByLocale": {
-              "ru": "Рядом со зданием есть тихие банки.",
-              "uk": "Поруч із будівлею є тихі банки."
-            }
+            "targetText": "I am convinced.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -970,28 +860,19 @@
           {
             "responseId": "en:lesson-04:session-03:i15:r2",
             "correct": false,
-            "testedDimension": "положение банков",
+            "testedDimension": "Послухайте відповідь на нагадування",
             "feedbackByLocale": {
-              "ru": "В записи звучит near the house, а не behind the house.",
-              "uk": "У записі звучить near the house, а не behind the house."
+              "ru": "В записи последнее слово — `aware`, а в этом варианте — `concerned`.",
+              "uk": "У записі останнє слово — `aware`, а в цьому варіанті — `concerned`."
             }
           },
           {
             "responseId": "en:lesson-04:session-03:i15:r3",
             "correct": false,
-            "testedDimension": "признак банков",
+            "testedDimension": "Послухайте відповідь на нагадування",
             "feedbackByLocale": {
-              "ru": "В записи банки quiet, а не small.",
-              "uk": "У записі банки quiet, а не small."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i15:r4",
-            "correct": false,
-            "testedDimension": "ориентир",
-            "feedbackByLocale": {
-              "ru": "В записи ориентир — the house, а не the building.",
-              "uk": "У записі орієнтир — the house, а не the building."
+              "ru": "В записи последнее слово — `aware`, а в этом варианте — `convinced`.",
+              "uk": "У записі останнє слово — `aware`, а в цьому варіанті — `convinced`."
             }
           }
         ],
@@ -1003,35 +884,73 @@
     {
       "interactionId": "en:lesson-04:session-03:i16",
       "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть повідомлення про нові банки за станцією",
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повідомлення про нові банки за станцією",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There are new banks behind the station.",
-        "localizedMeaning": {
-          "ru": "Соберите сообщение о новых банках за станцией",
-          "uk": "Складіть повідомлення про нові банки за станцією"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-03:i16:p1",
+            "target": "bank",
+            "meaningByLocale": {
+              "ru": "банк",
+              "uk": "банк"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-03:i16:p2",
+            "target": "convinced",
+            "meaningByLocale": {
+              "ru": "убеждённый",
+              "uk": "переконаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-03:i16:p3",
+            "target": "concerned",
+            "meaningByLocale": {
+              "ru": "обеспокоенный",
+              "uk": "стурбований"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-03:i16:p4",
+            "target": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книга"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bank",
+          "convinced",
+          "concerned",
+          "book"
+        ],
+        "rightColumn": [
+          "банк",
+          "переконаний",
+          "стурбований",
+          "книга"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "orderedTokens": [
-          "There",
-          "are",
-          "new",
-          "banks",
-          "behind",
-          "the",
-          "station"
-        ],
-        "authoredDistractorTokens": [
-          "is",
-          "a"
-        ],
-        "slotFeedback": []
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1039,84 +958,39 @@
       "interactionId": "en:lesson-04:session-03:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Фінал — на новій карті поруч із будинком позначено кілька банків. Оберіть повне повідомлення",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-03:i17:r1",
-          "text": "There are banks"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i17:r2",
-          "text": "There is a bank"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i17:r3",
-          "text": "Are there banks"
-        },
-        {
-          "responseId": "en:lesson-04:session-03:i17:r4",
-          "text": "There are a banks"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В іншому місті друг не знає, чи є тут банк. Ви вже побачили його вивіску. Повідомте «Тут є банк»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Фінал — на новій карті поруч із будинком позначено кілька банків. Оберіть повне повідомлення",
+      "audioTargetIds": [
+        "en:lesson-04:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "В іншому місті друг не знає, чи є тут банк. Ви вже побачили його вивіску. Повідомте «Тут є банк»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Финал — на новой карте рядом с домом отмечено несколько банков. Выберите полное сообщение",
-          "uk": "Фінал — на новій карті поруч із будинком позначено кілька банків. Оберіть повне повідомлення"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-03:i17:audio",
+          "transcript": "There is a bank here."
         },
-        "gappedTargetPhrase": "___ near the house.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-03:i17:r1",
-            "text": "There are banks"
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i17:r2",
-            "text": "There is a bank"
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i17:r3",
-            "text": "Are there banks"
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i17:r4",
-            "text": "There are a banks"
-          }
-        ],
-        "testedDimension": "plural_existential_statement",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-03:i17:r2",
-            "correct": false,
-            "testedDimension": "number_agreement",
-            "feedbackByLocale": {
-              "ru": "`There is a bank` говорит об одном банке. На карте их несколько: `There are banks`.",
-              "uk": "`There is a bank` говорить про один банк. На мапі їх кілька: `There are banks`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i17:r3",
-            "correct": false,
-            "testedDimension": "statement_question_order",
-            "feedbackByLocale": {
-              "ru": "Это вопрос. На карте дано сообщение: `There are banks near the house.`",
-              "uk": "Це питання. На мапі дано повідомлення: `There are banks near the house.`"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-03:i17:r4",
-            "correct": false,
-            "testedDimension": "plural_article",
-            "feedbackByLocale": {
-              "ru": "С множественным `banks` артикль `a` не ставят: `There are banks`.",
-              "uk": "З множинним `banks` артикль `a` не ставлять: `There are banks`."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a bank here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -1128,5 +1002,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9549d1921d0fbe0d133cf3c671c93f2c4c943e12af3b8a733c2e96e642361d38"
+  "learnerFingerprint": "e5deabdc8db04672dddb3cf13e9e4eb8d262c76a3d77a07ecd2cdc363fbf3186"
 }

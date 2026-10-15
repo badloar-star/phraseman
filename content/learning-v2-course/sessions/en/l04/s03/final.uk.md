@@ -1,170 +1,138 @@
-# Англійська · Урок 4 · Заняття 3 — «Банки на карті району»
+# Англійська · Урок 4 · Заняття 3 — Банк і бібліотеки району
 
-**Сцена заняття.** Ви із сусідом стоїте біля районного стенда й дивитеся, які місця є поблизу. На карті позначено кілька банків; ви вчитеся повідомляти про це повною фразою й уточнювати їхнє розташування.
-**Як сказати:** повідомити про наявність кількох місць: `There are + plural noun`.
+**Ситуація.** Ви з Анною дивитеся карту району. Тут є банк і кілька бібліотек. Анна нагадує про зміну розкладу, обговорює з вами план прогулянки й помічає, що ви хвилюєтеся через загублену книгу.
+
+**Що ви опануєте:** повідомити про один банк і кілька бібліотек, описати обізнаність, переконаність і занепокоєння
 **Нові слова:** bank
-**Повертаються:** there, are, here, near, behind, house, building, station, small, quiet, new
+
+---
 
 ## Інтро 1
 
-### Коли банків кілька
+### Один банк
 
-`bank` — «банк», а `banks` — «банки». На районному стенді позначено кілька банків, тому повідомлення починається з `There are`: `There are banks.` Після `are` назвіть місця у множині — `banks`. Артикль `a` тут не потрібен, бо йдеться не про один банк.
+`bank` — «банк», тут установа, де обслуговують грошові рахунки. `There is a bank` — «Є банк». Для одного банку потрібні `is` і `a`. `There is a bank here` — «Тут є банк». Банк на карті не видає грошей, але допомагає знайти справжній.
 
-**На стенді позначено кілька банків. Виберіть точне повідомлення.**
+**Повідомте, що в районі є банк.**
 
-- ✅ **There are banks.**
-- ❌ There is banks. — *`Banks` означає кілька банків, тому після `There` потрібне `are`.*
-- ❌ There are a banks. — *Перед множиною `banks` артикль `a` не ставлять.*
+- ✅ **There is a bank.**
+- ❌ There are a bank. — *Один банк: `There is a bank`.*
+- ❌ There is bank. — *Перед одним банком потрібне `a`: `a bank`.*
 
 ---
 
 ## Інтро 2
 
-### Банки поруч зі станцією
+### Бібліотеки й книга
 
-`There are banks near the station.` означає «Поруч зі станцією є банки». `There are banks` повідомляє, що банків кілька, а `near the station` показує місце. Спочатку назвіть наявність і самі місця, потім додайте орієнтир. На карті це одне коротке повідомлення, а не два окремі.
+`libraries` — «бібліотеки»: `There are libraries here` — «Тут є бібліотеки». Для кількох потрібні `are` і множина, без `a`. `book` — «книга»: `This is a book` — «Це книга». Повідомити про наявність: `There is a book here` — «Тут є книга».
 
-**Ви показуєте сусідові банки поруч зі станцією. Виберіть точну фразу.**
+**Повідомте, що тут є кілька бібліотек.**
 
-- ✅ **There are banks near the station.**
-- ❌ There is banks near the station. — *Кілька `banks` потребують `There are`, а не `There is`.*
-- ❌ There are bank near the station. — *Після `There are` тут потрібна форма множини `banks`.*
+- ✅ **There are libraries here.**
+- ❌ There is libraries here. — *Бібліотек кілька: `There are`.*
+- ❌ There are a libraries here. — *Перед кількома `libraries` артикль `a` не потрібен.*
 
 ---
 
 ## Інтро 3
 
-### Банки за будівлею
+### У курсі, переконані чи стурбовані
 
-`There are banks behind the building.` означає «За будівлею є банки». `Behind the building` показує, де вони розташовані. Для кількох банків використовуйте `are` і форму `banks`; `a` перед нею не ставте. Банків на карті кілька — шкода, черга від цього коротшою не стає.
+`aware` — «обізнаний, у курсі»: Анна нагадує, що розклад змінився, а ви вже знаєте. `I am aware` — «Я в курсі». `convinced` — «переконаний»: доводи Анни переконали вас, що її план підходить. `I am convinced` — «Я переконаний». `concerned` — «стурбований»: ви хвилюєтеся через загублену книгу. `I am concerned` — «Я стурбований». `I am` скорочується до `I’m`.
 
-**На карті кілька банків за будівлею. Виберіть точне повідомлення.**
+**Анна нагадує про зміну розкладу. Ви вже про це знаєте. Дайте відповідь «Я в курсі».**
 
-- ✅ **There are banks behind the building.**
-- ❌ There are a banks behind the building. — *З множиною `banks` артикль `a` не потрібен.*
-- ❌ There is bank behind the building. — *Умова говорить про кілька банків: потрібні `There are banks`.*
+- ✅ **I am aware.**
+- ❌ I am concerned. — *Це занепокоєння. «Я в курсі» — `I am aware`.*
+- ❌ I are aware. — *З `I` потрібне `am`.*
 
 ---
 
-## Практика — по одній цілі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-03:i01; family: listen_choose -->
-Ціль: `bank`
-🔊 *bank*
-Значення варіантів: bank — банк · bag — сумка · back — спина · bench — лавка
-→ **bank** · bag · back · bench
-- bag — *У записі звучить `bank`, а не `bag`: наприкінці чути /ŋk/.*
-- back — *`Back` — «спина». У `bank` перед останнім /k/ чути /ŋ/.*
-- bench — *`Bench` — «лавка». У записі коротке `bank`, без звука /tʃ/ наприкінці.*
+**1 · Назвіть предмет у руках друга: «Це книга»**
+<!-- interaction_id: en:lesson-04:session-03:i01; family: phrase_builder -->
+Плитки: `book` `a` `is` `This` `are` → **This is a book.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a book.`)*
 
-**2 · Промовте нове слово «банк»**
-<!-- interaction_id: en:lesson-04:session-03:i02; family: scripted_repeat_compare -->
-Ціль: `bank`
-🎙 **bank**
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-03:i02; family: listen_choose -->
+🔊 *bank* → **bank** · book · garden
+- book — *У записі перше слово — `bank`, а в цьому варіанті — `book`.*
+- garden — *У записі перше слово — `bank`, а в цьому варіанті — `garden`.*
 
-**3 · Вставте нове слово «банк»**
+**3 · Назвіть банк одним англійським словом**
 <!-- interaction_id: en:lesson-04:session-03:i03; family: context_gap_grammar -->
-___ → **bank** · bag · back · bench
-- bag — *`Bag` — «сумка». Для банку потрібне `bank` із /ŋk/ наприкінці.*
-- back — *`Back` — «спина, позаду». У слові `bank` перед /k/ чути /ŋ/.*
-- bench — *`Bench` — «лавка». Для банку потрібне коротке `bank`.*
+___ → **bank** · book · cinema
+- book — *`book` — книга; банк — `bank`.*
+- cinema — *`cinema` — кінотеатр; банк — `bank`.*
 
-**4 · Складіть повідомлення: на карті тут є банки**
-<!-- interaction_id: en:lesson-04:session-03:i04; family: phrase_builder -->
-Ціль: `There are banks here.`
-Плитки: `There` · `are` · `banks` · `here` · `is` · `a`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-03:i04; family: speed_match -->
+bank — банк · aware — обізнаний · convinced — переконаний · libraries — бібліотеки
 
-**5 · Послухайте й виберіть точний зміст повідомлення**
-<!-- interaction_id: en:lesson-04:session-03:i05; family: listen_choose -->
-Ціль: `There are banks behind the station.`
-🔊 *There are banks behind the station.*
-Значення варіантів: There are banks behind the station. — За станцією є банки. · There are banks near the station. — Поруч зі станцією є банки. · There are gardens behind the station. — За станцією є сади. · There are banks behind the house. — За будинком є банки.
-→ **There are banks behind the station.** · There are banks near the station. · There are gardens behind the station. · There are banks behind the house.
-- There are banks near the station. — *У записі звучить `behind the station`, а не `near the station`.*
-- There are gardens behind the station. — *У записі названо `banks`, а не `gardens`.*
-- There are banks behind the house. — *У записі орієнтир — `the station`, а не `the house`.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-03:i05; family: listen_build_dictation -->
+🔊 *There is a bank.* Плитки: `bank` `a` `is` `There` `are` → **There is a bank.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a bank.`)*
 
-**6 · Послухайте й складіть повідомлення про маленькі банки**
-<!-- interaction_id: en:lesson-04:session-03:i06; family: listen_build_dictation -->
-Ціль: `There are small banks near the building.`
-🔊 *There are small banks near the building.*
-Плитки: `There` · `are` · `small` · `banks` · `near` · `the` · `building` · `is` · `a`
+**6 · Друг не знає району. Повідомте «Тут є бібліотеки»**
+<!-- interaction_id: en:lesson-04:session-03:i06; family: phrase_builder -->
+Плитки: `here` `libraries` `are` `There` `is` → **There are libraries here.**
+*(плитка `is` зайва: тут потрібно `are` — `There are libraries here.`)*
 
-**7 · Складіть повідомлення про банки за будинком**
-<!-- interaction_id: en:lesson-04:session-03:i07; family: phrase_builder -->
-Ціль: `There are banks behind the house.`
-Плитки: `There` · `are` · `banks` · `behind` · `the` · `house` · `is` · `a`
+**7 · Анна нагадує про зміну розкладу, але ви вже знаєте. Скажіть «Я в курсі» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-03:i07; family: scripted_repeat_compare -->
+🎙 **I'm aware.**
 
-**8 · На районній карті є банки поруч із будівлею. Промовте повідомлення**
-<!-- interaction_id: en:lesson-04:session-03:i08; family: scripted_repeat_compare -->
-Ціль: `There are banks near the building.`
-🎙 **There are banks near the building.**
+**8 · Повідомте, що тут є один банк**
+<!-- interaction_id: en:lesson-04:session-03:i08; family: context_gap_grammar -->
+There is ___ bank here. → **a** · an · are
+- an — *Перед приголосним звуком у `bank` потрібне `a`.*
+- are — *`is` уже є; тут потрібен артикль `a`.*
 
-**9 · Поруч із будинком позначено кілька маленьких банків. Вставте правильну форму**
-<!-- interaction_id: en:lesson-04:session-03:i09; family: context_gap_grammar -->
-There ___ small banks near the house. → **are** · is · a · am
-- is — *`Small banks` однаково означає кілька банків, тому потрібне `are`.*
-- a — *Перед множиною `small banks` артикль `a` не ставлять; у пропуску потрібна форма `are`.*
-- am — *`Am` стосується `I`. Тут початок для кількох місць — `There are`.*
+**9 · Послухайте, як людина описує свій стан**
+<!-- interaction_id: en:lesson-04:session-03:i09; family: listen_choose -->
+🔊 *I am concerned.* → **I am concerned.** · I am convinced. · I am aware.
+- I am convinced. — *У записі останнє слово — `concerned`, а в цьому варіанті — `convinced`.*
+- I am aware. — *У записі останнє слово — `concerned`, а в цьому варіанті — `aware`.*
 
-**10 · Послухайте й виберіть точний зміст повідомлення**
-<!-- interaction_id: en:lesson-04:session-03:i10; family: listen_choose -->
-Ціль: `There are small banks near the station.`
-🔊 *There are small banks near the station.*
-Значення варіантів: There are small banks near the station. — Поруч зі станцією є маленькі банки. · There are small banks behind the station. — За станцією є маленькі банки. · There are new banks near the station. — Поруч зі станцією є нові банки. · There are small banks near the house. — Поруч із будинком є маленькі банки.
-→ **There are small banks near the station.** · There are small banks behind the station. · There are new banks near the station. · There are small banks near the house.
-- There are small banks behind the station. — *У записі звучить `near the station`, а не `behind the station`.*
-- There are new banks near the station. — *У записі банки `small`, а не `new`.*
-- There are small banks near the house. — *У записі орієнтир — `the station`, а не `the house`.*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-03:i10; family: speed_match -->
+concerned — стурбований · book — книга · libraries — бібліотеки · aware — обізнаний
 
-**11 · З'єднайте слова районної карти з їхніми значеннями**
-<!-- interaction_id: en:lesson-04:session-03:i11; family: speed_match -->
-Пари: `banks` — банки · `near` — поруч · `behind` — за, позаду · `here` — тут
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-03:i11; family: listen_build_dictation -->
+🔊 *There is a book here.* Плитки: `here` `book` `a` `is` `There` `are` → **There is a book here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a book here.`)*
 
-**12 · На стенді позначено нові банки поруч із будинком. Промовте повідомлення**
-<!-- interaction_id: en:lesson-04:session-03:i12; family: scripted_repeat_compare -->
-Ціль: `There are new banks near the house.`
-🎙 **There are new banks near the house.**
+**12 · Доводи Анни переконали вас, що її план підходить. Скажіть «Я переконаний» повною формою**
+<!-- interaction_id: en:lesson-04:session-03:i12; family: phrase_builder -->
+Плитки: `convinced` `am` `I` `is` → **I am convinced.**
+*(плитка `is` зайва: тут потрібно `am` — `I am convinced.`)*
 
-**13 · Поруч зі станцією позначено кілька банків. Вставте назву місць**
-<!-- interaction_id: en:lesson-04:session-03:i13; family: context_gap_grammar -->
-There are ___ near the station. → **banks** · bank · a bank · is
-- bank — *Після `There are` тут потрібна форма множини `banks`.*
-- a bank — *`A bank` означає один банк, а умова говорить про кілька.*
-- is — *У пропуску потрібна назва місць. Форма `are` вже стоїть після `There`.*
+**13 · Ви хвилюєтеся через загублену книгу. Скажіть «Я стурбований» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-03:i13; family: scripted_repeat_compare -->
+🎙 **I'm concerned.**
 
-**14 · Послухайте й складіть повідомлення**
-<!-- interaction_id: en:lesson-04:session-03:i14; family: listen_build_dictation -->
-Ціль: `There are small banks behind the building.`
-🔊 *There are small banks behind the building.*
-Плитки: `There` · `are` · `small` · `banks` · `behind` · `the` · `building` · `is` · `a`
+**14 · Друг показує інший район на карті. Повідомте «Там є бібліотеки»**
+<!-- interaction_id: en:lesson-04:session-03:i14; family: context_gap_grammar -->
+There ___ libraries there. → **are** · is · am
+- is — *Бібліотек кілька: `There are libraries there`. Останнє `there` — «там».*
+- am — *Для кількох бібліотек потрібне `There are`.*
 
-**15 · Послухайте й виберіть точний зміст повідомлення**
+**15 · Послухайте відповідь на нагадування**
 <!-- interaction_id: en:lesson-04:session-03:i15; family: listen_choose -->
-Ціль: `There are quiet banks near the house.`
-🔊 *There are quiet banks near the house.*
-Значення варіантів: There are quiet banks near the house. — Поруч із будинком є тихі банки. · There are quiet banks behind the house. — За будинком є тихі банки. · There are small banks near the house. — Поруч із будинком є маленькі банки. · There are quiet banks near the building. — Поруч із будівлею є тихі банки.
-→ **There are quiet banks near the house.** · There are quiet banks behind the house. · There are small banks near the house. · There are quiet banks near the building.
-- There are quiet banks behind the house. — *У записі звучить `near the house`, а не `behind the house`.*
-- There are small banks near the house. — *У записі банки `quiet`, а не `small`.*
-- There are quiet banks near the building. — *У записі орієнтир — `the house`, а не `the building`.*
+🔊 *I am aware.* → **I am aware.** · I am concerned. · I am convinced.
+- I am concerned. — *У записі останнє слово — `aware`, а в цьому варіанті — `concerned`.*
+- I am convinced. — *У записі останнє слово — `aware`, а в цьому варіанті — `convinced`.*
 
-**16 · Складіть повідомлення про нові банки за станцією**
-<!-- interaction_id: en:lesson-04:session-03:i16; family: phrase_builder -->
-Ціль: `There are new banks behind the station.`
-Плитки: `There` · `are` · `new` · `banks` · `behind` · `the` · `station` · `is` · `a`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-03:i16; family: speed_match -->
+bank — банк · convinced — переконаний · concerned — стурбований · book — книга
 
-**17 · на новій карті поруч із будинком позначено кілька банків. Оберіть повне повідомлення**
-<!-- interaction_id: en:lesson-04:session-03:i17; family: context_gap_grammar -->
-___ near the house. → **There are banks** · There is a bank · Are there banks · There are a banks
-- There is a bank — *`There is a bank` говорить про один банк. На мапі їх кілька: `There are banks`.*
-- Are there banks — *Це питання. На мапі дано повідомлення: `There are banks near the house.`*
-- There are a banks — *З множинним `banks` артикль `a` не ставлять: `There are banks`.*
+**17 · В іншому місті друг не знає, чи є тут банк. Ви вже побачили його вивіску. Повідомте «Тут є банк»**
+<!-- interaction_id: en:lesson-04:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **There is a bank here.**
 
-## Для збирача
-
-atomic_practice: practice.atomic.json
-new_words: bank — банк — Фінансова установа, позначена на районній карті.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=phrase_builder, 5=listen_choose, 6=listen_build_dictation, 7=phrase_builder, 8=scripted_repeat_compare, 9=context_gap_grammar, 10=listen_choose, 11=speed_match, 12=scripted_repeat_compare, 13=context_gap_grammar, 14=listen_build_dictation, 15=listen_choose, 16=phrase_builder, 17=context_gap_grammar

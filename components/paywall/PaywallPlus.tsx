@@ -11,7 +11,7 @@
 //  • все цвета — токены АКТИВНОЙ темы (темы бесплатны), своих цветов нет.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo } from 'react';
-import { ActivityIndicator, Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../constants/i18n';
@@ -22,7 +22,7 @@ import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 import { canPromiseTrialReminder, trialReminderDayNumber } from '../../app/trial_end_reminder_schedule';
 import { DebugLogger } from '../../app/debug-logger';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../../app/config';
-import { actionToastTri, emitAppEvent } from '../../app/events';
+import { openLegalLink } from '../../app/open_legal_link';
 import SkeletonBlock from '../SkeletonShimmer';
 import { LinearGradient } from '../SafeLinearGradient';
 import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
@@ -63,18 +63,8 @@ const PRIVACY_URL = KNOWLY_LEGAL_PRIVACY_URL;
 function markFill(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accent : g.text; } // light-accent-ok: диск с галкой чернилами markInk (accentInk на accent ≥ 4,98:1)
 function markInk(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accentInk : g.bg; }
 
-function openLegal(url: string): void {
-  DebugLogger.info('[PAYWALL-PLUS]', `openLegal: ${url}`);
-  Linking.openURL(url).catch((e: unknown) => {
-    DebugLogger.error('[PAYWALL-PLUS] openLegal', e instanceof Error ? e : new Error(String(e)), 'warning');
-    // ссылка не открылась (нет браузера / сбой системы) — человеку сказать, а не молчать
-    emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Не удалось открыть страницу. Попробуй ещё раз.', uk: 'Не вдалося відкрити сторінку. Спробуй ще раз.', en: "Couldn't open the page. Try again.",
-      es: 'No se pudo abrir la página. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível abrir a página. Tente de novo.', vi: 'Không mở được trang. Hãy thử lại.',
-      id: 'Halaman tidak dapat dibuka. Coba lagi.', tr: 'Sayfa açılamadı. Tekrar dene.', pl: 'Nie udało się otworzyć strony. Spróbuj ponownie.',
-    }));
-  });
-}
+// зачем (R58 #53): одна функция открытия юридических ссылок на всё приложение (тост при сбое) — app/open_legal_link.ts
+function openLegal(url: string): void { openLegalLink(url, 'paywall_plus'); }
 
 // ── шапка ───────────────────────────────────────────────────────────────────
 export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeDisabled, onClose, contextTitle, contextSubtitle, contextIcon, contextPill }: {

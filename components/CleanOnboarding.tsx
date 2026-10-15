@@ -61,6 +61,7 @@ import { warmAuthSignInCallables } from '../app/cloud_sync';
 import { noAndroidOutline, softShadow } from '../constants/androidGlow';
 import { LUM, SUITE } from '../constants/motionHybrid';
 import { ENABLE_DEV_STUDY_TARGET_LANG, ENABLE_DEV_TOOLS, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
+import { openLegalLink } from '../app/open_legal_link';
 // зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
 // рождения не спрашиваем — поэтому импортируем attestation-API, а не запись года.
 import { confirmAdultAgeAttestation, MIN_FULL_ACCESS_AGE } from '../app/age_gate';
@@ -3842,9 +3843,9 @@ function CleanOnboarding({
               <PagerDots total={5} active={0} />
               <Text style={styles.welcomeLegalNote}>
                 {oc.legalWelcomePre}
-                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{oc.legalWelcomeTerms}</Text>
+                <Text style={styles.welcomeLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'onboarding_welcome'); }}>{oc.legalWelcomeTerms}</Text>
                 {oc.legalWelcomeMid}
-                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{oc.legalWelcomePrivacy}</Text>{oc.legalWelcomePost}
+                <Text style={styles.welcomeLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'onboarding_welcome'); }}>{oc.legalWelcomePrivacy}</Text>{oc.legalWelcomePost}
               </Text>
               <PrimaryButton
                 label={oc.start}
@@ -3938,9 +3939,9 @@ function CleanOnboarding({
       <PrivacyVault />
       <Text style={styles.vaultLegalNote}>
         {oc.legalVaultPre}
-        <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{oc.legalVaultTerms}</Text>
+        <Text style={styles.welcomeLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'onboarding_vault'); }}>{oc.legalVaultTerms}</Text>
         {oc.legalVaultMid}
-        <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{oc.legalVaultPrivacy}</Text>{oc.legalVaultPost}
+        <Text style={styles.welcomeLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'onboarding_vault'); }}>{oc.legalVaultPrivacy}</Text>{oc.legalVaultPost}
       </Text>
     </ScreenFrame>
   );
@@ -4264,9 +4265,9 @@ function CleanOnboarding({
             <Text style={styles.subscriptionDisclosure}>{subscriptionDisclosure}</Text>
             <Text style={styles.paywallLegalNote}>
               {oc.renewalNote}{' '}
-              <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{oc.legalStoreTerms}</Text>
+              <Text style={styles.paywallLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'onboarding_store'); }}>{oc.legalStoreTerms}</Text>
               {' '}·{' '}
-              <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{oc.legalStorePrivacy}</Text>
+              <Text style={styles.paywallLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'onboarding_store'); }}>{oc.legalStorePrivacy}</Text>
             </Text>
           </>
         }
@@ -4441,9 +4442,9 @@ function CleanOnboarding({
           />
           <Text style={styles.paywallLegalNote}>
             {oc.legalFinishPre}
-            <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{oc.legalFinishTerms}</Text>
+            <Text style={styles.paywallLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'onboarding_finish'); }}>{oc.legalFinishTerms}</Text>
             {oc.legalFinishMid}
-            <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{oc.legalFinishPrivacy}</Text>{oc.legalFinishPost}
+            <Text style={styles.paywallLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'onboarding_finish'); }}>{oc.legalFinishPrivacy}</Text>{oc.legalFinishPost}
           </Text>
         </>
       )}

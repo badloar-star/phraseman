@@ -1,10 +1,10 @@
 import { useRouter } from 'expo-router';
 import React, { useCallback, useMemo } from 'react';
-import { Linking } from 'react-native';
 import { useLang } from '../components/LangContext';
 import LegalDocumentSheet from '../components/legal/LegalDocumentSheet';
 import { triLang } from '../constants/i18n';
 import { KNOWLY_LEGAL_TERMS_URL } from './config';
+import { openLegalLink } from './open_legal_link';
 import { hapticTap } from '../hooks/use-haptics';
 import TERMS_OF_USE_EN from './legal/terms_of_use_en.json';
 import TERMS_OF_USE_EN_IOS from './legal/terms_of_use_en_ios.json';
@@ -27,7 +27,7 @@ export default function TermsScreen() {
   );
   const openExternal = useCallback(() => {
     hapticTap();
-    void Linking.openURL(KNOWLY_LEGAL_TERMS_URL);
+    openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'terms_screen'); // зачем (R58 #53): при сбое — тост, а не тишина
   }, []);
 
   return (

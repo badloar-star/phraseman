@@ -11,8 +11,9 @@ describe('Plus paywall footer locale contract', () => {
 
   it('keeps locale/legal footer copy in the single Plus paywall', () => {
     expect(plusCopy).toContain('triLang(lang, copy)');
-    expect(plus).toContain('https://phraseman.app/terms');
-    expect(plus).toContain('https://phraseman.app/privacy');
+    // R58 #1 (15.10): домена phraseman.app нет — ссылки из app/config.ts (сторож paywall_legal_links_contract)
+    expect(plus).toContain('const TERMS_URL = KNOWLY_LEGAL_TERMS_URL;');
+    expect(plus).toContain('const PRIVACY_URL = KNOWLY_LEGAL_PRIVACY_URL;');
     expect(plus).toContain('onRestore');
   });
 

@@ -1,10 +1,10 @@
 import { useRouter } from 'expo-router';
 import React, { useCallback, useMemo } from 'react';
-import { Linking } from 'react-native';
 import { useLang } from '../components/LangContext';
 import LegalDocumentSheet from '../components/legal/LegalDocumentSheet';
 import { triLang } from '../constants/i18n';
 import { KNOWLY_LEGAL_PRIVACY_URL } from './config';
+import { openLegalLink } from './open_legal_link';
 import { hapticTap } from '../hooks/use-haptics';
 import PRIVACY_POLICY_EN from './legal/privacy_policy_en.json';
 import PRIVACY_POLICY_EN_IOS from './legal/privacy_policy_en_ios.json';
@@ -27,7 +27,7 @@ export default function PrivacyScreen() {
   );
   const openExternal = useCallback(() => {
     hapticTap();
-    void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL);
+    openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'privacy_screen'); // зачем (R58 #53): при сбое — тост, а не тишина
   }, []);
 
   return (

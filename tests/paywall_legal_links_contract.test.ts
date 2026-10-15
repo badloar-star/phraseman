@@ -32,12 +32,30 @@ describe('legal links on the paywall', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('PaywallPlus uses the shared Knowly legal URLs and tells the user when a link fails', () => {
+  it('PaywallPlus uses the shared Knowly legal URLs through the shared opener', () => {
     const src = fs.readFileSync(path.join(ROOT, 'components/paywall/PaywallPlus.tsx'), 'utf8');
     expect(src).toMatch(/const TERMS_URL = KNOWLY_LEGAL_TERMS_URL;/);
     expect(src).toMatch(/const PRIVACY_URL = KNOWLY_LEGAL_PRIVACY_URL;/);
-    expect(src).toMatch(/Linking\.openURL\(url\)\.catch[\s\S]{0,400}action_toast/);
+    expect(src).toMatch(/openLegalLink\(url, 'paywall_plus'\)/);
     expect(KNOWLY_LEGAL_TERMS_URL).toMatch(/^https:\/\/knowlyapps\.com\/legal\/terms\/$/);
     expect(KNOWLY_LEGAL_PRIVACY_URL).toMatch(/^https:\/\/knowlyapps\.com\/legal\/privacy\/$/);
+  });
+
+  // зачем (аудит R58 #53): в онбординге, окне регистрации и на экранах документов ссылку открывали без .catch — при сбое тишина
+  it('the shared opener catches the failure and shows a toast', () => {
+    const helper = fs.readFileSync(path.join(ROOT, 'app/open_legal_link.ts'), 'utf8');
+    expect(helper).toMatch(/Linking\.openURL\(url\)\.catch[\s\S]{0,400}action_toast/);
+  });
+
+  it('no screen opens the Knowly legal URLs with a raw Linking.openURL', () => {
+    const files: string[] = [];
+    for (const dir of CODE_DIRS) {
+      const abs = path.join(ROOT, dir);
+      if (fs.existsSync(abs)) walk(abs, files);
+    }
+    const raw = files
+      .filter((file) => /Linking\.openURL\(KNOWLY_LEGAL_(TERMS|PRIVACY)_URL\)/.test(fs.readFileSync(file, 'utf8')))
+      .map((file) => path.relative(ROOT, file));
+    expect(raw).toEqual([]);
   });
 });

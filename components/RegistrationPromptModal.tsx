@@ -14,7 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, AppState, Modal, View, Text, TextInput, Pressable, StyleSheet, Platform, Linking, ScrollView, useWindowDimensions } from 'react-native';
+import { AccessibilityInfo, AppState, Modal, View, Text, TextInput, Pressable, StyleSheet, Platform, ScrollView, useWindowDimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
@@ -54,6 +54,7 @@ import {
   KNOWLY_LEGAL_PRIVACY_URL,
   KNOWLY_LEGAL_TERMS_URL,
 } from '../app/config';
+import { openLegalLink } from '../app/open_legal_link';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   getStartupRecoveryHonestCopy,
@@ -2224,11 +2225,11 @@ function RegistrationPromptModal({
               </Pressable>
             )}
             <View style={styles.legalLinks}>
-              <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL)} hitSlop={8}>
+              <Pressable onPress={() => openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'registration_prompt')} hitSlop={8}>
                 <Text style={[styles.legalLink, { color: glass.text, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', en: 'Privacy Policy', es: 'Política de privacidad', 'pt-BR': 'Política de privacidade', vi: 'Chính sách quyền riêng tư', id: 'Kebijakan privasi', tr: 'Gizlilik Politikası', pl: 'Polityka prywatności' })}</Text>
               </Pressable>
               <Text style={{ color: glass.mutedText, fontSize: f.caption, lineHeight: captionLineHeight }}>|</Text>
-              <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_TERMS_URL)} hitSlop={8}>
+              <Pressable onPress={() => openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'registration_prompt')} hitSlop={8}>
                 <Text style={[styles.legalLink, { color: glass.text, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Условия использования', uk: 'Умови використання', en: 'Terms of Use', es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım Koşulları', pl: 'Warunki korzystania' })}</Text>
               </Pressable>
             </View>

@@ -24,6 +24,8 @@
   .wdim { position: absolute; inset: 0; z-index: 20; background: var(--w-dim); }
   /* шторка */
   .wsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; flex-direction: column; max-height: 870px; border-radius: 30px 30px 0 0; background: var(--w-sheet); box-shadow: inset 0 1.5px 0 -.2px var(--w-hi), inset 0 0 0 1px var(--w-edge); padding-bottom: 30px; }
+  /* зачем (владелец 13.10 «все модалы слушаются тему»; сверка 15.10 paywall-gap-001…011): шторка пейвола в тоне темы, как HybridSheetShell — свечение акцента 12% сверху + диагональная подсветка поверх поверхности */
+  .wsh { background: linear-gradient(180deg, color-mix(in srgb, var(--cta) 12%, transparent), transparent 42%), linear-gradient(135deg, rgba(255,255,255,.06), transparent 80%), var(--w-sheet); }
   .whd { width: 40px; height: 5px; border-radius: 3px; background: var(--w-edge); margin: 8px auto 0; }
   .wctx { display: flex; align-items: center; gap: 12px; padding: 14px 14px 0 20px; }
   .wtile { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex: none; color: var(--acc); background: color-mix(in srgb, var(--acc) 18%, transparent); }

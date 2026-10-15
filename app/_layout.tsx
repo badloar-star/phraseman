@@ -273,6 +273,7 @@ import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
 import { FIRESTORE_CACHE_CLEAR_MARKER_KEY, runFirestoreCacheClearFromStartupRead } from './firestore_cache_clear';
 import { registerRootNavProbe } from './nav_freeze_probe'; // зачем: [PAYWALL-CLOSE-FREEZE] — снимок стека после закрытия пейвола
+import { useTabsSingleInstanceGuard } from './tabs_single_instance';
 import { hydrateDailyPhrasePeekFromStorage } from './daily_phrase_system';
 import { primeSurveyOfferCacheFromStorage } from './survey_offer_cache';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
@@ -1255,6 +1256,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const rootNavigationContainerRef = useNavigationContainerRef() as unknown as { getCurrentRoute?: () => { name?: string; params?: unknown } | undefined };
   // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): снимок корневого стека для журнала после закрытия пейвола (только dev, только чтение).
   if (__DEV__) registerRootNavProbe(rootNavigationContainerRef);
+  // зачем (координатор 15.10, [TABS-SINGLE], диагноз r7k): replace('/(tabs)/…') с экрана поверх вкладок оставлял второй экземпляр вкладок —
+  // скрытый догонял каждую смену маршрута (0,3–0,7 с на тап). Сторож снимает лишнее ниже последнего (tabs) после окончания перехода.
+  useTabsSingleInstanceGuard(rootNavigationContainerRef);
   const insets = useStableSafeAreaInsets();
   const globalBottomOverlay = useGlobalBottomOverlayOffset();
   const lastPathRef = useRef<string | null>(null);

@@ -1,118 +1,138 @@
-# Англійська · Урок 4 · Заняття 6 — «Вказівник поверхів»
+# Англійська · Урок 4 · Заняття 6 — Клініка на вказівнику
 
-**Сцена заняття.** Усередині великої будівлі висить вказівник поверхів. На ньому позначено клініку; вам треба повідомити, що вона є в будівлі, і знайти її серед знайомих місць.
-**Як сказати:** опанувати конструкцію `There is a + singular noun` для одного місця всередині будівлі.
+**Ситуація.** Ви з другом вивчаєте вказівник у новому районі й помічаєте клініку. Пізніше на виставці ви розглядаєте штучне яблуко. Друг шукає свою ручку, а ви впізнаєте його смугасту сумку.
+
+**Що ви опануєте:** повідомити про наявність клініки й описати знайомі предмети
 **Нові слова:** clinic
-**Повертаються:** building, pharmacy, bakery, supermarket, library
+
+---
 
 ## Інтро 1
 
-### Клініка на вказівнику
+### Є клініка
 
-`clinic` — «клініка»: місце, куди приходять до лікаря. На вказівнику це одне місце. Запам’ятайте слово цілком: `clinic`. Воно відрізняється за значенням від `library` — бібліотеки та `bakery` — пекарні. Якщо у списку приміщень потрібна клініка, шукайте саме слово `clinic`.
+`clinic` — «клініка», місце, куди приходять на прийом до лікаря. `There is a clinic` — «Є клініка». Для одного місця потрібні `is` і `a`. `There is a clinic here` — «Тут є клініка». Одне слово на вказівнику не розповість усе про клініку, але допоможе її знайти.
 
-**На вказівнику позначено клініку. Оберіть слово.**
+**Повідомте, що тут є клініка.**
 
-- ✅ **clinic**
-- ❌ library — *`Library` — бібліотека. На вказівнику позначено `clinic`.*
-- ❌ bakery — *`Bakery` — пекарня. Тут потрібне слово `clinic`.*
+- ✅ **There is a clinic here.**
+- ❌ There are a clinic here. — *Клініка одна: `There is a clinic here`.*
+- ❌ There is clinic here. — *Перед однією клінікою потрібне `a`: `a clinic`.*
+
+---
 
 ## Інтро 2
 
-### Одне місце
+### Справжнє чи штучне
 
-`There is a clinic.` — «Є клініка». Для одного місця використовуйте `There is`, а перед `clinic` ставте `a`. Форма `are` потрібна, коли місць кілька. Тут на вказівнику одна клініка: він не обіцяє філію на кожному поверсі, тому точна фраза — `There is a clinic.`
+Згадаймо `fake` — «несправжній, штучний». Яблуко на виставці зроблене з пластику, хоча виглядає як справжнє. Про нього: `It is fake` — «Воно несправжнє». Скорочено `It’s fake`. Це опис яблука; слово не означає, що воно сховане або його погано видно.
 
-**На вказівнику одна клініка. Оберіть повідомлення.**
+**Яблуко на виставці зроблене з пластику. Скажіть «Воно несправжнє».**
 
-- ✅ **There is a clinic.**
-- ❌ There are a clinic. — *Клініка одна, тому потрібне `There is a clinic`.*
-- ❌ There is clinic. — *Перед одним злічуваним місцем потрібен `a`: `a clinic`.*
+- ✅ **It is fake.**
+- ❌ It is real. — *`real` — справжнє. Тут яблуко штучне: `fake`.*
+- ❌ It are fake. — *Про одне яблуко: `It is fake`.*
+
+---
 
 ## Інтро 3
 
-### Усередині будівлі
+### Ручка й смуги
 
-`There is a clinic in the building.` — «У будівлі є клініка». Тут `There is a` говорить про одне місце, а `in the building` — де його шукати. Спершу складіть основу `There is a clinic`, а потім додайте місце. Порядок допомагає: спершу повідомляємо, що є, а потім — у якій будівлі це шукати.
+`pen` — «ручка»: `This is a pen` — «Це ручка». Повідомити про наявність: `There is a pen here` — «Тут є ручка». `striped` — «смугастий»: `That bag is striped` — «Та сумка смугаста», показуємо на сумку далі. Смугаста сумка не перетворює ручку всередині на смугасту: описуємо саме сумку.
 
-**У будівлі є одна клініка. Оберіть повідомлення.**
+**Сумка далі від вас укрита смугами. Скажіть «Та сумка смугаста».**
 
-- ✅ **There is a clinic in the building.**
-- ❌ There are a clinic in the building. — *Клініка одна, тому потрібні `There is` і `a clinic`.*
-- ❌ There is clinic in the building. — *З одним місцем потрібен `a`: `a clinic`.*
+- ✅ **That bag is striped.**
+- ❌ That bag are striped. — *Одна сумка: `That bag is`.*
+- ❌ Those bag is striped. — *`Those` для кількох, а сумка одна: `That bag`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте й оберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-06:i01; family: listen_choose -->
-Ціль: `clinic`
-🔊 *clinic*
-Значення варіантів: clinic — клініка · cleaning — прибирання · climate — клімат
-→ **clinic** · cleaning · climate
-- cleaning — *У записі `clinic`: після початку `cli-` чути коротке `-nic`, а не довге `clean-`.*
-- climate — *У записі `clinic`: після `cli-` чути `-nic`, а не `-mate`.*
+## Практика (17 завдань)
 
-**2 · Промовте нове слово**
-<!-- interaction_id: en:lesson-04:session-06:i02; family: scripted_repeat_compare -->
-Ціль: `clinic`
-🎙 **clinic**
+**1 · Назвіть річ у своїй руці: «Це ручка»**
+<!-- interaction_id: en:lesson-04:session-06:i01; family: phrase_builder -->
+Плитки: `pen` `a` `is` `This` `are` → **This is a pen.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a pen.`)*
 
-**3 · На вказівнику всередині будівлі позначено місце. Оберіть назву**
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-06:i02; family: listen_choose -->
+🔊 *clinic* → **clinic** · museum · bank
+- museum — *У записі перше слово — `clinic`, а в цьому варіанті — `museum`.*
+- bank — *У записі перше слово — `clinic`, а в цьому варіанті — `bank`.*
+
+**3 · Назвіть клініку одним англійським словом**
 <!-- interaction_id: en:lesson-04:session-06:i03; family: context_gap_grammar -->
-___ → **clinic** · library · bakery
-- library — *`Library` — бібліотека. На вказівнику позначено `clinic`.*
-- bakery — *`Bakery` — пекарня. На вказівнику позначено `clinic`.*
+___ → **clinic** · museum · bakery
+- museum — *`museum` — музей; клініка — `clinic`.*
+- bakery — *`bakery` — пекарня; клініка — `clinic`.*
 
-**4 · Послухайте й складіть повідомлення для вказівника**
-<!-- interaction_id: en:lesson-04:session-06:i04; family: listen_build_dictation -->
-Ціль: `There is a clinic inside the building.`
-🔊 *There is a clinic inside the building.*
-Плитки: `There` · `is` · `a` · `clinic` · `inside` · `the` · `building` · `are`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-06:i04; family: speed_match -->
+clinic — клініка · fake — несправжній · pen — ручка · striped — смугастий
 
-**5 · Складіть повідомлення про клініку всередині будівлі**
-<!-- interaction_id: en:lesson-04:session-06:i05; family: phrase_builder -->
-Ціль: `There is a clinic in the building near the library.`
-Плитки: `There` · `is` · `a` · `clinic` · `in` · `the` · `building` · `near` · `the` · `library` · `are`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-06:i05; family: listen_build_dictation -->
+🔊 *There is a clinic.* Плитки: `clinic` `a` `is` `There` `are` → **There is a clinic.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a clinic.`)*
 
-**6 · Вставте форму для однієї клініки**
-<!-- interaction_id: en:lesson-04:session-06:i06; family: context_gap_grammar -->
-There ___ a clinic in the building near the bakery. → **is** · are · am
-- are — *`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину.*
-- am — *`Am` уживають лише з `I`; тут потрібна форма `is`.*
+**6 · Друг шукає ручку. Ви побачили її на стійці. Повідомте «Тут є ручка»**
+<!-- interaction_id: en:lesson-04:session-06:i06; family: phrase_builder -->
+Плитки: `here` `pen` `a` `is` `There` `are` → **There is a pen here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a pen here.`)*
 
-**7 · Промовте повідомлення про клініку всередині будівлі**
+**7 · Яблуко на виставці зроблене з пластику. Скажіть «Воно несправжнє» зі скороченням**
 <!-- interaction_id: en:lesson-04:session-06:i07; family: scripted_repeat_compare -->
-Ціль: `There is a clinic in the building near the pharmacy.`
-🎙 **There is a clinic in the building near the pharmacy.**
+🎙 **It's fake.**
 
-**8 · З’єднайте слова з їхніми значеннями**
-<!-- interaction_id: en:lesson-04:session-06:i08; family: speed_match -->
-Пари: `clinic` — клініка · `building` — будівля · `library` — бібліотека · `bakery` — пекарня
+**8 · Повідомте про наявність однієї клініки**
+<!-- interaction_id: en:lesson-04:session-06:i08; family: context_gap_grammar -->
+There is ___ clinic here. → **a** · an · are
+- an — *Перший звук у `clinic` приголосний: `a clinic`.*
+- are — *`is` уже є; тут потрібен артикль `a`.*
 
-**9 · Вставте артикль перед однією клінікою**
-<!-- interaction_id: en:lesson-04:session-06:i09; family: context_gap_grammar -->
-There is ___ clinic in the big building. → **a** · an · the
-- an — *Перед `clinic` потрібен `a`, бо слово починається зі звуку /k/.*
-- the — *Тут уперше називаємо одну клініку, тому потрібен `a`.*
+**9 · Послухайте опис візерунка сумки**
+<!-- interaction_id: en:lesson-04:session-06:i09; family: listen_choose -->
+🔊 *It is striped.* → **It is striped.** · It is fake. · It is real.
+- It is fake. — *У записі останнє слово — `striped`, а в цьому варіанті — `fake`.*
+- It is real. — *У записі останнє слово — `striped`, а в цьому варіанті — `real`.*
 
-**10 · Складіть повідомлення про клініку всередині будівлі**
-<!-- interaction_id: en:lesson-04:session-06:i10; family: phrase_builder -->
-Ціль: `There is a clinic in the building near the supermarket.`
-Плитки: `There` · `is` · `a` · `clinic` · `in` · `the` · `building` · `near` · `the` · `supermarket` · `are`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-06:i10; family: speed_match -->
+clinic — клініка · pen — ручка · here — тут · there — там
 
-**11 · Послухайте й складіть повідомлення про клініку всередині будівлі**
+**11 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-04:session-06:i11; family: listen_build_dictation -->
-Ціль: `There is a clinic inside the big building near the supermarket.`
-🔊 *There is a clinic inside the big building near the supermarket.*
-Плитки: `There` · `is` · `a` · `clinic` · `inside` · `the` · `big` · `building` · `near` · `the` · `supermarket` · `are`
+🔊 *That bag is striped.* Плитки: `striped` `is` `bag` `That` `are` → **That bag is striped.**
+*(плитка `are` зайва: тут потрібно `is` — `That bag is striped.`)*
 
-**12 · складіть повідомлення для вказівника**
+**12 · Друг не знає, що за місце поруч. Назвіть його: «Це клініка»**
 <!-- interaction_id: en:lesson-04:session-06:i12; family: phrase_builder -->
-Ціль: `There is a clinic in this building.`
-Плитки: `There` · `is` · `a` · `clinic` · `in` · `this` · `building` · `are`
+Плитки: `clinic` `a` `is` `This` `are` → **This is a clinic.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a clinic.`)*
 
-## Для збирача
+**13 · Друг запитує про візерунок сумки. Скажіть «Вона смугаста» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-06:i13; family: scripted_repeat_compare -->
+🎙 **It's striped.**
 
-atomic_practice: practice.atomic.json
-new_words: clinic — клініка — Місце, куди приходять до лікаря.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=listen_build_dictation, 5=phrase_builder, 6=context_gap_grammar, 7=scripted_repeat_compare, 8=speed_match, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=phrase_builder
+**14 · Ви показуєте інший район на карті. Повідомте «Там є клініка»**
+<!-- interaction_id: en:lesson-04:session-06:i14; family: context_gap_grammar -->
+There ___ a clinic there. → **is** · are · am
+- are — *Клініка одна: `There is a clinic there`. Останнє `there` — «там».*
+- am — *Для наявності одного місця потрібне `There is`.*
+
+**15 · Послухайте, що людина говорить про виставкове яблуко**
+<!-- interaction_id: en:lesson-04:session-06:i15; family: listen_choose -->
+🔊 *It is fake.* → **It is fake.** · It is real. · It is striped.
+- It is real. — *У записі останнє слово — `fake`, а в цьому варіанті — `real`.*
+- It is striped. — *У записі останнє слово — `fake`, а в цьому варіанті — `striped`.*
+
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-06:i16; family: speed_match -->
+clinic — клініка · fake — несправжній · pen — ручка · striped — смугастий
+
+**17 · В іншому місті ви помітили вивіску клініки. Друг ще не знає про неї. Повідомте «Тут є клініка»**
+<!-- interaction_id: en:lesson-04:session-06:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **There is a clinic here.**
+

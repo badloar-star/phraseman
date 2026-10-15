@@ -1,6 +1,5 @@
 {
   "schemaVersion": "learning_v2_course_session_learner_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-06",
   "targetLanguage": "en",
   "interactions": [
@@ -8,103 +7,122 @@
       "interactionId": "en:lesson-04:session-06:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите, что прозвучало",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-06:i01:r1",
-          "text": "clinic"
-        },
-        {
-          "responseId": "en:lesson-04:session-06:i01:r2",
-          "text": "cleaning"
-        },
-        {
-          "responseId": "en:lesson-04:session-06:i01:r3",
-          "text": "climate"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назовите вещь в своей руке: «Это ручка»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-06:i01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите, что прозвучало",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите вещь в своей руке: «Это ручка»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-06:i01:audio",
-          "transcript": "clinic"
+        "family": "phrase_builder",
+        "targetPhrase": "This is a pen.",
+        "localizedMeaning": {
+          "ru": "Назовите вещь в своей руке: «Это ручка»",
+          "uk": "Назвіть річ у своїй руці: «Це ручка»"
         },
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "pen"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-06:i01:r1",
-            "targetText": "clinic",
-            "meaningByLocale": {
-              "ru": "клиника",
-              "uk": "клініка"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i01:r2",
-            "targetText": "cleaning",
-            "meaningByLocale": {
-              "ru": "уборка",
-              "uk": "прибирання"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i01:r3",
-            "targetText": "climate",
-            "meaningByLocale": {
-              "ru": "климат",
-              "uk": "клімат"
+            "responseId": "en:lesson-04:session-06:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Назовите вещь в своей руке: «Это ручка»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a pen.`",
+              "uk": "тут потрібно `is` — `This is a pen.`"
             }
           }
         ],
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-06:i01:r2",
-            "correct": false,
-            "testedDimension": "auditory word discrimination",
-            "feedbackByLocale": {
-              "ru": "В записи `clinic`: после начала `cli-` слышно короткое `-nic`, а не долгое `clean-`.",
-              "uk": "У записі `clinic`: після початку `cli-` чути коротке `-nic`, а не довге `clean-`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i01:r3",
-            "correct": false,
-            "testedDimension": "auditory word discrimination",
-            "feedbackByLocale": {
-              "ru": "В записи `clinic`: после `cli-` слышно `-nic`, а не `-mate`.",
-              "uk": "У записі `clinic`: після `cli-` чути `-nic`, а не `-mate`."
-            }
-          }
-        ]
-      }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-06:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите новое слово",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i02:r1",
+          "text": "clinic"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i02:r2",
+          "text": "museum"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i02:r3",
+          "text": "bank"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-06:i02:audio"
       ],
-      "accessibilityLabel": "Произнесите новое слово",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-06:i02:audio",
           "transcript": "clinic"
         },
-        "targetPhrase": "clinic"
-      }
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-06:i02:r1",
+            "targetText": "clinic",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i02:r2",
+            "targetText": "museum",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i02:r3",
+            "targetText": "bank",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `clinic`, а в этом варианте — `museum`.",
+              "uk": "У записі перше слово — `clinic`, а в цьому варіанті — `museum`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `clinic`, а в этом варианте — `bank`.",
+              "uk": "У записі перше слово — `clinic`, а в цьому варіанті — `bank`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-06:i03",
@@ -112,7 +130,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На указателе внутри здания отмечено место. Выберите название",
+      "prompt": "Назовите клинику одним английским словом",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-06:i03:r1",
@@ -120,7 +138,7 @@
         },
         {
           "responseId": "en:lesson-04:session-06:i03:r2",
-          "text": "library"
+          "text": "museum"
         },
         {
           "responseId": "en:lesson-04:session-06:i03:r3",
@@ -129,9 +147,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На указателе внутри здания отмечено место. Выберите название",
+      "accessibilityLabel": "Назовите клинику одним английским словом",
       "modePayload": {
         "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите клинику одним английским словом",
+          "uk": "Назвіть клініку одним англійським словом"
+        },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
@@ -140,201 +162,53 @@
           },
           {
             "responseId": "en:lesson-04:session-06:i03:r2",
-            "text": "library"
+            "text": "museum"
           },
           {
             "responseId": "en:lesson-04:session-06:i03:r3",
             "text": "bakery"
           }
         ],
+        "testedDimension": "Назовите клинику одним английским словом",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-04:session-06:i03:r2",
             "correct": false,
-            "testedDimension": "required word choice",
+            "testedDimension": "Назовите клинику одним английским словом",
             "feedbackByLocale": {
-              "ru": "`Library` — библиотека. На указателе отмечена `clinic`.",
-              "uk": "`Library` — бібліотека. На вказівнику позначено `clinic`."
+              "ru": "`museum` — музей; клиника — `clinic`.",
+              "uk": "`museum` — музей; клініка — `clinic`."
             }
           },
           {
             "responseId": "en:lesson-04:session-06:i03:r3",
             "correct": false,
-            "testedDimension": "required word choice",
+            "testedDimension": "Назовите клинику одним английским словом",
             "feedbackByLocale": {
-              "ru": "`Bakery` — пекарня. На указателе отмечена `clinic`.",
-              "uk": "`Bakery` — пекарня. На вказівнику позначено `clinic`."
+              "ru": "`bakery` — пекарня; клиника — `clinic`.",
+              "uk": "`bakery` — пекарня; клініка — `clinic`."
             }
           }
         ]
-      }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-06:i04",
       "ordinal": 7,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение для указателя",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-06:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите сообщение для указателя",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-06:i04:audio",
-          "transcript": "There is a clinic inside the building."
-        },
-        "hiddenTargetPhrase": "There is a clinic inside the building.",
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "clinic",
-          "inside",
-          "the",
-          "building"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-06:i05",
-      "ordinal": 8,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите сообщение о клинике внутри здания",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите сообщение о клинике внутри здания",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a clinic in the building near the library.",
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "clinic",
-          "in",
-          "the",
-          "building",
-          "near",
-          "the",
-          "library"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-06:i06",
-      "ordinal": 9,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте форму для одной клиники",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-06:i06:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-04:session-06:i06:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-04:session-06:i06:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте форму для одной клиники",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "gappedTargetPhrase": "There ___ a clinic in the building near the bakery.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-06:i06:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i06:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i06:r3",
-            "text": "am"
-          }
-        ],
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-06:i06:r2",
-            "correct": false,
-            "testedDimension": "singular there is agreement",
-            "feedbackByLocale": {
-              "ru": "Клиника одна, поэтому нужно `is`.",
-              "uk": "`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i06:r3",
-            "correct": false,
-            "testedDimension": "singular there is agreement",
-            "feedbackByLocale": {
-              "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
-              "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
-            }
-          }
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-06:i07",
-      "ordinal": 10,
-      "purpose": "retrieval_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите сообщение о клинике внутри здания",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-06:i07:audio"
-      ],
-      "accessibilityLabel": "Произнесите сообщение о клинике внутри здания",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-06:i07:audio",
-          "transcript": "There is a clinic in the building near the pharmacy."
-        },
-        "targetPhrase": "There is a clinic in the building near the pharmacy."
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-06:i08",
-      "ordinal": 11,
-      "purpose": "retrieval_practice",
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова с их значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова с их значениями",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "p1",
+            "pairId": "en:lesson-04:session-06:i04:p1",
             "target": "clinic",
             "meaningByLocale": {
               "ru": "клиника",
@@ -342,198 +216,792 @@
             }
           },
           {
-            "pairId": "p2",
-            "target": "building",
+            "pairId": "en:lesson-04:session-06:i04:p2",
+            "target": "fake",
             "meaningByLocale": {
-              "ru": "здание",
-              "uk": "будівля"
+              "ru": "ненастоящий",
+              "uk": "несправжній"
             }
           },
           {
-            "pairId": "p3",
-            "target": "library",
+            "pairId": "en:lesson-04:session-06:i04:p3",
+            "target": "pen",
             "meaningByLocale": {
-              "ru": "библиотека",
-              "uk": "бібліотека"
+              "ru": "ручка",
+              "uk": "ручка"
             }
           },
           {
-            "pairId": "p4",
-            "target": "bakery",
+            "pairId": "en:lesson-04:session-06:i04:p4",
+            "target": "striped",
             "meaningByLocale": {
-              "ru": "пекарня",
-              "uk": "пекарня"
+              "ru": "полосатый",
+              "uk": "смугастий"
             }
-          }
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-06:i09",
-      "ordinal": 12,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте артикль перед одной клиникой",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-06:i09:r1",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-04:session-06:i09:r2",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-04:session-06:i09:r3",
-          "text": "the"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте артикль перед одной клиникой",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "gappedTargetPhrase": "There is ___ clinic in the big building.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-06:i09:r1",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i09:r2",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i09:r3",
-            "text": "the"
           }
         ],
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-06:i09:r2",
-            "correct": false,
-            "testedDimension": "singular-form selection",
-            "feedbackByLocale": {
-              "ru": "Перед `clinic` нужен `a`, потому что слово начинается со звука /k/.",
-              "uk": "Перед `clinic` потрібен `a`, бо слово починається зі звуку /k/."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-06:i09:r3",
-            "correct": false,
-            "testedDimension": "singular-form selection",
-            "feedbackByLocale": {
-              "ru": "Здесь впервые называем одну клинику, поэтому нужен `a`.",
-              "uk": "Тут уперше називаємо одну клініку, тому потрібен `a`."
-            }
-          }
+        "leftColumn": [
+          "clinic",
+          "fake",
+          "pen",
+          "striped"
+        ],
+        "rightColumn": [
+          "клиника",
+          "ненастоящий",
+          "ручка",
+          "полосатый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
-      }
+      },
+      "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-06:i10",
-      "ordinal": 13,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-04:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите сообщение о клинике внутри здания",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите сообщение о клинике внутри здания",
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a clinic in the building near the supermarket.",
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i05:audio",
+          "transcript": "There is a clinic."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a clinic.",
         "orderedTokens": [
           "There",
           "is",
           "a",
-          "clinic",
-          "in",
-          "the",
-          "building",
-          "near",
-          "the",
-          "supermarket"
+          "clinic"
         ],
         "authoredDistractorTokens": [
           "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a clinic.`",
+              "uk": "тут потрібно `is` — `There is a clinic.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ищет ручку. Вы увидели её на стойке. Сообщите «Здесь есть ручка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ищет ручку. Вы увидели её на стойке. Сообщите «Здесь есть ручка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a pen here.",
+        "localizedMeaning": {
+          "ru": "Друг ищет ручку. Вы увидели её на стойке. Сообщите «Здесь есть ручка»",
+          "uk": "Друг шукає ручку. Ви побачили її на стійці. Повідомте «Тут є ручка»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "pen",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг ищет ручку. Вы увидели её на стойке. Сообщите «Здесь есть ручка»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a pen here.`",
+              "uk": "тут потрібно `is` — `There is a pen here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Яблоко на выставке сделано из пластика. Скажите «Оно ненастоящее» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Яблоко на выставке сделано из пластика. Скажите «Оно ненастоящее» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i07:audio",
+          "transcript": "It's fake."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's fake.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
-      }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сообщите о наличии одной клиники",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i08:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i08:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите о наличии одной клиники",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите о наличии одной клиники",
+          "uk": "Повідомте про наявність однієї клініки"
+        },
+        "gappedTargetPhrase": "There is ___ clinic here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i08:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i08:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Сообщите о наличии одной клиники",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Сообщите о наличии одной клиники",
+            "feedbackByLocale": {
+              "ru": "Первый звук в `clinic` согласный: `a clinic`.",
+              "uk": "Перший звук у `clinic` приголосний: `a clinic`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Сообщите о наличии одной клиники",
+            "feedbackByLocale": {
+              "ru": "`is` уже есть; здесь нужен артикль `a`.",
+              "uk": "`is` уже є; тут потрібен артикль `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание узора сумки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i09:r1",
+          "text": "It is striped."
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i09:r2",
+          "text": "It is fake."
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i09:r3",
+          "text": "It is real."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание узора сумки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i09:audio",
+          "transcript": "It is striped."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-06:i09:r1",
+            "targetText": "It is striped.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i09:r2",
+            "targetText": "It is fake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i09:r3",
+            "targetText": "It is real.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте описание узора сумки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `striped`, а в этом варианте — `fake`.",
+              "uk": "У записі останнє слово — `striped`, а в цьому варіанті — `fake`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание узора сумки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `striped`, а в этом варианте — `real`.",
+              "uk": "У записі останнє слово — `striped`, а в цьому варіанті — `real`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-06:i10:p1",
+            "target": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-06:i10:p2",
+            "target": "pen",
+            "meaningByLocale": {
+              "ru": "ручка",
+              "uk": "ручка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-06:i10:p3",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-06:i10:p4",
+            "target": "there",
+            "meaningByLocale": {
+              "ru": "там",
+              "uk": "там"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clinic",
+          "pen",
+          "here",
+          "there"
+        ],
+        "rightColumn": [
+          "клиника",
+          "ручка",
+          "здесь",
+          "там"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-06:i11",
       "ordinal": 14,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение о клинике внутри здания",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-06:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение о клинике внутри здания",
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-06:i11:audio",
-          "transcript": "There is a clinic inside the big building near the supermarket."
+          "transcript": "That bag is striped."
         },
-        "hiddenTargetPhrase": "There is a clinic inside the big building near the supermarket.",
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That bag is striped.",
         "orderedTokens": [
-          "There",
+          "That",
+          "bag",
           "is",
-          "a",
-          "clinic",
-          "inside",
-          "the",
-          "big",
-          "building",
-          "near",
-          "the",
-          "supermarket"
+          "striped"
         ],
         "authoredDistractorTokens": [
           "are"
-        ]
-      }
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `That bag is striped.`",
+              "uk": "тут потрібно `is` — `That bag is striped.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-06:i12",
       "ordinal": 15,
-      "purpose": "independent_check",
+      "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Финал — соберите сообщение для указателя",
+      "prompt": "Друг не знает, что за место рядом. Назовите его: «Это клиника»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Финал — соберите сообщение для указателя",
+      "accessibilityLabel": "Друг не знает, что за место рядом. Назовите его: «Это клиника»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "There is a clinic in this building.",
+        "targetPhrase": "This is a clinic.",
+        "localizedMeaning": {
+          "ru": "Друг не знает, что за место рядом. Назовите его: «Это клиника»",
+          "uk": "Друг не знає, що за місце поруч. Назвіть його: «Це клініка»"
+        },
         "orderedTokens": [
-          "There",
+          "This",
           "is",
           "a",
-          "clinic",
-          "in",
-          "this",
-          "building"
+          "clinic"
         ],
         "authoredDistractorTokens": [
           "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг не знает, что за место рядом. Назовите его: «Это клиника»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a clinic.`",
+              "uk": "тут потрібно `is` — `This is a clinic.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает об узоре сумки. Скажите «Она полосатая» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает об узоре сумки. Скажите «Она полосатая» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i13:audio",
+          "transcript": "It's striped."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's striped.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
-      }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы показываете другой район на карте. Сообщите «Там есть клиника»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете другой район на карте. Сообщите «Там есть клиника»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете другой район на карте. Сообщите «Там есть клиника»",
+          "uk": "Ви показуєте інший район на карті. Повідомте «Там є клініка»"
+        },
+        "gappedTargetPhrase": "There ___ a clinic there.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вы показываете другой район на карте. Сообщите «Там есть клиника»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы показываете другой район на карте. Сообщите «Там есть клиника»",
+            "feedbackByLocale": {
+              "ru": "Клиника одна: `There is a clinic there`. Последнее `there` — «там».",
+              "uk": "Клініка одна: `There is a clinic there`. Останнє `there` — «там»."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы показываете другой район на карте. Сообщите «Там есть клиника»",
+            "feedbackByLocale": {
+              "ru": "Для наличия одного места нужно `There is`.",
+              "uk": "Для наявності одного місця потрібне `There is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что человек говорит о выставочном яблоке",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i15:r1",
+          "text": "It is fake."
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i15:r2",
+          "text": "It is real."
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i15:r3",
+          "text": "It is striped."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что человек говорит о выставочном яблоке",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i15:audio",
+          "transcript": "It is fake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-06:i15:r1",
+            "targetText": "It is fake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i15:r2",
+            "targetText": "It is real.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i15:r3",
+            "targetText": "It is striped.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что человек говорит о выставочном яблоке",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fake`, а в этом варианте — `real`.",
+              "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `real`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что человек говорит о выставочном яблоке",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fake`, а в этом варианте — `striped`.",
+              "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `striped`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-06:i16:p1",
+            "target": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-06:i16:p2",
+            "target": "fake",
+            "meaningByLocale": {
+              "ru": "ненастоящий",
+              "uk": "несправжній"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-06:i16:p3",
+            "target": "pen",
+            "meaningByLocale": {
+              "ru": "ручка",
+              "uk": "ручка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-06:i16:p4",
+            "target": "striped",
+            "meaningByLocale": {
+              "ru": "полосатый",
+              "uk": "смугастий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clinic",
+          "fake",
+          "pen",
+          "striped"
+        ],
+        "rightColumn": [
+          "клиника",
+          "ненастоящий",
+          "ручка",
+          "полосатый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом городе вы заметили вывеску клиники. Друг ещё не знает о ней. Сообщите «Здесь есть клиника»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "В другом городе вы заметили вывеску клиники. Друг ещё не знает о ней. Сообщите «Здесь есть клиника»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i17:audio",
+          "transcript": "There is a clinic here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a clinic here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 12,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "467033705fafc3e84fdec8be15a4c1bbb58a62d0519bb642844b5230e9b3fa47"
+  "learnerFingerprint": "5d71573f74ccd25f3f1192deb3720bf7d868516db2aae26c472f0a7db89e9b7c"
 }

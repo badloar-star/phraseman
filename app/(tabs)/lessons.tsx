@@ -3412,16 +3412,20 @@ export default function LessonsTab({
     // прохождения следующий тап снова был холодным. Греем пару: текущее и
     // следующее. Обе подготовки fire-and-forget — они наполняют кэш промисов
     // learningV2PreparedLaunchesRef и НИКОГДА не стоят на пути нажатия.
+    // зачем (R08 🔴, координатор + Advisor 15.10, замер CPU): две подготовки сразу — 5 сборок материала и SHA-256 на чистом JS одной
+    // цепочкой микрозадач — держали JS-поток 6–10 с: карта не рисовалась, касания ждали. Теперь греем текущее, следующее — после него.
     const targets = [
       { lessonOrdinal: current.lessonOrdinal, sessionOrdinal: current.sessionOrdinal },
       { lessonOrdinal: current.lessonOrdinal, sessionOrdinal: current.sessionOrdinal + 1 },
     ] as const;
-    for (const target of targets) {
+    const warmAt = (index: number): void => {
+      const target = targets[index];
+      if (!target) return;
       if (target.sessionOrdinal > 56) {
         if (__DEV__) {
           console.log('[V2-PREWARM] skip', JSON.stringify({ ...target, reason: 'beyond_last_session' }));
         }
-        continue;
+        return;
       }
       const courseSessionId = learningV2CourseSessionIdV1(
         target.lessonOrdinal,
@@ -3434,7 +3438,7 @@ export default function LessonsTab({
         if (__DEV__) {
           console.log('[V2-PREWARM] skip', JSON.stringify({ courseSessionId, reason: 'not_authored' }));
         }
-        continue;
+        return;
       }
       const startedAt = Date.now();
       if (__DEV__) console.log('[V2-PREWARM] start', JSON.stringify({ courseSessionId }));
@@ -3446,6 +3450,7 @@ export default function LessonsTab({
           if (__DEV__) {
             console.log('[V2-PREWARM] ready', JSON.stringify({ courseSessionId, ms: Date.now() - startedAt }));
           }
+          warmAt(index + 1);
         })
         .catch((error) => {
           // зачем: владелец 21.09 — в журнале была одна безымянная строка
@@ -3465,7 +3470,8 @@ export default function LessonsTab({
             "warning",
           );
         });
-    }
+    };
+    warmAt(0);
   }, [
     currentLearningV2SessionCoordinates,
     learningV2FactoryNativeSessionIds,
@@ -3506,7 +3512,22 @@ export default function LessonsTab({
       learningV2FounderPassVisible ||
       learningV2FounderPassGate.revealCourse
     ) {
-      prewarmCurrentLearningV2SessionOnEntry();
+      // зачем (R08 🔴, 15.10): «запускаем сразу» (21.09) клало тяжёлую подготовку на первый кадр карты — JS-поток стоял 6–10 с, карта не
+      // появлялась, все касания ждали. Прогрев — после анимаций входа и ещё 600 мс; уход с карты отменяет. Тап по занятию по-прежнему
+      // не ждёт прогрев: модалка открывается сразу, подготовка идёт по тапу, если кэша ещё нет.
+      const scheduledAt = Date.now();
+      let timer: ReturnType<typeof setTimeout> | null = null;
+      const task = InteractionManager.runAfterInteractions(() => {
+        timer = setTimeout(() => {
+          timer = null;
+          console.log('[R08-PREP] entry_prewarm:run', JSON.stringify({ sinceScheduledMs: Date.now() - scheduledAt })); // guard-ok: одна строка на вход
+          prewarmCurrentLearningV2SessionOnEntry();
+        }, 600);
+      });
+      return () => {
+        task.cancel?.();
+        if (timer) clearTimeout(timer);
+      };
     }
     return undefined;
   }, [

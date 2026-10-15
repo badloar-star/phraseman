@@ -81,7 +81,18 @@ export function prepareLearningV2SessionRunV1(
 ): Promise<LearningV2PreparedSessionRunV1> {
   const sessionRunId = Crypto.randomUUID();
   if (options.devUnlockedDrafts) return Promise.resolve({ sessionRunId, handle: null });
-  const operation = loadLearningV2SessionClientV3()
+  // зачем (R08 🔴, Advisor 15.10): import() клиента и сборка материала — цепочка микрозадач; без уступки кадра она стартовала раньше
+  // таймеров и rAF и держала JS-поток секундами. Сначала отдаём кадр, затем грузим; время шагов — в [R08-PREP].
+  const preparedAt = Date.now();
+  const sessionTag = `lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal}`;
+  const operation = new Promise<void>((resolve) => { setTimeout(resolve, 0); })
+    .then(() => {
+      const importAt = Date.now();
+      return loadLearningV2SessionClientV3().then((mod) => {
+        console.log(`${LOG} [R08-PREP] import ${sessionTag} ms=${Date.now() - importAt} cached=${Date.now() - importAt < 5 ? 'yes' : 'no'}`);
+        return mod;
+      });
+    })
     .then((mod) =>
       mod.prepareCurrentLearningV2CourseSessionV3({
         locator: {
@@ -96,7 +107,10 @@ export function prepareLearningV2SessionRunV1(
         sessionRunId,
       }),
     )
-    .then((handle) => ({ sessionRunId, handle }));
+    .then((handle) => {
+      console.log(`${LOG} [R08-PREP] prepare ${sessionTag} total_ms=${Date.now() - preparedAt}`);
+      return { sessionRunId, handle };
+    });
   const timed = new Promise<LearningV2PreparedSessionRunV1>((_, reject) => {
     const timer = setTimeout(() => {
       reject(new Error(`learning_v2_session_prepare_timeout: lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal} ${LEARNING_V2_PREPARE_TIMEOUT_MS}ms`));

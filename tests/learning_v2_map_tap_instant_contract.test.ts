@@ -47,16 +47,18 @@ describe("Learning V2 map tap instant contract", () => {
     expect(modalAt).toBeLessThan(prewarmAt);
   });
 
-  test("прогрев занятия НЕ откладывается за кадры", () => {
+  // R08 🔴 (15.10, замер CPU на 5554 + Advisor): прогрев «сразу при входе» (21.09) держал JS-поток 6–10 с — карта не появлялась, касания
+  // ждали. Требование владельца «ничего не стопорится» выполняется теперь так: прогрев после анимаций входа и паузы 600 мс, с отменой при
+  // уходе; греется одно занятие, следующее — после готовности первого. Тап по занятию прогрев не ждёт.
+  test("прогрев при входе — после взаимодействий и паузы, по одному занятию", () => {
     const from = source.indexOf("prewarmCurrentLearningV2SessionOnEntry();");
     expect(from).toBeGreaterThan(-1);
-    // Окно в 400 символов перед вызовом: раньше здесь стояли два вложенных
-    // requestAnimationFrame, и подготовка приходилась ровно на то окно, когда
-    // человек уже видит карту и тапает.
-    const before = source.slice(Math.max(0, from - 400), from);
-    expect(before).not.toContain("requestAnimationFrame");
-    expect(before).not.toContain("setTimeout");
-    expect(before).not.toContain("InteractionManager");
+    const before = source.slice(Math.max(0, from - 700), from);
+    expect(before).toContain("InteractionManager.runAfterInteractions(");
+    expect(before).toContain("timer = setTimeout(() => {");
+    expect(source.slice(from, from + 120)).toContain("}, 600);");
+    expect(source).toContain("[R08-PREP] entry_prewarm:run");
+    expect(source).toMatch(/const warmAt = \(index: number\): void => \{[\s\S]{0,2600}warmAt\(index \+ 1\);[\s\S]{0,900}warmAt\(0\);/);
   });
 
   test("греется не только текущее занятие, но и следующее", () => {

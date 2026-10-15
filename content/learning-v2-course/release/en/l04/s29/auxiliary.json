@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-29:intro1:r2": {
+          "ru": "Это несколько остановок; здесь одна: `This is a bus stop`.",
+          "uk": "Це кілька зупинок; тут одна: `This is a bus stop`."
+        },
+        "en:lesson-04:session-29:intro1:r3": {
+          "ru": "Перед одной остановкой нужно `a`: `a bus stop`.",
+          "uk": "Перед однією зупинкою потрібне `a`: `a bus stop`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-29:intro2:r2": {
+          "ru": "Столов несколько: `The tables are`.",
+          "uk": "Столів кілька: `The tables are`."
+        },
+        "en:lesson-04:session-29:intro2:r3": {
+          "ru": "`on` — на поверхности навеса; столы под ним: `under`.",
+          "uk": "`on` — на поверхні навісу; столи під ним: `under`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-29:intro3:r2": {
+          "ru": "`here` — здесь; в условии человек в отъезде: `away`.",
+          "uk": "`here` — тут; в умові людина у від’їзді: `away`."
+        },
+        "en:lesson-04:session-29:intro3:r3": {
+          "ru": "С `He` нужно `is`: `He’s away`.",
+          "uk": "З `He` потрібне `is`: `He’s away`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f6976a300f5619ee83f837ff0811846734a85845d208e4dde673f6f3b279b44a"
+}

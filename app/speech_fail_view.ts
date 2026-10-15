@@ -64,7 +64,7 @@ const LINE: Readonly<Record<string, readonly [string, string]>> = {
   'pt-BR': ['Não ouvimos a palavra “', '” — fale a frase toda'],
   vi: ['Chưa nghe thấy từ “', '” — hãy nói cả câu'],
   id: ['Kata “', '” tidak terdengar — ucapkan seluruh frasa'],
-  tr: ['“', '” kelimesini duymadık — cümlenin tamamını söyle'],
+  tr: ['“', '” kelimesini duyamadık — ifadenin tamamını söyle'],
   pl: ['Nie usłyszeliśmy słowa „', '” — powiedz całą frazę'],
 };
 

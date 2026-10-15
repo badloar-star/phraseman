@@ -1339,12 +1339,12 @@ export default function FlashcardsSpeakingSession() {
         vi: 'Tiếp', id: 'Lanjut', tr: 'Sonraki', pl: 'Dalej',
       }),
       skip: triLang(lang, {
-        ru: 'Пропустить', uk: 'Пропустити', en: 'Skip', es: 'Saltar', 'pt-BR': 'Pular',
-        vi: 'Bỏ qua', id: 'Lewati', tr: 'Atla', pl: 'Pomiń',
+        ru: 'Пропустить', uk: 'Пропустити', en: 'Skip', es: 'Omitir', 'pt-BR': 'Pular',
+        vi: 'Bỏ qua', id: 'Lewati', tr: 'Geç', pl: 'Pomiń',
       }),
       retry: triLang(lang, {
-        ru: 'Ещё раз', uk: 'Ще раз', en: 'Again', es: 'Otra vez', 'pt-BR': 'De novo',
-        vi: 'Thử lại', id: 'Lagi', tr: 'Tekrar', pl: 'Jeszcze raz',
+        ru: 'Ещё раз', uk: 'Ще раз', en: 'Try again', es: 'Otra vez', 'pt-BR': 'De novo',
+        vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Jeszcze raz',
       }),
       listen: triLang(lang, {
         ru: 'Послушать', uk: 'Послухати', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir',
@@ -1371,8 +1371,8 @@ export default function FlashcardsSpeakingSession() {
         vi: 'Đã nói', id: 'Diucapkan', tr: 'Söylenen', pl: 'Powiedziane',
       }),
       spokenTranscript: triLang(lang, {
-        ru: 'Сказано', uk: 'Сказано', en: 'Spoken', es: 'Dicho', 'pt-BR': 'Falado',
-        vi: 'Đã nói', id: 'Diucapkan', tr: 'Söylenen', pl: 'Powiedziano',
+        ru: 'Сказано', uk: 'Сказано', en: 'You said', es: 'Dijiste', 'pt-BR': 'Você disse',
+        vi: 'Bạn đã nói', id: 'Kamu bilang', tr: 'Söylediğin', pl: 'Powiedziano',
       }),
     }),
     [lang, studyTarget],

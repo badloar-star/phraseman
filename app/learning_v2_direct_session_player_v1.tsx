@@ -3426,8 +3426,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                   lang={lang}
                   glass={g}
                   kicker={triLang(lang, {
-                    ru: "Сказано", uk: "Сказано", en: "Spoken", es: "Dicho", "pt-BR": "Falado",
-                    vi: "Đã nói", id: "Diucapkan", tr: "Söylenen", pl: "Powiedziano",
+                    ru: "Сказано", uk: "Сказано", en: "You said", es: "Dijiste", "pt-BR": "Você disse",
+                    vi: "Bạn đã nói", id: "Kamu bilang", tr: "Söylediğin", pl: "Powiedziano",
                   })}
                   testID="learning-v2-speech-fail"
                 />
@@ -3475,8 +3475,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                     })
                   : voiceFailWords.length > 0
                     ? triLang(lang, {
-                        ru: "Ещё раз", uk: "Ще раз", en: "Again", es: "Otra vez", "pt-BR": "De novo",
-                        vi: "Thử lại", id: "Lagi", tr: "Tekrar", pl: "Jeszcze raz",
+                        ru: "Ещё раз", uk: "Ще раз", en: "Try again", es: "Otra vez", "pt-BR": "De novo",
+                        vi: "Thử lại", id: "Coba lagi", tr: "Tekrar dene", pl: "Jeszcze raz",
                       })
                     : footerVoiceLabel}
                 allowance={

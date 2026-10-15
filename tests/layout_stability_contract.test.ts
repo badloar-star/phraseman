@@ -270,7 +270,8 @@ describe('Главная: первый кадр без нуля монет и б
   test('карточка «Продолжить обучение» с первого кадра держит место заготовкой той же формы', () => {
     expect(card).toContain('pending?: boolean;');
     expect(card).toContain("testID={pending ? 'home-continue-lesson-pending' : 'home-continue-lesson'}");
-    expect(home).toContain('const continueCardPending = !continueResolved && homeLearnVisible && !priorityCardVisible;');
+    // P23 (15.10): заготовка держит место и пока читается прогресс занятия V2 — карточка не появляется «прыжком» с другими числами
+    expect(home).toContain('const continueCardPending = (!continueResolved || continueV2 !== null) && homeLearnVisible && !priorityCardVisible;');
     expect(home).toContain('{priorityCardVisible || continueCardPending ? (');
     // Решение приносит loadData — в том числе из finally при сбое; заготовка уходит плавно.
     expect(home).toMatch(/finally \{[\s\S]{0,1500}setContinueResolved\(true\)/);

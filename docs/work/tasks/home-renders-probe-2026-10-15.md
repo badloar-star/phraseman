@@ -22,3 +22,6 @@ Governance-ID: TG-8A906BB62139
 
 ## Rollback
 Откат коммита.
+
+## Дополнение 13:07: первая дешёвая находка до замера
+`hooks/use-guarded-nav.ts` возвращал новый объект `{ push, replace }` на КАЖДЫЙ рендер — всё, что держит `nav` в зависимостях (useCallback/useMemo/memo в Главной и других экранах), пересоздавалось на каждом рендере. Теперь объект мемоизирован по `push/replace`. Тест `tests/use_guarded_nav_stable.test.tsx`.

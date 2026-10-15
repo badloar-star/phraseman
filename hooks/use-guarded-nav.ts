@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { useRouter } from 'expo-router';
 
 /**
@@ -47,5 +47,6 @@ export function useGuardedNav(guardMs: number = DEFAULT_GUARD_MS) {
     [router, canNavigate],
   );
 
-  return { push, replace };
+  // зачем (координатор 15.10, «перерисовки Главной»): раньше каждый рендер возвращал НОВЫЙ объект { push, replace } — любой useCallback/useMemo/memo с `nav` в зависимостях пересоздавался на каждом рендере экрана.
+  return useMemo(() => ({ push, replace }), [push, replace]);
 }

@@ -104,7 +104,6 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   const { lang } = useLang();
   // Изоляция целей обучения: каталог читает наборы и кэш текущей цели.
   const { studyTarget } = useStudyTarget();
-  const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const insets = useStableSafeAreaInsets();
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
     () => peekWarmMarketplacePacks() ?? fallbackBundledMarketPacks(),
@@ -519,7 +518,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               ) : null}
             </View>
             <FlashcardsCategoryHub
-              lang={hubCategoryLang}
+              lang={lang} // зачем (R07, координатор 15.10): язык интерфейса (было ru/uk/es — 6 языков видели русский каталог)
               t={t}
               themeMode={themeMode}
               marketPacks={marketPacks}

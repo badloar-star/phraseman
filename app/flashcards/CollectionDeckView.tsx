@@ -27,7 +27,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import { triLang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { FC_SPRING, FC_SWIPE } from '../../constants/flashcards_motion';
@@ -53,7 +53,7 @@ type Props = {
   /** Видимые карточки набора (после фильтра/поиска/лимита). */
   cards: CardItem[];
   initialIndex?: number;
-  lang: FlashcardContentLang;
+  lang: Lang; // зачем (R07, координатор 15.10): язык интерфейса; перевод карточек — cardContentLang
   cardContentLang: FlashcardContentLang;
   t: Theme;
   f: Record<string, number>;

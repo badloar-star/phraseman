@@ -1656,7 +1656,7 @@ export default function FlashcardsScreen() {
                 в зависимости от поиска — два разных текста в одном месте читались
                 как смена состояний. «Ничего не найдено» удалено полностью. */}
             <CollectionEmptyState
-              lang={cardContentLang}
+              lang={strLang}
               t={t}
               f={f}
               emptyTitle={s.empty}
@@ -1671,7 +1671,7 @@ export default function FlashcardsScreen() {
           <CollectionDeckView
             cards={listCards}
             initialIndex={indexRef.current}
-            lang={cardContentLang}
+            lang={strLang}
             cardContentLang={cardContentLang}
             t={t}
             f={f}
@@ -1725,7 +1725,7 @@ export default function FlashcardsScreen() {
             hiddenByLimitCount={hiddenByLimitCount}
             activeCat={activeCat}
             packDeeplink={packDeeplink}
-            lang={cardContentLang}
+            lang={strLang}
             cardContentLang={cardContentLang}
             t={t}
             f={f}
@@ -1771,7 +1771,7 @@ export default function FlashcardsScreen() {
       {packUndo && !undoEntry && (
         <UndoDeleteSnackbar
           bottomOffset={Math.max(insets.bottom + 6, 14)}
-          lang={cardContentLang}
+          lang={strLang}
           t={t}
           f={f}
           onUndo={undoPackDelete}
@@ -1780,7 +1780,7 @@ export default function FlashcardsScreen() {
       {undoEntry && (
         <UndoDeleteSnackbar
           bottomOffset={Math.max(insets.bottom + 6, 14)}
-          lang={cardContentLang}
+          lang={strLang}
           t={t}
           f={f}
           onUndo={undoDelete}

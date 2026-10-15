@@ -32,7 +32,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import ReanimatedSwipeable, { SwipeDirection } from 'react-native-gesture-handler/ReanimatedSwipeable';
 
 import { IS_EXPO_GO } from '../config';
-import { triLang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWithCount, pluralWord } from '../../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): число и существительное согласуются через общий помощник
 import type { Theme } from '../../constants/theme';
 import type { SpeakOpts } from '../../hooks/use-audio';
@@ -73,7 +73,7 @@ type Props = {
   hiddenByLimitCount: number;
   activeCat: CategoryId;
   packDeeplink: string | null;
-  lang: FlashcardContentLang;
+  lang: Lang; // зачем (R07, координатор 15.10): язык интерфейса — подписи на 9 языках; перевод карточек — cardContentLang
   cardContentLang: FlashcardContentLang;
   t: Theme;
   f: Record<string, number>;
@@ -913,7 +913,7 @@ export function UndoDeleteSnackbar({
   onUndo,
 }: {
   bottomOffset: number;
-  lang: FlashcardContentLang;
+  lang: Lang;
   t: Theme;
   f: Record<string, number>;
   onUndo: () => void;
@@ -994,7 +994,7 @@ export function CollectionEmptyState({
   onLeave,
   onRetry,
 }: {
-  lang: FlashcardContentLang;
+  lang: Lang;
   t: Theme;
   f: Record<string, number>;
   emptyTitle: string;

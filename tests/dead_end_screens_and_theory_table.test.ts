@@ -35,10 +35,20 @@ describe('общий вид тупиковых экранов', () => {
   const dead = read('components/v2/V2DeadEnd.tsx');
 
   it('основная кнопка на всю ширину блока, 52 dp, заливка и подпись из токенов темы', () => {
-    expect(dead).toContain("cta: { alignSelf: 'stretch', minHeight: 52, borderRadius: 26,");
+    expect(dead).toContain("cta: { alignSelf: 'stretch', borderRadius: 26,");
+    expect(dead).toContain('const CTA_MIN_HEIGHT = 52;');
     expect(dead).toContain('backgroundColor: g.cta');
     expect(dead).toContain('color: g.ctaInk');
     expect(dead).toContain("wrap: { width: '100%', maxWidth: 520,");
+  });
+
+  it('кегли и высота кнопки — из общей шкалы (f/ds), а не константы: масштаб шрифта и uiScale работают', () => {
+    expect(dead).toContain('const { liquidGlassThemeId, f, ds } = useTheme();');
+    expect(dead).toContain('fontSize: f.h1');
+    expect(dead).toContain('fontSize: f.body');
+    expect(dead).toContain('fontSize: f.bodyLg');
+    expect(dead).toContain('minHeight: Math.max(CTA_MIN_HEIGHT, ds.buttonHeight)');
+    expect(dead).not.toMatch(/fontSize: (22|16),/);
   });
 
   it('mistake_detail без записи: кнопка «К ошибкам» ведёт назад к списку; ключ есть на всех 9 языках', () => {

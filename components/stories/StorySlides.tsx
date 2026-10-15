@@ -24,7 +24,7 @@ import { useSpireScene } from '../spire/useSpireScene';
 import { momentLeagueIn, momentText } from '../spire/moments/moments_strings';
 import StreakMomentFlame from '../streak/moments/StreakMomentFlame';
 import { isStreakMilestone } from '../streak/moments/streak_milestones';
-import { streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from '../streak/moments/streak_moments_strings';
+import { streakDayWord, streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from '../streak/moments/streak_moments_strings';
 import { storyText, storyThousands } from './story_strings';
 
 export type StorySlideProps = Readonly<{
@@ -116,16 +116,27 @@ function CoinRankSlide({ event, lang }: StorySlideProps) {
 }
 
 // ─── ачивка ─────────────────────────────────────────────────────────────────
+// зачем (лист приёмки s3, вариант 4): под названием ачивки серии — «Следующая — 30 дней» (следующая ачивка серии по каталогу); у прочих ачивок подписи нет
+function nextStreakAchievementDays(id: string): number | null {
+  const own = /^streak_(\d+)$/.exec(id);
+  if (!own) return null;
+  const cur = Number(own[1]);
+  const later = ALL_ACHIEVEMENTS.map((a) => /^streak_(\d+)$/.exec(a.id)).filter((r): r is RegExpExecArray => r !== null).map((r) => Number(r[1])).filter((d) => d > cur).sort((a, b) => a - b);
+  return later[0] ?? null;
+}
+
 function AchievementSlide({ event, lang }: StorySlideProps) {
   const p = useSpirePalette();
   const id = String(event.payload.achievementId ?? '');
   const def = ALL_ACHIEVEMENTS.find((a) => a.id === id);
   const name = def ? achievementNameForLang(def, lang) : '';
+  const nextDays = nextStreakAchievementDays(id);
   return (
     <>
       <View style={s.achArt}><AchievementArt achievementId={id} size={120} borderRadius={28} accessibilityLabel={name || undefined} /></View>
       <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{storyText(lang, 'achOverline')}</Text>
       {name ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{name}</Text> : null}
+      {nextDays !== null ? <Text style={[s.sub, { color: p.textSecondary }]}>{storyText(lang, 'achNext', { n: nextDays, dn: streakDayWord(lang, nextDays) })}</Text> : null}
     </>
   );
 }
@@ -141,10 +152,10 @@ function StorySlide(props: StorySlideProps) {
 }
 
 const s = StyleSheet.create({
-  // `.ov`: 13/16, капсом с разрядкой не нужен — короткая строка над заголовком
-  overline: { fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
-  // `.h-xl`: 30/36/700
-  title: { marginTop: 8, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5, textAlign: 'center' },
+  // зачем (листы приёмки s2/s3): надпись над заголовком — 13/17 · 700 · трекинг 1,4 · капсом, как в эталоне
+  overline: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 1.4, textTransform: 'uppercase', textAlign: 'center' },
+  // зачем (листы приёмки s2/s3): заголовок слайда — 34/40 · 800 · трекинг −0,6 (на Android 800 рисуется как 700 — известное расхождение шрифта)
+  title: { marginTop: 8, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' },
   sub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   marker: { position: 'absolute', width: 34, height: 34, borderRadius: 17, backgroundColor: '#F2F1F6', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: маркер «Ты здесь» как в SpireTower и моменте повышения
   markerInner: { width: 30, height: 30, borderRadius: 15, backgroundColor: '#0C0C0D', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: маркер «Ты здесь» как в SpireTower

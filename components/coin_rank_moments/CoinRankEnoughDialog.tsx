@@ -23,7 +23,7 @@ import SpireRankCoin from '../spire/SpireRankCoin';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { useSpireShadow } from '../spire/useSpireShadow';
 import { V2Button } from '../v2/V2Kit';
-import { coinRankNumber, coinRankText } from './coin_rank_strings';
+import { coinRankNumber, coinRankText, coinRankCoinsWord } from './coin_rank_strings';
 
 const LOG = '[COIN-RANK-ENOUGH]';
 const JUMP_AT_MS = 400;
@@ -83,7 +83,7 @@ function CoinRankEnoughDialog({ lang, coinRank, coins, onUpgrade, onLater, testI
       <Animated.View style={[s.card, { backgroundColor: p.card }, sh.plate, cardStyle]}>
         <MomentCoin rank={coinRank} size={96} mood={jump ? 'jump' : 'idle'} glints testID={`${testID}-coin`} />
         <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{coinRankText(lang, 'title', { n: nextRank })}</Text>
-        <Text style={[s.body, { color: p.textSecondary }]}>{coinRankText(lang, 'body', { coins: coinRankNumber(coins), n: nextRank, price: priceText })}</Text>
+        <Text style={[s.body, { color: p.textSecondary }]}>{coinRankText(lang, 'body', { coins: coinRankNumber(coins), word: coinRankCoinsWord(lang, coins), n: nextRank, price: priceText })}</Text>
         <View style={s.coins} accessible={false} importantForAccessibility="no-hide-descendants">
           <View style={s.from}><SpireRankCoin rank={coinRank} size={36} /></View>
           <Ionicons name="arrow-forward" size={18} color={p.text} />

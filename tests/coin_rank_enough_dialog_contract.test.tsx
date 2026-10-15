@@ -55,7 +55,7 @@ jest.mock('../components/v2/V2Kit', () => {
 });
 
 import CoinRankEnoughDialog from '../components/coin_rank_moments/CoinRankEnoughDialog';
-import { COIN_RANK_LANGS, COIN_RANK_STRING_KEYS, coinRankNumber, coinRankText } from '../components/coin_rank_moments/coin_rank_strings';
+import { COIN_RANK_LANGS, COIN_RANK_STRING_KEYS, coinRankNumber, coinRankText, coinRankCoinsWord } from '../components/coin_rank_moments/coin_rank_strings';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
@@ -68,7 +68,7 @@ describe('окно «Хватает на ранг N» (m14A)', () => {
     await render(<CoinRankEnoughDialog lang="ru" coinRank={5} coins={7004} onUpgrade={onUpgrade} onLater={onLater} />);
     await act(async () => { await new Promise((r) => setTimeout(r, 10)); });
     expect(screen.getByText('Хватает на ранг 6')).toBeTruthy();
-    expect(screen.getByText(/7\s004 монет — ранг 6 стоит 6\s000\./)).toBeTruthy();
+    expect(screen.getByText(/7\s004 монеты — ранг 6 стоит 6\s000\./)).toBeTruthy();
     expect(screen.getByText(/Повысить за 6\s000/)).toBeTruthy();
     expect(mockPlayEvent).toHaveBeenCalledWith('sheet_open');
     expect(mockPlayEvent).toHaveBeenCalledWith('coin_rank');
@@ -89,6 +89,9 @@ describe('тексты и исходник', () => {
     for (const key of COIN_RANK_STRING_KEYS) for (const lang of COIN_RANK_LANGS) expect([key, lang, coinRankText(lang, key).length > 0]).toEqual([key, lang, true]);
     expect(coinRankText('en', 'title', { n: 6 })).toBe('You can afford rank 6');
     expect(coinRankNumber(6000)).toBe('6 000');
+    // лист приёмки m14: слово «монета» склоняется по числу
+    expect([1, 2, 5, 11, 21, 22].map((n) => coinRankCoinsWord('ru', n))).toEqual(['монета', 'монеты', 'монет', 'монет', 'монета', 'монеты']);
+    expect([1, 2].map((n) => coinRankCoinsWord('en', n))).toEqual(['coin', 'coins']);
   });
 
   it('окно ничего не списывает и не пишет; бесконечная пульсация под охраной', () => {

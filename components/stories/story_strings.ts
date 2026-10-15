@@ -32,6 +32,7 @@ const S = {
   rankTitle: ['Ранг {n}', 'Ранг {n}', 'Rank {n}', 'Rango {n}', 'Rank {n}', 'Hạng {n}', 'Peringkat {n}', 'Rütbe {n}', 'Ranga {n}'],
   rankPaid: ['Куплен за {price} монет', 'Куплений за {price} монет', 'Bought for {price} coins', 'Comprado por {price} monedas', 'Comprado por {price} moedas', 'Mua với {price} xu', 'Dibeli seharga {price} koin', '{price} jetona satın alındı', 'Kupiona za {price} monet'],
   // ── слайд «ачивка» ──
+  achNext: ['Следующая — {n} {dn}', 'Наступна — {n} {dn}', 'Next — {n} {dn}', 'Siguiente — {n} {dn}', 'Próxima — {n} {dn}', 'Tiếp theo — {n} {dn}', 'Berikutnya — {n} {dn}', 'Sonraki — {n} {dn}', 'Następna — {n} {dn}'],
   achOverline: ['Ачивка', 'Ачівка', 'Achievement', 'Logro', 'Conquista', 'Thành tích', 'Pencapaian', 'Başarım', 'Osiągnięcie'],
 } as const satisfies Readonly<Record<string, Nine>>;
 

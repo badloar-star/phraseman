@@ -256,6 +256,14 @@ describe('тексты и исходники', () => {
     expect(read('components/stories/StoryViewer.tsx')).not.toContain("sound_v2/sound_bank");
   });
 
+  it('листы приёмки s2/s3: заголовок слайда 34/40 · 800, надпись 13/17 · 700 · трекинг 1,4 капсом, у ачивки серии подпись «Следующая — N дней»', () => {
+    const src = read('components/stories/StorySlides.tsx');
+    expect(src).toContain("title: { marginTop: 8, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' }");
+    expect(src).toContain("overline: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 1.4, textTransform: 'uppercase', textAlign: 'center' }");
+    expect(src).toContain("storyText(lang, 'achNext'");
+    expect(storyText('ru', 'achNext', { n: 30, dn: 'дней' })).toBe('Следующая — 30 дней');
+  });
+
   it('StoryRing re-экспортирует размеры из лёгкого файла констант (прежний API кольца не менялся)', () => {
     const ring = read('components/stories/StoryRing.tsx');
     expect(ring).toContain("from './story_ring_constants'");

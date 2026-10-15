@@ -92,6 +92,7 @@ import { captureCurrentAccountObjectiveAttempt } from "../../../app/mistake_prac
 import { useStableSafeAreaInsets } from "../../../app/stable_safe_area_metrics";
 import LearningV2SessionIntro from "../../../app/learning_v2_session_intro";
 import LearningV2DirectSessionPlayerV1 from "../../../app/learning_v2_direct_session_player_v1";
+import { useVoiceAttemptGate } from "../../../hooks/use_voice_attempt_gate";
 import { markNextNavigationAsReplace, safeRouterBack } from "../../../app/navigation_back";
 import {
   parseLearningV2ActivityAuxiliaryRouteScopeV1,
@@ -450,15 +451,22 @@ function LearningV2LegacySessionScreen() {
     );
   }, [auxiliaryActions.actionSession, copy]);
 
+  // зачем (координатор 15.10, «3/день без исключений»): старый экран открывается внешней ссылкой без runtimeMode=direct_v1
+  // у не-английского языка — его микрофон шёл мимо общего дневного счётчика. Теперь тот же гейт, что у плеера курса.
+  const legacyVoiceGate = useVoiceAttemptGate({ surface: "course_v2", source: "learning_v2_course_voice" });
   const controlReleasedVoice = useCallback(
     async (command: "start" | "stop", interaction: "tap" | "hold") => {
       const actionSession = auxiliaryActions.actionSession;
       if (!actionSession?.voiceAvailable) return;
+      if (command === "start" && !legacyVoiceGate.canStartAttempt()) {
+        console.warn("[VOICE-LIMIT] legacy_mic blocked", JSON.stringify({ screen: "learning-v2/session", interaction })); // guard-ok: ранний выход — лимит, пейвол открыт хуком
+        return;
+      }
       const outcome = await actionSession.controlVoice(command, interaction);
       if (outcome.kind !== "voice_result") return;
       if (outcome.outcome === "started") {
-        // зачем (координатор 15.10, D196): этот микрофон живёт только в не-direct режимах старого экрана курса (в выпуске всегда direct_v1 → плеер с цифрой); общий дневной счётчик он НЕ списывает и цифры не рисует — фиксируем в журнале, чтобы такое включение было видно
-        console.warn("[VOICE-LIMIT] ungated_legacy_mic", JSON.stringify({ screen: "learning-v2/session", command, interaction })); // guard-ok: единственная строка на старт записи
+        legacyVoiceGate.commitStartedAttempt();
+        console.warn("[VOICE-LIMIT] legacy_mic started_counted", JSON.stringify({ screen: "learning-v2/session", command, interaction })); // guard-ok: трасса списания старого микрофона
         setVoiceRecording(true);
         setActionMessage(copy.voiceSpeaking);
       } else {
@@ -474,7 +482,7 @@ function LearningV2LegacySessionScreen() {
         );
       }
     },
-    [auxiliaryActions.actionSession, copy],
+    [auxiliaryActions.actionSession, copy, legacyVoiceGate],
   );
 
   const invalidateAudioAttempt = useCallback(() => {

@@ -112,3 +112,13 @@ Governance-ID: TG-6CAAC140D121
 - Сторож tests/ai_dialog_voice_attempt_once_contract.test.ts; dialogue_v2_voice_daily_limit переведён на хук.
 - Проверка: голос 22/22, пейвол-реестр + use_voice_attempt_gate 24/24.
 - Откат: git revert коммита; поведение вернётся к своей ветке Диалогов и списанию на каждый 'start'.
+Governance-ID: TG-73D5A0A95166
+Governance-ID: TG-42CB307E020D
+Governance-ID: TG-771014A4ECD6
+
+### R1-c-2 + старый микрофон курса (15.10, 15:13)
+- Старый экран learning-v2/session/[id] достижим внешней ссылкой без runtimeMode=direct_v1 у не-английского языка
+  (вкладка Уроков всегда шлёт direct_v1) → микрофон закрыт useVoiceAttemptGate(course_v2). Сторож learning_v2_legacy_mic_gate_contract.
+- R1-c-2 (Ревизор): окно 8 с отсчитывается от начала текущего ожидания (сброс при смене владельца и при переходе
+  «доступ известен → снова неизвестен»); в запасном режиме попытки в памяти, входят в лимит, на диск — только по настоящему
+  ответу (Plus — отброс). Тесты голоса 30/30, смежные 37/37, типы 0.

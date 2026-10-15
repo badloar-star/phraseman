@@ -126,12 +126,42 @@ describe('голос на сегодня (D165 + D194)', () => {
   it('R1-c: доступ неизвестен — первые 8 с ждём, дальше для лимита голоса Free; Plus и выясненный доступ не трогаются', () => {
     const UNKNOWN = { accessResolved: false, hasPremiumAccess: false } as const;
     const now = Date.now();
+    expect(effectiveVoiceAccess(UNKNOWN, now + 1_000)).toEqual(UNKNOWN);
+    expect(effectiveVoiceAccess(UNKNOWN, now + 60_000)).toEqual({ accessResolved: true, hasPremiumAccess: false });
+    expect(logs.some((l) => l.includes('[ACCESS-RESOLVE] voice_fallback_free'))).toBe(true);
     expect(effectiveVoiceAccess(PLUS, now + 60_000)).toEqual(PLUS);
     expect(effectiveVoiceAccess(FREE, now + 60_000)).toEqual(FREE);
     expect(effectiveVoiceAccess({ accessResolved: false, hasPremiumAccess: true }, now + 60_000)).toEqual({ accessResolved: false, hasPremiumAccess: true });
-    expect(effectiveVoiceAccess(UNKNOWN, now + 60_000)).toEqual({ accessResolved: true, hasPremiumAccess: false });
-    expect(logs.some((l) => l.includes('[ACCESS-RESOLVE] voice_fallback_free'))).toBe(true);
     expect(msUntilVoiceAccessFallback(PLUS)).toBe(0);
+  });
+
+  it('R1-c-2: доступ был известен и снова сброшен (вход в свой Plus) — ждём 8 с заново, а не сразу Free', () => {
+    const UNKNOWN = { accessResolved: false, hasPremiumAccess: false } as const;
+    const now = Date.now();
+    expect(effectiveVoiceAccess(FREE, now + 60_000)).toEqual(FREE);
+    expect(effectiveVoiceAccess(UNKNOWN, now + 61_000)).toEqual(UNKNOWN);
+    expect(logs.some((l) => l.includes('access_wait_restart') && l.includes('access_reset'))).toBe(true);
+    expect(effectiveVoiceAccess(UNKNOWN, now + 68_000)).toEqual(UNKNOWN);
+    expect(effectiveVoiceAccess(UNKNOWN, now + 69_500)).toEqual({ accessResolved: true, hasPremiumAccess: false });
+  });
+
+  it('R1-c-2: запасной Free держит попытки в памяти — лимит работает, диск не тронут; ответ Plus их отбрасывает', async () => {
+    const UNKNOWN = { accessResolved: false, hasPremiumAccess: false } as const;
+    await hydrateDialogVoiceAttempts();
+    const later = Date.now() + 60_000;
+    jest.spyOn(Date, 'now').mockReturnValue(later);
+    expect(recordVoiceDailyAttempt('lessons', 'fb:1', UNKNOWN)).toBe(1);
+    expect(recordVoiceDailyAttempt('mistakes', 'fb:2', UNKNOWN)).toBe(2);
+    expect(voiceDailyAllowanceGate('course_v2', UNKNOWN)).toBe(true);
+    expect(recordVoiceDailyAttempt('ai_dialog', 'fb:3', UNKNOWN)).toBe(3);
+    expect(voiceDailyAllowanceGate('course_v2', UNKNOWN)).toBe(false);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const stored = await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY);
+    expect(stored === null ? 0 : (JSON.parse(stored) as { count: number }).count).toBe(0);
+    settleVoiceAttemptsAfterAccess(PLUS);
+    expect(voiceDailyAllowanceGate('course_v2', PLUS)).toBe(true);
+    expect(voiceDailyAllowanceGate('course_v2', FREE)).toBe(true);
+    expect(logs.some((l) => l.includes('deferred_dropped'))).toBe(true);
   });
 
   it('R1-b: смена владельца отбрасывает отложенные попытки — попытка A не засчитывается B', async () => {

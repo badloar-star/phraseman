@@ -108,16 +108,38 @@ export function voiceDailyAllowanceFrom(input: Access & Readonly<{ count: number
  * ACCESS_UNKNOWN_GRACE_MS от запуска, считаем Free. Plus с сохранённым статусом сюда не попадает: hasPremiumAccess берётся из снимка сразу.
  */
 const ACCESS_UNKNOWN_GRACE_MS = 8_000;
-const MODULE_STARTED_AT_MS = Date.now();
+// зачем (Ревизор R1-c-2 15.10): отсчёт 8 с — от НАЧАЛА текущего ожидания доступа, а не от загрузки модуля. Вход в свой Plus
+// посреди запуска сбрасывает доступ (resetPremiumUiForAccountTransition: resolved=false, premium=false); при отсчёте от
+// старта окно давно истекло бы, и платящий сразу увидел бы цифру и пейвол, пока подписка резолвится.
+let accessWaitStartedAtMs = Date.now();
+let lastRawAccessKnown = false;
 let accessFallbackLogged = false;
 
+function restartAccessWait(reason: string, nowMs: number): void {
+  accessWaitStartedAtMs = nowMs;
+  accessFallbackLogged = false;
+  console.log(`${LOG} access_wait_restart ${JSON.stringify({ reason, graceMs: ACCESS_UNKNOWN_GRACE_MS })}`);
+}
+
+/** Доступ неизвестен дольше ACCESS_UNKNOWN_GRACE_MS — лимит голоса работает как у Free (отложенные — только в памяти). */
+function isAccessFallback(access: Access, nowMs: number): boolean {
+  if (access.accessResolved || access.hasPremiumAccess) {
+    lastRawAccessKnown = true;
+    return false;
+  }
+  if (lastRawAccessKnown) {
+    // был известен → снова неизвестен: смена аккаунта / сброс премиума — ждём заново, а не сразу Free
+    lastRawAccessKnown = false;
+    restartAccessWait('access_reset', nowMs);
+  }
+  return nowMs - accessWaitStartedAtMs >= ACCESS_UNKNOWN_GRACE_MS;
+}
+
 export function effectiveVoiceAccess(access: Access, nowMs: number = Date.now()): Access {
-  if (access.accessResolved || access.hasPremiumAccess) return access;
-  const waitedMs = nowMs - MODULE_STARTED_AT_MS;
-  if (waitedMs < ACCESS_UNKNOWN_GRACE_MS) return access;
+  if (!isAccessFallback(access, nowMs)) return access;
   if (!accessFallbackLogged) {
     accessFallbackLogged = true;
-    console.warn(`[ACCESS-RESOLVE] voice_fallback_free ${JSON.stringify({ waitedMs, graceMs: ACCESS_UNKNOWN_GRACE_MS })}`); // guard-ok: причина резолва для лимита
+    console.warn(`[ACCESS-RESOLVE] voice_fallback_free ${JSON.stringify({ waitedMs: nowMs - accessWaitStartedAtMs, graceMs: ACCESS_UNKNOWN_GRACE_MS })}`); // guard-ok: причина резолва для лимита
   }
   return { accessResolved: true, hasPremiumAccess: false };
 }
@@ -125,15 +147,26 @@ export function effectiveVoiceAccess(access: Access, nowMs: number = Date.now())
 /** Сколько ещё ждать до запасного режима (для перерисовки значка); 0 — уже наступил или не нужен. */
 export function msUntilVoiceAccessFallback(access: Access, nowMs: number = Date.now()): number {
   if (access.accessResolved || access.hasPremiumAccess) return 0;
-  return Math.max(0, ACCESS_UNKNOWN_GRACE_MS - (nowMs - MODULE_STARTED_AT_MS));
+  return Math.max(0, ACCESS_UNKNOWN_GRACE_MS - (nowMs - accessWaitStartedAtMs));
+}
+
+/** Отложенные до выяснения доступа попытки; в запасном режиме входят в лимит (на диск не пишутся). */
+function pendingCountFor(rawAccess: Access, nowMs: number): number {
+  return isAccessFallback(rawAccess, nowMs) ? pendingUnresolvedKeys.length : 0;
+}
+const pendingListeners = new Set<() => void>();
+function emitPending(): void {
+  for (const listener of pendingListeners) listener();
 }
 
 export function voiceDailyAllowanceGate(surface: VoiceAllowanceSurface, rawAccess: Access): boolean {
-  const access = effectiveVoiceAccess(rawAccess);
-  const count = peekCount();
+  const nowMs = Date.now();
+  const access = effectiveVoiceAccess(rawAccess, nowMs);
+  const pending = pendingCountFor(rawAccess, nowMs);
+  const count = peekCount() + pending;
   const decision = dialogVoiceLimitDecision({ ...access, count });
   const allowed = decision !== 'limit_reached';
-  console.log(`${LOG} gate ${JSON.stringify({ surface, decision, count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, hydrated: isDialogVoiceAttemptsHydrated(), allowed })}`);
+  console.log(`${LOG} gate ${JSON.stringify({ surface, decision, count, pendingInMemory: pending, fallback: access !== rawAccess, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, hydrated: isDialogVoiceAttemptsHydrated(), allowed })}`);
   return allowed;
 }
 
@@ -146,17 +179,22 @@ const COUNTED_KEYS_MEMORY = 32;
  * Возвращает счётчик после списания (или текущий, если не списано).
  */
 export function recordVoiceDailyAttempt(surface: VoiceAllowanceSurface, attemptKey: string, rawAccess: Access): number {
-  const access = effectiveVoiceAccess(rawAccess);
-  if (access.accessResolved) settleVoiceAttemptsAfterAccess(access);
-  if (!access.accessResolved && !access.hasPremiumAccess) {
-    // зачем (Ревизор 15.10 🟡): пока доступ не выяснен, это может быть Plus — на диск не списываем, держим в памяти и решаем,
-    // когда доступ станет известен (Plus — отбросить, Free — засчитать). Повтор того же ключа не копится.
+  const nowMs = Date.now();
+  // отложенные решает только НАСТОЯЩИЙ ответ о доступе, не запасной режим (Ревизор R1-c-2)
+  if (rawAccess.accessResolved) settleVoiceAttemptsAfterAccess(rawAccess);
+  if (!rawAccess.accessResolved && !rawAccess.hasPremiumAccess) {
+    // зачем (Ревизор 15.10 🟡 + R1-c-2): пока доступ не выяснен, это может быть Plus — на диск не списываем, держим в памяти
+    // и решаем, когда доступ станет известен (Plus — отбросить, Free — засчитать). В запасном режиме (ждём > 8 с) эти
+    // попытки входят в лимит из памяти: офлайн Free не говорит без лимита, а Plus не получит списаний на диске.
     if (!pendingUnresolvedKeys.some((p) => p.attemptKey === attemptKey) && !countedAttemptKeys.includes(attemptKey)) {
       pendingUnresolvedKeys.push({ surface, attemptKey });
+      emitPending();
     }
-    console.log(`${LOG} attempt:deferred ${JSON.stringify({ surface, reason: 'access_unknown', pending: pendingUnresolvedKeys.length })}`);
-    return peekDialogVoiceAttempts();
+    const fallback = isAccessFallback(rawAccess, nowMs);
+    console.log(`${LOG} attempt:deferred ${JSON.stringify({ surface, reason: 'access_unknown', fallback, pending: pendingUnresolvedKeys.length })}`);
+    return peekDialogVoiceAttempts() + (fallback ? pendingUnresolvedKeys.length : 0);
   }
+  const access = rawAccess;
   if (access.hasPremiumAccess) {
     console.log(`${LOG} attempt:not_counted ${JSON.stringify({ surface, reason: 'plus_unlimited' })}`);
     return peekDialogVoiceAttempts();
@@ -179,12 +217,16 @@ onAccountOwnerChanged('voice_daily_allowance', () => {
   pendingUnresolvedKeys.length = 0;
   countedAttemptKeys.length = 0;
   console.log(`${LOG} owner_changed ${JSON.stringify({ droppedPending: dropped })}`);
+  lastRawAccessKnown = false;
+  restartAccessWait('owner_changed', Date.now());
+  emitPending();
 });
 
 /** Доступ выяснен: отложенные попытки Plus отбрасываются, Free — засчитываются (каждая один раз по attemptKey). */
 export function settleVoiceAttemptsAfterAccess(access: Access): void {
   if (!access.accessResolved || pendingUnresolvedKeys.length === 0) return;
   const pending = pendingUnresolvedKeys.splice(0, pendingUnresolvedKeys.length);
+  emitPending();
   if (access.hasPremiumAccess) {
     console.log(`${LOG} attempt:deferred_dropped ${JSON.stringify({ reason: 'plus_unlimited', dropped: pending.length })}`);
     return;
@@ -211,6 +253,8 @@ function msUntilNextLocalMidnight(nowMs: number): number {
 export function useVoiceDailyAllowance(): VoiceDailyAllowance {
   const { accessResolved, hasPremiumAccess } = usePremium();
   const [snapshot, setSnapshot] = useState(() => ({ count: peekCount(), hydrated: peekHydrated() }));
+  // отложенные в памяти попытки (запасной режим) — перерисовать цифру сразу после записи
+  const [pendingTick, setPendingTick] = useState(0);
   useEffect(() => {
     const sync = () => setSnapshot((prev) => {
       const next = { count: peekCount(), hydrated: peekHydrated() };
@@ -218,6 +262,8 @@ export function useVoiceDailyAllowance(): VoiceDailyAllowance {
     });
     const unsubscribe = subscribeDialogVoiceAttempts(sync);
     devVoiceListeners.add(sync);
+    const syncPending = () => setPendingTick((tick) => tick + 1);
+    pendingListeners.add(syncPending);
     let midnightTimer: ReturnType<typeof setTimeout> | null = null;
     const armMidnight = () => {
       midnightTimer = setTimeout(() => {
@@ -233,6 +279,7 @@ export function useVoiceDailyAllowance(): VoiceDailyAllowance {
     return () => {
       unsubscribe();
       devVoiceListeners.delete(sync);
+      pendingListeners.delete(syncPending);
       if (midnightTimer) clearTimeout(midnightTimer);
     };
   }, []);
@@ -252,11 +299,18 @@ export function useVoiceDailyAllowance(): VoiceDailyAllowance {
   );
   // зачем (Ревизор 15.10 🟡): доступ выяснился — решаем отложенные попытки (Plus — отбросить, Free — засчитать)
   useEffect(() => {
-    if (access.accessResolved) settleVoiceAttemptsAfterAccess(access);
-  }, [access]);
+    // только настоящий ответ о доступе решает отложенные (запасной режим держит их в памяти — Ревизор R1-c-2)
+    if (accessResolved) settleVoiceAttemptsAfterAccess({ accessResolved, hasPremiumAccess });
+  }, [accessResolved, hasPremiumAccess]);
   return useMemo(
-    () => voiceDailyAllowanceFrom({ ...access, count: snapshot.count, hydrated: snapshot.hydrated }),
-    [access, snapshot.count, snapshot.hydrated],
+    () => voiceDailyAllowanceFrom({
+      ...access,
+      count: snapshot.count + pendingCountFor({ accessResolved, hasPremiumAccess }, Date.now()),
+      hydrated: snapshot.hydrated,
+    }),
+    // pendingTick — пересчитать отложенные в памяти
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [access, snapshot.count, snapshot.hydrated, pendingTick],
   );
 }
 
@@ -268,6 +322,9 @@ export function resetVoiceDailyAllowanceForTests(): void {
   countedAttemptKeys.length = 0;
   pendingUnresolvedKeys.length = 0;
   devVoiceRemaining = null;
+  accessWaitStartedAtMs = Date.now();
+  lastRawAccessKnown = false;
+  accessFallbackLogged = false;
 }
 
 /* expo-router: keep this utility from being treated as a screen */

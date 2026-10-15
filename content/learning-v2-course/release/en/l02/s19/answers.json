@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-19:i01",
-    "correctText": "near",
+    "correctText": "I am guilty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i02",
-    "correctText": "near",
+    "correctText": "Is he alone?",
     "correctResponseId": "en:lesson-02:session-19:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-19:i03",
-    "correctText": "behind",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-19:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-19:i04",
-    "correctText": "behind",
-    "correctResponseId": "en:lesson-02:session-19:i04:r1"
+    "correctText": "en:lesson-02:session-19:i04:p1=guilty\nen:lesson-02:session-19:i04:p2=together\nen:lesson-02:session-19:i04:p3=alone\nen:lesson-02:session-19:i04:p4=nearby",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i05",
-    "correctText": "It is near.",
+    "correctText": "Yes, you are.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i06",
-    "correctText": "near",
-    "correctResponseId": "en:lesson-02:session-19:i06:r1"
+    "correctText": "She is not guilty.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i07",
-    "correctText": "It is behind the station.",
+    "correctText": "Yes, we are.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i08",
-    "correctText": "behind",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-02:session-19:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-19:i09",
-    "correctText": "near",
+    "correctText": "They are together.",
     "correctResponseId": "en:lesson-02:session-19:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-19:i10",
-    "correctText": "shops",
-    "correctResponseId": "en:lesson-02:session-19:i10:r1"
+    "correctText": "en:lesson-02:session-19:i10:p1=urgent\nen:lesson-02:session-19:i10:p2=guilty\nen:lesson-02:session-19:i10:p3=nearby\nen:lesson-02:session-19:i10:p4=alone",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i11",
-    "correctText": "It is near the street.",
+    "correctText": "I'm not guilty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i12",
-    "correctText": "en:lesson-02:session-19:i12:p1=near\nen:lesson-02:session-19:i12:p2=behind\nen:lesson-02:session-19:i12:p3=station\nen:lesson-02:session-19:i12:p4=street",
+    "correctText": "No, he is not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i13",
-    "correctText": "crowded",
-    "correctResponseId": "en:lesson-02:session-19:i13:r1"
+    "correctText": "They're nearby.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-19:i14",
-    "correctText": "Is it near?",
-    "correctResponseId": null
+    "correctText": "am",
+    "correctResponseId": "en:lesson-02:session-19:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-19:i15",
-    "correctText": "It is behind the shops.",
+    "correctText": "It is not urgent.",
+    "correctResponseId": "en:lesson-02:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-19:i16",
+    "correctText": "en:lesson-02:session-19:i16:p1=together\nen:lesson-02:session-19:i16:p2=alone\nen:lesson-02:session-19:i16:p3=nearby\nen:lesson-02:session-19:i16:p4=urgent",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-19:i16:s01",
-    "correctText": "It is near.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-19:i16:s02",
-    "correctText": "It is behind the shops.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-19:i17:s01",
-    "correctText": "It is near.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-19:i17:s02",
-    "correctText": "It is behind the station.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-19:i17:s03",
-    "correctText": "It is near the street.",
+    "interactionId": "en:lesson-02:session-19:i17",
+    "correctText": "No, I am not.",
     "correctResponseId": null
   }
 ]

@@ -1,211 +1,138 @@
-# Англійська · Урок 2 · Заняття 19 — «It is near»
+# Англійська · Урок 2 · Заняття 19 — Хто з’їв печиво?
 
-**Сцена заняття.** Ви запитали, де щось міститься, — і вам відповідають. Відповідь коротка, рукою махають убік: поруч, за рогом, ген у тому кінці вулиці.
-**Як сказати:** відповідь `It is` + слово про місце
-**Нові слова:** near, behind
-**Повертаються:** street, station, shops, crowded
+**Ситуація.** На кухні перед зустріччю зникло печиво для гостей. Ви домовилися не їсти його до приходу гостей. Ви з друзями з’ясовуєте, хто його з’їв і де решта учасників зустрічі.
+
+**Що ви опануєте:** визнати провину або заперечити її, використовуючи повні фрази й короткі відповіді
+**Нові слова:** guilty
 
 ---
 
 ## Інтро 1
 
-### `near` — «поруч»
+### Це я
 
-`near` — «поруч, близько». Повна відповідь звучить так: `It is near`.
+`guilty` — «винний». `I am guilty` — «Я винний», коротко `I'm guilty`. Тут ідеться про побутову витівку: ви з’їли печиво для гостей. Крихти на вашій сорочці вже майже дали свідчення, залишилося зізнатися самому.
 
-`It` тут заміняє місце, про яке запитали: вокзал, вулиця, крамниця — усе це `it`. Між `it` і словом про місце стоїть `is`, і без нього фраза не тримається.
+**Ви з’їли печиво, залишене для гостей. Коротко визнайте свою провину.**
 
-**Ви запитали, де вокзал. Перехожий махає рукою: іти хвилини дві.**
-
-- ✅ **It is near.**
-- ❌ It near. — *Зникло `is`. Між `it` і словом про місце воно потрібне: `It is near`.*
-- ❌ Is it near. — *Так починають запитання. Ви відповідаєте, отже першим іде `it`, потім `is`.*
+- ✅ **I'm guilty.**
+- ❌ He's guilty. — *Це звинувачення на його адресу. Тут зізнаєтеся ви: `I'm`.*
+- ❌ I'm not guilty. — *Це заперечення провини. За умовою печиво з’їли ви.*
 
 ---
 
 ## Інтро 2
 
-### `behind` — «за», «позаду»
+### Не звинувачуйте невинного
 
-`behind` — «за, позаду». Одне слово, а пояснює все: шукати треба з іншого боку.
+`She is not guilty` — «Вона не винна». `Not` стоїть після `is`. На запитання `Is she guilty?` можна відповісти коротше: `No, she is not`. Тут ми говоримо про те, хто з’їв печиво, а не вгадуємо за виразом обличчя.
 
-`It is behind the station` — «це за вокзалом». Після `behind` кажуть, за чим саме, і перед місцем ставлять маленьке `the`: не «за якимось вокзалом», а за тим, про який запитували.
+**Анна печиво не чіпала. Друг запитує: `Is she guilty?` Дайте коротку відповідь «ні».**
 
-**Ви шукаєте туалети, вам показують: вони з іншого боку вокзалу.**
-
-- ✅ **It is behind the station.**
-- ❌ It is behind station. — *Загубилося `the`. Зі `station` і `shops` воно потрібне: `behind the station`.*
-- ❌ It behind the station. — *Зникло `is`. Спершу `it is`, і аж тоді `behind`.*
+- ✅ **No, she is not.**
+- ❌ Yes, she is. — *Так ви підтвердите її провину. Анна печиво не чіпала.*
+- ❌ No, she not. — *Між `she` і `not` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Початок не чіпають
+### Хто відповідає?
 
-`street` — «вулиця», `shops` — «крамниці». Місце у відповіді змінюється, а початок лишається той самий.
+На `Are you guilty?` про себе відповідаємо `Yes, I am`. А якщо друг запитує про себе `Am I guilty?`, відповідь йому починається `Yes, you are`. Запитання й відповідь можуть називати одну людину різними словами: для нього це `I`, для вас — `you`.
 
-`It is near the shops` — «це поруч із крамницями». `It is behind the shops` — «це за крамницями». Перші два слова однакові, далі — бік і місце.
+**Олег з’їв останнє печиво й запитує про себе: `Am I guilty?` Дайте йому коротку відповідь «так».**
 
-**Ви шукаєте кав'ярню, вам відповідають: вона недалеко від крамниць.**
-
-- ✅ **It is near the shops.**
-- ❌ It is near shops. — *Загубилося `the`: кажуть `near the shops`.*
-- ❌ It near the shops. — *`is` випало. Між `it` і `near` воно потрібне.*
+- ✅ **Yes, you are.**
+- ❌ Yes, I am. — *Це визнання вашої провини. Відповідаємо Олегові про нього: `you are`.*
+- ❌ Yes, you is. — *З `you` потрібно `are`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — near**
-<!-- interaction_id: en:lesson-02:session-19:i01; family: listen_choose -->
-Ціль: `near`
+**1 · Ви з’їли печиво для гостей. Визнайте провину повною фразою**
+<!-- interaction_id: en:lesson-02:session-19:i01; family: phrase_builder -->
+Плитки: `guilty` `am` `I` `is` → **I am guilty.**
+*(плитка `is` зайва: тут потрібно `am` — `I am guilty.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте запитання про Олега**
 <!-- interaction_id: en:lesson-02:session-19:i02; family: listen_choose -->
-Ціль: `near`
-Варіанти: `near` · `nine` · `name`
-- nine — *Це «дев'ять» — лічба, а не місце. Голосний інший: у `nine` чути «ай».*
-- name — *Це «ім'я». Голосний інший: у `name` чути «ей».*
+🔊 *Is he alone?* → **Is he alone?** · Is he nearby? · Is he guilty?
+- Is he nearby? — *У записі останнє слово — `alone`, а в цьому варіанті — `nearby`.*
+- Is he guilty? — *У записі останнє слово — `alone`, а в цьому варіанті — `guilty`.*
 
+**3 · Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-19:i03; family: context_gap_grammar -->
+No, she ___ not. → **is** · am · are
+- am — *З `she` потрібно `is`.*
+- are — *Відповідь: `No, she is not`.*
 
-**3 · Картка слова — behind**
-<!-- interaction_id: en:lesson-02:session-19:i03; family: listen_choose -->
-Ціль: `behind`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-19:i04; family: speed_match -->
+guilty — винний · together — разом · alone — сам, без інших · nearby — поблизу
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-19:i04; family: listen_choose -->
-Ціль: `behind`
-Варіанти: `behind` · `find` · `bell`
-- find — *Це «знайти». Перший звук інший: `find` починається з «ф», `behind` — з «б».*
-- bell — *Це «дзвінок». Коротше: у `behind` два склади, у `bell` один.*
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-19:i05; family: listen_build_dictation -->
+🔊 *Yes, you are.* Плитки: `are` `you` `Yes,` `No,` → **Yes, you are.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, you are.`)*
 
+**6 · Анна не їла печива. Скажіть, що вона не винна**
+<!-- interaction_id: en:lesson-02:session-19:i06; family: phrase_builder -->
+Плитки: `guilty` `not` `is` `She` `are` → **She is not guilty.**
+*(плитка `are` зайва: тут потрібно `is` — `She is not guilty.`)*
 
-**5 · Складіть фразу — «це поруч»**
-<!-- interaction_id: en:lesson-02:session-19:i05; family: phrase_builder -->
-Ціль: `It is near.`
+**7 · Ви з другом ідете до господаря разом. Господар запитує вас обох: «Are you together?» Дайте коротку відповідь «так» за двох**
+<!-- interaction_id: en:lesson-02:session-19:i07; family: scripted_repeat_compare -->
+🎙 **Yes, we are.**
 
-**6 · Вставте слово — перехожий показує: іти хвилини дві**
-<!-- interaction_id: en:lesson-02:session-19:i06; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `near` · `behind` · `crowded`
-- behind — *Це «позаду», про бік, а не про відстань.*
-- crowded — *Це «людно», про натовп. Про «хвилини дві» — `near`.*
-
-
-**7 · Складіть фразу — «це за вокзалом»**
-<!-- interaction_id: en:lesson-02:session-19:i07; family: phrase_builder -->
-Ціль: `It is behind the station.`
-
-**8 · Вставте слово — туалети з іншого боку вокзалу**
+**8 · Друг просить купити ще печива. Запитайте, чи це терміново**
 <!-- interaction_id: en:lesson-02:session-19:i08; family: context_gap_grammar -->
-Ціль: `It is ___ the station.`
-Варіанти: `behind` · `near` · `street`
-- near — *«Поруч із вокзалом» — це не «з іншого боку».*
-- street — *`street` — «вулиця», це місце, а не бік. Після пропуску вже стоїть `the station`, друге місце туди не стане.*
+___ it urgent? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання починається з `Is it`.*
 
+**9 · Послухайте фразу про Анну й Олега**
+<!-- interaction_id: en:lesson-02:session-19:i09; family: listen_choose -->
+🔊 *They are together.* → **They are together.** · They are nearby. · They are guilty.
+- They are nearby. — *У записі останнє слово — `together`, а в цьому варіанті — `nearby`.*
+- They are guilty. — *У записі останнє слово — `together`, а в цьому варіанті — `guilty`.*
 
-**9 · Розрізніть звуки — яке з двох про «поруч»?**
-<!-- interaction_id: en:lesson-02:session-19:i09; family: sound_contrast -->
-Варіанти: `near` · `far`
-- far — *Це «далеко» — протилежне за змістом. І звучить інакше: `far` починається з «ф».*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-19:i10; family: speed_match -->
+urgent — терміновий · guilty — винний · nearby — поблизу · alone — сам, без інших
 
-
-**10 · Вставте слово — де шукати кав'ярню? Крамниці зовсім близько**
-<!-- interaction_id: en:lesson-02:session-19:i10; family: context_gap_grammar -->
-Ціль: `It is near the ___ .`
-Варіанти: `shops` · `near` · `behind`
-- near — *`near` уже стоїть перед пропуском. Тут потрібне місце.*
-- behind — *Це «позаду», а не місце. Після `the` називають, що саме.*
-
-
-**11 · Послухайте і складіть — «це поруч із вулицею»**
+**11 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-02:session-19:i11; family: listen_build_dictation -->
-Ціль: `It is near the street.`
-🔊 *It is near the street.* Плитки: `It` `is` `near` `the` `street` `at`
-*Плитка `at` зайва: щоб сказати «поруч із вулицею», потрібна сполука `near the street`, а не `at`.*
+🔊 *I'm not guilty.* Плитки: `guilty` `not` `I'm` `He's` → **I'm not guilty.**
+*(плитка `He's` зайва: тут потрібно `I'm` — `I'm not guilty.`)*
 
-**12 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-19:i12; family: speed_match -->
-Пари: `near` — поруч · `behind` — позаду · `station` — вокзал · `street` — вулиця
-Ціль: `near · behind · station · street`
+**12 · Олег прийшов з Анною. На «Is he alone?» дайте коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-19:i12; family: phrase_builder -->
+Плитки: `not` `is` `he` `No,` `Yes,` → **No, he is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, he is not.`)*
 
-**13 · Вставте слово — на вулиці не проштовхнутися**
-<!-- interaction_id: en:lesson-02:session-19:i13; family: context_gap_grammar -->
-Ціль: `The street is ___ .`
-Варіанти: `crowded` · `near` · `behind`
-- near — *«Вулиця поруч» — про відстань, а не про натовп.*
-- behind — *«Вулиця позаду» — про бік. Про натовп — `crowded`.*
+**13 · Анна й Олег уже біля сусіднього будинку. Коротко скажіть, що вони поблизу**
+<!-- interaction_id: en:lesson-02:session-19:i13; family: scripted_repeat_compare -->
+🎙 **They're nearby.**
 
+**14 · Ви з’їли печиво. На «Are you guilty?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-19:i14; family: context_gap_grammar -->
+Yes, I ___. → **am** · is · are
+- is — *Про себе — `I am`.*
+- are — *Запитання до вас, але відповідь про себе: `Yes, I am`.*
 
-**14 · Складіть фразу — ви запитуєте, а не відповідаєте: «це поруч?»**
-<!-- interaction_id: en:lesson-02:session-19:i14; family: phrase_builder -->
-Ціль: `Is it near?`
-Плитки: `Is` `it` `near` `the`
-*Плитка `the` зайва: після `near` тут немає іменника; запитання закінчується на `near?`.*
+**15 · Послухайте фразу**
+<!-- interaction_id: en:lesson-02:session-19:i15; family: listen_choose -->
+🔊 *It is not urgent.* → **It is not urgent.** · It is not possible. · It is not obvious.
+- It is not possible. — *У записі останнє слово — `urgent`, а в цьому варіанті — `possible`.*
+- It is not obvious. — *У записі останнє слово — `urgent`, а в цьому варіанті — `obvious`.*
 
-**15 · Послухайте й складіть — біля входу ви пояснюєте, що об’єкт за крамницями**
-<!-- interaction_id: en:lesson-02:session-19:i15; family: listen_build_dictation -->
-Ціль: `It is behind the shops.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-19:i16; family: speed_match -->
+together — разом · alone — сам, без інших · nearby — поблизу · urgent — терміновий
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-19:i16:s01; family: scripted_repeat_compare -->
-Ціль: `It is near.`
+**17 · Ви печиво не чіпали. Господар запитує: «Are you guilty?» Дайте коротку відповідь «ні», не повторюючи guilty**
+<!-- interaction_id: en:lesson-02:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **No, I am not.**
 
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-19:i16:s02; family: scripted_repeat_compare -->
-Ціль: `It is behind the shops.`
-
-**18 · Послухайте відповідь на запитання «Де вокзал?» і виберіть почуту фразу**
-<!-- interaction_id: en:lesson-02:session-19:i17:s01; family: listen_choose -->
-Ціль: `It is near.`
-Варіанти: `It is near.` · `Is it near?` · `It is behind the shops.`
-- Is it near? — *У записі відповідь: спочатку звучить `It`, а не `Is`.*
-- It is behind the shops. — *У записі `near` — «поруч», а не `behind the shops` — «за крамницями».*
-
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-19:i17:s02; family: scripted_repeat_compare -->
-Ціль: `It is behind the station.`
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-19:i17:s03; family: scripted_repeat_compare -->
-Ціль: `It is near the street.`
-
-## Для сборщика
-
-new_words:
-near — рядом, близко — «рядом, близко». Идти пару минут, можно и не спрашивать дважды.
-behind — за, позади — «за, позади». То, что искали, стоит с другой стороны.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=context_gap_grammar, 9=sound_contrast, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_choose, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| street | 8 (пастка), 11, 12, 13, 17 | 11, 17 |
-| station | 7, 8, 12, 17 | 7, 8, 17 |
-| shops | 10, 15, 16, 17 | 10, 15 |
-| crowded | 6 (пастка), 13 | 13 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД запитанням |
-|---|---|---|
-| Інтро 1 | near | так — `near` пояснюється першим рядком, `It is near` стоїть у тексті |
-| Інтро 2 | behind, station, the | так — `behind` пояснюється першим рядком, `It is behind the station` стоїть у тексті |
-| Інтро 3 | near, shops, the | так — `shops` перекладено першим рядком, `It is near the shops` стоїть у тексті |
-
-**3. Дошка пар (завдання 12)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| near | так, завдання 1 | так — 2, 5, 6, 9, 10, 11 |
-| behind | так, завдання 3 | так — 4, 7, 8 |
-| station | з минулих занять (l02_s17) | так — 7, 8 |
-| street | з минулих занять (l02_s17) | так — 8 (пастка), 11 |

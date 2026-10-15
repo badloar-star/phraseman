@@ -18,6 +18,7 @@ import { DebugLogger } from './debug-logger';
 import { getTrustedLingmanYoutubeUrl } from './lingman_youtube';
 import { peekYoutubeCatalogScreenSnapshot, revalidateYoutubeChannelCatalog, type YoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
 import { allVideosItemToSnapshot, allVideosPlaylistToSnapshot, useAllChannelVideos } from './all_channel_videos_source';
+import { PLAYLIST_SLOW_MS, playlistViewKind } from './lingman_playlist_view_state';
 
 function trustedPlaylistUrl(rawUrl: string, playlistId: string): string | null {
   const trusted = getTrustedLingmanYoutubeUrl(rawUrl);
@@ -56,6 +57,24 @@ export default function LingmanPlaylistScreen() {
   const videos = useMemo(() => allChannel.items.map(allVideosItemToSnapshot), [allChannel.items]);
   // зачем (аудит #23): полный список пришёл и в плейлисте нет роликов (или сети и кэша нет) — честная пустота вместо вечного скелетона
   const videosSettledEmpty = videos.length === 0 && (allChannel.status === 'ready' || allChannel.status === 'unavailable');
+  // зачем (R57 #23, координатор 15.10: плейлист из «хвоста» на медленной сети): ответа нет дольше PLAYLIST_SLOW_MS — вместо вечного скелета «грузится дольше обычного» с «Повторить»; ответ придёт позже — экран сам станет обычным.
+  const [waitedTooLong, setWaitedTooLong] = useState(false);
+  const awaiting = !playlist || videos.length === 0;
+  const settledNow = allChannel.status === 'ready' || allChannel.status === 'unavailable';
+  useEffect(() => {
+    if (!awaiting || settledNow) { setWaitedTooLong(false); return undefined; }
+    const startedAt = Date.now();
+    console.log('[VIDEO-PLAYLIST] ждём полный список', JSON.stringify({ playlistId, channelId, status: allChannel.status, hasPlaylist: !!playlist, slowAfterMs: PLAYLIST_SLOW_MS }));
+    const timer = setTimeout(() => {
+      console.warn('[VIDEO-PLAYLIST] медленно: полный список не пришёл', JSON.stringify({ playlistId, channelId, waitedMs: Date.now() - startedAt, status: allChannel.status }));
+      setWaitedTooLong(true);
+    }, PLAYLIST_SLOW_MS);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [awaiting, settledNow, playlistId, channelId]);
+  const view = playlistViewKind({ hasPlaylist: !!playlist, videosCount: videos.length, status: allChannel.status, waitedTooLong });
+  useEffect(() => { console.log('[VIDEO-PLAYLIST] вид', JSON.stringify({ view, playlistId, status: allChannel.status, videos: videos.length, waitedTooLong })); }, [view]); // guard-ok: одна строка на смену вида — что увидел человек
+  const retry = () => { setWaitedTooLong(false); allChannel.refresh(); };
   const copy = {
     playAll: triLang(lang, { ru: 'Воспроизвести всё', uk: 'Відтворити все', en: 'Play all', es: 'Reproducir todo', 'pt-BR': 'Reproduzir tudo', vi: 'Phát tất cả', id: 'Putar semua', tr: 'Tümünü oynat', pl: 'Odtwórz wszystko' }),
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
@@ -63,6 +82,10 @@ export default function LingmanPlaylistScreen() {
     emptyPlaylist: triLang(lang, {
       ru: 'В этом плейлисте пока нет роликов', uk: 'У цьому плейлисті поки немає відео', en: 'No videos in this playlist yet', es: 'Aún no hay vídeos en esta lista',
       'pt-BR': 'Ainda não há vídeos nesta playlist', vi: 'Danh sách phát này chưa có video', id: 'Belum ada video di playlist ini', tr: 'Bu oynatma listesinde henüz video yok', pl: 'W tej playliście nie ma jeszcze filmów',
+    }),
+    slow: triLang(lang, {
+      ru: 'Плейлист грузится дольше обычного', uk: 'Плейлист завантажується довше, ніж зазвичай', en: 'The playlist is taking longer than usual', es: 'La lista tarda más de lo normal',
+      'pt-BR': 'A playlist está demorando mais que o normal', vi: 'Danh sách phát đang tải lâu hơn bình thường', id: 'Playlist memuat lebih lama dari biasanya', tr: 'Oynatma listesi normalden uzun sürüyor', pl: 'Playlista ładuje się dłużej niż zwykle',
     }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Repetir', vi: 'Thử lại', id: 'Ulangi', tr: 'Tekrar dene', pl: 'Ponów' }),
   };
@@ -114,10 +137,17 @@ export default function LingmanPlaylistScreen() {
         <View style={styles.topbar}>
           <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, LINGMAN_BACK_FALLBACK as any)} style={[styles.back, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}><Ionicons name="arrow-back" size={20} color={g.text} /></TouchableOpacity>
         </View>
-        {!playlist && videosSettledEmpty ? (
+        {view === 'slow' ? (
+          <View testID="youtube-playlist-slow" style={styles.empty}>
+            <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.slow}</Text>
+            <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={retry} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
+              <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
+            </TouchableOpacity>
+          </View>
+        ) : !playlist && videosSettledEmpty ? (
           <View testID="youtube-playlist-empty" style={styles.empty}>
             <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.emptyPlaylist}</Text>
-            <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={allChannel.refresh} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
+            <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={retry} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
               <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
             </TouchableOpacity>
           </View>
@@ -134,10 +164,17 @@ export default function LingmanPlaylistScreen() {
                 compact
                 onWatch={() => openVideo(video)}
               />
-            )) : videosSettledEmpty ? (
+            )) : view === 'content_slow' ? (
+              <View testID="youtube-playlist-slow" style={styles.empty}>
+                <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.slow}</Text>
+                <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={retry} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
+                  <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
+                </TouchableOpacity>
+              </View>
+            ) : videosSettledEmpty ? (
               <View testID="youtube-playlist-empty" style={styles.empty}>
                 <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.emptyPlaylist}</Text>
-                <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={allChannel.refresh} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
+                <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={retry} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
                   <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
                 </TouchableOpacity>
               </View>

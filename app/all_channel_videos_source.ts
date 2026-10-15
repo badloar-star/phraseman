@@ -21,6 +21,7 @@ import {
   type YoutubeCatalogReader,
 } from './youtube_catalog_client';
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
+import { getDevVideoNetworkDelayMs } from './dev_video_network_delay';
 
 const LOG = '[ALL-VIDEOS]';
 export const ALL_VIDEOS_REFRESH_MS = 6 * 60 * 60 * 1000;
@@ -200,6 +201,12 @@ export async function loadAllChannelVideos(options: LoadAllVideosOptions): Promi
     }
     const startedAt = Date.now();
     try {
+      // зачем (R57 #23, координатор 15.10): dev-имитация медленной сети — пауза перед чтением (только dev-сборка, см. dev_video_network_delay.ts)
+      const devDelayMs = getDevVideoNetworkDelayMs();
+      if (devDelayMs > 0) {
+        console.warn(LOG, 'DEV: искусственная задержка сети', JSON.stringify({ channelId: options.channelId, devDelayMs, hasCache: !!cached }));
+        await new Promise<void>((resolve) => setTimeout(resolve, devDelayMs));
+      }
       const reader = options.reader ?? await defaultReader();
       if (cached) {
         const manifest = await fetchYoutubeCatalogManifestWithReader(reader);

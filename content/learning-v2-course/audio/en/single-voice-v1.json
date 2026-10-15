@@ -58342,6 +58342,309 @@
           "byteSize": 45312
         }
       ]
+    },
+    "l04/s25/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The berry is in the sink.",
+          "file": "82f23f683df4fa4a55e7e56b7a0a014bba75603428622419f2bbbbf7e3e01d79.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/82f23f683df4fa4a55e7e56b7a0a014bba75603428622419f2bbbbf7e3e01d79.mp3",
+          "contentHash": "7d5c2e2395dd381566515acc015d2be22bc878906d99c6cf4a83005c82be9c6b",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l04/s25/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The sink is next to the window.",
+          "file": "834dc1556ef9d3fa4a3acc6026754688ffa907336f4a8af31b6148fdf8caf0da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/834dc1556ef9d3fa4a3acc6026754688ffa907336f4a8af31b6148fdf8caf0da.mp3",
+          "contentHash": "49aed6232186caeddb52b2defbe7b98f4f7ed2a9094d683378f7137b18e589cb",
+          "byteSize": 57984
+        }
+      ]
+    },
+    "l04/s25/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He's absent.",
+          "file": "365366c6b6e7ff7d4ebb4e27c134c5313b5978096aef6c02ffcec10b4b80354b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/365366c6b6e7ff7d4ebb4e27c134c5313b5978096aef6c02ffcec10b4b80354b.mp3",
+          "contentHash": "308d65e9b7bbc0dfe1a0a95666e4e270861a4ae06f0ff283a6125c76e633e3ba",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s25/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He is absent.",
+          "file": "5af998ca75595b4d54d351946a2f823e3d03875392edf99b4b0e3e416597ab37.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5af998ca75595b4d54d351946a2f823e3d03875392edf99b4b0e3e416597ab37.mp3",
+          "contentHash": "62d135ad85ec4ae9bdaa231a96989ca66b568cfdbc0b17decb49214cd2e20752",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s25/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "sink",
+          "file": "28dab884ca1f2f9100f447987967f48b86136794b5bc870d0ac3ee158caccdff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28dab884ca1f2f9100f447987967f48b86136794b5bc870d0ac3ee158caccdff.mp3",
+          "contentHash": "339d197490a6adca766858ba768c5aef6d0b36cd8ab74beddcf1177ab042db84",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s25/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "sink",
+          "file": "296dace32588fc7dff2472f4344c80e4ac62666a20be0b1b3b5432258736ea8f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/296dace32588fc7dff2472f4344c80e4ac62666a20be0b1b3b5432258736ea8f.mp3",
+          "contentHash": "c98b3707142192f0104b01658787eb03ebe3e5222a56874a279c0acf6f88376e",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s25/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "sink",
+          "file": "f130b2abe458f5dd48869c547d10679aba0e92e4a114df06320c46179a01a1ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f130b2abe458f5dd48869c547d10679aba0e92e4a114df06320c46179a01a1ff.mp3",
+          "contentHash": "ee90047e031ae82ea9ecb84418b3fdafe7ff90a8e38f87ff08f522b1ee102a1e",
+          "byteSize": 21888
+        },
+        {
+          "text": "absent",
+          "file": "f92d2fb744837b946299c7813db14bbb76d7155b4669e2172ee85c8ba3d2f402.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f92d2fb744837b946299c7813db14bbb76d7155b4669e2172ee85c8ba3d2f402.mp3",
+          "contentHash": "6de75db82832d60e9f844c844a08c0a4896628e04f3f7b8896aaec72e0380468",
+          "byteSize": 34560
+        },
+        {
+          "text": "dogs",
+          "file": "d35fe5ed2dd8be7871cd195cffc1fb45550a82695d59cdd94ccd9e2c5846a4f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d35fe5ed2dd8be7871cd195cffc1fb45550a82695d59cdd94ccd9e2c5846a4f9.mp3",
+          "contentHash": "dc9a444d5313e9e3dad904faaad242ba9876b63bda91195c5d551d3736d3bb5c",
+          "byteSize": 41088
+        },
+        {
+          "text": "berry",
+          "file": "8a727da3c2e1f97476617b95fad8b0cafd4216877a6abad3486c12b27a5bb9e3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a727da3c2e1f97476617b95fad8b0cafd4216877a6abad3486c12b27a5bb9e3.mp3",
+          "contentHash": "f31c6aebfc384a5260c83a41fd9c31058e6493605e83d78bca948b6545f65b6d",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l04/s25/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The berry is in the sink.",
+          "file": "913bc8be44bc8ad10658f679044d11ca1abb0de73c41bca64fb49f4dabeb9a07.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/913bc8be44bc8ad10658f679044d11ca1abb0de73c41bca64fb49f4dabeb9a07.mp3",
+          "contentHash": "0ea26f161fd718f8238dfdea716e440f7cae58d6bc142b028a7248ff1859595d",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s25/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The berry is on the table.",
+          "file": "56fe632c91bbbefe52b3471f1e0998f80cdb4aae732ddf4dadeb64163b9e1d85.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56fe632c91bbbefe52b3471f1e0998f80cdb4aae732ddf4dadeb64163b9e1d85.mp3",
+          "contentHash": "0c2fde27608a4878fda1205ebe34a17c3442968caf2faa5fad74e08ed634ccde",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l04/s25/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The dogs are under the table.",
+          "file": "fb8085605e240eadd69f8c5db58237f3f4295f508a7c201fbdc2b599d6c30550.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fb8085605e240eadd69f8c5db58237f3f4295f508a7c201fbdc2b599d6c30550.mp3",
+          "contentHash": "098132180fc718907dc4120181a762c54bf8aaa000f0e50a0aff832f69a22cb5",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l04/s25/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The sink is next to the window.",
+          "file": "834dc1556ef9d3fa4a3acc6026754688ffa907336f4a8af31b6148fdf8caf0da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/834dc1556ef9d3fa4a3acc6026754688ffa907336f4a8af31b6148fdf8caf0da.mp3",
+          "contentHash": "49aed6232186caeddb52b2defbe7b98f4f7ed2a9094d683378f7137b18e589cb",
+          "byteSize": 57984
+        }
+      ]
+    },
+    "l04/s25/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The sink is between the tables.",
+          "file": "b7c719d239be034c8d4bcf0b718372e0e85fb9fe9d4e04ed9274e1749a900fbc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b7c719d239be034c8d4bcf0b718372e0e85fb9fe9d4e04ed9274e1749a900fbc.mp3",
+          "contentHash": "40ae2f19972465af629c0e31a7c6693c5f095d985f3695d8c282c86bd244c65b",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l04/s25/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "sink",
+          "file": "bdb0d1dca3b22ae18c40ac3a780ab5083bcb3d952ab6d76312a08f1acf8b0b75.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bdb0d1dca3b22ae18c40ac3a780ab5083bcb3d952ab6d76312a08f1acf8b0b75.mp3",
+          "contentHash": "746f4369db5d0c1a5d7325a1c529b863b512622482123c5de96898367cf8d301",
+          "byteSize": 25344
+        },
+        {
+          "text": "in",
+          "file": "d2b831cfa9122534c02c0e3204e28b04c4670a73662256abfe350556d640ab16.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2b831cfa9122534c02c0e3204e28b04c4670a73662256abfe350556d640ab16.mp3",
+          "contentHash": "57d346f8fa9e4136653de380f097fbc131415bcc5f0938acdd028533812840e0",
+          "byteSize": 20352
+        },
+        {
+          "text": "on",
+          "file": "dba03a41fbb97eb9616edfd29f4178515bf1c2555e5a40ae7e5a5ecbce6fe7d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dba03a41fbb97eb9616edfd29f4178515bf1c2555e5a40ae7e5a5ecbce6fe7d1.mp3",
+          "contentHash": "2c8672d16c056150f7980cd6722a4a410919620fdebbb48bae405919157c2ac6",
+          "byteSize": 29184
+        },
+        {
+          "text": "under",
+          "file": "4358b8648b99877018e043798821873dd4b2d7edd670506c0e0b400580a4c29c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4358b8648b99877018e043798821873dd4b2d7edd670506c0e0b400580a4c29c.mp3",
+          "contentHash": "806387c866d5f5ba759f18aa142f81caa3c80bc764f1b96f4782861ec3b5f341",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l04/s25/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The dogs are next to the sink.",
+          "file": "db8c6ca6e10ce27e1cb7ed358523322e4db6d15fbb9474d01657bb65e092f848.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/db8c6ca6e10ce27e1cb7ed358523322e4db6d15fbb9474d01657bb65e092f848.mp3",
+          "contentHash": "8d38c22d791abebdf8945a16c0c89e9a5007b40ec6ed277fbc7c8d72e974e832",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s25/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The berry is under the table.",
+          "file": "538989c2c9f65447e05d19101514b61077fd5d605e14a41b4320c8b2989bd6d5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/538989c2c9f65447e05d19101514b61077fd5d605e14a41b4320c8b2989bd6d5.mp3",
+          "contentHash": "c3b3e358b3d14564dc66956e2fadd796489643e80833e25392f7d79c98027cd0",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s25/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He's absent.",
+          "file": "702802a558f3a99a5b1ce852e2110fc5edbfe02a06d6f129c46a5f47ca7dc894.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/702802a558f3a99a5b1ce852e2110fc5edbfe02a06d6f129c46a5f47ca7dc894.mp3",
+          "contentHash": "dd14f51843b67ae12f1acd3bd4fc97a12c3011f624f91732cc1d7c97466227a7",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s25/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The berry is between the cups.",
+          "file": "30cebb33e2e8d8e8ec5e5fc5d86691d638bbea6e17e333ef95aabb00741f589f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/30cebb33e2e8d8e8ec5e5fc5d86691d638bbea6e17e333ef95aabb00741f589f.mp3",
+          "contentHash": "934b1bdfc52b0d1798a70fc0f6d466c524bb4f33252d9e346e28ab681ae23c73",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l04/s25/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The dogs are in the room.",
+          "file": "ba7d15a8a4a74e4610ad38874359a99c8991c00380d2f2b9a03429ff7ec667c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ba7d15a8a4a74e4610ad38874359a99c8991c00380d2f2b9a03429ff7ec667c2.mp3",
+          "contentHash": "d27603720d83c843c11e521f4384b096e25f8c296cf69f06091bdca5321188d9",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s25/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "sink",
+          "file": "f130b2abe458f5dd48869c547d10679aba0e92e4a114df06320c46179a01a1ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f130b2abe458f5dd48869c547d10679aba0e92e4a114df06320c46179a01a1ff.mp3",
+          "contentHash": "ee90047e031ae82ea9ecb84418b3fdafe7ff90a8e38f87ff08f522b1ee102a1e",
+          "byteSize": 21888
+        },
+        {
+          "text": "absent",
+          "file": "f92d2fb744837b946299c7813db14bbb76d7155b4669e2172ee85c8ba3d2f402.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f92d2fb744837b946299c7813db14bbb76d7155b4669e2172ee85c8ba3d2f402.mp3",
+          "contentHash": "6de75db82832d60e9f844c844a08c0a4896628e04f3f7b8896aaec72e0380468",
+          "byteSize": 34560
+        },
+        {
+          "text": "dogs",
+          "file": "d35fe5ed2dd8be7871cd195cffc1fb45550a82695d59cdd94ccd9e2c5846a4f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d35fe5ed2dd8be7871cd195cffc1fb45550a82695d59cdd94ccd9e2c5846a4f9.mp3",
+          "contentHash": "dc9a444d5313e9e3dad904faaad242ba9876b63bda91195c5d551d3736d3bb5c",
+          "byteSize": 41088
+        },
+        {
+          "text": "berry",
+          "file": "8a727da3c2e1f97476617b95fad8b0cafd4216877a6abad3486c12b27a5bb9e3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a727da3c2e1f97476617b95fad8b0cafd4216877a6abad3486c12b27a5bb9e3.mp3",
+          "contentHash": "f31c6aebfc384a5260c83a41fd9c31058e6493605e83d78bca948b6545f65b6d",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l04/s25/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The sink is next to the window.",
+          "file": "ff8f509874a6aa5fdbdc0bef389a8ea8bdabb0cba190d602aab43e72a6317e4a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff8f509874a6aa5fdbdc0bef389a8ea8bdabb0cba190d602aab43e72a6317e4a.mp3",
+          "contentHash": "a46360df0490b0deeb802ada98183b803d6105cb4db975bf4dbb0d828f765e67",
+          "byteSize": 49152
+        }
+      ]
     }
   },
   "settings": {

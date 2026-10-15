@@ -1,217 +1,138 @@
-# Англійська · Урок 2 · Заняття 10 — «Is it…?» про місце й погоду
+# Англійська · Урок 2 · Заняття 10 — Шафа й вузькі двері
 
-**Сцена заняття.** Кафе в центрі, вечір. За вікном вулиця, всередині гул голосів, і супутник раз у раз киває то на залу, то на двері — і питає, що ви про все це думаєте.
+**Ситуація.** Ви допомагаєте другові перевезти стару шафу. Вона не проходить у двері зібраною; ви обговорюєте розбирання й результат роботи.
 
-**Як сказати:** `Is it + слово` — запитання про річ, місце або погоду
-**Нові слова:** crowded, noisy
-**Повертаються:** cold, comfortable, ok
+**Що ви опануєте:** розрізняти impossible і not impossible, повторити запитання та короткі форми
+**Нові слова:** impossible
 
 ---
 
 ## Інтро 1
 
-### `it` — про все, що не людина
+### Не вийде
 
-`it` — «воно». Так кажуть про місце, річ, погоду: не про людину навпроти, а про кафе, про стілець, про дощ за вікном.
+`impossible` — «неможливий». `It is impossible` — «Це неможливо», коротко `It's impossible`. Зібрана шафа ширша за дверний отвір. Умовляти двері марно: від «ну будь ласка» вони ширшими не стануть.
 
-Щоб запитати, ставимо `is` першим, `it` одразу за ним: `Is it cold?`. Поміняйте ці два слова місцями — `It is cold.` — і ви вже не питаєте, а відповідаєте.
+**Зібрана шафа ширша за отвір, і повернути її не вдасться. Пронести її так неможливо. Коротко скажіть про це.**
 
-**За вікном люди в куртках і шарфах, хоч іще вересень. Запитайте, чи там холодно.**
-
-- ✅ **Is it cold?**
-- ❌ It is cold? — *Так ви повідомляєте: «холодно». Запитання починається з `is`.*
-- ❌ Is cold it? — *`it` відірвали від `is`. Ці двоє ходять парою: спершу `is it`, потім саме слово.*
+- ✅ **It's impossible.**
+- ❌ It's possible. — *Це «Можливо», а пронести шафу зібраною не вийде.*
+- ❌ They're impossible. — *Обговорюється одна спроба перенести шафу: `It's impossible`.*
 
 ---
 
 ## Інтро 2
 
-### `crowded` — «людно»
+### А якщо розібрати?
 
-`crowded` — «людно, повно людей». Не «велике», не «гучне»: просто людей стільки, що між столиками не пройти.
+`It is not impossible` — «Це не неможливо», тобто така можливість є. Це ще не обіцянка легкої роботи. Тут `not` заперечує саме неможливість. Щоб сказати «Неможливо», достатньо `It is impossible`, без `not`.
 
-Поруч є схоже `crowd` — «натовп», тобто самі люди. А `crowded` — про місце, де цих людей багато. Питаючи про кафе, беремо `crowded`.
+**Після розбирання деталі пройдуть у двері. Скажіть, що перенесення не є неможливим.**
 
-**Ви зазирнули в залу: усі столики зайняті, біля бару стоять. Запитайте супутника, чи завжди тут так.**
-
-- ✅ **Is it crowded?**
-- ❌ Is it crowd? — *`crowd` — це «натовп», предмет. А вам потрібно, яке місце: `crowded`.*
-- ❌ It crowded? — *`is` випало. Запитання без нього не збирається: `Is it crowded?`*
+- ✅ **It is not impossible.**
+- ❌ It is impossible. — *Це повністю виключає можливість. Тут потрібно `not impossible`.*
+- ❌ It not impossible. — *Після `It` зберігаємо `is`: `It is not impossible`.*
 
 ---
 
 ## Інтро 3
 
-### `noisy` — «шумно»
+### Спочатку уточнімо
 
-`noisy` — «шумно». Місце, де вас перепитують, а ви перепитуєте у відповідь.
+`Is it impossible?` — «Це неможливо?» Ви ще не робите висновку, а запитуєте. Про впевненість друга можна запитати `Are you confident?` — «Ти впевнений у собі?» А після роботи — `Are you satisfied?`: «Ти задоволений результатом?»
 
-Слово годиться і для зали, і для вулиці, і для сусіднього столика — усюди, де мова про гучність, а не про людей і не про погоду. Стоїть воно там само, де `cold` і `crowded`: одразу після `is it`.
+**Друг сумнівається, чи можна зняти дверцята шафи. Запитайте, чи це неможливо.**
 
-**Супутник нахиляється до вас через стіл і перепитує вже вдруге. Запитайте, чи завжди тут так шумно.**
-
-- ✅ **Is it noisy?**
-- ❌ Is it comfortable? — *Це «чи зручно» — про стілець і м'якість. Вам потрібно про шум: `noisy`.*
-- ❌ Is noisy? — *`it` зникло. Без нього незрозуміло, про що йдеться: `Is it noisy?`*
+- ✅ **Is it impossible?**
+- ❌ Are it impossible? — *З `it` потрібно `is`, і в запитанні воно стоїть першим.*
+- ❌ Is impossible it? — *Після `Is` ставимо `it`, потім `impossible`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — crowded**
-<!-- interaction_id: en:lesson-02:session-10:i01; family: listen_choose -->
-Ціль: `crowded`
+**1 · Пронести шафу зібраною не вийде. Скажіть, що це неможливо**
+<!-- interaction_id: en:lesson-02:session-10:i01; family: phrase_builder -->
+Плитки: `impossible` `is` `It` `are` → **It is impossible.**
+*(плитка `are` зайва: тут потрібно `is` — `It is impossible.`)*
 
-**2 · Послухайте й виберіть**
+**2 · Послухайте запитання до друга**
 <!-- interaction_id: en:lesson-02:session-10:i02; family: listen_choose -->
-Ціль: `crowded`
-Варіанти: `crowded` · `cloudy` · `called`
-- cloudy — *У `crowded` після «к» чути «р», у `cloudy` — «л».*
-- called — *«Подзвонив». Це про дію, а `crowded` — про місце.*
+🔊 *Are you confident?* → **Are you confident?** · Are you relaxed? · Are you satisfied?
+- Are you relaxed? — *У записі останнє слово — `confident`, а в цьому варіанті — `relaxed`.*
+- Are you satisfied? — *У записі останнє слово — `confident`, а в цьому варіанті — `satisfied`.*
 
+**3 · Ви обговорюєте перенесення шафи через двері. Уточніть, чи це неможливо**
+<!-- interaction_id: en:lesson-02:session-10:i03; family: context_gap_grammar -->
+___ it impossible? → **Is** · Are · Am
+- Are — *З `it` потрібно `Is`.*
+- Am — *Запитання про це починається з `Is it`.*
 
-**3 · Картка слова — noisy**
-<!-- interaction_id: en:lesson-02:session-10:i03; family: listen_choose -->
-Ціль: `noisy`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-10:i04; family: speed_match -->
+impossible — неможливий · old — старий · kind — добрий · funny — смішний
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-02:session-10:i04; family: listen_choose -->
-Ціль: `noisy`
-Варіанти: `noisy` · `nose` · `nice`
-- nose — *«Ніс». Початок спільний, але далі розходяться: у `noisy` чути «ой», у `nose` — «оу».*
-- nice — *«Приємний». Закінчується на «с», а `noisy` — на «зі».*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-10:i05; family: listen_build_dictation -->
+🔊 *It's impossible.* Плитки: `impossible` `It's` `They're` → **It's impossible.**
+*(плитка `They're` зайва: тут потрібно `It's` — `It's impossible.`)*
 
-
-**5 · Вставте слово — у залі не пройти між столиками**
-<!-- interaction_id: en:lesson-02:session-10:i05; family: context_gap_grammar -->
-Ціль: `Is it ___ ?`
-Варіанти: `crowded` · `cold` · `comfortable`
-- cold — *«Холодно» — про температуру. Мова про кількість людей.*
-- comfortable — *«Зручно» — про стілець. Ви питаєте, скільки тут народу.*
-
-
-**6 · Складіть фразу — «чи шумно тут?»**
+**6 · Розібрану шафу можна перенести. Скажіть, що це не є неможливим**
 <!-- interaction_id: en:lesson-02:session-10:i06; family: phrase_builder -->
-Ціль: `Is it noisy?`
-Плитки: `Is` · `it` · `noisy` · `are`
-*Плитка `are` зайва: з `it` потрібна форма `is`: `Is it noisy?`*
+Плитки: `impossible` `not` `is` `It` `are` → **It is not impossible.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not impossible.`)*
 
-**7 · Вставте слово — ви сіли, спина потонула в м'якому кріслі**
-<!-- interaction_id: en:lesson-02:session-10:i07; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `comfortable` · `noisy` · `crowded`
-- noisy — *«Шумно» — про вуха, а ви про крісло.*
-- crowded — *«Людно» — про залу, а ви про своє місце.*
+**7 · Ви не знаєте віку шафи. Запитайте друга, чи вона стара**
+<!-- interaction_id: en:lesson-02:session-10:i07; family: scripted_repeat_compare -->
+🎙 **Is it old?**
 
+**8 · Олег напружений перед перенесенням шафи. Доповніть фразу про те, що він не розслаблений**
+<!-- interaction_id: en:lesson-02:session-10:i08; family: context_gap_grammar -->
+He ___ not relaxed. → **is** · am · are
+- am — *Після `He` потрібно `is`.*
+- are — *Про нього — `He is not`.*
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-02:session-10:i08; family: listen_choose -->
-Ціль: `cold`
-Варіанти: `cold` · `gold` · `nice`
-- gold — *«Золото». Різняться тільки першим звуком: «к» проти твердого «ґ», як у слові `ґанок`.*
-- nice — *«Приємний». Починається з «н», а `cold` — з «к».*
+**9 · Послухайте запитання про сусіда**
+<!-- interaction_id: en:lesson-02:session-10:i09; family: listen_choose -->
+🔊 *Is he kind?* → **Is he kind?** · Is he funny? · Is he old?
+- Is he funny? — *У записі останнє слово — `kind`, а в цьому варіанті — `funny`.*
+- Is he old? — *У записі останнє слово — `kind`, а в цьому варіанті — `old`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-10:i10; family: speed_match -->
+confident — впевнений у собі · relaxed — розслаблений · satisfied — задоволений результатом · impossible — неможливий
 
-**9 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-10:i09; family: speed_match -->
-Пари: `crowded` — людно · `noisy` — шумно · `cold` — холодно · `comfortable` — зручно
-Ціль: `crowded · noisy · cold · comfortable`
-
-**10 · Вставте слово — слово, що починає запитання**
-<!-- interaction_id: en:lesson-02:session-10:i10; family: context_gap_grammar -->
-Ціль: `___ it noisy?`
-Варіанти: `Is` · `Are` · `Am`
-- Are — *З `it` потрібне `is`; `are` уживають з `you` і `they`.*
-- Am — *`am` ходить із `I`, про себе. Про місце — `is it`.*
-
-
-**11 · Послухайте й складіть — «чи людно тут?»**
+**11 · Послухайте й складіть коротку фразу**
 <!-- interaction_id: en:lesson-02:session-10:i11; family: listen_build_dictation -->
-Ціль: `Is it crowded?`
-🔊 *Is it crowded?* Плитки: `Is` · `it` · `crowded` · `noisy`
-*Плитка `noisy` зайва: тут питають, чи багато людей, тому потрібне `crowded`: `Is it crowded?`*
+🔊 *We're satisfied.* Плитки: `satisfied` `We're` `He's` → **We're satisfied.**
+*(плитка `He's` зайва: тут потрібно `We're` — `We're satisfied.`)*
 
-**12 · Розрізніть звуки — яке з двох про «людно»?**
-<!-- interaction_id: en:lesson-02:session-10:i12; family: sound_contrast -->
-Варіанти: `crowded` · `cloudy`
-- cloudy — *Це «хмарно». Після «к» у `cloudy` чути «л», у `crowded` — «р».*
+**12 · Друг береться розбирати шафу. Запитайте його, чи він упевнений у собі**
+<!-- interaction_id: en:lesson-02:session-10:i12; family: phrase_builder -->
+Плитки: `confident` `you` `Are` `Is` → **Are you confident?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are you confident?`)*
 
+**13 · Сусід жартує й усіх смішить. Коротко скажіть, що він смішний**
+<!-- interaction_id: en:lesson-02:session-10:i13; family: scripted_repeat_compare -->
+🎙 **He's funny.**
 
-**13 · Вставте слово — ви зайшли з вулиці без куртки й одразу щулитесь**
-<!-- interaction_id: en:lesson-02:session-10:i13; family: context_gap_grammar -->
-Ціль: `Is it ___ ?`
-Варіанти: `cold` · `noisy` · `crowded`
-- noisy — *«Шумно» — про гучність, а ви зіщулились від температури.*
-- crowded — *«Людно» — про кількість людей, а не про холод.*
+**14 · Анна й Олег оглядають зібрану шафу. Запитайте друга, чи вони задоволені результатом**
+<!-- interaction_id: en:lesson-02:session-10:i14; family: context_gap_grammar -->
+___ they satisfied? → **Are** · Am · Is
+- Am — *З `they` потрібно `Are`.*
+- Is — *Про них запитуємо `Are they`.*
 
+**15 · Послухайте фразу про Анну**
+<!-- interaction_id: en:lesson-02:session-10:i15; family: listen_choose -->
+🔊 *She is not relaxed.* → **She is not relaxed.** · She is not confident. · She is not satisfied.
+- She is not confident. — *У записі останнє слово — `relaxed`, а в цьому варіанті — `confident`.*
+- She is not satisfied. — *У записі останнє слово — `relaxed`, а в цьому варіанті — `satisfied`.*
 
-**14 · Складіть запитання — він пересів на інший стілець і все одно совається; запитайте, чи йому зручно**
-<!-- interaction_id: en:lesson-02:session-10:i14; family: phrase_builder -->
-Ціль: `Is it comfortable?`
-Плитки: `Is` · `it` · `comfortable` · `am`
-*Плитка `am` зайва: з `it` потрібна форма `is`; `am` уживається з `I`.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-10:i16; family: speed_match -->
+old — старий · kind — добрий · funny — смішний · satisfied — задоволений результатом
 
-**15 · Вставте слово — супутник питає, як вам тут, і вас усе влаштовує**
-<!-- interaction_id: en:lesson-02:session-10:i15; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `ok` · `crowded` · `noisy`
-- crowded — *«Людно» — це опис зали, а не ваша оцінка.*
-- noisy — *«Шумно» — скарга, а ви кажете, що все нормально.*
+**17 · Друг вимірює двері й хитає головою. Ви обоє обговорюєте перенесення шафи без розбирання. Запитайте, чи це неможливо**
+<!-- interaction_id: en:lesson-02:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it impossible?**
 
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-10:i16:s01; family: scripted_repeat_compare -->
-Ціль: `Is it crowded?`
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-10:i16:s02; family: scripted_repeat_compare -->
-Ціль: `Is it noisy?`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-10:i17:s01; family: scripted_repeat_compare -->
-Ціль: `It is crowded.`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-10:i17:s02; family: scripted_repeat_compare -->
-Ціль: `It is noisy.`
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-10:i17:s03; family: scripted_repeat_compare -->
-Ціль: `It is ok.`
-
-## Для сборщика
-
-new_words:
-crowded — людно, повно людей — «людно, повно людей». Столики зайняті, біля бару стоять, між стільцями боком.
-noisy — шумно — «шумно». Місце, де доводиться підвищувати голос, щоб вас почули.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=speed_match, 10=context_gap_grammar, 11=listen_build_dictation, 12=sound_contrast, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| cold | 5 (пастка), 8, 9 (дошка), 13 | 8, 13 |
-| comfortable | 5 (пастка), 7, 9 (дошка), 14 | 7, 14 |
-| ok | 15, 17 | 15, 17 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД запитанням |
-|---|---|---|
-| Інтро 1 | Is it cold? | так — `Is it cold?` дано цілком |
-| Інтро 2 | Is it crowded? | так — `crowded` розібрано, `crowd` названо як сусіднє слово |
-| Інтро 3 | Is it noisy? | так — `noisy` розібрано, `is it` названо |
-
-**3. Дошка пар (завдання 9)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| crowded | 1 | 2 (слух), 5 (вибір) |
-| noisy | 3 | 4 (слух), 6 (складання) |
-| cold | з минулих занять | 8 (слух) |
-| comfortable | 3 (картка), 7 | 7 (вибір) |

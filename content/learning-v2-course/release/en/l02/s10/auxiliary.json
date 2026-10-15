@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-10:intro1:r2": {
+          "ru": "Это «Возможно», а пронести шкаф собранным не получится.",
+          "uk": "Це «Можливо», а пронести шафу зібраною не вийде."
+        },
+        "en:lesson-02:session-10:intro1:r3": {
+          "ru": "Обсуждается одна попытка перенести шкаф: `It's impossible`.",
+          "uk": "Обговорюється одна спроба перенести шафу: `It's impossible`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-10:intro2:r2": {
+          "ru": "Это полностью исключает возможность. Здесь нужно `not impossible`.",
+          "uk": "Це повністю виключає можливість. Тут потрібно `not impossible`."
+        },
+        "en:lesson-02:session-10:intro2:r3": {
+          "ru": "После `It` сохраняем `is`: `It is not impossible`.",
+          "uk": "Після `It` зберігаємо `is`: `It is not impossible`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-10:intro3:r2": {
+          "ru": "С `it` нужно `is`, и в вопросе оно стоит первым.",
+          "uk": "З `it` потрібно `is`, і в запитанні воно стоїть першим."
+        },
+        "en:lesson-02:session-10:intro3:r3": {
+          "ru": "После `Is` ставим `it`, потом `impossible`.",
+          "uk": "Після `Is` ставимо `it`, потім `impossible`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2227d9cbdfb5cbe5f64bbb2cc4b9ba88f232863df23fa57da033b54ed3e7504"
+}

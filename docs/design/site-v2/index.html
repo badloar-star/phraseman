@@ -1,0 +1,599 @@
+<meta charset="utf-8">
+<title>Phraseman 2.0 Site</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* зачем: владелец 2026-10-15 — редизайн главной knowly-www в стиле PhraseMan 2.0.
+   Закон стиля: docs/design/v2-app/OWNER_FEEDBACK.md + kit.css — графит/белый/серый, один шрифт Inter,
+   жёлтого/золотого нет; «стекло» = матовая карточка с мягкой дымкой ВНУТРИ и кромкой 1px;
+   только существующий текст главной, ничего не выдумывать.
+   Раскладка: левый край — крупная типографика, правый — живые экраны приложения в стиле 2.0;
+   ниже — ровная колонка 1120px, секции разделены тоном и воздухом, не рамками. */
+:root {
+  color-scheme: dark;
+  --bg: #0C0C0D; --bg-top: #161618;
+  --card: #151517; --card-2: #1A1A1C; --tile: #242426; --control: #262628; --track: #2C2C2E; --sheet: #1B1B1D;
+  --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.14);
+  --text: #FFFFFF; --sec: #A6A6A8; --muted: #8A8A8E;
+  --cta: #F2F1F6; --cta-ink: #0B0C0E;
+  --smoke: rgba(255,255,255,.075);
+  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --wrap: 1120px;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --spring: cubic-bezier(.3,1.4,.5,1);
+  /* шкала текста ≈1.25 */
+  --t-xs: 13px; --t-s: 15px; --t-m: 17px; --t-l: clamp(19px, 1.6vw, 21px);
+  --t-h2: clamp(32px, 4.4vw, 52px); --t-h1: clamp(46px, 7.4vw, 92px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: var(--t-m); line-height: 1.55;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { margin: 0; text-wrap: balance; font-weight: 800; }
+p { margin: 0; text-wrap: pretty; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
+.dim { color: var(--sec); }
+.skip { position: absolute; left: -999px; top: 8px; }
+.skip:focus { left: 16px; z-index: 50; background: var(--cta); color: var(--cta-ink); padding: 8px 14px; border-radius: 10px; }
+:focus-visible { outline: 2px solid var(--cta); outline-offset: 3px; border-radius: 8px; }
+
+/* ---------- значки ---------- */
+svg.i { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; display: block; }
+svg.i.s18 { width: 18px; height: 18px; }
+
+/* ---------- кнопки: белая пилюля как «Тренироваться с карточками →» ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px;
+  font: 700 16px/1 var(--font); cursor: pointer; border: 0; white-space: nowrap;
+  transition: transform 240ms var(--spring), background-color 160ms, opacity 160ms; }
+.btn:active { transform: scale(.97); transition-duration: 90ms; }
+.btn-primary { background: var(--cta); color: var(--cta-ink); }
+.btn-primary:hover { background: #FFFFFF; }
+.btn-ghost { background: var(--control); color: var(--text); }
+.btn-ghost:hover { background: #2E2E31; }
+.btn-sm { min-height: 40px; padding: 0 18px; font-size: 14px; }
+.btn .arr { transition: transform 240ms var(--ease); }
+.btn:hover .arr { transform: translateX(3px); }
+
+/* ---------- стекло 2.0: матовая карточка, дымка внутри, кромка 1px ---------- */
+.glass { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; isolation: isolate; }
+.glass::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(55% 75% at var(--sx, 18%) var(--sy, 0%), var(--smoke), transparent 72%); }
+.tile { width: 46px; height: 46px; border-radius: 12px; background: var(--tile); display: grid; place-items: center; flex: none; color: var(--text); }
+.ov { font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--sec); }
+
+/* ---------- шапка: почти непрозрачная капсула (альфа .92, правило стекла 2.0) ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; padding-block: 12px; }
+.top .bar { display: flex; align-items: center; gap: 24px; height: 60px; padding: 0 10px 0 20px; border-radius: 999px;
+  background: rgba(21,21,23,.92); border: 1px solid var(--line); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -.02em; }
+.brand .mark { width: 30px; height: 30px; border-radius: 9px; background: var(--cta); color: var(--cta-ink); display: grid; place-items: center; font-size: 15px; font-weight: 800; }
+.brand .tail { color: var(--sec); }
+.nav { display: flex; gap: 4px; margin-left: auto; }
+.nav a { font-size: 14px; font-weight: 500; color: var(--sec); padding: 9px 13px; border-radius: 999px; transition: color 160ms, background-color 160ms; }
+.nav a:hover { color: var(--text); background: var(--control); }
+.lang { font-size: 14px; font-weight: 600; color: var(--sec); padding: 9px 12px; border-radius: 999px; background: transparent; border: 1px solid var(--line-2); }
+
+/* ---------- первый экран ---------- */
+.hero { position: relative; padding-block: clamp(40px, 7vw, 96px) clamp(56px, 8vw, 112px); }
+.hero::before { content: ""; position: absolute; inset: -80px 0 auto; height: 720px; z-index: -1; pointer-events: none;
+  background: radial-gradient(60% 70% at 70% 10%, var(--bg-top), transparent 70%); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero h1 { font-size: var(--t-h1); line-height: .98; letter-spacing: -.04em; margin-top: 22px; }
+.hero h1 .dim { display: block; }
+.hero .lead { margin-top: 28px; font-size: var(--t-l); color: var(--sec); max-width: 30ch; line-height: 1.5; }
+.hero .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 36px; }
+.hero .fine { font-size: var(--t-s); color: var(--muted); }
+
+/* телефон */
+.phone { position: relative; width: min(100%, 380px); aspect-ratio: 380 / 780; margin-inline: auto; border-radius: 54px; padding: 10px;
+  background: #121213; box-shadow: 0 0 0 1px #2A2A2C, 0 40px 90px rgba(0,0,0,.6), 0 0 0 9px #161618 inset; }
+.screen { position: relative; height: 100%; border-radius: 45px; overflow: hidden;
+  background: radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); }
+.sb { display: flex; justify-content: space-between; align-items: center; padding: 16px 28px 0 34px; font-size: 15px; font-weight: 600; }
+.sb .sys { display: flex; gap: 6px; align-items: center; }
+.sb .bat { width: 24px; height: 12px; border-radius: 4px; border: 1.5px solid rgba(255,255,255,.95); position: relative; }
+.sb .bat::after { content: ""; position: absolute; inset: 1.5px; right: 3px; background: #fff; border-radius: 2px; }
+.home-ind { position: absolute; bottom: 8px; left: 50%; width: 120px; height: 5px; margin-left: -60px; border-radius: 3px; background: #fff; z-index: 3; }
+
+/* под шторкой — приглушённый экран «Сегодня» */
+.under { padding: 22px 18px 0; opacity: .32; filter: blur(.4px); }
+.under .row1 { display: flex; justify-content: space-between; align-items: center; }
+.under .ti { font-size: 24px; font-weight: 700; }
+.under .chips { display: flex; gap: 6px; }
+.under .chips span { font-size: 12px; font-weight: 600; padding: 7px 11px; border-radius: 999px; background: var(--control); color: var(--sec); }
+.under .ph-card { height: 112px; margin-top: 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
+
+/* шторка «Фраза дня» — как ref_15 */
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; top: 30%; background: var(--sheet); border-radius: 30px 30px 0 0;
+  border-top: 1px solid var(--line-2); padding: 10px 16px 28px; box-shadow: 0 -20px 50px rgba(0,0,0,.5);
+  animation: sheetUp 900ms var(--ease) 200ms both; }
+.sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: #3A3A3D; margin: 0 auto 16px; }
+.sheet .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; padding: 0 4px; }
+.sheet .phrase { font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -.02em; margin-top: 6px; }
+.sheet .acts { display: flex; gap: 8px; }
+.rb { width: 40px; height: 40px; border-radius: 50%; background: var(--control); border: 1px solid var(--line); display: grid; place-items: center; color: var(--text);
+  cursor: pointer; transition: transform 240ms var(--spring), background-color 160ms; padding: 0; }
+.rb:active { transform: scale(.9); transition-duration: 90ms; }
+.rb.on { background: var(--cta); color: var(--cta-ink); }
+.facts { display: grid; gap: 10px; margin-top: 18px; }
+.fact { background: #202022; border: 1px solid var(--line); border-radius: 16px; padding: 13px 15px; }
+.fact .ov { font-size: 10.5px; letter-spacing: .2em; }
+.fact p { font-size: 14.5px; line-height: 1.45; margin-top: 6px; }
+.wave { display: flex; align-items: center; gap: 3px; height: 18px; margin-top: 10px; }
+.wave i { width: 3px; height: 4px; border-radius: 2px; background: var(--sec); transition: height 200ms var(--ease); }
+.playing .wave i { background: var(--text); animation: wv 900ms var(--ease) infinite alternate; animation-delay: calc(var(--k) * -110ms); }
+
+/* ---------- секции ---------- */
+section.block { padding-block: clamp(64px, 9vw, 128px); }
+.block-head { display: grid; gap: 18px; max-width: 760px; }
+.block-head h2, .h2 { font-size: var(--t-h2); line-height: 1.04; letter-spacing: -.035em; }
+.block-head p { font-size: var(--t-l); color: var(--sec); max-width: 52ch; }
+.h2 .dim { display: block; }
+
+/* метод: последовательность из трёх шагов — номера здесь смысловые */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 56px; }
+.step { padding: 26px 26px 30px; display: grid; gap: 14px; align-content: start; min-height: 300px; }
+.step:nth-child(1) { --sx: 12%; --sy: 0%; }
+.step:nth-child(2) { --sx: 88%; --sy: 10%; }
+.step:nth-child(3) { --sx: 40%; --sy: 100%; }
+.step .n { display: flex; align-items: center; justify-content: space-between; }
+.step .n span { font-size: 13px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.step h3 { font-size: 24px; line-height: 1.15; letter-spacing: -.02em; margin-top: 40px; font-weight: 700; }
+.step p { color: var(--sec); font-size: var(--t-s); line-height: 1.55; }
+.step .track { height: 4px; border-radius: 2px; background: var(--track); position: relative; margin-top: 6px; }
+.step .track b { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--text); width: var(--w); }
+
+/* продукт */
+.product .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.product .copy { display: grid; gap: 22px; }
+.product .copy p { color: var(--sec); font-size: var(--t-l); max-width: 40ch; }
+.product .copy .btn { justify-self: start; margin-top: 8px; }
+.hub { padding: 20px 16px 0; }
+.hub .ti { font-size: 32px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin-top: 18px; }
+.hub .su { font-size: 15px; color: var(--sec); margin-top: 6px; }
+.hub .list { display: grid; gap: 9px; margin-top: 22px; }
+.hrow { display: flex; align-items: center; gap: 14px; padding: 11px 14px; min-height: 66px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+.hrow .tile { width: 42px; height: 42px; border-radius: 10px; }
+.hrow .tx { flex: 1; min-width: 0; }
+.hrow .tt { font-size: 16px; font-weight: 700; line-height: 1.25; }
+.hrow .ch { color: var(--sec); }
+.hub .white { margin-top: 18px; width: 100%; min-height: 50px; font-size: 15px; }
+.hub .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 18px; letter-spacing: .02em; }
+
+/* тест уровня */
+.test-card { --sx: 85%; --sy: 0%; padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: end; border-radius: 28px; }
+.test-card .side { display: grid; gap: 22px; }
+.test-card .side p { color: var(--sec); font-size: var(--t-l); max-width: 38ch; }
+.cefr { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-top: 34px; }
+.cefr span { display: grid; place-items: center; height: 44px; border-radius: 12px; background: var(--control); font-weight: 700; font-size: 15px; color: var(--sec); font-variant-numeric: tabular-nums;
+  transition: background-color 240ms var(--ease), color 240ms var(--ease), transform 240ms var(--spring); }
+.cefr span.on { background: var(--cta); color: var(--cta-ink); transform: translateY(-3px); }
+.cefr-note { font-size: var(--t-xs); color: var(--muted); margin-top: 12px; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* отзывы */
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 56px; }
+.quote { padding: 30px 30px 26px; display: grid; gap: 26px; align-content: space-between; }
+.quote:nth-child(1) { --sx: 0%; --sy: 0%; }
+.quote:nth-child(2) { --sx: 100%; --sy: 100%; }
+.quote p { font-size: clamp(19px, 1.9vw, 23px); line-height: 1.45; letter-spacing: -.01em; font-weight: 500; }
+.quote cite { font-style: normal; display: flex; align-items: center; gap: 12px; font-size: var(--t-s); color: var(--sec); }
+.quote .av { width: 36px; height: 36px; border-radius: 50%; background: var(--tile); display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--text); }
+.quote .stars { margin-left: auto; letter-spacing: 2px; color: var(--text); font-size: 13px; }
+.more-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 26px; color: var(--sec); font-size: var(--t-s); font-weight: 600; transition: color 160ms; }
+.more-link:hover { color: var(--text); }
+
+/* подарок */
+.gift .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.gift .copy { display: grid; gap: 22px; }
+.gift .copy p { color: var(--sec); font-size: var(--t-l); }
+.gift .copy .btn { justify-self: start; margin-top: 8px; }
+.cert { --sx: 30%; --sy: 0%; aspect-ratio: 1.42; max-width: 100%; border-radius: 26px; padding: clamp(22px, 3vw, 34px); display: grid; align-content: space-between;
+  background: linear-gradient(160deg, #1D1D20, #121214); border: 1px solid var(--line-2); transform: rotate(-2.2deg);
+  box-shadow: 0 40px 80px rgba(0,0,0,.55); transition: transform 600ms var(--ease); }
+.gift .wrap:hover .cert { transform: rotate(0deg) translateY(-4px); }
+.cert .top-r { display: flex; justify-content: space-between; align-items: flex-start; }
+.cert .big { font-size: clamp(26px, 3.4vw, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.cert .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.cert .opts span { font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 999px; background: var(--control); color: var(--sec); }
+.cert .opts span.on { background: var(--cta); color: var(--cta-ink); }
+.cert .code { font-size: 13px; color: var(--muted); letter-spacing: .18em; font-variant-numeric: tabular-nums; }
+
+/* журнал */
+.journal .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.links { display: grid; }
+.links a { display: flex; align-items: center; gap: 18px; padding: 22px 4px; border-bottom: 1px solid var(--line); font-size: var(--t-l); font-weight: 600; letter-spacing: -.01em; transition: padding-left 300ms var(--ease), color 160ms; }
+.links a:first-child { border-top: 1px solid var(--line); }
+.links a .tile { width: 40px; height: 40px; border-radius: 10px; color: var(--sec); }
+.links a span.t { flex: 1; }
+.links a .ch { color: var(--sec); transition: transform 300ms var(--ease); }
+.links a:hover { padding-left: 10px; }
+.links a:hover .ch { transform: translate(2px, -2px); color: var(--text); }
+
+/* вопросы — строки без рамок с разделителями, как шторка режимов */
+.faq-list { margin-top: 48px; padding: 6px 0; border-radius: 24px; }
+.faq-list details { border-bottom: 1px solid var(--line); margin: 0 24px; }
+.faq-list details:last-child { border-bottom: 0; }
+.faq-list summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; cursor: pointer; font-weight: 700; font-size: var(--t-m); }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary .pm { width: 32px; height: 32px; border-radius: 50%; background: var(--control); display: grid; place-items: center; flex: none; transition: transform 300ms var(--ease), background-color 160ms; }
+.faq-list details[open] summary .pm { transform: rotate(45deg); background: var(--track); }
+.faq-list details p { color: var(--sec); font-size: var(--t-s); line-height: 1.6; padding: 0 56px 22px 0; max-width: 70ch; }
+.faq-list details[open] p { animation: fadeDown 360ms var(--ease); }
+
+/* финал */
+.close { text-align: center; }
+.close .glass { --sx: 50%; --sy: 0%; border-radius: 32px; padding: clamp(48px, 8vw, 104px) 24px; display: grid; justify-items: center; gap: 30px; }
+.close .h2 .dim { display: block; }
+
+/* подвал */
+footer { padding-block: 64px 48px; border-top: 1px solid var(--line); margin-top: clamp(48px, 8vw, 96px); }
+.foot-top { display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); gap: 32px; }
+.foot-top p { color: var(--sec); font-size: var(--t-s); margin-top: 14px; }
+.foot-col { display: grid; gap: 10px; align-content: start; font-size: var(--t-s); }
+.foot-col b { font-size: var(--t-xs); color: var(--muted); font-weight: 600; letter-spacing: .04em; margin-bottom: 4px; }
+.foot-col a { color: var(--sec); transition: color 160ms; }
+.foot-col a:hover { color: var(--text); }
+.foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 24px; margin-top: 56px; font-size: var(--t-xs); color: var(--muted); }
+.foot-bottom div { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.foot-bottom a:hover { color: var(--text); }
+
+/* ---------- движение ---------- */
+@keyframes rise { from { transform: translateY(14px); } to { transform: none; } }
+@keyframes sheetUp { from { transform: translateY(42%); } to { transform: none; } }
+@keyframes wv { from { height: 4px; } to { height: var(--h); } }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.hero .rise { animation: rise 900ms var(--ease) both; }
+.hero .rise:nth-child(2) { animation-delay: 80ms; }
+.hero .rise:nth-child(3) { animation-delay: 160ms; }
+.hero .rise:nth-child(4) { animation-delay: 240ms; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 1ms !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- адаптив ---------- */
+@media (max-width: 960px) {
+  .nav { display: none; }
+  .top .bar { justify-content: space-between; }
+  .lang { margin-left: auto; }
+  .hero .wrap, .product .wrap, .gift .wrap, .journal .wrap, .test-card { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .step { min-height: 0; }
+  .step h3 { margin-top: 18px; }
+  .quotes { grid-template-columns: minmax(0, 1fr); }
+  .foot-top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foot-top > :first-child { grid-column: 1 / -1; }
+  .product .stage { order: 2; }
+}
+@media (max-width: 520px) {
+  .top .bar { height: 54px; padding: 0 7px 0 14px; gap: 10px; }
+  .top .btn-sm { padding: 0 14px; }
+  .lang { display: none; }
+  .hero h1 { letter-spacing: -.035em; }
+  .cefr span { height: 38px; font-size: 13px; }
+  .faq-list details { margin: 0 18px; }
+  .faq-list details p { padding-right: 0; }
+  .cert { transform: none; }
+  .foot-top { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+
+<a class="skip" href="#content">К содержанию</a>
+
+<!-- общий набор значков -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
+  <symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 3-2 4-3 5.5S14 18 12.5 19.5 9 20 8.5 18"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.2-1 1.8-1.5 2.3"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+  <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="7" width="13" height="14" rx="2.5"/><path d="M8 3h10.5A2.5 2.5 0 0 1 21 5.5V16"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 10"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 24 24"><path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-4-6 4V4.5a1 1 0 0 1 1-1z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 13.5L3 11l1.5-1.5 7.5 1 4.5-4.5a2 2 0 0 1 3 3L15 13.5l1 7.5-1.5 1.5-2.5-7.5-3 3V21l-1.5 1-1-3.5L3 17.5 4 16h3.5z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="https://knowlyapps.com/" aria-label="Phraseman — главная"><span>phrase<span class="tail">man</span></span></a>
+      <nav class="nav" aria-label="Главная навигация">
+        <a href="https://knowlyapps.com/app/">Приложение</a>
+        <a href="https://knowlyapps.com/english-level-test/">Тест уровня</a>
+        <a href="https://knowlyapps.com/guides/">Журнал</a>
+        <a href="https://knowlyapps.com/links/">Каналы</a>
+        <a href="https://knowlyapps.com/gift/">Подарить</a>
+        <a href="https://knowlyapps.com/contact/">Поддержка</a>
+      </nav>
+      <a class="lang" href="https://knowlyapps.com/" aria-label="Язык">RU</a>
+      <a class="btn btn-primary btn-sm" href="https://knowlyapps.com/download/">Начать бесплатно</a>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+
+<!-- 1. Первый экран -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="ov rise">Phraseman · язык для жизни</span>
+      <h1 class="rise">Ваш голос.<span class="dim">На другом языке.</span></h1>
+      <p class="lead rise">Живые фразы. Практика произношения. Язык, который становится вашим.</p>
+      <div class="cta-row rise">
+        <a class="btn btn-primary" href="https://knowlyapps.com/download/">Начать бесплатно <svg class="i s18 arr"><use href="#i-arrow"/></svg></a>
+        <span class="fine">iPhone и Android</span>
+      </div>
+    </div>
+
+    <div class="phone" aria-label="Экран приложения: фраза дня Pitch in">
+      <div class="screen">
+        <div class="sb" aria-hidden="true"><span>12:53</span><span class="sys"><svg class="i s18" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r=".8"/></svg><span class="bat"></span></span></div>
+        <div class="under" aria-hidden="true">
+          <div class="row1"><span class="ti">Сегодня</span><span class="chips"><span>Видео</span><span>Ошибки</span></span></div>
+          <div class="ph-card"></div>
+        </div>
+        <div class="sheet" id="sheet">
+          <div class="grab"></div>
+          <div class="head">
+            <div>
+              <div class="ov">Фраза дня</div>
+              <div class="phrase">Pitch in</div>
+            </div>
+            <div class="acts">
+              <button class="rb" type="button" id="bm" aria-label="Сохранить фразу" aria-pressed="false"><svg class="i s18"><use href="#i-mark"/></svg></button>
+              <button class="rb" type="button" id="say" aria-label="Послушать фразу"><svg class="i s18"><use href="#i-sound"/></svg></button>
+            </div>
+          </div>
+          <div class="wave" aria-hidden="true" id="wave"></div>
+          <div class="facts">
+            <div class="fact"><div class="ov">Дословно</div><p>Вброситься.</p></div>
+            <div class="fact"><div class="ov">Что значит</div><p>Сброситься деньгами или объединить усилия для общего дела.</p></div>
+            <div class="fact"><div class="ov">Пример</div><p>Собираете на подарок другу или решили вместе убрать парк? Пора pitch in.</p></div>
+          </div>
+        </div>
+        <div class="home-ind" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Метод -->
+<section class="block" id="method">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="ov">Метод Phraseman</span>
+      <h2>От знакомых слов —<span class="dim" style="display:block">к собственной речи.</span></h2>
+      <p>Фраза целиком. Звучание. Практика. И повторение, которое помогает сохранить выученное.</p>
+    </div>
+    <div class="steps">
+      <article class="glass step">
+        <div class="n"><span class="tile"><svg class="i"><use href="#i-ear"/></svg></span><span>01 / Понимать</span></div>
+        <h3>Учите фразу. Сразу со смыслом.</h3>
+        <p>Готовые выражения из реальных ситуаций. Слушайте озвучку и связывайте слова с тем, что хотите сказать.</p>
+        <div class="track" aria-hidden="true"><b style="--w:33%"></b></div>
+      </article>
+      <article class="glass step">
+        <div class="n"><span class="tile"><svg class="i"><use href="#i-mic"/></svg></span><span>02 / Говорить</span></div>
+        <h3>Дайте словам свой голос.</h3>
+        <p>Тренируйте произношение, повторяйте вслух и переходите к диалогам. От узнавания фразы — к её использованию.</p>
+        <div class="track" aria-hidden="true"><b style="--w:66%"></b></div>
+      </article>
+      <article class="glass step">
+        <div class="n"><span class="tile"><svg class="i"><use href="#i-cards"/></svg></span><span>03 / Запоминать</span></div>
+        <h3>Вспоминайте. Не начинайте заново.</h3>
+        <p>Карточки и интервальные повторения помогают возвращаться к пройденному и удерживать фразы в памяти.</p>
+        <div class="track" aria-hidden="true"><b style="--w:100%"></b></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Продукт -->
+<section class="block product">
+  <div class="wrap">
+    <div class="copy">
+      <h2 class="h2">Большой путь.<span class="dim">Вашим шагом.</span></h2>
+      <p>Уроки, карточки и ежедневные задания — всё в одном приложении.</p>
+      <p>Выбирайте свой ритм. И продолжайте с того места, где остановились.</p>
+      <a class="btn btn-ghost" href="https://knowlyapps.com/app/">Посмотреть приложение <svg class="i s18 arr"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="stage">
+      <div class="phone" aria-label="Экран приложения: уроки, карточки и ежедневные задания">
+        <div class="screen">
+          <div class="sb" aria-hidden="true"><span>9:41</span><span class="sys"><span class="bat"></span></span></div>
+          <div class="hub">
+            <div class="ti">Сегодня</div>
+            <div class="list">
+              <div class="hrow"><span class="tile"><svg class="i s18"><use href="#i-book"/></svg></span><span class="tx"><span class="tt">Уроки</span></span><svg class="i s18 ch"><use href="#i-chev"/></svg></div>
+              <div class="hrow"><span class="tile"><svg class="i s18"><use href="#i-cards"/></svg></span><span class="tx"><span class="tt">Карточки</span></span><svg class="i s18 ch"><use href="#i-chev"/></svg></div>
+              <div class="hrow"><span class="tile"><svg class="i s18"><use href="#i-check"/></svg></span><span class="tx"><span class="tt">Ежедневные задания</span></span><svg class="i s18 ch"><use href="#i-chev"/></svg></div>
+              <div class="hrow"><span class="tile"><svg class="i s18"><use href="#i-chat"/></svg></span><span class="tx"><span class="tt">Диалоги</span></span><svg class="i s18 ch"><use href="#i-chev"/></svg></div>
+            </div>
+            <span class="btn btn-primary white" aria-hidden="true">Продолжить <svg class="i s18"><use href="#i-arrow"/></svg></span>
+            <div class="foot">PhraseMan 2.0</div>
+          </div>
+          <div class="home-ind" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Тест уровня -->
+<section class="block">
+  <div class="wrap">
+    <div class="glass test-card">
+      <div>
+        <h2 class="h2">У каждого —<span class="dim">своя точка старта.</span></h2>
+        <div class="cefr" id="cefr" aria-label="Шкала уровней CEFR">
+          <span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span>
+        </div>
+        <p class="cefr-note">12–20 адаптивных вопросов · ориентировочный уровень по шкале CEFR</p>
+      </div>
+      <div class="side">
+        <p>Уже учили язык? Узнайте свой ориентировочный уровень и выберите, с чего продолжить.</p>
+        <div class="btn-row"><a class="btn btn-primary" href="https://knowlyapps.com/english-level-test/">Определить уровень <svg class="i s18 arr"><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Отзывы -->
+<section class="block" id="reviews">
+  <div class="wrap">
+    <h2 class="h2">Когда фразы<span class="dim">становятся твоими.</span></h2>
+    <div class="quotes">
+      <blockquote class="glass quote" style="margin:0">
+        <p>«Учишь не изолированные слова, а целые фразы, которые реально используют носители».</p>
+        <cite><span class="av" aria-hidden="true">Z</span>Zinnur Yusupov · Google Play</cite>
+      </blockquote>
+      <blockquote class="glass quote" style="margin:0">
+        <p>«Быстро освежает в памяти забытое со школьных лет. Объяснения понятные, лаконичные, много практики».</p>
+        <cite><span class="av" aria-hidden="true">S</span>Sveta Melnikova · Google Play</cite>
+      </blockquote>
+    </div>
+    <a class="more-link" href="https://play.google.com/store/apps/details?id=app.phraseman">Читать отзывы <svg class="i s18"><use href="#i-out"/></svg></a>
+  </div>
+</section>
+
+<!-- 6. Подарок -->
+<section class="block gift">
+  <div class="wrap">
+    <div class="copy">
+      <h2 class="h2">Подарок, который<span class="dim">помогает заговорить.</span></h2>
+      <p>Подарите язык. А вместе с ним — новые возможности.</p>
+      <a class="btn btn-primary" href="https://knowlyapps.com/gift/">Выбрать подарок <svg class="i s18 arr"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="glass cert" aria-label="Подарочный сертификат Phraseman">
+      <div class="top-r"><span class="ov">Сертификат</span><span class="brand" style="font-size:15px"><span>phrase<span class="tail">man</span></span></span></div>
+      <div class="big">Чуть больше языка.<br><span class="dim">Чуть больше свободы.</span></div>
+      <div>
+        <div class="opts" id="opts"><span>Plus · месяц</span><span class="on">Plus · год</span><span>Pro · навсегда</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Журнал -->
+<section class="block journal">
+  <div class="wrap">
+    <div class="block-head">
+      <h2>Понятно о языке.<span class="dim" style="display:block">Без лишней теории.</span></h2>
+      <a class="more-link" href="https://knowlyapps.com/guides/" style="margin-top:0">Все материалы <svg class="i s18"><use href="#i-out"/></svg></a>
+    </div>
+    <div class="links">
+      <a href="https://knowlyapps.com/guides/speaking-barrier/"><span class="tile"><svg class="i s18"><use href="#i-chat"/></svg></span><span class="t">Понимаю, но не могу ответить</span><svg class="i s18 ch"><use href="#i-out"/></svg></a>
+      <a href="https://knowlyapps.com/guides/english-15-minutes-a-day/"><span class="tile"><svg class="i s18"><use href="#i-clock"/></svg></span><span class="t">Место для языка каждый день</span><svg class="i s18 ch"><use href="#i-out"/></svg></a>
+      <a href="https://knowlyapps.com/guides/english-phrases-for-travel/"><span class="tile"><svg class="i s18"><use href="#i-plane"/></svg></span><span class="t">Разговоры, с которых начинается поездка</span><svg class="i s18 ch"><use href="#i-out"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Вопросы -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <h2 class="h2">О главном —<span class="dim">открыто.</span></h2>
+    <div class="glass faq-list" style="--sx:90%;--sy:0%">
+      <details><summary>Можно начать с нуля?<span class="pm"><svg class="i s18"><use href="#i-plus"/></svg></span></summary><p>Да. Начинайте с базовых фраз и двигайтесь в своём темпе. Если уже учили язык, тест поможет сориентироваться, с чего продолжить.</p></details>
+      <details><summary>Сколько времени нужно на занятие?<span class="pm"><svg class="i s18"><use href="#i-plus"/></svg></span></summary><p>Можно выделить 15 минут на короткую практику. Это удобный ритм, а не обещание определённого результата: он зависит от вашего уровня, регулярности и практики за пределами приложения.</p></details>
+      <details><summary>Что можно попробовать бесплатно?<span class="pm"><svg class="i s18"><use href="#i-plus"/></svg></span></summary><p>Начните со знакомства с приложением и доступных бесплатных заданий. Состав Plus и Pro и актуальные условия смотрите в приложении перед оформлением.</p></details>
+      <details><summary>Как заниматься, если стесняюсь говорить?<span class="pm"><svg class="i s18"><use href="#i-plus"/></svg></span></summary><p>Начните с прослушивания и повторения знакомых фраз в комфортной обстановке. Затем пробуйте вспомнить фразу самостоятельно и использовать её в настоящем разговоре.</p></details>
+      <details><summary>Где посмотреть условия и способы оплаты?<span class="pm"><svg class="i s18"><use href="#i-plus"/></svg></span></summary><p>На странице Plus и Pro собраны переходы к действующим предложениям. Для пользователей из России есть отдельная инструкция.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Финал -->
+<section class="block close">
+  <div class="wrap">
+    <div class="glass">
+      <h2 class="h2">Говорите увереннее.<span class="dim">В знакомых ситуациях.</span></h2>
+      <a class="btn btn-primary" href="https://knowlyapps.com/download/">Начать бесплатно <svg class="i s18 arr"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="https://knowlyapps.com/"><span>phrase<span class="tail">man</span></span></a>
+        <p>Чуть больше языка.<br>Чуть больше свободы.</p>
+      </div>
+      <div class="foot-col"><b>Практиковаться</b><a href="https://knowlyapps.com/app/">О приложении</a><a href="https://knowlyapps.com/download/">Скачать Phraseman</a><a href="https://knowlyapps.com/english-level-test/">Определить уровень</a></div>
+      <div class="foot-col"><b>Открывать больше</b><a href="https://knowlyapps.com/guides/">Гайды и истории</a><a href="https://knowlyapps.com/premium/">Plus и Pro</a><a href="https://knowlyapps.com/gift/">Подарить доступ</a><a href="https://knowlyapps.com/russia/">Оплата в России</a></div>
+      <div class="foot-col"><b>Мы рядом</b><a href="https://knowlyapps.com/contact/">Поддержка</a><a href="https://knowlyapps.com/faq/">Частые вопросы</a><a href="#reviews">Отзывы</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Knowly · Phraseman</span>
+      <div><a href="https://knowlyapps.com/legal/privacy/">Конфиденциальность</a><a href="https://knowlyapps.com/legal/terms/">Условия</a><a href="https://knowlyapps.com/legal/data-deletion/">Удаление данных</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // волна звука под фразой
+  var wave = document.getElementById('wave');
+  var hs = [10, 16, 12, 18, 9, 15, 18, 11, 14, 8, 16, 12, 17, 10, 13];
+  hs.forEach(function (h, k) {
+    var i = document.createElement('i');
+    i.style.setProperty('--h', h + 'px'); i.style.setProperty('--k', k);
+    wave.appendChild(i);
+  });
+
+  // зачем: кнопка звука реально озвучивает фразу — «показывай продукт, не рассказывай» (PRODUCT.md)
+  var sheet = document.getElementById('sheet');
+  var say = document.getElementById('say');
+  var stopTimer = null;
+  function stopWave() { sheet.classList.remove('playing'); say.classList.remove('on'); }
+  say.addEventListener('click', function () {
+    sheet.classList.add('playing'); say.classList.add('on');
+    clearTimeout(stopTimer);
+    var spoke = false;
+    try {
+      if ('speechSynthesis' in window) {
+        var u = new SpeechSynthesisUtterance('Pitch in');
+        u.lang = 'en-US'; u.rate = .9;
+        u.onend = function () { stopTimer = setTimeout(stopWave, 200); };
+        window.speechSynthesis.cancel(); window.speechSynthesis.speak(u); spoke = true;
+      }
+    } catch (e) { console.warn('[SITE-V2] озвучка недоступна:', e && e.message); }
+    // страховка: волна гаснет, даже если синтез речи молча не сработал
+    stopTimer = setTimeout(stopWave, spoke ? 2600 : 1400);
+  });
+
+  // закладка: мгновенный локальный отклик
+  var bm = document.getElementById('bm');
+  bm.addEventListener('click', function () {
+    var on = bm.getAttribute('aria-pressed') !== 'true';
+    bm.setAttribute('aria-pressed', String(on)); bm.classList.toggle('on', on);
+  });
+
+  // шкала CEFR: тихо «пробегает» по уровням, показывая, что тест ставит точку на шкале
+  var lv = document.querySelectorAll('#cefr span');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var idx = 3; lv[idx].classList.add('on');
+  if (!reduce) {
+    setInterval(function () {
+      if (document.hidden) return;
+      lv[idx].classList.remove('on');
+      idx = (idx + 1) % lv.length;
+      lv[idx].classList.add('on');
+    }, 1800);
+  }
+})();
+</script>

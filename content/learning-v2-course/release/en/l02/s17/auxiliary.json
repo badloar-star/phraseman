@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-17:intro1:r2": {
+          "ru": "Вопрос к вам. О себе отвечайте `I am`.",
+          "uk": "Запитання до вас. Про себе відповідайте `I am`."
+        },
+        "en:lesson-02:session-17:intro1:r3": {
+          "ru": "В таком коротком ответе нельзя заканчивать на `I'm`: нужно `I am`.",
+          "uk": "У такій короткій відповіді не можна закінчувати на `I'm`: потрібно `I am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-17:intro2:r2": {
+          "ru": "Между `she` и `not` нужно `is`.",
+          "uk": "Між `she` і `not` потрібно `is`."
+        },
+        "en:lesson-02:session-17:intro2:r3": {
+          "ru": "В ответе порядок `she is not`, а не `is she not`.",
+          "uk": "У відповіді порядок `she is not`, а не `is she not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-17:intro3:r2": {
+          "ru": "С `they` нужно `are`.",
+          "uk": "З `they` потрібно `are`."
+        },
+        "en:lesson-02:session-17:intro3:r3": {
+          "ru": "Короткий ответ заканчивается полной формой `they are`, не `they're`.",
+          "uk": "Коротка відповідь закінчується повною формою `they are`, не `they're`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "374af9173b89fc8b6ced516b05aa52b12e2e2c09fba7ee6c5b4db358d91f347b"
+}

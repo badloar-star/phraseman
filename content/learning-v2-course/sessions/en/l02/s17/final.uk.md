@@ -1,231 +1,138 @@
-# Англійська · Урок 2 · Заняття 17 — «Where is…»
+# Англійська · Урок 2 · Заняття 17 — Так, усе добре
 
-**Сцена заняття.** Вихід із метро в чужому місті. Вказівника немає, усі йдуть повз, і лишається питати перехожих, де що.
-**Як сказати:** `Where is` + місце
-**Нові слова:** station, street
-**Повертаються:** lost, crowded, noisy, cold
+**Ситуація.** Ви прийшли до друзів після довгої дороги. Господар запитує про ваше самопочуття й допомагає влаштуватися.
+
+**Що ви опануєте:** коротко відповісти так або ні, не повторюючи опис із запитання
+**Нові слова:** well
 
 ---
 
 ## Інтро 1
 
-### `Where is` — «де знаходиться»
+### Як ви почуваєтеся
 
-`where` — «де». З нього починається будь-яке питання про місце, і одразу за ним стає `is`: `Where is the station?`
+`well` тут — «той, хто добре почувається». `I am well` — «Я добре почуваюся». На `Are you well?` можна коротко відповісти `Yes, I am`. Запитують про вас, тому ви відповідаєте про себе: `I`, не `you`. Дорожня сумка має втомлений вигляд, але запитання все-таки до вас.
 
-Викинути `is` не вийде: `Where the station?` — це вже не питання, а набір слів. Перехожий зрозуміє, але перепитає.
+**Господар запитує: `Are you well?` Ви добре почуваєтеся. Дайте коротку відповідь «так» з `I am`.**
 
-`station` — «вокзал, станція».
-
-**Ви вийшли з метро і не розумієте, куди йти. Спитайте перехожого, де вокзал.**
-
-- ✅ **Where is the station?**
-- ❌ Where the station? — *Зникло `is`. Воно стає одразу за `where`: `Where is the station?`*
-- ❌ Where station is? — *`is` поїхало в кінець. Його місце — одразу після `where`, до самого місця.*
+- ✅ **Yes, I am.**
+- ❌ Yes, you are. — *Запитання до вас. Про себе відповідайте `I am`.*
+- ❌ Yes, I'm. — *У такій короткій відповіді не можна закінчувати на `I'm`: потрібно `I am`.*
 
 ---
 
 ## Інтро 2
 
-### `the` перед місцем
+### Ні — після is додамо not
 
-`street` — «вулиця».
+Анні недобре. На запитання `Is she well?` можна відповісти `No, she is not`. Слово `well` уже прозвучало в запитанні, тому його можна не повторювати. У відповіді спочатку `she`, потім `is`, далі `not`.
 
-Перед місцем ставлять маленьке `the`: `Where is the street?` Ви питаєте не про вулиці взагалі, а про ту одну, яку шукаєте, — `the` це й показує. Перехожий одразу розуміє, що перелічувати весь район не треба.
+**Анна каже, що погано почувається. Господар запитує: `Is she well?` Дайте коротку відповідь «ні», не повторюючи `well`.**
 
-**Вам назвали адресу, але вулицю ви не знайшли. Спитайте, де вона.**
-
-- ✅ **Where is the street?**
-- ❌ Where is street? — *Загубилося `the`. Про ту саму вулицю, яку ви шукаєте, кажуть `the street`.*
-- ❌ Where the street? — *Зникло `is`. `the` його не замінює: спершу `Where is`, потім місце.*
+- ✅ **No, she is not.**
+- ❌ No, she not. — *Між `she` і `not` потрібно `is`.*
+- ❌ No, is she not. — *У відповіді порядок `she is not`, а не `is she not`.*
 
 ---
 
 ## Інтро 3
 
-### `lost` — заблукав
+### Коротко, але з потрібною формою
 
-`lost` — «заблукав, загубився». Про людину, яка не розуміє, де вона стоїть.
+`Is he well?` — `Yes, he is`; `Are they well?` — `Yes, they are`. Для себе: `Yes, I am`. Для «ні» зберігаємо форму й додаємо `not`: `No, they are not`. Саме по собі `Yes` теж допустиме; тут тренуємо відповіді з `am`, `is`, `are`.
 
-Кажуть це про себе так само, як і все інше про себе: `I am lost`. Слово `am` на місці, і без нього фраза не збирається.
+**Анна й Олег обоє добре почуваються. Господар запитує: `Are they well?` Дайте коротку відповідь «так» з `they are`.**
 
-Про вулицю чи вокзал так зазвичай не скажеш: вони стоять там, де стояли. `lost` — про того, хто їх шукає.
-
-**Ви стоїте на перехресті й геть не розумієте, куди йти. Скажіть це про себе.**
-
-- ✅ **I am lost.**
-- ❌ I lost. — *Зникло `am`. Між `I` і словом про себе воно стоїть: `I am lost`.*
-- ❌ I am lost? — *Це питання, а ви повідомляєте про себе. Тут потрібна крапка, а не знак питання.*
+- ✅ **Yes, they are.**
+- ❌ Yes, they is. — *З `they` потрібно `are`.*
+- ❌ Yes, they're. — *Коротка відповідь закінчується повною формою `they are`, не `they're`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — station**
-<!-- interaction_id: en:lesson-02:session-17:i01; family: listen_choose -->
-Ціль: `station`
+**1 · Господар запитує: «Are you well?» Ви добре почуваєтеся. Складіть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-17:i01; family: phrase_builder -->
+Плитки: `am` `I` `Yes,` `No,` → **Yes, I am.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, I am.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте фразу про Анну**
 <!-- interaction_id: en:lesson-02:session-17:i02; family: listen_choose -->
-Ціль: `station`
-Варіанти: `station` · `stand` · `nation`
-- stand — *Це «стояти». Коротше: у `station` два склади, у `stand` один.*
-- nation — *«Нація». На початку `station` два приголосні поспіль — `st-`, язик спершу впирається в піднебіння. У `nation` одразу `n-`, звук іде в ніс.*
+🔊 *She is well.* → **She is well.** · She is safe. · She is right.
+- She is safe. — *У записі останнє слово — `well`, а в цьому варіанті — `safe`.*
+- She is right. — *У записі останнє слово — `well`, а в цьому варіанті — `right`.*
 
+**3 · Олег добре почувається. На «Is he well?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-17:i03; family: context_gap_grammar -->
+Yes, he ___. → **is** · am · are
+- am — *З `he` потрібно `is`.*
+- are — *Коротка відповідь: `Yes, he is`.*
 
-**3 · Картка слова — street**
-<!-- interaction_id: en:lesson-02:session-17:i03; family: listen_choose -->
-Ціль: `street`
+**4 · З’єднайте значення слів про людей**
+<!-- interaction_id: en:lesson-02:session-17:i04; family: speed_match -->
+well — той, хто добре почувається · welcome — бажаний гість · safe — у безпеці · right — правий, той, хто не помиляється
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-17:i04; family: listen_choose -->
-Ціль: `street`
-Варіанти: `street` · `treat` · `sweet`
-- treat — *«Частування». Починається на «тр», а `street` — на «стр».*
-- sweet — *«Солодкий». Після «с» у `street` іде «тр», а в `sweet` — «в».*
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-17:i05; family: listen_build_dictation -->
+🔊 *No, she is not.* Плитки: `not` `is` `she` `No,` `Yes,` → **No, she is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, she is not.`)*
 
+**6 · Перенести зустріч не можна. На «Is it possible?» дайте коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-17:i06; family: phrase_builder -->
+Плитки: `not` `is` `it` `No,` `Yes,` → **No, it is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, it is not.`)*
 
-**5 · Складіть фразу — спитайте про вокзал**
-<!-- interaction_id: en:lesson-02:session-17:i05; family: phrase_builder -->
-Ціль: `Where is the station?`
+**7 · Друг запитує про себе: «Am I welcome?» Йому тут раді. Дайте йому коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-17:i07; family: scripted_repeat_compare -->
+🎙 **Yes, you are.**
 
-**6 · Вставте слово — ви шукаєте вулицю з адреси**
-<!-- interaction_id: en:lesson-02:session-17:i06; family: context_gap_grammar -->
-Ціль: `Where ___ the street?`
-Варіанти: `is` · `are` · `am`
-- are — *`are` іде з `you` і `they`. Про одну вулицю — `is`.*
-- am — *`am` буває тільки поруч з `I`. Про вулицю — `is`.*
+**8 · Ви помилилися з адресою. На «Are you right?» доповніть коротку відповідь «ні» про себе**
+<!-- interaction_id: en:lesson-02:session-17:i08; family: context_gap_grammar -->
+No, I ___ not. → **am** · is · are
+- is — *Про себе — `I am not`.*
+- are — *З `I` потрібно `am`, навіть якщо в запитанні було `Are you`.*
 
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-17:i09; family: listen_choose -->
+🔊 *Is it possible?* → **Is it possible?** · Is it safe? · Is it right?
+- Is it safe? — *У записі останнє слово — `possible`, а в цьому варіанті — `safe`.*
+- Is it right? — *У записі останнє слово — `possible`, а в цьому варіанті — `right`.*
 
-**7 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-17:i07; family: listen_choose -->
-Ціль: `cold`
-Варіанти: `cold` · `gold` · `call`
-- gold — *«Золото». Перший звук інший: `cold` починається на «к», `gold` — на «ґ».*
-- call — *«Дзвонити». Голосна інша: у `cold` чути «оу», у `call` — довге «о».*
-
-
-**8 · Складіть фразу — спитайте про вулицю**
-<!-- interaction_id: en:lesson-02:session-17:i08; family: phrase_builder -->
-Ціль: `Where is the street?`
-
-**9 · Вставте слово — перехожому треба пояснити, чому ви до нього чіпляєтесь**
-<!-- interaction_id: en:lesson-02:session-17:i09; family: context_gap_grammar -->
-Ціль: `I am ___ .`
-Варіанти: `lost` · `cold` · `noisy`
-- cold — *Це «змерз». Про холод ви нічого не казали — ви не розумієте, де ви.*
-- noisy — *«Гучний». Так кажуть про місце, а не про людину, яка шукає дорогу.*
-
-
-**10 · З'єднайте пари**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-17:i10; family: speed_match -->
-Пари: `station` — вокзал · `street` — вулиця · `lost` — заблукав · `cold` — змерз
-Ціль: `station · street · lost · cold`
+possible — можливий · well — той, хто добре почувається · safe — у безпеці · welcome — бажаний гість
 
-**11 · Послухайте і складіть — «де вокзал?»**
+**11 · Послухайте й складіть коротку відповідь**
 <!-- interaction_id: en:lesson-02:session-17:i11; family: listen_build_dictation -->
-Ціль: `Where is the station?`
-🔊 *Where is the station?* Плитки: `Where` `is` `the` `station` `are`
-*Плитка `are` зайва: з однією станцією потрібна форма `is`: `Where is the station?`*
+🔊 *Yes, they are.* Плитки: `are` `they` `Yes,` `No,` → **Yes, they are.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, they are.`)*
 
-**12 · Вставте слово — на вокзалі в час пік не проштовхнутися**
-<!-- interaction_id: en:lesson-02:session-17:i12; family: context_gap_grammar -->
-Ціль: `The station is ___ .`
-Варіанти: `crowded` · `lost` · `street`
-- lost — *«Заблукав» — про людину, яка не розуміє, де вона. Вокзал стоїть на місці.*
-- street — *Це «вулиця», окреме місце. А тут треба сказати, який вокзал.*
+**12 · Анні й Олегу недобре. На «Are they well?» дайте коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-17:i12; family: phrase_builder -->
+Плитки: `not` `are` `they` `No,` `Yes,` → **No, they are not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, they are not.`)*
 
+**13 · Ви з другом уже дісталися безпечного місця. Господар запитує вас обох: «Are you safe?» Дайте коротку відповідь «так» за двох**
+<!-- interaction_id: en:lesson-02:session-17:i13; family: scripted_repeat_compare -->
+🎙 **Yes, we are.**
 
-**13 · Складіть фразу — спершу про себе, потім питання**
-<!-- interaction_id: en:lesson-02:session-17:i13; family: phrase_builder -->
-Ціль: `I am lost.`
-Плитки: `I` `am` `lost` `is`
-*Плитка `is` зайва: про себе кажуть `I am`, а не `I is`: `I am lost.`*
-
-**14 · Вставте слово — повз їдуть машини, і ви не чуєте відповіді**
+**14 · Перенести зустріч можна. На «Is it possible?» доповніть коротку відповідь «так»**
 <!-- interaction_id: en:lesson-02:session-17:i14; family: context_gap_grammar -->
-Ціль: `The street is ___ .`
-Варіанти: `noisy` · `lost` · `station`
-- lost — *Про вулицю так не кажуть: `lost` — це про того, хто не розуміє, де він.*
-- station — *`station` — вокзал, саме місце. А тут треба сказати, яка вулиця.*
+Yes, it ___. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *У відповіді — `it is`.*
 
+**15 · Послухайте фразу про Олега**
+<!-- interaction_id: en:lesson-02:session-17:i15; family: listen_choose -->
+🔊 *He is not well.* → **He is not well.** · He is not right. · He is not safe.
+- He is not right. — *У записі останнє слово — `well`, а в цьому варіанті — `right`.*
+- He is not safe. — *У записі останнє слово — `well`, а в цьому варіанті — `safe`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-17:i15:s01; family: scripted_repeat_compare -->
-Ціль: `I am lost.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-17:i16; family: speed_match -->
+well — той, хто добре почувається · right — правий, той, хто не помиляється · possible — можливий · welcome — бажаний гість
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-17:i15:s02; family: scripted_repeat_compare -->
-Ціль: `Where is the station?`
+**17 · Після дороги ви погано почуваєтеся. Господар запитує: «Are you well?» Дайте коротку відповідь «ні», не повторюючи well**
+<!-- interaction_id: en:lesson-02:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **No, I am not.**
 
-**17 · Послухайте запитання, яке відвідувач ставить біля схеми району, і виберіть почуту фразу**
-<!-- interaction_id: en:lesson-02:session-17:i16; family: listen_choose -->
-Ціль: `Where is the street?`
-Варіанти: `Where is the street?` · `Where is the station?` · `The street is crowded.`
-- Where is the station? — *У записі звучить `street` — «вулиця», а не `station` — «станція».*
-- The street is crowded. — *У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на вулиці людно.*
-
-
-**18 · Послухайте й складіть — біля станції ви кажете перехожому, що заблукали**
-<!-- interaction_id: en:lesson-02:session-17:i17:s01; family: listen_build_dictation -->
-Ціль: `I am lost.`
-
-**19 · Послухайте запитання біля каси та виберіть почуту фразу**
-<!-- interaction_id: en:lesson-02:session-17:i17:s02; family: listen_choose -->
-Ціль: `Where is the station?`
-Варіанти: `Where is the station?` · `Where is the street?` · `The station is crowded.`
-- Where is the street? — *У записі звучить `station` — «станція», а не `street` — «вулиця».*
-- The station is crowded. — *У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на станції людно.*
-
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-17:i17:s03; family: scripted_repeat_compare -->
-Ціль: `Where is the street?`
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-17:i17:s04; family: scripted_repeat_compare -->
-Ціль: `The station is crowded.`
-
-## Для сборщика
-
-new_words:
-station — вокзал, станція — Місце, звідки від'їжджають потяги.
-street — вулиця — Та, де обабіч будинки, а на розі висить табличка з назвою.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=listen_choose, 18=listen_build_dictation, 19=listen_choose, 20=scripted_repeat_compare, 21=scripted_repeat_compare
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| lost | інтро 3, 9, 13, 15, 17 | 9, 13, 15, 17 |
-| crowded | 12, 17 | 12, 17 |
-| noisy | 9 (пастка), 14 | 14 |
-| cold | 7, 9 (пастка), 10 | 7, 10 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | Where is the station | так: `where`, `is`, `Where is the station?`, `station` |
-| Інтро 2 | Where is the street | так: `street`, `the`, `Where is the street?` |
-| Інтро 3 | I am lost | так: `lost`, `I am lost` |
-
-**3. Дошка пар (завдання 10)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| station | 1 | 2 (слух), 5 (складання) |
-| street | 3 | 4 (слух), 8 (складання) |
-| lost | інтро 3 | 9 (вставка) |
-| cold | з минулих занять | 7 (слух) |
-
-**4. Довжина інтро (мета 240–290, допуск 210–320)**
-
-| сторінка | знаків |
-|---|---|
-| Інтро 1 | ~270 |
-| Інтро 2 | ~280 |
-| Інтро 3 | ~285 |

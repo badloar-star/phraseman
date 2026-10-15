@@ -58,6 +58,23 @@ export function useLessonRuntimeAccessAuthorization(
   return authorizedRouteKey === routeKey;
 }
 
+/**
+ * R58 #8 (аудит кнопок 15.10): шлюз брал Number(id), экраны — parseInt. Ссылка ?id=20abc давала шлюзу NaN → проверялся
+ * урок 1 (открыт), а экран грузил урок 20 — обход замка Free. Один строгий разбор: только ^\d+$, иначе — отказ.
+ */
+export type LessonRouteIdParse =
+  | Readonly<{ kind: 'absent' }>
+  | Readonly<{ kind: 'ok'; id: number }>
+  | Readonly<{ kind: 'invalid'; raw: string }>;
+
+export function parseLessonRouteId(raw: string | undefined | null): LessonRouteIdParse {
+  if (raw == null || raw === '') return { kind: 'absent' };
+  const trimmed = String(raw).trim();
+  if (!/^\d+$/.test(trimmed)) return { kind: 'invalid', raw: trimmed };
+  const id = Number(trimmed);
+  return Number.isSafeInteger(id) && id > 0 ? { kind: 'ok', id } : { kind: 'invalid', raw: trimmed };
+}
+
 type LessonRuntimeAccessBoundaryOptions = {
   defaultLessonId?: number;
 };
@@ -73,13 +90,19 @@ export function withLessonRuntimeAccessBoundary<P extends object>(
       lessonId?: string | string[];
     }>();
     const rawLessonId = firstRouteParam(params.id) ?? firstRouteParam(params.lessonId);
-    const parsedLessonId = Number(rawLessonId);
-    const lessonId = Number.isInteger(parsedLessonId) && parsedLessonId > 0
-      ? parsedLessonId
-      : (options.defaultLessonId ?? 1);
+    const parsedRoute = parseLessonRouteId(rawLessonId);
+    const lessonId = parsedRoute.kind === 'ok' ? parsedRoute.id : (options.defaultLessonId ?? 1);
+    const invalidRouteId = parsedRoute.kind === 'invalid' ? parsedRoute.raw : null;
     const { studyTarget } = useStudyTarget();
-    const authorized = useLessonRuntimeAccessAuthorization(router, lessonId, studyTarget);
+    const accessAuthorized = useLessonRuntimeAccessAuthorization(router, lessonId, studyTarget);
+    // невалидный id — отказ: содержимое урока не монтируется ни при каком ответе шлюза
+    const authorized = accessAuthorized && invalidRouteId === null;
     const { theme: t } = useTheme();
+    useEffect(() => {
+      if (invalidRouteId === null) return;
+      console.warn(`[LESSON-GATE] invalid_route_id raw=${JSON.stringify(invalidRouteId)} screen=${Screen.displayName ?? 'Screen'} → вкладка «Уроки»`); // guard-ok: отказ логируется
+      router.replace('/(tabs)/lessons' as never);
+    }, [invalidRouteId, router]);
 
     if (!authorized) {
       // зачем (координатор 13.10): раньше здесь был пустой `View` без фона (вспышка между списком и уроком). Теперь тот же скелет, что урок рисует сразу после шлюза (LessonFirstFrame), — фон и геометрия

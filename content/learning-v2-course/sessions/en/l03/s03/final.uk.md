@@ -1,151 +1,138 @@
-# Англійська · Урок 3 · Заняття 3 — «Кожній речі своє місце»
+# Англійська · Урок 3 · Заняття 3 — На зустрічі читачів
 
-**Сцена заняття.** Ви з братом вирішуєте, як розставити речі у квартирі. Він пропонує місця, а ви називаєте предмети й уточнюєте, про яку річ ідеться.
+**Ситуація.** Ви з Анною прийшли на зустріч читачів. На стільці лежить книжка в обкладинці без написів. Олег зайнятий підготовкою, Анна непокоїться через запізнення учасника. Ви обговорюєте, хто вільний і чи допомогло нагадування про зустріч.
 
-**Як сказати:** тонкість `a + noun` у називанні: `It is a…` повідомляє про один предмет, на який ми вказуємо  
-**Нові слова:** stool, mirror, rug  
-**Повертаються:** lamp, here
+**Що ви опануєте:** назвати книжку з a й уточнити, що за предмет перед вами
+**Нові слова:** book
 
 ---
 
 ## Інтро 1
 
-### Назвати предмет перед собою
+### Товста теж одна
 
-`stool` — «табурет». У `It is a stool` — «Це табурет» — ви називаєте один предмет. Фраза каже, що перед вами, а не розповідає про табурети взагалі. Для такої назви беріть `a stool` цілком: маленьке `a` перед словом — частина потрібної фрази.
+`book` — «книжка». `It is a book` — «Це книжка». Перед `book` потрібно `a`: перший звук приголосний. Книжка може бути дуже товстою, але від п’ятисот сторінок не стає п’ятьмастами книжками. Ви називаєте один предмет. Якщо поруч ще книжка, про обрану все одно можна сказати `It is a book`.
 
-**Брат пропонує поставити біля дверей предмет без спинки. Назвіть його повною фразою: «Це табурет».**
+**На стільці лежить книжка. Назвіть предмет повною фразою.**
 
-- ✅ **It is a stool.**
-- ❌ It is stool. — *У цій назві одного предмета перед `stool` потрібне `a`: `It is a stool`.*
-- ❌ It a stool. — *Назва `a stool` на місці, але після `It` бракує `is`: `It is a stool`.*
+- ✅ **It is a book.**
+- ❌ It is book. — *Перед `book` у цій фразі потрібно `a`.*
+- ❌ It is an book. — *Перший звук у `book` приголосний, тому `a`, не `an`.*
 
 ---
 
 ## Інтро 2
 
-### Одне дзеркало — не єдине
+### Назва цілком
 
-`mirror` — «дзеркало». Фраза `It is a mirror` — «Це дзеркало» — називає один предмет, але не означає, що інших дзеркал у квартирі немає. Проводити перепис усіх дзеркал для цієї фрази не треба. Навіть якщо поруч стоїть іще одне, про вибране можна сказати `a mirror`.
+Порівняйте `a book` — «книжка» та `an apple` — «яблуко». Ми обираємо `a` або `an` за наступним звуком, а не за розміром речі. У `Is it a book?` — «Це книжка?» — назва `a book` зберігається. Якщо ви взагалі не знаєте, що за предмет, запитайте `What is it?` — «Що це?»
 
-**Біля стіни стоять два дзеркала; брат показує на одне з них. Назвіть цей предмет повною фразою: «Це дзеркало».**
+**Анна показує прямокутний предмет в упаковці. Запитайте, чи це книжка.**
 
-- ✅ **It is a mirror.**
-- ❌ It are a mirror. — *Ви називаєте вибраний предмет через `It is`. Сусіднє дзеркало не змінює цієї фрази.*
-- ❌ It is mirror. — *Наявність іншого дзеркала не прибирає `a` з назви вибраного предмета: `It is a mirror`.*
+- ✅ **Is it a book?**
+- ❌ Is it book? — *У назві `a book` зникло `a`.*
+- ❌ It is a book. — *Це повідомлення. Для запитання почніть з `Is it`.*
 
 ---
 
 ## Інтро 3
 
-### Не кожне слово перекладається окремо
+### Хто може допомогти
 
-`rug` — «килимок». У `It is a rug` маленьке `a` стосується одного килимка. Та перекладати його окремим словом «один» тут не потрібно: українською природно сказати «Це килимок». В англійській фразі `a` лишається перед назвою, хоч в українському перекладі окремого слова для нього немає.
+`busy` — «зайнятий», `free` — «вільний», `late` — «той, хто запізнився». Ці слова описують людей, а не називають предмет: `Who is free?` — «Хто вільний?» Повторимо й `aware` — «обізнаний», `convinced` — «переконаний», `concerned` — «стурбований», `ineffective` — «неефективний». Потрібне слово залежить від того, що саме ви хочете повідомити.
 
-**Брат запитує, що ви збираєтеся покласти біля дверей. Скажіть повною фразою: «Це килимок».**
+**Олег зайнятий. Ви шукаєте людину, яка зараз може допомогти. Запитайте, хто вільний.**
 
-- ✅ **It is a rug.**
-- ❌ It is rug. — *В українському перекладі немає окремого слова для `a`, але в англійській фразі воно потрібне: `It is a rug`.*
-- ❌ It am a rug. — *Після `It` тут ставимо `is`. `am` уживають з `I`, коли говоримо про себе.*
+- ✅ **Who is free?**
+- ❌ Where is it? — *Це запитання про місце предмета, а ви шукаєте вільну людину.*
+- ❌ Who free? — *Між `Who` і `free` потрібно `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — stool**
-<!-- interaction_id: en:lesson-03:session-03:i01; family: listen_choose -->
-Ціль: `stool`
+**1 · Ви підняли книжку зі стільця. Назвіть предмет повною фразою**
+<!-- interaction_id: en:lesson-03:session-03:i01; family: phrase_builder -->
+Плитки: `book` `a` `is` `It` `are` → **It is a book.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a book.`)*
 
-**2 · Послухайте й виберіть — яке слово вимовив брат**
+**2 · Послухайте повідомлення про Олега**
 <!-- interaction_id: en:lesson-03:session-03:i02; family: listen_choose -->
-Ціль: `stool`
-Варіанти: `stool` · `school` · `spool`
-- school — *Після першого «с» у `school` чути «к», а в `stool` — «т». У записі — `stool`.*
-- spool — *Після першого «с» у `spool` чути «п», а в `stool` — «т». Тут звучить `stool`.*
+🔊 *He is busy.* → **He is busy.** · He is free. · He is late.
+- He is free. — *У записі останнє слово — `busy`, а в цьому варіанті — `free`.*
+- He is late. — *У записі останнє слово — `busy`, а в цьому варіанті — `late`.*
 
+**3 · Доповніть назву книжки**
+<!-- interaction_id: en:lesson-03:session-03:i03; family: context_gap_grammar -->
+It is ___ book. → **a** · an · is
+- an — *Перед приголосним звуком у `book` потрібно `a`.*
+- is — *`is` уже стоїть після `It`. Перед `book` потрібно `a`.*
 
-**3 · Картка слова — mirror**
-<!-- interaction_id: en:lesson-03:session-03:i03; family: listen_choose -->
-Ціль: `mirror`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-03:i04; family: speed_match -->
+book — книжка · busy — зайнятий · free — вільний · late — той, хто запізнився
 
-**4 · Послухайте й виберіть — яке слово прозвучало в кімнаті**
-<!-- interaction_id: en:lesson-03:session-03:i04; family: listen_choose -->
-Ціль: `mirror`
-Варіанти: `mirror` · `minor` · `merry`
-- minor — *У першому складі `minor` чути «ай», а в `mirror` голосний ближчий до українського «и». У записі — `mirror`.*
-- merry — *Перший голосний у `merry` ближчий до «е», а в `mirror` — до українського «и». Тут звучить `mirror`.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-03:i05; family: listen_build_dictation -->
+🔊 *It is a book.* Плитки: `book` `a` `is` `It` `are` → **It is a book.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a book.`)*
 
+**6 · Ви хочете попросити допомоги з підготовкою. Запитайте, хто вільний**
+<!-- interaction_id: en:lesson-03:session-03:i06; family: phrase_builder -->
+Плитки: `free` `is` `Who` `Where` → **Who is free?**
+*(плитка `Where` зайва: тут потрібно `Who` — `Who is free?`)*
 
-**5 · Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»**
-<!-- interaction_id: en:lesson-03:session-03:i05; family: phrase_builder -->
-Ціль: `It is a stool.`
-Варіанти: `am`
+**7 · Анна пояснила свій план, її доводи вас переконали. Скажіть «Я переконаний» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-03:i07; family: scripted_repeat_compare -->
+🎙 **I'm convinced.**
 
-**6 · Картка слова — rug**
-<!-- interaction_id: en:lesson-03:session-03:i06; family: listen_choose -->
-Ціль: `rug`
+**8 · Анна знає про зміну часу зустрічі. Повідомте, що вона обізнана**
+<!-- interaction_id: en:lesson-03:session-03:i08; family: context_gap_grammar -->
+She ___ aware. → **is** · is a · are
+- is a — *Перед окремим `aware` не ставимо `a`.*
+- are — *З `She` потрібно `is`.*
 
-**7 · Послухайте й виберіть — яке слово вимовив брат**
-<!-- interaction_id: en:lesson-03:session-03:i07; family: listen_choose -->
-Ціль: `rug`
-Варіанти: `rug` · `bug` · `mug`
-- bug — *`bug` починається зі змикання губ для `b`, а в `rug` початковий `r` звучить плавно, без удару кінчиком язика. У записі — `rug`.*
-- mug — *`mug` починається з носового `m` при зімкнутих губах, а в `rug` початковий `r` звучить плавно, без удару кінчиком язика. Тут звучить `rug`.*
+**9 · Послухайте запитання про учасника**
+<!-- interaction_id: en:lesson-03:session-03:i09; family: listen_choose -->
+🔊 *Is he late?* → **Is he late?** · Is he busy? · Is he free?
+- Is he busy? — *У записі останнє слово — `late`, а в цьому варіанті — `busy`.*
+- Is he free? — *У записі останнє слово — `late`, а в цьому варіанті — `free`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-03:i10; family: speed_match -->
+aware — обізнаний · convinced — переконаний · concerned — стурбований · ineffective — неефективний
 
-**8 · Складіть фразу — брат показує на предмет, який ви хочете повісити біля дверей; скажіть «Це дзеркало»**
-<!-- interaction_id: en:lesson-03:session-03:i08; family: phrase_builder -->
-Ціль: `It is a mirror.`
-
-**9 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-03:i09; family: scripted_repeat_compare -->
-Ціль: `It is a lamp.`
-
-**10 · Вставте частину фрази — брат тримає килимок і запитує, що це; назвіть предмет повною фразою**
-<!-- interaction_id: en:lesson-03:session-03:i10; family: context_gap_grammar -->
-Ціль: `It ___ rug.`
-Варіанти: `is a` · `is` · `a`
-- is — *Вийде `It is rug`: у назві одного предмета перед `rug` бракує `a`.*
-- a — *Вийде `It a rug`: назва на місці, але після `It` потрібне `is`.*
-
-
-**11 · Послухайте й складіть — брат звертається до вас із сусідньої кімнати**
+**11 · Послухайте й складіть фразу про Анну**
 <!-- interaction_id: en:lesson-03:session-03:i11; family: listen_build_dictation -->
-Ціль: `Is it a rug?`
-Варіанти: `mirror`
+🔊 *She is concerned.* Плитки: `concerned` `is` `She` `are` → **She is concerned.**
+*(плитка `are` зайва: тут потрібно `is` — `She is concerned.`)*
 
-**12 · З’єднайте пари — речі для кімнати**
-<!-- interaction_id: en:lesson-03:session-03:i12; family: speed_match -->
-Пари: `stool` — табурет · `mirror` — дзеркало · `rug` — килимок · `lamp` — лампа
-Ціль: `stool · mirror · rug · lamp`
+**12 · На полиці лежить предмет у паперовій упаковці. Запитайте, чи це книжка**
+<!-- interaction_id: en:lesson-03:session-03:i12; family: phrase_builder -->
+Плитки: `book` `a` `it` `Is` `Are` → **Is it a book?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it a book?`)*
 
-**13 · Вставте частину фрази — брат прийняв картину за дзеркало; заперечте: «Це не дзеркало»**
-<!-- interaction_id: en:lesson-03:session-03:i13; family: context_gap_grammar -->
-Ціль: `It is ___ mirror.`
-Варіанти: `not a` · `no a` · `a not`
-- no a — *У цій фразі заперечення робимо через `not` після `is`: `It is not a mirror`.*
-- a not — *Між `a` і `mirror` тут не ставимо `not`. Потрібний порядок: `not a mirror`.*
+**13 · Нагадування не допомагає учасникам приходити вчасно. Скажіть «Це неефективно» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-03:i13; family: scripted_repeat_compare -->
+🎙 **It's ineffective.**
 
+**14 · Анна прийняла пласку коробку за книжку. Доповніть «Це не книжка»**
+<!-- interaction_id: en:lesson-03:session-03:i14; family: context_gap_grammar -->
+It is not ___ book. → **a** · an · is
+- an — *Після `not` усе одно потрібно `a book`.*
+- is — *`is` уже є; перед `book` потрібно `a`.*
 
-**14 · Складіть фразу — брат шукає дзеркало; ви стоїте поруч із дзеркалом і відповідаєте «Воно тут» (`here` — «тут»)**
-<!-- interaction_id: en:lesson-03:session-03:i14; family: phrase_builder -->
-Ціль: `It is here.`
-Варіанти: `a`
+**15 · Послухайте запитання після пояснення плану**
+<!-- interaction_id: en:lesson-03:session-03:i15; family: listen_choose -->
+🔊 *Are you convinced?* → **Are you convinced?** · Are you concerned? · Are you aware?
+- Are you concerned? — *У записі останнє слово — `convinced`, а в цьому варіанті — `concerned`.*
+- Are you aware? — *У записі останнє слово — `convinced`, а в цьому варіанті — `aware`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-03:i15; family: scripted_repeat_compare -->
-Ціль: `Is it here?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-03:i16; family: speed_match -->
+book — книжка · apple — яблуко · busy — зайнятий · free — вільний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-03:i16; family: scripted_repeat_compare -->
-Ціль: `It is a rug.`
-
-**17 · Складіть фразу — брат прийняв низький столик за табурет; заперечте: «Це не табурет»**
-<!-- interaction_id: en:lesson-03:session-03:i17; family: phrase_builder -->
-Ціль: `It is not a stool.`
-Варіанти: `are`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Удома ви дістали з пакета книжку для наступної зустрічі. Назвіть її: «Це книжка», зі скороченням**
+<!-- interaction_id: en:lesson-03:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It's a book.**
 

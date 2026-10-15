@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-03:intro1:r2": {
+          "ru": "Перед `book` в этой фразе нужно `a`.",
+          "uk": "Перед `book` у цій фразі потрібно `a`."
+        },
+        "en:lesson-03:session-03:intro1:r3": {
+          "ru": "Первый звук в `book` согласный, поэтому `a`, не `an`.",
+          "uk": "Перший звук у `book` приголосний, тому `a`, не `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-03:intro2:r2": {
+          "ru": "В названии `a book` пропало `a`.",
+          "uk": "У назві `a book` зникло `a`."
+        },
+        "en:lesson-03:session-03:intro2:r3": {
+          "ru": "Это сообщение. Для вопроса начните с `Is it`.",
+          "uk": "Це повідомлення. Для запитання почніть з `Is it`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-03:intro3:r2": {
+          "ru": "Это вопрос о месте предмета, а вы ищете свободного человека.",
+          "uk": "Це запитання про місце предмета, а ви шукаєте вільну людину."
+        },
+        "en:lesson-03:session-03:intro3:r3": {
+          "ru": "Между `Who` и `free` нужно `is`.",
+          "uk": "Між `Who` і `free` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6e07ac1313da1db783e04dc38f7e1ae2d653cd3d74b40bbd8e9350b9cb3175c8"
+}

@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-03:i01",
-    "correctText": "stool",
+    "correctText": "It is a book.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i02",
-    "correctText": "stool",
+    "correctText": "He is busy.",
     "correctResponseId": "en:lesson-03:session-03:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i03",
-    "correctText": "mirror",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-03:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i04",
-    "correctText": "mirror",
-    "correctResponseId": "en:lesson-03:session-03:i04:r1"
+    "correctText": "en:lesson-03:session-03:i04:p1=book\nen:lesson-03:session-03:i04:p2=busy\nen:lesson-03:session-03:i04:p3=free\nen:lesson-03:session-03:i04:p4=late",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i05",
-    "correctText": "It is a stool.",
+    "correctText": "It is a book.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i06",
-    "correctText": "rug",
+    "correctText": "Who is free?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i07",
-    "correctText": "rug",
-    "correctResponseId": "en:lesson-03:session-03:i07:r1"
+    "correctText": "I'm convinced.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i08",
-    "correctText": "It is a mirror.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-03:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i09",
-    "correctText": "It is a lamp.",
-    "correctResponseId": null
+    "correctText": "Is he late?",
+    "correctResponseId": "en:lesson-03:session-03:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i10",
-    "correctText": "is a",
-    "correctResponseId": "en:lesson-03:session-03:i10:r1"
+    "correctText": "en:lesson-03:session-03:i10:p1=aware\nen:lesson-03:session-03:i10:p2=convinced\nen:lesson-03:session-03:i10:p3=concerned\nen:lesson-03:session-03:i10:p4=ineffective",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i11",
-    "correctText": "Is it a rug?",
+    "correctText": "She is concerned.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i12",
-    "correctText": "en:lesson-03:session-03:i12:p1=stool\nen:lesson-03:session-03:i12:p2=mirror\nen:lesson-03:session-03:i12:p3=rug\nen:lesson-03:session-03:i12:p4=lamp",
+    "correctText": "Is it a book?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i13",
-    "correctText": "not a",
-    "correctResponseId": "en:lesson-03:session-03:i13:r1"
+    "correctText": "It's ineffective.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i14",
-    "correctText": "It is here.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-03:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i15",
-    "correctText": "Is it here?",
-    "correctResponseId": null
+    "correctText": "Are you convinced?",
+    "correctResponseId": "en:lesson-03:session-03:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i16",
-    "correctText": "It is a rug.",
+    "correctText": "en:lesson-03:session-03:i16:p1=book\nen:lesson-03:session-03:i16:p2=apple\nen:lesson-03:session-03:i16:p3=busy\nen:lesson-03:session-03:i16:p4=free",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i17",
-    "correctText": "It is not a stool.",
+    "correctText": "It's a book.",
     "correctResponseId": null
   }
 ]

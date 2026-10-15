@@ -1,124 +1,137 @@
-# Английский · Урок 4 · Занятие 15 — «Тренажёрный зал на экскурсии»
+# Английский · Урок 4 · Занятие 15 — Перед тренировкой
 
-**Сцена занятия.** Во время экскурсии по дому путешественник спрашивает хозяина о тренажёрном зале и комнатах. Нужно самому выбрать `Is there…?` для одного места или `Are there…?` для нескольких.
-**Как сказать:** смешать `Is there…?` и `Are there…?` без готового каркаса.
-**Новое слово:** gym
-**Возвращаются:** building, house, near, garden, hotel, platform, taxi, laundrette
+**Ситуация.** Вы знакомитесь с новым спортивным центром. Ищете тренажёрный зал и детскую площадку, замечаете забытое пальто. В пустом зале пока не слышно ни звука.
+
+**Что вы освоите:** спросить о тренажёрном зале и площадке, назвать пальто и описать полную тишину
+**Новые слова:** gym
+
+---
 
 ## Интро 1
 
-### `gym` — тренажёрный зал
+### Зал для тренировок
 
-`gym` — «тренажёрный зал», место, где люди занимаются спортом. В слове всего один короткий слог: не путайте `gym` с `garden`, хотя оба места могут быть в доме или рядом с ним. Можно сказать `a gym` об одном зале; дальше мы научимся спрашивать, есть ли он внутри дома или рядом с ним.
+`gym` — «тренажёрный зал, спортзал». `Is there a gym here?` — «Здесь есть тренажёрный зал?» Несколько залов — `gyms`: `Are there gyms here?` — «Здесь есть тренажёрные залы?» В слове `gym` всего три буквы. Выучить его легче, чем сделать три отжимания.
 
-**На экскурсии хозяин показывает комнату для тренировок. Выберите название.**
+**Спросите, есть ли здесь тренажёрный зал.**
 
-- ✅ **gym**
-- ❌ garden — *`Garden` — сад. Нам нужна комната с тренажёрами: `gym`.*
-- ❌ building — *`Building` — здание целиком. На карте отмечена комната для тренировок: `gym`.*
+- ✅ **Is there a gym here?**
+- ❌ Are there a gym here? — *Один зал: `Is there a gym here?`.*
+- ❌ There is a gym here. — *Это сообщение; вопрос начинается с `Is there`.*
+
+---
 
 ## Интро 2
 
-### Вопрос об одном месте начинается с `Is`
+### Площадка и пальто
 
-`There is a gym here.` — это сообщение об одном месте. Если спрашиваем, есть ли этот зал здесь, `is` выходит вперёд: `Is there a gym here?` Перед одним местом остаётся `a`. Сначала определите, что речь об одном зале, а затем выберите `Is`, даже если ответ пока неизвестен.
+`playground` — «детская площадка», `coat` — «пальто». `There is a playground here` — «Здесь есть детская площадка». `That is a coat` — «То — пальто»: так можно назвать вещь вдалеке, которую друг не разглядел.
 
-**Хозяин показывает одну комнату. Спросите, есть ли здесь тренажёрный зал.**
+**Друг не разглядел вещь на дальней вешалке. Скажите «То — пальто».**
 
-- ✅ **Is there a gym here?**
-- ❌ Are there gyms here? — *`Gyms` — несколько залов. Здесь хозяин показывает одно место, поэтому нужны `Is` и `a gym`.*
-- ❌ There is a gym here. — *Это сообщение, а не вопрос. Вопрос начинается с `Is`: `Is there a gym here?`.*
+- ✅ **That is a coat.**
+- ❌ That are a coat. — *С `That` нужно `is`.*
+- ❌ Those are coats. — *Речь об одной вещи: `That is a coat`.*
+
+---
 
 ## Интро 3
 
-### Вопрос о нескольких комнатах начинается с `Are`
+### Ни звука
 
-`There are rooms near the gym.` — сообщение о нескольких комнатах. В вопросе `are` переходит вперёд: `Are there rooms near the gym?` Слово `rooms` уже во множественном числе, поэтому артикль `a` перед ним не ставится.
+`silent` — «безмолвный, бесшумный». О зале, где совсем нет звуков: `It is silent` — «В нём полная тишина». Сокращённо: `It’s silent`. Это сильнее, чем просто «негромко»: вы не слышите ни голосов, ни музыки, ни шума тренажёров.
 
-**На плане видно несколько комнат рядом с залом. Спросите о них.**
+**В зале совсем не слышно звуков. Скажите с сокращением «В нём полная тишина».**
 
-- ✅ **Are there rooms near the gym?**
-- ❌ Is there a room near the gym? — *`A room` — одна комната. На плане несколько комнат, поэтому нужны `Are` и `rooms`.*
-- ❌ There are rooms near the gym. — *Это сообщение. Вопрос начинается с `Are`: `Are there rooms near the gym?`.*
+- ✅ **It's silent.**
+- ❌ It's noisy. — *`noisy` — шумный; полная тишина — `silent`.*
+- ❌ It are silent. — *С `It` нужно `is`: `It’s silent`.*
 
-## Практика — по одной цели
+---
 
-**1 · Послушайте и выберите новое слово**
-<!-- interaction_id: en:lesson-04:session-15:i01; family: listen_choose -->
-Цель: `gym`
-🔊 *gym*
-Значения вариантов: gym — тренажёрный зал · garden — сад · building — здание
-→ **gym** · garden · building
-- garden — *В записи слышно место для тренировок `gym`, а не сад `garden`.*
-- building — *`Building` — здание целиком. В записи было короткое слово `gym`.*
+## Практика (17 заданий)
 
-**2 · Произнесите новое слово**
-<!-- interaction_id: en:lesson-04:session-15:i02; family: scripted_repeat_compare -->
-Цель: `gym`
-🎙 **gym**
+**1 · Вы заметили забытую вещь. Сообщите «Есть пальто»**
+<!-- interaction_id: en:lesson-04:session-15:i01; family: phrase_builder -->
+Плитки: `coat` `a` `is` `There` `are` → **There is a coat.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a coat.`)*
 
-**3 · Соедините новое и знакомые места со значениями**
-<!-- interaction_id: en:lesson-04:session-15:i03; family: speed_match -->
-Пары: `gym` — тренажёрный зал · `taxi` — такси · `laundrette` — прачечная самообслуживания · `platform` — платформа
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-04:session-15:i02; family: listen_choose -->
+🔊 *gym* → **gym** · garden · clinic
+- garden — *В записи первое слово — `gym`, а в этом варианте — `garden`.*
+- clinic — *В записи первое слово — `gym`, а в этом варианте — `clinic`.*
 
-**4 · Послушайте вопрос об одном зале у прачечной и выберите его смысл**
-<!-- interaction_id: en:lesson-04:session-15:i04; family: listen_choose -->
-Цель: `Is there a gym near the laundrette?`
-🔊 *Is there a gym near the laundrette?*
-Значения вариантов: Is there a gym near the laundrette? — Возле прачечной есть один тренажёрный зал? · Are there gyms near the laundrette? — Возле прачечной есть несколько тренажёрных залов? · There is a gym near the laundrette. — Возле прачечной есть один тренажёрный зал.
-→ **Is there a gym near the laundrette?** · Are there gyms near the laundrette? · There is a gym near the laundrette.
-- Are there gyms near the laundrette? — *`Gyms` — несколько залов. Здесь спрашиваем об одном, поэтому нужны `Is` и `a gym`.*
-- There is a gym near the laundrette. — *Это сообщение, а не вопрос. Вопрос начинается с `Is`: `Is there a gym near the laundrette?`.*
+**3 · Назовите тренажёрный зал одним словом**
+<!-- interaction_id: en:lesson-04:session-15:i03; family: context_gap_grammar -->
+___ → **gym** · garden · hotel
+- garden — *`garden` — сад; тренажёрный зал — `gym`.*
+- hotel — *`hotel` — отель; тренажёрный зал — `gym`.*
 
-**5 · Соберите вопрос об одном зале у здания**
-<!-- interaction_id: en:lesson-04:session-15:i05; family: phrase_builder -->
-Цель: `Is there a gym near the building?`
-Плитки: `Is` · `there` · `a` · `gym` · `near` · `the` · `building` · `Are` · `house`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-15:i04; family: speed_match -->
+gym — тренажёрный зал · silent — бесшумный · coat — пальто · playground — детская площадка
 
-**6 · В саду вы проверяете, есть ли один зал. Вставьте начало вопроса**
-<!-- interaction_id: en:lesson-04:session-15:i06; family: context_gap_grammar -->
-___ there a gym near the garden? → **Is** · Are · There
-- Are — *`A gym` — одно место, поэтому вопрос начинается с `Is`.*
-- There — *`There is a gym` — это порядок сообщения. Вопрос начинается с `Is`.*
+**5 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-15:i05; family: listen_build_dictation -->
+🔊 *Is there a gym?* Плитки: `gym` `a` `there` `Is` → **Is there a gym?**
 
-**7 · Послушайте и соберите сообщение о такси у зала**
-<!-- interaction_id: en:lesson-04:session-15:i07; family: listen_build_dictation -->
-Цель: `There is a taxi near the gym.`
-🔊 *There is a taxi near the gym.*
-Плитки: `There` · `is` · `a` · `taxi` · `near` · `the` · `gym` · `hotel` · `Are`
+**6 · Назовите вещь на дальней вешалке: «То — пальто»**
+<!-- interaction_id: en:lesson-04:session-15:i06; family: phrase_builder -->
+Плитки: `coat` `a` `is` `That` `are` → **That is a coat.**
+*(плитка `are` лишняя: здесь нужно `is` — `That is a coat.`)*
 
-**8 · Соберите сообщение о нескольких комнатах у отеля**
-<!-- interaction_id: en:lesson-04:session-15:i08; family: phrase_builder -->
-Цель: `There are rooms near the hotel.`
-Плитки: `There` · `are` · `rooms` · `near` · `the` · `hotel` · `Is`
+**7 · В зале нет ни музыки, ни голосов. Скажите с сокращением «В нём полная тишина»**
+<!-- interaction_id: en:lesson-04:session-15:i07; family: scripted_repeat_compare -->
+🎙 **It's silent.**
 
-**9 · Послушайте вопрос о нескольких комнатах у здания и выберите смысл**
+**8 · Спросите о нескольких тренажёрных залах здесь**
+<!-- interaction_id: en:lesson-04:session-15:i08; family: context_gap_grammar -->
+___ there gyms here? → **Are** · Is · Am
+- Is — *`gyms` — несколько залов: `Are there gyms here?`.*
+- Am — *Вопрос о нескольких залах начинается с `Are there`.*
+
+**9 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-04:session-15:i09; family: listen_choose -->
-Цель: `Are there rooms near the building?`
-🔊 *Are there rooms near the building?*
-Значения вариантов: Are there rooms near the building? — У здания есть несколько комнат? · Is there a room near the building? — У здания есть одна комната? · There are rooms near the building. — У здания есть несколько комнат.
-→ **Are there rooms near the building?** · Is there a room near the building? · There are rooms near the building.
-- Is there a room near the building? — *`A room` — одна комната. В записи `rooms` — несколько, поэтому вопрос начинается с `Are`.*
-- There are rooms near the building. — *В записи вопрос, а не сообщение: `Are there…?`.*
+🔊 *Is there a playground?* → **Is there a playground?** · Is there a gym? · Is there a garden?
+- Is there a gym? — *В записи последнее слово — `playground`, а в этом варианте — `gym`.*
+- Is there a garden? — *В записи последнее слово — `playground`, а в этом варианте — `garden`.*
 
-**10 · Соберите вопрос о трёх комнатах у платформы**
-<!-- interaction_id: en:lesson-04:session-15:i10; family: phrase_builder -->
-Цель: `Are there three rooms near the platform?`
-Плитки: `Are` · `there` · `three` · `rooms` · `near` · `the` · `platform` · `Is`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-15:i10; family: speed_match -->
+gym — тренажёрный зал · gyms — тренажёрные залы · coat — пальто · silent — бесшумный
 
-**11 · Послушайте и соберите сообщение о двух комнатах у дома**
+**11 · Послушайте и соберите сообщение**
 <!-- interaction_id: en:lesson-04:session-15:i11; family: listen_build_dictation -->
-Цель: `There are two rooms near the house.`
-🔊 *There are two rooms near the house.*
-Плитки: `There` · `are` · `two` · `rooms` · `near` · `the` · `house` · `Is`
+🔊 *There is a playground here.* Плитки: `here` `playground` `a` `is` `There` `are` → **There is a playground here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a playground here.`)*
 
-**12 · на плане видны две комнаты у зала. Соберите вопрос**
+**12 · Вы нашли несколько залов. Сообщите «Здесь есть тренажёрные залы»**
 <!-- interaction_id: en:lesson-04:session-15:i12; family: phrase_builder -->
-Цель: `Are there two rooms near the gym?`
-Плитки: `Are` · `there` · `two` · `rooms` · `near` · `the` · `gym` · `Is` · `There`
+Плитки: `here` `gyms` `are` `There` `is` → **There are gyms here.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are gyms here.`)*
 
-## Для сборщика
+**13 · Друг ищет забытое пальто. У стойки спросите «Здесь есть пальто?»**
+<!-- interaction_id: en:lesson-04:session-15:i13; family: scripted_repeat_compare -->
+🎙 **Is there a coat here?**
 
-atomic_practice: practice.atomic.json
-new_words: gym — тренажёрный зал — Место, где люди занимаются спортом.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=speed_match, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=phrase_builder, 9=listen_choose, 10=phrase_builder, 11=listen_build_dictation, 12=phrase_builder
+**14 · Спросите о наличии одной детской площадки**
+<!-- interaction_id: en:lesson-04:session-15:i14; family: context_gap_grammar -->
+Is there ___ playground here? → **a** · an · are
+- an — *Первый звук в `playground` согласный: `a playground`.*
+- are — *Перед одной площадкой нужно `a`: `a playground`.*
+
+**15 · Послушайте описание зала**
+<!-- interaction_id: en:lesson-04:session-15:i15; family: listen_choose -->
+🔊 *It is silent.* → **It is silent.** · It is noisy. · It is comfortable.
+- It is noisy. — *В записи последнее слово — `silent`, а в этом варианте — `noisy`.*
+- It is comfortable. — *В записи последнее слово — `silent`, а в этом варианте — `comfortable`.*
+
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-15:i16; family: speed_match -->
+gym — тренажёрный зал · silent — бесшумный · coat — пальто · playground — детская площадка
+
+**17 · В другой поездке вы хотите потренироваться в отеле. Спросите «Здесь есть тренажёрный зал?»**
+<!-- interaction_id: en:lesson-04:session-15:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is there a gym here?**
+

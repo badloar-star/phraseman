@@ -4,8 +4,38 @@
 // (см. HANDOVER §6: у Plus энергия не расходуется); остальные права не выдумываем,
 // поэтому старые обещания («всё открыто», «11 преимуществ») ушли.
 import { triLang, type Lang } from '../../constants/i18n';
+import { pluralWithCount, type PluralForms } from '../../constants/plural';
 
 export type CelebrationCopy = ReturnType<typeof celebrationLiquidCopy>;
+
+/** Что дал промокод: N дней или навсегда (из ответа сервера). */
+export type PromoReward = Readonly<{ kind: 'days' | 'lifetime'; days?: number }>;
+
+// зачем (владелец ~11:20 15.10, вопрос 9А overlays-campaigns-007/008): экран «Промокод применён» называет срок по-человечески — «Plus на 30 дней» / «Plus навсегда» по данным промокода;
+// прежняя строка про срок «по записи аккаунта» убрана. Слово «день» склоняется по числу (ru/uk/pl — три формы).
+const DAY_FORMS: Readonly<Record<string, PluralForms>> = {
+  ru: { one: 'день', few: 'дня', many: 'дней' },
+  uk: { one: 'день', few: 'дні', many: 'днів' },
+  en: { one: 'day', few: 'days', many: 'days' },
+  es: { one: 'día', few: 'días', many: 'días' },
+  'pt-BR': { one: 'dia', few: 'dias', many: 'dias' },
+  vi: { one: 'ngày', few: 'ngày', many: 'ngày' },
+  id: { one: 'hari', few: 'hari', many: 'hari' },
+  tr: { one: 'gün', few: 'gün', many: 'gün' },
+  pl: { one: 'dzień', few: 'dni', many: 'dni' },
+};
+
+/** «Plus на 30 дней» / «Plus навсегда» на 9 языках; нет данных о сроке — null (строку не рисуем). */
+export function promoDurationText(lang: Lang, tier: string, reward: PromoReward | null | undefined): string | null {
+  if (!reward) return null;
+  if (reward.kind === 'lifetime') {
+    return triLang(lang, { ru: `${tier} навсегда`, uk: `${tier} назавжди`, en: `${tier} forever`, es: `${tier} para siempre`, 'pt-BR': `${tier} para sempre`, vi: `${tier} vĩnh viễn`, id: `${tier} selamanya`, tr: `Kalıcı ${tier}`, pl: `${tier} na zawsze` });
+  }
+  const n = Math.floor(Number(reward.days ?? 0));
+  if (!Number.isFinite(n) || n <= 0) return null;
+  const days = pluralWithCount(lang, n, DAY_FORMS[lang] ?? DAY_FORMS.en);
+  return triLang(lang, { ru: `${tier} на ${days}`, uk: `${tier} на ${days}`, en: `${tier} for ${days}`, es: `${tier} por ${days}`, 'pt-BR': `${tier} por ${days}`, vi: `${tier} trong ${days}`, id: `${tier} selama ${days}`, tr: `${n} günlük ${tier}`, pl: `${tier} na ${days}` });
+}
 
 export function celebrationLiquidCopy(lang: Lang) {
   return {
@@ -20,7 +50,6 @@ export function celebrationLiquidCopy(lang: Lang) {
     promoTitle: triLang(lang, { ru: 'Промокод применён', uk: 'Промокод застосовано', en: 'Promo code applied', es: 'Código aplicado', 'pt-BR': 'Código aplicado', vi: 'Đã áp dụng mã', id: 'Kode diterapkan', tr: 'Kod uygulandı', pl: 'Kod zastosowany' }),
     promoSub: triLang(lang, { ru: 'Доступ подтверждён. Условия сохранены в аккаунте.', uk: 'Доступ підтверджено. Умови збережено в акаунті.', en: 'Access confirmed. The terms are saved to your account.', es: 'Acceso confirmado. Las condiciones están guardadas en tu cuenta.', 'pt-BR': 'Acesso confirmado. As condições estão salvas na sua conta.', vi: 'Đã xác nhận quyền truy cập. Điều kiện được lưu trong tài khoản.', id: 'Akses dikonfirmasi. Ketentuan tersimpan di akunmu.', tr: 'Erişim onaylandı. Koşullar hesabında kayıtlı.', pl: 'Dostęp potwierdzony. Warunki zapisano na koncie.' }),
     promoCardTitle: triLang(lang, { ru: 'Подтверждённый промокод', uk: 'Підтверджений промокод', en: 'Confirmed promo code', es: 'Código confirmado', 'pt-BR': 'Código confirmado', vi: 'Mã đã xác nhận', id: 'Kode terkonfirmasi', tr: 'Onaylanan kod', pl: 'Potwierdzony kod' }),
-    promoCardBody: triLang(lang, { ru: 'Время и тип доступа — по действующей записи аккаунта.', uk: 'Час і тип доступу — за чинним записом акаунта.', en: 'Duration and type of access follow your current account record.', es: 'La duración y el tipo de acceso siguen el registro actual de tu cuenta.', 'pt-BR': 'Duração e tipo de acesso seguem o registro atual da sua conta.', vi: 'Thời gian và loại quyền truy cập theo bản ghi hiện tại của tài khoản.', id: 'Durasi dan jenis akses mengikuti catatan akunmu saat ini.', tr: 'Süre ve erişim türü hesabındaki güncel kayda göre belirlenir.', pl: 'Czas i rodzaj dostępu wynikają z aktualnego zapisu konta.' }),
     skip: triLang(lang, { ru: 'Пропустить', uk: 'Пропустити', en: 'Skip', es: 'Omitir', 'pt-BR': 'Pular', vi: 'Bỏ qua', id: 'Lewati', tr: 'Atla', pl: 'Pomiń' }),
     close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
     next: triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Dalej' }),

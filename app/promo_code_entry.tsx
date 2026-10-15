@@ -27,6 +27,7 @@ import { invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
 import VipCelebrationModal from '../components/VipCelebrationModal';
+import type { PromoReward } from '../components/premium_celebration/celebrationLiquidCopy';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: экран промокода на токенах стекла (макет overlays-campaigns OS-ONB-PROMO-*)
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
@@ -241,6 +242,8 @@ export default function PromoCodeEntryScreen() {
   // зачем: празднование v6 показывает САМ код штампом перед разломом — человек
   // видит, что сработал именно тот код, который он ввёл.
   const [celebrationCode, setCelebrationCode] = useState<string | null>(null);
+  // зачем (владелец ~11:20 15.10): экран «Промокод применён» называет срок — «Plus на N дней» / «Plus навсегда» — по данным ответа сервера
+  const [celebrationReward, setCelebrationReward] = useState<PromoReward | null>(null);
   const autoRedeemTriedRef = useRef(false);
 
   // Кнопка активна только для кода валидного формата (зеркало серверного CODE_RE
@@ -291,6 +294,7 @@ export default function PromoCodeEntryScreen() {
         if (!generation.stableId || !isCurrentAccountGeneration(generation, generation.stableId)) return;
         setCelebrationMarker(marker);
         setCelebrationCode(normalizePromoCodeInput(rawCode));
+        setCelebrationReward(res.rewardKind === 'lifetime' ? { kind: 'lifetime' } : res.rewardKind === 'days' || typeof res.rewardDays === 'number' ? { kind: 'days', days: res.rewardDays } : null);
         // VIP обновился на сервере — сбрасываем кэш и оповещаем приложение.
         invalidatePremiumCache();
         emitAppEvent('vip_activated');
@@ -331,6 +335,7 @@ export default function PromoCodeEntryScreen() {
     setCelebrationVisible(false);
     setCelebrationMarker(null);
     setCelebrationCode(null);
+    setCelebrationReward(null);
     if (marker) void consumeVipCelebration(marker);
     safeRouterBack(router, '/(tabs)/settings' as any);
   }, [celebrationMarker, router]);
@@ -439,7 +444,7 @@ export default function PromoCodeEntryScreen() {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
-        <VipCelebrationModal visible={celebrationVisible} onClose={closeCelebration} promoCode={celebrationCode} />
+        <VipCelebrationModal visible={celebrationVisible} onClose={closeCelebration} promoCode={celebrationCode} promoReward={celebrationReward} />
       </SafeAreaView>
     </ScreenGradient>
   );

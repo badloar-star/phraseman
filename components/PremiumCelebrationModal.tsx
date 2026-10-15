@@ -47,7 +47,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { startCelebrationBackground, stopCelebrationBackground, letCelebrationBackgroundFinish } from '../modules/audio/celebrationBackgroundPlayer';
 import { playCelebrationSceneSound, stopAllCelebrationSceneSounds } from '../modules/audio/celebrationScenePlayer';
 import { type CelebrationVariant } from './premium_celebration/celebrationContent';
-import { celebrationLiquidCopy } from './premium_celebration/celebrationLiquidCopy';
+import { celebrationLiquidCopy, promoDurationText, type PromoReward } from './premium_celebration/celebrationLiquidCopy';
 
 interface PremiumCelebrationModalProps {
   visible: boolean;
@@ -55,6 +55,8 @@ interface PremiumCelebrationModalProps {
   variant?: CelebrationVariant;
   /** Промокод: показать одиночный экран «Промокод применён». */
   promoCode?: string | null;
+  /** Срок промокода (из ответа сервера): «Plus на 30 дней» / «Plus навсегда»; нет — строка срока не рисуется. */
+  promoReward?: PromoReward | null;
 }
 
 // ── Тайминги шагов (мс). Совпадают с картами ударов в документе звуков. ──
@@ -69,7 +71,7 @@ function tierLabel(variant: CelebrationVariant): string {
   return variant === 'pro' ? 'Pro' : 'Plus';
 }
 
-function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoCode = null }: PremiumCelebrationModalProps) {
+function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoCode = null, promoReward = null }: PremiumCelebrationModalProps) {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { f, liquidGlassThemeId } = useTheme();
@@ -311,6 +313,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
   if (!visible) return null;
 
   const tier = tierLabel(variant);
+  const promoDuration = promoDurationText(lang as Lang, tier, promoReward);
   const phase = act === 'promo' ? 'promo' : act === 'act1' ? 'intro' : act === 'act2' ? 'benefits' : 'finale';
   const stepText = phase === 'promo'
     ? `${tier} · ${copy.promoLabel}`
@@ -388,9 +391,12 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
                 {phase === 'promo' && promoCode ? (
                   <Text style={[styles.code, { color: glass.text, fontSize: f.body }]}>{promoCode}</Text>
                 ) : null}
-                <Text style={[styles.cardBody, { color: glass.secondary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }]}>
-                  {phase === 'promo' ? copy.promoCardBody : copy.benefitCardBody}
-                </Text>
+                {phase === 'promo' ? (promoDuration ? (
+                  // зачем (владелец ~11:20 15.10): срок промокода по-человечески — «Plus на 30 дней» / «Plus навсегда»; прежней строки про срок «по записи аккаунта» больше нет
+                  <Text style={[styles.cardBody, { color: glass.secondary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }]} testID="premium-celebration-promo-duration">{promoDuration}</Text>
+                ) : null) : (
+                  <Text style={[styles.cardBody, { color: glass.secondary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }]}>{copy.benefitCardBody}</Text>
+                )}
               </View>
             ) : null}
           </Reanimated.View>

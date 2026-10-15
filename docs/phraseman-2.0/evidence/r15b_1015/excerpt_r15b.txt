@@ -1,0 +1,40 @@
+10-15 16:31:39.610 I/ReactNativeJS(28819): [ACC-SWITCH-BACKUP] owners=0 roots=0 pages=0 pruned=0 prunedShelves=0 prunedPages=0 agedShelves=0 source=cold_start ms=779
+10-15 16:33:01.006 I/ReactNativeJS(28819): [ACC-SWITCH-BACKUP] skip reason=already_ran source=cold_start
+10-15 16:33:28.393 I/ReactNativeJS(28819): [SIGNIN] ui:tap provider=google context=settings
+10-15 16:33:28.957 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:906c9e1c","localStable":"h:42e539ba","requireOwnership":false,"t":9310092}
+10-15 16:33:44.022 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":9325147}
+10-15 16:33:44.024 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:906c9e1c","preProviderStable":"h:42e539ba","t":9325161}
+10-15 16:33:45.573 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":9326710}
+10-15 16:33:47.081 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":101,"getAllKeysMs":1190,"selected":2217,"filterMs":20,"multiGetMs":262,"bytes":4640,"top5":"achievements_v1=2504 customization_selection_operation_v1:<id>:1:customization_l","t":9328214}
+10-15 16:33:47.146 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":22,"t":9328282}
+10-15 16:33:47.174 I/ReactNativeJS(28819): [GUEST-CLEAN] 6/22 key=achievement_foundation_progress_v2 kind=default len=126 shape={version:num+,maxEligibleShardBalance:num0,activeDates:arr1[str10],comeback:null,paidAccess:{plus:false,pro:false}}
+10-15 16:33:47.189 I/ReactNativeJS(28819): [GUEST-CLEAN] 9/22 key=lesson_progress_v2::fr::legacy_free_lesson_cap_v1 kind=default len=1 shape=num+
+10-15 16:33:47.199 I/ReactNativeJS(28819): [GUEST-CLEAN] 10/22 key=lesson_progress_v2::fr::legacy_free_lesson_migration_v1 kind=service len=8 shape=str8(not_json)
+10-15 16:33:47.264 I/ReactNativeJS(28819): [GUEST-CLEAN] 20/22 key=customization_selection_outbox_v1:<id>:1 kind=progress len=27 shape=arr1[str23]
+10-15 16:33:47.268 I/ReactNativeJS(28819): [GUEST-CLEAN] 22/22 key=v2:required-session-local-commit-index:v1:v2:progress:v1:<id kind=service len=165 shape=str165(not_json)
+10-15 16:33:47.273 I/ReactNativeJS(28819): [GUEST-CLEAN] summary dirty=22 default=12 service=9 progress=1 decision=not_clean
+10-15 16:33:47.274 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":22,"progress":1,"t":9328411}
+10-15 16:33:47.282 W/ReactNativeJS(28819): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":22,"progress":1,"t":9328411}
+10-15 16:33:47.377 I/ReactNativeJS(28819): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":false,"stableId":"59b0fd20"}'
+10-15 16:33:48.597 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=streak_milestone_pending reason=owner_changed to=none
+10-15 16:33:48.598 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_changed to=none
+10-15 16:33:48.599 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_changed to=none
+10-15 16:33:48.606 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=spire_report_client reason=owner_changed to=none
+10-15 16:33:48.613 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=spire_room_client reason=owner_changed to=none
+10-15 16:33:48.615 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_changed to=none
+10-15 16:33:48.616 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=home_continue_mark reason=owner_changed to=none
+10-15 16:33:48.616 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=home_continue_v2_progress reason=owner_changed to=none
+10-15 16:33:48.623 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_changed to=none
+10-15 16:33:48.623 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_changed to=none
+10-15 16:33:48.624 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_changed to=none
+10-15 16:33:48.627 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=voice_daily_allowance reason=owner_changed to=none
+10-15 16:33:48.628 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=spire_position_feed reason=owner_changed to=none
+10-15 16:33:48.629 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=spire_owner_epoch reason=owner_changed to=none
+10-15 16:33:48.630 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_changed to=none
+10-15 16:33:48.631 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_changed to=none
+10-15 16:33:48.631 I/ReactNativeJS(28819): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_changed to=none
+10-15 16:33:48.660 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":9329797}
+10-15 16:33:48.665 W/ReactNativeJS(28819): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:42e539ba","tookMs":19706,"t":9329798}
+10-15 16:33:48.666 W/ReactNativeJS(28819): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:42e539ba","tookMs":19706,"t":9329798}
+10-15 16:33:50.240 I/ReactNativeJS(28819): [AUTH-SWITCH-OFFER] resume_credential not_stored provider=google reason=caller_not_capturing
+10-15 16:33:50.256 I/ReactNativeJS(28819): [SIGNIN] ui:returned provider=google result=error in=21861ms

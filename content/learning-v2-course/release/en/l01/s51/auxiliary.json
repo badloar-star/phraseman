@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-51:intro1:r2": {
+          "ru": "Это о высокой цене. Большой вес здесь передаёт `heavy`.",
+          "uk": "Це про високу ціну. Велику вагу тут передає `heavy`."
+        },
+        "en:lesson-01:session-51:intro1:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-51:intro2:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-51:intro2:r3": {
+          "ru": "`cheap` — недорогие. Здесь речь о весе: `heavy`.",
+          "uk": "`cheap` — недорогі. Тут ідеться про вагу: `heavy`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-51:intro3:r2": {
+          "ru": "Это о весе человека. Здесь нужно его терпение: `patient`.",
+          "uk": "Це про вагу людини. Тут потрібна її терплячість: `patient`."
+        },
+        "en:lesson-01:session-51:intro3:r3": {
+          "ru": "После `He` нужно `is`.",
+          "uk": "Після `He` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "acf24d54dcc89dee4fdc4434adc322b865e33a61fddfcaec42862362b974aa0b"
+}

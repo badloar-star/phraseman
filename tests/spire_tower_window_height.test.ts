@@ -132,6 +132,7 @@ describe('скелет подиума и свайп по окну башни', (
     expect(tower).toContain('onTouchEnd={() => onTouchActive?.(false)}');
     expect(tower).toContain('onTouchCancel={() => onTouchActive?.(false)}');
     expect(tower).toContain('onScrollEndDrag={() => onTouchActive?.(false)}');
+    expect(tower).toContain('useEffect(() => () => onTouchActive?.(false), [onTouchActive]);'); // размонтирование окна с пальцем на нём снимает блокировку (Ревизор 15.10)
   });
 
   it('экран Пика остаётся ≤ 400 строк (сторож)', () => {

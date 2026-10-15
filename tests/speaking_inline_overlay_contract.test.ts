@@ -50,7 +50,8 @@ describe('inline speaking surface contract', () => {
     expect(button).toContain('inlineHold.onStart()');
     expect(button).toContain('inlineHold?.onEnd()');
     expect(button).toContain('onPress={inlineHold ? undefined : onPress}');
-    expect(mistakePractice).toContain('onPressIn={() => setSpeechHeld(true)}');
+    // зачем (D196, 15.10): тап по микрофону сначала проходит общий гейт голоса (лимит 3/день → пейвол), и только потом запись начинается
+    expect(mistakePractice).toContain('onPressIn={() => { if (!voiceGate.canStartAttempt()) return; setSpeechHeld(true); }}');
     expect(mistakePractice).toContain('onPressOut={() => setSpeechHeld(false)}');
     expect(lesson).toContain('onPressIn={startSpeakingHold}');
     expect(lesson).toContain('onPressOut={endSpeakingHold}');

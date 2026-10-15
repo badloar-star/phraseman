@@ -65,6 +65,8 @@ import SpeakingPanel, {
   type SpeakingPanelStatus,
 } from "../components/SpeakingPanel";
 import SpeakingInlineResultStars from "../components/SpeakingInlineResultStars";
+import SpeechFailBlock from "../components/speech/SpeechFailBlock";
+import { scorePronunciationTranscript } from "./pronunciation_scoring_core";
 import { starsForScore } from "../components/SpeakingScoreStars";
 import SpeakHoldButton from "./flashcards/SpeakHoldButton";
 import { useLang } from "../components/LangContext";
@@ -1986,6 +1988,12 @@ export default function LearningV2DirectSessionPlayerV1() {
     modeVoiceStatus === "listening";
   const voiceControlDisabled =
     voiceFooterDisabled || modeVoiceStatus === "finishing";
+  // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале — фраза целиком с подсвеченными пропущенными словами и строкой «Не услышали слово «X» — скажи
+  // фразу целиком»; пропущенные слова — тем же оценщиком по распознанному тексту. Пусто (ничего не распознано / слово не названо) — прежняя карточка «Ты сказал(а)».
+  const voiceFailWords: readonly string[] =
+    voiceAttemptResult && !voiceAttemptResult.passed && voiceTargetText && voiceAttemptResult.transcript.trim()
+      ? (scorePronunciationTranscript({ targetText: voiceTargetText, transcript: voiceAttemptResult.transcript }).missingWords ?? [])
+      : [];
   const voiceResultAccessibilityLabel = voiceAttemptResult
     ? (() => {
         const stars = starsForScore(
@@ -3411,7 +3419,19 @@ export default function LearningV2DirectSessionPlayerV1() {
                 }}
                 onClose={cancelVoiceCapture}
               />}
-              {voiceAttemptResult ? (
+              {voiceAttemptResult && voiceTargetText && voiceFailWords.length > 0 ? (
+                <SpeechFailBlock
+                  targetText={voiceTargetText}
+                  missingWords={voiceFailWords}
+                  lang={lang}
+                  glass={g}
+                  kicker={triLang(lang, {
+                    ru: "Сказано", uk: "Сказано", en: "Spoken", es: "Dicho", "pt-BR": "Falado",
+                    vi: "Đã nói", id: "Diucapkan", tr: "Söylenen", pl: "Powiedziano",
+                  })}
+                  testID="learning-v2-speech-fail"
+                />
+              ) : voiceAttemptResult ? (
                 <View
                   accessible
                   accessibilityRole="text"
@@ -3453,7 +3473,12 @@ export default function LearningV2DirectSessionPlayerV1() {
                       ru: "Голос на сегодня закончился", uk: "Голос на сьогодні закінчився", en: "No voice attempts left today", es: "Hoy no quedan intentos de voz",
                       "pt-BR": "As tentativas de voz de hoje acabaram", vi: "Hôm nay đã hết lượt nói", id: "Percobaan suara hari ini habis", tr: "Bugünkü ses hakkın bitti", pl: "Na dziś koniec prób głosowych",
                     })
-                  : footerVoiceLabel}
+                  : voiceFailWords.length > 0
+                    ? triLang(lang, {
+                        ru: "Ещё раз", uk: "Ще раз", en: "Again", es: "Otra vez", "pt-BR": "De novo",
+                        vi: "Thử lại", id: "Lagi", tr: "Tekrar", pl: "Jeszcze raz",
+                      })
+                    : footerVoiceLabel}
                 allowance={
                   voiceAllowance.kind === "limited" && voiceAllowance.remaining !== null
                     ? {

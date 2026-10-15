@@ -42,14 +42,15 @@ const CORRECT_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, stri
 });
 
 const WRONG_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
-  ru: "Попробуйте ещё раз.",
-  uk: "Спробуйте ще раз.",
+  // зачем (координатор 15.10): приложение на «ты» — было «Попробуйте…» / «Спробуйте…» / «Tekrar deneyin.»
+  ru: "Попробуй ещё раз.",
+  uk: "Спробуй ще раз.",
   en: "Try again.",
   es: "Inténtalo de nuevo.",
   "pt-BR": "Tente novamente.",
   vi: "Hãy thử lại.",
   id: "Coba lagi.",
-  tr: "Tekrar deneyin.",
+  tr: "Tekrar dene.",
   pl: "Spróbuj ponownie.",
 });
 

@@ -61,6 +61,8 @@ import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { mixDark } from '../components/mistakes-panel/panelPaint'; // theme-exempt: ложное срабатывание — hex только в комментарии. зачем (10.10): заливка полосы = цвет текста темы чуть темнее (на Авроре ≈ #E9E9EB макета practice.html, PM-130; на светлой теме остаётся читаемой)
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import { PracticeCta } from '../components/practice/PracticeStates';
+import SpeechFailBlock from '../components/speech/SpeechFailBlock';
+import { scorePronunciationTranscript } from './pronunciation_scoring_core';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
@@ -1582,6 +1584,11 @@ RU: ${card.translation}`}
   const attempt = session.attempt;
   const band = attempt ? speakingBand(attempt.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD, attempt.passed) : null;
   const spokenTranscript = retainedSpeakingTranscript(attempt);
+  // зачем (координатор 15.10, «не засчитано» по эталону Макетов 91eee157a, строгая проверка речи): при провале показываем фразу ЦЕЛИКОМ с подсвеченными пропущенными словами и строкой «Не услышали слово «X» — скажи
+  // фразу целиком». Пропущенные слова — тем же оценщиком по распознанному тексту (панель в `onScore` пока отдаёт только счёт и текст); пусто (ничего не распознано / слово не названо) — прежний вид результата.
+  const failWords: readonly string[] = !attempt || attempt.passed || !card || !spokenTranscript
+    ? []
+    : (scorePronunciationTranscript({ targetText: card.en, transcript: spokenTranscript }).missingWords ?? []);
   // зачем (Карточки 2.0 12.10): микрофон 92 включается касанием; подпись «зажми…» ушла вместе с удержанием.
   const passedNow = phase === 'scored' && attempt?.passed === true;
   const spoken = session.events.filter((e) => e.correct).length;
@@ -1668,6 +1675,39 @@ RU: ${card.translation}`}
                 onClose={onPanelClose}
                 onStatusChange={onPanelStatusChange}
               />
+            ) : phase === 'scored' && attempt && band && card && failWords.length > 0 ? (
+              // зачем (эталон speech-result-states.html): плашка «Сказано» с фразой целиком, пропущенные слова мягким красным, строка под ней; главная кнопка «Ещё раз» с микрофоном, «Пропустить» — текстом. Те же testID, что у прежнего результата
+              <View style={styles.failResult} testID="fc-speak-attempt-result">
+                <SpeechFailBlock
+                  targetText={card.en}
+                  missingWords={failWords}
+                  lang={lang}
+                  glass={speakingGlass}
+                  kicker={labels.spokenTranscript}
+                  textScale={textScale}
+                  testID="fc-speak-fail"
+                />
+                <TouchableOpacity
+                  testID="fc-speak-retry"
+                  accessibilityRole="button"
+                  accessibilityLabel={labels.retry}
+                  onPress={onRetry}
+                  style={[styles.failRetry, { backgroundColor: speakingGlass.cta }]}
+                >
+                  <Ionicons name="mic" size={20} color={speakingGlass.ctaInk} />
+                  <Text style={{ color: speakingGlass.ctaInk, fontSize: 16 * textScale, lineHeight: 22 * textScale, fontWeight: '700' }}>{labels.retry}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  testID="fc-speak-next"
+                  accessibilityRole="button"
+                  accessibilityLabel={labels.skip}
+                  hitSlop={{ top: 6, bottom: 6, left: 12, right: 12 }}
+                  onPress={() => { fcHaptic('tap'); advanceOrWaitForEcho(); }}
+                  style={styles.failSkip}
+                >
+                  <Text style={{ color: speakingGlass.secondary, fontSize: 16 * textScale, lineHeight: 22 * textScale, fontWeight: '600' }}>{labels.skip}</Text>
+                </TouchableOpacity>
+              </View>
             ) : phase === 'scored' && attempt && band ? (
               <View
                 style={[
@@ -1900,6 +1940,10 @@ const styles = StyleSheet.create({
   verdictAward: { height: 26, borderRadius: 13, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center' },
   verdictAwardText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   resultActions: { flexDirection: 'row', gap: 12, marginTop: 2 },
+  // зачем (эталон «не засчитано»): блок + главная кнопка 56 (радиус 28) + «Пропустить» текстом 44
+  failResult: { alignSelf: 'stretch', gap: 12 },
+  failRetry: { height: 56, borderRadius: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  failSkip: { height: 44, alignItems: 'center', justifyContent: 'center' },
   resultBtn: {
     flexDirection: 'row',
     alignItems: 'center',

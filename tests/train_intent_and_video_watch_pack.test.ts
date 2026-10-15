@@ -53,3 +53,19 @@ describe('сторож цепочки «ролик → набор → Трени
     expect(read('app/flashcards/pack_language_preferences.ts')).not.toContain('AsyncStorage.setItem');
   });
 });
+
+describe('R60 (Макеты c1_r70r60): оба пути открывают тренировку через один помощник', () => {
+  it('параметры и намерение → openTrainAfterTransition, без cleanup в эффекте параметров; запасной прямой старт', () => {
+    const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
+    expect(hub).toContain("openTrainAfterTransitionRef.current(`params deck=${deckParam || 'none'}`);");
+    expect(hub).toContain("return openTrainAfterTransitionRef.current(`intent deck=${String(intent.deckId)}`);");
+    expect(hub).toContain('[TRAIN-INTENT] hub:fallback direct');
+    expect(hub).toContain('trainGateRef.current.trainingLocked || !trainGateRef.current.trainingEntryReady');
+  });
+  it('swipe: пропавшие id не читаются повторно (отметка, наборы фраз), счётчик чтений в журнале', () => {
+    const swipe = read('app/flashcards_swipe.tsx');
+    expect(swipe).toContain('missingPackCache.isMissing(missingKey, nowMs)');
+    expect(swipe).toContain('[SWIPE-DECKS] meta reads=');
+    expect(swipe).toContain('phraseVideoIdsForCards.has(videoId)');
+  });
+});

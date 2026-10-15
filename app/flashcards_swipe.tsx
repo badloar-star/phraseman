@@ -67,7 +67,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
   fetchCommunityPackCards,
-  fetchCommunityPackMeta,
+  fetchCommunityPackMetaResult,
   loadAuthorCommunityPacksPendingUpdate,
   loadPublishedCommunityMarketPacks,
 } from './community_packs/communityFirestore';
@@ -850,21 +850,44 @@ async function buildCommunitySources(
       : [];
     const visibleIds = new Set([...minePublished, ...pendingMine].map((p) => p.id));
     const missingOwned = [...owned].filter((id) => !visibleIds.has(id));
-    const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(noteSwallowedAs('flashcards_swipe:buildCommunitySources.fetchCommunityPackMeta', null))));
+    let phraseVideoIdsForCards: ReadonlySet<string | undefined> = new Set();
+    // зачем (Ревизор a9b99dd9e 💸, 15.10): раньше на КАЖДОМ входе каждый «пропавший» id шёл в Firestore (мета + карточки) в обход missingPackCache — 1–2 пустых чтения на набор ролика.
+    // Теперь: ролик есть в наборах фраз (кэш 6 ч) → в сообщество не ходим вовсе; известное «документа нет» (общая отметка с «Моими наборами») → не читаем; остальные — одно чтение.
+    const videoIds = missingOwned.filter((id) => videoIdFromOwnedCommunityId(id) !== null);
+    const phraseSetPacks = videoIds.length > 0
+      ? await loadVideoPhraseSetPacks().catch((error: unknown): FlashcardMarketPack[] => {
+        console.warn(`[SWIPE-DECKS] наборы фраз роликов не загрузились reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+        return [];
+      })
+      : [];
+    const phraseVideoIds = new Set(phraseSetPacks.map((pack) => pack.videoId));
+    phraseVideoIdsForCards = phraseVideoIds;
+    // лениво: модуль отметок тянет шину событий — обычный вход без «пропавших» наборов его не платит
+    const { missingPackCache } = missingOwned.length > 0 ? await import('./flashcards/my_packs_missing_cache') : { missingPackCache: { isMissing: () => false, markMissing: () => undefined } };
+    const nowMs = Date.now();
+    let metaReads = 0;
+    let metaSkippedPhrase = 0;
+    let metaSkippedMissing = 0;
+    const missingMeta = await Promise.all(missingOwned.map(async (id): Promise<FlashcardMarketPack | null> => {
+      const videoId = videoIdFromOwnedCommunityId(id);
+      if (videoId !== null && phraseVideoIds.has(videoId)) { metaSkippedPhrase += 1; return null; }
+      const missingKey = `${studyTarget}:${id}`;
+      if (missingPackCache.isMissing(missingKey, nowMs)) { metaSkippedMissing += 1; return null; }
+      metaReads += 1;
+      const result = await fetchCommunityPackMetaResult(id, studyTarget).catch(noteSwallowedAs('flashcards_swipe:buildCommunitySources.fetchCommunityPackMeta', null));
+      if (result == null) return null;
+      if (result.status === 'missing') { missingPackCache.markMissing(missingKey, nowMs); return null; }
+      return result.status === 'found' ? result.pack : null;
+    }));
+    console.log(`[SWIPE-DECKS] meta reads=${metaReads} skipped_phrase_set=${metaSkippedPhrase} skipped_known_missing=${metaSkippedMissing} of=${missingOwned.length}`); // guard-ok: число чтений Firestore
     // зачем (аудит #3 глубокое, координатор 15.10): добавленный набор ролика без документа сообщества (`video_<id>`) раньше не попадал в источники — «Верно/неверно» по такой колоде
     // стартовало пустым/с чужими. Мету собираем из набора фраз ролика (кэш 6 ч), как в «Моих наборах»; карточки — ниже, с тем же запасным путём.
     const videoGapIds = missingOwned.filter((id, index) => missingMeta[index] == null && videoIdFromOwnedCommunityId(id) !== null);
     const videoGapMetas: FlashcardMarketPack[] = [];
-    if (videoGapIds.length > 0) {
-      const phraseSetPacks = await loadVideoPhraseSetPacks().catch((error: unknown): FlashcardMarketPack[] => {
-        console.warn(`[SWIPE-DECKS] наборы фраз роликов не загрузились reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
-        return [];
-      });
-      for (const id of videoGapIds) {
-        const built = buildOwnedVideoPackMeta({ packId: id, phraseSetPacks, communityDoc: null, storedTitle: undefined });
-        console.log(`[SWIPE-DECKS] video_source id=${id} source=${built.source} cards=${built.pack.cardCount}`); // guard-ok: источник набора ролика
-        videoGapMetas.push(built.pack);
-      }
+    for (const id of videoGapIds) {
+      const built = buildOwnedVideoPackMeta({ packId: id, phraseSetPacks, communityDoc: null, storedTitle: undefined });
+      console.log(`[SWIPE-DECKS] video_source id=${id} source=${built.source} cards=${built.pack.cardCount}`); // guard-ok: источник набора ролика
+      videoGapMetas.push(built.pack);
     }
     const byId = new Map<string, FlashcardMarketPack>();
     for (const pack of [...minePublished, ...pendingMine, ...missingMeta, ...videoGapMetas]) {
@@ -889,6 +912,8 @@ async function buildCommunitySources(
       icon: 'people-outline',
       accent: SOURCE_ACCENTS.community,
       loadCards: async () => {
+        const videoId = videoIdFromOwnedCommunityId(pack.id);
+        if (videoId !== null && phraseVideoIdsForCards.has(videoId)) return loadVideoPackFallbackCards(pack.id, studyTarget); // набор есть в фразах ролика — документ сообщества не читаем
         const fromDoc = await fetchCommunityPackCards(pack.id, studyTarget);
         if (fromDoc.length > 0 || videoIdFromOwnedCommunityId(pack.id) === null) return fromDoc;
         // зачем (аудит #3 глубокое): документа нет — карточки из фраз ролика

@@ -674,6 +674,10 @@ export default function FlashcardsHubScreen() {
   // зачем (макет «Список»: плавающая «Тренировать» на списке «Сохранённых»): список зовёт хаб с ?train=1 — открываем то же окно выбора режима
   // со всей логикой лимита и пейвола; параметр сбрасываем, чтобы возврат на хаб не открывал окно снова.
   const autoTrainHandledRef = useRef(false);
+  // Свежие значения для отложенного открытия (замыкание эффекта живёт дольше кадра)
+  const trainGateRef = useRef({ trainingLocked: false, trainingEntryReady: false });
+  trainGateRef.current = { trainingLocked, trainingEntryReady };
+  const openTrainAfterTransitionRef = useRef<(source: string) => (() => void) | undefined>(() => undefined);
   useEffect(() => {
     console.log('[BLITZ-AUTOOPEN] hub:autotrain-effect', JSON.stringify({ train: hubParams.train ?? null, deck: hubParams.deck ?? null, handled: autoTrainHandledRef.current }));
     if (hubParams.train !== '1' || autoTrainHandledRef.current) return;
@@ -682,12 +686,42 @@ export default function FlashcardsHubScreen() {
     const deckParam = typeof hubParams.deck === 'string' ? hubParams.deck.trim() : '';
     pendingDeckRef.current = deckParam ? { deckId: deckParam, count: Number(hubParams.cnt) || 0 } : null;
     router.setParams({ train: undefined, deck: undefined, cnt: undefined } as never);
-    onTrainPress();
+    // зачем (🔴 R60, Макеты c1_r70r60): окно режимов не появлялось и по этому пути — onTrainPress звался прямо в эффекте во время перехода. Теперь оба пути (параметры и намерение) идут через один помощник.
+    // без cleanup: setParams выше меняет hubParams.train и перезапускает эффект — отмена убила бы отложенное открытие
+    openTrainAfterTransitionRef.current(`params deck=${deckParam || 'none'}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hubParams.train]);
   // зачем (🔴 Ц1, 15.10): navigate в уже открытый хаб теряет параметры — намерение «тренировать набор» приходит через train_intent и забирается на фокусе.
   const onTrainIntentRef = useRef(onTrainPress);
   onTrainIntentRef.current = onTrainPress;
+  const finishDismissalRef = useRef(finishModeSheetDismissal);
+  finishDismissalRef.current = finishModeSheetDismissal;
+  // зачем (🔴 R60, владелец: «тап Тренировать → тренировка этой колоды, без лишних шагов»): открываем окно режимов ПОСЛЕ перехода; если окно так и не появилось, а доступ чист
+  // (не заблокировано лимитом, квота готова) — запускаем тренировку колоды сразу в режиме по умолчанию («Верно/неверно»). Каждая ветка пишет причину в журнал.
+  openTrainAfterTransitionRef.current = (source: string) => {
+    let cancelled = false;
+    const t0 = Date.now();
+    console.log(`[TRAIN-INTENT] hub:schedule source=${source} deckPending=${String(pendingDeckRef.current?.deckId ?? 'none')}`); // guard-ok: постановка открытия
+    const handle = InteractionManager.runAfterInteractions(() => {
+      if (cancelled) { console.log(`[TRAIN-INTENT] hub: отменено до открытия (экран ушёл) source=${source}`); return; } // guard-ok: ранний выход
+      console.log(`[TRAIN-INTENT] hub:open source=${source} afterMs=${Date.now() - t0} locked=${String(trainGateRef.current.trainingLocked)} entryReady=${String(trainGateRef.current.trainingEntryReady)}`); // guard-ok: ветвление
+      onTrainIntentRef.current();
+      setTimeout(() => {
+        const visible = modeSheetVisibleRef.current;
+        const deck = pendingDeckRef.current;
+        console.log(`[TRAIN-INTENT] hub:sheet-state через 900мс visible=${String(visible)} deck=${String(deck?.deckId ?? 'none')}`); // guard-ok: итог открытия окна
+        if (visible || !deck) return;
+        if (trainGateRef.current.trainingLocked || !trainGateRef.current.trainingEntryReady) {
+          console.log('[TRAIN-INTENT] hub:fallback пропущен — доступ ещё не подтверждён или лимит исчерпан'); // guard-ok: причина без прямого старта
+          return;
+        }
+        console.log(`[TRAIN-INTENT] hub:fallback direct deck=${deck.deckId} mode=truefalse — окно не появилось`); // guard-ok: прямой старт
+        pendingModeRef.current = 'truefalse';
+        finishDismissalRef.current();
+      }, 900);
+    });
+    return () => { cancelled = true; handle.cancel(); };
+  };
   useFocusEffect(useCallback(() => {
     console.log('[BLITZ-AUTOOPEN] hub:focus — сброс флага автозапуска');
     autoTrainHandledRef.current = false;
@@ -698,13 +732,7 @@ export default function FlashcardsHubScreen() {
     console.log(`[BLITZ-AUTOOPEN] hub:focus intent deck=${String(intent.deckId)} count=${intent.count} → окно режимов после перехода`); // guard-ok: путь через намерение
     // зачем (🔴 Ц1 Макетов, 15.10): намерение доходило до хаба (consume ✓), но окно режимов не появлялось — оно открывалось В ТЕКУЩИЙ кадр возврата на хаб, пока шёл переход назад,
     // и нативное окно в этот момент не показывается. Открываем после перехода (InteractionManager) и пишем, видно ли окно через 700 мс.
-    let cancelled = false;
-    const handle = InteractionManager.runAfterInteractions(() => {
-      if (cancelled) { console.log('[TRAIN-INTENT] hub: отменено (экран ушёл) до открытия окна'); return; } // guard-ok: ранний выход
-      onTrainIntentRef.current();
-      setTimeout(() => console.log(`[TRAIN-INTENT] hub:sheet-state через 700мс visible=${String(modeSheetVisibleRef.current)} deck=${String(intent.deckId)}`), 700); // guard-ok: итог открытия окна
-    });
-    return () => { cancelled = true; handle.cancel(); };
+    return openTrainAfterTransitionRef.current(`intent deck=${String(intent.deckId)}`);
   }, []));
 
   // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.

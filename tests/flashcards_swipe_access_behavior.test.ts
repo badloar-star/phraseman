@@ -179,7 +179,7 @@ jest.mock('../app/flashcards_target_gate', () => ({
   flashcardsOfficialPacksAvailableForTarget: () => false,
 }));
 jest.mock('../app/community_packs/communityFirestore', () => ({
-  fetchCommunityPackCards: jest.fn(), fetchCommunityPackMeta: jest.fn(), loadAuthorCommunityPacksPendingUpdate: jest.fn(async () => []), loadPublishedCommunityMarketPacks: jest.fn(async () => []),
+  fetchCommunityPackCards: jest.fn(), fetchCommunityPackMeta: jest.fn(), fetchCommunityPackMetaResult: jest.fn(), loadAuthorCommunityPacksPendingUpdate: jest.fn(async () => []), loadPublishedCommunityMarketPacks: jest.fn(async () => []),
 }));
 jest.mock('../app/community_packs/communityOwnedStorage', () => ({ loadCommunityOwnedPackIds: jest.fn(async () => []) }));
 jest.mock('../app/flashcards/marketplace', () => ({

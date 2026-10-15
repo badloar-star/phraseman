@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-43:intro1:r2": {
+          "ru": "`bedroom` — одна спальня. Несколько — `bedrooms`.",
+          "uk": "`bedroom` — одна спальня. Кілька — `bedrooms`."
+        },
+        "en:lesson-03:session-43:intro1:r3": {
+          "ru": "`bottles` — бутылки. Спальни — `bedrooms`.",
+          "uk": "`bottles` — пляшки. Спальні — `bedrooms`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-43:intro2:r2": {
+          "ru": "Спален несколько: нужно `are`.",
+          "uk": "Спалень кілька: потрібне `are`."
+        },
+        "en:lesson-03:session-43:intro2:r3": {
+          "ru": "Так говорят об одной спальне. Здесь несколько: `The bedrooms are there`.",
+          "uk": "Так говорять про одну спальню. Тут кілька: `The bedrooms are there`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-43:intro3:r2": {
+          "ru": "`uncertain` — неуверенный. Здесь описываем терпение: `patient`.",
+          "uk": "`uncertain` — невпевнений. Тут описуємо терпіння: `patient`."
+        },
+        "en:lesson-03:session-43:intro3:r3": {
+          "ru": "С `He` нужно `is`.",
+          "uk": "З `He` потрібне `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ac2620cefaab1d2ff5416252ba03d95a6cf63a2077331a7251792365513ff63"
+}

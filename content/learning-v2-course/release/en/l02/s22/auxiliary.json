@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-22:intro1:r2": {
+          "ru": "Между `It` и `complete` нужно `is`.",
+          "uk": "Між `It` і `complete` потрібно `is`."
+        },
+        "en:lesson-02:session-22:intro1:r3": {
+          "ru": "Это значит, что ещё чего-то не хватает. В условии всё собрано.",
+          "uk": "Це означає, що ще чогось бракує. За умовою все складено."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-22:intro2:r2": {
+          "ru": "Это сообщение, а нужен вопрос.",
+          "uk": "Це повідомлення, а потрібне запитання."
+        },
+        "en:lesson-02:session-22:intro2:r3": {
+          "ru": "С `it` нужно `is`: `Is it complete?`",
+          "uk": "З `it` потрібно `is`: `Is it complete?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-22:intro3:r2": {
+          "ru": "Это подтвердит, что всё собрано. В углу пока пустое место.",
+          "uk": "Це підтвердить, що все складено. У кутку поки порожнє місце."
+        },
+        "en:lesson-02:session-22:intro3:r3": {
+          "ru": "После `it` нужно `is`.",
+          "uk": "Після `it` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8c6d5e8639da8c5b3d89b2da41eb3862d520e998f12ce960b08edecbe3cb516c"
+}

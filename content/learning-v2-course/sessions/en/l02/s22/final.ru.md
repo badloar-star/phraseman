@@ -1,203 +1,138 @@
-# Английский · Урок 2 · Занятие 22 — «Наверху или внизу»
+# Английский · Урок 2 · Занятие 22 — Последняя деталь
 
-**Сцена занятия.** Второй день в Дублине. Вы в большом здании, ищете нужный этаж и переспрашиваете у людей на лестнице.
+**Ситуация.** Вы с другом собираете пазл с замком. Последняя деталь нашлась под коробкой. На картинке богатый король, бедный путник и знаменитый замок.
 
-**Как сказать:** `Where is` + место, ответ `It is upstairs / downstairs`
-**Новые слова:** downstairs
-**Возвращаются:** upstairs, toilets, shops, near
+**Что вы освоите:** сказать, что всё собрано, и уточнить это вопросом
+**Новые слова:** complete
 
 ---
 
 ## Интро 1
 
-### `downstairs` — «внизу», «на нижнем этаже»
+### Ничего не пропущено
 
-`downstairs` — «внизу», этажом ниже. Спустился по лестнице — и ты `downstairs`.
+`complete` — «полный, завершённый»: всё, что нужно, на месте. Вы вставили последнюю деталь пазла: `It is complete` — «Он собран полностью». Пока в стене замка была дырка, пазл не был `complete`. Даже если назвать эту дырку дополнительным окном.
 
-Слово длинное, но склеено из двух простых: `down` — «вниз», `stairs` — «лестница». Вниз по лестнице.
+**Последняя деталь встала на место. Скажите полной фразой, что пазл собран полностью.**
 
-В ответе на «где?» перед `downstairs` не нужно `at`: `It is downstairs` — «Это внизу».
-
-**Вы спрашиваете, где туалет. Вам показывают на лестницу вниз. Ответьте про него.**
-
-- ✅ **It is downstairs.**
-- ❌ It is at downstairs. — *`at` тут лишнее: `downstairs` уже само значит «внизу».*
-- ❌ It downstairs. — *Пропало `is`. Между `it` и словом о месте оно нужно: `It is downstairs`.*
+- ✅ **It is complete.**
+- ❌ It complete. — *Между `It` и `complete` нужно `is`.*
+- ❌ It is not complete. — *Это значит, что ещё чего-то не хватает. В условии всё собрано.*
 
 ---
 
 ## Интро 2
 
-### `upstairs` — «наверху»
+### А всё ли на месте?
 
-`upstairs` — «наверху», этажом выше. Конец у обоих слов одинаковый, `stairs` — «лестница», меняются начала: `up` — вверх, `down` — вниз.
+`It is complete` сообщает результат. `Is it complete?` спрашивает: «Всё собрано?» Для вопроса `is` ставим перед `it`. Слово `complete` остаётся в конце.
 
-Стоит `upstairs` в конце фразы, после `is` или `are`: `It is upstairs`, `The shops are upstairs`. Про одно место — `is`, про несколько — `are`, а само слово не меняется.
+**Друг закрыл коробку, но вы не видели готового пазла. Спросите, собран ли он полностью.**
 
-**Магазины на втором этаже. Скажите это.**
-
-- ✅ **The shops are upstairs.**
-- ❌ The shops is upstairs. — *`shops` — их много, поэтому `are`, а не `is`.*
-- ❌ The shops upstairs. — *Пропало `are`. Магазинов несколько: `The shops are upstairs`.*
+- ✅ **Is it complete?**
+- ❌ It is complete. — *Это сообщение, а нужен вопрос.*
+- ❌ Are it complete? — *С `it` нужно `is`: `Is it complete?`*
 
 ---
 
 ## Интро 3
 
-### Спросить, где это
+### Короткий ответ
 
-Чтобы спросить про место, впереди встаёт `where`, сразу за ним `is`, и только потом само место: `Where is the toilet?` Порядок в вопросе такой и есть.
+На `Is it complete?` можно ответить `Yes, it is` — «Да» или `No, it is not` — «Нет». Если вы сами сообщаете результат, удобно `It's complete`. Но короткое «да» заканчивается полным `is`: `Yes, it is`, не `Yes, it's`.
 
-Если вещь одна — `is`, если их несколько — `are`: `Where are the shops?`
+**Друг спрашивает: `Is it complete?` Вы видите пустое место в углу. Ответьте коротким «нет».**
 
-**Вы у лестницы и не знаете, куда вам. Спросите, где магазины.**
-
-- ✅ **Where are the shops?**
-- ❌ Where the shops are? — *Слово `are` уехало в конец. В вопросе оно стоит сразу за `where`.*
-- ❌ Where is the shops? — *`shops` — их много, значит `are`.*
+- ✅ **No, it is not.**
+- ❌ Yes, it is. — *Это подтвердит, что всё собрано. В углу пока пустое место.*
+- ❌ No, it not. — *После `it` нужно `is`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — downstairs**
-<!-- interaction_id: en:lesson-02:session-22:i01; family: listen_choose -->
-Цель: `downstairs`
+**1 · Все детали пазла на месте. Скажите полной фразой, что он собран полностью**
+<!-- interaction_id: en:lesson-02:session-22:i01; family: phrase_builder -->
+Плитки: `complete` `is` `It` `are` → **It is complete.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is complete.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте фразу о короле на картинке**
 <!-- interaction_id: en:lesson-02:session-22:i02; family: listen_choose -->
-Цель: `downstairs`
-Варианты: `downstairs` · `dinner` · `doctor`
-- dinner — *Это «ужин». Гласная в начале другая: у `downstairs` слышно «ау», у `dinner` — «и».*
-- doctor — *Это «врач». Гласная в начале другая: у `downstairs` — «ау», у `doctor` — «о».*
+🔊 *He is rich.* → **He is rich.** · He is poor. · He is famous.
+- He is poor. — *В записи последнее слово — `rich`, а в этом варианте — `poor`.*
+- He is famous. — *В записи последнее слово — `rich`, а в этом варианте — `famous`.*
 
-
-**3 · Вставьте слово — вам показали на лестницу вниз**
+**3 · Спросите, собран ли пазл полностью**
 <!-- interaction_id: en:lesson-02:session-22:i03; family: context_gap_grammar -->
-Цель: `It is ___ .`
-Варианты: `downstairs` · `near` · `behind`
-- near — *«Рядом». Но вам показали не «в двух шагах», а «спуститесь».*
-- behind — *«Позади». Это про сторону, а не про этаж.*
+___ it complete? → **Is** · Am · Are
+- Am — *С `it` нужно `Is`.*
+- Are — *Вопрос начинается с `Is it`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-22:i04; family: speed_match -->
+complete — полный, завершённый · rich — богатый · poor — бедный · famous — знаменитый
 
-**4 · Карточка слова — upstairs**
-<!-- interaction_id: en:lesson-02:session-22:i04; family: listen_choose -->
-Цель: `upstairs`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-02:session-22:i05; family: listen_build_dictation -->
+🔊 *It is not complete.* Плитки: `complete` `not` `is` `It` `are` → **It is not complete.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not complete.`)*
 
-**5 · Различите звуки — какое из двух про верхний этаж?**
-<!-- interaction_id: en:lesson-02:session-22:i05; family: sound_contrast -->
-Варианты: `upstairs` · `downstairs`
-- downstairs — *Это «внизу». Слушайте первый слог: «даун» или «ап» — дальше слова одинаковые.*
+**6 · Вы показываете на путника на картинке. Спросите, бедный ли он**
+<!-- interaction_id: en:lesson-02:session-22:i06; family: phrase_builder -->
+Плитки: `poor` `he` `Is` `Are` → **Is he poor?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is he poor?`)*
 
+**7 · Последняя деталь вставлена. Коротко сообщите, что пазл собран полностью**
+<!-- interaction_id: en:lesson-02:session-22:i07; family: scripted_repeat_compare -->
+🎙 **It's complete.**
 
-**6 · Вставьте слово — лифт привёз вас на этаж выше, магазины тут**
-<!-- interaction_id: en:lesson-02:session-22:i06; family: context_gap_grammar -->
-Цель: `The shops are ___ .`
-Варианты: `upstairs` · `downstairs` · `near`
-- downstairs — *Это «внизу», а вы поднялись.*
-- near — *«Рядом» ничего не говорит про этаж.*
+**8 · Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»**
+<!-- interaction_id: en:lesson-02:session-22:i08; family: context_gap_grammar -->
+Yes, it ___. → **is** · am · are
+- am — *С `it` нужно `is`.*
+- are — *Короткий ответ — `Yes, it is`.*
 
+**9 · Послушайте фразу**
+<!-- interaction_id: en:lesson-02:session-22:i09; family: listen_choose -->
+🔊 *It is obvious.* → **It is obvious.** · It is complete. · It is famous.
+- It is complete. — *В записи последнее слово — `obvious`, а в этом варианте — `complete`.*
+- It is famous. — *В записи последнее слово — `obvious`, а в этом варианте — `famous`.*
 
-**7 · Карточка слова — toilets**
-<!-- interaction_id: en:lesson-02:session-22:i07; family: listen_choose -->
-Цель: `toilets`
-
-**8 · Соберите фразу — «где туалеты?»**
-<!-- interaction_id: en:lesson-02:session-22:i08; family: phrase_builder -->
-Цель: `Where are the toilets?`
-
-**9 · Послушайте и соберите — «это внизу»**
-<!-- interaction_id: en:lesson-02:session-22:i09; family: listen_build_dictation -->
-Цель: `It is downstairs.`
-🔊 *It is downstairs.* Плитки: `It` `is` `downstairs` `upstairs`
-*Плитка `upstairs` лишняя: в записи сказано `downstairs` — «внизу», а не `upstairs` — «наверху».*
-
-**10 · Соедините пары**
+**10 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-22:i10; family: speed_match -->
-Пары: `downstairs` — внизу · `upstairs` — наверху · `toilets` — туалеты · `near` — рядом
-Цель: `downstairs · upstairs · toilets · near`
+obvious — очевидный · complete — полный, завершённый · rich — богатый · poor — бедный
 
-**11 · Вставьте слово — вы спрашиваете про один вокзал**
-<!-- interaction_id: en:lesson-02:session-22:i11; family: context_gap_grammar -->
-Цель: `Where ___ the station?`
-Варианты: `is` · `are` · `am`
-- are — *Вокзал один, значит `is`. `are` пошло бы к нескольким.*
-- am — *Это только про себя: `I am`. К месту оно не идёт.*
+**11 · Послушайте и соберите короткий ответ**
+<!-- interaction_id: en:lesson-02:session-22:i11; family: listen_build_dictation -->
+🔊 *No, he is not.* Плитки: `not` `is` `he` `No,` `Yes,` → **No, he is not.**
+*(плитка `Yes,` лишняя: здесь нужно `No,` — `No, he is not.`)*
 
+**12 · Друг спрашивает про пазл: «Is it complete?» Одной детали нет. Ответьте коротким «нет»**
+<!-- interaction_id: en:lesson-02:session-22:i12; family: phrase_builder -->
+Плитки: `not` `is` `it` `No,` `Yes,` → **No, it is not.**
+*(плитка `Yes,` лишняя: здесь нужно `No,` — `No, it is not.`)*
 
-**12 · Карточка слова — shops**
-<!-- interaction_id: en:lesson-02:session-22:i12; family: listen_choose -->
-Цель: `shops`
+**13 · На картинке король с несметными сокровищами. Коротко скажите, что он богатый**
+<!-- interaction_id: en:lesson-02:session-22:i13; family: scripted_repeat_compare -->
+🎙 **He's rich.**
 
-**13 · Вставьте слово — вы на верхнем этаже, а магазины на первом**
-<!-- interaction_id: en:lesson-02:session-22:i13; family: context_gap_grammar -->
-Цель: `The shops are ___ .`
-Варианты: `downstairs` · `upstairs` · `behind`
-- upstairs — *«Наверху» — но наверху сейчас вы, а магазины ниже.*
-- behind — *«Позади». Про этаж это ничего не говорит.*
+**14 · Вы не можете понять, куда вставить деталь. Скажите, что это не очевидно**
+<!-- interaction_id: en:lesson-02:session-22:i14; family: context_gap_grammar -->
+It ___ not obvious. → **is** · am · are
+- am — *После `It` нужно `is`.*
+- are — *Фраза — `It is not obvious`.*
 
+**15 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-22:i15; family: listen_choose -->
+🔊 *Is it complete?* → **Is it complete?** · Is it obvious? · Is it famous?
+- Is it obvious? — *В записи последнее слово — `complete`, а в этом варианте — `obvious`.*
+- Is it famous? — *В записи последнее слово — `complete`, а в этом варианте — `famous`.*
 
-**14 · Соберите фразу — вы на верхнем этаже, и магазины здесь же**
-<!-- interaction_id: en:lesson-02:session-22:i14; family: phrase_builder -->
-Цель: `The shops are upstairs.`
-Плитки: `The` `shops` `are` `upstairs` `is`
-*Плитка `is` лишняя: магазинов несколько, поэтому нужна форма `are`: `The shops are upstairs.`*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-22:i16; family: speed_match -->
+famous — знаменитый · obvious — очевидный · complete — полный, завершённый · poor — бедный
 
-**15 · Вставьте слово — магазины в двух шагах от вас, на том же этаже**
-<!-- interaction_id: en:lesson-02:session-22:i15; family: context_gap_grammar -->
-Цель: `The shops are ___ .`
-Варианты: `near` · `upstairs` · `downstairs`
-- upstairs — *Магазины не на этаже над вами, они в двух шагах от вас на этом же этаже.*
-- downstairs — *Тоже про этаж. А тут речь про расстояние.*
+**17 · Теперь все детали на месте. Друг спрашивает: «Is it complete?» Ответьте коротким «да», не повторяя complete**
+<!-- interaction_id: en:lesson-02:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Yes, it is.**
 
-
-**16 · Соберите вопрос — вы вошли в торговый центр и не видите вывесок; спросите, где магазины**
-<!-- interaction_id: en:lesson-02:session-22:i16; family: phrase_builder -->
-Цель: `Where are the shops?`
-Плитки: `Where` `are` `the` `shops` `is`
-*Плитка `is` лишняя: магазинов несколько, поэтому в вопросе нужна форма `are`.*
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-22:i17:s01; family: scripted_repeat_compare -->
-Цель: `Where are the toilets?`
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-22:i17:s02; family: scripted_repeat_compare -->
-Цель: `They are downstairs.`
-
-## Для сборщика
-
-new_words:
-downstairs — внизу, этажом ниже — «внизу, этажом ниже». `down` — вниз, `stairs` — лестница. Спустились — и вы там.
-
-modes: 1=listen_choose, 2=listen_choose, 3=context_gap_grammar, 4=listen_choose, 5=sound_contrast, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=listen_build_dictation, 10=speed_match, 11=context_gap_grammar, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| upstairs | 4, 5, 6, 9 (ловушка), 10, 13 (ловушка), 14, 15 (ловушка) | 5, 6, 14 |
-| toilets | 7, 8, 10, 17 | 8, 17 |
-| shops | 6, 12, 13, 14, 15, 16 | 13, 14, 16 |
-| near | 3 (ловушка), 6 (ловушка), 10, 15 | 15 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | downstairs | да, объясняется целиком |
-| Интро 2 | upstairs | да, объясняется целиком; `The shops are upstairs` стоит прямо в тексте |
-| Интро 3 | where are the shops | да: `where`, порядок слов, `is`/`are` и сам пример `Where are the shops?` в тексте |
-
-**3. Доска пар (задание 10)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| downstairs | 1 | 2, 3, 9 |
-| upstairs | 4 | 5, 6 |
-| toilets | 7 | 8 |
-| near | из прошлых занятий | 3, 6 (как отвергнутый вариант) |
-
----

@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-02:session-22:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — downstairs",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Все детали пазла на месте. Скажите полной фразой, что он собран полностью",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-22:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — downstairs",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Все детали пазла на месте. Скажите полной фразой, что он собран полностью",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-22:i01:audio",
-          "transcript": "downstairs"
+        "family": "phrase_builder",
+        "targetPhrase": "It is complete.",
+        "localizedMeaning": {
+          "ru": "Все детали пазла на месте. Скажите полной фразой, что он собран полностью",
+          "uk": "Усі деталі пазла на місці. Скажіть повною фразою, що він повністю складений"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "complete"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-22:i01:r1",
-            "targetText": "downstairs",
-            "meaningByLocale": {
-              "ru": "«внизу, этажом ниже». `down` — вниз, `stairs` — лестница. Спустились — и вы там.",
-              "uk": "«внизу, поверхом нижче». `down` — униз, `stairs` — сходи. Спустилися — і ви там."
+            "responseId": "en:lesson-02:session-22:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Все детали пазла на месте. Скажите полной фразой, что он собран полностью",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is complete.`",
+              "uk": "тут потрібно `is` — `It is complete.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "downstairs",
-          "definitionByLocale": {
-            "ru": "«внизу, этажом ниже». `down` — вниз, `stairs` — лестница. Спустились — и вы там.",
-            "uk": "«внизу, поверхом нижче». `down` — униз, `stairs` — сходи. Спустилися — і ви там."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте фразу о короле на картинке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-22:i02:r1",
-          "text": "downstairs"
+          "text": "He is rich."
         },
         {
           "responseId": "en:lesson-02:session-22:i02:r2",
-          "text": "dinner"
+          "text": "He is poor."
         },
         {
           "responseId": "en:lesson-02:session-22:i02:r3",
-          "text": "doctor"
+          "text": "He is famous."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-22:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте фразу о короле на картинке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-22:i02:audio",
-          "transcript": "downstairs"
+          "transcript": "He is rich."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-22:i02:r1",
-            "targetText": "downstairs",
+            "targetText": "He is rich.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-22:i02:r2",
-            "targetText": "dinner",
+            "targetText": "He is poor.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-22:i02:r3",
-            "targetText": "doctor",
+            "targetText": "He is famous.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-02:session-22:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — downstairs",
+            "testedDimension": "Послушайте фразу о короле на картинке",
             "feedbackByLocale": {
-              "ru": "Это «ужин». Гласная в начале другая: у `downstairs` слышно «ау», у `dinner` — «и».",
-              "uk": "Це «вечеря». Голосний на початку інший: у `downstairs` чути «ау», у `dinner` — «і»."
+              "ru": "В записи последнее слово — `rich`, а в этом варианте — `poor`.",
+              "uk": "У записі останнє слово — `rich`, а в цьому варіанті — `poor`."
             }
           },
           {
             "responseId": "en:lesson-02:session-22:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — downstairs",
+            "testedDimension": "Послушайте фразу о короле на картинке",
             "feedbackByLocale": {
-              "ru": "Это «врач». Гласная в начале другая: у `downstairs` — «ау», у `doctor` — «о».",
-              "uk": "Це «лікар». Голосний на початку інший: у `downstairs` — «ау», у `doctor` — «о»."
+              "ru": "В записи последнее слово — `rich`, а в этом варианте — `famous`.",
+              "uk": "У записі останнє слово — `rich`, а в цьому варіанті — `famous`."
             }
           }
         ],
@@ -128,63 +129,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вам показали на лестницу вниз",
+      "prompt": "Спросите, собран ли пазл полностью",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-22:i03:r1",
-          "text": "downstairs"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-02:session-22:i03:r2",
-          "text": "near"
+          "text": "Am"
         },
         {
           "responseId": "en:lesson-02:session-22:i03:r3",
-          "text": "behind"
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вам показали на лестницу вниз",
+      "accessibilityLabel": "Спросите, собран ли пазл полностью",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вам показали на лестницу вниз",
-          "uk": "Вставте слово — вам показали на сходи вниз"
+          "ru": "Спросите, собран ли пазл полностью",
+          "uk": "Запитайте, чи пазл повністю складений"
         },
-        "gappedTargetPhrase": "It is ___ .",
+        "gappedTargetPhrase": "___ it complete?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-22:i03:r1",
-            "text": "downstairs"
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-02:session-22:i03:r2",
-            "text": "near"
+            "text": "Am"
           },
           {
             "responseId": "en:lesson-02:session-22:i03:r3",
-            "text": "behind"
+            "text": "Are"
           }
         ],
-        "testedDimension": "Вставьте слово — вам показали на лестниц",
+        "testedDimension": "Спросите, собран ли пазл полностью",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-22:i03:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вам показали на лестниц",
+            "testedDimension": "Спросите, собран ли пазл полностью",
             "feedbackByLocale": {
-              "ru": "«Рядом». Но вам показали не «в двух шагах», а «спуститесь».",
-              "uk": "«Поруч». Але вам показали не «за два кроки», а «спустіться»."
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-22:i03:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вам показали на лестниц",
+            "testedDimension": "Спросите, собран ли пазл полностью",
             "feedbackByLocale": {
-              "ru": "«Позади». Это про сторону, а не про этаж.",
-              "uk": "«Позаду». Це про бік, а не про поверх."
+              "ru": "Вопрос начинается с `Is it`.",
+              "uk": "Запитання починається з `Is it`."
             }
           }
         ]
@@ -195,42 +196,72 @@
       "interactionId": "en:lesson-02:session-22:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — upstairs",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-22:i04:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — upstairs",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-22:i04:audio",
-          "transcript": "upstairs"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-02:session-22:i04:r1",
-            "targetText": "upstairs",
+            "pairId": "en:lesson-02:session-22:i04:p1",
+            "target": "complete",
             "meaningByLocale": {
-              "ru": "«наверху, этажом выше». То же слово, только начало другое: `up` — вверх.",
-              "uk": "«нагорі, поверхом вище». Те саме слово, тільки початок інший: `up` — угору."
+              "ru": "полный, завершённый",
+              "uk": "повний, завершений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i04:p2",
+            "target": "rich",
+            "meaningByLocale": {
+              "ru": "богатый",
+              "uk": "багатий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i04:p3",
+            "target": "poor",
+            "meaningByLocale": {
+              "ru": "бедный",
+              "uk": "бідний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i04:p4",
+            "target": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитый",
+              "uk": "знаменитий"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "upstairs",
-          "definitionByLocale": {
-            "ru": "«наверху, этажом выше». То же слово, только начало другое: `up` — вверх.",
-            "uk": "«нагорі, поверхом вище». Те саме слово, тільки початок інший: `up` — угору."
-          }
-        }
+        "leftColumn": [
+          "complete",
+          "rich",
+          "poor",
+          "famous"
+        ],
+        "rightColumn": [
+          "полный, завершённый",
+          "богатый",
+          "бедный",
+          "знаменитый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -238,51 +269,47 @@
       "interactionId": "en:lesson-02:session-22:i05",
       "ordinal": 8,
       "purpose": "supported_practice",
-      "family": "sound_contrast",
-      "inputMode": "single_choice",
-      "prompt": "Различите звуки — какое из двух про верхний этаж?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-22:i05:r1",
-          "text": "upstairs"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i05:r2",
-          "text": "downstairs"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-22:i05:audioA",
-        "en:lesson-02:session-22:i05:audioB"
+        "en:lesson-02:session-22:i05:audio"
       ],
-      "accessibilityLabel": "Различите звуки — какое из двух про верхний этаж?",
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "upstairs",
-        "contrastB": "downstairs",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-02:session-22:i05:audioA",
-          "transcript": "upstairs"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-22:i05:audio",
+          "transcript": "It is not complete."
         },
-        "audioB": {
-          "audioTargetId": "en:lesson-02:session-22:i05:audioB",
-          "transcript": "downstairs"
-        },
-        "testedPhoneticContrast": "Различите звуки — какое из двух про верх",
-        "choiceFeedback": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not complete.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "complete"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-22:i05:r2",
+            "responseId": "en:lesson-02:session-22:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Различите звуки — какое из двух про верх",
+            "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
-              "ru": "Это «внизу». Слушайте первый слог: «даун» или «ап» — дальше слова одинаковые.",
-              "uk": "Це «внизу». Слухайте перший склад: «даун» чи «ап» — далі слова однакові."
+              "ru": "здесь нужно `is` — `It is not complete.`",
+              "uk": "тут потрібно `is` — `It is not complete.`"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -290,68 +317,43 @@
       "interactionId": "en:lesson-02:session-22:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — лифт привёз вас на этаж выше, магазины тут",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-22:i06:r1",
-          "text": "upstairs"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i06:r2",
-          "text": "downstairs"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i06:r3",
-          "text": "near"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете на путника на картинке. Спросите, бедный ли он",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — лифт привёз вас на этаж выше, магазины тут",
+      "accessibilityLabel": "Вы показываете на путника на картинке. Спросите, бедный ли он",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — лифт привёз вас на этаж выше, магазины тут",
-          "uk": "Вставте слово — ліфт привіз вас на поверх вище, крамниці тут"
+        "family": "phrase_builder",
+        "targetPhrase": "Is he poor?",
+        "localizedMeaning": {
+          "ru": "Вы показываете на путника на картинке. Спросите, бедный ли он",
+          "uk": "Ви показуєте на подорожнього на малюнку. Запитайте, чи він бідний"
         },
-        "gappedTargetPhrase": "The shops are ___ .",
-        "gapOptions": [
+        "orderedTokens": [
+          "Is",
+          "he",
+          "poor"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-22:i06:r1",
-            "text": "upstairs"
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i06:r2",
-            "text": "downstairs"
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i06:r3",
-            "text": "near"
+            "responseId": "en:lesson-02:session-22:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете на путника на картинке. Спросите, бедный ли он",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is he poor?`",
+              "uk": "тут потрібно `Is` — `Is he poor?`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — лифт привёз вас на этаж",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-22:i06:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — лифт привёз вас на этаж",
-            "feedbackByLocale": {
-              "ru": "Это «внизу», а вы поднялись.",
-              "uk": "Це «внизу», а ви піднялися."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i06:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — лифт привёз вас на этаж",
-            "feedbackByLocale": {
-              "ru": "«Рядом» ничего не говорит про этаж.",
-              "uk": "«Поруч» нічого не каже про поверх."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -359,42 +361,32 @@
       "interactionId": "en:lesson-02:session-22:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — toilets",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Последняя деталь вставлена. Коротко сообщите, что пазл собран полностью",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-22:i07:audio"
       ],
-      "accessibilityLabel": "Карточка слова — toilets",
+      "accessibilityLabel": "Последняя деталь вставлена. Коротко сообщите, что пазл собран полностью",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-22:i07:audio",
-          "transcript": "toilets"
+          "transcript": "It's complete."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-22:i07:r1",
-            "targetText": "toilets",
-            "meaningByLocale": {
-              "ru": "«туалеты». Один — `toilet`, несколько — `toilets`, и тогда рядом встаёт `are`.",
-              "uk": "«туалети». Один — `toilet`, кілька — `toilets`, і тоді поруч стає `are`."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "toilets",
-          "definitionByLocale": {
-            "ru": "«туалеты». Один — `toilet`, несколько — `toilets`, и тогда рядом встаёт `are`.",
-            "uk": "«туалети». Один — `toilet`, кілька — `toilets`, і тоді поруч стає `are`."
-          }
-        }
+        "targetPhrase": "It's complete.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -402,28 +394,68 @@
       "interactionId": "en:lesson-02:session-22:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «где туалеты?»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-22:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-22:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-22:i08:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «где туалеты?»",
+      "accessibilityLabel": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where are the toilets?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «где туалеты?»",
-          "uk": "Складіть фразу — «де туалети?»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+          "uk": "Це відомий у всьому світі замок. На «Is it famous?» доповніть коротку відповідь «так»"
         },
-        "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "toilets"
+        "gappedTargetPhrase": "Yes, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-22:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i08:r3",
+            "text": "are"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Это известный во всём мире замок. На «Is it famous?» дополните короткое «да»",
+            "feedbackByLocale": {
+              "ru": "Короткий ответ — `Yes, it is`.",
+              "uk": "Коротка відповідь — `Yes, it is`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -431,32 +463,75 @@
       "interactionId": "en:lesson-02:session-22:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «это внизу»",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-22:i09:r1",
+          "text": "It is obvious."
+        },
+        {
+          "responseId": "en:lesson-02:session-22:i09:r2",
+          "text": "It is complete."
+        },
+        {
+          "responseId": "en:lesson-02:session-22:i09:r3",
+          "text": "It is famous."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-22:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «это внизу»",
+      "accessibilityLabel": "Послушайте фразу",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-22:i09:audio",
-          "transcript": "It is downstairs."
+          "transcript": "It is obvious."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is downstairs.",
-        "orderedTokens": [
-          "It",
-          "is",
-          "downstairs"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-22:i09:r1",
+            "targetText": "It is obvious.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i09:r2",
+            "targetText": "It is complete.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i09:r3",
+            "targetText": "It is famous.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "upstairs"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `obvious`, а в этом варианте — `complete`.",
+              "uk": "У записі останнє слово — `obvious`, а в цьому варіанті — `complete`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `obvious`, а в этом варианте — `famous`.",
+              "uk": "У записі останнє слово — `obvious`, а в цьому варіанті — `famous`."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -466,58 +541,58 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-22:i10:p1",
-            "target": "downstairs",
+            "target": "obvious",
             "meaningByLocale": {
-              "ru": "внизу",
-              "uk": "внизу"
+              "ru": "очевидный",
+              "uk": "очевидний"
             }
           },
           {
             "pairId": "en:lesson-02:session-22:i10:p2",
-            "target": "upstairs",
+            "target": "complete",
             "meaningByLocale": {
-              "ru": "наверху",
-              "uk": "нагорі"
+              "ru": "полный, завершённый",
+              "uk": "повний, завершений"
             }
           },
           {
             "pairId": "en:lesson-02:session-22:i10:p3",
-            "target": "toilets",
+            "target": "rich",
             "meaningByLocale": {
-              "ru": "туалеты",
-              "uk": "туалети"
+              "ru": "богатый",
+              "uk": "багатий"
             }
           },
           {
             "pairId": "en:lesson-02:session-22:i10:p4",
-            "target": "near",
+            "target": "poor",
             "meaningByLocale": {
-              "ru": "рядом",
-              "uk": "поруч"
+              "ru": "бедный",
+              "uk": "бідний"
             }
           }
         ],
         "leftColumn": [
-          "downstairs",
-          "upstairs",
-          "toilets",
-          "near"
+          "obvious",
+          "complete",
+          "rich",
+          "poor"
         ],
         "rightColumn": [
-          "внизу",
-          "наверху",
-          "туалеты",
-          "рядом"
+          "очевидный",
+          "полный, завершённый",
+          "богатый",
+          "бедный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -537,68 +612,47 @@
       "interactionId": "en:lesson-02:session-22:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы спрашиваете про один вокзал",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-22:i11:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i11:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i11:r3",
-          "text": "am"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткий ответ",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы спрашиваете про один вокзал",
+      "audioTargetIds": [
+        "en:lesson-02:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткий ответ",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы спрашиваете про один вокзал",
-          "uk": "Вставте слово — ви питаєте про один вокзал"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-22:i11:audio",
+          "transcript": "No, he is not."
         },
-        "gappedTargetPhrase": "Where ___ the station?",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No, he is not.",
+        "orderedTokens": [
+          "No,",
+          "he",
+          "is",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-22:i11:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i11:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i11:r3",
-            "text": "am"
+            "responseId": "en:lesson-02:session-22:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткий ответ",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, he is not.`",
+              "uk": "тут потрібно `No,` — `No, he is not.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — вы спрашиваете про один",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-22:i11:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы спрашиваете про один",
-            "feedbackByLocale": {
-              "ru": "Вокзал один, значит `is`. `are` пошло бы к нескольким.",
-              "uk": "Вокзал один, отже `is`. `are` пішло б до кількох."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i11:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы спрашиваете про один",
-            "feedbackByLocale": {
-              "ru": "Это только про себя: `I am`. К месту оно не идёт.",
-              "uk": "Це тільки про себе: `I am`. До місця воно не йде."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -606,41 +660,43 @@
       "interactionId": "en:lesson-02:session-22:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — shops",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает про пазл: «Is it complete?» Одной детали нет. Ответьте коротким «нет»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-22:i12:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — shops",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает про пазл: «Is it complete?» Одной детали нет. Ответьте коротким «нет»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-22:i12:audio",
-          "transcript": "shops"
+        "family": "phrase_builder",
+        "targetPhrase": "No, it is not.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает про пазл: «Is it complete?» Одной детали нет. Ответьте коротким «нет»",
+          "uk": "Друг запитує про пазл: «Is it complete?» Однієї деталі немає. Дайте коротку відповідь «ні»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "No,",
+          "it",
+          "is",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-22:i12:r1",
-            "targetText": "shops",
-            "meaningByLocale": {
-              "ru": "«магазины». Один — `shop`, несколько — `shops`, и тогда рядом встаёт `are`.",
-              "uk": "«крамниці». Одна — `shop`, кілька — `shops`, і тоді поруч стає `are`."
+            "responseId": "en:lesson-02:session-22:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг спрашивает про пазл: «Is it complete?» Одной детали нет. Ответьте коротким «нет»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, it is not.`",
+              "uk": "тут потрібно `No,` — `No, it is not.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "shops",
-          "definitionByLocale": {
-            "ru": "«магазины». Один — `shop`, несколько — `shops`, и тогда рядом встаёт `are`.",
-            "uk": "«крамниці». Одна — `shop`, кілька — `shops`, і тоді поруч стає `are`."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -648,224 +704,24 @@
     {
       "interactionId": "en:lesson-02:session-22:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы на верхнем этаже, а магазины на первом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-22:i13:r1",
-          "text": "downstairs"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i13:r2",
-          "text": "upstairs"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i13:r3",
-          "text": "behind"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы на верхнем этаже, а магазины на первом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы на верхнем этаже, а магазины на первом",
-          "uk": "Вставте слово — ви на верхньому поверсі, а крамниці на першому"
-        },
-        "gappedTargetPhrase": "The shops are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-22:i13:r1",
-            "text": "downstairs"
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i13:r2",
-            "text": "upstairs"
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i13:r3",
-            "text": "behind"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вы на верхнем этаже, а ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-22:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы на верхнем этаже, а ",
-            "feedbackByLocale": {
-              "ru": "«Наверху» — но наверху сейчас вы, а магазины ниже.",
-              "uk": "«Нагорі» — але нагорі зараз ви, а крамниці нижче."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы на верхнем этаже, а ",
-            "feedbackByLocale": {
-              "ru": "«Позади». Про этаж это ничего не говорит.",
-              "uk": "«Позаду». Про поверх це нічого не каже."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-22:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы на верхнем этаже, и магазины здесь же",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы на верхнем этаже, и магазины здесь же",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The shops are upstairs.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы на верхнем этаже, и магазины здесь же",
-          "uk": "Складіть фразу — ви на верхньому поверсі, і крамниці тут само"
-        },
-        "orderedTokens": [
-          "The",
-          "shops",
-          "are",
-          "upstairs"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-22:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — магазины в двух шагах от вас, на том же этаже",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-22:i15:r1",
-          "text": "near"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i15:r2",
-          "text": "upstairs"
-        },
-        {
-          "responseId": "en:lesson-02:session-22:i15:r3",
-          "text": "downstairs"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — магазины в двух шагах от вас, на том же этаже",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — магазины в двух шагах от вас, на том же этаже",
-          "uk": "Вставте слово — крамниці за два кроки від вас, на тому самому поверсі"
-        },
-        "gappedTargetPhrase": "The shops are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-22:i15:r1",
-            "text": "near"
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i15:r2",
-            "text": "upstairs"
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i15:r3",
-            "text": "downstairs"
-          }
-        ],
-        "testedDimension": "Вставьте слово — магазины в двух шагах о",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-22:i15:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — магазины в двух шагах о",
-            "feedbackByLocale": {
-              "ru": "Магазины не на этаже над вами, они в двух шагах от вас на этом же этаже.",
-              "uk": "Крамниці не на поверсі над вами, вони за два кроки від вас на цьому самому поверсі."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-22:i15:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — магазины в двух шагах о",
-            "feedbackByLocale": {
-              "ru": "Тоже про этаж. А тут речь про расстояние.",
-              "uk": "Теж про поверх. А тут ідеться про відстань."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-22:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — вы вошли в торговый центр и не видите вывесок; спросите, где магазины",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — вы вошли в торговый центр и не видите вывесок; спросите, где магазины",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where are the shops?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — вы вошли в торговый центр и не видите вывесок; спросите, где магазины",
-          "uk": "Складіть запитання — ви зайшли до торгового центру і не бачите вивісок; запитайте, де крамниці"
-        },
-        "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "shops"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-22:i17:s01",
-      "ordinal": 20,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "На картинке король с несметными сокровищами. Коротко скажите, что он богатый",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-22:i17:s01:audio"
+        "en:lesson-02:session-22:i13:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "На картинке король с несметными сокровищами. Коротко скажите, что он богатый",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-22:i17:s01:audio",
-          "transcript": "Where are the toilets?"
+          "audioTargetId": "en:lesson-02:session-22:i13:audio",
+          "transcript": "He's rich."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where are the toilets?",
+        "targetPhrase": "He's rich.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -879,29 +735,255 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-22:i17:s02",
-      "ordinal": 21,
+      "interactionId": "en:lesson-02:session-22:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не можете понять, куда вставить деталь. Скажите, что это не очевидно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-22:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-22:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-22:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не можете понять, куда вставить деталь. Скажите, что это не очевидно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не можете понять, куда вставить деталь. Скажите, что это не очевидно",
+          "uk": "Ви не можете зрозуміти, куди вставити деталь. Скажіть, що це не очевидно"
+        },
+        "gappedTargetPhrase": "It ___ not obvious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-22:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вы не можете понять, куда вставить деталь. Скажите, что это не очевидно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-22:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы не можете понять, куда вставить деталь. Скажите, что это не очевидно",
+            "feedbackByLocale": {
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы не можете понять, куда вставить деталь. Скажите, что это не очевидно",
+            "feedbackByLocale": {
+              "ru": "Фраза — `It is not obvious`.",
+              "uk": "Фраза — `It is not obvious`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-22:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-22:i15:r1",
+          "text": "Is it complete?"
+        },
+        {
+          "responseId": "en:lesson-02:session-22:i15:r2",
+          "text": "Is it obvious?"
+        },
+        {
+          "responseId": "en:lesson-02:session-22:i15:r3",
+          "text": "Is it famous?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-22:i15:audio",
+          "transcript": "Is it complete?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-22:i15:r1",
+            "targetText": "Is it complete?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i15:r2",
+            "targetText": "Is it obvious?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i15:r3",
+            "targetText": "Is it famous?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-22:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complete`, а в этом варианте — `obvious`.",
+              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `obvious`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-22:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complete`, а в этом варианте — `famous`.",
+              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `famous`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-22:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-22:i16:p1",
+            "target": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитый",
+              "uk": "знаменитий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i16:p2",
+            "target": "obvious",
+            "meaningByLocale": {
+              "ru": "очевидный",
+              "uk": "очевидний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i16:p3",
+            "target": "complete",
+            "meaningByLocale": {
+              "ru": "полный, завершённый",
+              "uk": "повний, завершений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-22:i16:p4",
+            "target": "poor",
+            "meaningByLocale": {
+              "ru": "бедный",
+              "uk": "бідний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "famous",
+          "obvious",
+          "complete",
+          "poor"
+        ],
+        "rightColumn": [
+          "знаменитый",
+          "очевидный",
+          "полный, завершённый",
+          "бедный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-22:i17",
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Теперь все детали на месте. Друг спрашивает: «Is it complete?» Ответьте коротким «да», не повторяя complete",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-22:i17:s02:audio"
+        "en:lesson-02:session-22:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Теперь все детали на месте. Друг спрашивает: «Is it complete?» Ответьте коротким «да», не повторяя complete",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-22:i17:s02:audio",
-          "transcript": "They are downstairs."
+          "audioTargetId": "en:lesson-02:session-22:i17:audio",
+          "transcript": "Yes, it is."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They are downstairs.",
+        "targetPhrase": "Yes, it is.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -912,11 +994,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 18,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c4f27cffe60d54aa03ff47a57d106990430501a3876308f6cc5a4d2bc5f5933e"
+  "learnerFingerprint": "fe5b8211f2639d1e4fb59a9c4674f4237e0e711ee2f294d2fc1d19afdf49d3ce"
 }

@@ -108,11 +108,13 @@ export interface DialogueGlassCtaProps {
   testID?: string;
   accessibilityLabel?: string;
   style?: StyleProp<ViewStyle>;
+  /** Действие идёт (R52): тапы не принимаются, кнопка приглушена и без стрелки; как primaryBusy у V2DoneScreen. */
+  busy?: boolean;
 }
 
 /** Главная кнопка макета: 52/26 (`.cta`), 44/22 (`.cta.sm`); выключенная — `.cta.dis`. */
 export function DialogueGlassCta({
-  glass, label, onPress, disabled, trailingArrow, size = 'full', ghost, icon, testID, accessibilityLabel, style,
+  glass, label, onPress, disabled, trailingArrow, size = 'full', ghost, icon, testID, accessibilityLabel, style, busy = false,
 }: DialogueGlassCtaProps) {
   const small = size === 'small';
   const light = !disabled && !ghost;
@@ -123,8 +125,8 @@ export function DialogueGlassCta({
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? label}
-      accessibilityState={{ disabled: !!disabled }}
-      disabled={disabled || !onPress}
+      accessibilityState={{ disabled: !!disabled, busy }}
+      disabled={disabled || busy || !onPress}
       onPress={onPress}
       variant={light ? 'primary' : 'secondary'}
       withSound={false}
@@ -135,14 +137,15 @@ export function DialogueGlassCta({
           backgroundColor: light ? glass.accent : glass.opaqueControl,
           // зачем (стиль «Тень»): главная — цветная тень темы, вторичная — малая тень; выключенная плоская
           boxShadow: disabled ? undefined : light ? actionBoxShadow(glass) : nestedBoxShadow(glass),
-          opacity: disabled ? 0.72 : 1,
+          opacity: disabled || busy ? 0.72 : 1,
         },
       ]}
     >
       {light ? <ThemeAccentFill glass={glass} radius={small ? 22 : 26} /> : null}
       {icon ? <Ionicons name={icon} size={small ? 18 : 20} color={ink} /> : null}
       <Text maxFontSizeMultiplier={1.3} style={[small ? styles.ctaSmallText : styles.ctaText, { color: ink }]}>{label}</Text>
-      {trailingArrow ? (
+      {/* зачем (аудит кнопок R52): занятость — приглушение и отказ от тапов (как primaryBusy у V2DoneScreen); спиннеров в наборе диалогов нет (E2) */}
+      {trailingArrow && !busy ? (
         // зачем (R1 dialogs-005, Макеты 12.10): у маленькой кнопки ширина «по тексту» — абсолютная стрелка (right: 22, как у полной 52/26) наезжала на «м» в «К урокам».
         // Стрелка идёт обычным элементом строки после текста через gap, как в образце (`.cta.sm`: текст + стрелка 18).
         <View pointerEvents="none" style={small ? undefined : styles.ctaArrow}>

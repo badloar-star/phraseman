@@ -1,4 +1,4 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
@@ -183,6 +183,21 @@ export default function DialogueV2BriefingRoute() {
   const [briefingNonce] = useState(() => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`);
   const energyIntent = useEnergySessionIntent('ai_dialog', `dialogue_v2:${scenarioId ?? 'none'}`, `${briefingNonce}_${dialogueAttempt}`);
   const startInFlightRef = useRef(false);
+  // зачем (аудит кнопок R52, координатор 15.10): защёлка старта снималась в finally сразу после router.push, пока брифинг ещё на экране
+  // (анимация перехода) — второй тап списывал энергию второй раз. Теперь после перехода защёлка держится до возврата на брифинг (фокус),
+  // а кнопка показывает занятость всё время старта.
+  const [starting, setStarting] = useState(false);
+  const startNavigatedRef = useRef(false);
+  useFocusEffect(
+    React.useCallback(() => {
+      if (!startNavigatedRef.current) return undefined;
+      startNavigatedRef.current = false;
+      startInFlightRef.current = false;
+      setStarting(false);
+      console.log('[DIALOGUE-V2] start latch released on return', JSON.stringify({ scenarioId })); // guard-ok: одна строка на возврат
+      return undefined;
+    }, [scenarioId]),
+  );
   // зачем (повторное ревью 12.10): отложенный после шторки старт отменяется, если человек ушёл с брифинга за эти 360 мс —
   // иначе списание и переход случились бы уже с другого экрана.
   const consentStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -307,6 +322,7 @@ export default function DialogueV2BriefingRoute() {
       // подтверждает сессия после первого ответа собеседника, а при отказе сервиса на
       // первом ходе возвращает энергию — сюда передаём номер операции (у Plus его нет).
       setDialogueAttempt((n) => n + 1);
+      startNavigatedRef.current = true;
       router.push({
         pathname: '/dialogue_v2_session',
         params: result === 'spent'
@@ -318,7 +334,11 @@ export default function DialogueV2BriefingRoute() {
       setDialogueAttempt((n) => n + 1);
       emitAppEvent('action_toast', dialogueStartFailedToast());
     } finally {
-      startInFlightRef.current = false;
+      // переход ушёл — защёлку снимет возврат на экран (см. useFocusEffect выше); отказ/ошибка — снимаем сразу
+      if (!startNavigatedRef.current) {
+        startInFlightRef.current = false;
+        setStarting(false);
+      }
     }
   };
   const onConsentAccept = () => {
@@ -333,6 +353,7 @@ export default function DialogueV2BriefingRoute() {
       return;
     }
     startInFlightRef.current = true;
+    setStarting(true);
     // зачем (ревью 12.10, iOS): списание и возможное окно «Нет энергии» — после того, как шторка закрылась.
     consentStartTimerRef.current = setTimeout(() => {
       consentStartTimerRef.current = null;
@@ -356,6 +377,7 @@ export default function DialogueV2BriefingRoute() {
     <DialogueV2BriefingScreen
       {...model}
       revealRows={revealRows}
+      starting={starting}
       showEnergy={!energyUnlimited}
       currentRank={localCoinRank}
       labels={labels}
@@ -376,12 +398,14 @@ export default function DialogueV2BriefingRoute() {
           return;
         }
         startInFlightRef.current = true;
+        setStarting(true);
         void (async () => {
           const consent = await readStartConsent();
           console.log('[AI-CONSENT-ENERGY] briefing:start', JSON.stringify({ scenarioId, consent, energySpent: false })); // guard-ok: ветка старта
           if (consent !== 'granted') {
             // Согласия нет — шторка поверх брифинга, энергию НЕ трогаем.
             startInFlightRef.current = false;
+            setStarting(false);
             setConsentAsk(true);
             return;
           }

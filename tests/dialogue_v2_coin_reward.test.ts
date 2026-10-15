@@ -73,7 +73,10 @@ describe('dialogue coin reward', () => {
     expect(creditAt).toBeGreaterThan(markAt);
     expect(hook).toContain('[COINS-EARN] dialog: уже начислено за эту сессию');
     const screen = read('app/dialogue_v2_completion.tsx');
-    expect(screen).toContain("ready: state.kind !== 'loading' && turns > 0,");
+    // R50 (15.10): начисление не ждёт сервер, если есть локальный разбор ходов — ранний «Готово»/«✕» не теряет монеты и «Мои ошибки»
+    expect(screen).toContain('const localOutcomeReady = outcome !== null;');
+    expect(screen).toContain("ready: (localOutcomeReady || state.kind !== 'loading') && turns > 0,");
+    expect(screen).toContain("ready: localOutcomeReady || state.kind !== 'loading',");
   });
 
   // зачем (владелец 13.10 «Начислять»): тренажёр предлогов давал +0 — теперь как урок: +3 за верный, +1 на повторе, зачёт на итоге.

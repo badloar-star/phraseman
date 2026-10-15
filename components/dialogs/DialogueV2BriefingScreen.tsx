@@ -49,6 +49,8 @@ export type DialogueV2BriefingScreenProps = Readonly<{
   onStart: () => void;
   /** m16: после «Ответить» на звонок строки заданий всплывают по очереди; false — сразу на месте. */
   revealRows?: boolean;
+  /** R52: старт идёт (согласие, списание энергии, переход) — кнопка занята. */
+  starting?: boolean;
 }>;
 
 /**
@@ -69,6 +71,7 @@ export function DialogueV2BriefingScreen({
   labels,
   onBack,
   onStart,
+  starting = false,
 }: DialogueV2BriefingScreenProps) {
   const glass = useDialogueGlass();
   const startLabel = unlocked ? labels.start : labels.locked(rankRequired);
@@ -127,6 +130,7 @@ export function DialogueV2BriefingScreen({
           label={startLabel}
           onPress={onStart}
           disabled={!unlocked}
+          busy={unlocked && starting}
           trailingArrow={unlocked}
           icon={unlocked ? undefined : 'lock-closed'}
         />

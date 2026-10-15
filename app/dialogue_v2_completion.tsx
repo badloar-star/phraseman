@@ -266,9 +266,13 @@ export default function DialogueV2CompletionRoute() {
   if (!mistakesKnown && state.kind !== 'loading') {
     console.warn('[COINS-EARN] dialog: ошибки неизвестны → минимальная сумма'); // guard-ok: ветка расчёта награды
   }
+  // зачем (аудит кнопок R50 🔴, координатор 15.10): монеты и «Мои ошибки» ждали ответа сервера (state.kind), а «Готово»/«✕» доступны с первого
+  // кадра — ранний выход терял и то и другое. Локальный разбор ходов (outcome) уже знает и ошибки, и число реплик: с ним начисляем сразу;
+  // сервер нужен только когда локального разбора нет. Один раз на сессию — отметки внутри хуков.
+  const localOutcomeReady = outcome !== null;
   const dialogCoinReward = useDialogueV2CoinReward({
     sessionId: sessionId ?? null,
-    ready: state.kind !== 'loading' && turns > 0,
+    ready: (localOutcomeReady || state.kind !== 'loading') && turns > 0,
     endedBy: mistakesKnown ? endedBy : 'manual',
     mistakes,
   });
@@ -278,8 +282,11 @@ export default function DialogueV2CompletionRoute() {
     sessionId: sessionId ?? null,
     studyTarget,
     rows: errorRows,
-    ready: state.kind !== 'loading',
+    ready: localOutcomeReady || state.kind !== 'loading',
   });
+  useEffect(() => {
+    console.log('[COINS-EARN] dialog: источник итога', JSON.stringify({ local: localOutcomeReady, server: state.kind, turns, mistakes })); // guard-ok: одна строка на смену источника
+  }, [localOutcomeReady, state.kind, turns, mistakes]);
   // зачем (решение владельца 13.10): «Добить» и «Повторить ошибки» — одно действие; кнопки только когда ошибки записаны (status 'ready') и их N > 0; иначе остаётся «Ещё раз»
   const finishableMistakes = dialogMistakes.status === 'ready' && dialogMistakes.mistakeIds.length > 0;
   // зачем (решение владельца 13.10, practice.html#done / dialogs.html D1–D4): пилюля баланса справа в шапке и «+N монет» с монетой под цифрами.

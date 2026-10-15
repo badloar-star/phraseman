@@ -21,6 +21,8 @@ jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams(),
   useRouter: () => ({ back: mockBack, push: mockPush }),
+  // R52: возврат на брифинг (фокус) снимает защёлку старта — в узловом тесте фокус = монтирование
+  useFocusEffect: (cb: () => void) => { require('react').useEffect(cb, [cb]); },
 }));
 jest.mock('../app/dialogue_v2_catalogue_client', () => ({
   fetchReleasedDialogueV2Catalogue: (...args: unknown[]) => mockFetchCatalogue(...args),
@@ -167,6 +169,17 @@ describe('Dialogue V2 briefing route', () => {
       pathname: '/dialogue_v2_session',
       params: { scenarioId: 'work_01', energyOp: 'op-1' },
     });
+  });
+
+  // зачем (аудит кнопок R52, 15.10): после успешного старта брифинг ещё на экране (анимация перехода) — второй тап не списывает энергию повторно
+  it('a second tap after a successful start neither spends again nor opens a second session', async () => {
+    await render(h(DialogueV2BriefingRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await act(async () => { mockScreen.mock.calls[0][0].onStart(); });
+    await act(async () => { mockScreen.mock.calls[mockScreen.mock.calls.length - 1][0].onStart(); });
+    expect(mockConfirmSpendOne).toHaveBeenCalledTimes(1);
+    expect(mockPush).toHaveBeenCalledTimes(1);
+    expect(mockScreen.mock.calls[mockScreen.mock.calls.length - 1][0].starting).toBe(true);
   });
 
   it('does not open the session without energy and shows the no-energy window', async () => {

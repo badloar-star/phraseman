@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-33:intro1:r2": {
+          "ru": "Для этого упражнения выбираем по расстоянию: телефон рядом, поэтому `This`.",
+          "uk": "Для цієї вправи вибираємо за відстанню: телефон поруч, тому `This`."
+        },
+        "en:lesson-03:session-33:intro1:r3": {
+          "ru": "С одним предметом после `This` здесь нужно `is`.",
+          "uk": "З одним предметом після `This` тут потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-33:intro2:r2": {
+          "ru": "Так показывают на одну собаку. Здесь их несколько: `These are dogs`.",
+          "uk": "Так показують на одну собаку. Тут їх кілька: `These are dogs`."
+        },
+        "en:lesson-03:session-33:intro2:r3": {
+          "ru": "Для собак рядом здесь выбираем `These`; `Those` — для тех, что дальше.",
+          "uk": "Для собак поруч тут вибираємо `These`; `Those` — для тих, що далі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-33:intro3:r2": {
+          "ru": "Между `This` и `phone` не ставим `a`: `This phone`.",
+          "uk": "Між `This` і `phone` не ставимо `a`: `This phone`."
+        },
+        "en:lesson-03:session-33:intro3:r3": {
+          "ru": "Телефон один: `This phone is okay`.",
+          "uk": "Телефон один: `This phone is okay`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "06d713c854bf1032d8a620e810ce6ad23daca66800851540c26c7232a33c0bf5"
+}

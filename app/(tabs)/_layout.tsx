@@ -150,6 +150,7 @@ const tapLatencyProfilerOnRender = createTapLatencyProfilerHandler();
 
 // зачем (координатор 14.10, [PAYWALL-CLOSE-JS]; TAP-LAT Сверки: layout:tabs 13–14 рендеров за один переход, 4,3–6,3 с): что сменилось
 // на каждой перерисовке разметки вкладок. Объекты сравниваются по идентичности (#id). Только с флагом EXPO_PUBLIC_TAP_LATENCY_TRACE=1.
+let tabsTraceSeq = 0;
 const tabsRenderWhy: { n: number; prev: Record<string, string> | null; ids: WeakMap<object, number>; nextId: number } = { n: 0, prev: null, ids: new WeakMap(), nextId: 1 };
 function tabsRenderWhyValue(v: unknown): string {
   if (v !== null && typeof v === 'object') {
@@ -167,7 +168,21 @@ function traceTabsRenderWhy(values: Readonly<Record<string, unknown>>): void {
   const changed = prev ? Object.keys(cur).filter((k) => prev[k] !== cur[k]).map((k) => `${k}:${prev[k]}→${cur[k]}`) : ['first render'];
   tabsRenderWhy.n += 1;
   tabsRenderWhy.prev = cur;
-  traceLog(`[TABS-RENDER] #${tabsRenderWhy.n} t=${Date.now() % 100000} changed=${changed.length > 0 ? changed.join(' ') : 'none (parent/context)'}`);
+  traceLog(`[TABS-RENDER] #${tabsRenderWhy.n} seq=${++tabsTraceSeq} t=${Date.now() % 100000} changed=${changed.length > 0 ? changed.join(' ') : 'none (parent/context)'}`);
+}
+// зачем (Сверка 15.10, tabs_tap_r7c: на тап 3–4 перерисовки с ОТКАТОМ activeIdx к прежней вкладке через 100–400 мс после смены pathname;
+// «сперва логи»): кто меняет активную вкладку — тап/goToTab (с вызывающим), свайп, эффект по маршруту (ветка и значения, что её решили).
+// Тот же флаг, что [TABS-RENDER]; в проде молчит. Временная — убрать после диагноза.
+// seq — общий порядковый номер с [TABS-RENDER]: одна сквозная цепочка «кто поставил индекс → какая перерисовка» (просьба координатора).
+function traceTabsIdx(source: string, details: Readonly<Record<string, unknown>>): void {
+  if (!TAP_LATENCY_TRACE_ENABLED) return;
+  traceLog(`[TABS-IDX] seq=${++tabsTraceSeq} t=${Date.now() % 100000} source=${source} ${JSON.stringify(details)}`);
+}
+/** Верх стека вызова (кто позвал goToTab) — только для трассы. */
+function tabsIdxCaller(): string {
+  if (!TAP_LATENCY_TRACE_ENABLED) return '';
+  const lines = (new Error().stack ?? '').split('\n').map((l) => l.trim()).filter((l) => l.startsWith('at '));
+  return lines.slice(2, 6).map((l) => l.replace(/\s*\(.*\)$/, '').replace(/^at /, '')).join(' < ');
 }
 function TabRenderProbe({ id, children }: { id: string; children: React.ReactNode }) {
   if (!tapLatencyProfilerOnRender) return <>{children}</>;
@@ -979,6 +994,10 @@ function ReleasedTabLayout() {
       pendingTabIdxRef.current = null;
     }
     const pending = pendingTabIdxRef.current;
+    traceTabsIdx('route_effect', {
+      pathname, segments: segments.join('/'), rawFromRouter, fromRouter, pending,
+      active: activeIdxRef.current, visual: visualIdxRef.current, page: physicalPageIdxRef.current, layoutChanged,
+    });
     if (pending !== null && fromRouter !== null && fromRouter === pending) {
       pendingTabIdxRef.current = null;
     }
@@ -991,6 +1010,7 @@ function ReleasedTabLayout() {
       // зачем: это таб, который прямо сейчас становится активным по URL
       // (deep link, возврат из урока) — маунт в idle оставлял пустую панель.
       mountNow(hold);
+      traceTabsIdx('route_effect:hold_pending', { hold, active: `${activeIdxRef.current}→${hold}`, visual: `${visualIdxRef.current}→${hold}` });
       if (visualIdxRef.current !== hold) {
         setVisualIdx(hold);
       }
@@ -1007,6 +1027,7 @@ function ReleasedTabLayout() {
         setVisitedTabs((prev) => addVisitedTab(prev, fromRouter));
       }
       mountNow(fromRouter);
+      traceTabsIdx('route_effect:from_router', { fromRouter, active: `${activeIdxRef.current}→${fromRouter}`, visual: `${visualIdxRef.current}→${fromRouter}` });
       if (visualIdxRef.current !== fromRouter) {
         setVisualIdx(fromRouter);
       }
@@ -1023,6 +1044,7 @@ function ReleasedTabLayout() {
     if (!layoutChanged) return;
     const active = visibleTabIdx(activeIdxRef.current, layout);
     if (active !== activeIdxRef.current) {
+      traceTabsIdx('route_effect:layout_hidden', { active: `${activeIdxRef.current}→${active}` });
       console.warn('[LANG-SURFACE] tabs:active_tab_hidden → home', { was: activeIdxRef.current, studyTarget });
       setActiveIdx(active);
       setVisualIdx(active);
@@ -1116,6 +1138,7 @@ function ReleasedTabLayout() {
    *  а реальный activeIdx/URL переключаются после UI-thread анимации. */
   const handleSwipeStart = useCallback((physicalIdx: number) => {
     const idx = physicalPageToLogicalTab(physicalIdx, pageLayoutRef.current);
+    traceTabsIdx('swipe_start', { physicalIdx, idx, visual: `${visualIdxRef.current}→${idx}`, active: activeIdxRef.current });
     setExamBestPctTabActivity('unsafe');
     setVisualIdx(idx);
     if (physicalIdx === 0 || idx === activeIdxRef.current) return;
@@ -1141,7 +1164,9 @@ function ReleasedTabLayout() {
       console.warn('[TABS-NAV] navigateTo: no route for tab', idx); // guard-ok: ранний выход логируется
       return;
     }
-    if (routerShowsTab(pathnameRef.current, segmentsRef.current, idx)) return;
+    const shows = routerShowsTab(pathnameRef.current, segmentsRef.current, idx);
+    traceTabsIdx('navigate', { idx, pathname: pathnameRef.current, segments: segmentsRef.current.join('/'), alreadyShown: shows, pendingBefore: pendingTabIdxRef.current });
+    if (shows) return;
     pendingTabIdxRef.current = idx;
     routerRef.current.navigate(target as any);
   }, []);
@@ -1152,6 +1177,7 @@ function ReleasedTabLayout() {
     if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tab_tap requested=${requestedIdx} active=${activeIdxRef.current} page=${physicalPageIdxRef.current}`); // guard-ok: временная трассировка
     // зачем D129: goToTab(1) из экранов при скрытом «Обучении» ведёт на Главную.
     const idx = visibleTabIdx(requestedIdx, pageLayoutRef.current);
+    traceTabsIdx('tap', { requestedIdx, idx, active: `${activeIdxRef.current}→${idx}`, page: physicalPageIdxRef.current, pending: pendingTabIdxRef.current, caller: tabsIdxCaller() });
     if (idx !== requestedIdx) console.warn('[LANG-SURFACE] tabs:goto_hidden_tab → home', { requestedIdx });
     // зачем: метка [TAP-LAT] для тапа по табу — отделяет отклик таббара от
     // разморозки (react-freeze) и коммита панели назначения.
@@ -1173,6 +1199,7 @@ function ReleasedTabLayout() {
     const physical = physicalIdx as PhysicalPageIndex;
     physicalPageIdxRef.current = physical;
     const idx = physicalPageToLogicalTab(physical, pageLayoutRef.current);
+    traceTabsIdx('swipe_complete', { physicalIdx, idx, active: `${activeIdxRef.current}→${idx}`, pending: pendingTabIdxRef.current });
     markExamBestPctTabActivity(idx);
     setPhysicalPageIdx(physical);
     setVisualIdx(idx);

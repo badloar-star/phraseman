@@ -282,6 +282,8 @@ export type DevStateRequest = Readonly<{
   saveOffer?: 'progress' | 'support' | 'off';
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
   uiLang?: DevUiLangRequest;
+  /** Путь вызовов входа (auth_callable_fetch.ts): on — fetch, off — нативный, мимо флага auth_callables_fetch_v1. Только память, только dev. */
+  authFetch?: 'on' | 'off';
   /** «Сегодня» на Главной с заданием Пика (координатор 13.10, «Шпиль → Пик»): только показ, хранилище не трогается. */
   todaytask?: 'spire' | 'off';
   /** [WINBACK-FREEZE]: гейт winback считает, что человек не заходил N дней (3 / 8 / 30) или снять. Только память. */
@@ -410,6 +412,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.saveOffer = pick('saveOffer', ['progress', 'support', 'off'] as const);
   // зачем (координатор 15.10, утренняя съёмка): любой из 9 языков интерфейса по ссылке, не только en
   request.uiLang = pick('uiLang', [...DEV_UI_LANGS, 'off'] as const);
+  request.authFetch = pick('authFetch', ['on', 'off'] as const);
   request.todaytask = pick('todaytask', ['spire', 'off'] as const);
   request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
   request.edu = pick('edu', ['parity', 'off'] as const);
@@ -891,6 +894,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.uiLang !== undefined) {
     // зачем (координатор 12.10, п.76): проход разделов в английском до включения флага; только память
     await step('uiLang', request.uiLang, async () => setDevUiLang(request.uiLang!, 'link'));
+  }
+  if (request.authFetch !== undefined) {
+    // зачем (координатор 15.10): замер входа fetch против нативного пути без прод-флага; только память
+    await step('authFetch', request.authFetch, async () => {
+      const { setDevAuthCallablesFetch } = await import('./auth_callable_fetch');
+      return setDevAuthCallablesFetch(request.authFetch!);
+    });
   }
   if (request.todaytask !== undefined) {
     // зачем (координатор 13.10, «Шпиль → Пик» 95d30d485): «Пройти ступени Пика» в «Сегодня» выпадает только при живом конфиге Пика — подмена показа, только память

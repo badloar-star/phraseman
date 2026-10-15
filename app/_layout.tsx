@@ -24,10 +24,29 @@ if (BOOT_TRACE_ENABLED) {
   let lastTickAt = Date.now();
   let lastHeartbeatAt = Date.now();
   const stopAt = BOOT_T0 + 60_000;
+  // зачем (координатор 15.10, прогон №7): «JS-STALL 11 с при входе» оказался окном выбора аккаунта Google — приложение в фоне, Android
+  // приостанавливает JS, а сторож считал паузу простоем. Время в фоне (AppState ≠ active) копим отдельно и вычитаем из разрыва;
+  // простой — только то, что осталось. Только dev, как и весь сторож.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const stallAppState = (require('react-native') as typeof import('react-native')).AppState;
+  let backgroundSinceAt: number | null = stallAppState.currentState === 'active' ? null : Date.now();
+  let backgroundMsSinceTick = 0;
+  stallAppState.addEventListener('change', (next) => {
+    const at = Date.now();
+    if (next !== 'active') { if (backgroundSinceAt === null) backgroundSinceAt = at; return; }
+    if (backgroundSinceAt !== null) { backgroundMsSinceTick += at - backgroundSinceAt; backgroundSinceAt = null; }
+  });
   const watchdog = setInterval(() => {
     const now = Date.now();
-    const gapMs = now - lastTickAt;
+    const rawGapMs = now - lastTickAt;
     lastTickAt = now;
+    if (backgroundSinceAt !== null) return; // в фоне не меряем: тик в фоне — не простой интерфейса
+    let gapMs = rawGapMs;
+    if (backgroundMsSinceTick > 0) {
+      gapMs = Math.max(0, rawGapMs - backgroundMsSinceTick);
+      console.warn(`[JS-STALL] skipped_background ms=${backgroundMsSinceTick} gap=${rawGapMs}ms counted=${gapMs}ms at=+${now - BOOT_T0}ms`); // guard-ok: только dev
+      backgroundMsSinceTick = 0;
+    }
     if (gapMs > JS_STALL_REPORT_MS) {
       console.warn(`[JS-STALL] +${now - BOOT_T0}ms поток стоял ${gapMs}ms (с +${now - gapMs - BOOT_T0}ms)`); // guard-ok: только dev
     }

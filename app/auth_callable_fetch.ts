@@ -39,7 +39,25 @@ export type AuthCallableFetchDeps = Readonly<{
   log?: (line: string) => void;
 }>;
 
+// зачем (координатор 15.10, замер входа: ensure_link 3,9 с / stamp 2 с): Сверка сравнивает fetch-путь с нативным по dev-ссылке
+// `authFetch=on|off` без перезапуска Metro и без прод-Remote Config. Только память, только dev; null — как обычно (кэш RC + env).
+let devFetchOverride: boolean | null = null;
+
+export function setDevAuthCallablesFetch(next: 'on' | 'off'): boolean {
+  if (!IS_DEV) {
+    console.warn('[AUTH-FETCH] dev_override отклонён — не dev-сборка', { next }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  devFetchOverride = next === 'on';
+  console.log(`[AUTH-FETCH] dev_override=${next}`);
+  return true;
+}
+
 async function defaultFlagOn(): Promise<boolean> {
+  if (IS_DEV && devFetchOverride !== null) {
+    console.log(`[AUTH-FETCH] путь по dev_override=${devFetchOverride ? 'on' : 'off'}`);
+    return devFetchOverride;
+  }
   try {
     const raw = await readRemoteConfigCacheRaw();
     const bools = raw ? (JSON.parse(raw) as { bools?: Record<string, unknown> }).bools : null;

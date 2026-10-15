@@ -1,0 +1,46 @@
+10-15 17:15:25.674 I/ReactNativeJS( 6824): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/learning-v2/course","initial":true,"out":"/dev_state?uiLang=ru&onboarding=done&intros=seen&overla
+10-15 17:15:26.199 W/ReactNativeJS( 6824): '[DEV-STATE] route: старт', '{"request":{"onboarding":"done","intros":"seen","overlays":"off","uiLang":"ru","next":"/learning-v2/course"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-15 17:15:27.006 I/ReactNativeJS( 6824): [DEV-STATE] step intros=seen: старт
+10-15 17:15:27.156 I/ReactNativeJS( 6824): [DEV-STATE] intros: помечено показанными 12 окон знакомства
+10-15 17:15:27.365 I/ReactNativeJS( 6824): [DEV-STATE] intros: тур Шпиля помечен показанным
+10-15 17:15:27.365 I/ReactNativeJS( 6824): [DEV-STATE] step intros=seen: ок за 360 мс
+10-15 17:15:27.367 I/ReactNativeJS( 6824): '[DEV-STATE] applied', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/learning-v2/course"}'
+10-15 17:15:27.369 W/ReactNativeJS( 6824): '[DEV-STATE] route: фикстуры применены', '1170мс', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/learning-v2/course"}'
+10-15 17:15:27.638 I/ReactNativeJS( 6824): [INTRO-REMOVED] get_state now=1792080927637: «Бонус на старт» выключен (D186) — состояние неактивно, выдачи нет
+10-15 17:15:31.960 I/ReactNativeJS( 6824): [WINBACK-FREEZE] t=31959 check decision show=false isPremium=false introPending=false path=/learning-v2/course
+10-15 17:15:31.968 I/ReactNativeJS( 6824): '[V2-OPEN] progress:disk', '{"diskMs":14,"completed":0,"current":"lesson-01:session:01"}'
+10-15 17:15:32.090 I/ReactNativeJS( 6824): '[V2-OPEN] progress:applied', '{"sinceTap":null,"warmupMs":754,"completed":0,"current":"lesson-01:session:01"}'
+10-15 17:15:57.123 I/ReactNativeJS( 6824): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/learning-v2/course","initial":false,"out":"/dev_state?uiLang=ru&onboarding=done&intros=seen&overl
+10-15 17:15:57.130 I/ReactNativeJS( 6824): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/learning-v2/course","initial":false,"out":"/dev_state?uiLang=ru&onboarding=done&intros=seen&overl
+10-15 17:15:57.133 I/ReactNativeJS( 6824): '[V2-PAGE] deeplink:url_event', '{"url":"phraseman://dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","target":"/dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***"}'
+10-15 17:15:57.134 I/ReactNativeJS( 6824): '[DEEPLINK-SETTINGS]', 'url_event', '{"url":"phraseman://dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","target":"/dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","currentP
+10-15 17:15:57.278 W/ReactNativeJS( 6824): '[DEV-STATE] route: старт', '{"request":{"onboarding":"done","intros":"seen","overlays":"off","uiLang":"ru","next":"/learning-v2/course"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-15 17:15:57.285 I/ReactNativeJS( 6824): '[DEEPLINK-SETTINGS]', 'open:start', '{"target":"/dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","currentPath":"/learning-v2/course","devUtility":false,"tabsGroup":false}'
+10-15 17:15:57.741 W/ReactNativeJS( 6824): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":30315,"result":false,"steps":{"tester_flags":57,"tester_no_limits":89,"verified_local":65,"intro":3,"loyalty_gift_local:false":119,"loyalty_gift_cloud":3655,"clou
+10-15 17:15:57.743 W/ReactNativeJS( 6824): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":26376,"result":false,"steps":{"tester_flags":105,"tester_no_limits":467,"verified_local":15,"intro":0,"loyalty_gift_local:false":17,"loyalty_gift_cloud":1,"cloud_
+10-15 17:15:57.745 W/ReactNativeJS( 6824): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":26375,"result":false,"steps":{"tester_flags":103,"tester_no_limits":467,"verified_local":15,"intro":2,"loyalty_gift_local:false":16,"loyalty_gift_cloud":1,"cloud_
+10-15 17:15:57.820 W/ReactNativeJS( 6824): '[PREMIUM-RESOLVE] reload:done', '{"epoch":2,"totalMs":30206,"steps":{"identity_sync:false":27,"dev_override":124,"verified_local":3602,"verified_cloud:false":26378,"tester_flags":73,"intro_state":0},"access":false}'
+10-15 17:15:57.971 I/ReactNativeJS( 6824): '[V2-PAGE] deeplink:skip_already_open', '{"target":"/dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","currentPath":"/dev_state"}'
+10-15 17:15:58.253 I/ReactNativeJS( 6824): [DEV-STATE] step intros=seen: старт
+10-15 17:15:58.265 I/ReactNativeJS( 6824): [WINBACK-FREEZE] t=58263 check decision show=false isPremium=false introPending=false path=/dev_state
+10-15 17:15:58.480 I/ReactNativeJS( 6824): [DEV-STATE] intros: помечено показанными 12 окон знакомства
+10-15 17:15:58.615 I/ReactNativeJS( 6824): [DEV-STATE] intros: тур Шпиля помечен показанным
+10-15 17:15:58.615 I/ReactNativeJS( 6824): [DEV-STATE] step intros=seen: ок за 363 мс
+10-15 17:15:58.617 I/ReactNativeJS( 6824): '[DEV-STATE] applied', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/learning-v2/course"}'
+10-15 17:15:58.618 W/ReactNativeJS( 6824): '[DEV-STATE] route: фикстуры применены', '1342мс', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/learning-v2/course"}'
+10-15 17:16:00.070 W/ReactNativeJS( 6824): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":2090,"result":false,"steps":{"tester_flags":433,"tester_no_limits":129,"verified_local":87,"intro":0,"loyalty_gift_local:false":14,"loyalty_gift_cloud":0,"cloud_r
+10-15 17:16:00.086 W/ReactNativeJS( 6824): '[PREMIUM-RESOLVE] reload:done', '{"epoch":2,"totalMs":1636,"steps":{"identity_sync:true":206,"dev_override":24,"verified_local":42,"verified_cloud:false":1350,"tester_flags":14,"intro_state":0},"access":false}'
+10-15 17:16:01.131 I/ReactNativeJS( 6824): '[V2-OPEN] progress:disk', '{"diskMs":115,"completed":0,"current":"lesson-01:session:01"}'
+10-15 17:16:01.136 I/ReactNativeJS( 6824): '[V2-OPEN] progress:applied', '{"sinceTap":null,"warmupMs":369,"completed":0,"current":"lesson-01:session:01"}'
+10-15 17:16:16.961 I/ReactNativeJS( 7029): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/learning-v2/course","initial":true,"out":"/dev_state?uiLang=ru&onboarding=done&intros=seen&overla
+10-15 17:16:17.502 W/ReactNativeJS( 7029): '[DEV-STATE] route: старт', '{"request":{"onboarding":"done","intros":"seen","overlays":"off","uiLang":"ru","next":"/learning-v2/course"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-15 17:16:18.399 I/ReactNativeJS( 7029): [DEV-STATE] step intros=seen: старт
+10-15 17:16:18.562 I/ReactNativeJS( 7029): [DEV-STATE] intros: помечено показанными 12 окон знакомства
+10-15 17:16:18.620 I/ReactNativeJS( 7029): [DEV-STATE] intros: тур Шпиля помечен показанным
+10-15 17:16:18.623 I/ReactNativeJS( 7029): [DEV-STATE] step intros=seen: ок за 228 мс
+10-15 17:16:18.625 I/ReactNativeJS( 7029): '[DEV-STATE] applied', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/learning-v2/course"}'
+10-15 17:16:18.628 W/ReactNativeJS( 7029): '[DEV-STATE] route: фикстуры применены', '1125мс', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/learning-v2/course"}'
+10-15 17:16:22.498 I/ReactNativeJS( 7029): [INTRO-REMOVED] get_state now=1792080982488: «Бонус на старт» выключен (D186) — состояние неактивно, выдачи нет
+10-15 17:16:22.996 I/ReactNativeJS( 7029): '[V2-OPEN] progress:disk', '{"diskMs":25,"completed":0,"current":"lesson-01:session:01"}'
+10-15 17:16:23.051 I/ReactNativeJS( 7029): '[V2-OPEN] progress:applied', '{"sinceTap":null,"warmupMs":874,"completed":0,"current":"lesson-01:session:01"}'
+10-15 17:16:23.069 I/ReactNativeJS( 7029): [WINBACK-FREEZE] t=83069 check decision show=false isPremium=false introPending=false path=/learning-v2/course

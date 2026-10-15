@@ -14,6 +14,7 @@ import {
   VOICE_ALLOWANCE_SURFACES,
   VOICE_LIMIT_PAYWALL_CONTEXT,
   setDevVoiceRemaining,
+  settleVoiceAttemptsAfterAccess,
   recordVoiceDailyAttempt,
   resetVoiceDailyAllowanceForTests,
   voiceDailyAllowanceFrom,
@@ -105,6 +106,19 @@ describe('голос на сегодня (D165 + D194)', () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(JSON.parse(String(await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY))).count).toBe(3);
     expect(logs.some((l) => l.includes('deferred_until_hydrate'))).toBe(true);
+  });
+
+  it('доступ не выяснен — попытка не списывается; потом Plus — отброшена, Free — засчитана один раз (Ревизор 15.10)', async () => {
+    await hydrateDialogVoiceAttempts();
+    const UNKNOWN = { accessResolved: false, hasPremiumAccess: false } as const;
+    expect(recordVoiceDailyAttempt('lessons', 'u:1', UNKNOWN)).toBe(0);
+    expect(recordVoiceDailyAttempt('lessons', 'u:1', UNKNOWN)).toBe(0);
+    settleVoiceAttemptsAfterAccess(PLUS);
+    expect(recordVoiceDailyAttempt('lessons', 'p:2', PLUS)).toBe(0);
+    expect(recordVoiceDailyAttempt('mistakes', 'u:3', UNKNOWN)).toBe(0);
+    // доступ выяснился как Free — отложенная попытка засчитывается при следующем обращении с известным доступом
+    expect(recordVoiceDailyAttempt('mistakes', 'f:4', FREE)).toBe(2);
+    expect(logs.some((l) => l.includes('deferred_dropped'))).toBe(true);
   });
 
   it('вчерашние попытки не считаются (местные сутки), до чтения диска — «не знаем»', async () => {

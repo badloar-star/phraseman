@@ -118,6 +118,16 @@ const COUNTED_KEYS_MEMORY = 32;
  * Возвращает счётчик после списания (или текущий, если не списано).
  */
 export function recordVoiceDailyAttempt(surface: VoiceAllowanceSurface, attemptKey: string, access: Access): number {
+  if (access.accessResolved) settleVoiceAttemptsAfterAccess(access);
+  if (!access.accessResolved && !access.hasPremiumAccess) {
+    // зачем (Ревизор 15.10 🟡): пока доступ не выяснен, это может быть Plus — на диск не списываем, держим в памяти и решаем,
+    // когда доступ станет известен (Plus — отбросить, Free — засчитать). Повтор того же ключа не копится.
+    if (!pendingUnresolvedKeys.some((p) => p.attemptKey === attemptKey) && !countedAttemptKeys.includes(attemptKey)) {
+      pendingUnresolvedKeys.push({ surface, attemptKey });
+    }
+    console.log(`${LOG} attempt:deferred ${JSON.stringify({ surface, reason: 'access_unknown', pending: pendingUnresolvedKeys.length })}`);
+    return peekDialogVoiceAttempts();
+  }
   if (access.hasPremiumAccess) {
     console.log(`${LOG} attempt:not_counted ${JSON.stringify({ surface, reason: 'plus_unlimited' })}`);
     return peekDialogVoiceAttempts();
@@ -131,6 +141,25 @@ export function recordVoiceDailyAttempt(surface: VoiceAllowanceSurface, attemptK
   const count = recordDialogVoiceAttempt();
   console.log(`${LOG} attempt:counted ${JSON.stringify({ surface, count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, accessResolved: access.accessResolved })}`);
   return count;
+}
+
+const pendingUnresolvedKeys: { surface: VoiceAllowanceSurface; attemptKey: string }[] = [];
+
+/** Доступ выяснен: отложенные попытки Plus отбрасываются, Free — засчитываются (каждая один раз по attemptKey). */
+export function settleVoiceAttemptsAfterAccess(access: Access): void {
+  if (!access.accessResolved || pendingUnresolvedKeys.length === 0) return;
+  const pending = pendingUnresolvedKeys.splice(0, pendingUnresolvedKeys.length);
+  if (access.hasPremiumAccess) {
+    console.log(`${LOG} attempt:deferred_dropped ${JSON.stringify({ reason: 'plus_unlimited', dropped: pending.length })}`);
+    return;
+  }
+  for (const item of pending) {
+    if (countedAttemptKeys.includes(item.attemptKey)) continue;
+    countedAttemptKeys.push(item.attemptKey);
+    if (countedAttemptKeys.length > COUNTED_KEYS_MEMORY) countedAttemptKeys.shift();
+    const count = recordDialogVoiceAttempt();
+    console.log(`${LOG} attempt:counted ${JSON.stringify({ surface: item.surface, count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, deferred: true })}`);
+  }
 }
 
 function msUntilNextLocalMidnight(nowMs: number): number {
@@ -171,6 +200,10 @@ export function useVoiceDailyAllowance(): VoiceDailyAllowance {
       if (midnightTimer) clearTimeout(midnightTimer);
     };
   }, []);
+  // зачем (Ревизор 15.10 🟡): доступ выяснился — решаем отложенные попытки (Plus — отбросить, Free — засчитать)
+  useEffect(() => {
+    if (accessResolved) settleVoiceAttemptsAfterAccess({ accessResolved, hasPremiumAccess });
+  }, [accessResolved, hasPremiumAccess]);
   return useMemo(
     () => voiceDailyAllowanceFrom({ accessResolved, hasPremiumAccess, count: snapshot.count, hydrated: snapshot.hydrated }),
     [accessResolved, hasPremiumAccess, snapshot.count, snapshot.hydrated],
@@ -183,6 +216,7 @@ export const useLearningV2VoiceAllowance = useVoiceDailyAllowance;
 /** Только для тестов. */
 export function resetVoiceDailyAllowanceForTests(): void {
   countedAttemptKeys.length = 0;
+  pendingUnresolvedKeys.length = 0;
   devVoiceRemaining = null;
 }
 

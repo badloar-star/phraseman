@@ -58,6 +58,27 @@ describe('дневной лимит голоса в Диалогах', () => {
     expect(recordDialogVoiceAttempt(DAY2)).toBe(1);
   });
 
+  it('2 и 5 параллельных гидраций = ровно диск, одно чтение (Ревизор 15.10: было 1→2, 2→4)', async () => {
+    await AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify({ day: '2026-10-12', count: 2 }));
+    const two = await Promise.all([hydrateDialogVoiceAttempts(DAY1), hydrateDialogVoiceAttempts(DAY1)]);
+    expect(two).toEqual([2, 2]);
+    expect(peekDialogVoiceAttempts(DAY1)).toBe(2);
+    resetDialogVoiceAttemptsForTests();
+    const five = await Promise.all([1, 2, 3, 4, 5].map(() => hydrateDialogVoiceAttempts(DAY1)));
+    expect(five).toEqual([2, 2, 2, 2, 2]);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(JSON.parse((await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY)) ?? 'null')).toEqual({ day: '2026-10-12', count: 2 });
+  });
+
+  it('списание до гидрации + параллельные гидрации = диск + 1 ровно один раз', async () => {
+    await AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify({ day: '2026-10-12', count: 1 }));
+    recordDialogVoiceAttempt(DAY1);
+    const results = await Promise.all([hydrateDialogVoiceAttempts(DAY1), hydrateDialogVoiceAttempts(DAY1), hydrateDialogVoiceAttempts(DAY1)]);
+    expect(results).toEqual([2, 2, 2]);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(JSON.parse((await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY)) ?? 'null')).toEqual({ day: '2026-10-12', count: 2 });
+  });
+
   it('попытки до чтения диска складываются с диском, а не берётся большее (аудит 15.10)', async () => {
     await AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify({ day: '2026-10-12', count: 1 }));
     recordDialogVoiceAttempt(DAY1);

@@ -26,11 +26,19 @@ function localDayKey(nowMs: number): string {
 
 let memory: DialogVoiceAttempts | null = null;
 let hydrated = false;
+// зачем (Ревизор 15.10 🔴): параллельные гидрации (каждый значок микрофона, два хука на экране) складывали диск дважды — 1→2, 2→4.
+// Теперь ОДНО общее чтение диска на процесс, а списания до него копятся отдельно и прибавляются к диску ровно один раз.
+let hydratePromise: Promise<number> | null = null;
+let earlyAttempts: DialogVoiceAttempts | null = null;
+let ownerGeneration = 0;
 const listeners = new Set<() => void>();
 // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
 onAccountOwnerChanged('dialog_voice_attempts', () => {
   memory = null;
   hydrated = false;
+  hydratePromise = null;
+  earlyAttempts = null;
+  ownerGeneration += 1;
   emit();
 });
 
@@ -59,32 +67,49 @@ function parse(raw: string | null): DialogVoiceAttempts | null {
   }
 }
 
-/** Один раз за процесс подтягивает счётчик с диска. Память, уже изменённая попыткой, не затирается старым значением диска. */
-export async function hydrateDialogVoiceAttempts(nowMs: number = Date.now()): Promise<number> {
-  if (hydrated) return peekDialogVoiceAttempts(nowMs);
-  let stored: DialogVoiceAttempts | null = null;
-  try {
-    stored = parse(await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY));
-  } catch (error) {
-    console.warn(`${LOG} storage:read_failed ${JSON.stringify({ error: error instanceof Error ? error.message : String(error) })}`);
+/**
+ * Один раз за процесс (и за владельца) подтягивает счётчик с диска. Все параллельные вызовы получают ОДНО и то же чтение.
+ * Итог = диск + попытки, списанные ДО чтения (они на диск не писались), — ровно один раз.
+ */
+export function hydrateDialogVoiceAttempts(nowMs: number = Date.now()): Promise<number> {
+  if (hydrated) return Promise.resolve(peekDialogVoiceAttempts(nowMs));
+  if (hydratePromise) {
+    console.log(`${LOG} hydrate:joined ${JSON.stringify({ generation: ownerGeneration })}`);
+    return hydratePromise;
   }
-  hydrated = true;
-  const today = localDayKey(nowMs);
-  const fromDisk = stored && stored.day === today ? stored.count : 0;
-  // зачем (аудит Optimistic UI 15.10, координатор): до чтения диска память копит ТОЛЬКО попытки этого запуска, а на диск они не
-  // пишутся (см. recordDialogVoiceAttempt) — значит, итог = диск + память. Прежний max(диск, память) терял попытки:
-  // 2 на диске + 1 до чтения давали 2 вместо 3 (лишняя бесплатная попытка).
-  const fromMemory = memory && memory.day === today ? memory.count : 0;
-  memory = { day: today, count: fromDisk + fromMemory };
-  const snapshot = memory;
-  console.log(`${LOG} hydrate ${JSON.stringify({ day: today, fromDisk, fromMemory, count: snapshot.count, storedDay: stored?.day ?? null })}`);
-  if (fromMemory > 0) {
-    void AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify(snapshot)).catch((error: unknown) => {
-      console.warn(`${LOG} storage:write_failed ${JSON.stringify({ count: snapshot.count, phase: 'hydrate_merge', error: error instanceof Error ? error.message : String(error) })}`);
-    });
-  }
-  emit();
-  return snapshot.count;
+  const generation = ownerGeneration;
+  const run = (async (): Promise<number> => {
+    let stored: DialogVoiceAttempts | null = null;
+    try {
+      stored = parse(await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY));
+    } catch (error) {
+      console.warn(`${LOG} storage:read_failed ${JSON.stringify({ error: error instanceof Error ? error.message : String(error) })}`);
+    }
+    if (generation !== ownerGeneration) {
+      // Владелец сменился, пока читали диск: это чтение — чужое, его итог не применяем.
+      console.log(`${LOG} hydrate:stale_owner ${JSON.stringify({ generation, current: ownerGeneration })}`);
+      return peekDialogVoiceAttempts(nowMs);
+    }
+    hydrated = true;
+    const today = localDayKey(nowMs);
+    const fromDisk = stored && stored.day === today ? stored.count : 0;
+    // зачем (аудит Optimistic UI 15.10): попытки до чтения диска на диск не писались — прибавляем их к диску один раз.
+    // Прежний max(диск, память) терял попытки (2 + 1 = 2), а сложение без общего чтения удваивало диск при параллельных вызовах.
+    const fromEarly = earlyAttempts && earlyAttempts.day === today ? earlyAttempts.count : 0;
+    earlyAttempts = null;
+    memory = { day: today, count: fromDisk + fromEarly };
+    const snapshot = memory;
+    console.log(`${LOG} hydrate ${JSON.stringify({ day: today, fromDisk, fromEarly, count: snapshot.count, storedDay: stored?.day ?? null })}`);
+    if (fromEarly > 0) {
+      void AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify(snapshot)).catch((error: unknown) => {
+        console.warn(`${LOG} storage:write_failed ${JSON.stringify({ count: snapshot.count, phase: 'hydrate_merge', error: error instanceof Error ? error.message : String(error) })}`);
+      });
+    }
+    emit();
+    return snapshot.count;
+  })();
+  hydratePromise = run;
+  return run;
 }
 
 /** Решение о лимите со значением, которое его решило. Plus и «доступ ещё неизвестен» — без ограничений (Plus не должен увидеть бейдж из-за медленной проверки). */
@@ -105,7 +130,9 @@ export function recordDialogVoiceAttempt(nowMs: number = Date.now()): number {
   emit();
   if (!hydrated) {
     // зачем: диск ещё не прочитан — запись «1» затёрла бы сохранённые попытки до их прочтения; гидрация сложит и запишет сама.
-    console.log(`${LOG} storage:deferred_until_hydrate ${JSON.stringify({ count: snapshot.count })}`);
+    const earlyBefore = earlyAttempts && earlyAttempts.day === today ? earlyAttempts.count : 0;
+    earlyAttempts = { day: today, count: earlyBefore + 1 };
+    console.log(`${LOG} storage:deferred_until_hydrate ${JSON.stringify({ count: snapshot.count, early: earlyAttempts.count })}`);
     return snapshot.count;
   }
   void AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify(snapshot)).catch((error: unknown) => {
@@ -129,5 +156,8 @@ export function subscribeDialogVoiceAttempts(listener: () => void): () => void {
 export function resetDialogVoiceAttemptsForTests(): void {
   memory = null;
   hydrated = false;
+  hydratePromise = null;
+  earlyAttempts = null;
+  ownerGeneration += 1;
   listeners.clear();
 }

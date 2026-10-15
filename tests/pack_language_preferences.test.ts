@@ -93,28 +93,33 @@ describe('язык раздела: вкладки и маршруты (🔴 R70,
   afterEach(() => jest.restoreAllMocks());
 
   it('«Видео es → вкладка Главная → вкладка Видео» = язык из Настроек, хотя pathname не менялся', () => {
-    const inTabs = (activeTabIdx: number) => ({ pathname: '/video', routeIsTab: true, activeTabIdx });
-    section.trackCurrentSection(inTabs(2));
+    const inTabs = (activeTabRoute: string) => ({ pathname: '/video', routeIsTab: true, activeTabRoute });
+    section.trackCurrentSection(inTabs('/(tabs)/video'));
     section.setSectionLanguageOverride('video', 'es');
-    section.trackCurrentSection(inTabs(0)); // тап по Главной: путь тот же, активна вкладка 0
+    section.trackCurrentSection(inTabs('/(tabs)/home')); // тап по Главной: путь тот же, активна другая вкладка
     expect(section.getSectionLanguageOverride('video')).toBeNull();
-    section.trackCurrentSection(inTabs(2));
+    section.trackCurrentSection(inTabs('/(tabs)/video'));
     expect(section.getSectionLanguageOverride('video')).toBeNull();
   });
 
   it('экраны поверх таббара внутри раздела не сбрасывают: ролик, плейлист, открытие набора', () => {
-    section.trackCurrentSection({ pathname: '/video', routeIsTab: true, activeTabIdx: 2 });
+    section.trackCurrentSection({ pathname: '/video', routeIsTab: true, activeTabRoute: '/(tabs)/video' });
     section.setSectionLanguageOverride('video', 'es');
-    section.trackCurrentSection({ pathname: '/lingman_video_watch', routeIsTab: false, activeTabIdx: 2 });
-    section.trackCurrentSection({ pathname: '/lingman_playlist', routeIsTab: false, activeTabIdx: 2 });
+    section.trackCurrentSection({ pathname: '/lingman_video_watch', routeIsTab: false, activeTabRoute: '/(tabs)/video' });
+    section.trackCurrentSection({ pathname: '/lingman_playlist', routeIsTab: false, activeTabRoute: '/(tabs)/video' });
     expect(section.getSectionLanguageOverride('video')).toBe('es');
     expect(section.sectionOfPathname('/pack_opening')).toBe('cards');
   });
 
   it('внутри разделов эффективный язык — локальный выбор, иначе из Настроек', () => {
+    section.trackCurrentSection({ pathname: '/video', routeIsTab: true, activeTabRoute: '/(tabs)/video' });
     expect(section.effectiveStudyTargetNow('en')).toBe('en');
     section.setSectionLanguageOverride('video', 'es');
     expect(section.effectiveStudyTargetNow('en')).toBe('es');
+    // не активный раздел: чужой override не действует, даже если сброс не успел
+    section.trackCurrentSection({ pathname: '/flashcards', routeIsTab: false, activeTabRoute: '/(tabs)/video' });
+    section.setSectionLanguageOverride('video', 'es');
+    expect(section.effectiveStudyTargetNow('en')).toBe('en');
   });
 
   it('набор из ролика, ролик на es: «добавить» и «уже добавлен» читают язык раздела', () => {

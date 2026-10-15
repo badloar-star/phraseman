@@ -72,20 +72,21 @@ export function sectionOfPathname(pathname: string | null | undefined): Language
  * Раздел с учётом активной ВКЛАДКИ. зачем (🔴 R70, Ц1 Макетов): вкладки у приложения свои, не маршрутизатор — usePathname при переключении вкладок не меняется
  * и «Главная → Видео» оставляла выбранный es. Внутри таббара (маршрут — вкладка) раздел определяет активная вкладка, поверх таббара (экраны ролика, наборы) — путь экрана.
  */
-export const VIDEO_TAB_INDEX = 2;
-export function currentSection(input: Readonly<{ pathname: string | null | undefined; routeIsTab: boolean; activeTabIdx: number }>): LanguageSection | null {
-  if (input.routeIsTab) return input.activeTabIdx === VIDEO_TAB_INDEX ? 'video' : null;
+export function currentSection(input: Readonly<{ pathname: string | null | undefined; routeIsTab: boolean; activeTabRoute: string | null | undefined }>): LanguageSection | null {
+  // зачем (Ревизор 5cfae3cd7 🟡): вкладка «Видео» определяется по имени маршрута вкладки, а не по зашитому номеру
+  if (input.routeIsTab) return /(^|\/)video$/.test(String(input.activeTabRoute ?? '')) ? 'video' : null;
   return sectionOfPathname(input.pathname);
 }
 
 /** Зовётся при смене вкладки или пути. */
 export function trackCurrentSection(input: Parameters<typeof currentSection>[0]): void {
-  trackSection(currentSection(input), `pathname=${String(input.pathname)} tab=${input.activeTabIdx} routeIsTab=${input.routeIsTab}`);
+  trackSection(currentSection(input), `pathname=${String(input.pathname)} tab=${String(input.activeTabRoute)} routeIsTab=${input.routeIsTab}`);
 }
 
 /** Язык, по которому сейчас живёт раздел (локальный выбор «Видео»/«Карточек» или язык из Настроек). Вне разделов выборов нет, значит всегда язык из Настроек. */
 export function effectiveStudyTargetNow(globalLanguage: string): string {
-  return overrides.video ?? overrides.cards ?? globalLanguage;
+  // зачем (Ревизор 5cfae3cd7 🟡): берём локальный выбор только АКТИВНОГО раздела, иначе язык из Настроек — не полагаемся на то, что сброс сработал
+  return (lastSection ? overrides[lastSection] : null) ?? globalLanguage;
 }
 
 let lastSection: LanguageSection | null = null;

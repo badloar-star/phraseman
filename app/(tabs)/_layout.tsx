@@ -1267,7 +1267,7 @@ function ReleasedTabLayout() {
   const currentRouteIsTab = tabIdxFromRouter(pathname, segments) !== null;
   // зачем (владелец 15.10, 🔴 R70): язык, выбранный пилюлей раздела, живёт пока человек в разделе; вкладки свои (usePathname на их смене не меняется) — следим за активной вкладкой
   useEffect(() => {
-    trackCurrentSection({ pathname, routeIsTab: currentRouteIsTab, activeTabIdx: activeIdx });
+    trackCurrentSection({ pathname, routeIsTab: currentRouteIsTab, activeTabRoute: IDX_TO_TAB_ROUTE[activeIdx] });
   }, [activeIdx, currentRouteIsTab, pathname]);
   const markTouchForPremount = useCallback(() => {
     lastTouchAtRef.current = Date.now();

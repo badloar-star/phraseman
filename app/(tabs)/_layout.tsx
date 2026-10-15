@@ -575,8 +575,12 @@ function TabScaffold({
   // закладывает useTabContentBottomPad — последний элемент докручивается выше неё.
   const tabBarBottom = Math.max(PB, TAB_DOCK_MIN_BOTTOM_PAD) + FLOATING_PILL_BOTTOM_GAP;
   const { hidden: tabBarHidden } = useTabBarVisibility();
-  // зачем (R08): после тапа «Новые уроки» таббар на кадре остался — видно, дошло ли скрытие до разметки вкладок
-  useEffect(() => { console.log('[V2-MAP] tabbar', JSON.stringify({ hidden: tabBarHidden, atMs: Date.now() })); }, [tabBarHidden]);
+  // зачем (R08 🔴, координатор 15.10, предохранитель): скрыть таббар может только вкладка «Обучение» (карта курса V2), и только пока она на экране.
+  // Запоздавший запрос не применяется к другой вкладке — раньше человек оставался на Главной без таббара и не мог уйти.
+  const barHidden = tabBarHidden && visualIdx === 1;
+  useEffect(() => {
+    console.log('[TABBAR-HIDE]', JSON.stringify({ requested: tabBarHidden, visualIdx, owner: visualIdx === 1 ? 'lessons' : 'other', result: barHidden ? 'apply' : tabBarHidden ? 'skip_not_lessons' : 'visible', atMs: Date.now() })); // guard-ok: одна строка на смену
+  }, [tabBarHidden, visualIdx, barHidden]);
   const firstContentReadyEmittedRef = useRef(false);
   // зачем D129: вкладка «Обучение» есть в таббаре только для языка с готовым курсом.
   const barTabs = useMemo(
@@ -654,7 +658,7 @@ function TabScaffold({
 
   useEffect(() => {
     const scrollY = topFadeScroll?.tabBarScrollY;
-    if (!scrollY || tabBarHidden) return undefined;
+    if (!scrollY || barHidden) return undefined;
     const id = scrollY.addListener(({ value }) => {
       const y = Math.max(0, value);
       const delta = y - tabScrollLastYRef.current;
@@ -675,7 +679,7 @@ function TabScaffold({
       scrollY.removeListener(id);
       tabScrollProgress.stopAnimation();
     };
-  }, [animateTabChrome, tabBarHidden, tabScrollProgress, topFadeScroll?.tabBarScrollY]);
+  }, [animateTabChrome, barHidden, tabScrollProgress, topFadeScroll?.tabBarScrollY]);
 
   const tabScrollScale = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_SCROLL_COLLAPSED_SCALE], extrapolate: 'clamp' });
   const tabScrollTranslateY = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [0, TAB_SCROLL_COLLAPSED_TRANSLATE_Y], extrapolate: 'clamp' });
@@ -737,7 +741,7 @@ function TabScaffold({
               таббар оставался поверх карты на весь экран (владелец 20.09).
               Экран просит скрытие через useHideTabBar и обязан отпустить его
               при размонтировании — иначе таббар залипнет скрытым. */}
-          {tabBarHidden ? null : (
+          {barHidden ? null : (
           <View
             style={[s.tabBarWrap, { height: tabBarBottom + V2_TAB_BAR_HEIGHT + TAB_BAR_WRAP_SHADOW_ROOM }]}
             pointerEvents="box-none"

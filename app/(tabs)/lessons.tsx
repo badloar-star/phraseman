@@ -2628,7 +2628,9 @@ export default function LessonsTab({
   // зачем: карта Learning V2 занимает весь экран, а раздел открывается ВНУТРИ
   // вкладки — таббар с Главной оставался поверх карты (владелец 20.09).
   // Прячем его только пока открыта карта; при уходе запрос отпускается сам.
-  useHideTabBar(page === "v2");
+  // зачем (R08 🔴, координатор 15.10, предохранитель): запрос «спрятать таббар» действует только пока вкладка «Обучение» реально владеет экраном —
+  // иначе отложенное скрытие доезжало до Главной, и человек оставался без таббара.
+  useHideTabBar(page === "v2" && lessonsTabVisible);
   perfR1BodyMark('lessons', 'h_coin_bindings', perfBodyStart);
   const legacyCoinRankBinding = useMyCoinRankBinding();
   const legacyCoinBalanceBinding = useLegacyCoinBalanceBinding(

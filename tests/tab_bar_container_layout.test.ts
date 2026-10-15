@@ -43,7 +43,8 @@ describe('контейнер таб-бара в _layout.tsx', () => {
   });
 
   it('в режиме «таб-бар скрыт» обёртки нет вообще, а таб-бар получает список видимых вкладок', () => {
-    expect(src).toMatch(/\{tabBarHidden \? null : \(\n\s*<View\n\s*style=\{\[s\.tabBarWrap/);
+    // R08 (15.10): скрытие применяется только на вкладке «Обучение» — barHidden = tabBarHidden && visualIdx === 1
+    expect(src).toMatch(/\{barHidden \? null : \(\n\s*<View\n\s*style=\{\[s\.tabBarWrap/);
     expect(src).toMatch(/TAB_BAR_TABS\.filter\(\(tab\) => !isLogicalTabHidden\(tab\.logicalIdx, pageLayout\)\)/);
     expect(src).toMatch(/<V2TabBar\n\s*items=\{tabBarItems\}/);
   });

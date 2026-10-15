@@ -2,10 +2,10 @@ import React, {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useRef,
   useState,
+  useLayoutEffect,
 } from 'react';
 
 /**
@@ -68,7 +68,8 @@ export function useTabBarVisibility(): TabBarVisibilityValue {
 export function useHideTabBar(active: boolean): void {
   const { requestHidden } = useTabBarVisibility();
   const releaseRef = useRef<(() => void) | null>(null);
-  useEffect(() => {
+  // зачем (R08, предохранитель): layout-эффект — запрос и снятие скрытия применяются в том же коммите, без кадра «таббар не по месту»
+  useLayoutEffect(() => {
     if (!active) {
       releaseRef.current?.();
       releaseRef.current = null;

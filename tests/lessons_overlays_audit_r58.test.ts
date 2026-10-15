@@ -44,3 +44,11 @@ describe('#26 меню урока: тихая перепроверка дост�
     expect(src).toContain('lockConfirmedKeyRef.current = lockKey;');
   });
 });
+
+describe('#18 «Начать» V2: замер', () => {
+  it('тап и готовность подготовки пишут [V2-START] с миллисекундами', () => {
+    const src = read('app/(tabs)/lessons.tsx');
+    expect(src).toContain('[V2-START] tap');
+    expect(src).toContain('tapToReadyMs: Date.now() - v2StartTapAtMs');
+  });
+});

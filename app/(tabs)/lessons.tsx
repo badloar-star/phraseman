@@ -3745,6 +3745,8 @@ export default function LessonsTab({
     const selected = selectedLearningV2Session;
     if (!selected || !selectedLearningV2PreparationKey) return;
     const launchRequest = ++learningV2ModalRequestRef.current;
+    const v2StartTapAtMs = Date.now(); // зачем (координатор 15.10, #18): замер тап «Начать» → переход на экран урока; после R08 подготовка бывала до 13 с
+    console.log(`[V2-START] tap ${JSON.stringify({ lesson: selected.lessonOrdinal, session: selected.sessionOrdinal, skipIntro, prepared: learningV2PreparedLaunchesRef.current.has(selectedLearningV2PreparationKey) })}`); // guard-ok: начало замера
     const sessionId = learningV2CourseSessionIdV1(
       selected.lessonOrdinal,
       selected.sessionOrdinal,
@@ -3776,6 +3778,7 @@ export default function LessonsTab({
         );
         // зачем: handle выдал сам ленивый модуль — передача синхронная и не задерживает переход (общая с Главной, R09)
         stageLearningV2ReadyHandoffV1(ready.handle);
+        console.log(`[V2-START] ready ${JSON.stringify({ lesson: selected.lessonOrdinal, session: selected.sessionOrdinal, tapToReadyMs: Date.now() - v2StartTapAtMs })}`); // guard-ok: подготовка закончена, дальше переход
         setSelectedLearningV2Session(null);
         rememberHomeContinueV2(selected, sessionId); // зачем (P23): метка «последнее V2» для карточки «Продолжить» на Главной
         requestAnimationFrame(() => {

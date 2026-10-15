@@ -2382,9 +2382,18 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
 
   useEffect(() => {
     const subscription = subscribeAccountGeneration((nextToken) => {
+      lastDurableLegacyCoinBinding = null; // другой владелец/поколение — кэш прошлого аккаунта больше не показываем
       setBinding(null);
       setToken(nextToken);
     });
+    // зачем (Ревизор 15.10, 🟡 к ef72bc20a): начальный token взят в рендере, а подписка не отдаёт текущее значение — если аккаунт
+    // сменился между рендером и этим эффектом, на плашке осталось бы число прошлого владельца. Сверяем сразу после подписки.
+    const fresh = captureAccountGeneration();
+    if (fresh.generation !== initialTokenRef.current.generation || fresh.stableId !== initialTokenRef.current.stableId) {
+      console.warn('[LESSONS-COINS] поколение сменилось между рендером и подпиской — сброс плашки', JSON.stringify({ from: initialTokenRef.current.generation, to: fresh.generation })); // guard-ok: ветвление называет причину
+      setBinding(null);
+      setToken(fresh);
+    }
     return () => subscription.remove();
   }, []);
 

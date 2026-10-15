@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { writeMockupFile } from "../content/learning-v2-course/pipeline/write_mockup_file.mjs";
+import { replaceGeneratedPrefixRows } from "./learning_v2_generated_prefix_rows.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RELEASE_ROOT = path.join(ROOT, "content", "learning-v2-course", "release", "en");
@@ -30,6 +31,16 @@ const GENERATED_RELEASE_ROOT = path.join(
 );
 const MOCKUP_DATA = path.join(ROOT, "content", "learning-v2-course", "mockup", "data.js");
 const CHECK = process.argv.includes("--check");
+const SESSION_INDEX = process.argv.indexOf("--session");
+const SESSION = SESSION_INDEX >= 0 ? process.argv[SESSION_INDEX + 1] : null;
+if (SESSION_INDEX >= 0 && (!SESSION || !/^en\/l\d{2}\/s\d{2}$/u.test(SESSION) || process.argv.includes("--through"))) {
+  throw new Error("--session requires en/lNN/sNN and cannot be combined with --through");
+}
+const THROUGH_INDEX = process.argv.indexOf("--through");
+const THROUGH = THROUGH_INDEX >= 0 ? process.argv[THROUGH_INDEX + 1] : null;
+const THROUGH_MATCH = THROUGH === null ? null : /^en\/l01\/s(\d{2})$/u.exec(THROUGH);
+if (THROUGH !== null && !THROUGH_MATCH) throw new Error(`invalid --through coordinate: ${THROUGH}`);
+const PREFIX_COUNT = THROUGH_MATCH ? Number(THROUGH_MATCH[1]) : null;
 
 const read = (file) => fs.readFileSync(file, "utf8");
 const sha = (value) => crypto.createHash("sha256").update(value).digest("hex");
@@ -96,6 +107,9 @@ function practiceTitles(markdown, sourceLabel, atomicSource, locale) {
     return { ordinal: Number(match[1]), title: match[2].trim(), interactionId };
   });
   const interactions = atomicSource?.interactionsByLocale?.[locale];
+  // Current course lessons are authored directly in Markdown; the release
+  // builder already projects their tasks and answers without an atomic sidecar.
+  if (!atomicSource) return rows.map(({ ordinal, title }) => ({ ordinal, title }));
   if (!Array.isArray(interactions) || !interactions.length) {
     throw new Error(`${sourceLabel}: atomic practice source missing for ${locale}`);
   }
@@ -150,7 +164,7 @@ function lessonTitle(markdown, lessonOrdinal, locale) {
   return locale === "uk" ? `Англійська · Урок ${lessonOrdinal}` : `Английский · Урок ${lessonOrdinal}`;
 }
 
-function rows() {
+function rows(maxRows = null) {
   const result = [];
   const lessons = fs.readdirSync(RELEASE_ROOT, { withFileTypes: true })
     .filter((entry) => entry.isDirectory() && /^l\d{2}$/u.test(entry.name))
@@ -161,6 +175,8 @@ function rows() {
       .filter((entry) => entry.isDirectory() && /^s\d{2}$/u.test(entry.name))
       .sort((left, right) => left.name.localeCompare(right.name));
     sessions.forEach((session, index) => {
+      if (SESSION && SESSION !== `en/${lesson.name}/${session.name}`) return;
+      if (maxRows !== null && result.length >= maxRows) return;
       const sessionOrdinal = Number(session.name.slice(1));
       if (sessionOrdinal !== index + 1) {
         throw new Error(`${lesson.name}: non-contiguous release at ${session.name}`);
@@ -178,12 +194,12 @@ function rows() {
         sourceUk: path.join(sourceDir, "final.uk.md"),
         atomicSource: path.join(sourceDir, "practice.atomic.json"),
       };
-      for (const [kind, file] of Object.entries(files).filter(([kind]) => !["learnerUk", "auxiliary"].includes(kind))) {
+      for (const [kind, file] of Object.entries(files).filter(([kind]) => !["learnerUk", "auxiliary", "atomicSource"].includes(kind))) {
         if (!fs.existsSync(file)) throw new Error(`${relative}: ${kind} missing`);
       }
       const sourceRu = read(files.sourceRu);
       const sourceUk = read(files.sourceUk);
-      const atomicSource = JSON.parse(read(files.atomicSource));
+      const atomicSource = fs.existsSync(files.atomicSource) ? JSON.parse(read(files.atomicSource)) : null;
       const learnerRu = JSON.parse(read(files.learnerRu));
       const newWordCount = Array.isArray(learnerRu.interactions)
         ? learnerRu.interactions.filter(
@@ -258,6 +274,11 @@ function rows() {
       });
     });
   }
+  if (maxRows !== null) {
+    if (result.length !== maxRows) throw new Error(`release prefix incomplete: expected ${maxRows}, got ${result.length}`);
+    return result;
+  }
+  if (SESSION) return result;
   if (!fs.existsSync(MOCKUP_DATA)) throw new Error("canonical mockup data missing");
   const mockupSource = read(MOCKUP_DATA).replace(/^window\.__DATA__\s*=\s*/u, "").replace(/;\s*$/u, "");
   const mockupRows = JSON.parse(mockupSource);
@@ -327,7 +348,7 @@ function renderCatalog(manifestRows) {
     `export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCatalogRowV1[] = Object.freeze([\n${entries.join("\n")}\n]);\n`;
 }
 
-const manifestRows = rows();
+const manifestRows = rows(PREFIX_COUNT);
 const generatedFiles = manifestRows.flatMap((row) => {
   const lesson = `l${String(row.lessonOrdinal).padStart(2, "0")}`;
   const session = `s${String(row.sessionOrdinal).padStart(2, "0")}`;
@@ -339,8 +360,22 @@ const generatedFiles = manifestRows.flatMap((row) => {
       destination: path.join(GENERATED_RELEASE_ROOT, lesson, session, name),
     }));
 });
-const output = render(manifestRows);
-const catalogOutput = renderCatalog(manifestRows);
+const renderedOutput = render(manifestRows);
+const renderedCatalogOutput = renderCatalog(manifestRows);
+function replaceSessionRow(current, rendered) {
+  const row = manifestRows[0];
+  if (!row || manifestRows.length !== 1) throw new Error(`session missing: ${SESSION}`);
+  const pattern = new RegExp(`^  Object\\.freeze\\(\\{\\r?\\n    lessonOrdinal: ${row.lessonOrdinal}, sessionOrdinal: ${row.sessionOrdinal},[\\s\\S]*?^  \\}\\),`, "m");
+  const replacement = rendered.match(pattern)?.[0];
+  if (!replacement || !pattern.test(current)) throw new Error(`session not in native catalog: ${SESSION}`);
+  return current.replace(pattern, () => replacement);
+}
+const output = SESSION ? replaceSessionRow(read(OUTPUT), renderedOutput) : PREFIX_COUNT === null
+  ? renderedOutput
+  : replaceGeneratedPrefixRows(read(OUTPUT), renderedOutput, PREFIX_COUNT);
+const catalogOutput = SESSION ? replaceSessionRow(read(CATALOG_OUTPUT), renderedCatalogOutput) : PREFIX_COUNT === null
+  ? renderedCatalogOutput
+  : replaceGeneratedPrefixRows(read(CATALOG_OUTPUT), renderedCatalogOutput, PREFIX_COUNT);
 if (CHECK) {
   const staleRelease = generatedFiles.some(({ source, destination }) =>
     !fs.existsSync(destination) || read(source) !== read(destination));
@@ -363,8 +398,10 @@ if (CHECK) {
     throw new Error("generated release root escaped factory module");
   }
   const desiredGeneratedFiles = new Set(generatedFiles.map(({ destination }) => path.resolve(destination)));
-  for (const existing of filesUnder(GENERATED_RELEASE_ROOT)) {
-    if (!desiredGeneratedFiles.has(path.resolve(existing))) fs.rmSync(existing, { force: true });
+  if (PREFIX_COUNT === null && !SESSION) {
+    for (const existing of filesUnder(GENERATED_RELEASE_ROOT)) {
+      if (!desiredGeneratedFiles.has(path.resolve(existing))) fs.rmSync(existing, { force: true });
+    }
   }
   for (const { source, destination } of generatedFiles) {
     fs.mkdirSync(path.dirname(destination), { recursive: true });

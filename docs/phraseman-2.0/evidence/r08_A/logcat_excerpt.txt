@@ -1,0 +1,113 @@
+10-15 17:20:54.085 I/ReactNativeJS( 7700): [ERROR-JOURNAL-THROTTLE] target=en источник=диск пропуск: осталось 20156185мс, локально 2 ≥ 2
+10-15 17:20:54.149 W/ReactNativeJS( 7700): '[SNAPSHOT-RT] miss key=mistake_practice_v2::es::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 17:20:54.169 W/ReactNativeJS( 7700): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"es","kept":0,"dropped":2,"foreignByTarget":{"en":2}}'
+10-15 17:20:54.173 W/ReactNativeJS( 7700): '[SNAPSHOT-RT] miss key=mistake_practice_v2::fr::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 17:20:54.200 I/ReactNativeJS( 7700): '[MEM-TICK]', '{"tSec":37,"route":"/","heapMb":68,"gc":"1gc/15ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":2,"firestoreReads":{"query":1},"firestoreReadsByCaller":{"users|doc|?anon_0_ <- next (
+10-15 17:20:54.206 W/ReactNativeJS( 7700): [JS-STALL] heartbeat +37384ms splash=hidden@+5172ms
+10-15 17:20:54.226 W/ReactNativeJS( 7700): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"fr","kept":0,"dropped":2,"foreignByTarget":{"en":2}}'
+10-15 17:20:54.233 W/ReactNativeJS( 7700): '[SNAPSHOT-RT] miss key=mistake_practice_v2::de::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 17:20:54.270 W/ReactNativeJS( 7700): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"de","kept":0,"dropped":2,"foreignByTarget":{"en":2}}'
+10-15 17:20:54.278 W/ReactNativeJS( 7700): '[SNAPSHOT-RT] miss key=mistake_practice_v2::it::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 17:20:54.295 W/ReactNativeJS( 7700): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"it","kept":0,"dropped":2,"foreignByTarget":{"en":2}}'
+10-15 17:20:54.309 I/ReactNativeJS( 7700): '[BOOT-RESTORE-STEP]', '{"totalMs":31856,"syncMissingDocument":false,"lastStage":"mistake_rewards:it","stages":{"anon":6,"stable_link":8,"user_doc_read":1589,"migration_flag":117,"apply":29789,"reseed":13,"mistake_restore_select":11,"mistake_events:en":104,"mistake_rewards:en":62,"mistake_rewards:es":21,"mistake_rewards:fr":57,"mistake_rewards:de":44,"mis
+10-15 17:20:54.312 I/ReactNativeJS( 7700): [PREMIUM-CLOUD] restore done ms=29962
+10-15 17:20:54.334 I/ReactNativeJS( 7700): '[BOOT-RESTORE]', '{"anonMs":119,"restoreMs":31892,"totalMs":32012,"status":"restored","failureReason":null}'
+10-15 17:20:54.581 I/ReactNativeJS( 7700): '[BOOT-RESTORE-DEFER]', '{"event":"done","trigger":"idle","status":"restored","shouldSync":true,"totalMs":33132}'
+10-15 17:20:54.596 I/ReactNativeJS( 7700): [STREAK] boot:step=hydrate_done +0ms
+10-15 17:20:54.597 I/ReactNativeJS( 7700): [STREAK-DAY] touch reason=cold_start mode=passive day=2026-10-15
+10-15 17:20:54.598 I/ReactNativeJS( 7700): [COLD-START] content_migration.wait_cloud:ok proc=12155735ms src=_layout {"stepMs":33379}
+10-15 17:20:54.598 I/ReactNativeJS( 7700): [COLD-START] content_migration.apply:start proc=12155735ms src=_layout
+10-15 17:20:54.599 I/ReactNativeJS( 7700): [STREAK] snapshot:personal streak=2 prev=2@local
+10-15 17:20:54.620 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#2","n":2,"changed":["homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":7642}'
+10-15 17:20:54.632 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#2","n":2,"changed":["bellSlot","avatarSlot","stats"],"atMs":7647}'
+10-15 17:20:54.666 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#2","n":2,"changed":["tiles"],"atMs":7663}'
+10-15 17:20:54.671 I/ReactNativeJS( 7700): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":20,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 17:20:54.680 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#2","n":2,"changed":["onSeeAll"],"atMs":7665}'
+10-15 17:20:54.718 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#2","n":2,"changed":["tasks","onOpenTask","surveyRow"],"atMs":7664}'
+10-15 17:20:54.851 E/ReactNativeJS( 7700): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 17:20:55.213 I/ReactNativeJS( 7700): '[HOME-RESTORE-JUMP]', '{"memoryStreak":2,"storedStreak":2,"snapshotStreak":2,"snapshotSource":"local","runes":0,"homeActive":false,"willReload":"debounced_refresh_400ms"}'
+10-15 17:20:55.294 I/ReactNativeJS( 7700): [STREAK-DAY] migration since=2026-10-15 today=2026-10-15 legacyRuleDay=true
+10-15 17:20:55.302 W/ReactNativeJS( 7700): '[SNAPSHOT-RT] miss key=last_active_date writesInFlight=0', ''
+10-15 17:20:55.307 I/ReactNativeJS( 7700): [COLD-START] content_migration.apply:ok proc=12156444ms src=_layout {"stepMs":709}
+10-15 17:20:55.314 I/ReactNativeJS( 7700): [STREAK] boot:step=content_migration +719ms
+10-15 17:20:55.318 W/ReactNativeJS( 7700): [JS-STALL] +38498ms поток стоял 812ms (с +37686ms)
+10-15 17:20:55.322 I/ReactNativeJS( 7700): [HOME-RESTORE-JUMP] refresh: requested active=false → dirty, перечитаем при возврате
+10-15 17:20:55.354 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#2","n":3,"changed":["homeSurvey","weekMoment","welcomeBack"],"atMs":8376}'
+10-15 17:20:55.406 E/ReactNativeJS( 7700): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 17:20:55.577 I/ReactNativeJS( 7700): [STREAK] boot:step=before_await_streak +981ms
+10-15 17:20:55.579 I/ReactNativeJS( 7700): [PHONE-STATE-DB] deferred_integrity:not_due reason=checked_24min_ago — соединение не открываем
+10-15 17:20:55.580 I/ReactNativeJS( 7700): [PHONE-STATE-DB] deferred_integrity:result not_due
+10-15 17:20:55.582 W/ReactNativeJS( 7700): [JS-STALL] +38763ms поток стоял 257ms (с +38506ms)
+10-15 17:20:55.583 W/ReactNativeJS( 7700): '[SNAPSHOT-RT] miss many=2 first=streak_count', ''
+10-15 17:20:55.583 I/ReactNativeJS( 7700): [STREAK] update:called streak_count=2 last_active_date=2026-10-15 streak_last_date=2026-10-15
+10-15 17:20:55.683 I/ReactNativeJS( 7700): [STREAK] update:enter today=2026-10-15 utcToday=2026-10-15 lastActive=2026-10-15 streak=2 relation=today sameDay=true yesterday=false
+10-15 17:20:55.689 I/ReactNativeJS( 7700): [STREAK] update:journal runToYesterday=1
+10-15 17:20:55.690 I/ReactNativeJS( 7700): [STREAK] update:branch=same_day keep=2
+10-15 17:20:55.787 I/ReactNativeJS( 7700): [STREAK-DAY] counted:already source=migration:cold_start days=2
+10-15 17:20:55.799 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#2","n":4,"changed":["streakToday","homeSurvey","weekMoment","welcomeBack"],"atMs":8822}'
+10-15 17:20:55.807 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#2","n":3,"changed":["bellSlot","avatarSlot","stats"],"atMs":8823}'
+10-15 17:20:55.822 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#2","n":3,"changed":["tiles"],"atMs":8819}'
+10-15 17:20:55.823 I/ReactNativeJS( 7700): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":21,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 17:20:55.826 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#2","n":3,"changed":["onSeeAll"],"atMs":8815}'
+10-15 17:20:55.844 I/ReactNativeJS( 7700): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#2","n":3,"changed":["tasks","onOpenTask","surveyRow"],"atMs":8789}'
+10-15 17:20:55.904 I/ReactNativeJS( 7700): [STREAK] boot:step=after_updateStreak streak=2 +1309ms
+10-15 17:20:55.911 I/ReactNativeJS( 7700): [STREAK-SYNC] skip reason=already_sent_today day=2026-10-15
+10-15 17:20:55.918 I/ReactNativeJS( 7700): '[PUSH-LANG]', '{"step":"boot_lang","storedAppLang":null,"uiLang":"ru","chosen":"ru","source":"ui","notifEnabled":false}'
+10-15 17:20:55.938 I/ReactNativeJS( 7700): [ENSURE-LINK] authoritative_memo miss reason=empty
+10-15 17:20:56.041 I/ReactNativeJS( 7700): '[SFX-LAT] request', { eventId: 'pm.ui.tap_soft',
+10-15 17:20:56.041 I/ReactNativeJS( 7700):   cacheHit: true,
+10-15 17:20:56.041 I/ReactNativeJS( 7700):   firstEverPlay: true,
+10-15 17:20:56.041 I/ReactNativeJS( 7700):   createPlayerMs: 0,
+10-15 17:20:56.041 I/ReactNativeJS( 7700):   cacheSize: 7,
+10-15 17:20:56.041 I/ReactNativeJS( 7700):   maxCacheSize: 16,
+10-15 17:20:56.041 I/ReactNativeJS( 7700):   isLoaded: false,
+10-15 17:20:56.041 I/ReactNativeJS( 7700):   exclusive: true,
+10-15 17:20:56.041 I/ReactNativeJS( 7700):   seekIsAsync: true }
+10-15 17:20:56.047 I/ReactNativeJS( 7700): '[V2-OPEN] tap', '{"from":"openNewLessons","instanceId":"1xv8cn","runtimeOwnerId":"lessons","visible":true}'
+10-15 17:20:56.049 I/ReactNativeJS( 7700): '[V2-PAGE] setPage', '{"from":"lessons","to":"v2","presentation":"tab","initialPage":"lessons","instanceId":"1xv8cn","runtimeOwnerId":"lessons","visible":true}', '    at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-ser
+10-15 17:20:56.057 W/AS.PlaybackActivityMon(  607): No piid assigned for invalid/internal port id 32
+10-15 17:20:56.549 I/ReactNativeJS( 7700): '[V2-MAP] chapters:mount', '{"scopeKey":"1:en:0","atMs":1792081256548}'
+10-15 17:20:56.552 I/ReactNativeJS( 7700): '[V2-MAP] chapters:rows', '{"titles":32,"visibleLessons":1,"selectedLessonOrdinal":1,"rows":2048,"lessonRows":64,"chapters":7,"sessions":15,"allLessonsOpen":false,"active":true}'
+10-15 17:20:56.560 I/ReactNativeJS( 7700): '[V2-MAP] page:commit', '{"instanceId":"1xv8cn","page":"v2","branch":"v2_map","presentation":"tab","runtimeOwnerId":"lessons","visible":true,"navFocused":true,"atMs":1792081256555}'
+10-15 17:20:56.571 I/ReactNativeJS( 7700): '[V2-PREWARM] start', '{"courseSessionId":"lesson-01:session:01"}'
+10-15 17:20:56.679 W/BpBinder( 7990): Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-15 17:20:56.680 W/ProcessState( 7990): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-15 17:20:56.954 W/BpBinder( 7995): Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-15 17:20:56.954 W/ProcessState( 7995): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-15 17:20:56.969 W/CpuMonitorService(  607): Current CPU frequency (4044137) is greater than maximum CPU frequency (2) for policy ID (0). Skipping CPU frequency policy
+10-15 17:20:56.969 W/CpuMonitorService(  607): Current CPU frequency (4049494) is greater than maximum CPU frequency (2) for policy ID (1). Skipping CPU frequency policy
+10-15 17:20:56.969 W/CpuMonitorService(  607): Current CPU frequency (4028468) is greater than maximum CPU frequency (2) for policy ID (2). Skipping CPU frequency policy
+10-15 17:20:56.969 W/CpuMonitorService(  607): Current CPU frequency (4026259) is greater than maximum CPU frequency (2) for policy ID (3). Skipping CPU frequency policy
+10-15 17:20:57.139 I/ReactNativeJS( 7700): '[V2-PREWARM] start', '{"courseSessionId":"lesson-01:session:02"}'
+10-15 17:20:57.147 I/ReactNativeJS( 7700): [LESSONS-BOOT] load:start {"sinceModuleMs":40749,"atEpochMs":1792081257144,"target":"en","caller":"unspecified","inflight":1,"cached":true}
+10-15 17:20:57.150 I/ReactNativeJS( 7700): '[V2-MAP] scrollToCurrent:skip', '{"reason":"no_current_row","rows":0}'
+10-15 17:20:57.156 W/ReactNativeJS( 7700): '[LESSONS-LIST] data', '{"rows":0,"queryLength":0,"firstKinds":[]}', { [Stack] name: 'Stack' }
+10-15 17:20:58.534 W/Firestore( 7700): (25.1.3) [WatchStream]: (ab3adec) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+10-15 17:21:00.106 W/PageIndicator(  853): Total number of pages invalid: 0. Assuming 1 page.
+10-15 17:21:00.801 W/app_process( 8012): Unexpected CPU variant for x86: x86_64.
+10-15 17:21:00.801 W/app_process( 8012): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+10-15 17:21:00.809 W/app_process( 8012): ClassLoaderContext shared library size mismatch. Expected=2, found=0 (PCL[]{PCL[/system/framework/android.test.base.jar*724373495]#PCL[/system/framework/android.test.mock.jar*1452759902]} | PCL[])
+10-15 17:21:00.812 W/app_process( 8012): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[]{PCL[/system/framework/android.test.runner.jar*2496447986]#PCL[/system/framework/android.test.base.jar*724373495]} | PCL[/system/framework/android.test.runner.jar*2496447986])
+10-15 17:21:00.911 W/UiAutomation( 8012): Created with deprecatead constructor, assumes DEFAULT_DISPLAY
+10-15 17:21:00.921 W/MagnificationConnectionManager(  607): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+10-15 17:21:00.931 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.931 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.932 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.933 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.940 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.941 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.942 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.943 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.943 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.943 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.950 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.957 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.957 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.957 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.958 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.959 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.965 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.978 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.979 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.983 W/IPCThreadState(  607): Sending oneway calls to frozen process.
+10-15 17:21:00.992 W/IPCThreadState(  607): Sending oneway calls to frozen process.

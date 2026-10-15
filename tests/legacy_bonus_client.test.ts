@@ -10,7 +10,7 @@ jest.mock('../app/level_spin_star_grants', () => ({ mergeLevelSpinServerStars: (
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act, renderHook } from '@testing-library/react-native';
-import { beginAccountGeneration } from '../app/account_generation';
+import { beginAccountGeneration, invalidateAccountGeneration } from '../app/account_generation';
 import { dismissLegacyBonusWelcome, markLegacyBonusWelcomeShown, resetLegacyBonusClientForTests, runLegacyBonusConvertOnce, useLegacyBonusWelcome } from '../app/legacy_bonus_client';
 
 const converted = {
@@ -164,5 +164,41 @@ describe('legacy_bonus_client', () => {
     await act(async () => { await runLegacyBonusConvertOnce('second_launch'); });
     expect(hook.result.current).toMatchObject({ kind: 'show', result: { status: 'nothing', upgraded: true } });
     expect(mockCall).toHaveBeenCalledTimes(1);
+  });
+
+  // зачем (Ревизор P25, 15.10): окно «Встречайте 2.0» принадлежит владельцу — гость после выхода не видит монеты прошлого аккаунта, а прошлый аккаунт при входе получает своё окно ровно один раз
+  it('окно A ожидает → выход → гость окна не видит → вход A → окно A показано один раз', async () => {
+    const hook = await renderHook(() => useLegacyBonusWelcome());
+    mockCall.mockResolvedValueOnce({ data: converted });
+    await act(async () => { await runLegacyBonusConvertOnce('home_first_frame'); });
+    expect(hook.result.current).toMatchObject({ kind: 'show', result: { coins: { total: 2036 } } });
+
+    // выход: аккаунт в переходе — окно скрыто (stableId=null)
+    await act(async () => { invalidateAccountGeneration(); });
+    expect(hook.result.current.kind).toBe('none');
+
+    // вошёл гость: память сброшена, метка A в хранилище осталась; для гостя нечего показывать
+    mockCall.mockResolvedValueOnce({ data: { ...converted, status: 'nothing', upgraded: false, coins: { xp: 0, pearls: 0, spins: 0, total: 0 } } });
+    await act(async () => { beginAccountGeneration('guest-1'); await new Promise((resolve) => setTimeout(resolve, 0)); });
+    await act(async () => { await Promise.resolve(); });
+    expect(hook.result.current.kind).toBe('none');
+    expect(mockCall).toHaveBeenLastCalledWith({ ownerStableId: 'guest-1' });
+    expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toMatchObject({ welcomePending: true });
+
+    // вход A: окно A возвращается из его метки, сеть для A не трогаем
+    const callsBefore = mockCall.mock.calls.length;
+    await act(async () => { beginAccountGeneration('owner-legacy'); await new Promise((resolve) => setTimeout(resolve, 0)); });
+    await act(async () => { await Promise.resolve(); });
+    expect(hook.result.current).toMatchObject({ kind: 'show', result: { coins: { total: 2036 } } });
+    expect(mockCall.mock.calls.length).toBe(callsBefore);
+
+    // показано → метка снята; повторный выход/вход окна не вернёт
+    await act(async () => { markLegacyBonusWelcomeShown('shown'); });
+    await act(async () => { dismissLegacyBonusWelcome(); });
+    expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toEqual({ status: 'converted', total: 2036 });
+    await act(async () => { beginAccountGeneration('guest-1'); await new Promise((resolve) => setTimeout(resolve, 0)); });
+    await act(async () => { beginAccountGeneration('owner-legacy'); await new Promise((resolve) => setTimeout(resolve, 0)); });
+    await act(async () => { await Promise.resolve(); });
+    expect(hook.result.current.kind).toBe('none');
   });
 });

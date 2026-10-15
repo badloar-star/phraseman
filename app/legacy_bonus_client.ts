@@ -14,7 +14,7 @@
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from './account_generation';
 
 const LOG = '[LEGACY-BONUS]';
 const WHATSNEW_LOG = '[WHATSNEW-GATE]';
@@ -35,12 +35,52 @@ export type LegacyBonusResult = Readonly<{
 }>;
 
 let welcome: LegacyBonusResult | null = null;
+/**
+ * зачем (Ревизор P25, 15.10): окно и состояние принадлежат ВЛАДЕЛЬЦУ. Раньше `welcome`/`pendingClear`/`ranThisProcess` переживали выход из аккаунта — гость мог увидеть окно с монетами прошлого
+ * владельца, а прошлый владелец терял своё окно (флаг «уже запускали» не пускал к его метке). Теперь: у окна есть владелец, при смене владельца память сбрасывается (метка в хранилище остаётся),
+ * а видно окно только если владелец окна = текущий.
+ */
+let welcomeOwner: string | null = null;
+/** Владелец, для которого этот процесс последний раз гонял конвертацию/восстановление (чтобы заметить смену). */
+let runOwner: string | null = null;
 /** Метка, ждущая снятия welcomePending (когда окно показано или нажато «Понятно»). */
 let pendingClear: Readonly<{ key: string; status: string; total: number }> | null = null;
 let ranThisProcess = false;
+/** Хоть раз просили запуск (Home после первого кадра) — только тогда после смены владельца догоняем заново, не раньше. */
+let startedOnce = false;
+let accountSubscription: { remove: () => void } | null = null;
+/** Окно dev-демо (съёмка): не привязано к аккаунту. */
+const DEV_DEMO_OWNER = '__dev_demo__';
 const listeners = new Set<() => void>();
 function emit(): void {
   for (const listener of listeners) listener();
+}
+
+const shortOwner = (owner: string | null): string => (owner ? `${owner.slice(0, 6)}…` : 'none');
+
+/** Окно видно только владельцу, чьё оно; пока аккаунт в переходе (stableId=null) — скрыто. */
+function visibleWelcome(): LegacyBonusResult | null {
+  if (!welcome) return null;
+  if (welcomeOwner === DEV_DEMO_OWNER) return welcome;
+  const current = captureAccountGeneration();
+  if (current.phase === 'active' && current.stableId?.trim() === welcomeOwner) return welcome;
+  console.log(`${WHATSNEW_LOG} hidden reason=owner_mismatch window=${shortOwner(welcomeOwner)} current=${shortOwner(current.stableId)} phase=${current.phase}`);
+  return null;
+}
+
+function onAccountGeneration(token: AccountGenerationToken): void {
+  const next = token.phase === 'active' ? token.stableId?.trim() || null : null;
+  if (welcome) emit(); // видимость окна зависит от текущего владельца — подписчики перечитывают
+  if (!next || next === runOwner) return;
+  // зачем: новый владелец — сбрасываем ПАМЯТЬ (окно, ожидающую метку, флаг «уже запускали»); метку прошлого владельца в хранилище НЕ трогаем — окно вернётся, когда он снова войдёт
+  console.log(`${WHATSNEW_LOG} owner_changed from=${shortOwner(runOwner)} to=${shortOwner(next)} hadWindow=${welcome !== null} pendingClear=${pendingClear !== null} — память сброшена, метка прошлого владельца в хранилище остаётся`);
+  welcome = null;
+  welcomeOwner = null;
+  pendingClear = null;
+  ranThisProcess = false;
+  runOwner = null;
+  emit();
+  if (startedOnce) void Promise.resolve().then(() => runLegacyBonusConvertOnce('owner_changed'));
 }
 
 const int = (value: unknown): number => {
@@ -73,6 +113,8 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
     return;
   }
   ranThisProcess = true;
+  startedOnce = true;
+  if (!accountSubscription) accountSubscription = subscribeAccountGeneration(onAccountGeneration);
   const token = captureAccountGeneration();
   const owner = token.stableId?.trim() || '';
   if (!owner) {
@@ -80,6 +122,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
     ranThisProcess = false;
     return;
   }
+  runOwner = owner;
   const doneKey = `${DONE_PREFIX}${encodeURIComponent(owner)}`;
   const startedAt = Date.now();
   try {
@@ -104,6 +147,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
         pendingClear = { key: doneKey, status: parsed.status ?? pending.status, total: parsed.total ?? pending.coins.total };
         console.log(`${WHATSNEW_LOG} pending восстановлено из метки: окно показываем, флаг снимется при показе/«Понятно» status=${pending.status} total=${pending.coins.total} source=${source}`);
         welcome = { status: pending.status, upgraded: pending.upgraded, from: pending.from, coins: pending.coins, cappedBy: pending.cappedBy, starsBalance: pending.starsBalance };
+        welcomeOwner = owner;
         emit();
         return;
       }
@@ -162,6 +206,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
         return;
       }
       welcome = { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
+      welcomeOwner = owner;
       console.log(`${LOG} welcome show=zero upgraded=${result.upgraded}`);
       emit();
       return;
@@ -183,6 +228,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
       return;
     }
     welcome = { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
+    welcomeOwner = owner;
     emit();
   } catch (error: unknown) {
     console.warn(`${LOG} failed source=${source} reason=${error instanceof Error ? error.message : String(error)} ms=${Date.now() - startedAt}`);
@@ -192,9 +238,9 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
 
 /** Для окна «Встречайте PhraseMan 2.0»: show — только когда сервер начислил в этом запуске и окно ещё не закрыто. */
 export function useLegacyBonusWelcome(): Readonly<{ kind: 'none' | 'show'; result?: LegacyBonusResult }> {
-  const [value, setValue] = useState(welcome);
+  const [value, setValue] = useState(visibleWelcome);
   useEffect(() => {
-    const sync = () => setValue(welcome);
+    const sync = () => setValue(visibleWelcome());
     listeners.add(sync);
     sync();
     return () => { listeners.delete(sync); };
@@ -225,6 +271,7 @@ export function dismissLegacyBonusWelcome(): void {
   console.log(`${LOG} welcome dismissed total=${welcome?.coins.total ?? 0}`);
   markLegacyBonusWelcomeShown('dismissed');
   welcome = null;
+  welcomeOwner = null;
   emit();
 }
 
@@ -242,6 +289,7 @@ export function setDevLegacyBonusDemo(mode: DevLegacyBonusDemo | boolean): boole
       : m === 'nothing'
         ? { status: 'nothing', upgraded: true, from: zero, coins: { ...zero, total: 0 }, cappedBy: 'none', starsBalance: 2000 }
         : null;
+  welcomeOwner = welcome ? DEV_DEMO_OWNER : null;
   console.log(`[DEV-STATE] legacybonus=${m}`); // guard-ok: dev-ветка
   emit();
   return true;
@@ -250,8 +298,13 @@ export function setDevLegacyBonusDemo(mode: DevLegacyBonusDemo | boolean): boole
 /** Только для тестов. */
 export function resetLegacyBonusClientForTests(): void {
   welcome = null;
+  welcomeOwner = null;
   pendingClear = null;
   ranThisProcess = false;
+  runOwner = null;
+  startedOnce = false;
+  accountSubscription?.remove();
+  accountSubscription = null;
   listeners.clear();
 }
 

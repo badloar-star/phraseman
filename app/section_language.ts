@@ -7,7 +7,6 @@
 // Журнал: [SECTION-LANG] {section, from, to, global} на каждое переключение и сброс.
 // ═══════════════════════════════════════════════════════════════════════════
 import { useCallback, useSyncExternalStore } from 'react';
-import { peekStudyTargetRaw } from './app_snapshot_bootstrap';
 
 export type LanguageSection = 'video' | 'cards';
 
@@ -16,8 +15,22 @@ const listeners = new Set<() => void>();
 const resetListeners = new Set<(section: LanguageSection) => void>();
 let version = 0;
 
+/**
+ * Язык из Настроек (синхронный снимок). зачем: app_snapshot_bootstrap тянет за собой кэши с подписками при импорте (energy_peek_cache) — модуль языка раздела его
+ * НЕ импортирует статически (иначе любой тест/экран с частичным моком account_generation падал бы при загрузке), берём лениво в момент вызова.
+ */
+export function peekGlobalStudyTargetSafe(): string | null {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return (require('./app_snapshot_bootstrap') as typeof import('./app_snapshot_bootstrap')).peekStudyTargetRaw();
+  } catch (error: unknown) {
+    console.warn(`[SECTION-LANG] global peek failed reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+    return null;
+  }
+}
+
 function globalLanguageForLog(): string {
-  return peekStudyTargetRaw() ?? 'unknown';
+  return peekGlobalStudyTargetSafe() ?? 'unknown';
 }
 
 function emit(): void {

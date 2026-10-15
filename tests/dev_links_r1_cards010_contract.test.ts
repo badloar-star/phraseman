@@ -22,6 +22,7 @@ describe('dev links: cards-010 fills the saved list', () => {
 
   it('the free saved limit is counted from saved cards (why custom50 produced an empty frame)', () => {
     const container = fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards_collection.tsx'), 'utf8');
-    expect(container).toMatch(/savedLimitReached = savedSurface && !isPremium && \(hiddenByLimitCount > 0 \|\| savedCards\.length >= FREE_SAVED_CARD_LIMIT\)/);
+    // 15.10 (аудит Карточек #11): лимит считается по сохранённым карточкам ЯЗЫКА набора, а не по всем языкам сразу — смысл теста прежний: считаем от сохранённых, не от показанных
+    expect(container).toMatch(/savedLimitReached = savedSurface && !isPremium && \(hiddenByLimitCount > 0 \|\| savedCardsForPackLanguage\.length >= FREE_SAVED_CARD_LIMIT\)/);
   });
 });

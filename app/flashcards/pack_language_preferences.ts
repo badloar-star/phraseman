@@ -1,6 +1,5 @@
 import { registerHubCacheProbe } from '../hub_lifecycle_probe';
-import { peekStudyTargetRaw } from '../app_snapshot_bootstrap';
-import { setSectionLanguageOverride, subscribeSectionLanguageReset } from '../section_language';
+import { peekGlobalStudyTargetSafe, setSectionLanguageOverride, subscribeSectionLanguageReset } from '../section_language';
 import {
   defaultPackLanguageForStudyTarget,
   isStudyPackLanguage,
@@ -16,7 +15,7 @@ let rememberedLanguage: StudyPackLanguage | null = null;
 subscribeSectionLanguageReset((section) => {
   if (section !== 'cards' || rememberedLanguage === null) return;
   rememberedLanguage = null;
-  const globalDefault = defaultPackLanguageForStudyTarget(peekStudyTargetRaw());
+  const globalDefault = defaultPackLanguageForStudyTarget(peekGlobalStudyTargetSafe());
   for (const listener of listeners) listener(globalDefault);
 });
 export function peekStoredPackLanguage(): StudyPackLanguage | null { return rememberedLanguage; }

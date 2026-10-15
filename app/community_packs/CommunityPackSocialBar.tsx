@@ -44,7 +44,7 @@ import {
   formatCommentsCount,
   shouldShowCommentsCount,
 } from './packComments';
-import { isCommunityPackLikedLocally } from './packSocialStorage';
+import { isCommunityPackLikedLocally, setCommunityPackLikedLocally } from './packSocialStorage';
 import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -167,10 +167,21 @@ export default function CommunityPackSocialBar({
         })),
       ]);
       if (cancelled || opSeqRef.current !== seqAtStart) return;
+      // зачем (проверка координатора 15.10, дыра №5): флаг лайка читался только из локального хранилища, а membership шла лишь в пересчёт цифры. После выхода/смены аккаунта (ACC-SWITCH стирает локальный флаг)
+      // сердце оставалось пустым, а цифра показывала на один меньше серверной. Сервер говорит «лайк есть» — берём его и восстанавливаем локальный флаг.
+      const serverLiked = state.membership?.liked === true;
+      const likedNow = liked || serverLiked;
+      // обратный случай (локально «есть», на сервере «нет») НЕ сбрасываем: это может быть ещё не доставленный лайк (решение координатора 15.10)
+      console.log(`[PACK-LIKE] reconcile pack=${pack.id} source=${serverLiked && !liked ? 'server' : 'local'} local=${String(liked)} server=${state.membership ? String(serverLiked) : 'n/a'} shown=${String(likedNow)}`); // guard-ok: ветка решения
+      if (serverLiked && !liked) {
+        void setCommunityPackLikedLocally(pack.id, true).catch((error: unknown) => {
+          console.warn(`[PACK-LIKE] ${pack.id}: восстановление локального флага не удалось`, error instanceof Error ? error.message : String(error)); // guard-ok: catch называет причину
+        });
+      }
       setSnapshot((prev) =>
         state.membership
-          ? mergeServerCounts({ ...prev, liked, added: prev.added || owned }, state.counts, state.membership)
-          : mergeServerCounts({ ...prev, liked, added: prev.added || owned }, {
+          ? mergeServerCounts({ ...prev, liked: likedNow, added: prev.added || owned }, state.counts, state.membership)
+          : mergeServerCounts({ ...prev, liked: likedNow, added: prev.added || owned }, {
               likesCount: Math.max(state.counts.likesCount, pack.likesCount ?? 0),
               addedCount: Math.max(state.counts.addedCount, pack.addedCount ?? 0),
             }),
@@ -253,6 +264,11 @@ export default function CommunityPackSocialBar({
   const onLikePress = useCallback(() => {
     if (!isAdded) {
       likeLockedToast();
+      return;
+    }
+    // зачем (аудит Optimistic UI, координатор 15.10, дыра №6): пока идёт запись «Добавить себе», isAdded оптимистичный: лайк в этот момент обгонял откат добавления (кнопка навсегда «В моих», набора нет)
+    if (addInFlightRef.current) {
+      console.log(`[OPT-UI] pack_like ignored reason=add_in_flight pack=${pack.id}`); // guard-ok: ранний выход пишет причину
       return;
     }
     runLikePop();
@@ -360,12 +376,10 @@ export default function CommunityPackSocialBar({
        * `seq` защищает от гонки: если человек успел нажать ещё раз, поздний
        * отказ не имеет права затирать более свежее состояние.
        */
-      if (opSeqRef.current !== seq) {
-        console.warn(`[PACK-SOCIAL] откат добавления пропущен: есть более свежее действие pack=${pack.id}`); // guard-ok
-        return;
-      }
-      console.warn(`[PACK-SOCIAL] добавление отклонено pack=${pack.id} причина=${res}`); // guard-ok
-      setSnapshot(before);
+      // зачем (аудит Optimistic UI, координатор 15.10, дыра №6): свежее действие (например, пришедшее событие лайка) раньше отменяло откат ЦЕЛИКОМ — кнопка оставалась «В моих» без набора и без сообщения; теперь откатываем только «добавлено», чужое не затираем
+      const newer = opSeqRef.current !== seq;
+      console.warn(`[PACK-SOCIAL] добавление отклонено pack=${pack.id} причина=${res} newerAction=${String(newer)}`); // guard-ok
+      setSnapshot(newer ? (prev) => ({ ...prev, added: before.added, addedCount: before.addedCount }) : before);
       // зачем (баг владельца 11.10): добавление — локальная запись без сети, единственный отказ — `unavailable`
       // («этот набор добавить нельзя»). Прежний текст «Проверь связь» отправлял человека чинить интернет зря.
       emitAppEvent('action_toast', packAddFailureToast(res));

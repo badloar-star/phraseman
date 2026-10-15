@@ -61,6 +61,7 @@ import CommunityPackPreviewSkeleton from './flashcards/CommunityPackPreviewSkele
 import { CollectionMenuSheet, CollectionSearchField, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
 import { FREE_SAVED_CARD_LIMIT } from './flashcards/free_limit';
 import { claimPackDelete, deleteOwnPackEverywhere, releasePackDelete } from './community_packs/deleteOwnPack';
+import { invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
 import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './flashcards/PackHeaderV2';
 import { packDeckLevel } from '../components/packs/packDeckModel';
 import { ExpandedCardV2, type ExpandedCardData } from './flashcards/ExpandedCardV2';
@@ -1205,6 +1206,26 @@ export default function FlashcardsScreen() {
     });
     return () => { cancelled = true; };
   }, [openedCard?.id]); // eslint-disable-line react-hooks/exhaustive-deps -- проверяем только при открытии новой карточки
+  // зачем (аудит Optimistic UI, координатор 15.10, дыры №7 и №10): двойной тап «Удалить» в раскрытой карточке набора запускал второе удаление и ложный тост «Не удалось удалить»; ref меняется синхронно
+  const deletingPackCardIdsRef = useRef<Set<string>>(new Set());
+  const claimPackCardDelete = useCallback((cardId: string, tag: string): boolean => {
+    if (deletingPackCardIdsRef.current.has(cardId)) {
+      console.log(`[OPT-UI] ${tag} ignored reason=double_tap cardId=${cardId}`); // guard-ok: ранний выход пишет причину
+      return false;
+    }
+    deletingPackCardIdsRef.current.add(cardId);
+    return true;
+  }, []);
+  const releasePackCardDelete = useCallback((cardId: string) => { deletingPackCardIdsRef.current.delete(cardId); }, []);
+  const packCardDeleteFailToast = useCallback(() => emitAppEvent('action_toast', actionToastTri('error', {
+    ru: 'Не удалось удалить карточку.', uk: 'Не вдалося видалити картку.', en: 'Could not delete the card.', es: 'No se pudo eliminar la tarjeta.',
+    'pt-BR': 'Não foi possível excluir o cartão.', vi: 'Không thể xóa thẻ.', id: 'Kartu tidak dapat dihapus.', tr: 'Kart silinemedi.', pl: 'Nie udało się usunąć karty.',
+  })), []);
+  // зачем (аудит Optimistic UI, координатор 15.10, дыры №7 и №10): «Вернуть» при сбое молчало — человек думал, что карточка вернулась
+  const packCardRestoreFailToast = useCallback(() => emitAppEvent('action_toast', actionToastTri('error', {
+    ru: 'Не удалось вернуть карточку.', uk: 'Не вдалося повернути картку.', en: 'Couldn’t restore the card.', es: 'No se pudo restaurar la tarjeta.',
+    'pt-BR': 'Não foi possível restaurar o cartão.', vi: 'Không thể khôi phục thẻ.', id: 'Kartu tidak dapat dipulihkan.', tr: 'Kart geri getirilemedi.', pl: 'Nie udało się przywrócić karty.',
+  })), []);
   const unhidePackCard = useCallback((cardId: string) => {
     setHiddenPackCardIds((prev) => {
       if (!prev.has(cardId)) return prev;
@@ -1215,12 +1236,10 @@ export default function FlashcardsScreen() {
   }, []);
   const deletePackCard = useCallback((card: CardItem) => {
     if (!packDeeplink) return;
+    if (!claimPackCardDelete(card.id, 'pack_card_delete')) return;
     console.log(`[PACK-CARD-DELETE] экран: удалить cardId=${card.id} packId=${packDeeplink}`);
     setHiddenPackCardIds((prev) => new Set(prev).add(card.id)); // Optimistic UI: карточка исчезает сразу
-    const failToast = () => emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Не удалось удалить карточку.', uk: 'Не вдалося видалити картку.', en: 'Could not delete the card.', es: 'No se pudo eliminar la tarjeta.',
-      'pt-BR': 'Não foi possível excluir o cartão.', vi: 'Không thể xóa thẻ.', id: 'Kartu tidak dapat dihapus.', tr: 'Kart silinemedi.', pl: 'Nie udało się usunąć karty.',
-    }));
+    const failToast = packCardDeleteFailToast;
     void removeCardFromLocalPack(packDeeplink, card.id).then((snapshot) => {
       if (!snapshot) { unhidePackCard(card.id); failToast(); return; }
       const key = ++packUndoKeyRef.current;
@@ -1232,12 +1251,13 @@ export default function FlashcardsScreen() {
       console.warn('[PACK-CARD-DELETE] экран: сбой, откат', error instanceof Error ? error.message : String(error));
       unhidePackCard(card.id);
       failToast();
-    });
-  }, [loadAll, packDeeplink, unhidePackCard]);
+    }).finally(() => releasePackCardDelete(card.id));
+  }, [claimPackCardDelete, loadAll, packCardDeleteFailToast, packDeeplink, releasePackCardDelete, unhidePackCard]);
   // зачем (координатор 04.10): карточка опубликованного набора — окно «Вернуть» 5 с на клиенте, затем ОДИН вызов сервера (очередь ядра);
   // карточка прячется сразу (Optimistic UI), при отказе сервера — возвращается с причиной.
   const deletePublishedPackCard = useCallback((card: CardItem) => {
     if (!packDeeplink) return;
+    if (!claimPackCardDelete(card.id, 'pack_card_remove')) return;
     console.log(`[PACK-CARD-REMOVE] экран: удалить из опубликованного cardId=${card.id} packId=${packDeeplink}`);
     setHiddenPackCardIds((prev) => new Set(prev).add(card.id));
     // зачем (координатор 12.10): причина отказа переводится вместе с языком интерфейса (раньше русская строка шла во все 9 полей тоста)
@@ -1264,8 +1284,9 @@ export default function FlashcardsScreen() {
     }).catch((error: unknown) => {
       console.warn('[PACK-CARD-REMOVE] экран: не поставили в очередь, откат', error instanceof Error ? error.message : String(error));
       unhidePackCard(card.id);
-    });
-  }, [loadAll, packDeeplink, unhidePackCard]);
+      packCardDeleteFailToast(); // зачем (аудит Optimistic UI, координатор 15.10, дыры №7 и №10): откат без сообщения оставлял карточку «вернувшейся из ниоткуда»
+    }).finally(() => releasePackCardDelete(card.id));
+  }, [claimPackCardDelete, loadAll, packCardDeleteFailToast, packDeeplink, releasePackCardDelete, unhidePackCard]);
   const undoPackDelete = useCallback(() => {
     const entry = packUndo;
     if (!entry) return;
@@ -1275,8 +1296,10 @@ export default function FlashcardsScreen() {
       void entry.undoPublished().then((ok) => {
         console.log(`[PACK-CARD-REMOVE] экран: «Вернуть» отменено=${ok}`);
         if (ok && entry.cardId) unhidePackCard(entry.cardId);
+        else if (!ok) packCardRestoreFailToast(); // зачем (аудит Optimistic UI, координатор 15.10, дыры №7 и №10): очередь уже отправила удаление — вернуть нельзя, и человек должен это знать
       }).catch((error: unknown) => {
         console.warn('[PACK-CARD-REMOVE] экран: «Вернуть» не удалось', error instanceof Error ? error.message : String(error));
+        packCardRestoreFailToast();
       });
       return;
     }
@@ -1284,11 +1307,14 @@ export default function FlashcardsScreen() {
     const snapshot = entry.snapshot;
     void restoreCardToLocalPack(snapshot).then((ok) => {
       console.log(`[PACK-CARD-DELETE] экран: возврат ok=${ok}`);
+      if (!ok) packCardRestoreFailToast();
       void loadAll();
     }).catch((error: unknown) => {
       console.warn('[PACK-CARD-DELETE] экран: возврат не удался', error instanceof Error ? error.message : String(error));
+      packCardRestoreFailToast();
+      void loadAll(); // зачем (аудит Optimistic UI, координатор 15.10, дыры №7 и №10): перечитываем факт: карточка могла остаться удалённой
     });
-  }, [loadAll, packUndo, unhidePackCard]);
+  }, [loadAll, packCardRestoreFailToast, packUndo, unhidePackCard]);
   useEffect(() => () => { if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current); }, []);
   const openedSaveInFlightRef = useRef(false);
   const onToggleOpenedSave = useCallback(() => {
@@ -1372,6 +1398,7 @@ export default function FlashcardsScreen() {
       })
       .catch((error: unknown) => {
         console.warn('[PACK-DELETE] экран набора: удаление не удалось', { packId: pack.id, error: String(error) });
+        invalidateCommunityPackCatalog(); // зачем (аудит Optimistic UI, координатор 15.10, дыры №7 и №10): после сбоя набор должен вернуться в «Мои наборы» при следующем показе списка, а не сидеть в старом кэше
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Could not delete the pack.', es: 'No se pudo eliminar el pack.',
           'pt-BR': 'Não foi possível excluir o pacote.', vi: 'Không thể xóa bộ thẻ.', id: 'Paket tidak dapat dihapus.', tr: 'Paket silinemedi.', pl: 'Nie udało się usunąć zestawu.',

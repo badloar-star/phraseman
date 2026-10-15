@@ -510,7 +510,9 @@ test('sign-in over an anonymous user tries linkWithCredential FIRST (does not de
   expect(authState.calls[0]).toBe('link');
   // Flow completed as a real sign-in result (created_new or linked_existing), not an error.
   expect(['created_new', 'linked_existing']).toContain((res as any).result);
-  expect(authStampAnonOwnership).not.toHaveBeenCalled();
+  // зачем (координатор и Ядро 15.10, [LOGIN-STAMP]): метка запрашивается предвыборкой ещё на тапе, пока открыто окно выбора;
+  // без конфликта её ответ не принимается (nonce не кладётся), повторной метки нет — не больше одного вызова.
+  expect(authStampAnonOwnership.mock.calls.length).toBeLessThanOrEqual(1);
 });
 
 test('preserves anonymous identity when the credential belongs to an existing provider account', async () => {
@@ -529,7 +531,9 @@ test('preserves anonymous identity when the credential belongs to an existing pr
   expect(authState.calls).toContain('link');
   expect(authState.calls).not.toContain('signin');
   expect(res).toEqual({ result: 'error', error: 'account_switch_required' });
-  expect(authStampAnonOwnership).not.toHaveBeenCalled();
+  // зачем (координатор и Ядро 15.10, [LOGIN-STAMP]): метка запрашивается предвыборкой ещё на тапе, пока открыто окно выбора;
+  // без конфликта её ответ не принимается (nonce не кладётся), повторной метки нет — не больше одного вызова.
+  expect(authStampAnonOwnership.mock.calls.length).toBeLessThanOrEqual(1);
 });
 
 test('unsynced MAX outbox makes anonymous account meaningful and blocks provider replacement', async () => {
@@ -546,7 +550,9 @@ test('unsynced MAX outbox makes anonymous account meaningful and blocks provider
 
   expect(result).toEqual({ result: 'error', error: 'account_switch_required' });
   expect(authState.calls).not.toContain('signin');
-  expect(authStampAnonOwnership).not.toHaveBeenCalled();
+  // зачем (координатор и Ядро 15.10, [LOGIN-STAMP]): метка запрашивается предвыборкой ещё на тапе, пока открыто окно выбора;
+  // без конфликта её ответ не принимается (nonce не кладётся), повторной метки нет — не больше одного вызова.
+  expect(authStampAnonOwnership.mock.calls.length).toBeLessThanOrEqual(1);
 });
 
 test('fresh install hands a proven-empty anonymous identity to an existing Google account', async () => {

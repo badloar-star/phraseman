@@ -173,6 +173,12 @@ import {
   forgetAllAnonMergeNonces,
 } from '../modules/account-authority-v2/account_authority_anon_merge_nonce';
 import {
+  consumeStampPrefetch,
+  currentStampPrefetch,
+  settleStampPrefetch,
+  startStampPrefetch,
+} from './auth_stamp_prefetch';
+import {
   accountAuthorityErrorCode,
   accountAuthorityErrorKind,
   accountAuthorityProviderErrorCode,
@@ -242,9 +248,27 @@ async function syncRevenueCatAfterAuthLink(isCurrent: () => boolean = () => true
  */
 const STAMP_FETCH_TIMEOUT_MS = 20_000;
 
+/**
+ * Запрос метки для предвыборки [LOGIN-STAMP] — тот же вызов, что в stampAnonOwnershipBeforeSignIn, но БЕЗ приёма nonce:
+ * ответ держит модуль auth_stamp_prefetch и отдаёт его только в точке метки. Может отклониться — модуль поймает.
+ */
+async function requestAnonOwnershipStampForPrefetch(localStableId: string): Promise<unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership');
+  const payload = { stableId: localStableId, nonceRequested: true };
+  const { invokeAuthCallable } = await import('./auth_callable_fetch');
+  return invokeAuthCallable('authStampAnonOwnership', payload, () => fn(payload), { timeoutMs: STAMP_FETCH_TIMEOUT_MS });
+}
+
 async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || !localStableId) return;
   try {
+    // зачем (координатор и Ядро 15.10, [LOGIN-STAMP]): метка запрошена ещё на тапе, пока человек выбирал аккаунт. Её ответ берём,
+    // только если совпали попытка, stableId (позднее чтение — сверка), анонимный uid и возраст; иначе — метка заново, как раньше.
+    const prefetched = await consumeStampPrefetch(currentStampPrefetch(), { stableId: localStableId, authUid: String(getAuth().currentUser?.uid ?? '') });
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { getApp } = require('@react-native-firebase/app');
     // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -257,7 +281,9 @@ async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<vo
     // нативный путь — только если запрос гарантированно не ушёл (метку нельзя ставить дважды вслепую).
     const payload = { stableId: localStableId, nonceRequested: true };
     const { invokeAuthCallable } = await import('./auth_callable_fetch');
-    const response = await invokeAuthCallable('authStampAnonOwnership', payload, () => fn(payload), { timeoutMs: STAMP_FETCH_TIMEOUT_MS });
+    const response = prefetched.hit
+      ? prefetched.hit.response
+      : await invokeAuthCallable('authStampAnonOwnership', payload, () => fn(payload), { timeoutMs: STAMP_FETCH_TIMEOUT_MS });
     acceptAnonMergeStampResponse(localStableId, response);
   } catch (e) {
     // Лог без текста ошибки и без stableId: только вид и код (S1-логгер).
@@ -2536,9 +2562,15 @@ async function runSignInWithProvider(
   resumeCredential: NativeAuthCredential | null = null,
 ): Promise<SignInResult> {
   const handoffLeaseScope: ProviderHandoffLeaseScope = { lease: null, release: null };
+  let settledResult: SignInResult['result'] | null = null;
   try {
-    return await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope, resumeCredential);
+    const result = await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope, resumeCredential);
+    settledResult = result.result;
+    return result;
   } finally {
+    // зачем (координатор 15.10, [LOGIN-STAMP]): поздний ответ предвыборки после конца входа никуда не кладётся, а итог
+    // outcome=used|wasted_no_conflict|wasted_cancel|… считает долю впустую потраченных вызовов (>80% — запуск только при конфликте).
+    settleStampPrefetch(settledResult);
     // зачем (AA S2b, пункт 9): nonce M-1 нужен только внутри одного входа —
     // успех (merge/relink), отказ или отмена одинаково его стирают.
     forgetAllAnonMergeNonces('sign_in_settled');
@@ -2663,6 +2695,21 @@ async function runSignInWithProviderWhileOwningHandoffLease(
   const anonPreparation = deferIdentityPreparation
     ? Promise.resolve(null)
     : ensureAnonUser();
+  // зачем (координатор 15.10, замер №7: метка 1,96 с последовательно ПОСЛЕ окна выбора): запрос метки уходит сейчас, пока открыт
+  // выбор аккаунта. Без pending-delete (там метки нет) и без продолжения после «Сменить аккаунт» (окна нет — прятать нечего).
+  if (!deferIdentityPreparation && !resumeCredential && CLOUD_SYNC_ENABLED && !IS_EXPO_GO) {
+    startStampPrefetch({
+      resolveIdentity: async () => {
+        await anonPreparation;
+        const user = auth.currentUser;
+        if (!user?.isAnonymous || !user.uid) return null;
+        return { stableId: await getStableId(), authUid: String(user.uid) };
+      },
+      request: requestAnonOwnershipStampForPrefetch,
+    });
+  } else {
+    console.log(`[LOGIN-STAMP] prefetch_off defer=${deferIdentityPreparation} resume=${Boolean(resumeCredential)}`);
+  }
 
   // 1. Native / OAuth sign-in
   let cred: NativeAuthCredential | { cancelled: true };

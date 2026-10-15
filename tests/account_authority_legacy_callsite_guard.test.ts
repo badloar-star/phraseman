@@ -537,7 +537,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // сохранённые правки карточек к ключу этого аккаунта (только чтение, без записи).
         // 20318946f (Ядро 15.10, Авторизация): +1 — peekStableId владельца A в clearAccountPushBeforeSwitchSignOut: push-токен A
         // снимается с явным владельцем, без ensureAnonUser посреди карантина смены (только чтение, без записи).
-        stableIdentityReads: 21,
+        // +1 (Ядро 15.10): stableId для предвыборки метки до окна выбора Google; позднее чтение — сверка.
+        stableIdentityReads: 22,
         stableIdentityWrites: 8,
         authLinkLookups: 1,
         ownerMergeDecisions: 7,
@@ -635,7 +636,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // 52429d419 (2026-10-12): +1 — гость ставит удаление своим вызовом startCloudDeletionEnqueue с дедлайном 25 с в фоне
         // (холодный старт accountDeleteEnqueue ≈9 с), связанные — прежним; та же постановка, другой потолок ожидания.
         // 20318946f (15.10): +1 — peekStableId владельца в снятии push при смене аккаунта.
-        occurrences: 121,
+        // +1 (Ядро 15.10): stableId для предвыборки метки до окна выбора Google; позднее чтение — сверка.
+        occurrences: 122,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -650,7 +652,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           // AA S2d 🔴2: presync входа — forceSyncToCloud без adopt вместо syncToCloud({forceNow}).
           'call:forceSyncToCloud': 2,
           'call:forgetAllAnonMergeNonces': 1,
-          'call:getStableId': 11,
+          // +1 (Ядро 15.10): stableId для предвыборки метки до окна выбора Google; позднее чтение — сверка.
+          'call:getStableId': 12,
           'call:invalidateAccountGeneration': 5,
           'call:isCurrentAccountGeneration': 7,
           'call:isLocalAnonymousIdentityProvenCleanForCredentialHandoff': 1,

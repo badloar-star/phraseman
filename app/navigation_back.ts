@@ -1,5 +1,7 @@
 import { paywallCloseMark } from './paywall_close_trace';
 export const HOME_BACK_FALLBACK = '/(tabs)/home';
+/** R59: корень раздела роликов — вкладка «Видео» (не отдельный /lingman_videos без таббара). */
+export const LINGMAN_BACK_FALLBACK = '/(tabs)/video';
 
 type SafeBackRouter = {
   canGoBack?: () => boolean;
@@ -594,7 +596,9 @@ function fallbackForSection(section: NavigationSection | null): string {
      */
     case 'flashcards': return HOME_BACK_FALLBACK;
     case 'dialogs': return '/(tabs)/lessons';
-    case 'lingman': return '/lingman_videos';
+    // зачем (R59, Макеты 15.10, кадр 11_back_from_watch_dup): ролики и плейлисты открываются с вкладки «Видео»; вкладки
+    // в историю «назад» не попадают (candidate=null), и запасной /lingman_videos открывал ОТДЕЛЬНЫЙ экран канала без таббара.
+    case 'lingman': return LINGMAN_BACK_FALLBACK;
     case 'arena': return '/arena';
     case 'friends': return '/(tabs)/friends';
     case 'settings': return '/(tabs)/settings';

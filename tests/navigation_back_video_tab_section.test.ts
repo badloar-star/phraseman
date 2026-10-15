@@ -63,7 +63,8 @@ describe('back in other sections is unchanged', () => {
     expect(router.dismissTo).toHaveBeenCalledWith('/lingman_videos');
   });
 
-  it('home → playlist (another section) → back still goes to the lingman fallback, the home branch does not resurrect', () => {
+  // R59 (Макеты 15.10): запасной путь раздела роликов — вкладка «Видео», а не отдельный /lingman_videos без таббара.
+  it('home → playlist (another section) → back goes to the Video tab fallback, the home branch does not resurrect', () => {
     const navigation = loadNavigationBack();
     const router = makeRouter();
     navigation.rememberNavigationPath('/(tabs)/home');
@@ -71,7 +72,7 @@ describe('back in other sections is unchanged', () => {
 
     navigation.safeRouterBack(router, navigation.navigationFallbackForPath('/lingman_playlist') as any);
 
-    expect(router.dismissTo).toHaveBeenCalledWith('/lingman_videos');
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/video');
   });
 
   it('flashcards root → child → back returns to the flashcards root', () => {

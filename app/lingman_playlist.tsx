@@ -13,7 +13,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { captureAccountGeneration } from './account_generation';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
-import { safeRouterBack } from './navigation_back';
+import { LINGMAN_BACK_FALLBACK, safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { getTrustedLingmanYoutubeUrl } from './lingman_youtube';
 import { peekYoutubeCatalogScreenSnapshot, revalidateYoutubeChannelCatalog, type YoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
@@ -112,7 +112,7 @@ export default function LingmanPlaylistScreen() {
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView testID="youtube-playlist-detail" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
         <View style={styles.topbar}>
-          <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, '/lingman_videos' as any)} style={[styles.back, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}><Ionicons name="arrow-back" size={20} color={g.text} /></TouchableOpacity>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, LINGMAN_BACK_FALLBACK as any)} style={[styles.back, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}><Ionicons name="arrow-back" size={20} color={g.text} /></TouchableOpacity>
         </View>
         {!playlist && videosSettledEmpty ? (
           <View testID="youtube-playlist-empty" style={styles.empty}>

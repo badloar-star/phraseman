@@ -33,7 +33,7 @@ import { loadVideoMarketPacks, peekVideoMarketPacks } from './community_packs/co
 import { normalizePackLanguage } from './flashcards/pack_languages';
 import type { FlashcardMarketPack } from './flashcards/marketplace';
 import { formatRelativeVideoDate } from '../components/video/formatRelativeVideoDate';
-import { safeRouterBack } from './navigation_back';
+import { LINGMAN_BACK_FALLBACK, safeRouterBack } from './navigation_back';
 import { peekYoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
 import type { VideoPhrasesSource } from './video_phrases_client';
 import { subscribeYoutubePosition } from './youtube_player_seek_bus';
@@ -111,12 +111,12 @@ export default function LingmanVideoWatchScreen() {
   useEffect(() => {
     if (videoId) return;
     console.warn(LOG, 'open:no_video_id → назад', JSON.stringify({ source })); // guard-ok: ранний выход логируется
-    safeRouterBack(router, '/lingman_videos' as never);
+    safeRouterBack(router, LINGMAN_BACK_FALLBACK as never);
   }, [router, source, videoId]);
 
   const close = useCallback(() => {
     setPlayerOpen(false);
-    safeRouterBack(router, '/lingman_videos' as never);
+    safeRouterBack(router, LINGMAN_BACK_FALLBACK as never);
   }, [router]);
 
   const copy = {

@@ -2364,10 +2364,21 @@ function activeLegacyAccountOwner(token: LegacyAccountToken): string | null {
  * after a durable wallet read for the exact active owner/generation. Snapshot
  * updates may refresh that already-validated binding, never establish it.
  */
+// зачем (координатор 15.10, «Обучение» — «—» ~1,3 с при каждом открытии): последнее ПРОВЕРЕННОЕ (durable) значение того же владельца и
+// поколения аккаунта живёт в памяти процесса — повторный вход рисует его сразу, durable-чтение лишь подтверждает. Снимок по-прежнему
+// не устанавливает привязку (защита от чужого баланса при смене аккаунта): сюда пишет только durable-ответ.
+let lastDurableLegacyCoinBinding: LegacyCoinBalanceBinding | null = null;
+
+function cachedLegacyCoinBinding(token: LegacyAccountToken): LegacyCoinBalanceBinding | null {
+  const owner = activeLegacyAccountOwner(token);
+  const cached = lastDurableLegacyCoinBinding;
+  return owner && cached && cached.ownerStableId === owner && cached.accountGeneration === token.generation ? cached : null;
+}
+
 function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding | null {
   const initialTokenRef = useRef<LegacyAccountToken>(captureAccountGeneration());
   const [token, setToken] = useState<LegacyAccountToken>(initialTokenRef.current);
-  const [binding, setBinding] = useState<LegacyCoinBalanceBinding | null>(null);
+  const [binding, setBinding] = useState<LegacyCoinBalanceBinding | null>(() => cachedLegacyCoinBinding(initialTokenRef.current));
 
   useEffect(() => {
     const subscription = subscribeAccountGeneration((nextToken) => {
@@ -2390,7 +2401,7 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
 
     let alive = true;
     let durableReadValidated = false;
-    setBinding((prev) => (prev && prev.ownerStableId === ownerStableId && prev.accountGeneration === token.generation ? prev : null));
+    setBinding((prev) => (prev && prev.ownerStableId === ownerStableId && prev.accountGeneration === token.generation ? prev : cachedLegacyCoinBinding(token)));
 
     void getRunesBalanceRead().then((read) => {
       if (!alive) return;
@@ -2403,22 +2414,27 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
         return;
       }
       durableReadValidated = true;
-      setBinding(Object.freeze({
+      console.log('[COIN-PILL]', JSON.stringify({ screen: 'lessons', source: 'wallet_cache', value: read.wallet.balance, quality: read.quality, accountStableId: ownerStableId.slice(0, 8), generation: token.generation })); // guard-ok: временная трассировка (координатор 15.10)
+      const durable = Object.freeze({
         ownerStableId,
         accountGeneration: token.generation,
         balance: read.wallet.balance,
-      }));
+      });
+      lastDurableLegacyCoinBinding = durable;
+      setBinding(durable);
     }).catch(noteSwallowedHandler('lessons:useEffect.getRunesBalanceRead'));
 
     const unsubscribeSnapshot = subscribeAppSnapshot(() => {
       if (!alive
         || !durableReadValidated
         || !isCurrentAccountGeneration(token, ownerStableId)) return;
-      setBinding(Object.freeze({
+      const refreshed = Object.freeze({
         ownerStableId,
         accountGeneration: token.generation,
         balance: peekRunes(),
-      }));
+      });
+      lastDurableLegacyCoinBinding = refreshed; // уже проверенная привязка того же владельца — повторный вход покажет свежее число
+      setBinding(refreshed);
     });
 
     return () => {
@@ -2656,6 +2672,20 @@ export default function LessonsTab({
   );
   const legacyCoinRank = legacyCoinProjectionTrusted ? legacyCoinRankBinding?.rank ?? null : null;
   const legacyCoinBalance = legacyCoinProjectionTrusted ? legacyCoinBalanceBinding?.balance ?? null : null;
+  // зачем (координатор 15.10, «Обучение» 0 при Главной 53): что показывает плашка и почему — привязка баланса, ранга и их совпадение
+  useEffect(() => {
+    console.log('[COIN-PILL]', JSON.stringify({
+      screen: 'lessons',
+      source: legacyCoinBalanceBinding ? 'wallet_cache' : 'none',
+      shown: legacyCoinBalance ?? '—',
+      value: legacyCoinBalanceBinding?.balance ?? null,
+      snapshotValue: peekRunes(),
+      trusted: legacyCoinProjectionTrusted,
+      hydrated: legacyCoinBalanceBinding !== null,
+      rankBinding: legacyCoinRankBinding ? `${legacyCoinRankBinding.ownerStableId.slice(0, 8)}#${legacyCoinRankBinding.accountGeneration}` : null,
+      accountStableId: legacyCoinBalanceBinding ? `${legacyCoinBalanceBinding.ownerStableId.slice(0, 8)}#${legacyCoinBalanceBinding.accountGeneration}` : null,
+    })); // guard-ok: временная трассировка
+  }, [legacyCoinBalance, legacyCoinBalanceBinding, legacyCoinProjectionTrusted, legacyCoinRankBinding]);
   const legacyCoinRankSource = isValidCoinRank(legacyCoinRank)
     ? coinRankRowForDisplay(legacyCoinRank).source
     : null;

@@ -1254,6 +1254,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем: помним, ЧЕЙ баланс сейчас на экране, чтобы отличить смену аккаунта
     // (обнулять обязательно) от инициализации того же аккаунта на старте (нельзя).
     const runesOwnerRef = useRef<string | null>(captureAccountGeneration().stableId?.trim() || null);
+    // зачем (координатор 15.10, «Обучение» 0 при Главной 53): что плашка монет Главной показывает сейчас и знает ли баланс — одна строка на смену
+    useEffect(() => {
+        const t = captureAccountGeneration();
+        console.log('[COIN-PILL]', JSON.stringify({ screen: 'home', source: 'snapshot', shown: runesKnown ? runesBalance : '—', value: runesBalance, hydrated: runesKnown, accountStableId: t.stableId?.trim().slice(0, 8) ?? null, generation: t.generation })); // guard-ok: временная трассировка
+    }, [runesBalance, runesKnown]);
     const reconcileHomeRunes = useCallback((token = captureAccountGeneration()) => {
         const stableId = token.stableId?.trim();
         if (!stableId || !isCurrentAccountGeneration(token, stableId)) {
@@ -1266,6 +1271,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setRunesBalance(balance);
                 setRunesKnown(true);
             }
+            console.log('[COIN-PILL]', JSON.stringify({ screen: 'home', source: 'wallet_cache', value: balance, applied: current, accountStableId: stableId.slice(0, 8), generation: token.generation })); // guard-ok: временная трассировка расхождения плашек (координатор 15.10)
         }).catch((error: unknown) => {
             // Первый кадр уже взят из snapshot; durable-сверка может безопасно повториться на focus.
             console.warn('[HOME-COINS] reconcile:failed', error instanceof Error ? error.message : String(error));

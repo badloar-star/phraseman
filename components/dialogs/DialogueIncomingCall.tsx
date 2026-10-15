@@ -25,6 +25,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticLightImpact } from '../../hooks/use-haptics';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { LinearGradient } from '../SafeLinearGradient';
 import type { DialogueGlass } from './glass/DialogueGlassKit';
 
@@ -62,7 +63,8 @@ function playCue(event: 'sheet_open' | 'tap'): void {
 const Ring = memo(function Ring({ delay, color, run }: { delay: number; color: string; run: boolean }) {
   const t = useSharedValue(0);
   useEffect(() => {
-    if (!run) return undefined;
+    // зачем (perf_freeze_contract, владелец «телефон не должен греться»): цикл крутится только пока экран в фокусе и приложение активно
+    if (!run) { cancelAnimation(t); t.value = 0; return undefined; }
     t.value = withDelay(delay, withRepeat(withTiming(1, { duration: INCOMING_CALL_TIMELINE.ring, easing: Easing.out(Easing.quad) }), -1, false));
     return () => cancelAnimation(t);
   }, [delay, run, t]);
@@ -91,6 +93,9 @@ function DialogueIncomingCall({ lang, glass, partnerName, cefr, sceneTitle, onAn
   const pulse = useSharedValue(0);
   const fade = useSharedValue(1);
   const doneRef = useRef(false);
+  // зачем (perf_freeze_contract): кольца и пульс «Ответить» — бесконечные циклы; живут только при фокусе экрана и активном приложении (useRuntimeActive), при уходе — стоп
+  const runtimeActive = useRuntimeActive();
+  const loopsOn = runtimeActive && !reduced;
 
   useEffect(() => {
     console.log(`${LOG} звонок показан: собеседник=${partnerName ?? 'нет имени'} уровень=${cefr} сцена=${sceneTitle.slice(0, 40)} reducedMotion=${String(reduced)}`); // guard-ok: единичный журнал показа
@@ -98,10 +103,21 @@ function DialogueIncomingCall({ lang, glass, partnerName, cefr, sceneTitle, onAn
     if (reduced) return undefined;
     pop.value = withTiming(1, { duration: INCOMING_CALL_TIMELINE.pop, easing: EASE_POP });
     text.value = withDelay(200, withTiming(1, { duration: INCOMING_CALL_TIMELINE.textUp, easing: EASE }));
-    pulse.value = withRepeat(withSequence(withTiming(1, { duration: INCOMING_CALL_TIMELINE.pulse / 2 }), withTiming(0, { duration: INCOMING_CALL_TIMELINE.pulse / 2 })), -1, false);
-    return () => { cancelAnimation(pulse); };
+    return undefined;
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: сценарий входа играет один раз
   }, []);
+
+  useEffect(() => {
+    if (!loopsOn || doneRef.current) {
+      if (!loopsOn) console.log(`${LOG} пульс «Ответить» остановлен: runtimeActive=${String(runtimeActive)} reducedMotion=${String(reduced)}`); // guard-ok: журнал стопа цикла
+      cancelAnimation(pulse);
+      pulse.value = 0;
+      return undefined;
+    }
+    pulse.value = withRepeat(withSequence(withTiming(1, { duration: INCOMING_CALL_TIMELINE.pulse / 2 }), withTiming(0, { duration: INCOMING_CALL_TIMELINE.pulse / 2 })), -1, false);
+    return () => { cancelAnimation(pulse); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: цикл зависит только от фокуса/активности
+  }, [loopsOn]);
 
   // зачем (аудит Optimistic UI): тап срабатывает один раз; кнопка сразу нажата, слой проявляет брифинг 420 мс и только потом уходит
   const answer = useCallback(() => {
@@ -134,7 +150,7 @@ function DialogueIncomingCall({ lang, glass, partnerName, cefr, sceneTitle, onAn
         <View style={s.body}>
           <Text style={[s.over, { color: glass.secondary }]}>{c.incoming(cefr)}</Text>
           <Reanimated.View style={[s.avatarWrap, popStyle]}>
-            {reduced ? null : <><Ring delay={0} color={accent} run /><Ring delay={INCOMING_CALL_TIMELINE.ring2Delay} color={accent} run /></>}
+            {reduced ? null : <><Ring delay={0} color={accent} run={loopsOn} /><Ring delay={INCOMING_CALL_TIMELINE.ring2Delay} color={accent} run={loopsOn} /></>}
             <View style={[s.avatar, { backgroundColor: glass.opaqueControl }]}>
               <Ionicons name="chatbubbles-outline" size={52} color={glass.text} />
             </View>

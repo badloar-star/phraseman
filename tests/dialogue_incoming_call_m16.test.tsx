@@ -41,6 +41,7 @@ jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: (props: { chi
 jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: 'Icon' }));
 jest.mock('../components/SafeLinearGradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('../hooks/use-haptics', () => ({ hapticLightImpact: jest.fn(() => Promise.resolve()) }));
+jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => true }));
 jest.mock('../modules/sound_v2/sound_v2_flag', () => ({ isSoundV2Enabled: () => false }));
 
 import DialogueIncomingCall from '../components/dialogs/DialogueIncomingCall';

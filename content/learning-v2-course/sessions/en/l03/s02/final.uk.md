@@ -1,151 +1,138 @@
-# Англійська · Урок 3 · Заняття 2 — «Що під чохлом?»
+# Англійська · Урок 3 · Заняття 2 — Після прогулянки
 
-**Сцена заняття.** Ви облаштовуєте квартиру. Разом із сестрою знімаєте чохли з великих меблів і вирішуєте, що куди поставити.
+**Ситуація.** Ви з Анною повернулися з прогулянки й розбираєте їжу для перекусу. Анна дістала яблуко. Олег утомився, ви задоволені прогулянкою. Ви обговорюєте самопочуття й оцінюєте спосіб нагадувати учасникам про зустрічі.
 
-**Як сказати:** застосування `It is a + noun`: називаємо великі меблі  
-**Нові слова:** sofa, bed, desk  
-**Повертаються:** table, heavy
+**Що ви опануєте:** назвати яблуко з an і повторити запитання зі знайомими словами
+**Нові слова:** apple
 
 ---
 
 ## Інтро 1
 
-### Один диван, хоч би скільки людей на ньому сиділо
+### Яблуко з an
 
-`sofa` — «диван». Щоб назвати його, скажіть `It is a sofa` — «Це диван». Перед `sofa` стоїть `a`: ви називаєте один предмет. На дивані можуть сидіти троє, але рахуємо дивани, а не людей. Три місця для сидіння ще не привід змінювати фразу про один диван.
+`apple` — «яблуко». `It is an apple` — «Це яблуко». У `apple` перший звук голосний, тому перед ним `an`, а не `a`. Кількість не змінилася: яблуко одне. Літера `n` не приносить друге яблуко на перекус — вона змінює форму маленького слова перед назвою.
 
-**Сестра зняла великий чохол. Назвіть предмет, що був під ним, повною фразою: «Це диван».**
+**Анна дістала яблуко. Назвіть його повною фразою.**
 
-- ✅ **It is a sofa.**
-- ❌ It is sofa. — *Перед назвою одного предмета потрібне `a`: `It is a sofa`.*
-- ❌ It a sofa. — *Між `It` і назвою бракує `is`: `It is a sofa`.*
+- ✅ **It is an apple.**
+- ❌ It is a apple. — *Перед голосним звуком у `apple` потрібно `an`.*
+- ❌ It is apple. — *У цій фразі перед назвою яблука потрібно `an`.*
 
 ---
 
 ## Інтро 2
 
-### Ліжко теж починаємо з It
+### Дізнатися, що це
 
-`bed` — «ліжко». Українською ліжко — воно, а диван — він. Англійською обидва предмети називаємо через `It is`: `It is a bed` — «Це ліжко». Переклад змінюється, початок фрази лишається. Після `is` додайте всю назву: `a bed`.
+`What is it?` — «Що це?» Ви поки не називаєте предмет, а запитуєте про нього. У відповіді `It is an apple` з’явиться назва. Якщо ви вже припускаєте, що це яблуко, запитайте `Is it an apple?` У запитанні `an apple` залишається разом, як і `a key` — «ключ».
 
-**Сестра запитує, що під наступним чохлом. Під ним виявилося ліжко; назвіть його повною фразою.**
+**Анна дістала предмет із непрозорого пакета, але вам його не видно. Запитайте, що це.**
 
-- ✅ **It is a bed.**
-- ❌ It are a bed. — *З `It` тут потрібне `is`: `It is a bed`.*
-- ❌ It is bed. — *Назва одного предмета тут — `a bed`. Маленьке `a` теж входить до фрази.*
+- ✅ **What is it?**
+- ❌ Where is it? — *Це «Де це?» Ви запитуєте, що за предмет.*
+- ❌ What it? — *Між `What` і `it` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Стіл для роботи
+### Предмет і самопочуття
 
-`desk` — «письмовий стіл», за яким пишуть або працюють. `table` — «стіл» у ширшому значенні. Щоб назвати саме письмовий стіл, скажіть `It is a desk`. В обох назвах перед словом потрібне `a`: `a table`, `a desk`. Обираємо точну назву, а початок фрази не змінюється.
+`tired` — «утомлений», `sad` — «сумний», `relaxed` — «розслаблений». У `He is tired` ви описуєте стан Олега, а не називаєте предмет; перед окремим `tired` немає `a` або `an`. `confident` — «впевнений у собі», `satisfied` — «задоволений», `effective` — «ефективний». Ці знайомі слова теж допомагають описати людину або результат.
 
-**Сестра зняла упаковку зі столу для вашого робочого місця. Скажіть повною фразою: «Це письмовий стіл».**
+**Олег утомився після прогулянки. Повідомте це повною фразою.**
 
-- ✅ **It is a desk.**
-- ❌ It desk. — *Зникли одразу два слова: після `It` потрібне `is`, а перед `desk` — `a`. Вийде `It is a desk`.*
-- ❌ It is desk. — *Початок `It is` на місці, але перед назвою бракує `a`: `It is a desk`.*
+- ✅ **He is tired.**
+- ❌ He is a tired. — *Перед окремим `tired` тут не ставимо `a`: це стан.*
+- ❌ He are tired. — *З `He` потрібно `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — sofa**
-<!-- interaction_id: en:lesson-03:session-02:i01; family: listen_choose -->
-Ціль: `sofa`
+**1 · Анна показує яблуко. Назвіть його повною фразою**
+<!-- interaction_id: en:lesson-03:session-02:i01; family: phrase_builder -->
+Плитки: `apple` `an` `is` `It` `are` → **It is an apple.**
+*(плитка `are` зайва: тут потрібно `is` — `It is an apple.`)*
 
-**2 · Послухайте й виберіть — яке слово вимовила сестра**
+**2 · Послухайте фразу про Олега**
 <!-- interaction_id: en:lesson-03:session-02:i02; family: listen_choose -->
-Ціль: `sofa`
-Варіанти: `sofa` · `safer` · `suffer`
-- safer — *У першому складі `safer` чути «ей», а в `sofa` — «оу». У записі — `sofa`.*
-- suffer — *У першому складі `suffer` голосний ближчий до «а», а в `sofa` чути «оу». Тут звучить `sofa`.*
+🔊 *He is tired.* → **He is tired.** · He is sad. · He is relaxed.
+- He is sad. — *У записі останнє слово — `tired`, а в цьому варіанті — `sad`.*
+- He is relaxed. — *У записі останнє слово — `tired`, а в цьому варіанті — `relaxed`.*
 
+**3 · Доповніть назву яблука**
+<!-- interaction_id: en:lesson-03:session-02:i03; family: context_gap_grammar -->
+It is ___ apple. → **an** · a · is
+- a — *Перед голосним звуком у `apple` потрібно `an`.*
+- is — *`is` уже стоїть після `It`. Перед `apple` потрібно `an`.*
 
-**3 · Картка слова — bed**
-<!-- interaction_id: en:lesson-03:session-02:i03; family: listen_choose -->
-Ціль: `bed`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-02:i04; family: speed_match -->
+apple — яблуко · sad — сумний · tired — утомлений · confident — впевнений у собі
 
-**4 · Послухайте й виберіть — яке слово прозвучало в кімнаті**
-<!-- interaction_id: en:lesson-03:session-02:i04; family: listen_choose -->
-Ціль: `bed`
-Варіанти: `bed` · `red` · `bad`
-- red — *У `red` початковий `r` звучить плавно, без удару кінчиком язика; `bed` починається зі змикання губ для `b`. У записі — `bed`.*
-- bad — *У `bad` голосний вимовляють із більш відкритим ротом, ніж у `bed`. Тут звучить `bed`.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-02:i05; family: listen_build_dictation -->
+🔊 *It is an apple.* Плитки: `apple` `an` `is` `It` `are` → **It is an apple.**
+*(плитка `are` зайва: тут потрібно `is` — `It is an apple.`)*
 
+**6 · Олег дістав предмет, якого ви не бачите. Запитайте, що це**
+<!-- interaction_id: en:lesson-03:session-02:i06; family: phrase_builder -->
+Плитки: `it` `is` `What` `Where` → **What is it?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is it?`)*
 
-**5 · Складіть фразу — сестра запитує, що було під чохлом; скажіть «Це диван»**
-<!-- interaction_id: en:lesson-03:session-02:i05; family: phrase_builder -->
-Ціль: `It is a sofa.`
+**7 · Ви задоволені прогулянкою. Скажіть «Я задоволений» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-02:i07; family: scripted_repeat_compare -->
+🎙 **I'm satisfied.**
 
-**6 · Картка слова — desk**
-<!-- interaction_id: en:lesson-03:session-02:i06; family: listen_choose -->
-Ціль: `desk`
+**8 · Анна спокійно відпочиває, не напружена. Повідомте, що вона розслаблена**
+<!-- interaction_id: en:lesson-03:session-02:i08; family: context_gap_grammar -->
+She ___ relaxed. → **is** · is a · are
+- is a — *Перед окремим `relaxed` не потрібно `a`.*
+- are — *З `She` потрібно `is`.*
 
-**7 · Послухайте й виберіть — яке слово вимовила сестра**
-<!-- interaction_id: en:lesson-03:session-02:i07; family: listen_choose -->
-Ціль: `desk`
-Варіанти: `desk` · `disk` · `dusk`
-- disk — *У середині `disk` голосний ближчий до українського «и», а в `desk` — до «е». У записі — `desk`.*
-- dusk — *У середині `dusk` голосний ближчий до «а», а в `desk` — до «е». Тут звучить `desk`.*
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-03:session-02:i09; family: listen_choose -->
+🔊 *Are you confident?* → **Are you confident?** · Are you tired? · Are you sad?
+- Are you tired? — *У записі останнє слово — `confident`, а в цьому варіанті — `tired`.*
+- Are you sad? — *У записі останнє слово — `confident`, а в цьому варіанті — `sad`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-02:i10; family: speed_match -->
+relaxed — розслаблений · satisfied — задоволений · effective — ефективний · apple — яблуко
 
-**8 · Складіть запитання — з-під чохла видно край меблів; запитайте, чи це письмовий стіл**
-<!-- interaction_id: en:lesson-03:session-02:i08; family: phrase_builder -->
-Ціль: `Is it a desk?`
-Варіанти: `Are`
+**11 · Послухайте й складіть фразу про Анну**
+<!-- interaction_id: en:lesson-03:session-02:i11; family: listen_build_dictation -->
+🔊 *She is sad.* Плитки: `sad` `is` `She` `are` → **She is sad.**
+*(плитка `are` зайва: тут потрібно `is` — `She is sad.`)*
 
-**9 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-02:i09; family: scripted_repeat_compare -->
-Ціль: `It is a table.`
+**12 · У пакеті видно круглий плід. Запитайте, чи це яблуко**
+<!-- interaction_id: en:lesson-03:session-02:i12; family: phrase_builder -->
+Плитки: `apple` `an` `it` `Is` `Are` → **Is it an apple?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it an apple?`)*
 
-**10 · Послухайте й складіть — сестра говорить про меблі під чохлом**
-<!-- interaction_id: en:lesson-03:session-02:i10; family: listen_build_dictation -->
-Ціль: `It is not a bed.`
-Варіанти: `sofa`
+**13 · Нагадування допомагає учасникам приходити вчасно. Скажіть «Це ефективно» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-02:i13; family: scripted_repeat_compare -->
+🎙 **It's effective.**
 
-**11 · З’єднайте пари — меблі в квартирі**
-<!-- interaction_id: en:lesson-03:session-02:i11; family: speed_match -->
-Пари: `sofa` — диван · `bed` — ліжко · `desk` — письмовий стіл · `table` — стіл
-Ціль: `sofa · bed · desk · table`
-
-**12 · Вставте частину фрази — сестра звільнила ліжко від упаковки; назвіть його: «Це ліжко»**
-<!-- interaction_id: en:lesson-03:session-02:i12; family: context_gap_grammar -->
-Ціль: `It ___ bed.`
-Варіанти: `is a` · `is` · `a`
-- is — *Вийде `It is bed`: перед назвою ліжка бракує `a`.*
-- a — *Вийде `It a bed`: після `It` бракує `is`. Тут потрібні обидва слова: `is a`.*
-
-
-**13 · Складіть фразу — сестра запитує, що ви поставите біля вікна; назвіть письмовий стіл**
-<!-- interaction_id: en:lesson-03:session-02:i13; family: phrase_builder -->
-Ціль: `It is a desk.`
-Варіанти: `not`
-
-**14 · Вставте слово — ви із сестрою пробуєте підняти письмовий стіл; скажіть «Він важкий» (`heavy` — «важкий»)**
+**14 · Анна прийняла круглий предмет за яблуко. Ви бачите, що це не яблуко. Доповніть заперечення**
 <!-- interaction_id: en:lesson-03:session-02:i14; family: context_gap_grammar -->
-Ціль: `It ___ heavy.`
-Варіанти: `is` · `are` · `am`
-- are — *Про один предмет тут кажемо `It is heavy`. `are` з `It` не підходить.*
-- am — *`am` потрібне з `I`, коли говоримо про себе. Тут ідеться про стіл: `It is heavy`.*
+It is not ___ apple. → **an** · a · is
+- a — *Навіть після `not` зберігаємо `an apple`.*
+- is — *Перед `apple` потрібно `an`; `is` уже є на початку.*
 
+**15 · Послухайте запитання після прогулянки**
+<!-- interaction_id: en:lesson-03:session-02:i15; family: listen_choose -->
+🔊 *Are you satisfied?* → **Are you satisfied?** · Are you relaxed? · Are you confident?
+- Are you relaxed? — *У записі останнє слово — `satisfied`, а в цьому варіанті — `relaxed`.*
+- Are you confident? — *У записі останнє слово — `satisfied`, а в цьому варіанті — `confident`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-02:i15; family: scripted_repeat_compare -->
-Ціль: `Is it heavy?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-02:i16; family: speed_match -->
+apple — яблуко · key — ключ · tired — утомлений · relaxed — розслаблений
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-02:i16; family: scripted_repeat_compare -->
-Ціль: `It is a bed.`
-
-**17 · Складіть запитання — сестра показує на великий предмет біля стіни; чохол ще на місці, і ви хочете уточнити, чи це диван**
-<!-- interaction_id: en:lesson-03:session-02:i17; family: phrase_builder -->
-Ціль: `Is it a sofa?`
-Варіанти: `Are`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Пізніше ви дістали яблуко для Олега. Назвіть його: «Це яблуко», зі скороченням**
+<!-- interaction_id: en:lesson-03:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It's an apple.**
 

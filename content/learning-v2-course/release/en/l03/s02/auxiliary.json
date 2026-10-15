@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-02:intro1:r2": {
+          "ru": "Перед гласным звуком в `apple` нужно `an`.",
+          "uk": "Перед голосним звуком у `apple` потрібно `an`."
+        },
+        "en:lesson-03:session-02:intro1:r3": {
+          "ru": "В этой фразе перед названием яблока нужно `an`.",
+          "uk": "У цій фразі перед назвою яблука потрібно `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-02:intro2:r2": {
+          "ru": "Это «Где это?» Вы спрашиваете, что за предмет.",
+          "uk": "Це «Де це?» Ви запитуєте, що за предмет."
+        },
+        "en:lesson-03:session-02:intro2:r3": {
+          "ru": "Между `What` и `it` нужно `is`.",
+          "uk": "Між `What` і `it` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-02:intro3:r2": {
+          "ru": "Перед отдельным `tired` здесь не ставим `a`: это состояние.",
+          "uk": "Перед окремим `tired` тут не ставимо `a`: це стан."
+        },
+        "en:lesson-03:session-02:intro3:r3": {
+          "ru": "С `He` нужно `is`.",
+          "uk": "З `He` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "79a01cd58d29fa7de0779fc1085a9ce9e3c6686c03c812c42942455fe624fc58"
+}

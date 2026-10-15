@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 import { LearningV2MapNode, type LearningV2MapNodeStateV1 } from '../LearningV2MapNode';
+import { noAndroidOutline } from "../../constants/androidGlow";
 
 /**
  * Строка занятия на сплошной карте курса.
@@ -224,6 +225,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.12,
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    ...noAndroidOutline, // зачем: правило Android — elevation при скруглении без непрозрачного фона рисует квадрат
   },
 });

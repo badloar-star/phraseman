@@ -23,6 +23,7 @@ import {
   LEARNING_V2_MODE_SHOWCASE_FIXTURES_V1,
   LEARNING_V2_MODE_SHOWCASE_VOICE_FIXTURE_V1,
 } from '../modules/learning-v2/modes/dev_showcase_fixtures_v1';
+import { noAndroidOutline } from "../constants/androidGlow";
 
 export default function LearningV2ModesShowcaseScreen() {
   const { theme: t, f } = useTheme();
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 6,
+    ...noAndroidOutline, // зачем: правило Android — elevation при скруглении без непрозрачного фона рисует квадрат
   },
   row: {
     flexDirection: 'row',

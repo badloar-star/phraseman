@@ -647,6 +647,7 @@ export default function LearningV2Horizons(props: Props) {
               ))}
             </View>
             <FlatList
+              removeClippedSubviews={false} // зачем: Android — FlatList внутри ScrollView/модалки падает в ReactClippingViewManager (android_clipping_crash_guard)
               data={titles.slice(indexLevel * 8, indexLevel * 8 + 8)}
               keyExtractor={(_, i) => String(indexLevel * 8 + i)}
               renderItem={({ item, index }) => {

@@ -22,6 +22,7 @@ const DIM_EASE = Easing.bezier(0.25, 0.1, 0.25, 1);
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
 import { Lv2Cta, lv2CardStyle, useLv2Glass } from "./LearningV2Glass";
+import { noAndroidOutline } from "../../constants/androidGlow";
 
 type Props = Readonly<{
   visible: boolean;
@@ -275,7 +276,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.48,
     shadowRadius: 30,
-    elevation: 24,
+    ...noAndroidOutline, // зачем: правило Android — elevation при скруглении без непрозрачного фона рисует квадрат
   },
   closeHit: { position: "absolute", top: 12, right: 12, width: 44, height: 44, alignSelf: "auto", zIndex: 3 },
   close: {

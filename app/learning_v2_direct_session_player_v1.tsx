@@ -145,6 +145,7 @@ import {
   createLearningV2InteractionRuneAwardLedgerV1,
   learningV2InteractionRuneAwardV1,
 } from "./learning_v2_interaction_rune_award_v1";
+import { noAndroidOutline } from "../constants/androidGlow";
 import {
   commitLearningV2SessionRuneRewardCompositeV1,
   recoverPendingLearningV2SessionRuneRewardIntentsV1,
@@ -3618,7 +3619,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 1,
     shadowRadius: 0,
-    elevation: 6,
+    ...noAndroidOutline, // зачем: правило Android — elevation при скруглении без непрозрачного фона рисует квадрат; тень плитки не нужна на Android
   },
   checkpointTitle: {
     fontSize: 30,

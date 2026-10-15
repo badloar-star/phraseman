@@ -75,5 +75,8 @@ describe('погасить токен устройства после невыш
     expect(fn).toContain("if (cleared === 'not_cleared') throw new Error('push_token_not_cleared');");
     expect(fn).toContain("if (!result.includes('push_token:ok')) {");
     expect(fn).toContain('markPushTokenRotationPending(');
+    // смена аккаунта не зовёт ensureAnonUser: владелец явно, второй снимок токена в cancelAllNotifications выключен
+    expect(fn).toContain('clearPushTokenForServerPush({ ownerStableId })');
+    expect(fn).toContain('cancelAllNotifications({ skipServerTokenClear: true })');
   });
 });

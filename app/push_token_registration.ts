@@ -276,16 +276,21 @@ async function writeServerPushPrefsNow(prefs: ServerPushPrefs): Promise<void> {
  */
 export type PushTokenClearResult = 'cleared' | 'not_applicable' | 'not_cleared';
 
-export async function clearPushTokenForServerPush(): Promise<PushTokenClearResult> {
+export async function clearPushTokenForServerPush(
+  // зачем (Авторизация 15.10): путь смены аккаунта передаёт владельца A явно — ensureAnonUser посреди карантина смены мог бы
+  // выдать новую анонимную личность. Без опции — прежнее поведение (тумблер уведомлений, удаление аккаунта).
+  options: Readonly<{ ownerStableId?: string | null }> = {},
+): Promise<PushTokenClearResult> {
   const startedAt = Date.now();
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
       console.log(`[PUSH-TOKEN-CLEAR] skip reason=${IS_EXPO_GO ? 'expo_go' : 'cloud_sync_disabled'}`);
       return 'not_applicable';
     }
-    const stableId = await ensureAnonUser();
+    const explicitOwner = 'ownerStableId' in options;
+    const stableId = explicitOwner ? String(options.ownerStableId ?? '').trim() : await ensureAnonUser();
     if (!stableId) {
-      console.warn('[PUSH-TOKEN-CLEAR] skip reason=no_stable_id — токен в документе аккаунта остался');
+      console.warn(`[PUSH-TOKEN-CLEAR] skip reason=no_stable_id explicitOwner=${explicitOwner ? 'yes' : 'no'} — токен в документе аккаунта остался`);
       return 'not_cleared';
     }
     const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('push_token_registration:promise_3', false));

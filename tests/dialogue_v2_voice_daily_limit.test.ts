@@ -84,7 +84,9 @@ describe('дневной лимит голоса в Диалогах', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'dialogue_v2_session.tsx'), 'utf8');
     expect(src).toContain("micPlusBadge={voiceLimitDecision === 'limit_reached'}");
     expect(src).toContain('onStartVoice={startVoice}');
-    expect(src).toMatch(/if \(decision === 'limit_reached'\) \{[\s\S]{0,200}openPlus\(\);\s*return;/);
+    expect(src).toMatch(/if \(decision === 'limit_reached'\) \{[\s\S]{0,240}openVoicePlus\(\);\s*return;/);
+    // координатор 15.10: голосовая стена — пейвол про голос (ai_voice_input), а не про месячные ответы (dialog_limit)
+    expect(src).toMatch(/const openVoicePlus = \(\) => nav\.push\(\{[\s\S]{0,120}context: 'ai_voice_input'/);
     expect(src).toContain("if (voice.status !== 'recording' || previous === 'recording') return;");
     expect(src).toContain("reason: 'plus_unlimited'");
     expect(src).toContain('[DIALOG-VOICE] start:tap');

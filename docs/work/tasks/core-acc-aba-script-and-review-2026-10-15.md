@@ -1,6 +1,11 @@
 # Task packet: скрипт прогона A→B→A для эмулятора + замечания ревью Авторизации к 414bb1713
 
 Governance-ID: TG-5F67829BA11F
+Governance-ID: TG-33AAF47EA682
+Governance-ID: TG-EEAB8AF973CA
+Governance-ID: TG-22D72CC46614
+Governance-ID: TG-FCFF4E48245D
+Governance-ID: TG-9D9B4969969C
 Governance-ID: TG-81A16BB851F4
 Governance-ID: TG-48949051C5B9
 Governance-ID: TG-26DD819CAD1F

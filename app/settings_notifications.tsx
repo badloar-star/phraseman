@@ -317,8 +317,10 @@ export default function SettingsNotifications() {
       noteRobotNoCloudSkip(`notif-prefs master=${next.master} (сохранение, pushPrefs, push-токен, разрешение ОС)`); // i18n-ok: заметка для робота Сверки в журнал, не текст экрана
       return;
     }
+    let savedToDisk = false;
     try {
       await saveNotifPrefs(next);
+      savedToDisk = true;
       const permitted = await ensurePermissionIfEnabling(enabling);
       await applyNotifPrefsSideEffects(next, lang as Lang, { studyTarget });
       // Мастер включили обратно — вернём и ежедневное напоминание, если оно было включено.
@@ -332,7 +334,14 @@ export default function SettingsNotifications() {
         console.warn(`[NOTIF-PREFS] persist_failed rollback=skipped reason=${reason}: выбор уже изменён позже`);
         return;
       }
-      console.warn(`[NOTIF-PREFS] persist_failed rollback=1 reason=${reason}`);
+      console.warn(`[NOTIF-PREFS] persist_failed rollback=1 savedToDisk=${savedToDisk ? 'yes' : 'no'} reason=${reason}`);
+      // зачем (аудит Optimistic UI 15.10, дыра №1): сбой ПОСЛЕ сохранения (разрешение, планирование) — память и диск уже новые;
+      // возвращаем прежний выбор и туда, иначе экран показал бы старое, а уведомления жили бы по новому.
+      if (savedToDisk) {
+        await saveNotifPrefs(prevPrefs).catch((restoreError: unknown) => {
+          console.warn(`[NOTIF-PREFS] rollback_save_failed reason=${restoreError instanceof Error ? restoreError.message : String(restoreError)}`);
+        });
+      }
       setPrefs(prevPrefs);
       setSaved(false);
       rollbackToast();
@@ -348,8 +357,10 @@ export default function SettingsNotifications() {
       noteRobotNoCloudSkip(`notif-schedule enabling=${enabling} (сохранение, планирование, разрешение ОС)`); // i18n-ok: заметка для робота Сверки в журнал, не текст экрана
       return;
     }
+    let savedToDisk = false;
     try {
       await saveNotifSettings(next);
+      savedToDisk = true;
       const permitted = await ensurePermissionIfEnabling(enabling);
       if (!permitted) return;
       await scheduleNotifications(next, lang as Lang, 0, { requestPermission: false, studyTarget });
@@ -362,7 +373,13 @@ export default function SettingsNotifications() {
         console.warn(`[NOTIF-SCHEDULE] persist_failed rollback=skipped reason=${reason}: выбор уже изменён позже`);
         return;
       }
-      console.warn(`[NOTIF-SCHEDULE] persist_failed rollback=1 reason=${reason}`);
+      console.warn(`[NOTIF-SCHEDULE] persist_failed rollback=1 savedToDisk=${savedToDisk ? 'yes' : 'no'} reason=${reason}`);
+      // зачем (дыра №1): сбой после сохранения — прежнее расписание возвращаем и в память/на диск, не только на экран
+      if (savedToDisk) {
+        await saveNotifSettings(prevS).catch((restoreError: unknown) => {
+          console.warn(`[NOTIF-SCHEDULE] rollback_save_failed reason=${restoreError instanceof Error ? restoreError.message : String(restoreError)}`);
+        });
+      }
       setS(prevS);
       setSaved(false);
       rollbackToast();

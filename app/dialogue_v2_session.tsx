@@ -751,14 +751,21 @@ function SessionContent() {
     pathname: '/premium_modal',
     params: { context: 'dialog_limit', source: 'dialogue_v2_session' },
   } as never);
-  // зачем (п.81): на исчерпанном лимите тап по микрофону — тот же вход в Plus, что у стены Диалогов; запись не стартует.
+  // зачем (Макеты / координатор 15.10): голосовая стена D165 (3 голосовых в день) открывала dialog_limit — там текст про месячный
+  // лимит ОТВЕТОВ («… ответов в месяц»), человек не понимал, что кончился именно голос. Готовый одобренный контекст ai_voice_input
+  // говорит ровно про это («Отвечай голосом · Бесплатно — 3 реплики голосом в день», 9 языков). Стена ответов (onOpenPlus) — прежняя.
+  const openVoicePlus = () => nav.push({
+    pathname: '/premium_modal',
+    params: { context: 'ai_voice_input', source: 'dialogue_v2_session' },
+  } as never);
+  // зачем (п.81): на исчерпанном лимите тап по микрофону — вход в Plus про голос; запись не стартует.
   const startVoice = () => {
     const count = peekDialogVoiceAttempts();
     const decision = dialogVoiceLimitDecision({ accessResolved, hasPremiumAccess, count });
     console.log('[DIALOG-VOICE] start:tap', JSON.stringify({ count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, decision, voiceStatus: voice.status }));
     if (decision === 'limit_reached') {
-      console.log('[DIALOG-VOICE] start:blocked', JSON.stringify({ count, decision, shown: 'premium_modal' }));
-      openPlus();
+      console.log('[DIALOG-VOICE] start:blocked', JSON.stringify({ count, decision, shown: 'premium_modal', context: 'ai_voice_input' }));
+      openVoicePlus();
       return;
     }
     void voice.start();

@@ -1508,6 +1508,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // зачем: D70 + D84 (владелец 2026-09-30) — остаток жемчуга обнуляется только на
     // устройстве, одной операцией в локальном журнале. Не на первом кадре: модуль
     // грузится лениво через ~20 с и работает, только если баланс > 0.
+    // зачем: владелец 15.10 (D195) — бонусы конвертируются в монеты, жемчуг не сжигать. Остаток лежит нетронутым до серверной
+    // конвертации (снимок users.shards); сжигание D70/D84 выключено целиком, модуль не грузится.
+    if (PEARL_RETIRE_DISABLED_D195) return;
     if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
     const token = accountGeneration;
@@ -3711,7 +3714,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // Этот модал — явное намерение «включить напоминания», поэтому чиним обе стороны.
         const prefsSnap = notifications.getNotifPrefsSnapshot();
         if (!prefsSnap.master) {
-          await notifications.saveNotifPrefs({ ...prefsSnap, master: true });
+          // зачем (дыра №1): saveNotifPrefs теперь бросает при сбое диска — напоминания всё равно планируем, причина в журнале
+          await notifications.saveNotifPrefs({ ...prefsSnap, master: true }).catch((error: unknown) => {
+            console.warn(`[SMART-REMINDER] notifNudge:master_save_failed reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: одно нажатие
+          });
         }
         const snap = notifications.getNotifSettingsSnapshot();
         const hasPerDay = Object.values(snap.schedule).some(d => d.enabled);
@@ -3878,6 +3884,9 @@ const tapLatencyTouchEndHandler = createTapLatencyTouchEndHandler();
 // Profiler вокруг дерева стека: сколько раз и как долго React рендерил экраны от
 // касания до кадра. Когда трассировка выключена — undefined, Profiler не оборачивается.
 const tapLatencyProfilerOnRender = createTapLatencyProfilerHandler();
+
+/** D195 (владелец 15.10): старые бонусы → монеты; сжигание жемчуга D70/D84 выключено. Вернуть — только решением владельца. */
+const PEARL_RETIRE_DISABLED_D195 = true;
 
 export default function RootLayout() {
   // зачем (владелец, 2026-09-14): печаталось БЕЗУСЛОВНО на каждый рендер корня —

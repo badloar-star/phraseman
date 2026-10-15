@@ -6,6 +6,7 @@ import {
   canonicalJsonV1,
   hashCanonicalBody,
 } from "../policies/decision_registry";
+import { peekLearningV2DevProgressOverrideV1 } from "./dev_progress_override_v1";
 
 export const LEARNING_V2_COURSE_LOCAL_PROGRESS_SCHEMA_V1 =
   "learning-v2-course-local-progress.v1" as const;
@@ -149,6 +150,11 @@ export function createLearningV2CourseLocalProgressStoreV1(
   return Object.freeze({
     load(accountScopeHash: string) {
       return serialize(async () => {
+        // зачем (Макеты 15.10, съёмка курса): dev lv2progress=N — первые N занятий «пройдены» только в памяти; диск не трогаем
+        const devCompleted = peekLearningV2DevProgressOverrideV1();
+        if (devCompleted !== null) {
+          return build(accountScopeHash, orderedSessionIds().slice(0, Math.min(devCompleted, LEARNING_V2_COURSE_SESSION_COUNT_V1)));
+        }
         const raw = await storage.getItem(key(accountScopeHash));
         if (raw === null)
           return initialLearningV2CourseLocalProgressV1(accountScopeHash);

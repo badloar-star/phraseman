@@ -683,9 +683,16 @@ async function cancelAllScheduledLocalNotifications(N: Awaited<ReturnType<typeof
 }
 
 // ── Отменить все уведомления ─────────────────────────────────────────────────
-export const cancelAllNotifications = async (): Promise<void> => {
+export const cancelAllNotifications = async (
+  // зачем (Авторизация 15.10): смена аккаунта снимает токен сама, с явным владельцем — второй снимок здесь звал бы ensureAnonUser
+  options: Readonly<{ skipServerTokenClear?: boolean }> = {},
+): Promise<void> => {
   const N = await getNotifications();
   await cancelAllScheduledLocalNotifications(N);
+  if (options.skipServerTokenClear) {
+    console.log('[PUSH-TOKEN-CLEAR] skip reason=caller_clears_token source=cancelAllNotifications');
+    return;
+  }
   // Удаляем токен из Firestore: сервер перестаёт слать re-engage пуши
   // на пользователя, который явно отключил уведомления.
   void import('./push_token_registration').then(({ clearPushTokenForServerPush }) => {
@@ -1295,11 +1302,16 @@ export const loadNotifSettings = async (): Promise<NotifSettings> => {
 };
 
 export const saveNotifSettings = async (s: NotifSettings): Promise<void> => {
+  // зачем (аудит Optimistic UI 15.10, дыра №1): память ставится сразу (экран и планировщик видят выбор в том же кадре), но при
+  // сбое диска возвращается к прежнему значению и ошибка уходит наверх — экран откатывает тумблер и показывает тост.
+  const previous = cloneNotif(notifMemory);
   notifMemory = cloneNotif(s);
   try {
     await AsyncStorage.setItem(NOTIF_KEY, JSON.stringify(s));
   } catch (e) {
-    if (__DEV__) console.warn('[notifications]', e);
+    notifMemory = previous;
+    console.warn(`[NOTIF-SCHEDULE] save_failed memory=restored reason=${e instanceof Error ? e.message.slice(0, 120) : String(e).slice(0, 120)}`);
+    throw e;
   }
 };
 
@@ -1455,13 +1467,27 @@ export async function syncFriendsPushPrefIfChanged(): Promise<void> {
 
 export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
   const normalized = normalizeNotifPrefs(p);
+  // зачем (аудит Optimistic UI 15.10, дыра №1): прежде ошибка диска глоталась, а память уже стояла новая — откат экрана
+  // не возвращал ни память, ни диск. Теперь при сбое память и оба ключа диска возвращаются к прежнему, ошибка — наверх.
+  const previous = notifPrefsMemory;
   notifPrefsMemory = normalized;
+  let prefsWritten = false;
   try {
     await AsyncStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(normalized));
+    prefsWritten = true;
     // Легаси-флаг = мастер: его уже читают все старые проверки, включая bootstrap.
     await persistPortablePreference('notifications_enabled', normalized.master ? 'true' : 'false');
   } catch (e) {
-    if (__DEV__) console.warn('[notifications]', e);
+    notifPrefsMemory = previous;
+    const reason = e instanceof Error ? e.message.slice(0, 120) : String(e).slice(0, 120);
+    if (prefsWritten && previous) {
+      // выбор уже на диске, а легаси-флаг нет — возвращаем выбор, чтобы диск не разошёлся с мастером
+      await AsyncStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(previous)).catch((restoreError: unknown) => {
+        console.warn(`[NOTIF-PREFS] save_failed disk_restore_failed reason=${restoreError instanceof Error ? restoreError.message.slice(0, 120) : String(restoreError).slice(0, 120)}`);
+      });
+    }
+    console.warn(`[NOTIF-PREFS] save_failed memory=restored prefsWritten=${prefsWritten ? 'yes' : 'no'} reason=${reason}`);
+    throw e;
   }
   // «Вместе»: зеркалим категорию «Друзья» в friends_push_v1 (подхватывается
   // cloud_sync через SYNC_KEYS) — при смене тумблера, не только раз в сутки.

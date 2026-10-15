@@ -12,6 +12,7 @@ import {
 } from "./flashcards/custom_cards_store";
 import { getVerifiedPremiumAccessStatus } from "./premium_guard";
 import type { CardItem } from "./flashcards/types";
+import { peekLearningV2DevWordSaveFailV1 } from "../modules/learning-v2/progress/dev_progress_override_v1";
 import type { LearningV2InterfaceLocale } from "../modules/learning-v2/content/generator_course_contract";
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
@@ -97,6 +98,11 @@ export async function saveLearningV2NewWordEncounterToCardsV1(
     interfaceLocale: LearningV2InterfaceLocale;
   }>,
 ): Promise<LearningV2NewWordSaveOutcomeV1> {
+  // зачем (Макеты 15.10, learning-v2-062): dev lv2save=fail — кадр «Не сохранилось» без поломки хранилища; в стор-сборке выключено
+  if (peekLearningV2DevWordSaveFailV1()) {
+    console.log("[DEV-STATE] lv2save: сохранение слова подменено отказом"); // guard-ok: dev-ветка
+    return "failed";
+  }
   const generation = captureAccountGeneration();
   if (!isCurrentAccountGeneration(generation)) return "stale";
   return withAccountTransitionLock(async () => {

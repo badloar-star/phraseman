@@ -37,6 +37,8 @@ const OWNER_KEY_DECISIONS: Record<string, { decision: 'wiped' | 'kept'; how: str
   // зачем (Ядро 15.10, окна m05 Пика 3b3f7db6b): ключи с uid и языком — в чужой интерфейс не попадают (утечки нет), пересчитываются по данным Пика.
   spire_position_seen_v1: { decision: 'kept', how: 'последняя виденная позиция в комнате Пика (uid+язык) — для окна «Тебя обогнали»' },
   spire_last_chance_shown_v1: { decision: 'kept', how: 'неделя, в которую показан «Последний шанс» (uid+язык) — раз в неделю' },
+  // зачем (D195, Ядро 15.10): «конвертация старых бонусов уже проверена» для этого владельца — не данные человека, а метка «сеть не трогать»
+  legacy_bonus_done_v1: { decision: 'kept', how: 'метка «бонусы уже конвертированы» (uid) — иначе A после перевхода снова звал бы сервер' },
 };
 
 describe('account wipe covers every owner-keyed local key', () => {

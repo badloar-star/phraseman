@@ -5174,6 +5174,8 @@ const SWITCH_PUSH_CLEANUP_CAP_MS = 4_000;
 /** Снять локальные уведомления и push-токен уходящего аккаунта. Никогда не бросает; итог — [ACC-SWITCH-WIPE] push_cleanup. */
 async function clearAccountPushBeforeSwitchSignOut(): Promise<void> {
   const startedAtMs = Date.now();
+  // зачем (Авторизация 15.10): владелец A — из памяти, без ensureAnonUser (тот посреди карантина смены мог выдать новую личность)
+  const ownerStableId = peekStableId();
   const step = (name: string, run: () => Promise<void>): Promise<string> => run().then(
     () => `${name}:ok`,
     (error: unknown) => {
@@ -5185,10 +5187,10 @@ async function clearAccountPushBeforeSwitchSignOut(): Promise<void> {
   const capped = new Promise<string[]>((resolve) => { timer = setTimeout(() => resolve(['timeout']), SWITCH_PUSH_CLEANUP_CAP_MS); });
   const result = await Promise.race([
     Promise.all([
-      step('notifications', async () => { const { cancelAllNotifications } = await import('./notifications'); await cancelAllNotifications(); }),
+      step('notifications', async () => { const { cancelAllNotifications } = await import('./notifications'); await cancelAllNotifications({ skipServerTokenClear: true }); }),
       step('push_token', async () => {
         const { clearPushTokenForServerPush } = await import('./push_token_registration');
-        const cleared = await clearPushTokenForServerPush();
+        const cleared = await clearPushTokenForServerPush({ ownerStableId });
         if (cleared === 'not_cleared') throw new Error('push_token_not_cleared');
       }),
     ]),

@@ -102,6 +102,11 @@ export function recordDialogVoiceAttempt(nowMs: number = Date.now()): number {
   return snapshot.count;
 }
 
+/** Прочитан ли счётчик с диска в этом процессе. зачем (D194): до чтения цифру на микрофоне не рисуем — иначе «3» мигнёт в «1». */
+export function isDialogVoiceAttemptsHydrated(): boolean {
+  return hydrated;
+}
+
 export function subscribeDialogVoiceAttempts(listener: () => void): () => void {
   listeners.add(listener);
   return () => { listeners.delete(listener); };

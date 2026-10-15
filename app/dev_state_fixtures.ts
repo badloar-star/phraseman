@@ -286,6 +286,9 @@ export type DevStateRequest = Readonly<{
   authFetch?: 'on' | 'off';
   /** «Сегодня» на Главной с заданием Пика (координатор 13.10, «Шпиль → Пик»): только показ, хранилище не трогается. */
   todaytask?: 'spire' | 'off';
+  lv2progress?: number | 'off';
+  lv2save?: 'fail' | 'off';
+  legacybonus?: 'demo' | 'off';
   /** [WINBACK-FREEZE]: гейт winback считает, что человек не заходил N дней (3 / 8 / 30) или снять. Только память. */
   winbackaway?: '3' | '8' | '30' | 'off';
   /** settings-gap-034: показ «Обучения» с «Автопроверка вкл, 1,0x» как в образце. Только память. */
@@ -414,6 +417,11 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.uiLang = pick('uiLang', [...DEV_UI_LANGS, 'off'] as const);
   request.authFetch = pick('authFetch', ['on', 'off'] as const);
   request.todaytask = pick('todaytask', ['spire', 'off'] as const);
+  // зачем (Макеты 15.10, съёмка курса V2): «пройдено N первых занятий» — только память
+  request.lv2progress = intOrWord('lv2progress', ['off'] as const, 56);
+  request.lv2save = pick('lv2save', ['fail', 'off'] as const);
+  // зачем (D195, Дизайн 15.10): окно «Встречайте PhraseMan 2.0» с примерными цифрами — только память
+  request.legacybonus = pick('legacybonus', ['demo', 'off'] as const);
   request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
   request.edu = pick('edu', ['parity', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
@@ -900,6 +908,26 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('authFetch', request.authFetch, async () => {
       const { setDevAuthCallablesFetch } = await import('./auth_callable_fetch');
       return setDevAuthCallablesFetch(request.authFetch!);
+    });
+  }
+  if (request.lv2progress !== undefined) {
+    // зачем (Макеты 15.10, learning-v2-012/011/071/074, словарь): прогресс курса в памяти, диск не меняется; перезапуск снимает
+    await step('lv2progress', String(request.lv2progress), async () => {
+      const { setLearningV2DevProgressOverrideV1 } = await import('../modules/learning-v2/progress/dev_progress_override_v1');
+      return setLearningV2DevProgressOverrideV1(request.lv2progress === 'off' ? null : request.lv2progress as number);
+    });
+  }
+  if (request.legacybonus !== undefined) {
+    await step('legacybonus', request.legacybonus, async () => {
+      const { setDevLegacyBonusDemo } = await import('./legacy_bonus_client');
+      return setDevLegacyBonusDemo(request.legacybonus === 'demo');
+    });
+  }
+  if (request.lv2save !== undefined) {
+    // зачем (Макеты 15.10, learning-v2-062): «Не сохранилось» у нового слова курса — только память
+    await step('lv2save', request.lv2save, async () => {
+      const { setLearningV2DevWordSaveFailV1 } = await import('../modules/learning-v2/progress/dev_progress_override_v1');
+      return setLearningV2DevWordSaveFailV1(request.lv2save === 'fail');
     });
   }
   if (request.todaytask !== undefined) {

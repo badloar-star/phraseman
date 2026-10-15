@@ -76,7 +76,7 @@ function packTitle(
   packId: string,
   lang: Lang,
 ): string {
-  if (pack) return packTitleForInterface(pack, contentLang(lang)) || pack.codeName || packId;
+  if (pack) return packTitleForInterface(pack, lang) || pack.codeName || packId;
   if (ownedTitle) {
     const cl = contentLang(lang);
     const byLang = cl === 'uk' ? ownedTitle.titleUk : cl === 'es' ? ownedTitle.titleEs : ownedTitle.titleRu;

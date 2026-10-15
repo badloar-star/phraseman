@@ -1396,7 +1396,7 @@ export default function FlashcardsScreen() {
   );
   const packPublished = currentMarketPack?.listingStatus === 'published' || currentMarketPack?.listingStatus === 'update_pending';
   const packBadge: PackBadge = packMine ? (packPublished ? 'community' : 'only_you') : currentMarketPack?.isCommunityUgc ? 'in_you' : null;
-  const packTitleText = currentMarketPack ? packTitleForInterface(currentMarketPack, cardContentLang) : s.title;
+  const packTitleText = currentMarketPack ? packTitleForInterface(currentMarketPack, strLang) : s.title;
   // зачем (координатор 12.10, «Удалить набор» через общую функцию): после подтверждения экран уходит сразу (Optimistic UI), а удаление идёт фоном
   // (app/community_packs/deleteOwnPack.ts — та же логика, что в «Моих наборах»). Сбой — понятное сообщение; набор остаётся на сервере/устройстве и
   // вернётся в «Мои наборы» при следующей загрузке. Двойной тап отсекает общая защёлка.
@@ -1507,7 +1507,7 @@ export default function FlashcardsScreen() {
         {videoSetSurface && currentMarketPack ? (
           <VideoSetView
             pack={currentMarketPack}
-            title={packTitleForInterface(currentMarketPack, cardContentLang)}
+            title={packTitleForInterface(currentMarketPack, strLang)}
             cards={listCards}
             lang={lang}
             cardContentLang={cardContentLang}
@@ -1929,7 +1929,7 @@ export default function FlashcardsScreen() {
         <ReportPackModal
           visible
           packId={currentMarketPack.id}
-          packTitle={packTitleForInterface(currentMarketPack, cardContentLang)}
+          packTitle={packTitleForInterface(currentMarketPack, strLang)}
           authorStableId={currentMarketPack.authorStableId ?? null}
           lang={lang}
           studyTarget={studyTarget}
@@ -1945,7 +1945,7 @@ export default function FlashcardsScreen() {
         <PackCommentsSheet
           visible
           packId={currentMarketPack.id}
-          packTitle={packTitleForInterface(currentMarketPack, cardContentLang)}
+          packTitle={packTitleForInterface(currentMarketPack, strLang)}
           isPackAuthor={!!accessStableId && currentMarketPack.authorStableId === accessStableId}
           packAuthorStableId={currentMarketPack.authorStableId ?? null}
           ownedLocally={packOwnedByMe}

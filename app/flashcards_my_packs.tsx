@@ -889,9 +889,9 @@ export default function FlashcardsMyPacksScreen() {
         ? 'loading'
         : 'empty';
   const labelFor = useCallback((pack: FlashcardMarketPack): string => {
-    const displayTitle = packTitleForInterface(pack, contentLang);
+    const displayTitle = packTitleForInterface(pack, lang);
     return pack.isCommunityUgc && displayTitle.trim().length > 0 ? displayTitle.trim() : packHubCodeName(pack);
-  }, [contentLang]);
+  }, [lang]);
   const trainFromPack = useCallback((pack: FlashcardMarketPack) => {
     // зачем (cards-v2, круглая «играть» стопки): тренировка стартует именно с ЭТИМ набором — тот же вход, что у «Тренировать» внутри набора
     // (хаб откроет окно режимов и после выбора запустит сессию с набором, flashcards_collection.onTrainThisPack).

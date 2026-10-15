@@ -76,7 +76,7 @@ export default function CommunityPackPreview({
   const g = liquidGlassTokens(liquidGlassThemeId);
   const { width: screenW, height: screenH } = useWindowDimensions();
   const author = useCommunityAuthor(pack, lang);
-  const title = packTitleForInterface(pack, cardContentLang) || packHubCodeName(pack);
+  const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
   const moreLabel = triLang(lang, { ru: 'Ещё', uk: 'Ще', en: 'More', es: 'Más', 'pt-BR': 'Mais', vi: 'Thêm', id: 'Lainnya', tr: 'Daha fazla', pl: 'Więcej' });
   const speakLabel = triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Posłuchaj' });

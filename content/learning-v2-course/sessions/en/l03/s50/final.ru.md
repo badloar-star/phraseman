@@ -1,148 +1,138 @@
-# Английский · Урок 3 · Занятие 50 — «Сравниваем вещи в комнате»
+# Английский · Урок 3 · Занятие 50 — Кинотеатр для вечерней встречи
 
-**Сцена занятия.** Вы с другом смотрите на мебель в комнате и сравниваете отдельный предмет с группой предметов. Сначала называете цвет и вещь, потом уточняете, одна вещь перед вами или несколько.
-**Как сказать:** один предмет: `a black sofa`; несколько предметов: `white chairs`, `the grey tables`.
-**Новые слова:** black, white, grey
+**Ситуация.** Вы с Анной собираетесь встретиться с друзьями в кинотеатре. На карте ищете нужное здание и обсуждаете цену билета. Чтобы никто не перепутал место встречи, Анна отправляет всем одну и ту же карту; этот способ помогает группе собраться.
+
+**Что вы освоите:** назвать кинотеатр с a и указать место конкретного кинотеатра с the
+**Новые слова:** cinema
+
+---
 
 ## Интро 1
-### Чёрный диван
 
-`black` — «чёрный». В комнате вы замечаете один диван: `A black sofa is here.` Когда предмет один и вы говорите о нём впервые, перед цветом и предметом стоит `a`. В английском цвет идёт прямо перед sofa: так один диван сразу отличается от группы стульев в той же комнате.
+### Место для просмотра фильма
 
-**Вы впервые видите один чёрный диван. Выберите фразу.**
+`cinema` — «кинотеатр». `This is a cinema` — «Это кинотеатр»: называем место на карте. Перед `cinema` нужно `a`: слово начинается с согласного звука, хотя первая буква `c` здесь звучит иначе, чем в `car`. Для одного кинотеатра используем `is`. Даже сто зрителей не превращают один кинотеатр в сто кинотеатров.
 
-- ✅ **A black sofa is here.**
-- ❌ Black sofa is here. — *С одним новым диваном нужен `a`.*
-- ❌ A sofa black is here. — *Цвет ставят перед предметом: `black sofa`.*
+**Назовите кинотеатр одним английским словом.**
+
+- ✅ **cinema**
+- ❌ hospital — *`hospital` — больница. Кинотеатр — `cinema`.*
+- ❌ office — *`office` — офис. Кинотеатр — `cinema`.*
 
 ---
 
 ## Интро 2
-### Белые стулья
 
-`white` — «белый». Рядом стоят несколько стульев: `White chairs are here.` Их больше одного, поэтому chair получает хвост `-s`, а `is` становится `are`. Перед всей группой `a` не нужно: один маленький артикль не справится с несколькими стульями.
+### Нужный кинотеатр
 
-**В комнате стоят белые стулья. Выберите фразу.**
+`The cinema is there` — «Кинотеатр там». Вы с Анной уже знаете, в какой кинотеатр идёте: речь о понятном вам обоим месте. Поэтому `the cinema`. Если просто называете один объект дальше на карте: `That is a cinema` — «Это кинотеатр».
 
-- ✅ **White chairs are here.**
-- ❌ A white chairs are here. — *Стульев несколько, поэтому `a` не ставят.*
-- ❌ White chair is here. — *Здесь несколько стульев: нужны `chairs` и `are`.*
+**Вы нашли в дальней части карты кинотеатр вашей встречи. Скажите «Кинотеатр там».**
+
+- ✅ **The cinema is there.**
+- ❌ The cinema are there. — *Кинотеатр один: нужно `is`.*
+- ❌ The cinemas are there. — *Так говорят о нескольких кинотеатрах. Здесь один: `The cinema is there`.*
 
 ---
 
 ## Интро 3
-### Серые столы
 
-`grey` — «серый». Друг показывает на конкретную группу серых столов у окна. Теперь вы оба знаете, о каких столах речь: `The grey tables are here.` Цвет остаётся перед tables, а `the` подходит и к нескольким уже понятным предметам.
+### Цена и результат
 
-**Друг показывает на серые столы у окна. Вы говорите об этих столах. Выберите фразу.**
+`expensive` — «дорогой», когда цена высокая. О билете: `It is expensive` — «Он дорогой». `effective` — «эффективный, действенный»: способ даёт нужный результат. Общая карта помогла всем найти место встречи; о таком способе можно сказать `It is effective` — «Он эффективный». Это не оценка цены. Перед выходом гость ищет ванную комнату: `The bathroom is here` — «Ванная комната здесь».
 
-- ✅ **The grey tables are here.**
-- ❌ A grey tables are here. — *Столов несколько, поэтому `a` не подходит.*
-- ❌ The tables grey are here. — *Цвет идёт перед предметом: `grey tables`.*
+**Билет стоит дорого. Скажите о нём «Он дорогой».**
+
+- ✅ **It is expensive.**
+- ❌ It is cheap. — *`cheap` — недорогой. Здесь цена высокая: `expensive`.*
+- ❌ It are expensive. — *Речь об одном билете: `It is expensive`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-50:i01; family: listen_choose -->
-Цель: `black`
-Варианты: `black`
+**1 · Гость ищет ванную, которую вы уже показали. Вы у её двери. Скажите «Ванная комната здесь»**
+<!-- interaction_id: en:lesson-03:session-50:i01; family: phrase_builder -->
+Плитки: `here` `is` `bathroom` `The` `are` → **The bathroom is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The bathroom is here.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-50:i03; family: scripted_repeat_compare -->
-Цель: `white`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-50:i02; family: listen_choose -->
+🔊 *cinema* → **cinema** · hospital · office
+- hospital — *В записи первое слово — `cinema`, а в этом варианте — `hospital`.*
+- office — *В записи первое слово — `cinema`, а в этом варианте — `office`.*
 
-**3 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-50:i05; family: listen_choose -->
-Цель: `grey`
-Варианты: `grey` · `black` · `white`
-- black — *В записи звучит `grey`, а не `black`.*
-- white — *В записи звучит `grey`, а не `white`.*
+**3 · Назовите кинотеатр одним английским словом**
+<!-- interaction_id: en:lesson-03:session-50:i03; family: context_gap_grammar -->
+___ → **cinema** · hospital · office
+- hospital — *`hospital` — больница. Кинотеатр — `cinema`.*
+- office — *`office` — офис. Кинотеатр — `cinema`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-50:i04; family: speed_match -->
+cinema — кинотеатр · expensive — дорогой по цене · effective — эффективный · bathroom — ванная комната
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-50:i02; family: scripted_repeat_compare -->
-Цель: `black`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-50:i05; family: listen_build_dictation -->
+🔊 *This is a cinema.* Плитки: `cinema` `a` `is` `This` `are` → **This is a cinema.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a cinema.`)*
 
-**5 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-50:i04; family: listen_choose -->
-Цель: `white`
-Варианты: `white`
+**6 · Вы нашли выбранный кинотеатр дальше на карте. Скажите «Кинотеатр там»**
+<!-- interaction_id: en:lesson-03:session-50:i06; family: phrase_builder -->
+Плитки: `there` `is` `cinema` `The` `are` → **The cinema is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `The cinema is there.`)*
 
-**6 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-50:i06; family: scripted_repeat_compare -->
-Цель: `grey`
+**7 · Билет стоит дорого. Скажите о нём «Он дорогой» с сокращением**
+<!-- interaction_id: en:lesson-03:session-50:i07; family: scripted_repeat_compare -->
+🎙 **It's expensive.**
 
-**7 · Соедините цвета и их значения**
-<!-- interaction_id: en:lesson-03:session-50:i08; family: speed_match -->
-Пары: `black` — чёрный · `white` — белый · `grey` — серый
-Цель: `black · white · grey`
+**8 · Вы называете место на карте: кинотеатр**
+<!-- interaction_id: en:lesson-03:session-50:i08; family: context_gap_grammar -->
+This is ___ cinema. → **a** · an · are
+- an — *`cinema` начинается с согласного звука: `a cinema`.*
+- are — *Перед названием одного кинотеатра здесь нужно `a`.*
 
-**8 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-50:i10; family: listen_build_dictation -->
-Цель: `White chairs are here.`
+**9 · Послушайте оценку способа собрать друзей в одном месте**
+<!-- interaction_id: en:lesson-03:session-50:i09; family: listen_choose -->
+🔊 *It is effective.* → **It is effective.** · It is expensive. · It is acceptable.
+- It is expensive. — *В записи последнее слово — `effective`, а в этом варианте — `expensive`.*
+- It is acceptable. — *В записи последнее слово — `effective`, а в этом варианте — `acceptable`.*
 
-**9 · Произнесите фразу**
-<!-- interaction_id: en:lesson-03:session-50:i11; family: scripted_repeat_compare -->
-Цель: `White chairs are here.`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-50:i10; family: speed_match -->
+cinema — кинотеатр · bathroom — ванная комната · here — здесь · there — там
 
-**10 · Соедините пары — вспомните цвета в комнате**
-<!-- interaction_id: en:lesson-03:session-50:i07; family: speed_match -->
-Пары: `black` — чёрный · `white` — белый · `grey` — серый · `blue` — синий
-Цель: `black · white · grey · blue`
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-50:i11; family: listen_build_dictation -->
+🔊 *That bathroom is there.* Плитки: `there` `is` `bathroom` `That` `are` → **That bathroom is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `That bathroom is there.`)*
 
-**11 · Вставьте цвет — вы показываете один диван**
-<!-- interaction_id: en:lesson-03:session-50:i09; family: context_gap_grammar -->
-Цель: `A ___ sofa is here.`
-Варианты: `black` · `white` · `grey` · `sofa`
-- white — *Белыми были стулья, а у дивана здесь нужен `black`.*
-- grey — *Серыми были столы, а здесь нужен цвет дивана.*
-- sofa — *`Sofa` уже стоит после пропуска; здесь нужен цвет.*
-
-
-**12 · Соберите фразу — вы возвращаетесь к серым столам**
+**12 · Вы показываете на одно здание дальше на карте. Назовите его: «Это кинотеатр», со словом для одного дальше**
 <!-- interaction_id: en:lesson-03:session-50:i12; family: phrase_builder -->
-Цель: `The grey tables are here.`
+Плитки: `cinema` `a` `is` `That` `are` → **That is a cinema.**
+*(плитка `are` лишняя: здесь нужно `is` — `That is a cinema.`)*
 
-**13 · Вставьте предмет — у стены стоят знакомые серые вещи**
-<!-- interaction_id: en:lesson-03:session-50:i13; family: context_gap_grammar -->
-Цель: `The grey ___ are here.`
-Варианты: `tables` · `table` · `sofa` · `chair`
-- table — *После `are` нужен предмет во множественном числе: `tables`.*
-- sofa — *Здесь речь о серых столах, а не о диване.*
-- chair — *Здесь речь о серых столах, а не об одном стуле.*
+**13 · Способ с общей картой помог всем найти место встречи. Скажите о способе «Он эффективный» с сокращением**
+<!-- interaction_id: en:lesson-03:session-50:i13; family: scripted_repeat_compare -->
+🎙 **It's effective.**
 
+**14 · Вы указываете место одного уже выбранного кинотеатра**
+<!-- interaction_id: en:lesson-03:session-50:i14; family: context_gap_grammar -->
+The cinema ___ there. → **is** · are · am
+- are — *Кинотеатр один: `The cinema is there`.*
+- am — *С `The cinema` нужно `is`.*
 
-**14 · Соберите фразу — вы нашли один белый стул**
-<!-- interaction_id: en:lesson-03:session-50:i14; family: phrase_builder -->
-Цель: `White chairs are here.`
+**15 · Послушайте оценку цены билета**
+<!-- interaction_id: en:lesson-03:session-50:i15; family: listen_choose -->
+🔊 *It is expensive.* → **It is expensive.** · It is cheap. · It is useful.
+- It is cheap. — *В записи последнее слово — `expensive`, а в этом варианте — `cheap`.*
+- It is useful. — *В записи последнее слово — `expensive`, а в этом варианте — `useful`.*
 
-**15 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-50:i15; family: scripted_repeat_compare -->
-Цель: `The black sofas are here.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-50:i16; family: speed_match -->
+cinema — кинотеатр · expensive — дорогой по цене · effective — эффективный · bathroom — ванная комната
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-03:session-50:i16; family: listen_choose -->
-Цель: `The black sofas are here.`
-Варианты: `Чёрные диваны здесь.` · `Здесь есть чёрный диван.` · `Белые диваны здесь.` · `Где чёрные диваны?`
-- Здесь есть чёрный диван. — *В записи `the black sofas`: это уже известные диваны, и их несколько.*
-- Белые диваны здесь. — *В записи звучит `black`, а не `white`.*
-- Где чёрные диваны? — *В записи утверждение, а не вопрос.*
+**17 · В другом городе вы с другом уже выбрали кинотеатр. Друг ищет его на карте; вы нашли его прямо перед собой. Скажите «Кинотеатр здесь», говоря о выбранном месте**
+<!-- interaction_id: en:lesson-03:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The cinema is here.**
 
-
-**17 · Вставьте артикль — вы снова показываете тот же белый стул у двери**
-<!-- interaction_id: en:lesson-03:session-50:i17; family: context_gap_grammar -->
-Цель: `___ white chair is here.`
-Варианты: `The` · `A` · `An` · `без артикля`
-- A — *`a` вводит один предмет впервые. Здесь речь о том же стуле, который уже выбрали, поэтому нужен `the`.*
-- An — *`an` бывает перед гласным звуком, а `white` начинается со звука /w/. Кроме того, стул уже известен: нужен `the`.*
-- без артикля — *Один исчисляемый предмет нельзя назвать без определителя. Здесь это известный стул: `the white chair`.*
-
-
-## Для сборщика
-new_words: black — чёрный — Цвет дивана.
-new_words: white — белый — Цвет стульев.
-new_words: grey — серый — Цвет столов.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_choose, 17=context_gap_grammar

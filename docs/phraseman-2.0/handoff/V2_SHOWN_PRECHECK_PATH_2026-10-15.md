@@ -58,3 +58,85 @@
    - Вариант только с его «да».
 
 Красное к утру — это расхождение формы (гейт сравнивает весь курс из 186 занятий, а выпущено 11). Плюс 55 конкретных хвостов в s06–s11 (43 + 12). Выпущенные занятия при этом открываются и звучат.
+
+## Что из этого увидит ученик (s06–s11)
+
+Проверено по файлам выпуска `content/learning-v2-course/release/en/l01/sNN/` — это то, что получает приложение.
+
+| Код | Что это | Что видит человек |
+|---|---|---|
+| `practice_after_independent_boundary` (s06 i13–i16, s09 i15, s10 i13–i15, s11 i17) | Задания на вспоминание стоят ПОСЛЕ «самостоятельной проверки» | Ещё несколько заданий после финальной проверки. Порядок не по методике, но всё открывается и засчитывается. **Формальность методики.** |
+| `intro_target_not_practiced` (s06 «I am back.», «I am done.»; s07 «I am glad.»; s09 «You are funny.»; s11 «You are not wrong.») | Фраза есть на странице вступления, но в заданиях этого занятия её нет | Видит фразу во вступлении и не тренирует её здесь. **Пробел содержания, не поломка.** |
+| `duplicate_answer_id` / `answer_authority_count` / `invalid_independent_boundary` (s09 i18 s01–s04) | В **исходнике** курса у шагов голосового задания i18 («скажите вслух») по 3 записи ответа вместо одной | В **выпуске** у каждого шага ровно один ответ («You are right.», «I am new.», «I am not tired.», «You are kind.»). Человек ничего не заметит. **Гигиена исходника.** |
+| `AUDIO_EVIDENCE_UNVERIFIED` (12) | У записи нет отметки, что её прослушали и одобрили | Звук есть и играет: гейт №4 собирает все 11 занятий из бандла. Риск — неподслушанная запись (произношение или обрыв). **Нужна проверка слухом.** |
+
+Итог: реальной поломки опыта в s06–s11 нет. Есть отклонения от правил методики и 12 записей без отметки прослушивания.
+
+## Текст для Codex (переслать одним сообщением)
+
+> Codex, по решению владельца 15.10 V2 показывается в сборке R1 (выпущено 11 занятий en/l01/s01–s11).
+> release_precheck красный из-за паузы фабрики (factory_intro_practice HOLD) и подтверждения озвучки.
+> В ВЫПУЩЕННЫХ занятиях нужно закрыть 43 замечания и 12 отметок прослушивания. Ниже полный список, s01–s05 и s08 (кроме озвучки) чистые.
+> Невыпущенные s12+ сейчас не трогать: гейт будет проверять только выпущенное (≤ потолка), заплатку готовит Ядро.
+
+### en/l01/s06 — 10
+- practice_after_independent_boundary [ru] — en:lesson-01:session-06:i13 (purpose="retrieval_practice")
+- practice_after_independent_boundary [ru] — en:lesson-01:session-06:i14 (purpose="retrieval_practice")
+- practice_after_independent_boundary [ru] — en:lesson-01:session-06:i15 (purpose="retrieval_practice")
+- practice_after_independent_boundary [ru] — en:lesson-01:session-06:i16 (purpose="retrieval_practice")
+- practice_after_independent_boundary [uk] — en:lesson-01:session-06:i13 (purpose="retrieval_practice")
+- practice_after_independent_boundary [uk] — en:lesson-01:session-06:i14 (purpose="retrieval_practice")
+- practice_after_independent_boundary [uk] — en:lesson-01:session-06:i15 (purpose="retrieval_practice")
+- practice_after_independent_boundary [uk] — en:lesson-01:session-06:i16 (purpose="retrieval_practice")
+- intro_target_not_practiced — (занятие целиком) (page=2 target="I am back.")
+- intro_target_not_practiced — (занятие целиком) (page=3 target="I am done.")
+### en/l01/s07 — 1
+- intro_target_not_practiced — (занятие целиком) (page=1 target="I am glad.")
+### en/l01/s09 — 23
+- duplicate_answer_id — en:lesson-01:session-09:i18:s01 (count=3)
+- duplicate_answer_id — en:lesson-01:session-09:i18:s02 (count=3)
+- duplicate_answer_id — en:lesson-01:session-09:i18:s03 (count=3)
+- duplicate_answer_id — en:lesson-01:session-09:i18:s04 (count=3)
+- practice_after_independent_boundary [ru] — en:lesson-01:session-09:i15 (purpose="retrieval_practice")
+- invalid_independent_boundary [ru] — en:lesson-01:session-09:i18:s01 (purpose="independent_check" reason="answer_authority_count")
+- answer_authority_count [ru] — en:lesson-01:session-09:i18:s01 (actual=3 expected=1)
+- invalid_independent_boundary [ru] — en:lesson-01:session-09:i18:s02 (purpose="independent_check" reason="answer_authority_count")
+- answer_authority_count [ru] — en:lesson-01:session-09:i18:s02 (actual=3 expected=1)
+- invalid_independent_boundary [ru] — en:lesson-01:session-09:i18:s03 (purpose="independent_check" reason="answer_authority_count")
+- answer_authority_count [ru] — en:lesson-01:session-09:i18:s03 (actual=3 expected=1)
+- invalid_independent_boundary [ru] — en:lesson-01:session-09:i18:s04 (purpose="independent_check" reason="answer_authority_count")
+- answer_authority_count [ru] — en:lesson-01:session-09:i18:s04 (actual=3 expected=1)
+- practice_after_independent_boundary [uk] — en:lesson-01:session-09:i15 (purpose="retrieval_practice")
+- invalid_independent_boundary [uk] — en:lesson-01:session-09:i18:s01 (purpose="independent_check" reason="answer_authority_count")
+- answer_authority_count [uk] — en:lesson-01:session-09:i18:s01 (actual=3 expected=1)
+- invalid_independent_boundary [uk] — en:lesson-01:session-09:i18:s02 (purpose="independent_check" reason="answer_authority_count")
+- answer_authority_count [uk] — en:lesson-01:session-09:i18:s02 (actual=3 expected=1)
+- invalid_independent_boundary [uk] — en:lesson-01:session-09:i18:s03 (purpose="independent_check" reason="answer_authority_count")
+- answer_authority_count [uk] — en:lesson-01:session-09:i18:s03 (actual=3 expected=1)
+- invalid_independent_boundary [uk] — en:lesson-01:session-09:i18:s04 (purpose="independent_check" reason="answer_authority_count")
+- answer_authority_count [uk] — en:lesson-01:session-09:i18:s04 (actual=3 expected=1)
+- intro_target_not_practiced — (занятие целиком) (page=3 target="You are funny.")
+### en/l01/s10 — 6
+- practice_after_independent_boundary [ru] — en:lesson-01:session-10:i13 (purpose="retrieval_practice")
+- practice_after_independent_boundary [ru] — en:lesson-01:session-10:i14 (purpose="retrieval_practice")
+- practice_after_independent_boundary [ru] — en:lesson-01:session-10:i15 (purpose="retrieval_practice")
+- practice_after_independent_boundary [uk] — en:lesson-01:session-10:i13 (purpose="retrieval_practice")
+- practice_after_independent_boundary [uk] — en:lesson-01:session-10:i14 (purpose="retrieval_practice")
+- practice_after_independent_boundary [uk] — en:lesson-01:session-10:i15 (purpose="retrieval_practice")
+### en/l01/s11 — 3
+- practice_after_independent_boundary [ru] — en:lesson-01:session-11:i17 (purpose="retrieval_practice")
+- practice_after_independent_boundary [uk] — en:lesson-01:session-11:i17 (purpose="retrieval_practice")
+- intro_target_not_practiced — (занятие целиком) (page=3 target="You are not wrong.")
+### озвучка без отметки проверки — 12
+- en:lesson-01:session-06:i16:audio
+- en:lesson-01:session-06:i19:audio
+- en:lesson-01:session-07:i14:audio
+- en:lesson-01:session-07:i16:audio
+- en:lesson-01:session-08:i17:s02:audio
+- en:lesson-01:session-09:i14:audio
+- en:lesson-01:session-09:i18:s02:audio
+- en:lesson-01:session-09:i18:s04:audio
+- en:lesson-01:session-10:i12:audio
+- en:lesson-01:session-10:i18:audio
+- en:lesson-01:session-11:i17:audio
+- en:lesson-01:session-11:i18:audio

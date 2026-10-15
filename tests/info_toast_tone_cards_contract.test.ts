@@ -2,8 +2,9 @@
 // сообщения, а не ошибки: заголовок «Сообщение» (тон info), а не «Что-то пошло не так» с белой полосой.
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
 describe('тон тостов-сообщений Карточек', () => {
   it('ролик не открылся — info в трёх местах: строка набора, герой набора, экран набора из видео', () => {

@@ -50,8 +50,9 @@ jest.mock('../components/spire/useSpirePalette', () => ({
 
 import LessonPerfectMoment from '../components/lesson_moments/LessonPerfectMoment';
 import { PERFECT_MOMENT_LANGS, PERFECT_MOMENT_STRING_KEYS, perfectMomentText } from '../components/lesson_moments/perfect_moment_strings';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
 describe('m09 · идеальный урок', () => {
   it('«20 из 20», «Ни одной ошибки · +150 монет», штамп ИДЕАЛ, «Дальше» зовёт колбэк', async () => {

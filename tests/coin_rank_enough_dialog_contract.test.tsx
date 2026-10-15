@@ -56,8 +56,9 @@ jest.mock('../components/v2/V2Kit', () => {
 
 import CoinRankEnoughDialog from '../components/coin_rank_moments/CoinRankEnoughDialog';
 import { COIN_RANK_LANGS, COIN_RANK_STRING_KEYS, coinRankNumber, coinRankText, coinRankCoinsWord } from '../components/coin_rank_moments/coin_rank_strings';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
 describe('окно «Хватает на ранг N» (m14A)', () => {
   beforeEach(() => { mockPlayEvent.mockClear(); });

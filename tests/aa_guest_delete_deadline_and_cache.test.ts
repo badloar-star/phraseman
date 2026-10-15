@@ -5,9 +5,10 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.join(__dirname, '..');
-const read = (rel: string) => fs.readFileSync(path.join(root, rel), 'utf8');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(root, rel), 'utf8'));
 
 describe('B(1) дедлайн постановки удаления', () => {
   it('гость — 25 с, связанные — прежние 8 с', () => {

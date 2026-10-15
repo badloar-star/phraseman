@@ -2,8 +2,9 @@
 // первый кадр берётся из кэша/снимка (peek), сеть обновляет фоном; полноэкранных спиннеров нет. Статический контракт — кадры и самолётный прогон за Сверкой.
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const read = (rel: string): string => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8'));
 
 describe('PM-214: Карточки и Сообщество — первый кадр из кэша', () => {
   it('«Мои наборы»: группы из прогретого кэша в начальном состоянии, список показывается и при loading, если наборы уже есть', () => {

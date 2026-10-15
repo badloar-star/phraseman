@@ -36,8 +36,9 @@ jest.mock('../components/spire/useSpirePalette', () => ({
 
 import FirstDialogMoment from '../components/dialog_moments/FirstDialogMoment';
 import { FIRST_DIALOG_LANGS, FIRST_DIALOG_STRING_KEYS, firstDialogStats, firstDialogText } from '../components/dialog_moments/first_dialog_strings';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
 describe('m17 · первый диалог', () => {
   it('русский интерфейс, изучается английский: «Первый разговор по-английски — есть!», «Получилось!», «Реплик: 6 · заданий 5 из 5», «Следующий сценарий» зовёт колбэк', async () => {

@@ -46,8 +46,9 @@ jest.mock('../components/spire/useSpirePalette', () => ({
 import SpireFloorMoment from '../components/spire/moments/SpireFloorMoment';
 import type { SpireStepOutcome } from '../app/spire/use_spire_game';
 import type { SpireCoinsConfig } from '../modules/spire/config_contract';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const COINS = { perStep: 10, perFloorPerLevel: 10, guardianMultiplier: 2, summitBonus: 200 } as unknown as SpireCoinsConfig;
 const outcome = (patch: Partial<SpireStepOutcome>, local: Record<string, number>): SpireStepOutcome => ({
   kind: 'floor', report: {} as never, errors: 0, usedMs: 72_000, budgetMs: 120_000, floorBefore: 4, local: { tier: 0, floor: 5, stepInFloor: 0, stepsCleared: 20, ...local } as never, failReason: null as never, ...patch,

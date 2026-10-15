@@ -15,6 +15,7 @@ import {
   maskPositionalTranslatorCalls,
   splitCallArgs,
 } from '../scripts/untranslated_ui_positional.mjs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 const hasCyrillic = (s) => /[а-яА-ЯёЁ]/.test(s);
 
@@ -57,7 +58,7 @@ test('разбор аргументов учитывает вложенные с
 
 test('сторож: переводчик по целому имени, помощники подключены', () => {
   const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-  const scanner = fs.readFileSync(path.join(root, 'scripts/scan_untranslated_ui.mjs'), 'utf8');
+  const scanner = normalizeEol(fs.readFileSync(path.join(root, 'scripts/scan_untranslated_ui.mjs'), 'utf8'));
   assert.match(scanner, /import \{ localLogHelperCall, maskMultilineLogCalls, maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject \} from '\.\/untranslated_ui_positional\.mjs';/);
   assert.match(scanner, /return maskMultilineLogCalls\(maskLocaleKeyedEntries\(src, source\), source, DIAGNOSTIC_LOG_CALL\);/);
   // полный проход и проверка добавленных строк трактуют помощники журнала одинаково
@@ -71,7 +72,7 @@ test('сторож: переводчик по целому имени, помо�
 
 test('журналы, а не экран: logSpireLayout / logSpireDock / bootMark в явном списке помощников логов', () => {
   const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-  const scanner = fs.readFileSync(path.join(root, 'scripts/scan_untranslated_ui.mjs'), 'utf8');
+  const scanner = normalizeEol(fs.readFileSync(path.join(root, 'scripts/scan_untranslated_ui.mjs'), 'utf8'));
   const line = scanner.split('\n').find((l) => l.startsWith('const DIAGNOSTIC_LOG_CALL ='));
   assert.ok(line, 'DIAGNOSTIC_LOG_CALL на месте');
   const re = new Function(`${line.replace('const DIAGNOSTIC_LOG_CALL =', 'return')}`)();

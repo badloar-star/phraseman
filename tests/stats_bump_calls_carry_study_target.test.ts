@@ -2,9 +2,10 @@
 // bumpStatsDaily без третьего аргумента пишет в ключ по умолчанию (en): фразы es/fr/de/it ложились в английскую статистику (lesson1.tsx).
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.join(__dirname, '..');
-const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(ROOT, rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
 function sourceFiles(dir: string, out: string[] = []): string[] {
   for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {

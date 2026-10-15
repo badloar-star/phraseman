@@ -38,8 +38,9 @@ jest.mock('../components/v2/V2Kit', () => {
 
 import LessonExitSheet from '../components/lesson_exit/LessonExitSheet';
 import { LESSON_EXIT_LANGS, LESSON_EXIT_STRING_KEYS, lessonExitText } from '../components/lesson_exit/lesson_exit_strings';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
 describe('шторка «Выйти из урока?» (m15)', () => {
   beforeEach(() => { mockPlayEvent.mockClear(); });

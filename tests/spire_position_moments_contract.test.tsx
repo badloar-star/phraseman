@@ -62,8 +62,9 @@ import SpirePositionRiseMoment, { positionRiseOrderAfter } from '../components/s
 import SpireOvertakeToast from '../components/spire/moments/SpireOvertakeToast';
 import SpireLastChanceSheet from '../components/spire/moments/SpireLastChanceSheet';
 import { POSITION_MOMENT_LANGS, POSITION_MOMENT_STRING_KEYS, positionClockHms, positionMomentText } from '../components/spire/moments/position_moment_strings';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const ROWS = [
   { uid: 'a', name: 'Марк', coinRank: 12, coins: 610, isMe: false },
   { uid: 'b', name: 'Ира', coinRank: 7, coins: 580, isMe: false },

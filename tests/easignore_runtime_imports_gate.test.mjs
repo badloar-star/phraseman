@@ -4,8 +4,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { findIgnoredImports, relativeSpecifiers } from '../scripts/easignore_runtime_imports_gate.mjs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+const read = (path) => normalizeEol(readFileSync(new URL(`../${path}`, import.meta.url), 'utf8'));
 const EASIGNORE = `/content/*
 !/content/learning-v2-course/
 /content/learning-v2-course/*

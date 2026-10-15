@@ -8,6 +8,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIRS = ['app', 'components', 'hooks', 'modules'];
@@ -54,7 +55,7 @@ test('в исходниках нет transform со значением undefined
     if (!fs.existsSync(abs)) continue;
     for (const file of walk(abs)) {
       const rel = path.relative(ROOT, file).split(path.sep).join('/');
-      const hits = findings(fs.readFileSync(file, 'utf8'));
+      const hits = findings(normalizeEol(fs.readFileSync(file, 'utf8')));
       const allowed = KNOWN_PENDING.get(rel) ?? 0;
       if (hits.length > allowed) offenders.push(`${rel}:${hits.join(',')}`);
     }
@@ -64,7 +65,7 @@ test('в исходниках нет transform со значением undefined
 
 test('исключение не протухло: в закреплённом файле правка ещё не сделана', () => {
   for (const [rel, count] of KNOWN_PENDING) {
-    const hits = findings(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
+    const hits = findings(normalizeEol(fs.readFileSync(path.join(ROOT, rel), 'utf8')));
     assert.equal(hits.length, count, `${rel}: исключение больше не нужно — удали его из KNOWN_PENDING`);
   }
 });

@@ -2,8 +2,9 @@
 // Теперь при state.kind === 'unavailable' в ячейке прочерк «—» без скелета, ячейка остаётся (раскладка не прыгает), на ветке есть журнал.
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
 describe('итог диалога: ячейка целей при «недоступен»', () => {
   const src = read('app/dialogue_v2_completion.tsx');

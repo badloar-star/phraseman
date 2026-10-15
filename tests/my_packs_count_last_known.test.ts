@@ -19,6 +19,7 @@ import {
   peekLastKnownMyPacksCount,
   rememberLastKnownMyPacksCount,
 } from '../app/flashcards/myPacksCountLastKnown';
+import { normalizeEol } from './helpers/read_source';
 
 const flush = async () => { for (let i = 0; i < 5; i += 1) await Promise.resolve(); };
 
@@ -99,8 +100,8 @@ describe('myPacksCountLastKnown: последнее известное числ�
 
 describe('хаб: плитка «Мои наборы» берёт последнее известное число, не трогая замок хаба', () => {
   const root = path.join(__dirname, '..');
-  const hub = fs.readFileSync(path.join(root, 'app/flashcards/FlashcardsHubScreen.tsx'), 'utf8');
-  const exact = fs.readFileSync(path.join(root, 'app/flashcards/myPacksCountCache.ts'), 'utf8');
+  const hub = normalizeEol(fs.readFileSync(path.join(root, 'app/flashcards/FlashcardsHubScreen.tsx'), 'utf8'));
+  const exact = normalizeEol(fs.readFileSync(path.join(root, 'app/flashcards/myPacksCountCache.ts'), 'utf8'));
 
   it('плитка показывает подтверждённый счёт, а без него — последний известный', () => {
     expect(hub).toContain('count: fmt(myPackCount ?? heldMineCount)');

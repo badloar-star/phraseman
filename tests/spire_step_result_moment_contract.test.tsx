@@ -53,8 +53,9 @@ import SpireStepResultMoment from '../components/spire/moments/SpireStepResultMo
 import { STEP_MOMENT_LANGS, STEP_MOMENT_STRING_KEYS, stepMomentText } from '../components/spire/moments/step_moment_strings';
 import type { SpireStepOutcome } from '../app/spire/use_spire_game';
 import type { SpireCoinsConfig } from '../modules/spire/config_contract';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const COINS = { perStep: 10 } as unknown as SpireCoinsConfig;
 const outcome = (patch: Partial<SpireStepOutcome>): SpireStepOutcome => ({
   kind: 'passed', report: {} as never, errors: 0, usedMs: 72_000, budgetMs: 120_000, floorBefore: 4, local: { floor: 4, stepInFloor: 7, stepsCleared: 20 } as never, failReason: null as never, ...patch,

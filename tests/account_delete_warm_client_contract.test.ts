@@ -3,8 +3,9 @@
 // поставить удаление. Сторож держит именно это.
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8'));
 
 describe('прогрев accountDeleteEnqueue с клиента', () => {
   const cloud = read('app/cloud_sync.ts');

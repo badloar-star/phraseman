@@ -86,8 +86,9 @@ import StoryAvatarSlot from '../components/stories/StoryAvatarSlot';
 import StoryViewer from '../components/stories/StoryViewer';
 import StorySlide from '../components/stories/StorySlides';
 import { STORY_LANGS, STORY_STRING_KEYS, storyText, storyWhenLabel } from '../components/stories/story_strings';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const NOW = Date.UTC(2026, 9, 14, 12, 0, 0);
 const ev = (type: StoryEvent['type'], payload: StoryEvent['payload'], id: string, atMs = NOW): StoryEvent => ({ id, type, payload, atMs, seen: false });
 const WEEK = ev('spire_week', { weekId: 'w1', lang: 'en', outcome: 'up', prevTier: 0, floor: 1, place: 3, total: 30 }, 'spire_week:w1:en');

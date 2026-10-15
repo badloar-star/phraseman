@@ -38,7 +38,8 @@ export function useSpirePalette(): SpirePalette {
       textMuted: g.mutedText,
       // зачем (темы 2.0): главная кнопка и кольцо таймера — цвет темы в «Акценте/Максимуме»;
       // в «Спокойно» accent = cta, а кольцо остаётся цвета текста, как было.
-      cta: g.accent,
+      // зачем: правило владельца 13.10 "кнопки не сливаются", аудит 15.10 — главная кнопка окон Пика и моментов берёт ctaFill (= accent, а где пастель сливалась бы с фоном светлой градиентной темы — глубже), а не сырой accent: было 1,00–1,84 : 1 к фону
+      cta: g.ctaFill,
       ctaText: g.accentInk,
       accentText: g.level === 'calm' ? g.text : g.accentText,
       // зачем (координатор 15.10, храповик light_accent_graphics_ratchet): подписи-акценты окон моментов берут accentTextSafe — в тёмном ровно accent, в светлом углублённый, без сырого accentText

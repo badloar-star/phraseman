@@ -24,6 +24,10 @@ const LOG = '[V2-AUDIO-GATE]';
 // занятие, которое не собирается; невыпущенные — справка [V2-AVAILABILITY]. Полная картина курса по-прежнему в
 // tests/learning_v2_lesson1_bundle_builds.test.ts (работа Codex).
 const TEST = 'tests/learning_v2_bundle_availability.test.ts';
+// зачем (координатор 15.10, страховка Ревизора перед подъёмом потолка урока 1): «собирается» ≠ «звучит записью из сборки».
+// Сторож полноты доказывает, что у каждого слова (ash) и каждой фразы выпущенных занятий есть запись в таблице озвучки
+// и файл в наборе сборки. Тот же запуск раннера — без второго холодного старта jest.
+const COMPLETE_TEST = 'tests/learning_v2_released_audio_completeness_guard.test.ts';
 
 // зачем (координатор 10.10 02:25): в стор-сборке Learning V2 вырезан router.ctx.js — озвучка его занятий сборку
 // не блокирует, но только при доказанном вырезании всех маршрутов (scripts/lib/store_release_surface.mjs).
@@ -50,7 +54,10 @@ const startedAt = Date.now();
 // процесса раннера, и для его воркеров (через NODE_OPTIONS).
 const HEAP_FLAG = '--max-old-space-size=8192';
 const nodeOptions = [process.env.NODE_OPTIONS ?? '', HEAP_FLAG].filter(Boolean).join(' ');
-const result = spawnSync(process.execPath, [HEAP_FLAG, runner, '--no-watchman', '--runTestsByPath', TEST], {
+const completeTestPresent = fs.existsSync(path.join(ROOT, COMPLETE_TEST));
+if (!completeTestPresent) console.warn(`${LOG} WARNING: нет файла ${COMPLETE_TEST} — полнота озвучки не проверена`);
+const tests = completeTestPresent ? [TEST, COMPLETE_TEST] : [TEST];
+const result = spawnSync(process.execPath, [HEAP_FLAG, runner, '--no-watchman', '--runTestsByPath', ...tests], {
   cwd: ROOT,
   encoding: 'utf8',
   env: { ...process.env, CI: 'true', NODE_OPTIONS: nodeOptions },
@@ -64,6 +71,8 @@ if (result.error) {
 }
 const advisory = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.split('\n').find((line) => line.includes('[V2-AVAILABILITY] advisory'));
 if (advisory) console.log(`${LOG} ${advisory.trim().slice(0, 600)}`);
+const completeness = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.split('\n').find((line) => line.includes('[V2-AUDIO-COMPLETE]'));
+if (completeness) console.log(`${LOG} ${completeness.trim().slice(0, 600)}`);
 if (result.status === 0) {
   // зачем (координатор 12.10): «каждое выпущенное собирается» при НУЛЕ выпущенных — пустой раздел V2 в стор-сборке.
   // Сюда доходим, только если V2 входит в сборку (ветка пропуска выше уже вышла) — значит пусто = красный.
@@ -82,5 +91,8 @@ const missing = [...new Set(output.split('\n').filter((line) => line.includes('v
 console.error(`${LOG} ОТКАЗ: в ВЫПУЩЕННОЕ множество попало занятие, которое не собирается — игрок упрётся в «Сессия недоступна». Перегенерируй артефакт доступности или почини занятие.`);
 console.error(`${LOG} Что делать: перегенерировать озвучку и таблицу ИЛИ откатить перегенерацию контента (modules/learning-v2/content/factory_native). Подробности: docs/phraseman-2.0/evidence/V2_LESSON1_MISSING_AUDIO_2026-10-04.md`);
 for (const line of missing) console.error(`${LOG}   ${line}`);
-if (missing.length === 0) console.error(output.split('\n').slice(-40).join('\n'));
+// Список сторожа полноты: «sNN → слово/фраза → голос → причина».
+const gaps = [...new Set(output.split('\n').map((line) => line.trim()).filter((line) => line.startsWith('[V2-AUDIO-COMPLETE] gap ')))].slice(0, 40);
+for (const line of gaps) console.error(`${LOG}   ${line}`);
+if (missing.length === 0 && gaps.length === 0) console.error(output.split('\n').slice(-40).join('\n'));
 process.exit(1);

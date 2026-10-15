@@ -1,0 +1,24 @@
+10-15 23:06:59.080 I/ReactNativeJS( 1004): '[LESSON-RESULT] back_during_completion', '{"lessonId":1,"from":"next"}'
+10-15 23:06:59.192 I/ReactNativeJS( 1004): [STREAK-RESULT] before:snapshot {days=1 counted=true day=2026-10-15} задачиДня=2026-10-15
+10-15 23:06:59.283 I/ReactNativeJS( 1004): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"итог ещё не посчитан"}'
+10-15 23:06:59.287 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +91мс lesson=1: results=false access=false xp=false → ждём «Сохраняю результат…»
+10-15 23:06:59.363 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"source":"progress","firstTryMistakes":3,"firstTryCorrect":0,"finalCorrect":3,"runErrors":0}
+10-15 23:06:59.408 I/ReactNativeJS( 1004): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"верных ответов нет (correct=0)"}'
+10-15 23:06:59.448 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: scan: lesson=1 ключей=32 multiGet=43мс разбор=0мс засчитано=0 идеальных=0 wasPerfect=false битых=0
+10-15 23:06:59.449 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"wasPerfect":false,"wasPerfectSource":"scanLessonProgress:legacy45","lessonCount":0,"perfectCount":0}
+10-15 23:06:59.449 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: grantBonus: этапы lesson=1 первый бонус=61мс, сводка прохождения=44мс
+10-15 23:06:59.449 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: grantBonus: готово lesson=1 всего=105мс (бонус+сводка+отзыв), wasPerfect=false eligibleReview=false
+10-15 23:06:59.457 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: ветка=ПРОГРЕСС_НАЙДЕН lesson=1 target=en ответов=3 верно=3 ошибок=0 из 3 score=5 → tier gold→gold новыйРекорд=false проходов=1
+10-15 23:06:59.581 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +387мс lesson=1: results=false access=true xp=false → ждём «Сохраняю результат…»
+10-15 23:06:59.646 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +453мс lesson=1: results=true access=true xp=false → ждём «Сохраняю результат…»
+10-15 23:06:59.653 I/ReactNativeJS( 1004): [STREAK-RESULT] live:init из памяти стора {days=1 counted=true day=2026-10-15}
+10-15 23:06:59.758 I/ReactNativeJS( 1004): [STREAK-RESULT] live:subscribed +104мс было={days=1 counted=true day=2026-10-15} стало={days=1 counted=true day=2026-10-15} пропущенаЗапись=false
+10-15 23:06:59.761 I/ReactNativeJS( 1004): [STREAK-RESULT] row до={days=1 counted=true day=2026-10-15} после={days=1 counted=true day=2026-10-15} источник=живой стор → 1→1 засчитан=true (день уже был засчитан раньше (до=true))
+10-15 23:06:59.762 I/ReactNativeJS( 1004): [MOMENT-m10] старт: reducedMotion=false серия={день уже был засчитан раньше (до=true)} сегодня={без изменений 1/1 (до=1)}
+10-15 23:06:59.770 I/ReactNativeJS( 1004): [MOMENT-m10] решение lesson=1: играем — цепочка: звёзды=3 верно=0 ошибок=3
+10-15 23:06:59.771 I/ReactNativeJS( 1004): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":false,"milestonePending":false}'
+10-15 23:06:59.774 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +581мс lesson=1: results=true access=true xp=true → экран итога открыт
+10-15 23:06:59.775 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: показ итога lesson=1 комбо=false: звёзды=3 (по проценту: score=5; медаль=gold) | верно/ошибок=0/3 | монеты=+3 (hydrating=false) | заметкаPlus=false | списокОшибо
+10-15 23:06:59.776 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"summary":"entry","firstTryCorrect":0,"mistakes":3,"total":3,"perfectShown":false,"coins":{"runes":3,"baseRunes":3,"awardPerItem":1,"creditedItems":3,"hydrating":false}}
+10-15 23:07:04.936 I/ReactNativeJS( 1004): [MOMENT-m10] конец цепочки: доиграла
+10-15 23:07:04.970 I/ReactNativeJS( 1004): '[LESSON-RESULT] slot_release', '{"lessonId":1,"chain":true,"perfect":false}'

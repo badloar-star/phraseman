@@ -1,0 +1,141 @@
+--------- beginning of main
+10-15 23:06:59.080 I/ReactNativeJS( 1004): '[LESSON-RESULT] back_during_completion', '{"lessonId":1,"from":"next"}'
+10-15 23:06:59.089 I/ReactNativeJS( 1004): [PREMIUM-GUARD] fast_no_cloud: «нет» без облака не кэшируем — полная проверка сходит в облако
+10-15 23:06:59.160 W/ReactNativeJS( 1004): '[WORD-AUDIO] speak:enter gen=6 text="We are together"', { [Stack] name: 'Stack' }
+10-15 23:06:59.162 I/ReactNativeJS( 1004): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"lesson_complete","noop":false,"atMs":498305,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | run@213687:31 | anonymous@216256:33 | react-stack-bottom-frame@28676:26 | runWithFiberInDEV@20473:135"}'
+10-15 23:06:59.192 I/ReactNativeJS( 1004): [STREAK-RESULT] before:snapshot {days=1 counted=true day=2026-10-15} задачиДня=2026-10-15
+10-15 23:06:59.246 W/ReactNativeJS( 1004): '[LESSON-EXIT] unmount lessonId=1 cellIndex=2 status=result exitInFlight=false', { [Stack] name: 'Stack' }
+10-15 23:06:59.251 I/ReactNativeJS( 1004): [ENERGY-GATE] refund: skip op=energy:lesson:9312904f-a4dd-489e-9203-b7635a577fd6 reason=unmounted_before_first_question:lesson1 why=status-free_reentry
+10-15 23:06:59.252 I/ReactNativeJS( 1004): [ENERGY-GATE] exit: free window opened op=energy:lesson:9312904f-a4dd-489e-9203-b7635a577fd6 key=classic_lesson:1 windowMs=600000
+10-15 23:06:59.276 I/ReactNativeJS( 1004): [NO-ENERGY-PLUS] unmount nothing_pending
+10-15 23:06:59.283 I/ReactNativeJS( 1004): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"итог ещё не посчитан"}'
+10-15 23:06:59.287 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +91мс lesson=1: results=false access=false xp=false → ждём «Сохраняю результат…»
+10-15 23:06:59.291 I/ReactNativeJS( 1004): '[DAILY-QUOTA] preview:in', '{"kind":"mistake_practice_starts","accessResolved":true,"hasPremiumAccess":false,"tokenPhase":"active","stableId":"e16d3e1c-ccef-4455-82c4-6a11f399dbe0"}'
+10-15 23:06:59.295 I/ReactNativeJS( 1004): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#MNzE-N*[(tabs)#GKM54E,lesson_complete#YoRiH1,mistakes_hub#DvnAb9,lesson_complete#DALv_1*]","atMs":498438}'
+10-15 23:06:59.326 I/ReactNativeJS( 1004): '[OVERLAY-ARBITER] state', '{"active":"lessonResultsSequence","waiting":[]}'
+10-15 23:06:59.330 I/ReactNativeJS( 1004): '[SPEAK-MIC] audio-mode', '{"intent":"ui","spokenLeases":0,"recordingLeases":0}'
+10-15 23:06:59.345 I/ReactNativeJS( 1004): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:e16d3e1c-ccef-4455-82c4-6a11f399dbe0:lesson%3Aen%3A1
+10-15 23:06:59.350 I/ReactNativeJS( 1004): [TODAY-TASKS] event:no_change {"kind":"lesson","source":"lesson_complete","unitKey":"legacy:en:1","units":1,"dayKey":"2026-10-15","outcome":"already_done","progress":"1→1"}
+10-15 23:06:59.363 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"source":"progress","firstTryMistakes":3,"firstTryCorrect":0,"finalCorrect":3,"runErrors":0}
+10-15 23:06:59.397 I/ReactNativeJS( 1004): '[FC-TRAIN-ENTRY] bridge:available', '{"stableUid":"e16d3e1c-ccef-4455-82c4-6a11f399dbe0","lineage":1,"factType":"attempt","factKeys":1,"hadState":true}'
+10-15 23:06:59.397 I/ReactNativeJS( 1004): '[DAILY-QUOTA] preview:out', '{"status":"exhausted","used":1,"limit":1,"extra":0,"period":"2026-10-15@Europe/London"}'
+10-15 23:06:59.404 W/ReactNativeJS( 1004): [LESSON-SOFT-UPSELL] кандидат lesson=1 firstBonus=already_granted → нет scope=есть
+10-15 23:06:59.406 I/ReactNativeJS( 1004): [INFO] practice_runes:hydrated: {"activity":"lesson","sessionKey":"lesson1_runes_en","settledCount":1,"awardPerItem":1,"pendingRunes":3,"restoredFinishedPass":false}
+10-15 23:06:59.406 W/ReactNativeJS( 1004): [RUNE-SETTLE] скан пропущен: очередь была пуста 140с назад (порог 300с)
+10-15 23:06:59.406 W/ReactNativeJS( 1004): [NAV-PAINT] group=training route=/lesson_complete ms=108
+10-15 23:06:59.408 I/ReactNativeJS( 1004): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"верных ответов нет (correct=0)"}'
+10-15 23:06:59.413 I/ReactNativeJS( 1004): '[DAILY-QUOTA] preview:in', '{"kind":"mistake_practice_starts","accessResolved":true,"hasPremiumAccess":false,"tokenPhase":"active","stableId":"e16d3e1c-ccef-4455-82c4-6a11f399dbe0"}'
+10-15 23:06:59.418 I/ReactNativeJS( 1004): [PREMIUM-GUARD] fast_no_cloud: «нет» без облака не кэшируем — полная проверка сходит в облако
+10-15 23:06:59.448 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: scan: lesson=1 ключей=32 multiGet=43мс разбор=0мс засчитано=0 идеальных=0 wasPerfect=false битых=0
+10-15 23:06:59.449 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"wasPerfect":false,"wasPerfectSource":"scanLessonProgress:legacy45","lessonCount":0,"perfectCount":0}
+10-15 23:06:59.449 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: grantBonus: этапы lesson=1 первый бонус=61мс, сводка прохождения=44мс
+10-15 23:06:59.449 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: grantBonus: готово lesson=1 всего=105мс (бонус+сводка+отзыв), wasPerfect=false eligibleReview=false
+10-15 23:06:59.457 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: ветка=ПРОГРЕСС_НАЙДЕН lesson=1 target=en ответов=3 верно=3 ошибок=0 из 3 score=5 → tier gold→gold новыйРекорд=false проходов=1
+10-15 23:06:59.463 I/ReactNativeJS( 1004): [ENSURE-LINK] authoritative_memo hit ageMs=423555 generation=1
+10-15 23:06:59.578 I/ReactNativeJS( 1004): [INFO] practice_runes:settle_start: {"activity":"lesson","sessionKey":"lesson1_runes_en","pendingRunes":3,"requestedOrdinal":2,"settledCount":1,"effectiveOrdinal":2}
+10-15 23:06:59.581 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +387мс lesson=1: results=false access=true xp=false → ждём «Сохраняю результат…»
+10-15 23:06:59.585 I/ReactNativeJS( 1004): '[FC-TRAIN-ENTRY] bridge:available', '{"stableUid":"e16d3e1c-ccef-4455-82c4-6a11f399dbe0","lineage":1,"factType":"attempt","factKeys":1,"hadState":true}'
+10-15 23:06:59.585 I/ReactNativeJS( 1004): '[DAILY-QUOTA] preview:out', '{"status":"exhausted","used":1,"limit":1,"extra":0,"period":"2026-10-15@Europe/London"}'
+10-15 23:06:59.641 I/ReactNativeJS( 1004): [LANG-SWITCH] notification_lang source=lesson_d1 stored=none resolved=ru via=device
+10-15 23:06:59.646 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +453мс lesson=1: results=true access=true xp=false → ждём «Сохраняю результат…»
+10-15 23:06:59.653 I/ReactNativeJS( 1004): [STREAK-RESULT] live:init из памяти стора {days=1 counted=true day=2026-10-15}
+10-15 23:06:59.758 I/ReactNativeJS( 1004): [STREAK-RESULT] live:subscribed +104мс было={days=1 counted=true day=2026-10-15} стало={days=1 counted=true day=2026-10-15} пропущенаЗапись=false
+10-15 23:06:59.761 I/ReactNativeJS( 1004): [STREAK-RESULT] row до={days=1 counted=true day=2026-10-15} после={days=1 counted=true day=2026-10-15} источник=живой стор → 1→1 засчитан=true (день уже был засчитан раньше (до=true))
+10-15 23:06:59.762 I/ReactNativeJS( 1004): [MOMENT-m10] старт: reducedMotion=false серия={день уже был засчитан раньше (до=true)} сегодня={без изменений 1/1 (до=1)}
+10-15 23:06:59.770 I/ReactNativeJS( 1004): [MOMENT-m10] решение lesson=1: играем — цепочка: звёзды=3 верно=0 ошибок=3
+10-15 23:06:59.771 I/ReactNativeJS( 1004): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":false,"milestonePending":false}'
+10-15 23:06:59.774 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +581мс lesson=1: results=true access=true xp=true → экран итога открыт
+10-15 23:06:59.775 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: показ итога lesson=1 комбо=false: звёзды=3 (по проценту: score=5; медаль=gold) | верно/ошибок=0/3 | монеты=+3 (hydrating=false) | заметкаPlus=false | списокОшибок=0 | оценка=false | следующийОткрыт=false
+10-15 23:06:59.776 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"summary":"entry","firstTryCorrect":0,"mistakes":3,"total":3,"perfectShown":false,"coins":{"runes":3,"baseRunes":3,"awardPerItem":1,"creditedItems":3,"hydrating":false}}
+10-15 23:06:59.868 I/ReactNativeJS( 1004): [INFO] practice_runes:pending_marker_written: {"activity":"lesson","sessionKey":"lesson1_runes_en","effectiveOrdinal":2}
+10-15 23:06:59.869 I/ReactNativeJS( 1004): [INFO] practice_runes:settlement_enter: {"activity":"lesson","sessionKey":"lesson1_runes_en","completionOrdinal":2,"pendingRunes":3,"cloudSyncEnabled":true,"isExpoGo":false}
+10-15 23:06:59.951 I/ReactNativeJS( 1004): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=[])
+10-15 23:07:00.064 I/ReactNativeJS( 1004): [INFO] [COIN-DIVERGENCE] publish: {"owner":"e16d3e1c","snapshotStars":59,"snapshotSource":"local","nextStars":62,"serverBalance":9,"serverSeq":1,"operations":3,"unacknowledged":53,"unacknowledgedBySchema":{"client-level-spin-star-operation.v1":{"count":1,"amount":50,"oldestAgeMin":3},"client-practice-rune-operation.v1":{"count":1,"amount":3,"oldestAgeMin":0}},"dropToZero":false,"caller":"at ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:183380:24) <- at next (native) <- at asyncGeneratorStep (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98795:19)"}
+10-15 23:07:00.090 I/ReactNativeJS( 1004): [INFO] practice_runes:local_commit_succeeded: {"operationId":"practice_rune:lesson_lesson1_runes_en_2","amount":3,"visibleBalance":62}
+10-15 23:07:00.093 I/ReactNativeJS( 1004): [INFO] practice_runes:grant_attempt: {"operationId":"practice_rune:lesson_lesson1_runes_en_2","attempt":1}
+10-15 23:07:00.812 I/ReactNativeJS( 1004): '[GUEST-SIGNIN-INVITE]', '{"lessonsDone":1,"shownBefore":true,"decision":"skip_shown_before"}'
+10-15 23:07:01.648 I/ReactNativeJS( 1004): [STREAK] progress_event:mirror local=1@2026-10-15 server=1@2026-10-15 -> 1@2026-10-15
+10-15 23:07:01.957 I/ReactNativeJS( 1004): '[MEM-TICK]', '{"tSec":500,"route":"/lesson_complete","heapMb":104,"gc":"11gc/100ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":24,"timeoutsByCaller":{"_loop <- anonymous":8,"anonymous <- react-stack-bottom-frame":5,"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":4,"tick <- apply (native)":1,"acquireAudioActivity <- anonymous":1},"pendingTimeouts":7,"firestoreReads":{},"firestoreReadsByCaller":{"query|query|apply (native) <- anonymous":{"pending":3},"remote_config|doc|?anon_0_ <- next (native)":{"pending":1},"config|doc|?anon_0_ <- next (native)":{"pending":1}}}'
+10-15 23:07:03.088 I/ReactNativeJS( 1004): [ERROR-JOURNAL-THROTTLE] upload target=en ушло=6 полная подтверждено=6
+10-15 23:07:03.094 W/ReactNativeJS( 1004): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"es","kept":0,"dropped":6,"foreignByTarget":{"en":6}}'
+10-15 23:07:03.125 I/ReactNativeJS( 1004): [ERROR-JOURNAL-THROTTLE] upload target=es ушло=0 полная подтверждено=0
+10-15 23:07:03.139 W/ReactNativeJS( 1004): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"fr","kept":0,"dropped":6,"foreignByTarget":{"en":6}}'
+10-15 23:07:03.154 I/ReactNativeJS( 1004): [ERROR-JOURNAL-THROTTLE] upload target=fr ушло=0 полная подтверждено=0
+10-15 23:07:03.158 W/ReactNativeJS( 1004): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"de","kept":0,"dropped":6,"foreignByTarget":{"en":6}}'
+10-15 23:07:03.211 I/ReactNativeJS( 1004): [ERROR-JOURNAL-THROTTLE] upload target=de ушло=0 полная подтверждено=0
+10-15 23:07:03.218 W/ReactNativeJS( 1004): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"it","kept":0,"dropped":6,"foreignByTarget":{"en":6}}'
+10-15 23:07:03.236 I/ReactNativeJS( 1004): [ERROR-JOURNAL-THROTTLE] upload target=it ушло=0 полная подтверждено=0
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards phase=sync
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v1 phase=sync
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcard_pack_trial_gift_v1 phase=sync
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=custom_flashcards_v2 phase=sync
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_progress_v1 phase=sync
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_owned_packs_v1 phase=sync
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=community_owned_pack_ids_v1 phase=sync
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=community_owned_pack_tombstones_v1 phase=sync
+10-15 23:07:03.291 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::flashcards_v1 phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::custom_flashcards_v2 phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::community_owned_pack_ids_v1 phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::community_owned_pack_tombstones_v1 phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::flashcards_owned_packs_v1 phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::flashcards_progress_v1 phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::flashcard_pack_trial_gift_v1 phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::achievement_flashcards_saved_count phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::achievement_flashcards_flip_count phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::achievement_flashcards_view_streak_v1 phase=sync
+10-15 23:07:03.292 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::achievement_flashcards_source_set_v1 phase=sync
+10-15 23:07:03.293 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::flashcards_swipe_session_draft_v1 phase=sync
+10-15 23:07:03.293 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::fr::flashcards_swipe_memory_v1 phase=sync
+10-15 23:07:03.293 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::flashcards_v1 phase=sync
+10-15 23:07:03.293 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::custom_flashcards_v2 phase=sync
+10-15 23:07:03.293 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::community_owned_pack_ids_v1 phase=sync
+10-15 23:07:03.294 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::community_owned_pack_tombstones_v1 phase=sync
+10-15 23:07:03.295 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::flashcards_owned_packs_v1 phase=sync
+10-15 23:07:03.295 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::flashcards_progress_v1 phase=sync
+10-15 23:07:03.295 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::flashcard_pack_trial_gift_v1 phase=sync
+10-15 23:07:03.295 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::achievement_flashcards_saved_count phase=sync
+10-15 23:07:03.295 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::achievement_flashcards_flip_count phase=sync
+10-15 23:07:03.296 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::achievement_flashcards_view_streak_v1 phase=sync
+10-15 23:07:03.296 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::achievement_flashcards_source_set_v1 phase=sync
+10-15 23:07:03.296 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::flashcards_swipe_session_draft_v1 phase=sync
+10-15 23:07:03.296 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::es::flashcards_swipe_memory_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::flashcards_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::custom_flashcards_v2 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::community_owned_pack_ids_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::community_owned_pack_tombstones_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::flashcards_owned_packs_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::flashcards_progress_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::flashcard_pack_trial_gift_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::achievement_flashcards_saved_count phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::achievement_flashcards_flip_count phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::achievement_flashcards_view_streak_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::achievement_flashcards_source_set_v1 phase=sync
+10-15 23:07:03.297 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::flashcards_swipe_session_draft_v1 phase=sync
+10-15 23:07:03.298 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::de::flashcards_swipe_memory_v1 phase=sync
+10-15 23:07:03.298 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::flashcards_v1 phase=sync
+10-15 23:07:03.299 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::custom_flashcards_v2 phase=sync
+10-15 23:07:03.299 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::community_owned_pack_ids_v1 phase=sync
+10-15 23:07:03.299 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::community_owned_pack_tombstones_v1 phase=sync
+10-15 23:07:03.299 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::flashcards_owned_packs_v1 phase=sync
+10-15 23:07:03.299 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::flashcards_progress_v1 phase=sync
+10-15 23:07:03.300 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::flashcard_pack_trial_gift_v1 phase=sync
+10-15 23:07:03.300 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::achievement_flashcards_saved_count phase=sync
+10-15 23:07:03.300 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::achievement_flashcards_flip_count phase=sync
+10-15 23:07:03.300 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::achievement_flashcards_view_streak_v1 phase=sync
+10-15 23:07:03.300 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::achievement_flashcards_source_set_v1 phase=sync
+10-15 23:07:03.300 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::flashcards_swipe_session_draft_v1 phase=sync
+10-15 23:07:03.300 I/ReactNativeJS( 1004): [SYNC-SKIP] dev_fixture key=flashcards_v2::it::flashcards_swipe_memory_v1 phase=sync
+10-15 23:07:04.936 I/ReactNativeJS( 1004): [MOMENT-m10] конец цепочки: доиграла
+10-15 23:07:04.970 I/ReactNativeJS( 1004): '[LESSON-RESULT] slot_release', '{"lessonId":1,"chain":true,"perfect":false}'
+10-15 23:07:05.079 I/ReactNativeJS( 1004): '[OVERLAY-ARB] handoff', '{"from":"lessonResultsSequence","to":null,"fromNative":false,"toNative":false,"delayMs":0}'
+10-15 23:07:05.081 I/ReactNativeJS( 1004): '[OVERLAY-ARBITER] state', '{"active":"lessonResultsSequence","waiting":[]}'
+10-15 23:07:05.295 I/ReactNativeJS( 1004): '[OVERLAY-QUEUE]', '{"holder":"никто","asking":[],"waiting":[],"wants":{"update":false,"authRecovery":false,"releaseNotes":null,"broadcast":null,"appMessageModal":null,"personalAdminMessage":null,"notifNudge":false},"onboarding":false}'
+10-15 23:07:05.297 I/ReactNativeJS( 1004): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто
+10-15 23:07:05.748 I/ReactNativeJS( 1004): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=[])
+10-15 23:07:05.765 I/ReactNativeJS( 1004): [INFO] practice_runes:grant_ack: {"operationId":"practice_rune:lesson_lesson1_runes_en_2","attempt":1,"replayed":false,"serverBalance":12,"visibleBalance":62}
+10-15 23:07:05.768 I/ReactNativeJS( 1004): [INFO] practice_runes:settle_server_result: {"activity":"lesson","sessionKey":"lesson1_runes_en","effectiveOrdinal":2,"locallyCommitted":true,"settled":true}
+10-15 23:07:05.804 I/ReactNativeJS( 1004): [INFO] practice_runes:local_counter_settled: {"activity":"lesson","sessionKey":"lesson1_runes_en","effectiveOrdinal":2,"locallyCommitted":true,"serverSettled":true,"displayedRunes":3}
+10-15 23:07:06.978 I/ReactNativeJS( 1004): '[MEM-TICK]', '{"tSec":505,"route":"/lesson_complete","heapMb":108,"gc":"8gc/231ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":3,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":2,"tick <- apply (native)":1},"pendingTimeouts":1,"firestoreReads":{},"firestoreReadsByCaller":{"query|query|apply (native) <- anonymous":{"pending":3},"remote_config|doc|?anon_0_ <- next (native)":{"pending":1},"config|doc|?anon_0_ <- next (native)":{"pending":1}}}'
+10-15 23:07:07.345 I/ReactNativeJS( 1004): [STREAK] progress_event:mirror local=1@2026-10-15 server=1@2026-10-15 -> 1@2026-10-15
+10-15 23:07:12.001 I/ReactNativeJS( 1004): '[MEM-TICK]', '{"tSec":510,"route":"/lesson_complete","heapMb":108,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"query|query|apply (native) <- anonymous":{"pending":3},"remote_config|doc|?anon_0_ <- next (native)":{"pending":1},"config|doc|?anon_0_ <- next (native)":{"pending":1}}}'
+10-15 23:07:17.029 I/ReactNativeJS( 1004): '[MEM-TICK]', '{"tSec":515,"route":"/lesson_complete","heapMb":108,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"query|query|apply (native) <- anonymous":{"pending":3},"remote_config|doc|?anon_0_ <- next (native)":{"pending":1},"config|doc|?anon_0_ <- next (native)":{"pending":1}}}'

@@ -1,0 +1,27 @@
+10-15 23:03:37.399 I/ReactNativeJS( 1004): '[LESSON-RESULT] back_during_completion', '{"lessonId":1,"from":"next"}'
+10-15 23:03:37.767 I/ReactNativeJS( 1004): [STREAK-RESULT] before:snapshot {days=1 counted=true day=2026-10-15} задачиДня=2026-10-15
+10-15 23:03:37.841 I/ReactNativeJS( 1004): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"итог ещё не посчитан"}'
+10-15 23:03:37.847 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +75мс lesson=1: results=false access=false xp=false → ждём «Сохраняю результат…»
+10-15 23:03:37.941 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"source":"progress","firstTryMistakes":0,"firstTryCorrect":3,"finalCorrect":3,"runErrors":0}
+10-15 23:03:38.302 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: ветка=ПРОГРЕСС_НАЙДЕН lesson=1 target=en ответов=3 верно=3 ошибок=0 из 3 score=5 → tier none→gold новыйРекорд=true проходов=1
+10-15 23:03:38.341 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: scan: lesson=1 ключей=32 multiGet=10мс разбор=0мс засчитано=0 идеальных=0 wasPerfect=false битых=0
+10-15 23:03:38.341 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"wasPerfect":false,"wasPerfectSource":"scanLessonProgress:legacy45","lessonCount":0,"perfectCount":0}
+10-15 23:03:38.349 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: grantBonus: этапы lesson=1 первый бонус=403мс, сводка прохождения=13мс
+10-15 23:03:38.352 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: grantBonus: готово lesson=1 всего=427мс (бонус+сводка+отзыв), wasPerfect=false eligibleReview=false
+10-15 23:03:38.368 I/ReactNativeJS( 1004): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"монеты урока ещё считаются"}'
+10-15 23:03:38.477 I/ReactNativeJS( 1004): '[MOMENT-m09] decision', '{"lessonId":1,"show":true,"reason":"идеал: верно=3 ошибок=0"}'
+10-15 23:03:38.478 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +710мс lesson=1: results=true access=true xp=false → ждём «Сохраняю результат…»
+10-15 23:03:38.590 I/ReactNativeJS( 1004): [STREAK-RESULT] live:init из памяти стора {days=1 counted=true day=2026-10-15}
+10-15 23:03:38.701 I/ReactNativeJS( 1004): [STREAK-RESULT] live:subscribed +112мс было={days=1 counted=true day=2026-10-15} стало={days=1 counted=true day=2026-10-15} пропущенаЗапись=false
+10-15 23:03:38.704 I/ReactNativeJS( 1004): [STREAK-RESULT] row до={days=1 counted=true day=2026-10-15} после={days=1 counted=true day=2026-10-15} источник=живой стор → 1→1 засчитан=true (день уже был засчитан раньше (до=true))
+10-15 23:03:38.705 I/ReactNativeJS( 1004): [MOMENT-m10] старт: reducedMotion=false серия={день уже был засчитан раньше (до=true)} сегодня={задачу продвинул этот урок: 0/1 → 1/1}
+10-15 23:03:38.709 I/ReactNativeJS( 1004): [MOMENT-m10] решение lesson=1: играем — цепочка: звёзды=3 верно=3 ошибок=0
+10-15 23:03:38.713 I/ReactNativeJS( 1004): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":true,"milestonePending":true}'
+10-15 23:03:38.714 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT-SAVE]: gates +946мс lesson=1: results=true access=true xp=true → экран итога открыт
+10-15 23:03:38.716 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: показ итога lesson=1 комбо=false: звёзды=3 (по проценту: score=5; медаль=gold) | верно/ошибок=3/0 | монеты=+9 (hydrating=false) | заметкаPlus=false | списокОшибо
+10-15 23:03:38.717 I/ReactNativeJS( 1004): [INFO] [LESSON-RESULT]: {"lessonId":1,"summary":"entry","firstTryCorrect":3,"mistakes":0,"total":3,"perfectShown":true,"coins":{"runes":9,"baseRunes":9,"awardPerItem":3,"creditedItems":3,"hydrating":false}}
+10-15 23:03:40.591 I/ReactNativeJS( 1004): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":true,"milestonePending":false}'
+10-15 23:03:43.882 I/ReactNativeJS( 1004): [MOMENT-m10] конец цепочки: доиграла
+10-15 23:03:43.924 I/ReactNativeJS( 1004): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":false,"perfectPending":true,"milestonePending":false}'
+10-15 23:03:44.002 I/ReactNativeJS( 1004): [LESSON-PERFECT] показ: 3 из 3, монеты=9 reduceMotion=false
+10-15 23:03:44.009 I/ReactNativeJS( 1004): [LESSON-PERFECT] показ key=1:en:mva31eqk_mz9cannl заданий=3 монет=9 ранг=0

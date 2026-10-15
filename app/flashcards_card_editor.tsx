@@ -419,7 +419,15 @@ export default function FlashcardsCardEditorScreen() {
       })
       .catch((e: unknown) => {
         DebugLogger.error('flashcards_card_editor:load_card', e instanceof Error ? e : new Error(String(e)), 'warning');
-        if (!cancelled) setLoadingCard(false);
+        if (cancelled) return;
+        // зачем (аудит Optimistic UI, координатор 15.10, потеря данных пользователя, дыры 1-3): раньше сбой загрузки оставлял ПУСТУЮ форму, и «Сохранить» создавал новую карточку вместо правки старой (дубль и потерянная правка). Теперь форма не показывается, человек видит причину.
+        console.warn('[CARD-EDITOR] load failed -> form blocked', { editId, studyTarget, reason: e instanceof Error ? e.message : String(e) }); // guard-ok: catch называет причину
+        setNotFound(true);
+        setLoadingCard(false);
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось открыть карточку.', uk: 'Не вдалося відкрити картку.', en: 'Couldn’t open the card.', es: 'No se pudo abrir la tarjeta.',
+          'pt-BR': 'Não foi possível abrir o cartão.', vi: 'Không thể mở thẻ.', id: 'Kartu tidak dapat dibuka.', tr: 'Kart açılamadı.', pl: 'Nie udało się otworzyć karty.',
+        }));
       });
     return () => { cancelled = true; };
   }, [isEdit, editId, lang, studyTarget]);
@@ -461,7 +469,7 @@ export default function FlashcardsCardEditorScreen() {
     (isEdit && prefillTrRef.current.trim().length === 0 && hasOtherLangTranslation);
   // creatorLocked в условии — вторая линия защиты: даже если редирект на пейвол
   // почему-то не сработал, создать карточку без подписки нельзя.
-  const canSave = enOk && trOk && !saving && !loadingCard && !creatorGated;
+  const canSave = enOk && trOk && !saving && !loadingCard && !(isEdit && !existing) && !creatorGated;
 
   // ── Сохранение (языковой инвариант — В ТОЧНОСТИ как handleSave) ────────────
   const handleSave = useCallback(async () => {
@@ -471,6 +479,11 @@ export default function FlashcardsCardEditorScreen() {
     // зачем (координатор 12.10, аудит Optimistic UI R1): состояние `saving` ставится после рендера — второй тап в том же кадре создавал дубль карточки; замок — ref.
     if (saveLockRef.current) {
       console.log('[OPT-UI] card_editor save ignored: запись ещё идёт'); // guard-ok: ранний выход называет причину
+      return;
+    }
+    // зачем (аудит Optimistic UI, координатор 15.10, потеря данных пользователя, дыры 1-3): вторая линия защиты: правка без загруженной карточки сохранялась бы как НОВАЯ
+    if (isEdit && !existing) {
+      console.warn('[CARD-EDITOR] save blocked: isEdit && !existing', { editId }); // guard-ok: ранний выход называет причину
       return;
     }
     if (!draftEN.trim() || saving || loadingCard || creatorGated) return;

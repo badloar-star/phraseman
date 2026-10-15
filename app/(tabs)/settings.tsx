@@ -198,6 +198,17 @@ export default function SettingsMain() {
   }, []);
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
+  // зачем (аудит Optimistic UI, координатор 15.10, потеря данных пользователя, дыры 1-3): (4) два быстрых тапа по «Ввести промокод» / «Пригласить друга» открывали экран дважды (стек из двух одинаковых)
+  const settingsPushLockUntilRef = React.useRef(0);
+  const claimSettingsPush = (target: string): boolean => {
+    const now = Date.now();
+    if (now < settingsPushLockUntilRef.current) {
+      console.log(`[OPT-UI] settings_push ignored reason=double_tap target=${target}`); // guard-ok: ранний выход пишет причину
+      return false;
+    }
+    settingsPushLockUntilRef.current = now + 800;
+    return true;
+  };
   // зачем (координатор 11.10, «сперва логи»): phraseman://settings вешал приложение (addViewAt «already has a parent»,
   // белый экран). Монтирование/размонтирование экрана рядом со строками [DEEPLINK-SETTINGS] из _layout показывает,
   // не смонтировались ли две копии настроек одновременно.
@@ -1230,6 +1241,7 @@ export default function SettingsMain() {
             icon="pricetag-outline"
             title={L('Ввести промокод', 'Ввести промокод', 'Enter code', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
             onPress={() => {
+              if (!claimSettingsPush('promo_code_entry')) return;
               router.push({ pathname: '/promo_code_entry', params: { source: 'settings' } } as any);
             }}
           />
@@ -1242,6 +1254,7 @@ export default function SettingsMain() {
               icon="gift-outline"
               title={L('Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Ajak teman', 'Arkadaş davet et', 'Zaproś znajomego')}
               onPress={() => {
+                if (!claimSettingsPush('referrals')) return;
                 router.push({ pathname: '/referrals', params: { source: 'settings' } } as any);
               }}
             />

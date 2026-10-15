@@ -268,11 +268,14 @@ export async function publishLocalAuthorPack(
 }
 
 /** Withdraw public visibility before deleting/changing the private local copy. */
-export async function withdrawLocalAuthorPack(packId: string): Promise<void> {
+// зачем (аудит Optimistic UI, координатор 15.10, потеря данных пользователя, дыры 1-3): редактор набора теперь снимает публикацию ПОСЛЕ успешного сохранения; сохранение переводит publicationState в 'private', поэтому прежнее состояние
+// (заявка pending/submitted без cloudPackId) передаётся подсказкой `before` — иначе серверная заявка осталась бы висеть.
+export async function withdrawLocalAuthorPack(packId: string, before?: Readonly<{ publicationState?: string }>): Promise<void> {
   const token = captureAccountGeneration();
   const local = (await loadLocalAuthorPacks()).find(pack => pack.id === packId);
   if (!local) throw new Error('Local pack not found');
-  if (local.cloudPackId || local.publicationState === 'pending' || local.publicationState === 'submitted') {
+  if (local.cloudPackId || local.publicationState === 'pending' || local.publicationState === 'submitted'
+    || before?.publicationState === 'pending' || before?.publicationState === 'submitted') {
     const authorStableId = await getCanonicalUserId();
     if (!authorStableId || !isCommunityPacksCloudEnabled()) throw new Error('Connection required to withdraw a public pack');
     try {

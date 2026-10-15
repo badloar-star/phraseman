@@ -88,7 +88,8 @@ import { buildSourceLabel } from './flashcards/source_labels';
 import {
 } from './flashcards/marketplace';
 import { consumeSavedCardSetStage } from './community_packs/savedCardSetStaging';
-import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { noteSwallowedAs } from './swallow_log';
+import { PACK_ROW_DELETE_LOCK_MS, rowsWithout } from './community_packs/pack_rows_remove'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Row = {
   id: string;
@@ -659,11 +660,23 @@ export default function CommunityPackCreateScreen() {
     lang,
   ]);
 
-  const removeRow = useCallback((idx: number) => {
+  // зачем (аудит Optimistic UI, координатор 15.10, потеря данных пользователя, дыры 1-3): двойной тап «Удалить» удалял ещё и соседнюю карточку (индекс сдвигался, шторка закрывается ~440 мс): замок по времени + сверка удаляемой строки по ссылке
+  const rowDeleteLockUntilRef = useRef(0);
+  const removeRow = useCallback((idx: number, expected?: Row) => {
+    const now = Date.now();
+    if (now < rowDeleteLockUntilRef.current) {
+      console.log(`[OPT-UI] pack_row_delete ignored reason=double_tap idx=${idx} leftMs=${rowDeleteLockUntilRef.current - now}`); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    rowDeleteLockUntilRef.current = now + PACK_ROW_DELETE_LOCK_MS;
     setRows((r) => {
       if (r.length <= 0) return r;
-      const next = r.filter((_, i) => i !== idx);
-      return next.map((row, i) => ({ ...row, id: `c${i + 1}` }));
+      const without = rowsWithout(r, idx, expected);
+      if (!without) {
+        console.log(`[OPT-UI] pack_row_delete ignored reason=stale_row idx=${idx} rows=${r.length}`); // guard-ok: ранний выход пишет причину
+        return r;
+      }
+      return without.map((row, i) => ({ ...row, id: `c${i + 1}` }));
     });
   }, []);
 
@@ -900,7 +913,7 @@ export default function CommunityPackCreateScreen() {
         const cloudEdit = isEditMode && !isLocalAuthorPackId(editPackId);
         const localId = savedPackIdRef.current ?? (isEditMode ? (cloudEdit ? `local_pack_${editPackId}` : editPackId) : undefined);
         const previous = localId ? (await loadLocalAuthorPacks()).find(pack => pack.id === localId) : undefined;
-        if (!payload.publishToCommunity && previous) await withdrawLocalAuthorPack(previous.id);
+        // зачем (аудит Optimistic UI, координатор 15.10, потеря данных пользователя, дыры 1-3): снятие публикации стояло ДО сохранения: сбой сохранения оставлял набор уже снятым с публикации (а сбой снятия обрывал сохранение — правки терялись). Теперь сначала сохраняем.
         // Persist the author's latest version even while the public version is awaiting review.
         const savedId = await saveLocalAuthorPack(payload, {
           packId: localId,
@@ -910,6 +923,22 @@ export default function CommunityPackCreateScreen() {
           isPremium: hasPremiumAccess,
         });
         savedPackIdRef.current = savedId;
+        if (!payload.publishToCommunity && previous) {
+          try {
+            await withdrawLocalAuthorPack(savedId, previous);
+          } catch (withdrawError: unknown) {
+            // набор уже сохранён; не снялась только публикация — говорим прямо, форма остаётся, повторное «Сохранить» повторит снятие
+            console.warn('[PACK-CREATE] save ok, withdraw failed', { packId: savedId, reason: withdrawError instanceof Error ? withdrawError.message : String(withdrawError) }); // guard-ok: catch называет причину
+            emitAppEvent('action_toast', actionToastTri('info', {
+              ru: 'Набор сохранён. Снять с публикации не получилось — попробуй ещё раз.',
+              uk: 'Набір збережено. Зняти з публікації не вийшло — спробуй ще раз.',
+              en: 'Pack saved. Couldn’t unpublish it — try again.',
+              es: 'Pack guardado. No se pudo retirar la publicación: inténtalo de nuevo.',
+              'pt-BR': 'Pacote salvo. Não deu para despublicar — tente de novo.', vi: 'Đã lưu bộ thẻ. Chưa hủy công khai được — thử lại nhé.', id: 'Paket tersimpan. Publikasi belum bisa dicabut — coba lagi.', tr: 'Paket kaydedildi. Yayından kaldırılamadı — tekrar dene.', pl: 'Zestaw zapisany. Nie udało się wycofać publikacji — spróbuj jeszcze raz.',
+            }));
+            return;
+          }
+        }
         if (!payload.publishToCommunity && cloudEdit && !previous) await withdrawLocalAuthorPack(savedId);
         if (!isEditMode) await clearCommunityPackCreateDraft(studyTarget, lang, packLanguage);
         const publishResult = payload.publishToCommunity
@@ -1446,7 +1475,7 @@ export default function CommunityPackCreateScreen() {
                 onPress={() => {
                   const idx = rowMenuIdx;
                   requestDismiss();
-                  if (idx != null) removeRow(idx);
+                  if (idx != null) removeRow(idx, menuRow);
                 }}
               />
             </View>

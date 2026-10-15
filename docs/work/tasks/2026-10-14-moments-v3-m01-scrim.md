@@ -61,6 +61,9 @@ Governance-ID: TG-8A9FEDFFF843
 Governance-ID: TG-B9BAF728AF90
 Governance-ID: TG-FBAB6BE4D234
 Governance-ID: TG-FF96881B2436
+Governance-ID: TG-3239B1D78478
+Governance-ID: TG-317696962D02
+Governance-ID: TG-DCC62027DA49
 
 ## Outcome
 Владелец 14.10 (через координатора), образцы engagement-moments-v3-all.html и части v3-a/b/c:

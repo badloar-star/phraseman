@@ -968,8 +968,14 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     const data: Record<string, unknown> = { type, ...(request.notif === 'premium_expiry_vip' ? { kind: 'vip' } : {}), ...(type === 'youtube_premiere' ? { videoId: 'dev', channelId: 'dev' } : {}) };
     await step('notif', request.notif, async () => {
       const { simulateNotificationTapForDev } = await import('./notification_tap_handler');
-      // зачем: после перехода по next — иначе переход ссылки перекрыл бы экран, открытый тапом
-      setTimeout(() => { simulateNotificationTapForDev(data); }, 1200);
+      // зачем (Сверка Б16 15.10): таймер 1200 мс от шага срабатывал ДО router.replace(next) (переход ждёт перечитывание энергии),
+      // и replace закрывал уже открытый пейвол/страницу — на снимке оставалась Главная. Теперь тап имитируется после перехода.
+      queueAfterDevStateRoute(`notif=${request.notif}`, () => {
+        setTimeout(() => {
+          const ok = simulateNotificationTapForDev(data);
+          console.warn('[PUSH-TAP-DEV] after_route simulate', JSON.stringify({ notif: request.notif, ok })); // guard-ok: dev-трассировка
+        }, 600);
+      });
       return true;
     });
   }

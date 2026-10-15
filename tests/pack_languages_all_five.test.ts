@@ -46,9 +46,9 @@ describe('фильтр языка наборов', () => {
 describe('журнал [PACK-LANG]', () => {
   it('показывает выбранный язык, сырые поля набора, источник и что убрано', () => {
     const lines = formatPackLangTrace('каталог', 'fr', [pack('fr1', { packLanguage: 'fr' }), pack('it1', { packLanguage: 'it', videoId: 'v' }), pack('old')]);
-    expect(lines[0]).toContain('[PACK-LANG] каталог выбран=fr всего=3 оставлено=1 отфильтровано=2');
-    expect(lines.join('\n')).toContain('убран id=it1');
-    expect(lines.join('\n')).toContain('вид=video packLanguage=it studyTarget=undefined источник=packLanguage язык=it');
+    expect(lines[0]).toContain('[PACK-LANG] каталог selected=fr total=3 kept=1 filtered=2');
+    expect(lines.join('\n')).toContain('DROPPED id=it1');
+    expect(lines.join('\n')).toContain('kind=video packLanguage=it studyTarget=undefined source=packLanguage language=it');
     expect(packLangRow(pack('old'), 'fr').source).toBe('default_en');
     expect(packLangRow(pack('t', { studyTarget: 'de' }), 'de').source).toBe('studyTarget');
   });

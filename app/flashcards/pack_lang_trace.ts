@@ -47,7 +47,7 @@ export function formatPackLangTrace(scope: string, selected: PackLanguage, packs
   const rows = packs.map((pack) => packLangRow(pack, selected));
   const kept = rows.filter((row) => row.kept).length;
   const byLanguage = rows.reduce<Record<string, number>>((acc, row) => ({ ...acc, [row.language]: (acc[row.language] ?? 0) + 1 }), {});
-  const head = `${PACK_LANG_TAG} ${scope} выбран=${selected} всего=${rows.length} оставлено=${kept} отфильтровано=${rows.length - kept} поЯзыкам=${JSON.stringify(byLanguage)}`;
-  const lines = rows.slice(0, limit).map((row) => `${PACK_LANG_TAG} ${scope} ${row.kept ? 'ОСТАВЛЕН' : 'убран'} id=${row.id} имя=${row.name} вид=${row.kind} packLanguage=${row.rawPackLanguage} studyTarget=${row.rawStudyTarget} источник=${row.source} язык=${row.language}`);
+  const head = `${PACK_LANG_TAG} ${scope} selected=${selected} total=${rows.length} kept=${kept} filtered=${rows.length - kept} byLanguage=${JSON.stringify(byLanguage)}`;
+  const lines = rows.slice(0, limit).map((row) => `${PACK_LANG_TAG} ${scope} ${row.kept ? 'KEPT' : 'DROPPED'} id=${row.id} name=${row.name} kind=${row.kind} packLanguage=${row.rawPackLanguage} studyTarget=${row.rawStudyTarget} source=${row.source} language=${row.language}`);
   return [head, ...lines];
 }

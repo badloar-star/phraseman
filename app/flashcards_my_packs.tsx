@@ -55,7 +55,7 @@ import { safeRouterBack } from './navigation_back';
 import { useLoadGate } from './use_load_gate';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
-import { loadCommunityOwnedPackIdsResult, loadCommunityOwnedPackTitles } from './community_packs/communityOwnedStorage';
+import { loadCommunityOwnedPackIds, loadCommunityOwnedPackIdsResult, loadCommunityOwnedPackTitles } from './community_packs/communityOwnedStorage';
 import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdateResult } from './community_packs/communityFirestore';
 import { setPendingTrainIntent } from './flashcards/train_intent';
 import { buildOwnedVideoPackMeta, videoIdFromOwnedCommunityId } from './flashcards/my_packs_video_meta';
@@ -76,9 +76,10 @@ import { packTileArtRevision } from './flashcards/packMarketplaceIcons';
 import { stageOwnedPackCardsForNavigation } from './flashcards/useCollectionData';
 import { getCanonicalUserId } from './user_id_policy';
 import { type RuntimeStudyTarget } from './target_storage_keys';
-import { defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
+import { defaultPackLanguageForStudyTarget, normalizePackLanguage, PACK_LANGUAGES, type PackLanguage } from './flashcards/pack_languages';
 import { publishMyPacksCount } from './flashcards/myPacksCountCache';
 import { setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
+import { useEffectiveStudyTarget } from './section_language';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -236,7 +237,28 @@ export default function FlashcardsMyPacksScreen() {
   const { theme: t, liquidGlassThemeId, statusBarLight } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
-  const { studyTarget } = useStudyTarget();
+  const { studyTarget: globalStudyTarget } = useStudyTarget();
+  // зачем (Ревизор Макетов 15.10): «Мои наборы» читают наборы языка РАЗДЕЛА «Карточки» (локальный выбор), иначе язык из Настроек
+  const studyTarget = useEffectiveStudyTarget(globalStudyTarget);
+  // Наборы на других языках изучения (локальные чтения id — без сети): честная строка вместо молчаливого «Наборов нет»
+  const [otherLanguages, setOtherLanguages] = useState<ReadonlyArray<{ code: string; count: number }>>([]);
+  React.useEffect(() => {
+    let alive = true;
+    void (async () => {
+      const found: Array<{ code: string; count: number }> = [];
+      for (const code of PACK_LANGUAGES) {
+        if (code === studyTarget) continue;
+        const ids = await loadCommunityOwnedPackIds(code).catch((error: unknown) => {
+          console.warn(`[MY-PACKS] other_languages read FAILED code=${code} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+          return [] as string[];
+        });
+        if (ids.length > 0) found.push({ code, count: ids.length });
+      }
+      console.log(`[MY-PACKS] other_languages current=${String(studyTarget)} found=${JSON.stringify(found)}`); // guard-ok: что нашли на других языках
+      if (alive) setOtherLanguages(found);
+    })();
+    return () => { alive = false; };
+  }, [studyTarget]);
   // Первый кадр — из прогретых кэшей, без ожидания диска и сети (см. peekMyPacksGroups).
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => defaultPackLanguageForStudyTarget(studyTarget));
   React.useEffect(() => subscribePackLanguage(setPackLanguage), []);
@@ -903,6 +925,8 @@ export default function FlashcardsMyPacksScreen() {
           packLanguage={packLanguage}
           onPackLanguageChange={handlePackLanguageChange}
           hiddenByLanguage={languageView.hidden}
+          otherLanguages={otherLanguages}
+          onSwitchSectionLanguage={(code) => { void hapticTap(); console.log(`[MY-PACKS] switch_section_language to=${code} (язык раздела, не глобальный)`); handlePackLanguageChange(code as PackLanguage); }} // guard-ok: тап «Показать»
           onShowAllLanguages={() => { void hapticTap(); console.log(`[MY-PACKS] show_all_languages tap hidden=${languageView.hidden}`); setShowAllLanguages(true); }} // guard-ok: тап «Показать все»
           onBack={leave}
           onCreate={() => {

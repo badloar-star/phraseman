@@ -62,3 +62,14 @@ describe('экран «Мои наборы» — подключение', () => 
     expect(read('app/community_packs/communityPackActions.ts')).toContain('[PACK-ADD] language pack=');
   });
 });
+
+describe('наборы на других языках (Ревизор Макетов 15.10)', () => {
+  it('«Мои наборы» читают язык раздела и показывают строку про наборы на других языках с переключением языка раздела', () => {
+    const { readFileSync } = require('fs') as typeof import('fs');
+    const screen = readFileSync('app/flashcards_my_packs.tsx', 'utf8').split('\r\n').join('\n');
+    expect(screen).toContain('const studyTarget = useEffectiveStudyTarget(globalStudyTarget);');
+    expect(screen).toContain('[MY-PACKS] other_languages');
+    expect(screen).toContain('switch_section_language');
+    expect(readFileSync('app/flashcards/MyPacksV2.tsx', 'utf8')).toContain('fc-my-packs-other-languages');
+  });
+});

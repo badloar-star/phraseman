@@ -49,6 +49,9 @@ type Props = Readonly<{
   /** Сколько наборов скрыто выбранным языком (0 — ничего не скрыто) и тап «Показать все». */
   hiddenByLanguage?: number;
   onShowAllLanguages?: () => void;
+  /** Наборы, добавленные на ДРУГИХ языках изучения (Ревизор Макетов 15.10: es-набор при en не виден и без намёка). Тап — язык раздела (не глобальный). */
+  otherLanguages?: ReadonlyArray<{ code: string; count: number }>;
+  onSwitchSectionLanguage?: (code: string) => void;
   onBack: () => void;
   onCreate: () => void;
   onOpen: (pack: FlashcardMarketPack) => void;
@@ -79,7 +82,7 @@ function MyPacksV2Inner(props: Props) {
   const g = useLv2Glass();
   // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
   const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
-  const { lang, created, added, totalCount, status, labelFor, openingPackId, query, onQueryChange, sort, onSortChange, packLanguage, onPackLanguageChange, hiddenByLanguage = 0, onShowAllLanguages, onBack, onCreate, onOpen, onTrain, onEdit, onPublish, onDelete, onRetry } = props;
+  const { lang, created, added, totalCount, status, labelFor, openingPackId, query, onQueryChange, sort, onSortChange, packLanguage, onPackLanguageChange, hiddenByLanguage = 0, onShowAllLanguages, otherLanguages = [], onSwitchSectionLanguage, onBack, onCreate, onOpen, onTrain, onEdit, onPublish, onDelete, onRetry } = props;
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -194,6 +197,27 @@ function MyPacksV2Inner(props: Props) {
           </View>
         ) : null}
 
+        {(status === 'list' || status === 'empty') && otherLanguages.length > 0 && onSwitchSectionLanguage ? (
+          // зачем (Ревизор Макетов 15.10): при языке en набор на es не показывался и «Наборов нет» не объясняло почему — честная строка и переключение ЯЗЫКА РАЗДЕЛА (не глобального)
+          <Pressable testID="fc-my-packs-other-languages" accessibilityRole="button" onPress={() => onSwitchSectionLanguage(otherLanguages[0].code)} style={({ pressed }) => [styles.hiddenRow, pressed && styles.pressed]}>
+            <Text style={[styles.hiddenText, { color: g.secondary }]}>
+              {triLang(lang, {
+                ru: `Есть наборы на других языках: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+                uk: `Є набори іншими мовами: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+                en: `Packs in other languages: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+                es: `Hay packs en otros idiomas: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+                'pt-BR': `Há pacotes em outros idiomas: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+                vi: `Có bộ thẻ ở ngôn ngữ khác: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+                id: `Ada paket di bahasa lain: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+                tr: `Başka dillerde paketler var: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+                pl: `Są zestawy w innych językach: ${otherLanguages.map((item) => `${item.code.toUpperCase()} ${item.count}`).join(', ')}`,
+              })}
+            </Text>
+            <Text style={[styles.hiddenAction, { color: g.text }]}>
+              {triLang(lang, { ru: 'Показать', uk: 'Показати', en: 'Show', es: 'Mostrar', 'pt-BR': 'Mostrar', vi: 'Hiện', id: 'Tampilkan', tr: 'Göster', pl: 'Pokaż' })}
+            </Text>
+          </Pressable>
+        ) : null}
         {status === 'list' && hiddenByLanguage > 0 && onShowAllLanguages ? (
           // зачем (координатор 15.10, R27): набор другого языка не пропадает молча — над списком честная строка со счётчиком и кнопкой «Показать все»
           <Pressable testID="fc-my-packs-hidden-language" accessibilityRole="button" onPress={onShowAllLanguages} style={({ pressed }) => [styles.hiddenRow, pressed && styles.pressed]}>

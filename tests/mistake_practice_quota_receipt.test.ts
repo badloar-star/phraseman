@@ -7,6 +7,7 @@ jest.mock('../app/revenue_daily_quota', () => ({
 
 import {
   __resetMistakeQuotaReceiptForTests,
+  claimMistakeQuotaReceipt,
   rememberMistakeQuotaReceipt,
   settleMistakeQuotaStart,
 } from '../app/mistake_practice_quota_receipt';
@@ -68,6 +69,14 @@ describe('mistake practice: daily attempt refund when the start never happened',
     await settleMistakeQuotaStart('not_started', 'left_before_start', undefined, 2_000);
     await settleMistakeQuotaStart('not_started', 'left_before_start', 'mistakes:other', 2_000);
     expect(mockRefund).not.toHaveBeenCalled();
+  });
+
+  // Ревизор 15.10 (2.63): первый экран занимает чек; второй с тем же receiptId (по ссылке) его не трогает
+  it('a receipt is claimed by the first screen; a second screen with the same id is refused', () => {
+    expect(claimMistakeQuotaReceipt('mistakes:z', 'screen-1', 1_000)).toBe(true);
+    expect(claimMistakeQuotaReceipt('mistakes:z', 'screen-1', 1_100)).toBe(true); // тот же экран — по-прежнему владелец
+    expect(claimMistakeQuotaReceipt('mistakes:z', 'screen-2', 1_200)).toBe(false);
+    expect(claimMistakeQuotaReceipt(undefined, 'screen-3', 1_300)).toBe(false);
   });
 
   it('a stale receipt is not refunded', async () => {

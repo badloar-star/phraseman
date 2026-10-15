@@ -79,8 +79,29 @@ export async function settleMistakeQuotaStart(
   }
 }
 
+// зачем (Ревизор 15.10, пачка 2.63): чек «занимает» первый экран тренировки. Второй экран с тем же receiptId (подставленным,
+// например, по ссылке) его игнорирует — иначе он мог бы вернуть попытку за тренировку, которую провёл первый.
+const claims = new Map<string, Readonly<{ owner: string; atMs: number }>>();
+
+/** true — этот экран владеет чеком (первый занял или уже его); false — чек занят другим экраном, его не трогаем. */
+export function claimMistakeQuotaReceipt(receiptId: string | null | undefined, owner: string, nowMs: number = Date.now()): boolean {
+  if (!receiptId) return false;
+  for (const [id, claim] of claims) {
+    if (nowMs - claim.atMs > PENDING_MAX_AGE_MS) claims.delete(id);
+  }
+  const existing = claims.get(receiptId);
+  if (existing && existing.owner !== owner) {
+    log('claim:rejected', { receiptId, owner, reason: 'receipt_already_claimed' });
+    return false;
+  }
+  claims.set(receiptId, { owner, atMs: nowMs }); // guard-ok: Map в памяти процесса
+  log('claim', { receiptId, owner });
+  return true;
+}
+
 export function __resetMistakeQuotaReceiptForTests(): void {
   pending.clear();
+  claims.clear();
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

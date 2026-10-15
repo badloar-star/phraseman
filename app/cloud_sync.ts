@@ -6156,6 +6156,10 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
     'app_theme',
     'app_font_size',
     'haptics_tap',
+    // зачем (координатор/Ревизор 15.10): id системного голоса озвучки, не персональные данные — настройка устройства, как app_theme.
+    // При смене владельца не стираем (и кэш голосов в voice_prefs не трогаем).
+    'fc_voice_prefs_v1',
+    'fc_voice_prefs_by_lang_v1',
     // Non-secret point-of-no-return journal. Removing it during the account
     // wipe would make a crash after this await indistinguishable from success.
     'account_switch_quarantine_v1',

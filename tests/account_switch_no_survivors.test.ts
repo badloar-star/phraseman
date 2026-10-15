@@ -73,6 +73,8 @@ const DEVICE_OR_OPEN_QUESTION: readonly string[] = [
   'app_theme',
   'app_font_size',
   'haptics_tap',
+  'fc_voice_prefs_v1', // id системного голоса — настройка устройства (KEEP, координатор 15.10)
+  'fc_voice_prefs_by_lang_v1',
   'account_switch_quarantine_v1',
   'account_switch_completion_receipt_v1',
   'account_provider_handoff_v1',

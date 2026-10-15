@@ -1,3 +1,5 @@
+// зачем (координатор 15.10): отключено с 5bef1e710 (удалена карта урока V2, где жила петля) — до релиза НЕ подключаем и НЕ удаляем;
+// «Мои ошибки» доступны с Главной. Решение о возврате — после релиза. Денежные правила держит tests/learning_v2_mistake_loop.test.ts.
 import type { MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { projectMistakes } from '../modules/mistake-practice/projection';
 import {

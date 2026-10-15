@@ -28,7 +28,7 @@ import { useLang } from '../components/LangContext';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { streakMilestoneHostLoadFailed, useStreakMilestoneHold } from './streak_milestone_pending';
 import { studySpeechLocale } from './study_speech_locale';
-import { settleMistakeQuotaStart } from './mistake_practice_quota_receipt';
+import { claimMistakeQuotaReceipt, settleMistakeQuotaStart } from './mistake_practice_quota_receipt';
 // зачем (координатор 15.10): рубеж серии на итоге «Моих ошибок» — тот же ленивый хост
 // зачем (R64, слот #36): сбой ленивой загрузки отпускает рубеж — иначе окна итога ждали вечно
 const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));
@@ -451,11 +451,19 @@ function MistakePracticeSessionScreen() {
   const quotaSettledRef = useRef(false);
   const notStartedReasonRef = useRef('left_before_start');
   // чек СВОЕГО входа (из маршрута): тренировка А, оставшаяся под новой Б, вернёт именно свою попытку (Ревизор 15.10)
-  const quotaReceiptRef = useRef<string | null>(typeof params.quotaReceipt === 'string' && params.quotaReceipt ? params.quotaReceipt : null);
-  useEffect(() => () => {
-    if (quotaSettledRef.current) return;
-    quotaSettledRef.current = true;
-    void settleMistakeQuotaStart('not_started', notStartedReasonRef.current, quotaReceiptRef.current);
+  // Ревизор 15.10 (2.63): чек «занимается» при монтировании — второй экран с тем же receiptId (по ссылке) им не владеет.
+  const quotaReceiptRef = useRef<string | null>(null);
+  const quotaOwnerRef = useRef(`mps:${Date.now().toString(36)}:${Math.random().toString(36).slice(2, 8)}`);
+  const routeQuotaReceipt = typeof params.quotaReceipt === 'string' && params.quotaReceipt ? params.quotaReceipt : null;
+  useEffect(() => {
+    quotaReceiptRef.current = claimMistakeQuotaReceipt(routeQuotaReceipt, quotaOwnerRef.current) ? routeQuotaReceipt : null;
+    return () => {
+      if (quotaSettledRef.current) return;
+      quotaSettledRef.current = true;
+      void settleMistakeQuotaStart('not_started', notStartedReasonRef.current, quotaReceiptRef.current);
+    };
+    // чек берётся один раз при монтировании экрана — смена параметров маршрута новый чек не занимает
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
   const [accountScope, setAccountScope] = useState<string | null>(null);

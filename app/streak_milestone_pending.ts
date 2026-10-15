@@ -8,8 +8,11 @@
 // Очередь окон на экране итога: сначала рубеж, потом остальное — `hold` (есть ожидающий или открытый рубеж) читают хосты других моментов.
 // Журнал: [STREAK-MILESTONE].
 // ═══════════════════════════════════════════════════════════════════════════
-import { useSyncExternalStore } from 'react';
+import { useSyncExternalStore, type ComponentType } from 'react';
 import { onAccountOwnerChanged } from './account_owner_change';
+import type { Lang } from '../constants/i18n';
+// Пропсы окна рубежа повторены здесь, а не импортированы: в components/streak/moments ходят только разрешённые места (сторож v3).
+type StreakMilestoneHostShape = Readonly<{ lang: Lang; onOpenChange?: (open: boolean) => void }>;
 
 export type PendingStreakMilestone = Readonly<{ days: number; dayKey: string }>;
 
@@ -80,6 +83,18 @@ export function useStreakMilestonePending(): PendingStreakMilestone | null {
 /** То же без хука (для проверок и не-React кода): есть ожидающий или открытый рубеж. */
 export function isStreakMilestoneHold(): boolean {
   return pending !== null || openDays !== null;
+}
+
+/**
+ * Ленивая загрузка окна рубежа не удалась (R64 / слот #36): без этого рубеж оставался «ожидающим» навсегда — слот арбитра итога и другие окна
+ * ждали вечно. Причина в журнал, рубеж считаем показанным, окно закрытым; возвращаем пустой компонент, чтобы экран итога не падал.
+ * Использование: lazy(() => import('…/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed)).
+ */
+export function streakMilestoneHostLoadFailed(error: unknown): { default: ComponentType<StreakMilestoneHostShape> } {
+  console.warn('[STREAK-MILESTONE] host_load_failed', error instanceof Error ? error.message : String(error));
+  consumeStreakMilestonePending();
+  markStreakMilestoneOpen(null);
+  return { default: () => null };
 }
 
 /** Другие окна на экране итога ждут, пока есть ожидающий или открытый рубеж. */

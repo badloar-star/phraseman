@@ -26,11 +26,12 @@ import { useScaledTextStyles } from '../hooks/useLineScale';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
-import { useStreakMilestoneHold } from './streak_milestone_pending';
+import { streakMilestoneHostLoadFailed, useStreakMilestoneHold } from './streak_milestone_pending';
 import { studySpeechLocale } from './study_speech_locale';
 import { settleMistakeQuotaStart } from './mistake_practice_quota_receipt';
 // зачем (координатор 15.10): рубеж серии на итоге «Моих ошибок» — тот же ленивый хост
-const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
+// зачем (R64, слот #36): сбой ленивой загрузки отпускает рубеж — иначе окна итога ждали вечно
+const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));
 import { usePremium } from '../components/PremiumContext';
 import MicAllowanceBadge from '../components/MicAllowanceBadge';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';

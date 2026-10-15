@@ -42,3 +42,34 @@ describe('P23 · прогресс урока V2 для карточки «Про
     expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('[HOME-CONTINUE] progress'));
   });
 });
+
+// зачем (R64, координатор 15.10): карточка «Продолжить» V2 стоит заготовкой, пока прогресс не прочитан (continueCardPending). Ожидание обязано
+// кончиться: при сбое склада — прошлое значение из памяти, а без него 0/0, иначе человек навсегда остался бы без «Продолжить».
+import { act as act64, renderHook as renderHook64 } from '@testing-library/react-native';
+import { useHomeContinueV2Progress } from '../app/learning_v2_home_continue_route';
+
+describe('R64 · ожидание прогресса карточки V2 всегда заканчивается', () => {
+  beforeEach(() => { resetHomeContinueV2ProgressForTests(); mockLoad.mockReset(); });
+
+  it('склад не прочитался и памяти нет → 0 из 0, карточка появляется', async () => {
+    mockLoad.mockRejectedValue(new Error('disk'));
+    const hook = await renderHook64(() => useHomeContinueV2Progress(1, 0, true));
+    await act64(async () => { await Promise.resolve(); await Promise.resolve(); });
+    expect(hook.result.current).toEqual({ lessonOrdinal: 1, done: 0, total: 0 });
+  });
+
+  it('склад не прочитался, но в памяти есть прошлое значение → оно и остаётся', async () => {
+    mockLoad.mockResolvedValueOnce({ completedSessionIds: ['l1:s1'], currentSessionId: 'l1:s2' });
+    await loadHomeContinueV2Progress(1);
+    mockLoad.mockRejectedValue(new Error('disk'));
+    const hook = await renderHook64(() => useHomeContinueV2Progress(1, 1, true));
+    await act64(async () => { await Promise.resolve(); await Promise.resolve(); });
+    expect(hook.result.current).toMatchObject({ done: 1, total: 4 });
+  });
+
+  it('заготовка на Главной держит место, пока прогресс V2 читается', () => {
+    const home = require('node:fs').readFileSync(require('node:path').join(__dirname, '..', 'app', '(tabs)', 'home.tsx'), 'utf8') as string;
+    expect(home).toContain('const continueCardPending = (!continueResolved || continueV2 !== null) && homeLearnVisible && !priorityCardVisible;');
+    expect(home).toContain('const priorityCardVisible = (continueV2 ? continueV2Progress !== null : lastLesson !== null) && homeLearnVisible;');
+  });
+});

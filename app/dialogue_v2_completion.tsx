@@ -35,9 +35,10 @@ import { RowDivider } from '../components/v2/RowDivider';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { glassTone } from '../components/dialogs/glass/glassTone';
 import { isMomentsV3FlagOn, useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
-import { useStreakMilestoneHold } from './streak_milestone_pending';
+import { streakMilestoneHostLoadFailed, useStreakMilestoneHold } from './streak_milestone_pending';
 // зачем (координатор 15.10): окно рубежа серии — лениво и первым (см. lesson_complete)
-const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
+// зачем (R64): модуль не загрузился — снимаем удержание слота #36, иначе следующий момент ждёт вечно
+const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));
 import { deriveDialogueReaction, dialoguePartnerName, DIALOGUE_CHAIN_LOG } from '../components/completion/dialogue_chain_gate';
 import { dialogueChainText } from '../components/completion/dialogue_chain_strings';
 // зачем (координатор 15.10, m17 за флагом moments_v3): окно «Первый разговор — есть!» грузится лениво и только когда итог готов

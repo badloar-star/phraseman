@@ -8,9 +8,10 @@
  */
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { useMomentsV3Enabled } from '../../components/streak/moments/use_moments_v3_flag';
-import { useStreakMilestoneHold } from '../streak_milestone_pending';
+import { useStreakMilestoneHold, streakMilestoneHostLoadFailed } from '../streak_milestone_pending';
 // зачем (координатор 15.10): рубеж серии виден и тем, кто учит только карточки — тот же ленивый хост, что на итоге урока
-const StreakMilestoneHost = lazy(() => import('../../components/streak/moments/StreakMilestoneHost'));
+// зачем (R64, слот #36): сбой ленивой загрузки отпускает рубеж — иначе окна итога ждали вечно
+const StreakMilestoneHost = lazy(() => import('../../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));
 import { useLang } from '../../components/LangContext';
 import FeedbackRatingCard from '../../components/FeedbackRatingCard';
 import { triLang } from '../../constants/i18n';

@@ -10,9 +10,10 @@ import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, T
 import KitTouchable from '../components/KitTouchable';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { decidePerfectMoment, perfectMomentKey } from '../components/lesson_moments/perfect_moment_gate';
-import { useStreakMilestoneHold } from './streak_milestone_pending';
+import { streakMilestoneHostLoadFailed, useStreakMilestoneHold } from './streak_milestone_pending';
 // зачем (координатор 15.10): окно рубежа серии грузится лениво и только когда есть ожидающий или открытый рубеж при moments_v3; идёт ПЕРВЫМ, остальные окна экрана ждут
-const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
+// зачем (R64): модуль не загрузился — снимаем удержание слота #36, иначе следующий момент ждёт вечно
+const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));
 import { captureDoneChainBefore, decideDoneChain, DONE_CHAIN_LOG, type DoneChainBefore } from '../components/completion/done_chain_gate';
 // зачем (координатор 15.10, m09 за флагом moments_v3): окно «Идеальный урок» грузится лениво и только когда решение сказало «показать»
 const LessonPerfectHost = lazy(() => import('../components/lesson_moments/LessonPerfectHost'));

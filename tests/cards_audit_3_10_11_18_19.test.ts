@@ -56,3 +56,12 @@ describe('граница Free «50/50» (#11) — журнал и условие
     expect(src).toContain('[CARDS-LIMIT]');
   });
 });
+
+describe('#3 глубокое: «Верно/неверно» по набору ролика без документа', () => {
+  it('источник собирается из набора фраз, карточки — с запасным путём', () => {
+    const src = read('app/flashcards_swipe.tsx');
+    expect(src).toContain('const videoGapIds = missingOwned.filter(');
+    expect(src).toContain('buildOwnedVideoPackMeta({ packId: id, phraseSetPacks, communityDoc: null, storedTitle: undefined })');
+    expect(src).toContain('return loadVideoPackFallbackCards(pack.id, studyTarget);');
+  });
+});

@@ -39,6 +39,9 @@ import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
+import { buildOwnedVideoPackMeta, videoIdFromOwnedCommunityId } from './flashcards/my_packs_video_meta'; // зачем: аудит #3 глубокое — набор ролика без документа
+import { loadVideoPackFallbackCards } from './flashcards/video_pack_fallback';
+import { loadVideoPhraseSetPacks } from './video_phrase_set_packs';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
@@ -848,8 +851,23 @@ async function buildCommunitySources(
     const visibleIds = new Set([...minePublished, ...pendingMine].map((p) => p.id));
     const missingOwned = [...owned].filter((id) => !visibleIds.has(id));
     const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(noteSwallowedAs('flashcards_swipe:buildCommunitySources.fetchCommunityPackMeta', null))));
+    // зачем (аудит #3 глубокое, координатор 15.10): добавленный набор ролика без документа сообщества (`video_<id>`) раньше не попадал в источники — «Верно/неверно» по такой колоде
+    // стартовало пустым/с чужими. Мету собираем из набора фраз ролика (кэш 6 ч), как в «Моих наборах»; карточки — ниже, с тем же запасным путём.
+    const videoGapIds = missingOwned.filter((id, index) => missingMeta[index] == null && videoIdFromOwnedCommunityId(id) !== null);
+    const videoGapMetas: FlashcardMarketPack[] = [];
+    if (videoGapIds.length > 0) {
+      const phraseSetPacks = await loadVideoPhraseSetPacks().catch((error: unknown): FlashcardMarketPack[] => {
+        console.warn(`[SWIPE-DECKS] наборы фраз роликов не загрузились reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+        return [];
+      });
+      for (const id of videoGapIds) {
+        const built = buildOwnedVideoPackMeta({ packId: id, phraseSetPacks, communityDoc: null, storedTitle: undefined });
+        console.log(`[SWIPE-DECKS] video_source id=${id} source=${built.source} cards=${built.pack.cardCount}`); // guard-ok: источник набора ролика
+        videoGapMetas.push(built.pack);
+      }
+    }
     const byId = new Map<string, FlashcardMarketPack>();
-    for (const pack of [...minePublished, ...pendingMine, ...missingMeta]) {
+    for (const pack of [...minePublished, ...pendingMine, ...missingMeta, ...videoGapMetas]) {
       if (pack?.isCommunityUgc) byId.set(pack.id, pack);
     }
     return [...byId.values()].map((pack) => ({
@@ -870,7 +888,12 @@ async function buildCommunitySources(
       count: pack.cardCount,
       icon: 'people-outline',
       accent: SOURCE_ACCENTS.community,
-      loadCards: () => fetchCommunityPackCards(pack.id, studyTarget),
+      loadCards: async () => {
+        const fromDoc = await fetchCommunityPackCards(pack.id, studyTarget);
+        if (fromDoc.length > 0 || videoIdFromOwnedCommunityId(pack.id) === null) return fromDoc;
+        // зачем (аудит #3 глубокое): документа нет — карточки из фраз ролика
+        return loadVideoPackFallbackCards(pack.id, studyTarget);
+      },
     }));
   } catch {
     return [];

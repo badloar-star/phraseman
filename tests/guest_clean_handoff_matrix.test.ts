@@ -32,6 +32,9 @@ const FRESH_GUEST: Rows = {
   stable_auth_link_cache_v1: JSON.stringify({ linked: false }),
   cloud_migration_v1: '1',
   friends_push_v1: 'true',
+  // зачем (R15c, проверка Сверки r15b_1015): очередь отправки выбора аватара с одной операцией и выбор ауры — выбор гостя.
+  'customization_selection_outbox_v1:stable-A:1': JSON.stringify(['op-12345678901234567890']),
+  user_avatar_aura: 'aura_sun',
   // зачем: следы полного онбординга с выбором аватара (прогон Сверки r15_1015).
   'lesson_progress_v2::fr::legacy_free_lesson_migration_v1': 'migrated',
   cloud_last_sync_snapshot_v1: JSON.stringify({ user_avatar: '1', user_avatar_frame: 'plain', user_avatar_aura: '', streak_count: '1' }),
@@ -103,6 +106,17 @@ describe('guest clean handoff matrix', () => {
   // Ключ из настоящего префикса аккаунта (операция монет), которого классификатор не знает, — прогресс.
   it('guest who owns a bought avatar is not clean', async () => {
     const rows = { ...FRESH_GUEST, custom_avatar_owned_v1: JSON.stringify(['a7']) };
+    await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(false);
+  });
+
+  // зачем (координатор 15.10): погашенный промокод/купленный Plus — дни Plus гостя; окно остаётся, дни не теряются.
+  it('guest who redeemed a promo code (Plus days) is not clean', async () => {
+    const rows = { ...FRESH_GUEST, premium_plan: 'promo', premium_expiry: String(Date.UTC(2026, 10, 15)) };
+    await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(false);
+  });
+
+  it('guest who owns a bought aura is not clean', async () => {
+    const rows = { ...FRESH_GUEST, avatar_aura_owned_v1: JSON.stringify({ aura_sun: true }) };
     await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(false);
   });
 

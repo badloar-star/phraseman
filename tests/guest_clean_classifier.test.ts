@@ -91,9 +91,25 @@ describe('guest clean classifier', () => {
     expect(classifyGuestCleanKey('cloud_last_sync_snapshot_v1', JSON.stringify({ user_avatar: '1', user_avatar_frame: 'plain', streak_count: '1' }))).toBe('service');
     expect(classifyGuestCleanKey('customization_selection_head_v1:stable-A:1', JSON.stringify({ revision: 1 }))).toBe('default');
     expect(classifyGuestCleanKey('customization_selection_operation_v1:stable-A:1:op', JSON.stringify({ selection: { avatarValue: '3', frameId: 'plain' } }))).toBe('default');
-    // Владение покупками и очередь выбора — прогресс.
+    // Владение покупками — прогресс; очередь выбора с R15c — выбор гостя (прогон Сверки r15b_1015).
     expect(classifyGuestCleanKey('custom_avatar_owned_v1', JSON.stringify(['a7']))).toBe('progress');
-    expect(classifyGuestCleanKey('customization_selection_outbox_v1:stable-A:1', JSON.stringify([{ op: 1 }]))).toBe('progress');
+    expect(classifyGuestCleanKey('customization_selection_outbox_v1:stable-A:1', JSON.stringify([{ op: 1 }]))).toBe('default');
+  });
+
+  // зачем (R15c, координатор 15.10): белый список по форме ключа; выбор гостя (аура, очередь выбора) — не прогресс; деньги — прогресс.
+  it('R15c: shape-based allowlist, aura choice, money stays progress', () => {
+    expect(classifyGuestCleanKey('customization_selection_outbox_v1:stable-A:1', JSON.stringify(['op-12345678901234567890']))).toBe('default');
+    expect(classifyGuestCleanKey('customization_selection_quarantine_v1:stable-A:1', JSON.stringify(['op-1']))).toBe('default');
+    expect(classifyGuestCleanKey('user_avatar_aura', 'aura_sun')).toBe('default');
+    expect(classifyGuestCleanKey('avatar_aura_owned_v1', JSON.stringify({ aura_sun: true }))).toBe('progress');
+    expect(classifyGuestCleanKey('feature_x_migration_v3', '1')).toBe('service');
+    expect(classifyGuestCleanKey('feature_x_migration', 'done')).toBe('service');
+    expect(classifyGuestCleanKey('feature_x_migration_v3', JSON.stringify({ moved: [1, 2, 3] }))).toBe('progress');
+    expect(classifyGuestCleanKey('feature_x_migration_v3', 'x'.repeat(41))).toBe('progress');
+    expect(classifyGuestCleanKey('cloud_last_sync_snapshot_v2', JSON.stringify({ user_avatar: '1' }))).toBe('service');
+    // Промокод/Plus у гостя — дни Plus: прогресс, окно остаётся.
+    expect(classifyGuestCleanKey('premium_plan', 'yearly')).toBe('progress');
+    expect(classifyGuestCleanKey('premium_expiry', '1792068000000')).toBe('progress');
   });
 
   it('treats every unknown key and broken value as progress', () => {

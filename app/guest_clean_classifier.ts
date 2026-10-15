@@ -23,7 +23,8 @@ const DEFAULT_VALUES: ReadonlyMap<string, ReadonlySet<string>> = new Map([
  * зачем (координатор 15.10): человек входит в СВОЙ существующий аккаунт — профиль аккаунта главнее, гостевой ник не жалко.
  * Вход в НОВЫЙ аккаунт этой проверкой не решается — там данные гостя переезжают как раньше.
  */
-const GUEST_CHOICE_KEYS: ReadonlySet<string> = new Set(['user_profile', 'user_avatar', 'user_frame']);
+// Аура — тоже выбор гостя (координатор 15.10, R15c); владение аурой (avatar_aura_owned_v1 …) остаётся прогрессом.
+const GUEST_CHOICE_KEYS: ReadonlySet<string> = new Set(['user_profile', 'user_avatar', 'user_frame', 'user_avatar_aura']);
 
 /** Служебные следы установки: не прогресс человека, при входе их не жалко. */
 const SERVICE_KEYS: ReadonlySet<string> = new Set([
@@ -146,6 +147,15 @@ function isEmptySpinProjection(value: string): boolean {
 const LEARNING_V2_INDEX_MARKER_KEY_PREFIX = 'v2:required-session-local-commit-index:v1:';
 const LEARNING_V2_INDEX_MARKER_VALUE_PREFIX = 'learning-v2-required-session-spool-index-legacy-scan-complete.v1:';
 
+/**
+ * Маркер миграции: имя на `_migration` / `_migration_vN` и короткое скалярное значение (флаг или версия, не данные).
+ * зачем (координатор 15.10, R15c): белый список по ФОРМЕ ключа — маркеры миграции появляются по языкам и версиям, точными
+ * именами их не догнать. Объект/массив или длинное значение — уже не флаг: прогресс.
+ */
+function isMigrationMarker(key: string, value: string): boolean {
+  return /_migration(_v\d+)?$/.test(key) && value.length <= 40 && !/^[[{]/.test(value);
+}
+
 export function classifyGuestCleanKey(key: string, raw: string | null): GuestCleanKind {
   const value = (raw ?? '').trim();
   const defaults = DEFAULT_VALUES.get(key);
@@ -156,9 +166,13 @@ export function classifyGuestCleanKey(key: string, raw: string | null): GuestCle
   if (key.startsWith('lesson_progress_v2::') && key.endsWith('::legacy_free_lesson_cap_v1')) return value === '3' ? 'default' : 'progress';
   // Маркер миграции бесплатных уроков по языку — тот же служебный след, что legacy_free_lesson_migration_v1 без префикса.
   if (key.startsWith('lesson_progress_v2::') && key.endsWith('::legacy_free_lesson_migration_v1')) return 'service';
-  // Журнал ВЫБОРА аватара/рамки (голова и операция): по слову координатора выбор гостя — не прогресс. Владение покупками —
-  // отдельные ключи (custom_avatar_owned_v1, avatar_aura_owned_v1 …) и очередь/карантин выбора — остаются прогрессом.
-  if (key.startsWith('customization_selection_head_v1:') || key.startsWith('customization_selection_operation_v1:')) return 'default';
+  if (isMigrationMarker(key, value)) return 'service';
+  // Снимки последнего синка (любой версии) — копия уже отправленных значений, прогресс проверяется по своим ключам.
+  if (key.startsWith('cloud_last_sync_')) return 'service';
+  // Журнал ВЫБОРА оформления целиком (голова, операции, очередь отправки, карантин) — только выбор аватара/рамки/ауры:
+  // по слову координатора выбор гостя — не прогресс (проверка Сверки r15b_1015: очередь отправки с одной операцией выбора).
+  // Владение покупками — отдельные ключи (custom_avatar_owned_v1, avatar_aura_owned_v1 …) — остаётся прогрессом.
+  if (key.startsWith('customization_selection_')) return 'default';
   if (key === 'active_days_v1') return isSingleActiveDay(value) ? 'default' : 'progress';
   if (key === 'achievement_foundation_progress_v2') return isEmptyFoundationProgress(value) ? 'default' : 'progress';
   // зачем (прогон Сверки guest_clean_relapse_1516, 15:38): у свежего гостя эти четыре ключа — пустые заготовки, а не прогресс.

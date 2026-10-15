@@ -102,3 +102,12 @@ describe('плеер ролика освобождается до переход
     expect(src).toContain('setPlayerOpen(true); // вернулись на экран ролика');
   });
 });
+
+describe('плеер: пауза и возврат на ту же секунду (координатор 15.10)', () => {
+  it('позиция запоминается до снятия плеера; на возврате плеер стартует с неё без автозапуска', () => {
+    const src = read('app/lingman_video_watch.tsx');
+    expect(src.indexOf('lastPositionRef.current')).toBeGreaterThan(-1);
+    expect(src).toContain('setResumeSec(savedPosition > 0 ? savedPosition : null);');
+    expect(src).toContain('autoPlay={resumeSec === null} startSec={resumeSec ?? startSec}');
+  });
+});

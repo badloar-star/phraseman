@@ -84,6 +84,13 @@ export default function LingmanVideoWatchScreen() {
   const packOwned = useOwnedPack(pack?.id ?? `video:${videoId}`);
   const packFromRef = useRef<string>(peekVideoMarketPacks(studyTarget) ? 'memory' : 'pending');
   const [playerOpen, setPlayerOpen] = useState(true);
+  // зачем (координатор 15.10): «Тренировать» ставит ролик на паузу сразу (плеер снимается — звук глохнет мгновенно), позиция запоминается; «Назад» возвращает ролик на ту же секунду без перезапуска с нуля.
+  const lastPositionRef = useRef(0);
+  const [resumeSec, setResumeSec] = useState<number | null>(null);
+  useEffect(() => {
+    if (!videoId) return undefined;
+    return subscribeYoutubePosition(videoId, (value) => { lastPositionRef.current = value; });
+  }, [videoId]);
   const openLoggedRef = useRef(false);
 
   const logOpen = useCallback((phrasesFrom: VideoPhrasesSource | 'none', phrases: number) => {
@@ -182,6 +189,9 @@ export default function LingmanVideoWatchScreen() {
     setPendingTrainIntent({ deckId, count: pack?.cardCount ?? 0 });
     // зачем (Макеты c1_r60b, ⚡ ~760 мс от navigate до первого рендера хаба — плеер/WebView на экране ролика): сперва освобождаем плеер, переход — в следующем кадре.
     // Вернулись назад — плеер снова открывается (useFocusEffect ниже).
+    const savedPosition = Math.floor(lastPositionRef.current);
+    setResumeSec(savedPosition > 0 ? savedPosition : null);
+    console.log(`[VIDEO-PACK-TRAIN] player paused+released videoId=${videoId} resumeSec=${savedPosition}`); // guard-ok: позиция запомнена
     setPlayerOpen(false);
     trainNavMark('player closed before navigate');
     requestAnimationFrame(() => {
@@ -220,7 +230,7 @@ export default function LingmanVideoWatchScreen() {
         </View>
         <View style={styles.player}>
           {videoId && playerOpen ? (
-            <YoutubeInlinePlayer videoId={videoId} title={title} active={runtimeActive} presentation="preview" autoPlay startSec={startSec} />
+            <YoutubeInlinePlayer videoId={videoId} title={title} active={runtimeActive} presentation="preview" autoPlay={resumeSec === null} startSec={resumeSec ?? startSec} />
           ) : null}
         </View>
         <WatchProgress videoId={videoId} durationSec={video?.durationSec} trackColor={g.opaqueControl} fillColor={g.accentGraphic} />

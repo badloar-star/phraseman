@@ -11,6 +11,10 @@ import type { PaywallSource } from '../app/paywall_entry_contract';
 import { consumeRevenueDailyQuota, type RevenueDailyQuotaResult } from '../app/revenue_daily_quota';
 import { rememberMistakeQuotaReceipt } from '../app/mistake_practice_quota_receipt';
 import { useRevenueDailyQuotaPreview } from './useRevenueDailyQuotaPreview';
+import { hapticWarning } from './use-haptics';
+
+/** Дольше этого чек «пишется» только при зависшей сети — замок двойного тапа снимается, кнопка снова отвечает (Ревизор 2.81). */
+export const MISTAKE_GATE_INFLIGHT_CEILING_MS = 8_000;
 
 export type MistakePracticeStartGate = Readonly<{
   /** Превью квоты для подписи на кнопке хаба. */
@@ -50,7 +54,9 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
   const [noEnergy, setNoEnergy] = useState(false);
   const dismissNoEnergy = useCallback(() => setNoEnergy(false), []);
   const quota = useRevenueDailyQuotaPreview('mistake_practice_starts');
-  const inFlightRef = useRef(false);
+  // зачем (Ревизор 2.81): замок «чек пишется» с временем и id чека — consume ждёт сеть без потолка (revenue_daily_quota.ts:349-389),
+  // и без потолка кнопка молча не отвечала бы; поздний finally старого чека не снимает замок новой попытки
+  const inFlightRef = useRef<{ receiptId: string; startedAtMs: number } | null>(null);
   // зачем (Ревизор 15.10): id чека этого тапа уходит в маршрут, а не в общий слот — у каждой тренировки свой возврат
   const lastReceiptRef = useRef<string | null>(null);
   const locked = quota.status === 'exhausted';
@@ -95,10 +101,22 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
     if (quota.status === 'stale_account') { decide('start_stale_account'); return true; } // смена аккаунта: не блокируем, чек не пишем.
     // зачем (Ревизор 2.78): повторный тап, пока чек пишется, раньше пускал (true) — второй экран уходил БЕЗ чека, а первый при
     // размонтировании возвращал попытку → бесплатная сессия. Теперь второй тап ничего не открывает: сессия первого уже открывается.
-    if (inFlightRef.current) { decide('blocked_double_tap'); return false; }
+    const inFlight = inFlightRef.current;
+    if (inFlight) {
+      const heldMs = Date.now() - inFlight.startedAtMs;
+      if (heldMs < MISTAKE_GATE_INFLIGHT_CEILING_MS) {
+        decide('blocked_double_tap');
+        void hapticWarning(); // отклик, а не тишина: тап услышан, тренировка уже открывается
+        return false;
+      }
+      console.warn('[MISTAKE-GATE] inflight_ceiling — замок чека снят по потолку', JSON.stringify({ // guard-ok: сброс по потолку пишет причину
+        surface: source, receiptId: inFlight.receiptId, heldMs, ceilingMs: MISTAKE_GATE_INFLIGHT_CEILING_MS,
+      }));
+      inFlightRef.current = null;
+    }
     decide('start_with_receipt');
-    inFlightRef.current = true;
     const receiptId = `mistakes:${Crypto.randomUUID()}`;
+    inFlightRef.current = { receiptId, startedAtMs: Date.now() };
     const token = captureAccountGeneration();
     const consume = consumeRevenueDailyQuota({
       kind: 'mistake_practice_starts',
@@ -117,7 +135,8 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
       .catch((error: unknown) => {
         console.warn('[MISTAKES-GATE] consume:catch — чек не записан, сессия уже открыта', error instanceof Error ? error.message : String(error));
       })
-      .finally(() => { inFlightRef.current = false; });
+      // замок снимает только СВОЙ чек: после сброса по потолку там может стоять уже новая попытка
+      .finally(() => { if (inFlightRef.current?.receiptId === receiptId) inFlightRef.current = null; });
     return true;
   }, [accessResolved, openPaywall, predictStartRefusal, quota, source]);
 

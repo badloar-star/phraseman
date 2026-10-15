@@ -82,7 +82,9 @@ describe('every entry into mistake practice goes through the daily-quota gate', 
 
   it('the gate refuses a repeated tap while the receipt is being written', () => {
     const gate = fs.readFileSync(path.join(ROOT, 'hooks', 'useMistakePracticeStartGate.ts'), 'utf8');
-    expect(gate).toContain("if (inFlightRef.current) { decide('blocked_double_tap'); return false; }");
+    // Ревизор 2.81: отказ — только пока чек пишется меньше потолка; поздний finally снимает лишь свой замок
+    expect(gate).toMatch(/if \(heldMs < MISTAKE_GATE_INFLIGHT_CEILING_MS\) \{\s*decide\('blocked_double_tap'\);[\s\S]{0,120}?return false;/);
+    expect(gate).toContain('if (inFlightRef.current?.receiptId === receiptId) inFlightRef.current = null;');
   });
 
   // зачем (координатор 15.10): пейвол за «Добить» / «Ещё N» не сюрприз — при исчерпанной попытке дня у кнопки метка Plus

@@ -278,3 +278,120 @@
   до озвучки они не доходят.
 - Для Codex: озвучка одного голоса на задание теперь откроется. Поле `variantsPerAudioCoordinate: 4` в корне
   контракта не менял — это константа схемы. Значит, разрешено ДО 4 вариантов.
+
+## Дополнение 22:25 — ночная работа: озвучка Codex в приложении, блокер Ревизора 2.74, потолок, красный список
+
+### Назначение голоса строго по ключу задания (блокер Ревизора 2.74) — готово, хэш — в разделе «Хэши» ниже
+- `app/learning_v2_factory_single_voice_v1.generated.ts` собирается из `content/learning-v2-course/audio/en/single-voice-v1.json`
+  сборщиком `scripts/build_learning_v2_factory_single_voice_module.mjs`.
+  - Ключ — внутренний id задания (`lesson-01:session:01:i17:s02`), строится как `remapId` в приложении.
+    Ключ `task/N` Codex — это позиция задания в learner.json.
+  - Значение — голос и contentHash клипа КАЖДОЙ реплики задания.
+- Как приложение выбирает голос:
+  - задание с назначением → один голос, файлы строго из его клипов;
+  - задание без назначения → 4 голоса и круг по sessionRunId;
+  - запасной путь — общий записанный голос.
+- Тест Ревизора: фраза записана во всех 4 голосах, задание назначено coral → coral и тот же файл при двух разных
+  sessionRunId ✅.
+- 🟡 Ревизора: `audio_child_invalid reason=… interactionId=…` + лог `[V2-AUDIO-CHILD]` ✅.
+
+### Тексты приложения пересобраны из release по одному занятию
+- Урок 1 s16–s56, урок 2 s01–s56, урок 3 s01–s33 (сколько озвучил Codex). Отказов 0.
+- Урок 1 s01–s15 не трогал.
+- До пересборки тексты s16+ были старше озвучки Codex (926 расхождений), после — 0.
+
+### Потолок НЕ поднят, остаётся 15 — нужно решение координатора/владельца
+- Сторож доступности насчитывает 145 подряд: уроки 1–2 целиком и урок 3 s01–s33.
+  Сторож полноты при 145 — 0 проблем (1081 файл, 31,7 МБ).
+- Но ворота сборки `learning_v2_release_parity_gate` при 145 — **BLOCKED** (`AUDIO_EVIDENCE_UNVERIFIED`):
+  - у s16+ нет квитанций прослушивания звука, проверено 309 из 1649 целей;
+  - Codex сам пишет «text readiness is separate from audio listening review».
+- При 15 все ворота plan-B — **PASS**. Набор звука — 178 файлов, 4,5 МБ (один голос на задание).
+- Варианты:
+  - (1) Codex выкладывает квитанции прослушивания → `bash scripts/learning_v2_refresh_voiced_release.sh`
+    (потолок поставит сторожем);
+  - (2) владелец одобряет выпуск без квитанций → расширить `scripts/learning_v2_owner_approved_audio_evidence.v1.json`,
+    как сделано для s06–s15.
+- ⚠ В 145 входят непроверенные тексты: урок 2 s31+ — старые черновики, Codex их не писал.
+
+### Красный список (red2.txt) — три группы
+
+**(а) Ворота сборки.** Предрелизная проверка запускает только скрипты ворот:
+release_keys, eas_production_version, plan-B, store_route_reachability, visual_parity, store_bundle_dev_strings,
+store_release_stubs, easignore_runtime_imports, daily_phrase_dpk.
+- plan-B при потолке 15 — PASS.
+- Полная предрелизная проверка и финальная репетиция сборки — после завершающего коммита.
+
+**(б) Устаревшие сторожа** — под новый контент, под один голос или старую систему.
+- Старая система `content/source` (уходит в архив):
+  - `episode_01_session_01…24`, `sessions_25_32/33_40/41_48/49_56`, `session_map`, `to_be_only`;
+  - `e1_content_compiler`, `session_compiler`, `session_contract` (12 занятий);
+  - `generator_course_manifest`, `generator_session_shard`;
+  - `p0_p1_smoke`, `content_quality_gate_wiring`, `authored_sessions_reach_the_player`;
+  - `lesson1_chapter_gate`, `lesson1_real_session_mock`.
+- Заготовки тестов отстали от контрактов (`client_child_invalid`, `post_terminal_card_meanings_invalid`,
+  `submission_invalid`) и до звука не доходят:
+  - `neutral_qa_session_e2e_harness`, `neutral_qa_hostile_red_matrix`;
+  - `course_session_audio_readback`, `audio_release_extension`;
+  - `completed_spool`, `released_session_submission_spool_v2`;
+  - `post_terminal_card_catalog`, `course_session_save_card`.
+- Инфраструктура тестов:
+  - `session_skip_interaction` — expo-asset, известно с 05.10;
+  - `lesson_map_screen_contract` — экран удалён 04.10;
+  - `listen_choose_option_label_v1`, `lexical_density_policy_v2` — в файлах нет тестов раннера;
+  - `new_word_encounter_save` — мок uuid.
+- Контент Codex в работе:
+  - `english_l4_curriculum_contract`;
+  - `all_ready_tasks_runtime_audit` — у l04 s11 расходится семейство задания;
+  - `intro_theme_contract` — изменилось число тем.
+
+**(в) Посмотреть до сборки** — это контент выпущенных s01–s15, решают контент и Codex:
+- `new_word_encounter_projection` — карточек слов урока 1 стало 57, в факте выпуска 01.10 было 198. Тексты переписаны
+  намеренно, но втрое меньше карточек — подтвердить с Codex, что так задумано.
+- `mode_feedback_v1` — у `choiceFeedback` в S01 нет записи `correct`; сообщение «верно» у выбора S01 может быть пустым.
+- `intro_colour_bridge` — в интро нет ни одного «неверного примера» (`targetWrong`); интро может показываться без
+  красной подсветки ошибки.
+- Не Learning V2 — владельцам этих разделов: `kimi_voice_capture`, `source_guard_eol`, `gustav_*` (французский).
+
+Мои изменения ни один из этих наборов не задели: все они были красными на HEAD fef40e826, до моих коммитов.
+
+### Хэши ночи (Ядро)
+- e0d3f5f79 — голос задания строго по назначению Codex (Ревизор 2.74), таблица голосов, набор звука под потолок 15,
+  --cap, тесты.
+- Тексты приложения из release: 3c878ed85 (урок 1), ec6177977 (урок 2), 4eeda2c48 (урок 3).
+- Файлы звука: добавление — 646dedb4c…a5828d64a (6 частей), удаление неиспользуемых — 17e7da84d…b0880278d (6 частей).
+- 4d305eb5d — ворота «потолок = закоммиченному» (release_precheck перед plan-B, шаг 0 репетиции).
+
+## Дополнение 23:30 — подготовка к «да» владельца по уроку 1 (потолок 56)
+
+**Машинная проверка s16–s56** (`scripts/learning_v2_lesson_audio_machine_check.mjs`) — **41 занятие, проблем 0**.
+Отчёт: `docs/work/tasks/lesson1-audio-machine-check-2026-10-16.md`. По каждому заданию со звуком проверено:
+- назначение есть, клипы покрывают реплики (текст = текст);
+- голос одобрен и совпадает с голосом в имени файла;
+- файл, размер и sha256 совпадают;
+- ffprobe — mp3 24 кГц моно, длительность > 0; ffmpeg декодирует файл целиком.
+
+s01–s15 — тоже 0 проблем. «I am free.»: s04 и s06 — coral, s08 — nova. Слов «satisfied/exhausted/settled» в нынешнем
+тексте s45 нет.
+
+**Пакет на прослушивание:** `docs/work/tasks/lesson1-audio-approval-2026-10-16.md` — 82 клипа, по 2 на занятие s16–s56,
+самые длинные фразы, по возможности разными голосами. Это НЕ одобрение — одобрение только словом владельца.
+
+**Карточки слов.** В новых текстах Codex у s16–s56 карточек нет: в release learner.json `isWordCard=false` везде.
+Пересборка тут ни при чём. Вопрос к Codex — задумано или потеряны; иначе экран новых слов в s16+ будет пустым.
+
+**Сухой прогон «потолок 56 + вымышленное одобрение»** — ТОЛЬКО во временной копии
+`C:/Temp/claude/v2_cap56_dryrun` (HEAD f03d69cbc), основное дерево не тронуто:
+
+| Шаг | Результат |
+|---|---|
+| `scripts/learning_v2_refresh_voiced_release.sh --cap 56` | PASS, потолок = 56 (сторож насчитал 167, предел срезал) |
+| Набор звука в сборку | **468 файлов, 13,1 МБ** (при 15 — 178 / 4,5 МБ) |
+| plan-B без одобрения (контроль) | BLOCKED — 1284 AUDIO_EVIDENCE_UNVERIFIED |
+| plan-B с вымышленным одобрением 347 целей s16–s56 | **PASS** (паритет + озвучка: выпущено 56) |
+
+**Утром — одна команда после «да» владельца:**
+1. Владелец подписывает одобрение: расширяется `scripts/learning_v2_owner_approved_audio_evidence.v1.json` целями
+   s16–s56 (их 347; в копии — тем же способом). Пишет координатор со слов владельца, не Ядро.
+2. `bash scripts/learning_v2_refresh_voiced_release.sh --cap 56` (через светофор) → коммит; затем ворота
+   `learning_v2_ceiling_committed_gate` и репетиция сборки.

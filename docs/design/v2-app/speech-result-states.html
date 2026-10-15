@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Речь — не засчитано / засчитано</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · результат речи «не засчитано» и «засчитано» ─────────
+   зачем (координатор 15.10, Макеты): владелец утвердил строгую проверку речи — засчитывается, только если сказаны все значимые
+   слова, телефону ответ не подсказываем. «Не засчитано» станет частым, поэтому экран обязан показать, КАКОЕ слово не услышано:
+   фраза целиком, пропущенное слово мягко подсвечено, одна человеческая строка и «Ещё раз». Без технических текстов, без новых
+   крупных элементов — та же плашка, что «Сказано» в уроке. Вариант «засчитано» — после релиза: та же подсветка для неуверенных слов.
+   Темы по умолчанию: светлая «Сумерки» (ink) и тёмная «Океан» (marine), цвета — liquidGlassTokens из кода. Стиль «Тень»:
+   плашки без обводок, тень и тон. Касается урока, курса V2 и Карточек «Устно» (один и тот же блок результата). */
+.ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #DBDDEC;
+  --cta: #1D1D2F; --cti: #FFFFFF; --acc: #5F5CB1; --miss-bg: rgba(214, 69, 58, .14); --miss: #B3261E; --soft-bg: rgba(230, 160, 40, .20); --soft: #8A5A00;
+  --good: #1E7A46; --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --sb: #111; }
+.ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037;
+  --cta: #D0EAED; --cti: #010708; --acc: #5CCFEB; --miss-bg: rgba(255, 138, 128, .16); --miss: #FF9A90; --soft-bg: rgba(255, 196, 107, .16); --soft: #FFC46B;
+  --good: #6FD08C; --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --sb: #fff; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb, .ph.th-ink .sb span, .ph.th-marine .sb span { color: var(--sb) !important; }
+.ph.th-marine .sb svg { filter: none; }
+/* зачем: у kit статус-бар с тёмной подложкой — в светлой теме убираем её (время и значки тёмные), в тёмной — подложка в тон фона */
+.ph.th-ink .sb { background: linear-gradient(#F3F4FD 62%, rgba(243,244,253,0)); } .ph.th-marine .sb { background: linear-gradient(#002936 62%, rgba(0,41,54,0)); } .ph.th-ink .sb svg { filter: invert(1); }
+.lh { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.lh .rb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--tx); }
+.lh .tt { font-size: 22px; line-height: 28px; font-weight: 700; flex: 1; }
+.task { margin-top: 30px; text-align: center; }
+.task .k { font-size: 15px; line-height: 20px; color: var(--sec); font-weight: 600; }
+.task .q { font-size: 26px; line-height: 32px; font-weight: 600; margin-top: 8px; }
+/* та же плашка, что «Сказано» в уроке — только без обводки (стиль «Тень») */
+.said { margin-top: 28px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 16px 18px; }
+.said .k { font-size: 12px; line-height: 16px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sec); font-weight: 700; }
+.said .v { font-size: 22px; line-height: 32px; font-weight: 600; margin-top: 8px; }
+/* мягкая подсветка слова: тон, без рамки и без зачёркивания; пропущенное — тёплый красный, неуверенное — янтарь */
+.w { border-radius: 7px; padding: 1px 5px; margin: 0 -1px; }
+.w.miss { background: var(--miss-bg); color: var(--miss); }
+.w.soft { background: var(--soft-bg); color: var(--soft); }
+.line { margin-top: 14px; font-size: 16px; line-height: 22px; color: var(--sec); font-weight: 500; text-align: center; }
+.line b { color: var(--tx); font-weight: 700; }
+.line.ok { color: var(--good); font-weight: 600; }
+.fx { position: absolute; left: 18px; right: 18px; bottom: 34px; display: flex; flex-direction: column; gap: 10px; }
+.rcta { height: 56px; border-radius: 28px; background: var(--cta); color: var(--cti); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; }
+.rcta .i { width: 20px; height: 20px; }
+.rghost { height: 44px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--sec); font-weight: 600; }
+.vnt { max-width: 430px; }
+</style>
+</head>
+<body>
+<header class="top"><h1>Речь — «не засчитано» и «засчитано»</h1>
+<p>Строгая проверка речи (владелец 15.10): засчитывается, только если сказаны все значимые слова. Экран показывает фразу целиком и мягко подсвечивает слово, которое не услышали, — человек сразу видит, что повторить. Тот же блок — в уроке, курсе V2 и Карточках «Устно».</p></header>
+<main id="root"></main>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block } = K;
+const head = `<div class="lh"><span class="rb">${icon('back', 's20')}</span><div class="tt">Урок 1</div></div>`;
+const task = `<div class="task"><div class="k">Скажи по-английски</div><div class="q">Она работает каждый день</div></div>`;
+// зачем: «не засчитано» — пропущенное слово подсвечено на фразе-эталоне, одна строка по-человечески, главная кнопка «Ещё раз»
+const fail = (th) => phone(`${head}${task}
+  <div class="said"><div class="k">Сказано</div><div class="v">She works <span class="w miss">every</span> day</div></div>
+  <div class="line">Не услышали слово <b>every</b> — скажи фразу целиком</div>`,
+  { time: '9:45', fixed: `<div class="fx"><div class="rcta t">${icon('mic', 's20')}Ещё раз</div><div class="rghost t">Пропустить</div></div>` }).replace('class="ph"', `class="ph ${th}"`);
+// зачем: «засчитано» после релиза — фраза засчитана, неуверенное слово подсвечено тем же приёмом, но мягким янтарём
+const pass = (th) => phone(`${head}${task}
+  <div class="said"><div class="k">Сказано</div><div class="v">She works <span class="w soft">every</span> day</div></div>
+  <div class="line ok">Засчитано</div><div class="line">Слово <b>every</b> прозвучало неуверенно — в следующий раз чётче</div>`,
+  { time: '9:45', fixed: `<div class="fx"><div class="rcta t">Дальше${icon('arrowR', 's20')}</div></div>` }).replace('class="ph"', `class="ph ${th}"`);
+document.getElementById('root').innerHTML =
+  block('fail', 'Не засчитано — к релизу', 'Сказаны не все значимые слова. Фраза-эталон целиком, пропущенное слово — мягкий красный тон (без рамки и зачёркивания). Если слово сказано неверно, подсвечивается то же место правильным словом. Главная кнопка — «Ещё раз», «Пропустить» — текстом.', [
+    col('Не засчитано · «Сумерки»', fail('th-ink')), col('Не засчитано · «Океан»', fail('th-marine'))]) +
+  block('pass', 'Засчитано — после релиза', 'Фраза засчитана; слово, распознанное неуверенно, подсвечено мягким янтарём — подсказка, а не ошибка. Кнопка «Дальше».', [
+    col('Засчитано, неуверенное слово · «Сумерки»', pass('th-ink')), col('Засчитано, неуверенное слово · «Океан»', pass('th-marine'))]);
+K.init();
+</script>
+</body>
+</html>

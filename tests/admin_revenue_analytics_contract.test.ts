@@ -27,7 +27,9 @@ describe('admin revenue analytics contract', () => {
     expect(firebaseSource).toContain("trackRevenueActivity('paywall:plan_select'");
     expect(firebaseSource).toContain("trackRevenueActivity('paywall:cta_click'");
     expect(firebaseSource).toContain("trackRevenueActivity('paywall:purchase_success'");
-    expect(firebaseSource).toContain("trackRevenueActivity('paywall:trial_offer_accepted'");
+    // зачем (D187, владелец 14.10; df0c03d50): оффер пробного периода на выходе из пейвола удалён целиком — 'paywall:trial_offer_accepted'
+    // больше не пишется (принимать нечего). Админка показывает исторические записи; возвращать вызов нельзя — оффера нет.
+    expect(firebaseSource).not.toContain("trackRevenueActivity('paywall:trial_offer_accepted'");
     expect(firebaseSource).toContain("source: paywallSourceForContext(context)");
   });
 

@@ -133,7 +133,9 @@ describe('m08 · быстрые ответы подряд не оставляю�
 });
 
 describe('m08 · подключение к уроку', () => {
-  const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+  // зачем (координатор 15.10): сторож падал у одних сессий и проходил у других — рабочая копия lesson1.tsx на Windows
+  // бывает с CRLF, а ожидание содержит '\n'. Смысл тот же (без флага — прежнее кольцо), переводы строк не важны.
+  const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8').replace(/\r\n/g, '\n');
   it('без флага — прежнее кольцо с 3 подряд; модули m08 только require при флаге', () => {
     expect(src).toContain("const ComboHeatSlot = comboMomentsOn ? (require('../components/feedback/ComboHeatSlot')");
     expect(src).toContain(': comboCount >= 3 && (\n            <ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />');

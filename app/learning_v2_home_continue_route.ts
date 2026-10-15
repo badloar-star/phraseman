@@ -2,7 +2,7 @@
 // зачем: маршруты V2 знает только сам V2 (сторож learning_v2_visibility_switch_contract), и любой новый вход стоит под рубильником
 // «V2 скрыт»: при LEARNING_V2_HIDDEN карточка V2 не показывается вовсе и Главная остаётся на старом уроке.
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { LEARNING_V2_HIDDEN, logLearningV2Hidden } from './learning_v2_visibility_switch';
 import { recordHomeContinueV2 } from './home_continue_mark';
@@ -25,6 +25,20 @@ if (LEARNING_V2_HIDDEN) logLearningV2Hidden('home_continue_card', 'home', 'hidde
 // «готово», и в релизе плеер уходил на карту. Теперь тап готовит занятие ТЕМ ЖЕ путём, что вкладка «Уроки»
 // (learning_v2_session_launch_v1): подготовка → передача → маршрут с sessionRunId. Отказ подготовки — карта курса, причина в журнале.
 let launchInFlight = false;
+// зачем (Ревизор по R09, 🟡): подготовка занятия идёт до 12 с — карточка должна показать «готовим», а не молчать. Состояние запуска
+// публикуется подписчикам; вид занятости рисует карточка (зона Дизайна) по useHomeContinueV2Launching().
+const launchListeners = new Set<() => void>();
+function setLaunchInFlight(next: boolean): void {
+  if (launchInFlight === next) return;
+  launchInFlight = next;
+  launchListeners.forEach((listener) => listener());
+}
+const subscribeLaunch = (listener: () => void) => { launchListeners.add(listener); return () => { launchListeners.delete(listener); }; };
+const peekLaunch = () => launchInFlight;
+/** true, пока занятие V2 из карточки «Продолжить» готовится к открытию. */
+export function useHomeContinueV2Launching(): boolean {
+  return useSyncExternalStore(subscribeLaunch, peekLaunch, peekLaunch);
+}
 
 export type HomeContinueV2LaunchContext = Readonly<{ lang: string; studyTarget: string; push: (href: unknown) => void }>;
 
@@ -39,7 +53,7 @@ export async function launchHomeContinueV2(route: Readonly<Record<string, string
     ctx.push('/learning-v2/course');
     return;
   }
-  launchInFlight = true;
+  setLaunchInFlight(true);
   const startedAt = Date.now();
   const environment = parseLearningV2ReleaseEnvironmentV1(route.releaseEnvironment);
   const seasonId = route.releaseSeasonId || 'learning-v2';
@@ -65,12 +79,12 @@ export async function launchHomeContinueV2(route: Readonly<Record<string, string
     logLearningV2PrepareFailureV1('home_continue', sessionId, error);
     ctx.push('/learning-v2/course');
   } finally {
-    launchInFlight = false;
+    setLaunchInFlight(false);
   }
 }
 
 export function resetHomeContinueV2LaunchForTests(): void {
-  launchInFlight = false;
+  setLaunchInFlight(false);
 }
 
 export type HomeContinueV2Progress = Readonly<{ lessonOrdinal: number; done: number; total: number }>;

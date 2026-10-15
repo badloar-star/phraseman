@@ -26,7 +26,8 @@ jest.mock('@react-native-async-storage/async-storage', () => ({ __esModule: true
 jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: () => undefined }));
 jest.mock('../app/learning_v2_visibility_switch', () => ({ LEARNING_V2_HIDDEN: false, logLearningV2Hidden: () => undefined }));
 
-import { launchHomeContinueV2, resetHomeContinueV2LaunchForTests } from '../app/learning_v2_home_continue_route';
+import { act, renderHook } from '@testing-library/react-native';
+import { launchHomeContinueV2, resetHomeContinueV2LaunchForTests, useHomeContinueV2Launching } from '../app/learning_v2_home_continue_route';
 // eslint-disable-next-line import/first
 import * as client from '../app/learning_v2_course_released_session_client_v3';
 
@@ -56,6 +57,19 @@ describe('R09 · Главная → «Продолжить» V2 → заняти
       .consumeLearningV2CourseSessionReadyHandoffV3({ courseSessionId: href.params.id, sessionRunId: href.params.sessionRunId });
     expect(consumed).toEqual({ courseSessionId: route.id, sessionRunId: 'run-1' });
     expect(mockPrepare.mock.calls[0]![0].locator).toMatchObject({ lessonOrdinal: 1, sessionOrdinal: 4, studyTarget: 'en', learnerSourceLocale: 'ru', environment: 'production' });
+  });
+
+  // зачем (Ревизор по R09, 🟡): подготовка до 12 с — карточка узнаёт «готовим» и показывает занятость
+  it('состояние «готовим» видно на всё время подготовки и снимается после перехода', async () => {
+    let finishPrepare!: () => void;
+    mockPrepare.mockImplementationOnce((input: { sessionRunId: string }) => new Promise((resolve) => { finishPrepare = () => resolve({ courseSessionId: route.id, sessionRunId: input.sessionRunId }); }));
+    const hook = await renderHook(() => useHomeContinueV2Launching());
+    expect(hook.result.current).toBe(false);
+    let launch!: Promise<void>;
+    await act(async () => { launch = launchHomeContinueV2(route, { lang: 'ru', studyTarget: 'en', push: () => undefined }); });
+    expect(hook.result.current).toBe(true);
+    await act(async () => { finishPrepare(); await launch; });
+    expect(hook.result.current).toBe(false);
   });
 
   it('двойной тап — одна подготовка и один переход', async () => {

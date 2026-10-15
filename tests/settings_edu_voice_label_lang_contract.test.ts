@@ -8,7 +8,8 @@ const src = fs.readFileSync(path.join(__dirname, '..', 'app/settings_edu.tsx'), 
 describe('settings_edu: подпись голоса пересчитывается при смене языка интерфейса', () => {
   it('загрузка подписи — отдельный колбэк с зависимостью только от языка интерфейса', () => {
     expect(src).toContain('const loadVoiceValue = useCallback((reason: \'focus\' | \'lang_changed\') => {');
-    expect(src).toContain('  }, [lang]);\n  const loadVoiceValueRef = useRef(loadVoiceValue);');
+    // Ревизор 15.10: голос — по изучаемому языку, поэтому зависимость и от него (voiceLang); смысл прежний — смена языка перечитывает подпись
+    expect(src).toContain('  }, [lang, voiceLang]);\n  const loadVoiceValueRef = useRef(loadVoiceValue);');
     // settings-gap-034 (13.10): компактная подпись — язык уже в названии строки «(EN)»
     expect(src).toContain('const next = match ? voiceTitle(match, lang, voices, { compact: true }) : null;');
   });
@@ -34,7 +35,7 @@ describe('settings_edu: подпись голоса пересчитываетс
   });
 
   it('журнал [SETTINGS-EDU]: причина загрузки, язык, число голосов, совпадение и итоговое значение; ошибки не немые', () => {
-    expect(src).toContain('voice_value:load reason=${reason} lang=${lang} request=${request}');
+    expect(src).toContain('voice_value:load reason=${reason} lang=${lang} voiceLang=${voiceLang} request=${request}');
     expect(src).toContain('voice_value:shown reason=${reason} lang=${lang} voices=${voices.length} matched=${match ? \'yes\' : \'no\'} value=${next ?? \'system\'}');
     expect(src).toContain('voice_value_load_failed');
   });

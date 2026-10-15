@@ -19,7 +19,7 @@ jest.mock('../modules/audio/audio_runtime_arbiter', () => ({
   whenSpokenAudioReady: jest.fn(),
 }));
 jest.mock('../modules/audio/phrase_audio_timing', () => ({ phraseAudioClipStartTimeoutMs: () => 1000 }));
-jest.mock('../app/flashcards/voice_prefs', () => ({ peekEnVoiceId: () => null }));
+jest.mock('../app/flashcards/voice_prefs', () => ({ peekEnVoiceId: () => null, peekVoiceIdForLocale: () => null }));
 
 import { inferExpoSpeechLanguage, SILENT_SPEECH_LANGUAGE } from '../hooks/use-audio';
 import { voicedDeckCards, type DeckCard } from '../app/flashcards/deck_sources';

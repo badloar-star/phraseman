@@ -9,7 +9,8 @@ describe('экран выбора голоса: сбой записи', () => {
   const src = read('app/flashcards_voice_picker.tsx');
 
   it('выбор голоса: ждёт результат записи, откатывает на прежнее, показывает подсказку, учитывает номер выбора', () => {
-    expect(src).toContain('void setEnVoiceId(voiceId).then((saved) => {');
+    // Ревизор 15.10: выбор голоса — по изучаемому языку (setVoiceIdForLang), смысл сторожа прежний
+    expect(src).toContain('void setVoiceIdForLang(voiceLang, voiceId).then((saved) => {');
     expect(src).toContain('откат на ${previous ?? \'авто\'}');
     expect(src).toContain('pickSeqRef.current !== seq');
     expect(src).toContain('notifySaveFailed();');

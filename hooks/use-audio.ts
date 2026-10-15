@@ -11,7 +11,7 @@ import {
   type SpokenAudioClaim,
 } from '../modules/audio/audio_runtime_arbiter';
 import { phraseAudioClipStartTimeoutMs } from '../modules/audio/phrase_audio_timing';
-import { peekEnVoiceId } from '../app/flashcards/voice_prefs';
+import { peekEnVoiceId, peekVoiceIdForLocale } from '../app/flashcards/voice_prefs';
 import {
   cardTtsLanguageFromSpeechLocale,
   isCardTtsKnownMissing,
@@ -249,7 +249,10 @@ export function useAudio() {
     const settingsVoice = settings.speechVoiceId.trim();
     const requestedVoice = hasVoiceOverride
       ? (opts.voice ?? opts.voiceId ?? '').trim()
-      : (language.toLowerCase().startsWith('en') ? settingsVoice || (peekEnVoiceId() ?? '').trim() : '');
+      // зачем (Ревизор 15.10): у es/fr/de/it теперь свой выбранный голос (voice_prefs, отдельный ключ); английский — как раньше
+      : (language.toLowerCase().startsWith('en')
+        ? settingsVoice || (peekEnVoiceId() ?? '').trim()
+        : (peekVoiceIdForLocale(language) ?? '').trim());
 
     // Prefer the high-quality OpenAI "echo" clip when one exists for this exact
     // text, the language is English (clips are EN-only), and the caller did not

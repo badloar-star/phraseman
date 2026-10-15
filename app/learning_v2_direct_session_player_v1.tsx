@@ -764,6 +764,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     state: Exclude<LearningV2ReferenceAudioStateV1, "unavailable">;
   }> | null>(null);
   const { speak: speakPreviewAudio, stop: stopPreviewAudio } = useAudio();
+  // зачем (Ревизор 15.10, 🟡 к e6392a5a7): предпросмотр слова озвучивался зашитым en-US, а распознавание шло по языку курса —
+  // испанское слово читалось английским голосом. Локаль курса считается ниже (voiceRecognitionLocale, после runSummary),
+  // поэтому колбэк читает её через ref: в массив зависимостей объявленную ниже константу класть нельзя.
+  const previewSpeechLocaleRef = useRef<string>(studySpeechLocale(studyTarget, "learning_v2_preview"));
   const [previewSpeechKey, setPreviewSpeechKey] = useState<string | null>(null);
   const previewSpeechWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previewSpeechGuardRef = useRef(
@@ -883,7 +887,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         learningV2PreviewSpeechWatchdogMsV1(normalized),
       );
       speakPreviewAudio(normalized, rate, {
-        language: "en-US",
+        language: previewSpeechLocaleRef.current,
         onStart: () => {
           if (previewSpeechGuardRef.current.currentKey() === key) {
             setPreviewSpeechKey(key);
@@ -1982,6 +1986,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     : "";
   // зачем (R49, 15.10): короткий код «es» вместо «es-ES» не гарантирует нужный распознаватель — точная локаль из общей таблицы.
   const voiceRecognitionLocale = studySpeechLocale(runSummary?.targetLanguage ?? studyTarget, "learning_v2");
+  previewSpeechLocaleRef.current = voiceRecognitionLocale; // предпросмотр слова — тем же языком, что и распознавание
   const cancelVoiceCapture = useCallback(() => {
     setVoiceHoldActive(false);
     setModeVoiceStatus("idle");

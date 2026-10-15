@@ -1,5 +1,5 @@
 /**
- * cards-2.0 (E13): экран выбора TTS-голоса для EN (§3.8 мастер-плана).
+ * cards-2.0 (E13): экран выбора TTS-голоса (§3.8 мастер-плана); с 15.10 — для изучаемого языка (en/es/fr/de/it).
  *
  * - Список голосов из Speech.getAvailableVoicesAsync (кэш tts_voices.getVoicesOnce),
  *   фильтр en-*, исключение eloquence/novelty-голосов; Enhanced/Premium — сверху
@@ -19,6 +19,8 @@ import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-nativ
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { studySpeechLocale } from './study_speech_locale';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
@@ -28,7 +30,7 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import { fcHaptic } from './flashcards/SoundService';
 import { nestedBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
 import { getVoicesOnce, peekVoicesCache, voiceTitle, type FcVoiceLike } from './flashcards/tts_voices';
-import { getVoicePrefs, setEnVoiceId } from './flashcards/voice_prefs';
+import { getVoiceIdForLang, setVoiceIdForLang, voiceStudyLangOf, type VoiceStudyLang } from './flashcards/voice_prefs';
 import { safeRouterBack } from './navigation_back';
 import { emitAppEvent } from './events';
 import {
@@ -38,7 +40,14 @@ import {
   type UserSettings,
 } from './user_settings_store';
 
-const PREVIEW_PHRASE = 'Look forward to seeing you';
+// зачем (Ревизор 15.10, 🟡 к e6392a5a7): выбор голоса шёл только среди en-* — теперь по изучаемому языку; фраза превью на нём же
+const PREVIEW_PHRASE: Readonly<Record<VoiceStudyLang, string>> = {
+  en: 'Look forward to seeing you',
+  es: 'Tengo ganas de verte',
+  fr: 'J’ai hâte de te voir',
+  de: 'Ich freue mich darauf, dich zu sehen',
+  it: 'Non vedo l’ora di vederti',
+};
 
 // зачем (аудит Optimistic UI 15.10): сбой записи выбора голоса/скорости раньше молчал — выбор «держался» до перезапуска и пропадал; теперь откат + короткая подсказка (тот же текст, что у переключателей Приватности)
 function notifySaveFailed(): void {
@@ -62,9 +71,12 @@ const NOVELTY_NAMES = new Set([
   'good news', 'jester', 'organ', 'superstar', 'trinoids', 'whisper', 'wobble', 'zarvox',
 ]);
 
-export function isPickableEnVoice(v: FcVoiceLike): boolean {
+/** Прежнее имя (английский) — для совместимости импортов. */
+export function isPickableEnVoice(v: FcVoiceLike): boolean { return isPickableVoiceFor(v, 'en'); }
+
+export function isPickableVoiceFor(v: FcVoiceLike, lang: VoiceStudyLang): boolean {
   const langTag = (v.language ?? '').toLowerCase().replace(/_/g, '-');
-  if (!langTag.startsWith('en')) return false;
+  if (!langTag.startsWith(lang)) return false;
   const id = (v.identifier ?? '').toLowerCase();
   if (id.includes('eloquence')) return false;
   const name = (v.name ?? '').toLowerCase().trim();
@@ -92,11 +104,15 @@ export default function FlashcardsVoicePickerScreen() {
   const { lang } = useLang();
   const effectiveOs = useEffectivePlatformOS();
   const { speak, stop } = useAudio();
+  const { studyTarget } = useStudyTarget();
+  const voiceLang: VoiceStudyLang = voiceStudyLangOf(studyTarget) ?? 'en';
+  const voiceLocale = studySpeechLocale(voiceLang, 'voice_picker');
+  const previewPhrase = PREVIEW_PHRASE[voiceLang];
 
   // зачем (аудит cards-gaps-states, «раздел открывается без экранов загрузки»): кэш голосов уже готов — первый кадр сразу со списком
   // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `hold=voices_loading` держит скелет списка голосов; в стор-сборке геттер выключен.
   const [loading, setLoading] = useState(() => peekVoicesCache() === null || isDevCardsHeld('voices_loading'));
-  const [voices, setVoices] = useState<FcVoiceLike[]>(() => (peekVoicesCache() ?? []).filter(isPickableEnVoice));
+  const [voices, setVoices] = useState<FcVoiceLike[]>(() => (peekVoicesCache() ?? []).filter((v) => isPickableVoiceFor(v, voiceLang)));
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [settings, setSettings] = useState<UserSettings>(() => getUserSettingsSnapshot());
   // зачем (аудит Optimistic UI 15.10): актуальный выбор в ref — откат при сбое записи берёт прежнее значение, а не устаревшее из замыкания; номер выбора — поздний ответ старого тапа не откатывает свежий
@@ -110,15 +126,16 @@ export default function FlashcardsVoicePickerScreen() {
     let cancelled = false;
     void (async () => {
       try {
-        const [list, prefs] = await Promise.all([getVoicesOnce(), getVoicePrefs()]);
+        const [list, chosen] = await Promise.all([getVoicesOnce(), getVoiceIdForLang(voiceLang)]);
         if (cancelled) return;
-        setVoices(list.filter(isPickableEnVoice));
+        setVoices(list.filter((v) => isPickableVoiceFor(v, voiceLang)));
+        console.log(`[VOICE-PICK] список: язык=${voiceLang} голосов=${list.filter((v) => isPickableVoiceFor(v, voiceLang)).length} выбран=${chosen ?? 'авто'}`); // guard-ok: вход экрана
         // позднее чтение диска не затирает выбор, который человек успел сделать, пока список грузился
         if (userPickedRef.current) {
-          console.log(`[VOICE-PICK] загрузка списка пришла после выбора человека — оставляю его выбор id=${selectedIdRef.current ?? 'авто'}, диск=${prefs.voiceIdEn ?? 'авто'}`); // guard-ok: ветка решения называет значения
+          console.log(`[VOICE-PICK] загрузка списка пришла после выбора человека — оставляю его выбор id=${selectedIdRef.current ?? 'авто'}, диск=${chosen ?? 'авто'}`); // guard-ok: ветка решения называет значения
         } else {
-          selectedIdRef.current = prefs.voiceIdEn;
-          setSelectedId(prefs.voiceIdEn);
+          selectedIdRef.current = chosen;
+          setSelectedId(chosen);
         }
       } catch (error) {
         console.warn(`[VOICE-PICK] загрузка списка голосов/выбора не удалась — ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина отказа
@@ -130,7 +147,7 @@ export default function FlashcardsVoicePickerScreen() {
       cancelled = true;
       stop();
     };
-  }, [stop]);
+  }, [stop, voiceLang]);
 
   /** Enhanced сверху; внутри групп: Android — local первыми, затем по имени. */
   const sorted = useMemo(() => {
@@ -152,9 +169,9 @@ export default function FlashcardsVoicePickerScreen() {
     (voiceId: string | null) => {
       stop();
       // voiceId: null → системный голос (явный override кэша выбора)
-      speak(PREVIEW_PHRASE, undefined, { language: 'en-US', voiceId });
+      speak(previewPhrase, undefined, { language: voiceLocale, voiceId });
     },
-    [speak, stop],
+    [previewPhrase, speak, stop, voiceLocale],
   );
 
   const pickVoice = useCallback(
@@ -165,7 +182,7 @@ export default function FlashcardsVoicePickerScreen() {
       userPickedRef.current = true;
       selectedIdRef.current = voiceId;
       setSelectedId(voiceId);
-      void setEnVoiceId(voiceId).then((saved) => {
+      void setVoiceIdForLang(voiceLang, voiceId).then((saved) => {
         if (saved) return;
         if (pickSeqRef.current !== seq) {
           console.warn(`[VOICE-PICK] запись выбора ${voiceId ?? 'авто'} не удалась, но уже есть более новый выбор (seq=${pickSeqRef.current}) — откат не нужен`); // guard-ok: ранний выход называет причину
@@ -178,7 +195,7 @@ export default function FlashcardsVoicePickerScreen() {
       });
       previewWith(voiceId);
     },
-    [previewWith],
+    [previewWith, voiceLang],
   );
 
   const activeRate = normalizeSpeechRate(settings.speechRate);
@@ -203,9 +220,9 @@ export default function FlashcardsVoicePickerScreen() {
         notifySaveFailed();
       });
       stop();
-      speak(PREVIEW_PHRASE, rate, { language: 'en-US', voiceId: selectedId });
+      speak(previewPhrase, rate, { language: voiceLocale, voiceId: selectedId });
     },
-    [selectedId, speak, stop],
+    [previewPhrase, selectedId, speak, stop, voiceLocale],
   );
 
   const gs = useShadowGlass(); // зачем (Тень 12.10): токены тени для пилюли «Улучшенный» и кнопки превью
@@ -349,10 +366,11 @@ export default function FlashcardsVoicePickerScreen() {
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }} testID="fc-voice-picker-title">
-              {triLang(lang, {
-                ru: 'Голос озвучки · EN', uk: 'Голос озвучення · EN', en: 'Voiceover voice · EN', es: 'Voz de lectura · EN',
-                'pt-BR': 'Voz de leitura · EN', vi: 'Giọng đọc · EN', id: 'Suara narasi · EN', tr: 'Seslendirme sesi · EN', pl: 'Głos odczytu · EN',
-              })}
+              {/* язык в заголовке — изучаемый (EN / ES / FR / DE / IT), а не всегда EN */}
+              {`${triLang(lang, {
+                ru: 'Голос озвучки', uk: 'Голос озвучення', en: 'Voiceover voice', es: 'Voz de lectura',
+                'pt-BR': 'Voz de leitura', vi: 'Giọng đọc', id: 'Suara narasi', tr: 'Seslendirme sesi', pl: 'Głos odczytu',
+              })} · ${voiceLang.toUpperCase()}`}
             </Text>
             <View style={{ width: 28 }} />
           </View>
@@ -488,7 +506,7 @@ export default function FlashcardsVoicePickerScreen() {
                 </Text>
               </TouchableOpacity>
               <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center' }}>
-                «{PREVIEW_PHRASE}»
+                «{previewPhrase}»
               </Text>
 
             </ScrollView>

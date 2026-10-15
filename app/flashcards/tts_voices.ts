@@ -181,11 +181,13 @@ export function getVoicesOnce(): Promise<FcVoiceLike[]> {
 export async function resolveVoiceForLang(lang: FcTtsLang): Promise<ResolvedVoice> {
   const voices = await getVoicesOnce();
   let preferred: string | null = null;
-  if (lang === 'en') {
+  if (lang === 'en' || lang === 'es') {
     try {
-      const { getVoicePrefs } = require('./voice_prefs') as typeof import('./voice_prefs');
-      preferred = (await getVoicePrefs()).voiceIdEn;
-    } catch {
+      const { getVoiceIdForLang } = require('./voice_prefs') as typeof import('./voice_prefs');
+      // зачем (Ревизор 15.10): у испанского теперь тоже свой выбранный голос; английский — прежний voiceIdEn
+      preferred = await getVoiceIdForLang(lang);
+    } catch (error) {
+      console.warn(`[VOICE-PICK] чтение выбранного голоса ${lang} не удалось — системный`, error instanceof Error ? error.message : String(error)); // guard-ok: причина фолбэка
       preferred = null;
     }
   }

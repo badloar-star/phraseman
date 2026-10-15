@@ -104,10 +104,98 @@ export async function setEnVoiceId(voiceId: string | null): Promise<boolean> {
   }
 }
 
+// ── Голос для остальных изучаемых языков (Ревизор 15.10, 🟡 к e6392a5a7) ─────────────────────────────────
+// зачем: выбор голоса был только среди en-*, а озвучка es/fr/de/it шла системным голосом без выбора. Английский остаётся
+// в прежнем ключе (fc_voice_prefs_v1 {voiceIdEn}) — старые установки и сторожа не меняются; остальные языки — в своём ключе.
+export const FC_VOICE_PREFS_BY_LANG_KEY = 'fc_voice_prefs_by_lang_v1';
+export type VoiceStudyLang = 'en' | 'es' | 'fr' | 'de' | 'it';
+type OtherLang = Exclude<VoiceStudyLang, 'en'>;
+const OTHER_LANGS: readonly OtherLang[] = ['es', 'fr', 'de', 'it'];
+
+/** 'es-ES' / 'es' / 'ES' → 'es'; иначе null. */
+export function voiceStudyLangOf(value: unknown): VoiceStudyLang | null {
+  if (typeof value !== 'string') return null;
+  const short = value.trim().toLowerCase().split(/[-_]/)[0];
+  return short === 'en' || (OTHER_LANGS as readonly string[]).includes(short) ? (short as VoiceStudyLang) : null;
+}
+
+export function parseVoicePrefsByLang(raw: string | null | undefined): Partial<Record<OtherLang, string>> {
+  if (!raw || !raw.trim()) return {};
+  try {
+    const p = JSON.parse(raw) as Record<string, unknown>;
+    if (!p || typeof p !== 'object' || Array.isArray(p)) return {};
+    const out: Partial<Record<OtherLang, string>> = {};
+    for (const lang of OTHER_LANGS) {
+      const v = p[lang];
+      if (typeof v === 'string' && v.trim().length > 0) out[lang] = v;
+    }
+    return out;
+  } catch (e) {
+    DebugLogger.error('voice_prefs:by_lang_parse', e instanceof Error ? e : new Error(String(e)), 'warning');
+    return {};
+  }
+}
+
+let cachedByLang: Partial<Record<OtherLang, string>> = {};
+let byLangHydrated = false;
+void AsyncStorage.getItem(FC_VOICE_PREFS_BY_LANG_KEY)
+  .then((raw) => {
+    if (!byLangHydrated) {
+      cachedByLang = parseVoicePrefsByLang(raw);
+      byLangHydrated = true;
+    }
+  })
+  .catch((e: unknown) => {
+    byLangHydrated = true;
+    DebugLogger.error('voice_prefs:by_lang_hydrate', e instanceof Error ? e : new Error(String(e)), 'warning');
+  });
+
+/** Синхронный снимок выбранного голоса для языка речи ('fr-FR' / 'fr'); null — системный. */
+export function peekVoiceIdForLocale(locale: string): string | null {
+  const lang = voiceStudyLangOf(locale);
+  if (lang === null) return null;
+  return lang === 'en' ? cachedVoiceIdEn : (cachedByLang[lang] ?? null);
+}
+
+/** Выбор для языка с диска (кэш обновляется попутно). */
+export async function getVoiceIdForLang(lang: VoiceStudyLang): Promise<string | null> {
+  if (lang === 'en') return (await getVoicePrefs()).voiceIdEn;
+  try {
+    cachedByLang = parseVoicePrefsByLang(await AsyncStorage.getItem(FC_VOICE_PREFS_BY_LANG_KEY));
+    byLangHydrated = true;
+  } catch (e) {
+    DebugLogger.error('voice_prefs:by_lang_read', e instanceof Error ? e : new Error(String(e)), 'warning');
+  }
+  return cachedByLang[lang] ?? null;
+}
+
+let setByLangSeq = 0;
+/** Сохранить выбор для языка (null — системный). Кэш — сразу; false — диск не принял, кэш откатан (экран откатывает выбор). */
+export async function setVoiceIdForLang(lang: VoiceStudyLang, voiceId: string | null): Promise<boolean> {
+  if (lang === 'en') return setEnVoiceId(voiceId);
+  const previous = cachedByLang;
+  const mySeq = ++setByLangSeq;
+  const next: Partial<Record<OtherLang, string>> = { ...cachedByLang };
+  if (voiceId && voiceId.trim().length > 0) next[lang] = voiceId; else delete next[lang];
+  cachedByLang = next;
+  byLangHydrated = true;
+  try {
+    await AsyncStorage.setItem(FC_VOICE_PREFS_BY_LANG_KEY, JSON.stringify(next));
+    return true;
+  } catch (e) {
+    const rolledBack = setByLangSeq === mySeq;
+    if (rolledBack) cachedByLang = previous;
+    console.warn(`[VOICE-PICK] запись голоса ${lang}=${voiceId ?? 'авто'} не удалась — кэш ${rolledBack ? 'возвращён' : 'не трогаю: есть более новый выбор'} — ${e instanceof Error ? e.message : String(e)}`); // guard-ok: причина отказа записи
+    return false;
+  }
+}
+
 /** Только для юнит-тестов: сброс модульного кэша. */
 export function __resetVoicePrefsForTests(): void {
   cachedVoiceIdEn = null;
   hydrated = false;
+  cachedByLang = {};
+  byLangHydrated = false;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

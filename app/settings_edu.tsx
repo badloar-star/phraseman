@@ -27,7 +27,8 @@ import {
   type UserSettings,
 } from './user_settings_store';
 import { safeRouterBack } from './navigation_back';
-import { getVoicePrefs, peekEnVoiceId } from './flashcards/voice_prefs';
+import { getVoiceIdForLang, peekVoiceIdForLocale, voiceStudyLangOf, type VoiceStudyLang } from './flashcards/voice_prefs';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { getVoicesOnce, voiceTitle } from './flashcards/tts_voices';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -100,7 +101,8 @@ function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }
 // зачем: последнее показанное значение строки «Голос озвучки (EN)» живёт в памяти модуля —
 // повторный вход на экран рисует его с первого кадра (Performance Bible: первый кадр = последнее известное).
 // undefined — ещё ни разу не вычисляли; null — системный голос; строка — имя выбранного голоса.
-let lastShownVoiceValue: string | null | undefined;
+// с 15.10 значение помнится вместе с языком: смена изучаемого языка не должна показать чужой голос
+let lastShownVoice: Readonly<{ lang: VoiceStudyLang; value: string | null }> | undefined;
 
 export default function SettingsEdu() {
   const router = useRouter();
@@ -118,8 +120,11 @@ export default function SettingsEdu() {
   // или имя выбранного голоса. Первый кадр: последнее показанное значение; если его нет, но голос выбран
   // (синхронный снимок peekEnVoiceId) — пустое место вместо неверного «Системный». Имя догружается фоном
   // из локального списка голосов телефона (без сети).
+  // зачем (Ревизор 15.10): голос выбирается для ИЗУЧАЕМОГО языка — строка и её значение тоже по нему, а не всегда (EN)
+  const { studyTarget } = useStudyTarget();
+  const voiceLang: VoiceStudyLang = voiceStudyLangOf(studyTarget) ?? 'en';
   const [voiceValue, setVoiceValue] = useState<string | null>(() => (
-    lastShownVoiceValue !== undefined ? lastShownVoiceValue : (peekEnVoiceId() ? '' : null)
+    lastShownVoice?.lang === voiceLang ? lastShownVoice.value : (peekVoiceIdForLocale(voiceLang) ? '' : null)
   ));
 
   // зачем (координатор 12.10, 🟡 Ядра по 59ba4d58d): подпись голоса зависит от ЯЗЫКА ИНТЕРФЕЙСА и списка голосов (voiceTitle), а useFocusEffect с пустыми deps читал `lang` только при входе
@@ -130,30 +135,30 @@ export default function SettingsEdu() {
   const loadVoiceValue = useCallback((reason: 'focus' | 'lang_changed') => {
     const request = ++voiceRequestRef.current;
     voiceLoadedLangRef.current = lang;
-    console.log(`[SETTINGS-EDU] voice_value:load reason=${reason} lang=${lang} request=${request}`);
-    void getVoicePrefs()
-      .then(async (prefs) => {
-        if (!prefs.voiceIdEn) {
+    console.log(`[SETTINGS-EDU] voice_value:load reason=${reason} lang=${lang} voiceLang=${voiceLang} request=${request}`);
+    void getVoiceIdForLang(voiceLang)
+      .then(async (chosenId) => {
+        if (!chosenId) {
           if (request !== voiceRequestRef.current) { console.log(`[SETTINGS-EDU] voice_value:stale request=${request} (системный голос)`); return; }
-          lastShownVoiceValue = null;
+          lastShownVoice = { lang: voiceLang, value: null };
           setVoiceValue(null);
           return;
         }
         const voices = await getVoicesOnce();
-        const match = voices.find((v) => v.identifier === prefs.voiceIdEn);
+        const match = voices.find((v) => v.identifier === chosenId);
         // голос выбран, но в телефоне его больше нет — озвучка уйдёт в системный фолбэк, так и показываем
         // зачем (settings-gap-034): язык интерфейса и список голосов — чтобы технический id стал «English (Australia) · 2»
         // compact (settings-gap-034, 13.10): язык уже в названии строки «(EN)» — справа только регион и номер, название не переносится
         const next = match ? voiceTitle(match, lang, voices, { compact: true }) : null;
         if (request !== voiceRequestRef.current) { console.log(`[SETTINGS-EDU] voice_value:stale request=${request} (ушёл с экрана или язык сменился ещё раз)`); return; }
-        lastShownVoiceValue = next;
+        lastShownVoice = { lang: voiceLang, value: next };
         setVoiceValue((prev) => (prev === next ? prev : next));
         console.log(`[SETTINGS-EDU] voice_value:shown reason=${reason} lang=${lang} voices=${voices.length} matched=${match ? 'yes' : 'no'} value=${next ?? 'system'}`);
       })
       .catch((error: unknown) => {
         console.warn(`[SETTINGS-EDU] voice_value_load_failed reason=${error instanceof Error ? error.message : String(error)}`);
       });
-  }, [lang]);
+  }, [lang, voiceLang]);
   const loadVoiceValueRef = useRef(loadVoiceValue);
   loadVoiceValueRef.current = loadVoiceValue;
 
@@ -219,6 +224,7 @@ export default function SettingsEdu() {
   };
 
   const L = (m: Record<string, string>): string => m[lang] ?? m.ru;
+  const voiceRowTitle = `${L({ ru: 'Голос озвучки', uk: 'Голос озвучення', en: 'Voice', es: 'Voz', 'pt-BR': 'Voz', vi: 'Giọng đọc', id: 'Suara', tr: 'Ses', pl: 'Głos' })} (${voiceLang.toUpperCase()})`;
 
   const rows: { key: RowKey; label: string; sub: string; icon: keyof typeof Ionicons.glyphMap }[] = [
     {
@@ -464,7 +470,7 @@ export default function SettingsEdu() {
 
             <PressableHybrid
             testID="fc-voice-picker-row"
-            accessibilityLabel={L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}
+            accessibilityLabel={voiceRowTitle}
             accessible
             withHaptic={false}
             withSound={false}
@@ -480,7 +486,7 @@ export default function SettingsEdu() {
             {/* зачем (settings-gap-034, кадр 13.10 02:25Z): как в образце (.gs-tx flex:1 min-width:0 / .gs-vv flex:none max-width:120) — место
                 уступает колонка названия (подпись под ним уходит на 2-ю строку), а значение держит одну строку до 120. Раньше колонка не
                 сжималась, её ширину задавала подпись, и «Австралия · 2» складывалась в три строки. */}
-            <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
+            <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}><Text style={titleStyle}>{voiceRowTitle}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, flexShrink: 0, maxWidth: 120, textAlign: 'right' /* зачем: text-integrity — длинное имя голоса переносится внутри 120, без обрезки; отступ — только gap строки 14, как в образце */ }}>
               {voiceValue ?? L({ ru: 'Системный', uk: 'Системний', en: 'System', es: 'Del sistema', 'pt-BR': 'Do sistema', vi: 'Hệ thống', id: 'Sistem', tr: 'Sistem', pl: 'Systemowy' })}
             </Text>

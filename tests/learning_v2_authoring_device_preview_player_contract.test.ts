@@ -25,7 +25,9 @@ const requiredPlayerContracts = [
   "!isAuthoringPreview &&",
   "isAuthoringPreview ? null : audioPreload",
   "speakPreviewAudio",
-  'language: "en-US"',
+  // Ревизор 15.10: язык предпросмотра — язык курса (тот же, что у распознавания); у английского курса это по-прежнему en-US
+  'language: previewSpeechLocaleRef.current',
+  'previewSpeechLocaleRef.current = voiceRecognitionLocale;',
 ] as const;
 
 // зачем (координатор §47, 2026-10-01): просмотр играет занятия встроенного релиза

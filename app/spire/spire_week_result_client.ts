@@ -156,7 +156,7 @@ const mergedWallets = new Set<string>();
  */
 async function mergeWeekWallet(token: AccountGenerationToken, uid: string, result: SpireWeekResultView | null, where: string): Promise<void> {
   if (!result) return;
-  const tag = `[SPIRE-WEEK-WALLET] where=${where} weekId=${result.weekId} lang=${result.lang} rewardStatus=${result.rewardStatus ?? 'кэш_до_15.10'}`;
+  const tag = `[SPIRE-WEEK-WALLET] where=${where} weekId=${result.weekId} lang=${result.lang} rewardStatus=${result.rewardStatus ?? 'кэш_до_15.10'}`; // guard-ok: префикс строки журнала, не интерфейс
   const w = result.walletAfter;
   if (!w) { DebugLogger.info(LOG, `${tag} skip: снимка кошелька в итоге нет — баланс догонит квитанция урока/карточек`); return; }
   const key = `${uid}:${result.weekId}:${result.lang}:${w.seq}`;

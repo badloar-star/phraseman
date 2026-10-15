@@ -42,7 +42,18 @@ export type SpireWeekMomentShow = Readonly<{
   weekId: string;
   outcome: SpireWeekMomentOutcome;
   result: SpireWeekResultView;
+  /** m01 вариант B «Короткая: для повторных повышений» — это не первое повышение человека (см. spireIsRepeatPromotion). Гейт задаёт всегда; необязательно для тестовых заготовок. */
+  isRepeatPromotion?: boolean;
 }>;
+
+/**
+ * Повышение не первое: ушёл вверх из лиги ≥ 1. Лига стартует с 0 — кто поднимается из 1+, уже повышался раньше.
+ * зачем (координатор 15.10, Дизайн переносит m01 вариант B): признак из того же итога недели — 0 чтений, без истории.
+ * Случай «вылетел обратно на 0 и снова поднялся» считается первым — координатор принял это допущение.
+ */
+export function spireIsRepeatPromotion(result: Pick<SpireWeekResultView, 'promoted' | 'prevTier'>): boolean {
+  return result.promoted === true && result.prevTier >= 1;
+}
 
 export type SpireWeekMomentSkipReason =
   | 'flag_off' | 'tab_off' | 'ui_lang' | 'study_lang' | 'no_uid' | 'week_not_closed' | 'already_shown'
@@ -128,8 +139,9 @@ export async function resolveSpireWeekMoment(input: SpireWeekMomentInput): Promi
       return { show: false, reason: 'no_result' };
     }
     const outcome = spireWeekMomentOutcome(result);
-    log(`ПОКАЗЫВАЕМ: weekId=${result.weekId} lang=${lang} outcome=${outcome} tier ${result.prevTier}→${result.newTier} место=${result.roomRank}/${result.roomTotal}`);
-    return { show: true, uid, lang, weekId: result.weekId, outcome, result };
+    const isRepeatPromotion = spireIsRepeatPromotion(result);
+    log(`ПОКАЗЫВАЕМ: weekId=${result.weekId} lang=${lang} outcome=${outcome} tier ${result.prevTier}→${result.newTier} место=${result.roomRank}/${result.roomTotal} повторное=${String(isRepeatPromotion)}`);
+    return { show: true, uid, lang, weekId: result.weekId, outcome, result, isRepeatPromotion };
   } catch (error) {
     log(`не показываем: сбой (${error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120)})`);
     return { show: false, reason: 'failed' };

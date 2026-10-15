@@ -6,6 +6,7 @@ import {
   decideSpireWeekMomentTiming,
   markSpireWeekMomentShown,
   resolveSpireWeekMoment,
+  spireIsRepeatPromotion,
   type SpireWeekMomentShow,
 } from '../app/spire/spire_week_moment_gate';
 
@@ -79,7 +80,7 @@ describe('D191 week moment gate', () => {
     const weekId = decideSpireWeekMomentTiming(nowMs, null).weekId;
     mockResult = weekResult(weekId);
     const first = await resolveSpireWeekMoment({ ...INPUT, nowMs });
-    expect(first).toMatchObject({ show: true, outcome: 'promoted', weekId });
+    expect(first).toMatchObject({ show: true, outcome: 'promoted', weekId, isRepeatPromotion: true }); // prevTier 2 → повторное
     await markSpireWeekMomentShown(first as SpireWeekMomentShow);
     expect(mockStoryShown).toHaveBeenCalledWith(mockResult);
     const second = await resolveSpireWeekMoment({ ...INPUT, nowMs: nowMs + 60_000 });
@@ -119,5 +120,15 @@ describe('D191 week moment gate', () => {
     await expect(resolveSpireWeekMoment({ ...INPUT, studyTarget: 'it', nowMs: MONDAY_UTC + 5 * 60_000 })).resolves.toEqual({ show: false, reason: 'study_lang' });
     await expect(resolveSpireWeekMoment({ ...INPUT, tabEnabled: false, nowMs: MONDAY_UTC + 5 * 60_000 })).resolves.toEqual({ show: false, reason: 'tab_off' });
     expect(mockLoad).not.toHaveBeenCalled();
+  });
+});
+
+// координатор 15.10 (m01 вариант B «Короткая: для повторных повышений»): признак из того же итога, 0 чтений.
+describe('isRepeatPromotion', () => {
+  it('повышение из лиги ≥ 1 — повторное; из 0 — первое; не повышение — нет', () => {
+    expect(spireIsRepeatPromotion({ promoted: true, prevTier: 2 })).toBe(true);
+    expect(spireIsRepeatPromotion({ promoted: true, prevTier: 1 })).toBe(true);
+    expect(spireIsRepeatPromotion({ promoted: true, prevTier: 0 })).toBe(false);
+    expect(spireIsRepeatPromotion({ promoted: false, prevTier: 5 })).toBe(false);
   });
 });

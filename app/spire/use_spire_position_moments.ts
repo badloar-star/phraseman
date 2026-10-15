@@ -165,7 +165,7 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
 
   const lastChanceDecision = useMemo(() => {
     if (!snapshot || !rows || lastChanceShownWeek === undefined) return null;
-    if (lastChanceShownWeek === snapshot.weekId) return { show: null, why: `уже показывали на неделе ${snapshot.weekId}` };
+    if (lastChanceShownWeek === snapshot.weekId) return { show: null, why: `уже показывали на неделе ${snapshot.weekId}` }; // guard-ok: причина для журнала
     return spireDecideLastChance(nowMs ?? Date.now(), snapshot, rows, rankBy, energyRef.current);
   }, [snapshot, rows, rankBy, lastChanceShownWeek, nowMs]);
   useEffect(() => {

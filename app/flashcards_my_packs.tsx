@@ -55,8 +55,10 @@ import { safeRouterBack } from './navigation_back';
 import { useLoadGate } from './use_load_gate';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
-import { loadCommunityOwnedPackIdsResult } from './community_packs/communityOwnedStorage';
+import { loadCommunityOwnedPackIdsResult, loadCommunityOwnedPackTitles } from './community_packs/communityOwnedStorage';
 import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdateResult } from './community_packs/communityFirestore';
+import { buildOwnedVideoPackMeta, videoIdFromOwnedCommunityId } from './flashcards/my_packs_video_meta';
+import { loadVideoPhraseSetPacks } from './video_phrase_set_packs';
 import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
 import { deleteOwnPackEverywhere, pendingPackDeletes } from './community_packs/deleteOwnPack';
 import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from './community_packs/stage_with_retry';
@@ -421,8 +423,32 @@ export default function FlashcardsMyPacksScreen() {
     // тестовый id; облако выключено), больше не держит экран на скелетоне: остальные
     // показываются, отсутствующий тихо не показывается. Сбой сети — повтор, как раньше.
     const nowMs = Date.now();
-    const cachedMissing = missing.filter((id) => missingPackCache.isMissing(`${studyTarget}:${id}`, nowMs));
-    const toFetch = missing.filter((id) => !cachedMissing.includes(id));
+    // зачем (🔴 R60, 15.10): набор ролика (`video_<id>`) собирается на клиенте и документа сообщества может не иметь — он НИКОГДА не «набора нет».
+    const videoOwnedIds = missing.filter((id) => videoIdFromOwnedCommunityId(id) !== null);
+    const videoOwnedMetas: FlashcardMarketPack[] = [];
+    if (videoOwnedIds.length > 0) {
+      console.log(`[MY-PACKS] video_owned in ids=${videoOwnedIds.join(',')} target=${studyTarget}`); // guard-ok: вход ветки наборов роликов
+      const phraseSetPacks = await loadVideoPhraseSetPacks().catch((error: unknown) => {
+        console.warn(`[MY-PACKS] video_owned phrase sets FAILED reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+        return [] as FlashcardMarketPack[];
+      });
+      const storedTitles = await loadCommunityOwnedPackTitles(studyTarget);
+      for (const id of videoOwnedIds) {
+        const phraseHit = phraseSetPacks.some((pack) => pack.videoId === videoIdFromOwnedCommunityId(id));
+        const communityDoc = phraseHit ? null : await fetchCommunityPackMetaResult(id, studyTarget)
+          .then((result) => (result.status === 'found' ? result.pack : null))
+          .catch((error: unknown) => {
+            console.warn(`[MY-PACKS] video_owned doc FAILED id=${id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+            return null;
+          });
+        const built = buildOwnedVideoPackMeta({ packId: id, phraseSetPacks, communityDoc, storedTitle: storedTitles[id] });
+        console.log(`[MY-PACKS] video_owned out id=${id} source=${built.source} title=${built.pack.titleRu} cards=${built.pack.cardCount}`); // guard-ok: итог ветки
+        videoOwnedMetas.push(built.pack);
+      }
+    }
+    const regularMissing = missing.filter((id) => !videoOwnedIds.includes(id));
+    const cachedMissing = regularMissing.filter((id) => missingPackCache.isMissing(`${studyTarget}:${id}`, nowMs));
+    const toFetch = regularMissing.filter((id) => !cachedMissing.includes(id));
     const fetched = toFetch.length > 0
       ? await Promise.all(toFetch.map((id) => fetchCommunityPackMetaResult(id, studyTarget)
         .catch((error: unknown) => {
@@ -434,7 +460,7 @@ export default function FlashcardsMyPacksScreen() {
       console.log('[MY-PACKS] resolve skip reason=account_changed');
       return { groups: EMPTY_GROUPS, status: 'stale', accountScope: operationScope };
     }
-    const metas: FlashcardMarketPack[] = [];
+    const metas: FlashcardMarketPack[] = [...videoOwnedMetas];
     const fetchedMissing: string[] = [];
     let fetchErrors = 0;
     fetched.forEach((result, index) => {
@@ -571,6 +597,14 @@ export default function FlashcardsMyPacksScreen() {
       const requestToken = ++openingRequestGenerationRef.current;
       openingPackRef.current = pack.id;
       setOpeningPackId(pack.id);
+      // зачем (🔴 R60): набор ролика открывается экраном ролика с его фразами, как из «Видео → Наборы» (карточек в документе сообщества может не быть)
+      if (videoIdFromOwnedCommunityId(pack.id) && pack.videoId) {
+        console.log(`[MY-PACKS] open video pack=${pack.id} videoId=${pack.videoId}`); // guard-ok: ветка открытия набора ролика
+        openingPackRef.current = null;
+        setOpeningPackId(null);
+        router.push({ pathname: '/lingman_video_watch', params: { videoId: pack.videoId, title: pack.videoTitle ?? '', source: 'my_packs' } } as never);
+        return;
+      }
       if (pack.isCommunityUgc) {
         const cards = await stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack, { isStillWanted: () => openingPackRef.current === pack.id, tag: 'my-packs' });
         if (

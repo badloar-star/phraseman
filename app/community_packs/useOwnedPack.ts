@@ -8,6 +8,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { useEffect, useState } from 'react';
 import { useStudyTarget } from '../../components/StudyTargetContext';
+import { onAccountOwnerChanged } from '../account_owner_change';
 import { onAppEvent } from '../events';
 import { loadCommunityOwnedPackIds } from './communityOwnedStorage';
 import { communityPackIdForVideoPhraseSet } from './communityPackActions';
@@ -18,6 +19,13 @@ onAppEvent('community_pack_added', () => { notifyOwnedPackIdsChanged(); });
 
 type Snapshot = { version: number; ids: ReadonlySet<string> };
 const sharedByTarget = new Map<string, Promise<Snapshot>>();
+
+// зачем (Ревизор, координатор 15.10): снимок id жил до перезапуска — после выхода A и входа B видео-строки показывали B «уже добавлен» по наборам A.
+// Смена владельца аккаунта: снимок стираем и будим подписчиков — строки перечитывают id уже нового владельца.
+onAccountOwnerChanged('owned_pack_ids', () => {
+  sharedByTarget.clear();
+  notifyOwnedPackIdsChanged();
+});
 
 function sharedOwnedIds(target: string): Promise<Snapshot> {
   const version = ownedPackIdsVersion();

@@ -31,6 +31,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import CommunityPackPreview from './flashcards/CommunityPackPreview';
 import PackOpenFailedView from './flashcards/PackOpenFailedView';
+import { setPendingTrainIntent } from './flashcards/train_intent';
 import { useTheme } from '../components/ThemeContext';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -1355,11 +1356,13 @@ export default function FlashcardsScreen() {
     });
   }, [openedCard, openedSaved, packDeeplink, studyTarget, openPremiumLimit]);
   const onTrainGallery = useCallback(() => {
+    setPendingTrainIntent({ deckId: null, count: 0 }); // зачем (🔴 Ц1): navigate в открытый хаб теряет параметры
     router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never);
   }, [router]);
   // зачем (владелец 04.10): «Тренировать» внутри набора — сразу этот набор: хаб откроет окно режимов и после выбора запустит сессию с ним
   const onTrainThisPack = useCallback(() => {
-    if (!packDeeplink) { router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never); return; }
+    if (!packDeeplink) { setPendingTrainIntent({ deckId: null, count: 0 }); router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never); return; }
+    setPendingTrainIntent({ deckId: `pack:${packDeeplink}`, count: listCards.length });
     router.navigate({ pathname: '/flashcards', params: { train: '1', deck: `pack:${packDeeplink}`, cnt: String(listCards.length) } } as never);
   }, [listCards.length, packDeeplink, router]);
 

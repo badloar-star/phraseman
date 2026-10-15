@@ -29,6 +29,8 @@ import { captureAccountGeneration } from './account_generation';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
 import { useOwnedPack } from './community_packs/useOwnedPack';
 import { PanelDock } from '../components/mistakes-panel/PanelKit';
+import { setPendingTrainIntent } from './flashcards/train_intent';
+import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from './video_phrase_set_packs';
 import { loadVideoMarketPacks, peekVideoMarketPacks } from './community_packs/communityFirestore';
 import { normalizePackLanguage } from './flashcards/pack_languages';
 import type { FlashcardMarketPack } from './flashcards/marketplace';
@@ -91,20 +93,34 @@ export default function LingmanVideoWatchScreen() {
   // Набор к ролику: кэш каталога видео-наборов (тот же TTL, что у раздела «Из видео»), сеть — только если кэша нет.
   useEffect(() => {
     if (!videoId) return undefined;
-    if (peekVideoMarketPacks(studyTarget)) return undefined;
+    if (findPackForVideo(peekVideoMarketPacks(studyTarget), videoId)) return undefined;
     let alive = true;
     const startedAt = Date.now();
-    loadVideoMarketPacks(studyTarget)
-      .then((packs) => {
+    // зачем (🔴 Ц1 на эмуляторе, 15.10): кэш каталога был, но ролика в нём нет (`packs=3 found=false`) — раньше на этом поиск заканчивался и кнопки внизу не было.
+    // Теперь: каталог сообщества → готовый набор фраз ролика (тот же источник, что «Мои наборы» и тренировка). Набор фраз есть → кнопка «Добавить/Тренировать» видна.
+    void (async () => {
+      let found: FlashcardMarketPack | null = null;
+      try {
+        const packs = peekVideoMarketPacks(studyTarget) ?? await loadVideoMarketPacks(studyTarget);
         packFromRef.current = 'loader';
-        const found = findPackForVideo(packs, videoId);
+        found = findPackForVideo(packs, videoId);
         console.warn(LOG, 'pack', JSON.stringify({ videoId, found: !!found, packs: packs.length, ms: Date.now() - startedAt, alive })); // guard-ok: ветка логируется
-        if (alive) setPack(found);
-      })
-      .catch((error: unknown) => {
+      } catch (error: unknown) {
         packFromRef.current = 'error';
-        console.warn(LOG, 'pack:catch → без блока', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
-      });
+        console.warn(LOG, 'pack:catch → пробуем наборы фраз', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
+      }
+      if (!found) {
+        try {
+          const sets = peekVideoPhraseSetPacks() ?? await loadVideoPhraseSetPacks();
+          found = findPackForVideo(sets, videoId);
+          if (found) packFromRef.current = 'phrase_set';
+          console.warn(LOG, 'pack:phrase_set', JSON.stringify({ videoId, found: !!found, sets: sets.length, alive })); // guard-ok: запасной источник
+        } catch (error: unknown) {
+          console.warn(LOG, 'pack:phrase_set catch → без блока', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
+        }
+      }
+      if (alive && found) setPack(found);
+    })();
     return () => { alive = false; };
   }, [studyTarget, videoId]);
 
@@ -152,8 +168,12 @@ export default function LingmanVideoWatchScreen() {
   const trainLabel = triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати вислови ролика', en: 'Practice this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' });
   const trainVideo = useCallback(() => {
     console.log(LOG, 'train', JSON.stringify({ videoId })); // guard-ok: вход в тренировку логируется
-    router.push({ pathname: '/flashcards_collection', params: { pack: `video_${videoId}`, preview: '1' } } as never);
-  }, [router, videoId]);
+    // зачем (🔴 Ц1, 15.10): документа набора ролика может не быть — страница набора пустая. «Тренировать» ведёт в окно режимов хаба на колоду этого набора
+    // (карточки — из документа или из фраз ролика); намерение идёт через train_intent, потому что navigate в открытый хаб теряет параметры.
+    const deckId = `pack:video_${videoId}`;
+    setPendingTrainIntent({ deckId, count: pack?.cardCount ?? 0 });
+    router.navigate({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
+  }, [pack?.cardCount, router, videoId]);
 
   return (
     <ScreenGradient artBackdrop="home">

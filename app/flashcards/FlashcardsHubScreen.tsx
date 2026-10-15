@@ -1,4 +1,5 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import { consumePendingTrainIntent } from './train_intent';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -674,15 +675,25 @@ export default function FlashcardsHubScreen() {
     console.log('[BLITZ-AUTOOPEN] hub:autotrain-effect', JSON.stringify({ train: hubParams.train ?? null, deck: hubParams.deck ?? null, handled: autoTrainHandledRef.current }));
     if (hubParams.train !== '1' || autoTrainHandledRef.current) return;
     autoTrainHandledRef.current = true;
+    consumePendingTrainIntent(); // параметры дошли — намерение того же перехода не нужно (иначе окно открылось бы дважды)
     const deckParam = typeof hubParams.deck === 'string' ? hubParams.deck.trim() : '';
     pendingDeckRef.current = deckParam ? { deckId: deckParam, count: Number(hubParams.cnt) || 0 } : null;
     router.setParams({ train: undefined, deck: undefined, cnt: undefined } as never);
     onTrainPress();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hubParams.train]);
+  // зачем (🔴 Ц1, 15.10): navigate в уже открытый хаб теряет параметры — намерение «тренировать набор» приходит через train_intent и забирается на фокусе.
+  const onTrainIntentRef = useRef(onTrainPress);
+  onTrainIntentRef.current = onTrainPress;
   useFocusEffect(useCallback(() => {
     console.log('[BLITZ-AUTOOPEN] hub:focus — сброс флага автозапуска');
     autoTrainHandledRef.current = false;
+    const intent = consumePendingTrainIntent();
+    if (!intent) return;
+    autoTrainHandledRef.current = true;
+    pendingDeckRef.current = intent.deckId ? { deckId: intent.deckId, count: intent.count } : null;
+    console.log(`[BLITZ-AUTOOPEN] hub:focus intent deck=${String(intent.deckId)} count=${intent.count} → окно режимов`); // guard-ok: путь через намерение
+    onTrainIntentRef.current();
   }, []));
 
   // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.

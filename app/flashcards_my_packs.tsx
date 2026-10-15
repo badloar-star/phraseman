@@ -57,6 +57,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIdsResult, loadCommunityOwnedPackTitles } from './community_packs/communityOwnedStorage';
 import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdateResult } from './community_packs/communityFirestore';
+import { setPendingTrainIntent } from './flashcards/train_intent';
 import { buildOwnedVideoPackMeta, videoIdFromOwnedCommunityId } from './flashcards/my_packs_video_meta';
 import { loadVideoPhraseSetPacks } from './video_phrase_set_packs';
 import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
@@ -872,6 +873,7 @@ export default function FlashcardsMyPacksScreen() {
     // зачем (cards-v2, круглая «играть» стопки): тренировка стартует именно с ЭТИМ набором — тот же вход, что у «Тренировать» внутри набора
     // (хаб откроет окно режимов и после выбора запустит сессию с набором, flashcards_collection.onTrainThisPack).
     DebugLogger.info('[MY-PACKS]', `стопка: «Тренировать» pack=${pack.id} cnt=${pack.cardCount}`);
+    setPendingTrainIntent({ deckId: `pack:${pack.id}`, count: pack.cardCount }); // зачем (🔴 Ц1): navigate в открытый хаб теряет параметры
     router.navigate({ pathname: '/flashcards', params: { train: '1', deck: `pack:${pack.id}`, cnt: String(pack.cardCount) } } as never);
   }, [router]);
   const publishPackFromList = useCallback((pack: FlashcardMarketPack) => {

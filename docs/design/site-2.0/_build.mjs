@@ -809,6 +809,8 @@ const STUDIO_JS = `
       document.querySelectorAll('[data-coins]').forEach(function (el) { el.textContent = v; });
       if (p < 1) requestAnimationFrame(tick); else busy = false;
     })(t0);
+    // зачем: в скрытой вкладке кадры не идут — итог всё равно должен встать, иначе число «застывает»
+    setTimeout(function () { document.querySelectorAll('[data-coins]').forEach(function (el) { el.textContent = coins; }); busy = false; }, 700);
     document.querySelectorAll('[data-coin],[data-coinpill]').forEach(function (el) { el.classList.remove('coin-pop'); void el.offsetWidth; el.classList.add('coin-pop'); });
   });`;
 

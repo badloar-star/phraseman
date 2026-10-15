@@ -176,12 +176,14 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
     expect(momentText('ru', 'staySay')).toBe('Держимся.');
   });
 
-  it('флаг moments_v3 по умолчанию выключен: включает только явное true', () => {
+  it('флаг moments_v3 по умолчанию включён: выключает только явное false', () => {
     expect(MOMENTS_V3_FLAG_KEY).toBe('moments_v3');
-    expect(isMomentsV3Enabled(null)).toBe(false);
-    expect(isMomentsV3Enabled({})).toBe(false);
-    expect(isMomentsV3Enabled({ moments_v3: 'true' })).toBe(false);
+    // зачем (координатор 15.10): v3 одобрены владельцем в 2.0 — ключа нет → включено; явный false — аварийный выключатель без сборки
+    expect(isMomentsV3Enabled(null)).toBe(true);
+    expect(isMomentsV3Enabled({})).toBe(true);
+    expect(isMomentsV3Enabled({ moments_v3: 'true' })).toBe(true);
     expect(isMomentsV3Enabled({ moments_v3: true })).toBe(true);
+    expect(isMomentsV3Enabled({ moments_v3: false })).toBe(false);
   });
 
   it('никто не импортирует components/spire/moments (показ подключает Ядро, сборка не меняется)', () => {
@@ -201,7 +203,7 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
     // и флаг moments_v3 в гейте Ядра (spire_week_moment_gate), «С возвращением» (WelcomeBackMoment берёт раскладку и эффекты), окно «Хватает на ранг» (coin_rank_moments)
     // и экран Пика (SpireHomeScreen — итог ступени/этажа моментом m06/m07 за флагом), «Идеальный урок» (lesson_moments, m09), «Первый диалог» (dialog_moments, m17) — берут раскладку и эффекты моментов
     // и сторис по аватару (components/stories) — берёт готовые строки итога недели (moments_strings), не показывает сам момент
-    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && !f.startsWith('components/coin_rank_moments/') && !f.startsWith('components/lesson_moments/') && !f.startsWith('components/dialog_moments/') && !['app/dev_moments_preview.tsx', 'app/(tabs)/home.tsx', 'app/spire/spire_week_moment_gate.ts', 'app/spire/use_spire_position_moments.ts', 'app/spire/spire_position_moments_core.ts', 'app/coin_rank_enough_gate.ts', 'components/moments/WelcomeBackMoment.tsx', 'components/spire/SpireHomeScreen.tsx', 'components/spire/SpireClimbDock.tsx'].includes(f))).toEqual([]); // зачем (15.10): SpireClimbDock — m22 «Энергия закончилась» (cc1c96b09), подключён по слову координатора 15.10
+    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && !f.startsWith('components/coin_rank_moments/') && !f.startsWith('components/lesson_moments/') && !f.startsWith('components/dialog_moments/') && !['app/dev_moments_preview.tsx', 'app/(tabs)/home.tsx', 'app/spire/spire_week_moment_gate.ts', 'app/spire/use_spire_position_moments.ts', 'app/spire/spire_position_moments_core.ts', 'app/coin_rank_enough_gate.ts', 'app/moments_v3_flag_read.ts', 'components/moments/WelcomeBackMoment.tsx', 'components/spire/SpireHomeScreen.tsx', 'components/spire/SpireClimbDock.tsx'].includes(f))).toEqual([]); // зачем (15.10): SpireClimbDock — m22 «Энергия закончилась» (cc1c96b09), подключён по слову координатора 15.10
   });
 
   it('тайминги эталона и порог башни: монета ранга 5 в образце, «Играть» с стрелкой на итоге, дрожь и фейерверк на 8,8 с', () => {

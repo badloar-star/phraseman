@@ -19,7 +19,7 @@ let mockConfigRaw: string | null = JSON.stringify({ bools: { moments_v3: true } 
 jest.mock('../app/remote_config_client', () => ({ readRemoteConfigCacheRaw: jest.fn(async () => mockConfigRaw) }));
 let mockStats: unknown = { phrasesLearned: 500, flashcardsSaved: 40, byTarget: { en: { phrasesLearned: 412, flashcardsSaved: 9, wordsLearned: 0 } } };
 jest.mock('../app/lifetime_profile_stats', () => ({ readLifetimeProfileStatsCache: jest.fn(async () => mockStats) }));
-jest.mock('../components/spire/moments/moments_flag', () => ({ isMomentsV3Enabled: (b: Record<string, unknown> | null) => b?.moments_v3 === true }));
+// зачем (координатор 15.10): флаг читается настоящим правилом (app/moments_v3_flag_read → moments_flag): ключа нет → включено, явный false → выключено
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { welcomeBackCardsLabel, welcomeBackHomeLabel, welcomeBackStatsLine, welcomeBackTitle } from '../modules/welcome_back/welcome_back_strings';

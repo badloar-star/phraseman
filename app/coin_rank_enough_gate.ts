@@ -6,15 +6,12 @@
 // Firebase: 0 чтений — баланс (проекция рун) и ранг (coin_rank_state) уже на телефоне. Лог [RANK-ENOUGH].
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isMomentsV3Enabled } from '../components/spire/moments/moments_flag';
 import { nextCoinRankRow } from './coin_rank_table_v1';
 import { DebugLogger } from './debug-logger';
-import { readRemoteConfigCacheRaw } from './remote_config_client';
+import { readMomentsV3Flag } from './moments_v3_flag_read';
 
 const LOG = '[RANK-ENOUGH]';
 const OFFERED_PREFIX = 'coin_rank_enough_offered_v1';
-const DEV_ENV_ON = process.env.EXPO_PUBLIC_MOMENTS_DEV === '1';
-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
 
 export type RankEnoughDecision =
   | Readonly<{ show: true; rank: number; nextRank: number; price: number; balance: number }>
@@ -56,15 +53,9 @@ export async function markRankOffered(owner: string, nextRank: number): Promise<
   }
 }
 
+// зачем (координатор 15.10): одно чтение и одно правило флага для всех ворот — app/moments_v3_flag_read.ts (ключа нет → включено, явный false → выключено, dev-переключатель).
 export async function readRankEnoughFlag(): Promise<boolean> {
-  try {
-    const raw = await readRemoteConfigCacheRaw();
-    const bools = raw ? (JSON.parse(raw) as { bools?: Record<string, unknown> }).bools : null;
-    return isMomentsV3Enabled(bools) || (IS_DEV && DEV_ENV_ON);
-  } catch (error) {
-    DebugLogger.warn(LOG, `флаг moments_v3 не прочитан — окно выключено (${String(error).slice(0, 120)})`);
-    return false;
-  }
+  return readMomentsV3Flag('coin_rank_enough');
 }
 
 /* expo-router route shim: модуль в app/ — не экран */

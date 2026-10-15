@@ -1,8 +1,8 @@
 // use_moments_v3_flag.ts — реактивное чтение удалённого флага moments_v3 для экранов (кольца «Сегодня» на Главной и пр.).
-// зачем (координатор 14.10): всё перенесённое показывается только за флагом, по умолчанию ВЫКЛ. Читаем ТОТ ЖЕ кэш remote_config_cache_v1, что и ворота окна Пика и sound_v2:
+// зачем (координатор 14.10): всё перенесённое показывается только за флагом, по умолчанию ВКЛ, явный false — выключатель. Читаем ТОТ ЖЕ кэш remote_config_cache_v1, что и ворота окна Пика и sound_v2:
 // ни одного нового чтения Firestore; пока кэш не прочитан — false (безопасная сторона). Один общий промис на приложение, подписка на 'remote_config_changed'.
 import { useEffect, useState } from 'react';
-import { isMomentsV3Enabled } from './streak_moments_flag';
+import { isMomentsV3Enabled, momentsV3RemoteState } from './streak_moments_flag';
 
 const LOG = '[MOMENTS-V3-FLAG]';
 let value = false;
@@ -36,11 +36,13 @@ async function readOnce(): Promise<void> {
     const raw = await readRemoteConfigCacheRaw();
     const bools = raw ? (JSON.parse(raw) as { bools?: Record<string, unknown> }).bools : null;
     const next = isMomentsV3Enabled(bools);
-    if (next !== value) console.log(`${LOG} moments_v3=${String(next)} (раньше=${String(value)}, кэш=${raw ? 'есть' : 'нет'})`); // guard-ok: смена флага
+    // зачем (координатор 15.10): одна строка на чтение кэша — что сказал сервер (true/false/absent) и что в итоге
+    console.log(LOG, JSON.stringify({ source: 'screens', remote: momentsV3RemoteState(bools), cache: raw ? 'есть' : 'нет', previous: value, effective: next })); // guard-ok: одна строка на чтение кэша
     value = next;
   } catch (error) {
-    value = false; // битый кэш не включает новое
-    console.warn(`${LOG} кэш конфига не прочитался — выключено (${error instanceof Error ? error.message : String(error)})`);
+    // зачем (координатор 15.10): правило «по умолчанию включено» — битый кэш считается как «ключа нет»; выключает только явный false с сервера
+    value = isMomentsV3Enabled(null);
+    console.warn(`${LOG} кэш конфига не прочитался — правило по умолчанию, moments_v3=${String(value)} (${error instanceof Error ? error.message : String(error)})`);
   } finally {
     hydrated = true;
     listeners.forEach((l) => l());

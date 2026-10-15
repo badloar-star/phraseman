@@ -99,8 +99,9 @@ import { todayRingColors } from '../components/streak/moments/TodayRings';
 const TASKS = [{ progress: 1, target: 1 }, { progress: 3, target: 3 }, { progress: 10, target: 10 }];
 
 describe('кольца «Сегодня» в блоке — флаг moments_v3', () => {
-  it('флаг выключен (нет ключа в кэше): слот ничего не рисует', async () => {
-    mockBools = {};
+  // зачем (координатор 15.10): правило «по умолчанию включено» — выключает только явный false с сервера
+  it('флаг выключен (явный false в кэше): слот ничего не рисует', async () => {
+    mockBools = { moments_v3: false };
     await render(<TodayRingsSlot tasks={TASKS} />);
     await new Promise((r) => setTimeout(r, 20));
     expect(screen.queryByTestId('today-rings')).toBeNull();

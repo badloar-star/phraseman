@@ -189,12 +189,14 @@ describe('рубежи серии — данные', () => {
 });
 
 describe('рубежи серии — флаг, подключение, исходники', () => {
-  it('флаг moments_v3 по умолчанию выключен; включает только явное true', () => {
+  it('флаг moments_v3 по умолчанию включён; выключает только явное false', () => {
     expect(MOMENTS_V3_FLAG_KEY).toBe('moments_v3');
-    expect(isMomentsV3Enabled(null)).toBe(false);
-    expect(isMomentsV3Enabled({})).toBe(false);
-    expect(isMomentsV3Enabled({ moments_v3: 'true' })).toBe(false);
+    // зачем (координатор 15.10): v3 одобрены владельцем в 2.0 — ключа нет → включено; явный false — аварийный выключатель без сборки
+    expect(isMomentsV3Enabled(null)).toBe(true);
+    expect(isMomentsV3Enabled({})).toBe(true);
+    expect(isMomentsV3Enabled({ moments_v3: 'true' })).toBe(true);
     expect(isMomentsV3Enabled({ moments_v3: true })).toBe(true);
+    expect(isMomentsV3Enabled({ moments_v3: false })).toBe(false);
   });
 
   it('звук: каждая сцена играет событие sound_v2 из каталога (тайм-лист образца); флаг выключен — запасной путь fc_*; кольцо и «День выполнен» тоже', () => {

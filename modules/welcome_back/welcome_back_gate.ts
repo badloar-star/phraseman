@@ -7,15 +7,12 @@
 // «Показано» ставится НЕ здесь, а когда окно реально получило слот в очереди окон (хук).
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isMomentsV3Enabled } from '../../components/spire/moments/moments_flag';
-import { readRemoteConfigCacheRaw } from '../../app/remote_config_client';
+import { readMomentsV3Flag } from '../../app/moments_v3_flag_read';
 import { readLifetimeProfileStatsCache } from '../../app/lifetime_profile_stats';
 import { decideWelcomeBack, type WelcomeBackDecision } from './welcome_back_model';
 import { peekWelcomeBackReturnGap } from './welcome_back_signal';
 
 export const WELCOME_BACK_SHOWN_AT_KEY = 'welcome_back_shown_at_v1';
-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
-const DEV_ENV_ON = process.env.EXPO_PUBLIC_MOMENTS_V3 === '1';
 
 const log = (message: string): void => {
   console.log(`[WELCOME-BACK] ${message}`); // guard-ok: решение показа окна — единичные строки на возврат
@@ -32,17 +29,11 @@ export type WelcomeBackGateResult =
   | Readonly<{ show: false; reason: string }>
   | Readonly<{ show: true; decision: Extract<WelcomeBackDecision, { show: true }>; lastActiveMs: number }>;
 
+// зачем (координатор 15.10): одно чтение и одно правило флага для всех ворот — app/moments_v3_flag_read.ts (ключа нет → включено, явный false → выключено, dev-переключатель).
 async function readFlag(): Promise<boolean> {
-  try {
-    const raw = await readRemoteConfigCacheRaw();
-    const bools = raw ? (JSON.parse(raw) as { bools?: Record<string, unknown> }).bools : null;
-    const remote = isMomentsV3Enabled(bools);
-    log(`флаг moments_v3: remote=${String(remote)} dev=${String(IS_DEV && DEV_ENV_ON)} кэш=${raw ? 'есть' : 'нет'}`);
-    return remote || (IS_DEV && DEV_ENV_ON);
-  } catch (error) {
-    log(`флаг moments_v3: кэш конфига не прочитался — окно выключено (${String(error).slice(0, 120)})`);
-    return false;
-  }
+  const on = await readMomentsV3Flag('welcome_back');
+  log(`флаг moments_v3: ${String(on)}`);
+  return on;
 }
 
 async function readShownAt(): Promise<number | null> {

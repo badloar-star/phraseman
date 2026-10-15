@@ -12,13 +12,12 @@
 // Лог: [D191-GATE] — каждое ветвление и каждый ранний выход со значением, которое его решило.
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isMomentsV3Enabled } from '../../components/spire/moments/moments_flag';
 import { asSpireLang } from '../../components/spire/spire_home_week';
 import type { SpireLang } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
 import { recordSpireWeekStory } from '../../modules/story_events/story_event_sources';
 import { DebugLogger } from '../debug-logger';
-import { readRemoteConfigCacheRaw } from '../remote_config_client';
+import { readMomentsV3Flag } from '../moments_v3_flag_read';
 import { spireOpenLiveGate } from './spire_live_gate';
 import { spireUiLangDecision } from './spire_ui_lang_gate';
 import { spireLoadWeekResult, spirePreviousWeekKey, type SpireWeekResultView } from './spire_week_result_client';
@@ -28,8 +27,6 @@ const SHOWN_PREFIX = 'spire_week_moment_shown_v1';
 /** «пн 00:01 UTC»: первая минута новой недели — крон итога ещё работает, окно не предлагаем. */
 export const SPIRE_WEEK_MOMENT_GRACE_MS = 60_000;
 // зачем: съёмка окна на эмуляторе без правки remote-конфига; только dev-сборка, в релизе игнорируется.
-const DEV_ENV_ON = process.env.EXPO_PUBLIC_MOMENTS_DEV === '1';
-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
 
 export type SpireWeekMomentOutcome = 'promoted' | 'stayed' | 'demoted';
 
@@ -80,17 +77,11 @@ export function spireWeekMomentOutcome(result: SpireWeekResultView): SpireWeekMo
   return result.promoted ? 'promoted' : result.demoted ? 'demoted' : 'stayed';
 }
 
+// зачем (координатор 15.10): одно чтение и одно правило флага для всех ворот — app/moments_v3_flag_read.ts (ключа нет → включено, явный false → выключено, dev-переключатель).
 async function readMomentsFlag(): Promise<boolean> {
-  try {
-    const raw = await readRemoteConfigCacheRaw();
-    const bools = raw ? (JSON.parse(raw) as { bools?: Record<string, unknown> }).bools : null;
-    const remote = isMomentsV3Enabled(bools);
-    log(`флаг moments_v3: remote=${String(remote)} dev=${String(IS_DEV && DEV_ENV_ON)} кэш=${raw ? 'есть' : 'нет'}`);
-    return remote || (IS_DEV && DEV_ENV_ON);
-  } catch (error) {
-    log(`флаг moments_v3: кэш конфига не прочитался — окно выключено (${String(error).slice(0, 120)})`);
-    return false;
-  }
+  const on = await readMomentsV3Flag('spire_week');
+  log(`флаг moments_v3: ${String(on)}`);
+  return on;
 }
 
 async function readShownWeek(uid: string, lang: SpireLang): Promise<string | null> {

@@ -716,6 +716,10 @@ const factoryNativeMaterializeCache = new Map<string, ReturnType<typeof material
 
 export function materializeFactoryNativeLearningV2SessionV1(input: FactoryNativeMaterializeInputV1) {
   const disabledKey = input.disabledInteractionIds?.length ? [...input.disabledInteractionIds].sort().join(",") : "";
+  // Ключ без языка обучения и без версии контента — намеренно (Ревизор 959d29934): factory_native — только английский
+  // курс (FACTORY_NATIVE_MANIFEST_V1), а данные вшиты в бандл JS. Новая версия контента = новый бандл = новый процесс,
+  // и кэш (только память процесса) начинается пустым. Если материал начнёт приходить не из бандла — добавить в ключ
+  // row.sourceFingerprint.
   const key = `${input.lessonOrdinal}:${input.sessionOrdinal}:${input.interfaceLocale}:${disabledKey}`;
   if (factoryNativeMaterializeCache.has(key)) {
     const hit = factoryNativeMaterializeCache.get(key) ?? null;

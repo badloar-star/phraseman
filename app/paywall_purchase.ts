@@ -1312,6 +1312,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
+      // зачем (Ревизор 959d29934, R58 #12): commit ниже записывает Plus локально — PremiumContext сразу видит доступ, и
+      // диспетчер мог закрыть пейвол ДО шага «Напомнить о пробном». Защёлку ставим ДО commit; не применилось — снимаем.
+      markPaywallOwnsClose('purchase');
       const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent, commitLease) => {
         if (!isCommitCurrent()) return false;
         const persisted = await persistStorePremiumLocally(
@@ -1337,14 +1340,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // зачем (ревью 12.10 п.2): магазин подтвердил доступ (деньги возможно списаны), а локально он не записан (блокировка не взята за срок, смена аккаунта, сбой записи).
         // Тихий возврат оставлял бы живую кнопку «Купить» — человек заплатил бы второй раз. Диалог «статус не подтверждён» ведёт к «Проверить статус / Восстановить».
         releaseReason('purchase', 'not_applied', 'error');
+        clearPaywallOwnsClose('purchase_not_applied');
         DebugLogger.warn('[PAYWALL]', `purchase:not_applied plan=${selected} source=${source} статус=${applied.status} значение=${applied.status === 'ok' ? String(applied.value) : '-'} `
           + `аккаунтТот=${String(isOperationAccountCurrent())} ui=unverified_dialog`);
         presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально', 'confirmed');
         return;
       }
       accessApplied = true;
-      // зачем (R58 #12): доступ применила ЭТА покупка — закрытием владеет пейвол (шаг напоминания о пробном, один dismiss)
-      markPaywallOwnsClose('purchase');
       // зачем (Бандл-диета Ф1): план куплен → сразу фоновый префетч всех его
       // день-строк с сервера, чтобы контент лежал в кэше до входа в любой день.
       // Передаём состояние целиком: присваивание идёт внутри async-колбэка,
@@ -1442,7 +1444,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return;
       }
       if (!isOperationAccountCurrent()) {
-        DebugLogger.info('[PAYWALL]', 'покупка: аккаунт сменился после применения доступа — закрытие окна пропущено');
+        // зачем (Ревизор 959d29934): пейвол владеет закрытием (защёлка) — без этого Plus висел на пейволе до ✕
+        dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
+        DebugLogger.info('[PAYWALL]', 'покупка: аккаунт сменился после применения доступа — окно закрыто самим пейволом; было: закрытие окна пропущено');
         return;
       }
       if (resumeLessonAfterPremium(router, resumeLessonId)) return;
@@ -1655,6 +1659,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           : activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly'
           : 'monthly';
         const plan = inferPremiumPlanFromProductId(metadata.productId, restoreDefault);
+        // зачем (Ревизор 959d29934): как у покупки — защёлка ДО commit, иначе диспетчер закрывает окно вторым вызовом
+        markPaywallOwnsClose('restore');
         const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent, commitLease) => {
           if (!isCommitCurrent()) return false;
           const persisted = await persistStorePremiumLocally(
@@ -1680,6 +1686,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         if (applied.status !== 'ok' || !applied.value) {
           // зачем (R1_PAYWALL_UX п.3): stale — аккаунт сменился; ok+false — запись доступа не удалась на текущем аккаунте (реальный сбой, а не тишина).
           releaseReason('restore_purchase', 'not_applied', 'error');
+          clearPaywallOwnsClose('restore_not_applied');
           DebugLogger.warn('[PAYWALL]', `restore:not_applied mode=${mode} статус=${applied.status} значение=${applied.status === 'ok' ? String(applied.value) : '-'} план=${plan}`);
           // зачем (ревью 12.10 п.4): «Аккаунт сменился» — только если он действительно сменился; иначе (stale без смены / ok+false) — «не удалось, попробуй ещё раз».
           emitAppEvent('action_toast', applied.status !== 'ok' && restoreStaleUi(isOperationAccountCurrent()) === 'account_changed_toast'
@@ -1692,8 +1699,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
         emitAppEvent('action_toast', paywallRestoreToast(mode === 'check' ? 'purchase_confirmed' : 'restored'));
-        // зачем (R58 #12): доступ применило ЭТО восстановление — закрытием владеет пейвол, диспетчер не закрывает второй раз
-        markPaywallOwnsClose('restore');
         void trackEvent('subscription_restored', { context, paywall: variant, mode });
         logPaywallFunnel('restore_completed', { variant, context, plan });
         if (source === 'onboarding') {
@@ -1719,7 +1724,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           return;
         }
         if (!isOperationAccountCurrent()) {
-          DebugLogger.info('[PAYWALL]', `restore: аккаунт сменился после применения доступа mode=${mode} — закрытие окна пропущено`);
+          // зачем (Ревизор 959d29934): пейвол владеет закрытием — закрываем сам, иначе Plus висит на пейволе до ✕
+          dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
+          DebugLogger.info('[PAYWALL]', `restore: аккаунт сменился после применения доступа mode=${mode} — окно закрыто самим пейволом; было: закрытие окна пропущено`);
           return;
         }
         if (resumeLessonAfterPremium(router, resumeLessonId)) return;

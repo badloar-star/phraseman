@@ -102,9 +102,10 @@ describe('safe_commit.sh', () => {
     expect(commits()).toBe(1);
   });
 
-  it('пути кода вне окна :00–:05/:30–:35 — отказ с кодом 4 (без SAFE_COMMIT_IGNORE_WINDOW)', () => {
+  it('пути кода вне окна :00/:15/:30/:45 (+5 мин) — отказ с кодом 4 (без SAFE_COMMIT_IGNORE_WINDOW)', () => {
     const m = new Date().getMinutes();
-    const inWindow = m <= 5 || (m >= 30 && m <= 35);
+    // зачем (владелец 15.10 12:05 «ускорь работу»): окна кода каждые 15 минут
+    const inWindow = m % 15 <= 5;
     write('app/x.ts', 'y\n');
     const r = run(['-m', 'msg.txt', '--expect', 'app/x.ts=1/1', '--', 'app/x.ts'], { SAFE_COMMIT_IGNORE_WINDOW: '0' });
     if (inWindow) {

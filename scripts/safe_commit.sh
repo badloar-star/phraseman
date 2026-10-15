@@ -105,15 +105,16 @@ if [ "$DRY" -eq 0 ]; then
 fi
 for f in "${PATCHES[@]}"; do [ -s "$f" ] || { say "отказ: patch '$f' пуст или не найден"; exit 2; }; done
 
-# Окно коммитов кода (правило ночи R1: код — только :00–:05 и :30–:35; документы, тесты, скрипты — в любое время).
+# Окно коммитов кода: каждые 15 минут — :00–:05, :15–:20, :30–:35, :45–:50; документы, тесты, скрипты — в любое время.
+# зачем (владелец 15.10 12:05 «ВСЕМ УСКОРЬ РАБОТУ»): окна раз в 30 мин держали готовую работу до получаса — координатор перевёл на 15.
 is_code_path() { [[ "$1" =~ ^(app|components|modules|functions|hooks|constants)/ ]]; }
 touches_code=0
 for p in "${PATHS[@]}" "${!EXPECT[@]}"; do is_code_path "$p" && touches_code=1; done
-in_window() { local m=$((10#$(date +%M))); { [ $m -le 5 ] || { [ $m -ge 30 ] && [ $m -le 35 ]; }; }; }
+in_window() { local m=$((10#$(date +%M))); [ $((m % 15)) -le 5 ]; }
 if [ "$DRY" -eq 0 ] && [ "$touches_code" -eq 1 ] && [ "${SAFE_COMMIT_IGNORE_WINDOW:-0}" != "1" ]; then
   if ! in_window; then
     if [ "$WAIT_WINDOW" -eq 1 ]; then
-      say "окно кода: сейчас $(date +%H:%M), жду :00/:30"
+      say "окно кода: сейчас $(date +%H:%M), жду :00/:15/:30/:45"
       until in_window; do sleep 15; done
       say "окно кода открыто в $(date +%H:%M:%S)"
     else

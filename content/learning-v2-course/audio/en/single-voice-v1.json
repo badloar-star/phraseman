@@ -51070,6 +51070,309 @@
           "byteSize": 41856
         }
       ]
+    },
+    "l04/s01/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a pharmacy.",
+          "file": "354a70d517651fd627341692526d7ffbe494a7362c9df25aaa66310c3a3e3258.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/354a70d517651fd627341692526d7ffbe494a7362c9df25aaa66310c3a3e3258.mp3",
+          "contentHash": "969596fb222cf8a5f1c0b58f9e7e0fa2d7c1509ffbf77159be245b22ecde5bc7",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s01/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a library.",
+          "file": "04e3988b1baf8bd08f12bde58c127241c6e7ef614c6132e5a96f3e2a9f441935.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04e3988b1baf8bd08f12bde58c127241c6e7ef614c6132e5a96f3e2a9f441935.mp3",
+          "contentHash": "c9b8970a30bbc762b6f989eaa6c1775ecb4dd21941719cd111a2a52dbe4c6411",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s01/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There are keys here.",
+          "file": "4c00b29c4d30913c5490309d652694e526f1e348c0bb0ddb0e04df0c8259b655.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c00b29c4d30913c5490309d652694e526f1e348c0bb0ddb0e04df0c8259b655.mp3",
+          "contentHash": "f696d69ad76d4963352cb1b005f02ff2b4d431a6ae78534c8d9f868c67fa5536",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s01/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is comfortable.",
+          "file": "1bc32f532a24472a010295ded90c886e97bd06a79bebd5b38707f4c641bb446f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1bc32f532a24472a010295ded90c886e97bd06a79bebd5b38707f4c641bb446f.mp3",
+          "contentHash": "09ad62675854aea3f7ca59407dcd8fa76c230d50be3150f6e6d2f400df29d460",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s01/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "pharmacy",
+          "file": "c3ebab156b50a00082e29ce489124ad0c341ca518a8817c7212f2c95574c5d27.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3ebab156b50a00082e29ce489124ad0c341ca518a8817c7212f2c95574c5d27.mp3",
+          "contentHash": "889698a8618a88778f4389b59f74bb0e4f7463b233c4d6faee89b629b2fc99f8",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s01/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "library",
+          "file": "aa661f9423dd057f90620c65a15457e278199956f45e53626116c3da259cc020.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aa661f9423dd057f90620c65a15457e278199956f45e53626116c3da259cc020.mp3",
+          "contentHash": "59c558456a012e9c776d4b2aa75e470cc87782cf854fc140f85bea9f127a9afa",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l04/s01/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "bakery",
+          "file": "69ef3e6a7668dd08e73b935a8a7848ca219a922cd7f5c256677d2bf2d1fe1620.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/69ef3e6a7668dd08e73b935a8a7848ca219a922cd7f5c256677d2bf2d1fe1620.mp3",
+          "contentHash": "99fde71ab15160924430f5efa2fc21eed210fa0370da5faef612f5911ee42bf3",
+          "byteSize": 19584
+        },
+        {
+          "text": "hospital",
+          "file": "85edb5c03dd907f9e669eb3e0467ff3c313fda40487b8391aca5b5562aaacd7f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/85edb5c03dd907f9e669eb3e0467ff3c313fda40487b8391aca5b5562aaacd7f.mp3",
+          "contentHash": "8b6ca310b55b1267e000282e2b1550e268ca4aac6a640116fd44d4f4b3296674",
+          "byteSize": 20352
+        },
+        {
+          "text": "sure",
+          "file": "4ea8b85ad8ced6c2f321141288735ab9a1b3bff2aca21b087b32c9c0996d4226.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c0cafcf0e2d6a236aca78b03-nova.mp3",
+          "contentHash": "56369d5829d26a6b7dd885d69eac81249fcf29487316121c33b1d660c86fdcb1",
+          "byteSize": 19584
+        },
+        {
+          "text": "interested",
+          "file": "1a234525bbed7cdf148fd9cc40e34a2bdddd4be6651a96797a0f57642d5d0f77.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a234525bbed7cdf148fd9cc40e34a2bdddd4be6651a96797a0f57642d5d0f77.mp3",
+          "contentHash": "d26efa38edb7c4c85c73b8fe7b7513db0910e770ab944ffd7b18133f5785f132",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s01/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a hospital.",
+          "file": "fab958de17ec90e8ae7fceb8408d0f021239f16b7b690241c97f1d38c97a3917.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fab958de17ec90e8ae7fceb8408d0f021239f16b7b690241c97f1d38c97a3917.mp3",
+          "contentHash": "541706a970bf13773fd9b3858c793ec15700234147f404beaf1c08dfdcf914df",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s01/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are keys here.",
+          "file": "943fb65c9b312b55adaaa02e8cc7bb90f69c422ecf9baffa21e31f18e1fe9cbb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/943fb65c9b312b55adaaa02e8cc7bb90f69c422ecf9baffa21e31f18e1fe9cbb.mp3",
+          "contentHash": "5921c99f6e7d0e705b053ec0faa22cdecfcf2c0df4713b1496fe5a723964cbf6",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s01/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "pharmacy",
+          "file": "4bb8e378a129136ec16b0291820b5e2f82e08a414021db431e0ba4b0f2084e69.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4bb8e378a129136ec16b0291820b5e2f82e08a414021db431e0ba4b0f2084e69.mp3",
+          "contentHash": "b655b81d1cbdac9fba50659dfbbab3d341c8cc8617bdba083384f0503c30a8b6",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s01/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "bakery",
+          "file": "c75ec43f53ed49e43ee1ff2639c6fbfdd7cdc575dda70b4dcf8106e676d5d6f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c75ec43f53ed49e43ee1ff2639c6fbfdd7cdc575dda70b4dcf8106e676d5d6f3.mp3",
+          "contentHash": "384143ddd860b536768c410b96421fd8dcd7f4cc790cdbf7b5743bd7385a9e38",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l04/s01/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "library",
+          "file": "75faeca829eea5eb8c9856889fe9cbe29c688371dd03a479771227a231ea400c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75faeca829eea5eb8c9856889fe9cbe29c688371dd03a479771227a231ea400c.mp3",
+          "contentHash": "a322d5baee6e8bb36c77412f0bde0ed005bc554b68e696dcb1b4a8dc0f8fd7ef",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s01/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "pharmacy",
+          "file": "ba1c6a2e46e52d491dc0f5f8b57e3c4739a9ba387322bf29fe650d153c177577.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ba1c6a2e46e52d491dc0f5f8b57e3c4739a9ba387322bf29fe650d153c177577.mp3",
+          "contentHash": "7924f719bad3c1dcee1e282a0fbbff658bf04ec4036245b3b9dd283c817a2339",
+          "byteSize": 15744
+        },
+        {
+          "text": "library",
+          "file": "5d9ac8727170096c444a78fd7b291002048bd94121a49089a87c28a4692d7e17.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d9ac8727170096c444a78fd7b291002048bd94121a49089a87c28a4692d7e17.mp3",
+          "contentHash": "5c28c35a666e8219603b53c7dd4702b01805cfd8e2563b4cc5cad4b0f690ceaf",
+          "byteSize": 20352
+        },
+        {
+          "text": "comfortable",
+          "file": "0322aa9d7eaea6e29bf740c2080e7dd1c42262ab240a3eb3b187e9d1ee906276.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/46fd05f35b5591e22afacd79-nova.mp3",
+          "contentHash": "b1e14c3848fd686bcdce93a20656b0c9c57cd764931a5c1503aea20876ae4af3",
+          "byteSize": 18048
+        },
+        {
+          "text": "key",
+          "file": "ac033176c6574c1a0eeaeeb4f286cba34279a6106eca44f5a4821e7d7efabafa.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2c70e12b7a0646f92279f427-nova.mp3",
+          "contentHash": "1aae4f404f24142308cf107613e29689e96343b1373c70e8c538e0c6c2bf83d5",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l04/s01/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a key here.",
+          "file": "9d6a106ea217dc8fa3eb31859161516cc1fd6c6c7ae48bf7cc778d27a52462ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d6a106ea217dc8fa3eb31859161516cc1fd6c6c7ae48bf7cc778d27a52462ef.mp3",
+          "contentHash": "bf4439f78c9b6399ecbbfd29d1c698ee3e8cfc48efbca9c67a7d9332531d1e8f",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s01/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a pharmacy.",
+          "file": "e7e5b268646465a5c3b163db0162e2a7fd93302cdbacd617d3c8afba5199b8fa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e7e5b268646465a5c3b163db0162e2a7fd93302cdbacd617d3c8afba5199b8fa.mp3",
+          "contentHash": "cdc477d3297a319c171388278e3cadc4692f8ed36940774b571bb02f072e0a0d",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s01/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a library here.",
+          "file": "6e404ac135437746bbcaf202e92ae86d7acc97e5bf24e550a952d5f2be3662cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e404ac135437746bbcaf202e92ae86d7acc97e5bf24e550a952d5f2be3662cc.mp3",
+          "contentHash": "053b30a1453a8e05dca15aa86343275ebe6775908213caa18f2104b1be125db2",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s01/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There are keys there.",
+          "file": "3a0fb6b5c67491faa91cb7d22c05230da297b432ee858d4babcd38e2c4685376.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a0fb6b5c67491faa91cb7d22c05230da297b432ee858d4babcd38e2c4685376.mp3",
+          "contentHash": "919baa05fd3fa070e13760495cb986f4437d38c7745b7e8baf9c9c1e046cd814",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s01/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bakery",
+          "file": "6d684341b3ad092a112da93c9b31d3538fcde6de655b90968774dd5c465e9e2d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d684341b3ad092a112da93c9b31d3538fcde6de655b90968774dd5c465e9e2d.mp3",
+          "contentHash": "2b8487af8c9755a2082dc14e9e528d260810e8adec9c132be1ca50eb08e67c01",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l04/s01/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "sure",
+          "file": "4ea8b85ad8ced6c2f321141288735ab9a1b3bff2aca21b087b32c9c0996d4226.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c0cafcf0e2d6a236aca78b03-nova.mp3",
+          "contentHash": "56369d5829d26a6b7dd885d69eac81249fcf29487316121c33b1d660c86fdcb1",
+          "byteSize": 19584
+        },
+        {
+          "text": "interested",
+          "file": "1a234525bbed7cdf148fd9cc40e34a2bdddd4be6651a96797a0f57642d5d0f77.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a234525bbed7cdf148fd9cc40e34a2bdddd4be6651a96797a0f57642d5d0f77.mp3",
+          "contentHash": "d26efa38edb7c4c85c73b8fe7b7513db0910e770ab944ffd7b18133f5785f132",
+          "byteSize": 25344
+        },
+        {
+          "text": "hospital",
+          "file": "85edb5c03dd907f9e669eb3e0467ff3c313fda40487b8391aca5b5562aaacd7f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/85edb5c03dd907f9e669eb3e0467ff3c313fda40487b8391aca5b5562aaacd7f.mp3",
+          "contentHash": "8b6ca310b55b1267e000282e2b1550e268ca4aac6a640116fd44d4f4b3296674",
+          "byteSize": 20352
+        },
+        {
+          "text": "key",
+          "file": "ac033176c6574c1a0eeaeeb4f286cba34279a6106eca44f5a4821e7d7efabafa.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2c70e12b7a0646f92279f427-nova.mp3",
+          "contentHash": "1aae4f404f24142308cf107613e29689e96343b1373c70e8c538e0c6c2bf83d5",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l04/s01/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a bakery here.",
+          "file": "a905beae484927805366b9e44ece34b270fb7f64d69a22c4a59d86ce3c560d26.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a905beae484927805366b9e44ece34b270fb7f64d69a22c4a59d86ce3c560d26.mp3",
+          "contentHash": "f99a403c21e9b81efd80d30029ccea0ab16ca70352ee593a21bb87bb07ec8cdb",
+          "byteSize": 33792
+        }
+      ]
     }
   },
   "settings": {

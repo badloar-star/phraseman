@@ -535,7 +535,9 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // S2c: +2 — peekStableId только для меток [AUTH-LINK-GOOGLE] (осознанно, без записи).
         // S1e (c0333fe6d): +1 — peekStableId после возврата в аккаунт: применить локально
         // сохранённые правки карточек к ключу этого аккаунта (только чтение, без записи).
-        stableIdentityReads: 20,
+        // 20318946f (Ядро 15.10, Авторизация): +1 — peekStableId владельца A в clearAccountPushBeforeSwitchSignOut: push-токен A
+        // снимается с явным владельцем, без ensureAnonUser посреди карантина смены (только чтение, без записи).
+        stableIdentityReads: 21,
         stableIdentityWrites: 8,
         authLinkLookups: 1,
         ownerMergeDecisions: 7,
@@ -632,7 +634,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // квитанция по ключу перед запасным прямым вызовом (waitForAccountDeletionCredentialSafe).
         // 52429d419 (2026-10-12): +1 — гость ставит удаление своим вызовом startCloudDeletionEnqueue с дедлайном 25 с в фоне
         // (холодный старт accountDeleteEnqueue ≈9 с), связанные — прежним; та же постановка, другой потолок ожидания.
-        occurrences: 120,
+        // 20318946f (15.10): +1 — peekStableId владельца в снятии push при смене аккаунта.
+        occurrences: 121,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -653,7 +656,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:isLocalAnonymousIdentityProvenCleanForCredentialHandoff': 1,
           'call:mergeStableAccountsViaServer': 2,
           'call:onAuthStateChanged': 2,
-          'call:peekStableId': 8,
+          'call:peekStableId': 9,
           'call:pruneShelvedAccountSwitchBackups': 1,
           'call:quiesceCloudSyncForAccountTransition': 4,
           'call:quiesceSyncBeforeStableIdSwap': 3,

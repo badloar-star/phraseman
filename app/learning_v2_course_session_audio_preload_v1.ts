@@ -212,6 +212,9 @@ async function preload(
     if (!current) files.set(file.fileFingerprint, file);
     return file.fileFingerprint;
   };
+  // зачем (владелец 15.10, «один голос на задание»): видно, каким голосом звучит каждое задание и откуда он взят —
+  // назначенная запись задания или четыре голоса по кругу.
+  const voiceLog: { interactionId: string; assignedVoice: string; source: string }[] = [];
   for (const interaction of audioChild.interactions) {
     const learnerInteraction = learner.interactions.find(
       (candidate) => candidate.interactionId === interaction.interactionId,
@@ -246,7 +249,15 @@ async function preload(
         ),
       }),
     );
+    const voiceFileCount =
+      interaction.fullPhraseFiles?.length ?? interaction.selectables[0]?.files.length ?? 0;
+    voiceLog.push({
+      interactionId: selection.interactionId,
+      assignedVoice: selection.voiceId,
+      source: voiceFileCount === 1 ? "assigned_recorded_voice" : "round_robin_four_voices",
+    });
   }
+  console.log(`[V2-AUDIO-VOICE] ${JSON.stringify({ courseSessionId: audioChild.courseSessionId, interactions: voiceLog })}`); // guard-ok: одна строка на подготовку
   const ownFileCount = files.size;
   for (const entry of supplementalAudio) {
     if (!ID_RE.test(entry.supplementalId) || supplementalFileFingerprints.has(entry.supplementalId))

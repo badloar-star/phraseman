@@ -2,6 +2,7 @@ import { sha256Utf8, utf8ByteLengthV1 } from "../policies/decision_registry";
 import {
   encodeLearningV2CourseSessionAudioChildV1,
   isLearningV2CourseSessionAudioChildV1,
+  learningV2CourseSessionAudioFileForVoiceIndexV1,
   type LearningV2CourseSessionAudioChildV1,
   type LearningV2CourseSessionAudioFileV1,
 } from "./course_session_audio_child_v1";
@@ -222,12 +223,16 @@ export function resolveLearningV2CourseSessionAudioLocalFileV1(
     (entry) => entry.interactionId === input.interactionId,
   );
   if (!interaction) fail();
-  const file =
+  // зачем (владелец 15.10, «один голос на задание»): у реплики с назначенным голосом один файл — индекс не влияет.
+  const files =
     input.selectableId === null
-      ? interaction.fullPhraseFiles?.[input.voiceSelectionIndex]
+      ? interaction.fullPhraseFiles
       : interaction.selectables.find(
           (entry) => entry.selectableId === input.selectableId,
-        )?.files[input.voiceSelectionIndex];
+        )?.files;
+  const file = files
+    ? learningV2CourseSessionAudioFileForVoiceIndexV1(files, input.voiceSelectionIndex)
+    : undefined;
   if (!file) return null;
   const fileUri = found.localUris.get(file.fileFingerprint);
   if (!fileUri) fail();

@@ -49,7 +49,9 @@ const LOG = "[V2-AUDIO-COMPLETE]";
 const WORD_VOICE = "ash" as const;
 const BOOTSTRAP_DIRECTORY = path.join(__dirname, "..", "assets", "audio", "learning-v2-bootstrap-v1");
 
-const bundled = new Map(LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry.byteSize]));
+const bundled = new Map<string, number>(
+  LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry.byteSize] as const),
+);
 
 /** Все contentHash внутри озвучки материала (fullPhraseFiles/selectables[].files и т. п.). */
 function collectAudioFiles(value: unknown, into: Map<string, string>): void {

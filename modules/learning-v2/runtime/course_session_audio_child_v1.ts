@@ -29,32 +29,45 @@ export interface LearningV2CourseSessionAudioFileV1 {
   readonly fileFingerprint: string;
 }
 
+/**
+ * Файлы одной реплики: либо все 4 голоса в порядке V2_REQUIRED_VOICE_IDS (голос крутится по заданиям),
+ * либо ровно 1 файл — голос, назначенный заданию.
+ *
+ * зачем (владелец 15.10, EN-сессия, «один голос на задание»): Codex озвучивает каждое задание ОДНИМ случайным
+ * голосом и не генерирует четыре версии. Прежний контракт требовал ровно 4 — такое задание не открылось бы вовсе.
+ * Старые занятия с четырьмя голосами работают как раньше.
+ */
+export type LearningV2CourseSessionAudioVoiceFilesV1 =
+  | readonly [LearningV2CourseSessionAudioFileV1]
+  | readonly [
+      LearningV2CourseSessionAudioFileV1,
+      LearningV2CourseSessionAudioFileV1,
+      LearningV2CourseSessionAudioFileV1,
+      LearningV2CourseSessionAudioFileV1,
+    ];
+
+/** Файл для выбранного индекса голоса: у реплики с назначенным голосом — всегда её единственный файл. */
+export function learningV2CourseSessionAudioFileForVoiceIndexV1(
+  files: LearningV2CourseSessionAudioVoiceFilesV1,
+  voiceSelectionIndex: 0 | 1 | 2 | 3,
+): LearningV2CourseSessionAudioFileV1 {
+  return files.length === 1 ? files[0] : files[voiceSelectionIndex];
+}
+
 export interface LearningV2CourseSessionAudioSelectableV1 {
   readonly selectableId: string;
   readonly audioTargetId: string;
   readonly wordId: string;
   readonly wordOrdinal: number;
   readonly visibleTextHash: string;
-  readonly files: readonly [
-    LearningV2CourseSessionAudioFileV1,
-    LearningV2CourseSessionAudioFileV1,
-    LearningV2CourseSessionAudioFileV1,
-    LearningV2CourseSessionAudioFileV1,
-  ];
+  readonly files: LearningV2CourseSessionAudioVoiceFilesV1;
   readonly selectableFingerprint: string;
 }
 
 export interface LearningV2CourseSessionInteractionAudioV1 {
   readonly interactionId: string;
   readonly taskVoiceGroupFingerprint: string;
-  readonly fullPhraseFiles:
-    | readonly [
-        LearningV2CourseSessionAudioFileV1,
-        LearningV2CourseSessionAudioFileV1,
-        LearningV2CourseSessionAudioFileV1,
-        LearningV2CourseSessionAudioFileV1,
-      ]
-    | null;
+  readonly fullPhraseFiles: LearningV2CourseSessionAudioVoiceFilesV1 | null;
   readonly selectables: readonly LearningV2CourseSessionAudioSelectableV1[];
   readonly interactionAudioFingerprint: string;
 }
@@ -214,13 +227,18 @@ function exactFile(value: unknown): LearningV2CourseSessionAudioFileV1 {
   return freeze({ ...file });
 }
 
-function exactFourFiles(
+function exactVoiceFiles(
   value: unknown,
 ): LearningV2CourseSessionAudioSelectableV1["files"] {
-  if (!Array.isArray(value) || value.length !== V2_REQUIRED_VOICE_IDS.length)
+  if (
+    !Array.isArray(value) ||
+    (value.length !== V2_REQUIRED_VOICE_IDS.length && value.length !== 1)
+  )
     fail();
   const files = value.map(exactFile);
+  // Один файл — назначенный голос (exactFile уже проверил, что голос одобрен); четыре — строго по порядку.
   if (
+    files.length === V2_REQUIRED_VOICE_IDS.length &&
     files.some((file, index) => file.voiceId !== V2_REQUIRED_VOICE_IDS[index])
   )
     fail();
@@ -236,7 +254,7 @@ function exactSelectable(
   exactKeys(value, SELECTABLE_KEYS);
   const selectable =
     value as unknown as LearningV2CourseSessionAudioSelectableV1;
-  const files = exactFourFiles(selectable.files);
+  const files = exactVoiceFiles(selectable.files);
   if (
     !ID_RE.test(selectable.selectableId) ||
     RESERVED.has(selectable.selectableId) ||
@@ -267,7 +285,7 @@ function exactInteraction(
   const fullPhraseFiles =
     interaction.fullPhraseFiles === null
       ? null
-      : exactFourFiles(interaction.fullPhraseFiles);
+      : exactVoiceFiles(interaction.fullPhraseFiles);
   if (
     !ID_RE.test(interaction.interactionId) ||
     !HASH_RE.test(interaction.taskVoiceGroupFingerprint) ||
@@ -283,6 +301,18 @@ function exactInteraction(
     wordOrdinals.size !== selectables.length ||
     selectables.some((entry, index) => entry.wordOrdinal !== index + 1) ||
     (fullPhraseFiles === null && selectables.length === 0)
+  )
+    fail();
+  // Задание звучит одним голосом: все его реплики либо в четырёх голосах, либо все в одном и том же назначенном.
+  const voiceFileSets = [
+    ...(fullPhraseFiles ? [fullPhraseFiles] : []),
+    ...selectables.map((entry) => entry.files),
+  ];
+  const singleVoice = voiceFileSets[0]?.length === 1;
+  if (
+    voiceFileSets.some((files) => (files.length === 1) !== singleVoice) ||
+    (singleVoice &&
+      new Set(voiceFileSets.map((files) => files[0].voiceId)).size !== 1)
   )
     fail();
   const body = { ...interaction, fullPhraseFiles, selectables };
@@ -501,15 +531,29 @@ export function selectLearningV2CourseSessionInteractionAudioV1(
   const selectableFiles = Object.fromEntries(
     interaction.selectables.map((entry) => [
       entry.selectableId,
-      entry.files[input.voiceSelectionIndex],
+      learningV2CourseSessionAudioFileForVoiceIndexV1(
+        entry.files,
+        input.voiceSelectionIndex,
+      ),
     ]),
   );
+  const fullPhraseFile = interaction.fullPhraseFiles
+    ? learningV2CourseSessionAudioFileForVoiceIndexV1(
+        interaction.fullPhraseFiles,
+        input.voiceSelectionIndex,
+      )
+    : null;
+  // Голос — того файла, что реально зазвучит: при четырёх голосах это голос по индексу (как раньше),
+  // при назначенном — он сам, индекс не влияет.
+  const voiceId =
+    fullPhraseFile?.voiceId ??
+    Object.values(selectableFiles)[0]?.voiceId ??
+    V2_REQUIRED_VOICE_IDS[input.voiceSelectionIndex];
   return freeze({
     interactionId: interaction.interactionId,
-    voiceId: V2_REQUIRED_VOICE_IDS[input.voiceSelectionIndex],
+    voiceId,
     taskVoiceGroupFingerprint: interaction.taskVoiceGroupFingerprint,
-    fullPhraseFile:
-      interaction.fullPhraseFiles?.[input.voiceSelectionIndex] ?? null,
+    fullPhraseFile,
     selectableFiles,
   });
 }

@@ -71,8 +71,42 @@ export function learningV2FactoryRemoteAudioFilesForContentHashesV1(
   }));
 }
 
-function fourFiles(courseSessionId: string, transcript: string) {
-  return Object.freeze(VOICES.map((voiceId) => fileInput(courseSessionId, transcript, voiceId)));
+type FactoryVoicePlanV1 = Readonly<{
+  voices: readonly LearningV2CourseSessionAudioVoiceIdV1[];
+  source: "all_four_voices" | "assigned_recorded_voice";
+}>;
+
+/**
+ * Каким голосом (голосами) звучит задание по его репликам.
+ *
+ * зачем (владелец 15.10, EN-сессия, «один голос на задание»): Codex озвучивает каждое задание ОДНИМ случайным голосом
+ * и не делает четыре версии. Есть все 4 голоса у всех реплик → как раньше (голос крутится по заданиям). Иначе
+ * назначенный голос = тот, что записан у ВСЕХ реплик задания (первый в порядке ash/onyx/nova/coral, если таких
+ * несколько). Запасного голоса нет: общей записи нет → null, задание считается неозвученным.
+ */
+function factoryVoicePlanV1(transcripts: readonly string[]): FactoryVoicePlanV1 | null {
+  const has = (transcript: string, voiceId: LearningV2CourseSessionAudioVoiceIdV1) =>
+    factoryAudioTables().entryByCoordinate.has(`${transcript}\u0000${voiceId}`);
+  if (transcripts.every((transcript) => VOICES.every((voiceId) => has(transcript, voiceId))))
+    return Object.freeze({ voices: VOICES, source: "all_four_voices" as const });
+  const assigned = VOICES.find((voiceId) => transcripts.every((transcript) => has(transcript, voiceId)));
+  return assigned
+    ? Object.freeze({ voices: Object.freeze([assigned]), source: "assigned_recorded_voice" as const })
+    : null;
+}
+
+function voiceFiles(courseSessionId: string, transcript: string, plan: FactoryVoicePlanV1) {
+  return Object.freeze(plan.voices.map((voiceId) => fileInput(courseSessionId, transcript, voiceId)));
+}
+
+function requireFactoryVoicePlanV1(transcripts: readonly string[]): FactoryVoicePlanV1 {
+  const plan = factoryVoicePlanV1(transcripts);
+  if (!plan) {
+    // Немой отказ запрещён: какие реплики не имеют общей записи.
+    console.warn(`[V2-AUDIO-VOICE] no_common_recorded_voice transcripts=${JSON.stringify(transcripts.map((t) => t.slice(0, 80)))}`);
+    throw new Error("learning_v2_factory_production_audio_missing");
+  }
+  return plan;
 }
 
 export function learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
@@ -110,11 +144,8 @@ export function learningV2FactoryMissingAudioInteractionIdsV1(
     ) {
       throw new Error("learning_v2_factory_reference_audio_missing");
     }
-    const complete = references.every((reference) =>
-      VOICES.every((voiceId) =>
-        factoryAudioTables().entryByCoordinate.has(`${reference.transcript}\u0000${voiceId}`),
-      ),
-    );
+    // Озвучено = у всех реплик задания есть общая запись (4 голоса или один назначенный).
+    const complete = factoryVoicePlanV1(references.map((reference) => reference.transcript)) !== null;
     if (!complete) missing.push(interaction.interactionId);
   }
   return Object.freeze(missing);
@@ -134,6 +165,8 @@ export function buildLearningV2FactoryBundledAudioChildV1(
           (candidate): candidate is NonNullable<typeof candidate> => candidate !== null,
         );
         if (references.length !== 2) throw new Error("learning_v2_factory_sound_contrast_audio_missing");
+        // Обе реплики сравнения звучат одним голосом задания.
+        const plan = requireFactoryVoicePlanV1(references.map((reference) => reference.transcript));
         const selectables = references.map((reference, index) => {
           const option = interaction.responseOptions.find(
             (candidate) => candidate.text === reference.transcript,
@@ -151,7 +184,7 @@ export function buildLearningV2FactoryBundledAudioChildV1(
             }),
             wordOrdinal: index + 1,
             visibleText: option.text,
-            files: fourFiles(learner.courseSessionId, reference.transcript),
+            files: voiceFiles(learner.courseSessionId, reference.transcript, plan),
           });
         });
         return Object.freeze({
@@ -177,7 +210,7 @@ export function buildLearningV2FactoryBundledAudioChildV1(
           interactionId: interaction.interactionId,
           transcript,
         }),
-        fullPhraseFiles: fourFiles(learner.courseSessionId, transcript),
+        fullPhraseFiles: voiceFiles(learner.courseSessionId, transcript, requireFactoryVoicePlanV1([transcript])),
         selectables: Object.freeze([]),
       });
       }),

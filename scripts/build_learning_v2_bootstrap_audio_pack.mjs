@@ -45,14 +45,14 @@ const voices = ["ash", "onyx", "nova", "coral"];
 
 /**
  * Фразы занятий берём из ТЕКСТОВ, которые приложение реально показывает (generated_release — его читает
- * factory_native_manifest_v1), и кладём их записи во всех четырёх голосах.
+ * factory_native_manifest_v1), и кладём все записанные голоса каждой фразы (4 или один назначенный).
  *
  * зачем (15.10, сверка координатора): таблица озвучки app/learning_v2_factory_lesson_audio_index_v1 собрана
  * 20.09 под старые тексты, а content/learning-v2-course/release фабрика меняет независимо от сборки. По обоим
  * источникам в сборку шли не те файлы: из нынешних s01–s15 в набор не попадало 60 записанных файлов
  * (звучали телефоном). Источник истины для сборки — то, что играет плеер: referenceAudio/audioA/audioB
  * заданий (buildLearningV2FactoryBundledAudioChildV1) и слова карточек.
- * Фразы без записи хотя бы в одном голосе пропускаются: такие задания приложение само выключает
+ * Фразы без единой записи пропускаются: такие задания приложение само выключает
  * (resolveLearningV2FactoryRuntimeAudioOmissionsV1). Число пропусков печатается — немого пропуска нет.
  */
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
@@ -80,8 +80,10 @@ for (let sessionOrdinal = 1; sessionOrdinal <= BOOTSTRAP_SESSION_COUNT; sessionO
   const transcripts = new Set();
   collectTranscripts(JSON.parse(fs.readFileSync(learnerPath, "utf8")).interactions, transcripts);
   for (const transcript of transcripts) {
-    const voiced = voices.map((voiceId) => byCoordinate.get(`${transcript}\u0000${voiceId}`));
-    if (voiced.some((entry) => !entry)) {
+    // зачем (владелец 15.10, «один голос на задание»): реплика может быть записана одним назначенным голосом —
+    // кладём все записанные голоса, а не только полную четвёрку. Нет ни одной записи — пропуск (печатается ниже).
+    const voiced = voices.map((voiceId) => byCoordinate.get(`${transcript}\u0000${voiceId}`)).filter(Boolean);
+    if (voiced.length === 0) {
       unvoiced.add(transcript);
       continue;
     }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-47:intro1:r2": {
-          "ru": "Пропал значок `'`. Он стоит там, где выпала буква `a` из `am`.",
-          "uk": "Зник значок `'`. Він стоїть там, де випала літера `a` з `am`."
+          "ru": "`useful` — «полезно». Здесь вы предупреждаете об опасности: `dangerous`.",
+          "uk": "`useful` — «корисно». Тут ви попереджаєте про небезпеку: `dangerous`."
         },
         "en:lesson-01:session-47:intro1:r3": {
-          "ru": "`am` уже спрятано внутри `I'm`. Второй раз оно не нужно.",
-          "uk": "`am` уже сховане всередині `I'm`. Другий раз воно не потрібне."
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-47:intro2:r2": {
-          "ru": "`tired` — «усталый». От зевоты видно другое: его тянет спать, это `sleepy`.",
-          "uk": "`tired` — «втомлений». Але позіхає він не від утоми — його тягне спати, а це `sleepy`."
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
         },
         "en:lesson-01:session-47:intro2:r3": {
-          "ru": "Пропало `is`. Либо `he is sleepy`, либо коротко `he's sleepy`.",
-          "uk": "Зникло `is`. Або `he is sleepy`, або коротко `he's sleepy`."
+          "ru": "`brave` — «смелые». Проходы здесь опасны: `dangerous`.",
+          "uk": "`brave` — «сміливі». Проходи тут небезпечні: `dangerous`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-47:intro3:r2": {
-          "ru": "При `they` стоит `are`, значит и отрицание с `aren't`.",
-          "uk": "При `they` стоїть `are`, отже і заперечення з `aren't`."
+          "ru": "Это значит, что он опасен. Вы хвалите смелость: `brave`.",
+          "uk": "Це означає, що він небезпечний. Ви хвалите сміливість: `brave`."
         },
         "en:lesson-01:session-47:intro3:r3": {
-          "ru": "`not` уже сидит внутри `aren't`. Второе лишнее.",
-          "uk": "`not` уже сидить усередині `aren't`. Друге зайве."
+          "ru": "После `He` нужно `is`.",
+          "uk": "Після `He` потрібно `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "599d26f7080b1620b1dda7b89adb5f6cebab07d2588c37ad9b524eea6d5dd460"
+  "auxiliaryFingerprint": "45a114627ca806d0c249b1eddcce4a9799f7d4bd6378c0c34010c6d1f48ef109"
 }

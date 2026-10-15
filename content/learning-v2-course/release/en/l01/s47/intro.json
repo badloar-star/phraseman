@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-47",
   "learningOutcomeByLocale": {
-    "ru": "повторение сокращений `I'm` / `he's` / `she's` / `we're` / `they're` + `isn't` / `aren't`",
-    "uk": "повторення скорочень `I'm` / `he's` / `she's` / `we're` / `they're` + `isn't` / `aren't`"
+    "ru": "назвать место или действие опасным и отличить опасность от смелости",
+    "uk": "назвати місце або дію небезпечними й відрізнити небезпеку від сміливості"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Значок `'` стоит на месте пропажи",
-        "uk": "Значок `'` стоїть на місці пропажі"
+        "ru": "Опасно",
+        "uk": "Небезпечно"
       },
       "bodyByLocale": {
-        "ru": "`drunk` — «пьяный». `sober` — «трезвый»: не пил или уже пришёл в себя.\n\nПолностью это `I am sober`. Вслух `am` съедается до одного звука, и на письме от него остаётся `m`. На месте выпавшей буквы `a` ставят значок `'` — он ничего не значит сам по себе, он просто отмечает место: `I'm sober`.",
-        "uk": "`drunk` — «п'яний». `sober` — «тверезий»: не пив або вже протверезів.\n\nПовністю це `I am sober`. Уголос `am` з'їдається до одного звуку, і на письмі від нього лишається `m`. На місці випалої літери `a` ставлять значок `'` — сам собою він нічого не означає, він просто позначає місце: `I'm sober`."
+        "ru": "`dangerous` — «опасный». `It is dangerous` — «Это опасно». Так можно оценить действие или место. Старый пирс закрыт: доски провалились. Короткий путь к воде получился слишком коротким.",
+        "uk": "`dangerous` — «небезпечний». `It is dangerous` — «Це небезпечно». Так можна оцінити дію або місце. Старий пірс закритий: дошки провалилися. Короткий шлях до води виявився надто коротким."
       },
       "question": {
         "interactionId": "en:lesson-01:session-47:intro1:q",
         "promptByLocale": {
-          "ru": "Друг предлагает ещё пива, а вы за рулём. Скажите, что вы трезвый.",
-          "uk": "Друг пропонує ще пива, а ви за кермом. Скажіть, що ви тверезі."
+          "ru": "Выход на повреждённый пирс грозит падением. Назовите это опасным.",
+          "uk": "Вихід на пошкоджений пірс загрожує падінням. Назвіть це небезпечним."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-47:intro1:r1",
-              "text": "I'm sober."
+              "text": "It is dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro1:r2",
-              "text": "Im sober."
+              "text": "It is useful."
             },
             {
               "responseId": "en:lesson-01:session-47:intro1:r3",
-              "text": "I'm sober am."
+              "text": "It are dangerous."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-47:intro1:r1",
-              "text": "I'm sober."
+              "text": "It is dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro1:r2",
-              "text": "Im sober."
+              "text": "It is useful."
             },
             {
               "responseId": "en:lesson-01:session-47:intro1:r3",
-              "text": "I'm sober am."
+              "text": "It are dangerous."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг предлагает ещё пива, а вы за рулём. Скажите, что вы трезвый.",
-          "uk": "Друг пропонує ще пива, а ви за кермом. Скажіть, що ви тверезі."
+          "ru": "Выход на повреждённый пирс грозит падением. Назовите это опасным.",
+          "uk": "Вихід на пошкоджений пірс загрожує падінням. Назвіть це небезпечним."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`sleepy` — это не `tired`",
-        "uk": "`sleepy` — це не `tired`"
+        "ru": "Один участок и два",
+        "uk": "Одна ділянка й дві"
       },
       "bodyByLocale": {
-        "ru": "`sleepy` — «сонный»: глаза слипаются, но человек ещё сидит с вами. `awake` — «не спит».\n\nНе путайте `sleepy` с `tired` — «усталый». После спортзала вы `tired`, но спать не тянет. В час ночи вы `sleepy`.",
-        "uk": "`sleepy` — «сонний»: очі злипаються, але людина ще сидить з вами. `awake` — «не спить».\n\nНе плутайте `sleepy` з `tired` — «втомлений». Після спортзалу ви `tired`, але спати не тягне. О першій ночі ви `sleepy`."
+        "ru": "Про один участок — `It is dangerous`. Про два опасных участка — `They are dangerous`. Коротко: `It's dangerous` и `They're dangerous`. Слово `dangerous` не меняется.",
+        "uk": "Про одну ділянку — `It is dangerous`. Про дві небезпечні ділянки — `They are dangerous`. Коротко: `It's dangerous` і `They're dangerous`. Слово `dangerous` не змінюється."
       },
       "question": {
         "interactionId": "en:lesson-01:session-47:intro2:q",
         "promptByLocale": {
-          "ru": "Друг зевает третий раз подряд и говорит, что ему нормально. Скажите про него: «он сонный».",
-          "uk": "Друг позіхає третій раз поспіль і каже, що йому нормально. Скажіть про нього: «він сонний»."
+          "ru": "Оба прохода ведут на повреждённые доски. Скажите, что они опасны.",
+          "uk": "Обидва проходи ведуть на пошкоджені дошки. Скажіть, що вони небезпечні."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-47:intro2:r1",
-              "text": "He's sleepy."
+              "text": "They are dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro2:r2",
-              "text": "He's tired."
+              "text": "They is dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro2:r3",
-              "text": "He sleepy."
+              "text": "They are brave."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-47:intro2:r1",
-              "text": "He's sleepy."
+              "text": "They are dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro2:r2",
-              "text": "He's tired."
+              "text": "They is dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro2:r3",
-              "text": "He sleepy."
+              "text": "They are brave."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг зевает третий раз подряд и говорит, что ему нормально. Скажите про него: «он сонный».",
-          "uk": "Друг позіхає третій раз поспіль і каже, що йому нормально. Скажіть про нього: «він сонний»."
+          "ru": "Оба прохода ведут на повреждённые доски. Скажите, что они опасны.",
+          "uk": "Обидва проходи ведуть на пошкоджені дошки. Скажіть, що вони небезпечні."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`isn't` и `aren't` — когда всё наоборот",
-        "uk": "`isn't` і `aren't` — коли все навпаки"
+        "ru": "Смелость — о человеке",
+        "uk": "Сміливість — про людину"
       },
       "bodyByLocale": {
-        "ru": "`isn't` — это `is` и `not` вместе. `aren't` — это `are` и `not`.\n\nВыбор идёт по слову впереди. При `he` и `she` — `isn't`: `He isn't drunk`. При `they` и `we` — `aren't`: `They aren't sleepy`. Какая связка стояла в утверждении, такая прячется и в отрицании.\n\nХочется добавить `not` ещё раз. Не надо: оно уже сидит внутри слова.",
-        "uk": "`isn't` — це `is` і `not` разом. `aren't` — це `are` і `not`.\n\nВибір іде за словом попереду. При `he` і `she` — `isn't`: `He isn't drunk`. При `they` і `we` — `aren't`: `They aren't sleepy`. Яка зв'язка стояла в ствердженні, така ховається і в запереченні.\n\nХочеться додати `not` ще раз. Не треба: воно вже сидить усередині слова."
+        "ru": "`brave` — «смелый», а `dangerous` — «опасный». `He is brave` хвалит смелость человека. `He is dangerous` говорит, что человек представляет опасность. Это разные оценки. Смелый поступок не обязательно связан с риском: можно решиться признать свою ошибку.",
+        "uk": "`brave` — «сміливий», а `dangerous` — «небезпечний». `He is brave` хвалить сміливість людини. `He is dangerous` каже, що людина становить небезпеку. Це різні оцінки. Сміливий вчинок не обов’язково пов’язаний із ризиком: можна наважитися визнати свою помилку."
       },
       "question": {
         "interactionId": "en:lesson-01:session-47:intro3:q",
         "promptByLocale": {
-          "ru": "Друзья у выхода бодрые, как в восемь вечера. Скажите про них: «они не сонные».",
-          "uk": "Друзі біля виходу бадьорі, наче о восьмій вечора. Скажіть про них: «вони не сонні»."
+          "ru": "Друг боялся признаться в ошибке, но всё же признался. Назовите его смелым.",
+          "uk": "Друг боявся зізнатися в помилці, але все ж зізнався. Назвіть його сміливим."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-47:intro3:r1",
-              "text": "They aren't sleepy."
+              "text": "He is brave."
             },
             {
               "responseId": "en:lesson-01:session-47:intro3:r2",
-              "text": "They isn't sleepy."
+              "text": "He is dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro3:r3",
-              "text": "They aren't sleepy not."
+              "text": "He are brave."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-47:intro3:r1",
-              "text": "They aren't sleepy."
+              "text": "He is brave."
             },
             {
               "responseId": "en:lesson-01:session-47:intro3:r2",
-              "text": "They isn't sleepy."
+              "text": "He is dangerous."
             },
             {
               "responseId": "en:lesson-01:session-47:intro3:r3",
-              "text": "They aren't sleepy not."
+              "text": "He are brave."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друзья у выхода бодрые, как в восемь вечера. Скажите про них: «они не сонные».",
-          "uk": "Друзі біля виходу бадьорі, наче о восьмій вечора. Скажіть про них: «вони не сонні»."
+          "ru": "Друг боялся признаться в ошибке, но всё же признался. Назовите его смелым.",
+          "uk": "Друг боявся зізнатися в помилці, але все ж зізнався. Назвіть його сміливим."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "560f082ecc475dbc4752e32db713b2f7574b7da7cd1ae780f7cf1002247fc3e8"
+  "introFingerprint": "753484b18dc15b42f734f60487b9090c873e4c07781c5511086d45f5b56b54a6"
 }

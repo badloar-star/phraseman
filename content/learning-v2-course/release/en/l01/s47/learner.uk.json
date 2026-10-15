@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-01:session-47:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — drunk",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На закритому пірсі провалилися дошки. Складіть попередження про небезпеку цього місця",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — drunk",
+      "audioTargetIds": [],
+      "accessibilityLabel": "На закритому пірсі провалилися дошки. Складіть попередження про небезпеку цього місця",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i01:audio",
-          "transcript": "drunk"
+        "family": "phrase_builder",
+        "targetPhrase": "It is dangerous.",
+        "localizedMeaning": {
+          "ru": "На закрытом пирсе провалились доски. Соберите предупреждение об опасности этого места",
+          "uk": "На закритому пірсі провалилися дошки. Складіть попередження про небезпеку цього місця"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "dangerous"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i01:r1",
-            "targetText": "drunk",
-            "meaningByLocale": {
-              "ru": "«пьяный». Не «весёлый после одного бокала», а когда речь плывёт и такси уже вызывают.",
-              "uk": "«п'яний». Не «веселий після одного келиха», а коли мова пливе і таксі вже викликають."
+            "responseId": "en:lesson-01:session-47:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "На закритому пірсі провалилися дошки. Складіть попередження про небезпеку цього місця",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is dangerous.`",
+              "uk": "тут потрібно `is` — `It is dangerous.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "drunk",
-          "definitionByLocale": {
-            "ru": "«пьяный». Не «весёлый после одного бокала», а когда речь плывёт и такси уже вызывают.",
-            "uk": "«п'яний». Не «веселий після одного келиха», а коли мова пливе і таксі вже викликають."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
+      "prompt": "Послухайте й виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-47:i02:r1",
-          "text": "drunk"
+          "text": "It is dangerous."
         },
         {
           "responseId": "en:lesson-01:session-47:i02:r2",
-          "text": "drink"
+          "text": "It is useful."
         },
         {
           "responseId": "en:lesson-01:session-47:i02:r3",
-          "text": "dark"
+          "text": "It is useless."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-47:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть",
+      "accessibilityLabel": "Послухайте й виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-47:i02:audio",
-          "transcript": "drunk"
+          "transcript": "It is dangerous."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-47:i02:r1",
-            "targetText": "drunk",
+            "targetText": "It is dangerous.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-47:i02:r2",
-            "targetText": "drink",
+            "targetText": "It is useful.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-47:i02:r3",
-            "targetText": "dark",
+            "targetText": "It is useless.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-01:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — drunk",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "`drink` — «пить», само действие. `drunk` — про человека после.",
-              "uk": "`drink` — «пити», сама дія. `drunk` — про людину після."
+              "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `useful`."
             }
           },
           {
             "responseId": "en:lesson-01:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — drunk",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "Это «тёмный». В `drunk` после первой буквы идёт `r`, а потом ещё `n` перед концом.",
-              "uk": "Це «темний». У `drunk` після першої літери йде `r`, а потім ще `n` перед кінцем."
+              "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `useless`.",
+              "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `useless`."
             }
           }
         ],
@@ -126,300 +127,65 @@
       "interactionId": "en:lesson-01:session-47:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sober",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — sober",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i03:audio",
-          "transcript": "sober"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-47:i03:r1",
-            "targetText": "sober",
-            "meaningByLocale": {
-              "ru": "«трезвый». Человек не пил вообще или уже пришёл в себя и спокойно садится за руль.",
-              "uk": "«тверезий». Людина не пила взагалі або вже протверезіла і спокійно сідає за кермо."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sober",
-          "definitionByLocale": {
-            "ru": "«трезвый». Человек не пил вообще или уже пришёл в себя и спокойно садится за руль.",
-            "uk": "«тверезий». Людина не пила взагалі або вже протверезіла і спокійно сідає за кермо."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — ви за кермом, друг тягнеться до вашої склянки",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — ви за кермом, друг тягнеться до вашої склянки",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I'm sober.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
-          "uk": "Складіть фразу — ви за кермом, друг тягнеться до вашої склянки"
-        },
-        "orderedTokens": [
-          "I'm",
-          "sober"
-        ],
-        "authoredDistractorTokens": [
-          "am",
-          "he's"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sleepy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:i05:audio"
-      ],
-      "accessibilityLabel": "Картка слова — sleepy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i05:audio",
-          "transcript": "sleepy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-47:i05:r1",
-            "targetText": "sleepy",
-            "meaningByLocale": {
-              "ru": "«сонный». Глаза закрываются сами, а человек всё ещё честно кивает на ваши истории.",
-              "uk": "«сонний». Очі заплющуються самі, а людина все ще чесно киває на ваші історії."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sleepy",
-          "definitionByLocale": {
-            "ru": "«сонный». Глаза закрываются сами, а человек всё ещё честно кивает на ваши истории.",
-            "uk": "«сонний». Очі заплющуються самі, а людина все ще чесно киває на ваші історії."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-47:i06:r1",
-          "text": "sleepy"
-        },
-        {
-          "responseId": "en:lesson-01:session-47:i06:r2",
-          "text": "sleep"
-        },
-        {
-          "responseId": "en:lesson-01:session-47:i06:r3",
-          "text": "sleeper"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:i06:audio"
-      ],
-      "accessibilityLabel": "Послухайте і виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i06:audio",
-          "transcript": "sleepy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-47:i06:r1",
-            "targetText": "sleepy",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i06:r2",
-            "targetText": "sleep",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i06:r3",
-            "targetText": "sleeper",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-47:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — sleepy",
-            "feedbackByLocale": {
-              "ru": "Обрублен хвост. `sleep` — «спать», `sleepy` — «сонный».",
-              "uk": "Обрубаний хвіст. `sleep` — «спати», `sleepy` — «сонний»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — sleepy",
-            "feedbackByLocale": {
-              "ru": "Другой хвост, и это уже не про состояние: `sleeper` — тот, кто спит.",
-              "uk": "Інший хвіст, і це вже не про стан: `sleeper` — той, хто спить."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — awake",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:i07:audio"
-      ],
-      "accessibilityLabel": "Картка слова — awake",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i07:audio",
-          "transcript": "awake"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-47:i07:r1",
-            "targetText": "awake",
-            "meaningByLocale": {
-              "ru": "«не спит». Глаза открыты, голова работает.",
-              "uk": "«не спить». Очі розплющені, голова працює."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "awake",
-          "definitionByLocale": {
-            "ru": "«не спит». Глаза открыты, голова работает.",
-            "uk": "«не спить». Очі розплющені, голова працює."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — друг залпом допив каву і очі загорілися",
+      "prompt": "Два проходи ведуть на зламані дошки. Доповніть попередження",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-47:i08:r1",
-          "text": "awake"
+          "responseId": "en:lesson-01:session-47:i03:r1",
+          "text": "are"
         },
         {
-          "responseId": "en:lesson-01:session-47:i08:r2",
-          "text": "sleepy"
+          "responseId": "en:lesson-01:session-47:i03:r2",
+          "text": "am"
         },
         {
-          "responseId": "en:lesson-01:session-47:i08:r3",
-          "text": "drunk"
+          "responseId": "en:lesson-01:session-47:i03:r3",
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — друг залпом допив каву і очі загорілися",
+      "accessibilityLabel": "Два проходи ведуть на зламані дошки. Доповніть попередження",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — друг залпом допил кофе и глаза загорелись",
-          "uk": "Вставте слово — друг залпом допив каву і очі загорілися"
+          "ru": "Два прохода ведут на сломанные доски. Дополните предупреждение",
+          "uk": "Два проходи ведуть на зламані дошки. Доповніть попередження"
         },
-        "gappedTargetPhrase": "He's ___ .",
+        "gappedTargetPhrase": "They ___ dangerous.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-47:i08:r1",
-            "text": "awake"
+            "responseId": "en:lesson-01:session-47:i03:r1",
+            "text": "are"
           },
           {
-            "responseId": "en:lesson-01:session-47:i08:r2",
-            "text": "sleepy"
+            "responseId": "en:lesson-01:session-47:i03:r2",
+            "text": "am"
           },
           {
-            "responseId": "en:lesson-01:session-47:i08:r3",
-            "text": "drunk"
+            "responseId": "en:lesson-01:session-47:i03:r3",
+            "text": "is"
           }
         ],
-        "testedDimension": "Вставте слово — друг залпом допив каву і",
+        "testedDimension": "Два проходи ведуть на зламані дошки. Доповніть попередження",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i08:r2",
+            "responseId": "en:lesson-01:session-47:i03:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — друг залпом допив каву і",
+            "testedDimension": "Два проходи ведуть на зламані дошки. Доповніть попередження",
             "feedbackByLocale": {
-              "ru": "Наоборот: кофе его разбудил, а `sleepy` — «сонный».",
-              "uk": "Навпаки: кава його розбудила, а `sleepy` — «сонний»."
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i08:r3",
+            "responseId": "en:lesson-01:session-47:i03:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — друг залпом допив каву і",
+            "testedDimension": "Два проходи ведуть на зламані дошки. Доповніть попередження",
             "feedbackByLocale": {
-              "ru": "`drunk` — «пьяный», а тут человек взбодрился.",
-              "uk": "`drunk` — «п'яний», а тут людина збадьорилася."
+              "ru": "Про два прохода — `They are`.",
+              "uk": "Про два проходи — `They are`."
             }
           }
         ]
@@ -427,63 +193,63 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-47:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-01:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте пари",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З'єднайте пари",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-47:i09:p1",
-            "target": "drunk",
+            "pairId": "en:lesson-01:session-47:i04:p1",
+            "target": "dangerous",
             "meaningByLocale": {
-              "ru": "пьяный",
-              "uk": "п'яний"
+              "ru": "опасный",
+              "uk": "небезпечний"
             }
           },
           {
-            "pairId": "en:lesson-01:session-47:i09:p2",
-            "target": "sober",
+            "pairId": "en:lesson-01:session-47:i04:p2",
+            "target": "brave",
             "meaningByLocale": {
-              "ru": "трезвый",
-              "uk": "тверезий"
+              "ru": "смелый",
+              "uk": "сміливий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-47:i09:p3",
-            "target": "sleepy",
+            "pairId": "en:lesson-01:session-47:i04:p3",
+            "target": "useful",
             "meaningByLocale": {
-              "ru": "сонный",
-              "uk": "сонний"
+              "ru": "полезный",
+              "uk": "корисний"
             }
           },
           {
-            "pairId": "en:lesson-01:session-47:i09:p4",
-            "target": "awake",
+            "pairId": "en:lesson-01:session-47:i04:p4",
+            "target": "useless",
             "meaningByLocale": {
-              "ru": "не спит",
-              "uk": "не спить"
+              "ru": "бесполезный",
+              "uk": "марний"
             }
           }
         ],
         "leftColumn": [
-          "drunk",
-          "sober",
-          "sleepy",
-          "awake"
+          "dangerous",
+          "brave",
+          "useful",
+          "useless"
         ],
         "rightColumn": [
-          "пьяный",
-          "трезвый",
-          "сонный",
-          "не спит"
+          "небезпечний",
+          "сміливий",
+          "корисний",
+          "марний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -500,70 +266,342 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-47:i10",
-      "ordinal": 13,
+      "interactionId": "en:lesson-01:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротке попередження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротке попередження",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i05:audio",
+          "transcript": "It's dangerous."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's dangerous.",
+        "orderedTokens": [
+          "It's",
+          "dangerous"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротке попередження",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's dangerous.`",
+              "uk": "тут потрібно `It's` — `It's dangerous.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Обидві драбини пошкоджені й можуть обвалитися. Скажіть, що вони небезпечні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Обидві драбини пошкоджені й можуть обвалитися. Скажіть, що вони небезпечні",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are dangerous.",
+        "localizedMeaning": {
+          "ru": "Обе лестницы повреждены и могут обрушиться. Скажите, что они опасны",
+          "uk": "Обидві драбини пошкоджені й можуть обвалитися. Скажіть, що вони небезпечні"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "dangerous"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Обидві драбини пошкоджені й можуть обвалитися. Скажіть, що вони небезпечні",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are dangerous.`",
+              "uk": "тут потрібно `are` — `They are dangerous.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажіть, що виходити на пошкоджений пірс небезпечно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко скажіть, що виходити на пошкоджений пірс небезпечно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i07:audio",
+          "transcript": "It's dangerous."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's dangerous.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i08",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — Міра питає, чи ви тверезі, перш ніж довірити вам кермо її машини",
+      "prompt": "Друг подолав страх і визнав свою помилку. Похваліть його сміливість",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-47:i10:r1",
-          "text": "sober"
+          "responseId": "en:lesson-01:session-47:i08:r1",
+          "text": "brave"
         },
         {
-          "responseId": "en:lesson-01:session-47:i10:r2",
-          "text": "drunk"
+          "responseId": "en:lesson-01:session-47:i08:r2",
+          "text": "dangerous"
         },
         {
-          "responseId": "en:lesson-01:session-47:i10:r3",
-          "text": "late"
+          "responseId": "en:lesson-01:session-47:i08:r3",
+          "text": "useless"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Міра питає, чи ви тверезі, перш ніж довірити вам кермо її машини",
+      "accessibilityLabel": "Друг подолав страх і визнав свою помилку. Похваліть його сміливість",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — Мира спрашивает, трезвы ли вы, прежде чем доверить вам руль её машины",
-          "uk": "Вставте слово — Міра питає, чи ви тверезі, перш ніж довірити вам кермо її машини"
+          "ru": "Друг преодолел страх и признал свою ошибку. Похвалите его смелость",
+          "uk": "Друг подолав страх і визнав свою помилку. Похваліть його сміливість"
         },
-        "gappedTargetPhrase": "I'm ___ .",
+        "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-47:i10:r1",
-            "text": "sober"
+            "responseId": "en:lesson-01:session-47:i08:r1",
+            "text": "brave"
           },
           {
-            "responseId": "en:lesson-01:session-47:i10:r2",
-            "text": "drunk"
+            "responseId": "en:lesson-01:session-47:i08:r2",
+            "text": "dangerous"
           },
           {
-            "responseId": "en:lesson-01:session-47:i10:r3",
-            "text": "late"
+            "responseId": "en:lesson-01:session-47:i08:r3",
+            "text": "useless"
           }
         ],
-        "testedDimension": "Вставте слово — Міра питає, чи ви тверезі",
+        "testedDimension": "Друг подолав страх і визнав свою помилку. Похваліть його сміливість",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i10:r2",
+            "responseId": "en:lesson-01:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — Міра питає, чи ви тверезі",
+            "testedDimension": "Друг подолав страх і визнав свою помилку. Похваліть його сміливість",
             "feedbackByLocale": {
-              "ru": "За руль так не садятся. Вам нужно «трезвый».",
-              "uk": "За кермо так не сідають. Вам потрібно «тверезий»."
+              "ru": "Это «опасный». Здесь похвала смелости: `brave`.",
+              "uk": "Це «небезпечний». Тут похвала сміливості: `brave`."
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i10:r3",
+            "responseId": "en:lesson-01:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — Міра питає, чи ви тверезі",
+            "testedDimension": "Друг подолав страх і визнав свою помилку. Похваліть його сміливість",
             "feedbackByLocale": {
-              "ru": "`late` — «опоздал». Про время, а не про выпитое.",
-              "uk": "`late` — «спізнився». Про час, а не про випите."
+              "ru": "Это «бесполезный», а нужно «смелый»: `brave`.",
+              "uk": "Це «марний», а потрібно «сміливий»: `brave`."
             }
           }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про друга",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i09:r1",
+          "text": "He is brave."
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i09:r2",
+          "text": "He is dangerous."
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i09:r3",
+          "text": "He is curious."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про друга",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i09:audio",
+          "transcript": "He is brave."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i09:r1",
+            "targetText": "He is brave.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i09:r2",
+            "targetText": "He is dangerous.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i09:r3",
+            "targetText": "He is curious.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про друга",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `brave`, а в этом варианте — `dangerous`.",
+              "uk": "У записі останнє слово — `brave`, а в цьому варіанті — `dangerous`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про друга",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `brave`, а в этом варианте — `curious`.",
+              "uk": "У записі останнє слово — `brave`, а в цьому варіанті — `curious`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте короткі початки з повними",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте короткі початки з повними",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-47:i10:p1",
+            "target": "It's",
+            "meaningByLocale": {
+              "ru": "It is",
+              "uk": "It is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-47:i10:p2",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-47:i10:p3",
+            "target": "He's",
+            "meaningByLocale": {
+              "ru": "He is",
+              "uk": "He is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-47:i10:p4",
+            "target": "She's",
+            "meaningByLocale": {
+              "ru": "She is",
+              "uk": "She is"
+            }
+          }
+        ],
+        "leftColumn": [
+          "It's",
+          "They're",
+          "He's",
+          "She's"
+        ],
+        "rightColumn": [
+          "It is",
+          "They are",
+          "He is",
+          "She is"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -572,41 +610,44 @@
       "interactionId": "en:lesson-01:session-47:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — tired",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу про ділянки пірса",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-47:i11:audio"
       ],
-      "accessibilityLabel": "Картка слова — tired",
+      "accessibilityLabel": "Послухайте й складіть фразу про ділянки пірса",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-47:i11:audio",
-          "transcript": "tired"
+          "transcript": "They're dangerous."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "hiddenTargetPhrase": "They're dangerous.",
+        "orderedTokens": [
+          "They're",
+          "dangerous"
+        ],
+        "authoredDistractorTokens": [
+          "We're"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i11:r1",
-            "targetText": "tired",
-            "meaningByLocale": {
-              "ru": "«усталый». Не про сон, а про силы: их за день потратили больше, чем осталось.",
-              "uk": "«втомлений». Не про сон, а про сили: їх за день витратили більше, ніж лишилося."
+            "responseId": "en:lesson-01:session-47:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу про ділянки пірса",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They're` — `They're dangerous.`",
+              "uk": "тут потрібно `They're` — `They're dangerous.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "tired",
-          "definitionByLocale": {
-            "ru": "«усталый». Не про сон, а про силы: их за день потратили больше, чем осталось.",
-            "uk": "«втомлений». Не про сон, а про сили: їх за день витратили більше, ніж лишилося."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -614,102 +655,77 @@
     {
       "interactionId": "en:lesson-01:session-47:i12",
       "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — друг цілий день тягав ящики, але спати не хоче",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-47:i12:r1",
-          "text": "tired"
-        },
-        {
-          "responseId": "en:lesson-01:session-47:i12:r2",
-          "text": "sleepy"
-        },
-        {
-          "responseId": "en:lesson-01:session-47:i12:r3",
-          "text": "drunk"
-        }
-      ],
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга боялася виступати, але наважилася розповісти свою історію зі сцени. Назвіть її сміливою",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — друг цілий день тягав ящики, але спати не хоче",
+      "accessibilityLabel": "Подруга боялася виступати, але наважилася розповісти свою історію зі сцени. Назвіть її сміливою",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — друг весь день таскал ящики, но спать не хочет",
-          "uk": "Вставте слово — друг цілий день тягав ящики, але спати не хоче"
+        "family": "phrase_builder",
+        "targetPhrase": "She is brave.",
+        "localizedMeaning": {
+          "ru": "Подруга боялась выступать, но решилась рассказать свою историю со сцены. Назовите её смелой",
+          "uk": "Подруга боялася виступати, але наважилася розповісти свою історію зі сцени. Назвіть її сміливою"
         },
-        "gappedTargetPhrase": "He's ___ .",
-        "gapOptions": [
+        "orderedTokens": [
+          "She",
+          "is",
+          "brave"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i12:r1",
-            "text": "tired"
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i12:r2",
-            "text": "sleepy"
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i12:r3",
-            "text": "drunk"
+            "responseId": "en:lesson-01:session-47:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга боялася виступати, але наважилася розповісти свою історію зі сцени. Назвіть її сміливою",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is brave.`",
+              "uk": "тут потрібно `is` — `She is brave.`"
+            }
           }
         ],
-        "testedDimension": "Вставте слово — друг цілий день тягав ящ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-47:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — друг цілий день тягав ящ",
-            "feedbackByLocale": {
-              "ru": "`sleepy` — «сонный», а его как раз не тянет спать.",
-              "uk": "`sleepy` — «сонний», а його якраз не тягне спати."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — друг цілий день тягав ящ",
-            "feedbackByLocale": {
-              "ru": "«Пьяный» тут ни при чём: человек работал, а не пил.",
-              "uk": "«П'яний» тут ні до чого: людина працювала, а не пила."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-47:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — «вона не сонна»",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви наважилися визнати свою помилку, хоча боялися. Скажіть про себе: «Я сміливий»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-47:i13:audio"
       ],
-      "accessibilityLabel": "Послухайте і складіть — «вона не сонна»",
+      "accessibilityLabel": "Ви наважилися визнати свою помилку, хоча боялися. Скажіть про себе: «Я сміливий»",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-47:i13:audio",
-          "transcript": "She isn't sleepy."
+          "transcript": "I am brave."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She isn't sleepy.",
-        "orderedTokens": [
-          "She",
-          "isn't",
-          "sleepy"
-        ],
-        "authoredDistractorTokens": [
-          "aren't"
-        ],
-        "slotFeedback": []
+        "targetPhrase": "I am brave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -717,140 +733,216 @@
       "interactionId": "en:lesson-01:session-47:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — друзі біля виходу, усі бадьорі",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одна пошкоджена драбина може обвалитися. Доповніть попередження про неї",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i14:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — друзі біля виходу, усі бадьорі",
+      "accessibilityLabel": "Одна пошкоджена драбина може обвалитися. Доповніть попередження про неї",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They aren't sleepy.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — друзья у выхода, все бодрые",
-          "uk": "Складіть фразу — друзі біля виходу, усі бадьорі"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одна повреждённая лестница может обрушиться. Дополните предупреждение о ней",
+          "uk": "Одна пошкоджена драбина може обвалитися. Доповніть попередження про неї"
         },
-        "orderedTokens": [
-          "They",
-          "aren't",
-          "sleepy"
+        "gappedTargetPhrase": "It ___ dangerous.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i14:r3",
+            "text": "are"
+          }
         ],
-        "authoredDistractorTokens": [
-          "isn't"
-        ],
-        "slotFeedback": []
+        "testedDimension": "Одна пошкоджена драбина може обвалитися. Доповніть попередження про неї",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i14:r2",
+            "correct": false,
+            "testedDimension": "Одна пошкоджена драбина може обвалитися. Доповніть попередження про неї",
+            "feedbackByLocale": {
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i14:r3",
+            "correct": false,
+            "testedDimension": "Одна пошкоджена драбина може обвалитися. Доповніть попередження про неї",
+            "feedbackByLocale": {
+              "ru": "Про одну лестницу — `It is`.",
+              "uk": "Про одну драбину — `It is`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-47:i15",
       "ordinal": 18,
-      "purpose": "retrieval_practice",
+      "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — quiet",
-      "responseOptions": [],
+      "prompt": "Послухайте коротку фразу й виберіть її",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i15:r1",
+          "text": "It's dangerous."
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i15:r2",
+          "text": "It's useful."
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i15:r3",
+          "text": "It's useless."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-47:i15:audio"
       ],
-      "accessibilityLabel": "Картка слова — quiet",
+      "accessibilityLabel": "Послухайте коротку фразу й виберіть її",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-47:i15:audio",
-          "transcript": "quiet"
+          "transcript": "It's dangerous."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-47:i15:r1",
-            "targetText": "quiet",
-            "meaningByLocale": {
-              "ru": "«тихий». Про зал, где выключили музыку, и про человека, который весь вечер молчал.",
-              "uk": "«тихий». Про зал, де вимкнули музику, і про людину, яка весь вечір мовчала."
-            }
+            "targetText": "It's dangerous.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i15:r2",
+            "targetText": "It's useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i15:r3",
+            "targetText": "It's useless.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "quiet",
-          "definitionByLocale": {
-            "ru": "«тихий». Про зал, где выключили музыку, и про человека, который весь вечер молчал.",
-            "uk": "«тихий». Про зал, де вимкнули музику, і про людину, яка весь вечір мовчала."
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте коротку фразу й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `useful`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте коротку фразу й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `useless`.",
+              "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `useless`."
+            }
           }
-        }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-47:i16",
       "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — перша ночі, музику вимкнули, усі замовкли",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-47:i16:r1",
-          "text": "quiet"
-        },
-        {
-          "responseId": "en:lesson-01:session-47:i16:r2",
-          "text": "awake"
-        },
-        {
-          "responseId": "en:lesson-01:session-47:i16:r3",
-          "text": "drunk"
-        }
-      ],
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — перша ночі, музику вимкнули, усі замовкли",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — час ночи, музыку выключили, все замолчали",
-          "uk": "Вставте слово — перша ночі, музику вимкнули, усі замовкли"
-        },
-        "gappedTargetPhrase": "It's ___ .",
-        "gapOptions": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-01:session-47:i16:r1",
-            "text": "quiet"
+            "pairId": "en:lesson-01:session-47:i16:p1",
+            "target": "dangerous",
+            "meaningByLocale": {
+              "ru": "представляет опасность",
+              "uk": "становить небезпеку"
+            }
           },
           {
-            "responseId": "en:lesson-01:session-47:i16:r2",
-            "text": "awake"
+            "pairId": "en:lesson-01:session-47:i16:p2",
+            "target": "brave",
+            "meaningByLocale": {
+              "ru": "проявляет смелость",
+              "uk": "виявляє сміливість"
+            }
           },
           {
-            "responseId": "en:lesson-01:session-47:i16:r3",
-            "text": "drunk"
+            "pairId": "en:lesson-01:session-47:i16:p3",
+            "target": "honest",
+            "meaningByLocale": {
+              "ru": "честный",
+              "uk": "чесний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-47:i16:p4",
+            "target": "polite",
+            "meaningByLocale": {
+              "ru": "вежливый",
+              "uk": "ввічливий"
+            }
           }
         ],
-        "testedDimension": "Вставте слово — перша ночі, музику вимкн",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-47:i16:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — перша ночі, музику вимкн",
-            "feedbackByLocale": {
-              "ru": "`awake` — про человека, который не спит, а не про зал.",
-              "uk": "`awake` — про людину, яка не спить, а не про зал."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — перша ночі, музику вимкн",
-            "feedbackByLocale": {
-              "ru": "«Пьяный» — тоже про человека. Про тишину нужно `quiet`.",
-              "uk": "«П'яний» — теж про людину. Про тишу потрібно `quiet`."
-            }
-          }
+        "leftColumn": [
+          "dangerous",
+          "brave",
+          "honest",
+          "polite"
+        ],
+        "rightColumn": [
+          "становить небезпеку",
+          "виявляє сміливість",
+          "чесний",
+          "ввічливий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -859,224 +951,34 @@
       "interactionId": "en:lesson-01:session-47:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — на вас чекали об одинадцятій, а на годиннику північ",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-47:i17:r1",
-          "text": "late"
-        },
-        {
-          "responseId": "en:lesson-01:session-47:i17:r2",
-          "text": "quiet"
-        },
-        {
-          "responseId": "en:lesson-01:session-47:i17:r3",
-          "text": "sober"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — на вас чекали об одинадцятій, а на годиннику північ",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вас ждали к одиннадцати, а на часах полночь",
-          "uk": "Вставте слово — на вас чекали об одинадцятій, а на годиннику північ"
-        },
-        "gappedTargetPhrase": "I'm ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-47:i17:r1",
-            "text": "late"
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i17:r2",
-            "text": "quiet"
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i17:r3",
-            "text": "sober"
-          }
-        ],
-        "testedDimension": "Вставте слово — на вас чекали об одинадц",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-47:i17:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — на вас чекали об одинадц",
-            "feedbackByLocale": {
-              "ru": "`quiet` — «тихий». Про часы это ничего не говорит.",
-              "uk": "`quiet` — «тихий». Про годинник це нічого не каже."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-47:i17:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — на вас чекали об одинадц",
-            "feedbackByLocale": {
-              "ru": "«Трезвый» — правда, но вас спрашивают не про это, а про время.",
-              "uk": "«Тверезий» — правда, але вас питають не про це, а про час."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i18",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — ви прощаєтеся і їдете до себе",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — ви прощаєтеся і їдете до себе",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I'm home.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы прощаетесь и едете к себе",
-          "uk": "Складіть фразу — ви прощаєтеся і їдете до себе"
-        },
-        "orderedTokens": [
-          "I'm",
-          "home"
-        ],
-        "authoredDistractorTokens": [
-          "late",
-          "going"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i19:s01",
-      "ordinal": 22,
-      "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 4",
+      "prompt": "На іншому кінці парку місток пошкоджений: іти ним — ризик упасти. Попередьте супутника про небезпеку цієї дії",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-47:i19:s01:audio"
+        "en:lesson-01:session-47:i17:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 4",
+      "accessibilityLabel": "На іншому кінці парку місток пошкоджений: іти ним — ризик упасти. Попередьте супутника про небезпеку цієї дії",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i19:s01:audio",
-          "transcript": "I'm sober."
+          "audioTargetId": "en:lesson-01:session-47:i17:audio",
+          "transcript": "It is dangerous."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm sober.",
+        "targetPhrase": "It is dangerous.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i19:s02",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:i19:s02:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i19:s02:audio",
-          "transcript": "He's sleepy."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "He's sleepy.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i19:s03",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:i19:s03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i19:s03:audio",
-          "transcript": "They aren't sleepy."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "They aren't sleepy.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-47:i19:s04",
-      "ordinal": 25,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 4 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-47:i19:s04:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 4 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-47:i19:s04:audio",
-          "transcript": "I'm tired."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I'm tired.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1087,11 +989,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 22,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "65073766ef6f5a325c4636a5813c7b38607c257053ae96cf1819b56116d3be3a"
+  "learnerFingerprint": "f0cfbb850c99ad8aa6098a06eed1017cbeb7ea413f954c6d3007b49419b10928"
 }

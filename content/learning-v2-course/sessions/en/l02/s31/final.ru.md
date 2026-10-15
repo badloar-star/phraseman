@@ -1,206 +1,138 @@
-# Английский · Урок 2 · Занятие 31 — «Меню и счёт»
+# Английский · Урок 2 · Занятие 31 — Чайник с двумя носиками
 
-**Сцена занятия.** Ужин в дублинском кафе заканчивается: тарелки унесли, а на столе осталась пара вещей, названия которых надо знать.
-**Как сказать:** повторение всех конструкций урока — `What is…?`, `Where is…?`, `Is it…?`, `It is + место`
-**Новые слова:** menu, bill
-**Возвращаются:** price, name, near, corner, toilets
+**Ситуация.** Вы с Анной пришли на выставку керамики. Рассматриваете необычный чайник, сравниваете чашки и уточняете, входят ли два зала в один билет.
+
+**Что вы освоите:** сказать, что вещь необычная, и уточнить сходство и различия
+**Новые слова:** unusual
 
 ---
 
 ## Интро 1
 
-### `menu` — тот самый список с едой
+### Не как обычно
 
-`menu` — «меню». Лист или книжечка, где написано, что тут готовят и почём. В кафе его приносят первым, ещё до воды и хлеба.
+`unusual` — «необычный». У чайника два носика: `It is unusual`. Это не обязательно плохо или хорошо — просто не так, как обычно. Главное, наливая чай себе, не угостить заодно рукав соседа.
 
-Просить его обычно не нужно: меню приносят сразу, как вы сели за стол. А вот забрать его могут быстро — что успели прочитать, то и заказываете.
+**Перед вами чайник с двумя носиками. Скажите полной фразой, что он необычный.**
 
-**Официант кладёт на стол книжечку с едой и ценами. Как она называется?**
-
-- ✅ **menu**
-- ❌ bill — *Это счёт, бумажка с суммой в конце ужина. Еду по ней не выбирают.*
-- ❌ price — *Это цена, одна цифра. А книжечка целиком — `menu`.*
+- ✅ **It is unusual.**
+- ❌ It unusual. — *Между `It` и `unusual` нужно `is`.*
+- ❌ It is not unusual. — *Это отрицает необычность. В условии нужно её отметить.*
 
 ---
 
 ## Интро 2
 
-### `bill` — бумажка в конце
+### Похожи — не значит равны
 
-`bill` — «счёт». Тот листок, который приносят, когда вы поели, и на нём сумма за всё сразу — за еду, за воду, за чай.
+`similar` — «похожие». Две чашки с похожим узором: `They are similar`. `equal` — «равные»: например, две цены одинаковой величины. Похожие чашки могут стоить по-разному. Слово выбираем по тому, что сравниваем.
 
-Просят его так: `The bill, please`. Фраза ходовая, с ней поймут в любом кафе. Последнее слово `please` — «пожалуйста», без него выйдет резковато.
+**Две цены одинаковые. Скажите полной фразой, что они равны.**
 
-**Вы поели и хотите расплатиться. Что нужно попросить у официанта?**
-
-- ✅ **bill**
-- ❌ menu — *Меню приносят в начале, а не в конце. Вы уже поели.*
-- ❌ name — *`name` — «имя, название». Официанту нужно другое слово.*
+- ✅ **They are equal.**
+- ❌ They are similar. — *Это «Они похожи». Здесь нужно сказать точнее: цены равны.*
+- ❌ They is equal. — *С `They` нужно `are`.*
 
 ---
 
 ## Интро 3
 
-### Два вопроса, разница в одном слове
+### Отдельно или вместе
 
-Вы хотите узнать название блюда — спрашиваете `What is the name?` (`name` — «название»). Хотите узнать цену — `What is the price?`
+`separate` — «отдельный». Для двух залов нужны отдельные билеты: `They are separate`. `valid` — «действительный». Показывая свой билет, спросите `Is it valid?`. Это вопрос о том, действует ли билет, а не о том, похож ли он на соседний.
 
-Поставьте их рядом, и видно: три слова в начале одни и те же, а отличается только последнее. Оно и решает, о чём вы спросили.
+**Кассир подтвердил, что билет действует в этом зале. Анна спрашивает: `Is it valid?` Ответьте коротким «да».**
 
-**В меню строчка без цифры. Спросите официанта, сколько это стоит.**
-
-- ✅ **What is the price?**
-- ❌ What is the name? — *Так вы спросите, как блюдо называется. Вам нужна цифра — значит `price`.*
-- ❌ What is the menu? — *Меню вы уже держите в руках. Непонятна вам цена, про неё и спрашивайте.*
+- ✅ **Yes, it is.**
+- ❌ No, it is not. — *Так вы скажете, что билет не действует. Кассир подтвердил обратное.*
+- ❌ Yes, it are. — *С `it` нужно `is`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — menu**
-<!-- interaction_id: en:lesson-02:session-31:i01; family: listen_choose -->
-Цель: `menu`
+**1 · Вы впервые видите чайник с двумя носиками. Скажите полной фразой, что он необычный**
+<!-- interaction_id: en:lesson-02:session-31:i01; family: phrase_builder -->
+Плитки: `unusual` `is` `It` `are` → **It is unusual.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is unusual.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте фразу**
 <!-- interaction_id: en:lesson-02:session-31:i02; family: listen_choose -->
-Цель: `menu`
-Варианты: `menu` · `many` · `money`
-- many — *«Много». Прозвучало `menu` — это про список блюд, а не про количество.*
-- money — *«Деньги». Ударный гласный другой: у `menu` слышно «э», у `money` — «а».*
+🔊 *They are similar.* → **They are similar.** · They are equal. · They are separate.
+- They are equal. — *В записи последнее слово — `similar`, а в этом варианте — `equal`.*
+- They are separate. — *В записи последнее слово — `similar`, а в этом варианте — `separate`.*
 
+**3 · Спросите Анну, необычный ли этот чайник**
+<!-- interaction_id: en:lesson-02:session-31:i03; family: context_gap_grammar -->
+___ it unusual? → **Is** · Am · Are
+- Am — *С `it` нужно `Is`.*
+- Are — *Вопрос — `Is it unusual?`.*
 
-**3 · Карточка слова — bill**
-<!-- interaction_id: en:lesson-02:session-31:i03; family: listen_choose -->
-Цель: `bill`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-31:i04; family: speed_match -->
+unusual — необычный · equal — равный · similar — похожий · separate — отдельный
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-31:i04; family: listen_choose -->
-Цель: `bill`
-Варианты: `bill` · `ball` · `bell`
-- ball — *«Мяч». Гласная другая: в `ball` слышно «о», в `bill` — «и».*
-- bell — *«Колокол». Гласная в середине другая: «э» против «и».*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-02:session-31:i05; family: listen_build_dictation -->
+🔊 *They are not equal.* Плитки: `equal` `not` `are` `They` `is` → **They are not equal.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not equal.`)*
 
-
-**5 · Вставьте слово — вы только сели за стол и хотите выбрать еду**
-<!-- interaction_id: en:lesson-02:session-31:i05; family: context_gap_grammar -->
-Цель: `The ___ , please.`
-Варианты: `menu` · `bill` · `corner`
-- bill — *Счёт просят, когда поели. Вы только сели.*
-- corner — *`corner` — «угол». Угол вам не принесут.*
-
-
-**6 · Соберите фразу — «что это?», официант положил перед вами книжечку**
+**6 · Для двух залов выдали два отдельных билета. Скажите полной фразой, что они отдельные**
 <!-- interaction_id: en:lesson-02:session-31:i06; family: phrase_builder -->
-Цель: `What is this?`
+Плитки: `separate` `are` `They` `is` → **They are separate.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are separate.`)*
 
-**7 · Вставьте слово — в меню строчка без цифры, спрашиваете про цену**
-<!-- interaction_id: en:lesson-02:session-31:i07; family: context_gap_grammar -->
-Цель: `What is the ___ ?`
-Варианты: `price` · `name` · `bill`
-- name — *`name` — «название». Вы спрашиваете не как блюдо зовут, а сколько оно стоит.*
-- bill — *Счёт — это вся сумма за ужин. Цена одного блюда — `price`.*
+**7 · У чашки ручка в форме огромного уха. Коротко скажите, что она необычная**
+<!-- interaction_id: en:lesson-02:session-31:i07; family: scripted_repeat_compare -->
+🎙 **It's unusual.**
 
+**8 · Одна чашка стоит вдвое дороже другой. На вопрос о ценах «Are they equal?» дополните короткое «нет»**
+<!-- interaction_id: en:lesson-02:session-31:i08; family: context_gap_grammar -->
+No, they ___ not. → **are** · am · is
+- am — *С `they` нужно `are`.*
+- is — *Ответ — `No, they are not`.*
 
-**8 · Различите звуки — какое из двух про счёт?**
-<!-- interaction_id: en:lesson-02:session-31:i08; family: sound_contrast -->
-Варианты: `bill` · `ball`
-- ball — *Это «мяч». В `ball` слышно «о», в `bill` — «и».*
+**9 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-31:i09; family: listen_choose -->
+🔊 *Is it valid?* → **Is it valid?** · Is it unusual? · Is it separate?
+- Is it unusual? — *В записи последнее слово — `valid`, а в этом варианте — `unusual`.*
+- Is it separate? — *В записи последнее слово — `valid`, а в этом варианте — `separate`.*
 
-
-**9 · Соберите фразу — блюдо в меню без названия, спросите как оно называется**
-<!-- interaction_id: en:lesson-02:session-31:i09; family: phrase_builder -->
-Цель: `What is the name?`
-
-**10 · Соедините пары**
+**10 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-31:i10; family: speed_match -->
-Пары: `menu` — меню · `bill` — счёт · `price` — цена · `name` — название
-Цель: `menu · bill · price · name`
+valid — действительный · unusual — необычный · similar — похожий · equal — равный
 
-**11 · Вставьте слово — вы ищете, где помыть руки, и спрашиваете официанта**
-<!-- interaction_id: en:lesson-02:session-31:i11; family: context_gap_grammar -->
-Цель: `Where are the ___ ?`
-Варианты: `toilets` · `prices` · `rules`
-- prices — *`prices` — цены. Они в меню, а не в конце зала.*
-- rules — *`rules` — правила. Их не ищут глазами по залу.*
+**11 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-02:session-31:i11; family: listen_build_dictation -->
+🔊 *Where are they?* Плитки: `they` `are` `Where` `Who` → **Where are they?**
+*(плитка `Who` лишняя: здесь нужно `Where` — `Where are they?`)*
 
+**12 · В витрине стоит предмет непонятного назначения. Спросите, что это**
+<!-- interaction_id: en:lesson-02:session-31:i12; family: phrase_builder -->
+Плитки: `it` `is` `What` `Where` → **What is it?**
+*(плитка `Where` лишняя: здесь нужно `What` — `What is it?`)*
 
-**12 · Произнесите фразу — официант показал на угол зала**
-<!-- interaction_id: en:lesson-02:session-31:i12; family: scripted_repeat_compare -->
-Цель: `It is in the corner.`
+**13 · У двух чашек похожие узоры. Коротко скажите, что чашки похожи**
+<!-- interaction_id: en:lesson-02:session-31:i13; family: scripted_repeat_compare -->
+🎙 **They're similar.**
 
-**13 · Соберите фразу — вы спрашиваете, близко ли это (вопрос, а не ответ)**
-<!-- interaction_id: en:lesson-02:session-31:i13; family: phrase_builder -->
-Цель: `Is it near?`
-
-**14 · Вставьте слово — до нужного места два шага от вашего стола**
+**14 · Билет был только на вчерашнюю выставку. Скажите, что сегодня он недействителен**
 <!-- interaction_id: en:lesson-02:session-31:i14; family: context_gap_grammar -->
-Цель: `It is ___ .`
-Варианты: `near` · `bill` · `menu`
-- bill — *`bill` — счёт, а не расстояние.*
-- menu — *Меню лежит на столе, но вопрос был не про него.*
+It ___ not valid. → **is** · am · are
+- am — *С `It` нужно `is`.*
+- are — *Фраза — `It is not valid`.*
 
+**15 · Послушайте фразу о ценах**
+<!-- interaction_id: en:lesson-02:session-31:i15; family: listen_choose -->
+🔊 *They are equal.* → **They are equal.** · They are similar. · They are separate.
+- They are similar. — *В записи последнее слово — `equal`, а в этом варианте — `similar`.*
+- They are separate. — *В записи последнее слово — `equal`, а в этом варианте — `separate`.*
 
-**15 · Послушайте и соберите — «где туалеты?»**
-<!-- interaction_id: en:lesson-02:session-31:i15; family: listen_build_dictation -->
-Цель: `Where are the toilets?`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-31:i16; family: speed_match -->
+separate — отдельный · valid — действительный · equal — равный · unusual — необычный
 
-**16 · Соберите вопрос — вы держите вещь в руках и не видите ценника; спросите про цену**
-<!-- interaction_id: en:lesson-02:session-31:i16; family: phrase_builder -->
-Цель: `What is the price?`
-Плитки: `What` `is` `the` `price` `name`
-*Плитка `name` лишняя: вы спрашиваете цену — `price`, а не название вещи.*
+**17 · Кассир упомянул билеты для двух залов. Спросите, отдельные ли они**
+<!-- interaction_id: en:lesson-02:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Are they separate?**
 
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-31:i17:s01; family: scripted_repeat_compare -->
-Цель: `Where are the toilets?`
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-31:i17:s02; family: scripted_repeat_compare -->
-Цель: `Is it near?`
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-31:i17:s03; family: scripted_repeat_compare -->
-Цель: `The bill, please.`
-
-## Для сборщика
-
-new_words:
-menu — меню — книжечка или лист, где написано, что тут готовят и почём
-bill — счёт — листок с суммой, который приносят, когда ужин закончился
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=sound_contrast, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=scripted_repeat_compare, 13=phrase_builder, 14=context_gap_grammar, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| price | интро 3, 7, 10, 12, 16 | 7, 16, интро 3 |
-| name | интро 2, 9, 10 | 9 |
-| near | 13, 14 | 13, 14 |
-| corner | 5, 12 | 12 |
-| toilets | 11, 15, 17 | 11, 15, 17 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | menu | да |
-| Интро 2 | bill | да |
-| Интро 3 | What is the price? | да (`price` и вся конструкция) |
-
-**3. Доска пар (задание 10)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| menu | 1 | 2 (слух), 5 (вставка) |
-| bill | 3 | 4 (слух), 8 (звуки) |
-| price | из прошлых занятий | интро 3, 7 |
-| name | из прошлых занятий | интро 2, 9 |
-
-**Сборки фразы: 4** (6, 9, 13, 15, 16 — из них 6, 9, 13, 16 сборка плитками, 15 на слух) — скелеты разные: `What is this?` · `What is the name?` · `Is it near?` · `Where are the toilets?` · `What is the ___?` с лишней плиткой.
-
----

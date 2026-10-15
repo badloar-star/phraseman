@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-31:i01",
-    "correctText": "menu",
+    "correctText": "It is unusual.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i02",
-    "correctText": "menu",
+    "correctText": "They are similar.",
     "correctResponseId": "en:lesson-02:session-31:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-31:i03",
-    "correctText": "bill",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-31:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-31:i04",
-    "correctText": "bill",
-    "correctResponseId": "en:lesson-02:session-31:i04:r1"
+    "correctText": "en:lesson-02:session-31:i04:p1=unusual\nen:lesson-02:session-31:i04:p2=equal\nen:lesson-02:session-31:i04:p3=similar\nen:lesson-02:session-31:i04:p4=separate",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i05",
-    "correctText": "menu",
-    "correctResponseId": "en:lesson-02:session-31:i05:r1"
+    "correctText": "They are not equal.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i06",
-    "correctText": "What is this?",
+    "correctText": "They are separate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i07",
-    "correctText": "price",
-    "correctResponseId": "en:lesson-02:session-31:i07:r1"
+    "correctText": "It's unusual.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i08",
-    "correctText": "bill",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-31:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-31:i09",
-    "correctText": "What is the name?",
-    "correctResponseId": null
+    "correctText": "Is it valid?",
+    "correctResponseId": "en:lesson-02:session-31:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-31:i10",
-    "correctText": "en:lesson-02:session-31:i10:p1=menu\nen:lesson-02:session-31:i10:p2=bill\nen:lesson-02:session-31:i10:p3=price\nen:lesson-02:session-31:i10:p4=name",
+    "correctText": "en:lesson-02:session-31:i10:p1=valid\nen:lesson-02:session-31:i10:p2=unusual\nen:lesson-02:session-31:i10:p3=similar\nen:lesson-02:session-31:i10:p4=equal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i11",
-    "correctText": "toilets",
-    "correctResponseId": "en:lesson-02:session-31:i11:r1"
+    "correctText": "Where are they?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i12",
-    "correctText": "corner",
-    "correctResponseId": "en:lesson-02:session-31:i12:r1"
+    "correctText": "What is it?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i13",
-    "correctText": "Is it near?",
+    "correctText": "They're similar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-31:i14",
-    "correctText": "near",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-31:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-31:i15",
-    "correctText": "Where are the toilets?",
-    "correctResponseId": null
+    "correctText": "They are equal.",
+    "correctResponseId": "en:lesson-02:session-31:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-31:i16",
-    "correctText": "What is the price?",
+    "correctText": "en:lesson-02:session-31:i16:p1=separate\nen:lesson-02:session-31:i16:p2=valid\nen:lesson-02:session-31:i16:p3=equal\nen:lesson-02:session-31:i16:p4=unusual",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-31:i17:s01",
-    "correctText": "Where are the toilets?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-31:i17:s02",
-    "correctText": "Is it near?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-31:i17:s03",
-    "correctText": "The bill, please.",
+    "interactionId": "en:lesson-02:session-31:i17",
+    "correctText": "Are they separate?",
     "correctResponseId": null
   }
 ]

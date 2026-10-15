@@ -57130,6 +57130,309 @@
           "byteSize": 26880
         }
       ]
+    },
+    "l04/s21/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is some juice here.",
+          "file": "463c4b797112669914c33c48b2beb8ab26a08efb78013eb37af1f85a8fba574c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/463c4b797112669914c33c48b2beb8ab26a08efb78013eb37af1f85a8fba574c.mp3",
+          "contentHash": "5e39f9df0a0bb0f23a2e371b0eede53327cad0ec8e044b79a2f934eaea6148ef",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l04/s21/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there any juice here?",
+          "file": "5373eccab1cb11cc10d38dc50f36ec2ac3ffce268f39258bef16bb237d4f14ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5373eccab1cb11cc10d38dc50f36ec2ac3ffce268f39258bef16bb237d4f14ec.mp3",
+          "contentHash": "1c0a04e1d773380b87d2557c50e7f19ca1813ab41d19bbcc34219ce838374d16",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s21/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "No, it's broken.",
+          "file": "82a19c99dedf14c1a6440698bb6fb3ec32be7aa0abd016fc36673f33ac73f917.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/82a19c99dedf14c1a6440698bb6fb3ec32be7aa0abd016fc36673f33ac73f917.mp3",
+          "contentHash": "f59b30e67be12b96a08961c5605a558a944ce80232ba768a9d4e60c6e923324e",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s21/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is a taxi.",
+          "file": "6d78d4b240aec660c0cd9a598ef486c0abbf0a41d9bd9e2503bd6d36f1b28fc2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d78d4b240aec660c0cd9a598ef486c0abbf0a41d9bd9e2503bd6d36f1b28fc2.mp3",
+          "contentHash": "3343b032b4c006615070264808c95bb2ef6fffd5a18b4857d1b1ff9b483504fb",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s21/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "juice",
+          "file": "f602f5092d9c40b4df4be67ebde5603d9111639bcdaa9d45328ab49e76e342c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f602f5092d9c40b4df4be67ebde5603d9111639bcdaa9d45328ab49e76e342c6.mp3",
+          "contentHash": "42f330ada1b9a2526a2b4f1e5b54f5b4161d36b9ac994dea7a1b88b1dcebbea3",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l04/s21/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "juice",
+          "file": "585645a50bfe6bfa84275ea29d91b6f9695e519985cf08825d118a03dfe85974.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/585645a50bfe6bfa84275ea29d91b6f9695e519985cf08825d118a03dfe85974.mp3",
+          "contentHash": "a824682b6b91aed4471db3206abc743422308f7384117c23b444c3aaef952fbf",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s21/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "juice",
+          "file": "e20d3198af5ee7b61eb6719b48cb76403b8b4f7d326d7993be98fb3c06a1a7d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e20d3198af5ee7b61eb6719b48cb76403b8b4f7d326d7993be98fb3c06a1a7d2.mp3",
+          "contentHash": "b89522ede47d88b3e5ca09b1c0827e7bad7795dce6c4e879afeb114c95b23c05",
+          "byteSize": 16512
+        },
+        {
+          "text": "broken",
+          "file": "49140c9311eee911e645b01aafaaf9784c996212df670623016b471516903b11.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f526795c95399cea27c055c8-nova.mp3",
+          "contentHash": "e885dfc626bb9a65aeb168160d8065ecab603890956416c46f5dcbf143682ca7",
+          "byteSize": 18816
+        },
+        {
+          "text": "pens",
+          "file": "a3be15bc931d81de479033b3f9f7d86ad77b884975f96bf5d40fad1ea5528ad0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a3be15bc931d81de479033b3f9f7d86ad77b884975f96bf5d40fad1ea5528ad0.mp3",
+          "contentHash": "02c76891fdea9d045067c609de39d53a63c85d0b03a548c3c495e4c1824cfaef",
+          "byteSize": 28416
+        },
+        {
+          "text": "taxi",
+          "file": "221c5347f7025ee310353aa45f2c6b693fc643e955197b0b09090000e03c2423.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/221c5347f7025ee310353aa45f2c6b693fc643e955197b0b09090000e03c2423.mp3",
+          "contentHash": "a493b0a8bff746a8901688fa09a806963a4f01c1baaef0f0e36ed8adbe9f493a",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s21/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is some juice.",
+          "file": "892b25b5ba07b337e45747f0c318332260dbd2e9ce6903d2dc70d3fd62baaca1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/892b25b5ba07b337e45747f0c318332260dbd2e9ce6903d2dc70d3fd62baaca1.mp3",
+          "contentHash": "fde6454b39379f434a1eab50ad159052c20d9e3038049958916d770bce4c2a5b",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s21/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are some pens here.",
+          "file": "e7fb9b94b8f150126461f5b35d68bb9802b772903e2c8e9391e476ac998d9279.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e7fb9b94b8f150126461f5b35d68bb9802b772903e2c8e9391e476ac998d9279.mp3",
+          "contentHash": "2069f8cef49ffe4a648b5813b8f0af951510027511da9be66369ed78e56c96d2",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l04/s21/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "No, it's broken.",
+          "file": "81baf3ec6e17ed4e0ab06bb92f81b9ec18e1ed7c4c0e0ade2907a195454b6b12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81baf3ec6e17ed4e0ab06bb92f81b9ec18e1ed7c4c0e0ade2907a195454b6b12.mp3",
+          "contentHash": "29b50d5f6577129268b247e20d5a9d49021e32d655833c8f40f19f5375426750",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s21/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is some juice here.",
+          "file": "a8decdda3091fe7314cb50088e3466d028b8906c2d50a3f7cd00639ce18eb468.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a8decdda3091fe7314cb50088e3466d028b8906c2d50a3f7cd00639ce18eb468.mp3",
+          "contentHash": "1b323e0a0181cb8f685c33fc6de13e5da2e681d5a02de299a2f6e301336469fe",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l04/s21/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Are there any pens?",
+          "file": "2ec4d679ec9b366a3e43fc62347c0fee91d11ef2d8ae68ec6deffd6f8811b7f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ec4d679ec9b366a3e43fc62347c0fee91d11ef2d8ae68ec6deffd6f8811b7f7.mp3",
+          "contentHash": "8e5de017caad3301d80debf23f2816ee5314ef9b647e0bf8d419998051919d6c",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s21/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "juice",
+          "file": "e20d3198af5ee7b61eb6719b48cb76403b8b4f7d326d7993be98fb3c06a1a7d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e20d3198af5ee7b61eb6719b48cb76403b8b4f7d326d7993be98fb3c06a1a7d2.mp3",
+          "contentHash": "b89522ede47d88b3e5ca09b1c0827e7bad7795dce6c4e879afeb114c95b23c05",
+          "byteSize": 16512
+        },
+        {
+          "text": "no",
+          "file": "e4c67985973c82b1d6dfcc2babb9d969ecbd57c00c2e184a47b290843d0ada0d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e4c67985973c82b1d6dfcc2babb9d969ecbd57c00c2e184a47b290843d0ada0d.mp3",
+          "contentHash": "dcdc88c4d9c8715c4f5a8c56c9ba78002476a00c4fd7db713ffcbceeb08005e8",
+          "byteSize": 12288
+        },
+        {
+          "text": "pens",
+          "file": "a3be15bc931d81de479033b3f9f7d86ad77b884975f96bf5d40fad1ea5528ad0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a3be15bc931d81de479033b3f9f7d86ad77b884975f96bf5d40fad1ea5528ad0.mp3",
+          "contentHash": "02c76891fdea9d045067c609de39d53a63c85d0b03a548c3c495e4c1824cfaef",
+          "byteSize": 28416
+        },
+        {
+          "text": "taxi",
+          "file": "221c5347f7025ee310353aa45f2c6b693fc643e955197b0b09090000e03c2423.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/221c5347f7025ee310353aa45f2c6b693fc643e955197b0b09090000e03c2423.mp3",
+          "contentHash": "a493b0a8bff746a8901688fa09a806963a4f01c1baaef0f0e36ed8adbe9f493a",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s21/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there any juice?",
+          "file": "916bb2d65c3d0b653adbe47c369e80bd95c8e6af321f45b59bb2201b3d322ea7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/916bb2d65c3d0b653adbe47c369e80bd95c8e6af321f45b59bb2201b3d322ea7.mp3",
+          "contentHash": "3624e50dde6ab0ec59c0a38c14a524158fb4968e984cf0b2249d3280b6a3ecaa",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s21/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Are there any pens here?",
+          "file": "b71e0f8bcf885b9ec35fe3c545edfd785714c102675c2578581060bbf9cd20ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b71e0f8bcf885b9ec35fe3c545edfd785714c102675c2578581060bbf9cd20ac.mp3",
+          "contentHash": "92d0dec154a3776056c69977751112e6b757bd05a38daef30153ec7831844a71",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s21/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is some juice there.",
+          "file": "2bc1dfdf40cb587a49cd65f0e9ff1be193b91a74a346619bb1a560d311c1e4e5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2bc1dfdf40cb587a49cd65f0e9ff1be193b91a74a346619bb1a560d311c1e4e5.mp3",
+          "contentHash": "6973da2ee5e6764ee343be2b47cec370390ed8e4b2aaee6780695ea0f2f10320",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s21/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there any juice here?",
+          "file": "a09526a80882494e232f7bef0256f74ac19fdbddbc792b79194aefa8e0c9228b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a09526a80882494e232f7bef0256f74ac19fdbddbc792b79194aefa8e0c9228b.mp3",
+          "contentHash": "d18a4da9a50cd87dd3e5db17865c3e25a0a2c72000f725db30a870e3fcf12246",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s21/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "No, it is broken.",
+          "file": "b566bff94dc1713b59b76a03c4a6449a7da2b333d2bcb8775c6303a786a42095.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b566bff94dc1713b59b76a03c4a6449a7da2b333d2bcb8775c6303a786a42095.mp3",
+          "contentHash": "5656260d6084e3237db3c59853e396338178dbef7e69dce163f0e0181c08ce7b",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s21/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "juice",
+          "file": "37fc5d027528ebf5510730eab3d78e05b12b04d497576b6af8dffbcab3c61a1f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/37fc5d027528ebf5510730eab3d78e05b12b04d497576b6af8dffbcab3c61a1f.mp3",
+          "contentHash": "e581ea3a5671ffd4ca92242daf99510b71d845e04db5c6499aa47afca9a2c21e",
+          "byteSize": 21888
+        },
+        {
+          "text": "broken",
+          "file": "e3f001086fe1752e833333cfb58a3bead921c903eb9bf4fb8c04d40517fd9adf.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f526795c95399cea27c055c8-coral.mp3",
+          "contentHash": "cf4b6fb4c97fbeec98884a77b629c41d28435fb622ed6d02ba2d4a03766c1511",
+          "byteSize": 26880
+        },
+        {
+          "text": "no",
+          "file": "782588bbfecaed66d4601b619ae513093c44237f5c5cf0ee22a45cbbf259d846.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/782588bbfecaed66d4601b619ae513093c44237f5c5cf0ee22a45cbbf259d846.mp3",
+          "contentHash": "4a5c0e3452cf6e88c83c328ab31b372bd44fc3c56c31bb837cbdfed15651c61a",
+          "byteSize": 18048
+        },
+        {
+          "text": "pens",
+          "file": "985a3c89854a8677735acc45901b41b5ec2dcccf966e6a176813e26b4ffce1b1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/985a3c89854a8677735acc45901b41b5ec2dcccf966e6a176813e26b4ffce1b1.mp3",
+          "contentHash": "bf79e4b68fc78a6da691a11a01b5650557f3daf2fafce25f23dea0497a0d5cf6",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s21/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there any juice here?",
+          "file": "5373eccab1cb11cc10d38dc50f36ec2ac3ffce268f39258bef16bb237d4f14ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5373eccab1cb11cc10d38dc50f36ec2ac3ffce268f39258bef16bb237d4f14ec.mp3",
+          "contentHash": "1c0a04e1d773380b87d2557c50e7f19ca1813ab41d19bbcc34219ce838374d16",
+          "byteSize": 27648
+        }
+      ]
     }
   },
   "settings": {

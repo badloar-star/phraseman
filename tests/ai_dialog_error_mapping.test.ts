@@ -41,22 +41,38 @@ describe('ai dialog callable error mapping', () => {
     expect(classifyPremiumDialogError(new Error('network request failed'))).toBe('network');
   });
 
-  it('describes infrastructure failures honestly instead of showing fictional stories', () => {
-    const provider = getPremiumDialogErrorMessage(
-      { code: 'functions/unavailable', message: 'dialog_provider_failed' },
-      { lang: 'uk' },
-    );
-    const network = getPremiumDialogErrorMessage(new Error('network request failed'), { lang: 'uk' });
-    const unknown = getPremiumDialogErrorMessage(new Error('unexpected failure'), { lang: 'uk' });
+  // зачем (Ревизор 2.71): поведенческая проверка вместо сверки строк — код ошибки → вид → своё сообщение. Тексты переписывают
+  // (52d27aeb4 / 3dc472258 убрали «сервер/сервіс»), а смысл держим: сбой провайдера ≠ нет связи ≠ неизвестная ошибка, на всех 9
+  // языках, без системных слов и без выдуманных историй.
+  const LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+  const INFRA = {
+    provider: { code: 'functions/unavailable', message: 'dialog_provider_failed' },
+    network: new Error('network request failed'),
+    unknown: new Error('unexpected failure'),
+  } as const;
 
-    // зачем (разбор красных 15.10): 52d27aeb4/3dc472258 убрали из текстов системные слова («сервіс», «сервер») — смысл тот же:
-    // сбой провайдера ≠ нет связи ≠ неизвестная ошибка, и ни одной выдуманной истории
-    expect(provider).toContain('Повідомлення не надіслалося');
-    expect(network).toContain('Немає зв’язку');
-    expect(unknown).toContain('Не вдалося надіслати повідомлення');
+  it('infrastructure failures: each code maps to its own kind', () => {
+    expect(classifyPremiumDialogError(INFRA.provider)).toBe('provider_unavailable');
+    expect(classifyPremiumDialogError(INFRA.network)).toBe('network');
+    expect(classifyPremiumDialogError(INFRA.unknown)).toBe('unknown');
+    expect(classifyPremiumDialogError({ code: 'functions/deadline-exceeded', message: '' })).toBe('provider_unavailable');
+    expect(classifyPremiumDialogError(new Error('timeout'))).toBe('network');
+  });
+
+  it.each(LANGS)('%s: provider ≠ network ≠ unknown, all localized, no system words, no fictional stories', (lang) => {
+    const provider = getPremiumDialogErrorMessage(INFRA.provider, { lang });
+    const network = getPremiumDialogErrorMessage(INFRA.network, { lang });
+    const unknown = getPremiumDialogErrorMessage(INFRA.unknown, { lang });
     for (const message of [provider, network, unknown]) {
+      expect(message.trim().length).toBeGreaterThan(0);
+      expect(message).not.toMatch(/сервер|сервіс|server|servidor|máy chủ|sunucu|serwer/i);
       expect(message).not.toMatch(/луна|місяць|гора|посилк|кур’єр/i);
+      if (lang !== 'ru' && lang !== 'uk') expect(message).not.toMatch(/[а-яёіїєґ]/i); // не русский/украинский запасной текст
     }
+    // network может давать случайный вариант забавной плашки — сравниваем «вид», а не строку: три разных сообщения
+    expect(new Set([provider, unknown]).size).toBe(2);
+    expect(network).not.toBe(provider);
+    expect(network).not.toBe(unknown);
   });
 
   it('maps server age restriction instead of calling it a network failure', () => {
@@ -72,8 +88,10 @@ describe('ai dialog callable error mapping', () => {
     const network = new Error('network request failed');
 
     expect(getPremiumDialogErrorMessage(freeLimit, { lang: 'pt-BR' })).toContain('Plus');
-    expect(getPremiumDialogErrorMessage(freeLimit, { hasPremiumAccess: true, lang: 'vi' }))
-      .toContain('Quyền truy cập đầy đủ đã bật nhưng chưa áp dụng ở mọi nơi'); // без слова «máy chủ» (сервер), 3dc472258
+    // поведение (Ревизор 2.71): при активном Plus — своё сообщение «доступ есть, но ещё не применился», а не «нужен Plus»; без «máy chủ»
+    const viPlusActive = getPremiumDialogErrorMessage(freeLimit, { hasPremiumAccess: true, lang: 'vi' });
+    expect(viPlusActive).not.toBe(getPremiumDialogErrorMessage(freeLimit, { lang: 'vi' }));
+    expect(viPlusActive).not.toMatch(/máy chủ/i);
     // network теперь показывает забавную (рандомную) плашку из aiErrorToast.
     // Проверяем не конкретную формулировку, а что локализация случилась: польский
     // вариант непустой и БЕЗ кириллицы (русский фолбэк был бы на кириллице).

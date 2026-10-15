@@ -1,0 +1,196 @@
+10-15 10:45:43.592 I/SVERKA  (32295): === TABSJ launch 10:46:23 ===
+10-15 10:46:04.367 W/ReactNativeJS(32323): [JS-STALL] +2003ms поток стоял 2000ms (с +3ms)
+10-15 10:46:04.820 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #1 inst=1 seq=1 t=64820 changed=first render
+10-15 10:46:05.337 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=2 t=65330 render#1 active=0 visual=0 page=0 pathname=/
+10-15 10:46:05.340 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=3 t=65338 source=route_effect {"pathname":"/","segments":"","rawFromRouter":0,"fromRouter":0,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":true}
+10-15 10:46:05.345 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=4 t=65341 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 10:46:05.374 W/ReactNativeJS(32323): [JS-STALL] +3010ms поток стоял 931ms (с +2079ms)
+10-15 10:46:05.512 I/ReactNativeJS(32323): [TAP-LAT] [TABS-INST] mount inst=1 seq=5 t=65504
+10-15 10:46:05.872 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #2 inst=1 seq=6 t=65871 changed=none (parent/context)
+10-15 10:46:06.006 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=7 t=65997 render#2 active=0 visual=0 page=0 pathname=/
+10-15 10:46:06.024 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=66022 tabs focus
+10-15 10:46:06.084 W/ReactNativeJS(32323): [JS-STALL] +3720ms поток стоял 709ms (с +3011ms)
+10-15 10:46:06.116 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #3 inst=1 seq=8 t=66116 changed=focusTick:0→1
+10-15 10:46:06.192 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=9 t=66180 render#3 active=0 visual=0 page=0 pathname=/
+10-15 10:46:06.267 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #4 inst=1 seq=10 t=66266 changed=theme:#1→#3
+10-15 10:46:07.298 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=11 t=67295 render#4 active=0 visual=0 page=0 pathname=/
+10-15 10:46:07.336 W/ReactNativeJS(32323): [JS-STALL] +4971ms поток стоял 1251ms (с +3720ms)
+10-15 10:46:07.349 I/ReactNativeJS(32323): [TAP-LAT] → (tabs) · без касания (редирект/таймер) · коммит→кадр 1313.5мс
+10-15 10:46:07.349 I/ReactNativeJS(32323): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (1313мс) · рендеры: stack 4×(216/84/14/751мс, всего 1064мс) · layout:tabs 4×(166/83/14/741мс, всего 1005мс) · tab:home 1×(691мс, всего 691мс)
+10-15 10:46:07.599 W/ReactNativeJS(32323): [JS-STALL] +5234ms поток стоял 263ms (с +4971ms)
+10-15 10:46:07.599 W/ReactNativeJS(32323): [JS-STALL] heartbeat +5234ms splash=shown
+10-15 10:46:08.922 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #5 inst=1 seq=12 t=68922 changed=none (parent/context)
+10-15 10:46:08.968 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=13 t=68966 render#5 active=0 visual=0 page=0 pathname=/
+10-15 10:46:11.409 W/ReactNativeJS(32323): [JS-STALL] +9045ms поток стоял 3660ms (с +5385ms)
+10-15 10:46:11.439 I/ReactNativeJS(32323): '[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-15 10:46:11.728 W/ReactNativeJS(32323): [JS-STALL] +9364ms поток стоял 319ms (с +9045ms)
+10-15 10:46:12.279 I/ReactNativeJS(32323): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-15 10:46:12.279 W/ReactNativeJS(32323): [PAYWALL] цены прогреты: нет кэша importMs=0 hydrateMs=542
+10-15 10:46:12.312 W/ReactNativeJS(32323): [JS-STALL] +9947ms поток стоял 583ms (с +9364ms)
+10-15 10:46:12.714 W/ReactNativeJS(32323): [JS-STALL] heartbeat +10349ms splash=hidden@+6338ms
+10-15 10:46:13.828 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #6 inst=1 seq=14 t=73828 changed=visited:1→2 mounted:1→2
+10-15 10:46:14.604 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=15 t=74603 render#6 active=0 visual=0 page=0 pathname=/
+10-15 10:46:14.616 W/ReactNativeJS(32323): [JS-STALL] +12252ms поток стоял 852ms (с +11400ms)
+10-15 10:46:15.320 I/ReactNativeJS(32323): '[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":3565,"quietReason":"quiet","quietWaitMs":2052,"cleanTicks":4,"lastLagMs":28,"maxLagMs":575,"sinceTouchMs":1200,"idleWaitMs":2,"prewarmMs":0,"commitMs":1264}'
+10-15 10:46:20.032 W/ReactNativeJS(32323): [JS-STALL] +17666ms поток стоял 2750ms (с +14916ms)
+10-15 10:46:20.035 W/ReactNativeJS(32323): [JS-STALL] heartbeat +17666ms splash=hidden@+6338ms
+10-15 10:46:21.088 W/ReactNativeJS(32323): [JS-STALL] +18724ms поток стоял 707ms (с +18017ms)
+10-15 10:46:22.016 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #7 inst=1 seq=16 t=82016 changed=visited:2→3 mounted:2→3
+10-15 10:46:22.195 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=17 t=82192 render#7 active=0 visual=0 page=0 pathname=/
+10-15 10:46:22.267 W/ReactNativeJS(32323): [JS-STALL] +19903ms поток стоял 252ms (с +19651ms)
+10-15 10:46:22.465 I/ReactNativeJS(32323): '[TABS-PREMOUNT] step', '{"idx":2,"outcome":"mounted","queuedMs":3009,"totalMs":7145,"quietReason":"quiet","quietWaitMs":6683,"cleanTicks":4,"lastLagMs":11,"maxLagMs":2687,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":285}'
+10-15 10:46:23.653 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #8 inst=1 seq=18 t=83653 changed=visited:3→4 mounted:3→4
+10-15 10:46:23.888 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=19 t=83881 render#8 active=0 visual=0 page=0 pathname=/
+10-15 10:46:23.964 W/ReactNativeJS(32323): [JS-STALL] +21595ms поток стоял 307ms (с +21288ms)
+10-15 10:46:24.186 I/ReactNativeJS(32323): '[TABS-PREMOUNT] step', '{"idx":3,"outcome":"mounted","queuedMs":10010,"totalMs":1720,"quietReason":"quiet","quietWaitMs":1171,"cleanTicks":4,"lastLagMs":17,"maxLagMs":98,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":371}'
+10-15 10:46:25.077 W/ReactNativeJS(32323): [JS-STALL] heartbeat +22712ms splash=hidden@+6338ms
+10-15 10:46:26.995 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #9 inst=1 seq=20 t=86995 changed=visited:4→5 mounted:4→5
+10-15 10:46:27.357 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=21 t=87352 render#9 active=0 visual=0 page=0 pathname=/
+10-15 10:46:27.386 W/ReactNativeJS(32323): [JS-STALL] +25018ms поток стоял 450ms (с +24568ms)
+10-15 10:46:27.893 W/ReactNativeJS(32323): [JS-STALL] +25527ms поток стоял 505ms (с +25022ms)
+10-15 10:46:28.051 I/ReactNativeJS(32323): '[TABS-PREMOUNT] step', '{"idx":4,"outcome":"mounted","queuedMs":11655,"totalMs":3863,"quietReason":"quiet","quietWaitMs":678,"cleanTicks":4,"lastLagMs":28,"maxLagMs":35,"sinceTouchMs":1200,"idleWaitMs":2100,"prewarmMs":0,"commitMs":899}'
+10-15 10:46:29.814 W/ReactNativeJS(32323): [JS-STALL] +27447ms поток стоял 789ms (с +26658ms)
+10-15 10:46:30.081 W/ReactNativeJS(32323): [JS-STALL] heartbeat +27716ms splash=hidden@+6338ms
+10-15 10:46:35.115 W/ReactNativeJS(32323): [JS-STALL] heartbeat +32750ms splash=hidden@+6338ms
+10-15 10:46:40.133 W/ReactNativeJS(32323): [JS-STALL] heartbeat +37768ms splash=hidden@+6338ms
+10-15 10:46:44.247 W/ReactNativeJS(32323): [JS-STALL] +41882ms поток стоял 290ms (с +41592ms)
+10-15 10:46:45.181 W/ReactNativeJS(32323): [JS-STALL] heartbeat +42817ms splash=hidden@+6338ms
+10-15 10:46:50.181 W/ReactNativeJS(32323): [JS-STALL] +47817ms поток стоял 394ms (с +47423ms)
+10-15 10:46:50.182 W/ReactNativeJS(32323): [JS-STALL] heartbeat +47817ms splash=hidden@+6338ms
+10-15 10:46:55.198 W/ReactNativeJS(32323): [JS-STALL] heartbeat +52834ms splash=hidden@+6338ms
+10-15 10:47:00.258 W/ReactNativeJS(32323): [JS-STALL] heartbeat +57893ms splash=hidden@+6338ms
+10-15 10:47:02.473 W/ReactNativeJS(32323): [JS-STALL] watchdog stop +60108ms
+10-15 10:47:03.986 I/SVERKA  (32620): === TABSJ ready-wait done 10:47:43 i=16 ===
+10-15 10:47:09.662 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #10 inst=1 seq=22 t=29662 changed=none (parent/context)
+10-15 10:47:09.798 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=23 t=29793 render#10 active=0 visual=0 page=0 pathname=/
+10-15 10:47:09.869 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=29865 tabs blur
+10-15 10:47:09.915 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #11 inst=1 seq=24 t=29915 changed=pathname:/→/dev_state segments:→dev_state
+10-15 10:47:09.975 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=25 t=29970 render#11 active=0 visual=0 page=0 pathname=/dev_state
+10-15 10:47:09.978 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=26 t=29975 source=route_effect {"pathname":"/dev_state","segments":"dev_state","rawFromRouter":null,"fromRouter":null,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 10:47:10.334 I/ReactNativeJS(32323): [TAP-LAT] → dev_state (из (tabs)) · без касания (редирект/таймер) · коммит→кадр 454мс
+10-15 10:47:10.334 I/ReactNativeJS(32323): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (454мс) · рендеры: stack 8×(4/2/6/582/483/…мс, всего 1707мс) · layout:tabs 8×(3/1/6/581/468/…мс, всего 1659мс) · tab:home 7×(3/1/6/129/30/…мс, всего 232мс) · tab:lessons 3×(60/34/114мс, всего 208мс)
+10-15 10:47:11.631 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #12 inst=2 seq=27 t=31628 changed=first render
+10-15 10:47:11.833 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=28 t=31832 render#12 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:11.835 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=29 t=31833 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":true}
+10-15 10:47:11.837 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=30 t=31836 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 10:47:11.992 I/ReactNativeJS(32323): [TAP-LAT] [TABS-INST] mount inst=2 seq=31 t=31978
+10-15 10:47:12.027 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #13 inst=1 seq=32 t=32026 changed=pathname:/dev_state→/home segments:dev_state→(tabs)/home
+10-15 10:47:12.042 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #14 inst=2 seq=33 t=32042 changed=none (parent/context)
+10-15 10:47:12.180 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=34 t=32175 render#13 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:12.183 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=35 t=32180 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 10:47:12.186 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=36 t=32184 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 10:47:12.188 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=37 t=32187 render#14 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:12.196 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=32193 tabs focus
+10-15 10:47:12.227 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #15 inst=2 seq=38 t=32227 changed=focusTick:0→1
+10-15 10:47:12.449 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=39 t=32416 render#15 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:12.583 I/ReactNativeJS(32323): [TAP-LAT] → (tabs) (из dev_state) · без касания (редирект/таймер) · коммит→кадр 586.3мс
+10-15 10:47:12.583 I/ReactNativeJS(32323): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (586мс) · рендеры: stack 16×(3/422/409/358/41/…мс, всего 3116мс) · layout:tabs 15×(421/393/357/28/7/…мс, всего 3062мс) · tab:home 5×(44/107/3/40/73мс, всего 267мс) · tab:lessons 4×(28/7/48/8мс, всего 91мс)
+10-15 10:47:13.543 I/ReactNativeJS(32323): '[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-15 10:47:14.418 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #16 inst=2 seq=40 t=34418 changed=visited:1→2 mounted:1→2
+10-15 10:47:14.723 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=41 t=34721 render#16 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:15.512 I/ReactNativeJS(32323): '[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":1772,"quietReason":"quiet","quietWaitMs":655,"cleanTicks":4,"lastLagMs":19,"maxLagMs":19,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":914}'
+10-15 10:47:16.362 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #17 inst=2 seq=42 t=36359 changed=visited:2→3 mounted:2→3
+10-15 10:47:16.614 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=43 t=36608 render#17 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:16.976 I/ReactNativeJS(32323): '[TABS-PREMOUNT] step', '{"idx":2,"outcome":"mounted","queuedMs":1764,"totalMs":1463,"quietReason":"quiet","quietWaitMs":669,"cleanTicks":4,"lastLagMs":15,"maxLagMs":33,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":595}'
+10-15 10:47:17.697 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #18 inst=2 seq=44 t=37693 changed=visited:3→4 mounted:3→4
+10-15 10:47:17.827 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=45 t=37824 render#18 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:18.126 I/ReactNativeJS(32323): '[TABS-PREMOUNT] step', '{"idx":3,"outcome":"mounted","queuedMs":3051,"totalMs":1150,"quietReason":"quiet","quietWaitMs":694,"cleanTicks":4,"lastLagMs":21,"maxLagMs":50,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":254}'
+10-15 10:47:18.811 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #19 inst=2 seq=46 t=38810 changed=visited:4→5 mounted:4→5
+10-15 10:47:19.089 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=47 t=39088 render#19 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:19.667 I/ReactNativeJS(32323): '[TABS-PREMOUNT] step', '{"idx":4,"outcome":"mounted","queuedMs":4018,"totalMs":1539,"quietReason":"quiet","quietWaitMs":667,"cleanTicks":4,"lastLagMs":18,"maxLagMs":32,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":629}'
+10-15 10:47:21.984 I/SVERKA  (32649): === TABSJ switch 1 lessons 10:48:01 ===
+10-15 10:47:22.093 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=42092 tab_tap requested=1 active=0 page=0
+10-15 10:47:22.099 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=48 t=42094 source=tap {"requestedIdx":1,"idx":1,"active":"0→1","page":0,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 10:47:22.101 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=49 t=42100 source=navigate {"idx":1,"pathname":"/home","segments":"(tabs)/home","alreadyShown":false,"pendingBefore":null}
+10-15 10:47:22.122 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #20 inst=2 seq=50 t=42122 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 10:47:22.525 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=51 t=42517 render#20 active=1 visual=1 page=1 pathname=/home
+10-15 10:47:22.686 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #21 inst=2 seq=52 t=42684 changed=pathname:/home→/lessons segments:(tabs)/home→(tabs)/lessons
+10-15 10:47:22.831 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=53 t=42828 render#21 active=1 visual=1 page=1 pathname=/lessons
+10-15 10:47:22.833 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=54 t=42831 source=route_effect {"pathname":"/lessons","segments":"(tabs)/lessons","rawFromRouter":1,"fromRouter":1,"pending":1,"active":1,"visual":1,"page":1,"layoutChanged":false}
+10-15 10:47:22.834 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=55 t=42833 source=route_effect:from_router {"fromRouter":1,"active":"1→1","visual":"1→1"}
+10-15 10:47:22.868 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #22 inst=1 seq=56 t=42867 changed=pathname:/home→/lessons segments:(tabs)/home→(tabs)/lessons
+10-15 10:47:22.953 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=57 t=42951 render#22 active=0 visual=0 page=0 pathname=/lessons
+10-15 10:47:22.956 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=58 t=42953 source=route_effect {"pathname":"/lessons","segments":"(tabs)/lessons","rawFromRouter":1,"fromRouter":1,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 10:47:22.958 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=59 t=42956 source=route_effect:from_router {"fromRouter":1,"active":"0→1","visual":"0→1"}
+10-15 10:47:22.967 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #23 inst=1 seq=60 t=42966 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 10:47:23.325 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=61 t=43316 render#23 active=1 visual=1 page=1 pathname=/lessons
+10-15 10:47:26.879 I/SVERKA  (32664): === TABSJ switch 1 settings 10:48:06 ===
+10-15 10:47:27.173 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=47173 tab_tap requested=4 active=1 page=1
+10-15 10:47:27.173 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=62 t=47173 source=tap {"requestedIdx":4,"idx":4,"active":"1→4","page":1,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 10:47:27.178 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=63 t=47177 source=navigate {"idx":4,"pathname":"/lessons","segments":"(tabs)/lessons","alreadyShown":false,"pendingBefore":null}
+10-15 10:47:27.203 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #24 inst=2 seq=64 t=47202 changed=activeIdx:1→4 visualIdx:1→4 physicalPageIdx:1→4
+10-15 10:47:27.819 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=65 t=47814 render#24 active=4 visual=4 page=4 pathname=/lessons
+10-15 10:47:28.009 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #25 inst=2 seq=66 t=48009 changed=pathname:/lessons→/settings segments:(tabs)/lessons→(tabs)/settings
+10-15 10:47:28.394 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=67 t=48390 render#25 active=4 visual=4 page=4 pathname=/settings
+10-15 10:47:28.399 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=68 t=48396 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":4,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 10:47:28.404 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=69 t=48399 source=route_effect:from_router {"fromRouter":4,"active":"4→4","visual":"4→4"}
+10-15 10:47:28.440 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #26 inst=1 seq=70 t=48437 changed=pathname:/lessons→/settings segments:(tabs)/lessons→(tabs)/settings
+10-15 10:47:28.560 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=71 t=48559 render#26 active=1 visual=1 page=1 pathname=/settings
+10-15 10:47:28.562 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=72 t=48560 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":null,"active":1,"visual":1,"page":1,"layoutChanged":false}
+10-15 10:47:28.565 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=73 t=48562 source=route_effect:from_router {"fromRouter":4,"active":"1→4","visual":"1→4"}
+10-15 10:47:28.576 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #27 inst=1 seq=74 t=48576 changed=activeIdx:1→4 visualIdx:1→4 physicalPageIdx:1→4
+10-15 10:47:29.002 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=75 t=48995 render#27 active=4 visual=4 page=4 pathname=/settings
+10-15 10:47:31.932 I/SVERKA  (32679): === TABSJ switch 1 home 10:48:11 ===
+10-15 10:47:32.241 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=52240 tab_tap requested=0 active=4 page=4
+10-15 10:47:32.242 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=76 t=52242 source=tap {"requestedIdx":0,"idx":0,"active":"4→0","page":4,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 10:47:32.243 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=77 t=52242 source=navigate {"idx":0,"pathname":"/settings","segments":"(tabs)/settings","alreadyShown":false,"pendingBefore":null}
+10-15 10:47:32.254 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #28 inst=2 seq=78 t=52250 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 10:47:32.812 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=79 t=52806 render#28 active=0 visual=0 page=0 pathname=/settings
+10-15 10:47:33.024 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #29 inst=2 seq=80 t=53005 changed=pathname:/settings→/home segments:(tabs)/settings→(tabs)/home
+10-15 10:47:33.269 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=81 t=53256 render#29 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:33.271 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=82 t=53269 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":0,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 10:47:33.274 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=83 t=53271 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 10:47:33.351 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #30 inst=1 seq=84 t=53350 changed=pathname:/settings→/home segments:(tabs)/settings→(tabs)/home
+10-15 10:47:33.623 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=85 t=53621 render#30 active=4 visual=4 page=4 pathname=/home
+10-15 10:47:33.640 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=86 t=53629 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":null,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 10:47:33.648 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=87 t=53641 source=route_effect:from_router {"fromRouter":0,"active":"4→0","visual":"4→0"}
+10-15 10:47:33.702 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #31 inst=1 seq=88 t=53695 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 10:47:34.437 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=89 t=54431 render#31 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:38.245 I/SVERKA  (32698): === TABSJ switch 2 lessons 10:48:17 ===
+10-15 10:47:38.824 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=58823 tab_tap requested=1 active=0 page=0
+10-15 10:47:38.826 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=90 t=58824 source=tap {"requestedIdx":1,"idx":1,"active":"0→1","page":0,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 10:47:38.831 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=91 t=58826 source=navigate {"idx":1,"pathname":"/home","segments":"(tabs)/home","alreadyShown":false,"pendingBefore":null}
+10-15 10:47:38.845 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #32 inst=2 seq=92 t=58844 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 10:47:40.291 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=93 t=60286 render#32 active=1 visual=1 page=1 pathname=/home
+10-15 10:47:40.487 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #33 inst=2 seq=94 t=60484 changed=pathname:/home→/lessons segments:(tabs)/home→(tabs)/lessons
+10-15 10:47:40.721 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=95 t=60719 render#33 active=1 visual=1 page=1 pathname=/lessons
+10-15 10:47:40.724 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=96 t=60721 source=route_effect {"pathname":"/lessons","segments":"(tabs)/lessons","rawFromRouter":1,"fromRouter":1,"pending":1,"active":1,"visual":1,"page":1,"layoutChanged":false}
+10-15 10:47:40.730 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=97 t=60726 source=route_effect:from_router {"fromRouter":1,"active":"1→1","visual":"1→1"}
+10-15 10:47:40.772 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #34 inst=1 seq=98 t=60768 changed=pathname:/home→/lessons segments:(tabs)/home→(tabs)/lessons
+10-15 10:47:40.891 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=99 t=60889 render#34 active=0 visual=0 page=0 pathname=/lessons
+10-15 10:47:40.893 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=100 t=60891 source=route_effect {"pathname":"/lessons","segments":"(tabs)/lessons","rawFromRouter":1,"fromRouter":1,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 10:47:40.897 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=101 t=60893 source=route_effect:from_router {"fromRouter":1,"active":"0→1","visual":"0→1"}
+10-15 10:47:40.919 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #35 inst=1 seq=102 t=60919 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 10:47:41.277 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=103 t=61273 render#35 active=1 visual=1 page=1 pathname=/lessons
+10-15 10:47:43.801 I/SVERKA  (32734): === TABSJ switch 2 settings 10:48:23 ===
+10-15 10:47:44.234 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=64233 tab_tap requested=4 active=1 page=1
+10-15 10:47:44.235 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=104 t=64235 source=tap {"requestedIdx":4,"idx":4,"active":"1→4","page":1,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 10:47:44.245 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=105 t=64239 source=navigate {"idx":4,"pathname":"/lessons","segments":"(tabs)/lessons","alreadyShown":false,"pendingBefore":null}
+10-15 10:47:44.284 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #36 inst=2 seq=106 t=64279 changed=activeIdx:1→4 visualIdx:1→4 physicalPageIdx:1→4
+10-15 10:47:44.890 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=107 t=64886 render#36 active=4 visual=4 page=4 pathname=/lessons
+10-15 10:47:44.989 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #37 inst=2 seq=108 t=64987 changed=pathname:/lessons→/settings segments:(tabs)/lessons→(tabs)/settings
+10-15 10:47:45.300 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=109 t=65294 render#37 active=4 visual=4 page=4 pathname=/settings
+10-15 10:47:45.304 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=110 t=65301 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":4,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 10:47:45.312 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=111 t=65304 source=route_effect:from_router {"fromRouter":4,"active":"4→4","visual":"4→4"}
+10-15 10:47:45.351 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #38 inst=1 seq=112 t=65350 changed=pathname:/lessons→/settings segments:(tabs)/lessons→(tabs)/settings
+10-15 10:47:45.522 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=113 t=65513 render#38 active=1 visual=1 page=1 pathname=/settings
+10-15 10:47:45.526 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=114 t=65522 source=route_effect {"pathname":"/settings","segments":"(tabs)/settings","rawFromRouter":4,"fromRouter":4,"pending":null,"active":1,"visual":1,"page":1,"layoutChanged":false}
+10-15 10:47:45.532 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=115 t=65526 source=route_effect:from_router {"fromRouter":4,"active":"1→4","visual":"1→4"}
+10-15 10:47:45.574 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #39 inst=1 seq=116 t=65573 changed=activeIdx:1→4 visualIdx:1→4 physicalPageIdx:1→4
+10-15 10:47:46.044 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=117 t=66040 render#39 active=4 visual=4 page=4 pathname=/settings
+10-15 10:47:48.734 I/SVERKA  (32752): === TABSJ switch 2 home 10:48:28 ===
+10-15 10:47:49.135 I/ReactNativeJS(32323): [PAYWALL-CLOSE-FREEZE] t=69134 tab_tap requested=0 active=4 page=4
+10-15 10:47:49.136 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=118 t=69135 source=tap {"requestedIdx":0,"idx":0,"active":"4→0","page":4,"pending":null,"caller":"anonymous < anonymous < tapSelect < endGesture"}
+10-15 10:47:49.136 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=119 t=69136 source=navigate {"idx":0,"pathname":"/settings","segments":"(tabs)/settings","alreadyShown":false,"pendingBefore":null}
+10-15 10:47:49.147 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #40 inst=2 seq=120 t=69147 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 10:47:49.576 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=121 t=69563 render#40 active=0 visual=0 page=0 pathname=/settings
+10-15 10:47:49.783 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #41 inst=2 seq=122 t=69782 changed=pathname:/settings→/home segments:(tabs)/settings→(tabs)/home
+10-15 10:47:49.998 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=2 seq=123 t=69987 render#41 active=0 visual=0 page=0 pathname=/home
+10-15 10:47:50.001 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=124 t=69998 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":0,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 10:47:50.008 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=2 seq=125 t=70001 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 10:47:50.043 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #42 inst=1 seq=126 t=70040 changed=pathname:/settings→/home segments:(tabs)/settings→(tabs)/home
+10-15 10:47:50.212 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=127 t=70205 render#42 active=4 visual=4 page=4 pathname=/home
+10-15 10:47:50.217 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=128 t=70212 source=route_effect {"pathname":"/home","segments":"(tabs)/home","rawFromRouter":0,"fromRouter":0,"pending":null,"active":4,"visual":4,"page":4,"layoutChanged":false}
+10-15 10:47:50.231 I/ReactNativeJS(32323): [TAP-LAT] [TABS-IDX] inst=1 seq=129 t=70217 source=route_effect:from_router {"fromRouter":0,"active":"4→0","visual":"4→0"}
+10-15 10:47:50.256 I/ReactNativeJS(32323): [TAP-LAT] [TABS-RENDER] #43 inst=1 seq=130 t=70250 changed=activeIdx:4→0 visualIdx:4→0 physicalPageIdx:4→0
+10-15 10:47:50.934 I/ReactNativeJS(32323): [TAP-LAT] [TABS-COMMIT] inst=1 seq=131 t=70928 render#43 active=0 visual=0 page=0 pathname=/home

@@ -1,2 +1,2 @@
-НЕТ settings-plus-row
-НЕТ paywall-close
+tap Подписка Plus, Не активна 541 970
+tap Закрыть 985 260

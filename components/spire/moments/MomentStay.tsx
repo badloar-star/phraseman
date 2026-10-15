@@ -95,7 +95,8 @@ const s = StyleSheet.create({
   // монета 80 + место под реплику над ней (пузырь стоит над монетой)
   coinWrap: { alignItems: 'center', justifyContent: 'center', paddingTop: 42 },
   // `.h-lg`: 27/32/700, отступ сверху 12
-  title: { marginTop: 12, fontSize: 27, lineHeight: 32, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m02: заголовок окна 23/29 · 800 · −0,3
+  title: { marginTop: 12, fontSize: 23, lineHeight: 29, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
   // `.p`: 16/22
   body: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   bold: { fontWeight: '600' },

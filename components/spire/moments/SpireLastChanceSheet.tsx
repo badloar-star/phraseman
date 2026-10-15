@@ -17,6 +17,7 @@ import { playEvent } from '../../../modules/sound_v2/sound_bank';
 import { useFireOnce } from '../../moments/use_fire_once';
 import V2Pressable from '../../v2/V2Pressable';
 import { KitSheetModal } from '../../v2/KitSheetModal';
+import { V2_TYPE } from '../../../constants/v2Style';
 import { V2Button } from '../../v2/V2Kit';
 import { spireClock, spireGameText } from '../spire_game_strings';
 import { useSpirePalette } from '../useSpirePalette';
@@ -104,7 +105,8 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
 
 const s = StyleSheet.create({
   head: { alignItems: 'center', paddingTop: 6 },
-  ov: { fontSize: 12, lineHeight: 16, letterSpacing: 2.6, fontWeight: '700', textAlign: 'center' },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m05: надзаголовок — V2_TYPE.overline (13/17 · 700 · трекинг 1,4)
+  ov: { ...V2_TYPE.overline, textAlign: 'center' },
   clock: { marginTop: 6, fontSize: 48, lineHeight: 54, fontWeight: '800', letterSpacing: -1, textAlign: 'center', fontVariant: ['tabular-nums'] },
   p: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   bold: { fontWeight: '700' },

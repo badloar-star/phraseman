@@ -97,9 +97,11 @@ const s = StyleSheet.create({
   faceMe: { marginLeft: -10 },
   copy: { flex: 1, minWidth: 0 },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  sub: { fontSize: 13, lineHeight: 17 },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m05: строка тоста 13/20 · 500 (вес 500 на Android рисуется как 400 — известное расхождение шрифта)
+  sub: { fontSize: 13, lineHeight: 20, fontWeight: '500' },
   play: { height: 40, borderRadius: 20, paddingHorizontal: 14, alignItems: 'center', justifyContent: 'center' },
-  playText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m05: кнопка тоста «Играть» 13/17 · 700
+  playText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   coin: { position: 'absolute', left: 0, right: 0, alignItems: 'center' },
 });
 

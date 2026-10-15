@@ -191,9 +191,11 @@ const s = StyleSheet.create({
   timer: { width: RING, height: RING, alignItems: 'center', justifyContent: 'center' },
   timerText: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
   timerValue: { fontSize: 24, lineHeight: 28, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  timerSmall: { fontSize: 11, lineHeight: 14 },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m06: «из 2:00» 13/17 · 600
+  timerSmall: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   hXl: { marginTop: 20, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' },
-  hLg: { marginTop: 14, fontSize: 23, lineHeight: 29, fontWeight: '800', textAlign: 'center' },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m06: «3 ошибки — ступень не пройдена» 24/30 · 800 · −0,3
+  hLg: { marginTop: 14, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
   p: { marginTop: 4, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   stair: { marginTop: 22, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'flex-end', gap: 6 },
   stairBar: { flex: 1, borderRadius: 6 },

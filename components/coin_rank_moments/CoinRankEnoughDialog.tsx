@@ -103,7 +103,8 @@ const s = StyleSheet.create({
   root: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', paddingHorizontal: 20 },
   // `.modal`: поля 20, радиус 28, отступы 26/22/22, по центру
   card: { borderRadius: 28, paddingTop: 26, paddingHorizontal: 22, paddingBottom: 22, alignItems: 'center' },
-  title: { marginTop: 12, fontSize: 27, lineHeight: 32, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m14: заголовок окна 23/29 · 800 · −0,3
+  title: { marginTop: 12, fontSize: 23, lineHeight: 29, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
   body: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   // ряд «текущая → следующая»: зазор 10, сверху 14
   coins: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 14 },

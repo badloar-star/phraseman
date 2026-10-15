@@ -92,7 +92,8 @@ const s = StyleSheet.create({
   head: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingTop: 6 },
   copy: { flex: 1, minWidth: 0 },
   // `.h-md` 21/26/700
-  title: { fontSize: 21, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m15: заголовок шторки 26/31 · 800 · −0,4
+  title: { fontSize: 26, lineHeight: 31, fontWeight: '800', letterSpacing: -0.4 },
   body: { marginTop: 4, fontSize: 16, lineHeight: 22 },
   // кнопки: отступ сверху 18, зазор 12
   acts: { marginTop: 18 },

@@ -127,7 +127,8 @@ const s = StyleSheet.create({
   coinBox: { width: COIN_SIZE, height: COIN_SIZE, alignItems: 'center', justifyContent: 'center' },
   // `.tapme`: кольцо 44 в центре монеты, пульсирует «тапни»
   tapRing: { position: 'absolute', width: TAP_RING, height: TAP_RING, borderRadius: TAP_RING / 2, borderWidth: 2, borderColor: 'rgba(255,255,255,0.8)' }, // guard-ok: это не контейнер, а пульсирующее кольцо-подсказка (эталон .tapme); theme-exempt: кольцо-подсказка «тапни» — иллюстрация образца (.tapme)
-  title: { fontSize: 27, lineHeight: 32, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m03: заголовок 24/30 · 800 · −0,3
+  title: { fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
   body: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
   // `.dock`: поля 20, снизу 36; кнопки через 12
   dock: { position: 'absolute', left: 20, right: 20, bottom: 0 },

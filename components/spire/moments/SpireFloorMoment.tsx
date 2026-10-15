@@ -19,6 +19,7 @@ import { playEvent } from '../../../modules/sound_v2/sound_bank';
 import { playUnlessRecentlyPlayed } from '../../../modules/sound_v2/legacy_bridge';
 import MomentCoin from '../../moments/MomentCoin';
 import StreakConfetti from '../../streak/moments/StreakConfetti';
+import { V2_TYPE } from '../../../constants/v2Style';
 import { V2Button } from '../../v2/V2Kit';
 import SpireRankCoin from '../SpireRankCoin';
 import SpireTowerSvg from '../SpireTowerSvg';
@@ -186,12 +187,14 @@ const s = StyleSheet.create({
   full: { flex: 1, paddingHorizontal: 24, paddingTop: 76, paddingBottom: 36 },
   fill: { flex: 1 },
   body: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  ov: { fontSize: 12, lineHeight: 16, letterSpacing: 2.6, fontWeight: '700', textAlign: 'center' },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m07: надзаголовок — V2_TYPE.overline (13/17 · 700 · трекинг 1,4)
+  ov: { ...V2_TYPE.overline, textAlign: 'center' },
   window: { marginTop: 10, overflow: 'hidden', alignItems: 'center' },
   rewardRow: { marginTop: 8, flexDirection: 'row', alignItems: 'center', gap: 12 },
   pill: { height: 44, borderRadius: 22, paddingLeft: 10, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 8 },
   pillText: { fontSize: 21, lineHeight: 26, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  hLg: { marginTop: 12, fontSize: 23, lineHeight: 29, fontWeight: '800', textAlign: 'center' },
+  // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m07: «5 этаж — Страж» 24/30 · 800 · −0,3
+  hLg: { marginTop: 12, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
   hXl: { marginTop: 14, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' },
   p: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   summitCoin: { marginTop: 10 },

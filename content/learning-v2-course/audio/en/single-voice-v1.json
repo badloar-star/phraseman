@@ -42586,6 +42586,309 @@
           "byteSize": 43008
         }
       ]
+    },
+    "l03/s29/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "tables",
+          "file": "10b55156953ddc4c239b00e73794377eba08103c4ed4824f4064ba5618b0aaaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10b55156953ddc4c239b00e73794377eba08103c4ed4824f4064ba5618b0aaaf.mp3",
+          "contentHash": "2cb2331836844676545d3e20cb12ed180b973efb67658a7de0171ebba0df5b29",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l03/s29/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tables are important.",
+          "file": "ef628a8b8b420e49a6f033bc41dddf801d630a685b1b791f165667264b37fa03.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef628a8b8b420e49a6f033bc41dddf801d630a685b1b791f165667264b37fa03.mp3",
+          "contentHash": "000bf7f23fdd632dd93ab18c386e1c3a2f4198ad63875768923b663bef2b4345",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s29/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She is online.",
+          "file": "f88322d6d0f3f75693b88ede8b895b04bc4d2723f351305e7ca6ad6ee0fdc628.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f88322d6d0f3f75693b88ede8b895b04bc4d2723f351305e7ca6ad6ee0fdc628.mp3",
+          "contentHash": "4e75abcc9d54917fe462b6d32a9cf81e8476fe8e1e9fff47d132160721bd7030",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l03/s29/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The pens are here.",
+          "file": "ebd5d192d7cf47b1399cd5db1fa3e4a0cb9d427dcec9398a59b2e1058bbf53b3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebd5d192d7cf47b1399cd5db1fa3e4a0cb9d427dcec9398a59b2e1058bbf53b3.mp3",
+          "contentHash": "89bc90b9fa3ea4dca9229b17df4053a5fd4a920b0b28d69d18fa29117c0bea26",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l03/s29/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "tables",
+          "file": "5ecc4cbbe9fa449ae551831fa77c7c462a359b8d24889e7487b7e2020750c257.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ecc4cbbe9fa449ae551831fa77c7c462a359b8d24889e7487b7e2020750c257.mp3",
+          "contentHash": "a8be6eb41b9e57675d07b2b2afeb52bfbf5e0ce86e81b1a7f62251c29206c3bc",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l03/s29/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "tables",
+          "file": "cf3ae50cc1e496b4fcec83c78b9063b8bde10968fad588738c90192c964d920e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf3ae50cc1e496b4fcec83c78b9063b8bde10968fad588738c90192c964d920e.mp3",
+          "contentHash": "a964b95f10a5674473c38bdd67133f07503b58c24d1d2ca666d7f0a99c14a21e",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l03/s29/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "tables",
+          "file": "785d2e260c6dbd53d3b4309459505c75f2aa1c2acb69464b311d0197488d0d22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/785d2e260c6dbd53d3b4309459505c75f2aa1c2acb69464b311d0197488d0d22.mp3",
+          "contentHash": "8b93cd5c9d52cb1aa3d6cce597041ef3dc7e4a51013b0fd823007f7313768e03",
+          "byteSize": 18048
+        },
+        {
+          "text": "pens",
+          "file": "8661593793dda2e70f3f2d36a0526e3099d2b09263c7b236529653dcc93839a0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8661593793dda2e70f3f2d36a0526e3099d2b09263c7b236529653dcc93839a0.mp3",
+          "contentHash": "34dc3cba8e6095c410d21e5cea00cc473037cb78f617a40a96f68fe62f8ec108",
+          "byteSize": 24576
+        },
+        {
+          "text": "local",
+          "file": "79e8221f32c73d8a830ee64f03136f4d1dfa001a1a757903d75f336f7e85a92d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/79e8221f32c73d8a830ee64f03136f4d1dfa001a1a757903d75f336f7e85a92d.mp3",
+          "contentHash": "ea365c354d4b698d21de5722180d59cfa462622c00ced4187b8b38dc93eb9283",
+          "byteSize": 21888
+        },
+        {
+          "text": "foreign",
+          "file": "a68ed90d51315d30503ea13c6b493ef800bfe27fecf4a68d1f380889a6d61b36.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a68ed90d51315d30503ea13c6b493ef800bfe27fecf4a68d1f380889a6d61b36.mp3",
+          "contentHash": "5f4100d1de581a597083ee0401d747b7b415a32dc699cdf0b7eff3a6934e177e",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l03/s29/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The tables are upstairs.",
+          "file": "99ac55c33003175eb2a13ddaec68f25c2c135af70c4ed6a460902752ec689dab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99ac55c33003175eb2a13ddaec68f25c2c135af70c4ed6a460902752ec689dab.mp3",
+          "contentHash": "d2d82eadd5f8e46d5bbb33f02a9a7fe433eb24b43c91ece99b25c79c6c2de4e5",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l03/s29/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tables are important.",
+          "file": "2e5c13d7de18f487bdfb567d482841dd61faa04ef550e9c8b491c0e3799d3dfc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e5c13d7de18f487bdfb567d482841dd61faa04ef550e9c8b491c0e3799d3dfc.mp3",
+          "contentHash": "d0dc485e23b8b2d82245f828cd59a187bd9b1cffdb9b0ea9c0fa2720c0b39a2e",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s29/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She's online.",
+          "file": "fb025576d34714ac1f38e999908f900e8d7c46cfc4298f6a4a7244a644398bdb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fb025576d34714ac1f38e999908f900e8d7c46cfc4298f6a4a7244a644398bdb.mp3",
+          "contentHash": "c05c543ae63dce0f24aa202e93bec740f59c06d4db0a5bcc63f3188f33d24769",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l03/s29/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tables are important.",
+          "file": "2e5c13d7de18f487bdfb567d482841dd61faa04ef550e9c8b491c0e3799d3dfc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e5c13d7de18f487bdfb567d482841dd61faa04ef550e9c8b491c0e3799d3dfc.mp3",
+          "contentHash": "d0dc485e23b8b2d82245f828cd59a187bd9b1cffdb9b0ea9c0fa2720c0b39a2e",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s29/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is away.",
+          "file": "780c67cb140985dc77e837440e2cef2d7a6907da71b032c3c1a09861b3577819.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/780c67cb140985dc77e837440e2cef2d7a6907da71b032c3c1a09861b3577819.mp3",
+          "contentHash": "73f582ccfc762fefb9b0353eb264f0690fe0b29424adc91bac0c2cc6c3a6035d",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l03/s29/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "online",
+          "file": "0256e0d87776956a048c0df843c0019ca76ee0f0ad3ae4434da6c90166cf76c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0256e0d87776956a048c0df843c0019ca76ee0f0ad3ae4434da6c90166cf76c3.mp3",
+          "contentHash": "8f8325cd8bea424d3962997d106417af5acc3c563dabcc76b8b2c282c75f5e11",
+          "byteSize": 28416
+        },
+        {
+          "text": "away",
+          "file": "9e5c2a0b179ec09e4558202c3c75aaecdbbec1264e816d14dfcc54134ea2af6d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/378ce56a9d146d5174c89d1c-onyx.mp3",
+          "contentHash": "173d4fb2346395febc1fb5ce9776a39c063e1ae3ea2decdbd10e5cc0ef027b22",
+          "byteSize": 14976
+        },
+        {
+          "text": "tables",
+          "file": "785d2e260c6dbd53d3b4309459505c75f2aa1c2acb69464b311d0197488d0d22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/785d2e260c6dbd53d3b4309459505c75f2aa1c2acb69464b311d0197488d0d22.mp3",
+          "contentHash": "8b93cd5c9d52cb1aa3d6cce597041ef3dc7e4a51013b0fd823007f7313768e03",
+          "byteSize": 18048
+        },
+        {
+          "text": "pens",
+          "file": "8661593793dda2e70f3f2d36a0526e3099d2b09263c7b236529653dcc93839a0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8661593793dda2e70f3f2d36a0526e3099d2b09263c7b236529653dcc93839a0.mp3",
+          "contentHash": "34dc3cba8e6095c410d21e5cea00cc473037cb78f617a40a96f68fe62f8ec108",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l03/s29/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The pens are inside.",
+          "file": "f47e9f6c6845b9a4f9a58dc536f920ae7e18bba7a92f7eeeec65493047fa69c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f47e9f6c6845b9a4f9a58dc536f920ae7e18bba7a92f7eeeec65493047fa69c2.mp3",
+          "contentHash": "0cc4b257508656828bbbe83f3360a74236306a4485c48a8a8d6daeee66a2ee41",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l03/s29/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where are the tables?",
+          "file": "d4f1867ad50db93568320ff5747fc3b7cb80a09193c5a8a62b6cff86baaac480.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4f1867ad50db93568320ff5747fc3b7cb80a09193c5a8a62b6cff86baaac480.mp3",
+          "contentHash": "be6c611e32883bce2a239e2c752724fed9fc5547bdafadf2db11be04f40f6a85",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l03/s29/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She's away.",
+          "file": "942384892c3851e10b81c29ac811b25cf38918dd9046298ef0f18f98b3b0bf60.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/942384892c3851e10b81c29ac811b25cf38918dd9046298ef0f18f98b3b0bf60.mp3",
+          "contentHash": "3c4007633a1ac5d6c330dd019662fba23284393022c52f2722a3bfcd05709efa",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l03/s29/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The tables are upstairs.",
+          "file": "77325e69c16a88f1dd97844cdc66a4330bf66a1eee3eff0ce08cf662bb30d315.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77325e69c16a88f1dd97844cdc66a4330bf66a1eee3eff0ce08cf662bb30d315.mp3",
+          "contentHash": "9c63f4f03b65d8daa69e7d0f8669c89410d62b8d7abf2cb2e5825ed3a3c7f69b",
+          "byteSize": 53760
+        }
+      ]
+    },
+    "l03/s29/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He is local.",
+          "file": "565ed6d92b7dca95a2524870be5dae0c2e3ca20e0edd5c5d5d2cdc0e34b3394c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/565ed6d92b7dca95a2524870be5dae0c2e3ca20e0edd5c5d5d2cdc0e34b3394c.mp3",
+          "contentHash": "f2aabfe629e2c85e4dcffab609b68776e90142d3d8d86c31f32792b7b0560476",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s29/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "local",
+          "file": "99641e4b561ae813822f7b73446d7084f6a151e16065d2f97ee4f296e979bdff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99641e4b561ae813822f7b73446d7084f6a151e16065d2f97ee4f296e979bdff.mp3",
+          "contentHash": "a6a7e5ca35104f6c699c82f9184e4d8155ef4f7636727fead88d805016baf1ca",
+          "byteSize": 27648
+        },
+        {
+          "text": "foreign",
+          "file": "c14a6c4ab60e736f55210ecbc18685db81000da58d3af2586919e098726a7d9f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c14a6c4ab60e736f55210ecbc18685db81000da58d3af2586919e098726a7d9f.mp3",
+          "contentHash": "70428b9511c3532ebdef5adace0f9213f5bed59d1b6243cd62b0de7d83cbddcd",
+          "byteSize": 42624
+        },
+        {
+          "text": "online",
+          "file": "1d23cb48220e790dd15e8c8ed6ddf6ccafe52b8df0c353928aea0f6de1d5e37c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d23cb48220e790dd15e8c8ed6ddf6ccafe52b8df0c353928aea0f6de1d5e37c.mp3",
+          "contentHash": "73b5f605df59150e5686cdc3c88e0ca9cbe6f8e0a80c090a6d9b238698c7b3f8",
+          "byteSize": 34560
+        },
+        {
+          "text": "away",
+          "file": "48a10a2ec8fa2f4936cea2db28d218b250dff77c88f781cdf98dfbcf30af6aac.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/378ce56a9d146d5174c89d1c-ash.mp3",
+          "contentHash": "713422c4a3beafb9b200a38e47abad29b5cd77a0f8b5255e85274c0129a3716e",
+          "byteSize": 6912
+        }
+      ]
+    },
+    "l03/s29/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where are the tables?",
+          "file": "07ba7587b9ff402f2d533add3939b796d7807ae470d05380eaf202c57c608edf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07ba7587b9ff402f2d533add3939b796d7807ae470d05380eaf202c57c608edf.mp3",
+          "contentHash": "3ba4f0b6ff86da778eb6ddb336b29b831ce53ec80d399e9d85f1c72eae7cfac0",
+          "byteSize": 38016
+        }
+      ]
     }
   },
   "settings": {

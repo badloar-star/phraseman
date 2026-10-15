@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-04:i01",
-    "correctText": "key",
+    "correctText": "It is a bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i02",
-    "correctText": "key",
+    "correctText": "I am hungry.",
     "correctResponseId": "en:lesson-03:session-04:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-04:i03",
-    "correctText": "door",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-04:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-04:i04",
-    "correctText": "door",
-    "correctResponseId": "en:lesson-03:session-04:i04:r1"
+    "correctText": "en:lesson-03:session-04:i04:p1=bag\nen:lesson-03:session-04:i04:p2=hungry\nen:lesson-03:session-04:i04:p3=thirsty\nen:lesson-03:session-04:i04:p4=sick",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i05",
-    "correctText": "A key.",
+    "correctText": "It is a bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i06",
-    "correctText": "window",
+    "correctText": "Where is it?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i07",
-    "correctText": "window",
-    "correctResponseId": "en:lesson-03:session-04:i07:r1"
+    "correctText": "I'm thirsty.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i08",
-    "correctText": "It is not a window.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-04:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-04:i09",
-    "correctText": "It is a mirror.",
-    "correctResponseId": null
+    "correctText": "Is it visible?",
+    "correctResponseId": "en:lesson-03:session-04:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-04:i10",
-    "correctText": "Is it a door?",
+    "correctText": "en:lesson-03:session-04:i10:p1=visible\nen:lesson-03:session-04:i10:p2=hidden\nen:lesson-03:session-04:i10:p3=clear\nen:lesson-03:session-04:i10:p4=fair",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i11",
-    "correctText": "en:lesson-03:session-04:i11:p1=key\nen:lesson-03:session-04:i11:p2=door\nen:lesson-03:session-04:i11:p3=window\nen:lesson-03:session-04:i11:p4=mirror",
+    "correctText": "It is hidden.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i12",
-    "correctText": "It is not a key.",
+    "correctText": "Is it a bag?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i13",
-    "correctText": "It is a door.",
+    "correctText": "It's fair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i14",
-    "correctText": "Is it a mirror?",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-04:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-04:i15",
-    "correctText": "Is it a key?",
-    "correctResponseId": null
+    "correctText": "Is it clear?",
+    "correctResponseId": "en:lesson-03:session-04:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-04:i16",
-    "correctText": "It is not a door.",
+    "correctText": "en:lesson-03:session-04:i16:p1=bag\nen:lesson-03:session-04:i16:p2=book\nen:lesson-03:session-04:i16:p3=visible\nen:lesson-03:session-04:i16:p4=hidden",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-04:i17",
-    "correctText": "It is a key.",
+    "correctText": "It's a bag.",
     "correctResponseId": null
   }
 ]

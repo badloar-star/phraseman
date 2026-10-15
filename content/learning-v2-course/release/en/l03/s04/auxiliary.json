@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-04:intro1:r2": {
+          "ru": "Перед `bag` в этом названии нужно `a`.",
+          "uk": "Перед `bag` у цій назві потрібно `a`."
+        },
+        "en:lesson-03:session-04:intro1:r3": {
+          "ru": "Первый звук в `bag` согласный: нужно `a bag`.",
+          "uk": "Перший звук у `bag` приголосний: потрібно `a bag`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-04:intro2:r2": {
+          "ru": "Это «Что это?» Название вам известно, нужно узнать место.",
+          "uk": "Це «Що це?» Назва вам відома, треба дізнатися місце."
+        },
+        "en:lesson-03:session-04:intro2:r3": {
+          "ru": "Между `Where` и `it` нужно `is`.",
+          "uk": "Між `Where` і `it` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-04:intro3:r2": {
+          "ru": "Перед отдельным `hungry` в сообщении о состоянии не нужно `a`.",
+          "uk": "Перед окремим `hungry` у повідомленні про стан не потрібно `a`."
+        },
+        "en:lesson-03:session-04:intro3:r3": {
+          "ru": "С `I` нужно `am`.",
+          "uk": "З `I` потрібно `am`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dd04f5ec0c7e0717a5b41bd83a0c41375cb638f317d975b657b6e6491e134a20"
+}

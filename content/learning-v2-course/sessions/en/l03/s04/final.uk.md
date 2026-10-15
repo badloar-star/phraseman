@@ -1,144 +1,138 @@
-# Англійська · Урок 3 · Заняття 4 — «Господар показує квартиру»
+# Англійська · Урок 3 · Заняття 4 — Перед пікніком
 
-**Сцена заняття.** Господар квартири показує, де що розташоване, і залишає вам ключ. Ви слухаєте його пояснення, називаєте речі вголос і перепитуєте, коли треба щось уточнити.
+**Ситуація.** Ви з Анною збираєтеся на пікнік. Вона дістала складану сумку й поклала в неї їжу. Ви голодні, Анна хоче пити, а хворий Олег залишається вдома. Перед виходом ви шукаєте сумку, уточнюєте інструкцію й обговорюєте справедливість розподілу речей.
 
-**Як сказати:** знайома конструкція `a + noun` на слух і вголос; зберігаємо `a` у назві всередині твердження, запитання й заперечення  
-**Нові слова:** key, door, window  
-**Повертаються:** mirror
+**Що ви опануєте:** назвати сумку з a й запитати, де вона
+**Нові слова:** bag
 
 ---
 
 ## Інтро 1
 
-### Не загубити маленьке слово
+### Навіть порожня — сумка
 
-`key` — «ключ». Назва одного предмета — `a key`, а повна фраза — `It is a key`: «Це ключ». Вимовляйте назву разом із `a`. Загубити ключ неприємно. Загубити `a` простіше: річ на місці, а фразу вже треба виправляти. Тож учіть і вимовляйте ці два слова разом.
+`bag` — «сумка». `It is a bag` — «Це сумка». У `bag` перший звук приголосний, тому тут `a`, не `an`. Анна вже поклала їжу, ви поки нічого не поклали. Порожню сумку не треба позбавляти назви: вона все одно `a bag`. Вміст змінюється, потрібне маленьке слово залишається.
 
-**Господар поклав на долоню невеликий предмет. Назвіть його повною фразою: «Це ключ».**
+**Анна розгорнула складану сумку. Назвіть предмет повною фразою.**
 
-- ✅ **It is a key.**
-- ❌ It is key. — *Перед `key` у цій назві треба вимовити `a`: `It is a key`.*
-- ❌ It a key. — *Назва `a key` збережена, але після `It` бракує `is`: `It is a key`.*
+- ✅ **It is a bag.**
+- ❌ It is bag. — *Перед `bag` у цій назві потрібно `a`.*
+- ❌ It is an bag. — *Перший звук у `bag` приголосний: потрібно `a bag`.*
 
 ---
 
 ## Інтро 2
 
-### Чути запитання від самого початку
+### Назвати чи знайти
 
-`door` — «двері». `It is a door` — «Це двері», а `Is it a door?` — «Це двері?» У запитанні перші два слова міняються місцями; назва `a door` лишається цілою. Коли слухаєте, помічайте й початок фрази, і слово перед `door`: разом вони допоможуть відновити всю фразу.
+`Is it a bag?` — «Це сумка?» Ви уточнюєте, що за предмет перед вами. А `Where is it?` — «Де вона?» — допоможе знайти сумку, яку вже обговорюєте. `visible` — «видимий», `hidden` — «схований». Сумка під курткою може бути схована: `It is hidden`. Перед окремим `hidden` не потрібно `a`.
 
-**Господар показує на панель у стіні. Запитайте: «Це двері?»**
+**Ви з Анною вже обговорюєте сумку, але тепер не бачите її. Запитайте, де вона.**
 
-- ✅ **Is it a door?**
-- ❌ Is a door? — *Після `Is` зникло `it`. Повне запитання тут — `Is it a door?`.*
-- ❌ Is it door? — *Початок запитання на місці, але назва має бути `a door`: `Is it a door?`.*
+- ✅ **Where is it?**
+- ❌ What is it? — *Це «Що це?» Назва вам відома, треба дізнатися місце.*
+- ❌ Where it? — *Між `Where` і `it` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Два маленькі слова з різною роботою
+### Що сказати перед виходом
 
-`window` — «вікно». Назвати його можна фразою `It is a window` — «Це вікно». Якщо треба заперечити, вийде `It is not a window` — «Це не вікно». Заперечення додає `not` після `is`, але не прибирає `a` перед назвою. Вголос вимовляйте і `not`, і `a`: у них різна робота.
+`hungry` — «голодний», `thirsty` — «спраглий», `sick` — «хворий». Так ви описуєте самопочуття. `clear` — «зрозумілий»: інструкція ясна. `fair` — «справедливий»: розподіл речей ви вважаєте справедливим. У `I am hungry` ми повідомляємо стан, а не називаємо предмет, тому перед окремим `hungry` немає `a`.
 
-**Господар вирішив, що ви показуєте на вікно, але ви маєте на увазі іншу річ. Заперечте: «Це не вікно».**
+**Ви хочете їсти. Скажіть повною фразою «Я голодний».**
 
-- ✅ **It is not a window.**
-- ❌ It is no a window. — *Для заперечення в цій фразі потрібне `not` після `is`: `It is not a window`.*
-- ❌ It is not window. — *Заперечення на місці, але в назві бракує `a`: `It is not a window`.*
+- ✅ **I am hungry.**
+- ❌ I am a hungry. — *Перед окремим `hungry` у повідомленні про стан не потрібно `a`.*
+- ❌ I is hungry. — *З `I` потрібно `am`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — key**
-<!-- interaction_id: en:lesson-03:session-04:i01; family: listen_choose -->
-Ціль: `key`
+**1 · Анна показує розгорнуту сумку. Назвіть предмет повною фразою**
+<!-- interaction_id: en:lesson-03:session-04:i01; family: phrase_builder -->
+Плитки: `bag` `a` `is` `It` `are` → **It is a bag.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a bag.`)*
 
-**2 · Послухайте й виберіть — яке слово вимовив господар**
+**2 · Послухайте фразу перед виходом**
 <!-- interaction_id: en:lesson-03:session-04:i02; family: listen_choose -->
-Ціль: `key`
-Варіанти: `key` · `tea` · `fee`
-- tea — *Перший звук у `tea` — «т», а в `key` — «к». У записі — `key`.*
-- fee — *Перший звук у `fee` — «ф», а в `key` — «к». Тут звучить `key`.*
+🔊 *I am hungry.* → **I am hungry.** · I am thirsty. · I am sick.
+- I am thirsty. — *У записі останнє слово — `hungry`, а в цьому варіанті — `thirsty`.*
+- I am sick. — *У записі останнє слово — `hungry`, а в цьому варіанті — `sick`.*
 
+**3 · Доповніть назву сумки**
+<!-- interaction_id: en:lesson-03:session-04:i03; family: context_gap_grammar -->
+It is ___ bag. → **a** · an · is
+- an — *Перед приголосним звуком у `bag` потрібно `a`.*
+- is — *`is` уже є; перед `bag` потрібно `a`.*
 
-**3 · Картка слова — door**
-<!-- interaction_id: en:lesson-03:session-04:i03; family: listen_choose -->
-Ціль: `door`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-04:i04; family: speed_match -->
+bag — сумка · hungry — голодний · thirsty — спраглий · sick — хворий
 
-**4 · Послухайте й виберіть — яке слово прозвучало в передпокої**
-<!-- interaction_id: en:lesson-03:session-04:i04; family: listen_choose -->
-Ціль: `door`
-Варіанти: `door` · `four` · `more`
-- four — *На початку `four` чути «ф», а в `door` — «д». У записі — `door`.*
-- more — *На початку `more` чути «м», а в `door` — «д». Тут звучить `door`.*
-
-
-**5 · Послухайте й складіть — господар коротко називає предмет**
+**5 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-04:i05; family: listen_build_dictation -->
-Ціль: `A key.`
-Варіанти: `door`
+🔊 *It is a bag.* Плитки: `bag` `a` `is` `It` `are` → **It is a bag.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a bag.`)*
 
-**6 · Картка слова — window**
-<!-- interaction_id: en:lesson-03:session-04:i06; family: listen_choose -->
-Ціль: `window`
+**6 · Ви говорите про сумку з їжею, але не бачите її. Запитайте, де вона**
+<!-- interaction_id: en:lesson-03:session-04:i06; family: phrase_builder -->
+Плитки: `it` `is` `Where` `What` → **Where is it?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is it?`)*
 
-**7 · Послухайте й виберіть — яке слово вимовив господар**
-<!-- interaction_id: en:lesson-03:session-04:i07; family: listen_choose -->
-Ціль: `window`
-Варіанти: `window` · `willow` · `winter`
-- willow — *У середині `willow` чути «л», а в `window` — сполучення «н» і «д». У записі — `window`.*
-- winter — *У другій частині `winter` чути «т», а в `window` — «д». Тут звучить `window`.*
+**7 · Ви теж хочете пити. Повідомте про це зі скороченням**
+<!-- interaction_id: en:lesson-03:session-04:i07; family: scripted_repeat_compare -->
+🎙 **I'm thirsty.**
 
+**8 · Олег захворів і залишається вдома. Повідомте, що він хворий**
+<!-- interaction_id: en:lesson-03:session-04:i08; family: context_gap_grammar -->
+He ___ sick. → **is** · is a · are
+- is a — *Перед окремим `sick` не потрібно `a`.*
+- are — *З `He` потрібно `is`.*
 
-**8 · Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»**
-<!-- interaction_id: en:lesson-03:session-04:i08; family: phrase_builder -->
-Ціль: `It is not a window.`
+**9 · Послухайте запитання про сумку**
+<!-- interaction_id: en:lesson-03:session-04:i09; family: listen_choose -->
+🔊 *Is it visible?* → **Is it visible?** · Is it hidden? · Is it clear?
+- Is it hidden? — *У записі останнє слово — `visible`, а в цьому варіанті — `hidden`.*
+- Is it clear? — *У записі останнє слово — `visible`, а в цьому варіанті — `clear`.*
 
-**9 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-04:i09; family: scripted_repeat_compare -->
-Ціль: `It is a mirror.`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-04:i10; family: speed_match -->
+visible — видимий · hidden — схований · clear — зрозумілий · fair — справедливий
 
-**10 · Послухайте й складіть — господар звертається до вас із коридору**
-<!-- interaction_id: en:lesson-03:session-04:i10; family: listen_build_dictation -->
-Ціль: `Is it a door?`
-Варіанти: `window`
+**11 · Послухайте й складіть фразу про сумку**
+<!-- interaction_id: en:lesson-03:session-04:i11; family: listen_build_dictation -->
+🔊 *It is hidden.* Плитки: `hidden` `is` `It` `are` → **It is hidden.**
+*(плитка `are` зайва: тут потрібно `is` — `It is hidden.`)*
 
-**11 · З’єднайте пари — що показав господар**
-<!-- interaction_id: en:lesson-03:session-04:i11; family: speed_match -->
-Пари: `key` — ключ · `door` — двері · `window` — вікно · `mirror` — дзеркало
-Ціль: `key · door · window · mirror`
-
-**12 · Складіть фразу — господар прийняв металевий брелок у вашій руці за ключ; заперечте: «Це не ключ»**
+**12 · Анна дістала ще один складений предмет з ручками. Запитайте, чи це сумка**
 <!-- interaction_id: en:lesson-03:session-04:i12; family: phrase_builder -->
-Ціль: `It is not a key.`
-Варіанти: `are`
+Плитки: `bag` `a` `it` `Is` `Are` → **Is it a bag?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it a bag?`)*
 
-**13 · Промовте одну фразу**
+**13 · Ви згодні з розподілом речей і вважаєте його справедливим. Скажіть «Це справедливо» зі скороченням**
 <!-- interaction_id: en:lesson-03:session-04:i13; family: scripted_repeat_compare -->
-Ціль: `It is a door.`
+🎙 **It's fair.**
 
-**14 · Складіть запитання — господар показує на блискучу поверхню біля шафи; уточніть, чи це дзеркало**
-<!-- interaction_id: en:lesson-03:session-04:i14; family: phrase_builder -->
-Ціль: `Is it a mirror?`
-Варіанти: `Are`
+**14 · Анна прийняла складену куртку за сумку. Доповніть «Це не сумка»**
+<!-- interaction_id: en:lesson-03:session-04:i14; family: context_gap_grammar -->
+It is not ___ bag. → **a** · an · is
+- an — *Після `not` зберігаємо `a bag`.*
+- is — *Перед `bag` потрібно `a`, а `is` уже є.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-04:i15; family: scripted_repeat_compare -->
-Ціль: `Is it a key?`
+**15 · Послухайте запитання про інструкцію**
+<!-- interaction_id: en:lesson-03:session-04:i15; family: listen_choose -->
+🔊 *Is it clear?* → **Is it clear?** · Is it fair? · Is it hidden?
+- Is it fair? — *У записі останнє слово — `clear`, а в цьому варіанті — `fair`.*
+- Is it hidden? — *У записі останнє слово — `clear`, а в цьому варіанті — `hidden`.*
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-04:i16; family: scripted_repeat_compare -->
-Ціль: `It is not a door.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-04:i16; family: speed_match -->
+bag — сумка · book — книжка · visible — видимий · hidden — схований
 
-**17 · Складіть фразу — перед виходом господар запитує, що лишилося на столі; ви показуєте на ключ і називаєте його повною фразою**
-<!-- interaction_id: en:lesson-03:session-04:i17; family: phrase_builder -->
-Ціль: `It is a key.`
-Варіанти: `am`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_build_dictation, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=phrase_builder, 13=scripted_repeat_compare, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Ви дісталися місця пікніка. Олег надіслав з дому фото сумки. Назвіть предмет на фото: «Це сумка», зі скороченням**
+<!-- interaction_id: en:lesson-03:session-04:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It's a bag.**
 

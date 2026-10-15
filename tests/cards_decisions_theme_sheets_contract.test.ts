@@ -21,11 +21,12 @@ describe('cards-007: выделение карточек', () => {
   });
 });
 
-describe('каталог: чип языка только при ≥ 2 языках', () => {
+describe('каталог: чип языка виден всегда, языков всегда пять (владелец 15.10 отменил правило 13.10)', () => {
   const src = read('app/flashcards_packs.tsx');
-  it('языки — облачные наборы плюс текущий выбор; меньше двух — шапка без чипа', () => {
-    expect(src).toContain('const catalogLanguages = useMemo(');
-    expect(src).toMatch(/if \(isLocalAuthorPackId\(pack\.id\)\) continue;/);
+  it('языки — все пять PACK_LANGUAGES, а не только языки загруженных наборов', () => {
+    expect(src).toContain('const catalogLanguages = PACK_LANGUAGES;');
+    expect(src).not.toContain('present.add(code)');
+    expect(src).not.toContain('present.add(packLanguage)');
     expect(src).toContain('const languageChipVisible = catalogLanguages.length >= 2;');
     expect(src).toMatch(/const headerActions = languageChipVisible \? \(/);
     expect(src).toContain('languages={catalogLanguages}');

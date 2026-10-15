@@ -20,25 +20,22 @@ describe('fc_lang_filter: языки-кандидаты', () => {
 });
 
 describe('fc_lang_filter: меню языков', () => {
-  it('в меню только языки с наборами, язык приложения первым, остальные по порядку', () => {
+  // зачем (владелец 15.10: «все языки должны быть и должны быть доступны»): в меню ВСЕ пять языков, в том числе без наборов (count 0).
+  it('в меню все пять языков, язык приложения первым, остальные по порядку, счётчики по наборам', () => {
     const entries = languageMenuEntries({ en: 3, es: 2, it: 1, fr: 0 }, 'es');
-    expect(entries).toEqual([{ code: 'es', count: 2 }, { code: 'en', count: 3 }, { code: 'it', count: 1 }]);
+    expect(entries).toEqual([
+      { code: 'es', count: 2 }, { code: 'en', count: 3 }, { code: 'fr', count: 0 }, { code: 'de', count: 0 }, { code: 'it', count: 1 },
+    ]);
   });
 
-  it('язык без наборов не попадает в меню; пустой словарь → пустое меню', () => {
-    expect(languageMenuEntries({}, 'en')).toEqual([]);
-    expect(languageMenuEntries({ de: 0 }, 'de')).toEqual([]);
+  it('язык без наборов остаётся в меню; пустой словарь → пять языков с нулями', () => {
+    expect(languageMenuEntries({}, 'en').map((entry) => entry.code)).toEqual(['en', 'fr', 'de', 'es', 'it']);
+    expect(languageMenuEntries({ de: 0 }, 'de').map((entry) => entry.code)).toEqual(['de', 'en', 'fr', 'es', 'it']);
   });
 
-  it('один язык с наборами → переключаться некуда (чип без стрелки)', () => {
-    const entries = languageMenuEntries({ en: 4 }, 'en');
-    expect(canSwitchLanguage(entries, 'en')).toBe(false);
-  });
-
-  it('у текущего языка наборов нет, а у другого есть → переключиться можно', () => {
-    const entries = languageMenuEntries({ fr: 2 }, 'en');
-    expect(entries).toEqual([{ code: 'fr', count: 2 }]);
-    expect(canSwitchLanguage(entries, 'en')).toBe(true);
+  it('переключиться можно всегда: другие языки есть и без наборов', () => {
+    expect(canSwitchLanguage(languageMenuEntries({ en: 4 }, 'en'), 'en')).toBe(true);
+    expect(canSwitchLanguage(languageMenuEntries({}, 'de'), 'de')).toBe(true);
   });
 
   it('два языка → стрелка есть', () => {

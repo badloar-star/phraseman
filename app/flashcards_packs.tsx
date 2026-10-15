@@ -75,11 +75,8 @@ import {
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
 import {
   defaultPackLanguageForStudyTarget,
-  isStudyPackLanguage,
-  normalizePackLanguage,
   PACK_LANGUAGES,
   type PackLanguage,
-  type StudyPackLanguage,
 } from './flashcards/pack_languages';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 import { useCatalogOffline } from './flashcards/useCatalogOffline';
@@ -414,17 +411,10 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   // зачем (cards-v2 catalog()): лупа в шапке больше не нужна — поиск стоит капсулой под заголовком; в шапке остаётся выбор языка наборов.
   // зачем (координатор 13.10, cards-section-022/023, cards-gap-034; то же правило, что в настройке тренировки): чип «EN ⌄» нужен, только когда в каталоге наборы больше чем на одном языке.
   // Считаем языки загруженных облачных наборов плюс текущий выбор: если выбран язык без наборов, чип остаётся, иначе человека не вернуть к языку, где наборы есть. «Без языка» не считается.
-  const catalogLanguages = useMemo(() => {
-    const present = new Set<StudyPackLanguage>();
-    if (isStudyPackLanguage(packLanguage)) present.add(packLanguage);
-    for (const pack of communityPacks) {
-      if (isLocalAuthorPackId(pack.id)) continue;
-      const code = normalizePackLanguage(pack.packLanguage);
-      if (isStudyPackLanguage(code)) present.add(code);
-    }
-    return PACK_LANGUAGES.filter((code) => present.has(code));
-  }, [communityPacks, packLanguage]);
-  const languageChipVisible = catalogLanguages.length >= 2;
+  // зачем (владелец 15.10, ВЫШЕ правила 13.10 cards-section-022 — оно ОТМЕНЕНО координатором): «ВСЕ ЯЗЫКИ ДОЛЖНЫ БЫТЬ И ДОЛЖНЫ БЫТЬ ДОСТУПНЫ» — в выборе языка наборов ВСЕГДА все пять (en, fr, de, es, it), выбираемые;
+  // наборов на языке нет — честное пустое состояние в каталоге, а чип языка виден всегда.
+  const catalogLanguages = PACK_LANGUAGES;
+  const languageChipVisible = catalogLanguages.length >= 2; // всегда true: пять языков
   const headerActions = languageChipVisible ? (
           <View style={styles.headerActions}>
             <PackLanguagePicker

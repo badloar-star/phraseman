@@ -106,20 +106,19 @@ export type LanguageCounts = Readonly<Partial<Record<LearningLanguageTarget, num
 
 export type LanguageMenuEntry = Readonly<{ code: LearningLanguageTarget; count: number }>;
 
-/** Пункты меню: только языки, где есть хотя бы один набор; язык приложения первым, остальные — в порядке выбора языка наборов. */
+/** Пункты меню: ВСЕ готовые языки (владелец 15.10: «все языки должны быть и должны быть доступны»), в том числе без наборов (count 0 — экран покажет честное «пусто»); язык приложения первым, остальные — в порядке выбора языка наборов. */
 export function languageMenuEntries(counts: LanguageCounts, appTarget: LearningLanguageTarget): readonly LanguageMenuEntry[] {
   const ready = flashcardsReadyLanguages();
   const ordered = [appTarget, ...ready.filter((code) => code !== appTarget)];
   const entries: LanguageMenuEntry[] = [];
   for (const code of ordered) {
     if (!ready.includes(code)) continue;
-    const count = counts[code] ?? 0;
-    if (count > 0) entries.push({ code, count });
+    entries.push({ code, count: counts[code] ?? 0 });
   }
   return entries;
 }
 
-/** Стрелка и нажатие нужны, только если есть куда переключиться: язык с наборами, отличный от выбранного. */
+/** Стрелка и нажатие нужны, если есть куда переключиться: другой готовый язык (с наборами или без). */
 export function canSwitchLanguage(entries: readonly LanguageMenuEntry[], selected: LearningLanguageTarget): boolean {
   return entries.some((entry) => entry.code !== selected);
 }

@@ -94,6 +94,7 @@ import { DebugLogger } from '../debug-logger';
 import { cardsPerfCount, cardsPerfFlush } from '../../components/cards-grid/cardsPerfLog';
 import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
 import { NO_PACK_LANGUAGE, noPackLanguageLabel, PACK_LANGUAGE_META, normalizePackLanguage, type PackLanguage } from './pack_languages';
+import { formatPackLangTrace } from './pack_lang_trace';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -504,6 +505,13 @@ export default function FlashcardsCategoryHub({
     // зачем (cards-v2 чипы A1…B2): фильтр по уровню — клиентский, поверх уже загруженного списка, без запросов.
     return communityLevel ? found.filter((pack) => packDeckLevel(pack) === communityLevel) : found;
   }, [catalogCommunityPacks, communityQuery, communitySort, communityLevel, packLanguage]);
+
+  // зачем (владелец/координатор 15.10, «сперва логи»; [PACK-LANG]): при выбранном FR в списке был итальянский набор — журнал показывает выбранный язык, язык КАЖДОГО набора (поле и откуда), что оставлено и что убрано, плюс официальные наборы ленты.
+  useEffect(() => {
+    for (const line of formatPackLangTrace('catalog', packLanguage, catalogCommunityPacks)) console.log(line); // guard-ok: журнал [PACK-LANG] (расследование языка наборов)
+    for (const line of formatPackLangTrace('official', packLanguage, marketPacks, 20)) console.log(line); // guard-ok: журнал [PACK-LANG]
+    console.log(`[PACK-LANG] shown=${visibleCommunityPacks.length} query="${communityQuery}" sort=${communitySort} level=${communityLevel ?? 'none'}`); // guard-ok: итог списка, который увидел человек
+  }, [catalogCommunityPacks, marketPacks, packLanguage, visibleCommunityPacks.length, communityQuery, communitySort, communityLevel]);
 
   // зачем (координатор 12.10, [CARDS-PERF]): строки каталога за первый кадр, за ввод в поиск и за подъём плашки (меню) — сколько реально перерисовалось
   const perfMountedAtRef = useRef(Date.now());
@@ -1035,6 +1043,19 @@ export default function FlashcardsCategoryHub({
                       id: 'Paket akan muncul di sini setelah dipublikasikan.',
                       tr: 'Paketler yayınlandıktan sonra burada görünür.',
                       pl: 'Zestawy pojawią się tu po opublikowaniu.',
+                    })
+                  : communityQuery.trim().length === 0
+                  ? triLang(lang, {
+                      // зачем (владелец 15.10): язык выбран, наборов на нём нет — честная фраза без технических слов
+                      ru: 'На этом языке пока нет наборов',
+                      uk: 'Цією мовою поки немає наборів',
+                      en: 'No packs in this language yet',
+                      es: 'Aún no hay packs en este idioma',
+                      'pt-BR': 'Ainda não há pacotes neste idioma',
+                      vi: 'Chưa có bộ thẻ nào bằng ngôn ngữ này',
+                      id: 'Belum ada paket dalam bahasa ini',
+                      tr: 'Bu dilde henüz paket yok',
+                      pl: 'W tym języku nie ma jeszcze zestawów',
                     })
                   : triLang(lang, {
                       ru: 'Ничего не нашли',

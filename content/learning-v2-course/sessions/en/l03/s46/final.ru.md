@@ -1,159 +1,138 @@
-# Английский · Урок 3 · Занятие 46 — «Первый осмотр дома»
+# Английский · Урок 3 · Занятие 46 — Аэропорт на новой карте
 
-**Сцена занятия.** После покупки дома вы обходите здание с помощником. В каждом месте есть один понятный объект: крыша наверху, лифт в доме и лестница между этажами.
-**Как сказать:** ставьте `the`, когда в этом доме ясно, о каком единственном объекте вы говорите.
-**Новые слова:** roof, lift, stairs
+**Ситуация.** Вы с Анной готовитесь к поездке в аэропорт. Старая карта относится к другому городу и не помогает. У вас есть билет. Вы также выбираете одежду для деловой встречи после прилёта: Анна уточняет, подходит ли выбранный вариант.
+
+**Что вы освоите:** назвать аэропорт с an и указать место конкретного аэропорта с the
+**Новые слова:** airport
+
+---
 
 ## Интро 1
-### Крыша дома
 
-`roof` — «крыша». Вы осматриваете дом и видите: крыша состарилась. Она здесь одна, поэтому собеседник понимает, о чём речь: `The roof is old.` — «Крыша старая». `The` указывает на этот единственный понятный объект. Артикль крышу не починит, зато поможет точно назвать проблему.
+### Один аэропорт
 
-**Вы с помощником осматриваете крышу дома и замечаете её состояние. Что вы скажете?**
+`airport` — «аэропорт». `This is an airport` — «Это аэропорт»: вы показываете место на карте и называете его. Перед `airport` нужно `an`, потому что слово начинается с гласного звука. Самолётов может быть много, а аэропорт на карте один: поэтому `is`.
 
-- ✅ **The roof is old.**
-- ❌ A roof is old. — *Речь о крыше именно этого дома, а не о любой крыше.*
-- ❌ The roof are old. — *`roof` — один предмет, поэтому нужно `is`, а не `are`.*
+**Назовите аэропорт одним английским словом.**
+
+- ✅ **airport**
+- ❌ office — *`office` — офис. Аэропорт — `airport`.*
+- ❌ hotel — *`hotel` — отель. Аэропорт — `airport`.*
 
 ---
 
 ## Интро 2
-### Лифт в доме
 
-`lift` — «лифт». В холле дома вы находите один лифт. Он уже ясен вам обоим по месту, поэтому говорите `The lift is here.` Если сказать `a lift`, это был бы какой-то лифт; здесь вы показываете на лифт именно этого дома. Лифт не прячется: он просто ждёт, пока его назовут с `the`.
+### Нужный вам аэропорт
 
-**Вы с помощником в холле дома. Выберите фразу о лифте.**
+`The airport is there` — «Аэропорт там». Речь о конкретном аэропорте вашей поездки, понятном вам обоим. Поэтому `the airport`, даже если вы ещё не называли его вслух. На карте можно показать один объект дальше: `That is an airport` — «Это аэропорт».
 
-- ✅ **The lift is here.**
-- ❌ A lift is here. — *В этом доме вы указываете на понятный лифт.*
-- ❌ The lift are here. — *`lift` — один предмет, поэтому нужно `is`, а не `are`.*
+**Вы с Анной уже знаете, из какого аэропорта вылетаете. Укажите его на дальней части карты: «Аэропорт там».**
+
+- ✅ **The airport is there.**
+- ❌ The airport are there. — *Аэропорт один: нужно `is`.*
+- ❌ The airports are there. — *Так говорят о нескольких аэропортах. Здесь один: `The airport is there`.*
 
 ---
 
 ## Интро 3
-### Лестница в доме
 
-`stairs` — «лестница». Между этажами этого дома есть одна лестница. Поэтому вы говорите `The stairs are here.` С `stairs` нужен `are`: ступеней много, но лестница в доме одна и понятна обоим. `The` относится ко всей понятной лестнице, а не к одной ступени.
+### Что поможет в поездке
 
-**Вы стоите между этажами. Выберите фразу о лестнице.**
+`useless` — «бесполезный»: карта другого города не помогает найти нужный аэропорт. О ней: `It is useless` — «Она бесполезная». `appropriate` — «подходящий, уместный»: выбранная одежда подходит для деловой встречи. О выбранном варианте: `It is appropriate` — «Это уместно». `appropriate` оценивает соответствие ситуации, а не законность. `ticket` — билет; ваш билет здесь: `The ticket is here`.
 
-- ✅ **The stairs are here.**
-- ❌ A stairs are here. — *`stairs` — множественная форма; здесь говорят `The stairs are`.*
-- ❌ The roof is here. — *Между этажами вы видите лестницу, не крышу.*
+**Карта другого города не помогает найти ваш аэропорт. Скажите о ней «Она бесполезная».**
+
+- ✅ **It is useless.**
+- ❌ It is useful. — *`useful` — полезная. Эта карта здесь не помогает: `useless`.*
+- ❌ It are useless. — *Речь об одной карте: `It is useless`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — roof**
-<!-- interaction_id: en:lesson-03:session-46:i01; family: listen_choose -->
-Цель: `roof`
+**1 · Анна ищет билет для поездки. Он у вас. Скажите «Билет здесь»**
+<!-- interaction_id: en:lesson-03:session-46:i01; family: phrase_builder -->
+Плитки: `here` `is` `ticket` `The` `are` → **The ticket is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The ticket is here.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-46:i03; family: scripted_repeat_compare -->
-Цель: `lift`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-46:i02; family: listen_choose -->
+🔊 *airport* → **airport** · office · hotel
+- office — *В записи первое слово — `airport`, а в этом варианте — `office`.*
+- hotel — *В записи первое слово — `airport`, а в этом варианте — `hotel`.*
 
-**3 · Послушайте и выберите лестницу этого дома**
-<!-- interaction_id: en:lesson-03:session-46:i05; family: listen_choose -->
-Цель: `stairs`
-Варианты: `stairs` · `stars` · `stares`
-- stars — *`stars` — звёзды, не лестница.*
-- stares — *`stares` — пристально смотрит, не лестница.*
+**3 · Назовите аэропорт одним английским словом**
+<!-- interaction_id: en:lesson-03:session-46:i03; family: context_gap_grammar -->
+___ → **airport** · office · hotel
+- office — *`office` — офис. Аэропорт — `airport`.*
+- hotel — *`hotel` — отель. Аэропорт — `airport`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-46:i04; family: speed_match -->
+airport — аэропорт · useless — бесполезный · appropriate — уместный · ticket — билет
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-46:i02; family: scripted_repeat_compare -->
-Цель: `roof`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-46:i05; family: listen_build_dictation -->
+🔊 *This is an airport.* Плитки: `airport` `an` `is` `This` `are` → **This is an airport.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is an airport.`)*
 
-**5 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-03:session-46:i04; family: listen_choose -->
-Значения вариантов: `lift` — лифт · `left` — левый · `lived` — жил · `list` — список.
-Цель: `lift`
-Варианты: `lift` · `left` · `lived` · `list`
-- left — *В `left` гласный /e/, а в `lift` — /ɪ/.*
-- lived — *`lived` заканчивается /d/, а `lift` — /t/.*
-- list — *В `list` после /lɪ/ слышен /s/, а в `lift` — /f/.*
+**6 · Нужный вам обоим аэропорт отмечен дальше на карте. Скажите «Аэропорт там»**
+<!-- interaction_id: en:lesson-03:session-46:i06; family: phrase_builder -->
+Плитки: `there` `is` `airport` `The` `are` → **The airport is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `The airport is there.`)*
 
+**7 · Карта другого города не помогает. Скажите о ней «Она бесполезная» с сокращением**
+<!-- interaction_id: en:lesson-03:session-46:i07; family: scripted_repeat_compare -->
+🎙 **It's useless.**
 
-**6 · Произнесите слово — лестница между этажами**
-<!-- interaction_id: en:lesson-03:session-46:i06; family: scripted_repeat_compare -->
-Цель: `stairs`
+**8 · Вы называете место на карте: аэропорт**
+<!-- interaction_id: en:lesson-03:session-46:i08; family: context_gap_grammar -->
+This is ___ airport. → **an** · a · are
+- a — *`airport` начинается с гласного звука: `an airport`.*
+- are — *Перед названием одного аэропорта здесь нужно `an`.*
 
-**7 · Соедините слово со значением — части этого дома**
-<!-- interaction_id: en:lesson-03:session-46:i08; family: speed_match -->
-Пары: `roof` — крыша · `lift` — лифт · `stairs` — лестница · `door` — дверь
-Цель: `roof · lift · stairs · door`
+**9 · Послушайте оценку выбранного варианта одежды**
+<!-- interaction_id: en:lesson-03:session-46:i09; family: listen_choose -->
+🔊 *It is appropriate.* → **It is appropriate.** · It is legal. · It is accurate.
+- It is legal. — *В записи последнее слово — `appropriate`, а в этом варианте — `legal`.*
+- It is accurate. — *В записи последнее слово — `appropriate`, а в этом варианте — `accurate`.*
 
-**8 · Произнесите одну фразу — лифт в этом доме здесь**
-<!-- interaction_id: en:lesson-03:session-46:i09; family: scripted_repeat_compare -->
-Цель: `The lift is here.`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-46:i10; family: speed_match -->
+airport — аэропорт · ticket — билет · here — здесь · there — там
 
-**9 · Вставьте артикль перед уже известным предметом дома**
-<!-- interaction_id: en:lesson-03:session-46:i10; family: context_gap_grammar -->
-Цель: `___ roof is here.`
-Варианты: `the` · `a` · `an`
-- a — *`a` вводит одну новую крышу, а здесь речь о крыше этого дома, которую вы уже видите.*
-- an — *`an` нужно перед гласным звуком, а `roof` начинается со звука /r/.*
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-46:i11; family: listen_build_dictation -->
+🔊 *That ticket is there.* Плитки: `there` `is` `ticket` `That` `are` → **That ticket is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `That ticket is there.`)*
 
+**12 · Вы показываете на один объект в дальней части карты. Назовите его: «Это аэропорт», со словом для одного дальше**
+<!-- interaction_id: en:lesson-03:session-46:i12; family: phrase_builder -->
+Плитки: `airport` `an` `is` `That` `are` → **That is an airport.**
+*(плитка `are` лишняя: здесь нужно `is` — `That is an airport.`)*
 
-**10 · Соберите одну фразу — крыша этого дома старая**
-<!-- interaction_id: en:lesson-03:session-46:i07; family: phrase_builder -->
-Цель: `The roof is old.`
+**13 · Выбранный вариант одежды подходит для деловой встречи. Скажите «Это уместно» с сокращением**
+<!-- interaction_id: en:lesson-03:session-46:i13; family: scripted_repeat_compare -->
+🎙 **It's appropriate.**
 
-**11 · Послушайте и выберите фразу о лифте этого дома**
-<!-- interaction_id: en:lesson-03:session-46:i11; family: listen_choose -->
-Цель: `The lift is here.`
-Варианты: `The lift is here.` · `The roof is old.` · `The stairs are here.`
-- The roof is old. — *Здесь говорят о лифте, не о крыше.*
-- The stairs are here. — *Здесь говорят о лифте, не о лестнице.*
+**14 · Вы указываете место одного аэропорта вашей поездки**
+<!-- interaction_id: en:lesson-03:session-46:i14; family: context_gap_grammar -->
+The airport ___ there. → **is** · are · am
+- are — *Аэропорт один: `The airport is there`.*
+- am — *С `The airport` нужно `is`.*
 
+**15 · Послушайте оценку старой карты**
+<!-- interaction_id: en:lesson-03:session-46:i15; family: listen_choose -->
+🔊 *It is useless.* → **It is useless.** · It is useful. · It is inaccurate.
+- It is useful. — *В записи последнее слово — `useless`, а в этом варианте — `useful`.*
+- It is inaccurate. — *В записи последнее слово — `useless`, а в этом варианте — `inaccurate`.*
 
-**12 · Вставьте начало — понятный лифт в холле**
-<!-- interaction_id: en:lesson-03:session-46:i12; family: context_gap_grammar -->
-Цель: `___ lift is here.`
-Варианты: `The` · `A` · `An` · `без артикля`
-- A — *В холле вы указываете на лифт этого дома.*
-- An — *Перед `lift` нужен не `an`.*
-- без артикля — *Для понятного лифта нужен `the`.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-46:i16; family: speed_match -->
+airport — аэропорт · useless — бесполезный · appropriate — уместный · ticket — билет
 
+**17 · В другой поездке вы с другом ищете на карте аэропорт вашего вылета. Вы нашли его прямо перед собой. Скажите «Аэропорт здесь», говоря о нужном вам обоим месте**
+<!-- interaction_id: en:lesson-03:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The airport is here.**
 
-**13 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-46:i13; family: listen_build_dictation -->
-Цель: `The stairs are here.`
-
-**14 · Соберите фразу — лестница между этажами**
-<!-- interaction_id: en:lesson-03:session-46:i14; family: phrase_builder -->
-Цель: `The stairs are here.`
-
-**15 · Вставьте начало — лестница понятна в доме**
-<!-- interaction_id: en:lesson-03:session-46:i15; family: context_gap_grammar -->
-Цель: `___ stairs are here.`
-Варианты: `The` · `A` · `An` · `без артикля`
-- A — *Перед множественным `stairs` не ставят `a`.*
-- An — *Перед `stairs` не ставят `an`.*
-- без артикля — *Для лестницы этого дома нужен `the`.*
-
-
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-03:session-46:i16; family: listen_choose -->
-Цель: `The roof is old.`
-Варианты: `Крыша старая` · `Крыша новая` · `Лифт старый` · `Где крыша?`
-- Крыша новая — *Звучит `old`, не `new`.*
-- Лифт старый — *Звучит `roof`, не `lift`.*
-- Где крыша? — *Это утверждение, не вопрос.*
-
-
-**17 · Вставьте артикль — инспектор впервые показывает лифт в доме**
-<!-- interaction_id: en:lesson-03:session-46:i17; family: context_gap_grammar -->
-Цель: `___ lift is open.`
-Варианты: `The` · `A` · `An` · `без артикля`
-- A — *`a` подходит для неизвестного лифта, но здесь инспектор показывает единственный лифт этого дома. Поэтому нужен `the`. В новом разговоре выбирайте `the`, когда предмет однозначен по месту.*
-- An — *`an` тоже вводит один предмет, но перед `lift` он не нужен: слово начинается со звука /l/. Главное здесь — уже понятный лифт, поэтому `the`.*
-- без артикля — *Без артикля не называют один исчисляемый предмет. Здесь один лифт, который инспектор показывает вам, поэтому `the lift`.*
-
-
-## Для сборщика
-new_words: roof — крыша — Верхняя часть дома.
-new_words: lift — лифт — Кабина между этажами.
-new_words: stairs — лестница — Ступени между этажами.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=scripted_repeat_compare, 9=context_gap_grammar, 10=phrase_builder, 11=listen_choose, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar

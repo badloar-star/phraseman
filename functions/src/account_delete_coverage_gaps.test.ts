@@ -47,6 +47,12 @@ describe('account deletion plan covers the PM-252 gaps by both identities', () =
       }
     }
   });
+
+  // зачем (координатор 15.10, 3705b3984): метка «посчитан» статистики экрана уровня онбординга адресована stableId — стирается с аккаунтом.
+  test('the onboarding level «counted» marker is deleted by the stable id', () => {
+    const direct = accountDeleteDirectDocumentPlan(STABLE, AUTH);
+    expect(direct.some((d) => d.collection === 'onboarding_level_counted' && d.id === STABLE)).toBe(true);
+  });
 });
 
 // ── Заглушка Firestore: коллекции в памяти, where(==, !=), limit, batch(update/set/delete), doc().get() ──

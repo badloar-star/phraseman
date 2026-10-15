@@ -328,6 +328,8 @@ const DIRECT_DOCUMENT_SPECS: AccountDeleteDirectDocumentSpec[] = [
   // зачем (PM-252 п.1, 04.10): публичная проекция «Топ хелперов» и архив дубля профиля — по id = uid.
   { collection: 'top_helpers', values: 'both' },
   { collection: 'users_dedup_archive', values: 'both' },
+  // зачем (координатор 15.10, 3705b3984): метка «посчитан» статистики экрана уровня онбординга — id = stableId, персональный след.
+  { collection: 'onboarding_level_counted', values: 'stable' },
 ];
 
 // `users/{stableUid}` is removed through deleteDocTree, which recursively

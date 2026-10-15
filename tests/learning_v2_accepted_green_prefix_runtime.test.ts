@@ -94,14 +94,15 @@ describe("accepted green Learning V2 prefix runtime compatibility", () => {
       .not.toEqual(expect.arrayContaining(omittedIds));
   });
 
-  test("the app exposes exactly sessions 1-15 and keeps session 16 hidden", () => {
-    expect(LEARNING_V2_RELEASED_SESSION_COUNT_V1).toBe(15);
-    expect(isLearningV2SessionReleasedV1(1, 1)).toBe(true);
-    expect(isLearningV2SessionReleasedV1(1, 11)).toBe(true);
-    expect(isLearningV2SessionReleasedV1(1, 12)).toBe(true);
-    expect(isLearningV2SessionReleasedV1(1, 13)).toBe(true);
-    expect(isLearningV2SessionReleasedV1(1, 14)).toBe(true);
-    expect(isLearningV2SessionReleasedV1(1, 15)).toBe(true);
-    expect(isLearningV2SessionReleasedV1(1, 16)).toBe(false);
+  // зачем (координатор 15.10, урок 1 целиком — потолок 15 → 56): не зашитое число, а потолок — он генерируется сторожем
+  // learning_v2_bundle_availability по реально собранным с аудио занятиям. Смысл прежний: открыт ровно сплошной префикс.
+  test("the app exposes exactly the contiguous released prefix and keeps the next session hidden", () => {
+    const ceiling = LEARNING_V2_RELEASED_SESSION_COUNT_V1;
+    expect(ceiling).toBeGreaterThanOrEqual(15);
+    expect(ceiling).toBeLessThanOrEqual(56);
+    for (let session = 1; session <= ceiling; session += 1) {
+      expect([session, isLearningV2SessionReleasedV1(1, session)]).toEqual([session, true]);
+    }
+    if (ceiling < 56) expect(isLearningV2SessionReleasedV1(1, ceiling + 1)).toBe(false);
   });
 });

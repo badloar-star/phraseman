@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-47",
   "learningOutcomeByLocale": {
-    "ru": "`a` — при первом упоминании одной вещи; `the` — когда вещь уже понятна вам обоим.",
-    "uk": "`a` — коли одну річ згадують уперше; `the` — коли річ уже зрозуміла вам обом."
+    "ru": "назвать несколько ресторанов и указать место выбранной группы с the и are",
+    "uk": "назвати кілька ресторанів і вказати місце вибраної групи з the та are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Новый винт",
-        "uk": "Новий гвинт"
+        "ru": "Куда пойдём вместе",
+        "uk": "Куди підемо разом"
       },
       "bodyByLocale": {
-        "ru": "`screw` — «винт». Продавец достаёт из ящика один винт и показывает его: `Here is a screw.` Когда вы оба смотрите на этот винт, говорят `The screw is here.` В ящике таких деталей много, поэтому сначала нужен `a`; `the` помогает вернуться к уже выбранной.",
-        "uk": "`screw` — «гвинт». Продавець дістає з ящика один гвинт і показує його: `Here is a screw.` Коли ви обоє дивитеся на цей гвинт, кажуть `The screw is here.` У ящику таких деталей багато, тому спочатку потрібен `a`; `the` допомагає повернутися до вже вибраної."
+        "ru": "`restaurants` — «рестораны», один — `restaurant`. `These are restaurants` — «Это рестораны»: показываем на несколько рядом на карте. Для нескольких добавляем `s` и используем `are`. Десять столиков в одном ресторане — всё ещё один ресторан: считаем заведения, а не столики.",
+        "uk": "`restaurants` — «ресторани», один — `restaurant`. `These are restaurants` — «Це ресторани»: показуємо на кілька поруч на карті. Для кількох додаємо `s` і використовуємо `are`. Десять столиків в одному ресторані — усе ще один ресторан: рахуємо заклади, а не столики."
       },
       "question": {
         "interactionId": "en:lesson-03:session-47:intro1:q",
         "promptByLocale": {
-          "ru": "Продавец впервые кладёт винт на прилавок. Выберите фразу.",
-          "uk": "Продавець уперше кладе гвинт на прилавок. Виберіть фразу."
+          "ru": "Назовите несколько ресторанов одним английским словом.",
+          "uk": "Назвіть кілька ресторанів одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-47:intro1:r1",
-              "text": "Here is a screw."
+              "text": "restaurants"
             },
             {
               "responseId": "en:lesson-03:session-47:intro1:r2",
-              "text": "Here is the screw."
+              "text": "restaurant"
             },
             {
               "responseId": "en:lesson-03:session-47:intro1:r3",
-              "text": "An screw is here."
+              "text": "hotels"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-47:intro1:r1",
-              "text": "Here is a screw."
+              "text": "restaurants"
             },
             {
               "responseId": "en:lesson-03:session-47:intro1:r2",
-              "text": "Here is the screw."
+              "text": "restaurant"
             },
             {
               "responseId": "en:lesson-03:session-47:intro1:r3",
-              "text": "An screw is here."
+              "text": "hotels"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Продавец впервые кладёт винт на прилавок. Выберите фразу.",
-          "uk": "Продавець уперше кладе гвинт на прилавок. Виберіть фразу."
+          "ru": "Назовите несколько ресторанов одним английским словом.",
+          "uk": "Назвіть кілька ресторанів одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Новый гвоздь",
-        "uk": "Новий цвях"
+        "ru": "Выбранные рестораны",
+        "uk": "Вибрані ресторани"
       },
       "bodyByLocale": {
-        "ru": "`nail` — «гвоздь». Продавец показывает один гвоздь: `Here is a nail.` После первого упоминания вы оба знаете, о каком гвозде речь: `The nail is here.` `A` называет новый предмет, а `the` возвращает к уже выбранному.",
-        "uk": "`nail` — «цвях». Продавець показує один цвях: `Here is a nail.` Після першої згадки ви обоє знаєте, про який цвях ідеться: `The nail is here.` `A` називає новий предмет, а `the` повертає до вже вибраного."
+        "ru": "`The restaurants are there` — «Рестораны там»: вы говорите о конкретных ресторанах, которые уже выбрали для сравнения. `The` подходит для понятной собеседнику группы. Если прямо показываете на несколько рядом: `These restaurants are here` — «Эти рестораны здесь».",
+        "uk": "`The restaurants are there` — «Ресторани там»: ви говорите про конкретні ресторани, які вже вибрали для порівняння. `The` підходить для зрозумілої співрозмовникові групи. Якщо прямо показуєте на кілька поруч: `These restaurants are here` — «Ці ресторани тут»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-47:intro2:q",
         "promptByLocale": {
-          "ru": "Продавец впервые показывает гвоздь. Выберите фразу.",
-          "uk": "Продавець уперше показує цвях. Виберіть фразу."
+          "ru": "Вы с Анной уже выбрали несколько ресторанов. Покажите их в дальней части карты: «Рестораны там».",
+          "uk": "Ви з Анною вже вибрали кілька ресторанів. Покажіть їх у дальній частині карти: «Ресторани там»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-47:intro2:r1",
-              "text": "Here is a nail."
+              "text": "The restaurants are there."
             },
             {
               "responseId": "en:lesson-03:session-47:intro2:r2",
-              "text": "Here is the nail."
+              "text": "The restaurants is there."
             },
             {
               "responseId": "en:lesson-03:session-47:intro2:r3",
-              "text": "An nail is here."
+              "text": "The restaurant is there."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-47:intro2:r1",
-              "text": "Here is a nail."
+              "text": "The restaurants are there."
             },
             {
               "responseId": "en:lesson-03:session-47:intro2:r2",
-              "text": "Here is the nail."
+              "text": "The restaurants is there."
             },
             {
               "responseId": "en:lesson-03:session-47:intro2:r3",
-              "text": "An nail is here."
+              "text": "The restaurant is there."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Продавец впервые показывает гвоздь. Выберите фразу.",
-          "uk": "Продавець уперше показує цвях. Виберіть фразу."
+          "ru": "Вы с Анной уже выбрали несколько ресторанов. Покажите их в дальней части карты: «Рестораны там».",
+          "uk": "Ви з Анною вже вибрали кілька ресторанів. Покажіть їх у дальній частині карти: «Ресторани там»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Новый молоток",
-        "uk": "Новий молоток"
+        "ru": "Подходит, но не обязательно идеально",
+        "uk": "Підходить, але не обов’язково ідеально"
       },
       "bodyByLocale": {
-        "ru": "`hammer` — «молоток». Продавец показывает один молоток: `Here is a hammer.` Когда вы уже говорите о нём, будет `The hammer is here.` Молоток не спутаешь с мелкими деталями, а `the` помогает назвать именно тот, который вы выбрали.",
-        "uk": "`hammer` — «молоток». Продавець показує один молоток: `Here is a hammer.` Коли ви вже говорите про нього, буде `The hammer is here.` Молоток не сплутаєш із дрібними деталями, а `the` допомагає назвати саме той, який ви вибрали."
+        "ru": "`acceptable` — «приемлемый»: предложенное время встречи всех устраивает, даже если это не идеальный вариант. О нём: `It is acceptable` — «Это приемлемо». `dangerous` — «опасный»: треснувшей бутылкой можно порезаться. О ней: `It is dangerous` — «Она опасна». `bottles` — «бутылки»; о нескольких на столе: `The bottles are here` — «Бутылки здесь».",
+        "uk": "`acceptable` — «прийнятний»: запропонований час зустрічі всіх влаштовує, навіть якщо це не ідеальний варіант. Про нього: `It is acceptable` — «Це прийнятно». `dangerous` — «небезпечний»: тріснутою пляшкою можна порізатися. Про неї: `It is dangerous` — «Вона небезпечна». `bottles` — «пляшки»; про кілька на столі: `The bottles are here` — «Пляшки тут»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-47:intro3:q",
         "promptByLocale": {
-          "ru": "Продавец впервые показывает молоток. Выберите фразу.",
-          "uk": "Продавець уперше показує молоток. Виберіть фразу."
+          "ru": "Предложенное время не идеальное, но всех устраивает. Скажите «Это приемлемо».",
+          "uk": "Запропонований час не ідеальний, але всіх влаштовує. Скажіть «Це прийнятно»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-47:intro3:r1",
-              "text": "Here is a hammer."
+              "text": "It is acceptable."
             },
             {
               "responseId": "en:lesson-03:session-47:intro3:r2",
-              "text": "Here is the hammer."
+              "text": "It is dangerous."
             },
             {
               "responseId": "en:lesson-03:session-47:intro3:r3",
-              "text": "An hammer is here."
+              "text": "It are acceptable."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-47:intro3:r1",
-              "text": "Here is a hammer."
+              "text": "It is acceptable."
             },
             {
               "responseId": "en:lesson-03:session-47:intro3:r2",
-              "text": "Here is the hammer."
+              "text": "It is dangerous."
             },
             {
               "responseId": "en:lesson-03:session-47:intro3:r3",
-              "text": "An hammer is here."
+              "text": "It are acceptable."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Продавец впервые показывает молоток. Выберите фразу.",
-          "uk": "Продавець уперше показує молоток. Виберіть фразу."
+          "ru": "Предложенное время не идеальное, но всех устраивает. Скажите «Это приемлемо».",
+          "uk": "Запропонований час не ідеальний, але всіх влаштовує. Скажіть «Це прийнятно»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d57b3a889718df4a1063eb8608051c8b323b97d72653b1fe3d53d3d1e97da1e9"
+  "introFingerprint": "737886446196ba79fe65591db2cea923ba2f6f84347b7d5cf7fae9ed4e31e5c3"
 }

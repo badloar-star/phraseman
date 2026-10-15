@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-47:intro1:r2": {
+          "ru": "`restaurant` — один ресторан. Несколько — `restaurants`.",
+          "uk": "`restaurant` — один ресторан. Кілька — `restaurants`."
+        },
+        "en:lesson-03:session-47:intro1:r3": {
+          "ru": "`hotels` — отели. Рестораны — `restaurants`.",
+          "uk": "`hotels` — готелі. Ресторани — `restaurants`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-47:intro2:r2": {
+          "ru": "Ресторанов несколько: нужно `are`.",
+          "uk": "Ресторанів кілька: потрібне `are`."
+        },
+        "en:lesson-03:session-47:intro2:r3": {
+          "ru": "Так говорят об одном ресторане. Здесь несколько: `The restaurants are there`.",
+          "uk": "Так говорять про один ресторан. Тут кілька: `The restaurants are there`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-47:intro3:r2": {
+          "ru": "`dangerous` — опасно. Здесь вариант устраивает: `acceptable`.",
+          "uk": "`dangerous` — небезпечно. Тут варіант влаштовує: `acceptable`."
+        },
+        "en:lesson-03:session-47:intro3:r3": {
+          "ru": "Речь об одном варианте: `It is acceptable`.",
+          "uk": "Ідеться про один варіант: `It is acceptable`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "997c5cd053f06d494019ed459c8963c0af7799d0af051598091fb927f36c9d01"
+}

@@ -95,6 +95,18 @@ describe('голос на сегодня (D165 + D194)', () => {
     for (const surface of VOICE_ALLOWANCE_SURFACES) expect([surface, voiceDailyAllowanceGate(surface, PLUS)]).toEqual([surface, true]);
   });
 
+  it('попытка до чтения диска складывается с диском: 2 на диске + 1 до гидрации = 3 → закрыто (аудит 15.10)', async () => {
+    await AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify({ day: getLocalDayKey(new Date()), count: 2 }));
+    expect(recordVoiceDailyAttempt('lessons', 'early:1', FREE)).toBe(1);
+    // до гидрации на диск не пишем — сохранённые 2 не затёрты
+    expect(JSON.parse(String(await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY))).count).toBe(2);
+    expect(await hydrateDialogVoiceAttempts()).toBe(3);
+    expect(voiceDailyAllowanceGate('course_v2', FREE)).toBe(false);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(JSON.parse(String(await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY))).count).toBe(3);
+    expect(logs.some((l) => l.includes('deferred_until_hydrate'))).toBe(true);
+  });
+
   it('вчерашние попытки не считаются (местные сутки), до чтения диска — «не знаем»', async () => {
     const yesterday = getLocalDayKey(new Date(Date.now() - 26 * 60 * 60_000));
     await AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify({ day: yesterday, count: 3 }));

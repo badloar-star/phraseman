@@ -40,6 +40,8 @@ describe('дневной лимит голоса в Диалогах', () => {
   });
 
   it('попытка видна сразу (в памяти), на диск ложится фоном', async () => {
+    // зачем (15.10): до чтения диска запись откладывается (см. тест ниже) — здесь проверяем обычный путь после гидрации
+    await hydrateDialogVoiceAttempts(DAY1);
     expect(recordDialogVoiceAttempt(DAY1)).toBe(1);
     expect(peekDialogVoiceAttempts(DAY1)).toBe(1);
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -56,11 +58,16 @@ describe('дневной лимит голоса в Диалогах', () => {
     expect(recordDialogVoiceAttempt(DAY2)).toBe(1);
   });
 
-  it('поздний диск не откатывает свежий счётчик (попытка во время чтения)', async () => {
+  it('попытки до чтения диска складываются с диском, а не берётся большее (аудит 15.10)', async () => {
     await AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify({ day: '2026-10-12', count: 1 }));
     recordDialogVoiceAttempt(DAY1);
     recordDialogVoiceAttempt(DAY1);
-    expect(await hydrateDialogVoiceAttempts(DAY1)).toBe(2);
+    // до гидрации на диск не пишем — сохранённая «1» не затёрта
+    expect(JSON.parse((await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY)) ?? 'null')).toEqual({ day: '2026-10-12', count: 1 });
+    // зачем: прежний max(диск 1, память 2) = 2 терял попытку; 1 сохранённая + 2 этого запуска = 3
+    expect(await hydrateDialogVoiceAttempts(DAY1)).toBe(3);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(JSON.parse((await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY)) ?? 'null')).toEqual({ day: '2026-10-12', count: 3 });
   });
 
   it('счётчик вчерашнего дня с диска не переносится на сегодня', async () => {

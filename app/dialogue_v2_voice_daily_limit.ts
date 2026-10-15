@@ -71,12 +71,20 @@ export async function hydrateDialogVoiceAttempts(nowMs: number = Date.now()): Pr
   hydrated = true;
   const today = localDayKey(nowMs);
   const fromDisk = stored && stored.day === today ? stored.count : 0;
-  // last-write-guard: если попытка уже случилась до конца чтения, берём большее — поздний диск не откатывает свежий счётчик
+  // зачем (аудит Optimistic UI 15.10, координатор): до чтения диска память копит ТОЛЬКО попытки этого запуска, а на диск они не
+  // пишутся (см. recordDialogVoiceAttempt) — значит, итог = диск + память. Прежний max(диск, память) терял попытки:
+  // 2 на диске + 1 до чтения давали 2 вместо 3 (лишняя бесплатная попытка).
   const fromMemory = memory && memory.day === today ? memory.count : 0;
-  memory = { day: today, count: Math.max(fromDisk, fromMemory) };
-  console.log(`${LOG} hydrate ${JSON.stringify({ day: today, fromDisk, fromMemory, count: memory.count, storedDay: stored?.day ?? null })}`);
+  memory = { day: today, count: fromDisk + fromMemory };
+  const snapshot = memory;
+  console.log(`${LOG} hydrate ${JSON.stringify({ day: today, fromDisk, fromMemory, count: snapshot.count, storedDay: stored?.day ?? null })}`);
+  if (fromMemory > 0) {
+    void AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify(snapshot)).catch((error: unknown) => {
+      console.warn(`${LOG} storage:write_failed ${JSON.stringify({ count: snapshot.count, phase: 'hydrate_merge', error: error instanceof Error ? error.message : String(error) })}`);
+    });
+  }
   emit();
-  return memory.count;
+  return snapshot.count;
 }
 
 /** Решение о лимите со значением, которое его решило. Plus и «доступ ещё неизвестен» — без ограничений (Plus не должен увидеть бейдж из-за медленной проверки). */
@@ -95,6 +103,11 @@ export function recordDialogVoiceAttempt(nowMs: number = Date.now()): number {
   const snapshot = memory;
   console.log(`${LOG} attempt:recorded ${JSON.stringify({ day: today, before, count: snapshot.count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT })}`);
   emit();
+  if (!hydrated) {
+    // зачем: диск ещё не прочитан — запись «1» затёрла бы сохранённые попытки до их прочтения; гидрация сложит и запишет сама.
+    console.log(`${LOG} storage:deferred_until_hydrate ${JSON.stringify({ count: snapshot.count })}`);
+    return snapshot.count;
+  }
   void AsyncStorage.setItem(DIALOG_VOICE_ATTEMPTS_KEY, JSON.stringify(snapshot)).catch((error: unknown) => {
     // Откатывать нечего: запись уже началась. После перезапуска счётчик может оказаться меньше — причина в журнале.
     console.warn(`${LOG} storage:write_failed ${JSON.stringify({ count: snapshot.count, error: error instanceof Error ? error.message : String(error) })}`);

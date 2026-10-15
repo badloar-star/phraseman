@@ -1,157 +1,138 @@
-# Английский · Урок 3 · Занятие 52 — «После доставки»
+# Английский · Урок 3 · Занятие 52 — Станции и лёгкая сумка
 
-**Сцена занятия.** После доставки вы с мастером решаете, какой один предмет оставить у окна в квартире. Круглый стол стоит рядом, квадратное зеркало — дальше у стены, деревянный стул ждёт у окна.
-**Как сказать:** короткая просьба о предмете: `this/that + adjective + singular noun`, например `This round table, please.`
-**Новые слова:** round, square, wooden
-**Возврат:** this, that, please, table, mirror, chair
+**Ситуация.** Вы с Анной планируете поездку. На карте отмечены станции и выбранные отели. В этот раз сумка лёгкая. Друзья предлагают по очереди выбирать места для прогулок, чтобы у каждого была возможность решить, куда пойти.
+
+**Что вы освоите:** назвать несколько станций и указать место конкретной группы с the и are
+**Новые слова:** stations
+
+---
 
 ## Интро 1
 
-### Круглый стол рядом
+### Несколько станций
 
-`round` — «круглый». У окна стоит стол после доставки. Он рядом с вами, и мастер ждёт, какой предмет оставить здесь. Скажите `This round table, please.`: сначала `This`, затем форма `round`, потом один предмет `table`. Артикль не нужен: `This` уже указывает на стол.
+`stations` — «станции», одна — `station`. В нашей поездке речь о железнодорожных станциях. Для нескольких добавляем `s`: `These are stations` — «Это станции», показываем на несколько рядом на карте. Десять поездов на одной станции не делают из неё десять станций.
 
-**Круглый стол стоит рядом с вами. Выберите короткую просьбу мастеру.**
+**Назовите несколько станций одним английским словом.**
 
-- ✅ **This round table, please.**
-- ❌ That round table, please. — *`That` указывает на предмет дальше. Стол рядом, поэтому нужна просьба с `This`.*
-- ❌ This table round, please. — *Сначала называют форму, потом предмет: `round table`.*
+- ✅ **stations**
+- ❌ station — *`station` — одна станция. Несколько — `stations`.*
+- ❌ hotels — *`hotels` — отели. Станции — `stations`.*
 
 ---
 
 ## Интро 2
 
-### Квадратное зеркало дальше
+### Станции вашего маршрута
 
-`square` — «квадратный». Зеркало стоит дальше, у стены. Чтобы мастер взял именно его, скажите `That square mirror, please.` `That` указывает на предмет дальше от вас. После него сразу идут `square` и `mirror`: это одна короткая просьба, без `a`.
+`The stations are here` — «Станции здесь»: это конкретные станции вашего маршрута, понятные вам обоим. `The` подходит для группы, а после `stations` нужно `are`. Для группы дальше: `Those stations are there` — «Те станции там».
 
-**Квадратное зеркало стоит у дальней стены. Выберите его.**
+**Вы уже обсудили станции маршрута. Покажите их на карте: «Станции здесь».**
 
-- ✅ **That square mirror, please.**
-- ❌ This square mirror, please. — *`This` выбирает предмет рядом, а зеркало стоит дальше.*
-- ❌ That a square mirror, please. — *После `That` не добавляют `a`: скажите `That square mirror`.*
+- ✅ **The stations are here.**
+- ❌ The stations is here. — *Станций несколько: нужно `are`.*
+- ❌ The station is here. — *Так говорят об одной станции. Здесь несколько: `stations are`.*
 
 ---
 
 ## Интро 3
 
-### Деревянный стул у окна
+### Вес и справедливость
 
-`wooden` — «деревянный». Стул у окна, рядом. Скажите `This wooden chair, please.` `This` выбирает этот стул, `wooden` описывает материал, а `chair` называет вещь. Доставка закончилась, но стул всё ещё не переставит себя сам.
+`light` — «лёгкий» по весу. О сумке, которую легко нести: `It is light` — «Она лёгкая». Здесь не говорим о цвете или освещении. `fair` — «справедливый»: каждый друг по очереди выбирает место прогулки. Об этом правиле: `It is fair` — «Это справедливо». `hotels` — отели; выбранные отели там: `The hotels are there`.
 
-**Деревянный стул стоит рядом у окна. Выберите его короткой просьбой.**
+**Каждый по очереди выбирает место прогулки. Вы считаете такое правило справедливым. Скажите «Это справедливо».**
 
-- ✅ **This wooden chair, please.**
-- ❌ That wooden chair, please. — *Стул рядом, поэтому выбираем его словом `This`, а не `That`.*
-- ❌ This chair wooden, please. — *Материал ставят перед предметом: `wooden chair`.*
+- ✅ **It is fair.**
+- ❌ It is light. — *`light` здесь описывает вес сумки. О справедливом правиле — `fair`.*
+- ❌ It are fair. — *Речь об одном правиле: `It is fair`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-52:i01; family: listen_choose -->
-Цель: `round`
-Варианты: `round`
+**1 · Вы показываете на карте уже выбранные отели. Скажите «Отели там»**
+<!-- interaction_id: en:lesson-03:session-52:i01; family: phrase_builder -->
+Плитки: `there` `are` `hotels` `The` `is` → **The hotels are there.**
+*(плитка `is` лишняя: здесь нужно `are` — `The hotels are there.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-52:i03; family: scripted_repeat_compare -->
-Цель: `square`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-52:i02; family: listen_choose -->
+🔊 *stations* → **stations** · hotels · libraries
+- hotels — *В записи первое слово — `stations`, а в этом варианте — `hotels`.*
+- libraries — *В записи первое слово — `stations`, а в этом варианте — `libraries`.*
 
-**3 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-52:i05; family: listen_choose -->
-Цель: `wooden`
-Варианты: `wooden` · `square`
-- square — *В записи звучит `wooden` — «деревянный», а не `square` — «квадратный».*
+**3 · Назовите несколько станций одним английским словом**
+<!-- interaction_id: en:lesson-03:session-52:i03; family: context_gap_grammar -->
+___ → **stations** · station · hotels
+- station — *`station` — одна станция. Несколько — `stations`.*
+- hotels — *`hotels` — отели. Станции — `stations`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-52:i04; family: speed_match -->
+stations — станции · light — лёгкий по весу · fair — справедливый · hotels — отели
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-52:i02; family: scripted_repeat_compare -->
-Цель: `round`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-52:i05; family: listen_build_dictation -->
+🔊 *These are stations.* Плитки: `stations` `are` `These` `is` → **These are stations.**
+*(плитка `is` лишняя: здесь нужно `are` — `These are stations.`)*
 
-**5 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-52:i04; family: listen_choose -->
-Цель: `square`
-Варианты: `square`
+**6 · Вы нашли на карте станции, которые уже обсудили с Анной. Скажите «Станции здесь»**
+<!-- interaction_id: en:lesson-03:session-52:i06; family: phrase_builder -->
+Плитки: `here` `are` `stations` `The` `is` → **The stations are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `The stations are here.`)*
 
-**6 · Различите слово — wooden или woollen**
-<!-- interaction_id: en:lesson-03:session-52:i06; family: sound_contrast -->
-Цель: `wooden`
-Варианты: `wooden` · `woollen`
-- woollen — *`woollen` — «шерстяной». В записи звучит `wooden` — «деревянный».*
+**7 · Сумка весит мало. Скажите о ней «Она лёгкая» с сокращением**
+<!-- interaction_id: en:lesson-03:session-52:i07; family: scripted_repeat_compare -->
+🎙 **It's light.**
 
+**8 · Вы показываете на несколько станций в дальней части карты**
+<!-- interaction_id: en:lesson-03:session-52:i08; family: context_gap_grammar -->
+___ are stations. → **Those** · That · This
+- That — *`That` — один объект. Здесь несколько дальше: `Those`.*
+- This — *`This` — один рядом. Здесь несколько дальше: `Those`.*
 
-**7 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-03:session-52:i08; family: speed_match -->
-Пары: `round` — круглый · `table` — стол · `mirror` — зеркало · `chair` — стул
-Цель: `round · table · mirror · chair`
+**9 · Послушайте оценку правила выбирать по очереди**
+<!-- interaction_id: en:lesson-03:session-52:i09; family: listen_choose -->
+🔊 *It is fair.* → **It is fair.** · It is light. · It is effective.
+- It is light. — *В записи последнее слово — `fair`, а в этом варианте — `light`.*
+- It is effective. — *В записи последнее слово — `fair`, а в этом варианте — `effective`.*
 
-**8 · Различите слово — square или scare**
-<!-- interaction_id: en:lesson-03:session-52:i09; family: sound_contrast -->
-Цель: `square`
-Варианты: `square` · `scare`
-- scare — *`round` значит «круглый», а зеркало в сцене квадратное.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-52:i10; family: speed_match -->
+stations — станции · hotels — отели · here — здесь · there — там
 
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-52:i11; family: listen_build_dictation -->
+🔊 *These hotels are here.* Плитки: `here` `are` `hotels` `These` `is` → **These hotels are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `These hotels are here.`)*
 
-**9 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-52:i10; family: scripted_repeat_compare -->
-Цель: `wooden`
+**12 · Вы показываете на станции дальше на карте. Скажите «Те станции там»**
+<!-- interaction_id: en:lesson-03:session-52:i12; family: phrase_builder -->
+Плитки: `there` `are` `stations` `Those` `is` → **Those stations are there.**
+*(плитка `is` лишняя: здесь нужно `are` — `Those stations are there.`)*
 
-**10 · Соедините пары — вспомните вещи после доставки**
-<!-- interaction_id: en:lesson-03:session-52:i07; family: speed_match -->
-Пары: `round` — круглый · `square` — квадратный · `wooden` — деревянный · `table` — стол · `mirror` — зеркало · `chair` — стул · `please` — пожалуйста
-Цель: `round · square · wooden · table · mirror · chair · please`
+**13 · У каждого друга есть очередь выбрать место прогулки. Вы считаете это справедливым. Скажите «Это справедливо» с сокращением**
+<!-- interaction_id: en:lesson-03:session-52:i13; family: scripted_repeat_compare -->
+🎙 **It's fair.**
 
-**11 · Соберите просьбу — выбираете круглый стол рядом**
-<!-- interaction_id: en:lesson-03:session-52:i11; family: phrase_builder -->
-Цель: `This round table, please.`
-
-**12 · Вставьте указатель — квадратное зеркало стоит дальше**
-<!-- interaction_id: en:lesson-03:session-52:i12; family: context_gap_grammar -->
-Цель: `___ square mirror, please.`
-Варианты: `That` · `This` · `It` · `Is`
-- This — *`This` выбирает предмет рядом, а зеркало стоит дальше.*
-- It — *`It square mirror` не образует короткую просьбу. Перед предметом нужен `That`.*
-- Is — *`Is square mirror` не подходит для просьбы. Здесь скажите `That square mirror, please`.*
-
-
-**13 · Послушайте и выберите точное значение просьбы**
-<!-- interaction_id: en:lesson-03:session-52:i13; family: listen_choose -->
-Цель: `That square mirror, please.`
-Варианты: `То квадратное зеркало, пожалуйста.` · `Это квадратное зеркало, пожалуйста.` · `То круглое зеркало, пожалуйста.` · `Тот квадратный стол, пожалуйста.`
-- Это квадратное зеркало, пожалуйста. — *В записи `That`, а этот вариант передаёт `This`.*
-- То круглое зеркало, пожалуйста. — *В записи звучит `square`, а не `round`.*
-- Тот квадратный стол, пожалуйста. — *В записи назвали `mirror`, а не `table`.*
-
-
-**14 · Вставьте форму — круглый стул стоит дальше у стены**
+**14 · Вы говорите о нескольких станциях вашего маршрута**
 <!-- interaction_id: en:lesson-03:session-52:i14; family: context_gap_grammar -->
-Цель: `That ___ chair is here.`
-Варианты: `round` · `square` · `wooden` · `this`
-- square — *В сцене стул круглый, поэтому нужна форма `round`, а не `square`.*
-- wooden — *`Wooden` называет материал, а здесь выбирают круглую форму.*
-- this — *После `That` перед `chair` нужна форма предмета: `round`.*
+The stations ___ here. → **are** · is · am
+- is — *Станций несколько: `The stations are here`.*
+- am — *С `The stations` нужно `are`.*
 
+**15 · Послушайте описание веса сумки**
+<!-- interaction_id: en:lesson-03:session-52:i15; family: listen_choose -->
+🔊 *It is light.* → **It is light.** · It is heavy. · It is cheap.
+- It is heavy. — *В записи последнее слово — `light`, а в этом варианте — `heavy`.*
+- It is cheap. — *В записи последнее слово — `light`, а в этом варианте — `cheap`.*
 
-**15 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-52:i15; family: listen_build_dictation -->
-Цель: `This wooden chair, please.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-52:i16; family: speed_match -->
+stations — станции · light — лёгкий по весу · fair — справедливый · hotels — отели
 
-**16 · Послушайте и выберите точное значение фразы**
-<!-- interaction_id: en:lesson-03:session-52:i16; family: listen_choose -->
-Цель: `This wooden mirror is here.`
-Варианты: `Это деревянное зеркало здесь.` · `То деревянное зеркало здесь.` · `Это квадратное зеркало здесь.` · `Этот деревянный стул здесь.`
-- То деревянное зеркало здесь. — *В записи `This`, а этот вариант передаёт `That`.*
-- Это квадратное зеркало здесь. — *В записи звучит `wooden`, а не `square`.*
-- Этот деревянный стул здесь. — *В записи назвали `mirror`, а не `chair`.*
+**17 · Для другой поездки вы с другом уже выбрали станции маршрута. Друг ищет их на карте; вы нашли их дальше от себя. Скажите «Станции там», говоря о той же группе**
+<!-- interaction_id: en:lesson-03:session-52:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The stations are there.**
 
-
-**17 · мастер ждёт решения у дальней стены**
-<!-- interaction_id: en:lesson-03:session-52:i17; family: phrase_builder -->
-Цель: `That wooden table, please.`
-
-## Для сборщика
-new_words: round — круглый — Форма предмета без углов.
-new_words: square — квадратный — Форма предмета с четырьмя равными сторонами.
-new_words: wooden — деревянный — Материал предмета из дерева.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=sound_contrast, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=listen_choose, 14=context_gap_grammar, 15=listen_build_dictation, 16=listen_choose, 17=phrase_builder

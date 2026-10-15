@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-52",
   "learningOutcomeByLocale": {
-    "ru": "короткая просьба о предмете: `this/that + adjective + singular noun`, например `This round table, please.`",
-    "uk": "коротке прохання про предмет: `this/that + adjective + singular noun`, наприклад `This round table, please.`"
+    "ru": "назвать несколько станций и указать место конкретной группы с the и are",
+    "uk": "назвати кілька станцій і вказати місце конкретної групи з the та are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Круглый стол рядом",
-        "uk": "Круглий стіл поруч"
+        "ru": "Несколько станций",
+        "uk": "Кілька станцій"
       },
       "bodyByLocale": {
-        "ru": "`round` — «круглый». У окна стоит стол после доставки. Он рядом с вами, и мастер ждёт, какой предмет оставить здесь. Скажите `This round table, please.`: сначала `This`, затем форма `round`, потом один предмет `table`. Артикль не нужен: `This` уже указывает на стол.",
-        "uk": "`round` — «круглий». Біля вікна стоїть стіл після доставки. Він поруч із вами, і майстер чекає, який предмет залишити тут. Скажіть `This round table, please.`: спочатку `This`, потім форма `round`, далі один предмет `table`. Артикль не потрібен: `This` уже вказує на стіл."
+        "ru": "`stations` — «станции», одна — `station`. В нашей поездке речь о железнодорожных станциях. Для нескольких добавляем `s`: `These are stations` — «Это станции», показываем на несколько рядом на карте. Десять поездов на одной станции не делают из неё десять станций.",
+        "uk": "`stations` — «станції», одна — `station`. У нашій поїздці йдеться про залізничні станції. Для кількох додаємо `s`: `These are stations` — «Це станції», показуємо на кілька поруч на карті. Десять поїздів на одній станції не роблять із неї десять станцій."
       },
       "question": {
         "interactionId": "en:lesson-03:session-52:intro1:q",
         "promptByLocale": {
-          "ru": "Круглый стол стоит рядом с вами. Выберите короткую просьбу мастеру.",
-          "uk": "Круглий стіл стоїть поруч із вами. Оберіть коротке прохання майстру."
+          "ru": "Назовите несколько станций одним английским словом.",
+          "uk": "Назвіть кілька станцій одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-52:intro1:r1",
-              "text": "This round table, please."
+              "text": "stations"
             },
             {
               "responseId": "en:lesson-03:session-52:intro1:r2",
-              "text": "That round table, please."
+              "text": "station"
             },
             {
               "responseId": "en:lesson-03:session-52:intro1:r3",
-              "text": "This table round, please."
+              "text": "hotels"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-52:intro1:r1",
-              "text": "This round table, please."
+              "text": "stations"
             },
             {
               "responseId": "en:lesson-03:session-52:intro1:r2",
-              "text": "That round table, please."
+              "text": "station"
             },
             {
               "responseId": "en:lesson-03:session-52:intro1:r3",
-              "text": "This table round, please."
+              "text": "hotels"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Круглый стол стоит рядом с вами. Выберите короткую просьбу мастеру.",
-          "uk": "Круглий стіл стоїть поруч із вами. Оберіть коротке прохання майстру."
+          "ru": "Назовите несколько станций одним английским словом.",
+          "uk": "Назвіть кілька станцій одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Квадратное зеркало дальше",
-        "uk": "Квадратне дзеркало далі"
+        "ru": "Станции вашего маршрута",
+        "uk": "Станції вашого маршруту"
       },
       "bodyByLocale": {
-        "ru": "`square` — «квадратный». Зеркало стоит дальше, у стены. Чтобы мастер взял именно его, скажите `That square mirror, please.` `That` указывает на предмет дальше от вас. После него сразу идут `square` и `mirror`: это одна короткая просьба, без `a`.",
-        "uk": "`square` — «квадратний». Дзеркало стоїть далі, біля стіни. Щоб майстер узяв саме його, скажіть `That square mirror, please.` `That` указує на предмет далі від вас. Після нього одразу йдуть `square` і `mirror`: це одне коротке прохання без `a`."
+        "ru": "`The stations are here` — «Станции здесь»: это конкретные станции вашего маршрута, понятные вам обоим. `The` подходит для группы, а после `stations` нужно `are`. Для группы дальше: `Those stations are there` — «Те станции там».",
+        "uk": "`The stations are here` — «Станції тут»: це конкретні станції вашого маршруту, зрозумілі вам обом. `The` підходить для групи, а після `stations` потрібне `are`. Для групи далі: `Those stations are there` — «Ті станції там»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-52:intro2:q",
         "promptByLocale": {
-          "ru": "Квадратное зеркало стоит у дальней стены. Выберите его.",
-          "uk": "Квадратне дзеркало стоїть біля дальньої стіни. Оберіть його."
+          "ru": "Вы уже обсудили станции маршрута. Покажите их на карте: «Станции здесь».",
+          "uk": "Ви вже обговорили станції маршруту. Покажіть їх на карті: «Станції тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-52:intro2:r1",
-              "text": "That square mirror, please."
+              "text": "The stations are here."
             },
             {
               "responseId": "en:lesson-03:session-52:intro2:r2",
-              "text": "This square mirror, please."
+              "text": "The stations is here."
             },
             {
               "responseId": "en:lesson-03:session-52:intro2:r3",
-              "text": "That a square mirror, please."
+              "text": "The station is here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-52:intro2:r1",
-              "text": "That square mirror, please."
+              "text": "The stations are here."
             },
             {
               "responseId": "en:lesson-03:session-52:intro2:r2",
-              "text": "This square mirror, please."
+              "text": "The stations is here."
             },
             {
               "responseId": "en:lesson-03:session-52:intro2:r3",
-              "text": "That a square mirror, please."
+              "text": "The station is here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Квадратное зеркало стоит у дальней стены. Выберите его.",
-          "uk": "Квадратне дзеркало стоїть біля дальньої стіни. Оберіть його."
+          "ru": "Вы уже обсудили станции маршрута. Покажите их на карте: «Станции здесь».",
+          "uk": "Ви вже обговорили станції маршруту. Покажіть їх на карті: «Станції тут»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Деревянный стул у окна",
-        "uk": "Дерев’яний стілець біля вікна"
+        "ru": "Вес и справедливость",
+        "uk": "Вага й справедливість"
       },
       "bodyByLocale": {
-        "ru": "`wooden` — «деревянный». Стул у окна, рядом. Скажите `This wooden chair, please.` `This` выбирает этот стул, `wooden` описывает материал, а `chair` называет вещь. Доставка закончилась, но стул всё ещё не переставит себя сам.",
-        "uk": "`wooden` — «дерев’яний». Стілець біля вікна, поруч. Скажіть `This wooden chair, please.` `This` вибирає цей стілець, `wooden` описує матеріал, а `chair` називає річ. Доставка закінчилася, але стілець і досі не переставить себе сам."
+        "ru": "`light` — «лёгкий» по весу. О сумке, которую легко нести: `It is light` — «Она лёгкая». Здесь не говорим о цвете или освещении. `fair` — «справедливый»: каждый друг по очереди выбирает место прогулки. Об этом правиле: `It is fair` — «Это справедливо». `hotels` — отели; выбранные отели там: `The hotels are there`.",
+        "uk": "`light` — «легкий» за вагою. Про сумку, яку легко нести: `It is light` — «Вона легка». Тут не говоримо про колір чи освітлення. `fair` — «справедливий»: кожен друг по черзі вибирає місце прогулянки. Про це правило: `It is fair` — «Це справедливо». `hotels` — готелі; вибрані готелі там: `The hotels are there`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-52:intro3:q",
         "promptByLocale": {
-          "ru": "Деревянный стул стоит рядом у окна. Выберите его короткой просьбой.",
-          "uk": "Дерев’яний стілець стоїть поруч біля вікна. Оберіть його коротким проханням."
+          "ru": "Каждый по очереди выбирает место прогулки. Вы считаете такое правило справедливым. Скажите «Это справедливо».",
+          "uk": "Кожен по черзі вибирає місце прогулянки. Ви вважаєте таке правило справедливим. Скажіть «Це справедливо»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-52:intro3:r1",
-              "text": "This wooden chair, please."
+              "text": "It is fair."
             },
             {
               "responseId": "en:lesson-03:session-52:intro3:r2",
-              "text": "That wooden chair, please."
+              "text": "It is light."
             },
             {
               "responseId": "en:lesson-03:session-52:intro3:r3",
-              "text": "This chair wooden, please."
+              "text": "It are fair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-52:intro3:r1",
-              "text": "This wooden chair, please."
+              "text": "It is fair."
             },
             {
               "responseId": "en:lesson-03:session-52:intro3:r2",
-              "text": "That wooden chair, please."
+              "text": "It is light."
             },
             {
               "responseId": "en:lesson-03:session-52:intro3:r3",
-              "text": "This chair wooden, please."
+              "text": "It are fair."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Деревянный стул стоит рядом у окна. Выберите его короткой просьбой.",
-          "uk": "Дерев’яний стілець стоїть поруч біля вікна. Оберіть його коротким проханням."
+          "ru": "Каждый по очереди выбирает место прогулки. Вы считаете такое правило справедливым. Скажите «Это справедливо».",
+          "uk": "Кожен по черзі вибирає місце прогулянки. Ви вважаєте таке правило справедливим. Скажіть «Це справедливо»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "17cc2f7d000dfbd8f8c7832f1dcf18ea6410dbbaa1db3b2d51e7afb7e8de01e6"
+  "introFingerprint": "da26722d8d4ace8cc9ccd6d9ff783f283b42d34e201ef07a6fb8a6eecfea51f3"
 }

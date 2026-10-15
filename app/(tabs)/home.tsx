@@ -1426,6 +1426,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }).catch(noteSwallowedHandler('home:refreshWeekMarkers.readCurrentStreakWeekMarkers'));
         };
         const freezeUpdatedSub = onAppEvent('streak_freeze_updated', refreshWeekMarkers);
+        // зачем (R36, Ревизор F02 15.10): после занятия число серии и точки недели на Главной ждали следующего loadData —
+        // человек возвращался с итога урока и видел вчерашнюю серию. Сигнал «день засчитан» несёт новое число: ставим его
+        // сразу (локально, без сети), точки недели перечитываем с диска (неактивная Главная — dirty-флаг).
+        const dayCountedSub = onAppEvent('streak_day_counted', (payload) => {
+            console.log(`[STREAK] home:day_counted ${JSON.stringify({ days: payload?.days ?? null, source: payload?.source ?? null, active: homeRuntimeActiveRef.current })}`); // guard-ok: одна строка на первое занятие дня
+            if (!mountedRef.current || !payload) return;
+            if (typeof payload.days === 'number' && payload.days >= 0) {
+                setStreak(payload.days);
+                setDisplayStreak(payload.days);
+            }
+            refreshWeekMarkers();
+        });
         // зачем (координатор 12.10, план (а) п.5, СПЕРВА ЛОГИ): «серия и монеты не прыгают после восстановления».
         // Главная на конец восстановления не подписана — серия обновится только при следующем loadData. Лог: что лежит
         // после восстановления; сравнить с последней строкой «[STREAK] home:hydration … -> X» (то, что сейчас на экране).
@@ -1491,6 +1503,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 clearTimeout(resumeTimer);
             resumeTask?.cancel?.();
             freezeUpdatedSub.remove();
+            dayCountedSub.remove();
             restoreJumpSub.remove();
             if (restoreRefreshTimer) clearTimeout(restoreRefreshTimer);
             lastOpenedLessonSub.remove();

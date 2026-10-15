@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-14:intro1:r2": {
+          "ru": "Это «Неочевидно». Здесь всё легко понять.",
+          "uk": "Це «Неочевидно». Тут усе легко зрозуміти."
+        },
+        "en:lesson-02:session-14:intro1:r3": {
+          "ru": "Речь об одном обстоятельстве — лимон искусственный: `It's obvious`.",
+          "uk": "Йдеться про одну обставину — лимон штучний: `It's obvious`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-14:intro2:r2": {
+          "ru": "С `it` нужно `is`: `Is it obvious?`.",
+          "uk": "З `it` потрібно `is`: `Is it obvious?`."
+        },
+        "en:lesson-02:session-14:intro2:r3": {
+          "ru": "После `Is` идёт `it`, затем `obvious`.",
+          "uk": "Після `Is` йде `it`, потім `obvious`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-14:intro3:r2": {
+          "ru": "Это «Очевидно». Здесь посетителям непонятно, нужен `not`.",
+          "uk": "Це «Очевидно». Тут відвідувачам незрозуміло, потрібно `not`."
+        },
+        "en:lesson-02:session-14:intro3:r3": {
+          "ru": "После `It` нужно `is`: `It is not obvious`.",
+          "uk": "Після `It` потрібно `is`: `It is not obvious`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d827e8a102f6d2d1ec7074453f4a8efe9180a01ff2fecec2e841d0b44fa61515"
+}

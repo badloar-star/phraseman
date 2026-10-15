@@ -1,163 +1,138 @@
-# Англійська · Урок 2 · Заняття 14 — «Це ще продається?»
+# Англійська · Урок 2 · Заняття 14 — І так зрозуміло?
 
-**Сцена заняття.** Маленька крамниця на бічній вулиці Дубліна. На вітрині пальто без цінника, на полиці — остання пара черевиків, і весь час незрозуміло, чи можна це купити, чи воно вже чиєсь.
+**Ситуація.** Ви з другом оформлюєте вітрину майстерні. Перевіряєте, чи зрозуміло відвідувачам, де вхід і які прикраси штучні.
 
-**Як сказати:** перенесення — питання про річ: `Is it …?`
-**Нові слова:** sold
-**Повертаються:** cheap, comfortable, pretty, crowded
+**Що ви опануєте:** сказати, що щось очевидне або неочевидне, і запитати про це
+**Нові слова:** obvious
 
 ---
 
 ## Інтро 1
 
-### `it` — для речі
+### Не доводиться гадати
 
-`it` — це «воно»: про річ, а не про людину. Пальто, черевик, вітрина, уся крамниця разом — для англійської це все одне слово `it`.
+`obvious` — «очевидний»: зрозуміти легко, довго шукати пояснення не потрібно. `It is obvious` — «Це очевидно», коротко `It's obvious`. У пластикового лимона відвалилася половинка. Тепер його неїстівність уже не потребує тривалого розслідування.
 
-Щоб запитати, ставлять три слова поспіль: спочатку `is`, потім `it`, потім саме слово. `Is it cheap?` — «воно дешеве?». Порядок не змінюється, хоч би що ви питали.
+**З розколотого декоративного лимона видно пластик. Друг запитує, чи помітно, що це муляж. Коротко скажіть, що це очевидно.**
 
-**На вітрині пальто без цінника. `cheap` — «дешевий». Запитайте, чи воно дешеве.**
-
-- ✅ **Is it cheap?**
-- ❌ It is cheap? — *Так ви повідомляєте: «воно дешеве». Питання починають з `is`.*
-- ❌ Is cheap? — *Зникло `it`, і незрозуміло, про що мова. Після `is` іде `it`.*
+- ✅ **It's obvious.**
+- ❌ It's not obvious. — *Це «Неочевидно». Тут усе легко зрозуміти.*
+- ❌ They're obvious. — *Йдеться про одну обставину — лимон штучний: `It's obvious`.*
 
 ---
 
 ## Інтро 2
 
-### `sold` — уже купили
+### Для вас ясно, а для гостя?
 
-`sold` — «продано». Річ ще лежить на полиці, але вона вже чужа.
+`Is it obvious?` — «Це очевидно?» Так можна запитати, чи легко людині зрозуміти те, що ви маєте на увазі. Якщо ви обговорюєте вхід, `it` стосується того, де він розташований.
 
-Про річ можна й просто повідомити: `It is sold.` — отже, нести до каси нічого. А запитати — той самий порядок, що й завжди: `Is it sold?` Цю табличку ви побачите й на вітрині: `SOLD` пишуть просто на ціннику.
+**Ви поставили вказівник входу. Ви з другом обговорюєте, чи легко гостям буде зрозуміти, куди йти. Запитайте, чи це очевидно.**
 
-**На полиці остання пара черевиків, поряд папірець із чужим іменем. Запитайте про черевики.**
-
-- ✅ **Is it sold?**
-- ❌ Is sold it? — *`it` поїхало в кінець. Після `is` одразу `it`, і тільки потім слово.*
-- ❌ It sold? — *Зникло `is`. Без нього це уривок, а не питання.*
+- ✅ **Is it obvious?**
+- ❌ Are it obvious? — *З `it` потрібно `is`: `Is it obvious?`.*
+- ❌ Is obvious it? — *Після `Is` йде `it`, потім `obvious`.*
 
 ---
 
 ## Інтро 3
 
-### Заперечна відповідь про річ
+### Видно — ще не означає зрозуміло
 
-`sold` — «продано». Продавець питає: `Is it sold?` Якщо товар вільний, дайте повну заперечну відповідь: `No, it is not sold.` Після `No` спочатку йдуть `it is`, потім `not` і слово `sold`.
+`It is not obvious` — «Це неочевидно». Табличку може бути добре видно, але її зміст однаково доводиться вгадувати. `Obvious` стосується того, що легко зрозуміти або помітити; воно не означає просто «великий» чи «яскравий».
 
-Так співрозмовник чує і відповідь, і саму ознаку речі. Крамниця маленька, зате фраза вийшла цілою.
+**На вході незрозумілий символ, і відвідувачі не розуміють, куди йти. Скажіть, що це неочевидно.**
 
-**Продавець питає, чи продано пальто. Воно вільне. Дайте повну заперечну відповідь.**
-
-- ✅ **No, it is not sold.**
-- ❌ No, it not sold. — *Після `it` потрібне `is`, потім `not`: `it is not sold`.*
-- ❌ No, is it not sold. — *Після `No` потрібна відповідь `it is`, а порядок `is it` знову починає питання.*
+- ✅ **It is not obvious.**
+- ❌ It is obvious. — *Це «Очевидно». Тут відвідувачам незрозуміло, потрібно `not`.*
+- ❌ It not obvious. — *Після `It` потрібно `is`: `It is not obvious`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — sold**
-<!-- interaction_id: en:lesson-02:session-14:i01; family: listen_choose -->
-Ціль: `sold`
+**1 · На пластиковому лимоні видно шов. Ви обговорюєте, чи помітно, що він штучний. Скажіть, що це очевидно**
+<!-- interaction_id: en:lesson-02:session-14:i01; family: phrase_builder -->
+Плитки: `obvious` `is` `It` `are` → **It is obvious.**
+*(плитка `are` зайва: тут потрібно `is` — `It is obvious.`)*
 
-**2 · Послухайте і виберіть — яке слово вимовив продавець**
+**2 · Послухайте запитання про майстерню**
 <!-- interaction_id: en:lesson-02:session-14:i02; family: listen_choose -->
-Ціль: `sold`
-Варіанти: `sold` · `sell` · `old`
-- sell — *Інший голосний: у `sold` чути «оу», у `sell` — «е».*
-- old — *«Старий». В `old` одразу чути голосний «оу», а в `sold` перед ним є початковий звук «с».*
+🔊 *Is it open?* → **Is it open?** · Is it closed? · Is it dirty?
+- Is it closed? — *У записі останнє слово — `open`, а в цьому варіанті — `closed`.*
+- Is it dirty? — *У записі останнє слово — `open`, а в цьому варіанті — `dirty`.*
 
+**3 · Ви обговорюєте, чи зрозумілий шлях до входу. Запитайте, чи це очевидно**
+<!-- interaction_id: en:lesson-02:session-14:i03; family: context_gap_grammar -->
+___ it obvious? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання починається з `Is it`.*
 
-**3 · Картка слова — crowded**
-<!-- interaction_id: en:lesson-02:session-14:i03; family: listen_choose -->
-Ціль: `crowded`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-14:i04; family: speed_match -->
+obvious — очевидний · dirty — брудний · open — відкритий · closed — закритий
 
-**4 · Вставте слово — продавець кладе руку на коробку й каже, що інший покупець уже оплатив її**
-<!-- interaction_id: en:lesson-02:session-14:i04; family: context_gap_grammar -->
-Ціль: `Is it ___ ?`
-Варіанти: `sold` · `crowded` · `pretty`
-- crowded — *«Людний» — так кажуть про крамницю чи вулицю, а не про коробку.*
-- pretty — *«Гарний» — про вигляд, а покупцеві зараз важливо, чи річ вільна.*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-14:i05; family: listen_build_dictation -->
+🔊 *It's not obvious.* Плитки: `obvious` `not` `It's` `They're` → **It's not obvious.**
+*(плитка `They're` зайва: тут потрібно `It's` — `It's not obvious.`)*
 
+**6 · Майстерня приймає відвідувачів. Скажіть, що вона не закрита**
+<!-- interaction_id: en:lesson-02:session-14:i06; family: phrase_builder -->
+Плитки: `closed` `not` `is` `It` `are` → **It is not closed.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not closed.`)*
 
-**5 · Складіть фразу — «воно дешеве?»**
-<!-- interaction_id: en:lesson-02:session-14:i05; family: phrase_builder -->
-Ціль: `Is it cheap?`
+**7 · Лимон у вітрині схожий на справжній. Запитайте друга, чи він штучний**
+<!-- interaction_id: en:lesson-02:session-14:i07; family: scripted_repeat_compare -->
+🎙 **Is it fake?**
 
-**6 · Картка слова — comfortable**
-<!-- interaction_id: en:lesson-02:session-14:i06; family: listen_choose -->
-Ціль: `comfortable`
-
-**7 · Послухайте продавця й складіть його коротке питання**
-<!-- interaction_id: en:lesson-02:session-14:i07; family: listen_build_dictation -->
-Ціль: `Is it sold?`
-🔊 *Is it sold?* Плитки: `Is` `it` `sold` `cheap`
-*Плитка `cheap` зайва: продавець питає, чи це продано, тому потрібне `sold`: `Is it sold?`*
-
-**8 · Вставте слово — ви пройшли в черевиках усю крамницю, нозі ніде не тисне**
+**8 · Дві скляні полиці вкриті пилом. Доповніть фразу про те, що вони брудні**
 <!-- interaction_id: en:lesson-02:session-14:i08; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `comfortable` · `sold` · `crowded`
-- sold — *«Продано» — це про те, чия річ, а не про те, як у ній нозі.*
-- crowded — *«Людний» — про місце, де повно народу. Черевик таким бути не може.*
+They ___ dirty. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про дві полиці — `They are`.*
 
-
-**9 · Картка слова — pretty**
+**9 · Послухайте фразу**
 <!-- interaction_id: en:lesson-02:session-14:i09; family: listen_choose -->
-Ціль: `pretty`
+🔊 *It is fake.* → **It is fake.** · It is dirty. · It is open.
+- It is dirty. — *У записі останнє слово — `fake`, а в цьому варіанті — `dirty`.*
+- It is open. — *У записі останнє слово — `fake`, а в цьому варіанті — `open`.*
 
-**10 · З'єднайте пари**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-14:i10; family: speed_match -->
-Пари: `sold` — продано · `cheap` — дешевий · `comfortable` — зручний · `crowded` — людний
-Ціль: `sold · cheap · comfortable · crowded`
+fake — підроблений · obvious — очевидний · open — відкритий · dirty — брудний
 
-**11 · Вставте слово — ви питаєте про вітрину**
-<!-- interaction_id: en:lesson-02:session-14:i11; family: context_gap_grammar -->
-Ціль: `___ it cheap?`
-Варіанти: `Is` · `Are` · `Am`
-- Are — *З `it` потрібне `is`; `are` уживають з `you` і `they`.*
-- Am — *`am` іде з `I`. Пальто — це `it`, отже `is`.*
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-14:i11; family: listen_build_dictation -->
+🔊 *They're closed.* Плитки: `closed` `They're` `It's` → **They're closed.**
+*(плитка `It's` зайва: тут потрібно `They're` — `They're closed.`)*
 
-
-**12 · Складіть відповідь — продавець: «Is it cheap?» Ціна вас потішила. Слово з питання не повторюйте**
+**12 · Відвідувачі плутають вхід зі службовими дверима. Ви обговорюєте, чи зрозуміло, куди йти. Скажіть, що це неочевидно**
 <!-- interaction_id: en:lesson-02:session-14:i12; family: phrase_builder -->
-Ціль: `Yes, it is.`
-Плитки: `Yes,` `it` `is` `cheap`
-*Плитка `cheap` зайва: коротка відповідь не повторює слово з питання: `Yes, it is.`*
+Плитки: `obvious` `not` `is` `It` `are` → **It is not obvious.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not obvious.`)*
 
-**13 · Вставте слово — субота, у крамницю не протовпитися**
-<!-- interaction_id: en:lesson-02:session-14:i13; family: context_gap_grammar -->
-Ціль: `Is it ___ ?`
-Варіанти: `crowded` · `sold` · `comfortable`
-- sold — *«Продано» — про річ, а не про крамницю, повну людей.*
-- comfortable — *«Зручний» — про крісло або взуття. Про натовп так не скажуть.*
+**13 · Майстерня вже приймає гостей. Коротко скажіть, що вона відкрита**
+<!-- interaction_id: en:lesson-02:session-14:i13; family: scripted_repeat_compare -->
+🎙 **It's open.**
 
+**14 · У вітрині два яблука. Запитайте, чи вони штучні**
+<!-- interaction_id: en:lesson-02:session-14:i14; family: context_gap_grammar -->
+___ they fake? → **Are** · Am · Is
+- Am — *З `they` потрібно `Are`.*
+- Is — *Про два яблука — `Are they`.*
 
-**14 · Послухайте продавця й складіть його коротке питання**
-<!-- interaction_id: en:lesson-02:session-14:i14; family: listen_build_dictation -->
-Ціль: `Is it pretty?`
-🔊 *Is it pretty?* Плитки: `Is` `it` `pretty` `not`
-*Плитка `not` зайва: це питання про зовнішній вигляд без заперечення: `Is it pretty?`*
-
-**15 · Послухайте й виберіть — ви питаєте продавця, чи дешеве пальто**
+**15 · Послухайте фразу**
 <!-- interaction_id: en:lesson-02:session-14:i15; family: listen_choose -->
-Ціль: `Is it cheap?`
-Варіанти: `Is it cheap?` · `It is cheap.` · `Is it pretty?`
-- It is cheap. — *У запитанні першим звучить `Is`. `It is cheap.` — твердження.*
-- Is it pretty? — *`pretty` — «гарний». У записі після `it` звучить `cheap`: «дешевий».*
+🔊 *It is not dirty.* → **It is not dirty.** · It is not fake. · It is not closed.
+- It is not fake. — *У записі останнє слово — `dirty`, а в цьому варіанті — `fake`.*
+- It is not closed. — *У записі останнє слово — `dirty`, а в цьому варіанті — `closed`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-14:i16; family: speed_match -->
+dirty — брудний · open — відкритий · closed — закритий · fake — підроблений
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-14:i16; family: scripted_repeat_compare -->
-Ціль: `Is it sold?`
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-14:i17; family: scripted_repeat_compare -->
-Ціль: `No, it is not sold.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=context_gap_grammar, 5=phrase_builder, 6=listen_choose, 7=listen_build_dictation, 8=context_gap_grammar, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=context_gap_grammar, 14=listen_build_dictation, 15=listen_choose, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+**17 · Ви замінили незрозумілий символ стрілкою. Ви з другом обговорюєте, чи легко тепер знайти вхід. Запитайте, чи це очевидно**
+<!-- interaction_id: en:lesson-02:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it obvious?**
 

@@ -1,124 +1,137 @@
-# Англійська · Урок 4 · Заняття 14 — «Пральня на карті»
+# Англійська · Урок 4 · Заняття 14 — Час випрати речі
 
-**Сцена заняття.** У туристичному кіоску мандрівник дивиться на карту місцевих послуг. На карті позначено одну пральню самообслуговування або кілька, і потрібно самостійно вибрати форму питання.
-**Як сказати:** самостійно вибрати singular або plural у питанні про наявність.
-**Нове слово:** laundrette
-**Повертаються:** near, hotel, shop, building, platform
+**Ситуація.** У подорожі закінчилися чисті футболки. Ви шукаєте пральню на схемі району, помічаєте клініку й звіряєте малюнок на вивісці з фотографією друга.
+
+**Що ви опануєте:** запитати про пральню, назвати клініку й картинку, сказати, що відповідь очевидна
+**Нові слова:** laundrette
+
+---
 
 ## Інтро 1
 
-### `laundrette` — пральня самообслуговування
+### Місце для прання
 
-`laundrette` — «пральня самообслуговування», місце, де можна самостійно випрати речі. У британській англійській це звичайна назва такої послуги. Літера `t` усередині слова не ховається: вона допомагає відрізнити назву місця від загального `laundry` — прання або білизни.
+`laundrette` — «пральня самообслуговування»: туди приходять випрати речі у спільних машинах. `Is there a laundrette here?` — «Тут є пральня самообслуговування?» Кілька таких місць — `laundrettes`. Чистих футболок уже немає: тепер `laundrette` цікавіша за будь-який музей.
 
-**На карті кіоску позначено одне місце для прання. Оберіть назву.**
+**Запитайте, чи є тут пральня самообслуговування.**
 
-- ✅ **laundrette**
-- ❌ laundry — *`Laundry` — це прання або білизна загалом. На карті позначено конкретне місце: `laundrette`.*
-- ❌ landmark — *`Landmark` — пам’ятка. Нам потрібне місце, де перуть одяг: `laundrette`.*
+- ✅ **Is there a laundrette here?**
+- ❌ Are there a laundrette here? — *Одне місце: `Is there a laundrette here?`.*
+- ❌ There is a laundrette here. — *Це повідомлення; запитання починається з `Is there`.*
+
+---
 
 ## Інтро 2
 
-### Питання про одне місце починається з `Is`
+### Вивіска й схема
 
-`There is a laundrette nearby.` — це повідомлення про одне місце. Якщо ми питаємо про нього, `is` виходить наперед. Артикль `a` залишається перед одним місцем, а `nearby` означає «поблизу» і не змінюється: `Is there a laundrette nearby?` Якщо місць кілька, змінюються число й дієслово: `Are there laundrettes nearby?`
+`picture` — «картинка, зображення». `There is a picture here` — «Тут є картинка». `clinic` — «клініка»: `That is a clinic` — «Та будівля — клініка». На схемі можна запитати `Is there a clinic?` — «Чи є клініка?»
 
-**На карті видно одну позначку. Запитайте, чи є поруч пральня.**
+**Друг показує на далеку будівлю. Скажіть «Та будівля — клініка».**
 
-- ✅ **Is there a laundrette nearby?**
-- ❌ Are there laundrettes nearby? — *`Laundrettes` — кілька місць. Тут на карті одна позначка, тому потрібні `Is` і `a laundrette`.*
-- ❌ There is a laundrette nearby. — *Це повідомлення, а не питання. Питання починається з `Is`: `Is there a laundrette nearby?`.*
+- ✅ **That is a clinic.**
+- ❌ That are a clinic. — *З `That` потрібне `is`.*
+- ❌ Those are clinics. — *Тут одна будівля: `That is a clinic`.*
+
+---
 
 ## Інтро 3
 
-### Питання про кілька місць починається з `Are`
+### І так зрозуміло
 
-`There are laundrettes nearby.` — повідомлення про кілька місць. У питанні `are` переходить наперед: `Are there laundrettes nearby?` Артикль `a` зникає, бо `laundrettes` — множина. Зайва літера `s` тут показує: на карті більше однієї точки.
+`obvious` — «очевидний». На вивісці велика пральна машина, і друг запитує, що тут розташовано. Відповідь тепер зрозуміла: `It is obvious` — «Це очевидно». Скорочено: `It’s obvious`. Так можна сказати про зрозумілу відповідь; у відповідь на чуже запитання фраза іноді звучить різко, тому не варто дорікати нею людині за незнання.
 
-**На карті поруч позначено кілька місць. Запитайте про них.**
+**Ви з другом разом роздивилися вивіску й зрозуміли відповідь. Скажіть «Це очевидно» зі скороченням.**
 
-- ✅ **Are there laundrettes nearby?**
-- ❌ Is there a laundrette nearby? — *Це питання про одну пральню. На карті кілька позначок, тому потрібні `Are` і `laundrettes`.*
-- ❌ There are laundrettes nearby. — *Це повідомлення. Питання починається з `Are`: `Are there laundrettes nearby?`.*
+- ✅ **It's obvious.**
+- ❌ It's private. — *`private` — приватний; очевидний — `obvious`.*
+- ❌ It are obvious. — *З `It` потрібне `is`: `It’s obvious`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте й оберіть нове слово**
-<!-- interaction_id: en:lesson-04:session-14:i01; family: listen_choose -->
-Ціль: `laundrette`
-🔊 *laundrette*
-Значення варіантів: laundrette — пральня самообслуговування · laundry — прання або білизна · landmark — пам’ятка
-→ **laundrette** · laundry · landmark
-- laundry — *У записі чути назву місця `laundrette`, а не загальне `laundry`.*
-- landmark — *`Landmark` — пам’ятка. У записі було місце для прання: `laundrette`.*
+## Практика (17 завдань)
 
-**2 · Вимовте нове слово**
-<!-- interaction_id: en:lesson-04:session-14:i02; family: scripted_repeat_compare -->
-Ціль: `laundrette`
-🎙 **laundrette**
+**1 · Ви знайшли зображення на звороті карти. Повідомте «Є картинка»**
+<!-- interaction_id: en:lesson-04:session-14:i01; family: phrase_builder -->
+Плитки: `picture` `a` `is` `There` `are` → **There is a picture.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a picture.`)*
 
-**3 · З’єднайте нове й знайомі місця зі значеннями**
-<!-- interaction_id: en:lesson-04:session-14:i03; family: speed_match -->
-Пари: `laundrette` — пральня самообслуговування · `hotel` — готель · `shop` — магазин · `platform` — платформа
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-14:i02; family: listen_choose -->
+🔊 *laundrette* → **laundrette** · clinic · hotel
+- clinic — *У записі перше слово — `laundrette`, а в цьому варіанті — `clinic`.*
+- hotel — *У записі перше слово — `laundrette`, а в цьому варіанті — `hotel`.*
 
-**4 · Послухайте питання біля платформи й оберіть його зміст**
-<!-- interaction_id: en:lesson-04:session-14:i04; family: listen_choose -->
-Ціль: `Is there a laundrette near the platform?`
-🔊 *Is there a laundrette near the platform?*
-Значення варіантів: Is there a laundrette near the platform? — Біля платформи є одна пральня самообслуговування? · Are there laundrettes near the platform? — Біля платформи є кілька пралень самообслуговування? · There is a laundrette near the platform. — Біля платформи є одна пральня самообслуговування.
-→ **Is there a laundrette near the platform?** · Are there laundrettes near the platform? · There is a laundrette near the platform.
-- Are there laundrettes near the platform? — *`Laundrettes` — кілька місць. Тут питаємо про одну пральню, тому потрібні `Is` і `a laundrette`.*
-- There is a laundrette near the platform. — *Це повідомлення, а не питання. Питання починається з `Is`: `Is there a laundrette near the platform?`.*
+**3 · Назвіть пральню самообслуговування одним словом**
+<!-- interaction_id: en:lesson-04:session-14:i03; family: context_gap_grammar -->
+___ → **laundrette** · clinic · supermarket
+- clinic — *`clinic` — клініка; пральня самообслуговування — `laundrette`.*
+- supermarket — *`supermarket` — супермаркет; місце для прання — `laundrette`.*
 
-**5 · Складіть питання про одну пральню біля готелю**
-<!-- interaction_id: en:lesson-04:session-14:i05; family: phrase_builder -->
-Ціль: `Is there a laundrette near the hotel?`
-Плитки: `Is` · `there` · `a` · `laundrette` · `near` · `the` · `hotel` · `Are`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-14:i04; family: speed_match -->
+laundrette — пральня самообслуговування · obvious — очевидний · picture — картинка · clinic — клініка
 
-**6 · Біля магазину ви перевіряєте, чи є одне місце. Вставте початок питання**
-<!-- interaction_id: en:lesson-04:session-14:i06; family: context_gap_grammar -->
-___ there a laundrette near the shop? → **Is** · Are · There
-- Are — *`A laundrette` — одне місце, тому питання починається з `Is`.*
-- There — *`There is a laundrette` — це порядок повідомлення. Питання починається з `Is`.*
+**5 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-14:i05; family: listen_build_dictation -->
+🔊 *Is there a laundrette?* Плитки: `laundrette` `a` `there` `Is` → **Is there a laundrette?**
 
-**7 · Послухайте й складіть повідомлення про одну пральню біля магазину**
-<!-- interaction_id: en:lesson-04:session-14:i07; family: listen_build_dictation -->
-Ціль: `There is a laundrette near the shop.`
-🔊 *There is a laundrette near the shop.*
-Плитки: `There` · `is` · `a` · `laundrette` · `near` · `the` · `shop` · `Are`
+**6 · Назвіть далеку будівлю: «Та будівля — клініка»**
+<!-- interaction_id: en:lesson-04:session-14:i06; family: phrase_builder -->
+Плитки: `clinic` `a` `is` `That` `are` → **That is a clinic.**
+*(плитка `are` зайва: тут потрібно `is` — `That is a clinic.`)*
 
-**8 · Складіть повідомлення про кілька пралень біля готелю**
-<!-- interaction_id: en:lesson-04:session-14:i08; family: phrase_builder -->
-Ціль: `There are laundrettes near the hotel.`
-Плитки: `There` · `are` · `laundrettes` · `near` · `the` · `hotel` · `Is`
+**7 · Ви обоє побачили велику пральну машину на вивісці й зрозуміли, що це за місце. Скажіть «Це очевидно» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-14:i07; family: scripted_repeat_compare -->
+🎙 **It's obvious.**
 
-**9 · Послухайте питання про кілька місць біля будівлі й оберіть зміст**
+**8 · Запитайте, чи є тут кілька пралень самообслуговування**
+<!-- interaction_id: en:lesson-04:session-14:i08; family: context_gap_grammar -->
+___ there laundrettes here? → **Are** · Is · Am
+- Is — *`laundrettes` — кілька місць: `Are there laundrettes here?`.*
+- Am — *Запитання про кілька місць починається з `Are there`.*
+
+**9 · Послухайте запитання**
 <!-- interaction_id: en:lesson-04:session-14:i09; family: listen_choose -->
-Ціль: `Are there laundrettes near the building?`
-🔊 *Are there laundrettes near the building?*
-Значення варіантів: Are there laundrettes near the building? — Біля будівлі є кілька пралень самообслуговування? · Is there a laundrette near the building? — Біля будівлі є одна пральня самообслуговування? · There are laundrettes near the building. — Біля будівлі є кілька пралень самообслуговування.
-→ **Are there laundrettes near the building?** · Is there a laundrette near the building? · There are laundrettes near the building.
-- Is there a laundrette near the building? — *У записі `laundrettes` — кілька місць, тому питання починається з `Are`.*
-- There are laundrettes near the building. — *У записі питання, а не повідомлення: `Are there…?`.*
+🔊 *Is there a picture?* → **Is there a picture?** · Is there a clinic? · Is there a laundrette?
+- Is there a clinic? — *У записі останнє слово — `picture`, а в цьому варіанті — `clinic`.*
+- Is there a laundrette? — *У записі останнє слово — `picture`, а в цьому варіанті — `laundrette`.*
 
-**10 · Складіть питання про дві пральні біля будівлі**
-<!-- interaction_id: en:lesson-04:session-14:i10; family: phrase_builder -->
-Ціль: `Are there two laundrettes near the building?`
-Плитки: `Are` · `there` · `two` · `laundrettes` · `near` · `the` · `building` · `Is`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-14:i10; family: speed_match -->
+laundrette — пральня самообслуговування · laundrettes — пральні самообслуговування · picture — картинка · obvious — очевидний
 
-**11 · Біля платформи позначено дві пральні. Вставте форму в повідомлення**
-<!-- interaction_id: en:lesson-04:session-14:i11; family: context_gap_grammar -->
-There ___ two laundrettes near the platform. → **are** · is · there
-- is — *`Two laundrettes` — кілька місць, тому потрібно `There are`.*
-- there — *`There` уже стоїть на початку. Тут потрібна форма `are`, узгоджена з `two laundrettes`.*
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-04:session-14:i11; family: listen_build_dictation -->
+🔊 *There is a clinic here.* Плитки: `here` `clinic` `a` `is` `There` `are` → **There is a clinic here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a clinic here.`)*
 
-**12 · карта показує кілька місць біля готелю. Складіть питання**
+**12 · На карті кілька таких місць. Повідомте «Тут є пральні самообслуговування»**
 <!-- interaction_id: en:lesson-04:session-14:i12; family: phrase_builder -->
-Ціль: `Are there laundrettes near the hotel?`
-Плитки: `Are` · `there` · `laundrettes` · `near` · `the` · `hotel` · `Is` · `There`
+Плитки: `here` `laundrettes` `are` `There` `is` → **There are laundrettes here.**
+*(плитка `is` зайва: тут потрібно `are` — `There are laundrettes here.`)*
 
-## Для збирача
+**13 · Ви розглядаєте потрібну ділянку вивіски на нечіткій фотографії. Запитайте «Тут є картинка?»**
+<!-- interaction_id: en:lesson-04:session-14:i13; family: scripted_repeat_compare -->
+🎙 **Is there a picture here?**
 
-atomic_practice: practice.atomic.json
-new_words: laundrette — пральня самообслуговування — Місце, де відвідувач сам пере речі.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=speed_match, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=phrase_builder, 9=listen_choose, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder
+**14 · Запитайте про наявність однієї клініки**
+<!-- interaction_id: en:lesson-04:session-14:i14; family: context_gap_grammar -->
+Is there ___ clinic here? → **a** · an · are
+- an — *Перший звук у `clinic` приголосний: `a clinic`.*
+- are — *Перед однією клінікою потрібне `a`: `a clinic`.*
+
+**15 · Послухайте висновок про зрозумілу відповідь**
+<!-- interaction_id: en:lesson-04:session-14:i15; family: listen_choose -->
+🔊 *It is obvious.* → **It is obvious.** · It is private. · It is urgent.
+- It is private. — *У записі останнє слово — `obvious`, а в цьому варіанті — `private`.*
+- It is urgent. — *У записі останнє слово — `obvious`, а в цьому варіанті — `urgent`.*
+
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-14:i16; family: speed_match -->
+laundrette — пральня самообслуговування · obvious — очевидний · picture — картинка · clinic — клініка
+
+**17 · У наступній подорожі вам знову потрібно випрати речі. Запитайте в новому районі «Тут є пральня самообслуговування?»**
+<!-- interaction_id: en:lesson-04:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is there a laundrette here?**
+

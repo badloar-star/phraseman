@@ -1,131 +1,136 @@
-# Английский · Урок 4 · Занятие 18 — «Молоко перед завтраком»
+# Английский · Урок 4 · Занятие 18 — Молоко к завтраку
 
-**Сцена занятия.** Перед завтраком вы проверяете общий холодильник. Рядом стоят контейнеры с ягодами, а на полке ждёт молоко.
-**Как сказать:** сообщить об ограниченном количестве неисчисляемой еды через `There is some + noncount food`.
-**Новое слово:** milk
-**Возвращаются:** container, berry
+**Ситуация.** Вы готовите завтрак в отеле. Друг плохо себя чувствует и остался в комнате. Вы проверяете молоко и ищете коробки, чтобы собрать вещи перед отъездом.
+
+**Что вы освоите:** сообщить о молоке с some и спросить о нём с any, различая milk и boxes
+**Новые слова:** milk
+
+---
 
 ## Интро 1
 
-### `milk` — молоко
+### Молоко не считаем по каплям
 
-`milk` — «молоко», неисчисляемая еда. Назовите продукт перед тем, как добавить к нему слово количества.
+`milk` — «молоко». Когда говорим просто о продукте, не ставим перед ним `a` и не добавляем `s`. `There is some milk` — «Есть немного молока». Даже если молока много, начало остаётся `There is`: мы сейчас не считаем бутылки. Считать молоко по каплям можно, но завтрак тогда станет ужином.
 
-В сцене это молоко на общей кухне. Оно может стоять в бутылке или быть налито в контейнер, но `milk` не получает окончания множественного числа. Сначала назовите продукт, затем добавим количество.
+**Сообщите «Есть немного молока».**
 
-**Перед завтраком на полке стоит молоко. Выберите слово.**
+- ✅ **There is some milk.**
+- ❌ There are some milk. — *О молоке как продукте говорим `There is some milk`.*
+- ❌ There is a milk. — *Здесь речь о продукте, без заказа отдельной порции: `some milk`.*
 
-- ✅ **milk**
-- ❌ berry — *`Berry` — ягода, а не молоко.*
-- ❌ container — *`Container` — ёмкость, а не продукт.*
+---
 
 ## Интро 2
 
-### `some` перед неисчисляемой едой
+### Проверяем, есть ли
 
-`some milk` — «немного молока» или «некоторое количество молока». Здесь `some` показывает ограниченное количество, а `milk` остаётся неисчисляемым словом.
+`Is there any milk?` — «Есть ли молоко?» Вы пока не знаете ответа, поэтому здесь подходит `any`. С коробками иначе: `boxes` — «коробки», их несколько. `Are there any boxes?` — «Есть ли коробки?» Сравните начало: молоко — `Is there`, коробки — `Are there`.
 
-Так мы говорим о части молока на кухне. `Some` относится к количеству, а не к контейнеру или ягодам; дальше это сочетание войдёт в полное сообщение.
+**Вы ещё не проверили молоко. Спросите «Здесь есть молоко?» с `any`.**
 
-**Выберите сочетание для молока в холодильнике.**
+- ✅ **Is there any milk here?**
+- ❌ Are there any milk here? — *С молоком как продуктом нужно `Is there`.*
+- ❌ Is there a milk here? — *Здесь спрашиваем о наличии молока вообще: `any milk`.*
 
-- ✅ **some milk**
-- ❌ some berries — *`Berries` — это несколько ягод; здесь названо молоко.*
-- ❌ some containers — *`Containers` — это ёмкости; здесь названо молоко.*
+---
 
 ## Интро 3
 
-### Контейнеры и ягоды возвращаются
+### Друг остался в номере
 
-`container` и `berry` мы уже встречали. Возвращаем их в сообщении `There are some containers for berries.` Новая цель — добавить `some` к `milk`.
+`unwell` — «нездоровый, плохо себя чувствующий». О друге: `He is unwell` — «Он плохо себя чувствует». Сокращённо: `He’s unwell`. `hotel` — «отель»: `This is a hotel` — «Это отель». `There are some boxes here` — «Здесь есть несколько коробок». Перед отъездом они пригодятся для вещей.
 
-Фраза `There is some milk on the shelf.` сообщает, где есть ограниченное количество продукта. Здесь `some` стоит перед неисчисляемым `milk`, а `There is` показывает наличие.
+**Друг плохо себя чувствует. Скажите об этом с сокращением.**
 
-**На полке есть молоко. Выберите сообщение о продукте.**
+- ✅ **He's unwell.**
+- ❌ He's well. — *`well` — здоров, хорошо себя чувствует; здесь нужно `unwell`.*
+- ❌ He are unwell. — *С `He` нужно `is`: `He’s unwell`.*
 
-- ✅ **There is some milk on the shelf.**
-- ❌ There are some containers. — *Это сообщение о нескольких ёмкостях, а не о молоке.*
-- ❌ There are some berries. — *Это сообщение о нескольких ягодах, а не о молоке.*
+---
 
-## Практика — по одной цели
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите новое слово**
-<!-- interaction_id: en:lesson-04:session-18:i01; family: listen_choose -->
-Цель: `milk`
-🔊 *milk*
-Значения вариантов: milk — молоко · berry — ягода · container — контейнер
-→ **milk** · berry · container
-- berry — *В записи названо молоко, а не ягода.*
-- container — *В записи назван продукт, а не ёмкость.*
+**1 · Показывая здание рядом, скажите «Это отель»**
+<!-- interaction_id: en:lesson-04:session-18:i01; family: phrase_builder -->
+Плитки: `hotel` `a` `is` `This` `are` → **This is a hotel.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a hotel.`)*
 
-**2 · Произнесите новое слово**
-<!-- interaction_id: en:lesson-04:session-18:i02; family: scripted_repeat_compare -->
-Цель: `milk`
-🎙 **milk**
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-04:session-18:i02; family: listen_choose -->
+🔊 *milk* → **milk** · berry · boxes
+- berry — *В записи первое слово — `milk`, а в этом варианте — `berry`.*
+- boxes — *В записи первое слово — `milk`, а в этом варианте — `boxes`.*
 
-**3 · Соедините слова с переводами**
-<!-- interaction_id: en:lesson-04:session-18:i03; family: speed_match -->
-Пары: `milk` — молоко · `berry` — ягода · `container` — контейнер · `basket` — корзина
+**3 · Назовите молоко одним словом**
+<!-- interaction_id: en:lesson-04:session-18:i03; family: context_gap_grammar -->
+___ → **milk** · berries · boxes
+- berries — *`berries` — ягоды; молоко — `milk`.*
+- boxes — *`boxes` — коробки; молоко — `milk`.*
 
-**4 · Послушайте сообщение о молоке в холодильнике**
-<!-- interaction_id: en:lesson-04:session-18:i04; family: listen_choose -->
-Цель: `There is some milk in the fridge.`
-🔊 *There is some milk in the fridge.*
-Значения вариантов: There is some milk in the fridge. — В холодильнике есть немного молока. · There is milk in the fridge. — В холодильнике есть молоко. · There are some containers in the fridge. — В холодильнике есть несколько контейнеров.
-→ **There is some milk in the fridge.** · There is milk in the fridge. · There are some containers in the fridge.
-- There is milk in the fridge. — *В записи слышно ограниченное количество `some`, поэтому нужна полная фраза.*
-- There are some containers in the fridge. — *В записи говорится о молоке, а не о контейнерах.*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-18:i04; family: speed_match -->
+milk — молоко · unwell — плохо себя чувствующий · boxes — коробки · hotel — отель
 
-**5 · Соберите сообщение о молоке в контейнере**
-<!-- interaction_id: en:lesson-04:session-18:i05; family: phrase_builder -->
-Цель: `There is some milk in the container.`
-Плитки: `There` · `is` · `some` · `milk` · `in` · `the` · `container` · `are` · `berries`
+**5 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-04:session-18:i05; family: listen_build_dictation -->
+🔊 *There is some milk.* Плитки: `milk` `some` `is` `There` `are` → **There is some milk.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is some milk.`)*
 
-**6 · Вставьте слово количества**
-<!-- interaction_id: en:lesson-04:session-18:i06; family: context_gap_grammar -->
-There is ___ milk on the table. → **some** · the · this
-- the — *В этой утвердительной фразе ограниченное количество передаём через `some`.*
-- this — *В пропуске нужно слово количества перед неисчисляемым `milk`.*
+**6 · Вы нашли коробки для вещей. Сообщите «Здесь есть несколько коробок» с some**
+<!-- interaction_id: en:lesson-04:session-18:i06; family: phrase_builder -->
+Плитки: `here` `boxes` `some` `are` `There` `is` → **There are some boxes here.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are some boxes here.`)*
 
-**7 · Послушайте и соберите сообщение о молоке**
-<!-- interaction_id: en:lesson-04:session-18:i07; family: listen_build_dictation -->
-Цель: `There is some milk behind the basket.`
-🔊 *There is some milk behind the basket.*
-Плитки: `There` · `is` · `some` · `milk` · `behind` · `the` · `basket` · `are` · `a`
+**7 · Друг плохо себя чувствует. Скажите об этом с сокращением**
+<!-- interaction_id: en:lesson-04:session-18:i07; family: scripted_repeat_compare -->
+🎙 **He's unwell.**
 
-**8 · Послушайте и выберите полное сообщение**
-<!-- interaction_id: en:lesson-04:session-18:i08; family: listen_choose -->
-Цель: `There is some milk near the berries.`
-🔊 *There is some milk near the berries.*
-Значения вариантов: There is some milk near the berries. — Возле ягод есть немного молока. · There is milk near the berries. — Возле ягод есть молоко. · There are some berries near the milk. — Возле молока есть несколько ягод.
-→ **There is some milk near the berries.** · There is milk near the berries. · There are some berries near the milk.
-- There is milk near the berries. — *В записи слышно `some`: количество молока ограничено.*
-- There are some berries near the milk. — *В записи говорится о молоке возле ягод, а не о ягодах возле молока.*
+**8 · Сообщите «Здесь есть немного молока»**
+<!-- interaction_id: en:lesson-04:session-18:i08; family: context_gap_grammar -->
+There ___ some milk here. → **is** · are · am
+- are — *Речь о молоке как продукте: `There is some milk here`.*
+- am — *Наличие молока передаём через `There is`.*
 
-**9 · Соберите сообщение о молоке у контейнера**
-<!-- interaction_id: en:lesson-04:session-18:i09; family: phrase_builder -->
-Цель: `There is some milk by the container.`
-Плитки: `There` · `is` · `some` · `milk` · `by` · `the` · `container` · `are` · `berries`
+**9 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-04:session-18:i09; family: listen_choose -->
+🔊 *Are there any boxes?* → **Are there any boxes?** · Are there any books? · Are there any berries?
+- Are there any books? — *В записи последнее слово — `boxes`, а в этом варианте — `books`.*
+- Are there any berries? — *В записи последнее слово — `boxes`, а в этом варианте — `berries`.*
 
-**10 · Послушайте и соберите сообщение о молоке перед завтраком**
-<!-- interaction_id: en:lesson-04:session-18:i10; family: listen_build_dictation -->
-Цель: `There is some milk by the breakfast basket.`
-🔊 *There is some milk by the breakfast basket.*
-Плитки: `There` · `is` · `some` · `milk` · `by` · `the` · `breakfast` · `basket` · `are` · `berries`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-18:i10; family: speed_match -->
+milk — молоко · boxes — коробки · hotel — отель · unwell — плохо себя чувствующий
 
-**11 · выберите слово количества**
-<!-- interaction_id: en:lesson-04:session-18:i11; family: context_gap_grammar -->
-There is ___ milk in the basket. → **some** · the · this
-- the — *Здесь нужно сообщить о некотором количестве молока, поэтому ставим `some`. `the` указывало бы на уже известное молоко.*
-- this — *Здесь требуется слово количества, а не указатель.*
+**11 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-18:i11; family: listen_build_dictation -->
+🔊 *Is there any milk?* Плитки: `milk` `any` `there` `Is` → **Is there any milk?**
 
-**12 · сообщите о молоке**
+**12 · У стойки отеля спросите «Здесь есть коробки?» с any**
 <!-- interaction_id: en:lesson-04:session-18:i12; family: phrase_builder -->
-Цель: `There is some milk.`
-Плитки: `There` · `is` · `some` · `milk` · `are` · `berries` · `container`
+Плитки: `here` `boxes` `any` `there` `Are` → **Are there any boxes here?**
 
-## Для сборщика
+**13 · Друг спрашивает о другом столе. Сообщите «Там есть немного молока» с some**
+<!-- interaction_id: en:lesson-04:session-18:i13; family: scripted_repeat_compare -->
+🎙 **There is some milk there.**
 
-atomic_practice: practice.atomic.json
-new_words: milk — молоко — Неисчисляемый продукт; перед ним в этой операции используется `some`.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=speed_match, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=listen_choose, 9=phrase_builder, 10=listen_build_dictation, 11=context_gap_grammar, 12=phrase_builder
+**14 · Спросите «Здесь есть молоко?»**
+<!-- interaction_id: en:lesson-04:session-18:i14; family: context_gap_grammar -->
+___ there any milk here? → **Is** · Are · Am
+- Are — *О молоке как продукте спрашиваем `Is there any milk here?`.*
+- Am — *Вопрос о наличии молока начинается с `Is there`.*
+
+**15 · Послушайте, как себя чувствует друг**
+<!-- interaction_id: en:lesson-04:session-18:i15; family: listen_choose -->
+🔊 *He is unwell.* → **He is unwell.** · He is well. · He is tired.
+- He is well. — *В записи последнее слово — `unwell`, а в этом варианте — `well`.*
+- He is tired. — *В записи последнее слово — `unwell`, а в этом варианте — `tired`.*
+
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-18:i16; family: speed_match -->
+milk — молоко · unwell — плохо себя чувствующий · boxes — коробки · hotel — отель
+
+**17 · В следующей поездке вы готовите завтрак на новой кухне. Спросите «Здесь есть молоко?» с any**
+<!-- interaction_id: en:lesson-04:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is there any milk here?**
+

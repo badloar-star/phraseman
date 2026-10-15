@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-18:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-18:intro1:r2": {
-          "ru": "`Berry` — ягода, а не молоко.",
-          "uk": "`Berry` — ягода, а не молоко."
+          "ru": "О молоке как продукте говорим `There is some milk`.",
+          "uk": "Про молоко як продукт кажемо `There is some milk`."
         },
         "en:lesson-04:session-18:intro1:r3": {
-          "ru": "`Container` — ёмкость, а не продукт.",
-          "uk": "`Container` — ємність, а не продукт."
+          "ru": "Здесь речь о продукте, без заказа отдельной порции: `some milk`.",
+          "uk": "Тут ідеться про продукт, без замовлення окремої порції: `some milk`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-18:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-18:intro2:r2": {
-          "ru": "`Berries` — это несколько ягод; здесь названо молоко.",
-          "uk": "`Berries` — це кілька ягід; тут названо молоко."
+          "ru": "С молоком как продуктом нужно `Is there`.",
+          "uk": "З молоком як продуктом потрібне `Is there`."
         },
         "en:lesson-04:session-18:intro2:r3": {
-          "ru": "`Containers` — это ёмкости; здесь названо молоко.",
-          "uk": "`Containers` — це ємності; тут названо молоко."
+          "ru": "Здесь спрашиваем о наличии молока вообще: `any milk`.",
+          "uk": "Тут запитуємо про наявність молока взагалі: `any milk`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-18:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-18:intro3:r2": {
-          "ru": "Это сообщение о нескольких ёмкостях, а не о молоке.",
-          "uk": "Це повідомлення про кілька ємностей, а не про молоко."
+          "ru": "`well` — здоров, хорошо себя чувствует; здесь нужно `unwell`.",
+          "uk": "`well` — здоровий, добре почувається; тут потрібне `unwell`."
         },
         "en:lesson-04:session-18:intro3:r3": {
-          "ru": "Это сообщение о нескольких ягодах, а не о молоке.",
-          "uk": "Це повідомлення про кілька ягід, а не про молоко."
+          "ru": "С `He` нужно `is`: `He’s unwell`.",
+          "uk": "З `He` потрібне `is`: `He’s unwell`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a4f401ebb9c6fe720aaca523ab165808c319587769020f27b564cd9f24c215be"
+  "auxiliaryFingerprint": "6d7a04ed758fcbc5e34f920c6f28ff9bab2167e7526f6e9d0963b6fabdd89022"
 }

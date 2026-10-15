@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-34:intro1:r2": {
+          "ru": "Между `It` и `inactive` нужно `is`.",
+          "uk": "Між `It` і `inactive` потрібно `is`."
+        },
+        "en:lesson-02:session-34:intro1:r3": {
+          "ru": "Это значит, что клуб активен. В условии деятельность не ведётся.",
+          "uk": "Це означає, що клуб активний. За умовою діяльність не ведеться."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-34:intro2:r2": {
+          "ru": "Это вопрос о неактивности, а вы уточняете, страшно ли ей.",
+          "uk": "Це запитання про неактивність, а ви уточнюєте, чи їй страшно."
+        },
+        "en:lesson-02:session-34:intro2:r3": {
+          "ru": "Это сообщение. Для вопроса поставьте `Are` перед `you`.",
+          "uk": "Це повідомлення. Для запитання поставте `Are` перед `you`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-34:intro3:r2": {
+          "ru": "Это «Где он?», вопрос о месте.",
+          "uk": "Це «Де він?», запитання про місце."
+        },
+        "en:lesson-02:session-34:intro3:r3": {
+          "ru": "После `Who` здесь нужно `is`.",
+          "uk": "Після `Who` тут потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bdff3a5971c92ba6504baf30ae869f774db41585f79831d706c4230ca8aa9ff2"
+}

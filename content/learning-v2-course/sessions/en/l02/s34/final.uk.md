@@ -1,155 +1,138 @@
-# Англійська · Урок 2 · Заняття 34 — «Хто ці люди?»
+# Англійська · Урок 2 · Заняття 34 — Клуб поки не працює
 
-**Сцена заняття.** На вечірці в сусідів у Дубліні ви виходите в сад. Половину людей тут бачите вперше. Друг допомагає зрозуміти, хто з ким знайомий, а двоє схожих гостей виявляються близнюками.
+**Ситуація.** Ви з Анною шукаєте клуб для прогулянок. Знаходите старе оголошення, але зустрічі давно не відбуваються. У сусідньому клубі готують вечірній похід; ви обговорюєте, кому страшно йти в темряві.
 
-**Як сказати:** застосування `Who are these people?`  
-**Нові слова:** strangers, twins  
-**Повертаються:** these, people, guests, sure
+**Що ви опануєте:** повідомити, що діяльність не ведеться, й повторити запитання про стан
+**Нові слова:** inactive
 
 ---
 
 ## Інтро 1
 
-### `these people` — ці люди
+### Діяльності зараз немає
 
-`these people` — «ці люди». Щоб дізнатися, хто вони, запитайте `Who are these people?` — «Хто ці люди?» Людей кілька, тому тут потрібне `are`: воно стоїть одразу після `Who`, а `these people` лишається наприкінці. В українському питанні такого слова немає, тож його легко забути.
+`inactive` — «неактивний, бездіяльний». У клубу давно немає зустрічей і заходів: `It is inactive`. Оголошення ще висить, але клуб зараз нічого не проводить. Папір на стіні гуляти за учасників не піде. `active` та `inactive` говорять про різні стани.
 
-**Ви вказуєте другові на незнайому компанію в саду. Запитайте: «Хто ці люди?»**
+**Клуб існує, але вже кілька місяців не проводить зустрічей. Скажіть повною фразою, що він неактивний.**
 
-- ✅ **Who are these people?**
-- ❌ Who is these people? — *Йдеться про кількох людей, тому тут потрібне `are`: `Who are these people?`*
-- ❌ Who these people? — *Українською трьох слів достатньо, а в англійському питанні зникло `are`. Воно стоїть одразу після `Who`.*
+- ✅ **It is inactive.**
+- ❌ It inactive. — *Між `It` і `inactive` потрібно `is`.*
+- ❌ It is active. — *Це означає, що клуб активний. За умовою діяльність не ведеться.*
 
 ---
 
 ## Інтро 2
 
-### `strangers` — незнайомці
+### Не вгадуємо причину
 
-`strangers` — «незнайомці», люди, яких ви не знаєте. `They are strangers` — «Вони незнайомці»: спочатку `they` — «вони», далі `are`, потім `strangers`. Якщо йдеться про вас зі співрозмовником, скажіть `We are strangers` — «Ми незнайомі». Початок залежить від того, про кого говорите.
+`afraid` — «боїться, наляканий». `I am afraid` — «Мені страшно». Але слово `inactive` саме не говорить, чому людина чи клуб не діє. Може бути страшно, може бракувати часу. Дізнатися про страх можна запитанням `Are you afraid?`.
 
-**Друг запитує, чи знайомі вам двоє біля паркану. Ви бачите їх уперше. Скажіть: «Вони незнайомці».**
+**Анна не наважується йти темною доріжкою. Запитайте її, чи вона боїться.**
 
-- ✅ **They are strangers.**
-- ❌ They strangers. — *Між `They` і `strangers` потрібне `are`. В українській фразі такого слова немає, тому його легко пропустити.*
-- ❌ They is strangers. — *Щоб сказати «Вони незнайомці», починаємо з `They are`. Тут `is` не підходить.*
+- ✅ **Are you afraid?**
+- ❌ Are you inactive? — *Це запитання про неактивність, а ви уточнюєте, чи їй страшно.*
+- ❌ You are afraid. — *Це повідомлення. Для запитання поставте `Are` перед `you`.*
 
 ---
 
 ## Інтро 3
 
-### `twins` — близнюки
+### Страх і необережність
 
-`twins` — «близнюки». `They are twins` — «Вони близнюки». Якщо ви з кимось схожі, але не близнюки, скажіть `We are not twins` — «Ми не близнюки». Не загубіть `not`, бо тоді самі підтвердите, що ви близнюки. Воно стоїть після `are` і не замінює його: у відповіді потрібні обидва слова.
+`careless` — «необережний, недбалий». Олег розмахує палицею поруч із людьми: `He is careless`. Це опис поведінки, не страху. На `Is he careless?` можна відповісти `Yes, he is`. А запитання `Who is careless?` просить назвати людину.
 
-**Гість приймає вас із другом за близнюків. Виправте його: «Ми не близнюки».**
+**Анна не бачила, хто розмахував палицею поруч із людьми. Як їй запитати, хто необережний?**
 
-- ✅ **We are not twins.**
-- ❌ We not twins. — *Слово `not` не замінює `are`: для цієї відповіді потрібні обидва — `We are not twins`.*
-- ❌ We are twins. — *Без `not` ви підтверджуєте: «Ми близнюки». А вам потрібно це заперечити.*
+- ✅ **Who is careless?**
+- ❌ Where is he? — *Це «Де він?», запитання про місце.*
+- ❌ Who careless? — *Після `Who` тут потрібно `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — strangers**
-<!-- interaction_id: en:lesson-02:session-34:i01; family: listen_choose -->
-Ціль: `strangers`
+**1 · Клуб кілька місяців нічого не проводить. Скажіть повною фразою, що він неактивний**
+<!-- interaction_id: en:lesson-02:session-34:i01; family: phrase_builder -->
+Плитки: `inactive` `is` `It` `are` → **It is inactive.**
+*(плитка `are` зайва: тут потрібно `is` — `It is inactive.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте фразу про Анну**
 <!-- interaction_id: en:lesson-02:session-34:i02; family: listen_choose -->
-Ціль: `strangers`
-Варіанти: `strangers` · `rangers` · `dangers`
-- rangers — *`Rangers` — «рейнджери». Послухайте початок слова: у записі `strangers`.*
-- dangers — *`Dangers` — «небезпеки». Послухайте початок слова: у записі `strangers`.*
+🔊 *She is afraid.* → **She is afraid.** · She is careless. · She is active.
+- She is careless. — *У записі останнє слово — `afraid`, а в цьому варіанті — `careless`.*
+- She is active. — *У записі останнє слово — `afraid`, а в цьому варіанті — `active`.*
 
+**3 · Уточніть, чи клуб зараз неактивний**
+<!-- interaction_id: en:lesson-02:session-34:i03; family: context_gap_grammar -->
+___ it inactive? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it inactive?`.*
 
-**3 · Картка слова — twins**
-<!-- interaction_id: en:lesson-02:session-34:i03; family: listen_choose -->
-Ціль: `twins`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-34:i04; family: speed_match -->
+inactive — неактивний · active — активний · afraid — боїться, наляканий · careless — необережний, недбалий
 
-**4 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-02:session-34:i04; family: listen_choose -->
-Ціль: `twins`
-Варіанти: `twins` · `tins` · `wins`
-- tins — *`Tins` — «бляшанки». Послухайте початок слова: у записі `twins`.*
-- wins — *`Wins` — «перемагає». Послухайте початок слова: у записі `twins`.*
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-34:i05; family: listen_build_dictation -->
+🔊 *No, she is not.* Плитки: `not` `is` `she` `No,` `Yes,` → **No, she is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, she is not.`)*
 
+**6 · Олег вийшов поговорити з організатором. Запитайте, де він**
+<!-- interaction_id: en:lesson-02:session-34:i06; family: phrase_builder -->
+Плитки: `he` `is` `Where` `Who` → **Where is he?**
+*(плитка `Who` зайва: тут потрібно `Where` — `Where is he?`)*
 
-**5 · Складіть фразу — друг запитує про двох людей біля паркану; скажіть: «Вони незнайомці»**
-<!-- interaction_id: en:lesson-02:session-34:i05; family: phrase_builder -->
-Ціль: `They are strangers.`
+**7 · Вам страшно йти в темряві. Коротко скажіть про це**
+<!-- interaction_id: en:lesson-02:session-34:i07; family: scripted_repeat_compare -->
+🎙 **I'm afraid.**
 
-**6 · Вставте слово — запитайте друга: «Хто ці люди?»**
-<!-- interaction_id: en:lesson-02:session-34:i06; family: context_gap_grammar -->
-Ціль: `Who are ___ people?`
-Варіанти: `these` · `this` · `they`
-- this — *Для «ці люди» потрібно `these people`. Слово `this` стосується когось або чогось одного.*
-- they — *Це «вони». Перед `people` тут потрібне слово «ці» — `these`.*
-
-
-**7 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-02:session-34:i07; family: listen_choose -->
-Ціль: `people`
-Варіанти: `people` · `pupil` · `purple`
-- pupil — *`Pupil` — «учень». Послухайте перший склад: у записі `people`.*
-- purple — *`Purple` — «фіолетовий». Послухайте перший склад: у записі `people`.*
-
-
-**8 · Вставте слово — двоє гостей виявилися близнюками; назвіть їхню спорідненість**
+**8 · Клуб давно не проводить зустрічей. На «Is it inactive?» доповніть коротку відповідь «так»**
 <!-- interaction_id: en:lesson-02:session-34:i08; family: context_gap_grammar -->
-Ціль: `They are ___ .`
-Варіанти: `twins` · `strangers` · `sure`
-- strangers — *Це «незнайомці». Тут потрібно назвати спорідненість — `twins`, «близнюки».*
-- sure — *Вийде «Вони впевнені». Це не відповідь про те, ким ці двоє доводяться одне одному.*
+Yes, it ___. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Відповідь — `Yes, it is`.*
 
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-34:i09; family: listen_choose -->
+🔊 *Who is careless?* → **Who is careless?** · Who is afraid? · Who is active?
+- Who is afraid? — *У записі останнє слово — `careless`, а в цьому варіанті — `afraid`.*
+- Who is active? — *У записі останнє слово — `careless`, а в цьому варіанті — `active`.*
 
-**9 · Складіть фразу — вас із другом прийняли за близнюків; скажіть: «Ми не близнюки»**
-<!-- interaction_id: en:lesson-02:session-34:i09; family: phrase_builder -->
-Ціль: `We are not twins.`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-34:i10; family: speed_match -->
+afraid — боїться, наляканий · inactive — неактивний · careless — необережний, недбалий · active — активний
 
-**10 · Вставте слово — друг перепитує, чи точно гості близнюки; скажіть: «Я впевнений»**
-<!-- interaction_id: en:lesson-02:session-34:i10; family: context_gap_grammar -->
-Ціль: `I am ___ .`
-Варіанти: `sure` · `twins` · `people`
-- twins — *Це «близнюки». Щоб сказати, що ви впевнені у відповіді, потрібне `sure`.*
-- people — *Це «люди». У цій фразі потрібне слово про вашу впевненість — `sure`.*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-34:i11; family: listen_build_dictation -->
+🔊 *They are not active.* Плитки: `active` `not` `are` `They` `is` → **They are not active.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not active.`)*
 
+**12 · Олег розмахує палицею поруч із людьми. Скажіть повною фразою, що він необережний**
+<!-- interaction_id: en:lesson-02:session-34:i12; family: phrase_builder -->
+Плитки: `careless` `is` `He` `are` → **He is careless.**
+*(плитка `are` зайва: тут потрібно `is` — `He is careless.`)*
 
-**11 · З’єднайте пари**
-<!-- interaction_id: en:lesson-02:session-34:i11; family: speed_match -->
-Пари: `these` — ці · `people` — люди · `guests` — гості · `sure` — упевнений
-Ціль: `these · people · guests · sure`
+**13 · У старому клубі немає зустрічей і заходів. Коротко скажіть, що він неактивний**
+<!-- interaction_id: en:lesson-02:session-34:i13; family: scripted_repeat_compare -->
+🎙 **It's inactive.**
 
-**12 · Послухайте й складіть — друг говорить про кількох гостей**
-<!-- interaction_id: en:lesson-02:session-34:i12; family: listen_build_dictation -->
-Ціль: `The guests are strangers.`
+**14 · Анна й Олег сказали, що їм зовсім не страшно. Повідомте, що вони не бояться**
+<!-- interaction_id: en:lesson-02:session-34:i14; family: context_gap_grammar -->
+They ___ not afraid. → **are** · am · is
+- am — *З `They` потрібно `are`.*
+- is — *Фраза — `They are not afraid`.*
 
-**13 · Вставте слово — ви показуєте на компанію біля паркану: «Хто ці люди?»**
-<!-- interaction_id: en:lesson-02:session-34:i13; family: context_gap_grammar -->
-Ціль: `Who are these ___ ?`
-Варіанти: `people` · `name` · `host`
-- name — *Це «ім’я». У питанні про цих людей потрібне `people`.*
-- host — *Це один господар. Ви запитуєте про кількох людей — `these people`.*
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-34:i15; family: listen_choose -->
+🔊 *Is he afraid?* → **Is he afraid?** · Is he careless? · Is he inactive?
+- Is he careless? — *У записі останнє слово — `afraid`, а в цьому варіанті — `careless`.*
+- Is he inactive? — *У записі останнє слово — `afraid`, а в цьому варіанті — `inactive`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-34:i16; family: speed_match -->
+active — активний · careless — необережний, недбалий · inactive — неактивний · afraid — боїться, наляканий
 
-**14 · Складіть фразу — друг запитує, чи знайомі близнюки з господарем; ви не знаєте й чесно кажете, що не впевнені**
-<!-- interaction_id: en:lesson-02:session-34:i14; family: phrase_builder -->
-Ціль: `I am not sure.`
-
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-34:i15; family: scripted_repeat_compare -->
-Ціль: `Are you twins?`
-
-**16 · Послухайте й складіть — друг упізнав двох гостей і звертається до них**
-<!-- interaction_id: en:lesson-02:session-34:i16; family: listen_build_dictation -->
-Ціль: `You are twins.`
-
-**17 · Складіть фразу — у сад вийшла ще одна компанія; дізнайтеся в друга, хто ці люди**
-<!-- interaction_id: en:lesson-02:session-34:i17; family: phrase_builder -->
-Ціль: `Who are these people?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=speed_match, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=phrase_builder
+**17 · Олег зупинився перед темною стежкою. Запитайте його, чи він боїться**
+<!-- interaction_id: en:lesson-02:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Are you afraid?**
 

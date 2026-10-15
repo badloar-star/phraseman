@@ -27,7 +27,8 @@ import V2Backdrop from '../components/v2/V2Backdrop';
 import { V2GlassSheen, useV2GlassStyle } from '../components/v2/V2Glass';
 import V2Pressable from '../components/v2/V2Pressable';
 import { useV2Palette } from '../components/v2/useV2Palette';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
+import { formatCoinsForLang, missingCoinsWord } from './coin_number_format';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import {
@@ -152,8 +153,8 @@ function useCoinBalance(): CoinBalanceProjection {
   return { balance: devBalance ?? balance, ownerKey, forceBalanceReconcile };
 }
 
-function formatCoins(value: number): string {
-  return Math.max(0, Math.trunc(value)).toLocaleString('ru-RU').replace(/\u00a0/g, ' ');
+function formatCoins(value: number, lang: Lang): string {
+  return formatCoinsForLang(value, lang);
 }
 
 export default function CoinRankScreen() {
@@ -198,8 +199,9 @@ export default function CoinRankScreen() {
   // португальский и остальные видели экран по-английски. Теперь все 9 языков интерфейса.
   // зачем: паритет с макетом coins.html PAY-01 — заголовок «Повысить ранг», тексты состояний дословно;
   // для языков без отдельного перевода берём английский (как в тостах ниже).
-  const tl = (ru: string, uk: string, en: string, es: string) => triLang(lang, {
-    ru, uk, en, es, 'pt-BR': en, vi: en, id: en, tr: en, pl: en,
+  // зачем (координатор 15.10, R54): у pt-BR/vi/id/tr/pl были английские подписи — теперь свой перевод для каждого из 9 языков.
+  const tl = (ru: string, uk: string, en: string, es: string, ptBR: string, vi: string, id: string, tr: string, pl: string) => triLang(lang, {
+    ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl,
   });
   // зачем (coins-005): карточки с кромкой GlassRim (светлая линия сверху + кольцо) — токены темы.
   const copy = useMemo(() => ({
@@ -211,15 +213,15 @@ export default function CoinRankScreen() {
     balance: triLang(lang, { ru: 'Твой баланс', uk: 'Твій баланс', en: 'Your balance', es: 'Tu saldo', 'pt-BR': 'Seu saldo', vi: 'Số dư của bạn', id: 'Saldo kamu', tr: 'Bakiyen', pl: 'Twoje saldo' }),
     coins: triLang(lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' }),
     cost: triLang(lang, { ru: 'Стоимость повышения', uk: 'Вартість підвищення', en: 'Upgrade cost', es: 'Coste de la mejora', 'pt-BR': 'Custo da promoção', vi: 'Chi phí nâng hạng', id: 'Biaya naik peringkat', tr: 'Yükseltme bedeli', pl: 'Koszt awansu' }),
-    costNote: tl('Монеты списываются один раз', 'Монети списуються один раз', 'Coins are charged once', 'Las monedas se descuentan una vez'),
+    costNote: tl('Монеты списываются один раз', 'Монети списуються один раз', 'Coins are charged once', 'Las monedas se descuentan una vez', 'As moedas são descontadas uma vez', 'Xu chỉ bị trừ một lần', 'Koin dipotong sekali', 'Jetonlar bir kez düşülür', 'Monety są pobierane jednorazowo'),
     upgrade: triLang(lang, { ru: 'Повысить ранг', uk: 'Підвищити ранг', en: 'Upgrade rank', es: 'Subir de rango', 'pt-BR': 'Subir de rank', vi: 'Nâng hạng', id: 'Naik peringkat', tr: 'Rütbeyi yükselt', pl: 'Awansuj' }),
-    upgradeFor: tl('Повысить за', 'Підвищити за', 'Upgrade for', 'Subir por'),
-    ceremonyNote: tl('Церемония начнётся только после подтверждённого повышения.', 'Церемонія почнеться лише після підтвердженого підвищення.', 'The ceremony starts only after the upgrade is confirmed.', 'La ceremonia empieza solo tras confirmar la mejora.'),
-    shortTitle: tl('Не хватает', 'Не вистачає', 'Missing', 'Faltan'),
-    shortNote: tl('Продолжай практику. Покупка монет за деньги не предлагается.', 'Продовжуй практику. Купівля монет за гроші не пропонується.', 'Keep practicing. Buying coins for money is not offered.', 'Sigue practicando. No se ofrece comprar monedas con dinero.'),
-    pendingTitle: tl('Проверяем повышение', 'Перевіряємо підвищення', 'Checking the upgrade', 'Comprobando la mejora'),
-    pendingNote: tl('Не закрывай приложение. Повторный тап не создаёт новое списание.', 'Не закривай застосунок. Повторний дотик не створює нового списання.', 'Do not close the app. Tapping again will not charge twice.', 'No cierres la app. Volver a tocar no genera otro cargo.'),
-    pendingCta: tl('Повышение проверяется…', 'Підвищення перевіряється…', 'Upgrade is being checked…', 'Comprobando la mejora…'),
+    upgradeFor: tl('Повысить за', 'Підвищити за', 'Upgrade for', 'Subir por', 'Subir por', 'Nâng hạng với', 'Naik dengan', 'Yükselt:', 'Awansuj za'),
+    ceremonyNote: tl('Церемония начнётся только после подтверждённого повышения.', 'Церемонія почнеться лише після підтвердженого підвищення.', 'The ceremony starts only after the upgrade is confirmed.', 'La ceremonia empieza solo tras confirmar la mejora.', 'A celebração começa só depois da promoção confirmada.', 'Lễ mừng chỉ bắt đầu sau khi nâng hạng được xác nhận.', 'Perayaan dimulai setelah kenaikan dikonfirmasi.', 'Kutlama ancak yükseltme onaylanınca başlar.', 'Świętowanie zacznie się dopiero po potwierdzeniu awansu.'),
+    shortTitle: tl('Не хватает', 'Не вистачає', 'Missing', 'Faltan', 'Faltam', 'Còn thiếu', 'Kurang', 'Eksik:', 'Brakuje'),
+    shortNote: tl('Продолжай практику. Покупка монет за деньги не предлагается.', 'Продовжуй практику. Купівля монет за гроші не пропонується.', 'Keep practicing. Buying coins for money is not offered.', 'Sigue practicando. No se ofrece comprar monedas con dinero.', 'Continue praticando. Não vendemos moedas por dinheiro.', 'Hãy tiếp tục luyện tập. Không bán xu bằng tiền.', 'Terus berlatih. Koin tidak dijual dengan uang.', 'Pratiğe devam et. Jeton parayla satılmaz.', 'Ćwicz dalej. Monet nie da się kupić za pieniądze.'),
+    pendingTitle: tl('Проверяем повышение', 'Перевіряємо підвищення', 'Checking the upgrade', 'Comprobando la mejora', 'Verificando a promoção', 'Đang kiểm tra nâng hạng', 'Memeriksa kenaikan', 'Yükseltme kontrol ediliyor', 'Sprawdzamy awans'),
+    pendingNote: tl('Не закрывай приложение. Повторный тап не создаёт новое списание.', 'Не закривай застосунок. Повторний дотик не створює нового списання.', 'Do not close the app. Tapping again will not charge twice.', 'No cierres la app. Volver a tocar no genera otro cargo.', 'Não feche o app. Tocar de novo não cobra outra vez.', 'Đừng đóng ứng dụng. Chạm lại sẽ không bị trừ lần nữa.', 'Jangan tutup aplikasi. Mengetuk lagi tidak memotong dua kali.', 'Uygulamayı kapatma. Tekrar dokunmak ikinci kez düşmez.', 'Nie zamykaj aplikacji. Ponowne dotknięcie nie pobierze drugi raz.'),
+    pendingCta: tl('Повышение проверяется…', 'Підвищення перевіряється…', 'Upgrade is being checked…', 'Comprobando la mejora…', 'Verificando a promoção…', 'Đang kiểm tra nâng hạng…', 'Memeriksa kenaikan…', 'Yükseltme kontrol ediliyor…', 'Sprawdzamy awans…'),
     max: triLang(lang, { ru: 'Достигнут максимальный ранг', uk: 'Досягнуто максимального рангу', en: 'Maximum rank reached', es: 'Has alcanzado el rango máximo', 'pt-BR': 'Rank máximo alcançado', vi: 'Đã đạt hạng cao nhất', id: 'Peringkat maksimum tercapai', tr: 'En yüksek rütbeye ulaşıldı', pl: 'Osiągnięto najwyższą rangę' }),
   }), [lang]);
 
@@ -230,18 +232,15 @@ export default function CoinRankScreen() {
     ru: string,
     uk: string,
     en: string,
+    es: string,
+    ptBR: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
   ) => {
-    emitAppEvent('action_toast', actionToastTri(type, {
-      ru,
-      uk,
-      en,
-      es: en,
-      'pt-BR': en,
-      vi: en,
-      id: en,
-      tr: en,
-      pl: en,
-    }));
+    // зачем (координатор 15.10, R54): тосты es/pt-BR/vi/id/tr/pl были английскими — у каждого языка свой текст.
+    emitAppEvent('action_toast', actionToastTri(type, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl }));
   }, []);
 
   const handleUpgrade = useCallback(async () => {
@@ -277,7 +276,7 @@ export default function CoinRankScreen() {
     if (result.ok) {
       if (result.status === 'upgraded') return;
       if (result.status === 'already_applied') {
-        showToast('info', 'Ранг уже повышен. Баланс повторно не списан.', 'Ранг уже підвищено. Баланс повторно не списано.', 'Rank already upgraded. No second charge was made.');
+        showToast('info', 'Ранг уже повышен. Баланс повторно не списан.', 'Ранг уже підвищено. Баланс повторно не списано.', 'Rank already upgraded. No second charge was made.', 'El rango ya se subió. No se cobró de nuevo.', 'O rank já foi promovido. Nada foi cobrado de novo.', 'Đã nâng hạng rồi. Không bị trừ lần nữa.', 'Peringkat sudah naik. Tidak ada potongan kedua.', 'Rütbe zaten yükseltildi. Jeton tekrar düşülmedi.', 'Ranga już podniesiona. Nie pobrano drugi raz.');
       }
       return;
     }
@@ -290,28 +289,28 @@ export default function CoinRankScreen() {
         if (quality === 'durable') {
           reconciliationBlockedRef.current = false;
           setBalanceReconciling(false);
-          showToast('warning', 'Монет недостаточно. Баланс проверен и обновлён.', 'Монет недостатньо. Баланс перевірено й оновлено.', 'Not enough coins. Your balance was verified and refreshed.');
+          showToast('warning', 'Монет недостаточно. Баланс проверен и обновлён.', 'Монет недостатньо. Баланс перевірено й оновлено.', 'Not enough coins. Your balance was verified and refreshed.', 'No tienes suficientes monedas. Revisamos y actualizamos tu saldo.', 'Moedas insuficientes. Seu saldo foi verificado e atualizado.', 'Không đủ xu. Số dư đã được kiểm tra và cập nhật.', 'Koin tidak cukup. Saldo sudah dicek dan diperbarui.', 'Yeterli jeton yok. Bakiyen kontrol edilip güncellendi.', 'Za mało monet. Saldo sprawdzone i odświeżone.');
         } else {
           setBalanceReconciling(false);
-          showToast('error', 'Не удалось подтвердить баланс. Повышение заблокировано.', 'Не вдалося підтвердити баланс. Підвищення заблоковано.', 'Could not verify the balance. Upgrading is disabled.');
+          showToast('error', 'Не удалось подтвердить баланс. Повышение заблокировано.', 'Не вдалося підтвердити баланс. Підвищення заблоковано.', 'Could not verify the balance. Upgrading is disabled.', 'No pudimos comprobar tu saldo. La mejora está bloqueada.', 'Não foi possível verificar seu saldo. A promoção está bloqueada.', 'Không kiểm tra được số dư. Tạm khóa nâng hạng.', 'Saldo tidak bisa dicek. Kenaikan peringkat diblokir.', 'Bakiye doğrulanamadı. Yükseltme engellendi.', 'Nie udało się sprawdzić salda. Awans zablokowany.');
         }
         return;
       }
       case 'stale_rank':
-        showToast('info', 'Ранг изменился. Данные на экране обновлены.', 'Ранг змінився. Дані на екрані оновлено.', 'Your rank changed. The screen has been refreshed.');
+        showToast('info', 'Ранг изменился. Данные на экране обновлены.', 'Ранг змінився. Дані на екрані оновлено.', 'Your rank changed. The screen has been refreshed.', 'Tu rango cambió. Actualizamos la pantalla.', 'Seu rank mudou. A tela foi atualizada.', 'Hạng đã thay đổi. Màn hình đã được cập nhật.', 'Peringkatmu berubah. Layar sudah diperbarui.', 'Rütben değişti. Ekran güncellendi.', 'Twoja ranga się zmieniła. Ekran odświeżony.');
         return;
       case 'max_rank':
-        showToast('info', 'Максимальный ранг уже достигнут.', 'Максимального рангу вже досягнуто.', 'Maximum rank is already reached.');
+        showToast('info', 'Максимальный ранг уже достигнут.', 'Максимального рангу вже досягнуто.', 'Maximum rank is already reached.', 'Ya alcanzaste el rango máximo.', 'Você já alcançou o rank máximo.', 'Bạn đã đạt hạng cao nhất.', 'Kamu sudah mencapai peringkat tertinggi.', 'En yüksek rütbeye zaten ulaştın.', 'Masz już najwyższą rangę.');
         return;
       case 'identity_changed':
-        showToast('error', 'Аккаунт изменился. Повышение не выполнено.', 'Акаунт змінився. Підвищення не виконано.', 'The account changed. The upgrade was not performed.');
+        showToast('error', 'Аккаунт изменился. Повышение не выполнено.', 'Акаунт змінився. Підвищення не виконано.', 'The account changed. The upgrade was not performed.', 'La cuenta cambió. No se subió de rango.', 'A conta mudou. A promoção não foi feita.', 'Tài khoản đã thay đổi. Chưa nâng hạng.', 'Akun berubah. Peringkat tidak dinaikkan.', 'Hesap değişti. Yükseltme yapılmadı.', 'Konto się zmieniło. Awans nie został wykonany.');
         return;
       case 'invalid_rank':
       case 'state_corrupt':
-        showToast('error', 'Данные ранга повреждены. Монеты не списаны.', 'Дані рангу пошкоджено. Монети не списано.', 'Rank data is invalid. No coins were charged.');
+        showToast('error', 'Данные ранга повреждены. Монеты не списаны.', 'Дані рангу пошкоджено. Монети не списано.', 'Rank data is invalid. No coins were charged.', 'Los datos del rango no son válidos. No se cobraron monedas.', 'Os dados do rank são inválidos. Nenhuma moeda foi cobrada.', 'Dữ liệu hạng không hợp lệ. Chưa trừ xu.', 'Data peringkat tidak valid. Koin tidak dipotong.', 'Rütbe bilgisi geçersiz. Jeton düşülmedi.', 'Dane rangi są błędne. Nie pobrano monet.');
         return;
       case 'failed':
-        showToast('error', 'Не удалось повысить ранг. Монеты не списаны.', 'Не вдалося підвищити ранг. Монети не списано.', 'Could not upgrade the rank. No coins were charged.');
+        showToast('error', 'Не удалось повысить ранг. Монеты не списаны.', 'Не вдалося підвищити ранг. Монети не списано.', 'Could not upgrade the rank. No coins were charged.', 'No se pudo subir de rango. No se cobraron monedas.', 'Não foi possível subir de rank. Nenhuma moeda foi cobrada.', 'Không nâng hạng được. Chưa trừ xu.', 'Gagal naik peringkat. Koin tidak dipotong.', 'Rütbe yükseltilemedi. Jeton düşülmedi.', 'Nie udało się awansować. Nie pobrano monet.');
         return;
     }
   }, [balance, balanceReconciling, canUpgrade, forceBalanceReconcile, next, rank, rankBinding, showToast, upgrade, upgrading]);
@@ -331,7 +330,7 @@ export default function CoinRankScreen() {
         ? copy.max
         : short
           ? copy.upgrade
-          : `${copy.upgradeFor} ${formatCoins(next!.priceToReach)}`;
+          : `${copy.upgradeFor} ${formatCoins(next!.priceToReach, lang)}`;
   const visibleCeremony = isCoinRankCeremonyBindingCurrent(
     ceremony,
     rankBinding,
@@ -428,7 +427,7 @@ export default function CoinRankScreen() {
               </View>
               <View style={[styles.pricePill, { backgroundColor: p.control }]}>
                 <Image source={current.source} contentFit="contain" style={styles.priceCoin} accessible={false} />
-                <Text testID="coin-rank-next-title" style={[styles.priceText, { color: p.text }]}>{formatCoins(next.priceToReach)}</Text>
+                <Text testID="coin-rank-next-title" style={[styles.priceText, { color: p.text }]}>{formatCoins(next.priceToReach, lang)}</Text>
               </View>
             </View>
             <View style={[styles.divider, { backgroundColor: p.divider }]} />
@@ -436,7 +435,7 @@ export default function CoinRankScreen() {
               {/* зачем (сверка coins-005, coins.html `.flex > .grow + .value`): подпись растягивается, значение прижато к правому краю */}
               <Text style={[styles.costTitle, styles.costTitleGrow, { color: p.text }]}>{copy.balance}</Text>
               <Text testID="coin-rank-balance" style={[styles.balanceValue, { color: p.textSecondary }]}>
-                {balance === null ? '—' : formatCoins(balance)}
+                {balance === null ? '—' : formatCoins(balance, lang)}
               </Text>
             </View>
           </View>
@@ -471,7 +470,7 @@ export default function CoinRankScreen() {
             {/* зачем (сверка coins-005): в макете замок маленький серый у первой строки, а не крупный белый по центру */}
             <Ionicons name="lock-closed" size={18} color={p.textSecondary} style={styles.statusIcon} />
             <View style={styles.statusCopy}>
-              <Text style={[styles.statusTitle, { color: p.text }]}>{`${copy.shortTitle} ${formatCoins(missing!)} ${copy.coins}`}</Text>
+              <Text style={[styles.statusTitle, { color: p.text }]}>{`${copy.shortTitle} ${formatCoins(missing!, lang)} ${missingCoinsWord(lang, missing!)}`}</Text>
               <Text style={[styles.statusNote, { color: p.textSecondary }]}>{copy.shortNote}</Text>
             </View>
           </View>

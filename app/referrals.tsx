@@ -872,15 +872,15 @@ export default function ReferralsScreen() {
           title={L('Ключ получен!', 'Ключ отримано!', 'Key received!', '¡Llave conseguida!', 'Chave recebida!', 'Đã nhận chìa khóa!', 'Kunci diperoleh!', 'Anahtar alındı!', 'Klucz zdobyty!')}
           subtitle={rewardCelebration
             ? L(
-              `${rewardCelebration.name} оформил Plus — забирай ключ и крути награду.`,
-              `${rewardCelebration.name} оформив Plus — забирай ключ і крути нагороду.`,
-              `${rewardCelebration.name} got Plus — grab your key and spin for a reward.`,
-              `${rewardCelebration.name} activó Plus: recoge tu llave y gira la recompensa.`,
-              `${rewardCelebration.name} ativou o Plus — pegue sua chave e gire a recompensa.`,
-              `${rewardCelebration.name} đã mua Plus — hãy nhận chìa khóa và quay thưởng.`,
-              `${rewardCelebration.name} membeli Plus — ambil kuncimu dan putar hadiah.`,
-              `${rewardCelebration.name} Plus satın aldı — anahtarını al ve ödülü çevir.`,
-              `${rewardCelebration.name} kupił Plus — odbierz klucz i zakręć nagrodą.`,
+              `У ${rewardCelebration.name} теперь Plus — забирай ключ и награду.`,
+              `У ${rewardCelebration.name} тепер Plus — забирай ключ і нагороду.`,
+              `${rewardCelebration.name} now has Plus — grab your key and your reward.`,
+              `${rewardCelebration.name} ya tiene Plus: recoge tu llave y tu recompensa.`,
+              `${rewardCelebration.name} agora tem Plus — pegue sua chave e sua recompensa.`,
+              `${rewardCelebration.name} đã có Plus — hãy nhận chìa khóa và phần thưởng.`,
+              `${rewardCelebration.name} sekarang punya Plus — ambil kunci dan hadiahmu.`,
+              `${rewardCelebration.name} artık Plus kullanıyor — anahtarını ve ödülünü al.`,
+              `${rewardCelebration.name} ma już Plus — odbierz klucz i nagrodę.`,
             )
             : ''}
           ctaLabel={L('Забрать награду', 'Забрати нагороду', 'Claim the reward', 'Recibir recompensa', 'Receber recompensa', 'Nhận thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę')}

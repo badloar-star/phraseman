@@ -25,7 +25,8 @@ import V2Backdrop from '../components/v2/V2Backdrop';
 import { V2GlassSheen, useV2GlassStyle } from '../components/v2/V2Glass';
 import V2Pressable from '../components/v2/V2Pressable';
 import { useV2Palette } from '../components/v2/useV2Palette';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
+import { formatCoinsForLang } from './coin_number_format';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useMyCoinRankBinding } from '../hooks/use_my_coin_rank';
@@ -38,8 +39,8 @@ import { getDevCoinBalanceOverride } from './dev_coin_rank';
 const COUNT_PULSE_MS = 700;
 const COUNT_PULSE_EASE = Easing.bezier(0.2, 1.25, 0.4, 1);
 
-function formatCoins(value: number): string {
-  return Math.max(0, Math.trunc(value)).toLocaleString('ru-RU').replace(/ /g, ' ');
+function formatCoins(value: number, lang: Lang): string {
+  return formatCoinsForLang(value, lang);
 }
 
 export default function RunesWalletScreen() {
@@ -93,18 +94,18 @@ export default function RunesWalletScreen() {
   const goBack = useCallback(() => safeRouterBack(router), [router]);
   const openRank = useCallback(() => router.push('/coin_rank' as never), [router]);
 
-  // для языков без отдельного перевода берём английский (как на экране повышения ранга)
-  const tl = (ru: string, uk: string, en: string, es: string) => triLang(lang, {
-    ru, uk, en, es, 'pt-BR': en, vi: en, id: en, tr: en, pl: en,
+  // зачем (координатор 15.10, R54): у pt-BR/vi/id/tr/pl были английские подписи — теперь свой перевод для каждого из 9 языков.
+  const tl = (ru: string, uk: string, en: string, es: string, ptBR: string, vi: string, id: string, tr: string, pl: string) => triLang(lang, {
+    ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl,
   });
   const title = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jetonlar', pl: 'Monety' });
-  const balanceCaption = tl('баланс монет', 'баланс монет', 'coin balance', 'saldo de monedas');
-  const rankLabel = tl('Текущий ранг', 'Поточний ранг', 'Current rank', 'Rango actual');
-  const rankWord = tl('ранг', 'ранг', 'rank', 'rango');
-  const untilNext = tl('До следующего повышения', 'До наступного підвищення', 'Until the next upgrade', 'Hasta la siguiente mejora');
-  const startPractice = tl('Начни практику', 'Почни практику', 'Start practicing', 'Empieza a practicar');
-  const earnedTitle = tl('Получено за всё время', 'Отримано за весь час', 'Received all-time', 'Recibido en total');
-  const earnedNote = tl('Локальная история начислений', 'Локальна історія нарахувань', 'Local accrual history', 'Historial local de abonos');
+  const balanceCaption = tl('баланс монет', 'баланс монет', 'coin balance', 'saldo de monedas', 'saldo de moedas', 'số dư xu', 'saldo koin', 'jeton bakiyesi', 'saldo monet');
+  const rankLabel = tl('Текущий ранг', 'Поточний ранг', 'Current rank', 'Rango actual', 'Rank atual', 'Hạng hiện tại', 'Peringkat saat ini', 'Mevcut rütbe', 'Obecna ranga');
+  const rankWord = tl('ранг', 'ранг', 'rank', 'rango', 'rank', 'hạng', 'peringkat', 'rütbe', 'ranga');
+  const untilNext = tl('До следующего повышения', 'До наступного підвищення', 'Until the next upgrade', 'Hasta la siguiente mejora', 'Até a próxima promoção', 'Đến lần nâng hạng tiếp theo', 'Menuju kenaikan berikutnya', 'Sonraki yükselişe kadar', 'Do następnego awansu');
+  const startPractice = tl('Начни практику', 'Почни практику', 'Start practicing', 'Empieza a practicar', 'Comece a praticar', 'Bắt đầu luyện tập', 'Mulai berlatih', 'Pratiğe başla', 'Zacznij ćwiczyć');
+  const earnedTitle = tl('Получено за всё время', 'Отримано за весь час', 'Received all-time', 'Recibido en total', 'Recebido no total', 'Đã nhận từ trước đến nay', 'Diterima sepanjang waktu', 'Toplam kazanılan', 'Otrzymano łącznie');
+  const earnedNote = tl('История начислений', 'Історія нарахувань', 'Earnings history', 'Historial de monedas', 'Histórico de moedas', 'Lịch sử nhận xu', 'Riwayat koin', 'Jeton geçmişi', 'Historia monet');
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
 
   // зачем (макет PAY-02): ранг и цена следующего берутся из единой таблицы, ничего не считаем сами.
@@ -161,7 +162,7 @@ export default function RunesWalletScreen() {
               <View style={{ width: coinSize, height: coinSize }} />
             )}
             <Animated.Text style={[styles.balance, { color: p.text, transform: [{ scale: bumpScale }] }]}>
-              {formatCoins(shownWallet.balance)}
+              {formatCoins(shownWallet.balance, lang)}
             </Animated.Text>
             <Text style={[styles.caption, { color: p.textSecondary }]}>{balanceCaption}</Text>
           </View>
@@ -192,7 +193,7 @@ export default function RunesWalletScreen() {
                 </View>
                 <View style={styles.rankFoot}>
                   <Text style={[styles.footText, { color: p.textSecondary }]}>{isZero ? startPractice : untilNext}</Text>
-                  <Text style={[styles.footText, { color: p.textSecondary }]}>{isZero ? '—' : formatCoins(remaining)}</Text>
+                  <Text style={[styles.footText, { color: p.textSecondary }]}>{isZero ? '—' : formatCoins(remaining, lang)}</Text>
                 </View>
               </>
             ) : null}
@@ -207,7 +208,7 @@ export default function RunesWalletScreen() {
               <Text style={[styles.earnedTitle, { color: p.text }]}>{earnedTitle}</Text>
               <Text style={[styles.earnedNote, { color: p.textSecondary }]}>{earnedNote}</Text>
             </View>
-            <Text testID="runes-wallet-earned" style={[styles.earnedValue, { color: p.textSecondary }]}>{formatCoins(shownWallet.earnedTotal)}</Text>
+            <Text testID="runes-wallet-earned" style={[styles.earnedValue, { color: p.textSecondary }]}>{formatCoins(shownWallet.earnedTotal, lang)}</Text>
           </View>
         </ScrollView>
       </ContentWrap>

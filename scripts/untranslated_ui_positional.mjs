@@ -9,10 +9,11 @@
  */
 
 const POSITIONAL_HELPERS = Object.freeze([
-  // tl(ru, uk, en, es): en — третий аргумент.
-  { name: 'tl', minArgs: 3, maxArgs: 4, enIndex: (count) => 2 },
-  // showToast(type, ru, en) или showToast(type, ru, uk, en): en — последний аргумент.
-  { name: 'showToast', minArgs: 3, maxArgs: 4, enIndex: (count) => count - 1 },
+  // tl(ru, uk, en, es) и полная форма tl(ru, uk, en, es, pt-BR, vi, id, tr, pl) (переводчик 15.10, R54): en — третий аргумент.
+  { name: 'tl', minArgs: 3, maxArgs: 9, enIndex: (count) => 2 },
+  // showToast(type, ru, en), showToast(type, ru, uk, en): en — последний; полная форма showToast(type, ru, uk, en, es, pt-BR, vi, id, tr, pl)
+  // (переводчик 15.10, R54): en — четвёртый.
+  { name: 'showToast', minArgs: 3, maxArgs: 10, enIndex: (count) => (count >= 10 ? 3 : count - 1) },
 ]);
 
 const CALL_START = /(^|[^A-Za-z0-9_$])(tl|showToast)\s*\(/g;

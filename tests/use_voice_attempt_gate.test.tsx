@@ -50,6 +50,16 @@ test('лимит исчерпан: тап не стартует запись и 
   expect(mockTrack).toHaveBeenCalledWith('paywall_shown', { context: 'ai_voice_input', source: 'lesson_speaking' });
 });
 
+test('двойной тап по исчерпанному лимиту: один пейвол и одно событие (дребезг пальца 600 мс)', async () => {
+  mockGate.mockReturnValue(false);
+  mockAllowance = { kind: 'limited', remaining: 0, exhausted: true, limit: 3 };
+  const { result } = await mount();
+  expect(result.current.canStartAttempt()).toBe(false);
+  expect(result.current.canStartAttempt()).toBe(false);
+  expect(mockPush).toHaveBeenCalledTimes(1);
+  expect(mockTrack).toHaveBeenCalledTimes(1);
+});
+
 test('старт записи списывает попытку своей поверхности; каждая запись получает свой ключ', async () => {
   const { result } = await mount();
   result.current.commitStartedAttempt();

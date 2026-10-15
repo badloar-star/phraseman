@@ -35,17 +35,27 @@ export type VoiceAttemptGate = Readonly<{
   tryStartAttempt: () => boolean;
 }>;
 
+const PAYWALL_DEBOUNCE_MS = 600;
+
 export function useVoiceAttemptGate(input: Readonly<{ surface: VoiceAllowanceSurface; source: PaywallSource }>): VoiceAttemptGate {
   const { surface, source } = input;
   const router = useRouter();
   const { accessResolved, hasPremiumAccess } = usePremium();
   const allowance = useVoiceDailyAllowance();
   const seqRef = useRef(0);
+  // зачем (аудит Optimistic UI 15.10): два быстрых тапа по исчерпанному микрофону открывали два пейвола и слали два `paywall_shown` — тот же дребезг, что гасит useGuardedNav (600 мс)
+  const lastPaywallAtRef = useRef(Number.NEGATIVE_INFINITY);
   const locked = allowance.kind === 'limited' && allowance.exhausted;
 
   const canStartAttempt = useCallback((): boolean => {
     const allowed = voiceDailyAllowanceGate(surface, { accessResolved, hasPremiumAccess });
     if (!allowed) {
+      const now = Date.now();
+      if (now - lastPaywallAtRef.current < PAYWALL_DEBOUNCE_MS) {
+        console.log(`[VOICE-GATE] ${surface}: лимит исчерпан, повторный тап ${now - lastPaywallAtRef.current} мс после пейвола — игнор`); // guard-ok: ранний выход называет причину
+        return false;
+      }
+      lastPaywallAtRef.current = now;
       console.log(`[VOICE-GATE] ${surface}: лимит исчерпан → пейвол ${VOICE_LIMIT_PAYWALL_CONTEXT} source=${source}`); // guard-ok: ветка решения называет значение
       void trackEvent('paywall_shown', { context: VOICE_LIMIT_PAYWALL_CONTEXT, source });
       // литерал контекста — для сторожа точек входа пейвола; значение то же, что VOICE_LIMIT_PAYWALL_CONTEXT, источник типизирован PaywallSource

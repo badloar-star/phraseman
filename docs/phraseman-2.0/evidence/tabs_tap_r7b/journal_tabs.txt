@@ -1,0 +1,28 @@
+10-15 07:23:52.946 I/SVERKA  ( 7025): === TABS start 07:24:32 ===
+10-15 07:23:53.008 I/SVERKA  ( 7028): === TABS switch 1 tab-lessons 07:24:32 ===
+10-15 07:23:53.821 W/ReactNativeJS( 6795): [JS-STALL] heartbeat +40756ms splash=hidden@+4152ms
+10-15 07:23:55.416 I/ReactNativeJS( 6795): [PAYWALL-CLOSE-FREEZE] t=35415 tab_tap requested=1 active=0 page=0
+10-15 07:23:55.426 I/ReactNativeJS( 6795): [TAP-LAT] [TABS-RENDER] #10 t=35426 changed=activeIdx:0→1 visualIdx:0→1 physicalPageIdx:0→1
+10-15 07:23:55.738 I/ReactNativeJS( 6795): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":43338,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 07:23:55.748 I/ReactNativeJS( 6795): [TAP-LAT] [TABS-RENDER] #11 t=35747 changed=none (parent/context)
+10-15 07:23:55.830 I/ReactNativeJS( 6795): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#BVAKGg*[(tabs)#FNGjRY*]","atMs":43439}'
+10-15 07:23:55.838 W/ReactNativeJS( 6795): [JS-STALL] +42774ms поток стоял 507ms (с +42267ms)
+10-15 07:23:56.380 W/ReactNativeJS( 6795): [JS-STALL] +43316ms поток стоял 538ms (с +42778ms)
+10-15 07:23:58.877 W/ReactNativeJS( 6795): [JS-STALL] heartbeat +45813ms splash=hidden@+4152ms
+10-15 07:23:59.820 I/SVERKA  ( 7070): === TABS switch 1 tab-settings 07:24:39 ===
+10-15 07:24:03.925 W/ReactNativeJS( 6795): [JS-STALL] heartbeat +50861ms splash=hidden@+4152ms
+10-15 07:24:08.987 W/ReactNativeJS( 6795): [JS-STALL] heartbeat +55923ms splash=hidden@+4152ms
+10-15 07:24:13.121 W/ReactNativeJS( 6795): [JS-STALL] watchdog stop +60057ms
+10-15 07:24:15.730 I/SVERKA  ( 7105): === TABS switch 1 tab-home 07:24:55 ===
+10-15 07:24:31.773 I/SVERKA  ( 7132): === TABS switch 2 tab-lessons 07:25:11 ===
+10-15 07:24:47.840 I/SVERKA  ( 7161): === TABS switch 2 tab-settings 07:25:27 ===
+10-15 07:25:03.715 I/SVERKA  ( 7191): === TABS switch 2 tab-home 07:25:43 ===
+10-15 07:25:36.179 I/SVERKA  ( 7250): === TABS paywall 1 open-tap 07:26:16 ===
+10-15 07:25:53.212 I/SVERKA  ( 7281): === TABS paywall 1 close-tap 07:26:33 ===
+10-15 07:26:09.361 I/SVERKA  ( 7319): === TABS paywall 1 tab-tap 07:26:49 ===
+10-15 07:26:41.753 I/SVERKA  ( 7381): === TABS paywall 2 open-tap 07:27:21 ===
+10-15 07:26:58.864 I/SVERKA  ( 7421): === TABS paywall 2 close-tap 07:27:38 ===
+10-15 07:27:15.133 I/SVERKA  ( 7474): === TABS paywall 2 tab-tap 07:27:55 ===
+10-15 07:27:47.484 I/SVERKA  ( 7537): === TABS paywall 3 open-tap 07:28:27 ===
+10-15 07:28:04.613 I/SVERKA  ( 7567): === TABS paywall 3 close-tap 07:28:44 ===
+10-15 07:28:21.005 I/SVERKA  ( 7606): === TABS paywall 3 tab-tap 07:29:00 ===

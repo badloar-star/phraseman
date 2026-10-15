@@ -1,0 +1,281 @@
+10-15 07:20:33.677 I/ReactNativeJS( 6035): '[PERF-R1-MOUNT]', '{"tag":"home_host","inst":2,"event":"render","at":2711}'
+10-15 07:20:33.713 I/ReactNativeJS( 6035): '[PERF-R1-MOUNT]', '{"tag":"probe:home","inst":1,"event":"render","at":2747}'
+10-15 07:20:33.962 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"home","n":1,"phase":"mount","actualMs":185,"baseMs":153,"startedAtMs":4198060,"commitAtMs":4198328}'
+10-15 07:20:33.990 W/ReactNativeJS( 6035): [JS-STALL] +2122ms поток стоял 756ms (с +1366ms)
+10-15 07:20:33.994 I/ReactNativeJS( 6035): [TAP-LAT] → (tabs) · без касания (редирект/таймер) · коммит→кадр 445.3мс
+10-15 07:20:33.994 I/ReactNativeJS( 6035): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (445мс) · рендеры: stack 4×(121/37/12/229мс, всего 399мс) · layout:tabs 4×(83/37/12/221мс, всего 353мс) · tab:home 1×(186мс, всего 186мс)
+10-15 07:20:34.019 I/ReactNativeJS( 6035): '[PERF-R1-MOUNT]', '{"tag":"probe:home","inst":1,"event":"mount","at":3053,"renderToEffectMs":306}'
+10-15 07:20:34.044 I/ReactNativeJS( 6035): '[PERF-R1-MOUNT]', '{"tag":"home_host","inst":2,"event":"mount","at":3078,"renderToEffectMs":367}'
+10-15 07:20:34.120 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"home","n":2,"phase":"update","actualMs":36,"baseMs":74,"startedAtMs":4198438,"commitAtMs":4198487}'
+10-15 07:20:34.338 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"home","n":3,"phase":"update","actualMs":107,"baseMs":84,"startedAtMs":4198543,"commitAtMs":4198695}'
+10-15 07:20:34.358 I/ReactNativeJS( 6035): '[PERF-R1]', '{"screen":"home","stage":"first_frame","ms":644,"commits":2}'
+10-15 07:20:34.525 I/ReactNativeJS( 6035): [ACC-MUT] firestore_cache_clear check ms=1 marker=0 lock=0 reason=none source=startup_multiget
+10-15 07:20:34.706 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"home","n":4,"phase":"update","actualMs":39,"baseMs":102,"startedAtMs":4199000,"commitAtMs":4199071}'
+10-15 07:20:34.900 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"home","n":5,"phase":"nested-update","actualMs":42,"baseMs":101,"startedAtMs":4199187,"commitAtMs":4199276}'
+10-15 07:20:35.168 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"home","n":6,"phase":"nested-update","actualMs":61,"baseMs":110,"startedAtMs":4199461,"commitAtMs":4199545}'
+10-15 07:20:35.258 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"home","n":7,"phase":"nested-update","actualMs":33,"baseMs":102,"startedAtMs":4199595,"commitAtMs":4199637}'
+10-15 07:20:35.311 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"home","n":8,"phase":"nested-update","actualMs":32,"baseMs":100,"startedAtMs":4199648,"commitAtMs":4199690}'
+10-15 07:20:36.435 W/ReactNativeJS( 6035): [JS-STALL] +4566ms поток стоял 2053ms (с +2513ms)
+10-15 07:20:36.812 I/ReactNativeJS( 6035): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":5847,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev
+10-15 07:20:36.824 I/ReactNativeJS( 6035): [TAP-LAT] [TABS-RENDER] #5 t=36824 changed=none (parent/context)
+10-15 07:20:36.867 I/ReactNativeJS( 6035): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Upsyne*[(tabs)#WBZnFt*]","atMs":5902}'
+10-15 07:20:36.903 I/ReactNativeJS( 6035): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T06:20:36.903Z
+10-15 07:20:36.906 I/ReactNativeJS( 6035): [WELCOME-BACK] вход study=en rank=0 energy=5/5
+10-15 07:20:36.941 I/ReactNativeJS( 6035): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 07:20:36.943 I/ReactNativeJS( 6035): [WELCOME-BACK] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 07:20:36.945 I/ReactNativeJS( 6035): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 07:20:36.945 I/ReactNativeJS( 6035): [WELCOME-BACK] не показываем: флаг moments_v3 выключен
+10-15 07:20:37.042 W/ReactNativeJS( 6035): [JS-STALL] +5172ms поток стоял 509ms (с +4663ms)
+10-15 07:20:37.043 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +5172ms splash=hidden@+4899ms
+10-15 07:20:37.088 I/ReactNativeJS( 6035): [SOUND-V2] flag: sound_v2=false (из кэша remote_config_cache_v1, раньше=null)
+10-15 07:20:37.090 I/ReactNativeJS( 6035): [SOUND-V2] prime ms=164 flag=off — файлы не грузим, старые звуки без изменений
+10-15 07:20:37.136 I/ReactNativeJS( 6035): '[PERF-R1]', '{"screen":"home","stage":"commits_3s","commits":10,"ms":3423}'
+10-15 07:20:37.154 I/ReactNativeJS( 6035): [WELCOME-BACK] signal skip reason=recent awayDays=0.0
+10-15 07:20:38.018 I/ReactNativeJS( 6035): [ENSURE-LINK] authoritative_memo miss reason=empty
+10-15 07:20:38.032 I/ReactNativeJS( 6035): [TAP-LAT] [TABS-RENDER] #6 t=38031 changed=visited:1→2 mounted:1→2
+10-15 07:20:38.113 I/ReactNativeJS( 6035): '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"render","at":7148}'
+10-15 07:20:38.114 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"a_tab_pad","sinceBodyStartMs":0.9}'
+10-15 07:20:38.115 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"b_energy","sinceBodyStartMs":1.5}'
+10-15 07:20:38.117 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"c_lang","sinceBodyStartMs":2.7}'
+10-15 07:20:38.118 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"d_boot_read_before","sinceBodyStartMs":4.3}'
+10-15 07:20:38.119 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"e_boot_read_after","sinceBodyStartMs":6.6}'
+10-15 07:20:38.121 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"f_feature_access","sinceBodyStartMs":7.9}'
+10-15 07:20:38.123 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"g_bouncy","sinceBodyStartMs":10.2}'
+10-15 07:20:38.126 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"h_coin_bindings","sinceBodyStartMs":12.7}'
+10-15 07:20:38.128 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"i_v2_callbacks","sinceBodyStartMs":14.9}'
+10-15 07:20:38.129 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"j_v2_scope","sinceBodyStartMs":16}'
+10-15 07:20:38.131 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"k_v2_warmup","sinceBodyStartMs":18.5}'
+10-15 07:20:38.132 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"l_v2_generation","sinceBodyStartMs":18.9}'
+10-15 07:20:38.133 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_v2_progress","sinceBodyStartMs":20}'
+10-15 07:20:38.137 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_lessons_memo","sinceBodyStartMs":24.4}'
+10-15 07:20:38.139 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_list_data","sinceBodyStartMs":26.3}'
+10-15 07:20:38.141 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_render_helpers","sinceBodyStartMs":28.3}'
+10-15 07:20:38.142 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_return","sinceBodyStartMs":29.1}'
+10-15 07:20:38.418 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"lessons","n":1,"phase":"mount","actualMs":318,"baseMs":233,"startedAtMs":4202438,"commitAtMs":4202791}'
+10-15 07:20:38.444 W/ReactNativeJS( 6035): [JS-STALL] +6575ms поток стоял 420ms (с +6155ms)
+10-15 07:20:38.475 I/ReactNativeJS( 6035): '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"mount","at":7508,"renderToEffectMs":360}'
+10-15 07:20:38.495 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"a_tab_pad","sinceBodyStartMs":0}'
+10-15 07:20:38.496 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"b_energy","sinceBodyStartMs":0.6}'
+10-15 07:20:38.497 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"c_lang","sinceBodyStartMs":1.5}'
+10-15 07:20:38.497 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"d_boot_read_before","sinceBodyStartMs":2.3}'
+10-15 07:20:38.497 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"e_boot_read_after","sinceBodyStartMs":2.5}'
+10-15 07:20:38.499 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"f_feature_access","sinceBodyStartMs":2.8}'
+10-15 07:20:38.500 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"g_bouncy","sinceBodyStartMs":4.8}'
+10-15 07:20:38.501 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"h_coin_bindings","sinceBodyStartMs":5.7}'
+10-15 07:20:38.502 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"i_v2_callbacks","sinceBodyStartMs":7}'
+10-15 07:20:38.503 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"j_v2_scope","sinceBodyStartMs":7.3}'
+10-15 07:20:38.504 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"k_v2_warmup","sinceBodyStartMs":8.9}'
+10-15 07:20:38.505 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"l_v2_generation","sinceBodyStartMs":9.8}'
+10-15 07:20:38.505 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_v2_progress","sinceBodyStartMs":10.2}'
+10-15 07:20:38.507 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_lessons_memo","sinceBodyStartMs":11.9}'
+10-15 07:20:38.508 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_list_data","sinceBodyStartMs":12.8}'
+10-15 07:20:38.509 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_render_helpers","sinceBodyStartMs":14.2}'
+10-15 07:20:38.510 I/ReactNativeJS( 6035): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_return","sinceBodyStartMs":15.2}'
+10-15 07:20:38.702 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"lessons","n":2,"phase":"update","actualMs":163,"baseMs":173,"startedAtMs":4202878,"commitAtMs":4203078}'
+10-15 07:20:38.872 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"lessons","n":3,"phase":"update","actualMs":30,"baseMs":147,"startedAtMs":4203213,"commitAtMs":4203251}'
+10-15 07:20:38.955 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"lessons","n":4,"phase":"nested-update","actualMs":31,"baseMs":121,"startedAtMs":4203298,"commitAtMs":4203336}'
+10-15 07:20:38.970 W/ReactNativeJS( 6035): [JS-STALL] +7101ms поток стоял 524ms (с +6577ms)
+10-15 07:20:38.970 I/ReactNativeJS( 6035): '[PERF-R1]', '{"screen":"lessons","stage":"first_frame","ms":857,"commits":4}'
+10-15 07:20:39.042 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"lessons","n":5,"phase":"update","actualMs":43,"baseMs":143,"startedAtMs":4203359,"commitAtMs":4203420}'
+10-15 07:20:39.080 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"lessons","n":6,"phase":"update","actualMs":13,"baseMs":144,"startedAtMs":4203438,"commitAtMs":4203459}'
+10-15 07:20:39.224 W/ReactNativeJS( 6035): [JS-STALL] +7355ms поток стоял 254ms (с +7101ms)
+10-15 07:20:39.305 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"lessons","n":7,"phase":"update","actualMs":43,"baseMs":167,"startedAtMs":4203615,"commitAtMs":4203684}'
+10-15 07:20:39.439 I/ReactNativeJS( 6035): '[PERF-R1-PROFILE]', '{"id":"lessons","n":8,"phase":"update","actualMs":57,"baseMs":194,"startedAtMs":4203740,"commitAtMs":4203812}'
+10-15 07:20:39.935 I/ReactNativeJS( 6035): [TAP-LAT] [TABS-RENDER] #7 t=39933 changed=visited:2→3 mounted:2→3
+10-15 07:20:40.200 W/ReactNativeJS( 6035): [JS-STALL] +8332ms поток стоял 275ms (с +8057ms)
+10-15 07:20:42.667 W/ReactNativeJS( 6035): [JS-STALL] +10799ms поток стоял 1929ms (с +8870ms)
+10-15 07:20:42.669 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +10799ms splash=hidden@+4899ms
+10-15 07:20:42.677 I/ReactNativeJS( 6035): '[PERF-R1]', '{"screen":"lessons","stage":"commits_3s","commits":8,"ms":4564}'
+10-15 07:20:43.566 I/ReactNativeJS( 6035): [TAP-LAT] [TABS-RENDER] #8 t=43565 changed=visited:3→4 mounted:3→4
+10-15 07:20:43.800 W/ReactNativeJS( 6035): [JS-STALL] +11932ms поток стоял 267ms (с +11665ms)
+10-15 07:20:44.721 I/ReactNativeJS( 6035): [TAP-LAT] [TABS-RENDER] #9 t=44721 changed=visited:4→5 mounted:4→5
+10-15 07:20:44.967 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=44966 focus active=false dirty=true authReady=false shown=none focusTick=1
+10-15 07:20:45.349 W/ReactNativeJS( 6035): [JS-STALL] +13481ms поток стоял 400ms (с +13081ms)
+10-15 07:20:45.699 W/ReactNativeJS( 6035): [JS-STALL] +13831ms поток стоял 297ms (с +13534ms)
+10-15 07:20:46.324 I/ReactNativeJS( 6035): [ENSURE-LINK] authoritative_memo hit ageMs=1204 generation=1
+10-15 07:20:47.721 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +15853ms splash=hidden@+4899ms
+10-15 07:20:52.733 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +20865ms splash=hidden@+4899ms
+10-15 07:20:57.311 W/ReactNativeJS( 6035): [JS-STALL] +25441ms поток стоял 495ms (с +24946ms)
+10-15 07:20:57.748 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +25879ms splash=hidden@+4899ms
+10-15 07:21:02.791 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +30923ms splash=hidden@+4899ms
+10-15 07:21:07.804 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +35935ms splash=hidden@+4899ms
+10-15 07:21:12.095 I/ReactNativeJS( 6035): [PAYWALL-CLOSE-FREEZE] t=72094 tab_tap requested=4 active=0 page=0
+10-15 07:21:12.106 I/ReactNativeJS( 6035): [TAP-LAT] [TABS-RENDER] #10 t=72106 changed=activeIdx:0→4 visualIdx:0→4 physicalPageIdx:0→4
+10-15 07:21:12.427 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=72426 focus active=true dirty=true authReady=false shown=none focusTick=1
+10-15 07:21:12.430 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=72427 refresh enter active=true inflight=false dirty=true gen=1
+10-15 07:21:12.436 I/ReactNativeJS( 6035): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":41469,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&de
+10-15 07:21:12.447 I/ReactNativeJS( 6035): [TAP-LAT] [TABS-RENDER] #11 t=72446 changed=none (parent/context)
+10-15 07:21:12.652 I/ReactNativeJS( 6035): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Upsyne*[(tabs)#WBZnFt*]","atMs":41686}'
+10-15 07:21:12.712 W/ReactNativeJS( 6035): [JS-STALL] +40844ms поток стоял 715ms (с +40129ms)
+10-15 07:21:12.866 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +40998ms splash=hidden@+4899ms
+10-15 07:21:13.110 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=73110 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=678
+10-15 07:21:13.111 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=73111 refresh result=none applied=true gen=1/1 active=true
+10-15 07:21:13.187 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=73185 focus active=true dirty=false authReady=true shown=none focusTick=1
+10-15 07:21:17.062 I/SVERKA  ( 6301): === R7 COLD-DONE 07:21:57 ===
+10-15 07:21:17.872 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +46004ms splash=hidden@+4899ms
+10-15 07:21:19.753 I/ReactNativeJS( 6035): [PAYWALL-CLOSE-FREEZE] t=79752 tab_tap requested=4 active=4 page=4
+10-15 07:21:22.882 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +51013ms splash=hidden@+4899ms
+10-15 07:21:25.295 I/ReactNativeJS( 6035): [ACC-SPEED] warm start source=registration_prompt
+10-15 07:21:25.747 I/ReactNativeJS( 6035): [WARM-FETCH] fn=authEnsureStableLink outcome=warm_ok code=200 ms=450 source=registration_prompt
+10-15 07:21:27.943 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +56075ms splash=hidden@+4899ms
+10-15 07:21:30.105 I/ReactNativeJS( 6035): [SIGNIN] ui:tap provider=google context=settings
+10-15 07:21:30.261 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:70a7e371","localStable":"h:e0e7b315","requireOwnership":false,"t":4254644}
+10-15 07:21:30.883 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=90877 focus active=false dirty=false authReady=true shown=none focusTick=1
+10-15 07:21:34.180 I/SVERKA  ( 6492): === R7 SIGNIN-TAP 07:22:14 ===
+10-15 07:21:40.985 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":4265368}
+10-15 07:21:40.985 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:70a7e371","preProviderStable":"h:e0e7b315","t":4265368}
+10-15 07:21:41.304 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=1301 focus active=true dirty=true authReady=true shown=none focusTick=1
+10-15 07:21:41.305 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=1304 refresh enter active=true inflight=false dirty=true gen=2
+10-15 07:21:41.362 W/ReactNativeJS( 6035): [JS-STALL] +69493ms поток стоял 11066ms (с +58427ms)
+10-15 07:21:41.362 W/ReactNativeJS( 6035): [JS-STALL] heartbeat +69493ms splash=hidden@+4899ms
+10-15 07:21:41.363 W/ReactNativeJS( 6035): [JS-STALL] watchdog stop +69493ms
+10-15 07:21:41.363 I/ReactNativeJS( 6035): [WARM-FETCH] fn=authStampAnonOwnership outcome=warm_ok code=200 ms=16066 source=registration_prompt
+10-15 07:21:41.364 I/ReactNativeJS( 6035): [WARM-FETCH] fn=authMergeStableAccounts outcome=warm_ok code=200 ms=16066 source=registration_prompt
+10-15 07:21:41.690 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=1690 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=385
+10-15 07:21:41.690 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=1690 refresh result=none applied=true gen=2/2 active=true
+10-15 07:21:41.692 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":4266075}
+10-15 07:21:41.699 I/ReactNativeJS( 6035): [WELCOME-BACK] signal skip reason=recent awayDays=0.0
+10-15 07:21:42.005 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":439,"getAllKeysMs":52,"selected":2217,"filterMs":30,"multiGetMs":147,"bytes":49229,"top5":"cloud_last_sync_snapshot_v1=42220 achievements_state=2504 achievements_v1=2504 c","t":4266385}
+10-15 07:21:42.110 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":26,"t":4266493}
+10-15 07:21:42.118 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 1/4 {"keys":"user_avatar=1 user_frame=plain streak_count=1 active_days_v1={\"anchor\":\"2026-10-","t":4266501}
+10-15 07:21:42.118 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 2/4 {"keys":"achievement_foundation_progress_v2(len=126) phraseman_foreground_usage_ms_v1(len","t":4266501}
+10-15 07:21:42.119 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 3/4 {"keys":"stable_auth_link_cache_v1(len=100) cloud_migration_v1(len=1) user_profile(len=26","t":4266502}
+10-15 07:21:42.119 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 4/4 {"keys":"level_spin_star_projection_v1:<id>(len=199) v2:required-session-local-commit-ind","t":4266502}
+10-15 07:21:42.501 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_changed to=none
+10-15 07:21:42.501 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_changed to=none
+10-15 07:21:42.502 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_changed to=none
+10-15 07:21:42.502 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_changed to=none
+10-15 07:21:42.502 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_changed to=none
+10-15 07:21:42.502 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_changed to=none
+10-15 07:21:42.502 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_changed to=none
+10-15 07:21:42.503 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_changed to=none
+10-15 07:21:42.503 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_changed to=none
+10-15 07:21:42.510 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":true,"t":4266893}
+10-15 07:21:42.718 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"switch:handoff_credential_ready","ms":207}'
+10-15 07:21:44.681 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"switch:stamp_anon_ownership","ms":1962}'
+10-15 07:21:45.218 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"switch:signInWithCredential","ms":535}'
+10-15 07:21:45.218 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:70a7e371","targetUid":"h:d9408b9b","uidChanged":true,"t":4269601}
+10-15 07:21:45.492 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:e0e7b315","remoteStable":"h:de10a251","branch":"remote","t":4269874}
+10-15 07:21:49.414 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":4273796}
+10-15 07:21:49.416 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":4273798}
+10-15 07:21:49.417 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage local_data_checked {"provider":"google","tookMs":0,"sinceStartMs":19156,"preserveLocalProgress":false,"handoff":true,"t":4273800}
+10-15 07:21:49.418 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":4273801}
+10-15 07:21:49.418 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage presync_phase_done {"provider":"google","tookMs":1,"sinceStartMs":19157,"t":4273801}
+10-15 07:21:49.419 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage server_merge_done {"provider":"google","tookMs":1,"sinceStartMs":19158,"called":false,"t":4273802}
+10-15 07:21:49.419 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":4273802}
+10-15 07:21:49.420 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage authoritative_link_reused {"provider":"google","tookMs":1,"sinceStartMs":19159,"source":"callable","ageMs":5,"t":4273803}
+10-15 07:21:49.420 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":4273803}
+10-15 07:21:49.421 W/ReactNativeJS( 6035): [WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":4273803}
+10-15 07:21:49.424 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage sync_quiesced {"provider":"google","tookMs":4,"sinceStartMs":19163,"t":4273807}
+10-15 07:21:49.427 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage entitlement_transition_begun {"provider":"google","tookMs":3,"sinceStartMs":19166,"t":4273810}
+10-15 07:21:49.430 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage transition_lock_acquired {"provider":"google","tookMs":2,"sinceStartMs":19168,"t":4273812}
+10-15 07:21:50.120 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] survivors={"before":440,"knownLeak":[],"otherCount":358,"other":["account_switch_emergency_backup_latest_v1","account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi","account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi","account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi","account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi
+10-15 07:21:50.161 I/ReactNativeJS( 6035): [ACC-MUT] firestore_cache_clear marked reason=account_wipe
+10-15 07:21:50.325 W/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":121,"collectKeysMs":84,"collectKeysKeys":2217,"noteStashMs":42,"removeKeysMs":300,"removeKeysKeys":2214,"giftReceiptsMs":2,"customizationMs":27,"dialogueMemoryMs":11,"profileCardPublicMs":3,"appMessagesMs":44,"appMessagesKeys":9,"lateLearningV2Ms":18,"lateLearningV2Keys":8,"giftReceipts2Ms":1,"finalScanMs":13,"resetMemoryMs"
+10-15 07:21:50.326 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage wipe_done {"provider":"google","tookMs":897,"sinceStartMs":20065,"t":4274709}
+10-15 07:21:50.603 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage set_stable_id_done {"provider":"google","tookMs":277,"sinceStartMs":20342,"t":4274986}
+10-15 07:21:50.674 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage handoff_cleared {"provider":"google","tookMs":70,"sinceStartMs":20412,"t":4275056}
+10-15 07:21:50.684 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage generation_begun {"provider":"google","tookMs":10,"sinceStartMs":20422,"t":4275066}
+10-15 07:21:50.686 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage stable_id_installed {"provider":"google","tookMs":3,"sinceStartMs":20425,"t":4275069}
+10-15 07:21:50.687 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] swap stage auth_user_ready {"provider":"google","tookMs":1,"sinceStartMs":20426,"t":4275070}
+10-15 07:21:50.694 W/ReactNativeJS( 6035): [AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:e0e7b315","to":"h:de10a251","tookMs":20433,"t":4275077}
+10-15 07:21:50.695 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=10695 emit auth_provider_linked from=at ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1363721:33)
+10-15 07:21:50.698 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=10698 event auth_provider_linked received
+10-15 07:21:50.699 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=10698 refresh enter active=true inflight=false dirty=true gen=3
+10-15 07:21:50.841 I/ReactNativeJS( 6035): [SIGNIN] ui:returned provider=google result=merged_devices in=20737ms
+10-15 07:21:51.023 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11022 event auth_provider_linked received
+10-15 07:21:51.023 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11023 refresh enter active=true inflight=true dirty=true gen=4
+10-15 07:21:51.024 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] refresh stale_inflight_superseded inflightGen=3 gen=4
+10-15 07:21:51.024 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11024 refresh enter active=true inflight=true dirty=true gen=5
+10-15 07:21:51.024 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] refresh stale_inflight_superseded inflightGen=4 gen=5
+10-15 07:21:51.410 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11409 getLinkedAuthInfo source=users_doc.linkedAuth result=google ms=710
+10-15 07:21:51.411 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11411 refresh result=google applied=false gen=3/5 active=true
+10-15 07:21:51.422 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11422 getLinkedAuthInfo source=users_doc.linkedAuth result=google ms=398
+10-15 07:21:51.423 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11423 refresh result=google applied=false gen=4/5 active=true
+10-15 07:21:51.491 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11491 getLinkedAuthInfo source=users_doc.linkedAuth result=google ms=467
+10-15 07:21:51.492 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=11491 refresh result=google applied=true gen=5/5 active=true
+10-15 07:21:52.850 I/SVERKA  ( 6597): === R7 SIGNIN-DONE 07:22:32 ===
+10-15 07:21:55.321 I/ReactNativeJS( 6035): [PAYWALL-CLOSE-FREEZE] t=15320 tab_tap requested=4 active=4 page=4
+10-15 07:22:00.338 I/ReactNativeJS( 6035): [SIGNIN] bg:swap_restore:restoreFromCloud ok 9646ms
+10-15 07:22:01.310 I/ReactNativeJS( 6035): [SIGNIN] bg:swap_restore:switchBackup ok 972ms
+10-15 07:22:01.316 I/ReactNativeJS( 6035): [SIGNIN] bg:swap_restore:markOnboarded ok 4ms
+10-15 07:22:01.318 I/ReactNativeJS( 6035): [SIGNIN] bg:swap_restore:revenueCat ok 2ms
+10-15 07:22:01.407 I/ReactNativeJS( 6035): [ENSURE-LINK] authoritative_memo hit ageMs=5982 generation=5
+10-15 07:22:01.799 I/ReactNativeJS( 6035): [SIGNIN] bg:swap_restore done total=11108ms restore=restored
+10-15 07:22:29.820 I/SVERKA  ( 6669): === R7 SIGNOUT-TAP 07:23:09 ===
+10-15 07:22:32.236 I/ReactNativeJS( 6035): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"account_details","noop":false,"atMs":121270,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=andr
+10-15 07:22:32.510 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=52508 focus active=false dirty=false authReady=true shown=google focusTick=1
+10-15 07:22:32.518 I/ReactNativeJS( 6035): [ACC-SPEED] warm skip source=account_details reason=throttled sinceLastMs=67224
+10-15 07:22:32.521 I/ReactNativeJS( 6035): [PAYWALL-CLOSE-FREEZE] t=52519 tabs blur
+10-15 07:22:32.522 I/ReactNativeJS( 6035): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Upsyne*[(tabs)#WBZnFt,account_details#N-rGzW*]","atMs":121557}'
+10-15 07:22:32.526 I/ReactNativeJS( 6035): [TAP-LAT] [TABS-RENDER] #12 t=52526 changed=pathname:/→/account_details segments:→account_details
+10-15 07:22:32.629 I/ReactNativeJS( 6035): '[ACC-SWITCH-WIPE] prewarm', '{"source":"account_details","failed":[],"tookMs":113}'
+10-15 07:22:32.635 I/ReactNativeJS( 6035): [TAP-LAT] → account_details (из (tabs)) · палец 19.1мс · JS-лаг на отпускании 19.1мс · отпускание→обработчик — · обработчик→коммит 306.1мс · коммит→кадр 112мс · ОТ ОТПУСКАНИЯ ДО КАДРА 418мс ⚠️ МЕДЛЕННО
+10-15 07:22:32.635 I/ReactNativeJS( 6035): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (112мс) · рендеры от касания: stack 3×(372/163/2мс, всего 536мс) · layout:tabs 3×(206/139/1мс, всего 346мс) · tab:settings 1×(40мс, всего 40мс) · tab:community 2×(9/16мс, всего 25мс)
+10-15 07:22:33.141 I/ReactNativeJS( 6035): [SETTINGS-ACCOUNT-CARD] t=53138 getLinkedAuthInfo source=users_doc.linkedAuth result=google ms=619
+10-15 07:22:37.107 I/ReactNativeJS( 6035): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":false}'
+10-15 07:22:37.136 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":1,"t":4321519}
+10-15 07:22:37.144 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":10,"pendingSpend":0,"t":4321527}
+10-15 07:22:37.167 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":33,"t":4321550}
+10-15 07:22:37.174 I/ReactNativeJS( 6035): [ENSURE-LINK] authoritative_memo hit ageMs=41749 generation=5
+10-15 07:22:38.292 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":1157,"synced":true,"t":4322675}
+10-15 07:22:38.293 W/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] signout force_sync {"synced":true,"allowWipeWithoutSync":true,"t":4322676}
+10-15 07:22:38.293 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":1159,"t":4322676}
+10-15 07:22:38.296 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":1161,"t":4322678}
+10-15 07:22:38.304 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":1170,"entries":0,"t":4322687}
+10-15 07:22:39.829 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":2695,"t":4324212}
+10-15 07:22:39.845 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage marker_done {"sinceStartMs":2710,"t":4324228}
+10-15 07:22:39.846 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_changed to=none
+10-15 07:22:39.846 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_changed to=none
+10-15 07:22:39.846 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_changed to=none
+10-15 07:22:39.846 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_changed to=none
+10-15 07:22:39.846 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_changed to=none
+10-15 07:22:39.846 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_changed to=none
+10-15 07:22:39.846 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_changed to=none
+10-15 07:22:39.846 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_changed to=none
+10-15 07:22:39.847 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_changed to=none
+10-15 07:22:39.850 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":2715,"t":4324232}
+10-15 07:22:39.850 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":2716,"t":4324233}
+10-15 07:22:39.959 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"head:read_journals","ms":101,"sinceResumeMs":107}'
+10-15 07:22:39.964 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"quiesce:premium","ms":1,"idle":true}'
+10-15 07:22:39.964 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"quiesce:cloud","ms":2,"idle":true}'
+10-15 07:22:39.964 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"quiesce:restore","ms":2,"idle":true}'
+10-15 07:22:39.964 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:quiesce","ms":2,"sinceResumeMs":112,"outcome":"true"}'
+10-15 07:22:39.965 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":1,"sinceResumeMs":113,"outcome":"ok"}'
+10-15 07:22:40.325 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] push_cleanup result=notifications:ok,push_token:ok ms=357
+10-15 07:22:40.342 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:signOut","ms":376,"sinceResumeMs":490,"outcome":"ok"}'
+10-15 07:22:40.394 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":50,"sinceResumeMs":541,"from":"prepared","to":"provider_signed_out","lockWaitMs":0}'
+10-15 07:22:40.446 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":50,"sinceResumeMs":592,"to":"provider_signed_out","totalSinceQueuedMs":101}'
+10-15 07:22:40.451 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":4,"sinceResumeMs":598,"outcome":"ok"}'
+10-15 07:22:41.053 I/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] survivors={"before":435,"knownLeak":[],"otherCount":358,"other":["account_switch_emergency_backup_latest_v1","account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi","account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi","account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi","account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi
+10-15 07:22:41.060 I/ReactNativeJS( 6035): [ACC-MUT] firestore_cache_clear marked reason=account_wipe
+10-15 07:22:41.170 W/ReactNativeJS( 6035): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":116,"collectKeysMs":57,"collectKeysKeys":2217,"noteStashMs":26,"removeKeysMs":321,"removeKeysKeys":2214,"giftReceiptsMs":0,"customizationMs":12,"dialogueMemoryMs":6,"profileCardPublicMs":3,"appMessagesMs":12,"appMessagesKeys":4,"lateLearningV2Ms":9,"lateLearningV2Keys":8,"giftReceipts2Ms":1,"finalScanMs":14,"resetMemoryMs":1
+10-15 07:22:41.171 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:wipeLocalData","ms":719,"sinceResumeMs":1318,"outcome":"ok"}'
+10-15 07:22:41.202 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":28,"sinceResumeMs":1348,"from":"provider_signed_out","to":"local_data_cleared","lockWaitMs":0}'
+10-15 07:22:41.216 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":14,"sinceResumeMs":1364,"to":"local_data_cleared","totalSinceQueuedMs":44}'
+10-15 07:22:41.223 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":6,"sinceResumeMs":1370,"outcome":"ok"}'
+10-15 07:22:41.228 W/ReactNativeJS( 6035): '[STABLE-ID-CLEAR]', '{"step":"waited","queueMs":1,"drainMs":0,"hadLoad":false}'
+10-15 07:22:41.432 W/ReactNativeJS( 6035): '[STABLE-ID-CLEAR]', '{"trace":1,"secureDelete":121,"secureDeleteLegacy":48,"secureVerify":1,"asyncRemove":27,"asyncVerify":2,"staleMarker":1,"emit":1,"secureStore":true,"totalMs":202}'
+10-15 07:22:41.462 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:clearStableId","ms":238,"sinceResumeMs":1609,"outcome":"ok"}'
+10-15 07:22:41.466 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":3,"sinceResumeMs":1613,"from":"local_data_cleared","to":"stable_id_cleared","lockWaitMs":0}'
+10-15 07:22:41.486 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":19,"sinceResumeMs":1633,"to":"stable_id_cleared","totalSinceQueuedMs":23}'
+10-15 07:22:42.308 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"anon:ensureAnonUser","ms":821}'
+10-15 07:22:42.309 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"anon:getStableId","ms":0}'
+10-15 07:22:42.310 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:ensureAnonymousIdentity","ms":823,"sinceResumeMs":2457,"outcome":"ok"}'
+10-15 07:22:42.312 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":1,"sinceResumeMs":2460,"from":"stable_id_cleared","to":"anonymous_authenticated","lockWaitMs":0}'
+10-15 07:22:42.360 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":47,"sinceResumeMs":2507,"to":"anonymous_authenticated","totalSinceQueuedMs":48}'
+10-15 07:22:42.363 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":3,"sinceResumeMs":2511,"outcome":"ok"}'
+10-15 07:22:42.481 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":118,"sinceResumeMs":2629,"from":"anonymous_authenticated","to":"fresh_stable_created","lockWaitMs":0}'
+10-15 07:22:42.525 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":42,"sinceResumeMs":2672,"to":"fresh_stable_created","totalSinceQueuedMs":161}'
+10-15 07:22:42.528 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":2,"sinceResumeMs":2676,"outcome":"ok"}'
+10-15 07:22:42.632 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":102,"sinceResumeMs":2779,"from":"fresh_stable_created","to":"ready","lockWaitMs":0}'
+10-15 07:22:42.672 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":40,"sinceResumeMs":2820,"to":"ready","totalSinceQueuedMs":143}'
+10-15 07:22:42.675 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":1,"sinceResumeMs":2822,"outcome":"ok"}'
+10-15 07:22:42.972 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"tail:clear_marker","ms":297,"sinceResumeMs":3120,"cleared":true}'
+10-15 07:22:42.986 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"tail:remove_receipt","ms":12,"sinceResumeMs":3133}'
+10-15 07:22:42.996 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"tail:activate_generation","ms":9,"sinceResumeMs":3143}'
+10-15 07:22:42.998 W/ReactNativeJS( 6035): '[ACC-SPEED]', '{"step":"resume_done","ms":3145,"sinceResumeMs":3145,"result":"completed"}'
+10-15 07:22:43.000 W/ReactNativeJS( 6035): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":5866,"kind":"resumed","t":4327383}
+10-15 07:22:43.001 I/ReactNativeJS( 6035): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":true,"tookMs":5895}'
+10-15 07:22:43.001 I/ReactNativeJS( 6035): '[ACC-MUT] ui:logout_attempt_1', '{"ok":true,"reason":null,"detail":null}'
+10-15 07:22:43.183 I/ReactNativeJS( 6035): [ACC-SPEED] warm skip source=registration_prompt reason=throttled sinceLastMs=77890

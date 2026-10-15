@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-48:intro1:r2": {
+          "ru": "`office` начинается с гласного звука: `an office`.",
+          "uk": "`office` починається з голосного звука: `an office`."
+        },
+        "en:lesson-03:session-48:intro1:r3": {
+          "ru": "Один объект с `This`: нужно `is`.",
+          "uk": "Один об’єкт із `This`: потрібне `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-48:intro2:r2": {
+          "ru": "Спален несколько: нужно `are`.",
+          "uk": "Спалень кілька: потрібне `are`."
+        },
+        "en:lesson-03:session-48:intro2:r3": {
+          "ru": "Так говорят об одной спальне. Здесь несколько: `bedrooms are`.",
+          "uk": "Так говорять про одну спальню. Тут кілька: `bedrooms are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-48:intro3:r2": {
+          "ru": "Так называют один отель. Здесь несколько рядом: `These are hotels`.",
+          "uk": "Так називають один готель. Тут кілька поруч: `These are hotels`."
+        },
+        "en:lesson-03:session-48:intro3:r3": {
+          "ru": "`Those` указывает дальше. Здесь группа рядом: `These`.",
+          "uk": "`Those` вказує далі. Тут група поруч: `These`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ffe4d15b54bf216455e1a437afccb38c7672041570e10ea039be5276304ca9d0"
+}

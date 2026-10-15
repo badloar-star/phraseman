@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-48:i01",
-    "correctText": "item",
-    "correctResponseId": "en:lesson-03:session-48:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i03",
-    "correctText": "order",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i05",
-    "correctText": "total",
+    "correctText": "The kitchen is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i02",
-    "correctText": "item",
-    "correctResponseId": null
+    "correctText": "The bathroom is there.",
+    "correctResponseId": "en:lesson-03:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-48:i04",
-    "correctText": "order",
-    "correctResponseId": "en:lesson-03:session-48:i04:r1"
+    "correctText": "en:lesson-03:session-48:i04:p1=kitchen\nen:lesson-03:session-48:i04:p2=bathroom\nen:lesson-03:session-48:i04:p3=bedrooms\nen:lesson-03:session-48:i04:p4=hotels",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i05",
+    "correctText": "These are hotels.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i06",
-    "correctText": "total",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i08",
-    "correctText": "item",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i10",
-    "correctText": "order",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i11",
-    "correctText": "total",
+    "correctText": "This is an office.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i07",
-    "correctText": "en:lesson-03:session-48:i07:p1=item\nen:lesson-03:session-48:i07:p2=items\nen:lesson-03:session-48:i07:p3=order\nen:lesson-03:session-48:i07:p4=total",
+    "correctText": "The airport is there.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-48:i08",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-48:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-48:i09",
-    "correctText": "An",
+    "correctText": "Those are restaurants.",
     "correctResponseId": "en:lesson-03:session-48:i09:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-48:i10",
+    "correctText": "en:lesson-03:session-48:i10:p1=office\nen:lesson-03:session-48:i10:p2=airport\nen:lesson-03:session-48:i10:p3=restaurants\nen:lesson-03:session-48:i10:p4=hotels",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i11",
+    "correctText": "This is a kitchen.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-48:i12",
-    "correctText": "The order is here.",
+    "correctText": "The bedrooms are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i13",
-    "correctText": "Итоговая сумма неверная",
-    "correctResponseId": "en:lesson-03:session-48:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i14",
-    "correctText": "The items are here.",
+    "correctText": "The bathroom is here.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-48:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-03:session-48:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-48:i15",
-    "correctText": "is",
+    "correctText": "That is an airport.",
     "correctResponseId": "en:lesson-03:session-48:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-48:i16",
-    "correctText": "Эта позиция неверная",
-    "correctResponseId": "en:lesson-03:session-48:i16:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i17:s01",
-    "correctText": "An item is wrong.",
+    "correctText": "en:lesson-03:session-48:i16:p1=a kitchen\nen:lesson-03:session-48:i16:p2=an office\nen:lesson-03:session-48:i16:p3=an airport\nen:lesson-03:session-48:i16:p4=a bathroom",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-48:i17:s02",
-    "correctText": "An",
-    "correctResponseId": "en:lesson-03:session-48:i17:s02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i17:s03",
-    "correctText": "The total is wrong.",
+    "interactionId": "en:lesson-03:session-48:i17",
+    "correctText": "The restaurants are here.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-48:i17:s04",
-    "correctText": "items",
-    "correctResponseId": "en:lesson-03:session-48:i17:s04:r1"
   }
 ]

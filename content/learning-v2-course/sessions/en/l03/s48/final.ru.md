@@ -1,157 +1,138 @@
-# Английский · Урок 3 · Занятие 48 — «Проверяем заказ дома»
+# Английский · Урок 3 · Занятие 48 — От дома до аэропорта
 
-**Сцена занятия.** Вы дома открываете полученный заказ и сверяете его с чеком. Сначала находите новую позицию или заказ, затем говорите об уже понятной позиции, заказе и итоговой сумме.
-**Как сказать:** повторяем `a/an/the` и множественное число: `an` перед гласным звуком, `the` для уже понятного; несколько позиций — `items`.
-**Новые слова:** item, order, total
+**Ситуация.** Вы помогаете гостю разобраться с планом дома и картой города. Сначала показываете комнаты, затем отмечаете офис, аэропорт, отели и рестораны. Гость должен понять, где одно место, где несколько и о каких именно местах вы говорите.
+
+**Что вы освоите:** самостоятельно выбирать a/an/the и is/are со словами шестой главы
+**Новые слова:** —
+
+---
 
 ## Интро 1
-### Одна позиция в заказе
 
-`item` — «позиция заказа»: одна вещь в списке. Вы только открыли коробку и заметили незнакомую позицию: `An item is wrong.` Когда вы уже знаете, о какой позиции речь, говорите `The item is wrong.` В заказе может быть несколько позиций — тогда это `items`; у нескольких вещей своя форма.
+### Назвать одно место
 
-**Вы впервые заметили неверную позицию в коробке. Выберите фразу.**
+Новых слов нет: повторяем `kitchen` — кухня, `bathroom` — ванная комната, `bedrooms` — спальни, `hotels` — отели, `office` — офис, `airport` — аэропорт, `restaurants` — рестораны. Для одного: `a kitchen`, но `an office` и `an airport`. Выбор `a/an` зависит от первого звука следующего слова. Даже огромному аэропорту хватает одного `an`, если аэропорт один.
 
-- ✅ **An item is wrong.**
-- ❌ The item is wrong. — *Позицию ещё не называли.*
-- ❌ A item is wrong. — *`item` начинается с гласного звука, поэтому нужен `an`.*
+**Вы называете одно помещение: это офис. Выберите фразу.**
+
+- ✅ **This is an office.**
+- ❌ This is a office. — *`office` начинается с гласного звука: `an office`.*
+- ❌ This are an office. — *Один объект с `This`: нужно `is`.*
 
 ---
 
 ## Интро 2
-### Заказ уже дома
 
-`order` — «заказ». Курьер оставил один заказ у двери: `An order is here.` Когда вы принесли его на кухню и говорите о нём, будет `The order is here.` Слово `order` помогает отличить весь заказ от одной позиции внутри него.
+### Понятное место или группа
 
-**Курьер впервые оставил один заказ. Выберите фразу.**
+`The bathroom is here` — «Ванная комната здесь»: вы оба понимаете, о какой комнате речь. `The bedrooms are there` — «Спальни там»: конкретных спален несколько. `The` не меняется, а `is/are` зависит от числа. Не обязательно сначала называть место с `a`: оно может быть понятно из ситуации.
 
-- ✅ **An order is here.**
-- ❌ The order is here. — *Заказ ещё не называли.*
-- ❌ A order is here. — *`order` начинается с гласного звука, поэтому нужен `an`.*
+**Вы уже обсудили несколько спален дома. Скажите «Спальни там».**
+
+- ✅ **The bedrooms are there.**
+- ❌ The bedrooms is there. — *Спален несколько: нужно `are`.*
+- ❌ The bedroom is there. — *Так говорят об одной спальне. Здесь несколько: `bedrooms are`.*
 
 ---
 
 ## Интро 3
-### Сверяем итоговую сумму
 
-`total` — «итоговая сумма». В чеке она уже есть, поэтому говорим `The total is wrong.` Это не отдельная вещь в коробке, а сумма всего заказа. Если цифра не сходится, коробка тут ни при чём: сначала сверяем total.
+### Показать на карте
 
-**Вы сверили чек и увидели неверную итоговую сумму. Выберите фразу.**
+`These are hotels` — «Это отели»: несколько рядом на карте. `Those are restaurants` — «Это рестораны»: несколько дальше. Если речь о ресторанах, которые вы уже выбрали, можно сказать `The restaurants are here` — «Рестораны здесь». В каждой фразе понятно, какая группа нужна собеседнику.
 
-- ✅ **The total is wrong.**
-- ❌ The item is wrong. — *В чеке неверна итоговая сумма, а не одна позиция.*
-- ❌ The total are wrong. — *`total` — одна сумма, поэтому с ним `is`.*
+**Вы показываете на несколько отелей прямо перед вами на карте. Назовите их со словом для нескольких рядом.**
+
+- ✅ **These are hotels.**
+- ❌ This is a hotel. — *Так называют один отель. Здесь несколько рядом: `These are hotels`.*
+- ❌ Those are hotels. — *`Those` указывает дальше. Здесь группа рядом: `These`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-48:i01; family: listen_choose -->
-Цель: `item`
-Варианты: `item`
+**1 · Вы уже показали гостю кухню. Он ищет её снова, вы у её двери. Скажите «Кухня здесь»**
+<!-- interaction_id: en:lesson-03:session-48:i01; family: phrase_builder -->
+Плитки: `here` `is` `kitchen` `The` `are` → **The kitchen is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The kitchen is here.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-48:i03; family: scripted_repeat_compare -->
-Цель: `order`
+**2 · Послушайте и выберите точную фразу**
+<!-- interaction_id: en:lesson-03:session-48:i02; family: listen_choose -->
+🔊 *The bathroom is there.* → **The bathroom is there.** · The bathroom is here. · This bathroom is there.
+- The bathroom is here. — *В записи последнее слово — `there`, а в этом варианте — `here`.*
+- This bathroom is there. — *В записи первое слово — `The`, а в этом варианте — `This`.*
 
-**3 · Послушайте и выберите итоговую сумму**
-<!-- interaction_id: en:lesson-03:session-48:i05; family: listen_choose -->
-Цель: `total`
-Варианты: `total` · `title` · `turtle`
-- title — *В записи два слога: `TO-tal`, а не односложное `title`.*
-- turtle — *В записи нет звука /r/: звучит `total`, не `turtle`.*
+**3 · Вы говорите о нескольких спальнях, которые уже осмотрели с гостем**
+<!-- interaction_id: en:lesson-03:session-48:i03; family: context_gap_grammar -->
+The bedrooms ___ there. → **are** · is · am
+- is — *Спален несколько: `The bedrooms are there`.*
+- am — *С `The bedrooms` нужно `are`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-48:i04; family: speed_match -->
+kitchen — кухня · bathroom — ванная комната · bedrooms — спальни · hotels — отели
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-48:i02; family: scripted_repeat_compare -->
-Цель: `item`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-48:i05; family: listen_build_dictation -->
+🔊 *These are hotels.* Плитки: `hotels` `are` `These` `is` → **These are hotels.**
+*(плитка `is` лишняя: здесь нужно `are` — `These are hotels.`)*
 
-**5 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-48:i04; family: listen_choose -->
-Цель: `order`
-Варианты: `order`
+**6 · Гость спрашивает, что за помещение прямо рядом. Назовите офис со словом для одного рядом**
+<!-- interaction_id: en:lesson-03:session-48:i06; family: phrase_builder -->
+Плитки: `office` `an` `is` `This` `are` → **This is an office.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is an office.`)*
 
-**6 · Произнесите слово — итоговая сумма в чеке**
-<!-- interaction_id: en:lesson-03:session-48:i06; family: scripted_repeat_compare -->
-Цель: `total`
+**7 · Вы с гостем знаете аэропорт вашего вылета. Покажите его дальше на карте: «Аэропорт там»**
+<!-- interaction_id: en:lesson-03:session-48:i07; family: scripted_repeat_compare -->
+🎙 **The airport is there.**
 
-**7 · Соедините слова со значениями — сверяем заказ**
-<!-- interaction_id: en:lesson-03:session-48:i08; family: speed_match -->
-Пары: `item` — позиция заказа · `order` — заказ · `total` — итоговая сумма
-Цель: `item · order · total`
+**8 · Вы называете помещение дальше от вас: офис**
+<!-- interaction_id: en:lesson-03:session-48:i08; family: context_gap_grammar -->
+That is ___ office. → **an** · a · are
+- a — *`office` начинается с гласного звука: `an office`.*
+- are — *Перед названием одного офиса здесь нужно `an`.*
 
-**8 · Послушайте и соберите фразу о доставленном заказе**
-<!-- interaction_id: en:lesson-03:session-48:i10; family: listen_build_dictation -->
-Цель: `The order is here.`
+**9 · Послушайте и выберите точную фразу**
+<!-- interaction_id: en:lesson-03:session-48:i09; family: listen_choose -->
+🔊 *Those are restaurants.* → **Those are restaurants.** · These are restaurants. · Those are hotels.
+- These are restaurants. — *В записи первое слово — `Those`, а в этом варианте — `These`.*
+- Those are hotels. — *В записи последнее слово — `restaurants`, а в этом варианте — `hotels`.*
 
-**9 · Вставьте связку — вы уже видите этот заказ в коробке**
-<!-- interaction_id: en:lesson-03:session-48:i11; family: context_gap_grammar -->
-Цель: `The order ___ here.`
-Варианты: `is` · `are` · `am`
-- are — *`Order` — один заказ, поэтому нужна форма `is`.*
-- am — *`am` бывает только с `I`, не с `order`.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-48:i10; family: speed_match -->
+office — офис · airport — аэропорт · restaurants — рестораны · hotels — отели
 
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-48:i11; family: listen_build_dictation -->
+🔊 *This is a kitchen.* Плитки: `kitchen` `a` `is` `This` `are` → **This is a kitchen.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a kitchen.`)*
 
-**10 · Соедините пары — сверяем коробку и чек**
-<!-- interaction_id: en:lesson-03:session-48:i07; family: speed_match -->
-Пары: `item` — позиция заказа · `items` — позиции заказа · `order` — заказ · `total` — итоговая сумма
-Цель: `item · items · order · total`
-
-**11 · Вставьте начало — вы впервые заметили неверную позицию**
-<!-- interaction_id: en:lesson-03:session-48:i09; family: context_gap_grammar -->
-Цель: `___ item is wrong.`
-Варианты: `An` · `The` · `A` · `без артикля`
-- The — *Позицию ещё не называли.*
-- A — *Перед `item` нужен `an`.*
-- без артикля — *Одну позицию здесь нужно назвать с артиклем.*
-
-
-**12 · Соберите фразу — заказ уже принесли домой**
+**12 · Вы говорите о спальнях, которые уже осмотрели с гостем. Скажите «Спальни здесь»**
 <!-- interaction_id: en:lesson-03:session-48:i12; family: phrase_builder -->
-Цель: `The order is here.`
+Плитки: `here` `are` `bedrooms` `The` `is` → **The bedrooms are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `The bedrooms are here.`)*
 
-**13 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-03:session-48:i13; family: listen_choose -->
-Цель: `The total is wrong.`
-Варианты: `Итоговая сумма неверная` · `Итоговая сумма здесь` · `Позиция неверная` · `Где итоговая сумма?`
-- Итоговая сумма здесь — *В записи звучит `wrong`, а не `here`.*
-- Позиция неверная — *Звучит `total`, не `item`.*
-- Где итоговая сумма? — *Это утверждение, не вопрос.*
+**13 · Гость ищет ванную, которую вы уже показали. Вы рядом с ней. Скажите «Ванная комната здесь»**
+<!-- interaction_id: en:lesson-03:session-48:i13; family: scripted_repeat_compare -->
+🎙 **The bathroom is here.**
 
+**14 · Вы указываете на несколько выбранных вами отелей**
+<!-- interaction_id: en:lesson-03:session-48:i14; family: context_gap_grammar -->
+The hotels ___ there. → **are** · is · am
+- is — *Отелей несколько: `The hotels are there`.*
+- am — *С `The hotels` нужно `are`.*
 
-**14 · Соберите фразу — знакомые позиции лежат в коробке**
-<!-- interaction_id: en:lesson-03:session-48:i14; family: phrase_builder -->
-Цель: `The items are here.`
+**15 · Послушайте и выберите точную фразу**
+<!-- interaction_id: en:lesson-03:session-48:i15; family: listen_choose -->
+🔊 *That is an airport.* → **That is an airport.** · This is an airport. · That is an office.
+- This is an airport. — *В записи первое слово — `That`, а в этом варианте — `This`.*
+- That is an office. — *В записи последнее слово — `airport`, а в этом варианте — `office`.*
 
-**15 · Вставьте связку — сверяем сумму в чеке**
-<!-- interaction_id: en:lesson-03:session-48:i15; family: context_gap_grammar -->
-Цель: `The total ___ wrong.`
-Варианты: `is` · `are` · `am` · `без артикля`
-- are — *`total` — одна сумма, поэтому нужен `is`.*
-- am — *`am` бывает с I, а здесь total.*
-- без артикля — *После `The total` нужна связка `is`.*
+**16 · Соедините сочетания со значениями**
+<!-- interaction_id: en:lesson-03:session-48:i16; family: speed_match -->
+a kitchen — одна кухня · an office — один офис · an airport — один аэропорт · a bathroom — одна ванная комната
 
+**17 · В новой поездке вы с другом уже выбрали рестораны для ужина. Друг ищет их на карте; вы нашли их прямо перед собой. Скажите «Рестораны здесь» о той же группе**
+<!-- interaction_id: en:lesson-03:session-48:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The restaurants are here.**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-03:session-48:i16; family: listen_choose -->
-Цель: `The item is wrong.`
-Варианты: `Эта позиция неверная` · `Эта позиция здесь` · `Итоговая сумма неверная` · `Где позиция?`
-- Эта позиция здесь — *В записи звучит `wrong`, а не `here`.*
-- Итоговая сумма неверная — *Звучит `item`, не `total`.*
-- Где позиция? — *Это утверждение, не вопрос.*
-
-
-**17 · Вставьте артикль — вы впервые проверяете один неверный заказ из нескольких распечаток**
-<!-- interaction_id: en:lesson-03:session-48:i17; family: context_gap_grammar -->
-Цель: `___ order is wrong.`
-Варианты: `An` · `The` · `A` · `без артикля`
-- The — *`the` подходит для уже понятного заказа. Здесь заказ называют впервые, поэтому нужен неопределённый артикль. Выбирайте `the` после первого упоминания.*
-- A — *`a` тоже называет один новый предмет, но `order` начинается с гласного звука. Поэтому нужно `an order`. Сначала слушайте первый звук следующего слова.*
-- без артикля — *Без артикля нельзя назвать один исчисляемый предмет. Здесь один новый заказ: `an order`.*
-
-
-## Для сборщика
-new_words: item — позиция заказа — Одна вещь из списка.
-new_words: order — заказ — Одна доставка.
-new_words: total — итоговая сумма — Число в чеке за весь заказ.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=context_gap_grammar, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_choose, 14=phrase_builder, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar

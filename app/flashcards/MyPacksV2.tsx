@@ -46,6 +46,9 @@ type Props = Readonly<{
   onSortChange: (value: MyPacksSortKey) => void;
   packLanguage: PackLanguage;
   onPackLanguageChange: (value: PackLanguage) => void;
+  /** Сколько наборов скрыто выбранным языком (0 — ничего не скрыто) и тап «Показать все». */
+  hiddenByLanguage?: number;
+  onShowAllLanguages?: () => void;
   onBack: () => void;
   onCreate: () => void;
   onOpen: (pack: FlashcardMarketPack) => void;
@@ -76,7 +79,7 @@ function MyPacksV2Inner(props: Props) {
   const g = useLv2Glass();
   // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
   const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
-  const { lang, created, added, totalCount, status, labelFor, openingPackId, query, onQueryChange, sort, onSortChange, packLanguage, onPackLanguageChange, onBack, onCreate, onOpen, onTrain, onEdit, onPublish, onDelete, onRetry } = props;
+  const { lang, created, added, totalCount, status, labelFor, openingPackId, query, onQueryChange, sort, onSortChange, packLanguage, onPackLanguageChange, hiddenByLanguage = 0, onShowAllLanguages, onBack, onCreate, onOpen, onTrain, onEdit, onPublish, onDelete, onRetry } = props;
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -191,6 +194,21 @@ function MyPacksV2Inner(props: Props) {
           </View>
         ) : null}
 
+        {status === 'list' && hiddenByLanguage > 0 && onShowAllLanguages ? (
+          // зачем (координатор 15.10, R27): набор другого языка не пропадает молча — над списком честная строка со счётчиком и кнопкой «Показать все»
+          <Pressable testID="fc-my-packs-hidden-language" accessibilityRole="button" onPress={onShowAllLanguages} style={({ pressed }) => [styles.hiddenRow, pressed && styles.pressed]}>
+            <Text style={[styles.hiddenText, { color: g.secondary }]}>
+              {triLang(lang, {
+                ru: `Скрыто ${hiddenByLanguage}: другой язык`, uk: `Приховано ${hiddenByLanguage}: інша мова`, en: `${hiddenByLanguage} hidden: other language`,
+                es: `${hiddenByLanguage} ocultos: otro idioma`, 'pt-BR': `${hiddenByLanguage} ocultos: outro idioma`, vi: `Đã ẩn ${hiddenByLanguage}: ngôn ngữ khác`,
+                id: `${hiddenByLanguage} disembunyikan: bahasa lain`, tr: `${hiddenByLanguage} gizli: başka dil`, pl: `Ukryto ${hiddenByLanguage}: inny język`,
+              })}
+            </Text>
+            <Text style={[styles.hiddenAction, { color: g.text }]}>
+              {triLang(lang, { ru: 'Показать все', uk: 'Показати всі', en: 'Show all', es: 'Mostrar todos', 'pt-BR': 'Mostrar todos', vi: 'Hiện tất cả', id: 'Tampilkan semua', tr: 'Tümünü göster', pl: 'Pokaż wszystkie' })}
+            </Text>
+          </Pressable>
+        ) : null}
         {/* зачем (cards-v2 mySets()): один список стопок без разделов — свои, затем добавленные (у них аватар автора). */}
         {status === 'list' && created.length + added.length > 0 ? (
           <View testID="fc-my-packs-section-created" style={styles.stack}>
@@ -265,6 +283,9 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   loading: { marginTop: 22, gap: 14 },
   skeleton: { borderRadius: 20, backgroundColor: g.hairlineSoft },
   none: { marginTop: 30, fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  hiddenRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, minHeight: 44, paddingVertical: 8 },
+  hiddenText: { flex: 1, fontSize: 15, lineHeight: 20 },
+  hiddenAction: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
   langRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 4 },
   langLabel: { fontSize: 16, lineHeight: 20 },
   sheetHead: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, paddingBottom: 18 },

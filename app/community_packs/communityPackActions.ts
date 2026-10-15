@@ -78,6 +78,8 @@ export async function addCommunityPackToLibrary(
     return 'unavailable';
   }
   console.log(`[PACK-ADD] in pack=${pack.id} target=${studyTarget ?? 'default'}`); // guard-ok: вход в добавление
+  // зачем (координатор 15.10, R06, «сперва логи»): с каким языком набор попадает в «Мои наборы» — поле packLanguage, поле studyTarget и признак видео-набора
+  console.log(`[PACK-ADD] language pack=${pack.id} packLanguage=${String(pack.packLanguage)} studyTarget=${String(pack.studyTarget)} video=${pack.videoId ? 'yes' : 'no'}`); // guard-ok: язык набора при добавлении
 
   /**
    * ПРИЧИНА БАГА «лайк не ставится» (владелец, iPhone), часть 2.

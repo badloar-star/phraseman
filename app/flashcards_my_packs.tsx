@@ -44,7 +44,9 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { actionToastTri, emitAppEvent } from './events';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { formatPackLangTrace } from './flashcards/pack_lang_trace';
+import { applyMyPacksLanguageView } from './flashcards/my_packs_language_view';
 import { MyPacksV2 } from './flashcards/MyPacksV2';
 import { runPublishPackFlow } from './flashcards/publish_pack_flow';
 import { safeRouterBack } from './navigation_back';
@@ -69,10 +71,9 @@ import { packTileArtRevision } from './flashcards/packMarketplaceIcons';
 import { stageOwnedPackCardsForNavigation } from './flashcards/useCollectionData';
 import { getCanonicalUserId } from './user_id_policy';
 import { type RuntimeStudyTarget } from './target_storage_keys';
-import { defaultPackLanguageForStudyTarget, type PackLanguage } from './flashcards/pack_languages';
+import { defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
 import { publishMyPacksCount } from './flashcards/myPacksCountCache';
-import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
-import { filterPacksByLanguage } from './community_packs/communityCatalogFilter';
+import { setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -200,7 +201,7 @@ function groupPacks(
  * читаются из памяти, без AsyncStorage и без сети). Ничего не прогрето —
  * честно отдаём пусто, как раньше. Сеть/диск лишь дочитывают недостающее.
  */
-function peekMyPacksGroups(studyTarget?: RuntimeStudyTarget, packLanguage: PackLanguage = 'en'): MyPacksGroups {
+function peekMyPacksGroups(studyTarget?: RuntimeStudyTarget): MyPacksGroups {
   const catalog = peekWarmMarketplacePacks(studyTarget);
   if (!catalog) return EMPTY_GROUPS;
   const ownedIds = peekAccessiblePackIds(studyTarget);
@@ -209,7 +210,8 @@ function peekMyPacksGroups(studyTarget?: RuntimeStudyTarget, packLanguage: PackL
   // Автора на синхронном пути не знаем (getCanonicalUserId асинхронный), поэтому
   // UGC до дочитывания считаем «добавленным». Раздел «Созданные мной» доедет со
   // следующим кадром и лишь дополнит список — плитки на месте уже сейчас.
-  return groupPacks(filterPacksByLanguage(ownedIds.map((id) => catalogById.get(id)).filter(Boolean) as FlashcardMarketPack[], packLanguage), () => false);
+  // зачем (координатор 15.10, R27): язык не фильтруем на уровне загрузки — все мои наборы приходят целиком, а фильтр по языку применяется ниже, мгновенно и с подсказкой «Скрыто N».
+  return groupPacks(ownedIds.map((id) => catalogById.get(id)).filter(Boolean) as FlashcardMarketPack[], () => false);
 }
 
 function sameGroup(a: FlashcardMarketPack[], b: FlashcardMarketPack[]): boolean {
@@ -235,7 +237,7 @@ export default function FlashcardsMyPacksScreen() {
   // Первый кадр — из прогретых кэшей, без ожидания диска и сети (см. peekMyPacksGroups).
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => defaultPackLanguageForStudyTarget(studyTarget));
   React.useEffect(() => subscribePackLanguage(setPackLanguage), []);
-  const [groups, setGroups] = useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget, defaultPackLanguageForStudyTarget(studyTarget)));
+  const [groups, setGroups] = useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget));
   const [loadStatus, setLoadStatus] = useState<'loading' | 'ready' | 'stale' | 'error'>('loading');
   const [reloadTick, setReloadTick] = useState(0);
   const [accountGeneration, setAccountGeneration] = useState(captureAccountGeneration);
@@ -279,6 +281,8 @@ export default function FlashcardsMyPacksScreen() {
   }, []);
   // PM-095/PM-096: поиск и сортировка — чисто локальные, без новых Firestore-чтений.
   const [myPacksQuery, setMyPacksQuery] = useState('');
+  // зачем (R27): явное «Показать все языки» — только на время визита на экран (не пишется в хранилище)
+  const [showAllLanguages, setShowAllLanguages] = useState(false);
   // зачем (PM-096-A3, координатор 03.10): сортировку читает загрузчик фокуса ВМЕСТЕ с наборами
   // и применяет одним обновлением — список никогда не появляется в чужом порядке.
   const [myPacksSort, setMyPacksSort] = useState<MyPacksSort>(() => myPacksSortMemo ?? 'updated');
@@ -292,9 +296,11 @@ export default function FlashcardsMyPacksScreen() {
 
   React.useEffect(() => {
     let cancelled = false;
-    void getStoredPackLanguage().then((stored) => {
-      if (!cancelled) setPackLanguage(stored ?? defaultPackLanguageForStudyTarget(studyTarget));
-    });
+    // зачем (координатор 15.10, R30): сохранённый глобальный язык наборов (fc_pack_language_v1) больше не побеждает язык обучения — «Мои наборы» открываются на языке цели обучения и переключаются вместе с ней.
+    const next = defaultPackLanguageForStudyTarget(studyTarget);
+    console.log(`[MY-PACKS] language_default studyTarget=${String(studyTarget)} -> ${next}`); // guard-ok: откуда выбран язык «Моих наборов»
+    if (!cancelled) setPackLanguage(next);
+    setShowAllLanguages(false);
     return () => { cancelled = true; };
   }, [studyTarget]);
 
@@ -303,14 +309,45 @@ export default function FlashcardsMyPacksScreen() {
     void setStoredPackLanguage(next).catch(noteSwallowedHandler('flashcards_my_packs:useCallback.setStoredPackLanguage'));
   }, []);
 
+  // зачем (координатор 15.10, R29 и R06): добавили набор — кэш «набора нет» (30 мин) сбрасываем, чтобы только что добавленный не потерялся в нём, и тихо перечитываем список;
+  // когда набор появится, а язык выбран другой, экран сам переключится на язык набора (Optimistic: без ожидания сети и без «пусто»).
+  const justAddedPackIdRef = useRef<string | null>(null);
+  React.useEffect(() => onAppEvent('community_pack_added', ({ packId }) => {
+    missingPackCache.clear();
+    justAddedPackIdRef.current = packId;
+    console.log(`[MY-PACKS] pack_added event pack=${packId} -> кэш «набора нет» сброшен, перечитываем`); // guard-ok: событие добавления
+    setReloadTick((value) => value + 1);
+  }), []);
+  React.useEffect(() => {
+    const id = justAddedPackIdRef.current;
+    if (!id) return;
+    const found = [...groups.added, ...groups.created].find((pack) => pack.id === id);
+    if (!found) return;
+    justAddedPackIdRef.current = null;
+    const next = normalizePackLanguage(found.packLanguage ?? found.studyTarget);
+    console.log(`[MY-PACKS] pack_added visible pack=${id} language=${next} selected=${packLanguage}`); // guard-ok: переключение на язык нового набора
+    if (next !== 'none' && next !== packLanguage) setPackLanguage(next);
+  }, [groups, packLanguage]);
+
   const packCount = groups.added.length + groups.created.length;
 
   /** PM-095/PM-096: поиск и сортировка применяются к каждому разделу отдельно,
    *  порядок разделов (добавленные/созданные) не меняется — только порядок ВНУТРИ. */
+  // зачем (координатор 15.10, R27/R06): фильтр по языку — клиентский и мгновенный; если из-за него не видно НИ ОДНОГО набора, показываем все (человек не должен видеть «Наборов нет» при добавленном наборе другого языка),
+  // а если часть скрыта — над списком строка «Скрыто N: другой язык · Показать все».
+  const languageView = useMemo(
+    () => applyMyPacksLanguageView({ added: groups.added, created: groups.created, language: packLanguage, showAll: showAllLanguages }),
+    [groups, packLanguage, showAllLanguages],
+  );
+  React.useEffect(() => {
+    const all = [...groups.created, ...groups.added];
+    for (const line of formatPackLangTrace('my-packs', packLanguage, all)) console.log(line.replace('[PACK-LANG]', '[MY-PACKS]')); // guard-ok: журнал языка «Моих наборов» (расследование R27)
+    console.log(`[MY-PACKS] language selected=${packLanguage} total=${languageView.total} shown=${languageView.added.length + languageView.created.length} hidden=${languageView.hidden} autoAll=${String(languageView.auto)} showAll=${String(showAllLanguages)}`); // guard-ok: итог для человека
+  }, [groups, packLanguage, languageView, showAllLanguages]);
   const visibleGroups = useMemo<MyPacksGroups>(() => ({
-    added: sortMyPacks(filterMyPacksByQuery(groups.added, myPacksQuery, contentLang), myPacksSort, contentLang),
-    created: sortMyPacks(filterMyPacksByQuery(groups.created, myPacksQuery, contentLang), myPacksSort, contentLang),
-  }), [groups, myPacksQuery, myPacksSort, contentLang]);
+    added: sortMyPacks(filterMyPacksByQuery([...languageView.added], myPacksQuery, contentLang), myPacksSort, contentLang),
+    created: sortMyPacks(filterMyPacksByQuery([...languageView.created], myPacksQuery, contentLang), myPacksSort, contentLang),
+  }), [languageView, myPacksQuery, myPacksSort, contentLang]);
   const visiblePackCount = visibleGroups.added.length + visibleGroups.created.length;
 
   /** Владение читается при каждом фокусе: «Добавить себе» пишет AsyncStorage без событий. */
@@ -447,11 +484,11 @@ export default function FlashcardsMyPacksScreen() {
       + ` missing_fetched=${fetchedMissing.length} missing_cached=${cachedMissing.length}`
       + ` missing_outside_catalog=${ownedOutsideCatalog.length} fetch_errors=${fetchErrors} status=${status}`);
     return {
-      groups: groupPacks(filterPacksByLanguage(visible, packLanguage), isMine),
+      groups: groupPacks(visible, isMine),
       status,
       accountScope: operationScope,
     };
-  }, [accountGeneration, cloudCommunityEnabled, packLanguage, studyTarget]);
+  }, [accountGeneration, cloudCommunityEnabled, studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -802,6 +839,8 @@ export default function FlashcardsMyPacksScreen() {
           onSortChange={(next) => { void hapticTap(); handleMyPacksSortChange(next); }}
           packLanguage={packLanguage}
           onPackLanguageChange={handlePackLanguageChange}
+          hiddenByLanguage={languageView.hidden}
+          onShowAllLanguages={() => { void hapticTap(); console.log(`[MY-PACKS] show_all_languages tap hidden=${languageView.hidden}`); setShowAllLanguages(true); }} // guard-ok: тап «Показать все»
           onBack={leave}
           onCreate={() => {
             void hapticTap();

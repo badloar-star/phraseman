@@ -1,0 +1,21 @@
+10-15 22:33:34.538 I/ReactNativeJS(29240): '[LESSON-RESULT] back_during_completion', '{"lessonId":1,"from":"next"}'
+10-15 22:33:34.795 I/ReactNativeJS(29240): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"итог ещё не посчитан"}'
+10-15 22:33:34.796 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT-SAVE]: gates +87мс lesson=1: results=false access=false xp=false → ждём «Сохраняю результат…»
+10-15 22:33:34.902 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT]: {"lessonId":1,"source":"progress","firstTryMistakes":0,"firstTryCorrect":3,"finalCorrect":3,"runErrors":0}
+10-15 22:33:35.416 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT]: ветка=ПРОГРЕСС_НАЙДЕН lesson=1 target=en ответов=3 верно=3 ошибок=0 из 3 score=5 → tier none→gold новыйРекорд=true проходов=1
+10-15 22:33:35.429 I/ReactNativeJS(29240): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"монеты урока ещё считаются"}'
+10-15 22:33:35.524 I/ReactNativeJS(29240): '[MOMENT-m09] decision', '{"lessonId":1,"show":true,"reason":"идеал: верно=3 ошибок=0"}'
+10-15 22:33:35.528 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT-SAVE]: gates +817мс lesson=1: results=true access=true xp=false → ждём «Сохраняю результат…»
+10-15 22:33:35.718 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT-SAVE]: scan: lesson=1 ключей=32 multiGet=214мс разбор=0мс засчитано=0 идеальных=0 wasPerfect=true битых=0
+10-15 22:33:35.718 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT-SAVE]: grantBonus: этапы lesson=1 первый бонус=627мс, сводка прохождения=217мс
+10-15 22:33:35.741 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT-SAVE]: grantBonus: готово lesson=1 всего=866мс (бонус+сводка+отзыв), wasPerfect=true eligibleReview=false
+10-15 22:33:36.089 I/ReactNativeJS(29240): [MOMENT-m10] старт: reducedMotion=false серия={день уже был засчитан раньше (до=true)} сегодня={задачу продвинул этот урок: 0/1 → 1/1}
+10-15 22:33:36.276 I/ReactNativeJS(29240): [MOMENT-m10] решение lesson=1: играем — цепочка: звёзды=3 верно=3 ошибок=0
+10-15 22:33:36.277 I/ReactNativeJS(29240): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":true,"milestonePending":true}'
+10-15 22:33:36.279 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT-SAVE]: gates +1569мс lesson=1: results=true access=true xp=true → экран итога открыт
+10-15 22:33:36.282 I/ReactNativeJS(29240): [INFO] [LESSON-RESULT]: показ итога lesson=1 комбо=false: звёзды=3 (по проценту: score=5; медаль=gold) | верно/ошибок=3/0 | монеты=+9 (hydrating=false) | заметкаPlus=false | списокОшибок=0 | оценка=
+10-15 22:33:38.573 I/ReactNativeJS(29240): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":true,"milestonePending":false}'
+10-15 22:33:41.330 I/ReactNativeJS(29240): [MOMENT-m10] конец цепочки: доиграла
+10-15 22:33:41.369 I/ReactNativeJS(29240): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":false,"perfectPending":true,"milestonePending":false}'
+10-15 22:33:41.472 I/ReactNativeJS(29240): [LESSON-PERFECT] показ: 3 из 3, монеты=9 reduceMotion=false
+10-15 22:33:41.477 I/ReactNativeJS(29240): [LESSON-PERFECT] показ key=1:en:mva205ds_j0c395y1 заданий=3 монет=9 ранг=0

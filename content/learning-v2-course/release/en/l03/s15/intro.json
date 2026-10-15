@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-15",
   "learningOutcomeByLocale": {
-    "ru": "быстрый выбор `a/an` перед названием одного предмета: `a candle`, `a cushion`, `a plant`, `an armchair`, `an oven`",
-    "uk": "швидкий вибір `a/an` перед назвою одного предмета: `a candle`, `a cushion`, `a plant`, `an armchair`, `an oven`"
+    "ru": "назвать пальто и спросить, где находится знакомый предмет",
+    "uk": "назвати пальто й запитати, де розташований знайомий предмет"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Без долгой паузы",
-        "uk": "Без довгої паузи"
+        "ru": "Что висит у двери",
+        "uk": "Що висить біля дверей"
       },
       "bodyByLocale": {
-        "ru": "`candle` — «свеча». Первый звук согласный «к», поэтому название одной свечи — `a candle`. Произносите эти два слова вместе: если перед каждым `a` устраивать совещание с собой, разговор затянется. Полная фраза: `It is a candle` — «Это свеча».",
-        "uk": "`candle` — «свічка». Перший звук приголосний «к», тому назва однієї свічки — `a candle`. Вимовляйте ці два слова разом: якщо перед кожним `a` влаштовувати нараду із собою, розмова затягнеться. Повна фраза: `It is a candle` — «Це свічка»."
+        "ru": "`coat` — «пальто». `It is a coat` — «Это пальто». Перед названием одного предмета здесь нужно `a`: слово `coat` начинается с согласного звука. Анна показывает на одежду у двери, а вы называете её полной фразой.",
+        "uk": "`coat` — «пальто». `It is a coat` — «Це пальто». Перед назвою одного предмета тут потрібно `a`: слово `coat` починається з приголосного звука. Анна показує на одяг біля дверей, а ви називаєте його повною фразою."
       },
       "question": {
         "interactionId": "en:lesson-03:session-15:intro1:q",
         "promptByLocale": {
-          "ru": "Друг спрашивает, что вы выбрали из мелочей для дома. Назовите свечу полной фразой.",
-          "uk": "Друг питає, що ви обрали з дрібниць для дому. Назвіть свічку повною фразою."
+          "ru": "Анна спрашивает, что висит у двери. Назовите предмет: «Это пальто».",
+          "uk": "Анна запитує, що висить біля дверей. Назвіть предмет: «Це пальто»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-15:intro1:r1",
-              "text": "It is a candle."
+              "text": "It is a coat."
             },
             {
               "responseId": "en:lesson-03:session-15:intro1:r2",
-              "text": "It is an candle."
+              "text": "It is an coat."
             },
             {
               "responseId": "en:lesson-03:session-15:intro1:r3",
-              "text": "It is candle."
+              "text": "It is coat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-15:intro1:r1",
-              "text": "It is a candle."
+              "text": "It is a coat."
             },
             {
               "responseId": "en:lesson-03:session-15:intro1:r2",
-              "text": "It is an candle."
+              "text": "It is an coat."
             },
             {
               "responseId": "en:lesson-03:session-15:intro1:r3",
-              "text": "It is candle."
+              "text": "It is coat."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг спрашивает, что вы выбрали из мелочей для дома. Назовите свечу полной фразой.",
-          "uk": "Друг питає, що ви обрали з дрібниць для дому. Назвіть свічку повною фразою."
+          "ru": "Анна спрашивает, что висит у двери. Назовите предмет: «Это пальто».",
+          "uk": "Анна запитує, що висить біля дверей. Назвіть предмет: «Це пальто»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Подушка и кресло",
-        "uk": "Подушка і крісло"
+        "ru": "Теперь ищем это пальто",
+        "uk": "Тепер шукаємо це пальто"
       },
       "bodyByLocale": {
-        "ru": "`cushion` — «подушка», например для дивана. Её название начинается с согласного «к»: `a cushion`. А `armchair` — «кресло» — начинается с гласного: `an armchair`. Сразу соединяйте маленькое слово с названием. Полная фраза о подушке: `It is a cushion` — «Это подушка».",
-        "uk": "`cushion` — «подушка», наприклад, для дивана. Її назва починається з приголосного «к»: `a cushion`. А `armchair` — «крісло» — починається з голосного: `an armchair`. Одразу поєднуйте маленьке слово з назвою. Повна фраза про подушку: `It is a cushion` — «Це подушка»."
+        "ru": "`Where is the coat?` — «Где пальто?» Вы говорите о пальто, которое оба только что видели. `the coat` указывает на понятный вам обоим предмет. Ответ: `The coat is here` — «Пальто здесь». Олег долго ищет своё пальто, пока Анна не предлагает посмотреть на то, что он держит в руках. Найти оказалось `easy` — «легко».",
+        "uk": "`Where is the coat?` — «Де пальто?» Ви говорите про пальто, яке обоє щойно бачили. `the coat` вказує на зрозумілий вам обом предмет. Відповідь: `The coat is here` — «Пальто тут». Олег довго шукає своє пальто, доки Анна не пропонує подивитися на те, що він тримає в руках. Знайти виявилося `easy` — «легко»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-15:intro2:q",
         "promptByLocale": {
-          "ru": "Продавец уточняет, какой товар вы хотите добавить к покупке. Назовите подушку полной фразой.",
-          "uk": "Продавець уточнює, який товар ви хочете додати до покупки. Назвіть подушку повною фразою."
+          "ru": "Олег уже говорил с вами о своём пальто. Спросите, где пальто.",
+          "uk": "Олег уже говорив з вами про своє пальто. Запитайте, де пальто."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-15:intro2:r1",
-              "text": "It is a cushion."
+              "text": "Where is the coat?"
             },
             {
               "responseId": "en:lesson-03:session-15:intro2:r2",
-              "text": "It is an cushion."
+              "text": "What is the coat?"
             },
             {
               "responseId": "en:lesson-03:session-15:intro2:r3",
-              "text": "It a cushion."
+              "text": "Where are the coat?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-15:intro2:r1",
-              "text": "It is a cushion."
+              "text": "Where is the coat?"
             },
             {
               "responseId": "en:lesson-03:session-15:intro2:r2",
-              "text": "It is an cushion."
+              "text": "What is the coat?"
             },
             {
               "responseId": "en:lesson-03:session-15:intro2:r3",
-              "text": "It a cushion."
+              "text": "Where are the coat?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Продавец уточняет, какой товар вы хотите добавить к покупке. Назовите подушку полной фразой.",
-          "uk": "Продавець уточнює, який товар ви хочете додати до покупки. Назвіть подушку повною фразою."
+          "ru": "Олег уже говорил с вами о своём пальто. Спросите, где пальто.",
+          "uk": "Олег уже говорив з вами про своє пальто. Запитайте, де пальто."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Уточнить покупку",
-        "uk": "Уточнити покупку"
+        "ru": "Не всё решается сразу",
+        "uk": "Не все вирішується відразу"
       },
       "bodyByLocale": {
-        "ru": "`plant` — «растение»: например, дерево, трава или цветок. Перед начальным согласным «п» выбираем `a`. Чтобы уточнить название, поставьте `Is` перед `it`: `Is it a plant?` — «Это растение?» Вопрос меняет начало фразы, а `a plant` остаётся вместе.",
-        "uk": "`plant` — «рослина»: наприклад, дерево, трава або квітка. Перед початковим приголосним «п» обираємо `a`. Щоб уточнити назву, поставте `Is` перед `it`: `Is it a plant?` — «Це рослина?» Питання змінює початок фрази, а `a plant` лишається разом."
+        "ru": "`difficult` — «трудный», `important` — «важный», `silent` — «молчащий, не издающий звука». `It is important` — «Это важно»: так можно сказать о возвращении чужой вещи. Олег молчит, пока пытается вспомнить владельца другого пальто: `He is silent` — «Он молчит». Для нужной чашки спросим `Where is the cup?` — «Где чашка?»",
+        "uk": "`difficult` — «складний», `important` — «важливий», `silent` — «той, що мовчить або не видає звуку». `It is important` — «Це важливо»: так можна сказати про повернення чужої речі. Олег мовчить, поки намагається пригадати власника іншого пальта: `He is silent` — «Він мовчить». Про потрібну чашку запитаємо `Where is the cup?` — «Де чашка?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-15:intro3:q",
         "promptByLocale": {
-          "ru": "Друг несёт покупку в закрытом пакете. Уточните «Это растение?».",
-          "uk": "Друг несе покупку в закритому пакеті. Уточніть: «Це рослина?»"
+          "ru": "Вы обсуждаете, нужно ли найти хозяина оставленной вещи. Скажите полной фразой «Это важно».",
+          "uk": "Ви обговорюєте, чи потрібно знайти власника залишеної речі. Скажіть повною фразою «Це важливо»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-15:intro3:r1",
-              "text": "Is it a plant?"
+              "text": "It is important."
             },
             {
               "responseId": "en:lesson-03:session-15:intro3:r2",
-              "text": "Is it an plant?"
+              "text": "It are important."
             },
             {
               "responseId": "en:lesson-03:session-15:intro3:r3",
-              "text": "Is it plant?"
+              "text": "It important."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-15:intro3:r1",
-              "text": "Is it a plant?"
+              "text": "It is important."
             },
             {
               "responseId": "en:lesson-03:session-15:intro3:r2",
-              "text": "Is it an plant?"
+              "text": "It are important."
             },
             {
               "responseId": "en:lesson-03:session-15:intro3:r3",
-              "text": "Is it plant?"
+              "text": "It important."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг несёт покупку в закрытом пакете. Уточните «Это растение?».",
-          "uk": "Друг несе покупку в закритому пакеті. Уточніть: «Це рослина?»"
+          "ru": "Вы обсуждаете, нужно ли найти хозяина оставленной вещи. Скажите полной фразой «Это важно».",
+          "uk": "Ви обговорюєте, чи потрібно знайти власника залишеної речі. Скажіть повною фразою «Це важливо»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "76d5b4a1daf285cb21f22afba5cd76af4a501818644d695de95599e23fd1b07d"
+  "introFingerprint": "3c72852ded5814c344fd1488087db1252fd5b814590b1620806cd3b9eb227ade"
 }

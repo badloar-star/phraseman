@@ -32,9 +32,10 @@ const ZONE = [
   /^app\/lingman_/, /^app\/youtube_/, /^app\/\(tabs\)\/home\.tsx$/, /^components\/home\//, /^components\/paywall\//, /^app\/(paywall|premium_modal)/, /^components\/cards/, /^app\/video/,
 ];
 /** Не интерфейс игрока: тесты, учебный контент уроков (lesson_data*, intro, theory, error_traps — тексты курса на русском, не строки интерфейса), словарь переводов LangContext, dev-инструменты, лаборатории, зонд анимации, словарные данные, пока не переведённые целиком Ядром. */
-const SKIP = /\.test\.|(^|\/)dev[_-]|_dev\b|DevHub|motion_showcase|learning-v2-lab|CardsHubAnimProbe|\/system-cards\.ts$|paywall_copy\.ts$|starter_pack_first_50\.ts$|dialogue_v2_visual_fixture\.tsx$|\/lesson_data_|lesson_help_theory_data|lesson_intro_screens|\/error_traps\/|\/LangContext\.tsx$|\/bot_names\.ts$|devToolRegistry|achievement_copy_ru/;
+const SKIP = /\.test\.|(^|\/)dev[_-]|_dev\b|DevHub|motion_showcase|learning-v2-lab|CardsHubAnimProbe|\/system-cards\.ts$|\/spire_position_moments_core\.ts$|paywall_copy\.ts$|starter_pack_first_50\.ts$|dialogue_v2_visual_fixture\.tsx$|\/lesson_data_|lesson_help_theory_data|lesson_intro_screens|\/error_traps\/|\/LangContext\.tsx$|\/bot_names\.ts$|devToolRegistry|achievement_copy_ru/;
 /** Вызовы журнала/служебные — кириллица в них не видна игроку. */
-const LOG_CALL = /(console\.\w+|DebugLogger\.\w+|logPublish|noteSwallowed\w*|fsLog|tfPrep|cardsPerfCount|logPackDeck\w*|formatLangFilterLog|logSpire\w+)\s*\(/;
+// зачем (Ядро 15.10): локальные помощники журнала `log(...)` / `logCard(...)` (обёртки над DebugLogger — Пик, окна D191) — тоже журнал, не интерфейс.
+const LOG_CALL = /(console\.\w+|DebugLogger\.\w+|logPublish|noteSwallowed\w*|fsLog|tfPrep|cardsPerfCount|logPackDeck\w*|formatLangFilterLog|logSpire\w+|\blog|\blogCard)\s*\(/;
 /** Позиционные переводчики: все строковые аргументы — разные языки. */
 const POSITIONAL = /\b(L|T|tri|tl|pickTri\w*|triLang|actionToastTri|pickTriLang)\s*\(/;
 

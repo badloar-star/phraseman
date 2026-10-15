@@ -26,6 +26,7 @@ assert.deepEqual(
     { path: './assets/fonts/Inter-Regular.ttf', weight: 400 },
     { path: './assets/fonts/Inter-SemiBold.ttf', weight: 600 },
     { path: './assets/fonts/Inter-Bold.ttf', weight: 700 },
+    { path: './assets/fonts/Inter-ExtraBold.ttf', weight: 800 },
     { path: './assets/fonts/Inter-Black.ttf', weight: 900 },
   ],
 );
@@ -41,7 +42,7 @@ assert.equal(xmlSpecs.length, 1);
 assert.equal(path.basename(xmlSpecs[0].path), 'xml_inter.xml');
 assert.deepEqual(
   xmlSpecs[0].xml['font-family'].font.map((entry) => Number(entry.$['app:fontWeight'])),
-  [400, 600, 700, 900],
+  [400, 600, 700, 800, 900],
 );
 assert.deepEqual(
   generateFontManagerCalls(groupedFonts, 'kt'),

@@ -5,7 +5,7 @@
 // Это правило — предположение до кадра-доказательства (Сверка), поэтому и план, и счётчики пишутся в журнал `[FONT-WEIGHT]`. Модуль чистый: без React Native, проверяется тестом против app.json.
 
 /** Начертания, зарегистрированные в нативном семействе Inter (держать равным app.json → expo-font → android.fonts[0].fontDefinitions[].weight). */
-export const REGISTERED_INTER_WEIGHTS: readonly number[] = [400, 600, 700, 900];
+export const REGISTERED_INTER_WEIGHTS: readonly number[] = [400, 600, 700, 800, 900];
 
 const NAMED: Readonly<Record<string, number>> = { normal: 400, bold: 700 };
 

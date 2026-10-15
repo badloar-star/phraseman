@@ -21,6 +21,7 @@ describe('app typography contract', () => {
     expect(fs.existsSync(path.join(root, 'assets/fonts/Inter-Regular.ttf'))).toBe(true);
     expect(fs.existsSync(path.join(root, 'assets/fonts/Inter-SemiBold.ttf'))).toBe(true);
     expect(fs.existsSync(path.join(root, 'assets/fonts/Inter-Bold.ttf'))).toBe(true);
+    expect(fs.existsSync(path.join(root, 'assets/fonts/Inter-ExtraBold.ttf'))).toBe(true);
     expect(fs.existsSync(path.join(root, 'assets/fonts/Inter-Black.ttf'))).toBe(true);
 
     expect(typographySource).toContain("APP_FONT_FAMILY = 'Inter'");
@@ -50,6 +51,7 @@ describe('app typography contract', () => {
       { path: './assets/fonts/Inter-Regular.ttf', weight: 400 },
       { path: './assets/fonts/Inter-SemiBold.ttf', weight: 600 },
       { path: './assets/fonts/Inter-Bold.ttf', weight: 700 },
+      { path: './assets/fonts/Inter-ExtraBold.ttf', weight: 800 },
       { path: './assets/fonts/Inter-Black.ttf', weight: 900 },
     ]);
 

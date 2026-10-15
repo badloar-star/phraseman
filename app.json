@@ -135,6 +135,10 @@
                     "weight": 700
                   },
                   {
+                    "path": "./assets/fonts/Inter-ExtraBold.ttf",
+                    "weight": 800
+                  },
+                  {
                     "path": "./assets/fonts/Inter-Black.ttf",
                     "weight": 900
                   }
@@ -146,6 +150,7 @@
             "./assets/fonts/Inter-Regular.ttf",
             "./assets/fonts/Inter-SemiBold.ttf",
             "./assets/fonts/Inter-Bold.ttf",
+            "./assets/fonts/Inter-ExtraBold.ttf",
             "./assets/fonts/Inter-Black.ttf"
           ]
         }

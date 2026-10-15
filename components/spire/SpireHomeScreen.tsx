@@ -16,7 +16,7 @@
 // СПЕРВА ЛОГИ: префикс [SPIRE] — вход, откуда данные, причина каждого раннего выхода.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { RefreshControl, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -54,7 +54,8 @@ import SpireResultPanel from './SpireResultPanel';
 import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
 const SpireMomentsLayer = lazy(() => import('./moments/SpireMomentsLayer'));
 import SpireHomeSkeleton from './SpireHomeSkeleton';
-import { spireTowerWindowHeight } from './spire_tower_window';
+import { useSpireTowerBudget } from './use_spire_tower_budget';
+import { useSpireTowerTouchLock } from './use_spire_tower_touch_lock';
 import SpireStepScreen from './SpireStepScreen';
 import SpireTour from './SpireTour';
 import SpireTower from './SpireTower';
@@ -81,7 +82,7 @@ export default function SpireHomeScreen() {
   const { hasPremiumAccess } = usePremium();
   const realCoinRank = useMyCoinRank();
   const bottomPad = useTabContentBottomPad();
-  const pillTop = useTabPillTop(); const dockBottom = pillTop + DOCK_PILL_GAP; const screenH = useWindowDimensions().height;
+  const pillTop = useTabPillTop(); const dockBottom = pillTop + DOCK_PILL_GAP;
   // зачем (координатор 11.10): DEV-превью на моках (/dev_spire_preview) подаёт сюда готовую модель; в боевом пути preview всегда null,
   // и экран работает как раньше — конфиг, локальная неделя и игра из реальных источников.
   const preview = useSpirePreview();
@@ -96,12 +97,10 @@ export default function SpireHomeScreen() {
   const [tourSeen, setTourSeen] = useState<boolean | null>(() => (preview ? preview.tourSeen : peekSpireTourSeen()));
   // Измеренная высота дока (кнопка «Подняться» / панель итога): от неё считается нижний запас списка. 0 — ещё не измерен.
   const [dockH, setDockH] = useState(0);
-  // зачем (строка 25 R1_BACKLOG): верх окна башни и верх дока — из измерений; окно ровно до дока, чтобы кнопка «Играть» не закрывала нижние этажи
-  const [towerTop, setTowerTop] = useState(0);
-  const [dockTop, setDockTop] = useState(0);
-  const [infoH, setInfoH] = useState(0); // зачем (координатор 15.10, условие 3): карточка «Этаж N» под окном башни не уходит под док в начальном положении — её высота вычитается из окна
-  const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP + infoH, screenH);
-  useEffect(() => { if (towerTop > 0 && dockTop > 0) console.log('[SPIRE-DOCK-INSET] window', JSON.stringify({ towerTop, dockTop, dockH: roundLayout(dockH), gap: DOCK_GAP, towerWindowH, bottomPad: roundLayout(bottomPad) })); }, [towerTop, dockTop, dockH, towerWindowH, bottomPad]); // guard-ok: журнал высоты окна башни до дока
+  // зачем (строка 25 R1_BACKLOG; координатор 15.10, 🔴): окно башни и «компактная карточка этажа» — из измерений верха башни, верха дока и карточки (use_spire_tower_budget), не из модели высоты
+  const budget = useSpireTowerBudget(DOCK_GAP);
+  const towerWindowH = budget.windowH;
+  const towerTouch = useSpireTowerTouchLock(); // зачем (координатор 15.10, п. г): пока палец в окне башни — страница и обновление потягиванием не крадут свайп
 
   useEffect(() => {
     if (preview) {
@@ -279,8 +278,9 @@ export default function SpireHomeScreen() {
         contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }]}
         showsVerticalScrollIndicator={false}
         decelerationRate="fast"
+        scrollEnabled={!towerTouch.locked}
         // зачем (смета Firebase 13.10, п. 5): друзья в кэше 30 мин — вручную обновляются потягиванием; спиннер системный, экран не блокируется
-        refreshControl={<RefreshControl refreshing={friendsRefreshing} onRefresh={onPullRefreshFriends} tintColor={p.text} colors={[p.text]} progressBackgroundColor={p.control} testID="spire-pull-refresh" />}
+        refreshControl={<RefreshControl enabled={!towerTouch.locked} refreshing={friendsRefreshing} onRefresh={onPullRefreshFriends} tintColor={p.text} colors={[p.text]} progressBackgroundColor={p.control} testID="spire-pull-refresh" />}
         onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + tailPad) })}
         onContentSizeChange={(_w, ch) => logSpireLayout('scroll.content', { contentH: roundLayout(ch) })}
       >
@@ -302,7 +302,7 @@ export default function SpireHomeScreen() {
         </View>
         {/* зачем (решение владельца 13.10): блок «Комната недели» (пьедестал 1-2-3 + «Все участники · N») — самый верх экрана, сразу под заголовком, выше башни */}
         <View style={offline ? s.dim : null} testID="spire-room-top">
-          <SpirePodium lang={lang} members={members} onOpenAll={openAll} rankBy={game.rankBy} />
+          <SpirePodium lang={lang} members={members} onOpenAll={openAll} rankBy={game.rankBy} loading={members === null && game.live && game.roomLoad === null} />
         </View>
         {offline ? (
           <View style={[s.note, { backgroundColor: p.cardRaised }]} accessibilityLiveRegion="polite" testID="spire-offline">
@@ -322,10 +322,10 @@ export default function SpireHomeScreen() {
         {(devWeekResult ?? game.weekResult) ? (
           <SpireWeekResultCard lang={lang} result={(devWeekResult ?? game.weekResult)!} myCoinRank={myCoinRank} />
         ) : null}
-        <View style={s.towerWrap} onLayout={(e) => { const y = Math.round(e.nativeEvent.layout.y); setTowerTop((prev) => (prev === y ? prev : y)); }}>
-          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} />
+        <View style={s.towerWrap} onLayout={(e) => budget.onTowerTop(Math.round(e.nativeEvent.layout.y))}>
+          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} onTouchActive={towerTouch.onTouchActive} />
         </View>
-        <View onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setInfoH((prev) => (prev === h ? prev : h)); }}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} windowH={towerWindowH} /></View>
+        <View onLayout={(e) => budget.onInfoHeight(Math.round(e.nativeEvent.layout.height))}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} compact={budget.compact} /></View>
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
         <View
           style={offline ? s.dim : null}
@@ -339,8 +339,7 @@ export default function SpireHomeScreen() {
         style={[s.dock, { bottom: dockBottom }]}
         onLayout={(e) => {
           const h = e.nativeEvent.layout.height;
-          const dy = Math.round(e.nativeEvent.layout.y);
-          setDockTop((prev) => (prev === dy ? prev : dy));
+          budget.onDockTop(Math.round(e.nativeEvent.layout.y));
           setDockH((prev) => (Math.abs(prev - h) < 0.5 ? prev : h)); // зачем: порог 0,5 dp — дрожь округления не гоняет перерисовку; док на запас списка не влияет (absolute), цикла нет
           logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(h), bottomOffset: roundLayout(dockBottom), pillTop: roundLayout(pillTop) });
         }}

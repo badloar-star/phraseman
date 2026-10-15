@@ -48,6 +48,8 @@ type Props = Readonly<{
   tier?: number | null;
   /** Высота окна, dp (по умолчанию 400 по макету): экран сужает её, если низ окна иначе уходит под кнопку «Играть». */
   windowHeight?: number;
+  /** Палец в окне башни (true) / отпущен (false): экран на это время не отдаёт жест странице и обновлению потягиванием. */
+  onTouchActive?: (active: boolean) => void;
 }>;
 
 const RIVAL = 22;
@@ -113,7 +115,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
   return { x: p.x * scale - MARKER_SIZE / 2, y: p.y * scale - MARKER_SIZE / 2 };
 }
 
-function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT }: Props) {
+function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive }: Props) {
   const p = useSpirePalette();
   const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
@@ -216,8 +218,11 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   }, []);
 
   // окно стало выше/ниже (измерили док) — свой этаж снова по центру нового окна, без анимации
+  // зачем (координатор 15.10, 🔴 Pixel 8: «в окне этажи 5 и 4, хотя твой этаж — 1»): без своего этажа (нет недели) окно после сжатия 400 → ~120 оставалось на старом смещении — ранний выход пропускал этот случай; теперь и «низ башни» пересчитывается по новой высоте
   useEffect(() => {
-    if (scale <= 0 || !placedRef.current || myFloor === null) return;
+    if (scale <= 0) return;
+    if (myFloor === null) { scrollToFloor(null, false, 'окно-изменило-высоту'); return; } // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    if (!placedRef.current) return;
     scrollToFloor(myFloor, false, 'окно-изменило-высоту'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowHeight]);
@@ -288,6 +293,10 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
         onContentSizeChange={onContentSizeChange}
         onScroll={onScrollEcho}
         onScrollBeginDrag={() => { draggedRef.current = true; }}
+        onTouchStart={() => onTouchActive?.(true)}
+        onTouchEnd={() => onTouchActive?.(false)}
+        onTouchCancel={() => onTouchActive?.(false)}
+        onScrollEndDrag={() => onTouchActive?.(false)}
         scrollEventThrottle={32}
       >
         {width > 0 ? (

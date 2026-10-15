@@ -7,8 +7,8 @@
 // комнаты недели (пакет B: SpireHomeScreen → useSpireRivals → `others`), без новых чтений;
 // других на этаже нет — блока нет. Журнал карты — [SPIRE-RIVALS] (use_spire_rivals.ts).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useRef } from 'react';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import React, { memo } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { V2_TYPE } from '../../constants/v2Style';
 import type { SpireCoinsConfig } from '../../modules/spire/config_contract';
@@ -18,7 +18,6 @@ import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { spireStepsCount, spireStepsWordAfterOf } from './spire_plurals';
 import { spireFloorCoinsOf, spireIsGuard, spireIsSummit, spireStepsIn, type SpireRival } from './spire_tower_model';
-import { spireFloorInfoCompact } from './spire_tower_window';
 
 type Props = Readonly<{
   lang: Lang;
@@ -30,8 +29,8 @@ type Props = Readonly<{
   coins: SpireCoinsConfig;
   /** Кто ещё на этом этаже (кэш комнаты недели, без новых чтений); до 4 кружков. */
   others?: readonly SpireRival[];
-  /** Высота окна башни, dp: при крупном шрифте и узком окне (флаг SPIRE_COMPACT_FLOOR_INFO_ENABLED) карточка — компактная строка. */
-  windowH?: number;
+  /** Решение экрана (use_spire_tower_budget): места мало — карточка одна строка «Этаж N · ступень», окно башни получает освободившееся место. */
+  compact?: boolean;
 }>;
 
 const WHO_MAX = 4;
@@ -56,19 +55,16 @@ export function spireFloorSubtitle(lang: Lang, floor: number, myFloor: number | 
   return `${status} · ${spireFloorCoinsOf(floor, coins)} ${spireText(lang, 'coinsPerFloor')}${guardMark}${summitMark}`;
 }
 
-function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [], windowH = 0 }: Props) {
+function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [], compact = false }: Props) {
   const p = useSpirePalette();
   const g = useShadowGlass();
-  const wasCompactRef = useRef(false);
-  const compact = spireFloorInfoCompact(useWindowDimensions().fontScale, windowH, undefined, wasCompactRef.current);
-  wasCompactRef.current = compact; // зачем: гистерезис — выключаем только при окне > 196
   if (compact) {
-    // зачем (запасной вариант 15.10, выключен): одна строка — «Этаж N · ступень» без подписи и без кружков соперников; окно башни получает освободившееся место
+    // зачем (координатор 15.10, 🔴 Pixel 8): одна строка — «Этаж N · ступень» без подписи и без кружков соперников; окно башни получает освободившееся место
     const one = myFloor !== null && floor === myFloor && stepInFloor !== null ? `${spireFloorTitle(lang, floor)} · ${stepInFloor}/${spireStepsIn(floor)}` : spireFloorTitle(lang, floor);
     return (
       <View style={[s.compactCard, { boxShadow: plateBoxShadow(g) }]} accessible accessibilityRole="text" accessibilityLabel={one} testID="spire-floor-info-compact">
         <PlateFill g={g} radius={14} />
-        <Text numberOfLines={1} style={[s.title, { color: p.text }]}>{one}</Text>
+        <Text numberOfLines={2} style={[s.title, { color: p.text }]}>{one}</Text>
       </View>
     );
   }

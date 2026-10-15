@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { tabPillTopOffset } from '../components/v2/tab_bar_geometry';
-import { SPIRE_WINDOW_MIN, SPIRE_WINDOW_MIN_TALL, spireTowerWindowHeight } from '../components/spire/spire_tower_window';
+import { SPIRE_FLOOR_INFO_COMPACT_H, SPIRE_FLOOR_INFO_FULL_H, SPIRE_WINDOW_MIN, SPIRE_WINDOW_MIN_COMPACT, spireFloorInfoCompact, spireTowerRawFit, spireTowerWindowHeight } from '../components/spire/spire_tower_window';
 
 const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
@@ -56,38 +56,54 @@ describe('Пик: док и последняя карточка всегда в�
   }
 });
 
-// Начальное положение (scroll = 0): на обычных телефонах карточка «Этаж N» целиком выше дока, при шрифте 1.0 и 1.3 (решение координатора 15.10; автопрокрутки нет).
-// Модель верха окна башни — по замеру Сверки на Pixel 8 (верх окна 306 dp при шрифте 1.0, верхняя вставка 24): вставка + 66 (вкладки) + 216 (заголовок, «Комната недели», пьедестал); из 216 на системный шрифт
-// масштабируются ≈ 130 (заголовки, подписи, имена), остальное (монеты, плиты пьедестала 88/66/50, кнопка «Все участники») фиксировано. Карточка этажа 110 и док 52 масштабируются целиком (пессимистично).
+// Начальное положение (scroll = 0). Координатор 15.10, 🔴 кадр Pixel 8: прежняя модель верха окна (306 dp) была снята ДО загрузки подиума; с подиумом верх окна 554 dp (шрифт 1.0, вставка 24).
+// Модель по замеру: вставка + 66 (вкладки) + 86 + 130·шрифт (заголовок, подписи «Комнаты недели») + подиум 158 + 90·шрифт (монеты и плиты 88/66/50 фиксированы, тексты масштабируются) → 554 при шрифте 1.0.
+// Карточка этажа — 84 (полная) / 52 (компактная), умноженные на шрифт (пессимистично); док 52·шрифт. Расчёт — теми же функциями, что в экране (use_spire_tower_budget).
 function initialPosition(screenH: number, insetTop: number, bottomInset: number, font: number) {
-  const towerTop = insetTop + 66 + 86 + 130 * font;
-  const infoH = 110 * font;
+  const towerTop = insetTop + 66 + 86 + 130 * font + 158 + 90 * font;
   const dockH = 52 * font;
   const pillTop = tabPillTopOffset(bottomInset);
   const dockTop = screenH - (pillTop + DOCK_PILL_GAP) - dockH;
-  const windowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP + infoH, screenH);
-  return { windowH, cardBottom: towerTop + windowH + infoH, dockTop };
+  const rawFit = spireTowerRawFit(towerTop, dockTop, DOCK_GAP, SPIRE_FLOOR_INFO_FULL_H * font);
+  const compact = spireFloorInfoCompact(rawFit);
+  const infoH = (compact ? SPIRE_FLOOR_INFO_COMPACT_H : SPIRE_FLOOR_INFO_FULL_H) * font;
+  const windowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP + infoH, compact);
+  return { windowH, compact, rawFit, towerTop, cardBottom: towerTop + windowH + infoH, dockTop };
 }
 
-describe('Пик: начальное положение — карточка этажа выше дока на обычных телефонах', () => {
+describe('Пик: начальное положение — по реальной раскладке ПОСЛЕ загрузки подиума', () => {
+  it('Pixel 8 412×915, шрифт 1.0 (кадр координатора): верх окна ≈ 554, компактная карточка, низ карточки выше дока на ≥ зазор', () => {
+    const r = initialPosition(915, 24, 24, 1.0);
+    expect(Math.round(r.towerTop)).toBe(554);
+    expect(r.compact).toBe(true);
+    expect(r.windowH).toBeGreaterThanOrEqual(SPIRE_WINDOW_MIN_COMPACT);
+    expect(r.cardBottom).toBeLessThanOrEqual(r.dockTop - DOCK_GAP + 0.5);
+  });
+
+  // Гарантия без полумер: либо всё (окно, карточка, зазор) на первом экране выше дока, либо режим прокрутки страницы с окном ≥ 220 — «сжатого окна с карточкой под доком» не бывает.
   const devices: ReadonlyArray<readonly [string, number, number, number]> = [
     ['Pixel 8 412×915', 915, 24, 24],
     ['iPhone 390×844', 844, 47, 34],
     ['iPhone Pro Max 430×932', 932, 59, 34],
+    ['малый 360×640', 640, 24, 0],
+    ['малый 360×800', 800, 24, 0],
   ];
   for (const [name, h, insetTop, bottomInset] of devices) {
-    for (const font of [1.0, 1.3]) {
-      it(`${name}, шрифт ${font}: низ карточки «Этаж N» выше верха дока на ≥ ${DOCK_GAP}`, () => {
+    for (const font of [1.0, 1.15, 1.3]) {
+      it(`${name}, шрифт ${font}: или всё выше дока с зазором ${DOCK_GAP}, или режим прокрутки страницы (окно ≥ ${SPIRE_WINDOW_MIN}, карточка полная)`, () => {
         const r = initialPosition(h, insetTop, bottomInset, font);
-        expect([name, font, r.windowH >= SPIRE_WINDOW_MIN_TALL]).toEqual([name, font, true]);
-        expect([name, font, r.cardBottom <= r.dockTop - DOCK_GAP + 0.5]).toEqual([name, font, true]);
+        const fitsAbove = r.cardBottom <= r.dockTop - DOCK_GAP + 0.5;
+        const scrollMode = r.windowH >= SPIRE_WINDOW_MIN && !r.compact;
+        expect([name, font, fitsAbove || scrollMode]).toEqual([name, font, true]);
+        if (r.compact) expect([name, font, fitsAbove]).toEqual([name, font, true]); // компактная карточка включается, только когда она решает задачу
       });
     }
   }
 
-  it('малый экран 360×640: минимум окна 220, дальше обычная прокрутка (контент уходит под док с затуханием)', () => {
+  it('малый экран 360×640: окно 220 и обычная прокрутка (контент уходит под док с затуханием)', () => {
     const r = initialPosition(640, 24, 0, 1.0);
     expect(r.windowH).toBe(SPIRE_WINDOW_MIN);
+    expect(r.compact).toBe(false);
   });
 
   it('затухание над доком: градиент затемнения стоит на 40 dp выше дока (между 24 и 40), не ступенькой', () => {

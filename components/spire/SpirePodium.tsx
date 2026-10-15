@@ -26,9 +26,14 @@ type Props = Readonly<{
   onOpenAll: () => void;
   /** D162: 'coins' — место и подпись по монетам недели; нет — ступени, как раньше. */
   rankBy?: SpireRankByView;
+  /** Комната недели ещё грузится: вместо пустоты — скелет той же высоты, чтобы башня и карточка этажа не прыгали, когда подиум появится (координатор 15.10, 🔴 Pixel 8). */
+  loading?: boolean;
 }>;
 
-function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps' }: Props) {
+// порядок колонок как на подиуме: 2-е место, 1-е, 3-е; размеры монет и ступеней — как в рабочей раскладке ниже
+const SKELETON_COLS = [{ place: 2, coin: 46, block: 66 }, { place: 1, coin: 56, block: 88 }, { place: 3, coin: 46, block: 50 }] as const;
+
+function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps', loading = false }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const ranked = members ? spireSortMembers(members, rankBy) : [];
   // зачем (координатор 14.10, D162): в колонке ≈101 dp слово «монет» не помещается рядом с числом — на подиуме число с неразрывным пробелом тысяч («8 511») и маленькая монета; слово остаётся в «Всех участниках», подзаголовке и подписи для читалки
@@ -44,6 +49,19 @@ function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps' }: Props) {
         <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{spireText(lang, 'roomWeek')}</Text>
         <Text style={[s.count, { color: p.textSecondary }]}>{hasRoom ? String(ranked.length) : '—'}</Text>
       </View>
+      {top.length === 0 && loading ? (
+        // зачем (координатор 15.10, 🔴): до прихода комнаты подиум занимал 0 dp, а потом отъедал ~220 dp — бюджет высоты строился на пустом экране. Скелет повторяет колонки (монета, ник, счёт, ступень) теми же высотами
+        <View style={s.podium} testID="spire-podium-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+          {SKELETON_COLS.map((col) => (
+            <View key={col.place} style={s.col}>
+              <View style={{ width: col.coin, height: col.coin, borderRadius: col.coin / 2, backgroundColor: p.card }} />
+              <View style={[s.skelName, { backgroundColor: p.card }]} />
+              <View style={[s.skelScore, { backgroundColor: p.card }]} />
+              <View style={[s.block, { height: col.block, backgroundColor: p.card }]} />
+            </View>
+          ))}
+        </View>
+      ) : null}
       {top.length > 0 ? (
         <View style={s.podium}>
           {order.map((idx) => {
@@ -93,6 +111,8 @@ const s = StyleSheet.create({
   col: { flex: 1, alignItems: 'center', gap: 8 },
   name: { fontSize: 16, fontWeight: '700', textAlign: 'center', maxWidth: 110 },
   steps: { fontSize: 13 },
+  skelName: { width: '70%', height: 21, borderRadius: 8 },
+  skelScore: { width: '50%', height: 16, borderRadius: 8 },
   scoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
   block: { width: '100%', borderTopLeftRadius: 14, borderTopRightRadius: 14, borderBottomLeftRadius: 6, borderBottomRightRadius: 6, alignItems: 'center', paddingTop: 10 },
   place: { fontSize: 20, fontWeight: '700' },

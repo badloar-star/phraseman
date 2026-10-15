@@ -1,205 +1,138 @@
-# Англійська · Урок 1 · Заняття 52 — «Тиждень цілком»
+# Англійська · Урок 1 · Заняття 52 — Майже нічого не важить
 
-**Ситуація.** У неділю ви телефонуєте мамі з нової квартири. Вона питає, як минає ваш тиждень, чи зайняті дні, чи тихі ночі та як ви почуваєтеся вранці.
-**Що ви опануєте:** Сказати, який зараз тиждень, які дні та ночі, і як ви почуваєтеся вранці.
-**Нові слова:** week, day, night, morning
-**Повертаються:** tired, busy, quiet
+**Ситуація.** Ви з подругою вибираєте наплічник для прогулянок. Піднімаєте різні моделі, а подруга хоче дізнатися, з чого вони зроблені.
+
+**Що ви опануєте:** назвати річ легкою за вагою й сказати про допитливість людини
+**Нові слова:** light
 
 ---
 
 ## Інтро 1
 
-### Week — це період із семи днів
+### Легкий за вагою
 
-`week` — «тиждень». Період із семи днів.
+`light` — «легкий» за вагою. `It is light` — «Він легкий», якщо йдеться про наплічник. Ви піднімаєте його й на секунду перевіряєте: він точно у вас у руці? У цьому занятті `light` означає малу вагу.
 
-`The week` — і далі додайте, який він зараз: `busy` — «завантажений».
+**Наплічник мало важить. Скажіть саме про його вагу.**
 
-Спокуса одна: сказати `The week busy`. Українською «тиждень завантажений» стоїть сам, англійською між ними потрібне `is`. Тиждень один, тому потрібна форма `is`.
-
-**Мама: «Ну як тиждень?» Скажіть, що тиждень завантажений.**
-
-- ✅ **The week is busy.** — *Тиждень один, тому `is`; `busy` каже, що тиждень завантажений.*
-- ❌ The week busy. — *Між «тижнем» і словом про нього потрібне `is`.*
-- ❌ The week are busy. — *`are` іде до «багатьох». Тиждень один — `is`.*
+- ✅ **It is light.**
+- ❌ It is heavy. — *`heavy` — важкий. Тут вага невелика: `light`.*
+- ❌ It are light. — *Після `It` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### Night — ніч
+### Розмір не дорівнює вазі
 
-`night` — «ніч». Про одну ніч кажемо `night`, про кілька — `nights`: буква `s` показує множину. З однією ніччю — `night is`, з кількома — `nights are`. `quiet` означає «тихі»: воно описує ночі, а `is` або `are` показує кількість. Так можна сказати про ночі вдома після переїзду.
+Велика річ може мало важити, маленька — багато. Вибирайте `light` або `heavy` за вагою, а не лише за розміром. Про дві легкі сумки — `They are light`, коротко `They're light`.
 
-**Мама хоче дізнатися: після переїзду у вас кілька тихих ночей. Виберіть фразу про ці ночі.**
+**Обидві сумки мало важать. Назвіть їх легкими.**
 
-- ✅ **The nights are quiet.** — *Ночей кілька, тому `are`; `quiet` каже, що вночі тихо.*
-- ❌ The nights is quiet. — *`Nights` — це кілька ночей, тому потрібне `are`, а не `is`.*
-- ❌ The night are quiet. — *`Night` в однині потребує `is`; тут ночей кілька, тому `nights are`.*
+- ✅ **They are light.**
+- ❌ They is light. — *Після `They` потрібно `are`.*
+- ❌ They are heavy. — *Тут обидві сумки мало важать: `light`.*
 
 ---
 
 ## Інтро 3
 
-### Morning — ранок
+### Хочеться дізнатися
 
-`morning` — «ранок», час після ночі. Вранці можна сказати, котра пора, або як ви почуваєтеся.
+`curious` — «допитливий», коли людині хочеться щось дізнатися. Подруга розглядає матеріал і запитує, як зроблений наплічник: `She is curious`. Це про її інтерес, а не про вагу наплічника.
 
-`It is early in the morning` — «Зараз ще ранок». `I am tired in the morning` — «Вранці я відчуваю втому».
+**Подрузі хочеться дізнатися, як виготовили наплічник. Назвіть її допитливою.**
 
-`in the morning` — «вранці». У цій фразі воно стоїть наприкінці, а `I am` лишається на початку.
-
-**Мама: «А прокидаєшся важко?» Скажіть, що вранці ви відчуваєте втому.**
-
-- ✅ **I am tired in the morning.** — *У цій фразі після `I` потрібне `am`; `tired` каже, що вранці ви відчуваєте втому.*
-- ❌ I am morning. — *Вийшло «я — ранок». Про себе потрібне слово про стан: `tired`.*
-- ❌ I tired in the morning. — *У цій фразі після `I` бракує `am`, навіть якщо наприкінці є `in the morning`.*
+- ✅ **She is curious.**
+- ❌ She is light. — *Це не про допитливість. Тут потрібно `curious`.*
+- ❌ She are curious. — *Після `She` потрібно `is`.*
 
 ---
 
-## Завдання
+## Практика (17 завдань)
 
-**1 · Картка слова — week**
-<!-- interaction_id: en:lesson-01:session-52:i01; family: listen_choose -->
-> **week** — «тиждень». Період із семи днів: від понеділка до неділі, коли ви нарешті телефонуєте додому.
+**1 · Наплічник мало важить. Складіть фразу про його вагу**
+<!-- interaction_id: en:lesson-01:session-52:i01; family: phrase_builder -->
+Плитки: `light` `is` `It` `are` → **It is light.**
+*(плитка `are` зайва: тут потрібно `is` — `It is light.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-52:i02; family: listen_choose -->
-🔊 *week* → **week** · wake · wick
-- week — *Правильно: `week` — «тиждень».*
-- wake — *`Wake` — «прокидатися»: /weɪk/ з /eɪ/, а `week` — /wiːk/ з довгим /iː/.*
-- wick — *`Wick` — /wɪk/ з /ɪ/, а `week` — /wiːk/ з /iː/.*
+🔊 *It is light.* → **It is light.** · It is heavy. · It is cheap.
+- It is heavy. — *У записі останнє слово — `light`, а в цьому варіанті — `heavy`.*
+- It is cheap. — *У записі останнє слово — `light`, а в цьому варіанті — `cheap`.*
 
-**3 · Картка слова — day**
-<!-- interaction_id: en:lesson-01:session-52:i03; family: listen_choose -->
-> **day** — «день». Від «доброго ранку» колегам до «бувайте» у дверях.
+**3 · Обидві сумки мало важать. Доповніть фразу**
+<!-- interaction_id: en:lesson-01:session-52:i03; family: context_gap_grammar -->
+They ___ light. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про дві сумки — `They are`.*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-52:i04; family: listen_choose -->
-🔊 *day* → **day** · they · dear
-- day — *Правильно: `day` — «день».*
-- they — *`They` — «вони»: починається з дзвінкого міжзубного /ð/, а `day` — з /d/.*
-- dear — *`Dear` — «дорогий»: /dɪə/ з /ɪə/, а `day` — /deɪ/ з /eɪ/.*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-52:i04; family: speed_match -->
+light — легкий за вагою · heavy — важкий за вагою · curious — допитливий · patient — терплячий
 
-**5 · Картка слова — night**
-<!-- interaction_id: en:lesson-01:session-52:i05; family: listen_choose -->
-> **night** — «ніч». Темно, місто чуже, за вікном тихо.
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-52:i05; family: listen_build_dictation -->
+🔊 *It's light.* Плитки: `light` `It's` `He's` → **It's light.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's light.`)*
 
-**6 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-52:i06; family: listen_choose -->
-🔊 *night* → **night** · light · new
-- night — *Правильно: `night` — «ніч».*
-- light — *`Light` починається з /l/, а `night` — з /n/.*
-- new — *`New` — /njuː/, а `night` починається /naɪt/.*
+**6 · Дві порожні дорожні сумки мало важать. Назвіть їх легкими**
+<!-- interaction_id: en:lesson-01:session-52:i06; family: phrase_builder -->
+Плитки: `light` `are` `They` `is` → **They are light.**
+*(плитка `is` зайва: тут потрібно `are` — `They are light.`)*
 
-**7 · Оберіть форму — мама питає, як минає ваш тиждень**
-<!-- interaction_id: en:lesson-01:session-52:i07; family: context_gap_grammar -->
-The week ___ busy. → **is** · are · am
-- is — *Правильно: `week` — один тиждень, тому `is`.*
-- are — *`are` беруть до «багатьох». Тиждень тут один.*
-- am — *Тут `am` підходить до `I`; `week` — один тиждень, тому потрібне `is`.*
+**7 · Коротко скажіть, що вибраний наплічник мало важить**
+<!-- interaction_id: en:lesson-01:session-52:i07; family: scripted_repeat_compare -->
+🎙 **It's light.**
 
-**8 · Картка слова — morning**
-<!-- interaction_id: en:lesson-01:session-52:i08; family: listen_choose -->
-> **morning** — «ранок». Частина доби, а не тільки половинка привітання.
+**8 · Подруга хоче дізнатися, як зроблений матеріал. Назвіть саме її допитливість**
+<!-- interaction_id: en:lesson-01:session-52:i08; family: context_gap_grammar -->
+She is ___ . → **curious** · light · patient
+- light — *Тут не про вагу. Допитливість — `curious`.*
+- patient — *Це про терплячість. Тут потрібно `curious`.*
 
-**9 · Послухайте і виберіть**
+**9 · Послухайте фразу про подругу**
 <!-- interaction_id: en:lesson-01:session-52:i09; family: listen_choose -->
-🔊 *morning* → **morning** · moving · money
-- morning — *Правильно: `morning` — «ранок».*
-- moving — *`Moving` — «той, що рухається»: у середині /uːv/, а в `morning` — /ɔːn/.*
-- money — *`Money` — «гроші»: /ˈmʌni/, а `morning` починається /ˈmɔːnɪŋ/ (у США /ˈmɔrnɪŋ/).*
+🔊 *She is curious.* → **She is curious.** · She is patient. · She is polite.
+- She is patient. — *У записі останнє слово — `curious`, а в цьому варіанті — `patient`.*
+- She is polite. — *У записі останнє слово — `curious`, а в цьому варіанті — `polite`.*
 
-**10 · З'єднайте пари**
+**10 · З’єднайте короткі початки з повними**
 <!-- interaction_id: en:lesson-01:session-52:i10; family: speed_match -->
-week — тиждень · day — день · night — ніч · morning — ранок
+It's — It is · They're — They are · She's — She is · I'm — I am
 
-**11 · Вставте слово — мама питає про ночі: за вікном не чути ні машин, ні голосів**
-<!-- interaction_id: en:lesson-01:session-52:i11; family: context_gap_grammar -->
-The nights are ___ . → **quiet** · busy · tired
-- quiet — *Правильно: `quiet` означає «тихі»: уночі за вікном не чути ні машин, ні голосів.*
-- busy — *`Busy` — «зайняті: мають багато справ». Але тут ніч `quiet`: за вікном тихо, не чути ні машин, ні голосів.*
-- tired — *Тут `tired` не підходить: йдеться про ночі, а це слово описує стан людини.*
+**11 · Послухайте й складіть фразу про сумки**
+<!-- interaction_id: en:lesson-01:session-52:i11; family: listen_build_dictation -->
+🔊 *They're light.* Плитки: `light` `They're` `We're` → **They're light.**
+*(плитка `We're` зайва: тут потрібно `They're` — `They're light.`)*
 
-**12 · Мама питає, як минають дні після переїзду. Складіть свою відповідь мамі.**
-<!-- interaction_id: en:lesson-01:session-52:i12; family: phrase_builder; purpose: retrieval_practice -->
-Плитки: `days` `are` `The` `busy` `is` → **The days are busy.**
-*Правильно: `The days are busy.` — `days` означає кілька днів, тому потрібне `are`.*
-*Плитка `is` зайва: у цій фразі `days` — кілька днів, тому потрібне `are`: `The days are busy`.*
+**12 · Інший наплічник наповнений книжками й багато важить. Назвіть його важким**
+<!-- interaction_id: en:lesson-01:session-52:i12; family: phrase_builder -->
+Плитки: `heavy` `is` `It` `are` → **It is heavy.**
+*(плитка `are` зайва: тут потрібно `is` — `It is heavy.`)*
 
-**13 · Ви телефонуєте мамі з нової квартири. Послухайте запис і складіть почуту фразу.**
-<!-- interaction_id: en:lesson-01:session-52:i15; purpose: retrieval_practice; family: listen_build_dictation -->
-🔊 *It is early in the morning.* Плитки: `It` `is` `early` `in` `the` `morning` `are` → **It is early in the morning.**
-*Правильно: `It is early in the morning.` — `It` потребує `is`. Зараз ще ранок.*
-*Плитка `are` зайва: у цій фразі після `It` потрібне `is`: `It is early in the morning`.*
+**13 · Вам теж хочеться дізнатися, як зроблений наплічник. Скажіть про свою допитливість**
+<!-- interaction_id: en:lesson-01:session-52:i13; family: scripted_repeat_compare -->
+🎙 **I am curious.**
 
-**14 · Складіть фразу — будильник продзвенів, а встати важко; скажіть, що вранці відчуваєте втому**
-<!-- interaction_id: en:lesson-01:session-52:i16; family: phrase_builder; purpose: retrieval_practice -->
-Плитки: `I` `tired` `morning` `am` `in` `the` `is` → **I am tired in the morning.**
-*Правильно: `I am tired in the morning.` — після `I` потрібне `am`; фраза каже про втому вранці.*
-*Плитка `is` зайва: у цій фразі після `I` потрібне `am`: `I am tired in the morning`.*
+**14 · Одна порожня коробка мало важить. Доповніть оцінку ваги**
+<!-- interaction_id: en:lesson-01:session-52:i14; family: context_gap_grammar -->
+It ___ light. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Про одну коробку — `It is`.*
 
-**15 · Вставте слово — після довгого тижня мама питає, як ви почуваєтеся. Скажіть, що вранці відчуваєте втому.**
-<!-- interaction_id: en:lesson-01:session-52:i17; family: context_gap_grammar -->
-I am ___ in the morning. → **tired** · fine · cold
-*Правильна фраза: `I am tired in the morning.`*
-- tired — *Правильно: `tired` означає, що вранці ви відчуваєте втому.*
-- fine — *`Fine` — «усе гаразд». Тут ви кажете, що відчуваєте втому.*
-- cold — *`Cold` — «вам холодно». Тут ви кажете, що відчуваєте втому.*
+**15 · Послухайте коротку оцінку й виберіть її**
+<!-- interaction_id: en:lesson-01:session-52:i15; family: listen_choose -->
+🔊 *It's light.* → **It's light.** · It's heavy. · It's expensive.
+- It's heavy. — *У записі останнє слово — `light`, а в цьому варіанті — `heavy`.*
+- It's expensive. — *У записі останнє слово — `light`, а в цьому варіанті — `expensive`.*
 
-**16 · Промовте відповідь мамі в неділю: вона питає, як минає тиждень**
-<!-- interaction_id: en:lesson-01:session-52:i18:s01; purpose: guided_practice; family: scripted_repeat_compare -->
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-52:i16; family: speed_match -->
+light — мало важить · heavy — багато важить · curious — хоче дізнатися · useful — корисний
 
-🎙 **The week is busy.**
-
-**17 · Промовте відповідь мамі в неділю: вона питає, чи зайняті дні**
-<!-- interaction_id: en:lesson-01:session-52:i18:s02; purpose: guided_practice; family: scripted_repeat_compare -->
-
-🎙 **The days are busy.**
-
-**18 · Промовте відповідь мамі в неділю: вона питає про ночі**
-<!-- interaction_id: en:lesson-01:session-52:i18:s03; purpose: guided_practice; family: scripted_repeat_compare -->
-
-🎙 **The nights are quiet.**
-
-**19 · Промовте відповідь мамі в неділю: вона питає, чи відчуваєте ви втому вранці**
-<!-- interaction_id: en:lesson-01:session-52:i18:s04; purpose: guided_practice; family: scripted_repeat_compare -->
-
-🎙 **I am tired in the morning.**
-
-**20 · Мама питає, як минає ваш тиждень. Послухайте і виберіть свою відповідь.**
-<!-- interaction_id: en:lesson-01:session-52:i19; purpose: independent_check; family: listen_choose -->
-🔊 *The week is busy.* → **The week is busy.** · The week are busy. · I am busy.
-- The week is busy. — *Правильно: `week` — один тиждень, тому `is`; `busy` означає «зайнятий, завантажений».*
-- The week are busy. — *З `week` потрібне `is`, бо тиждень один.*
-- I am busy. — *Це відповідь про себе, а мама питає про тиждень.*
-
-**21 · Мама питає, чи зайняті дні після переїзду. Складіть відповідь.**
-<!-- interaction_id: en:lesson-01:session-52:i20; family: phrase_builder; purpose: independent_check -->
-Плитки: `The` `days` `are` `busy` `is` → **The days are busy.**
-*Правильно: `The days are busy.` — `days` означає кілька днів, тому потрібне `are`.*
-*Плитка `is` зайва: у цій фразі `days` — кілька днів, тому потрібне `are`: `The days are busy`.*
-
-**22 · Мама питає, чи тихі ночі в новій квартирі. Послухайте і виберіть відповідь.**
-<!-- interaction_id: en:lesson-01:session-52:i21; purpose: independent_check; family: listen_choose -->
-🔊 *The nights are quiet.* → **The nights are quiet.** · The nights is quiet. · I am quiet.
-- The nights are quiet. — *Правильно: `nights` — кілька ночей, тому `are`; тут ідеться про тихі ночі.*
-- The nights is quiet. — *З `nights` потрібне `are`, бо ночей кілька.*
-- I am quiet. — *Це відповідь про себе, а мама питає про ночі.*
-
-**23 · Після довгого тижня мама питає, чи відчуваєте ви втому вранці. Складіть відповідь.**
-<!-- interaction_id: en:lesson-01:session-52:i22; family: phrase_builder; purpose: independent_check -->
-Плитки: `I` `am` `tired` `in` `the` `morning` `is` → **I am tired in the morning.**
-*Правильно: `I am tired in the morning.` — після `I` потрібне `am`; фраза каже про втому вранці.*
-*Плитка `is` зайва: у цій фразі після `I` потрібне `am`: `I am tired in the morning`.*
-
----
-
-new_words:
-week — тиждень — «тиждень». Період із семи днів: від понеділка до неділі, коли ви нарешті телефонуєте додому.
-day — день — «день». Від «доброго ранку» колегам до «бувайте» у дверях.
-night — ніч — «ніч». Темно, місто чуже, за вікном тихо.
-morning — ранок — «ранок». Частина доби, а не тільки половинка привітання.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=context_gap_grammar, 8=word_card, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=listen_choose, 21=phrase_builder, 22=listen_choose, 23=phrase_builder
+**17 · Удома ви піднімаєте великий порожній кошик: він мало важить. Скажіть другові саме про його невелику вагу**
+<!-- interaction_id: en:lesson-01:session-52:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is light.**
 

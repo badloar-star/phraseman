@@ -1,68 +1,68 @@
 [
   {
     "interactionId": "en:lesson-01:session-52:i01",
-    "correctText": "week",
+    "correctText": "It is light.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i02",
-    "correctText": "week",
+    "correctText": "It is light.",
     "correctResponseId": "en:lesson-01:session-52:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-52:i03",
-    "correctText": "day",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-52:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-52:i04",
-    "correctText": "day",
-    "correctResponseId": "en:lesson-01:session-52:i04:r1"
+    "correctText": "en:lesson-01:session-52:i04:p1=light\nen:lesson-01:session-52:i04:p2=heavy\nen:lesson-01:session-52:i04:p3=curious\nen:lesson-01:session-52:i04:p4=patient",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i05",
-    "correctText": "night",
+    "correctText": "It's light.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i06",
-    "correctText": "night",
-    "correctResponseId": "en:lesson-01:session-52:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-52:i07",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-52:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-52:i08",
-    "correctText": "morning",
+    "correctText": "They are light.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-52:i07",
+    "correctText": "It's light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i08",
+    "correctText": "curious",
+    "correctResponseId": "en:lesson-01:session-52:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-52:i09",
-    "correctText": "morning",
+    "correctText": "She is curious.",
     "correctResponseId": "en:lesson-01:session-52:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-52:i10",
-    "correctText": "en:lesson-01:session-52:i10:p1=week\nen:lesson-01:session-52:i10:p2=day\nen:lesson-01:session-52:i10:p3=night\nen:lesson-01:session-52:i10:p4=morning",
+    "correctText": "en:lesson-01:session-52:i10:p1=It's\nen:lesson-01:session-52:i10:p2=They're\nen:lesson-01:session-52:i10:p3=She's\nen:lesson-01:session-52:i10:p4=I'm",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i11",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-52:i11:r1"
+    "correctText": "They're light.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i12",
-    "correctText": "The days are quiet.",
+    "correctText": "It is heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i13",
-    "correctText": "fine",
-    "correctResponseId": "en:lesson-01:session-52:i13:r1"
+    "correctText": "I am curious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i14",
@@ -71,37 +71,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i15",
-    "correctText": "The morning is early.",
-    "correctResponseId": null
+    "correctText": "It's light.",
+    "correctResponseId": "en:lesson-01:session-52:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-52:i16",
-    "correctText": "I am tired in the morning.",
+    "correctText": "en:lesson-01:session-52:i16:p1=light\nen:lesson-01:session-52:i16:p2=heavy\nen:lesson-01:session-52:i16:p3=curious\nen:lesson-01:session-52:i16:p4=useful",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-52:i17",
-    "correctText": "I am fine.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-52:i18:s01",
-    "correctText": "The week is busy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-52:i18:s02",
-    "correctText": "The days are busy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-52:i18:s03",
-    "correctText": "The nights are quiet.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-52:i18:s04",
-    "correctText": "I am tired in the morning.",
+    "correctText": "It is light.",
     "correctResponseId": null
   }
 ]

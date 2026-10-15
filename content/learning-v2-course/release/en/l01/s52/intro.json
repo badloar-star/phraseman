@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-52",
   "learningOutcomeByLocale": {
-    "ru": "повторение всей системы `be` в длинном рассказе о неделе",
-    "uk": "повторення всієї системи `be` у довгій розповіді про тиждень"
+    "ru": "назвать вещь лёгкой по весу и сказать о любопытстве человека",
+    "uk": "назвати річ легкою за вагою й сказати про допитливість людини"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Week — это семь дней разом",
-        "uk": "Week — це сім днів разом"
+        "ru": "Лёгкий по весу",
+        "uk": "Легкий за вагою"
       },
       "bodyByLocale": {
-        "ru": "`week` — «неделя». Все семь дней разом.\n\n`The week` — и дальше цепляйте, какой она была: `busy` — «загруженная», `hard` — «тяжёлая».\n\nСоблазн один: сказать `The week busy`. По-русски «неделя загруженная» стоит само, по-английски между ними нужно `is`. Неделя одна, скрепка тоже одна — запомнить проще, чем выговорить.",
-        "uk": "`week` — «тиждень». Усі сім днів разом.\n\n`The week` — і далі чіпляйте, який він був: `busy` — «завантажений», `hard` — «важкий».\n\nСпокуса одна: сказати `The week busy`. Українською «тиждень завантажений» стоїть саме, англійською між ними потрібне `is`. Тиждень один — і скріпка одна. Більше нема чого запам'ятовувати."
+        "ru": "`light` — «лёгкий» по весу. `It is light` — «Он лёгкий», если речь о рюкзаке. Вы поднимаете его и на секунду проверяете: он точно у вас в руке? В этом занятии `light` означает малый вес.",
+        "uk": "`light` — «легкий» за вагою. `It is light` — «Він легкий», якщо йдеться про наплічник. Ви піднімаєте його й на секунду перевіряєте: він точно у вас у руці? У цьому занятті `light` означає малу вагу."
       },
       "question": {
         "interactionId": "en:lesson-01:session-52:intro1:q",
         "promptByLocale": {
-          "ru": "Мама: «Ну как неделя?» Скажите, что неделя загруженная.",
-          "uk": "Мама: «Ну як тиждень?» Скажіть, що тиждень завантажений."
+          "ru": "Рюкзак мало весит. Скажите именно о его весе.",
+          "uk": "Наплічник мало важить. Скажіть саме про його вагу."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-52:intro1:r1",
-              "text": "The week is busy."
+              "text": "It is light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro1:r2",
-              "text": "The week busy."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-01:session-52:intro1:r3",
-              "text": "The week are busy."
+              "text": "It are light."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-52:intro1:r1",
-              "text": "The week is busy."
+              "text": "It is light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro1:r2",
-              "text": "The week busy."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-01:session-52:intro1:r3",
-              "text": "The week are busy."
+              "text": "It are light."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама: «Ну как неделя?» Скажите, что неделя загруженная.",
-          "uk": "Мама: «Ну як тиждень?» Скажіть, що тиждень завантажений."
+          "ru": "Рюкзак мало весит. Скажите именно о его весе.",
+          "uk": "Наплічник мало важить. Скажіть саме про його вагу."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Day и night — светло и темно",
-        "uk": "Day і night — світло і темно"
+        "ru": "Размер не равен весу",
+        "uk": "Розмір не дорівнює вазі"
       },
       "bodyByLocale": {
-        "ru": "`day` — «день», `night` — «ночь». От «доброе утро» коллегам до тишины за окном.\n\nСкрепка при них меняется по счёту: `The night is quiet` — про одну ночь. `The nights are quiet` — про несколько, и `is` уже не подходит.\n\nСчитать придётся именно ночи. Хвост `-s` тут и говорит, что их больше одной, — английский пересчитывает вслух то, что мы держим в уме.",
-        "uk": "`day` — «день», `night` — «ніч». Від «доброго ранку» колегам до тиші за вікном.\n\nСкріпка при них змінюється залежно від того, скільки їх: `The night is quiet` — про одну ніч. `The nights are quiet` — про кілька, і `is` уже не підходить.\n\nРахувати доведеться саме ночі. Хвостик `-s` тут і каже, що їх більше однієї, — англійська перелічує вголос те, що ми тримаємо в голові."
+        "ru": "Большая вещь может мало весить, маленькая — много. Выбирайте `light` или `heavy` по весу, а не только по размеру. Про две лёгкие сумки — `They are light`, коротко `They're light`.",
+        "uk": "Велика річ може мало важити, маленька — багато. Вибирайте `light` або `heavy` за вагою, а не лише за розміром. Про дві легкі сумки — `They are light`, коротко `They're light`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-52:intro2:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает, шумно ли у вас. Скажите, что ночи тихие — все ночи, не одна.",
-          "uk": "Мама питає, чи гамірно у вас. Скажіть, що ночі тихі — усі ночі, не одна."
+          "ru": "Обе сумки мало весят. Назовите их лёгкими.",
+          "uk": "Обидві сумки мало важать. Назвіть їх легкими."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-52:intro2:r1",
-              "text": "The nights are quiet."
+              "text": "They are light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro2:r2",
-              "text": "The nights is quiet."
+              "text": "They is light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro2:r3",
-              "text": "The night are quiet."
+              "text": "They are heavy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-52:intro2:r1",
-              "text": "The nights are quiet."
+              "text": "They are light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro2:r2",
-              "text": "The nights is quiet."
+              "text": "They is light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro2:r3",
-              "text": "The night are quiet."
+              "text": "They are heavy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает, шумно ли у вас. Скажите, что ночи тихие — все ночи, не одна.",
-          "uk": "Мама питає, чи гамірно у вас. Скажіть, що ночі тихі — усі ночі, не одна."
+          "ru": "Обе сумки мало весят. Назовите их лёгкими.",
+          "uk": "Обидві сумки мало важать. Назвіть їх легкими."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Morning — утро, а не «доброе утро»",
-        "uk": "Morning — ранок, а не «доброго ранку»"
+        "ru": "Хочется узнать",
+        "uk": "Хочеться дізнатися"
       },
       "bodyByLocale": {
-        "ru": "`morning` — «утро». Не только в `good morning` — само по себе тоже слово.\n\n`The morning is early` — «утро раннее». `I am tired in the morning` — «утром я уставший».\n\nВо второй фразе конец уехал далеко, а начало не изменилось: про себя всё равно `I am`. Хоть три слова после, хоть пять.",
-        "uk": "`morning` — «ранок». Не тільки у `good morning` — саме по собі теж слово.\n\n`The morning is early` — «ранок ранній». `I am tired in the morning` — «вранці я втомлений».\n\nУ другій фразі кінець поїхав далеко, а початок не змінився: про себе однаково `I am`. Хоч три слова після, хоч п'ять."
+        "ru": "`curious` — «любопытный», когда человеку хочется что-то узнать. Подруга рассматривает материал и спрашивает, как сделан рюкзак: `She is curious`. Это о её интересе, а не о весе рюкзака.",
+        "uk": "`curious` — «допитливий», коли людині хочеться щось дізнатися. Подруга розглядає матеріал і запитує, як зроблений наплічник: `She is curious`. Це про її інтерес, а не про вагу наплічника."
       },
       "question": {
         "interactionId": "en:lesson-01:session-52:intro3:q",
         "promptByLocale": {
-          "ru": "Мама: «А просыпаешься тяжело?» Скажите, что утром вы уставший.",
-          "uk": "Мама: «А прокидаєшся важко?» Скажіть, що вранці ви втомлений."
+          "ru": "Подруге хочется узнать, как изготовили рюкзак. Назовите её любопытной.",
+          "uk": "Подрузі хочеться дізнатися, як виготовили наплічник. Назвіть її допитливою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-52:intro3:r1",
-              "text": "I am tired in the morning."
+              "text": "She is curious."
             },
             {
               "responseId": "en:lesson-01:session-52:intro3:r2",
-              "text": "I am morning."
+              "text": "She is light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro3:r3",
-              "text": "I tired in the morning."
+              "text": "She are curious."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-52:intro3:r1",
-              "text": "I am tired in the morning."
+              "text": "She is curious."
             },
             {
               "responseId": "en:lesson-01:session-52:intro3:r2",
-              "text": "I am morning."
+              "text": "She is light."
             },
             {
               "responseId": "en:lesson-01:session-52:intro3:r3",
-              "text": "I tired in the morning."
+              "text": "She are curious."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама: «А просыпаешься тяжело?» Скажите, что утром вы уставший.",
-          "uk": "Мама: «А прокидаєшся важко?» Скажіть, що вранці ви втомлений."
+          "ru": "Подруге хочется узнать, как изготовили рюкзак. Назовите её любопытной.",
+          "uk": "Подрузі хочеться дізнатися, як виготовили наплічник. Назвіть її допитливою."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ae19ec9d9323b6899193c7e1e2df2b38d28bb3cb38f7d1deb162ffff8282657b"
+  "introFingerprint": "fd39528bcad63afc0e56169c4c78ae7b9241c37b069a3ad595a691ca5cf54b39"
 }

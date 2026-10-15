@@ -185,6 +185,11 @@ export default function LearningV2ChaptersCourse(props: Props) {
   const completed = useMemo(() => new Set(props.completedSessionIds), [props.completedSessionIds]);
   // зачем (координатор 15.10, Сверка Б11: карты V2 на экране нет): смонтирована ли карта и что в ней — уроков видно,
   // строк собрано, занятий в выбранном уроке. Ноль здесь = карта есть, но пустая; нет строки mount = карта не рисовалась.
+  // зачем (R08, Сверка: React нарисовал карту, а на экране список A1): onLayout приходит от НАТИВНОГО слоя — его нет = вид не смонтирован нативно
+  const logChaptersLayout = useCallback((e: { nativeEvent: { layout: { x: number; y: number; width: number; height: number } } }) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    console.log("[V2-MAP] chapters:layout", JSON.stringify({ x, y, width, height, allLessonsOpen }));
+  }, [allLessonsOpen]);
   useEffect(() => {
     console.log("[V2-MAP] chapters:mount", JSON.stringify({ scopeKey: props.scopeKey, atMs: Date.now() }));
     return () => console.log("[V2-MAP] chapters:unmount", JSON.stringify({ scopeKey: props.scopeKey }));
@@ -215,7 +220,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
   }, [props]);
 
   if (allLessonsOpen) {
-    return <View testID="learning-v2-chapters-course" style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
+    return <View testID="learning-v2-chapters-course" onLayout={logChaptersLayout} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
       <View style={styles.header}>
         <PressableHybrid variant="icon" accessibilityLabel={triLang(props.lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })} onPress={() => setAllLessonsOpen(false)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]} contentStyle={styles.iconButtonContent}>
           <Ionicons name="chevron-back" size={24} color={g.text} />
@@ -237,7 +242,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
     </View>;
   }
 
-  return <View testID="learning-v2-chapters-course" style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
+  return <View testID="learning-v2-chapters-course" onLayout={logChaptersLayout} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
     {/* зачем (владелец 04.10, раунд 2 → вариант A «Два этажа»): строка 1 — «назад» + HUD (словарь, монеты, энергия);
         строка 2 — «Урок N» и тема 22px на всю ширину: длинная тема помещается в две строки и ничего не пересекает. */}
     <View style={styles.header}>

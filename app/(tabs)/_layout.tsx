@@ -309,6 +309,10 @@ function LessonsPaneBoundary({
   // при первом старте пусты, поэтому показывать под крышкой нечего — там ровно
   // тот же фон. fail-closed на ошибке подписки тоже сохранён.
   const coverLessons = computeLessonsCover(privacy, activatedEpochRef.current);
+  // зачем (R08): заморозка или крышка над панелью «Уроков» объяснили бы «React нарисовал карту, а на экране старый кадр»
+  useEffect(() => {
+    console.log('[V2-MAP] lessons-pane', JSON.stringify({ freezeWanted, coverLessons, shouldLoad, epoch: privacy.epoch, phase: privacy.phase, atMs: Date.now() }));
+  }, [freezeWanted, coverLessons, shouldLoad, privacy.epoch, privacy.phase]);
 
   return (
     <View style={[s.lessonsPaneBoundary, { backgroundColor: t.bgPrimary }]} collapsable={false}>
@@ -571,6 +575,8 @@ function TabScaffold({
   // закладывает useTabContentBottomPad — последний элемент докручивается выше неё.
   const tabBarBottom = Math.max(PB, TAB_DOCK_MIN_BOTTOM_PAD) + FLOATING_PILL_BOTTOM_GAP;
   const { hidden: tabBarHidden } = useTabBarVisibility();
+  // зачем (R08): после тапа «Новые уроки» таббар на кадре остался — видно, дошло ли скрытие до разметки вкладок
+  useEffect(() => { console.log('[V2-MAP] tabbar', JSON.stringify({ hidden: tabBarHidden, atMs: Date.now() })); }, [tabBarHidden]);
   const firstContentReadyEmittedRef = useRef(false);
   // зачем D129: вкладка «Обучение» есть в таббаре только для языка с готовым курсом.
   const barTabs = useMemo(

@@ -40,6 +40,7 @@ import Svg, {
 } from "react-native-svg";
 import TapScale from "../../components/TapScale";
 import { useFocusEffect, useRouter } from "expo-router";
+import { useIsFocused } from "@react-navigation/native";
 import { useFeatureAccess, usePremium } from "../../components/PremiumContext";
 import {
   FREE_LESSON_LIMIT,
@@ -2617,9 +2618,11 @@ export default function LessonsTab({
   // зачем (координатор 15.10, Сверка Б11: тап «Новые уроки» прошёл в логике, а на экране остался список A1): какой
   // ЭКЗЕМПЛЯР вкладки что реально нарисовал после смены страницы — в одном запуске живут до трёх экземпляров (inst 1–3),
   // и нужно увидеть, тот ли экземпляр получил тап, что виден на экране.
+  // R08: navFocused — фокус экрана вкладок в корневом стеке (freezeOnBlur замораживает нативный кадр расфокусированного экрана)
+  const navFocused = useIsFocused();
   useEffect(() => {
-    console.log("[V2-MAP] page:commit", JSON.stringify({ instanceId: instanceIdRef.current, page, branch: page === "v2" ? "v2_map" : page === "dialogs" ? "dialogs" : "legacy_list", presentation, runtimeOwnerId, visible: lessonsTabVisible, atMs: Date.now() }));
-  }, [page, presentation, runtimeOwnerId, lessonsTabVisible]);
+    console.log("[V2-MAP] page:commit", JSON.stringify({ instanceId: instanceIdRef.current, page, branch: page === "v2" ? "v2_map" : page === "dialogs" ? "dialogs" : "legacy_list", presentation, runtimeOwnerId, visible: lessonsTabVisible, navFocused, atMs: Date.now() }));
+  }, [page, presentation, runtimeOwnerId, lessonsTabVisible, navFocused]);
   // зачем: карта Learning V2 занимает весь экран, а раздел открывается ВНУТРИ
   // вкладки — таббар с Главной оставался поверх карты (владелец 20.09).
   // Прячем его только пока открыта карта; при уходе запрос отпускается сам.

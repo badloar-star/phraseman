@@ -11,6 +11,9 @@ describe('Dialogue V2 Plus memory management route', () => {
   test('loads and clears only the selected language through audited callables', () => {
     expect(source).toContain('viewDialogueV2Memory({ studyTarget })');
     expect(source).toContain('clearDialogueV2Memory({ studyTarget })');
+    // R52 (15.10): пустая расписка = очистка не подтверждена — плашка ошибки, а не молчание
+    expect(source).toMatch(/if \(receipt\) \{[\s\S]{0,600}\} else \{[\s\S]{0,300}setClearFailed\(true\);/);
+    expect(source).toContain("'[DIALOGUE-V2] memory: clear not confirmed (receipt=null)'");
     expect(source).toContain('fetchReleasedDialogueV2Catalogue(studyTarget)');
     expect(source).toContain('scenarioCheckpoints');
     expect(source).toContain('sharedSummary');

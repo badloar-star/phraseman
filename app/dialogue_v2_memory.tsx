@@ -252,6 +252,10 @@ export default function DialogueV2MemoryRoute() {
         // зачем: «Очистить память» стирает и копию на устройстве (так обещает политика).
         void clearDialogueV2MemoryDiskCache(studyTarget);
         setState({ kind: 'available', memory: cleared });
+      } else {
+        // зачем (аудит кнопок R52, координатор 15.10): пустая расписка = сервер не подтвердил очистку; раньше кнопка молчала, будто всё стёрто
+        console.warn('[DIALOGUE-V2] memory: clear not confirmed (receipt=null)', { studyTarget });
+        setClearFailed(true);
       }
     } catch (error: unknown) {
       console.warn('[DIALOGUE-V2] memory: clear failed', { studyTarget, message: error instanceof Error ? error.message : String(error) });

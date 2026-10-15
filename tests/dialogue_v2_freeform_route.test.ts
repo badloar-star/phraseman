@@ -109,6 +109,10 @@ describe('Dialogue V2 freeform route', () => {
     mockRetryDelay = 1;
   });
 
+  // зачем (аудит кнопок R52, 15.10): сбой ХОДА — плашка «Повторить» под лентой (проп turnError экрана), а не весь экран «недоступно»
+  const turnRetry = () => mockScreen.mock.calls.at(-1)[0].turnError as { retryLabel: string; onRetry: () => void } | null;
+  const waitTurnRetry = () => waitFor(() => expect(turnRetry()?.retryLabel).toBe('Повторить'));
+
   it('starts its own Plus-only session and sends a bounded freeform turn with stable message IDs', async () => {
     await render(h(DialogueV2FreeformRoute));
     await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
@@ -204,9 +208,10 @@ describe('Dialogue V2 freeform route', () => {
     await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Noch einmal.'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
-    await expect(screen.findByLabelText('Повторить')).resolves.toBeTruthy();
+    await waitTurnRetry();
+    expect(screen.queryByTestId('dialogue-v2-freeform-unavailable')).toBeNull(); // лента не заменена экраном ошибки
     const initial = mockTurn.mock.calls[0][0];
-    await act(async () => { fireEvent.press(screen.getByLabelText('Повторить')); });
+    await act(async () => { turnRetry()!.onRetry(); });
     await waitFor(() => expect(mockTurn).toHaveBeenCalledTimes(2));
     expect(mockTurn.mock.calls[1][0]).toEqual(initial);
     expect(mockStart).toHaveBeenCalledTimes(1);
@@ -219,7 +224,7 @@ describe('Dialogue V2 freeform route', () => {
     await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo.'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
-    await expect(screen.findByLabelText('Повторить')).resolves.toBeTruthy();
+    await waitTurnRetry();
     expect(screen.queryByText(/entropy detail/i)).toBeNull();
     expect(mockTurn).not.toHaveBeenCalled();
   });
@@ -242,6 +247,7 @@ describe('Dialogue V2 freeform route', () => {
     await act(async () => { rejectOldTurn(new Error('old failure')); });
 
     expect(screen.queryByLabelText('Повторить')).toBeNull();
+    expect(turnRetry()).toBeNull();
     expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([]);
     expect(mockTurn).toHaveBeenCalledTimes(1);
   });
@@ -393,10 +399,11 @@ describe('Dialogue V2 freeform route', () => {
     await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); });
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Noch einmal.'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
-    const retry = await screen.findByLabelText('Повторить');
+    await waitTurnRetry();
+    const retry = turnRetry()!;
     await act(async () => {
-      fireEvent.press(retry);
-      fireEvent.press(retry);
+      retry.onRetry();
+      retry.onRetry();
     });
     expect(mockTurn).toHaveBeenCalledTimes(2);
     await act(async () => { resolveRetry({ ok: true, assistantMessage: 'Alles klar.', sessionId: `d2fs_${'a'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) }); });

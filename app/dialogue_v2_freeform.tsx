@@ -102,6 +102,11 @@ export default function DialogueV2FreeformRoute() {
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
+  // зачем (аудит кнопок R52, координатор 15.10): один сбой ХОДА превращал весь экран в «Не удалось продолжить разговор» — лента и черновик
+  // пропадали. Сбой хода теперь — плашка с «Повторить» под лентой (как в сценарном диалоге); полный экран остаётся только для сбоя старта.
+  const [turnFailed, setTurnFailed] = useState(false);
+  const turnFailedRef = useRef(false);
+  turnFailedRef.current = turnFailed;
   const sessionRef = useRef<ServerSession | null>(null);
   const pendingRef = useRef<PendingTurn | null>(null);
   const startingRef = useRef(false);
@@ -124,7 +129,7 @@ export default function DialogueV2FreeformRoute() {
   const voice = useDialogueV2VoiceMessage({
     studyTarget: isSupportedTarget(studyTarget) ? studyTarget : 'en',
     promptText: labels.title,
-    disabled: sending || unavailable || !session || !isSupportedTarget(studyTarget)
+    disabled: sending || unavailable || turnFailed || !session || !isSupportedTarget(studyTarget)
       || session.studyTarget !== studyTarget,
     onTranscript: setDraft,
   });
@@ -190,6 +195,7 @@ export default function DialogueV2FreeformRoute() {
     startInFlightRef.current = generation;
     replaceSession(null);
     setUnavailable(false);
+    setTurnFailed(false);
     try {
       const started = await startDialogueV2FreeformSession({ studyTarget: target });
       if (generationRef.current !== generation || targetRef.current !== target) {
@@ -231,6 +237,7 @@ export default function DialogueV2FreeformRoute() {
     startingRef.current = false;
     setSending(false);
     setUnavailable(false);
+    setTurnFailed(false);
     if (!accessResolved || !hasPremiumAccess || !isSupportedTarget(studyTarget)) return undefined;
     void startCurrentSession(studyTarget, generation);
     return undefined;
@@ -243,6 +250,7 @@ export default function DialogueV2FreeformRoute() {
     }
     setSending(true);
     setUnavailable(false);
+    setTurnFailed(false);
     try {
       const result = await sendDialogueV2FreeformTurn({
         sessionId: pending.sessionId,
@@ -276,7 +284,7 @@ export default function DialogueV2FreeformRoute() {
     } catch (error: unknown) {
       const current = isCurrentPending(pending);
       console.warn('[DIALOGUE-V2] freeform: turn → failed', { turnId: pending.turnId, current, message: error instanceof Error ? error.message : String(error) });
-      if (current) setUnavailable(true);
+      if (current) setTurnFailed(true); // R52: плашка под лентой, лента и черновик на месте
     } finally {
       if (isCurrentPending(pending)) {
         setSending(false);
@@ -334,6 +342,10 @@ export default function DialogueV2FreeformRoute() {
       console.log('[DIALOGUE-V2] freeform: send queued until session ready', { length: probe.userMessage.length }); // guard-ok
       return;
     }
+    if (turnFailedRef.current) {
+      console.log('[DIALOGUE-V2] freeform: send skipped — previous turn failed, waiting for «Повторить»'); // guard-ok: ранний выход
+      return;
+    }
     if (!currentSession || !isSupportedTarget(targetRef.current) || startingRef.current
       || (queued === null && (sending || voice.status !== 'idle'))
       || userMessage.length < 1) {
@@ -351,7 +363,7 @@ export default function DialogueV2FreeformRoute() {
       startingRef.current = false;
       // Реплика из очереди уже в ленте — оставляем её в очереди: «Повторить» перезапустит старт и отправит её.
       if (queued !== null) queuedMessageRef.current = queued;
-      setUnavailable(true);
+      setTurnFailed(true); // R52: «Повторить» под лентой перезапустит старт и отправит реплику из очереди
       return;
     }
     const canonicalRequest = parseDialogueV2FreeformSessionTurnShape({
@@ -396,6 +408,32 @@ export default function DialogueV2FreeformRoute() {
     );
   }
 
+  // «Повторить» — одно действие для полного экрана (сбой старта) и плашки под лентой (сбой хода)
+  const retryFreeform = () => {
+    // зачем (координатор 12.10): двойной тап «Повторить» не шлёт ход дважды и не создаёт вторую серверную сессию.
+    if (retryBusyRef.current) {
+      console.log('[DIALOGUE-V2] freeform: retry ignored — already in flight'); // guard-ok
+      return;
+    }
+    retryBusyRef.current = true;
+    const release = () => { retryBusyRef.current = false; };
+    const pending = pendingRef.current;
+    if (pending && isCurrentPending(pending)) {
+      console.log('[DIALOGUE-V2] freeform: retry → resend pending turn', { turnId: pending.turnId });
+      void runPendingTurn(pending).finally(release);
+      return;
+    }
+    const target = targetRef.current;
+    if (isSupportedTarget(target)) {
+      console.log('[DIALOGUE-V2] freeform: retry → restart session (new silent series)', { generation: generationRef.current, queued: queuedMessageRef.current !== null });
+      clearStartRetryTimer();
+      void startCurrentSession(target, generationRef.current, 0).finally(release);
+      return;
+    }
+    console.warn('[DIALOGUE-V2] freeform: retry → unsupported study target', { target: String(target) });
+    release();
+  };
+
   if (unavailable) {
     return (
       <DialogueGlassGate
@@ -407,34 +445,11 @@ export default function DialogueV2FreeformRoute() {
         title={labels.unavailable}
         action={{
           label: labels.retry,
-          onPress: () => {
-            // зачем (координатор 12.10): двойной тап «Повторить» не шлёт ход дважды и не создаёт вторую серверную сессию.
-            if (retryBusyRef.current) {
-              console.log('[DIALOGUE-V2] freeform: retry ignored — already in flight'); // guard-ok
-              return;
-            }
-            retryBusyRef.current = true;
-            const release = () => { retryBusyRef.current = false; };
-            const pending = pendingRef.current;
-            if (pending && isCurrentPending(pending)) {
-              console.log('[DIALOGUE-V2] freeform: retry → resend pending turn', { turnId: pending.turnId });
-              void runPendingTurn(pending).finally(release);
-              return;
-            }
-            const target = targetRef.current;
-            if (isSupportedTarget(target)) {
-              console.log('[DIALOGUE-V2] freeform: retry → restart session (new silent series)', { generation: generationRef.current, queued: queuedMessageRef.current !== null });
-              clearStartRetryTimer();
-              void startCurrentSession(target, generationRef.current, 0).finally(release);
-              return;
-            }
-            console.warn('[DIALOGUE-V2] freeform: retry → unsupported study target', { target: String(target) });
-            release();
-          },
+          onPress: retryFreeform,
         }}
       />
     );
   }
 
-  return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} />;
+  return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={turnFailed ? { message: labels.unavailable, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
 }

@@ -8,7 +8,7 @@ import MicAllowanceBadge from '../MicAllowanceBadge';
 import { describeDialogueVoiceMessage, type DialogueVoiceDraft } from '../../app/dialogue_voice_message';
 import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_message';
 import type { Lang } from '../../constants/i18n';
-import { DialogueGlassBackButton, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
+import { DialogueGlassBackButton, DialogueGlassSysError, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import {
   DialogueGlassBubble,
   DialogueGlassBubbleText,
@@ -62,6 +62,8 @@ export type DialogueV2FreeformScreenProps = Readonly<{
   voiceUnavailable?: boolean;
   /** Строка-ответ на тап по недоступному микрофону («не работает на этом устройстве»). */
   voiceNotice?: string | null;
+  /** R52: сбой хода — плашка с «Повторить» под лентой (как в сценарном диалоге), а не весь экран «недоступно». */
+  turnError?: Readonly<{ message: string; retryLabel: string; onRetry: () => void }> | null;
 }>;
 
 /** A dedicated V2 freeform surface, deliberately separate from scenario sessions. */
@@ -85,6 +87,7 @@ export function DialogueV2FreeformScreen({
   onPlayVoice,
   voiceUnavailable = false,
   voiceNotice = null,
+  turnError = null,
 }: DialogueV2FreeformScreenProps) {
   const glass = useDialogueGlass();
   const voiceBusy = voiceStatus !== 'idle';
@@ -146,6 +149,9 @@ export function DialogueV2FreeformScreen({
             );
           })}
           {sending ? <DialogueGlassTyping glass={glass} testID="dialogue-v2-freeform-typing" /> : null}
+          {turnError && !sending ? (
+            <DialogueGlassSysError glass={glass} testID="dialogue-v2-freeform-turn-error" message={turnError.message} retryLabel={turnError.retryLabel} onRetry={turnError.onRetry} />
+          ) : null}
         </ScrollView>
 
         <View style={[styles.composer, { backgroundColor: glass.bg }]}>

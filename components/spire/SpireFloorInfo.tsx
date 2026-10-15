@@ -7,7 +7,7 @@
 // комнаты недели (пакет B: SpireHomeScreen → useSpireRivals → `others`), без новых чтений;
 // других на этаже нет — блока нет. Журнал карты — [SPIRE-RIVALS] (use_spire_rivals.ts).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo } from 'react';
+import React, { memo, useRef } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { V2_TYPE } from '../../constants/v2Style';
@@ -59,7 +59,9 @@ export function spireFloorSubtitle(lang: Lang, floor: number, myFloor: number | 
 function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [], windowH = 0 }: Props) {
   const p = useSpirePalette();
   const g = useShadowGlass();
-  const compact = spireFloorInfoCompact(useWindowDimensions().fontScale, windowH);
+  const wasCompactRef = useRef(false);
+  const compact = spireFloorInfoCompact(useWindowDimensions().fontScale, windowH, undefined, wasCompactRef.current);
+  wasCompactRef.current = compact; // зачем: гистерезис — выключаем только при окне > 196
   if (compact) {
     // зачем (запасной вариант 15.10, выключен): одна строка — «Этаж N · ступень» без подписи и без кружков соперников; окно башни получает освободившееся место
     const one = myFloor !== null && floor === myFloor && stepInFloor !== null ? `${spireFloorTitle(lang, floor)} · ${stepInFloor}/${spireStepsIn(floor)}` : spireFloorTitle(lang, floor);

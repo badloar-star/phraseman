@@ -25,9 +25,12 @@ export const SPIRE_TALL_SCREEN_H = 800;
 export const SPIRE_COMPACT_FLOOR_INFO_ENABLED = false;
 export const SPIRE_COMPACT_FONT_SCALE = 1.3;
 export const SPIRE_COMPACT_WINDOW_H = 180;
+/** Гистерезис (Ревизор 15.10): включаем при окне < 180, выключаем только при > 196 — раскладка не качается на границе, когда окно и карточка меняют друг друга по высоте. */
+export const SPIRE_COMPACT_WINDOW_H_OFF = 196;
 
-export function spireFloorInfoCompact(fontScale: number, windowH: number, enabled: boolean = SPIRE_COMPACT_FLOOR_INFO_ENABLED): boolean {
-  return enabled && fontScale >= SPIRE_COMPACT_FONT_SCALE && windowH > 0 && windowH < SPIRE_COMPACT_WINDOW_H;
+export function spireFloorInfoCompact(fontScale: number, windowH: number, enabled: boolean = SPIRE_COMPACT_FLOOR_INFO_ENABLED, wasCompact: boolean = false): boolean {
+  if (!enabled || fontScale < SPIRE_COMPACT_FONT_SCALE || !(windowH > 0)) return false;
+  return wasCompact ? windowH <= SPIRE_COMPACT_WINDOW_H_OFF : windowH < SPIRE_COMPACT_WINDOW_H;
 }
 
 /**

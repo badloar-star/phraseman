@@ -54,4 +54,12 @@ describe('запасной вариант: компактная карточка
     expect(spireFloorInfoCompact(1.0, 130, true)).toBe(false);
     expect(spireFloorInfoCompact(1.3, 0, true)).toBe(false);
   });
+
+  it('гистерезис: включается при окне < 180, выключается только при > 196', () => {
+    expect(spireFloorInfoCompact(1.3, 179, true, false)).toBe(true);
+    expect(spireFloorInfoCompact(1.3, 185, true, false)).toBe(false); // ещё не включено — 185 не включает
+    expect(spireFloorInfoCompact(1.3, 185, true, true)).toBe(true); // уже компактна — 185 удерживает
+    expect(spireFloorInfoCompact(1.3, 196, true, true)).toBe(true);
+    expect(spireFloorInfoCompact(1.3, 197, true, true)).toBe(false);
+  });
 });

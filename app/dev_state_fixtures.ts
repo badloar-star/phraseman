@@ -69,6 +69,12 @@ export function vipSnapshotValuesFor(kind: DevVipKind, nowMs: number): Record<'v
   };
 }
 
+/** Бета-тест Б16: типы пушей для dev-имитации тапа — по одному на каждую ветку разбора в notification_tap_handler. */
+const DEV_NOTIF_TAP_TYPES = [
+  'reminder', 'streak_at_risk', 'upsell_d4', 'youtube_premiere', 'activity_like',
+  'premium_expiry_reminder', 'premium_expiry_vip', 'spire_week_result', 'arena_friend_invite', 'unknown_type',
+] as const;
+
 export type DevStateRequest = Readonly<{
   energy?: number;
   /** `energy=restoring&restore_in=N`: энергия 0, следующая единица через N с (energy-modes-008). */
@@ -296,6 +302,8 @@ export type DevStateRequest = Readonly<{
   stories?: 'on' | 'off' | 'inherit';
   /** D192: засев историй в памяти — all (4 непросмотренные), seen (4 просмотренные), none (пусто), off. */
   storyseed?: 'all' | 'seen' | 'none' | 'off';
+  /** Бета-тест Б16: имитация тапа по пушу этого типа тем же разбором, что настоящий тап (через 1,2 с после шагов). */
+  notif?: (typeof DEV_NOTIF_TAP_TYPES)[number];
   lv2voice?: number | 'off';
   /** [WINBACK-FREEZE]: гейт winback считает, что человек не заходил N дней (3 / 8 / 30) или снять. Только память. */
   winbackaway?: '3' | '8' | '30' | 'off';
@@ -436,6 +444,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   // зачем (координатор + Макеты 15.10, съёмка D192 stories-s1…s3): кольцо и просмотр сторис без удалённого конфига и настоящих фактов — только память
   request.stories = pick('stories', ['on', 'off', 'inherit'] as const);
   request.storyseed = pick('storyseed', ['all', 'seen', 'none', 'off'] as const);
+  // зачем (бета-тест 15.10, Б16): проверить, что тап по каждому типу пуша открывает нужный экран, без настоящей рассылки
+  request.notif = pick('notif', DEV_NOTIF_TAP_TYPES);
   // зачем (координатор 15.10, съёмка D194 voice-limit-001…006): остаток голоса на сегодня в курсе — только память
   request.lv2voice = intOrWord('lv2voice', ['off'] as const, 3);
   request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
@@ -951,6 +961,16 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('lv2voice', String(request.lv2voice), async () => {
       const { setDevVoiceRemaining } = await import('./voice_daily_allowance');
       return setDevVoiceRemaining(request.lv2voice === 'off' ? null : request.lv2voice as number);
+    });
+  }
+  if (request.notif !== undefined) {
+    const type = request.notif === 'premium_expiry_vip' ? 'premium_expiry_reminder' : request.notif;
+    const data: Record<string, unknown> = { type, ...(request.notif === 'premium_expiry_vip' ? { kind: 'vip' } : {}), ...(type === 'youtube_premiere' ? { videoId: 'dev', channelId: 'dev' } : {}) };
+    await step('notif', request.notif, async () => {
+      const { simulateNotificationTapForDev } = await import('./notification_tap_handler');
+      // зачем: после перехода по next — иначе переход ссылки перекрыл бы экран, открытый тапом
+      setTimeout(() => { simulateNotificationTapForDev(data); }, 1200);
+      return true;
     });
   }
   if (request.stories !== undefined || request.storyseed !== undefined) {

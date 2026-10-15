@@ -1,180 +1,138 @@
-# Англійська · Урок 1 · Заняття 45 — «Задоволений, виснажений, питання вирішено»
+# Англійська · Урок 1 · Заняття 45 — Що знадобиться під час переїзду
 
-**Ситуація.** Міра готує вечерю для друзів, Ілля закінчує другу зміну, а Ліна узгоджує час зустрічі в робочому чаті.
-**Сьогодні.** Скажете, чи задоволені ви результатом, чи зовсім втомилися та чи вдалося людям домовитися.
-**Нові слова:** satisfied, exhausted, settled
-**Повертаються:** ready
+**Ситуація.** Ви допомагаєте другові зібратися до нової квартири. Вибираєте потрібні речі, дивитеся список справ і обговорюєте, як він спілкуватиметься з друзями після переїзду.
+
+**Що ви опануєте:** сказати, що річ або порада корисні, й повторити опис самотності
+**Нові слова:** useful
 
 ---
 
 ## Інтро 1
 
-### `satisfied` — коли результат вас влаштовує
+### Корисний
 
-`satisfied` — «задоволений». Це не просто гарний настрій: ви самі отримали результат і він вас влаштовує. Міра закінчила готувати вечерю; подруга питає, чи задоволена вона тим, як усе вийшло. Міра відповідає: `I'm satisfied.` — «Я задоволена».
+`useful` — «корисний», «приносить користь». Про список справ скажемо `It is useful` — «Він корисний». Тут `It` стосується списку, хоча українською ми кажемо «він». Список нагадує взяти ключі. Інакше ключі опиняться на дні коробки з написом «Потім розберемо».
 
-Якщо результат розчарував, перед словом ставлять `not`: `I'm not satisfied.` — «Я не задоволений».
+**Список допомагає нічого не забути під час переїзду. Назвіть його корисним.**
 
-**Ви закінчили готувати вечерю. Подруга питає: «Вас влаштовує, як усе вийшло?» Скажіть, що ви задоволені результатом.**
-
-- ✅ **I'm satisfied.**
-- ❌ I'm exhausted. — *`exhausted` означає «вкрай втомлений». Тут ви оцінюєте вечерю, а не свої сили.*
-- ❌ I'm ready. — *`ready` — «готовий». Питання було про те, чи сподобався результат.*
+- ✅ **It is useful.**
+- ❌ He is useful. — *Тут ідеться про список, а не про чоловіка: `It is useful`.*
+- ❌ It are useful. — *Після `It` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### `exhausted` — коли сил майже не лишилося
+### Одна річ і кілька
 
-`exhausted` — «виснажений, украй втомлений»: так кажуть, коли сил майже немає. Ілля відпрацював дві зміни й сідає в автобус додому. Тепер ви — Ілля. На запитання колеги про зустріч відповідь звучить так: `I'm exhausted.`
+Про один предмет — `It is useful`. Про кілька — `They are useful`. Наприклад, коробки й наліпки допомагають розібратися з речами. Слово `useful` не змінюється, навіть коли корисних речей багато. Коротко: `It's useful` і `They're useful`.
 
-**Ви — Ілля після двох змін. Колега питає, чи є у вас сили на зустріч. Відповідайте словами Іллі.**
+**Дві сумки зручні для перевезення речей. Скажіть про їхню користь.**
 
-- ✅ **I'm exhausted.**
-- ❌ I'm satisfied. — *Це «я задоволений результатом». Колега питає не про оцінку роботи, а про сили.*
-- ❌ I'm ready. — *`ready` — «готовий». Після двох змін Ілля каже протилежне: сил майже немає.*
+- ✅ **They are useful.**
+- ❌ They is useful. — *Після `They` потрібно `are`.*
+- ❌ They are usefuls. — *До `useful` не додаємо `s`.*
 
 ---
 
 ## Інтро 3
 
-### `settled` — коли питання вже вирішили
+### Корисна річ і почуття людини
 
-`settled` тут означає «вирішено, домовилися». Ліна та колеги обирають час зустрічі. Коли всі підтвердили один варіант, Ліна пише: `It's settled.` — «Усе вирішено».
+`lonely` — «відчуває самотність». Другові може бути самотньо в новій квартирі: `He is lonely`. Корисний застосунок для спілкування — `It is useful`. Одне слово оцінює користь, інше називає почуття. Застосунок може допомогти зв’язатися з друзями, але сам собою не обіцяє, що самотність зникне.
 
-`It's` — це коротке `it is`; апостроф потрібен, бо в ньому сховане `is`. `its` без апострофа — форма належності перед іменником, а не заміна `it is`. Якщо час ще не погодили, скажіть `It isn't settled.`
+**Друг каже, що в новому районі йому бракує близького спілкування. Назвіть саме його почуття.**
 
-**Ліна отримала від усіх колег підтвердження: зустріч буде у вівторок о 10:00. Напишіть у чат, що питання вирішено.**
-
-- ✅ **It's settled.**
-- ❌ Its settled. — *`its` без апострофа означає «його». Тут потрібне `it is`, тому пишемо `It's`.*
-- ❌ It isn't settled. — *Усі вже підтвердили час. Заперечення повідомило б протилежне.*
+- ✅ **He is lonely.**
+- ❌ He is useful. — *Це про користь людини, а тут треба назвати самотність: `lonely`.*
+- ❌ She is lonely. — *Це про неї. Про друга потрібно `He`.*
 
 ---
 
-## Практика (19 завдань, підказок стає менше)
+## Практика (17 завдань)
 
-**1 · Картка слова — satisfied**
-<!-- interaction_id: en:lesson-01:session-45:i01; family: listen_choose -->
-> **satisfied** — «задоволений». Міра закінчила готувати й задоволена тим, як усе вийшло.
+**1 · Список допомагає зібрати потрібні речі. Складіть фразу про його користь**
+<!-- interaction_id: en:lesson-01:session-45:i01; family: phrase_builder -->
+Плитки: `useful` `is` `It` `He` → **It is useful.**
+*(плитка `He` зайва: тут потрібно `It` — `It is useful.`)*
 
-**2 · Послухайте й оберіть — satisfied**
+**2 · Послухайте фразу про речі**
 <!-- interaction_id: en:lesson-01:session-45:i02; family: listen_choose -->
-🔊 *satisfied* → **satisfied** · exhausted · ready
-- exhausted — *Exhausted означає «украй втомлений», а satisfied — «задоволений результатом».*
-- ready — *Ready означає «готовий», а satisfied — «задоволений результатом».*
+🔊 *They are useful.* → **They are useful.** · They are similar. · They are separate.
+- They are similar. — *У записі останнє слово — `useful`, а в цьому варіанті — `similar`.*
+- They are separate. — *У записі останнє слово — `useful`, а в цьому варіанті — `separate`.*
 
-**3 · Картка слова — exhausted**
-<!-- interaction_id: en:lesson-01:session-45:i03; family: listen_choose -->
-> **exhausted** — «виснажений, украй втомлений». Ілля після двох змін майже не має сил.
+**3 · Порада друга допомогла вам під час переїзду. Доповніть фразу про її користь**
+<!-- interaction_id: en:lesson-01:session-45:i03; family: context_gap_grammar -->
+It ___ useful. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Одна порада — тут `It is`.*
 
-**4 · Послухайте й оберіть — exhausted**
-<!-- interaction_id: en:lesson-01:session-45:i04; family: listen_choose -->
-🔊 *exhausted* → **exhausted** · satisfied · ready
-- satisfied — *Satisfied означає «задоволений результатом», а exhausted — «украй втомлений».*
-- ready — *Ready означає «готовий», а exhausted — «украй втомлений».*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-45:i04; family: speed_match -->
+useful — корисний · lonely — відчуває самотність · curious — допитливий · patient — терплячий
 
-**5 · Картка слова — settled**
-<!-- interaction_id: en:lesson-01:session-45:i05; family: listen_choose -->
-> **settled** — «вирішено, домовилися». Ліна та колеги обрали час зустрічі й усі погодилися.
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-45:i05; family: listen_build_dictation -->
+🔊 *It's useful.* Плитки: `useful` `It's` `He's` → **It's useful.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's useful.`)*
 
-**6 · Послухайте й оберіть — settled**
-<!-- interaction_id: en:lesson-01:session-45:i06; family: listen_choose -->
-🔊 *settled* → **settled** · satisfied · ready
-- satisfied — *Satisfied означає «задоволений результатом», а settled тут означає «вирішено, домовилися».*
-- ready — *Ready означає «готовий», а settled тут означає «вирішено, домовилися».*
+**6 · Наліпки допомагають знайти потрібні коробки. Скажіть про користь наліпок**
+<!-- interaction_id: en:lesson-01:session-45:i06; family: phrase_builder -->
+Плитки: `useful` `are` `They` `is` → **They are useful.**
+*(плитка `is` зайва: тут потрібно `are` — `They are useful.`)*
 
-**7 · З’єднайте слова та значення**
-<!-- interaction_id: en:lesson-01:session-45:i07; family: speed_match -->
-satisfied — задоволений · exhausted — виснажений · settled — вирішено · ready — готовий
+**7 · Коротко оцініть користь мапи нового району**
+<!-- interaction_id: en:lesson-01:session-45:i07; family: scripted_repeat_compare -->
+🎙 **It's useful.**
 
-**8 · Вставте слово — ви задоволені результатом вечері**
+**8 · Сестрі в новому місті бракує близького спілкування. Назвіть її відчуття самотності**
 <!-- interaction_id: en:lesson-01:session-45:i08; family: context_gap_grammar -->
-Ви закінчили готувати вечерю. Подруга питає, чи влаштовує вас результат.
+She is ___ . → **lonely** · useful · curious
+- useful — *`useful` — «корисна». Тут треба назвати почуття: `lonely`.*
+- curious — *`curious` — «допитлива». Самотність передає `lonely`.*
 
-I'm ___ . → **satisfied** · exhausted · ready
-- exhausted — *Exhausted описує крайню втому, а тут людина задоволена результатом.*
-- ready — *Ready означає «готовий»; тут ідеться про задоволення результатом.*
+**9 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-45:i09; family: listen_choose -->
+🔊 *He is lonely.* → **He is lonely.** · She is lonely. · He is curious.
+- She is lonely. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
+- He is curious. — *У записі останнє слово — `lonely`, а в цьому варіанті — `curious`.*
 
-**9 · Складіть фразу — скажіть подрузі, що задоволені вечерею**
-<!-- interaction_id: en:lesson-01:session-45:i09; family: phrase_builder -->
-Ви закінчили готувати вечерю, і подруга питає, чи влаштовує вас результат. Плитки: `I'm` `satisfied.` `not` → **I'm satisfied.**
-*(плитка `not` зайва: `not` зайве: ви задоволені, тому `I'm satisfied`.)*
+**10 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-01:session-45:i10; family: speed_match -->
+It's — It is · They're — They are · He's — He is · She's — She is
 
+**11 · Послухайте й складіть коротку фразу про речі**
+<!-- interaction_id: en:lesson-01:session-45:i11; family: listen_build_dictation -->
+🔊 *They're useful.* Плитки: `useful` `They're` `We're` → **They're useful.**
+*(плитка `We're` зайва: тут потрібно `They're` — `They're useful.`)*
 
-**10 · Вставте слово — після двох змін сил майже немає**
-<!-- interaction_id: en:lesson-01:session-45:i10; family: context_gap_grammar -->
-Після другої зміни Ілля відповідає колезі, який кличе його на зустріч: сил майже не лишилося.
+**12 · Ви кажете другові, що самі відчуваєте самотність. Складіть фразу про себе**
+<!-- interaction_id: en:lesson-01:session-45:i12; family: phrase_builder -->
+Плитки: `lonely` `am` `I` `is` → **I am lonely.**
+*(плитка `is` зайва: тут потрібно `am` — `I am lonely.`)*
 
-I'm ___ . → **exhausted** · satisfied · ready
-- satisfied — *Satisfied означає «задоволений», але брак сил описує exhausted.*
-- ready — *Ready означає «готовий»; брак сил описує exhausted.*
+**13 · Розклад автобусів допомагає спланувати дорогу. Скажіть про користь розкладу**
+<!-- interaction_id: en:lesson-01:session-45:i13; family: scripted_repeat_compare -->
+🎙 **It is useful.**
 
-**11 · Складіть фразу — дайте відповідь колезі після двох змін**
-<!-- interaction_id: en:lesson-01:session-45:i11; family: phrase_builder -->
-Колега пропонує зустрітися після вашої другої зміни. Скажіть, що сил майже не лишилося. Плитки: `I'm` `exhausted.` `not` → **I'm exhausted.**
-*(плитка `not` зайва: `not` зайве: ви дуже втомилися, тому `I'm exhausted`.)*
-
-
-**12 · Вставте форму — усі домовилися**
-<!-- interaction_id: en:lesson-01:session-45:i12; family: context_gap_grammar -->
-Ліна пише колегам у робочому чаті, щоб підтвердити: усі погодили час і місце зустрічі.
-
-___ settled. → **It's** · Its · It
-- Its — *Its без апострофа показує належність; тут потрібне скорочення It is.*
-- It — *У `It settled` пропущено is; правильно `It’s settled.`*
-
-**13 · Послухайте й складіть — Ліна пише колегам про час зустрічі**
-<!-- interaction_id: en:lesson-01:session-45:i13; family: listen_build_dictation -->
-Ліна пише колегам: час зустрічі погоджено. 🔊 *It's settled.* Плитки: `It's` `settled.` `Its` → **It's settled.**
-*(плитка `Its` зайва: `Its` без апострофа не підходить: в аудіо `It's settled`.)*
-
-
-**14 · Вставте слово — дайте відповідь колезі після перерви**
+**14 · Дві інструкції допомогли зібрати меблі. Скажіть про їхню користь**
 <!-- interaction_id: en:lesson-01:session-45:i14; family: context_gap_grammar -->
-Колега питає: «Ви все ще виснажені?» Відповідайте, що ні.
+They ___ useful. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про дві інструкції — `They are`.*
 
-I'm ___ exhausted. → **not** · isn't · aren't
-- isn't — *I’m уже означає I am. Після нього для заперечення потрібне not, а isn't буває з he, she або it.*
-- aren't — *Aren't уживають з you, we або they. З I заперечення будується I’m not.*
+**15 · Послухайте й виберіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-45:i15; family: listen_choose -->
+🔊 *She's lonely.* → **She's lonely.** · He's lonely. · She's curious.
+- He's lonely. — *У записі перше слово — `She's`, а в цьому варіанті — `He's`.*
+- She's curious. — *У записі останнє слово — `lonely`, а в цьому варіанті — `curious`.*
 
-**15 · Складіть фразу — питання ще не вирішено**
-<!-- interaction_id: en:lesson-01:session-45:i15; family: phrase_builder -->
-У робочому чаті колеги ще не вибрали час зустрічі. Плитки: `It` `isn't` `settled.` `its` → **It isn't settled.**
-*(плитка `its` зайва: `its` не підходить: для заперечення потрібне `It isn't settled`.)*
+**16 · З’єднайте форми та слова з відповідниками**
+<!-- interaction_id: en:lesson-01:session-45:i16; family: speed_match -->
+I'm — I am · We're — We are · useful — корисний · lonely — самотньо
 
+**17 · На роботі вам дали пам’ятку, яка допомагає швидко знайти потрібні контакти. Скажіть колезі про користь пам’ятки**
+<!-- interaction_id: en:lesson-01:session-45:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is useful.**
 
-**16 · Послухайте і складіть — Ліна попереджає координатора**
-<!-- interaction_id: en:lesson-01:session-45:i16; family: listen_build_dictation -->
-Міра та Ілля ще збираються перед походом. Ліна попереджає координатора, що вони поки не готові. 🔊 *They aren't ready.* Плитки: `They` `aren't` `ready` → **They aren't ready.**
-
-**17 · Вставте фразу — вечеря вас розчарувала**
-<!-- interaction_id: en:lesson-01:session-45:i17:s01; family: context_gap_grammar -->
-Подруга питає, чи задоволені ви вечерею. Відповідайте, що ні: результат вас розчарував.
-
-___ → **I'm not satisfied.** · I not satisfied. · I'm isn't satisfied.
-- I not satisfied. — *`I not satisfied.` схоже на українське «я не задоволений», де немає `am`. Англійською потрібно `I am not…` або `I'm not…`.*
-- I'm isn't satisfied. — *У `I'm isn't satisfied.` змішані два скорочення. `I'm` уже означає `I am`; з `I` заперечення — `I'm not satisfied.`.*
-
-**18 · Послухайте і виберіть — час зустрічі ще не погодили**
-<!-- interaction_id: en:lesson-01:session-45:i17:s02; family: listen_choose -->
-🔊 *It isn't settled.* → **It isn't settled.** · It isn't ready. · They aren't settled.
-- It isn't ready. — *`ready` — «готово». Тут ідеться про те, що рішення ще не погоджене.*
-- They aren't settled. — *Тут ідеться про час зустрічі, а не про людей. Для часу вживаємо `It`: `It isn't settled.`*
-
-**19 · Складіть фразу — дайте відповідь другові, який сумнівається перед походом**
-<!-- interaction_id: en:lesson-01:session-45:i17:s03; family: phrase_builder -->
-Друг хвилюється, чи не надто Міра та Ілля втомилися для походу після вихідних. Скажіть, що вони не виснажені. Плитки: `They` `aren't` `exhausted.` `isn't` → **They aren't exhausted.**
-*(плитка `isn't` зайва: `isn't` не підходить до `They`: потрібно `They aren't exhausted`.)*
-
-
----
-
-## Для сборщика
-
-new_words: satisfied — задоволений; exhausted — виснажений; settled — вирішено
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=phrase_builder, 12=context_gap_grammar, 13=listen_build_dictation, 14=context_gap_grammar, 15=phrase_builder, 16=listen_build_dictation, 17=context_gap_grammar, 18=listen_choose, 19=phrase_builder
-
----

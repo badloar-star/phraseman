@@ -1368,6 +1368,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
         return () => { task?.cancel?.(); };
     }, [homeRuntimeActive]);
+    // зачем (аудит R58 #6, координатор 15.10): эффект ниже с [] и отложенные таймеры звали loadData ПЕРВОГО рендера — со старыми
+    // studyTarget/lang/isPremium: после покупки Plus и возврата из фона «Продолжить» откатывалась на урок 3, всплывал лишний
+    // автопейвол. Последняя версия функции живёт в ref (присваивается каждый рендер ниже, после объявления loadData).
+    const loadDataRef = useRef<(() => Promise<void>) | null>(null);
     useEffect(() => {
         mountedRef.current = true;
         perfScreenMount('home');
@@ -1376,7 +1380,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 homeDataDirtyRef.current = true;
                 return;
             }
-            loadData();
+            void loadDataRef.current?.();
         };
         let resumeTimer: ReturnType<typeof setTimeout> | null = null;
         let resumeTask: {
@@ -2093,7 +2097,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 if (homeSilentRetryRef.current < 5) {
                     homeSilentRetryRef.current += 1;
                     console.warn('[HOME] first load failed, silent retry', { attempt: homeSilentRetryRef.current });
-                    setTimeout(() => { if (mountedRef.current) void loadData(); }, 20_000);
+                    setTimeout(() => { if (mountedRef.current) void loadDataRef.current?.(); }, 20_000);
                 } else {
                     console.warn('[HOME] first load failed, silent retries exhausted', { attempts: homeSilentRetryRef.current });
                 }
@@ -2132,7 +2136,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     deferredReloadTaskRef.current = InteractionManager.runAfterInteractions(() => {
                         deferredReloadTaskRef.current = null;
                         if (mountedRef.current && homeRuntimeActiveRef.current)
-                            loadData();
+                            void loadDataRef.current?.();
                         else if (mountedRef.current)
                             homeDataDirtyRef.current = true;
                     });
@@ -2140,6 +2144,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }
         }
     };
+    loadDataRef.current = loadData;
     useEffect(() => {
         if (!homeRuntimeActive) return;
         if (homeDataDirtyRef.current) {

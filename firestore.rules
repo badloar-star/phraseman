@@ -3412,6 +3412,12 @@ service cloud.firestore {
         && collection != 'admin_gift_certificate_batch_operations'
         && collection != 'gift_certificate_archive'
         && collection != 'admin_user_briefs_rate_limits'
+        // зачем (сухой прогон выкладки 17.10, эмулятор): «только сервер» у этих коллекций иначе перекрывался этим catch-all
+        // (правила складываются через ИЛИ) — браузерная админка могла читать и править метки и счётчики. Админка читает
+        // onboarding_level_daily своим явным правилом выше; писать в них может только сервер.
+        && collection != 'auth_recovery_hint_rate_limits'
+        && collection != 'onboarding_level_daily'
+        && collection != 'onboarding_level_counted'
         // Raw Dialogue V2 session context is callable/Admin-SDK only. This
         // exclusion is required because overlapping matches are OR-combined.
         && collection != 'dialogue_v2_sessions'

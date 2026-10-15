@@ -1,150 +1,138 @@
-# Англійська · Урок 3 · Заняття 45 — «Біля демонстраційного столу»
+# Англійська · Урок 3 · Заняття 45 — Офіс біля парковки
 
-**Сцена заняття.** Біля демонстраційного столу ви уточнюєте один товар: спочатку називаєте характеристику вперше, потім говорите про вже зрозумілу характеристику.
-**Як сказати:** обирайте `a`, `an` або `the`: `a/an` за першої згадки, `the` для характеристики, уже відомої в розмові.
-**Нові слова:** size, colour, model
+**Ситуація.** Ви з Анною приїхали до офісу. Біля входу є схема приміщень та інформація про паркування. Схема допомагає знайти потрібну кімнату. Анна читає правила й помічає, що паркуватися в одному з вибраних місць заборонено.
+
+**Що ви опануєте:** назвати офіс з an і потім говорити про зрозумілий співрозмовникові офіс із the
+**Нові слова:** office
+
+---
 
 ## Інтро 1
-### Розмір товару
 
-`size` — «розмір». Біля столу ви вперше називаєте розмір товару: `It is a small size.` Після цього співрозмовники знають, про який розмір ідеться: `The size is small.` `A` вводить один розмір у розмову, а `the` повертає до цього розміру.
+### Один офіс
 
-**Ви вперше називаєте розмір на товарі. Виберіть фразу.**
+`office` — «офіс»: приміщення, де працюють. `This is an office` — «Це офіс». Перед `office` потрібне `an`, бо слово починається з голосного звука. Вибираємо за звуком, а не за розміром приміщення: навіть крихітному офісу належить ціле `an`.
 
-- ✅ **It is a small size.**
-- ❌ It is the small size. — *Розмір ще не називали, тому потрібен `a`.*
-- ❌ It is an small size. — *`small` починається зі звука /s/, тому потрібен `a`.*
+**Назвіть офіс одним англійським словом.**
+
+- ✅ **office**
+- ❌ kitchen — *`kitchen` — кухня. Офіс — `office`.*
+- ❌ bathroom — *`bathroom` — ванна кімната. Офіс — `office`.*
 
 ---
 
 ## Інтро 2
-### Колір товару
 
-`colour` — «колір». Тепер ви вперше називаєте колір товару: `It is a dark colour.` Якщо розмова вже про цей колір, скажіть `The colour is dark.` У товару свій колір; `the` допомагає не відправити співрозмовника шукати інший.
+### Той самий офіс
 
-**Ви вперше називаєте колір товару. Виберіть фразу.**
+`The office is here` — «Офіс тут». Це конкретний офіс, який ви шукаєте разом: співрозмовник розуміє, про яке місце йдеться. `the office` можна сказати й за першої згадки, якщо потрібний офіс зрозумілий із ситуації. Для одного офісу потрібне `is`.
 
-- ✅ **It is a dark colour.**
-- ❌ It is the dark colour. — *Колір ще не називали, тому потрібен `a`.*
-- ❌ It is an dark colour. — *`dark` починається зі звука /d/.*
+**Ви вже обговорили потрібний офіс і тепер знайшли його на схемі. Скажіть «Офіс тут».**
+
+- ✅ **The office is here.**
+- ❌ The office are here. — *Офіс один: потрібне `is`.*
+- ❌ The offices are here. — *Так говорять про кілька офісів. Тут один: `The office is here`.*
 
 ---
 
 ## Інтро 3
-### Модель товару
 
-`model` — «модель». Біля столу ви вперше називаєте модель товару: `It is an old model.` Перед голосним звуком в `old` потрібен `an`. Коли цю модель уже назвали, кажуть `The model is old.` Так ви уточнюєте саме той товар, який розглядаєте.
+### Корисна схема й заборона
 
-**Стару модель називають уперше. Виберіть фразу.**
+`useful` — «корисний»: схема допомагає знайти офіс. Про неї: `It is useful` — «Вона корисна». `illegal` — «незаконний, заборонений законом». У нашій ситуації Анна прочитала правила: паркуватися у вибраному місці заборонено законом. Про цю дію: `It is illegal` — «Це незаконно». Говоримо про дію, а не про саму машину. Машина англійською — `car`.
 
-- ✅ **It is an old model.**
-- ❌ It is a old model. — *`old` починається з голосного звука, тому потрібен `an`.*
-- ❌ It is the old model. — *Модель ще не називали.*
+**Схема допомагає знайти потрібний офіс. Скажіть про неї «Вона корисна».**
+
+- ✅ **It is useful.**
+- ❌ It is useless. — *`useless` — некорисна. Тут схема допомагає: `useful`.*
+- ❌ It are useful. — *Ідеться про одну схему: `It is useful`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-45:i01; family: listen_choose -->
-Ціль: `size`
-Варіанти: `size`
+**1 · Анна шукає машину, якою ви приїхали. Вона поруч. Скажіть «Машина тут»**
+<!-- interaction_id: en:lesson-03:session-45:i01; family: phrase_builder -->
+Плитки: `here` `is` `car` `The` `are` → **The car is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The car is here.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-45:i03; family: scripted_repeat_compare -->
-Ціль: `colour`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-45:i02; family: listen_choose -->
+🔊 *office* → **office** · kitchen · bathroom
+- kitchen — *У записі перше слово — `office`, а в цьому варіанті — `kitchen`.*
+- bathroom — *У записі перше слово — `office`, а в цьому варіанті — `bathroom`.*
 
-**3 · Послухайте та виберіть модель цього товару**
-<!-- interaction_id: en:lesson-03:session-45:i05; family: listen_choose -->
-Ціль: `model`
-Варіанти: `model` · `module` · `mobile`
-- module — *`module` — це модуль, а не модель товару.*
-- mobile — *`mobile` — це телефон, а не модель товару.*
+**3 · Назвіть офіс одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-45:i03; family: context_gap_grammar -->
+___ → **office** · kitchen · bathroom
+- kitchen — *`kitchen` — кухня. Офіс — `office`.*
+- bathroom — *`bathroom` — ванна кімната. Офіс — `office`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-45:i04; family: speed_match -->
+office — офіс · useful — корисний · illegal — незаконний · car — машина
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-45:i02; family: scripted_repeat_compare -->
-Ціль: `size`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-45:i05; family: listen_build_dictation -->
+🔊 *This is an office.* Плитки: `office` `an` `is` `This` `are` → **This is an office.**
+*(плитка `are` зайва: тут потрібно `is` — `This is an office.`)*
 
-**5 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-45:i04; family: listen_choose -->
-Ціль: `colour`
-Варіанти: `colour`
+**6 · Потрібний вам обом офіс знайдено на схемі. Скажіть «Офіс тут»**
+<!-- interaction_id: en:lesson-03:session-45:i06; family: phrase_builder -->
+Плитки: `here` `is` `office` `The` `are` → **The office is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The office is here.`)*
 
-**6 · Промовте слово — модель цього товару**
-<!-- interaction_id: en:lesson-03:session-45:i06; family: listen_build_dictation -->
-Ціль: `model`
+**7 · Схема допомагає знайти кімнату. Скажіть про неї «Вона корисна» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-45:i07; family: scripted_repeat_compare -->
+🎙 **It's useful.**
 
-**7 · З’єднайте слово зі значенням — розмір цього товару**
-<!-- interaction_id: en:lesson-03:session-45:i08; family: speed_match -->
-Пари: `size` — розмір · `colour` — колір · `model` — модель · `receipt` — чек
-Ціль: `size · colour · model · receipt`
+**8 · Ви називаєте, що це за приміщення: офіс**
+<!-- interaction_id: en:lesson-03:session-45:i08; family: context_gap_grammar -->
+This is ___ office. → **an** · a · are
+- a — *`office` починається з голосного звука: `an office`.*
+- are — *Перед назвою одного офісу тут потрібне `an`.*
 
-**8 · Промовте одну фразу — колір цього товару темний**
-<!-- interaction_id: en:lesson-03:session-45:i10; family: scripted_repeat_compare -->
-Ціль: `The colour is dark.`
+**9 · Послухайте відповідь про паркування у вибраному місці**
+<!-- interaction_id: en:lesson-03:session-45:i09; family: listen_choose -->
+🔊 *It is illegal.* → **It is illegal.** · It is legal. · It is unofficial.
+- It is legal. — *У записі останнє слово — `illegal`, а в цьому варіанті — `legal`.*
+- It is unofficial. — *У записі останнє слово — `illegal`, а в цьому варіанті — `unofficial`.*
 
-**9 · Вставте артикль — названа модель лежить на демонстраційному столі**
-<!-- interaction_id: en:lesson-03:session-45:i11; family: context_gap_grammar -->
-Ціль: `___ model is on the table.`
-Варіанти: `the` · `a` · `an`
-- a — *Йдеться про ту модель, яку вже показали, тому потрібне `the`.*
-- an — *Перед уже відомою моделлю потрібне `the`, а не `an`.*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-45:i10; family: speed_match -->
+office — офіс · car — машина · here — тут · there — там
 
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-45:i11; family: listen_build_dictation -->
+🔊 *That car is there.* Плитки: `there` `is` `car` `That` `are` → **That car is there.**
+*(плитка `are` зайва: тут потрібно `is` — `That car is there.`)*
 
-**10 · Складіть одну фразу — колір цього товару темний**
-<!-- interaction_id: en:lesson-03:session-45:i07; family: phrase_builder -->
-Ціль: `The colour is dark.`
+**12 · Ви показуєте на приміщення далі коридором. Назвіть його: «Це офіс», зі словом для одного далі**
+<!-- interaction_id: en:lesson-03:session-45:i12; family: phrase_builder -->
+Плитки: `office` `an` `is` `That` `are` → **That is an office.**
+*(плитка `are` зайва: тут потрібно `is` — `That is an office.`)*
 
-**11 · Вставте початок — колір цього товару вже зрозумілий обом**
-<!-- interaction_id: en:lesson-03:session-45:i09; family: context_gap_grammar -->
-Ціль: `___ colour is dark.`
-Варіанти: `The` · `A` · `An` · `без артикля`
-- A — *Колір цього товару вже назвали в розмові.*
-- An — *Перед `colour` потрібен не `an`.*
-- без артикля — *Для цього відомого кольору потрібне `the`.*
+**13 · У цій ситуації Анна перевірила правила: паркуватися тут заборонено законом. Скажіть про цю дію «Це незаконно» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-45:i13; family: scripted_repeat_compare -->
+🎙 **It's illegal.**
 
+**14 · Ви вказуєте місце одного вже зрозумілого співрозмовникові офісу**
+<!-- interaction_id: en:lesson-03:session-45:i14; family: context_gap_grammar -->
+The office ___ here. → **is** · are · am
+- are — *Офіс один: `The office is here`.*
+- am — *З `The office` потрібне `is`.*
 
-**12 · Промовте фразу — розмір називають уперше**
-<!-- interaction_id: en:lesson-03:session-45:i12; family: scripted_repeat_compare -->
-Ціль: `It is a small size.`
+**15 · Послухайте оцінку схеми**
+<!-- interaction_id: en:lesson-03:session-45:i15; family: listen_choose -->
+🔊 *It is useful.* → **It is useful.** · It is accurate. · It is relevant.
+- It is accurate. — *У записі останнє слово — `useful`, а в цьому варіанті — `accurate`.*
+- It is relevant. — *У записі останнє слово — `useful`, а в цьому варіанті — `relevant`.*
 
-**13 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-03:session-45:i13; family: listen_build_dictation -->
-Ціль: `It is an old model.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-45:i16; family: speed_match -->
+office — офіс · useful — корисний · illegal — незаконний · car — машина
 
-**14 · Складіть фразу — модель уже названо**
-<!-- interaction_id: en:lesson-03:session-45:i14; family: phrase_builder -->
-Ціль: `The model is old.`
-
-**15 · Вставте початок — колір називають уперше**
-<!-- interaction_id: en:lesson-03:session-45:i15; family: context_gap_grammar -->
-Ціль: `It is ___ dark colour.`
-Варіанти: `a` · `an` · `the` · `без артикля`
-- an — *Перед `dark` потрібен `a`, а не `an`.*
-- the — *Колір ще не називали.*
-- без артикля — *Перед уперше названим кольором потрібен артикль.*
-
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-03:session-45:i16; family: listen_choose -->
-Ціль: `The size is small.`
-Варіанти: `Розмір малий.` · `Один розмір малий.` · `Цей колір темний.` · `Де розмір?`
-- Один розмір малий. — *У записі є `the`.*
-- Цей колір темний. — *Звучить `size is small`, а не `colour is dark`.*
-- Де розмір? — *Це твердження, не запитання.*
-
-
-**17 · Вставте артикль — на демонстраційний стіл уперше поставили ще одну стару модель**
-<!-- interaction_id: en:lesson-03:session-45:i17; family: context_gap_grammar -->
-Ціль: `___ old model is on the table.`
-Варіанти: `An` · `A` · `The` · `без артикля`
-- A — *`a` підходить для нового предмета, тому цей вибір зрозумілий. Але після `a/an` чуємо перший звук наступного слова: `old` починається з голосного, тому потрібне `an`. У новій фразі спершу слухайте початок слова після артикля.*
-- The — *`the` звучить як указівка на відому модель. Але працівник уперше показує цю додаткову модель, тому спочатку потрібен неозначений артикль. У новій розмові обирайте `the` лише для вже названого предмета.*
-- без артикля — *Без артикля говорять про множину або незлічуване слово. Тут одна злічувана модель, названа вперше, тому потрібне `an`. У новій фразі перевірте: предмет один? Тоді перед ним потрібен артикль.*
-
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=scripted_repeat_compare, 9=context_gap_grammar, 10=phrase_builder, 11=context_gap_grammar, 12=scripted_repeat_compare, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar
+**17 · В іншій будівлі ви з гостем уже обговорили потрібний офіс. Гість запитує, де він. Ви показуєте в кінець коридору. Скажіть «Офіс там», говорячи про те саме місце**
+<!-- interaction_id: en:lesson-03:session-45:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The office is there.**
 

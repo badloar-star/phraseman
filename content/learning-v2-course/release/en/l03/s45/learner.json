@@ -7,381 +7,250 @@
       "interactionId": "en:lesson-03:session-45:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-45:i01:r1",
-          "text": "size"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна ищет машину, на которой вы приехали. Она рядом. Скажите «Машина здесь»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна ищет машину, на которой вы приехали. Она рядом. Скажите «Машина здесь»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i01:audio",
-          "transcript": "size"
+        "family": "phrase_builder",
+        "targetPhrase": "The car is here.",
+        "localizedMeaning": {
+          "ru": "Анна ищет машину, на которой вы приехали. Она рядом. Скажите «Машина здесь»",
+          "uk": "Анна шукає машину, якою ви приїхали. Вона поруч. Скажіть «Машина тут»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "The",
+          "car",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-45:i01:r1",
-            "targetText": "size",
-            "meaningByLocale": null
+            "responseId": "en:lesson-03:session-45:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна ищет машину, на которой вы приехали. Она рядом. Скажите «Машина здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The car is here.`",
+              "uk": "тут потрібно `is` — `The car is here.`"
+            }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "size",
-          "definitionByLocale": {
-            "ru": "«размер». Характеристика того, насколько велик или мал товар.",
-            "uk": "«розмір». Характеристика того, наскільки великий або малий товар."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i03",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i03:audio",
-          "transcript": "colour"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "colour",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i05",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i05:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i05:audio",
-          "transcript": "model"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "model",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-45:i02",
-      "ordinal": 7,
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i02:r1",
+          "text": "office"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i02:r2",
+          "text": "kitchen"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i02:r3",
+          "text": "bathroom"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-45:i02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-45:i02:audio",
-          "transcript": "size"
+          "transcript": "office"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "size",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-45:i02:r1",
+            "targetText": "office",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i02:r2",
+            "targetText": "kitchen",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i02:r3",
+            "targetText": "bathroom",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `office`, а в этом варианте — `kitchen`.",
+              "uk": "У записі перше слово — `office`, а в цьому варіанті — `kitchen`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `office`, а в этом варианте — `bathroom`.",
+              "uk": "У записі перше слово — `office`, а в цьому варіанті — `bathroom`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите офис одним английским словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i03:r1",
+          "text": "office"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i03:r2",
+          "text": "kitchen"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i03:r3",
+          "text": "bathroom"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите офис одним английским словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите офис одним английским словом",
+          "uk": "Назвіть офіс одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i03:r1",
+            "text": "office"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i03:r2",
+            "text": "kitchen"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i03:r3",
+            "text": "bathroom"
+          }
+        ],
+        "testedDimension": "Назовите офис одним английским словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите офис одним английским словом",
+            "feedbackByLocale": {
+              "ru": "`kitchen` — кухня. Офис — `office`.",
+              "uk": "`kitchen` — кухня. Офіс — `office`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите офис одним английским словом",
+            "feedbackByLocale": {
+              "ru": "`bathroom` — ванная комната. Офис — `office`.",
+              "uk": "`bathroom` — ванна кімната. Офіс — `office`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-45:i04",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-45:i04:r1",
-          "text": "colour"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i04:audio",
-          "transcript": "colour"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-45:i04:r1",
-            "targetText": "colour",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "colour",
-          "definitionByLocale": {
-            "ru": "«цвет».",
-            "uk": "«колір»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i06:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i06:audio",
-          "transcript": "model"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "model",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i08",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i08:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i08:audio",
-          "transcript": "size"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "size",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i10",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i10:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i10:audio",
-          "transcript": "colour"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "colour",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i11",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i11:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i11:audio",
-          "transcript": "model"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "model",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слово со значением",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слово со значением",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-45:i07:p1",
-            "target": "size",
+            "pairId": "en:lesson-03:session-45:i04:p1",
+            "target": "office",
             "meaningByLocale": {
-              "ru": "размер",
-              "uk": "розмір"
+              "ru": "офис",
+              "uk": "офіс"
             }
           },
           {
-            "pairId": "en:lesson-03:session-45:i07:p2",
-            "target": "colour",
+            "pairId": "en:lesson-03:session-45:i04:p2",
+            "target": "useful",
             "meaningByLocale": {
-              "ru": "цвет",
-              "uk": "колір"
+              "ru": "полезный",
+              "uk": "корисний"
             }
           },
           {
-            "pairId": "en:lesson-03:session-45:i07:p3",
-            "target": "model",
+            "pairId": "en:lesson-03:session-45:i04:p3",
+            "target": "illegal",
             "meaningByLocale": {
-              "ru": "модель",
-              "uk": "модель"
+              "ru": "незаконный",
+              "uk": "незаконний"
             }
           },
           {
-            "pairId": "en:lesson-03:session-45:i07:p4",
-            "target": "receipt",
+            "pairId": "en:lesson-03:session-45:i04:p4",
+            "target": "car",
             "meaningByLocale": {
-              "ru": "чек",
-              "uk": "чек"
+              "ru": "машина",
+              "uk": "машина"
             }
           }
         ],
         "leftColumn": [
-          "size",
-          "colour",
-          "model",
-          "receipt"
+          "office",
+          "useful",
+          "illegal",
+          "car"
         ],
         "rightColumn": [
-          "размер",
-          "цвет",
-          "модель",
-          "чек"
+          "офис",
+          "полезный",
+          "незаконный",
+          "машина"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -398,112 +267,119 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-45:i09",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте начало — размер уже понятен обоим",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-45:i09:r1",
-          "text": "The"
-        },
-        {
-          "responseId": "en:lesson-03:session-45:i09:r2",
-          "text": "A"
-        },
-        {
-          "responseId": "en:lesson-03:session-45:i09:r3",
-          "text": "An"
-        },
-        {
-          "responseId": "en:lesson-03:session-45:i09:r4",
-          "text": "без артикля"
-        }
-      ],
+      "interactionId": "en:lesson-03:session-45:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте начало — размер уже понятен обоим",
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте начало — размер уже понятен обоим",
-          "uk": "Вставте початок — розмір уже зрозумілий обом"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i05:audio",
+          "transcript": "This is an office."
         },
-        "gappedTargetPhrase": "___ size is small.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is an office.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "an",
+          "office"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-45:i09:r1",
-            "text": "The"
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i09:r2",
-            "text": "A"
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i09:r3",
-            "text": "An"
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i09:r4",
-            "text": "без артикля"
+            "responseId": "en:lesson-03:session-45:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is an office.`",
+              "uk": "тут потрібно `is` — `This is an office.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте начало — размер уже понятен обо",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-45:i09:r2",
-            "correct": false,
-            "testedDimension": "Вставьте начало — размер уже понятен обо",
-            "feedbackByLocale": {
-              "ru": "Размер уже назвали в разговоре.",
-              "uk": "Розмір уже назвали в розмові."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i09:r3",
-            "correct": false,
-            "testedDimension": "Вставьте начало — размер уже понятен обо",
-            "feedbackByLocale": {
-              "ru": "Перед `size` нужен не `an`.",
-              "uk": "Перед `size` потрібен не `an`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i09:r4",
-            "correct": false,
-            "testedDimension": "Вставьте начало — размер уже понятен обо",
-            "feedbackByLocale": {
-              "ru": "Для этого известного размера нужен `the`.",
-              "uk": "Для цього відомого розміру потрібен `the`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-45:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-03:session-45:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Нужный вам обоим офис найден на схеме. Скажите «Офис здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нужный вам обоим офис найден на схеме. Скажите «Офис здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The office is here.",
+        "localizedMeaning": {
+          "ru": "Нужный вам обоим офис найден на схеме. Скажите «Офис здесь»",
+          "uk": "Потрібний вам обом офіс знайдено на схемі. Скажіть «Офіс тут»"
+        },
+        "orderedTokens": [
+          "The",
+          "office",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Нужный вам обоим офис найден на схеме. Скажите «Офис здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The office is here.`",
+              "uk": "тут потрібно `is` — `The office is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Схема помогает найти комнату. Скажите о ней «Она полезная» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-45:i12:audio"
+        "en:lesson-03:session-45:i07:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Схема помогает найти комнату. Скажите о ней «Она полезная» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i12:audio",
-          "transcript": "It is a small size."
+          "audioTargetId": "en:lesson-03:session-45:i07:audio",
+          "transcript": "It's useful."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is a small size.",
+        "targetPhrase": "It's useful.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -517,151 +393,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-45:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-45:i13:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i13:audio",
-          "transcript": "It is an old model."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is an old model.",
-        "orderedTokens": [
-          "It",
-          "is",
-          "an",
-          "old",
-          "model"
-        ],
-        "authoredDistractorTokens": [
-          "the"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — модель уже названа",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — модель уже названа",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The model is old.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — модель уже названа",
-          "uk": "Складіть фразу — модель уже названо"
-        },
-        "orderedTokens": [
-          "The",
-          "model",
-          "is",
-          "old"
-        ],
-        "authoredDistractorTokens": [
-          "an"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте начало — цвет называют впервые",
+      "prompt": "Вы называете, что это за помещение: офис",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-45:i15:r1",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-45:i15:r2",
+          "responseId": "en:lesson-03:session-45:i08:r1",
           "text": "an"
         },
         {
-          "responseId": "en:lesson-03:session-45:i15:r3",
-          "text": "the"
+          "responseId": "en:lesson-03:session-45:i08:r2",
+          "text": "a"
         },
         {
-          "responseId": "en:lesson-03:session-45:i15:r4",
-          "text": "без артикля"
+          "responseId": "en:lesson-03:session-45:i08:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте начало — цвет называют впервые",
+      "accessibilityLabel": "Вы называете, что это за помещение: офис",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте начало — цвет называют впервые",
-          "uk": "Вставте початок — колір називають уперше"
+          "ru": "Вы называете, что это за помещение: офис",
+          "uk": "Ви називаєте, що це за приміщення: офіс"
         },
-        "gappedTargetPhrase": "It is ___ dark colour.",
+        "gappedTargetPhrase": "This is ___ office.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-45:i15:r1",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i15:r2",
+            "responseId": "en:lesson-03:session-45:i08:r1",
             "text": "an"
           },
           {
-            "responseId": "en:lesson-03:session-45:i15:r3",
-            "text": "the"
+            "responseId": "en:lesson-03:session-45:i08:r2",
+            "text": "a"
           },
           {
-            "responseId": "en:lesson-03:session-45:i15:r4",
-            "text": "без артикля"
+            "responseId": "en:lesson-03:session-45:i08:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте начало — цвет называют впервые",
+        "testedDimension": "Вы называете, что это за помещение: офис",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-45:i15:r2",
+            "responseId": "en:lesson-03:session-45:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте начало — цвет называют впервые",
+            "testedDimension": "Вы называете, что это за помещение: офис",
             "feedbackByLocale": {
-              "ru": "Перед `dark` нужен `a`, не `an`.",
-              "uk": "Перед `dark` потрібен `a`, а не `an`."
+              "ru": "`office` начинается с гласного звука: `an office`.",
+              "uk": "`office` починається з голосного звука: `an office`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-45:i15:r3",
+            "responseId": "en:lesson-03:session-45:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте начало — цвет называют впервые",
+            "testedDimension": "Вы называете, что это за помещение: офис",
             "feedbackByLocale": {
-              "ru": "Цвет ещё не называли.",
-              "uk": "Колір ще не називали."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i15:r4",
-            "correct": false,
-            "testedDimension": "Вставьте начало — цвет называют впервые",
-            "feedbackByLocale": {
-              "ru": "Перед впервые названным цветом нужен артикль.",
-              "uk": "Перед уперше названим кольором потрібен артикль."
+              "ru": "Перед названием одного офиса здесь нужно `an`.",
+              "uk": "Перед назвою одного офісу тут потрібне `an`."
             }
           }
         ]
@@ -669,91 +462,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-45:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте ответ о парковке в выбранном месте",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-45:i16:r1",
-          "text": "Этот размер маленький"
+          "responseId": "en:lesson-03:session-45:i09:r1",
+          "text": "It is illegal."
         },
         {
-          "responseId": "en:lesson-03:session-45:i16:r2",
-          "text": "Один размер маленький"
+          "responseId": "en:lesson-03:session-45:i09:r2",
+          "text": "It is legal."
         },
         {
-          "responseId": "en:lesson-03:session-45:i16:r3",
-          "text": "Этот цвет тёмный"
-        },
-        {
-          "responseId": "en:lesson-03:session-45:i16:r4",
-          "text": "Где размер?"
+          "responseId": "en:lesson-03:session-45:i09:r3",
+          "text": "It is unofficial."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-45:i16:audio"
+        "en:lesson-03:session-45:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте ответ о парковке в выбранном месте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i16:audio",
-          "transcript": "The size is small."
+          "audioTargetId": "en:lesson-03:session-45:i09:audio",
+          "transcript": "It is illegal."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-45:i16:r1",
-            "targetText": "Этот размер маленький",
+            "responseId": "en:lesson-03:session-45:i09:r1",
+            "targetText": "It is illegal.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-45:i16:r2",
-            "targetText": "Один размер маленький",
+            "responseId": "en:lesson-03:session-45:i09:r2",
+            "targetText": "It is legal.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-45:i16:r3",
-            "targetText": "Этот цвет тёмный",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i16:r4",
-            "targetText": "Где размер?",
+            "responseId": "en:lesson-03:session-45:i09:r3",
+            "targetText": "It is unofficial.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-45:i16:r2",
+            "responseId": "en:lesson-03:session-45:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте ответ о парковке в выбранном месте",
             "feedbackByLocale": {
-              "ru": "В записи есть `the`.",
-              "uk": "У записі є `the`."
+              "ru": "В записи последнее слово — `illegal`, а в этом варианте — `legal`.",
+              "uk": "У записі останнє слово — `illegal`, а в цьому варіанті — `legal`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-45:i16:r3",
+            "responseId": "en:lesson-03:session-45:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте ответ о парковке в выбранном месте",
             "feedbackByLocale": {
-              "ru": "Звучит `size is small`, не `colour is dark`.",
-              "uk": "Звучить `size is small`, а не `colour is dark`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-45:i16:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "Это утверждение, не вопрос.",
-              "uk": "Це твердження, не запитання."
+              "ru": "В записи последнее слово — `illegal`, а в этом варианте — `unofficial`.",
+              "uk": "У записі останнє слово — `illegal`, а в цьому варіанті — `unofficial`."
             }
           }
         ],
@@ -763,26 +538,192 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-45:i17:s01",
-      "ordinal": 20,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "interactionId": "en:lesson-03:session-45:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-45:i10:p1",
+            "target": "office",
+            "meaningByLocale": {
+              "ru": "офис",
+              "uk": "офіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i10:p2",
+            "target": "car",
+            "meaningByLocale": {
+              "ru": "машина",
+              "uk": "машина"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i10:p3",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i10:p4",
+            "target": "there",
+            "meaningByLocale": {
+              "ru": "там",
+              "uk": "там"
+            }
+          }
+        ],
+        "leftColumn": [
+          "office",
+          "car",
+          "here",
+          "there"
+        ],
+        "rightColumn": [
+          "офис",
+          "машина",
+          "здесь",
+          "там"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-45:i17:s01:audio"
+        "en:lesson-03:session-45:i11:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i11:audio",
+          "transcript": "That car is there."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That car is there.",
+        "orderedTokens": [
+          "That",
+          "car",
+          "is",
+          "there"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `That car is there.`",
+              "uk": "тут потрібно `is` — `That car is there.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете на помещение дальше по коридору. Назовите его: «Это офис», со словом для одного дальше",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете на помещение дальше по коридору. Назовите его: «Это офис», со словом для одного дальше",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is an office.",
+        "localizedMeaning": {
+          "ru": "Вы показываете на помещение дальше по коридору. Назовите его: «Это офис», со словом для одного дальше",
+          "uk": "Ви показуєте на приміщення далі коридором. Назвіть його: «Це офіс», зі словом для одного далі"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "an",
+          "office"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете на помещение дальше по коридору. Назовите его: «Это офис», со словом для одного дальше",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `That is an office.`",
+              "uk": "тут потрібно `is` — `That is an office.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В этой ситуации Анна проверила правила: парковаться здесь запрещено законом. Скажите об этом действии «Это незаконно» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "В этой ситуации Анна проверила правила: парковаться здесь запрещено законом. Скажите об этом действии «Это незаконно» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-45:i17:s01:audio",
-          "transcript": "It is a dark colour."
+          "audioTargetId": "en:lesson-03:session-45:i13:audio",
+          "transcript": "It's illegal."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is a dark colour.",
+        "targetPhrase": "It's illegal.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -796,109 +737,270 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-45:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 2 из 3",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 3",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The size is small.",
-        "localizedMeaning": {
-          "ru": "Соберите одну фразу",
-          "uk": "Складіть одну фразу"
-        },
-        "orderedTokens": [
-          "The",
-          "size",
-          "is",
-          "small"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-45:i17:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-45:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте один ответ в одну фразу — шаг 3 из 3",
+      "prompt": "Вы указываете место одного уже понятного собеседнику офиса",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-45:i17:s03:r1",
-          "text": "an"
+          "responseId": "en:lesson-03:session-45:i14:r1",
+          "text": "is"
         },
         {
-          "responseId": "en:lesson-03:session-45:i17:s03:r2",
-          "text": "the"
+          "responseId": "en:lesson-03:session-45:i14:r2",
+          "text": "are"
         },
         {
-          "responseId": "en:lesson-03:session-45:i17:s03:r3",
-          "text": "a"
+          "responseId": "en:lesson-03:session-45:i14:r3",
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте один ответ в одну фразу — шаг 3 из 3",
+      "accessibilityLabel": "Вы указываете место одного уже понятного собеседнику офиса",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Финал — уточните товар у стола",
-          "uk": "Фінал — уточніть товар біля столу"
+          "ru": "Вы указываете место одного уже понятного собеседнику офиса",
+          "uk": "Ви вказуєте місце одного вже зрозумілого співрозмовникові офісу"
         },
-        "gappedTargetPhrase": "It is ___ old model.",
+        "gappedTargetPhrase": "The office ___ here.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-45:i17:s03:r1",
-            "text": "an"
+            "responseId": "en:lesson-03:session-45:i14:r1",
+            "text": "is"
           },
           {
-            "responseId": "en:lesson-03:session-45:i17:s03:r2",
-            "text": "the"
+            "responseId": "en:lesson-03:session-45:i14:r2",
+            "text": "are"
           },
           {
-            "responseId": "en:lesson-03:session-45:i17:s03:r3",
-            "text": "a"
+            "responseId": "en:lesson-03:session-45:i14:r3",
+            "text": "am"
           }
         ],
-        "testedDimension": "Финал — уточните товар у стола",
+        "testedDimension": "Вы указываете место одного уже понятного собеседнику офиса",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-45:i17:s03:r2",
+            "responseId": "en:lesson-03:session-45:i14:r2",
             "correct": false,
-            "testedDimension": "Финал — уточните товар у стола",
+            "testedDimension": "Вы указываете место одного уже понятного собеседнику офиса",
             "feedbackByLocale": {
-              "ru": "Для известного размера нужен `the`; старая модель появляется впервые, поэтому нужен `an`.",
-              "uk": "Для відомого розміру потрібен `the`; стара модель з’являється вперше, тому потрібен `an`."
+              "ru": "Офис один: `The office is here`.",
+              "uk": "Офіс один: `The office is here`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-45:i17:s03:r3",
+            "responseId": "en:lesson-03:session-45:i14:r3",
             "correct": false,
-            "testedDimension": "Финал — уточните товар у стола",
+            "testedDimension": "Вы указываете место одного уже понятного собеседнику офиса",
             "feedbackByLocale": {
-              "ru": "Перед `dark` нужен `a`, а перед `old` — `an`.",
-              "uk": "Перед `dark` потрібен `a`, а перед `old` — `an`."
+              "ru": "С `The office` нужно `is`.",
+              "uk": "З `The office` потрібне `is`."
             }
           }
         ]
       },
       "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте оценку схемы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i15:r1",
+          "text": "It is useful."
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i15:r2",
+          "text": "It is accurate."
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i15:r3",
+          "text": "It is relevant."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте оценку схемы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i15:audio",
+          "transcript": "It is useful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-45:i15:r1",
+            "targetText": "It is useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r2",
+            "targetText": "It is accurate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r3",
+            "targetText": "It is relevant.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте оценку схемы",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `useful`, а в этом варианте — `accurate`.",
+              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `accurate`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте оценку схемы",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `useful`, а в этом варианте — `relevant`.",
+              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `relevant`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-45:i16:p1",
+            "target": "office",
+            "meaningByLocale": {
+              "ru": "офис",
+              "uk": "офіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i16:p2",
+            "target": "useful",
+            "meaningByLocale": {
+              "ru": "полезный",
+              "uk": "корисний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i16:p3",
+            "target": "illegal",
+            "meaningByLocale": {
+              "ru": "незаконный",
+              "uk": "незаконний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i16:p4",
+            "target": "car",
+            "meaningByLocale": {
+              "ru": "машина",
+              "uk": "машина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "office",
+          "useful",
+          "illegal",
+          "car"
+        ],
+        "rightColumn": [
+          "офис",
+          "полезный",
+          "незаконный",
+          "машина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом здании вы с гостем уже обсудили нужный офис. Гость спрашивает, где он. Вы показываете в конец коридора. Скажите «Офис там», говоря о том же месте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "В другом здании вы с гостем уже обсудили нужный офис. Гость спрашивает, где он. Вы показываете в конец коридора. Скажите «Офис там», говоря о том же месте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i17:audio",
+          "transcript": "The office is there."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The office is there.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "79cabd0c977e95145e78d12767c572c5d876d8555f72e619b6e2afd854071746"
+  "learnerFingerprint": "ccccca17cdba8c5a10e24199e9e50e5d5c59f4637b7ff3ebe6ea574ad6b8fcbe"
 }

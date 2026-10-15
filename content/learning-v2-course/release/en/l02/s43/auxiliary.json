@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-43:intro1:r2": {
+          "ru": "С `I` нужно `am`.",
+          "uk": "З `I` потрібно `am`."
+        },
+        "en:lesson-02:session-43:intro1:r3": {
+          "ru": "С `not` вы отрицаете сомнение. По условию оно есть.",
+          "uk": "З `not` ви заперечуєте сумнів. За умовою він є."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-43:intro2:r2": {
+          "ru": "Это вопрос о себе. Вы спрашиваете Анну.",
+          "uk": "Це запитання про себе. Ви запитуєте Анну."
+        },
+        "en:lesson-02:session-43:intro2:r3": {
+          "ru": "Это утверждение. Для вопроса начните с `Are you`.",
+          "uk": "Це твердження. Для запитання почніть з `Are you`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-43:intro3:r2": {
+          "ru": "Вы говорите об Олеге: `He's`.",
+          "uk": "Ви говорите про Олега: `He's`."
+        },
+        "en:lesson-02:session-43:intro3:r3": {
+          "ru": "Это о сомнении. Здесь нужно отметить терпение.",
+          "uk": "Це про сумнів. Тут потрібно відзначити терпіння."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "33cbe658a6dc7b420ec4150a70fa784d9fa24bc3b2b3c4c2b05b7c5eb5c310a3"
+}

@@ -28,6 +28,33 @@ import {
 import { getDevReminderTime } from './dev_robot_display';
 import { studyLanguageWord } from '../constants/study_language_words';
 import { resolveAutoReminderTime } from './smart_reminder_store';
+import { pluralWord, type PluralForms } from '../constants/plural';
+
+// зачем (Ревизор P19 → координатор 15.10): «Серия 1 дней», «21 дней», «racha de 1 días», pl «serię 1 dni» — число дней/фраз в пушах
+// было с зашитым словом. Форма — по общему правилу constants/plural.ts; падеж задаёт ключ: _gen — после «из/з/seria» («серия из 21 дня»,
+// «serię 1 dnia»), _acc — после «выучил/додай» («выучил 1 фразу», «dodaj 1 zwrot»).
+const NOTIF_WORDS: Readonly<Record<string, readonly [Lang, PluralForms]>> = {
+  ru_day: ['ru', { one: 'день', few: 'дня', many: 'дней' }],
+  ru_day_gen: ['ru', { one: 'дня', few: 'дней', many: 'дней' }],
+  uk_day: ['uk', { one: 'день', few: 'дні', many: 'днів' }],
+  uk_day_gen: ['uk', { one: 'дня', few: 'днів', many: 'днів' }],
+  en_day: ['en', { one: 'day', few: 'days', many: 'days' }],
+  es_day: ['es', { one: 'día', few: 'días', many: 'días' }],
+  pt_day: ['pt-BR', { one: 'dia', few: 'dias', many: 'dias' }],
+  pl_day: ['pl', { one: 'dzień', few: 'dni', many: 'dni' }],
+  pl_day_gen: ['pl', { one: 'dnia', few: 'dni', many: 'dni' }],
+  ru_phrase_acc: ['ru', { one: 'фразу', few: 'фразы', many: 'фраз' }],
+  uk_phrase_acc: ['uk', { one: 'вислів', few: 'вислови', many: 'висловів' }],
+  es_phrase_new: ['es', { one: 'frase nueva', few: 'frases nuevas', many: 'frases nuevas' }],
+  es_pt_phrase: ['es', { one: 'frase', few: 'frases', many: 'frases' }],
+  pl_phrase_acc: ['pl', { one: 'zwrot', few: 'zwroty', many: 'zwrotów' }],
+};
+export function notifWord(key: string, n: number): string {
+  const entry = NOTIF_WORDS[key];
+  if (!entry) { console.warn(`[NOTIF-PLURAL] нет ключа «${key}» — слово пустое`); return ''; }
+  return pluralWord(entry[0], n, entry[1]);
+}
+
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -718,13 +745,13 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
     if (!canShowNow) return;
 
     const _p = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-    const ruTitle = [`🔥 Защити серию ${streak} дней`, `⭐ Серия ${streak} дней ждёт тебя сегодня`, `💪 Продолжи серию ${streak} дней — один раунд`, `🔥 Серия ${streak} дней — сохрани её сегодня`];
-    const ukTitle = [`🔥 Захисти серію ${streak} днів`, `⭐ Серія ${streak} днів чекає на тебе сьогодні`, `💪 Продовж серію ${streak} днів — один раунд`, `🔥 Серія ${streak} днів — збережи її сьогодні`];
+    const ruTitle = [`🔥 Защити серию ${streak} ${notifWord('ru_day', streak)}`, `⭐ Серия ${streak} ${notifWord('ru_day', streak)} ждёт тебя сегодня`, `💪 Продолжи серию ${streak} ${notifWord('ru_day', streak)} — один раунд`, `🔥 Серия ${streak} ${notifWord('ru_day', streak)} — сохрани её сегодня`];
+    const ukTitle = [`🔥 Захисти серію ${streak} ${notifWord('uk_day', streak)}`, `⭐ Серія ${streak} ${notifWord('uk_day', streak)} чекає на тебе сьогодні`, `💪 Продовж серію ${streak} ${notifWord('uk_day', streak)} — один раунд`, `🔥 Серія ${streak} ${notifWord('uk_day', streak)} — збережи її сьогодні`];
     const esTitle = [
-      `🔥 Protege tu racha de ${streak} días`,
-      `⭐ Tu racha de ${streak} días te espera hoy`,
-      `💪 Continúa tu racha de ${streak} días — una ronda`,
-      `🔥 Racha de ${streak} días — consérvala hoy`,
+      `🔥 Protege tu racha de ${streak} ${notifWord('es_day', streak)}`,
+      `⭐ Tu racha de ${streak} ${notifWord('es_day', streak)} te espera hoy`,
+      `💪 Continúa tu racha de ${streak} ${notifWord('es_day', streak)} — una ronda`,
+      `🔥 Racha de ${streak} ${notifWord('es_day', streak)} — consérvala hoy`,
     ];
     const enTitle = [`🔥 Protect your ${streak}-day streak`, `⭐ Your ${streak}-day streak is waiting today`, `💪 Continue your ${streak}-day streak — one round`, `🔥 ${streak}-day streak — keep it today`];
     const _title = pickNotif(lang, notificationCopy({
@@ -732,10 +759,10 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
       uk: _p(ukTitle),
       es: _p(esTitle), en: _p(enTitle),
       'pt-BR': _p([
-        `🔥 Proteja sua sequência de ${streak} dias`,
-        `⭐ Sua sequência de ${streak} dias espera por você hoje`,
-        `💪 Continue sua sequência de ${streak} dias — uma rodada`,
-        `🔥 Sequência de ${streak} dias — mantenha-a hoje`,
+        `🔥 Proteja sua sequência de ${streak} ${notifWord('pt_day', streak)}`,
+        `⭐ Sua sequência de ${streak} ${notifWord('pt_day', streak)} espera por você hoje`,
+        `💪 Continue sua sequência de ${streak} ${notifWord('pt_day', streak)} — uma rodada`,
+        `🔥 Sequência de ${streak} ${notifWord('pt_day', streak)} — mantenha-a hoje`,
       ]),
       vi: _p([
         `🔥 Bảo vệ chuỗi ${streak} ngày của bạn`,
@@ -756,10 +783,10 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
         `🔥 ${streak} günlük seri — bugün koru`,
       ]),
       pl: _p([
-        `🔥 Chroń swoją serię ${streak} dni`,
-        `⭐ Seria ${streak} dni czeka na ciebie dziś`,
-        `💪 Kontynuuj serię ${streak} dni — jedna runda`,
-        `🔥 Seria ${streak} dni — zachowaj ją dziś`,
+        `🔥 Chroń swoją serię ${streak} ${notifWord('pl_day_gen', streak)}`,
+        `⭐ Seria ${streak} ${notifWord('pl_day', streak)} czeka na ciebie dziś`,
+        `💪 Kontynuuj serię ${streak} ${notifWord('pl_day_gen', streak)} — jedna runda`,
+        `🔥 Seria ${streak} ${notifWord('pl_day', streak)} — zachowaj ją dziś`,
       ]),
     }));
     const ruBody = ['Ещё есть время продолжить — один раунд, и день твой.', 'Один раунд — и серия с тобой. Ты справишься!', 'Заходи на 5 минут — и серия живёт.', '5 минут сегодня — и серия растёт дальше!'];
@@ -833,36 +860,36 @@ export const scheduleD1PersonalizedReminder = async (
     if (!(await isNotifMasterEnabled())) return;
 
     const title = pickNotif(lang, notificationCopy({
-      ru: `Вчера ты выучил ${phrasesLearned} фраз.`,
-      uk: `Вчора ти вивчив ${phrasesLearned} висловів.`,
-      es: `Ayer consolidaste ${phrasesLearned} frases nuevas.`, en: `Yesterday you learned ${phrasesLearned} ${phrasesLearned === 1 ? 'phrase' : 'phrases'}.`,
-      'pt-BR': `Ontem você aprendeu ${phrasesLearned} frases.`,
+      ru: `Вчера ты выучил ${phrasesLearned} ${notifWord('ru_phrase_acc', phrasesLearned)}.`,
+      uk: `Вчора ти вивчив ${phrasesLearned} ${notifWord('uk_phrase_acc', phrasesLearned)}.`,
+      es: `Ayer consolidaste ${phrasesLearned} ${notifWord('es_phrase_new', phrasesLearned)}.`, en: `Yesterday you learned ${phrasesLearned} ${phrasesLearned === 1 ? 'phrase' : 'phrases'}.`,
+      'pt-BR': `Ontem você aprendeu ${phrasesLearned} ${notifWord('es_pt_phrase', phrasesLearned)}.`,
       vi: `Hôm qua bạn đã học ${phrasesLearned} cụm từ.`,
       id: `Kemarin kamu mempelajari ${phrasesLearned} frasa.`,
       tr: `Dün ${phrasesLearned} ifade öğrendin.`,
-      pl: `Wczoraj poznano ${phrasesLearned} zwrotów.`,
+      pl: `Wczoraj poznano ${phrasesLearned} ${notifWord('pl_phrase_acc', phrasesLearned)}.`,
     }));
     const body =
       streak > 0
         ? pickNotif(lang, notificationCopy({
-            ru: `Цепочка ${streak} ${streak === 1 ? 'день' : streak < 5 ? 'дня' : 'дней'}. Сегодня +${phrasesLearned} — и ты уже не остановишься!`,
-            uk: `Стрік ${streak} ${streak === 1 ? 'день' : 'дні'}. Сьогодні +${phrasesLearned} — і ти вже не зупинишся!`,
-            es: `Racha de ${streak} ${streak === 1 ? 'día' : 'días'}. Si hoy sumas ${phrasesLearned} más, no habrá quien te pare.`, en: `Streak: ${streak} ${streak === 1 ? 'day' : 'days'}. Add ${phrasesLearned} today and there’s no stopping you!`,
-            'pt-BR': `Sequência de ${streak} ${streak === 1 ? 'dia' : 'dias'}. Some mais ${phrasesLearned} hoje e você embala de vez!`,
+            ru: `Цепочка ${streak} ${notifWord('ru_day', streak)}. Сегодня +${phrasesLearned} — и ты уже не остановишься!`,
+            uk: `Стрік ${streak} ${notifWord('uk_day', streak)}. Сьогодні +${phrasesLearned} — і ти вже не зупинишся!`,
+            es: `Racha de ${streak} ${notifWord('es_day', streak)}. Si hoy sumas ${phrasesLearned} más, no habrá quien te pare.`, en: `Streak: ${streak} ${notifWord('en_day', streak)}. Add ${phrasesLearned} today and there’s no stopping you!`,
+            'pt-BR': `Sequência de ${streak} ${notifWord('pt_day', streak)}. Some mais ${phrasesLearned} hoje e você embala de vez!`,
             vi: `Chuỗi ${streak} ngày. Hôm nay thêm ${phrasesLearned} cụm từ nữa là bạn vào nhịp rồi!`,
             id: `Streak ${streak} hari. Tambah ${phrasesLearned} lagi hari ini, ritmenya makin kuat!`,
             tr: `${streak} günlük seri. Bugün ${phrasesLearned} ifade daha ekle, ritim otursun!`,
-            pl: `Seria ${streak} ${streak === 1 ? 'dnia' : 'dni'}. Dodaj dziś ${phrasesLearned} zwrotów i utrzymaj tempo!`,
+            pl: `Seria ${streak} ${notifWord('pl_day_gen', streak)}. Dodaj dziś ${phrasesLearned} ${notifWord('pl_phrase_acc', phrasesLearned)} i utrzymaj tempo!`,
           }))
         : pickNotif(lang, notificationCopy({
             ru: `Ещё ${phrasesLearned} сегодня — и цепочка начнётся! Не останавливайся.`,
             uk: `Ще ${phrasesLearned} сьогодні — і стрік почнеться! Не зупиняйся.`,
-            es: `${phrasesLearned} frases más hoy y arrancas una racha nueva. ¡Sigue!`, en: `${phrasesLearned} more today and your streak starts! Keep going.`,
+            es: `${phrasesLearned} ${notifWord('es_pt_phrase', phrasesLearned)} más hoy y arrancas una racha nueva. ¡Sigue!`, en: `${phrasesLearned} more today and your streak starts! Keep going.`,
             'pt-BR': `Mais ${phrasesLearned} hoje e a sequência começa. Continue.`,
             vi: `Thêm ${phrasesLearned} cụm từ hôm nay là bạn bắt đầu chuỗi mới. Tiếp tục nhé.`,
             id: `Tambah ${phrasesLearned} frasa hari ini dan streak baru dimulai. Lanjut.`,
             tr: `Bugün ${phrasesLearned} ifade daha, yeni seri başlasın. Devam.`,
-            pl: `Jeszcze ${phrasesLearned} zwrotów dziś i seria rusza. Nie zatrzymuj się.`,
+            pl: `Jeszcze ${phrasesLearned} ${notifWord('pl_phrase_acc', phrasesLearned)} dziś i seria rusza. Nie zatrzymuj się.`,
           }));
 
     // Завтра в 20:20, чтобы не пересекаться с daily reminder и weekly recap
@@ -1827,28 +1854,28 @@ export const scheduleStreakWarningIfNeeded = async (
     if (streak >= 15) {
       title = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `🏆 Сбереги легендарную серию ${streak} дней`,
-          `⭐ ${streak} дней подряд — продолжи сегодня`,
-          `🔥 Серия ${streak} дней ждёт тебя — один раунд`,
-          `⚡ Один раунд — и серия ${streak} дней с тобой`,
+          `🏆 Сбереги легендарную серию ${streak} ${notifWord('ru_day', streak)}`,
+          `⭐ ${streak} ${notifWord('ru_day', streak)} подряд — продолжи сегодня`,
+          `🔥 Серия ${streak} ${notifWord('ru_day', streak)} ждёт тебя — один раунд`,
+          `⚡ Один раунд — и серия ${streak} ${notifWord('ru_day', streak)} с тобой`,
         ]),
         uk: _ps([
-          `🏆 Збережи легендарну серію ${streak} днів`,
-          `⭐ ${streak} днів поспіль — продовж сьогодні`,
-          `🔥 Серія ${streak} днів чекає на тебе — один раунд`,
-          `⚡ Один раунд — і серія ${streak} днів з тобою`,
+          `🏆 Збережи легендарну серію ${streak} ${notifWord('uk_day', streak)}`,
+          `⭐ ${streak} ${notifWord('uk_day', streak)} поспіль — продовж сьогодні`,
+          `🔥 Серія ${streak} ${notifWord('uk_day', streak)} чекає на тебе — один раунд`,
+          `⚡ Один раунд — і серія ${streak} ${notifWord('uk_day', streak)} з тобою`,
         ]),
         es: _ps([
-          `🚨 ¡Tu racha de ${streak} días corre peligro!`,
-          `😱 ${streak} días seguidos podrían perderse hoy`,
-          `🏆 Llevas ${streak} días como un campeón: no la sueltes`,
-          `⚡ No dejes apagar una racha de ${streak} días`,
-        ]), en: _ps([`🏆 Save your legendary ${streak}-day streak`, `⭐ ${streak} days in a row — continue today`, `🔥 Your ${streak}-day streak is waiting — one round`, `⚡ One round and your ${streak}-day streak stays with you`]),
+          `🚨 ¡Tu racha de ${streak} ${notifWord('es_day', streak)} corre peligro!`,
+          `😱 ${streak} ${notifWord('es_day', streak)} seguidos podrían perderse hoy`,
+          `🏆 Llevas ${streak} ${notifWord('es_day', streak)} como un campeón: no la sueltes`,
+          `⚡ No dejes apagar una racha de ${streak} ${notifWord('es_day', streak)}`,
+        ]), en: _ps([`🏆 Save your legendary ${streak}-day streak`, `⭐ ${streak} ${notifWord('en_day', streak)} in a row — continue today`, `🔥 Your ${streak}-day streak is waiting — one round`, `⚡ One round and your ${streak}-day streak stays with you`]),
         'pt-BR': _ps([
-          `🚨 Sua sequência incrível de ${streak} dias está em risco!`,
-          `😱 ${streak} dias podem sumir hoje!`,
-          `🏆 Sequência lendária de ${streak} dias em perigo!`,
-          `⚡ Não deixe apagar uma série de ${streak} dias!`,
+          `🚨 Sua sequência incrível de ${streak} ${notifWord('pt_day', streak)} está em risco!`,
+          `😱 ${streak} ${notifWord('pt_day', streak)} podem sumir hoje!`,
+          `🏆 Sequência lendária de ${streak} ${notifWord('pt_day', streak)} em perigo!`,
+          `⚡ Não deixe apagar uma série de ${streak} ${notifWord('pt_day', streak)}!`,
         ]),
         vi: _ps([
           `🚨 Chuỗi ${streak} ngày tuyệt vời đang gặp nguy!`,
@@ -1869,35 +1896,35 @@ export const scheduleStreakWarningIfNeeded = async (
           `⚡ ${streak} günlük serinin sönmesine izin verme!`,
         ]),
         pl: _ps([
-          `🚨 Niesamowita seria ${streak} dni jest zagrożona!`,
-          `😱 ${streak} dni może dziś przepaść!`,
-          `🏆 Legendarna seria ${streak} dni w niebezpieczeństwie!`,
-          `⚡ Nie pozwól, by seria ${streak} dni zgasła!`,
+          `🚨 Niesamowita seria ${streak} ${notifWord('pl_day_gen', streak)} jest zagrożona!`,
+          `😱 ${streak} ${notifWord('pl_day', streak)} może dziś przepaść!`,
+          `🏆 Legendarna seria ${streak} ${notifWord('pl_day_gen', streak)} w niebezpieczeństwie!`,
+          `⚡ Nie pozwól, by seria ${streak} ${notifWord('pl_day_gen', streak)} zgasła!`,
         ]),
       }));
       body = pickNotif(lang, notificationCopy({
         ru: _ps([
           `Один раунд — и серия с тобой.`,
           `Столько усилий уже позади! Один раунд — и день твой.`,
-          `${streak} дней труда — продолжи сегодня! Заходи.`,
+          `${streak} ${notifWord('ru_day', streak)} труда — продолжи сегодня! Заходи.`,
           `Ты почти легенда. Один раунд — и серия жива! ⭐`,
         ]),
         uk: _ps([
           `Один раунд — і серія з тобою.`,
           `Стільки зусиль уже позаду! Один раунд — і день твій.`,
-          `${streak} днів праці — продовж сьогодні! Заходь.`,
+          `${streak} ${notifWord('uk_day', streak)} праці — продовж сьогодні! Заходь.`,
           `Ти майже легенда. Один раунд — і серія жива! ⭐`,
         ]),
         es: _ps([
           `Estás al filo: con una lección la salvas.`,
           `Tanto esfuerzo merece continuar: decide con una sesión.`,
-          `${streak} días de constancia no se tiran ahora.`,
+          `${streak} ${notifWord('es_day', streak)} de constancia no se tiran ahora.`,
           `Casi eres leyenda del club: sigue sumando ⭐`,
-        ]), en: _ps([`One round — and the streak stays with you.`, `So much effort already behind you! One round — and the day is yours.`, `${streak} days of work — continue today! Come in.`, `You’re almost a legend. One round — and the streak lives! ⭐`]),
+        ]), en: _ps([`One round — and the streak stays with you.`, `So much effort already behind you! One round — and the day is yours.`, `${streak} ${notifWord('en_day', streak)} of work — continue today! Come in.`, `You’re almost a legend. One round — and the streak lives! ⭐`]),
         'pt-BR': _ps([
           `Seu progresso está no limite. Uma lição salva a sequência.`,
           `Tanto esforço merece continuar: uma sessão resolve.`,
-          `${streak} dias de prática não podem desaparecer agora.`,
+          `${streak} ${notifWord('pt_day', streak)} de prática não podem desaparecer agora.`,
           `Você está quase no nível lenda. Uma lição mantém tudo vivo ⭐`,
         ]),
         vi: _ps([
@@ -1921,35 +1948,35 @@ export const scheduleStreakWarningIfNeeded = async (
         pl: _ps([
           `Twój wynik jest na krawędzi. Jedna lekcja ratuje serię.`,
           `Tyle wysiłku warto ciągnąć dalej: jedna sesja wystarczy.`,
-          `${streak} dni pracy nie powinno teraz zniknąć.`,
+          `${streak} ${notifWord('pl_day', streak)} pracy nie powinno teraz zniknąć.`,
           `Prawie jesteś legendą. Jedna lekcja utrzyma serię ⭐`,
         ]),
       }));
     } else if (streak >= 7) {
       title = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `🔥 Продолжи серию ${streak} дней сегодня`,
-          `⚡ ${streak} дней подряд — не упусти ритм, заходи`,
-          `💪 Защити серию ${streak} дней — один раунд`,
-          `🎯 Серия из ${streak} дней ждёт тебя сегодня!`,
+          `🔥 Продолжи серию ${streak} ${notifWord('ru_day', streak)} сегодня`,
+          `⚡ ${streak} ${notifWord('ru_day', streak)} подряд — не упусти ритм, заходи`,
+          `💪 Защити серию ${streak} ${notifWord('ru_day', streak)} — один раунд`,
+          `🎯 Серия из ${streak} ${notifWord('ru_day_gen', streak)} ждёт тебя сегодня!`,
         ]),
         uk: _ps([
-          `🔥 Продовж серію ${streak} днів сьогодні`,
-          `⚡ ${streak} днів поспіль — не втрать ритм, заходь`,
-          `💪 Захисти серію ${streak} днів — один раунд`,
-          `🎯 Серія з ${streak} днів чекає тебе сьогодні!`,
+          `🔥 Продовж серію ${streak} ${notifWord('uk_day', streak)} сьогодні`,
+          `⚡ ${streak} ${notifWord('uk_day', streak)} поспіль — не втрать ритм, заходь`,
+          `💪 Захисти серію ${streak} ${notifWord('uk_day', streak)} — один раунд`,
+          `🎯 Серія з ${streak} ${notifWord('uk_day_gen', streak)} чекає тебе сьогодні!`,
         ]),
         es: _ps([
-          `🔥 Racha de ${streak} días en la cuerda floja`,
-          `⚠️ ${streak} días seguidos: reacciona hoy`,
-          `😤 No abandones una serie de ${streak} días`,
+          `🔥 Racha de ${streak} ${notifWord('es_day', streak)} en la cuerda floja`,
+          `⚠️ ${streak} ${notifWord('es_day', streak)} seguidos: reacciona hoy`,
+          `😤 No abandones una serie de ${streak} ${notifWord('es_day', streak)}`,
           `🎯 Tu racha ${streak} te espera en la app`,
-        ]), en: _ps([`🔥 Continue your ${streak}-day streak today`, `⚡ ${streak} days in a row — don’t lose the rhythm, come in`, `💪 Protect your ${streak}-day streak — one round`, `🎯 Your ${streak}-day streak is waiting today!`]),
+        ]), en: _ps([`🔥 Continue your ${streak}-day streak today`, `⚡ ${streak} ${notifWord('en_day', streak)} in a row — don’t lose the rhythm, come in`, `💪 Protect your ${streak}-day streak — one round`, `🎯 Your ${streak}-day streak is waiting today!`]),
         'pt-BR': _ps([
-          `🔥 Sua sequência de ${streak} dias está por um fio`,
-          `⚠️ ${streak} dias seguidos: aja hoje`,
-          `😤 Não entregue uma série de ${streak} dias`,
-          `🎯 Sua sequência de ${streak} dias espera por você`,
+          `🔥 Sua sequência de ${streak} ${notifWord('pt_day', streak)} está por um fio`,
+          `⚠️ ${streak} ${notifWord('pt_day', streak)} seguidos: aja hoje`,
+          `😤 Não entregue uma série de ${streak} ${notifWord('pt_day', streak)}`,
+          `🎯 Sua sequência de ${streak} ${notifWord('pt_day', streak)} espera por você`,
         ]),
         vi: _ps([
           `🔥 Chuỗi ${streak} ngày của bạn đang mong manh`,
@@ -1970,10 +1997,10 @@ export const scheduleStreakWarningIfNeeded = async (
           `🎯 ${streak} günlük seri uygulamada seni bekliyor`,
         ]),
         pl: _ps([
-          `🔥 Twoja seria ${streak} dni wisi na włosku`,
-          `⚠️ ${streak} dni z rzędu: zareaguj dziś`,
-          `😤 Nie oddawaj serii ${streak} dni`,
-          `🎯 Seria ${streak} dni czeka na ciebie w aplikacji`,
+          `🔥 Twoja seria ${streak} ${notifWord('pl_day_gen', streak)} wisi na włosku`,
+          `⚠️ ${streak} ${notifWord('pl_day', streak)} z rzędu: zareaguj dziś`,
+          `😤 Nie oddawaj serii ${streak} ${notifWord('pl_day_gen', streak)}`,
+          `🎯 Seria ${streak} ${notifWord('pl_day', streak)} czeka na ciebie w aplikacji`,
         ]),
       }));
       body = pickNotif(lang, notificationCopy({
@@ -2029,26 +2056,26 @@ export const scheduleStreakWarningIfNeeded = async (
     } else {
       title = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `🔥 Серия ${streak} дней растёт — продолжи сегодня!`,
-          `💪 ${streak} дней подряд — так держать!`,
+          `🔥 Серия ${streak} ${notifWord('ru_day', streak)} растёт — продолжи сегодня!`,
+          `💪 ${streak} ${notifWord('ru_day', streak)} подряд — так держать!`,
           `📚 Один раунд — и серия растёт!`,
           `⚡ Зайди на 5 минут — серия жива!`,
         ]),
         uk: _ps([
-          `🔥 Серія ${streak} днів росте — продовж сьогодні!`,
-          `💪 ${streak} дні поспіль — так тримати!`,
+          `🔥 Серія ${streak} ${notifWord('uk_day', streak)} росте — продовж сьогодні!`,
+          `💪 ${streak} ${notifWord('uk_day', streak)} поспіль — так тримати!`,
           `📚 Один раунд — і серія росте!`,
           `⚡ Зайди на 5 хвилин — серія жива!`,
         ]),
         es: _ps([
-          `🔥 ${streak} días de racha: no la cortes hoy`,
-          `💪 ${streak} días seguidos y sumando`,
+          `🔥 ${streak} ${notifWord('es_day', streak)} de racha: no la cortes hoy`,
+          `💪 ${streak} ${notifWord('es_day', streak)} seguidos y sumando`,
           `📚 Una lección bastará para guardarla`,
           `⚡ No dejes pasar tu sesión de hoy`,
-        ]), en: _ps([`🔥 Your ${streak}-day streak is growing — continue today!`, `💪 ${streak} days in a row — keep it up!`, `📚 One round — and the streak grows!`, `⚡ Drop in for 5 minutes — the streak lives!`]),
+        ]), en: _ps([`🔥 Your ${streak}-day streak is growing — continue today!`, `💪 ${streak} ${notifWord('en_day', streak)} in a row — keep it up!`, `📚 One round — and the streak grows!`, `⚡ Drop in for 5 minutes — the streak lives!`]),
         'pt-BR': _ps([
-          `🔥 Sequência de ${streak} dias: não corte hoje`,
-          `💪 ${streak} dias seguidos e contando`,
+          `🔥 Sequência de ${streak} ${notifWord('pt_day', streak)}: não corte hoje`,
+          `💪 ${streak} ${notifWord('pt_day', streak)} seguidos e contando`,
           `📚 Uma lição basta para manter tudo`,
           `⚡ Não deixe a sessão de hoje passar`,
         ]),
@@ -2071,8 +2098,8 @@ export const scheduleStreakWarningIfNeeded = async (
           `⚡ Bugünkü oturumu kaçırma`,
         ]),
         pl: _ps([
-          `🔥 Seria ${streak} dni: nie przerywaj jej dziś`,
-          `💪 ${streak} dni z rzędu i dalej rośnie`,
+          `🔥 Seria ${streak} ${notifWord('pl_day', streak)}: nie przerywaj jej dziś`,
+          `💪 ${streak} ${notifWord('pl_day', streak)} z rzędu i dalej rośnie`,
           `📚 Jedna lekcja wystarczy, by ją utrzymać`,
           `⚡ Nie przegap dzisiejszej sesji`,
         ]),
@@ -2312,14 +2339,14 @@ const scheduleWeeklyRecapNotificationUnlocked = async (
       pl: _pw(['📊 Podsumowanie tygodnia', '🏆 Twój tydzień w liczbach', '🔥 Jak minął tydzień?', '⭐ Raport tygodniowy gotowy!']),
     }));
     const body = pickNotif(lang, notificationCopy({
-      ru: `Твоя цепочка: ${streak} дней Продолжай учиться в своём ритме!`,
-      uk: `Твій стрік: ${streak} днів Продовжуй навчатися у своєму ритмі!`,
-      es: `Tu racha: ${streak} días ¡Sigue aprendiendo a tu ritmo!`, en: `Your streak: ${streak} ${streak === 1 ? 'day' : 'days'}. Keep learning at your own pace!`,
-      'pt-BR': `Sua sequência: ${streak} dias Continue aprendendo no seu ritmo!`,
+      ru: `Твоя цепочка: ${streak} ${notifWord('ru_day', streak)} Продолжай учиться в своём ритме!`,
+      uk: `Твій стрік: ${streak} ${notifWord('uk_day', streak)} Продовжуй навчатися у своєму ритмі!`,
+      es: `Tu racha: ${streak} ${notifWord('es_day', streak)} ¡Sigue aprendiendo a tu ritmo!`, en: `Your streak: ${streak} ${notifWord('en_day', streak)}. Keep learning at your own pace!`,
+      'pt-BR': `Sua sequência: ${streak} ${notifWord('pt_day', streak)} Continue aprendendo no seu ritmo!`,
       vi: `Chuỗi của bạn: ${streak} ngày Hãy tiếp tục học theo nhịp của bạn!`,
       id: `Streak kamu: ${streak} hari Terus belajar dengan ritmemu!`,
       tr: `Serin: ${streak} gün Kendi ritminde öğrenmeye devam et!`,
-      pl: `Twoja seria: ${streak} dni Ucz się dalej we własnym rytmie!`,
+      pl: `Twoja seria: ${streak} ${notifWord('pl_day', streak)} Ucz się dalej we własnym rytmie!`,
     }));
 
     await cancelScheduledNotificationsByType(N, ['weekly_recap']);

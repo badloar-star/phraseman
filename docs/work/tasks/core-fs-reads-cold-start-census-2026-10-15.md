@@ -2,6 +2,10 @@
 
 Governance-ID: TG-A51A5DB0258C
 Governance-ID: TG-B8310613BB70
+Governance-ID: TG-D8F50E3FC737
+Координатор 13:12: контракт D70/D78 `server_never_writes_personal_shards` красный на `functions/src/legacy_bonus_convert.ts`.
+Это чтение `data?.shards` для одноразового пересчёта D195; записи нет, сторож записей чист. Сделано точечное исключение только
+на чтение (с причиной) и отдельный тест «legacy_bonus_convert не пишет shards».
 Попутно (координатор 13:05): сверка сегодняшних решений владельца с 03_DECISIONS. Не хватало четырёх строк — дописаны D197–D200:
 - сторис 17.10;
 - 15 занятий V2;

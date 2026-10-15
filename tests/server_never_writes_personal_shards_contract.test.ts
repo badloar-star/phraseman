@@ -51,6 +51,13 @@ const forbiddenPersonalReadPatterns = [
   /\buserSnap\.data\(\)(?:\?\.|\.)shards\b/,
 ] as const;
 
+// Исключения ТОЛЬКО для чтения shards (запись проверяется у всех без исключений).
+const personalShardReadAllowlist: Readonly<Record<string, string>> = {
+  // зачем: D195 владелец 15.10 — одноразовый пересчёт старого жемчуга в монеты, только чтение users/{id}.shards;
+  // в shards не пишет и не обнуляет (метка «пересчитано» — своё поле legacyBonusConvertedV1). Тест ниже это сторожит.
+  'legacy_bonus_convert.ts': 'D195: одноразовый пересчёт в монеты, только чтение',
+};
+
 const competitiveFiles = [
   // зачем: D78 — arena_v2.ts и arena_expansion.ts удалены вместе с серверной Ареной.
   'tournaments.ts',
@@ -66,6 +73,7 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
       for (const pattern of forbiddenPersonalWritePatterns) {
         if (pattern.test(source)) violations.push(`${rel}:${pattern}`);
       }
+      if (personalShardReadAllowlist[rel]) continue;
       for (const pattern of forbiddenPersonalReadPatterns) {
         if (pattern.test(source)) violations.push(`${rel}:${pattern}`);
       }
@@ -119,6 +127,19 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
     } finally {
       rmSync(tempRoot, { recursive: true, force: true });
     }
+  });
+
+  test('legacy_bonus_convert (D195) только читает shards: ни записи, ни обнуления, метка — своё поле', () => {
+    const source = normalizeEol(readFileSync(join(functionsRoot, 'legacy_bonus_convert.ts'), 'utf8'));
+    const code = source.split('\n').filter((line) => !/^\s*(?:\/\/|\*|\/\*)/.test(line)).join('\n');
+    for (const pattern of forbiddenPersonalWritePatterns) expect([String(pattern), pattern.test(code)]).toEqual([String(pattern), false]);
+    // ни ключа shards в объекте записи, ни FieldValue по shards, ни строкового пути 'shards'
+    expect(code).not.toMatch(/\bshards\s*:/);
+    expect(code).not.toMatch(/['"]shards['"]/);
+    // единственное обращение — чтение из снимка пользователя для пересчёта
+    expect(code.match(/\bshards\b/g)).toEqual(['shards']);
+    expect(code).toMatch(/data\?\.shards/);
+    expect(code).toMatch(/legacyBonusConvertedV1/);
   });
 
   test('competition never reads legacy shards for permission or returns a wallet projection', () => {

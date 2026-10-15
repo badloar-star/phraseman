@@ -1,0 +1,17 @@
+10-15 22:06:35.071 I/ReactNativeJS(24892): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:06181aa7-bd77-4d33-8a64-0e2b609627ee:lesson%3Aen%3A1
+10-15 22:06:37.824 I/ReactNativeJS(24892): [INFO] [LESSON-RESULT-SAVE]: gates +57мс lesson=1: results=false access=false xp=false → ждём «Сохраняю результат…»
+10-15 22:06:37.858 I/ReactNativeJS(24892): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:06181aa7-bd77-4d33-8a64-0e2b609627ee:lesson%3Aen%3A1
+10-15 22:06:38.256 I/ReactNativeJS(24892): [INFO] [LESSON-RESULT-SAVE]: scan: lesson=1 ключей=32 multiGet=77мс разбор=2мс засчитано=0 идеальных=0 wasPerfect=false битых=0
+10-15 22:06:38.258 I/ReactNativeJS(24892): [INFO] [LESSON-RESULT-SAVE]: grantBonus: этапы lesson=1 первый бонус=320мс, сводка прохождения=80мс
+10-15 22:06:38.267 I/ReactNativeJS(24892): [INFO] [LESSON-RESULT-SAVE]: grantBonus: готово lesson=1 всего=410мс (бонус+сводка+отзыв), wasPerfect=false eligibleReview=false
+10-15 22:06:38.270 I/ReactNativeJS(24892): [INFO] [LESSON-RESULT]: ветка=ПРОГРЕСС_НАЙДЕН lesson=1 target=en ответов=3 верно=3 ошибок=0 из 3 score=5 → tier gold→gold новыйРекорд=false проходов=1
+10-15 22:06:38.534 I/ReactNativeJS(24892): [MOMENT-m10] старт: reducedMotion=false серия={день уже был засчитан раньше (до=true)} сегодня={без изменений 1/1 (до=null)}
+10-15 22:06:38.545 I/ReactNativeJS(24892): [MOMENT-m10] решение lesson=1: играем — цепочка: звёзды=3 верно=3 ошибок=0
+10-15 22:06:38.548 I/ReactNativeJS(24892): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":true,"milestonePending":false}'
+10-15 22:06:38.551 I/ReactNativeJS(24892): [INFO] [LESSON-RESULT-SAVE]: gates +783мс lesson=1: results=true access=true xp=true → экран итога открыт
+10-15 22:06:38.564 I/ReactNativeJS(24892): [INFO] [LESSON-RESULT]: показ итога lesson=1 комбо=false: звёзды=3 (по проценту: score=5; медаль=gold) | верно/ошибок=3/0 | монеты=+3 (hydrating=false) | заметкаPlus=false | списокОшибо
+10-15 22:06:38.618 I/ReactNativeJS(24892): [MOMENT-m10] тап — досмотр до финала с удара 0
+10-15 22:06:38.618 I/ReactNativeJS(24892): [MOMENT-m10] конец цепочки: досмотрено тапом
+10-15 22:06:38.645 I/ReactNativeJS(24892): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":false,"perfectPending":true,"milestonePending":false}'
+10-15 22:06:38.790 I/ReactNativeJS(24892): [INFO] [COIN-DIVERGENCE] publish: {"owner":"06181aa7","snapshotStars":59,"snapshotSource":"local","nextStars":62,"serverBalance":9,"serverSeq":1,"operations":3,"unacknowledged":53,"unacknowledgedBySchema":{"client-level-spin-star-operation.v1":{"count":1,"a
+10-15 22:06:38.848 I/ReactNativeJS(24892): '[LESSON-RESULT] slot_release', '{"lessonId":1,"chain":true,"perfect":true}'

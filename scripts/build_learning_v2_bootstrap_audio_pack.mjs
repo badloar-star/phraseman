@@ -37,7 +37,10 @@ const ceilingMatch = /LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = (\d+);/u.exec(f
 if (!ceilingMatch) throw new Error(`learning_v2_bootstrap_audio_ceiling_unreadable:${availabilityPath}`);
 const BOOTSTRAP_SESSION_COUNT = Math.max(LAUNCH_SEED_SESSION_COUNT, Number(ceilingMatch[1]));
 
-const contentDirectory = path.join(root, "modules/learning-v2/content/factory_native/generated_release/en/l01");
+const contentRoot = path.join(root, "modules/learning-v2/content/factory_native/generated_release/en");
+const singleVoiceModulePath = path.join(root, "app/learning_v2_factory_single_voice_v1.generated.ts");
+const SESSIONS_PER_LESSON = 56;
+const WORD_VOICE = "ash";
 const manifestPath = path.join(root, "assets/audio/learning-v2/factory-production-v1/manifest.json");
 const outputDirectory = path.join(root, "assets/audio/learning-v2-bootstrap-v1");
 const outputModule = path.join(root, "app/learning_v2_bootstrap_audio_assets_v1.generated.ts");
@@ -59,41 +62,96 @@ const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 const byCoordinate = new Map(
   manifest.entries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),
 );
-const collectTranscripts = (value, into) => {
-  if (Array.isArray(value)) return value.forEach((item) => collectTranscripts(item, into));
+const byContentHash = new Map(manifest.entries.map((entry) => [entry.contentHash, entry]));
+// зачем (владелец 15.10, «один голос на задание»): записи Codex и назначенный голос задания — из того же
+// сгенерированного модуля, что читает приложение (scripts/build_learning_v2_factory_single_voice_module.mjs).
+// Манифест главнее, как в рантайме (learning_v2_factory_production_audio_v1).
+const singleVoiceText = fs.existsSync(singleVoiceModulePath) ? fs.readFileSync(singleVoiceModulePath, "utf8") : "";
+for (const match of singleVoiceText.matchAll(/transcript: ("(?:[^"\\]|\\.)*"), voiceId: "([a-z]+)" as const, contentHash: "([0-9a-f]{64})", byteSize: (\d+), assetPath: ("(?:[^"\\]|\\.)*")/gu)) {
+  const entry = { transcript: JSON.parse(match[1]), voiceId: match[2], contentHash: match[3], byteSize: Number(match[4]), assetPath: JSON.parse(match[5]) };
+  const coordinate = `${entry.transcript}\u0000${entry.voiceId}`;
+  if (!byCoordinate.has(coordinate)) byCoordinate.set(coordinate, entry);
+  if (!byContentHash.has(entry.contentHash)) byContentHash.set(entry.contentHash, entry);
+}
+// Назначение Codex: голос и файл (contentHash) каждой реплики задания — как в приложении (Ревизор 2.74).
+const assignment = new Map(
+  [...singleVoiceText.matchAll(/^  "(lesson-\d{2}:session:\d{2}:[^"]+)": Object\.freeze\(\{ voice: "([a-z]+)" as const, clips: Object\.freeze\((\{.*\})\) \}\),$/gmu)]
+    .map((match) => [match[1], { voice: match[2], clips: JSON.parse(match[3]) }]),
+);
+const has = (transcript, voiceId) => byCoordinate.has(`${transcript}\u0000${voiceId}`);
+/**
+ * Те же файлы, что factoryVoicePlanV1 в приложении: клипы задания по назначению Codex → 4 голоса → общий голос.
+ * Возвращает записи (по одной на реплику × голос) или [] — задание не озвучено.
+ */
+const entriesFor = (interactionId, transcripts) => {
+  const codex = assignment.get(interactionId);
+  if (codex && transcripts.every((transcript) => byContentHash.has(codex.clips[transcript] ?? "")))
+    return transcripts.map((transcript) => byContentHash.get(codex.clips[transcript]));
+  const plan = transcripts.every((transcript) => voices.every((voiceId) => has(transcript, voiceId)))
+    ? voices
+    : [voices.find((voiceId) => transcripts.every((transcript) => has(transcript, voiceId)))].filter(Boolean);
+  return plan.flatMap((voiceId) => transcripts.map((transcript) => byCoordinate.get(`${transcript}\u0000${voiceId}`)));
+};
+const referenceTranscripts = (interaction) => {
+  const payload = interaction?.modePayload ?? {};
+  if (payload.family === "sound_contrast") return [payload.audioA, payload.audioB].filter(Boolean).map((ref) => ref.transcript);
+  return payload.referenceAudio ? [payload.referenceAudio.transcript] : [];
+};
+const collectWords = (value, into) => {
+  if (Array.isArray(value)) return value.forEach((item) => collectWords(item, into));
   if (!value || typeof value !== "object") return;
   if (value.isWordCard === true && typeof value.wordCard?.word === "string")
     into.add(value.wordCard.word.normalize("NFKC").trim());
-  if (typeof value.audioTargetId === "string" && typeof value.transcript === "string")
-    into.add(value.transcript);
-  Object.values(value).forEach((item) => collectTranscripts(item, into));
+  Object.values(value).forEach((item) => collectWords(item, into));
+};
+const pad = (value) => String(value).padStart(2, "0");
+// зачем: внутренний id задания строится так же, как в приложении (factory_native_course_v1: remapId) —
+// префикс из intro.json (pageId без «:intro1») заменяется на lesson-LL:session:SS. Шаги вида «i17:s02» сохраняются.
+const projectedInteractionId = (lessonOrdinal, sessionOrdinal, rawInteractionId, contentRootDir) => {
+  const introPath = path.join(contentRootDir, `l${String(lessonOrdinal).padStart(2, "0")}`, `s${String(sessionOrdinal).padStart(2, "0")}`, "intro.json");
+  const oldPrefix = String(JSON.parse(fs.readFileSync(introPath, "utf8")).pages?.[0]?.pageId ?? "").replace(/:intro1$/u, "");
+  if (!oldPrefix) throw new Error(`learning_v2_projected_id_prefix_missing:${introPath}`);
+  const courseSessionId = `lesson-${String(lessonOrdinal).padStart(2, "0")}:session:${String(sessionOrdinal).padStart(2, "0")}`;
+  return String(rawInteractionId).split(oldPrefix).join(courseSessionId);
 };
 const bundledEntries = new Map();
 const launchSeedHashes = new Set();
 const unvoiced = new Set();
-for (let sessionOrdinal = 1; sessionOrdinal <= BOOTSTRAP_SESSION_COUNT; sessionOrdinal += 1) {
-  const learnerPath = path.join(contentDirectory, `s${String(sessionOrdinal).padStart(2, "0")}`, "learner.json");
+const add = (entry, launchSeed) => {
+  bundledEntries.set(entry.contentHash, entry);
+  if (launchSeed) launchSeedHashes.add(entry.contentHash);
+};
+// Порядок курса: урок 1 s01..s56, затем урок 2 и т. д. — как потолок (learningV2SessionCourseIndexV1).
+for (let courseIndex = 0; courseIndex < BOOTSTRAP_SESSION_COUNT; courseIndex += 1) {
+  const lessonOrdinal = Math.floor(courseIndex / SESSIONS_PER_LESSON) + 1;
+  const sessionOrdinal = (courseIndex % SESSIONS_PER_LESSON) + 1;
+  const launchSeed = lessonOrdinal === 1 && sessionOrdinal <= LAUNCH_SEED_SESSION_COUNT;
+  const learnerPath = path.join(contentRoot, `l${pad(lessonOrdinal)}`, `s${pad(sessionOrdinal)}`, "learner.json");
   // Немой пропуск запрещён: молча собранный неполный пак — это ровно тот баг,
   // который чиним (занятие открывается у автора и звучит телефоном у человека).
   if (!fs.existsSync(learnerPath))
     throw new Error(`learning_v2_bootstrap_audio_session_missing:${learnerPath}`);
-  const transcripts = new Set();
-  collectTranscripts(JSON.parse(fs.readFileSync(learnerPath, "utf8")).interactions, transcripts);
-  for (const transcript of transcripts) {
-    // зачем (владелец 15.10, «один голос на задание»): реплика может быть записана одним назначенным голосом —
-    // кладём все записанные голоса, а не только полную четвёрку. Нет ни одной записи — пропуск (печатается ниже).
-    const voiced = voices.map((voiceId) => byCoordinate.get(`${transcript}\u0000${voiceId}`)).filter(Boolean);
-    if (voiced.length === 0) {
-      unvoiced.add(transcript);
+  const interactions = JSON.parse(fs.readFileSync(learnerPath, "utf8")).interactions;
+  for (const interaction of interactions) {
+    const transcripts = referenceTranscripts(interaction);
+    if (!(interaction.audioTargetIds ?? []).length || transcripts.length === 0) continue;
+    const files = entriesFor(projectedInteractionId(lessonOrdinal, sessionOrdinal, interaction.interactionId, contentRoot), transcripts);
+    if (files.length === 0) {
+      transcripts.forEach((transcript) => unvoiced.add(transcript));
       continue;
     }
-    for (const entry of voiced) {
-      bundledEntries.set(entry.contentHash, entry);
-      if (sessionOrdinal <= LAUNCH_SEED_SESSION_COUNT) launchSeedHashes.add(entry.contentHash);
-    }
+    for (const entry of files) add(entry, launchSeed);
+  }
+  // Слова карточек звучат голосом ash (client_v3: WORD_VOICE).
+  const words = new Set();
+  collectWords(interactions, words);
+  for (const word of words) {
+    const entry = byCoordinate.get(`${word}\u0000${WORD_VOICE}`);
+    if (entry) add(entry, launchSeed);
+    else unvoiced.add(word);
   }
 }
-console.log(`[V2-BOOTSTRAP-AUDIO] sessions=1..${BOOTSTRAP_SESSION_COUNT} files=${bundledEntries.size} launchSeed=${launchSeedHashes.size} unvoicedTranscripts=${unvoiced.size}`);
+console.log(`[V2-BOOTSTRAP-AUDIO] courseSessions=1..${BOOTSTRAP_SESSION_COUNT} files=${bundledEntries.size} launchSeed=${launchSeedHashes.size} unvoicedTranscripts=${unvoiced.size}`);
 
 const entries = [...bundledEntries.values()];
 entries.sort((left, right) => left.contentHash.localeCompare(right.contentHash));

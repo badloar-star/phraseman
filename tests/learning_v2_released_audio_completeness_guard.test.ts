@@ -40,6 +40,7 @@ import { LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1 } from "../app/learning_v2_boots
 import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
 import { learningV2FactoryRemoteAudioFileForTranscriptVoiceV1 } from "../app/learning_v2_factory_production_audio_v1";
 import { LEARNING_V2_RELEASED_SESSION_COUNT_V1 } from "../app/learning_v2_session_availability_v1";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../modules/learning-v2/content/course_topology_v1";
 import {
   factoryNativeSessionWordEncountersV1,
 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
@@ -83,17 +84,22 @@ describe("Learning V2 released sessions: complete recorded audio inside the buil
     const probeThrough = Number(process.env.LEARNING_V2_AUDIO_COMPLETE_THROUGH ?? "");
     const ceiling = Number.isInteger(probeThrough) && probeThrough > 0 ? probeThrough : LEARNING_V2_RELEASED_SESSION_COUNT_V1;
     const problems: string[] = [];
-    const checkedWords = new Set<string>();
     let phraseFiles = 0;
-    for (let sessionOrdinal = 1; sessionOrdinal <= ceiling; sessionOrdinal += 1) {
-      const where = `s${String(sessionOrdinal).padStart(2, "0")}`;
+    // Потолок — в порядке курса: урок 1 s01..s56, затем урок 2 и т. д. (learningV2SessionCourseIndexV1).
+    const checkedWordsByLesson = new Map<number, Set<string>>();
+    for (let courseIndex = 0; courseIndex < ceiling; courseIndex += 1) {
+      const lessonOrdinal = Math.floor(courseIndex / LEARNING_V2_LESSON_SESSION_COUNT_V1) + 1;
+      const sessionOrdinal = (courseIndex % LEARNING_V2_LESSON_SESSION_COUNT_V1) + 1;
+      const where = `l${String(lessonOrdinal).padStart(2, "0")}s${String(sessionOrdinal).padStart(2, "0")}`;
+      if (!checkedWordsByLesson.has(lessonOrdinal)) checkedWordsByLesson.set(lessonOrdinal, new Set());
+      const checkedWords = checkedWordsByLesson.get(lessonOrdinal)!;
       const material = bundledLearningV2CourseSessionMaterialV3({
         environment: "production",
         targetLanguage: "en",
         studyTarget: "en",
         learnerSourceLocale: "ru",
         seasonId: "learning-v2",
-        lessonOrdinal: 1,
+        lessonOrdinal,
         sessionOrdinal,
         activeRootFingerprint: "0".repeat(64),
       } as never);
@@ -108,9 +114,9 @@ describe("Learning V2 released sessions: complete recorded audio inside the buil
           if (problem) problems.push(`${where} → фраза ${contentHash.slice(0, 12)} → ${voiceId} → ${problem}`);
         }
       }
-      // Слова: подготовка занятия sN берёт карточки ВСЕХ занятий ≤ N (client_v3) — каждое слово проверяем один раз.
+      // Слова: подготовка занятия sN берёт карточки ВСЕХ занятий ≤ N того же урока (client_v3) — каждое слово урока один раз.
       const encounters = factoryNativeSessionWordEncountersV1({
-        lessonOrdinal: 1,
+        lessonOrdinal,
         sessionOrdinal,
         interfaceLocale: "ru",
       }) ?? [];
@@ -131,7 +137,7 @@ describe("Learning V2 released sessions: complete recorded audio inside the buil
       ceiling,
       bundledFiles: bundled.size,
       phraseFiles,
-      words: checkedWords.size,
+      words: [...checkedWordsByLesson.values()].reduce((sum, words) => sum + words.size, 0),
       problems: problems.length,
     })}`);
     // Каждая дыра отдельной строкой с меткой — её вытаскивают ворота scripts/learning_v2_audio_coverage_gate.mjs.

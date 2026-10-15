@@ -13,21 +13,36 @@ const FACTORY_AUDIO_PACK_COORDINATE_V1 = hashCanonicalBody({
   schemaVersion: "learning-v2-factory-production-audio-pack.v1",
 });
 type FactoryProductionAudioEntriesModuleV1 = typeof import("./learning_v2_factory_production_audio_entries_v1.generated");
-type FactoryProductionAudioEntryV1 = FactoryProductionAudioEntriesModuleV1["FACTORY_PRODUCTION_AUDIO_ENTRIES_V1"][number];
+type FactorySingleVoiceModuleV1 = typeof import("./learning_v2_factory_single_voice_v1.generated");
+type FactoryProductionAudioEntryV1 = Readonly<{
+  transcript: string;
+  voiceId: LearningV2CourseSessionAudioVoiceIdV1;
+  contentHash: string;
+  byteSize: number;
+}>;
 // зачем (PM-216, [CONTENT-LAZY]): 568 КБ записей озвучки и две карты по ним раньше строились при ИМПОРТЕ модуля,
 // а импортируют его экраны, которые expo-router поднимает при старте (sync-режим). Теперь — при первом обращении
 // к озвучке занятия; данные и результат те же, потребители не менялись.
+// зачем (владелец 15.10, «один голос на задание»): к записям манифеста фабрики добавляются записи Codex
+// (content/learning-v2-course/audio/en/single-voice-v1.json → app/learning_v2_factory_single_voice_v1.generated.ts)
+// и назначенный голос каждого задания. Манифест главнее: запись Codex не перекрывает уже известный текст+голос.
 const factoryAudioTables = lazyContent("learning_v2_factory_production_audio", () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { FACTORY_PRODUCTION_AUDIO_ENTRIES_V1 } = require("./learning_v2_factory_production_audio_entries_v1.generated") as FactoryProductionAudioEntriesModuleV1;
-  return {
-    entryByCoordinate: new Map<string, FactoryProductionAudioEntryV1>(
-      FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry] as const),
-    ),
-    entryByContentHash: new Map<string, FactoryProductionAudioEntryV1>(
-      FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry] as const),
-    ),
-  };
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { FACTORY_SINGLE_VOICE_ENTRIES_V1, FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1 } = require("./learning_v2_factory_single_voice_v1.generated") as FactorySingleVoiceModuleV1;
+  const entryByCoordinate = new Map<string, FactoryProductionAudioEntryV1>(
+    FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry] as const),
+  );
+  const entryByContentHash = new Map<string, FactoryProductionAudioEntryV1>(
+    FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry] as const),
+  );
+  for (const entry of FACTORY_SINGLE_VOICE_ENTRIES_V1) {
+    const coordinate = `${entry.transcript}\u0000${entry.voiceId}`;
+    if (!entryByCoordinate.has(coordinate)) entryByCoordinate.set(coordinate, entry);
+    if (!entryByContentHash.has(entry.contentHash)) entryByContentHash.set(entry.contentHash, entry);
+  }
+  return { entryByCoordinate, entryByContentHash, assignedVoiceByInteractionId: FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1 };
 });
 
 function fileInput(
@@ -41,13 +56,18 @@ function fileInput(
     console.warn(`[V2-BUNDLED] audio_entry_missing voice=${voiceId} transcript=${JSON.stringify(transcript.slice(0, 120))}`);
     throw new Error("learning_v2_factory_production_audio_missing");
   }
+  return fileInputForEntry(entry);
+}
+
+/** Файл ровно этой записи (по её contentHash), а не «первой записи того же текста и голоса». */
+function fileInputForEntry(entry: FactoryProductionAudioEntryV1): LearningV2CourseSessionAudioFileInputV1 {
   return Object.freeze({
-    voiceId,
+    voiceId: entry.voiceId,
     objectPath: [
       "learning-v2/voice-audio",
       FACTORY_AUDIO_PACK_COORDINATE_V1,
-      hashCanonicalBody({ transcript }),
-      hashCanonicalBody({ voiceId }),
+      hashCanonicalBody({ transcript: entry.transcript }),
+      hashCanonicalBody({ voiceId: entry.voiceId }),
       `${entry.contentHash}.mp3`,
     ].join("/"),
     contentHash: entry.contentHash,
@@ -63,7 +83,8 @@ export function learningV2FactoryRemoteAudioFilesForContentHashesV1(
   return Object.freeze(contentHashes.map((contentHash) => {
     const entry = factoryAudioTables().entryByContentHash.get(contentHash);
     if (!entry) throw new Error("learning_v2_factory_production_audio_missing");
-    const input = fileInput("factory-pack", entry.transcript, entry.voiceId);
+    // зачем (Ревизор 2.74): один текст+голос может иметь несколько записей (разные задания) — берём запрошенный файл.
+    const input = fileInputForEntry(entry);
     return Object.freeze({
       ...input,
       fileFingerprint: hashCanonicalBody(input),
@@ -73,20 +94,41 @@ export function learningV2FactoryRemoteAudioFilesForContentHashesV1(
 
 type FactoryVoicePlanV1 = Readonly<{
   voices: readonly LearningV2CourseSessionAudioVoiceIdV1[];
-  source: "all_four_voices" | "assigned_recorded_voice";
+  source: "codex_assignment" | "all_four_voices" | "assigned_recorded_voice";
+  /** Только для назначения Codex: файл каждой реплики — клип ЭТОГО задания (contentHash). */
+  clipHashByTranscript?: Readonly<Record<string, string>>;
 }>;
 
 /**
  * Каким голосом (голосами) звучит задание по его репликам.
  *
  * зачем (владелец 15.10, EN-сессия, «один голос на задание»): Codex озвучивает каждое задание ОДНИМ случайным голосом
- * и не делает четыре версии. Есть все 4 голоса у всех реплик → как раньше (голос крутится по заданиям). Иначе
- * назначенный голос = тот, что записан у ВСЕХ реплик задания (первый в порядке ash/onyx/nova/coral, если таких
- * несколько). Запасного голоса нет: общей записи нет → null, задание считается неозвученным.
+ * и не делает четыре версии. Порядок:
+ *  1) голос, назначенный заданию в файле Codex (single-voice-v1.json), и файлы — клипы ЭТОГО задания по contentHash
+ *     (Ревизор 2.74: одна фраза в разных заданиях записана разными голосами — глобальная таблица «фраза × голос»
+ *     дала бы чужой голос или круг по sessionRunId);
+ *  2) все 4 голоса у всех реплик → как раньше (голос крутится по заданиям);
+ *  3) запасной путь — голос, записанный у ВСЕХ реплик задания (первый в порядке ash/onyx/nova/coral).
+ * Чужого голоса не подставляем: общей записи нет → null, задание считается неозвученным.
  */
-function factoryVoicePlanV1(transcripts: readonly string[]): FactoryVoicePlanV1 | null {
+function factoryVoicePlanV1(interactionId: string, transcripts: readonly string[]): FactoryVoicePlanV1 | null {
+  const tables = factoryAudioTables();
   const has = (transcript: string, voiceId: LearningV2CourseSessionAudioVoiceIdV1) =>
-    factoryAudioTables().entryByCoordinate.has(`${transcript}\u0000${voiceId}`);
+    tables.entryByCoordinate.has(`${transcript}\u0000${voiceId}`);
+  const codexAssignment = tables.assignedVoiceByInteractionId[interactionId];
+  if (
+    codexAssignment &&
+    transcripts.every((transcript) => tables.entryByContentHash.has(codexAssignment.clips[transcript] ?? ""))
+  )
+    return Object.freeze({
+      voices: Object.freeze([codexAssignment.voice]),
+      source: "codex_assignment" as const,
+      clipHashByTranscript: codexAssignment.clips,
+    });
+  if (codexAssignment) {
+    // Назначение есть, а клипа реплики нет — громко, это расхождение файла Codex и таблицы озвучки.
+    console.warn(`[V2-AUDIO-VOICE] codex_assignment_unrecorded interactionId=${interactionId} voice=${codexAssignment.voice} transcripts=${JSON.stringify(transcripts.map((t) => t.slice(0, 80)))}`);
+  }
   if (transcripts.every((transcript) => VOICES.every((voiceId) => has(transcript, voiceId))))
     return Object.freeze({ voices: VOICES, source: "all_four_voices" as const });
   const assigned = VOICES.find((voiceId) => transcripts.every((transcript) => has(transcript, voiceId)));
@@ -96,14 +138,20 @@ function factoryVoicePlanV1(transcripts: readonly string[]): FactoryVoicePlanV1 
 }
 
 function voiceFiles(courseSessionId: string, transcript: string, plan: FactoryVoicePlanV1) {
+  const clipHash = plan.clipHashByTranscript?.[transcript];
+  if (clipHash) {
+    const entry = factoryAudioTables().entryByContentHash.get(clipHash);
+    if (!entry) throw new Error("learning_v2_factory_production_audio_missing");
+    return Object.freeze([fileInputForEntry(entry)]);
+  }
   return Object.freeze(plan.voices.map((voiceId) => fileInput(courseSessionId, transcript, voiceId)));
 }
 
-function requireFactoryVoicePlanV1(transcripts: readonly string[]): FactoryVoicePlanV1 {
-  const plan = factoryVoicePlanV1(transcripts);
+function requireFactoryVoicePlanV1(interactionId: string, transcripts: readonly string[]): FactoryVoicePlanV1 {
+  const plan = factoryVoicePlanV1(interactionId, transcripts);
   if (!plan) {
     // Немой отказ запрещён: какие реплики не имеют общей записи.
-    console.warn(`[V2-AUDIO-VOICE] no_common_recorded_voice transcripts=${JSON.stringify(transcripts.map((t) => t.slice(0, 80)))}`);
+    console.warn(`[V2-AUDIO-VOICE] no_common_recorded_voice interactionId=${interactionId} transcripts=${JSON.stringify(transcripts.map((t) => t.slice(0, 80)))}`);
     throw new Error("learning_v2_factory_production_audio_missing");
   }
   return plan;
@@ -145,7 +193,7 @@ export function learningV2FactoryMissingAudioInteractionIdsV1(
       throw new Error("learning_v2_factory_reference_audio_missing");
     }
     // Озвучено = у всех реплик задания есть общая запись (4 голоса или один назначенный).
-    const complete = factoryVoicePlanV1(references.map((reference) => reference.transcript)) !== null;
+    const complete = factoryVoicePlanV1(interaction.interactionId, references.map((reference) => reference.transcript)) !== null;
     if (!complete) missing.push(interaction.interactionId);
   }
   return Object.freeze(missing);
@@ -155,8 +203,15 @@ export function buildLearningV2FactoryBundledAudioChildV1(
   learner: LearningV2CourseSessionLearnerChildV1,
 ): ReturnType<typeof materializeLearningV2CourseSessionAudioChildV1> | null {
   const audioInteractions = learner.interactions.filter((interaction) => interaction.audioTargetIds.length > 0);
+  // зачем (координатор 15.10): видно, каким голосом звучит каждое задание и откуда он взят — одна строка на сборку.
+  const voicePlans: { interactionId: string; assignedVoice: string; source: FactoryVoicePlanV1["source"] }[] = [];
+  const planFor = (interactionId: string, transcripts: readonly string[]): FactoryVoicePlanV1 => {
+    const plan = requireFactoryVoicePlanV1(interactionId, transcripts);
+    voicePlans.push({ interactionId, assignedVoice: plan.voices.length === 1 ? plan.voices[0]! : "rotating", source: plan.source });
+    return plan;
+  };
   try {
-    return materializeLearningV2CourseSessionAudioChildV1({
+    const child = materializeLearningV2CourseSessionAudioChildV1({
       learner,
       interactions: audioInteractions.map((interaction) => {
       const payload = interaction.modePayload;
@@ -166,7 +221,7 @@ export function buildLearningV2FactoryBundledAudioChildV1(
         );
         if (references.length !== 2) throw new Error("learning_v2_factory_sound_contrast_audio_missing");
         // Обе реплики сравнения звучат одним голосом задания.
-        const plan = requireFactoryVoicePlanV1(references.map((reference) => reference.transcript));
+        const plan = planFor(interaction.interactionId, references.map((reference) => reference.transcript));
         const selectables = references.map((reference, index) => {
           const option = interaction.responseOptions.find(
             (candidate) => candidate.text === reference.transcript,
@@ -210,11 +265,13 @@ export function buildLearningV2FactoryBundledAudioChildV1(
           interactionId: interaction.interactionId,
           transcript,
         }),
-        fullPhraseFiles: voiceFiles(learner.courseSessionId, transcript, requireFactoryVoicePlanV1([transcript])),
+        fullPhraseFiles: voiceFiles(learner.courseSessionId, transcript, planFor(interaction.interactionId, [transcript])),
         selectables: Object.freeze([]),
       });
       }),
     });
+    console.log(`[V2-AUDIO-VOICE] plan ${JSON.stringify({ courseSessionId: learner.courseSessionId, interactions: voicePlans })}`); // guard-ok: одна строка на сборку озвучки
+    return child;
   } catch (error) {
     if (error instanceof Error && error.message === "learning_v2_factory_production_audio_missing") {
       // зачем (инцидент 04.10): отказ из-за отсутствия записи в таблице озвучки был немым — теперь [V2-BUNDLED] пишет, что именно не нашли.

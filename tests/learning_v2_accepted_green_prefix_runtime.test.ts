@@ -19,6 +19,7 @@ import {
   LEARNING_V2_RELEASED_SESSION_COUNT_V1,
   isLearningV2SessionReleasedV1,
 } from "../app/learning_v2_session_availability_v1";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../modules/learning-v2/content/course_topology_v1";
 
 describe("accepted green Learning V2 prefix runtime compatibility", () => {
   test("the learner-child bound agrees with the existing release-package learner bound", () => {
@@ -73,7 +74,10 @@ describe("accepted green Learning V2 prefix runtime compatibility", () => {
     [13, ["lesson-01:session:13:i18"]],
     [14, ["lesson-01:session:14:i10"]],
     [15, ["lesson-01:session:15:i15", "lesson-01:session:15:i17:s02"]],
-  ] as const)("released lesson 1 session %i omits only source-bound incomplete audio interactions", (sessionOrdinal, omittedIds) => {
+  // зачем (15.10 ночь): эти задания прежде выключались — у их фраз не было записи («I am free.» и др.). Codex озвучил их
+  // «одним голосом на задание» (single-voice-v1.json), поэтому теперь они ОСТАЮТСЯ в занятии и звучат записью.
+  // Сторож ловит откат: задание снова выпало бы из занятия или осталось бы без записи.
+  ] as const)("released lesson 1 session %i keeps the formerly unvoiced tasks, now recorded", (sessionOrdinal, formerlyOmittedIds) => {
     const material = bundledLearningV2CourseSessionMaterialV3({
       environment: "production",
       targetLanguage: "en",
@@ -86,23 +90,27 @@ describe("accepted green Learning V2 prefix runtime compatibility", () => {
     } as never);
     expect(material).not.toBeNull();
     const interactionIds = material!.learnerChild.interactions.map((interaction) => interaction.interactionId);
-    expect(interactionIds).not.toEqual(expect.arrayContaining(omittedIds));
+    expect(interactionIds).toEqual(expect.arrayContaining([...formerlyOmittedIds]));
     expect(learningV2FactoryMissingAudioInteractionIdsV1(material!.learnerChild)).toEqual([]);
     expect(material!.evaluatorCapsuleChild.entries.map((entry) => entry.interactionId))
-      .not.toEqual(expect.arrayContaining(omittedIds));
-    expect(material!.auxiliaryChild.entries.map((entry) => entry.interactionId))
-      .not.toEqual(expect.arrayContaining(omittedIds));
+      .toEqual(expect.arrayContaining([...formerlyOmittedIds]));
   });
 
   // зачем (координатор 15.10, урок 1 целиком — потолок 15 → 56): не зашитое число, а потолок — он генерируется сторожем
   // learning_v2_bundle_availability по реально собранным с аудио занятиям. Смысл прежний: открыт ровно сплошной префикс.
+  // зачем (координатор 15.10 ночь, «все готовые»): потолок может перейти в урок 2 и дальше — считаем в порядке курса.
   test("the app exposes exactly the contiguous released prefix and keeps the next session hidden", () => {
     const ceiling = LEARNING_V2_RELEASED_SESSION_COUNT_V1;
+    const at = (courseIndex: number) => [
+      Math.floor(courseIndex / LEARNING_V2_LESSON_SESSION_COUNT_V1) + 1,
+      (courseIndex % LEARNING_V2_LESSON_SESSION_COUNT_V1) + 1,
+    ] as const;
     expect(ceiling).toBeGreaterThanOrEqual(15);
-    expect(ceiling).toBeLessThanOrEqual(56);
-    for (let session = 1; session <= ceiling; session += 1) {
-      expect([session, isLearningV2SessionReleasedV1(1, session)]).toEqual([session, true]);
+    for (let courseIndex = 0; courseIndex < ceiling; courseIndex += 1) {
+      const [lesson, session] = at(courseIndex);
+      expect([lesson, session, isLearningV2SessionReleasedV1(lesson, session)]).toEqual([lesson, session, true]);
     }
-    if (ceiling < 56) expect(isLearningV2SessionReleasedV1(1, ceiling + 1)).toBe(false);
+    const [nextLesson, nextSession] = at(ceiling);
+    expect(isLearningV2SessionReleasedV1(nextLesson, nextSession)).toBe(false);
   });
 });

@@ -163,8 +163,18 @@ const ROOT_KEYS = Object.freeze([
 ] as const);
 const handles = new WeakSet<object>();
 
-function fail(): never {
-  throw new Error("learning_v2_course_session_audio_child_invalid");
+// зачем (Ревизор 2.74): голый «audio_child_invalid» не говорил, какое задание и почему — отказ занятия не диагностировался.
+// Причина и задание дописываются в сообщение (префикс прежний — потребители ищут его подстрокой) и в журнал.
+function fail(reason?: string, interactionId?: string): never {
+  const detail = [reason ? `reason=${reason}` : "", interactionId ? `interactionId=${interactionId}` : ""]
+    .filter(Boolean)
+    .join(" ");
+  if (detail) console.warn(`[V2-AUDIO-CHILD] invalid ${detail}`);
+  throw new Error(
+    detail
+      ? `learning_v2_course_session_audio_child_invalid ${detail}`
+      : "learning_v2_course_session_audio_child_invalid",
+  );
 }
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -229,19 +239,20 @@ function exactFile(value: unknown): LearningV2CourseSessionAudioFileV1 {
 
 function exactVoiceFiles(
   value: unknown,
+  interactionId?: string,
 ): LearningV2CourseSessionAudioSelectableV1["files"] {
   if (
     !Array.isArray(value) ||
     (value.length !== V2_REQUIRED_VOICE_IDS.length && value.length !== 1)
   )
-    fail();
+    fail(`voice_file_count_${Array.isArray(value) ? value.length : "not_array"}`, interactionId);
   const files = value.map(exactFile);
   // Один файл — назначенный голос (exactFile уже проверил, что голос одобрен); четыре — строго по порядку.
   if (
     files.length === V2_REQUIRED_VOICE_IDS.length &&
     files.some((file, index) => file.voiceId !== V2_REQUIRED_VOICE_IDS[index])
   )
-    fail();
+    fail("four_voice_order", interactionId);
   return freeze(
     files,
   ) as unknown as LearningV2CourseSessionAudioSelectableV1["files"];
@@ -249,12 +260,13 @@ function exactVoiceFiles(
 
 function exactSelectable(
   value: unknown,
+  interactionId?: string,
 ): LearningV2CourseSessionAudioSelectableV1 {
-  if (!record(value)) fail();
+  if (!record(value)) fail("selectable_not_record", interactionId);
   exactKeys(value, SELECTABLE_KEYS);
   const selectable =
     value as unknown as LearningV2CourseSessionAudioSelectableV1;
-  const files = exactVoiceFiles(selectable.files);
+  const files = exactVoiceFiles(selectable.files, interactionId);
   if (
     !ID_RE.test(selectable.selectableId) ||
     RESERVED.has(selectable.selectableId) ||
@@ -278,22 +290,23 @@ function exactSelectable(
 function exactInteraction(
   value: unknown,
 ): LearningV2CourseSessionInteractionAudioV1 {
-  if (!record(value)) fail();
+  if (!record(value)) fail("interaction_not_record");
   exactKeys(value, INTERACTION_KEYS);
   const interaction =
     value as unknown as LearningV2CourseSessionInteractionAudioV1;
+  const id = String(interaction.interactionId);
   const fullPhraseFiles =
     interaction.fullPhraseFiles === null
       ? null
-      : exactVoiceFiles(interaction.fullPhraseFiles);
+      : exactVoiceFiles(interaction.fullPhraseFiles, id);
   if (
     !ID_RE.test(interaction.interactionId) ||
     !HASH_RE.test(interaction.taskVoiceGroupFingerprint) ||
     !Array.isArray(interaction.selectables) ||
     interaction.selectables.length > 32
   )
-    fail();
-  const selectables = freeze(interaction.selectables.map(exactSelectable));
+    fail("interaction_shape", id);
+  const selectables = freeze(interaction.selectables.map((entry) => exactSelectable(entry, id)));
   const selectableIds = new Set(selectables.map((entry) => entry.selectableId));
   const wordOrdinals = new Set(selectables.map((entry) => entry.wordOrdinal));
   if (
@@ -302,7 +315,7 @@ function exactInteraction(
     selectables.some((entry, index) => entry.wordOrdinal !== index + 1) ||
     (fullPhraseFiles === null && selectables.length === 0)
   )
-    fail();
+    fail("selectables_shape", id);
   // Задание звучит одним голосом: все его реплики либо в четырёх голосах, либо все в одном и том же назначенном.
   const voiceFileSets = [
     ...(fullPhraseFiles ? [fullPhraseFiles] : []),
@@ -314,7 +327,7 @@ function exactInteraction(
     (singleVoice &&
       new Set(voiceFileSets.map((files) => files[0].voiceId)).size !== 1)
   )
-    fail();
+    fail("task_voice_mixed", id);
   const body = { ...interaction, fullPhraseFiles, selectables };
   if (
     interaction.interactionAudioFingerprint !==
@@ -322,7 +335,7 @@ function exactInteraction(
       bodyWithoutFingerprint(body, "interactionAudioFingerprint"),
     )
   )
-    fail();
+    fail("interaction_fingerprint", id);
   return freeze(body);
 }
 

@@ -1,9 +1,12 @@
-// зачем (владелец 15.10, EN-сессия, «один голос на задание»): Codex озвучивает каждое задание ОДНИМ случайным голосом
-// и не делает четыре версии. Рантайм прежде требовал все 4 голоса — такое занятие не открылось бы вовсе. Сторож:
-//  • реплика только в одном голосе — задание озвучено, звучит ИМЕННО этим голосом при любом индексе выбора;
-//  • реплика без единой записи — задание неозвучено (запасного голоса нет);
-//  • реплика во всех четырёх голосах — как раньше: голос по индексу (s01–s15 не меняются).
+// зачем (владелец 15.10, EN-сессия, «один голос на задание»): Codex озвучивает каждое задание ОДНИМ случайным голосом,
+// хранит выбор в content/learning-v2-course/audio/en/single-voice-v1.json и не делает четыре версии. Рантайм прежде
+// требовал все 4 голоса — такое занятие не открылось бы вовсе. Сторож порядка выбора голоса:
+//  1) голос, назначенный заданию Codex, — первым (даже если у реплики есть все 4 старые записи);
+//  2) без назначения и со всеми 4 голосами — как раньше: голос по индексу;
+//  3) без назначения — голос, записанный у всех реплик задания (запасной путь);
+//  • реплика без единой записи — задание неозвучено (чужого голоса не подставляем).
 let mockDropVoice: (transcript: string, voiceId: string) => boolean = () => false;
+let mockAssignments: Record<string, { voice: string; clips: Record<string, string> }> | null = null;
 jest.mock("../app/learning_v2_factory_production_audio_entries_v1.generated", () => {
   const actual = jest.requireActual("../app/learning_v2_factory_production_audio_entries_v1.generated");
   return {
@@ -12,6 +15,19 @@ jest.mock("../app/learning_v2_factory_production_audio_entries_v1.generated", ()
       return actual.FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.filter(
         (entry: { transcript: string; voiceId: string }) => !mockDropVoice(entry.transcript, entry.voiceId),
       );
+    },
+  };
+});
+jest.mock("../app/learning_v2_factory_single_voice_v1.generated", () => {
+  const actual = jest.requireActual("../app/learning_v2_factory_single_voice_v1.generated");
+  return {
+    get FACTORY_SINGLE_VOICE_ENTRIES_V1() {
+      return actual.FACTORY_SINGLE_VOICE_ENTRIES_V1.filter(
+        (entry: { transcript: string; voiceId: string }) => !mockDropVoice(entry.transcript, entry.voiceId),
+      );
+    },
+    get FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1() {
+      return mockAssignments ?? actual.FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1;
     },
   };
 });
@@ -52,31 +68,86 @@ function session1(modules: Modules) {
   return { learner, interactionId: target!.interactionId, transcript };
 }
 
+function fullPhrase(modules: Modules, learner: ReturnType<typeof session1>["learner"], interactionId: string) {
+  const silence = jest.spyOn(console, "log").mockImplementation(() => undefined);
+  try {
+    const audioChild = modules.production.buildLearningV2FactoryBundledAudioChildV1(learner);
+    expect(audioChild).not.toBeNull();
+    const audio = audioChild!.interactions.find((entry) => entry.interactionId === interactionId)!;
+    const voices = ([0, 1, 2, 3] as const).map((voiceSelectionIndex) =>
+      modules.child.selectLearningV2CourseSessionInteractionAudioV1({ child: audioChild!, interactionId, voiceSelectionIndex }).voiceId);
+    return { files: audio.fullPhraseFiles!, voices };
+  } finally {
+    silence.mockRestore();
+  }
+}
+
 describe("Learning V2: one assigned voice per task", () => {
   afterEach(() => {
     mockDropVoice = () => false;
+    mockAssignments = null;
   });
 
-  test("a phrase recorded in ONE voice is voiced and always plays that voice", () => {
+  test("the Codex-assigned voice wins even when all four old recordings exist", () => {
     const probe = session1(freshModules());
+    const coralFile = freshModules().production.learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(probe.transcript, "coral");
+    expect(coralFile).not.toBeNull();
+    mockAssignments = { [probe.interactionId]: { voice: "coral", clips: { [probe.transcript]: coralFile!.contentHash } } };
+    const modules = freshModules();
+    const { learner, interactionId } = session1(modules);
+    const { files, voices } = fullPhrase(modules, learner, interactionId);
+    expect(files.map((file) => file.voiceId)).toEqual(["coral"]);
+    expect(voices).toEqual(["coral", "coral", "coral", "coral"]);
+  });
+
+  // зачем (Ревизор 2.74): у фразы есть все 4 старые записи, задание назначено coral — голос не должен меняться между
+  // запусками занятия (круг по sessionRunId только для заданий без назначения), а файл — клип ЭТОГО задания.
+  test("an assigned task keeps its voice and its own clip across two different session runs", () => {
+    const probe = session1(freshModules());
+    const real = freshModules();
+    const coralFile = real.production.learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(probe.transcript, "coral");
+    expect(coralFile).not.toBeNull();
+    mockAssignments = { [probe.interactionId]: { voice: "coral", clips: { [probe.transcript]: coralFile!.contentHash } } };
+    const modules = freshModules();
+    const { learner, interactionId } = session1(modules);
+    const silence = jest.spyOn(console, "log").mockImplementation(() => undefined);
+    try {
+      const audioChild = modules.production.buildLearningV2FactoryBundledAudioChildV1(learner)!;
+      const ordinal = learner.interactions.find((entry) => entry.interactionId === interactionId)!.ordinal;
+      const picked = ["run-a-0001", "run-b-0002"].map((sessionRunId) => {
+        const voiceSelectionIndex = modules.child.learningV2CourseSessionInteractionVoiceIndexV1({
+          sessionRunId,
+          courseSessionId: audioChild.courseSessionId,
+          interactionOrdinal: ordinal,
+        });
+        const selection = modules.child.selectLearningV2CourseSessionInteractionAudioV1({ child: audioChild, interactionId, voiceSelectionIndex });
+        return [selection.voiceId, selection.fullPhraseFile?.contentHash];
+      });
+      expect(picked).toEqual([["coral", coralFile!.contentHash], ["coral", coralFile!.contentHash]]);
+    } finally {
+      silence.mockRestore();
+    }
+  });
+
+  test("without an assignment a phrase in all four voices keeps the rotating voice choice", () => {
+    mockAssignments = {};
+    const modules = freshModules();
+    const { learner, interactionId } = session1(modules);
+    const { files, voices } = fullPhrase(modules, learner, interactionId);
+    expect(files).toHaveLength(4);
+    expect(voices).toEqual(["ash", "onyx", "nova", "coral"]);
+  });
+
+  test("without an assignment a phrase recorded in ONE voice is voiced and always plays that voice", () => {
+    const probe = session1(freshModules());
+    mockAssignments = {};
     mockDropVoice = (transcript, voiceId) => transcript === probe.transcript && voiceId !== "nova";
     const modules = freshModules();
     const { learner, interactionId } = session1(modules);
     expect(modules.production.learningV2FactoryMissingAudioInteractionIdsV1(learner)).not.toContain(interactionId);
-    const audioChild = modules.production.buildLearningV2FactoryBundledAudioChildV1(learner);
-    expect(audioChild).not.toBeNull();
-    const audio = audioChild!.interactions.find((entry) => entry.interactionId === interactionId)!;
-    expect(audio.fullPhraseFiles).toHaveLength(1);
-    expect(audio.fullPhraseFiles![0].voiceId).toBe("nova");
-    for (const voiceSelectionIndex of [0, 1, 2, 3] as const) {
-      const selection = modules.child.selectLearningV2CourseSessionInteractionAudioV1({
-        child: audioChild!,
-        interactionId,
-        voiceSelectionIndex,
-      });
-      expect([voiceSelectionIndex, selection.voiceId, selection.fullPhraseFile?.voiceId])
-        .toEqual([voiceSelectionIndex, "nova", "nova"]);
-    }
+    const { files, voices } = fullPhrase(modules, learner, interactionId);
+    expect(files.map((file) => file.voiceId)).toEqual(["nova"]);
+    expect(voices).toEqual(["nova", "nova", "nova", "nova"]);
   });
 
   test("a phrase with no recording at all stays unvoiced — no fallback voice", () => {
@@ -91,17 +162,5 @@ describe("Learning V2: one assigned voice per task", () => {
     } finally {
       warn.mockRestore();
     }
-  });
-
-  test("a phrase in all four voices keeps the rotating voice choice", () => {
-    const modules = freshModules();
-    const { learner, interactionId } = session1(modules);
-    const audioChild = modules.production.buildLearningV2FactoryBundledAudioChildV1(learner);
-    expect(audioChild).not.toBeNull();
-    const audio = audioChild!.interactions.find((entry) => entry.interactionId === interactionId)!;
-    expect(audio.fullPhraseFiles).toHaveLength(4);
-    const voices = ([0, 1, 2, 3] as const).map((voiceSelectionIndex) =>
-      modules.child.selectLearningV2CourseSessionInteractionAudioV1({ child: audioChild!, interactionId, voiceSelectionIndex }).voiceId);
-    expect(voices).toEqual(["ash", "onyx", "nova", "coral"]);
   });
 });

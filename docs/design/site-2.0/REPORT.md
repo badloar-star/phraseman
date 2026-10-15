@@ -4,6 +4,11 @@
 
 ---
 
+## 2026-10-15 ~12:15 — ОСТАЛОСЬ (одной строкой)
+ВНИМАНИЕ: владелец лично в этой сессии велел выложить — уже на живом: починка оплаты /premium/ и дизайн 2.0 (bc525a28a); цены на сервере уже €7,99/€39,99 (web_checkout/config, слово владельца); ждёт «да» владельца: правка f5062267f+ (убран «навсегда», запасные цены, PayPal в евро) — тестовый канал https://knowlyapps--prices-ef0v78jg.web.app; открыто: текст Telegram-бота на /russia/ («навсегда»), названия «Plus и Pro», PRODUCT.md (светлая тема), Inter с Google Fonts против CSP (report-only), title/meta на «вы».
+
+---
+
 ## 2026-10-15 ~11:10 — дизайн 2.0 ВЫЛОЖЕН на живой knowlyapps.com (слово владельца)
 
 - Коммит `bc525a28a` → тестовый канал `design-v2` (https://knowlyapps--design-v2-lg2p7kcg.web.app, до 22.10) → владелец посмотрел и одобрил → `firebase hosting:clone knowlyapps:design-v2 knowlyapps:live` (выложена ровно проверенная версия).

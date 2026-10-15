@@ -46828,6 +46828,309 @@
           "byteSize": 30720
         }
       ]
+    },
+    "l03/s43/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bedrooms",
+          "file": "92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "contentHash": "1c9986078570ed7d79fec1ca5b45adbb537245464780a2de7c647963addd94e2",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l03/s43/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The bedrooms are there.",
+          "file": "9b24a0ccc2c258f76e54c281e5cd301fb7f4a93c3737ad8a0b9e954f3b533974.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9b24a0ccc2c258f76e54c281e5cd301fb7f4a93c3737ad8a0b9e954f3b533974.mp3",
+          "contentHash": "ab32718350b4dcf7596b69ca332bac8f0bad50dd75e18864e3a20a02f0031cd8",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l03/s43/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He is patient.",
+          "file": "5ea4e9bfb86ff127e3754355387d8cd8845e1ae1f5e3e8a3ce64e3caab14c091.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ea4e9bfb86ff127e3754355387d8cd8845e1ae1f5e3e8a3ce64e3caab14c091.mp3",
+          "contentHash": "5e8336ee5d96e3046ca84b5023c4ddc892036ed3fbe16346d3de5c1a111ac0ad",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l03/s43/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The photos are here.",
+          "file": "e3a3c85bfeaaadf86b61f13482975311f9045bf0d99659aa834a3d8c855d5bcc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e3a3c85bfeaaadf86b61f13482975311f9045bf0d99659aa834a3d8c855d5bcc.mp3",
+          "contentHash": "a66478b46a844a00d4595a2d871eb9f9f72b9309c1239c9a88cef30f9ba0e8d3",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s43/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bedrooms",
+          "file": "92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "contentHash": "1c9986078570ed7d79fec1ca5b45adbb537245464780a2de7c647963addd94e2",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l03/s43/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "bedrooms",
+          "file": "1bd4eaf3eef3312144eb0f7d50608a4757fff708d378145f8c7fc4730864a52d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1bd4eaf3eef3312144eb0f7d50608a4757fff708d378145f8c7fc4730864a52d.mp3",
+          "contentHash": "f1384bad32007fb48c0b7ad9defd897906ded78990a019a6d5dadcb4e6c07f11",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l03/s43/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bedrooms",
+          "file": "04f9685bde940c87a0a65d3d4c2e3b51b5e2e59226e583ac2a958103540885c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04f9685bde940c87a0a65d3d4c2e3b51b5e2e59226e583ac2a958103540885c6.mp3",
+          "contentHash": "63953a259e3f19d9bf8fab125c747af8f6c388de64588013e266988b6c4e928e",
+          "byteSize": 29952
+        },
+        {
+          "text": "patient",
+          "file": "51ebc3c44dacd42d797e790af24e5c827cc6f152bb28f452cb9a4b3a5fd2b030.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2295ff7a8bd8b3f2884c6482-ash.mp3",
+          "contentHash": "f3c0a28706a142d2cd9670a2ca54320d97f15fb9eafd640e6f8668069a1e688a",
+          "byteSize": 25344
+        },
+        {
+          "text": "uncertain",
+          "file": "1d956049048c6d2efa316853eafe3ac6107f457a1e94004a6f9b7869bb9d3fcb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d956049048c6d2efa316853eafe3ac6107f457a1e94004a6f9b7869bb9d3fcb.mp3",
+          "contentHash": "f428cb099e1a77ae3ce28b662e807a817c9dee2fad28e4630c4138cc841c1b4e",
+          "byteSize": 24576
+        },
+        {
+          "text": "photos",
+          "file": "f0ef4a5e75a3e2f9582a19b4c3c4836b79db81e0ce638c9651695580fd49c9c0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-ash.mp3",
+          "contentHash": "021273c4847ad358e880e86b6ce2563f04e09b016578be315dbbd52e89d642c2",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l03/s43/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These are bedrooms.",
+          "file": "a0e01044550b8bcb573a715db2c88db2793a8c424384eeffa3bf8efc193ca127.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a0e01044550b8bcb573a715db2c88db2793a8c424384eeffa3bf8efc193ca127.mp3",
+          "contentHash": "726ae62556bb72a5d4a52792d1d668297542b76220b024ac546b2710761de0ed",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l03/s43/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bedrooms are there.",
+          "file": "d53e56cdfccea97cea9c4b5f4c822ceefd4d1b9775daec8239cc52ef098a5586.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d53e56cdfccea97cea9c4b5f4c822ceefd4d1b9775daec8239cc52ef098a5586.mp3",
+          "contentHash": "37786252330b7a2f2ddd4aac293a6ad725e6db140172d59ab81896b08c5f1130",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s43/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He's patient.",
+          "file": "2369ab814864a217abcf10b4bc06392da19ffda49ee5ea01332e720fa11a9a02.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2369ab814864a217abcf10b4bc06392da19ffda49ee5ea01332e720fa11a9a02.mp3",
+          "contentHash": "fb704ec99a9246a85b96bede160ceeecf93c30b93c91f8893f60aa2179d390c1",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s43/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "These are bedrooms.",
+          "file": "9dfad50ec4a06d1fc250faf472d1cbafb99696d991618e39287d0130e1e8d3dd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9dfad50ec4a06d1fc250faf472d1cbafb99696d991618e39287d0130e1e8d3dd.mp3",
+          "contentHash": "9d47966d7d6a158f4680887107c2887e10b685316548aee7c4cad9d277f225d7",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s43/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I am uncertain.",
+          "file": "722166fd4d7e27fe7724f97616c62faea4f5e4225ef49ead0c8c8f445b92e1fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/722166fd4d7e27fe7724f97616c62faea4f5e4225ef49ead0c8c8f445b92e1fd.mp3",
+          "contentHash": "90797c8694b393bee5921c78bd9845dbb804bb38fd3e973b05ffeb5559a2347e",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l03/s43/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bedrooms",
+          "file": "92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "contentHash": "1c9986078570ed7d79fec1ca5b45adbb537245464780a2de7c647963addd94e2",
+          "byteSize": 26112
+        },
+        {
+          "text": "photos",
+          "file": "4b2b8999a7289a6146a1e9a89a4fbcdf0aaeb6bd6877b6b5d20b22bb1427bbc5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-coral.mp3",
+          "contentHash": "1bd27a7a373fe728859700bad580340834fa70045d66f95625bd3c82ce38454f",
+          "byteSize": 30720
+        },
+        {
+          "text": "here",
+          "file": "e0a921524df69d1c4006bfe5976dc54b884ce6790c04b07983872ec41ce8d5dd.mp3",
+          "assetPath": "assets/audio/learning-v2/session1-production-v1/here-coral.mp3",
+          "contentHash": "d7087b0ae44e857f171d106905789b522ac0e902d7246f854fc344960d42c5d0",
+          "byteSize": 19968
+        },
+        {
+          "text": "there",
+          "file": "8090accea4b8f54a4b4bb3e413fc7201625c1d828dea5f813fca2bcab4eace82.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e244f187f696561d5fd7e00f-coral.mp3",
+          "contentHash": "dd6ef0449c82291ca9264a3a0dc17e5c86591993730da653c67d228b37e4f12a",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l03/s43/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Those photos are there.",
+          "file": "859f1475a8a8d9013a954d1d91ae3ccaf19042a7b20dfaa1c3e471c3cd0ca90b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/859f1475a8a8d9013a954d1d91ae3ccaf19042a7b20dfaa1c3e471c3cd0ca90b.mp3",
+          "contentHash": "c6f70a983299810bfe0df8e78de58847579cfacbbb61caab2d189c55b7a238c5",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s43/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Those bedrooms are there.",
+          "file": "dba1430a7e7a8d0cce10e1f0a673f8c3b1caec27082f3f6b3e4674617f335d8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dba1430a7e7a8d0cce10e1f0a673f8c3b1caec27082f3f6b3e4674617f335d8b.mp3",
+          "contentHash": "bacb3e0123cfa7491f13359ef6495d1dc09491c36ebf8596e20e7461dc46133d",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l03/s43/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I'm uncertain.",
+          "file": "3c6d28ffe8cb5f6d5e6de789a15b000c6d2914949a30db50e362e9c1896a1572.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c6d28ffe8cb5f6d5e6de789a15b000c6d2914949a30db50e362e9c1896a1572.mp3",
+          "contentHash": "96429cdc5ff0b590869e9548d1bf9e1f8c41b78e032923f40bc9a71a28d28b5d",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l03/s43/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bedrooms are there.",
+          "file": "e37f3502d7b2810a38c09d32533918a89071e6e78f8ec0a6a9f218ccb880f72f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e37f3502d7b2810a38c09d32533918a89071e6e78f8ec0a6a9f218ccb880f72f.mp3",
+          "contentHash": "fed75cd433794ce1ba51d7f1d2d051b4e0881afd3c8d0b2b7cceb5b4b19c0428",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l03/s43/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He is patient.",
+          "file": "7e7a58ad2ccd419f148edba2e9acfa848d5e0447803081dc139d40703cd169d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e7a58ad2ccd419f148edba2e9acfa848d5e0447803081dc139d40703cd169d6.mp3",
+          "contentHash": "ecf6b805bd51239e4d7bbb15f7de05d33f56796c24f9f88a41f30bd5da08cfbc",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l03/s43/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bedrooms",
+          "file": "92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "contentHash": "1c9986078570ed7d79fec1ca5b45adbb537245464780a2de7c647963addd94e2",
+          "byteSize": 26112
+        },
+        {
+          "text": "patient",
+          "file": "c0c42bce4999fabac84c48f9e70d3467369bc16fa735401d287a50f648f72ee0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2295ff7a8bd8b3f2884c6482-coral.mp3",
+          "contentHash": "6a8eb7067021efde6e9417f7f20b4289b1c5b2bdc20a5231e01e2d2b9583316f",
+          "byteSize": 18816
+        },
+        {
+          "text": "uncertain",
+          "file": "520ae272644d6de46401ae5e259024cc822981da5a299f8e4d52ec59c75de57d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/520ae272644d6de46401ae5e259024cc822981da5a299f8e4d52ec59c75de57d.mp3",
+          "contentHash": "f90b3bc6934083f2dabbe154f34d9a25219243a91994297c62d0de61e56b4c26",
+          "byteSize": 31488
+        },
+        {
+          "text": "photos",
+          "file": "4b2b8999a7289a6146a1e9a89a4fbcdf0aaeb6bd6877b6b5d20b22bb1427bbc5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-coral.mp3",
+          "contentHash": "1bd27a7a373fe728859700bad580340834fa70045d66f95625bd3c82ce38454f",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l03/s43/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The bedrooms are here.",
+          "file": "6e7f5325ca1856cc22739d52881fcd791d91b617e72909e8b4a62a22dec8f4fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e7f5325ca1856cc22739d52881fcd791d91b617e72909e8b4a62a22dec8f4fb.mp3",
+          "contentHash": "0fcccae358390c2b289fe44bbc8876fed57dd5d159099ce5c5f8fe9ba9ee02bd",
+          "byteSize": 50688
+        }
+      ]
     }
   },
   "settings": {

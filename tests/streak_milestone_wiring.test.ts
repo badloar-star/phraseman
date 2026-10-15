@@ -166,6 +166,12 @@ describe('ожидающий рубеж в памяти не ходит на д�
 });
 
 describe('dev-подмена streak=N (только __DEV__)', () => {
+  it('ссылка dev_state ?streak=N подключена к подмене: разбор, отказ с причиной, запуск', () => {
+    const src = read('app/dev_state_fixtures.ts');
+    expect(src).toContain('const streakDays = parseDevStreakMilestone(streakMilestoneRaw);');
+    expect(src).toContain('rejected.streakMilestone =');
+    expect(src).toContain("await import('./dev_streak_milestone')");
+  });
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const dev = require('../app/dev_streak_milestone') as typeof import('../app/dev_streak_milestone');
   it('разбор: целое 1…5000, остальное — отказ', () => {

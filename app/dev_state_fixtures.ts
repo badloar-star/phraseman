@@ -24,6 +24,7 @@ import { setDevMistakesDemo } from './dev_mistakes_demo';
 import { setDevFriendsDemo } from './dev_friends_demo';
 import { emitAppEvent } from './events';
 import { parseDevStreakJump, runDevStreakRestoreJump } from './dev_streak_restore_jump';
+import { parseDevStreakMilestone } from './dev_streak_milestone';
 import { devSetEnergy, devSetEnergyRestoringIn, setDevEnergyModeOverride } from './dev_energy_tools';
 import { getDevLocalPlusStorageKey, setDevLocalPlusOverride } from './dev_plus_controls';
 import { setDevAsFreeFlag } from './dev_as_free_flag';
@@ -299,6 +300,8 @@ export type DevStateRequest = Readonly<{
   studyTarget?: 'en' | 'es' | 'de' | 'fr' | 'it';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
   streakJump?: string;
+  /** Серия N (только __DEV__): «сегодня засчитан день, серия стала N»; рубеж покажет следующий итог урока/разговора/карточек/ошибок при moments=v3. */
+  streakMilestone?: number;
   next?: string;
 }>;
 
@@ -554,6 +557,13 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   if (streakJumpRaw !== undefined) {
     if (parseDevStreakJump(streakJumpRaw)) request.streakJump = String(streakJumpRaw).trim();
     else rejected.streakJump = `формат «до:после», например 5:12; пришло ${String(streakJumpRaw)}`;
+  }
+  // зачем (координатор 15.10, кадры Сверки d1…d1000): вызвать окно рубежа серии одной ссылкой ?streak=N, без набора настоящей серии
+  const streakMilestoneRaw = Array.isArray(params.streak) ? params.streak[0] : params.streak;
+  if (streakMilestoneRaw !== undefined) {
+    const streakDays = parseDevStreakMilestone(streakMilestoneRaw);
+    if (streakDays !== null) request.streakMilestone = streakDays;
+    else rejected.streakMilestone = `целое 1…5000, например 100; пришло ${String(streakMilestoneRaw)}`;
   }
   const next = Array.isArray(params.next) ? params.next[0] : params.next;
   if (typeof next === 'string' && next.startsWith('/')) request.next = next;
@@ -1191,6 +1201,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       const { whenHomePainted } = await import('./home_paint_marker');
       await runDevStreakRestoreJump(jump, { whenHomePainted, wait: (ms) => new Promise((resolve) => setTimeout(resolve, ms)) });
       return true;
+    });
+  }
+  if (request.streakMilestone !== undefined) {
+    await step('streakMilestone', String(request.streakMilestone), async () => {
+      const { runDevStreakMilestone } = await import('./dev_streak_milestone');
+      return runDevStreakMilestone(request.streakMilestone ?? 0);
     });
   }
   if (request.greet !== undefined) await step('greet', request.greet || 'off', async () => setDevAccountState({ greetName: request.greet || null }));

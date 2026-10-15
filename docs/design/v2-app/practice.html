@@ -42,6 +42,10 @@
 @keyframes halo { 0% { transform: scale(.9); opacity: .9; } 100% { transform: scale(1.25); opacity: 0; } }
 .mic .i { width: 30px; height: 30px; }
 .micl { font-size: 15px; color: var(--sec); font-weight: 600; }
+/* зачем (владелец 15.10, один счётчик голоса на все микрофоны): остаток попыток Free — пилюля-цифра на кнопке микрофона, как в learning-v2-voice-limit.html (D194); 0 → «PLUS» и приглушённый микрофон; у Plus цифры нет */
+.mic .vbdg { position: absolute; top: -6px; right: -10px; min-width: 28px; height: 28px; padding: 0 8px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: #0B0C0E; color: #fff; font-size: 15px; line-height: 20px; font-weight: 800; font-variant-numeric: tabular-nums; box-shadow: 0 6px 12px -6px rgba(0,0,0,.6), 0 0 0 2px var(--bg, #0C0D10); z-index: 2; }
+.mic .vbdg.plus { background: var(--cta); color: var(--cta-ink); font-size: 12px; letter-spacing: .4px; }
+.mic.spent { background: var(--control, #2B3839); color: var(--sec); }
 .wave { display: flex; align-items: center; gap: 4px; height: 40px; justify-content: center; margin-top: 30px; }
 .wave i { width: 4px; border-radius: 2px; background: #E9E9EB; height: 8px; animation: wv 900ms ease-in-out infinite; }
 .wave i:nth-child(2n) { animation-duration: 760ms; } .wave i:nth-child(3n) { animation-duration: 1040ms; animation-delay: -300ms; } .wave i:nth-child(5n) { animation-delay: -600ms; }
@@ -170,6 +174,8 @@ const blitz = (o = {}) => phone(`
 // ================= Устно =================
 const speakCard = (o = {}) => `<div class="qc sp" style="margin-top:34px"><div class="k">Скажи по-английски</div><div class="q">I'll get back to you</div><span class="listen t">${icon('vol', 's18')}Послушать</span></div>`;
 const wave = (live) => `<div class="wave${live ? '' : ' still'}">${Array.from({ length: 21 }, (_, i) => `<i style="--h:${8 + Math.round(26 * Math.abs(Math.sin(i * .9 + 1)))}px"></i>`).join('')}</div>`;
+// зачем (владелец 15.10): цифра остатка голоса на каждом микрофоне — Free по умолчанию 3 (во время записи 2), 0 → «PLUS»; у Plus (o.plus) цифры нет
+const micBtn = (o = {}) => { const v = o.plus ? undefined : (o.vb ?? (o.live || o.said ? 2 : 3)); return `<span class="mic t${o.live ? ' live' : ''}${v === 0 ? ' spent' : ''}">${icon('mic')}${v === undefined ? '' : v === 0 ? '<span class="vbdg plus">PLUS</span>' : `<span class="vbdg">${v}</span>`}</span>`; };
 const speak = (o = {}) => phone(`
   ${head('Устно', 'Набор карточек', null, o)}
   ${progress(o.pct ?? 30, null, '3', '10')}
@@ -177,7 +183,7 @@ const speak = (o = {}) => phone(`
   ${o.said ? `<div class="said ${o.said.ok ? 'ok' : 'no'}"><div class="k">Сказано</div><div class="v">${o.said.text}</div></div>` : ''}
   ${o.said ? '' : wave(!!o.live)}
   <div class="micwrap" style="margin-top:${o.said ? '26px' : '14px'}">
-    ${o.said && o.said.ok ? `<div class="verdict ok" style="margin:0">${icon('check', 's20')}Верно</div>` : `<span class="mic t${o.live ? ' live' : ''}">${icon('mic')}</span><span class="micl">${o.live ? 'Слушаю…' : o.said ? 'Зажми — скажи ещё раз' : 'Зажми и говори'}</span>`}
+    ${o.said && o.said.ok ? `<div class="verdict ok" style="margin:0">${icon('check', 's20')}Верно</div>` : `${micBtn(o)}<span class="micl">${o.live ? 'Слушаю…' : o.said ? 'Зажми — скажи ещё раз' : 'Зажми и говори'}</span>`}
   </div>
   ${o.said && o.said.ok ? '' : `<div class="aux"><span class="t">Пропустить</span>${o.said ? '<span class="t" style="color:#fff">Ещё раз</span>' : ''}</div>`}`,
   { time: '12:54', fixed: o.said && o.said.ok ? `<div class="fx"><div class="cta t">Продолжить<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : '' });

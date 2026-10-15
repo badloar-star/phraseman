@@ -183,6 +183,10 @@
 @keyframes halo { 0% { transform: scale(.9); opacity: .9; } 100% { transform: scale(1.25); opacity: 0; } }
 .mic .i { width: 30px; height: 30px; }
 .micl { font-size: 15px; color: var(--sec); font-weight: 600; }
+/* зачем (владелец 15.10, один счётчик голоса на все микрофоны): остаток попыток Free — пилюля-цифра на кнопке микрофона, как в learning-v2-voice-limit.html (D194); 0 → «PLUS» и приглушённый микрофон; у Plus цифры нет */
+.mic .vbdg { position: absolute; top: -6px; right: -10px; min-width: 28px; height: 28px; padding: 0 8px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: #0B0C0E; color: #fff; font-size: 15px; line-height: 20px; font-weight: 800; font-variant-numeric: tabular-nums; box-shadow: 0 6px 12px -6px rgba(0,0,0,.6), 0 0 0 2px var(--bg, #0C0D10); z-index: 2; }
+.mic .vbdg.plus { background: var(--cta); color: var(--cta-ink); font-size: 12px; letter-spacing: .4px; }
+.mic.spent { background: var(--control, #2B3839); color: var(--sec); }
 .wave { display: flex; align-items: center; gap: 4px; height: 40px; justify-content: center; margin-top: 18px; }
 .wave i { width: 4px; border-radius: 2px; background: #E9E9EB; height: 8px; animation: wv 900ms ease-in-out infinite; }
 .wave i:nth-child(2n) { animation-duration: 760ms; } .wave i:nth-child(3n) { animation-duration: 1040ms; animation-delay: -300ms; } .wave i:nth-child(5n) { animation-delay: -600ms; }
@@ -598,10 +602,12 @@ const lesson = (o = {}) => phone(`${lhead(o)}${taskTop(o)}
 const wave = (live) => `<div class="wave${live ? '' : ' still'}">${Array.from({ length: 21 }, (_, i) => `<i style="--h:${8 + Math.round(26 * Math.abs(Math.sin(i * .9 + 1)))}px"></i>`).join('')}</div>`;
 // концепт-кадр (вне реестра, координатор 13.10): прежний целевой вид урока — слова под ответом, панель из 6 инструментов; в приложении по п.81(12) «как есть» (4 плитки).
 const lessonConcept = () => phone(`${lhead({ en: 4 })}${taskTop()}<div class="ansl"><span>She works</span><span class="el">…</span></div>${tiles({ used: [1, 0] })}${cellRow(11, [0, 1, 2, 3, 5, 6, 7, 8, 9, 10], [4])}`, { time: '9:45', fixed: `<div class="fx" style="padding-bottom:34px">${toolsRowConcept({})}</div>` });
+// зачем (владелец 15.10): цифра остатка голоса на каждом микрофоне — Free по умолчанию 3 (во время записи 2), 0 → «PLUS»; у Plus (o.plus) цифры нет
+const micBtn = (o = {}) => { const v = o.plus ? undefined : (o.vb ?? (o.live || o.said ? 2 : 3)); return `<span class="mic t${o.live ? ' live' : ''}${v === 0 ? ' spent' : ''}">${icon('mic')}${v === undefined ? '' : v === 0 ? '<span class="vbdg plus">PLUS</span>' : `<span class="vbdg">${v}</span>`}</span>`; };
 const lessonSpeak = (o = {}) => phone(`${lhead(o)}${taskTop()}
   ${o.said ? `<div class="ansl ok">She works every day</div><div class="said ok"><div class="k">Сказано</div><div class="v">She works every day</div><div class="flex" style="margin-top:10px;gap:10px">${stars(3)}<span style="font-size:14px;color:var(--good);font-weight:600">Отлично</span></div></div>`
     : `<div class="ansl"><span class="cur"></span></div>${wave(o.live)}`}
-  <div class="micwrap">${o.said ? `<div class="verdict ok" style="margin:0">${icon('check', 's20')}Фраза засчитана</div>` : `<span class="mic t${o.live ? ' live' : ''}">${icon('mic')}</span><span class="micl">${o.live ? 'Слушаю…' : 'Зажми и говори'}</span>`}</div>
+  <div class="micwrap">${o.said ? `<div class="verdict ok" style="margin:0">${icon('check', 's20')}Фраза засчитана</div>` : `${micBtn(o)}<span class="micl">${o.live ? 'Слушаю…' : o.vb === 0 ? 'Голос на сегодня закончился' : 'Зажми и говори'}</span>`}</div>
   ${o.said ? '' : `<div class="flex" style="justify-content:center;gap:28px;margin-top:20px;color:var(--sec);font-size:16px;font-weight:600"><span class="t">Закрыть</span></div>`}`,
   { time: '9:45', fixed: o.said ? `<div class="fx"><div class="cta t">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : '' });
 const reviewSheet = () => lesson({ en: 4, partial: 'She', used: [1], overlay: sheet('rv', `
@@ -850,6 +856,8 @@ const SPEC = [
   ['L', 'Финальный экзамен', [['L1', 'Недоступен', exLocked()], ['L2', 'Интро', exIntro()], ['L3', `Отсчёт «Приготовься» ${rp('count')}`, exCount()], ['L4', 'Вопрос — «Какое предложение верное?»', exQ({ pick: 1 })], ['L5', 'Вопрос — «Исправь ошибку», таймер на исходе', exQ({ n: 47, tm: '01:12', low: true, err: true, flag: true, lesson: 12 })],
     ['L6', 'Проверка ответов', exReview()], ['L7', 'Итог', exResult()], ['L8', 'Награда B2', exCert()], ['L9', 'Окно имени на награде', exName()], ['L10', 'Окно «Выйти из экзамена?»', exExit()]]],
   ['Z', 'Концепт (вне реестра)', [['Z1', 'Урок: панель из 6 инструментов — целевой вид, не в приложении', lessonConcept()]]],
+  // зачем (владелец 15.10): один счётчик голоса Free на все микрофоны — новые кадры в КОНЦЕ, чтобы номера телефонов реестра не сдвинулись
+  ['V', 'Голос — остаток на микрофоне (15.10)', [['V1', 'Устно — осталось 3', lessonSpeak({ en: 4, vb: 3 })], ['V2', 'Устно — 0: бейдж PLUS, тап → Plus', lessonSpeak({ en: 4, vb: 0 })]]],
 ];
 const REMOVED = ['XP («+N XP», «+25 XP» за теорию, «+N опыта»)', 'руны и жемчуг (пилюля рун, «Разблокировать · 100», «Восстановить за жемчуг», «Урок открыт — твой навсегда»)', 'спасение сердец подарком', 'медали и «★ 4.5» → звёзды 1–3', 'пороги «2.5+» и «4.5+» → «2★»', 'вкладки «Маршрут», «Диалоги», «V2» и чип «Новые уроки» в шапке', 'dev-кнопки', '«Куплено» на карточке урока'];
 

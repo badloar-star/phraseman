@@ -146,6 +146,10 @@
 .ibar .row-i { display: flex; align-items: center; gap: 10px; }
 .ibar .rbtn { width: 52px; height: 52px; border-radius: 50%; background: #1C1C1E; border: 1px solid var(--line-2); display: flex; align-items: center; justify-content: center; color: #DADADC; flex: none; position: relative; }
 .ibar .rbtn .i { width: 24px; height: 24px; }
+/* зачем (владелец 15.10, один счётчик голоса на все микрофоны): цифра остатка на кнопке микрофона в поле ввода; 0 → «PLUS»; у Plus цифры нет */
+.ibar .rbtn .vbdg { position: absolute; top: -6px; right: -8px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; display: flex; align-items: center; justify-content: center; background: #0B0C0E; color: #fff; font-size: 12px; line-height: 16px; font-weight: 800; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 2px var(--bg, #0C0D10); z-index: 2; }
+.ibar .rbtn .vbdg.plus { background: #F2F1F6; color: #0B0C0E; font-size: 10px; letter-spacing: .3px; }
+.ibar .rbtn.spent { opacity: .55; }
 .ibar .rbtn.live { background: #FFFFFF; color: #0B0C0E; border-color: transparent; box-shadow: 0 0 0 8px rgba(255,255,255,.08), 0 0 30px rgba(255,255,255,.22); }
 .ibar .rbtn.live::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35); animation: halo 1.1s ease-out infinite; }
 @keyframes halo { 0% { transform: scale(.9); opacity: .9; } 100% { transform: scale(1.25); opacity: 0; } }
@@ -424,9 +428,12 @@ const typing = () => `<div class="msg b"><span class="av" style="margin-top:6px"
 const syserr = (text, retry = true) => `<div class="syserr"><div class="p">${li('alert', 's18')}<span>${text}</span></div>${retry ? `<span class="cta sm t">${li('refresh', 's18')}Повторить</span>` : ''}</div>`;
 const dots = (spent = 1) => `<span class="dots">${[0, 1, 2].map((i) => `<i${i < spent ? ' class="sp"' : ''}></i>`).join('')}</span>`;
 const ibar = (o = {}) => {
-  const mic = o.voice === 'live' ? `<span class="rbtn live">${icon('mic')}</span>`
+  // зачем (владелец 15.10): цифра остатка голоса Free на микрофоне (по умолчанию 3, во время записи 2), 0 → «PLUS»; у Plus (o.plus) и без распознавания (none) — без цифры
+  const vb = o.plus || o.voice === 'none' ? undefined : (o.vb ?? (o.voice === 'live' ? 2 : 3));
+  const vbdg = vb === undefined ? '' : vb === 0 ? '<span class="vbdg plus">PLUS</span>' : `<span class="vbdg">${vb}</span>`;
+  const mic = o.voice === 'live' ? `<span class="rbtn live">${icon('mic')}${vbdg}</span>`
     : o.voice === 'req' || o.voice === 'fin' ? `<span class="rbtn"><span class="spin"></span></span>`
-    : `<span class="rbtn t${o.voice === 'none' ? ' mnone' : ''}"><span class="mi" style="transform:none">${icon('mic')}</span></span>`;
+    : `<span class="rbtn t${o.voice === 'none' ? ' mnone' : ''}${vb === 0 ? ' spent' : ''}"><span class="mi" style="transform:none">${icon('mic')}</span>${vbdg}</span>`;
   const fld = o.typed ? `<span class="tv">${o.typed}</span>${o.typing ? '<span class="cur"></span>' : ''}` : `<span class="plc">Напиши или говори</span>`;
   const hint = {
     req: ['Готовлю микрофон… удерживай кнопку', '', true], live: ['Говори… отпусти, когда закончишь', '', true], fin: ['Обрабатываю сказанное…', '', true],
@@ -590,6 +597,11 @@ document.getElementById('root').innerHTML = [
     pc(S('g3', 'G3 Ранг 6 — «Дела»', 'Каталог — ранг 6, Дела'), 'Ранг 6 — «Дела»', rankCat(6, 'work', 3)),
     pc(S('g4', 'G4 Ранг 6 — «Поездки»', 'Каталог — ранг 6, Поездки'), 'Ранг 6 — «Поездки»', rankCat(6, 'travel', 3)),
     pc(S('g5', 'G5 Ранг 6 — «Повседневное»', 'Каталог — ранг 6, Повседневное'), 'Ранг 6 — «Повседневное»', rankCat(6, 'everyday', 3)),
+  ]),
+  // зачем (владелец 15.10): один счётчик голоса Free на все микрофоны — новые кадры в КОНЦЕ страницы, номера телефонов реестра не сдвигаются
+  block('voicelim', 'H. Голос — остаток на микрофоне (15.10)', 'Free — 3 голосовых ответа в день, один счётчик на все микрофоны приложения (курс, уроки, Карточки, «Мои ошибки», Диалоги). Цифра — на кнопке микрофона; на нуле «PLUS» и тап открывает Plus. У Plus цифры нет.', [
+    pc(S('h1', 'H1 Голос — осталось 3', 'Голос — осталось 3'), 'Осталось 3 голосовых ответа', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', ib: { vb: 3 } })),
+    pc(S('h2', 'H2 Голос — 0, бейдж PLUS', 'Голос — 0, PLUS'), 'Голос на сегодня закончился · тап → Plus', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', ib: { vb: 0 } })),
   ]),
 ].join('');
 

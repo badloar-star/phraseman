@@ -46364,6 +46364,158 @@
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
       "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
+    },
+    {
+      "id": "voice-mics-learn-001",
+      "source": "OWNER_VOICE_ONE_COUNTER_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/learn.html",
+        "phone": 105,
+        "label": "V1 · Устно — осталось 3",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:10 15.10 (через координатора): голос Free 3 в день ОДНИМ счётчиком на все микрофоны (кроме первой фразы онбординга); цифра на каждой иконке микрофона, на нуле «PLUS» → Plus; образец бейджа — learning-v2-voice-limit.html",
+      "screen": "Урок · задание «Устно»",
+      "state": "остаток голоса 3 — цифра на микрофоне",
+      "code": [
+        "app/lesson1.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&energy=5&lv2voice=3&lessonintro=skip&mode=b&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "дойти до задания «Устно»",
+        "log": ""
+      },
+      "added_reason": "владелец 15.10: один счётчик голоса на все микрофоны, цифра на каждом",
+      "note": "Дизайн вешает бейджи после окна Ядра 11:30; во всех прочих кадрах этих страниц с микрофоном Free теперь тоже цифра 3 (во время записи 2) — старые строки сверять с бейджем. Остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f, общий счётчик) — проверить, что подмена действует и вне курса"
+    },
+    {
+      "id": "voice-mics-learn-002",
+      "source": "OWNER_VOICE_ONE_COUNTER_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/learn.html",
+        "phone": 106,
+        "label": "V2 · Устно — 0: бейдж PLUS, тап → Plus",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:10 15.10 (через координатора): голос Free 3 в день ОДНИМ счётчиком на все микрофоны (кроме первой фразы онбординга); цифра на каждой иконке микрофона, на нуле «PLUS» → Plus; образец бейджа — learning-v2-voice-limit.html",
+      "screen": "Урок · задание «Устно»",
+      "state": "голос на сегодня закончился — «PLUS» на микрофоне",
+      "code": [
+        "app/lesson1.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&energy=5&lv2voice=0&lessonintro=skip&mode=b&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "дойти до задания «Устно»; тап по микрофону → Plus",
+        "log": ""
+      },
+      "added_reason": "владелец 15.10: один счётчик голоса на все микрофоны, цифра на каждом",
+      "note": "Дизайн вешает бейджи после окна Ядра 11:30; во всех прочих кадрах этих страниц с микрофоном Free теперь тоже цифра 3 (во время записи 2) — старые строки сверять с бейджем. Остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f, общий счётчик) — проверить, что подмена действует и вне курса"
+    },
+    {
+      "id": "voice-mics-dialogs-001",
+      "source": "OWNER_VOICE_ONE_COUNTER_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/dialogs.html",
+        "phone": 60,
+        "label": "H1 · Осталось 3 голосовых ответа",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:10 15.10 (через координатора): голос Free 3 в день ОДНИМ счётчиком на все микрофоны (кроме первой фразы онбординга); цифра на каждой иконке микрофона, на нуле «PLUS» → Plus; образец бейджа — learning-v2-voice-limit.html",
+      "screen": "Диалог · поле ввода",
+      "state": "остаток голоса 3 — цифра на микрофоне",
+      "code": [
+        "app/dialogue_v2_session.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&energy=5&lv2voice=3&mode=b&dquota=reset&coinRank=6&aiConsent=granted&dev_dialog_send=ok&next=/ai_dialog_home",
+        "taps": "открыть диалог «Закажи кофе», ответить один раз",
+        "log": ""
+      },
+      "added_reason": "владелец 15.10: один счётчик голоса на все микрофоны, цифра на каждом",
+      "note": "Дизайн вешает бейджи после окна Ядра 11:30; во всех прочих кадрах этих страниц с микрофоном Free теперь тоже цифра 3 (во время записи 2) — старые строки сверять с бейджем. Остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f, общий счётчик) — проверить, что подмена действует и вне курса"
+    },
+    {
+      "id": "voice-mics-dialogs-002",
+      "source": "OWNER_VOICE_ONE_COUNTER_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/dialogs.html",
+        "phone": 61,
+        "label": "H2 · Голос на сегодня закончился · тап → Plus",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:10 15.10 (через координатора): голос Free 3 в день ОДНИМ счётчиком на все микрофоны (кроме первой фразы онбординга); цифра на каждой иконке микрофона, на нуле «PLUS» → Plus; образец бейджа — learning-v2-voice-limit.html",
+      "screen": "Диалог · поле ввода",
+      "state": "голос закончился — «PLUS» на микрофоне",
+      "code": [
+        "app/dialogue_v2_session.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&energy=5&dev_dialog_voice=spent&mode=b&dquota=reset&coinRank=6&aiConsent=granted&dev_dialog_send=ok&next=/ai_dialog_home",
+        "taps": "открыть диалог; тап по микрофону → Plus",
+        "log": ""
+      },
+      "added_reason": "владелец 15.10: один счётчик голоса на все микрофоны, цифра на каждом",
+      "note": "Дизайн вешает бейджи после окна Ядра 11:30; во всех прочих кадрах этих страниц с микрофоном Free теперь тоже цифра 3 (во время записи 2) — старые строки сверять с бейджем. Остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f, общий счётчик) — проверить, что подмена действует и вне курса"
     }
   ]
 }

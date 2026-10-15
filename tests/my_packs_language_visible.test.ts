@@ -47,8 +47,11 @@ describe('экран «Мои наборы» — подключение', () => 
     expect(screen).not.toContain('stored ?? defaultPackLanguageForStudyTarget(studyTarget)');
   });
   it('добавление набора: кэш «набора нет» сброшен, список перечитан, язык переключён на язык нового набора (R29, R06)', () => {
-    expect(screen).toContain("onAppEvent('community_pack_added'");
-    expect(screen).toContain('missingPackCache.clear();');
+    // R44: подписка и сброс кэша — на уровне модуля (my_packs_missing_cache), а не внутри экрана
+    const cacheModule = read('app/flashcards/my_packs_missing_cache.ts');
+    expect(cacheModule).toContain("onAppEvent('community_pack_added'");
+    expect(cacheModule).toContain('missingPackCache.clear();');
+    expect(screen).toContain('subscribeAddedPack(');
     expect(screen).toContain('if (next !== \'none\' && next !== packLanguage) setPackLanguage(next);');
   });
   it('строка «Скрыто N: другой язык · Показать все» и журналы [MY-PACKS] / [PACK-ADD] language', () => {

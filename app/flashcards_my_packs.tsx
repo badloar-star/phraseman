@@ -44,8 +44,9 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { actionToastTri, emitAppEvent } from './events';
 import { formatPackLangTrace } from './flashcards/pack_lang_trace';
+import { clearPendingAddedPackId, missingPackCache, peekPendingAddedPackId, subscribeAddedPack } from './flashcards/my_packs_missing_cache';
 import { applyMyPacksLanguageView } from './flashcards/my_packs_language_view';
 import { MyPacksV2 } from './flashcards/MyPacksV2';
 import { runPublishPackFlow } from './flashcards/publish_pack_flow';
@@ -83,8 +84,6 @@ import { accountScopeKey } from './account_scope_key';
 import {
   canCommitAccountScopedResult,
   classifyMyPacksResolution,
-  MissingPackCache,
-  MY_PACKS_MISSING_TTL_MS,
 } from './flashcards/myPacksDataIntegrity';
 
 const EXEMPT_COLOR_1 = '#D9565D'; // theme-exempt: белый текст на красной кнопке «Удалить набор»
@@ -109,7 +108,7 @@ const EMPTY_GROUPS: MyPacksGroups = { added: [], created: [] };
 
 // зачем (Account V2, 8C): «набора нет» запоминается на 30 мин на процесс — фокусы экрана и
 // тихие повторы не читают заново из Firestore документы, которых нет.
-const missingPackCache = new MissingPackCache(200, MY_PACKS_MISSING_TTL_MS);
+// зачем (Ревизор R44): кэш и подписка на добавление живут в app/flashcards/my_packs_missing_cache.ts (на уровне модуля), а не только пока экран открыт
 
 // PM-096: согласованная сортировка «Мои наборы» — по дате изменения, сохраняется
 // локально (без сети, без Firestore-чтений). 'updated' — новые сверху (как уже
@@ -311,11 +310,10 @@ export default function FlashcardsMyPacksScreen() {
 
   // зачем (координатор 15.10, R29 и R06): добавили набор — кэш «набора нет» (30 мин) сбрасываем, чтобы только что добавленный не потерялся в нём, и тихо перечитываем список;
   // когда набор появится, а язык выбран другой, экран сам переключится на язык набора (Optimistic: без ожидания сети и без «пусто»).
-  const justAddedPackIdRef = useRef<string | null>(null);
-  React.useEffect(() => onAppEvent('community_pack_added', ({ packId }) => {
-    missingPackCache.clear();
+  const justAddedPackIdRef = useRef<string | null>(peekPendingAddedPackId()); // добавили, пока экран был закрыт — id ждёт в модуле
+  React.useEffect(() => subscribeAddedPack((packId) => {
     justAddedPackIdRef.current = packId;
-    console.log(`[MY-PACKS] pack_added event pack=${packId} -> кэш «набора нет» сброшен, перечитываем`); // guard-ok: событие добавления
+    console.log(`[MY-PACKS] pack_added event pack=${packId} -> перечитываем`); // guard-ok: событие добавления при открытом экране
     setReloadTick((value) => value + 1);
   }), []);
   React.useEffect(() => {
@@ -324,6 +322,7 @@ export default function FlashcardsMyPacksScreen() {
     const found = [...groups.added, ...groups.created].find((pack) => pack.id === id);
     if (!found) return;
     justAddedPackIdRef.current = null;
+    clearPendingAddedPackId();
     const next = normalizePackLanguage(found.packLanguage ?? found.studyTarget);
     console.log(`[MY-PACKS] pack_added visible pack=${id} language=${next} selected=${packLanguage}`); // guard-ok: переключение на язык нового набора
     if (next !== 'none' && next !== packLanguage) setPackLanguage(next);

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-16:intro1:r2": {
-          "ru": "`Swimming` — плавание как действие, а нам нужно название места: `swimming pool`.",
-          "uk": "`Swimming` — плавання як дія, а нам потрібна назва місця: `swimming pool`."
+          "ru": "Один бассейн: `Is there a swimming pool here?`.",
+          "uk": "Один басейн: `Is there a swimming pool here?`."
         },
         "en:lesson-04:session-16:intro1:r3": {
-          "ru": "`Gym` — тренажёрный зал. В записи звучит место для плавания: `swimming pool`.",
-          "uk": "`Gym` — тренажерний зал. У записі звучить місце для плавання: `swimming pool`."
+          "ru": "Перед одним бассейном нужно `a`: `a swimming pool`.",
+          "uk": "Перед одним басейном потрібне `a`: `a swimming pool`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-16:intro2:r2": {
-          "ru": "`Swimming pools` — несколько бассейнов. Здесь речь об одном месте, поэтому нужны `Is` и `a swimming pool`.",
-          "uk": "`Swimming pools` — кілька басейнів. Тут ідеться про одне місце, тому потрібні `Is` і `a swimming pool`."
+          "ru": "Один отель: `There is a hotel here`.",
+          "uk": "Один готель: `There is a hotel here`."
         },
         "en:lesson-04:session-16:intro2:r3": {
-          "ru": "Это сообщение, а не вопрос. Вопрос начинается с `Is`: `Is there a swimming pool here?`.",
-          "uk": "Це повідомлення, а не питання. Питання починається з `Is`: `Is there a swimming pool here?`."
+          "ru": "Это вопрос. Вы уже нашли отель и сообщаете: `There is`.",
+          "uk": "Це запитання. Ви вже знайшли готель і повідомляєте: `There is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-16:intro3:r2": {
-          "ru": "Вариант `No` сообщает об отсутствии. Здесь подтверждаем наличие, поэтому нужен `Yes, there is.`.",
-          "uk": "Варіант `No` повідомляє про відсутність. Тут підтверджуємо наявність, тому потрібна відповідь `Yes, there is.`."
+          "ru": "`laundrettes` — несколько мест: `Are there`.",
+          "uk": "`laundrettes` — кілька місць: `Are there`."
         },
         "en:lesson-04:session-16:intro3:r3": {
-          "ru": "`Are` относится к нескольким местам. Вопрос был об одном бассейне с `Is`, поэтому ответ — `Yes, there is.`.",
-          "uk": "`Are` стосується кількох місць. Питання було про один басейн з `Is`, тому відповідь — `Yes, there is.`."
+          "ru": "Перед несколькими местами не нужно `a`.",
+          "uk": "Перед кількома місцями не потрібне `a`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8556574d5c61695a9a530232d0243c7f1f51fc557f2bfcfb295d6db654fec126"
+  "auxiliaryFingerprint": "ec937fe9b534e4ecc87eed68e1d5719889f746e28599d5baf9471e27ec5ecc4e"
 }

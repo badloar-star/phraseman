@@ -1,126 +1,136 @@
-# Англійська · Урок 4 · Заняття 16 — «Басейн у дозвіллєвому центрі»
+# Англійська · Урок 4 · Заняття 16 — Район із басейном
 
-**Сцена заняття.** У дозвіллєвому центрі відвідувач уточнює в адміністратора, чи є басейн. Спочатку він ставить питання, потім окремим ходом дає коротку відповідь.
-**Як сказати:** поставити питання й дати коротку відповідь в окремих ходах.
-**Нове слово:** swimming pool
-**Повертаються:** near, gym, hotel, garden, platform, building
+**Ситуація.** Ви обираєте район для подорожі: розглядаєте житло, транспорт і місця для занять спортом. Друг звіряє карту з фотографіями, а ви уточнюєте, що тут є.
+
+**Що ви опануєте:** запитати про басейн і пригадати місця та транспорт із глави
+**Нові слова:** swimming pool
+
+---
 
 ## Інтро 1
 
-### `swimming pool` — басейн
+### Два слова — один басейн
 
-`swimming pool` — «басейн», місце, де плавають. Це два слова, але вони називають одне місце: `swimming` пояснює дію, а `pool` — сам басейн. Не скорочуйте відповідь до одного `pool`, коли обираєте назву місця. У розмові ці слова часто стоять поруч після `a` або `the`, коли називаємо одну конкретну зону.
+`swimming pool` — «басейн», місце для плавання. Одне місце — `a swimming pool`, кілька — `swimming pools`: закінчення змінюється в останньому слові. `Is there a swimming pool here?` — «Тут є басейн?» Два слова не означають два басейни: другий купальник поки не потрібен.
 
-**На карті дозвіллєвого центру позначено місце для плавання. Оберіть назву.**
+**Запитайте «Тут є басейн?»**
 
-- ✅ **swimming pool**
-- ❌ swimming — *`Swimming` — плавання як дія, а нам потрібна назва місця: `swimming pool`.*
-- ❌ gym — *`Gym` — тренажерний зал. У записі звучить місце для плавання: `swimming pool`.*
+- ✅ **Is there a swimming pool here?**
+- ❌ Are there a swimming pool here? — *Один басейн: `Is there a swimming pool here?`.*
+- ❌ Is there swimming pool here? — *Перед одним басейном потрібне `a`: `a swimming pool`.*
+
+---
 
 ## Інтро 2
 
-### Питання про один басейн починається з `Is`
+### Що є в районі
 
-`There is a swimming pool here.` — повідомлення про одне місце. Якщо питаємо про нього, `is` виходить наперед: `Is there a swimming pool here?` Артикль `a` залишається перед одним басейном. Спочатку запитайте, чи є місце, а відповідь поки залиште відкритою.
+`neighbourhood` — «район», `hotel` — «готель», `dentist` — «стоматолог». `This is a neighbourhood` — «Це район». `There is a hotel here` — «Тут є готель». `Is there a dentist here?` — «Тут є стоматолог?» Ще два знайомі місця: `laundrette` — «пральня самообслуговування», `gym` — «тренажерна зала».
 
-**Адміністратор показує одну зону. Запитайте, чи є тут басейн.**
+**На схемі району ви знайшли готель. Повідомте «Тут є готель».**
 
-- ✅ **Is there a swimming pool here?**
-- ❌ Are there swimming pools here? — *`Swimming pools` — кілька басейнів. Тут ідеться про одне місце, тому потрібні `Is` і `a swimming pool`.*
-- ❌ There is a swimming pool here. — *Це повідомлення, а не питання. Питання починається з `Is`: `Is there a swimming pool here?`.*
+- ✅ **There is a hotel here.**
+- ❌ There are a hotel here. — *Один готель: `There is a hotel here`.*
+- ❌ Is there a hotel here? — *Це запитання. Ви вже знайшли готель і повідомляєте: `There is`.*
+
+---
 
 ## Інтро 3
 
-### Коротка відповідь повторює `is`
+### Дістатися й потренуватися
 
-На питання `Is there a swimming pool here?` можна відповісти `Yes, there is.` — «Так, є». У короткій відповіді `is` не зникає: він повертається після `there`. Заперечний варіант буде окремою відповіддю `No, there isn't.`
+`tram` — «трамвай», `taxi` — «таксі», `platform` — «платформа». Друг показує на трамвай удалині: `That is a tram` — «То — трамвай». Запитання про залу: `Is there a gym?` — «Чи є тренажерна зала?» Про кілька пралень: `Are there laundrettes here?` — «Тут є пральні самообслуговування?» Перед кількома місцями `a` не ставимо.
 
-**Адміністратор підтверджує, що басейн є. Оберіть коротку відповідь.**
+**Запитайте, чи є тут кілька пралень самообслуговування.**
 
-- ✅ **Yes, there is.**
-- ❌ No, there isn't. — *Варіант `No` повідомляє про відсутність. Тут підтверджуємо наявність, тому потрібна відповідь `Yes, there is.`.*
-- ❌ Yes, there are. — *`Are` стосується кількох місць. Питання було про один басейн з `Is`, тому відповідь — `Yes, there is.`.*
+- ✅ **Are there laundrettes here?**
+- ❌ Is there laundrettes here? — *`laundrettes` — кілька місць: `Are there`.*
+- ❌ Are there a laundrettes here? — *Перед кількома місцями не потрібне `a`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте й оберіть нове словосполучення**
-<!-- interaction_id: en:lesson-04:session-16:i01; family: listen_choose -->
-Ціль: `swimming pool`
-🔊 *swimming pool*
-Значення варіантів: swimming pool — басейн · swimming — плавання · gym — тренажерний зал
-→ **swimming pool** · swimming · gym
-- swimming — *У записі назва місця з двох слів: `swimming pool`, а не дія `swimming`.*
-- gym — *`Gym` — зал для тренувань. У записі було місце для плавання: `swimming pool`.*
+## Практика (17 завдань)
 
-**2 · Вимовте нове словосполучення**
-<!-- interaction_id: en:lesson-04:session-16:i02; family: scripted_repeat_compare -->
-Ціль: `swimming pool`
-🎙 **swimming pool**
+**1 · Показуючи виділену ділянку міста на карті, скажіть «Це район»**
+<!-- interaction_id: en:lesson-04:session-16:i01; family: phrase_builder -->
+Плитки: `neighbourhood` `a` `is` `This` `are` → **This is a neighbourhood.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a neighbourhood.`)*
 
-**3 · З’єднайте нове й знайомі місця зі значеннями**
-<!-- interaction_id: en:lesson-04:session-16:i03; family: speed_match -->
-Пари: `swimming pool` — басейн · `gym` — тренажерний зал · `hotel` — готель · `building` — будівля
+**2 · Послухайте й виберіть назву**
+<!-- interaction_id: en:lesson-04:session-16:i02; family: listen_choose -->
+🔊 *swimming pool* → **swimming pool** · swimming pools · small pool
+- swimming pools — *У записі останнє слово — `pool`, а в цьому варіанті — `pools`.*
+- small pool — *У записі перше слово — `swimming`, а в цьому варіанті — `small`.*
 
-**4 · Послухайте питання про один басейн біля залу й оберіть його зміст**
-<!-- interaction_id: en:lesson-04:session-16:i04; family: listen_choose -->
-Ціль: `Is there a swimming pool near the gym?`
-🔊 *Is there a swimming pool near the gym?*
-Значення варіантів: Is there a swimming pool near the gym? — Біля залу є один басейн? · Are there swimming pools near the gym? — Біля залу є кілька басейнів? · There is a swimming pool near the gym. — Біля залу є один басейн.
-→ **Is there a swimming pool near the gym?** · Are there swimming pools near the gym? · There is a swimming pool near the gym.
-- Are there swimming pools near the gym? — *`Swimming pools` — кілька басейнів. Тут питаємо про один, тому потрібні `Is` і `a swimming pool`.*
-- There is a swimming pool near the gym. — *Це повідомлення, а не питання. Питання починається з `Is`: `Is there a swimming pool near the gym?`.*
+**3 · Назвіть басейн двома англійськими словами**
+<!-- interaction_id: en:lesson-04:session-16:i03; family: context_gap_grammar -->
+___ → **swimming pool** · gym · hotel
+- gym — *`gym` — тренажерна зала; басейн — `swimming pool`.*
+- hotel — *`hotel` — готель; басейн — `swimming pool`.*
 
-**5 · Складіть питання про один басейн біля готелю**
-<!-- interaction_id: en:lesson-04:session-16:i05; family: phrase_builder -->
-Ціль: `Is there a swimming pool near the hotel?`
-Плитки: `Is` · `there` · `a` · `swimming` · `pool` · `near` · `the` · `hotel` · `Are`
+**4 · З’єднайте назви зі значеннями**
+<!-- interaction_id: en:lesson-04:session-16:i04; family: speed_match -->
+swimming pool — басейн · dentist — стоматолог · hotel — готель · tram — трамвай
 
-**6 · У саду ви перевіряєте, чи є один басейн. Вставте початок питання**
-<!-- interaction_id: en:lesson-04:session-16:i06; family: context_gap_grammar -->
-___ there a swimming pool near the garden? → **Is** · Are · There
-- Are — *`A swimming pool` — одне місце, тому питання починається з `Is`.*
-- There — *`There is a swimming pool` — порядок повідомлення. Питання починається з `Is`.*
+**5 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-16:i05; family: listen_build_dictation -->
+🔊 *Is there a swimming pool?* Плитки: `pool` `swimming` `a` `there` `Is` → **Is there a swimming pool?**
 
-**7 · Послухайте й складіть повідомлення про один басейн біля платформи**
-<!-- interaction_id: en:lesson-04:session-16:i07; family: listen_build_dictation -->
-Ціль: `There is a swimming pool near the platform.`
-🔊 *There is a swimming pool near the platform.*
-Плитки: `There` · `is` · `a` · `swimming` · `pool` · `near` · `the` · `platform` · `Are`
+**6 · За картою повідомте «Тут є готель»**
+<!-- interaction_id: en:lesson-04:session-16:i06; family: phrase_builder -->
+Плитки: `here` `hotel` `a` `is` `There` `are` → **There is a hotel here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a hotel here.`)*
 
-**8 · Послухайте коротку заперечну відповідь**
-<!-- interaction_id: en:lesson-04:session-16:i08; family: listen_choose -->
-Ціль: `No, there isn't.`
-🔊 *No, there isn't.*
-Значення варіантів: No, there isn't. — Ні, басейну немає. · Yes, there is. — Так, басейн є. · There isn't a pool. — Басейну немає.
-→ **No, there isn't.** · Yes, there is. · There isn't a pool.
-- Yes, there is. — *Це позитивна відповідь. У записі чути заперечення `No, there isn't.`.*
-- There isn't a pool. — *Це повне повідомлення, а завдання перевіряє коротку відповідь `No, there isn't.`.*
+**7 · Укажіть на далекий транспорт на фотографії: «То — трамвай»**
+<!-- interaction_id: en:lesson-04:session-16:i07; family: scripted_repeat_compare -->
+🎙 **That is a tram.**
 
-**9 · Складіть питання про басейни біля будівлі**
-<!-- interaction_id: en:lesson-04:session-16:i09; family: phrase_builder -->
-Ціль: `Are there swimming pools near the building?`
-Плитки: `Are` · `there` · `swimming` · `pools` · `near` · `the` · `building` · `Is`
+**8 · Запитайте, чи є тут кілька пралень самообслуговування**
+<!-- interaction_id: en:lesson-04:session-16:i08; family: context_gap_grammar -->
+___ there laundrettes here? → **Are** · Is · Am
+- Is — *`laundrettes` — кілька місць: `Are there`.*
+- Am — *Запитання про кілька місць починається з `Are there`.*
 
-**10 · Послухайте й складіть повідомлення про басейн біля саду**
-<!-- interaction_id: en:lesson-04:session-16:i10; family: listen_build_dictation -->
-Ціль: `There is a swimming pool near the garden.`
-🔊 *There is a swimming pool near the garden.*
-Плитки: `There` · `is` · `a` · `swimming` · `pool` · `near` · `the` · `garden` · `Are`
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-04:session-16:i09; family: listen_choose -->
+🔊 *Is there a gym?* → **Is there a gym?** · Is there a hotel? · Is there a laundrette?
+- Is there a hotel? — *У записі останнє слово — `gym`, а в цьому варіанті — `hotel`.*
+- Is there a laundrette? — *У записі останнє слово — `gym`, а в цьому варіанті — `laundrette`.*
 
-**11 · поставте питання про басейн**
-<!-- interaction_id: en:lesson-04:session-16:i11; family: context_gap_grammar -->
-Ціль: `Is there a swimming pool?`
-___ there a swimming pool? → **Is** · Are · There
-- Are — *Один басейн потребує `Is`, а не `Are`.*
-- There — *`There is` — порядок повідомлення. Питання починається з `Is`.*
+**10 · З’єднайте назви зі значеннями**
+<!-- interaction_id: en:lesson-04:session-16:i10; family: speed_match -->
+platform — платформа · taxi — таксі · laundrette — пральня самообслуговування · gym — тренажерна зала
 
-**12 · після питання `Is there a swimming pool?` басейн є; дайте окрему коротку відповідь**
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-04:session-16:i11; family: listen_build_dictation -->
+🔊 *There is a swimming pool here.* Плитки: `here` `pool` `swimming` `a` `is` `There` `are` → **There is a swimming pool here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a swimming pool here.`)*
+
+**12 · Запитайте про кілька басейнів тут**
 <!-- interaction_id: en:lesson-04:session-16:i12; family: phrase_builder -->
-Ціль: `Yes, there is.`
-Плитки: `Yes` · `there` · `is` · `No` · `are`
+Плитки: `here` `pools` `swimming` `there` `Are` → **Are there swimming pools here?**
 
-## Для збирача
+**13 · У далекій частині фотографії друг не впізнає басейн. Скажіть «То — басейн»**
+<!-- interaction_id: en:lesson-04:session-16:i13; family: scripted_repeat_compare -->
+🎙 **That is a swimming pool.**
 
-atomic_practice: practice.atomic.json
-new_words: swimming pool — басейн — Місце, де люди плавають.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=speed_match, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=listen_choose, 9=phrase_builder, 10=listen_build_dictation, 11=context_gap_grammar, 12=phrase_builder
+**14 · Повідомте «Тут є басейни»**
+<!-- interaction_id: en:lesson-04:session-16:i14; family: context_gap_grammar -->
+There ___ swimming pools here. → **are** · is · am
+- is — *Басейнів кілька: `There are swimming pools here`.*
+- am — *Про наявність кількох басейнів кажемо `There are`.*
+
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-04:session-16:i15; family: listen_choose -->
+🔊 *Is there a dentist?* → **Is there a dentist?** · Is there a gym? · Is there a hotel?
+- Is there a gym? — *У записі останнє слово — `dentist`, а в цьому варіанті — `gym`.*
+- Is there a hotel? — *У записі останнє слово — `dentist`, а в цьому варіанті — `hotel`.*
+
+**16 · З’єднайте назви зі значеннями**
+<!-- interaction_id: en:lesson-04:session-16:i16; family: speed_match -->
+neighbourhood — район · dentist — стоматолог · platform — платформа · taxi — таксі
+
+**17 · В іншій подорожі ви хочете поплавати. На стійці готелю запитайте «Тут є басейн?»**
+<!-- interaction_id: en:lesson-04:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is there a swimming pool here?**
+

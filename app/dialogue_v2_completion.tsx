@@ -34,7 +34,9 @@ import { safeRouterBack } from './navigation_back';
 import { RowDivider } from '../components/v2/RowDivider';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { glassTone } from '../components/dialogs/glass/glassTone';
-import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
+import { isMomentsV3FlagOn, useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
+import { deriveDialogueReaction, dialoguePartnerName, DIALOGUE_CHAIN_LOG } from '../components/completion/dialogue_chain_gate';
+import { dialogueChainText } from '../components/completion/dialogue_chain_strings';
 // зачем (координатор 15.10, m17 за флагом moments_v3): окно «Первый разговор — есть!» грузится лениво и только когда итог готов
 const FirstDialogHost = lazy(() => import('../components/dialog_moments/FirstDialogHost'));
 
@@ -115,6 +117,12 @@ export default function DialogueV2CompletionRoute() {
   const [state, setState] = useState<State>({ kind: 'loading' });
   const [feedbackAllowed, setFeedbackAllowed] = useState(false);
   const momentsV3 = useMomentsV3Enabled();
+  // зачем (координатор 15.10, m18 «думает… → реакция» за moments_v3): решение защёлкивается при входе — «думает…» ложится на ожидание итога из сети с первого кадра,
+  // а флаг, пришедший позже, не переключает экран посреди показа. Модуль анимации грузится require'ом только при включённом флаге.
+  const [dialogueChainOn] = useState(() => isMomentsV3FlagOn());
+  const DlgChain = dialogueChainOn ? (require('../components/completion/DialogueDoneChain') as typeof import('../components/completion/DialogueDoneChain')) : null;
+  const [dialogueChainFinished, setDialogueChainFinished] = useState(false);
+  const onDialogueChainFinished = useCallback(() => setDialogueChainFinished(true), []);
   const sessionId = SESSION_RE.test(single(params.sessionId) ?? '') ? single(params.sessionId) : null;
   const scenarioId = SCENARIO_RE.test(single(params.scenarioId) ?? '') ? single(params.scenarioId) : null;
   const endedByParam = single(params.endedBy);
@@ -232,6 +240,7 @@ export default function DialogueV2CompletionRoute() {
   // на языке интерфейса — на итоге цели вдруг становились «Start with a greeting». Берём тот же
   // перевод, что у брифинга; нет перевода — подпись сервера.
   const goalLabels = useMemo(() => dialogueV2UiCopy(lang, scenarioId)?.objectiveLabels ?? null, [lang, scenarioId]);
+  const partnerName = useMemo(() => (dialogueChainOn ? dialoguePartnerName(dialogueV2UiCopy(lang, scenarioId)?.personas) : null), [dialogueChainOn, lang, scenarioId]);
   const goalLabel = (objectiveId: string, fallback: string) => goalLabels?.[objectiveId] ?? fallback;
   const goalsTotal = review?.objectiveResults.length ?? 0;
   const goalsMet = review?.objectiveResults.filter((objective) => objective.status === 'met').length ?? 0;
@@ -288,22 +297,119 @@ export default function DialogueV2CompletionRoute() {
   // число целей сцены известно из каталога (подписи целей) — скелет повторяет высоту будущего списка; нет подписей — три строки
   const goalRowsGuess = goalLabels ? Math.min(8, Math.max(1, Object.keys(goalLabels).length)) : 3;
   const title = endedBy === 'bot' ? labels.passed : labels.finished;
+  const reaction = deriveDialogueReaction({ endedBy, mood, goalsMet, goalsTotal });
+  useEffect(() => {
+    console.log(`${DIALOGUE_CHAIN_LOG} решение при входе: ${dialogueChainOn ? 'играем «думает…»' : 'прежний итог (moments_v3 выключен или кэш флага ещё не прочитан)'} сцена=${String(scenarioId)} собеседник=${partnerName ?? 'нет имени'}`); // guard-ok: единичный журнал решения показа
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: решение пишется один раз, при входе
+  }, []);
   const close = () => safeRouterBack(router, '/ai_dialog_home' as never);
   const again = () => {
     if (!scenarioId) return;
     router.replace({ pathname: '/dialogue_v2_briefing', params: { scenarioId } } as never);
   };
 
+  // зачем (m18): карточка цифр и «Ошибки»/отзыв нужны в двух раскладках (прежней и цепочке m18) — один JSX, без копий
+  const statsCard = (
+    <View testID="dialogue-v2-completion-stats" style={[dialogueGlassCardStyle(glass, 16), styles.stats]}>
+      {review ? (
+        <Stat glass={glass} value={`${goalsMet}`} suffix={`/${goalsTotal}`} label={labels.goals} />
+      ) : state.kind === 'unavailable' ? (
+        // зачем (Макеты, координатор 13.10): в «Итог пока недоступен» ячейка целей мерцала скелетом — выглядело как вечная загрузка рядом с «недоступен». «—» без мерцания, ячейку не прячем: раскладка не прыгает
+        <GoalsStatUnavailable glass={glass} label={labels.goals} />
+      ) : (
+        <GoalsStatSkeleton glass={glass} label={labels.goals} />
+      )}
+      <Stat glass={glass} value={`${correct}`} label={labels.correct} color={LV2_GOOD} divider />
+      <Stat glass={glass} value={`${mistakes}`} label={labels.mistakes} color={LV2_BAD} divider />
+      <Stat glass={glass} value={`${accuracy}%`} label={labels.accuracy} divider />
+    </View>
+  );
+  const errorsAndFeedback = (
+    <>
+      {/* зачем (E9): «Что исправить» — из локального разбора ходов, не ждёт сервер */}
+        {errorRows.length > 0 ? (
+          <View testID="dialogue-v2-completion-errors" style={[dialogueGlassCardStyle(glass, 16), styles.errors]}>
+            <View style={styles.errorsHead}>
+              <Text maxFontSizeMultiplier={1.3} style={[styles.errorsTitle, { color: glass.text }]}>{labels.errorsTitle}</Text>
+              <Text maxFontSizeMultiplier={1.3} style={[styles.errorsCount, { color: glass.mutedText }]}>{errorRows.length}</Text>
+            </View>
+            {errorRows.map((correction, index) => (
+              <View
+                key={`${correction.original}-${index}`}
+                style={styles.errorRow}
+              >
+                {index > 0 ? <RowDivider color={glass.line} /> : null}
+                <Text maxFontSizeMultiplier={1.4} style={[styles.was, { color: LV2_BAD, textDecorationColor: LV2_BAD }]}>{correction.original}</Text>
+                <Ionicons name="arrow-forward" size={16} color={glass.mutedText} />
+                <Text maxFontSizeMultiplier={1.4} style={[styles.ok, { color: LV2_GOOD }]}>{correction.corrected}</Text>
+              </View>
+            ))}
+            {finishableMistakes ? (
+              <Pressable
+                testID="dialogue-v2-completion-repeat-mistakes"
+                accessibilityRole="button"
+                accessibilityLabel={labels.repeatMistakes}
+                onPress={dialogMistakes.openPractice}
+                style={({ pressed }) => [styles.repeatMistakes, { backgroundColor: glass.buttonFill }, pressed && { opacity: 0.7 }]}
+              >
+                <Ionicons name="refresh" size={18} color={glass.text} />
+                <Text maxFontSizeMultiplier={1.3} style={[styles.repeatMistakesText, { color: glass.text }]}>{labels.repeatMistakes}</Text>
+              </Pressable>
+            ) : null}
+          </View>
+        ) : null}
+      {review ? (
+        <>
+          {feedbackAllowed && sessionId && scenarioId ? (
+            <FeedbackRatingCard
+              kind="dialogue"
+              entityId={`${scenarioId}:${sessionId}`}
+              entityLabel={sceneTitle || scenarioId}
+              lang={lang}
+              title={labels.rateTitle}
+              placeholder={labels.ratePlaceholder}
+              sendLabel={labels.rateSend}
+              thanksLabel={labels.rateThanks}
+              ratingA11yLabel={labels.rating}
+              testID="dialogue-v2-completion-feedback"
+              presentation="liquid-glass-rate"
+            />
+          ) : null}
+        </>
+      ) : null}
+    </>
+  );
+  const chainScope = (children: React.ReactNode) => (DlgChain ? (
+    <DlgChain.DialogueChainScope ready={state.kind === 'ready'} failed={state.kind === 'unavailable'} reaction={reaction.reaction} reactionReason={reaction.reason} goals={goalsTotal} hasCoins={showCoinAward} onFinished={onDialogueChainFinished}>
+      {children}
+    </DlgChain.DialogueChainScope>
+  ) : children);
+  // зачем (эталон m18 `.foot`): кнопки всплывают последними; без цепочки — прежний подвал
+  const footer = (children: React.ReactNode) => (DlgChain
+    ? <DlgChain.DialogueChainBeat offset={DlgChain.DIALOGUE_CHAIN_OFFSETS.rest(goalsTotal)} style={styles.footer}>{children}</DlgChain.DialogueChainBeat>
+    : <View style={styles.footer}>{children}</View>);
+
   return (
     <View style={[styles.fill, { backgroundColor: glass.bg }]} testID="dialogue-v2-completion-screen">
       <SafeAreaView style={styles.fill} edges={['top', 'bottom']}>
+        {chainScope(<>
         <View style={styles.header} testID="dialogue-v2-completion-header">
           <DialogueGlassBackButton glass={glass} icon="close" onPress={close} accessibilityLabel={labels.close} />
           <View style={styles.headerSpacer} />
           <BalancePill g={lv2Glass} lang={lang} />
         </View>
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
-          <View style={styles.titleBlock}>
+          {DlgChain ? (
+            <DlgChain.DialogueChainHeader
+              lang={lang}
+              partnerName={partnerName}
+              reaction={reaction.reaction}
+              fallbackTitle={title}
+              sub={review ? [sceneTitle, `${dialogueChainText(lang, 'goalsOf', { met: goalsMet, total: goalsTotal })} ${labels.goals}`].filter(Boolean).join(' · ') : sceneTitle || null}
+              colors={{ text: glass.text, secondary: glass.secondary, control: glass.opaqueControl }}
+            />
+          ) : null}
+          {DlgChain ? null : <View style={styles.titleBlock}>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
             {sceneTitle ? <Text maxFontSizeMultiplier={1.3} style={[styles.sub, { color: glass.secondary }]}>{sceneTitle}</Text> : null}
             {endedBy !== 'bot' ? (
@@ -320,9 +426,9 @@ export default function DialogueV2CompletionRoute() {
                 <Text maxFontSizeMultiplier={1.3} style={[styles.moodText, { color: glass.text }]}>{dialogueMoodLabel(lang, mood)}</Text>
               </View>
             ) : null}
-          </View>
+          </View>}
 
-          {state.kind === 'loading' ? (
+          {!DlgChain && state.kind === 'loading' ? (
             // зачем (E9, координатор 12.10): цифры и «Что исправить» уже есть на телефоне и показаны сразу; ждём только оценку и цели сервера — тихая строка вместо карточки со спиннером, ниже скелет целей
             <Text testID="dialogue-v2-completion-loading" maxFontSizeMultiplier={1.3} style={[styles.stateText, styles.loadingNote, { color: glass.secondary }]}>{labels.loading}</Text>
           ) : null}
@@ -333,21 +439,10 @@ export default function DialogueV2CompletionRoute() {
             </View>
           ) : null}
 
+          {DlgChain ? null : <>
           {showLocalStats ? (
             <>
-              <View testID="dialogue-v2-completion-stats" style={[dialogueGlassCardStyle(glass, 16), styles.stats]}>
-                {review ? (
-                  <Stat glass={glass} value={`${goalsMet}`} suffix={`/${goalsTotal}`} label={labels.goals} />
-                ) : state.kind === 'unavailable' ? (
-                  // зачем (Макеты, координатор 13.10): в «Итог пока недоступен» ячейка целей мерцала скелетом — выглядело как вечная загрузка рядом с «недоступен». «—» без мерцания, ячейку не прячем: раскладка не прыгает
-                  <GoalsStatUnavailable glass={glass} label={labels.goals} />
-                ) : (
-                  <GoalsStatSkeleton glass={glass} label={labels.goals} />
-                )}
-                <Stat glass={glass} value={`${correct}`} label={labels.correct} color={LV2_GOOD} divider />
-                <Stat glass={glass} value={`${mistakes}`} label={labels.mistakes} color={LV2_BAD} divider />
-                <Stat glass={glass} value={`${accuracy}%`} label={labels.accuracy} divider />
-              </View>
+              {statsCard}
               {showCoinAward ? (
                 <View testID="dialogue-v2-completion-coins">
                   {/* guard-ok: только отображение начисленного, баланс не меняется (начисляет useDialogueV2CoinReward) */}
@@ -385,59 +480,51 @@ export default function DialogueV2CompletionRoute() {
           ) : state.kind === 'loading' ? (
             <GoalsSkeleton glass={glass} rows={goalRowsGuess} />
           ) : null}
-          {/* зачем (E9): «Что исправить» — из локального разбора ходов, не ждёт сервер */}
-            {errorRows.length > 0 ? (
-              <View testID="dialogue-v2-completion-errors" style={[dialogueGlassCardStyle(glass, 16), styles.errors]}>
-                <View style={styles.errorsHead}>
-                  <Text maxFontSizeMultiplier={1.3} style={[styles.errorsTitle, { color: glass.text }]}>{labels.errorsTitle}</Text>
-                  <Text maxFontSizeMultiplier={1.3} style={[styles.errorsCount, { color: glass.mutedText }]}>{errorRows.length}</Text>
+          {errorsAndFeedback}
+          </>}
+          {DlgChain ? (
+            review && review.objectiveResults.length > 0 ? (
+              // зачем (эталон m18): цели всплывают каскадом по 300 мс с +0,6 с от реакции, «+N монет» — за ними, цифры/ошибки/отзыв — следом
+              <DlgChain.DialogueChainBeat offset={DlgChain.DIALOGUE_CHAIN_OFFSETS.goal(0)}>
+                <View testID="dialogue-v2-completion-goals" style={[dialogueGlassCardStyle(glass, 16), styles.goals]}>
+                  {review.objectiveResults.map((objective, index) => {
+                    const met = objective.status === 'met';
+                    return (
+                      <DlgChain.DialogueChainBeat key={objective.objectiveId} offset={DlgChain.DIALOGUE_CHAIN_OFFSETS.goal(index)}>
+                        <View style={styles.goalRow} accessible accessibilityLabel={goalLabel(objective.objectiveId, objective.label)} accessibilityState={{ checked: met }}>
+                          {index > 0 ? <RowDivider color={glass.line} /> : null}
+                          <View style={[styles.goalBadge, { backgroundColor: met ? glass.cta : glass.opaqueControl }]}>
+                            {met ? <Ionicons name="checkmark" size={15} color={glass.ctaInk} /> : (
+                              <Text maxFontSizeMultiplier={1.2} style={[styles.goalIndex, { color: glass.secondary }]}>{index + 1}</Text>
+                            )}
+                          </View>
+                          <Text maxFontSizeMultiplier={1.3} style={[styles.goalText, { color: met ? glass.secondary : glass.text }]}>{goalLabel(objective.objectiveId, objective.label)}</Text>
+                        </View>
+                      </DlgChain.DialogueChainBeat>
+                    );
+                  })}
                 </View>
-                {errorRows.map((correction, index) => (
-                  <View
-                    key={`${correction.original}-${index}`}
-                    style={styles.errorRow}
-                  >
-                    {index > 0 ? <RowDivider color={glass.line} /> : null}
-                    <Text maxFontSizeMultiplier={1.4} style={[styles.was, { color: LV2_BAD, textDecorationColor: LV2_BAD }]}>{correction.original}</Text>
-                    <Ionicons name="arrow-forward" size={16} color={glass.mutedText} />
-                    <Text maxFontSizeMultiplier={1.4} style={[styles.ok, { color: LV2_GOOD }]}>{correction.corrected}</Text>
-                  </View>
-                ))}
-                {finishableMistakes ? (
-                  <Pressable
-                    testID="dialogue-v2-completion-repeat-mistakes"
-                    accessibilityRole="button"
-                    accessibilityLabel={labels.repeatMistakes}
-                    onPress={dialogMistakes.openPractice}
-                    style={({ pressed }) => [styles.repeatMistakes, { backgroundColor: glass.buttonFill }, pressed && { opacity: 0.7 }]}
-                  >
-                    <Ionicons name="refresh" size={18} color={glass.text} />
-                    <Text maxFontSizeMultiplier={1.3} style={[styles.repeatMistakesText, { color: glass.text }]}>{labels.repeatMistakes}</Text>
-                  </Pressable>
-                ) : null}
+              </DlgChain.DialogueChainBeat>
+            ) : null
+          ) : null}
+          {DlgChain && showCoinAward ? (
+            <DlgChain.DialogueChainBeat offset={DlgChain.DIALOGUE_CHAIN_OFFSETS.coins(goalsTotal)}>
+              <View testID="dialogue-v2-completion-coins">
+                <DlgChain.DialogueChainMountAt offset={DlgChain.DIALOGUE_CHAIN_OFFSETS.coins(goalsTotal)}>
+                  {/* guard-ok: только отображение начисленного, баланс не меняется (начисляет useDialogueV2CoinReward) */}
+                  <CoinAward amount={dialogCoinReward.coins} lang={lang} g={lv2Glass} animate={!reduceMotion} />
+                </DlgChain.DialogueChainMountAt>
               </View>
-            ) : null}
-          {review ? (
-            <>
-              {feedbackAllowed && sessionId && scenarioId ? (
-                <FeedbackRatingCard
-                  kind="dialogue"
-                  entityId={`${scenarioId}:${sessionId}`}
-                  entityLabel={sceneTitle || scenarioId}
-                  lang={lang}
-                  title={labels.rateTitle}
-                  placeholder={labels.ratePlaceholder}
-                  sendLabel={labels.rateSend}
-                  thanksLabel={labels.rateThanks}
-                  ratingA11yLabel={labels.rating}
-                  testID="dialogue-v2-completion-feedback"
-                  presentation="liquid-glass-rate"
-                />
-              ) : null}
-            </>
+            </DlgChain.DialogueChainBeat>
+          ) : null}
+          {DlgChain ? (
+            <DlgChain.DialogueChainBeat offset={DlgChain.DIALOGUE_CHAIN_OFFSETS.rest(goalsTotal)}>
+              {showLocalStats ? statsCard : null}
+              {errorsAndFeedback}
+            </DlgChain.DialogueChainBeat>
           ) : null}
         </ScrollView>
-        <View style={styles.footer}>
+        {footer(<>
           <DialogueGlassCta glass={glass} label={labels.done} trailingArrow onPress={close} testID="dialogue-v2-completion-done" />
           {scenarioId || finishableMistakes ? (
             // зачем (сверка dialogs-041, макет `.quiet`): «Ещё раз» — тихая текстовая ссылка по центру (16/600, вторичным), а не кнопка-пилюля
@@ -453,9 +540,11 @@ export default function DialogueV2CompletionRoute() {
               <Text style={[styles.againText, { color: glass.text }]}>{finishableMistakes ? labels.finishMistakes(dialogMistakes.mistakeIds.length) : labels.again}</Text>
             </Pressable>
           ) : null}
-        </View>
+        </>)}
+        </>)}
       </SafeAreaView>
-      {momentsV3 && state.kind === 'ready' && goalsTotal > 0 ? (
+      {/* зачем (координатор 15.10, очередь показов): окно m17 открывается ПОСЛЕ цепочки m18, а не поверх неё; без цепочки — как раньше */}
+      {momentsV3 && state.kind === 'ready' && goalsTotal > 0 && (!DlgChain || dialogueChainFinished) ? (
         <Suspense fallback={null}>
           <FirstDialogHost lang={lang} studyTarget={String(studyTarget)} scenarioId={scenarioId} endedBy={endedBy} turns={turns} goalsDone={goalsMet} goalsTotal={goalsTotal} onNext={close} />
         </Suspense>

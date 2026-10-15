@@ -42,11 +42,16 @@ describe('Диалоги: скелеты вместо полноэкранных
     expect(src).toContain('const showLocalStats = outcome !== null || learnerTurns > 0;');
     expect(src).toContain('{showLocalStats ? (');
     // «Что исправить» не внутри блока review
-    const errorsAt = src.indexOf('testID="dialogue-v2-completion-errors"');
+    // зачем (координатор 15.10, m18): блок «Ошибки»/отзыв вынесен в const errorsAndFeedback (общий для прежней раскладки и цепочки m18) — проверяем место его вставки и то,
+    // что внутри самого блока «Ошибки» стоят ДО ветки review (отзыв), то есть не зависят от ответа сервера
+    const errorsAt = src.indexOf('{errorsAndFeedback}');
     const reviewBeforeErrors = src.lastIndexOf('{review ? (', errorsAt);
     const stateAfterReview = src.indexOf(') : state.kind === \'loading\' ? (', reviewBeforeErrors);
     expect(stateAfterReview).toBeGreaterThan(0);
     expect(stateAfterReview).toBeLessThan(errorsAt);
+    const errorsDecl = src.slice(src.indexOf('const errorsAndFeedback = ('), src.indexOf('const chainScope'));
+    expect(errorsDecl.indexOf('testID="dialogue-v2-completion-errors"')).toBeGreaterThan(0);
+    expect(errorsDecl.indexOf('testID="dialogue-v2-completion-errors"')).toBeLessThan(errorsDecl.indexOf('{review ? ('));
     expect(src).toContain('<GoalsStatSkeleton glass={glass} label={labels.goals} />');
     expect(src).toContain('<GoalsSkeleton glass={glass} rows={goalRowsGuess} />');
     expect(src).toContain('Object.keys(goalLabels).length');

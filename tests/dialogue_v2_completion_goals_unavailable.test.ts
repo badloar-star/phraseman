@@ -10,7 +10,8 @@ describe('итог диалога: ячейка целей при «недост
   const src = read('app/dialogue_v2_completion.tsx');
 
   it('три ветки: цели есть → цифра; недоступен → «—»; иначе (загрузка) → скелет', () => {
-    const start = src.indexOf('{review ? (\n                  <Stat glass={glass} value={`${goalsMet}`}');
+    // зачем (координатор 15.10, m18): карточка цифр вынесена в const statsCard — ищем ветку без привязки к отступу
+    const start = src.search(/\{review \? \(\n\s*<Stat glass=\{glass\} value=\{`\$\{goalsMet\}`\}/);
     expect(start).toBeGreaterThan(0);
     const block = src.slice(start, start + 900);
     const iReview = block.indexOf('<Stat glass={glass} value={`${goalsMet}`}');

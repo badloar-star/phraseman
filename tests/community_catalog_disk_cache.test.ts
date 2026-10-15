@@ -113,3 +113,20 @@ describe('каталог маркета: диск и дедуп', () => {
     expect(networkGets).toBe(0);
   });
 });
+
+// R31 (Ревизор 15.10): удалённый набор висел в «Из видео» до 6 ч — удаление чистило только кэш сообщества.
+describe('удаление набора вычёркивает его из «Из видео» без лишнего запроса', () => {
+  test('память и диск без удалённого набора, сеть не трогали', async () => {
+    const mod = loadModule();
+    const key = `${mod.COMMUNITY_CATALOG_DISK_PREFIX}video:en`;
+    disk.set(key, JSON.stringify({ at: Date.now(), packs: [{ id: 'gone', videoId: 'v1' }, { id: 'kept', videoId: 'v2' }] }));
+    await mod.loadVideoMarketPacks('en');
+    networkGets = 0;
+    mod.dropPacksFromVideoCatalog(['gone']);
+    expect((mod.peekVideoMarketPacks('en') ?? []).map((pack) => pack.id)).toEqual(['kept']);
+    await flush();
+    expect((JSON.parse(String(disk.get(key))) as { packs: { id: string }[] }).packs.map((pack) => pack.id)).toEqual(['kept']);
+    expect(networkGets).toBe(0);
+  });
+});
+

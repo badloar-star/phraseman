@@ -329,6 +329,28 @@ export function peekPublishedCommunityMarketPacks(
 /** Отдельный снимок раздела «Из видео» — у него своя выдача, не общий лимит. */
 let _videoCatalogCache: { key: string; at: number; packs: FlashcardMarketPack[] } | null = null;
 
+/**
+ * R31 (Ревизор 15.10): удалённый набор висел в «Из видео» до 6 ч — удаление чистило только кэш сообщества.
+ * зачем точечно, а не сбросом: сброс видео-каталога = лишний запрос коллекции на следующем входе (Firebase-экономия);
+ * удалённые наборы просто вычёркиваем из памяти и с диска, остальное живёт до своего TTL.
+ */
+export function dropPacksFromVideoCatalog(packIds: readonly string[]): void {
+  const ids = new Set(packIds.filter(Boolean));
+  if (ids.size === 0 || !_videoCatalogCache) {
+    console.log('[VIDEO-PACK] drop: кэша нет или нечего вычёркивать', JSON.stringify({ ids: ids.size, cached: !!_videoCatalogCache })); // guard-ok: ранний выход
+    return;
+  }
+  const before = _videoCatalogCache.packs.length;
+  const packs = _videoCatalogCache.packs.filter((pack) => !ids.has(pack.id));
+  if (packs.length === before) {
+    console.log('[VIDEO-PACK] drop: удалённого набора в «Из видео» нет', JSON.stringify({ ids: [...ids] })); // guard-ok: ранний выход
+    return;
+  }
+  _videoCatalogCache = { ..._videoCatalogCache, packs };
+  writeCatalogToDisk('video', _videoCatalogCache);
+  console.log('[VIDEO-PACK] drop: вычеркнули удалённые наборы', JSON.stringify({ removed: before - packs.length, left: packs.length })); // guard-ok: итог
+}
+
 /** Сколько наборов из видео тянем за раз. Лента листается, всё сразу не нужно. */
 const VIDEO_PACKS_LIMIT = 60;
 

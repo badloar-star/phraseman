@@ -10,7 +10,7 @@
  * фоновой перезагрузке, а повторный запрос на тот же id отклоняется (двойной тап).
  */
 import { callCommunityAuthorRemovePack } from './functionsClient';
-import { forgetAuthorPackLastKnown, invalidateCommunityPackCatalog } from './communityFirestore';
+import { dropPacksFromVideoCatalog, forgetAuthorPackLastKnown, invalidateCommunityPackCatalog } from './communityFirestore';
 import { isLocalAuthorPackId, loadLocalAuthorPacks, removeLocalAuthorPack } from './localAuthorPacks';
 import { withdrawLocalAuthorPack } from './publishLocalPack';
 import { getCanonicalUserId } from '../user_id_policy';
@@ -43,7 +43,11 @@ export function claimPackDelete(packId: string): boolean {
 export async function deleteOwnPackEverywhere(pack: Readonly<{ id: string }>, studyTarget?: RuntimeStudyTarget): Promise<void> {
   const local = isLocalAuthorPackId(pack.id);
   console.log(`${TAG} старт`, { packId: pack.id, local }); // guard-ok: единичный лог на жест человека
+  // R31: id опубликованной копии — чтобы вычеркнуть набор и из «Из видео»
+  const droppedIds: string[] = [pack.id];
   if (local) {
+    const cloudId = (await loadLocalAuthorPacks()).find((copy) => copy.id === pack.id)?.cloudPackId;
+    if (cloudId) droppedIds.push(cloudId);
     await withdrawLocalAuthorPack(pack.id);
     await removeLocalAuthorPack(pack.id, studyTarget);
   } else {
@@ -59,5 +63,6 @@ export async function deleteOwnPackEverywhere(pack: Readonly<{ id: string }>, st
     }
   }
   invalidateCommunityPackCatalog();
+  dropPacksFromVideoCatalog(droppedIds);
   console.log(`${TAG} готово`, { packId: pack.id }); // guard-ok: единичный лог на жест человека
 }

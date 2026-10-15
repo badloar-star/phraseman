@@ -1,6 +1,5 @@
 # Записка для Codex: в рабочей копии `build_release.mjs` лежит ханк Ядра (НЕ закоммичен)
 
-Governance-ID: TG-123F2B2FC865
 Status: Handoff (Ядро → Codex)
 Owner: Codex (файл), Ядро (ханк)
 

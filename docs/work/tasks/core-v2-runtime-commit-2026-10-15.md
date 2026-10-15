@@ -5,6 +5,10 @@ Governance-ID: TG-98FBEAC5A7EE
 Governance-ID: TG-42BAC8CE2D11
 Governance-ID: TG-5EF2A317E8D7
 Governance-ID: TG-B076662A1147
+Governance-ID: TG-36AD1B3B5DA5
+Governance-ID: TG-123F2B2FC865
+Governance-ID: TG-A592E8835098
+Governance-ID: TG-7B2D907CFE7B
 Status: In progress
 Owner: Ядро (сессия 1)
 Related: решения владельца 15.10 ~09:00 (через координатора).

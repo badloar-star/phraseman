@@ -302,7 +302,7 @@ export default function SpireHomeScreen() {
         </View>
         {/* зачем (решение владельца 13.10): блок «Комната недели» (пьедестал 1-2-3 + «Все участники · N») — самый верх экрана, сразу под заголовком, выше башни */}
         <View style={offline ? s.dim : null} testID="spire-room-top">
-          <SpirePodium lang={lang} members={members} onOpenAll={openAll} rankBy={game.rankBy} loading={members === null && game.live && game.roomLoad === null} />
+          <SpirePodium lang={lang} members={members} onOpenAll={openAll} rankBy={game.rankBy} loading={members === null && game.live && game.roomLoad === null} compact={budget.podiumCompact} />
         </View>
         {offline ? (
           <View style={[s.note, { backgroundColor: p.cardRaised }]} accessibilityLiveRegion="polite" testID="spire-offline">
@@ -325,7 +325,7 @@ export default function SpireHomeScreen() {
         <View style={s.towerWrap} onLayout={(e) => budget.onTowerTop(Math.round(e.nativeEvent.layout.y))}>
           <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} onTouchActive={towerTouch.onTouchActive} />
         </View>
-        <View onLayout={(e) => budget.onInfoHeight(Math.round(e.nativeEvent.layout.height))}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} compact={budget.compact} /></View>
+        <View onLayout={(e) => budget.onInfoHeight(Math.round(e.nativeEvent.layout.height))}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} compact={budget.cardCompact} /></View>
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
         <View
           style={offline ? s.dim : null}

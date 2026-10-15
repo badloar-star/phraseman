@@ -15,6 +15,7 @@ import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import SpireRankCoin from './SpireRankCoin';
 import { spireNickWrap } from './spire_nick_wrap';
+import { PODIUM_SIZES } from './spire_podium_sizes';
 import { spireText } from './spire_strings';
 import { spireCoinsCount, spireGroupThousands, spireStepsCount, spireStepsShort } from './spire_plurals';
 import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
@@ -28,12 +29,14 @@ type Props = Readonly<{
   rankBy?: SpireRankByView;
   /** Комната недели ещё грузится: вместо пустоты — скелет той же высоты, чтобы башня и карточка этажа не прыгали, когда подиум появится (координатор 15.10, 🔴 Pixel 8). */
   loading?: boolean;
+  /** Места на первом экране мало (ступень ужатия 1–2, use_spire_tower_budget): монеты 44/36 и плиты 60/46/34 вместо 56/46 и 88/66/50 — высота подиума ниже на 40 dp (SPIRE_PODIUM_COMPACT_SAVE). */
+  compact?: boolean;
 }>;
 
 // порядок колонок как на подиуме: 2-е место, 1-е, 3-е; размеры монет и ступеней — как в рабочей раскладке ниже
-const SKELETON_COLS = [{ place: 2, coin: 46, block: 66 }, { place: 1, coin: 56, block: 88 }, { place: 3, coin: 46, block: 50 }] as const;
+const SKELETON_PLACES = [2, 1, 3] as const;
 
-function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps', loading = false }: Props) {
+function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps', loading = false, compact = false }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const ranked = members ? spireSortMembers(members, rankBy) : [];
   // зачем (координатор 14.10, D162): в колонке ≈101 dp слово «монет» не помещается рядом с числом — на подиуме число с неразрывным пробелом тысяч («8 511») и маленькая монета; слово остаётся в «Всех участниках», подзаголовке и подписи для читалки
@@ -42,6 +45,7 @@ function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps', loading = fal
   const meIndex = ranked.findIndex((m) => m.isMe);
   const order = top.length === 3 ? [1, 0, 2] : top.map((_, i) => i);
   const hasRoom = ranked.length > 0;
+  const sizes = compact ? PODIUM_SIZES.compact : PODIUM_SIZES.full;
   const allLabel = `${spireText(lang, 'allMembers')} · ${meIndex >= 0 ? `${meIndex + 1}` : '—'}`;
   return (
     <View testID="spire-podium">
@@ -52,14 +56,17 @@ function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps', loading = fal
       {top.length === 0 && loading ? (
         // зачем (координатор 15.10, 🔴): до прихода комнаты подиум занимал 0 dp, а потом отъедал ~220 dp — бюджет высоты строился на пустом экране. Скелет повторяет колонки (монета, ник, счёт, ступень) теми же высотами
         <View style={s.podium} testID="spire-podium-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-          {SKELETON_COLS.map((col) => (
-            <View key={col.place} style={s.col}>
-              <View style={{ width: col.coin, height: col.coin, borderRadius: col.coin / 2, backgroundColor: p.card }} />
+          {SKELETON_PLACES.map((place) => {
+            const coin = place === 1 ? sizes.coinFirst : sizes.coinOther;
+            return (
+            <View key={place} style={s.col}>
+              <View style={{ width: coin, height: coin, borderRadius: coin / 2, backgroundColor: p.card }} />
               <View style={[s.skelName, { backgroundColor: p.card }]} />
               <View style={[s.skelScore, { backgroundColor: p.card }]} />
-              <View style={[s.block, { height: col.block, backgroundColor: p.card }]} />
+              <View style={[s.block, { height: sizes.blocks[place - 1], backgroundColor: p.card }]} />
             </View>
-          ))}
+            );
+          })}
         </View>
       ) : null}
       {top.length > 0 ? (
@@ -67,10 +74,10 @@ function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps', loading = fal
           {order.map((idx) => {
             const m = top[idx];
             const place = idx + 1;
-            const blk = place === 1 ? 88 : place === 2 ? 66 : 50;
+            const blk = sizes.blocks[place - 1];
             return (
               <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : spireStepsCount(lang, m.steps)}`}>
-                <SpireRankCoin rank={m.coinRank} size={place === 1 ? 56 : 46} />
+                <SpireRankCoin rank={m.coinRank} size={place === 1 ? sizes.coinFirst : sizes.coinOther} />
                 {/* зачем (координатор 13.10): на 360 dp колонка ≈ 101 dp, при шрифте ×1,3 длинное имя без пробела рвалось посреди слова. До 2 строк, перенос по слогам (Android hyphenationFrequency=full, iOS переносит сам), потолок роста шрифта 1,15 только у имени — это не ужатие шрифта под ширину */}
                 <Text style={[s.name, { color: p.text }]} numberOfLines={2} maxFontSizeMultiplier={1.15} android_hyphenationFrequency="full">{spireNickWrap(m.name)}</Text>
                 {rankBy === 'coins' ? (

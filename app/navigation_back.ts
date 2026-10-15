@@ -1,3 +1,4 @@
+import { paywallCloseMark } from './paywall_close_trace';
 export const HOME_BACK_FALLBACK = '/(tabs)/home';
 
 type SafeBackRouter = {
@@ -538,6 +539,7 @@ export function dismissPaywallModal(
   const branch = !shouldReplace && candidate !== null && canDismiss === true && typeof router.dismiss === 'function'
     ? 'dismiss(1)'
     : NATIVE_POP_TO_BACK_ENABLED && typeof router.dismissTo === 'function' ? 'dismissTo' : 'replace';
+  paywallCloseMark('dismiss:pre_log', `branch=${branch} shouldReplace=${shouldReplace} candidate=${candidate ? 'yes' : 'none'}`);
   console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} dismiss leaving=${leaving?.href ?? 'none'} candidate=${candidate?.href ?? 'none'} chosen=${chosen.path} shouldReplace=${shouldReplace} canDismiss=${canDismiss} branch=${branch} stack=${navigationStack.map((e) => e.key).join('>')}`); // guard-ok: временная трассировка
   setTimeout(() => {
     console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} dismiss +800ms top=${currentEntry()?.href ?? 'none'} stack=${navigationStack.map((e) => e.key).join('>')}`); // guard-ok: временная трассировка
@@ -553,6 +555,7 @@ export function dismissPaywallModal(
     }
   }
 
+  paywallCloseMark('dismiss:call', `branch=${branch}`);
   if (
     !shouldReplace
     && candidate !== null
@@ -561,11 +564,13 @@ export function dismissPaywallModal(
     && canDismiss === true
   ) {
     router.dismiss(1);
+    paywallCloseMark('dismiss:returned', 'dismiss(1)');
     return;
   }
 
   if (NATIVE_POP_TO_BACK_ENABLED && typeof router.dismissTo === 'function') {
     router.dismissTo(chosen.target);
+    paywallCloseMark('dismiss:returned', 'dismissTo');
     return;
   }
 

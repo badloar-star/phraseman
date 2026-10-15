@@ -13,6 +13,7 @@ import { paywallEntryAccessInputs, resolvePremiumModalEntry, type CachedPaywallE
 import { PAYWALL_ENTRY_WAIT_CEILING_MS } from './load_gate_config';
 import { getAppSnapshot } from './app_snapshot_store';
 import { createTapLatencyProfilerHandler } from './tap_latency_trace';
+import { paywallCloseMark } from './paywall_close_trace';
 
 // зачем (координатор 14.10, [PAYWALL-CLOSE-JS]; TAP-LAT Сверки: закрытие пейвола из Настроек — корневой «stack» рендерится 2× по 1,1–1,7 с,
 // а панели вкладок дешёвые): отдельный замер экрана пейвола в том же [TAP-LAT]. Без флага EXPO_PUBLIC_TAP_LATENCY_TRACE=1 обработчика нет.
@@ -147,7 +148,7 @@ export default function PremiumModalDispatcher() {
   // зачем (координатор 14.10, 🔴 «закрыл предложение — всё зависло»): жив ли прозрачный маршрут пейвола после закрытия.
   useEffect(() => {
     console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} route mount context=${firstParam(params.context) || 'none'} source=${firstParam(params.source) || 'none'}`); // guard-ok: временная трассировка
-    return () => console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} route UNMOUNT context=${firstParam(params.context) || 'none'}`); // guard-ok: временная трассировка
+    return () => { paywallCloseMark('paywall:unmount'); console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} route UNMOUNT context=${firstParam(params.context) || 'none'}`); }; // guard-ok: временная трассировка
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: только момент монтирования/размонтирования маршрута
   }, []);
 

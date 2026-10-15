@@ -90,7 +90,8 @@ import {
 
 const EXEMPT_COLOR_2 = 'rgba(0,0,0,0.75)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
 const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.62)'; // theme-exempt: затемнение под окном «Сменить аккаунт?» — `.or-dim` .62 образца, тёмный скрим в любой теме
-import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { noteSwallowedHandler } from '../swallow_log';
+import { paywallCloseMark, paywallCloseRender } from '../paywall_close_trace'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
 
@@ -174,6 +175,7 @@ function writeSettingsPeek(patch: Partial<Omit<SettingsPeek, 'owner'>>): void {
 }
 
 export default function SettingsMain() {
+  paywallCloseRender('SettingsMain'); // зачем (координатор 15.10, Сверка tabs_tap_r7d: крестик пейвола из Настроек 532-668 мс, цель <= 250; сперва логи): сколько раз Настройки рисуются, пока пейвол закрывается
   // зачем (№16, сперва логи): первый рендер этого монтирования — сколько прошло от вычисления модуля.
   const perfRef = React.useRef({ firstRenderAt: 0, committedAt: 0, layoutLogged: false, focusLogged: false });
   if (perfRef.current.firstRenderAt === 0) {
@@ -193,6 +195,15 @@ export default function SettingsMain() {
     console.warn(`[SETTINGS-PERF] first_focus sinceRenderMs=${now - perfRef.current.firstRenderAt} sinceCommitMs=${sinceCommit} premounted=${sinceCommit > 500 ? 'да' : 'нет'}`); // guard-ok: временный замер №16
   }, []));
   // зачем (№16, сперва логи): доля первого кадра по поддеревьям — тело экрана и окно входа; только монтирование, только dev.
+  useFocusEffect(React.useCallback(() => {
+    paywallCloseMark('settings:focus');
+    let raf2: number | null = null;
+    const raf1 = requestAnimationFrame(() => {
+      paywallCloseMark('settings:frame1');
+      raf2 = requestAnimationFrame(() => paywallCloseMark('settings:frame'));
+    });
+    return () => { cancelAnimationFrame(raf1); if (raf2 !== null) cancelAnimationFrame(raf2); };
+  }, []));
   const onSettingsProfile = React.useCallback((id: string, phase: string, actualDuration: number) => {
     if (__DEV__ && phase === 'mount') console.warn(`[SETTINGS-PERF] profile id=${id} phase=${phase} actualMs=${Math.round(actualDuration)}`); // guard-ok: временный замер №16
   }, []);

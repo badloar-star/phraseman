@@ -90,6 +90,7 @@ import {
   savePaywallPriceCache,
   type PaywallPriceCache,
 } from './paywall_price_cache';
+import { paywallCloseMark } from './paywall_close_trace';
 
 /**
  * зачем (D158): ни один вызов магазина на пути к кнопке не имеет права висеть вечно.
@@ -1757,6 +1758,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       return;
     }
     closeLockUntilRef.current = nowMs + PAYWALL_CLOSE_LOCK_MS;
+    paywallCloseMark('doClose:analytics_start');
     void trackEvent('paywall_close', { context, source, paywall: variant, reason, ...paywallImpressionParams(impression) });
     logPaywallFunnel('close', { variant, context, plan: selected });
     if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(swallowError('paywall_purchase:schedulePaywallAbandoned'));
@@ -1792,13 +1794,16 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       router.replace('/(tabs)/home' as any);
       return;
     }
+    paywallCloseMark('doClose:analytics_done');
     dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
   }, [router, context, source, variant, selected, lang, impression]);
 
   // зачем (D187, владелец 14.10: «Удалить код»): оффер пробного периода на выходе из пейвола удалён целиком — закрытие одно и прямое,
   // с первого тапа. Постоянная строка журнала: откуда закрыли (крестик / свайп / затемнение) — для разборов «не закрывается/зависло».
   const handleClose = useCallback((reason: 'close' | 'continue_free', via: PaywallCloseVia = 'x') => {
+    paywallCloseMark('handleClose', `via=${via} reason=${reason} context=${context} source=${source}`);
     hapticTap();
+    paywallCloseMark('handleClose:haptic');
     console.log(`[PAYWALL-CLOSE] via=${via} reason=${reason} context=${context} source=${source}`); // guard-ok: одна строка на закрытие пейвола, постоянный журнал
     doClose(reason);
   }, [context, source, doClose]);

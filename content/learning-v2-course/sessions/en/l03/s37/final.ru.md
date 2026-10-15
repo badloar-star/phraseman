@@ -1,164 +1,138 @@
-# Английский · Урок 3 · Занятие 37 — «Сначала число, потом расстояние»
+# Английский · Урок 3 · Занятие 37 — Машина у клуба
 
-**Сцена занятия.** Вы с другом стоите во дворе делового комплекса у схемы соседних корпусов; рядом один корпус, через площадь видны другие здания, входы и выходы. Нужно по числу и расстоянию выбрать точное указательное слово, чтобы назвать ориентир и найти нужный путь.
+**Ситуация.** Вы с Анной готовите встречу в клубе. Столы уже внутри. У двери стоит машина, ещё одна видна дальше. Олег пришёл заранее и чувствует себя одиноко, пока остальные не собрались.
 
-**Как сказать:** выбирать `this/that + is` для одного и `these/those + are` для нескольких
-**Новые слова:** building, entrance, exit
-**Для повторения:** this, that, these, those, is, are, tree, flower, bicycle
+**Что вы освоите:** назвать машину рядом или дальше и повторить описания людей и встречи
+**Новые слова:** car
 
 ---
 
 ## Интро 1
 
-### Одно здание рядом
+### Одна машина
 
-`building` — «здание». Ближний корпус на схеме один: `This is a building.` — «Это здание». Сначала число даёт пару `this is`, затем расстояние выбирает `this`, а не `that`. Корпус может быть огромным, но в счёте он всё равно один.
+`car` — «машина, автомобиль». Вы уже знаете `cars` — «машины». Для одной машины берём `car`: `This is a car` — «Это машина», показываем на одну рядом. Здесь нужно `a car`, не `an car`: слово начинается с согласного звука. Четыре колеса не превращают одну машину в несколько.
 
-**Вы стоите у одного корпуса рядом. Назовите его.**
+**Назовите одну машину одним английским словом.**
 
-- ✅ **This is a building.**
-- ❌ That is a building. — *`That is a building` подходит для одного здания дальше. Этот корпус рядом, поэтому нужно `this`.*
-- ❌ These are buildings. — *`These are buildings` называет несколько зданий рядом. Здесь корпус один, поэтому нужна пара `this is`.*
+- ✅ **car**
+- ❌ cars — *`cars` — несколько машин. Одна — `car`.*
+- ❌ cart — *`cart` — тележка. Машина — `car`.*
 
 ---
 
 ## Интро 2
 
-### Несколько входов через площадь
+### Рядом и дальше
 
-`entrance` — «вход», `entrances` — «входы». Через площадь видно несколько входов: `Those are entrances.` — «Это входы». Несколько предметов требуют пары `those are`, а расстояние выбирает `those`, потому что входы дальше. Дверей много, а связка одна для всей группы.
+`This car is here` — «Эта машина здесь». `That car is outside` — «Та машина снаружи»: показываем на машину дальше от нас. Перед `car` уже стоит `this` или `that`, поэтому добавлять `a` не нужно. Одна машина требует `is`.
 
-**Через площадь видны несколько входов. Назовите их.**
+**Вы смотрите из клуба на одну машину вдалеке. Скажите «Та машина снаружи».**
 
-- ✅ **Those are entrances.**
-- ❌ These are entrances. — *`These are entrances` подходит для нескольких входов рядом. Входы через площадь, поэтому нужно `those`.*
-- ❌ That is an entrance. — *`That is an entrance` называет один дальний вход. Здесь входов несколько, поэтому нужны `those are`.*
+- ✅ **That car is outside.**
+- ❌ Those car is outside. — *`Those` — несколько. Здесь одна машина дальше: `That car`.*
+- ❌ That car are outside. — *Машина одна: `That car is outside`.*
 
 ---
 
 ## Интро 3
 
-### Сначала число, затем расстояние
+### До начала встречи
 
-`exit` — «выход», `exits` — «выходы». Рядом с вами несколько выходов: `These are exits.` — «Это выходы». Сначала посчитайте: несколько предметов требуют `these/those + are`. Затем проверьте расстояние: рядом выбирает `these`. Два шага — и указатель не отправит вас к соседнему корпусу.
+`lonely` — «одинокий», когда человеку не хватает общения. `He is lonely` — «Ему одиноко». Это чувство, а не просто отсутствие людей рядом. `official` — «официальный». О встрече можно сказать `It is official` — «Она официальная». А готовность комнаты описать так: `The tables are here` — «Столы здесь».
 
-**Рядом с вами несколько выходов. Выберите точную фразу.**
+**Олегу не хватает компании. Скажите «Ему одиноко».**
 
-- ✅ **These are exits.**
-- ❌ Those are exits. — *`Those are exits` называет несколько выходов дальше. Эти выходы рядом, поэтому нужно `these`.*
-- ❌ This is an exit. — *`This is an exit` называет один выход рядом. Здесь выходов несколько, поэтому нужны `these are`.*
+- ✅ **He is lonely.**
+- ❌ He is sleepy. — *`sleepy` — сонный. Олегу не хватает общения: `lonely`.*
+- ❌ He are lonely. — *С `He` нужно `is`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-37:i01; family: listen_choose -->
-Цель: `building`
-Варианты: `building` · `entrance` · `exit`
-- entrance — *`Entrance` — вход, а `building` — всё здание.*
-- exit — *`Exit` — выход, а `building` — всё здание.*
+**1 · Анна ищет столы для встречи. Скажите «Столы здесь»**
+<!-- interaction_id: en:lesson-03:session-37:i01; family: phrase_builder -->
+Плитки: `here` `are` `tables` `The` `is` → **The tables are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `The tables are here.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-37:i03; family: scripted_repeat_compare -->
-Цель: `entrance`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-37:i02; family: listen_choose -->
+🔊 *car* → **car** · coat · cat
+- coat — *В записи первое слово — `car`, а в этом варианте — `coat`.*
+- cat — *В записи первое слово — `car`, а в этом варианте — `cat`.*
 
-**3 · Послушайте слово и прочитайте его значение**
-<!-- interaction_id: en:lesson-03:session-37:i05; family: listen_choose -->
-Цель: `exit` — «выход»: место или дверь, через которые выходят.
+**3 · Назовите одну машину одним английским словом**
+<!-- interaction_id: en:lesson-03:session-37:i03; family: context_gap_grammar -->
+___ → **car** · cars · cat
+- cars — *`cars` — машины. Одна машина — `car`.*
+- cat — *`cat` — кошка. Машина — `car`.*
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-37:i02; family: scripted_repeat_compare -->
-Цель: `building`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-37:i04; family: speed_match -->
+car — машина · lonely — одинокий · official — официальный · tables — столы
 
-**5 · Послушайте слово и прочитайте его значение**
-<!-- interaction_id: en:lesson-03:session-37:i04; family: listen_choose -->
-Цель: `entrance` — «вход»: место или дверь, через которые входят.
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-37:i05; family: listen_build_dictation -->
+🔊 *This is a car.* Плитки: `car` `a` `is` `This` `are` → **This is a car.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a car.`)*
 
-**6 · Повторите слово**
-<!-- interaction_id: en:lesson-03:session-37:i06; family: scripted_repeat_compare -->
-Цель: `exit`
+**6 · Вы показываете из клуба на машину вдалеке. Скажите «Та машина снаружи»**
+<!-- interaction_id: en:lesson-03:session-37:i06; family: phrase_builder -->
+Плитки: `outside` `is` `car` `That` `are` → **That car is outside.**
+*(плитка `are` лишняя: здесь нужно `is` — `That car is outside.`)*
 
-**7 · Соедините слова со значениями — схема комплекса**
-<!-- interaction_id: en:lesson-03:session-37:i07; family: speed_match -->
-Пары: `building` — здание · `entrance` — вход · `exit` — выход · `bicycle` — велосипед
-Цель: `building · entrance · exit · bicycle`
+**7 · Олегу не хватает общения. Скажите «Ему одиноко» с сокращением**
+<!-- interaction_id: en:lesson-03:session-37:i07; family: scripted_repeat_compare -->
+🎙 **He's lonely.**
 
-**8 · Послушайте и выберите точное значение фразы**
-<!-- interaction_id: en:lesson-03:session-37:i08; family: listen_choose -->
-Цель: `This is a building.`
-Варианты: `Это здание` · `Это здания` · `Это вход` · `Это выход`
-- Это здания — *В записи `this is a building`: речь об одном здании, не о нескольких.*
-- Это вход — *Названо `building` — здание, не `entrance` — вход.*
-- Это выход — *Названо `building` — здание, не `exit` — выход.*
+**8 · Вы впервые называете один предмет рядом: это машина**
+<!-- interaction_id: en:lesson-03:session-37:i08; family: context_gap_grammar -->
+This is ___ car. → **a** · an · are
+- an — *`car` начинается с согласного звука: `a car`.*
+- are — *Здесь нужно `a` перед названием одной машины: `a car`.*
 
-**9 · Вставьте указатель — рядом находятся несколько корпусов**
-<!-- interaction_id: en:lesson-03:session-37:i09; family: context_gap_grammar -->
-Цель: `___ are buildings.`
-Варианты: `These` · `Those` · `This` · `That`
-- Those — *`Those are buildings` называет несколько зданий дальше. Эти корпуса рядом, поэтому нужно `These`.*
-- This — *`This` относится к одному предмету и требует `is`. Здесь зданий несколько.*
-- That — *`That` относится к одному дальнему предмету и требует `is`. Здесь несколько зданий рядом.*
+**9 · Послушайте описание встречи**
+<!-- interaction_id: en:lesson-03:session-37:i09; family: listen_choose -->
+🔊 *It is official.* → **It is official.** · It is informal. · It is unusual.
+- It is informal. — *В записи последнее слово — `official`, а в этом варианте — `informal`.*
+- It is unusual. — *В записи последнее слово — `official`, а в этом варианте — `unusual`.*
 
+**10 · Соедините слова со значениями для наших примеров**
+<!-- interaction_id: en:lesson-03:session-37:i10; family: speed_match -->
+car — машина · cars — машины · this — этот, один рядом · that — тот, один дальше
 
-**10 · Соберите описание — один вход рядом со схемой**
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-37:i11; family: listen_build_dictation -->
+🔊 *Those tables are outside.* Плитки: `outside` `are` `tables` `Those` `is` → **Those tables are outside.**
+*(плитка `is` лишняя: здесь нужно `are` — `Those tables are outside.`)*
+
+**12 · Вы стоите у машины и показываете на неё. Скажите «Эта машина здесь»**
 <!-- interaction_id: en:lesson-03:session-37:i12; family: phrase_builder -->
-Цель: `This is an entrance.`
+Плитки: `here` `is` `car` `This` `are` → **This car is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `This car is here.`)*
 
-**11 · Послушайте запись и выберите её точное значение**
-<!-- interaction_id: en:lesson-03:session-37:i13; family: listen_choose -->
-Цель: `These are exits.`
-Варианты: `Это выходы` · `Это выход` · `Это входы` · `Это здания`
-- Это выход — *В записи слышно `these are` и `exits`: говорят о нескольких выходах.*
-- Это входы — *Число совпадает, но названо `exits` — выходы, а не `entrances`.*
-- Это здания — *Названо `exits`, а здания по-английски — `buildings`.*
+**13 · Анна спрашивает о статусе встречи. Скажите «Она официальная» с сокращением**
+<!-- interaction_id: en:lesson-03:session-37:i13; family: scripted_repeat_compare -->
+🎙 **It's official.**
 
+**14 · Вы говорите об одной машине дальше от вас**
+<!-- interaction_id: en:lesson-03:session-37:i14; family: context_gap_grammar -->
+That car ___ outside. → **is** · are · am
+- are — *Одна машина: `That car is outside`.*
+- am — *С `That car` нужно `is`.*
 
-**12 · Вставьте слово — у дальней стены один выход**
-<!-- interaction_id: en:lesson-03:session-37:i11; family: context_gap_grammar -->
-Цель: `That is an ___.`
-🔊 *exit* · *exist*
-→ **exit** · exist
-- exist — *`Exist` значит «существовать». У дальней стены указан выход — `exit`.*
+**15 · Послушайте, как чувствует себя Олег**
+<!-- interaction_id: en:lesson-03:session-37:i15; family: listen_choose -->
+🔊 *He is lonely.* → **He is lonely.** · He is sleepy. · He is afraid.
+- He is sleepy. — *В записи последнее слово — `lonely`, а в этом варианте — `sleepy`.*
+- He is afraid. — *В записи последнее слово — `lonely`, а в этом варианте — `afraid`.*
 
-**13 · Соберите описание — один выход находится у дальней стены**
-<!-- interaction_id: en:lesson-03:session-37:i14; family: phrase_builder -->
-Цель: `That is an exit.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-37:i16; family: speed_match -->
+car — машина · lonely — одинокий · official — официальный · tables — столы
 
-**14 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-37:i10; family: listen_choose -->
-Цель: `entrance`
-Варианты: `entrance` · `building` · `exit`
-- building — *`Building` — всё здание. `Entrance` — место, через которое входят.*
-- exit — *`Exit` — место, через которое выходят, а здесь нужен вход.*
+**17 · На прогулке ребёнок спрашивает о предмете вдалеке. Это одна машина. Назовите её полной фразой, начав с указателя на один предмет дальше**
+<!-- interaction_id: en:lesson-03:session-37:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **That is a car.**
 
-**15 · Произнесите описание нескольких дальних входов**
-<!-- interaction_id: en:lesson-03:session-37:i15; family: scripted_repeat_compare -->
-Цель: `Those are entrances.`
-
-**16 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-37:i16:s01; family: listen_build_dictation -->
-Цель: `Those are buildings.`
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-37:i16:s02; family: scripted_repeat_compare -->
-Цель: `These are exits.`
-
-**18 · Соберите фразу — через площадь видны несколько корпусов**
-<!-- interaction_id: en:lesson-03:session-37:i17:s01; family: phrase_builder -->
-Цель: `Those are buildings.`
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-37:i17:s02; family: scripted_repeat_compare -->
-Цель: `This is an entrance.`
-
-**20 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-37:i17:s03; family: listen_build_dictation -->
-Цель: `That is an exit.`
-
-
-## Для сборщика
-new_words: building — здание — Сооружение со стенами и крышей.
-new_words: entrance — вход — Место или дверь, через которые входят.
-new_words: exit — выход — Место или дверь, через которые выходят.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_choose, 12=context_gap_grammar, 13=phrase_builder, 14=listen_choose, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation

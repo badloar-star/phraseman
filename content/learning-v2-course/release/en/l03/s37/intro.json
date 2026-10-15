@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-37",
   "learningOutcomeByLocale": {
-    "ru": "выбирать `this/that + is` для одного и `these/those + are` для нескольких",
-    "uk": "вибирати `this/that + is` для одного й `these/those + are` для кількох"
+    "ru": "назвать машину рядом или дальше и повторить описания людей и встречи",
+    "uk": "назвати машину поруч або далі та повторити описи людей і зустрічі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одно здание рядом",
-        "uk": "Одна будівля поруч"
+        "ru": "Одна машина",
+        "uk": "Одна машина"
       },
       "bodyByLocale": {
-        "ru": "`building` — «здание». Ближний корпус на схеме один: `This is a building.` — «Это здание». Сначала число даёт пару `this is`, затем расстояние выбирает `this`, а не `that`. Корпус может быть огромным, но в счёте он всё равно один.",
-        "uk": "`building` — «будівля». Ближній корпус на схемі один: `This is a building.` — «Це будівля». Спочатку за числом обираємо пару `this is`, потім відстань підказує `this`, а не `that`. Корпус може бути величезним, але під час лічби він усе одно один."
+        "ru": "`car` — «машина, автомобиль». Вы уже знаете `cars` — «машины». Для одной машины берём `car`: `This is a car` — «Это машина», показываем на одну рядом. Здесь нужно `a car`, не `an car`: слово начинается с согласного звука. Четыре колеса не превращают одну машину в несколько.",
+        "uk": "`car` — «машина, автомобіль». Ви вже знаєте `cars` — «машини». Для однієї машини беремо `car`: `This is a car` — «Це машина», показуємо на одну поруч. Тут потрібне `a car`, не `an car`: слово починається з приголосного звука. Чотири колеса не перетворюють одну машину на кілька."
       },
       "question": {
         "interactionId": "en:lesson-03:session-37:intro1:q",
         "promptByLocale": {
-          "ru": "Вы стоите у одного корпуса рядом. Назовите его.",
-          "uk": "Ви стоїте біля одного корпусу поруч. Назвіть його."
+          "ru": "Назовите одну машину одним английским словом.",
+          "uk": "Назвіть одну машину одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-37:intro1:r1",
-              "text": "This is a building."
+              "text": "car"
             },
             {
               "responseId": "en:lesson-03:session-37:intro1:r2",
-              "text": "That is a building."
+              "text": "cars"
             },
             {
               "responseId": "en:lesson-03:session-37:intro1:r3",
-              "text": "These are buildings."
+              "text": "cart"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-37:intro1:r1",
-              "text": "This is a building."
+              "text": "car"
             },
             {
               "responseId": "en:lesson-03:session-37:intro1:r2",
-              "text": "That is a building."
+              "text": "cars"
             },
             {
               "responseId": "en:lesson-03:session-37:intro1:r3",
-              "text": "These are buildings."
+              "text": "cart"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы стоите у одного корпуса рядом. Назовите его.",
-          "uk": "Ви стоїте біля одного корпусу поруч. Назвіть його."
+          "ru": "Назовите одну машину одним английским словом.",
+          "uk": "Назвіть одну машину одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Несколько входов через площадь",
-        "uk": "Кілька входів через площу"
+        "ru": "Рядом и дальше",
+        "uk": "Поруч і далі"
       },
       "bodyByLocale": {
-        "ru": "`entrance` — «вход», `entrances` — «входы». Через площадь видно несколько входов: `Those are entrances.` — «Это входы». Несколько предметов требуют пары `those are`, а расстояние выбирает `those`, потому что входы дальше. Дверей много, а связка одна для всей группы.",
-        "uk": "`entrance` — «вхід», `entrances` — «входи». Через площу видно кілька входів: `Those are entrances.` — «Це входи». Кілька предметів потребують пари `those are`, а оскільки входи далі, обираємо `those`. Дверей багато, а зв’язка одна для всієї групи."
+        "ru": "`This car is here` — «Эта машина здесь». `That car is outside` — «Та машина снаружи»: показываем на машину дальше от нас. Перед `car` уже стоит `this` или `that`, поэтому добавлять `a` не нужно. Одна машина требует `is`.",
+        "uk": "`This car is here` — «Ця машина тут». `That car is outside` — «Та машина надворі»: показуємо на машину далі від нас. Перед `car` уже стоїть `this` або `that`, тому додавати `a` не потрібно. Одна машина потребує `is`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-37:intro2:q",
         "promptByLocale": {
-          "ru": "Через площадь видны несколько входов. Назовите их.",
-          "uk": "Через площу видно кілька входів. Назвіть їх."
+          "ru": "Вы смотрите из клуба на одну машину вдалеке. Скажите «Та машина снаружи».",
+          "uk": "Ви дивитеся з клубу на одну машину вдалині. Скажіть «Та машина надворі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-37:intro2:r1",
-              "text": "Those are entrances."
+              "text": "That car is outside."
             },
             {
               "responseId": "en:lesson-03:session-37:intro2:r2",
-              "text": "These are entrances."
+              "text": "Those car is outside."
             },
             {
               "responseId": "en:lesson-03:session-37:intro2:r3",
-              "text": "That is an entrance."
+              "text": "That car are outside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-37:intro2:r1",
-              "text": "Those are entrances."
+              "text": "That car is outside."
             },
             {
               "responseId": "en:lesson-03:session-37:intro2:r2",
-              "text": "These are entrances."
+              "text": "Those car is outside."
             },
             {
               "responseId": "en:lesson-03:session-37:intro2:r3",
-              "text": "That is an entrance."
+              "text": "That car are outside."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Через площадь видны несколько входов. Назовите их.",
-          "uk": "Через площу видно кілька входів. Назвіть їх."
+          "ru": "Вы смотрите из клуба на одну машину вдалеке. Скажите «Та машина снаружи».",
+          "uk": "Ви дивитеся з клубу на одну машину вдалині. Скажіть «Та машина надворі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сначала число, затем расстояние",
-        "uk": "Спочатку число, потім відстань"
+        "ru": "До начала встречи",
+        "uk": "До початку зустрічі"
       },
       "bodyByLocale": {
-        "ru": "`exit` — «выход», `exits` — «выходы». Рядом с вами несколько выходов: `These are exits.` — «Это выходы». Сначала посчитайте: несколько предметов требуют `these/those + are`. Затем проверьте расстояние: рядом выбирает `these`. Два шага — и указатель не отправит вас к соседнему корпусу.",
-        "uk": "`exit` — «вихід», `exits` — «виходи». Поруч із вами кілька виходів: `These are exits.` — «Це виходи». Спочатку порахуйте: кілька предметів потребують `these/those + are`. Потім перевірте відстань: для предметів поруч обирайте `these`. Два кроки — і вказівне слово не відправить вас до сусіднього корпусу."
+        "ru": "`lonely` — «одинокий», когда человеку не хватает общения. `He is lonely` — «Ему одиноко». Это чувство, а не просто отсутствие людей рядом. `official` — «официальный». О встрече можно сказать `It is official` — «Она официальная». А готовность комнаты описать так: `The tables are here` — «Столы здесь».",
+        "uk": "`lonely` — «самотній», коли людині бракує спілкування. `He is lonely` — «Йому самотньо». Це почуття, а не просто відсутність людей поруч. `official` — «офіційний». Про зустріч можна сказати `It is official` — «Вона офіційна». А готовність кімнати описати так: `The tables are here` — «Столи тут»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-37:intro3:q",
         "promptByLocale": {
-          "ru": "Рядом с вами несколько выходов. Выберите точную фразу.",
-          "uk": "Поруч із вами кілька виходів. Виберіть точну фразу."
+          "ru": "Олегу не хватает компании. Скажите «Ему одиноко».",
+          "uk": "Олегові бракує компанії. Скажіть «Йому самотньо»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-37:intro3:r1",
-              "text": "These are exits."
+              "text": "He is lonely."
             },
             {
               "responseId": "en:lesson-03:session-37:intro3:r2",
-              "text": "Those are exits."
+              "text": "He is sleepy."
             },
             {
               "responseId": "en:lesson-03:session-37:intro3:r3",
-              "text": "This is an exit."
+              "text": "He are lonely."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-37:intro3:r1",
-              "text": "These are exits."
+              "text": "He is lonely."
             },
             {
               "responseId": "en:lesson-03:session-37:intro3:r2",
-              "text": "Those are exits."
+              "text": "He is sleepy."
             },
             {
               "responseId": "en:lesson-03:session-37:intro3:r3",
-              "text": "This is an exit."
+              "text": "He are lonely."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Рядом с вами несколько выходов. Выберите точную фразу.",
-          "uk": "Поруч із вами кілька виходів. Виберіть точну фразу."
+          "ru": "Олегу не хватает компании. Скажите «Ему одиноко».",
+          "uk": "Олегові бракує компанії. Скажіть «Йому самотньо»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8b18539040274d7ec0a5d134f5943aeda05f186991f13994118fa22df3ac1f4a"
+  "introFingerprint": "c8f5a3b32bd2c438b6c8e27e24200fca20a218f130143c9d3c6a7cb7b9b6fa03"
 }

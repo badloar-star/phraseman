@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-24",
   "learningOutcomeByLocale": {
-    "ru": "проверка знакомых форм одного и нескольких: `a + noun`, `envelopes`, `dishes`, `stories`, `glasses`; называние, вопрос и отрицание с `It is`, `They are`, `Are they`, `They are not`",
-    "uk": "перевіряємо знайомі форми одного й кількох: `a + noun`, `envelopes`, `dishes`, `stories`, `glasses`; називання, питання й заперечення з `It is`, `They are`, `Are they`, `They are not`"
+    "ru": "повторить названия нескольких предметов и вопросы об их месте",
+    "uk": "повторити назви кількох предметів і запитання про їхнє місце"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Назвать содержимое конверта",
-        "uk": "Назвати вміст конверта"
+        "ru": "Собираем несколько вещей",
+        "uk": "Збираємо кілька речей"
       },
       "bodyByLocale": {
-        "ru": "`envelope` — «конверт»: бумажный кармашек для письма или билетов. Один конверт называем `It is an envelope` — «Это конверт», а несколько — `They are envelopes` — «Это конверты». Вместе с количеством меняется вся фраза: для одного берём `It is an`, для нескольких — `They are`.",
-        "uk": "`envelope` — «конверт»: паперова кишенька для листа або квитків. Один конверт називаємо `It is an envelope` — «Це конверт», а кілька — `They are envelopes` — «Це конверти». Разом із кількістю змінюється вся фраза: для одного беремо `It is an`, для кількох — `They are`."
+        "ru": "Повторим знакомые слова: `books` — «книги», `bags` — «сумки», `maps` — «карты местности». Для нескольких предметов: `They are books` — «Это книги». Для одной книги: `It is a book` — «Это книга». Перед `books` не ставим `a`. Олег собирался взять одну книгу на весь клуб. Читать можно хором, но переворачивать страницу придётся по команде. Положим несколько — `books`.",
+        "uk": "Повторимо знайомі слова: `books` — «книжки», `bags` — «сумки», `maps` — «карти місцевості». Для кількох предметів: `They are books` — «Це книжки». Для однієї книжки: `It is a book` — «Це книжка». Перед `books` не ставимо `a`. Олег збирався взяти одну книжку на весь клуб. Читати можна хором, але перегортати сторінку доведеться за командою. Покладемо кілька — `books`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Курьер спрашивает, что вы держите перед подписью. Это один конверт с билетами. Скажите: «Это конверт».",
-          "uk": "Кур’єр питає, що ви тримаєте перед підписом. Це один конверт із квитками. Скажіть: «Це конверт»."
+          "ru": "Вы кладёте в сумку несколько книг. Назовите их полной фразой: «Это книги».",
+          "uk": "Ви кладете в сумку кілька книжок. Назвіть їх повною фразою: «Це книжки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-24:intro1:r1",
-              "text": "It is an envelope."
+              "text": "They are books."
             },
             {
               "responseId": "en:lesson-03:session-24:intro1:r2",
-              "text": "It is envelope."
+              "text": "They are a book."
             },
             {
               "responseId": "en:lesson-03:session-24:intro1:r3",
-              "text": "It is an envelopes."
+              "text": "They is books."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-24:intro1:r1",
-              "text": "It is an envelope."
+              "text": "They are books."
             },
             {
               "responseId": "en:lesson-03:session-24:intro1:r2",
-              "text": "It is envelope."
+              "text": "They are a book."
             },
             {
               "responseId": "en:lesson-03:session-24:intro1:r3",
-              "text": "It is an envelopes."
+              "text": "They is books."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Курьер спрашивает, что вы держите перед подписью. Это один конверт с билетами. Скажите: «Это конверт».",
-          "uk": "Кур’єр питає, що ви тримаєте перед підписом. Це один конверт із квитками. Скажіть: «Це конверт»."
+          "ru": "Вы кладёте в сумку несколько книг. Назовите их полной фразой: «Это книги».",
+          "uk": "Ви кладете в сумку кілька книжок. Назвіть їх повною фразою: «Це книжки»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Спросить о двух конвертах",
-        "uk": "Запитати про два конверти"
+        "ru": "Коробки и чашки",
+        "uk": "Коробки й чашки"
       },
       "bodyByLocale": {
-        "ru": "`envelope` — «конверт», `envelopes` — «конверты». В первом интро был один конверт: `It is an envelope`. Теперь у курьера два конверта для подписи. Для нескольких берём `they are`, а в вопросе меняем порядок: `Are they envelopes?` — «Это конверты?» Перед `envelopes` слово `a` не ставим.",
-        "uk": "`envelope` — «конверт», `envelopes` — «конверти». У першому інтро був один конверт: `It is an envelope`. Тепер у кур’єра два конверти для підпису. Для кількох беремо `they are`, а в запитанні змінюємо порядок: `Are they envelopes?` — «Це конверти?» Перед `envelopes` слово `a` не ставимо."
+        "ru": "`boxes` — «коробки», `cups` — «чашки», `pens` — «ручки». Написание `boxes` заканчивается на `es`; вспоминаем его целиком. `The boxes are here` — «Коробки здесь». `the boxes` — коробки, которые вы сейчас собираете. `Where are the cups?` — «Где чашки?» Чашек несколько, поэтому спрашиваем с `are`.",
+        "uk": "`boxes` — «коробки», `cups` — «чашки», `pens` — «ручки». Написання `boxes` закінчується на `es`; пригадуємо його цілком. `The boxes are here` — «Коробки тут». `the boxes` — коробки, які ви зараз збираєте. `Where are the cups?` — «Де чашки?» Чашок кілька, тому запитуємо з `are`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "Курьер кладёт рядом два конверта. Спросите: «Это конверты?».",
-          "uk": "Кур’єр кладе поруч два конверти. Запитайте: «Це конверти?»."
+          "ru": "Анна знает, какие чашки вы берёте на встречу. Спросите, где чашки.",
+          "uk": "Анна знає, які чашки ви берете на зустріч. Запитайте, де чашки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-24:intro2:r1",
-              "text": "Are they envelopes?"
+              "text": "Where are the cups?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro2:r2",
-              "text": "Are they envelope?"
+              "text": "Where is the cups?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro2:r3",
-              "text": "Are they an envelopes?"
+              "text": "What are the cups?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-24:intro2:r1",
-              "text": "Are they envelopes?"
+              "text": "Where are the cups?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro2:r2",
-              "text": "Are they envelope?"
+              "text": "Where is the cups?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro2:r3",
-              "text": "Are they an envelopes?"
+              "text": "What are the cups?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Курьер кладёт рядом два конверта. Спросите: «Это конверты?».",
-          "uk": "Кур’єр кладе поруч два конверти. Запитайте: «Це конверти?»."
+          "ru": "Анна знает, какие чашки вы берёте на встречу. Спросите, где чашки.",
+          "uk": "Анна знає, які чашки ви берете на зустріч. Запитайте, де чашки."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Отметить неверную строку",
-        "uk": "Позначити неправильний рядок"
+        "ru": "Билеты перед выходом",
+        "uk": "Квитки перед виходом"
       },
       "bodyByLocale": {
-        "ru": "Перед подписью курьер показывает ещё два конверта, но это не конверты с билетами. О нескольких предметах говорим `They are`; чтобы добавить «не», ставим `not` после `are`: `They are not envelopes.` — «Это не конверты». Название остаётся во множественном числе, без `a`.",
-        "uk": "Перед підписом кур’єр показує ще два пакунки, але це не конверти з квитками. Про кілька предметів говоримо `They are`; щоб додати «не», ставимо `not` після `are`: `They are not envelopes.` — «Це не конверти». Назва залишається у множині, без `a`."
+        "ru": "`tickets` — «билеты». `The tickets are valid` — «Билеты действительны». `Where are the tickets?` — «Где билеты?» Вопрос начинается с `Where are`, затем называем билеты: `the tickets`. Так же можно спросить о приготовленных сумках: `Where are the bags?` — «Где сумки?»",
+        "uk": "`tickets` — «квитки». `The tickets are valid` — «Квитки дійсні». `Where are the tickets?` — «Де квитки?» Запитання починається з `Where are`, потім називаємо квитки: `the tickets`. Так само можна запитати про підготовлені сумки: `Where are the bags?` — «Де сумки?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Курьер показывает два пакета. Это не конверты. Скажите полную фразу.",
-          "uk": "Кур’єр показує два пакунки. Це не конверти. Скажіть повну фразу."
+          "ru": "Анна приготовила билеты для поездки. Спросите, где билеты.",
+          "uk": "Анна підготувала квитки для поїздки. Запитайте, де квитки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-24:intro3:r1",
-              "text": "They are not envelopes."
+              "text": "Where are the tickets?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro3:r2",
-              "text": "They not envelopes."
+              "text": "Where is the tickets?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro3:r3",
-              "text": "They are not envelope."
+              "text": "What are the tickets?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-24:intro3:r1",
-              "text": "They are not envelopes."
+              "text": "Where are the tickets?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro3:r2",
-              "text": "They not envelopes."
+              "text": "Where is the tickets?"
             },
             {
               "responseId": "en:lesson-03:session-24:intro3:r3",
-              "text": "They are not envelope."
+              "text": "What are the tickets?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Курьер показывает два пакета. Это не конверты. Скажите полную фразу.",
-          "uk": "Кур’єр показує два пакунки. Це не конверти. Скажіть повну фразу."
+          "ru": "Анна приготовила билеты для поездки. Спросите, где билеты.",
+          "uk": "Анна підготувала квитки для поїздки. Запитайте, де квитки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6b9d7ee4e04ae7f80bf1b5b7f06edeea61ac7f422000af9bedb3620ceba988db"
+  "introFingerprint": "f3d659627959f2e04f4bfadde5d72f5728b32864403b3c4271944fd877003a09"
 }

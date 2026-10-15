@@ -1,175 +1,138 @@
-# Англійська · Урок 3 · Заняття 24 — «Перш ніж відпустити кур’єра»
+# Англійська · Урок 3 · Заняття 24 — Усе для поїздки
 
-**Сцена заняття.** Ви завершуєте перевірку доставки перед підписом. У замовленні є посуд, конверт із квитками та книга оповідань для читання. Кур’єр уточнює, що ви знайшли в пакунках; ви перевіряєте окремі предмети й набори, а в книзі — її зміст.
+**Ситуація.** Ви з Анною збираєте речі для виїзної зустрічі клубу. На столі книжки, карти, ручки, чашки й квитки, поруч сумки та коробки. Олег відмічає, що вже спаковано. Ви називаєте речі й запитуєте, де потрібні набори.
 
-**Як сказати:** перевіряємо знайомі форми одного й кількох: `a + noun`, `envelopes`, `dishes`, `stories`, `glasses`; називання, питання й заперечення з `It is`, `They are`, `Are they`, `They are not`  
-**Нові слова:** envelope  
-**Повертаються:** dish, story, glass
+**Що ви опануєте:** повторити назви кількох предметів і запитання про їхнє місце
+**Нові слова:** —
 
 ---
 
 ## Інтро 1
 
-### Назвати вміст конверта
+### Збираємо кілька речей
 
-`envelope` — «конверт»: паперова кишенька для листа або квитків. Один конверт називаємо `It is an envelope` — «Це конверт», а кілька — `They are envelopes` — «Це конверти». Разом із кількістю змінюється вся фраза: для одного беремо `It is an`, для кількох — `They are`.
+Повторимо знайомі слова: `books` — «книжки», `bags` — «сумки», `maps` — «карти місцевості». Для кількох предметів: `They are books` — «Це книжки». Для однієї книжки: `It is a book` — «Це книжка». Перед `books` не ставимо `a`. Олег збирався взяти одну книжку на весь клуб. Читати можна хором, але перегортати сторінку доведеться за командою. Покладемо кілька — `books`.
 
-**Кур’єр питає, що ви тримаєте перед підписом. Це один конверт із квитками. Скажіть: «Це конверт».**
+**Ви кладете в сумку кілька книжок. Назвіть їх повною фразою: «Це книжки».**
 
-- ✅ **It is an envelope.**
-- ❌ It is envelope. — *У цій фразі один конверт називаємо `an envelope`. Перед `envelope` пропущено `an`.*
-- ❌ It is an envelopes. — *У вас один конверт. Після `an` тут потрібна форма `envelope`; `envelopes` називає кілька.*
+- ✅ **They are books.**
+- ❌ They are a book. — *Книжок кілька: `books`, без `a`.*
+- ❌ They is books. — *З `They` потрібно `are`.*
 
 ---
 
 ## Інтро 2
 
-### Запитати про два конверти
+### Коробки й чашки
 
-`envelope` — «конверт», `envelopes` — «конверти». У першому інтро був один конверт: `It is an envelope`. Тепер у кур’єра два конверти для підпису. Для кількох беремо `they are`, а в запитанні змінюємо порядок: `Are they envelopes?` — «Це конверти?» Перед `envelopes` слово `a` не ставимо.
+`boxes` — «коробки», `cups` — «чашки», `pens` — «ручки». Написання `boxes` закінчується на `es`; пригадуємо його цілком. `The boxes are here` — «Коробки тут». `the boxes` — коробки, які ви зараз збираєте. `Where are the cups?` — «Де чашки?» Чашок кілька, тому запитуємо з `are`.
 
-**Кур’єр кладе поруч два конверти. Запитайте: «Це конверти?».**
+**Анна знає, які чашки ви берете на зустріч. Запитайте, де чашки.**
 
-- ✅ **Are they envelopes?**
-- ❌ Are they envelope? — *Ви питаєте про два предмети. Потрібна форма кількох: `envelopes`.*
-- ❌ Are they an envelopes? — *Перед назвою кількох конвертів `an` не ставимо: `Are they envelopes?`.*
+- ✅ **Where are the cups?**
+- ❌ Where is the cups? — *Чашок кілька: потрібно `are`.*
+- ❌ What are the cups? — *Про місце запитуємо `Where`.*
 
 ---
 
 ## Інтро 3
 
-### Позначити неправильний рядок
+### Квитки перед виходом
 
-Перед підписом кур’єр показує ще два пакунки, але це не конверти з квитками. Навіть в одній руці кур’єра два конверти залишаються `they`. Про кілька предметів говоримо `They are`; щоб додати «не», ставимо `not` після `are`: `They are not envelopes.` — «Це не конверти». Назва залишається у множині, без `a`.
+`tickets` — «квитки». `The tickets are valid` — «Квитки дійсні». `Where are the tickets?` — «Де квитки?» Запитання починається з `Where are`, потім називаємо квитки: `the tickets`. Так само можна запитати про підготовлені сумки: `Where are the bags?` — «Де сумки?»
 
-**Кур’єр показує два пакунки. Це не конверти. Скажіть повну фразу.**
+**Анна підготувала квитки для поїздки. Запитайте, де квитки.**
 
-- ✅ **They are not envelopes.**
-- ❌ They not envelopes. — *Після `They` потрібне `are`: `They are not envelopes.`*
-- ❌ They are not envelope. — *Ідеться про два предмети, тому потрібно `envelopes`.*
+- ✅ **Where are the tickets?**
+- ❌ Where is the tickets? — *Квитків кілька: потрібно `are`.*
+- ❌ What are the tickets? — *Щоб дізнатися місце, починаємо з `Where`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Вставте назву — кур’єр питає, що лежить окремо перед вами; назвіть один конверт із квитками «Це конверт» (`envelope` — «конверт»)**
-<!-- interaction_id: en:lesson-03:session-24:i01; family: context_gap_grammar -->
-Ціль: `It is ___.`
-Варіанти: `an envelope` · `envelope` · `envelopes`
-- envelope — *У цій фразі перед назвою одного конверта потрібне `an`: `an envelope`.*
-- envelopes — *`envelopes` — «конверти», їх кілька. Тут один: `an envelope`.*
+**1 · Олег запитує, що лежить у відкритій сумці. Назвіть кілька книжок**
+<!-- interaction_id: en:lesson-03:session-24:i01; family: phrase_builder -->
+Плитки: `books` `are` `They` `is` → **They are books.**
+*(плитка `is` зайва: тут потрібно `are` — `They are books.`)*
 
-
-**2 · Послухайте й оберіть — що запитав кур’єр**
+**2 · Послухайте повідомлення про коробки**
 <!-- interaction_id: en:lesson-03:session-24:i02; family: listen_choose -->
-Ціль: `Are they envelopes?`
-Варіанти: `Are they envelopes?` · `They are envelopes.` · `They are not envelopes.`
-- They are envelopes. — *Це твердження: спочатку `They are`. У записі спочатку звучить запитання `Are they`.*
-- They are not envelopes. — *У цьому варіанті є `not`. У записі кур’єр лише питає: `Are they envelopes?`*
+🔊 *The boxes are here.* → **The boxes are here.** · The boxes are outside. · The boxes are upstairs.
+- The boxes are outside. — *У записі останнє слово — `here`, а в цьому варіанті — `outside`.*
+- The boxes are upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
 
+**3 · Ви показуєте кілька карт місцевості. Назвіть їх**
+<!-- interaction_id: en:lesson-03:session-24:i03; family: context_gap_grammar -->
+They are ___. → **maps** · map · a maps
+- map — *Карт кілька: `maps`.*
+- a maps — *Перед `maps` не ставимо `a`.*
 
-**3 · Складіть фразу — кур’єр передає один конверт із квитками; скажіть «Це конверт»**
-<!-- interaction_id: en:lesson-03:session-24:i03; family: phrase_builder -->
-Ціль: `It is an envelope.`
-Варіанти: `envelopes`
+**4 · З’єднайте назви зі значеннями**
+<!-- interaction_id: en:lesson-03:session-24:i04; family: speed_match -->
+books — книжки · boxes — коробки · bags — сумки · maps — карти місцевості
 
-**4 · Вставте слово — кур’єр показує два конверти й просить уточнити, чи це вони**
-<!-- interaction_id: en:lesson-03:session-24:i04; family: context_gap_grammar -->
-Ціль: `Are ___ envelopes?`
-Варіанти: `they` · `it` · `are`
-- it — *Запитання про два предмети будуємо з `Are they`, а не `Are it`.*
-- are — *Після першого `Are` потрібне `they`, а потім `envelopes`.*
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-24:i05; family: listen_build_dictation -->
+🔊 *The pens are inside.* Плитки: `inside` `are` `pens` `The` `is` → **The pens are inside.**
+*(плитка `is` зайва: тут потрібно `are` — `The pens are inside.`)*
 
+**6 · Анна знає, які чашки ви берете. Запитайте, де чашки**
+<!-- interaction_id: en:lesson-03:session-24:i06; family: phrase_builder -->
+Плитки: `cups` `the` `are` `Where` `What` → **Where are the cups?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where are the cups?`)*
 
-**5 · Послухайте й оберіть — що вимовив кур’єр**
-<!-- interaction_id: en:lesson-03:session-24:i05; family: listen_choose -->
-Ціль: `It is a glass.`
-Варіанти: `It is a glass.` · `They are glasses.` · `It is not a glass.`
-- They are glasses. — *Цей варіант називає кілька склянок: `They are glasses`. У записі звучить фраза про одну: `It is a glass`.*
-- It is not a glass. — *Це заперечення: «Це не склянка». Тут після `is` стоїть `not a`; у записі після `is` звучить `a glass`, назва склянки.*
+**7 · Олег показує на кілька дорожніх сумок і запитує їхню назву. Скажіть повну фразу «Це сумки»**
+<!-- interaction_id: en:lesson-03:session-24:i07; family: scripted_repeat_compare -->
+🎙 **They are bags.**
 
-
-**6 · Вставте назву — кур’єр перевіряє набір для подавання закусок; назвіть два блюда, які ви розпакували, «Це блюда»**
-<!-- interaction_id: en:lesson-03:session-24:i06; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `dishes` · `dish` · `a dish`
-- dish — *Треба назвати два блюда. Їхня назва — `dishes`, із закінченням `es`.*
-- a dish — *`a dish` називає одне блюдо. Тут їх два: `They are dishes`.*
-
-
-**7 · Зберіть питання — на коробці з набором посуду стерся напис; кур’єр знімає кришку, а ви уточнюєте «Це склянки?»**
-<!-- interaction_id: en:lesson-03:session-24:i07; family: phrase_builder -->
-Ціль: `Are they glasses?`
-Варіанти: `glass`
-
-**8 · Вставте назву — кур’єр уточнює, які тексти зібрано в замовленій книзі; назвіть кілька історій «Це історії»**
+**8 · Ви перевірили квитки на поїздку: вони дійсні**
 <!-- interaction_id: en:lesson-03:session-24:i08; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `stories` · `storys` · `a stories`
-- storys — *Для кількох історій кінцеву `y` у `story` змінюємо на `ies`. Виходить `stories`.*
-- a stories — *У цій фразі перед назвою кількох історій `a` не потрібне: `They are stories`.*
+The tickets ___ valid. → **are** · is · am
+- is — *Квитків кілька: `The tickets are valid`.*
+- am — *З `the tickets` тут потрібно `are`.*
 
+**9 · Послухайте назву речей із коробки**
+<!-- interaction_id: en:lesson-03:session-24:i09; family: listen_choose -->
+🔊 *They are cups.* → **They are cups.** · They are pens. · They are maps.
+- They are pens. — *У записі останнє слово — `cups`, а в цьому варіанті — `pens`.*
+- They are maps. — *У записі останнє слово — `cups`, а в цьому варіанті — `maps`.*
 
-**9 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-24:i09; family: scripted_repeat_compare -->
-Ціль: `They are envelopes.`
+**10 · З’єднайте назви зі значеннями**
+<!-- interaction_id: en:lesson-03:session-24:i10; family: speed_match -->
+pens — ручки · cups — чашки · tickets — квитки · boxes — коробки
 
-**10 · Послухайте й оберіть — що сказав кур’єр перед підписом**
-<!-- interaction_id: en:lesson-03:session-24:i10; family: listen_choose -->
-Ціль: `They are not envelopes.`
-Варіанти: `They are not envelopes.` · `They are envelopes.` · `Are they envelopes?`
-- They are envelopes. — *Цей варіант стверджує, що це конверти. У записі після `are` звучить `not`.*
-- Are they envelopes? — *Це запитання з початком `Are they`. У записі порядок `They are`, а потім `not`.*
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-24:i11; family: listen_build_dictation -->
+🔊 *The bags are here.* Плитки: `here` `are` `bags` `The` `is` → **The bags are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The bags are here.`)*
 
+**12 · Перед виходом ви шукаєте підготовлені карти місцевості. Запитайте Анну, де карти**
+<!-- interaction_id: en:lesson-03:session-24:i12; family: phrase_builder -->
+Плитки: `maps` `the` `are` `Where` `What` → **Where are the maps?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where are the maps?`)*
 
-**11 · Вставте назву — кур’єр питає про предмет в окремому відділенні коробки; там одна склянка, скажіть «Це склянка»**
-<!-- interaction_id: en:lesson-03:session-24:i11; family: context_gap_grammar -->
-Ціль: `It is a ___.`
-Варіанти: `glass` · `glasses` · `a glass`
-- glasses — *Тут називаємо одну склянку: `a glass`. Слово `glasses` називає кілька.*
-- a glass — *Слово `a` уже стоїть перед пропуском. Якщо обрати `a glass`, воно повториться; у пропуску потрібне тільки `glass`.*
+**13 · Ви дістали кілька ручок. Олег запитує, що це. Назвіть їх повною фразою**
+<!-- interaction_id: en:lesson-03:session-24:i13; family: scripted_repeat_compare -->
+🎙 **They are pens.**
 
+**14 · Ви називаєте одну книжку, що залишилася на столі**
+<!-- interaction_id: en:lesson-03:session-24:i14; family: context_gap_grammar -->
+It is ___ book. → **a** · an · are
+- an — *Перед `book` у цій фразі потрібно `a`: `a book`.*
+- are — *Для назви однієї книжки тут потрібно `a book`.*
 
-**12 · Послухайте й зберіть — що вимовив кур’єр**
-<!-- interaction_id: en:lesson-03:session-24:i12; family: listen_build_dictation -->
-Ціль: `They are not dishes.`
-Варіанти: `dish`
+**15 · Послухайте повідомлення про квитки**
+<!-- interaction_id: en:lesson-03:session-24:i15; family: listen_choose -->
+🔊 *The tickets are valid.* → **The tickets are valid.** · The tickets are different. · The tickets are lost.
+- The tickets are different. — *У записі останнє слово — `valid`, а в цьому варіанті — `different`.*
+- The tickets are lost. — *У записі останнє слово — `valid`, а в цьому варіанті — `lost`.*
 
-**13 · Складіть фразу — кур’єр звіряє кілька конвертів перед закриттям замовлення; скажіть «Це конверти»**
-<!-- interaction_id: en:lesson-03:session-24:i13; family: phrase_builder -->
-Ціль: `They are envelopes.`
-Варіанти: `envelope`
+**16 · З’єднайте назви зі значеннями**
+<!-- interaction_id: en:lesson-03:session-24:i16; family: speed_match -->
+books — книжки · maps — карти місцевості · cups — чашки · tickets — квитки
 
-**14 · З’єднайте назви з українськими значеннями — перевірена доставка**
-<!-- interaction_id: en:lesson-03:session-24:i14; family: speed_match -->
-Пари: `envelopes` — конверти · `dishes` — блюда для подавання їжі · `stories` — історії · `glasses` — склянки
-Ціль: `envelopes · dishes · stories · glasses`
-
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-24:i15; family: scripted_repeat_compare -->
-Ціль: `It is a story.`
-
-**16 · Вставте назву — кур’єр просить підтвердити вміст останнього набору посуду; назвіть кілька склянок «Це склянки»**
-<!-- interaction_id: en:lesson-03:session-24:i16; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `glasses` · `glass` · `a glasses`
-- glass — *Називаємо кілька склянок. Потрібно `glasses`; форма `glass` тут називає одну.*
-- a glasses — *У цій фразі перед назвою кількох склянок `a` зайве. Потрібно `They are glasses`.*
-
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-24:i17:s01; family: scripted_repeat_compare -->
-Ціль: `It is an envelope.`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-24:i17:s02; family: scripted_repeat_compare -->
-Ціль: `Are they envelopes?`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-24:i17:s03; family: scripted_repeat_compare -->
-Ціль: `They are not envelopes.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=context_gap_grammar, 2=listen_choose, 3=phrase_builder, 4=context_gap_grammar, 5=listen_choose, 6=context_gap_grammar, 7=phrase_builder, 8=context_gap_grammar, 9=scripted_repeat_compare, 10=listen_choose, 11=context_gap_grammar, 12=listen_build_dictation, 13=phrase_builder, 14=speed_match, 15=scripted_repeat_compare, 16=context_gap_grammar, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
+**17 · Ви приїхали на місце зустрічі. Олег знає, які сумки ви привезли. Запитайте, де сумки**
+<!-- interaction_id: en:lesson-03:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where are the bags?**
 

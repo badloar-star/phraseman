@@ -1,0 +1,8 @@
+10-15 11:11:42.257 I/SVERKA  ( 9792): === CONT язык id: старт ===
+10-15 11:11:44.004 I/ReactNativeJS( 9159): '[HOME-CONTINUE-ART] layout', '{"node":"badge","x":19,"y":70,"w":85,"h":22}', '{"pending":false,"artWide":true,"accent":true,"badge":"Pelajaran 1","artSize":64}'
+10-15 11:11:48.366 I/ReactNativeJS( 9159): '[HOME-CONTINUE-ART] layout', '{"node":"badge","x":19,"y":70,"w":85,"h":22}', '{"pending":false,"artWide":true,"accent":true,"badge":"Pelajaran 1","artSize":64}'
+10-15 11:11:56.781 I/ReactNativeJS( 9159): '[HOME-CONTINUE] card', '{"visible":true,"reason":"shown","lessonId":1,"progress":0,"studyTarget":"en","source":"hydration_or_loadData"}'
+10-15 11:11:56.976 I/ReactNativeJS( 9159): '[HOME-CONTINUE-ART] layout', '{"node":"card","x":12,"y":70,"w":387,"h":96}', '{"pending":false,"artWide":true,"accent":true,"badge":"Pelajaran 1","artSize":64}'
+10-15 11:11:56.981 I/ReactNativeJS( 9159): '[HOME-CONTINUE-ART] layout', '{"node":"artColumn","x":264,"y":0,"w":124,"h":96}', '{"pending":false,"artWide":true,"accent":true,"badge":"Pelajaran 1","artSize":64}'
+10-15 11:11:56.982 I/ReactNativeJS( 9159): '[HOME-CONTINUE-ART] layout', '{"node":"badge","x":19,"y":70,"w":85,"h":22}', '{"pending":false,"artWide":true,"accent":true,"badge":"Pelajaran 1","artSize":64}'
+10-15 11:11:57.347 I/ReactNativeJS( 9159): '[HOME-CONTINUE-ART] layout', '{"node":"artColumn","x":263,"y":0,"w":124,"h":96}', '{"pending":false,"artWide":true,"accent":true,"badge":"Pelajaran 1","artSize":64}'

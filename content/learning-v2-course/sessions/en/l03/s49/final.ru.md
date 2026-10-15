@@ -1,157 +1,138 @@
-# Английский · Урок 3 · Занятие 49 — «Мебель по цвету»
+# Английский · Урок 3 · Занятие 49 — Больница на плане района
 
-**Сцена занятия.** В мебельном магазине вы выбираете диван, стул и стол по цвету. Сначала называете предмет, который видите впервые, а потом возвращаетесь к уже выбранному.
-**Как сказать:** `a` + цвет + предмет: `a blue sofa`, `a brown chair`, `a beige table`.
-**Новые слова:** blue, brown, beige
+**Ситуация.** Вы с Анной рассматриваете план района после переезда. Рядом отмечена больница. Дома вы показываете гостю кухню и обсуждаете покупки: одна вещь недорогая, но предложенное время доставки вас не устраивает.
+
+**Что вы освоите:** назвать больницу с a и указать место конкретной больницы с the
+**Новые слова:** hospital
+
+---
 
 ## Интро 1
-### Синий диван
 
-`blue` — «синий». Продавец показывает вам диван впервые: `A blue sofa is here.` Сначала идёт `a`, потом цвет, затем предмет. Так вы сразу говорите, какой диван нашли; иначе продавец может решить, что вам нужен любой диван, а их тут хватает.
+### Одна больница
 
-**Вы впервые заметили синий диван. Выберите фразу.**
+`hospital` — «больница». `This is a hospital` — «Это больница»: вы называете место на плане. Перед `hospital` нужно `a`: начальный `h` здесь произносится, слово начинается с согласного звука. Не ориентируйтесь на букву `o` после него. Большая вывеска не меняет артикль: всё равно `a hospital`.
 
-- ✅ **A blue sofa is here.**
-- ❌ A sofa blue is here. — *В английском цвет стоит перед предметом: `blue sofa`.*
-- ❌ The blue sofa is here. — *Этот диван ещё не называли, поэтому нужен `a`.*
+**Назовите больницу одним английским словом.**
+
+- ✅ **hospital**
+- ❌ hotel — *`hotel` — отель. Больница — `hospital`.*
+- ❌ airport — *`airport` — аэропорт. Больница — `hospital`.*
 
 ---
 
 ## Интро 2
-### Коричневый стул
 
-`brown` — «коричневый». У окна стоит стул, которого вы ещё не выбирали: `A brown chair is here.` `A` не приклеивается к chair: оно открывает всю группу `a brown chair`. Цвет ставьте перед chair — тогда понятно, что вы нашли именно этот вариант.
+### Больница вашего района
 
-**Вы впервые нашли коричневый стул. Выберите фразу.**
+`The hospital is here` — «Больница здесь». Речь о конкретной больнице, которую вы ищете вместе на плане района. `the hospital` указывает на понятное вам обоим место. Для одного места нужно `is`. Если просто называете объект дальше на плане: `That is a hospital` — «Это больница».
 
-- ✅ **A brown chair is here.**
-- ❌ A chair brown is here. — *`Brown` ставят перед `chair`: `a brown chair`.*
-- ❌ The brown chair is here. — *Стул ещё новый для разговора, поэтому нужен `a`.*
+**Вы нашли на плане больницу, которую искали вместе. Скажите «Больница здесь».**
+
+- ✅ **The hospital is here.**
+- ❌ The hospital are here. — *Больница одна: нужно `is`.*
+- ❌ The hospitals are here. — *Так говорят о нескольких больницах. Здесь одна: `The hospital is here`.*
 
 ---
 
 ## Интро 3
-### Бежевый стол
 
-`beige` — «бежевый». В дальнем зале вы видите стол впервые: `A beige table is here.` Если позже вернётесь к нему, скажете `The beige table is here.` Цвет не меняет выбор артикля: новое — `a`, уже выбранное — `the`.
+### Цена и неподходящий вариант
 
-**Вы впервые заметили бежевый стол. Выберите фразу.**
+`cheap` — «дешёвый, недорогой». О вещи с низкой ценой: `It is cheap` — «Она недорогая». В этом примере оцениваем цену, а не качество. `unacceptable` — «неприемлемый»: предложенное время доставки совершенно не подходит. О нём: `It is unacceptable` — «Это неприемлемо». Это сильнее, чем просто «неидеально». А гостю можно показать знакомую кухню: `The kitchen is here` — «Кухня здесь».
 
-- ✅ **A beige table is here.**
-- ❌ A table beige is here. — *Цвет идёт перед предметом: `beige table`.*
-- ❌ The beige table is here. — *Стол пока не упоминали, поэтому нужен `a`.*
+**Предложенное время доставки совершенно не подходит. Скажите «Это неприемлемо».**
+
+- ✅ **It is unacceptable.**
+- ❌ It is acceptable. — *`acceptable` — приемлемо. Здесь вариант не подходит: `unacceptable`.*
+- ❌ It are unacceptable. — *Речь об одном варианте: `It is unacceptable`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-49:i01; family: listen_choose -->
-Цель: `blue`
-Варианты: `blue`
+**1 · Гость ищет кухню, которую вы уже показали. Вы рядом. Скажите «Кухня здесь»**
+<!-- interaction_id: en:lesson-03:session-49:i01; family: phrase_builder -->
+Плитки: `here` `is` `kitchen` `The` `are` → **The kitchen is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The kitchen is here.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-49:i03; family: scripted_repeat_compare -->
-Цель: `brown`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-49:i02; family: listen_choose -->
+🔊 *hospital* → **hospital** · hotel · airport
+- hotel — *В записи первое слово — `hospital`, а в этом варианте — `hotel`.*
+- airport — *В записи первое слово — `hospital`, а в этом варианте — `airport`.*
 
-**3 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-49:i05; family: listen_choose -->
-Цель: `beige`
-Варианты: `beige` · `blue` · `brown`
-- blue — *В записи звучит `beige`, а не `blue`.*
-- brown — *В записи звучит `beige`, а не `brown`.*
+**3 · Назовите больницу одним английским словом**
+<!-- interaction_id: en:lesson-03:session-49:i03; family: context_gap_grammar -->
+___ → **hospital** · hotel · airport
+- hotel — *`hotel` — отель. Больница — `hospital`.*
+- airport — *`airport` — аэропорт. Больница — `hospital`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-49:i04; family: speed_match -->
+hospital — больница · cheap — недорогой · unacceptable — неприемлемый · kitchen — кухня
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-49:i02; family: scripted_repeat_compare -->
-Цель: `blue`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-49:i05; family: listen_build_dictation -->
+🔊 *This is a hospital.* Плитки: `hospital` `a` `is` `This` `are` → **This is a hospital.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a hospital.`)*
 
-**5 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-49:i04; family: listen_choose -->
-Цель: `brown`
-Варианты: `brown`
+**6 · Нужная вам обоим больница найдена на плане. Скажите «Больница здесь»**
+<!-- interaction_id: en:lesson-03:session-49:i06; family: phrase_builder -->
+Плитки: `here` `is` `hospital` `The` `are` → **The hospital is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The hospital is here.`)*
 
-**6 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-49:i06; family: scripted_repeat_compare -->
-Цель: `beige`
+**7 · Вещь стоит мало. Скажите о ней «Она недорогая» с сокращением**
+<!-- interaction_id: en:lesson-03:session-49:i07; family: scripted_repeat_compare -->
+🎙 **It's cheap.**
 
-**7 · Соедините цвета и их значения**
-<!-- interaction_id: en:lesson-03:session-49:i08; family: speed_match -->
-Пары: `blue` — синий · `brown` — коричневый · `beige` — бежевый
-Цель: `blue · brown · beige`
+**8 · Вы называете место на плане: больница**
+<!-- interaction_id: en:lesson-03:session-49:i08; family: context_gap_grammar -->
+This is ___ hospital. → **a** · an · are
+- an — *Начальное `h` в `hospital` произносится: нужен `a hospital`.*
+- are — *Перед названием одной больницы здесь нужно `a`.*
 
-**8 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-49:i10; family: listen_build_dictation -->
-Цель: `A brown chair is here.`
+**9 · Послушайте оценку предложенного времени доставки**
+<!-- interaction_id: en:lesson-03:session-49:i09; family: listen_choose -->
+🔊 *It is unacceptable.* → **It is unacceptable.** · It is acceptable. · It is appropriate.
+- It is acceptable. — *В записи последнее слово — `unacceptable`, а в этом варианте — `acceptable`.*
+- It is appropriate. — *В записи последнее слово — `unacceptable`, а в этом варианте — `appropriate`.*
 
-**9 · Вставьте цвет в фразу**
-<!-- interaction_id: en:lesson-03:session-49:i11; family: context_gap_grammar -->
-Цель: `It is a ___ table.`
-Варианты: `beige` · `blue` · `brown`
-- blue — *Синим был диван; здесь нужен цвет стола.*
-- brown — *Коричневым был стул; здесь нужен цвет стола.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-49:i10; family: speed_match -->
+hospital — больница · kitchen — кухня · here — здесь · there — там
 
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-49:i11; family: listen_build_dictation -->
+🔊 *That kitchen is there.* Плитки: `there` `is` `kitchen` `That` `are` → **That kitchen is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `That kitchen is there.`)*
 
-**10 · Соедините пары — вспомните знакомые цвета**
-<!-- interaction_id: en:lesson-03:session-49:i07; family: speed_match -->
-Пары: `red` — красный · `green` — зелёный · `blue` — синий · `brown` — коричневый · `beige` — бежевый
-Цель: `red · green · blue · brown · beige`
-
-**11 · Вставьте цвет — новый диван стоит у входа**
-<!-- interaction_id: en:lesson-03:session-49:i09; family: context_gap_grammar -->
-Цель: `A ___ sofa is here.`
-Варианты: `blue` · `brown` · `beige` · `sofa`
-- brown — *У входа стоит синий диван, а не коричневый.*
-- beige — *Нужен цвет синего дивана, а не бежевого.*
-- sofa — *`Sofa` уже стоит после пропуска; здесь нужен цвет.*
-
-
-**12 · Соберите фразу — вы отвечаете о стуле у окна**
+**12 · Вы показываете на один объект дальше на плане. Назовите его: «Это больница», со словом для одного дальше**
 <!-- interaction_id: en:lesson-03:session-49:i12; family: phrase_builder -->
-Цель: `It is a brown chair.`
+Плитки: `hospital` `a` `is` `That` `are` → **That is a hospital.**
+*(плитка `are` лишняя: здесь нужно `is` — `That is a hospital.`)*
 
-**13 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-03:session-49:i13; family: listen_choose -->
-Цель: `The blue sofa is here.`
-Варианты: `Синий диван здесь.` · `Здесь есть синий диван.` · `Коричневый диван здесь.` · `Где синий диван?`
-- Здесь есть синий диван. — *В записи `the`: это уже выбранный диван.*
-- Коричневый диван здесь. — *В записи звучит `blue`, а не `brown`.*
-- Где синий диван? — *В записи утверждение, а не вопрос.*
+**13 · Время доставки совершенно вас не устраивает. Скажите «Это неприемлемо» с сокращением**
+<!-- interaction_id: en:lesson-03:session-49:i13; family: scripted_repeat_compare -->
+🎙 **It's unacceptable.**
 
+**14 · Вы указываете место одной больницы, понятной собеседнику**
+<!-- interaction_id: en:lesson-03:session-49:i14; family: context_gap_grammar -->
+The hospital ___ here. → **is** · are · am
+- are — *Больница одна: `The hospital is here`.*
+- am — *С `The hospital` нужно `is`.*
 
-**14 · Соберите фразу — выбранный стол готов**
-<!-- interaction_id: en:lesson-03:session-49:i14; family: phrase_builder -->
-Цель: `The beige table is ready.`
+**15 · Послушайте оценку цены вещи**
+<!-- interaction_id: en:lesson-03:session-49:i15; family: listen_choose -->
+🔊 *It is cheap.* → **It is cheap.** · It is useful. · It is acceptable.
+- It is useful. — *В записи последнее слово — `cheap`, а в этом варианте — `useful`.*
+- It is acceptable. — *В записи последнее слово — `cheap`, а в этом варианте — `acceptable`.*
 
-**15 · Вставьте цвет — новый стол стоит рядом**
-<!-- interaction_id: en:lesson-03:session-49:i15; family: context_gap_grammar -->
-Цель: `A ___ table is here.`
-Варианты: `beige` · `blue` · `brown` · `table`
-- blue — *Синим был диван, а здесь нужен цвет стола.*
-- brown — *Коричневым был стул, а здесь нужен цвет стола.*
-- table — *`Table` уже стоит после пропуска; сюда ставят цвет.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-49:i16; family: speed_match -->
+hospital — больница · cheap — недорогой · unacceptable — неприемлемый · kitchen — кухня
 
+**17 · В другом районе вы с другом ищете на карте заранее выбранную больницу. Вы нашли её в дальней части карты. Скажите «Больница там», говоря о нужном вам обоим месте**
+<!-- interaction_id: en:lesson-03:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The hospital is there.**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-03:session-49:i16; family: listen_choose -->
-Цель: `The brown chair is here.`
-Варианты: `Коричневый стул здесь.` · `Здесь есть коричневый стул.` · `Бежевый стул здесь.` · `Где коричневый стул?`
-- Здесь есть коричневый стул. — *В записи `the`: это уже выбранный стул.*
-- Бежевый стул здесь. — *В записи звучит `brown`, а не `beige`.*
-- Где коричневый стул? — *В записи утверждение, а не вопрос.*
-
-
-**17 · Вставьте артикль — продавец уже показал вам бежевый стул**
-<!-- interaction_id: en:lesson-03:session-49:i17; family: context_gap_grammar -->
-Цель: `___ beige chair is here.`
-Варианты: `The` · `A` · `An` · `без артикля`
-- A — *`a` вводит один предмет впервые. Этот стул уже был показан, поэтому нужен `the`. Для известного предмета выбирайте `the`.*
-- An — *`an` бывает перед гласным звуком. `beige` начинается со звука /b/, а предмет уже известен: нужен `the`, не `an`.*
-- без артикля — *Один исчисляемый предмет нельзя назвать без определителя. Здесь это уже известный стул: `the beige chair`.*
-
-
-## Для сборщика
-new_words: blue — синий — Цвет мебели.
-new_words: brown — коричневый — Цвет мебели.
-new_words: beige — бежевый — Цвет мебели.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=context_gap_grammar, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_choose, 14=phrase_builder, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar

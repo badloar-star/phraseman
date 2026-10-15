@@ -2643,7 +2643,24 @@ function LessonScreen() {
     return true;
   }, []);
 
+  // зачем (аудит кнопок R58 #10, координатор 15.10): после последнего ответа переход на итог ждёт конца озвучки (до нескольких секунд),
+  // а все записи завершения — разблокировка, аналитика, монеты и медаль экрана итога — идут в этом переходе. «Назад» в эту паузу гасил
+  // таймер и терял завершение целиком (и писал «урок брошен»). Теперь «Назад» в паузе = пропустить ожидание: итог открывается сразу.
+  const finishPendingCompletionNow = useCallback((from: string): boolean => {
+    const run = lessonCompletionNavigateRef.current;
+    if (!run) return false;
+    lessonCompletionNavigateRef.current = null;
+    if (lessonCompletionFallbackTimerRef.current) {
+      clearTimeout(lessonCompletionFallbackTimerRef.current);
+      lessonCompletionFallbackTimerRef.current = null;
+    }
+    console.log('[LESSON-RESULT] back_during_completion', JSON.stringify({ lessonId, from })); // guard-ok: один раз на урок
+    run();
+    return true;
+  }, [lessonId]);
+
   const handleLessonHeaderBack = useCallback(() => {
+    if (finishPendingCompletionNow('headerBack')) return;
     if (lessonExitInFlightRef.current) {
       traceLessonExit('headerBack:ignored', { lessonId, cellIndex, exitInFlight: true });
       return;
@@ -2659,7 +2676,7 @@ function LessonScreen() {
     }
     trackLessonAbandoned().catch(noteSwallowedHandler('lesson1:useCallback.trackLessonAbandoned'));
     navigateUpFromLessonScreen();
-  }, [beginLessonExit, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen]);
+  }, [beginLessonExit, finishPendingCompletionNow, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen]);
 
   // зачем (m15, координатор 14.10): за флагом moments_v3 «назад» посреди урока сначала спрашивает; «Выйти» зовёт прежний handleLessonHeaderBack (abandon + навигация, двойной тап защищён lessonExitInFlightRef),
   // «Продолжить»/фон/«назад» закрывают шторку. Флаг выкл, интро-экраны (попытки ещё нет) или выход уже идёт — прежнее поведение без шторки.
@@ -2669,6 +2686,7 @@ function LessonScreen() {
   const [exitSheetOpen, setExitSheetOpen] = useState(false);
   const [exitSheetMounted, setExitSheetMounted] = useState(false);
   const requestLessonExit = useCallback(() => {
+    if (finishPendingCompletionNow('exitRequest')) return; // R58 #10: урок уже пройден — без шторки «Выйти?», сразу итог
     if (!momentsV3 || showIntroScreens || lessonExitInFlightRef.current) {
       traceLessonExit('exitSheet:skip', { lessonId, cellIndex, momentsV3, intro: showIntroScreens, exitInFlight: lessonExitInFlightRef.current });
       handleLessonHeaderBack();
@@ -2677,7 +2695,7 @@ function LessonScreen() {
     traceLessonExit('exitSheet:open', { lessonId, cellIndex, effectiveTotal });
     setExitSheetMounted(true);
     setExitSheetOpen(true);
-  }, [momentsV3, showIntroScreens, handleLessonHeaderBack, lessonId, cellIndex, effectiveTotal]);
+  }, [finishPendingCompletionNow, momentsV3, showIntroScreens, handleLessonHeaderBack, lessonId, cellIndex, effectiveTotal]);
   const closeExitSheet = useCallback(() => {
     traceLessonExit('exitSheet:continue', { lessonId, cellIndex });
     setExitSheetOpen(false);
@@ -3531,9 +3549,12 @@ function LessonScreen() {
       // phrase_audio_timing.ts) плюс саму длительность речи, с запасом.
       if (!settings.voiceOut) {
         // зачем (аудит Optimistic UI Уроков, 13.10): таймер без ссылки не чистился при выходе — «Назад» в первые 1,5 с возвращал человека на итог. Теперь он в том же ref, что и запасной, и гасится при размонтировании.
+        lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };
         lessonCompletionFallbackTimerRef.current = setTimeout(() => {
           lessonCompletionFallbackTimerRef.current = null;
-          void runLessonCompletionNavigation();
+          const navigate = lessonCompletionNavigateRef.current;
+          lessonCompletionNavigateRef.current = null;
+          navigate?.();
         }, 1500);
       } else {
         lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };

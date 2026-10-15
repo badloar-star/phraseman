@@ -755,7 +755,13 @@ export default function LessonComplete() {
   const [resultsReady, setResultsReady] = useState(false);
   const [seqDone, setSeqDone] = useState(false);
   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
-  const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady && completionXpReady;
+  // зачем (аудит кнопок R58 #2, координатор 15.10): экран итога 2.0 показывался ТОЛЬКО пока держит слот арбитра, а слот отпускала лишь
+  // кнопка старой секвенции (setSeqDone), которой на экране 2.0 нет, — слот висел всю жизнь экрана: оценка приложения, тосты и уведомления
+  // голодали, первый тап «Следующий урок» лишь взводил оценку, которая не могла открыться. Теперь экран, раз показавшись, остаётся
+  // (защёлка), а слот отпускается, когда собственные моменты экрана отыграли (эффект [LESSON-RESULT] slot_release ниже).
+  const resultShownLatchRef = useRef(false);
+  if (resultsSequenceVisible && resultsReady && completionAccessReady && completionXpReady) resultShownLatchRef.current = true;
+  const sequenceShowing = resultShownLatchRef.current;
   // зачем (координатор 15.10, m09): штамп «ИДЕАЛ» — на итоге обычного урока без единой ошибки, когда монеты урока уже посчитаны; решение и причина — perfect_moment_gate
   const momentsV3 = useMomentsV3Enabled();
   const [perfectMomentOpen, setPerfectMomentOpen] = useState(false);
@@ -787,6 +793,19 @@ export default function LessonComplete() {
   const milestoneHoldRaw = useStreakMilestoneHold();
   const milestoneHold = momentsV3 && milestoneHoldRaw;
   const perfectMomentOn = sequenceShowing && perfectDecision.show && !milestoneHold && (!doneChainOn || doneChainFinished);
+  // R58 #2: слот «секвенция наград» отпускаем, когда экран итога показан и его моменты (цепочка m10, окно m09) отыграли или их не будет
+  useEffect(() => {
+    if (seqDone) return;
+    if (!sequenceShowing) return;
+    const chainPending = doneChainOn && !doneChainFinished;
+    const perfectPending = perfectDecision.show && !perfectMomentSettled;
+    if (chainPending || perfectPending) {
+      console.log('[LESSON-RESULT] slot_hold', JSON.stringify({ lessonId, chainPending, perfectPending })); // guard-ok: решение держать слот, одна строка на смену
+      return;
+    }
+    console.log('[LESSON-RESULT] slot_release', JSON.stringify({ lessonId, chain: doneChainOn, perfect: perfectDecision.show })); // guard-ok: один раз на экран итога
+    setSeqDone(true);
+  }, [seqDone, sequenceShowing, doneChainOn, doneChainFinished, perfectDecision.show, perfectMomentSettled, lessonId]);
   // зачем (координатор 13.10, paywalls-009/010, макет embedded-plus-states.html экраны 2–3 — приказ владельца 11.10): карточка
   // «Первый урок — готово» / «Три урока — отличный старт» жила только в старом варианте итога (legacyCompletionSurfacesEnabled=false),
   // а seqDone ставит лишь старая секвенция — на экране 2.0 предложение Plus не показывалось НИКОГДА. Экран итога 2.0 сам и есть

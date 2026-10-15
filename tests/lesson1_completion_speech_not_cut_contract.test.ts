@@ -38,7 +38,10 @@ describe('озвучка результата в Learning V1 не режется
     expect(source).toContain('if (!settings.voiceOut) {');
     // Путь без голоса — короткая пауза «дать увидеть результат», путь с
     // голосом — откладывается через ref до сигнала о реальном окончании речи.
-    expect(source).toMatch(/if \(!settings\.voiceOut\) \{\s*setTimeout\(\(\) => \{ void runLessonCompletionNavigation\(\); \}, 1500\);/);
+    // R58 #10 (15.10): обе ветки кладут переход в общий ref (его находит «Назад» в паузе); путь без голоса — те же 1,5 с.
+    const voiceOffBranch = source.slice(source.indexOf('if (!settings.voiceOut) {'), source.indexOf('} else {', source.indexOf('if (!settings.voiceOut) {')));
+    expect(voiceOffBranch).toContain('lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };');
+    expect(voiceOffBranch).toContain('}, 1500);');
     expect(source).toContain('lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };');
   });
 

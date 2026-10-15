@@ -1,0 +1,1014 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хозяин не пришёл на встречу. Скажите «Он отсутствует» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хозяин не пришёл на встречу. Скажите «Он отсутствует» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is absent.",
+        "localizedMeaning": {
+          "ru": "Хозяин не пришёл на встречу. Скажите «Он отсутствует» без сокращения",
+          "uk": "Господар не прийшов на зустріч. Скажіть «Він відсутній» без скорочення"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "absent"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Хозяин не пришёл на встречу. Скажите «Он отсутствует» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is absent.`",
+              "uk": "тут потрібно `is` — `He is absent.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-25:i02:r1",
+          "text": "sink"
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i02:r2",
+          "text": "soup"
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i02:r3",
+          "text": "milk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-25:i02:audio",
+          "transcript": "sink"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-25:i02:r1",
+            "targetText": "sink",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i02:r2",
+            "targetText": "soup",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i02:r3",
+            "targetText": "milk",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sink`, а в этом варианте — `soup`.",
+              "uk": "У записі перше слово — `sink`, а в цьому варіанті — `soup`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sink`, а в этом варианте — `milk`.",
+              "uk": "У записі перше слово — `sink`, а в цьому варіанті — `milk`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите раковину одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-25:i03:r1",
+          "text": "sink"
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i03:r2",
+          "text": "table"
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i03:r3",
+          "text": "window"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите раковину одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите раковину одним словом",
+          "uk": "Назвіть раковину одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-25:i03:r1",
+            "text": "sink"
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i03:r2",
+            "text": "table"
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i03:r3",
+            "text": "window"
+          }
+        ],
+        "testedDimension": "Назовите раковину одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите раковину одним словом",
+            "feedbackByLocale": {
+              "ru": "`table` — стол; раковина — `sink`.",
+              "uk": "`table` — стіл; раковина — `sink`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите раковину одним словом",
+            "feedbackByLocale": {
+              "ru": "`window` — окно; раковина — `sink`.",
+              "uk": "`window` — вікно; раковина — `sink`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-25:i04:p1",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i04:p2",
+            "target": "absent",
+            "meaningByLocale": {
+              "ru": "отсутствующий",
+              "uk": "відсутній"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i04:p3",
+            "target": "dogs",
+            "meaningByLocale": {
+              "ru": "собаки",
+              "uk": "собаки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i04:p4",
+            "target": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sink",
+          "absent",
+          "dogs",
+          "berry"
+        ],
+        "rightColumn": [
+          "раковина",
+          "отсутствующий",
+          "собаки",
+          "ягода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите описание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите описание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-25:i05:audio",
+          "transcript": "The berry is in the sink."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The berry is in the sink.",
+        "orderedTokens": [
+          "The",
+          "berry",
+          "is",
+          "in",
+          "the",
+          "sink"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите описание",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The berry is in the sink.`",
+              "uk": "тут потрібно `is` — `The berry is in the sink.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ягода лежит на поверхности стола. Скажите «Ягода на столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ягода лежит на поверхности стола. Скажите «Ягода на столе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The berry is on the table.",
+        "localizedMeaning": {
+          "ru": "Ягода лежит на поверхности стола. Скажите «Ягода на столе»",
+          "uk": "Ягода лежить на поверхні столу. Скажіть «Ягода на столі»"
+        },
+        "orderedTokens": [
+          "The",
+          "berry",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ягода лежит на поверхности стола. Скажите «Ягода на столе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The berry is on the table.`",
+              "uk": "тут потрібно `is` — `The berry is on the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Собаки лежат под столом. Скажите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Собаки лежат под столом. Скажите, где они",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-25:i07:audio",
+          "transcript": "The dogs are under the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dogs are under the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Раковина рядом с окном, не под ним. Закончите описание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-25:i08:r1",
+          "text": "next to"
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i08:r2",
+          "text": "under"
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i08:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Раковина рядом с окном, не под ним. Закончите описание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Раковина рядом с окном, не под ним. Закончите описание",
+          "uk": "Раковина поруч із вікном, не під ним. Закінчіть опис"
+        },
+        "gappedTargetPhrase": "The sink is ___ the window.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-25:i08:r1",
+            "text": "next to"
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i08:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i08:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Раковина рядом с окном, не под ним. Закончите описание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Раковина рядом с окном, не под ним. Закончите описание",
+            "feedbackByLocale": {
+              "ru": "`under` — под; рядом с — `next to`.",
+              "uk": "`under` — під; поруч із — `next to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Раковина рядом с окном, не под ним. Закончите описание",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; здесь рядом с окном: `next to the window`.",
+              "uk": "`in` — усередині; тут поруч із вікном: `next to the window`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-25:i09:r1",
+          "text": "The sink is between the tables."
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i09:r2",
+          "text": "The sink is between the windows."
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i09:r3",
+          "text": "The sink is between the chairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-25:i09:audio",
+          "transcript": "The sink is between the tables."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-25:i09:r1",
+            "targetText": "The sink is between the tables.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i09:r2",
+            "targetText": "The sink is between the windows.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i09:r3",
+            "targetText": "The sink is between the chairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте описание",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `tables`, а в этом варианте — `windows`.",
+              "uk": "У записі останнє слово — `tables`, а в цьому варіанті — `windows`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `tables`, а в этом варианте — `chairs`.",
+              "uk": "У записі останнє слово — `tables`, а в цьому варіанті — `chairs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-25:i10:p1",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i10:p2",
+            "target": "in",
+            "meaningByLocale": {
+              "ru": "внутри",
+              "uk": "усередині"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i10:p3",
+            "target": "on",
+            "meaningByLocale": {
+              "ru": "на поверхности",
+              "uk": "на поверхні"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i10:p4",
+            "target": "under",
+            "meaningByLocale": {
+              "ru": "под",
+              "uk": "під"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sink",
+          "in",
+          "on",
+          "under"
+        ],
+        "rightColumn": [
+          "раковина",
+          "внутри",
+          "на поверхности",
+          "под"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите описание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите описание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-25:i11:audio",
+          "transcript": "The dogs are next to the sink."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The dogs are next to the sink.",
+        "orderedTokens": [
+          "The",
+          "dogs",
+          "are",
+          "next",
+          "to",
+          "the",
+          "sink"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите описание",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The dogs are next to the sink.`",
+              "uk": "тут потрібно `are` — `The dogs are next to the sink.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ягода укатилась под стол. Скажите «Ягода под столом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ягода укатилась под стол. Скажите «Ягода под столом»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The berry is under the table.",
+        "localizedMeaning": {
+          "ru": "Ягода укатилась под стол. Скажите «Ягода под столом»",
+          "uk": "Ягода закотилася під стіл. Скажіть «Ягода під столом»"
+        },
+        "orderedTokens": [
+          "The",
+          "berry",
+          "is",
+          "under",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ягода укатилась под стол. Скажите «Ягода под столом»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The berry is under the table.`",
+              "uk": "тут потрібно `is` — `The berry is under the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Хозяина нет на встрече. Скажите «Он отсутствует» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Хозяина нет на встрече. Скажите «Он отсутствует» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-25:i13:audio",
+          "transcript": "He's absent."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He's absent.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ягода лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-25:i14:r1",
+          "text": "between"
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i14:r2",
+          "text": "under"
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i14:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ягода лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ягода лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+          "uk": "Ягода лежить між двома чашками, не всередині й не під ними. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The berry is ___ the cups.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-25:i14:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i14:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i14:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Ягода лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Ягода лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; между — `between`.",
+              "uk": "`under` — під; між — `between`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i14:r3",
+            "correct": false,
+            "testedDimension": "Ягода лежит между двумя чашками, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; между чашками — `between the cups`.",
+              "uk": "`in` — усередині; між чашками — `between the cups`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где собаки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-25:i15:r1",
+          "text": "The dogs are in the room."
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i15:r2",
+          "text": "The dogs are in the garden."
+        },
+        {
+          "responseId": "en:lesson-04:session-25:i15:r3",
+          "text": "The dogs are in the hotel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где собаки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-25:i15:audio",
+          "transcript": "The dogs are in the room."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-25:i15:r1",
+            "targetText": "The dogs are in the room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i15:r2",
+            "targetText": "The dogs are in the garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i15:r3",
+            "targetText": "The dogs are in the hotel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где собаки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `room`, а в этом варианте — `garden`.",
+              "uk": "У записі останнє слово — `room`, а в цьому варіанті — `garden`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где собаки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `room`, а в этом варианте — `hotel`.",
+              "uk": "У записі останнє слово — `room`, а в цьому варіанті — `hotel`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-25:i16:p1",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i16:p2",
+            "target": "absent",
+            "meaningByLocale": {
+              "ru": "отсутствующий",
+              "uk": "відсутній"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i16:p3",
+            "target": "dogs",
+            "meaningByLocale": {
+              "ru": "собаки",
+              "uk": "собаки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-25:i16:p4",
+            "target": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sink",
+          "absent",
+          "dogs",
+          "berry"
+        ],
+        "rightColumn": [
+          "раковина",
+          "отсутствующий",
+          "собаки",
+          "ягода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-25:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другой квартире друг ищет раковину. Она рядом с окном. Скажите «Раковина рядом с окном»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "В другой квартире друг ищет раковину. Она рядом с окном. Скажите «Раковина рядом с окном»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-25:i17:audio",
+          "transcript": "The sink is next to the window."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The sink is next to the window.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b29dcce0ffceba51635037ab8d41cc1618dbdffe6c6a73a5867e560411e5c5e8"
+}

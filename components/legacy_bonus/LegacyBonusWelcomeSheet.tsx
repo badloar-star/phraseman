@@ -53,7 +53,7 @@ function Content({ lang, coinRank, result, requestDismiss }: Readonly<{ lang: La
 
   return (
     <>
-      <ScrollView style={s.scroll} contentContainerStyle={s.scrollContent} showsVerticalScrollIndicator={false} bounces={false}>
+      <ScrollView style={s.scroll} contentContainerStyle={s.scrollContent} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
         <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: glass.text }]}>{legacyBonusTitle(lang)}</Text>
         {hasContent ? (
         <>

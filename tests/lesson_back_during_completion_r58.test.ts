@@ -5,7 +5,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+// CRLF в рабочей копии Windows — нормализуем (сторож source_guard_eol_normalized)
+const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8').replace(/\r\n/g, '\n');
 
 describe('R58 #10 · «Назад» в паузе завершения урока открывает итог, а не теряет его', () => {
   it('выход сначала проверяет отложенное завершение', () => {

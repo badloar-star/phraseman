@@ -2,7 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(__dirname, '..');
-const read = (relative: string): string => fs.readFileSync(path.join(root, relative), 'utf8');
+// CRLF в рабочей копии Windows — нормализуем (сторож source_guard_eol_normalized)
+const read = (relative: string): string => fs.readFileSync(path.join(root, relative), 'utf8').replace(/\r\n/g, '\n');
 
 // D111 (владелец): лимит Free в Диалогах — 30 ответов в календарный месяц UTC,
 // считает сервер. Имя файла историческое («daily»), контракт — месячный.

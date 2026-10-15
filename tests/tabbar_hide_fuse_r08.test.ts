@@ -9,7 +9,8 @@ import { act, render } from '@testing-library/react-native';
 
 import { TabBarVisibilityProvider, useHideTabBar, useTabBarVisibility } from '../components/TabBarVisibilityContext';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+// CRLF в рабочей копии Windows — нормализуем (сторож source_guard_eol_normalized)
+const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 const h = React.createElement;
 
 describe('R08 · предохранитель таббара', () => {

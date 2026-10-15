@@ -130,9 +130,9 @@ const LegacyBonusRow = forwardRef<LegacyBonusRowHandle, Props>(function LegacyBo
       <Animated.Text style={[s.title, titleStyle]} numberOfLines={2}>{legacyBonusRowTitle(lang, row.key)}</Animated.Text>
       <View style={s.val}>
         <Animated.Text style={[s.valText, { color: glass.text }, oldStyle]} testID={testID ? `${testID}-old` : undefined}>{formatBonusNumber(oldValue)}</Animated.Text>
-        <Animated.Text style={[s.valText, s.valNew, { color: glass.accent }, newStyle]} testID={testID ? `${testID}-new` : undefined}>{`+${formatBonusNumber(row.coins)}`}</Animated.Text>
+        <Animated.Text style={[s.valText, s.valNew, { color: glass.accentTextSafe }, newStyle]} testID={testID ? `${testID}-new` : undefined}>{`+${formatBonusNumber(row.coins)}`}</Animated.Text>
         <Animated.View pointerEvents="none" style={[s.chip, { backgroundColor: accentSoft }, chipStyle]}>
-          <Text style={[s.chipText, { color: glass.accent }]}>{`+${formatBonusNumber(row.coins)} ${legacyBonusCoinWord(lang, row.coins)}`}</Text>
+          <Text style={[s.chipText, { color: glass.accentTextSafe }]}>{`+${formatBonusNumber(row.coins)} ${legacyBonusCoinWord(lang, row.coins)}`}</Text>
         </Animated.View>
       </View>
     </Animated.View>

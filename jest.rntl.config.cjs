@@ -51,6 +51,19 @@ module.exports = {
     // зачем (координатор 15.10, TABS_RENDER_2 + INSETS_MEMO): focusTick в своём контексте; insets — та же ссылка при тех же числах
     '<rootDir>/tests/tab_focus_tick_context.test.tsx',
     '<rootDir>/tests/stable_safe_area_insets_memo.test.tsx',
+    // зачем (координатор 15.10, разбор красных): новые .test.tsx дня не стояли ни в одном раннере — сторож test_runner_coverage
+    '<rootDir>/tests/combo_moment_m08.test.tsx',
+    '<rootDir>/tests/dialogue_chain_m18.test.tsx',
+    '<rootDir>/tests/dialogue_incoming_call_m16.test.tsx',
+    '<rootDir>/tests/done_chain_m10.test.tsx',
+    '<rootDir>/tests/lesson_boundary_context_plus.test.tsx',
+    '<rootDir>/tests/moment_count_text_contract.test.tsx',
+    '<rootDir>/tests/render_cause_probe.test.tsx',
+    '<rootDir>/tests/speech_fail_block.test.tsx',
+    '<rootDir>/tests/spire_rise_queue_p17.test.tsx',
+    '<rootDir>/tests/use_guarded_nav_stable.test.tsx',
+    '<rootDir>/tests/use_voice_attempt_gate.test.tsx',
+    '<rootDir>/tests/voice_allowance_d194_contract.test.tsx',
   ],
   // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
   setupFiles: ['react-native-gesture-handler/jestSetup'],

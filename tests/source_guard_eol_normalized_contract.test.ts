@@ -42,7 +42,8 @@ function listTestFiles(dir: string, out: string[] = []): string[] {
   return out;
 }
 
-const NORMALIZES = /normalizeEol\(|readSource\(|replace\(\s*\/\\r\\n\??\/g\s*,|replace\(\s*\/\\r\/g|\\r\?\\n/;
+// 15.10 (разбор красных): split('\r\n').join('\n') и split(String.fromCharCode(13, 10)) — тоже нормализация, а не сырое чтение
+const NORMALIZES = /normalizeEol\(|readSource\(|replace\(\s*\/\\r\\n\??\/g\s*,|replace\(\s*\/\\r\/g|\\r\?\\n|split\(\s*['"]\\r\\n['"]\s*\)|fromCharCode\(13,\s*10\)/;
 // Аргументы вызова бывают с вложенными скобками (join(…)) — проверяем вызов и текстовую кодировку раздельно.
 const isTextRead = (text: string) => /readFileSync\(/.test(text) && /['"]utf-?8['"]/i.test(text);
 const MULTILINE_EXPECTATION = [

@@ -12,7 +12,7 @@ import type { PhraseMistakeInput } from './phrase_analytics';
  */
 export const LESSON_RUN_ERRORS_LIMIT = 5;
 
-type Remembered = Readonly<{ lessonId: number; rows: readonly V2DoneError[]; mistakeIds: readonly string[] }>;
+type Remembered = Readonly<{ lessonId: number; rows: readonly V2DoneError[]; mistakeIds: readonly string[]; missCount: number }>;
 
 let remembered: Remembered | null = null;
 let collecting: { lessonId: number; ids: string[] } | null = null;
@@ -53,6 +53,20 @@ export function lessonRunErrorRows(signals: readonly PhraseMistakeInput[]): read
   return rows;
 }
 
+/**
+ * Сколько РАЗНЫХ заданий прохода промахнулось хотя бы раз — без лимита строк списка.
+ * зачем (координатор 15.10): счёт «ошибок» и точности на итоге шёл по строкам списка (уникальны по слову, не больше 5) и занижался
+ * на длинном уроке. Одно задание, промахнувшееся дважды, — одна ошибка: ключ — id фразы (или сама фраза).
+ */
+export function lessonRunMissCount(signals: readonly PhraseMistakeInput[]): number {
+  const tasks = new Set<string>();
+  for (const signal of signals) {
+    const key = typeof signal === 'string' ? signal : String((signal as { phraseId?: unknown }).phraseId ?? signal.phrase ?? '');
+    if (key) tasks.add(key);
+  }
+  return tasks.size;
+}
+
 /** В «Моих ошибках» записалась ошибка этого прохода (id нужен кнопке «Добить»). Повтор того же id не считается дважды. */
 export function collectLessonRunMistakeId(lessonId: number, mistakeId: string): void {
   if (!mistakeId) return;
@@ -69,12 +83,17 @@ export function rememberLessonRunErrors(lessonId: number, signals: readonly Phra
   const mistakeIds = collecting && collecting.lessonId === lessonId ? [...collecting.ids] : [];
   collecting = null;
   sealedLessonId = lessonId;
-  remembered = { lessonId, rows: lessonRunErrorRows(signals), mistakeIds };
+  remembered = { lessonId, rows: lessonRunErrorRows(signals), mistakeIds, missCount: lessonRunMissCount(signals) };
 }
 
 /** Ошибки последнего прохода именно этого урока; чужой урок или пусто — пустой список. */
 export function peekLessonRunErrors(lessonId: number): readonly V2DoneError[] {
   return remembered && remembered.lessonId === lessonId ? remembered.rows : [];
+}
+
+/** Число разных промахнувшихся заданий последнего прохода этого урока (для счёта «ошибок»/точности; строки списка — peekLessonRunErrors). */
+export function peekLessonRunMissCount(lessonId: number): number {
+  return remembered && remembered.lessonId === lessonId ? remembered.missCount : 0;
 }
 
 /** id ошибок последнего прохода этого урока из «Моих ошибок» — для «Добить: Ещё учу (N)». */

@@ -20,7 +20,7 @@ export type LessonFirstTryCounts = Readonly<{
   finalCorrect: number;
 }>;
 
-/** Из сохранённого прогресса урока. `runErrors` — длина списка «Ошибки» этого прохода (страховка, если прогресс потерял промах). */
+/** Из сохранённого прогресса урока. `runErrors` — число разных промахнувшихся заданий этого прохода (peekLessonRunMissCount) (страховка, если прогресс потерял промах). */
 export function lessonFirstTryCountsFromProgress(progress: readonly string[], runErrors: number): LessonFirstTryCounts {
   // зачем (Сверка ca8abf1b2, проход 2: повтор урока без единой ошибки показал «0 верно / 3 ошибки / 0%»): 'replay_correct' — это НЕ
   // «исправлено на повторе», а «верно в повторном прохождении урока»; считать его промахом было ошибкой. Промахи = неисправленные
@@ -28,7 +28,8 @@ export function lessonFirstTryCountsFromProgress(progress: readonly string[], ru
   const finalCorrect = progress.filter((cell) => cell === 'correct' || cell === 'replay_correct').length;
   const firstTryCorrect = finalCorrect;
   const missed = progress.filter((cell) => cell === 'wrong').length;
-  const wrong = Math.max(missed, Math.max(0, Math.floor(runErrors)));
+  // зачем: промахов не может быть больше заданий урока (страховка от рассинхрона буфера и прогресса)
+  const wrong = Math.min(Math.max(missed, Math.max(0, Math.floor(runErrors))), Math.max(progress.length, missed));
   // список «Ошибки» видел промахов больше, чем осталось в прогрессе, — лишние вычитаем из «верно», сумма ответов не растёт
   const correct = Math.max(0, firstTryCorrect - (wrong - missed));
   return { correct, wrong, finalCorrect };

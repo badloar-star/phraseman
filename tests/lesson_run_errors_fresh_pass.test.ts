@@ -1,7 +1,7 @@
 // зачем (координатор 15.10): счёт итога «по первым попыткам» берёт промахи из списка «Ошибки» ТЕКУЩЕГО прохода.
 // Сторож: промахи прошлого (в т.ч. брошенного) прохода не попадают в новый — «проход с промахом → выход → повтор, всё верно → 3/0».
 import { lessonFirstTryCountsFromProgress } from '../app/lesson_first_try_counts';
-import { beginLessonRunErrors, clearLessonRunErrors, peekLessonRunErrors, rememberLessonRunErrors } from '../app/lesson_run_errors_memory';
+import { beginLessonRunErrors, clearLessonRunErrors, peekLessonRunErrors, peekLessonRunMissCount, rememberLessonRunErrors } from '../app/lesson_run_errors_memory';
 
 const miss = { phrase: 'Does she work here?', tokenText: 'Does', picked: 'Do', expected: 'Does' };
 
@@ -31,5 +31,30 @@ describe('список «Ошибки» — только текущий прох
     rememberLessonRunErrors(1, [miss]);
     beginLessonRunErrors(2);
     expect(peekLessonRunErrors(1)).toHaveLength(1);
+  });
+});
+
+describe('счёт ошибок — из полного буфера прохода, список строк — до 5', () => {
+  beforeEach(() => clearLessonRunErrors());
+  const missOn = (i: number) => ({ phraseId: `p${i}`, phrase: `phrase ${i}`, tokenText: `word${i}`, picked: `bad${i}`, expected: `word${i}` });
+
+  it('7 промахов на 7 разных заданиях → ошибок 7, строк в списке 5', () => {
+    beginLessonRunErrors(1);
+    rememberLessonRunErrors(1, Array.from({ length: 7 }, (_, i) => missOn(i)));
+    expect(peekLessonRunMissCount(1)).toBe(7);
+    expect(peekLessonRunErrors(1)).toHaveLength(5);
+    const progress = [...Array(3).fill('wrong'), ...Array(47).fill('correct')];
+    const counts = lessonFirstTryCountsFromProgress(progress, peekLessonRunMissCount(1));
+    expect([counts.correct, counts.wrong]).toEqual([43, 7]);
+  });
+
+  it('одно задание промахнулось дважды → одна ошибка', () => {
+    beginLessonRunErrors(1);
+    rememberLessonRunErrors(1, [missOn(1), { ...missOn(1), picked: 'other' }, missOn(2)]);
+    expect(peekLessonRunMissCount(1)).toBe(2);
+  });
+
+  it('промахов не больше заданий урока', () => {
+    expect(lessonFirstTryCountsFromProgress(['correct', 'correct', 'correct'], 9)).toEqual({ correct: 0, wrong: 3, finalCorrect: 3 });
   });
 });

@@ -41,7 +41,7 @@ describe('показ ИДЕАЛ не зависит от сводки прохо
   const src = fs.readFileSync(path.join(__dirname, '..', 'app/lesson_complete.tsx'), 'utf8').replace(/\r\n/g, '\n');
   it('решение m09 строится из счёта первых попыток, а не из wasPerfect', () => {
     expect(src).toMatch(/const perfectDecision = decidePerfectMoment\(\{ momentsV3, isCombo: isComboCompletion, counts: lessonCounts,/);
-    expect(src).toMatch(/const firstTry = lessonFirstTryCountsFromProgress\(p, peekLessonRunErrors\(lessonId\)\.length\);\n\s*setLessonCounts\(\{ correct: firstTry\.correct, wrong: firstTry\.wrong \}\);/);
+    expect(src).toMatch(/const firstTry = lessonFirstTryCountsFromProgress\(p, peekLessonRunMissCount\(lessonId\)\);[^\n]*\n\s*setLessonCounts\(\{ correct: firstTry\.correct, wrong: firstTry\.wrong \}\);/);
   });
   it('пишет источник wasPerfect, ошибки/верно по первым попыткам, показ ИДЕАЛ и составляющие монет', () => {
     expect(src).toContain("wasPerfectSource: 'scanLessonProgress:legacy45'");

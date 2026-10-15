@@ -92,7 +92,7 @@ import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
 import V2DoneScreen from '../components/completion/V2DoneScreen';
-import { parseDevLessonResult, parseRouteLessonResult, peekLessonRunErrors, peekLessonRunMistakeIds, rememberLessonRunErrors } from './lesson_run_errors_memory';
+import { parseDevLessonResult, parseRouteLessonResult, peekLessonRunErrors, peekLessonRunMissCount, peekLessonRunMistakeIds, rememberLessonRunErrors } from './lesson_run_errors_memory';
 import { lessonFirstTryCountsFromProgress, lessonFirstTryCountsFromTotals } from './lesson_first_try_counts';
 import { lessonNamesForLang } from '../constants/lessons';
 import CombinedLessonBreakdown from '../components/CombinedLessonBreakdown';
@@ -1125,7 +1125,7 @@ export default function LessonComplete() {
         if (fallbackCounts) {
           // зачем (владелец 13.10): итог без прогресса в хранилище всё равно рисуется с цифрами; dev-ссылка с devResult добавляет пример ошибки — для сверки с макетом.
           // зачем (Сверка c17199343): и без прогресса — по первым попыткам: итоговое «верно» маршрута + список «Ошибки» этого прохода
-          const firstTry = lessonFirstTryCountsFromTotals(fallbackCounts.correct, fallbackCounts.correct + fallbackCounts.wrong, devDemo ? 1 : peekLessonRunErrors(lessonId).length);
+          const firstTry = lessonFirstTryCountsFromTotals(fallbackCounts.correct, fallbackCounts.correct + fallbackCounts.wrong, devDemo ? 1 : peekLessonRunMissCount(lessonId));
           setLessonCounts({ correct: firstTry.correct, wrong: firstTry.wrong });
           DebugLogger.info('[LESSON-RESULT]', JSON.stringify({ lessonId, source: devDemo ? 'devResult' : 'route', firstTryMistakes: firstTry.wrong, firstTryCorrect: firstTry.correct, finalCorrect: firstTry.finalCorrect }));
           setLessonScore(fallbackCounts.score);
@@ -1148,9 +1148,9 @@ export default function LessonComplete() {
         const score = parseFloat(((Math.min(correct, totalAnswers) / totalAnswers) * 5).toFixed(1));
         setLessonScore(score);
         // зачем (Сверка c17199343, координатор 15.10): «верно / ошибок / точность» и «ИДЕАЛ» — по ПЕРВЫМ попыткам; балл, звёзды и монеты выше — как раньше
-        const firstTry = lessonFirstTryCountsFromProgress(p, peekLessonRunErrors(lessonId).length);
+        const firstTry = lessonFirstTryCountsFromProgress(p, peekLessonRunMissCount(lessonId)); // зачем (координатор 15.10): все промахи прохода, не 5 строк списка
         setLessonCounts({ correct: firstTry.correct, wrong: firstTry.wrong });
-        DebugLogger.info('[LESSON-RESULT]', JSON.stringify({ lessonId, source: 'progress', firstTryMistakes: firstTry.wrong, firstTryCorrect: firstTry.correct, finalCorrect: firstTry.finalCorrect, runErrors: peekLessonRunErrors(lessonId).length }));
+        DebugLogger.info('[LESSON-RESULT]', JSON.stringify({ lessonId, source: 'progress', firstTryMistakes: firstTry.wrong, firstTryCorrect: firstTry.correct, finalCorrect: firstTry.finalCorrect, missCount: peekLessonRunMissCount(lessonId), errorRows: peekLessonRunErrors(lessonId).length }));
         const { newTier, prevTier, isNewBest, newPassCount } = await saveMedalProgress(lessonId, score, p, studyTarget);
         DebugLogger.info('[LESSON-RESULT]', `ветка=ПРОГРЕСС_НАЙДЕН lesson=${lessonId} target=${studyTarget} ответов=${p.length} верно=${correct} ошибок=${p.filter(x => x === 'wrong').length} из ${totalAnswers} score=${score} → tier ${prevTier}→${newTier} новыйРекорд=${String(isNewBest)} проходов=${newPassCount}`);
         submitProgressEvent({

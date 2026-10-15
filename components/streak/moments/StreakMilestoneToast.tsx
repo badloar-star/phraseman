@@ -79,7 +79,7 @@ const s = StyleSheet.create({
   dot: { width: 4, height: 4, borderRadius: 2, marginLeft: -4 },
   text: { flex: 1, minWidth: 0 },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  sub: { fontSize: 13, lineHeight: 17, fontWeight: '400' },
+  sub: { fontSize: 13, lineHeight: 20, fontWeight: '400' },
 });
 
 export default memo(StreakMilestoneToast);

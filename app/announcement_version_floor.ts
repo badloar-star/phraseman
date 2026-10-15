@@ -5,8 +5,9 @@
  * времён 1.6.x, ещё активный и не истёкший, всплыл бы окном в 2.0 у того, кто его не подтверждал (новая установка старше
  * суток, человек не открывал 1.6.x после рассылки). При первом обращении сборка 2.0 запоминает время на устройстве; окном
  * показываются только объявления, созданные позже. Старые остаются во «Входящих» — пропадает только всплывающее окно.
- * Правила координатора 15.10: без даты создания в данных сервера — не показываем; исключений по версии нет (релизный
- * анонс создаётся после выхода 2.0). Прод не трогаем, сеть не нужна.
+ * Правила координатора 15.10: без даты создания в данных сервера — не показываем; объявление с целевой версией
+ * (targetAppVersions непуст — фильтр версии его уже пропустил) идёт без границы: релизный анонс 2.0 доходит окном до всех,
+ * даже созданный раньше первого запуска 2.0. Прод не трогаем, сеть не нужна.
  * Логи: [APP-MESSAGE] floor … / modal {id, createdAt, firstLaunch2At, decision}.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -31,23 +32,29 @@ export async function readOrInitAnnouncementFloor(nowMs: number = Date.now()): P
   }
 }
 
-/** Решение окна по одному объявлению: показать только созданное позже первого запуска 2.0 и с известной датой. */
+type FloorDecision = 'show' | 'show_targeted' | 'skip_no_created_at' | 'skip_created_before_2_0';
+
+/**
+ * Решение окна по одному объявлению. Порядок (координатор 15.10): без даты — нет; с целевой версией — да (без границы);
+ * иначе — только созданное позже первого запуска 2.0.
+ */
 export function announcementFloorDecision(
-  message: Readonly<{ createdAtMs: number; createdAtKnown?: boolean }>,
+  message: Readonly<{ createdAtMs: number; createdAtKnown?: boolean; targetAppVersions?: readonly string[] }>,
   floorMs: number,
-): 'show' | 'skip_no_created_at' | 'skip_created_before_2_0' {
+): FloorDecision {
   if (message.createdAtKnown === false || !Number.isFinite(message.createdAtMs) || message.createdAtMs <= 0) return 'skip_no_created_at';
+  if ((message.targetAppVersions?.length ?? 0) > 0) return 'show_targeted';
   return message.createdAtMs > floorMs ? 'show' : 'skip_created_before_2_0';
 }
 
 /** Отфильтровать очередь окна по границе; одна строка журнала на объявление. Чистая — тестируется без хранилища. */
-export function skipAnnouncementsBeforeFloor<T extends Readonly<{ id: string; createdAtMs: number; createdAtKnown?: boolean }>>(
+export function skipAnnouncementsBeforeFloor<T extends Readonly<{ id: string; createdAtMs: number; createdAtKnown?: boolean; targetAppVersions?: readonly string[] }>>(
   queue: T[],
   floorMs: number,
 ): T[] {
   return queue.filter((message) => {
     const decision = announcementFloorDecision(message, floorMs);
     console.log('[APP-MESSAGE] modal', JSON.stringify({ id: message.id, createdAt: message.createdAtKnown === false ? null : message.createdAtMs, firstLaunch2At: floorMs, decision })); // guard-ok: решение по каждому объявлению
-    return decision === 'show';
+    return decision === 'show' || decision === 'show_targeted';
   });
 }

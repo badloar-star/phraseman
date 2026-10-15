@@ -9,7 +9,7 @@ import { ANNOUNCEMENT_FLOOR_KEY, readOrInitAnnouncementFloor, skipAnnouncementsB
 import { normalizeAppMessage } from '../app/app_messages';
 
 const NOW = 1_800_000_000_000;
-const msg = (id: string, createdAtMs: number, createdAtKnown = true) => ({ id, createdAtMs, createdAtKnown });
+const msg = (id: string, createdAtMs: number, createdAtKnown = true, targetAppVersions: string[] = []) => ({ id, createdAtMs, createdAtKnown, targetAppVersions });
 
 beforeEach(() => { Object.keys(store).forEach((k) => delete store[k]); });
 
@@ -27,9 +27,17 @@ describe('announcement floor (2.0)', () => {
     await expect(readOrInitAnnouncementFloor(NOW)).resolves.toBe(NOW);
   });
 
-  it('only announcements created after the first 2.0 launch pop up; no date — not shown', () => {
-    const queue = [msg('old-1.6', NOW - 10 * 24 * 3600_000), msg('new', NOW + 1000), msg('same-ms', NOW), msg('no-date', NOW + 5000, false)];
-    expect(skipAnnouncementsBeforeFloor(queue, NOW).map((m) => m.id)).toEqual(['new']);
+  // Правила координатора 15.10: старый без цели — нет; старый с целевой версией 2.0 — да; без даты — нет; новый — да.
+  it('old untargeted — no; old targeted at 2.0 — yes; no date — no (even targeted); new — yes', () => {
+    const queue = [
+      msg('old-1.6', NOW - 10 * 24 * 3600_000),
+      msg('release-2.0', NOW - 3600_000, true, ['2.0.0']),
+      msg('no-date', NOW + 5000, false),
+      msg('no-date-targeted', NOW + 5000, false, ['2.0.0']),
+      msg('new', NOW + 1000),
+      msg('same-ms', NOW),
+    ];
+    expect(skipAnnouncementsBeforeFloor(queue, NOW).map((m) => m.id)).toEqual(['release-2.0', 'new']);
   });
 
   it('normalizeAppMessage marks a server message without createdAt as unknown (it used to become "now")', () => {

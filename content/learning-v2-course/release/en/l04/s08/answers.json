@@ -1,13 +1,13 @@
 [
   {
     "interactionId": "en:lesson-04:session-08:i01",
-    "correctText": "neighbourhood",
-    "correctResponseId": "en:lesson-04:session-08:i01:r1"
+    "correctText": "There is a pharmacy.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i02",
     "correctText": "neighbourhood",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-04:session-08:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-08:i03",
@@ -16,47 +16,72 @@
   },
   {
     "interactionId": "en:lesson-04:session-08:i04",
-    "correctText": "There is a garden in the neighbourhood.",
+    "correctText": "en:lesson-04:session-08:i04:p1=neighbourhood\nen:lesson-04:session-08:i04:p2=pharmacy\nen:lesson-04:session-08:i04:p3=library\nen:lesson-04:session-08:i04:p4=garden",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i05",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-04:session-08:i05:r1"
+    "correctText": "This neighbourhood is quiet.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i06",
-    "correctText": "There is a clinic near the playground.",
+    "correctText": "There is a library here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i07",
-    "correctText": "p1=clinic\np2=playground\np3=post office\np4=supermarket",
+    "correctText": "There is a bakery.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i08",
-    "correctText": "There is a shop in the neighbourhood.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-08:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-08:i09",
-    "correctText": "is",
+    "correctText": "There is a bank.",
     "correctResponseId": "en:lesson-04:session-08:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-08:i10",
-    "correctText": "There are playgrounds in the neighbourhood.",
+    "correctText": "en:lesson-04:session-08:i10:p1=pharmacy\nen:lesson-04:session-08:i10:p2=library\nen:lesson-04:session-08:i10:p3=bakery\nen:lesson-04:session-08:i10:p4=garden",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i11",
-    "correctText": "There is a supermarket behind the library.",
+    "correctText": "There is a post office.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i12",
-    "correctText": "There is a bakery in the neighbourhood.",
+    "correctText": "There is a supermarket here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:i13",
+    "correctText": "There is a clinic here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-08:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:i15",
+    "correctText": "post office",
+    "correctResponseId": "en:lesson-04:session-08:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:i16",
+    "correctText": "en:lesson-04:session-08:i16:p1=bank\nen:lesson-04:session-08:i16:p2=supermarket\nen:lesson-04:session-08:i16:p3=clinic\nen:lesson-04:session-08:i16:p4=playground",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:i17",
+    "correctText": "This neighbourhood is small.",
     "correctResponseId": null
   }
 ]

@@ -1,118 +1,138 @@
-# Англійська · Урок 4 · Заняття 8 — «Зустріч новоселів»
+# Англійська · Урок 4 · Заняття 8 — Знайомимося з районом
 
-**Сцена заняття.** На зустрічі новоселів ви дивитеся на спільну карту району. Сусіди вже знайшли аптеку, бібліотеку й кілька магазинів. Ви пояснюєте, що є навколо нового дому.
-**Як сказати:** самостійно обрати `There is` для одного місця й `There are` для кількох.
+**Ситуація.** Ви з другом вибираєте район для життя. На карті позначено знайомі місця: від аптеки до дитячого майданчика. Ви описуєте район і розповідаєте, що тут є.
+
+**Що ви опануєте:** описати район і повідомити про наявність знайомих місць
 **Нові слова:** neighbourhood
-**Повертаються:** library, bakery, garden, post office, supermarket, clinic, playground, shop, near, behind
+
+---
 
 ## Інтро 1
 
 ### Район навколо дому
 
-`neighbourhood` — «район навколо дому»: найближчі вулиці, будинки та місця, якими ви користуєтеся щодня. Це не все місто. На зустрічі новоселів слово допомагає говорити саме про місцеве оточення. До іншого кінця міста знайомитися із сусідами не доведеться — карта лишається невеликою.
+`neighbourhood` — «район, найближча частина міста». Це вулиці й місця навколо дому, а не одна будівля. `This neighbourhood is quiet` — «Цей район тихий». `This neighbourhood is small` — «Цей район маленький». Навіть довге слово `neighbourhood` може позначати маленький район. Тут використовуємо британське написання.
 
-**На карті позначено район навколо нового дому. Оберіть слово.**
+**Опишіть невеликий район поруч: «Цей район маленький».**
 
-- ✅ **neighbourhood**
-- ❌ building — *`Building` — один будинок. `Neighbourhood` — район навколо дому.*
-- ❌ street — *`Street` — одна вулиця. Тут потрібен увесь найближчий район: `neighbourhood`.*
+- ✅ **This neighbourhood is small.**
+- ❌ This neighbourhood are small. — *Один район: `is`.*
+- ❌ These neighbourhood is small. — *Про один район: `This neighbourhood`.*
+
+---
 
 ## Інтро 2
 
-### Одна аптека
+### Місця для повсякденних справ
 
-`There is a pharmacy in the neighbourhood.` — «У районі є аптека». Одна аптека — отже `There is`; перед `pharmacy` потрібен `a`. Спершу назвіть одне місце, потім район: `in the neighbourhood` додає адресу, але не змінює число.
+Згадаймо `pharmacy` — «аптека», `library` — «бібліотека», `bakery` — «пекарня», `garden` — «сад», `bank` — «банк». Повідомляємо, що місце є: `There is a pharmacy` — «Є аптека». Можна додати `here`: `There is a library here` — «Тут є бібліотека». Одне місце — `is` і `a`.
 
-**У районі є одна аптека. Оберіть повідомлення.**
+**Повідомте, що тут є бібліотека.**
 
-- ✅ **There is a pharmacy in the neighbourhood.**
-- ❌ There are a pharmacy in the neighbourhood. — *Аптека одна, тому потрібне `There is a pharmacy`.*
-- ❌ There is pharmacy in the neighbourhood. — *Перед однією аптекою потрібен `a`: `a pharmacy`.*
+- ✅ **There is a library here.**
+- ❌ There are a library here. — *Одна бібліотека: `There is a library here`.*
+- ❌ There is library here. — *Перед одним місцем потрібне `a`: `a library`.*
+
+---
 
 ## Інтро 3
 
-### Кілька магазинів
+### Ще чотири місця
 
-`There are shops in the neighbourhood.` — «У районі є магазини». Магазинів більше одного, тому обирайте `There are` і форму `shops`. Артикль `a` тут не потрібен: він стосується одного місця. `In the neighbourhood` показує район і не змінює кількості магазинів.
+`post office` — «поштове відділення», `supermarket` — «супермаркет», `clinic` — «клініка», `playground` — «дитячий майданчик». У назві `post office` два слова, але місце одне: `There is a post office`. Якщо майданчиків кілька: `There are playgrounds here` — «Тут є дитячі майданчики». Для кількох потрібні `are` і `playgrounds`, без `a`.
 
-**У районі є кілька магазинів. Оберіть повідомлення.**
+**Повідомте, що тут є кілька дитячих майданчиків.**
 
-- ✅ **There are shops in the neighbourhood.**
-- ❌ There is shops in the neighbourhood. — *Магазинів кілька, тому потрібне `There are shops`.*
-- ❌ There are shop in the neighbourhood. — *Після `There are` потрібна множина: `shops`.*
+- ✅ **There are playgrounds here.**
+- ❌ There is playgrounds here. — *Майданчиків кілька: `There are`.*
+- ❌ There are a playgrounds here. — *Перед кількома майданчиками не ставимо `a`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте й оберіть почуте слово**
-<!-- interaction_id: en:lesson-04:session-08:i01; family: listen_choose -->
-Ціль: `neighbourhood`
-🔊 *neighbourhood*
-Значення варіантів: neighbourhood — район навколо дому · neighbour — сусід · neighbourhoods — райони навколо домів
-→ **neighbourhood** · neighbour · neighbourhoods
-- neighbour — *У записі `neighbourhood` — район, а не `neighbour` — сусід. Наприкінці чути `-hood`.*
-- neighbourhoods — *У записі один `neighbourhood`, без закінчення `-s`.*
+## Практика (17 завдань)
 
-**2 · Промовте нове слово**
-<!-- interaction_id: en:lesson-04:session-08:i02; family: scripted_repeat_compare -->
-Ціль: `neighbourhood`
-🎙 **neighbourhood**
+**1 · Друг запитує про місця району. Повідомте «Є аптека»**
+<!-- interaction_id: en:lesson-04:session-08:i01; family: phrase_builder -->
+Плитки: `pharmacy` `a` `is` `There` `are` → **There is a pharmacy.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a pharmacy.`)*
 
-**3 · На карті позначено весь район навколо дому. Оберіть назву**
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-08:i02; family: listen_choose -->
+🔊 *neighbourhood* → **neighbourhood** · garden · supermarket
+- garden — *У записі перше слово — `neighbourhood`, а в цьому варіанті — `garden`.*
+- supermarket — *У записі перше слово — `neighbourhood`, а в цьому варіанті — `supermarket`.*
+
+**3 · Назвіть район навколо дому одним англійським словом**
 <!-- interaction_id: en:lesson-04:session-08:i03; family: context_gap_grammar -->
-___ → **neighbourhood** · building · street
-- building — *`Building` — один будинок. На карті позначено район: `neighbourhood`.*
-- street — *`Street` — одна вулиця. Тут потрібен район навколо дому: `neighbourhood`.*
+___ → **neighbourhood** · clinic · bank
+- clinic — *`clinic` — клініка; район — `neighbourhood`.*
+- bank — *`bank` — банк; район — `neighbourhood`.*
 
-**4 · Послухайте та складіть одну фразу про сад у районі**
-<!-- interaction_id: en:lesson-04:session-08:i04; family: listen_build_dictation -->
-Ціль: `There is a garden in the neighbourhood.`
-🔊 *There is a garden in the neighbourhood.*
-Плитки: `There` · `is` · `a` · `garden` · `in` · `the` · `neighbourhood` · `are`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-08:i04; family: speed_match -->
+neighbourhood — район · pharmacy — аптека · library — бібліотека · garden — сад
 
-**5 · Вставте одну відповідь для одного банку**
-<!-- interaction_id: en:lesson-04:session-08:i05; family: context_gap_grammar -->
-There ___ a bank behind the library near the post office. → **is** · are · am
-- are — *`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину.*
-- am — *`Am` уживають лише з `I`; тут ідеться про банк.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-08:i05; family: listen_build_dictation -->
+🔊 *This neighbourhood is quiet.* Плитки: `quiet` `is` `neighbourhood` `This` `are` → **This neighbourhood is quiet.**
+*(плитка `are` зайва: тут потрібно `is` — `This neighbourhood is quiet.`)*
 
-**6 · Промовте одну фразу про клініку біля майданчика**
-<!-- interaction_id: en:lesson-04:session-08:i06; family: scripted_repeat_compare -->
-Ціль: `There is a clinic near the playground.`
-🎙 **There is a clinic near the playground.**
+**6 · Повідомте другові «Тут є бібліотека»**
+<!-- interaction_id: en:lesson-04:session-08:i06; family: phrase_builder -->
+Плитки: `here` `library` `a` `is` `There` `are` → **There is a library here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a library here.`)*
 
-**7 · З’єднайте слова з їхніми значеннями**
-<!-- interaction_id: en:lesson-04:session-08:i07; family: speed_match -->
-Пари: `clinic` — клініка · `playground` — майданчик · `post office` — пошта · `supermarket` — супермаркет
+**7 · Друг перелічує місця району й пропустив пекарню. Додайте «Є пекарня»**
+<!-- interaction_id: en:lesson-04:session-08:i07; family: scripted_repeat_compare -->
+🎙 **There is a bakery.**
 
-**8 · Складіть одну фразу про магазин у районі**
-<!-- interaction_id: en:lesson-04:session-08:i08; family: phrase_builder -->
-Ціль: `There is a shop in the neighbourhood.`
-Плитки: `There` · `is` · `a` · `shop` · `in` · `the` · `neighbourhood` · `are`
+**8 · Повідомте про наявність одного саду**
+<!-- interaction_id: en:lesson-04:session-08:i08; family: context_gap_grammar -->
+There ___ a garden here. → **is** · are · am
+- are — *Один сад: `There is a garden here`.*
+- am — *Для наявності одного місця потрібне `There is`.*
 
-**9 · Вставте одну відповідь для однієї пекарні**
-<!-- interaction_id: en:lesson-04:session-08:i09; family: context_gap_grammar -->
-There ___ a bakery near the garden. → **is** · are · am
-- are — *Пекарня одна, тому потрібна форма `is`.*
-- am — *`Am` уживається з `I`; тут ідеться про пекарню.*
+**9 · Послухайте повідомлення про місце в районі**
+<!-- interaction_id: en:lesson-04:session-08:i09; family: listen_choose -->
+🔊 *There is a bank.* → **There is a bank.** · There is a clinic. · There is a garden.
+- There is a clinic. — *У записі останнє слово — `bank`, а в цьому варіанті — `clinic`.*
+- There is a garden. — *У записі останнє слово — `bank`, а в цьому варіанті — `garden`.*
 
-**10 · Послухайте та складіть одну фразу про майданчики в районі**
-<!-- interaction_id: en:lesson-04:session-08:i10; family: listen_build_dictation -->
-Ціль: `There are playgrounds in the neighbourhood.`
-🔊 *There are playgrounds in the neighbourhood.*
-Плитки: `There` · `are` · `playgrounds` · `in` · `the` · `neighbourhood` · `is`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-08:i10; family: speed_match -->
+pharmacy — аптека · library — бібліотека · bakery — пекарня · garden — сад
 
-**11 · Промовте одну фразу про супермаркет**
-<!-- interaction_id: en:lesson-04:session-08:i11; family: scripted_repeat_compare -->
-Ціль: `There is a supermarket behind the library.`
-🎙 **There is a supermarket behind the library.**
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-08:i11; family: listen_build_dictation -->
+🔊 *There is a post office.* Плитки: `office` `post` `a` `is` `There` `are` → **There is a post office.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a post office.`)*
 
-**12 · складіть повідомлення про пекарню в районі**
+**12 · Друг запитує про покупки. Повідомте «Тут є супермаркет»**
 <!-- interaction_id: en:lesson-04:session-08:i12; family: phrase_builder -->
-Ціль: `There is a bakery in the neighbourhood.`
-Плитки: `There` · `is` · `a` · `bakery` · `in` · `the` · `neighbourhood` · `are`
+Плитки: `here` `supermarket` `a` `is` `There` `are` → **There is a supermarket here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a supermarket here.`)*
 
-## Для збирача
+**13 · Друг ще не помітив клініку. Повідомте «Тут є клініка»**
+<!-- interaction_id: en:lesson-04:session-08:i13; family: scripted_repeat_compare -->
+🎙 **There is a clinic here.**
 
-atomic_practice: practice.atomic.json
-new_words: neighbourhood — район навколо дому — Найближчий район навколо місця, де ви живете.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=listen_build_dictation, 5=context_gap_grammar, 6=scripted_repeat_compare, 7=speed_match, 8=phrase_builder, 9=context_gap_grammar, 10=listen_build_dictation, 11=scripted_repeat_compare, 12=phrase_builder
+**14 · На карті кілька дитячих майданчиків. Повідомте, що тут є майданчики**
+<!-- interaction_id: en:lesson-04:session-08:i14; family: context_gap_grammar -->
+There ___ playgrounds here. → **are** · is · am
+- is — *Майданчиків кілька: `There are playgrounds here`.*
+- am — *Для кількох майданчиків потрібне `There are`.*
+
+**15 · Послухайте й виберіть назву місця**
+<!-- interaction_id: en:lesson-04:session-08:i15; family: listen_choose -->
+🔊 *post office* → **post office** · bank · library
+- bank — *У записі перше слово — `post`, а в цьому варіанті — `bank`.*
+- library — *У записі перше слово — `post`, а в цьому варіанті — `library`.*
+
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-08:i16; family: speed_match -->
+bank — банк · supermarket — супермаркет · clinic — клініка · playground — дитячий майданчик
+
+**17 · В іншій подорожі ви обійшли невеликий район. Друг запитує про його розмір. Скажіть «Цей район маленький»**
+<!-- interaction_id: en:lesson-04:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **This neighbourhood is small.**
+

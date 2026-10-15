@@ -1,118 +1,138 @@
-# Английский · Урок 4 · Занятие 8 — «Встреча новосёлов»
+# Английский · Урок 4 · Занятие 8 — Знакомимся с районом
 
-**Сцена занятия.** На встрече новосёлов вы смотрите на общую карту района. Соседи уже нашли аптеку, библиотеку и несколько магазинов. Вы объясняете, что есть вокруг нового дома.
-**Как сказать:** самостоятельно выбрать `There is` для одного места и `There are` для нескольких.
+**Ситуация.** Вы с другом выбираете район для жизни. На карте отмечены знакомые места: от аптеки до детской площадки. Вы описываете район и рассказываете, что здесь есть.
+
+**Что вы освоите:** описать район и сообщить о наличии знакомых мест
 **Новые слова:** neighbourhood
-**Возвращаются:** library, bakery, garden, post office, supermarket, clinic, playground, shop, near, behind
+
+---
 
 ## Интро 1
 
 ### Район вокруг дома
 
-`neighbourhood` — «район вокруг дома»: ближайшие улицы, дома и места, которыми вы пользуетесь каждый день. Это не весь город. На встрече новосёлов слово помогает говорить именно о местном окружении. До другого конца города знакомиться с соседями не придётся — карта остаётся небольшой.
+`neighbourhood` — «район, ближайшая часть города». Это улицы и места вокруг дома, а не одно здание. `This neighbourhood is quiet` — «Этот район тихий». `This neighbourhood is small` — «Этот район маленький». Даже длинное слово `neighbourhood` может обозначать маленький район. Здесь используем британское написание.
 
-**На карте отмечен район вокруг нового дома. Выберите слово.**
+**Опишите небольшой район рядом: «Этот район маленький».**
 
-- ✅ **neighbourhood**
-- ❌ building — *`Building` — один дом. `Neighbourhood` — район вокруг дома.*
-- ❌ street — *`Street` — одна улица. Здесь нужен весь ближайший район: `neighbourhood`.*
+- ✅ **This neighbourhood is small.**
+- ❌ This neighbourhood are small. — *Один район: `is`.*
+- ❌ These neighbourhood is small. — *Об одном районе: `This neighbourhood`.*
+
+---
 
 ## Интро 2
 
-### Одна аптека
+### Места для повседневных дел
 
-`There is a pharmacy in the neighbourhood.` — «В районе есть аптека». Одна аптека — значит `There is`; перед `pharmacy` нужен `a`. Сначала назовите одно место, затем район: `in the neighbourhood` добавляет адрес, но не меняет число.
+Вспомним `pharmacy` — «аптека», `library` — «библиотека», `bakery` — «пекарня», `garden` — «сад», `bank` — «банк». Сообщаем, что место есть: `There is a pharmacy` — «Есть аптека». Можно добавить `here`: `There is a library here` — «Здесь есть библиотека». Одно место — `is` и `a`.
 
-**В районе есть одна аптека. Выберите сообщение.**
+**Сообщите, что здесь есть библиотека.**
 
-- ✅ **There is a pharmacy in the neighbourhood.**
-- ❌ There are a pharmacy in the neighbourhood. — *Аптека одна, поэтому нужно `There is a pharmacy`.*
-- ❌ There is pharmacy in the neighbourhood. — *Перед одной аптекой нужен `a`: `a pharmacy`.*
+- ✅ **There is a library here.**
+- ❌ There are a library here. — *Одна библиотека: `There is a library here`.*
+- ❌ There is library here. — *Перед одним местом нужно `a`: `a library`.*
+
+---
 
 ## Интро 3
 
-### Несколько магазинов
+### Ещё четыре места
 
-`There are shops in the neighbourhood.` — «В районе есть магазины». Магазинов больше одного, поэтому выбирайте `There are` и форму `shops`. Артикль `a` здесь не нужен: он относится к одному месту. `In the neighbourhood` показывает район и не меняет количество магазинов.
+`post office` — «почтовое отделение», `supermarket` — «супермаркет», `clinic` — «клиника», `playground` — «детская площадка». В названии `post office` два слова, но место одно: `There is a post office`. Если площадок несколько: `There are playgrounds here` — «Здесь есть детские площадки». Для нескольких нужны `are` и `playgrounds`, без `a`.
 
-**В районе есть несколько магазинов. Выберите сообщение.**
+**Сообщите, что здесь есть несколько детских площадок.**
 
-- ✅ **There are shops in the neighbourhood.**
-- ❌ There is shops in the neighbourhood. — *Магазинов несколько, поэтому нужно `There are shops`.*
-- ❌ There are shop in the neighbourhood. — *После `There are` нужно множественное число: `shops`.*
+- ✅ **There are playgrounds here.**
+- ❌ There is playgrounds here. — *Площадок несколько: `There are`.*
+- ❌ There are a playgrounds here. — *Перед несколькими площадками не ставим `a`.*
 
-## Практика — по одной цели
+---
 
-**1 · Послушайте и выберите услышанное слово**
-<!-- interaction_id: en:lesson-04:session-08:i01; family: listen_choose -->
-Цель: `neighbourhood`
-🔊 *neighbourhood*
-Значения вариантов: neighbourhood — район вокруг дома · neighbour — сосед · neighbourhoods — районы вокруг домов
-→ **neighbourhood** · neighbour · neighbourhoods
-- neighbour — *В записи `neighbourhood`, а не `neighbour`: в конце слышно `-hood`.*
-- neighbourhoods — *В записи один `neighbourhood`, без окончания `-s`.*
+## Практика (17 заданий)
 
-**2 · Произнесите новое слово**
-<!-- interaction_id: en:lesson-04:session-08:i02; family: scripted_repeat_compare -->
-Цель: `neighbourhood`
-🎙 **neighbourhood**
+**1 · Друг спрашивает о местах района. Сообщите «Есть аптека»**
+<!-- interaction_id: en:lesson-04:session-08:i01; family: phrase_builder -->
+Плитки: `pharmacy` `a` `is` `There` `are` → **There is a pharmacy.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a pharmacy.`)*
 
-**3 · На карте отмечен весь район вокруг дома. Выберите название**
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-04:session-08:i02; family: listen_choose -->
+🔊 *neighbourhood* → **neighbourhood** · garden · supermarket
+- garden — *В записи первое слово — `neighbourhood`, а в этом варианте — `garden`.*
+- supermarket — *В записи первое слово — `neighbourhood`, а в этом варианте — `supermarket`.*
+
+**3 · Назовите район вокруг дома одним английским словом**
 <!-- interaction_id: en:lesson-04:session-08:i03; family: context_gap_grammar -->
-___ → **neighbourhood** · building · street
-- building — *`Building` — один дом. На карте отмечен район: `neighbourhood`.*
-- street — *`Street` — одна улица. Здесь нужен район вокруг дома: `neighbourhood`.*
+___ → **neighbourhood** · clinic · bank
+- clinic — *`clinic` — клиника; район — `neighbourhood`.*
+- bank — *`bank` — банк; район — `neighbourhood`.*
 
-**4 · Послушайте и соберите одну фразу о саде в районе**
-<!-- interaction_id: en:lesson-04:session-08:i04; family: listen_build_dictation -->
-Цель: `There is a garden in the neighbourhood.`
-🔊 *There is a garden in the neighbourhood.*
-Плитки: `There` · `is` · `a` · `garden` · `in` · `the` · `neighbourhood` · `are`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-08:i04; family: speed_match -->
+neighbourhood — район · pharmacy — аптека · library — библиотека · garden — сад
 
-**5 · Вставьте один ответ для одного банка**
-<!-- interaction_id: en:lesson-04:session-08:i05; family: context_gap_grammar -->
-There ___ a bank behind the library near the post office. → **is** · are · am
-- are — *Банк один, поэтому нужна форма `is`.*
-- am — *`Am` употребляется с `I`; здесь речь о банке.*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-08:i05; family: listen_build_dictation -->
+🔊 *This neighbourhood is quiet.* Плитки: `quiet` `is` `neighbourhood` `This` `are` → **This neighbourhood is quiet.**
+*(плитка `are` лишняя: здесь нужно `is` — `This neighbourhood is quiet.`)*
 
-**6 · Произнесите одну фразу о клинике рядом с площадкой**
-<!-- interaction_id: en:lesson-04:session-08:i06; family: scripted_repeat_compare -->
-Цель: `There is a clinic near the playground.`
-🎙 **There is a clinic near the playground.**
+**6 · Сообщите другу «Здесь есть библиотека»**
+<!-- interaction_id: en:lesson-04:session-08:i06; family: phrase_builder -->
+Плитки: `here` `library` `a` `is` `There` `are` → **There is a library here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a library here.`)*
 
-**7 · Соедините слова с их значениями**
-<!-- interaction_id: en:lesson-04:session-08:i07; family: speed_match -->
-Пары: `clinic` — клиника · `playground` — площадка · `post office` — почта · `supermarket` — супермаркет
+**7 · Друг перечисляет места района и пропустил пекарню. Добавьте «Есть пекарня»**
+<!-- interaction_id: en:lesson-04:session-08:i07; family: scripted_repeat_compare -->
+🎙 **There is a bakery.**
 
-**8 · Соберите одну фразу о магазине в районе**
-<!-- interaction_id: en:lesson-04:session-08:i08; family: phrase_builder -->
-Цель: `There is a shop in the neighbourhood.`
-Плитки: `There` · `is` · `a` · `shop` · `in` · `the` · `neighbourhood` · `are`
+**8 · Сообщите о наличии одного сада**
+<!-- interaction_id: en:lesson-04:session-08:i08; family: context_gap_grammar -->
+There ___ a garden here. → **is** · are · am
+- are — *Один сад: `There is a garden here`.*
+- am — *Для наличия одного места нужно `There is`.*
 
-**9 · Вставьте один ответ для одной пекарни**
-<!-- interaction_id: en:lesson-04:session-08:i09; family: context_gap_grammar -->
-There ___ a bakery near the garden. → **is** · are · am
-- are — *Пекарня одна, поэтому нужна форма `is`.*
-- am — *`Am` употребляется с `I`; здесь речь о пекарне.*
+**9 · Послушайте сообщение о месте в районе**
+<!-- interaction_id: en:lesson-04:session-08:i09; family: listen_choose -->
+🔊 *There is a bank.* → **There is a bank.** · There is a clinic. · There is a garden.
+- There is a clinic. — *В записи последнее слово — `bank`, а в этом варианте — `clinic`.*
+- There is a garden. — *В записи последнее слово — `bank`, а в этом варианте — `garden`.*
 
-**10 · Послушайте и соберите одну фразу о площадках в районе**
-<!-- interaction_id: en:lesson-04:session-08:i10; family: listen_build_dictation -->
-Цель: `There are playgrounds in the neighbourhood.`
-🔊 *There are playgrounds in the neighbourhood.*
-Плитки: `There` · `are` · `playgrounds` · `in` · `the` · `neighbourhood` · `is`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-08:i10; family: speed_match -->
+pharmacy — аптека · library — библиотека · bakery — пекарня · garden — сад
 
-**11 · Произнесите одну фразу о супермаркете**
-<!-- interaction_id: en:lesson-04:session-08:i11; family: scripted_repeat_compare -->
-Цель: `There is a supermarket behind the library.`
-🎙 **There is a supermarket behind the library.**
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-08:i11; family: listen_build_dictation -->
+🔊 *There is a post office.* Плитки: `office` `post` `a` `is` `There` `are` → **There is a post office.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a post office.`)*
 
-**12 · соберите сообщение о пекарне в районе**
+**12 · Друг спрашивает о покупках. Сообщите «Здесь есть супермаркет»**
 <!-- interaction_id: en:lesson-04:session-08:i12; family: phrase_builder -->
-Цель: `There is a bakery in the neighbourhood.`
-Плитки: `There` · `is` · `a` · `bakery` · `in` · `the` · `neighbourhood` · `are`
+Плитки: `here` `supermarket` `a` `is` `There` `are` → **There is a supermarket here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a supermarket here.`)*
 
-## Для сборщика
+**13 · Друг ещё не заметил клинику. Сообщите «Здесь есть клиника»**
+<!-- interaction_id: en:lesson-04:session-08:i13; family: scripted_repeat_compare -->
+🎙 **There is a clinic here.**
 
-atomic_practice: practice.atomic.json
-new_words: neighbourhood — район вокруг дома — Ближайший район вокруг места, где вы живёте.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=listen_build_dictation, 5=context_gap_grammar, 6=scripted_repeat_compare, 7=speed_match, 8=phrase_builder, 9=context_gap_grammar, 10=listen_build_dictation, 11=scripted_repeat_compare, 12=phrase_builder
+**14 · На карте несколько детских площадок. Сообщите, что здесь есть площадки**
+<!-- interaction_id: en:lesson-04:session-08:i14; family: context_gap_grammar -->
+There ___ playgrounds here. → **are** · is · am
+- is — *Площадок несколько: `There are playgrounds here`.*
+- am — *Для нескольких площадок нужно `There are`.*
+
+**15 · Послушайте и выберите название места**
+<!-- interaction_id: en:lesson-04:session-08:i15; family: listen_choose -->
+🔊 *post office* → **post office** · bank · library
+- bank — *В записи первое слово — `post`, а в этом варианте — `bank`.*
+- library — *В записи первое слово — `post`, а в этом варианте — `library`.*
+
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-08:i16; family: speed_match -->
+bank — банк · supermarket — супермаркет · clinic — клиника · playground — детская площадка
+
+**17 · В другой поездке вы обошли небольшой район. Друг спрашивает о его размере. Скажите «Этот район маленький»**
+<!-- interaction_id: en:lesson-04:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **This neighbourhood is small.**
+

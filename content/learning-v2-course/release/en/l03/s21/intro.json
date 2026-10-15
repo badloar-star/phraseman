@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-21",
   "learningOutcomeByLocale": {
-    "ru": "при назывании предметов выбирать `a +` название одного или название нескольких без `a`; знакомые `It is`, `They are`, `They are not`",
-    "uk": "називаючи предмети, обирати `a +` назву одного або назву кількох без `a`; знайомі `It is`, `They are`, `They are not`"
+    "ru": "назвать несколько ручек и уточнить, где они находятся",
+    "uk": "назвати кілька ручок і уточнити, де вони розташовані"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Маленькое слово перед полотенцем",
-        "uk": "Маленьке слово перед рушником"
+        "ru": "Одной ручки мало",
+        "uk": "Однієї ручки замало"
       },
       "bodyByLocale": {
-        "ru": "`towel` — «полотенце»: им вытираются после душа или вытирают мокрые вещи. Называя один такой предмет, скажите `It is a towel` — «Это полотенце». Перед `towel` стоит `a`: слово крошечное, пропустить его легко. Но в этой фразе про одно полотенце оно нужно.",
-        "uk": "`towel` — «рушник»: ним витираються після душу або витирають мокрі речі. Називаючи один такий предмет, скажіть `It is a towel` — «Це рушник». Перед `towel` стоїть `a`: слово маленьке, тож його легко загубити. Але в цій фразі про один рушник воно потрібне."
+        "ru": "`pen` — «ручка», `pens` — «ручки». `They are pens` — «Это ручки». Для нескольких ручек нужны `pens` и `are`; `a` перед `pens` не ставим. Анна приготовила одну ручку на всех гостей. Очередь за автографом получилась, хотя писателя никто не приглашал. Лучше принести `pens` — несколько ручек.",
+        "uk": "`pen` — «ручка», `pens` — «ручки». `They are pens` — «Це ручки». Для кількох ручок потрібні `pens` і `are`; `a` перед `pens` не ставимо. Анна приготувала одну ручку на всіх гостей. Черга по автограф вийшла, хоча письменника ніхто не запрошував. Краще принести `pens` — кілька ручок."
       },
       "question": {
         "interactionId": "en:lesson-03:session-21:intro1:q",
         "promptByLocale": {
-          "ru": "Вы достали одно полотенце. Курьер уточняет название для накладной. Ответьте: «Это полотенце».",
-          "uk": "Ви дістали один рушник. Кур’єр уточнює назву для накладної. Відповідайте: «Це рушник»."
+          "ru": "На столе лежат несколько ручек. Назовите их одним английским словом.",
+          "uk": "На столі лежать кілька ручок. Назвіть їх одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-21:intro1:r1",
-              "text": "It is a towel."
+              "text": "pens"
             },
             {
               "responseId": "en:lesson-03:session-21:intro1:r2",
-              "text": "It is towel."
+              "text": "pen"
             },
             {
               "responseId": "en:lesson-03:session-21:intro1:r3",
-              "text": "It is a towels."
+              "text": "a pens"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-21:intro1:r1",
-              "text": "It is a towel."
+              "text": "pens"
             },
             {
               "responseId": "en:lesson-03:session-21:intro1:r2",
-              "text": "It is towel."
+              "text": "pen"
             },
             {
               "responseId": "en:lesson-03:session-21:intro1:r3",
-              "text": "It is a towels."
+              "text": "a pens"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы достали одно полотенце. Курьер уточняет название для накладной. Ответьте: «Это полотенце».",
-          "uk": "Ви дістали один рушник. Кур’єр уточнює назву для накладної. Відповідайте: «Це рушник»."
+          "ru": "На столе лежат несколько ручек. Назовите их одним английским словом.",
+          "uk": "На столі лежать кілька ручок. Назвіть їх одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шторы пришли парой",
-        "uk": "Штори приїхали парою"
+        "ru": "Снаружи или внутри",
+        "uk": "Зовні чи всередині"
       },
       "bodyByLocale": {
-        "ru": "`curtain` — «штора», `curtains` — «шторы». Одну называем `a curtain`, несколько — `curtains`, без `a`. Поэтому «Это шторы» — `They are curtains`. Меняется и начало фразы, и название предметов: нельзя просто добавить окончание и оставить всё остальное.",
-        "uk": "`curtain` — «штора», `curtains` — «штори». Одну називаємо `a curtain`, кілька — `curtains`, без `a`. Тому «Це штори» — `They are curtains`. Змінюється і початок фрази, і назва предметів: не можна просто додати закінчення й лишити все інше."
+        "ru": "`inside` — «внутри», `outside` — «снаружи». `The pens are inside` — «Ручки внутри». `the pens` — те ручки, которые вы сейчас ищете. `Where are the pens?` — «Где ручки?» После `Where` ставим `are`: ручек несколько.",
+        "uk": "`inside` — «всередині», `outside` — «зовні, надворі». `The pens are inside` — «Ручки всередині». `the pens` — ті ручки, які ви зараз шукаєте. `Where are the pens?` — «Де ручки?» Після `Where` ставимо `are`: ручок кілька."
       },
       "question": {
         "interactionId": "en:lesson-03:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "В накладной указана одна штора, а в коробке две. Сообщите курьеру: «Это шторы».",
-          "uk": "У накладній зазначено одну штору, а в коробці дві. Повідомте кур’єру: «Це штори»."
+          "ru": "Анна знает, какие ручки нужны гостям. Спросите, где ручки.",
+          "uk": "Анна знає, які ручки потрібні гостям. Запитайте, де ручки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-21:intro2:r1",
-              "text": "They are curtains."
+              "text": "Where are the pens?"
             },
             {
               "responseId": "en:lesson-03:session-21:intro2:r2",
-              "text": "They are a curtains."
+              "text": "Where is the pens?"
             },
             {
               "responseId": "en:lesson-03:session-21:intro2:r3",
-              "text": "They are a curtain."
+              "text": "What are the pens?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-21:intro2:r1",
-              "text": "They are curtains."
+              "text": "Where are the pens?"
             },
             {
               "responseId": "en:lesson-03:session-21:intro2:r2",
-              "text": "They are a curtains."
+              "text": "Where is the pens?"
             },
             {
               "responseId": "en:lesson-03:session-21:intro2:r3",
-              "text": "They are a curtain."
+              "text": "What are the pens?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В накладной указана одна штора, а в коробке две. Сообщите курьеру: «Это шторы».",
-          "uk": "У накладній зазначено одну штору, а в коробці дві. Повідомте кур’єру: «Це штори»."
+          "ru": "Анна знает, какие ручки нужны гостям. Спросите, где ручки.",
+          "uk": "Анна знає, які ручки потрібні гостям. Запитайте, де ручки."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Проверяем название целиком",
-        "uk": "Перевіряємо назву повністю"
+        "ru": "Они наверху",
+        "uk": "Вони нагорі"
       },
       "bodyByLocale": {
-        "ru": "`pillow` — «подушка» под голову для сна. Сравните `It is a pillow` — «Это подушка» и `They are pillows` — «Это подушки». Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка. В названии нескольких здесь остаётся `pillows`, без `a`.",
-        "uk": "`pillow` — «подушка» під голову для сну. Порівняйте `It is a pillow` — «Це подушка» і `They are pillows` — «Це подушки». Додали закінчення, а `a` прихопили про всяк випадок? Вийде помилка. У назві кількох тут лишається `pillows`, без `a`."
+        "ru": "`upstairs` — «наверху, на верхнем этаже». `The pens are upstairs` — «Ручки наверху». Олег спрашивает, лежат ли они снаружи. Вы знаете, что они наверху в здании, и отвечаете `No` — «Нет». Рядом с дверью вы замечаете окно: `The window is broken` — «Окно разбито». Окно одно, поэтому здесь `is`.",
+        "uk": "`upstairs` — «нагорі, на верхньому поверсі». `The pens are upstairs` — «Ручки нагорі». Олег запитує, чи лежать вони надворі. Ви знаєте, що вони нагорі в будівлі, й відповідаєте `No` — «Ні». Біля дверей ви помічаєте вікно: `The window is broken` — «Вікно розбите». Вікно одне, тому тут `is`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Вы раскрыли упаковку с двумя подушками для кровати. Курьер вносит их в список. Скажите: «Это подушки».",
-          "uk": "Ви розкрили паковання з двома подушками для ліжка. Кур’єр вносить їх до списку. Скажіть: «Це подушки»."
+          "ru": "Олег спрашивает, лежат ли ручки снаружи. Они внутри здания. Ответьте одним словом «Нет».",
+          "uk": "Олег запитує, чи лежать ручки надворі. Вони всередині будівлі. Дайте відповідь одним словом «Ні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-21:intro3:r1",
-              "text": "They are pillows."
+              "text": "No."
             },
             {
               "responseId": "en:lesson-03:session-21:intro3:r2",
-              "text": "They are a pillows."
+              "text": "Yes."
             },
             {
               "responseId": "en:lesson-03:session-21:intro3:r3",
-              "text": "They are a pillow."
+              "text": "Not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-21:intro3:r1",
-              "text": "They are pillows."
+              "text": "No."
             },
             {
               "responseId": "en:lesson-03:session-21:intro3:r2",
-              "text": "They are a pillows."
+              "text": "Yes."
             },
             {
               "responseId": "en:lesson-03:session-21:intro3:r3",
-              "text": "They are a pillow."
+              "text": "Not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы раскрыли упаковку с двумя подушками для кровати. Курьер вносит их в список. Скажите: «Это подушки».",
-          "uk": "Ви розкрили паковання з двома подушками для ліжка. Кур’єр вносить їх до списку. Скажіть: «Це подушки»."
+          "ru": "Олег спрашивает, лежат ли ручки снаружи. Они внутри здания. Ответьте одним словом «Нет».",
+          "uk": "Олег запитує, чи лежать ручки надворі. Вони всередині будівлі. Дайте відповідь одним словом «Ні»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b869bb48c0feb8c016fe1d9b638c66cc898dd9a228e649e10747595dfa7f5d59"
+  "introFingerprint": "ba301e1aeb0aa5cd1e55cbea50d416c969828b799d0ad2d08fd74293c2ea394a"
 }

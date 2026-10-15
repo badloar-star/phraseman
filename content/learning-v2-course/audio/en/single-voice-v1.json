@@ -52282,6 +52282,309 @@
           "byteSize": 49152
         }
       ]
+    },
+    "l04/s05/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a supermarket.",
+          "file": "e1735669d8f376b19eb4fe42f4766edd7e45308fd4c377e32ceee1132d80fd5c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1735669d8f376b19eb4fe42f4766edd7e45308fd4c377e32ceee1132d80fd5c.mp3",
+          "contentHash": "59e5167927b2d3861bee9928d2b4bdae7fc9be410443f3f34de55a4f1fd6f6a3",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s05/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a map.",
+          "file": "fcf24331bdc1b4638dc26a2fa564504551779aad315c4d46266e2d2137693e67.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fcf24331bdc1b4638dc26a2fa564504551779aad315c4d46266e2d2137693e67.mp3",
+          "contentHash": "57667ed513dc294e8eb3ae2f8b92c91a04a44cdd12382f34b6c84e78b5daf868",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s05/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's real.",
+          "file": "182123274ef78cd54930a18671b6bb71af0bef25821398f9a98c27eb2d6bcdeb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/182123274ef78cd54930a18671b6bb71af0bef25821398f9a98c27eb2d6bcdeb.mp3",
+          "contentHash": "a2027715a0e2d4be03e449048f26bacc44eb857510de03fd60b8323652bca855",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s05/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a map.",
+          "file": "7f0f67ea64f63ddde614ff27db209f85dab7458c3bd9013ae350b389aeb5a253.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f0f67ea64f63ddde614ff27db209f85dab7458c3bd9013ae350b389aeb5a253.mp3",
+          "contentHash": "079f9ef7ec845156da39f5c9a1dd2eed8ce81fa1f85155cfd371d47fecf4f01c",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s05/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "supermarket",
+          "file": "8c78c6b0c260ee1ab348b73e0db9104f173630465eba6c010d60302060b223e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8c78c6b0c260ee1ab348b73e0db9104f173630465eba6c010d60302060b223e8.mp3",
+          "contentHash": "38980c97e772788f8412b659fca9355fd82fbf6a849c59506b4ee4da2e6aad85",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s05/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "supermarket",
+          "file": "63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "contentHash": "8d5cc3538a7a8c8f0172915ae1e5359ca9307fa53f146a7b277aaa28f9f4a264",
+          "byteSize": 6912
+        }
+      ]
+    },
+    "l04/s05/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "supermarket",
+          "file": "ae57b48e557b88c9b4a27d69bfc0649cce5854fe361c969a559542a0e6a19f7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae57b48e557b88c9b4a27d69bfc0649cce5854fe361c969a559542a0e6a19f7d.mp3",
+          "contentHash": "c67fdfb63dafbd28da1372166f027ec43530a28940cdc0a168a9fab603d1245b",
+          "byteSize": 44160
+        },
+        {
+          "text": "real",
+          "file": "58e3f52cdbeba041158148b0c495eb0d4247af67c369690ff6ea594644945173.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/aa33996d60e89311b4d1a920-coral.mp3",
+          "contentHash": "ecc31d58da7dc994c633b8b8fa9c4c64530cde455696e926742853adeba9d725",
+          "byteSize": 22656
+        },
+        {
+          "text": "map",
+          "file": "aadf5766fb33d926db2be6a7ca53db8b10b2515731e5691fa304323e6dca06f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aadf5766fb33d926db2be6a7ca53db8b10b2515731e5691fa304323e6dca06f2.mp3",
+          "contentHash": "676defceb7d469d8598b26c3f508b18cbb509b7a791447ff5eb33d57096708e3",
+          "byteSize": 14208
+        },
+        {
+          "text": "museum",
+          "file": "1b1bc5546aec783f2ff11cf0ad5d729cae101759edf57704b946589b844fdd29.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1b1bc5546aec783f2ff11cf0ad5d729cae101759edf57704b946589b844fdd29.mp3",
+          "contentHash": "00d02844fbefef23ebbdd41001b4d3c5e5810c71917b9c1090d0f5ff4e28121b",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l04/s05/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a supermarket.",
+          "file": "e1735669d8f376b19eb4fe42f4766edd7e45308fd4c377e32ceee1132d80fd5c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1735669d8f376b19eb4fe42f4766edd7e45308fd4c377e32ceee1132d80fd5c.mp3",
+          "contentHash": "59e5167927b2d3861bee9928d2b4bdae7fc9be410443f3f34de55a4f1fd6f6a3",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s05/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a museum here.",
+          "file": "1c00bb5ef8fe866e8ac95be45863abf570d6a20ce40cfb6628d3578a4588c305.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c00bb5ef8fe866e8ac95be45863abf570d6a20ce40cfb6628d3578a4588c305.mp3",
+          "contentHash": "a7a36f52e72408a18f9ee3d056dd09d4ce5d6779b01837429c2c0c481a6a30f5",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s05/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's real.",
+          "file": "578d4a28c16f2d1a620cee506bfc0900de4ae10169e1492a309e7e249103b835.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/578d4a28c16f2d1a620cee506bfc0900de4ae10169e1492a309e7e249103b835.mp3",
+          "contentHash": "3de685f3c99366d9696e866a69aa385331151e240e1ae157cb2083d60c7fca10",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s05/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a supermarket here.",
+          "file": "bd0813b9d2dd67de64f1ea88455855fd32ecd9481a74fec11cb1aa62780defb5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bd0813b9d2dd67de64f1ea88455855fd32ecd9481a74fec11cb1aa62780defb5.mp3",
+          "contentHash": "48de9341911f40a752087a704d406dd1f510b322b69c30b51c638369aabdccc0",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s05/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It is real.",
+          "file": "4f1102579491be289193fecf3d1388f0bfd5e897f74f7ef89fd30240e47a08e9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f1102579491be289193fecf3d1388f0bfd5e897f74f7ef89fd30240e47a08e9.mp3",
+          "contentHash": "be0f5dcf213de419a5bfd7bb55c7676318a1ad2f4ee213e4f8a85c8044d4c7a9",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s05/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "supermarket",
+          "file": "63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "contentHash": "8d5cc3538a7a8c8f0172915ae1e5359ca9307fa53f146a7b277aaa28f9f4a264",
+          "byteSize": 6912
+        },
+        {
+          "text": "museum",
+          "file": "0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "contentHash": "bfc575ef089820dbd46858c187249f260843dbe7d0d7ba2c481b2f2a2fe542a7",
+          "byteSize": 29184
+        },
+        {
+          "text": "here",
+          "file": "de3734eb9148ae497907a90c2446fa2f79cc974cc87c2dee5e10950d4c11ce5b.mp3",
+          "assetPath": "assets/audio/learning-v2/session1-production-v1/here-onyx.mp3",
+          "contentHash": "466763eb8efaae21630ce58e33301e771417bd0ac7ff21702afc6321efa8942f",
+          "byteSize": 21888
+        },
+        {
+          "text": "there",
+          "file": "b58c3078acecc660e1cac0b0e3e2c7eb5d500fd6c4d5c65cc20f3061e0c70a76.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e244f187f696561d5fd7e00f-onyx.mp3",
+          "contentHash": "423cf31ed87aa7fa64ad507ce6b916b752688225cd64696463af1a4ec85a566d",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s05/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "That is a map.",
+          "file": "2be818e2db83254429fff57d4f7049d42f521a88afcb20a74defeed4fc903578.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2be818e2db83254429fff57d4f7049d42f521a88afcb20a74defeed4fc903578.mp3",
+          "contentHash": "40dfc5526a34971a242e3d4cad336c8e81110bac4d41cd55258d8d16e48f2a0a",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s05/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a supermarket.",
+          "file": "569f09b12a5635cadfac84d665f89edcb75c8b4fc011d56f0332491780dc3ff6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/569f09b12a5635cadfac84d665f89edcb75c8b4fc011d56f0332491780dc3ff6.mp3",
+          "contentHash": "29b4d30b06bfc7ad9d95fa2e2c1281928a636057b4ce97aab20f3b4f2a66c7ff",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l04/s05/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a map here.",
+          "file": "70136ec86187f36f1bdfbde6947cacf2d31262a2aa559ed310928b298628cdab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/70136ec86187f36f1bdfbde6947cacf2d31262a2aa559ed310928b298628cdab.mp3",
+          "contentHash": "30da02ef0a0e37063427ac31659fa6f3dba436f38dbbd52c5680dd5c7f673fe3",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s05/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a supermarket there.",
+          "file": "76d961442d4c18bae10ccb6e8fab990a7681488a559e97fe045273ca2675d72e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/76d961442d4c18bae10ccb6e8fab990a7681488a559e97fe045273ca2675d72e.mp3",
+          "contentHash": "3c9abc01c4ba3e91c414c70e61e367cf1c211f7f67423cb7f1e44c715e17a8f2",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s05/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a museum.",
+          "file": "a5659c51da3d4243ad5f46dd82727fbc576eef130d1cf76d363148d3093df86c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5659c51da3d4243ad5f46dd82727fbc576eef130d1cf76d363148d3093df86c.mp3",
+          "contentHash": "1f80eaca77ca16abe3fe07326c7908768af2e356b97bfa4dae93f5b90503bc90",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s05/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "supermarket",
+          "file": "63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "contentHash": "8d5cc3538a7a8c8f0172915ae1e5359ca9307fa53f146a7b277aaa28f9f4a264",
+          "byteSize": 6912
+        },
+        {
+          "text": "real",
+          "file": "e73cf81e11cc30c300e8f178bec0fc9accb152a907f3c8f611996d02779edb01.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/aa33996d60e89311b4d1a920-onyx.mp3",
+          "contentHash": "5d2e80dc4e00faf00096860d73faafcff918cbca0614e87d895595196fbc2b82",
+          "byteSize": 12288
+        },
+        {
+          "text": "map",
+          "file": "ebe51eca7513b612d5a892256f0a0acb6b6e93bfda126c44da8226042f5ac350.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebe51eca7513b612d5a892256f0a0acb6b6e93bfda126c44da8226042f5ac350.mp3",
+          "contentHash": "6db9299a208b6e858662a5e05df4691f72cc63de0b868caa54ef3e231e6142a1",
+          "byteSize": 14976
+        },
+        {
+          "text": "museum",
+          "file": "0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0bdbb5fdcb0897baa6220265c39f1bf567956d43ae2e007b171457eb1632b2ab.mp3",
+          "contentHash": "bfc575ef089820dbd46858c187249f260843dbe7d0d7ba2c481b2f2a2fe542a7",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s05/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a supermarket here.",
+          "file": "a5dffe3c484c0f70c43c7186905df8a0c26209c1b64755b3d6815c5687565eb9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5dffe3c484c0f70c43c7186905df8a0c26209c1b64755b3d6815c5687565eb9.mp3",
+          "contentHash": "8aa6e834064a3f9c6d2194443ea20c2850db0078687a2dc0b8cc301c47934ee1",
+          "byteSize": 46848
+        }
+      ]
     }
   },
   "settings": {

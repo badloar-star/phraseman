@@ -136,9 +136,9 @@ const s = StyleSheet.create({
   benefit: { marginTop: 16, paddingVertical: 12, paddingHorizontal: 14, borderRadius: 22, flexDirection: 'row', alignItems: 'center', gap: 10 },
   benefitText: { fontSize: 16, lineHeight: 22, fontWeight: '600', flexShrink: 1 },
   cta: { marginTop: 16, minHeight: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', paddingVertical: 6, paddingHorizontal: 20 },
-  ctaText: { fontSize: 17, lineHeight: 20, fontWeight: '700', textAlign: 'center' },
+  ctaText: { fontSize: 17, lineHeight: 20, fontWeight: '700', textAlign: 'center' }, // d145-micro: m22-A эталон v3, одобрен владельцем 14.10
   // зачем: строка цены внутри кнопки — ровно эталон `.em-ph .cta .sub` (12/600, 70 %), исключение 2.0 «короткая подпись по референсу»
-  ctaSub: { marginTop: 1, fontSize: 12, lineHeight: 14, fontWeight: '600', opacity: 0.7, textAlign: 'center' }, // guard-ok: эталон m22 .cta .sub
+  ctaSub: { marginTop: 1, fontSize: 12, lineHeight: 14, fontWeight: '600', opacity: 0.7, textAlign: 'center' }, // guard-ok: эталон m22 .cta .sub; d145-micro: m22-A эталон v3, одобрен владельцем 14.10
   wait: { marginTop: 12 },
 });
 

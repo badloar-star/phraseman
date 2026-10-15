@@ -27,6 +27,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { actionToastTri, emitAppEvent } from '../events';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
+import { useOwnedPack } from '../community_packs/useOwnedPack';
 import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingman_youtube';
 import { DebugLogger } from '../debug-logger';
@@ -133,6 +134,8 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
   const title = packTitleForInterface(pack, lang) || pack.codeName || pack.id;
   const duration = formatDuration(pack.videoDurationSec);
   const thumbUrl = useMemo(() => youtubeThumbnailUrl(pack.videoId), [pack.videoId]);
+  // зачем (аудит кнопок Карточек #14/#15, 15.10): `owned={false}` предлагал «Добавить» уже добавленный набор — берём из локальных id (video:<id> → video_<id>), без Firestore
+  const owned = useOwnedPack(pack.id);
 
   const playLabel = triLang(lang, {
     ru: 'Смотреть видео', uk: 'Дивитися відео', en: 'Watch the video', es: 'Ver el vídeo',
@@ -205,7 +208,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
             <Text pointerEvents="none" maxFontSizeMultiplier={1.3} style={[styles.largeCount, { color: g.secondary }]}>{phrasesText}</Text>
           </KitTouchable>
           {/* «Добавить себе» — общий компонент каталога: его оптимистичность и защита от гонок уже написаны, второй копии быть не должно. */}
-          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="videoAdd" />
+          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="videoAdd" />
         </View>
       </View>
     );
@@ -268,7 +271,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
           </View>
 
           {/* «Добавить себе» — общий компонент каталога: его оптимистичность и защита от гонок уже написаны, второй копии быть не должно. */}
-          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant={plain ? 'videoAddRound' : 'videoAdd'} />
+          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant={plain ? 'videoAddRound' : 'videoAdd'} />
         </RowShell>
       </Wrapper>
     </View>

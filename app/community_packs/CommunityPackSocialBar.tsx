@@ -149,7 +149,9 @@ export default function CommunityPackSocialBar({
 
   useEffect(() => {
     // зачем: на экране просмотра цифры читает соседний `previewMeta`; кнопке второе чтение того же документа не нужно.
-    if (isPreviewCta || isSetAdd || isSetHeart) return undefined;
+    // зачем (аудит кнопок Карточек #14/#15, 15.10, 💸): набор ролика клиент знает как `video:<id>`, а документ сообщества — `video_<id>`; чтение шло по неверному id и давало 3 пустых чтения Firestore на КАЖДУЮ строку.
+    // Кнопки «Добавить» у видео-наборов ни лайков, ни цифр не показывают — читать нечего.
+    if (isPreviewCta || isSetAdd || isSetHeart || isVideoAdd || isVideoAddRound) return undefined;
     let cancelled = false;
     const seqAtStart = opSeqRef.current;
     void (async () => {
@@ -190,7 +192,7 @@ export default function CommunityPackSocialBar({
     return () => {
       cancelled = true;
     };
-  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog, isPreviewCta, isSetAdd, isSetHeart]);
+  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog, isPreviewCta, isSetAdd, isSetHeart, isVideoAdd, isVideoAddRound]);
 
   /**
    * Счётчик откликов.

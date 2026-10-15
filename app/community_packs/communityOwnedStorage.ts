@@ -15,6 +15,7 @@ import { accountScopeKey } from '../account_scope_key';
 import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../accounts_v2_client_flag';
 import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
 import { devCommunityMarkOwned, getDevCommunityOwnedIds, isDevCommunityPackId } from '../dev_cards_state';
+import { notifyOwnedPackIdsChanged } from './owned_pack_ids_signal';
 
 const warmOwnedIdsByKey = new BoundedScopeCache<string[]>(16);
 
@@ -221,6 +222,7 @@ export async function removeCommunityOwnedPackId(
   }
   const target = storageStudyTarget(studyTarget);
   emitLibrarySnapshot(v2Owner, target, next, titles);
+  notifyOwnedPackIdsChanged(); // строки видео-наборов и экран ролика сразу снова предлагают «Добавить»
   console.log(`[MY-PACKS] remove pack=${id} result=removed owned_before=${loaded.ids.length} owned_after=${next.length} target=${target} synced=tombstone_via_snapshot`); // guard-ok: итог убирания
   return 'removed';
 }

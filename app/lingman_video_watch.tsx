@@ -27,6 +27,7 @@ import { pluralWord } from '../constants/plural';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { captureAccountGeneration } from './account_generation';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
+import { useOwnedPack } from './community_packs/useOwnedPack';
 import { PanelDock } from '../components/mistakes-panel/PanelKit';
 import { loadVideoMarketPacks, peekVideoMarketPacks } from './community_packs/communityFirestore';
 import { normalizePackLanguage } from './flashcards/pack_languages';
@@ -72,6 +73,8 @@ export default function LingmanVideoWatchScreen() {
   const startSec = typeof params.startSec === 'string' && Number.isFinite(Number(params.startSec)) ? Number(params.startSec) : undefined;
 
   const [pack, setPack] = useState<FlashcardMarketPack | null>(() => findPackForVideo(peekVideoMarketPacks(studyTarget), videoId));
+  // зачем (аудит кнопок Карточек #14/#15, 15.10): набор ролика уже добавлен — кнопка «Тренировать», а не «Добавить» (из локальных id, без Firestore)
+  const packOwned = useOwnedPack(pack?.id ?? `video:${videoId}`);
   const packFromRef = useRef<string>(peekVideoMarketPacks(studyTarget) ? 'memory' : 'pending');
   const [playerOpen, setPlayerOpen] = useState(true);
   const openLoggedRef = useRef(false);
@@ -199,7 +202,7 @@ export default function LingmanVideoWatchScreen() {
           // зачем (макет `.bot2`): главная кнопка «Добавить набор себе · N карточек» закреплена внизу под большим пальцем.
           <PanelDock>
             <View testID="lingman-video-watch-pack">
-              <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="previewCta" ctaLabel={ctaLabel} ownedCtaLabel={trainLabel} onOwnedCtaPress={trainVideo} />
+              <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={packOwned} variant="previewCta" ctaLabel={ctaLabel} ownedCtaLabel={trainLabel} onOwnedCtaPress={trainVideo} />
             </View>
           </PanelDock>
         ) : null}

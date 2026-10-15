@@ -96,6 +96,7 @@ function fixture() {
       audioTargetIds: index === 0 ? [h("target")] : [],
       accessibilityLabel: `Neutral ${index + 1}`,
       scriptedAlternate: null,
+      modePayload: null, // 48e9a2993: materialize проверяет modePayload строго (=== null), отсутствие поля = невалидный payload
     })),
   });
   const files = (suffix: string) =>

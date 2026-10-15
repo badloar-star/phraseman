@@ -1,206 +1,138 @@
-# Английский · Урок 1 · Занятие 34 — «They are»: про других людей
+# Английский · Урок 1 · Занятие 34 — Перед комнатой страха
 
-**Ситуация.** В кафе Ира, Олег и вы сидите рядом с командой Лены. Олег рассказывает вам о людях за соседним столом.
+**Ситуация.** Вы с друзьями пришли в парк развлечений. Маша хочет в комнату страха, Олег боится, а вы пытаетесь понять правила входа.
 
-**Сегодня.** Скажете о другой группе людей: `They are` + слово.
-**Новые слова:** busy, nice, loud, funny
-**Возвращаются:** here, ready, together, busy, nice, loud, funny
+**Что вы освоите:** назвать страх и отличить его от знакомых состояний, используя полные и короткие формы
+**Новые слова:** afraid
 
 ---
 
 ## Интро 1
 
-### `they` — «они»: после него ставим `are`
+### Мне страшно
 
-`they` — «они». Про любую компанию людей: соседний отдел, семья, очередь.
+`afraid` — «боится», «испытывает страх». `I am afraid` — «Мне страшно» или «Я боюсь». Коротко: `I'm afraid`. После `I` форма `am` остаётся даже тогда, когда по-русски хочется начать с «мне». За дверью завывает страшный голос. Голос записанный, а боитесь вы по-настоящему.
 
-После `they` ставим `are`. `is` подходит для одного человека, а `they` — для группы. Поэтому говорят `They are busy`, а не `They busy`.
+**Перед входом вам страшно. Скажите о себе полной фразой.**
 
-`busy` — «заняты», руки в деле, подходить не стоит.
-
-**За соседним столом Лена и её команда не поднимают головы от ноутбуков. Олег спрашивает, чем они заняты. Скажите, что они заняты.**
-
-- ✅ **They are busy.**
-- ❌ They busy. — *После `they` нужно `are`: They are busy.*
-- ❌ They is busy. — *`is` — про одного. Их там пятеро, значит `are`.*
+- ✅ **I am afraid.**
+- ❌ I afraid. — *После `I` нужно `am`: `I am afraid`.*
+- ❌ I am bored. — *`bored` — «скучаю». Здесь нужно назвать страх: `afraid`.*
 
 ---
 
 ## Интро 2
 
-### `funny` — «смешные»
+### Ему страшно
 
-`funny` — «смешные». Не «странные», а те, с кем смеёшься. Разница важная: назвать `funny` того, кто просто ведёт себя чудно, — и вас поймут наоборот.
+Про Олега: `He is afraid`. Про Машу: `She is afraid`. Страх не обязан быть опасностью: можно бояться даже безопасного аттракциона. Слово `afraid` описывает чувство человека, а не то, насколько страшно он выглядит.
 
-Слово стоит там же, где `busy`: сразу после `are`.
+**Олег боится входить. Назовите его чувство.**
 
-**Соседний отдел позвал вас к себе за стол и весь обед смешил. Скажите про них самое главное.**
-
-- ✅ **They are funny.**
-- ❌ They are fun. — *`fun` — не то слово. Про людей, которые смешат, — `funny`, с хвостом `-ny`.*
-- ❌ They funny. — *После `they` поставьте `are`: They are funny.*
+- ✅ **He is afraid.**
+- ❌ He are afraid. — *После `He` нужна форма `is`.*
+- ❌ He is confused. — *`confused` — «запутался». Олег боится, поэтому `afraid`.*
 
 ---
 
 ## Интро 3
 
-### `loud` — «громкие»
+### Что именно мы чувствуем
 
-`loud` — «громкий, шумный». Читается «лауд», гласная в середине — как «ау».
+`worried` — «беспокоится», `afraid` — «боится». Эти чувства могут быть вместе: человек и переживает, и боится. Если нужно назвать именно страх, выбираем `afraid`. Про нас: `We are afraid`, про других: `They are afraid`.
 
-Слово годится не только для людей: `loud` бывает музыка, телевизор, улица за окном.
+**Вы и Олег оба боитесь входить. Скажите от вас двоих именно о страхе.**
 
-**За соседним столом хохочут так, что вы себя не слышите. Коллега закатывает глаза. Согласитесь: они шумные.**
-
-- ✅ **They are loud.**
-- ❌ They is loud. — *`is` — для одного человека; о группе скажите `They are loud`.*
-- ❌ They are loudly. — *Хвост `-ly` тут лишний. Про самих людей — просто `loud`.*
+- ✅ **We are afraid.**
+- ❌ They are afraid. — *Это про них. Вы включаете себя: `We are afraid`.*
+- ❌ We are bored. — *`bored` — «скучаем». Здесь речь о страхе: `afraid`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Карточка слова — busy**
-<!-- interaction_id: en:lesson-01:session-34:i01; family: listen_choose -->
-> **busy** — «занят, занята, заняты». Руки в деле, голова в задаче, «зайдите позже».
+**1 · У входа в комнату вам страшно. Соберите фразу о себе**
+<!-- interaction_id: en:lesson-01:session-34:i01; family: phrase_builder -->
+Плитки: `afraid` `am` `I` `is` → **I am afraid.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am afraid.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-34:i02; family: listen_choose -->
-🔊 *busy* → **busy** · bus · bed
-- bus — *«Автобус». Оборван хвост «-зи», а он в `busy` слышен ясно.*
-- bed — *«Кровать». Совсем другое слово: в `busy` два слога, во втором «зи».*
+🔊 *She is afraid.* → **She is afraid.** · He is afraid. · She is bored.
+- He is afraid. — *В записи первое слово — `She`, а в этом варианте — `He`.*
+- She is bored. — *В записи последнее слово — `afraid`, а в этом варианте — `bored`.*
 
-**3 · Карточка слова — nice**
-<!-- interaction_id: en:lesson-01:session-34:i03; family: listen_choose -->
-> **nice** — «милый, приятный». Человек, после которого день чуть лучше.
+**3 · Олег боится. Дополните фразу о нём**
+<!-- interaction_id: en:lesson-01:session-34:i03; family: context_gap_grammar -->
+He ___ afraid. → **is** · am · are
+- am — *После `He` нужно `is`.*
+- are — *Про Олега здесь `He is`.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-34:i04; family: listen_choose -->
-🔊 *nice* → **nice** · ice · night
-- ice — *«Лёд». То же самое, но без `n` в начале. Вслушайтесь в первый звук.*
-- night — *«Ночь». Начало похожее, конец другой: `nice` заканчивается на «с».*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-34:i04; family: speed_match -->
+afraid — боится · bored — скучает · confused — запутался · worried — беспокоится
 
-**5 · Выберите форму — соседний отдел не отрывается от экранов**
-<!-- interaction_id: en:lesson-01:session-34:i05; family: context_gap_grammar -->
-They ___ busy. → **are** · is · am
-- is — *`is` — про одного человека. Их много, значит `are`.*
-- am — *`am` бывает только при `I`, про себя. Про них — `are`.*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-34:i05; family: listen_build_dictation -->
+🔊 *They are afraid.* Плитки: `afraid` `are` `They` `is` → **They are afraid.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are afraid.`)*
 
-**6 · Карточка слова — loud**
-<!-- interaction_id: en:lesson-01:session-34:i06; family: listen_choose -->
-> **loud** — «громкий, шумный». Говорят так, что слышно через весь зал.
+**6 · Вы с Олегом боитесь входить. Соберите фразу от вас двоих**
+<!-- interaction_id: en:lesson-01:session-34:i06; family: phrase_builder -->
+Плитки: `afraid` `are` `We` `They` → **We are afraid.**
+*(плитка `They` лишняя: здесь нужно `We` — `We are afraid.`)*
 
-**7 · Карточка слова — funny**
-<!-- interaction_id: en:lesson-01:session-34:i07; family: listen_choose -->
-> **funny** — «смешной». Тот, с кем вы смеётесь, а не над кем.
+**7 · Вы решаете остаться снаружи, потому что вам страшно. Назовите своё чувство короткой фразой**
+<!-- interaction_id: en:lesson-01:session-34:i07; family: scripted_repeat_compare -->
+🎙 **I'm afraid.**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-34:i08; family: listen_choose -->
-🔊 *loud* → **loud** · load · lot
-- load — *«Груз». Середина другая: там «оу», а в `loud` — «ау».*
-- lot — *«Много». Короче и без «у» в середине.*
+**8 · Маша ждёт у входа и скучает. Назовите именно скуку**
+<!-- interaction_id: en:lesson-01:session-34:i08; family: context_gap_grammar -->
+She is ___ . → **bored** · afraid · confused
+- afraid — *`afraid` — «боится». Здесь нужно «скучает»: `bored`.*
+- confused — *`confused` — «запуталась». Скуку передаёт `bored`.*
 
-**9 · Вставьте слово — соседний отдел придержал вам дверь и показал, где кухня**
-<!-- interaction_id: en:lesson-01:session-34:i09; family: context_gap_grammar -->
-They are ___ . → **nice** · loud · busy
-- loud — *«Шумные» — они вам ничего плохого не сделали. Тут про доброту.*
-- busy — *«Заняты» — наоборот: они нашли на вас время.*
+**9 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-34:i09; family: listen_choose -->
+🔊 *I am worried.* → **I am worried.** · I am afraid. · I am confused.
+- I am afraid. — *В записи последнее слово — `worried`, а в этом варианте — `afraid`.*
+- I am confused. — *В записи последнее слово — `worried`, а в этом варианте — `confused`.*
 
-**10 · Послушайте и соберите — «они смешные»**
-<!-- interaction_id: en:lesson-01:session-34:i10; family: listen_build_dictation -->
-🔊 *They are funny.* Плитки: `are` `funny` `They` `nice` → **They are funny.**
-*(плитка `nice` лишняя: `nice` лишнее: в фразе `They are funny.` оно не нужно.)*
+**10 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-01:session-34:i10; family: speed_match -->
+I'm — I am · She's — She is · We're — We are · They're — They are
 
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-34:i11; family: listen_build_dictation -->
+🔊 *He's afraid.* Плитки: `afraid` `He's` `She's` → **He's afraid.**
+*(плитка `She's` лишняя: здесь нужно `He's` — `He's afraid.`)*
 
-**11 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-34:i11; family: speed_match -->
-busy — занят · nice — милый · loud — громкий · funny — смешной
-
-**12 · Соберите фразу — за соседним столом хохочут на весь зал**
+**12 · Вы прочитали две разные инструкции о входе и не понимаете, какой следовать. Назовите своё непонимание**
 <!-- interaction_id: en:lesson-01:session-34:i12; family: phrase_builder -->
-Плитки: `loud` `They` `is` `are` → **They are loud.**
-*(плитка `is` лишняя: `is` лишнее: после `They` ставят `are` — `They are loud.`)*
+Плитки: `confused` `am` `I` `are` → **I am confused.**
+*(плитка `are` лишняя: здесь нужно `am` — `I am confused.`)*
 
+**13 · Двое друзей у двери боятся входить. Вы рассказываете о них Маше. Назовите их страх**
+<!-- interaction_id: en:lesson-01:session-34:i13; family: scripted_repeat_compare -->
+🎙 **They are afraid.**
 
-**13 · Вставьте слово — соседний отдел уже встал и надел куртки**
-<!-- interaction_id: en:lesson-01:session-34:i13; family: context_gap_grammar -->
-They are ___ . → **ready** · funny · loud
-- funny — *«Смешные» — не про сборы. Вы говорите, что они могут идти.*
-- loud — *«Шумные» — а они просто оделись и стоят у двери.*
+**14 · Олег признался, что боится. Вы обращаетесь к нему: «Тебе страшно». Вставьте слово**
+<!-- interaction_id: en:lesson-01:session-34:i14; family: context_gap_grammar -->
+You ___ afraid. → **are** · am · is
+- am — *После `You` нужно `are`, даже если собеседник один.*
+- is — *С `You` нужна форма `are`.*
 
-**14 · Соберите фразу — соседний отдел ходит обедать всем составом, не по одному**
-<!-- interaction_id: en:lesson-01:session-34:i14; family: phrase_builder -->
-Плитки: `together` `They` `are` `is` → **They are together.**
-*(плитка `is` лишняя: `is` лишнее: правильно `They are together.`)*
+**15 · Послушайте короткую фразу и выберите её**
+<!-- interaction_id: en:lesson-01:session-34:i15; family: listen_choose -->
+🔊 *We're afraid.* → **We're afraid.** · They're afraid. · We're worried.
+- They're afraid. — *В записи первое слово — `We're`, а в этом варианте — `They're`.*
+- We're worried. — *В записи последнее слово — `afraid`, а в этом варианте — `worried`.*
 
+**16 · Соедините состояния со значениями**
+<!-- interaction_id: en:lesson-01:session-34:i16; family: speed_match -->
+afraid — испытывает страх · worried — испытывает беспокойство · bored — скучает · confused — не понимает, запутался
 
-**15 · Послушайте и соберите — коллега спрашивает, где сейчас соседний отдел**
-<!-- interaction_id: en:lesson-01:session-34:i15; family: listen_build_dictation -->
-🔊 *They are here.* Плитки: `here` `are` `They` `is` → **They are here.**
-*(плитка `is` лишняя: `is` лишнее: правильно `They are here.`)*
+**17 · Дома погас свет, и вам страшно в темноте. Скажите близкому человеку о своём страхе**
+<!-- interaction_id: en:lesson-01:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am afraid.**
 
-
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-34:i16:s01; family: scripted_repeat_compare -->
-Олег спрашивает, какие люди за соседним столом. 🎙 **They are nice.**
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-34:i16:s02; family: scripted_repeat_compare -->
-Олег спрашивает, почему за соседним столом так слышно. 🎙 **They are loud.**
-
-**18 · Послушайте и соберите — соседний отдел придержал вам дверь и показал, где кухня**
-<!-- interaction_id: en:lesson-01:session-34:i17:s01; family: listen_build_dictation -->
-🔊 *They are nice.* Плитки: `nice` `They` `are` `is` → **They are nice.**
-*(плитка `is` лишняя: `is` лишнее: правильно `They are nice.`)*
-
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-34:i17:s02; family: scripted_repeat_compare -->
-Мия смеётся над шуткой соседнего отдела. 🎙 **They are funny.**
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-34:i17:s03; family: scripted_repeat_compare -->
-Ира видит, что соседний отдел уже в куртках у выхода. 🎙 **They are ready.**
-
----
-
-## Для сборщика
-
-new_words:
-busy — занят, заняты — «занят, занята, заняты». Руки в деле, голова в задаче, «зайдите позже».
-nice — милый, приятный — «милый, приятный». Человек, после которого день чуть лучше.
-loud — громкий, шумный — «громкий, шумный». Говорят так, что слышно через весь зал.
-funny — смешной — «смешной». Тот, с кем вы смеётесь, а не над кем.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=listen_build_dictation, 11=speed_match, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| ready | 13, 14, 17 | 13 (`They are ready`), 17 (финал) |
-| together | 14 | 14 (`They are together`) |
-| here | 15 | 15 (сборка `They are here`) |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | `They are busy` | да — `they`, `are`, `busy` разобраны выше |
-| Интро 2 | `They are funny` | да — `funny` объяснено, `are` названо |
-| Интро 3 | `They are loud` | да — `loud` объяснено |
-
-**3. Доска пар (задание 11)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| busy | 1 | 2 (слух), 5 (вставь скрепку во фразу с `busy`) |
-| nice | 3 | 4 (слух), 9 (вставь слово) |
-| loud | 6 | 8 (слух) |
-| funny | 7 | 10 (послушай и собери) |
-
----

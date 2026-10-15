@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-34",
   "learningOutcomeByLocale": {
-    "ru": "Скажете о другой группе людей: `They are` + слово.",
-    "uk": "Скажете про іншу групу людей: `They are` + слово."
+    "ru": "назвать страх и отличить его от знакомых состояний, используя полные и короткие формы",
+    "uk": "назвати страх і відрізнити його від знайомих станів, використовуючи повні та короткі форми"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`they` — «они»: после него ставим `are`",
-        "uk": "`they` — «вони»: після нього ставимо `are`"
+        "ru": "Мне страшно",
+        "uk": "Мені страшно"
       },
       "bodyByLocale": {
-        "ru": "`they` — «они». Про любую компанию людей: соседний отдел, семья, очередь.\n\nПосле `they` ставим `are`. `is` подходит для одного человека, а `they` — для группы. Поэтому говорят `They are busy`, а не `They busy`.\n\n`busy` — «заняты», руки в деле, подходить не стоит.",
-        "uk": "`they` — «вони». Про будь-яку компанію людей: сусідній відділ, родина, черга.\n\nПісля `they` ставимо `are`. `is` підходить для однієї людини, а `they` — для групи. Тому кажуть `They are busy`, а не `They busy`.\n\n`busy` — «зайняті», руки в роботі, підходити не варто."
+        "ru": "`afraid` — «боится», «испытывает страх». `I am afraid` — «Мне страшно» или «Я боюсь». Коротко: `I'm afraid`. После `I` форма `am` остаётся даже тогда, когда по-русски хочется начать с «мне». За дверью завывает страшный голос. Голос записанный, а боитесь вы по-настоящему.",
+        "uk": "`afraid` — «боїться», «відчуває страх». `I am afraid` — «Мені страшно» або «Я боюся». Коротко: `I'm afraid`. Після `I` форма `am` залишається навіть тоді, коли українською хочеться почати з «мені». За дверима завиває страшний голос. Голос записаний, а боїтеся ви по-справжньому."
       },
       "question": {
         "interactionId": "en:lesson-01:session-34:intro1:q",
         "promptByLocale": {
-          "ru": "За соседним столом Лена и её команда не поднимают головы от ноутбуков. Олег спрашивает, чем они заняты. Скажите, что они заняты.",
-          "uk": "За сусіднім столом Лена та її команда не підводять голови від ноутбуків. Олег питає, чим вони зайняті. Скажіть, що вони зайняті."
+          "ru": "Перед входом вам страшно. Скажите о себе полной фразой.",
+          "uk": "Перед входом вам страшно. Скажіть про себе повною фразою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-34:intro1:r1",
-              "text": "They are busy."
+              "text": "I am afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro1:r2",
-              "text": "They busy."
+              "text": "I afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro1:r3",
-              "text": "They is busy."
+              "text": "I am bored."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-34:intro1:r1",
-              "text": "They are busy."
+              "text": "I am afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro1:r2",
-              "text": "They busy."
+              "text": "I afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro1:r3",
-              "text": "They is busy."
+              "text": "I am bored."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За соседним столом Лена и её команда не поднимают головы от ноутбуков. Олег спрашивает, чем они заняты. Скажите, что они заняты.",
-          "uk": "За сусіднім столом Лена та її команда не підводять голови від ноутбуків. Олег питає, чим вони зайняті. Скажіть, що вони зайняті."
+          "ru": "Перед входом вам страшно. Скажите о себе полной фразой.",
+          "uk": "Перед входом вам страшно. Скажіть про себе повною фразою."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`funny` — «смешные»",
-        "uk": "`funny` — «смішні»"
+        "ru": "Ему страшно",
+        "uk": "Йому страшно"
       },
       "bodyByLocale": {
-        "ru": "`funny` — «смешные». Не «странные», а те, с кем смеёшься. Разница важная: назвать `funny` того, кто просто ведёт себя чудно, — и вас поймут наоборот.\n\nСлово стоит там же, где `busy`: сразу после `are`.",
-        "uk": "`funny` — «смішні». Не «дивні», а ті, з ким ви смієтесь. Різниця важлива: назвати `funny` того, хто просто поводиться химерно, — і вас зрозуміють навпаки.\n\nСлово стоїть там само, де `busy`: одразу після `are`."
+        "ru": "Про Олега: `He is afraid`. Про Машу: `She is afraid`. Страх не обязан быть опасностью: можно бояться даже безопасного аттракциона. Слово `afraid` описывает чувство человека, а не то, насколько страшно он выглядит.",
+        "uk": "Про Олега: `He is afraid`. Про Машу: `She is afraid`. Страх не обов’язково означає небезпеку: можна боятися навіть безпечного атракціону. Слово `afraid` описує почуття людини, а не те, наскільки страшний вона має вигляд."
       },
       "question": {
         "interactionId": "en:lesson-01:session-34:intro2:q",
         "promptByLocale": {
-          "ru": "Соседний отдел позвал вас к себе за стол и весь обед смешил. Скажите про них самое главное.",
-          "uk": "Сусідній відділ покликав вас до себе за стіл і весь обід смішив. Скажіть про них найголовніше."
+          "ru": "Олег боится входить. Назовите его чувство.",
+          "uk": "Олег боїться заходити. Назвіть його почуття."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-34:intro2:r1",
-              "text": "They are funny."
+              "text": "He is afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro2:r2",
-              "text": "They are fun."
+              "text": "He are afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro2:r3",
-              "text": "They funny."
+              "text": "He is confused."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-34:intro2:r1",
-              "text": "They are funny."
+              "text": "He is afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro2:r2",
-              "text": "They are fun."
+              "text": "He are afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro2:r3",
-              "text": "They funny."
+              "text": "He is confused."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Соседний отдел позвал вас к себе за стол и весь обед смешил. Скажите про них самое главное.",
-          "uk": "Сусідній відділ покликав вас до себе за стіл і весь обід смішив. Скажіть про них найголовніше."
+          "ru": "Олег боится входить. Назовите его чувство.",
+          "uk": "Олег боїться заходити. Назвіть його почуття."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`loud` — «громкие»",
-        "uk": "`loud` — «гучні»"
+        "ru": "Что именно мы чувствуем",
+        "uk": "Що саме ми відчуваємо"
       },
       "bodyByLocale": {
-        "ru": "`loud` — «громкий, шумный». Читается «лауд», гласная в середине — как «ау».\n\nСлово годится не только для людей: `loud` бывает музыка, телевизор, улица за окном.",
-        "uk": "`loud` — «гучний, галасливий». Читається «лауд» — усередині чути «ау».\n\nСлово годиться не лише для людей: `loud` буває музика, телевізор, вулиця за вікном."
+        "ru": "`worried` — «беспокоится», `afraid` — «боится». Эти чувства могут быть вместе: человек и переживает, и боится. Если нужно назвать именно страх, выбираем `afraid`. Про нас: `We are afraid`, про других: `They are afraid`.",
+        "uk": "`worried` — «непокоїться», `afraid` — «боїться». Ці почуття можуть бути разом: людина і хвилюється, і боїться. Якщо треба назвати саме страх, вибираємо `afraid`. Про нас: `We are afraid`, про інших: `They are afraid`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-34:intro3:q",
         "promptByLocale": {
-          "ru": "За соседним столом хохочут так, что вы себя не слышите. Коллега закатывает глаза. Согласитесь: они шумные.",
-          "uk": "За сусіднім столом регочуть так, що ви себе не чуєте. Колега закочує очі. Погодьтеся: вони галасливі."
+          "ru": "Вы и Олег оба боитесь входить. Скажите от вас двоих именно о страхе.",
+          "uk": "Ви та Олег обоє боїтеся заходити. Скажіть від вас двох саме про страх."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-34:intro3:r1",
-              "text": "They are loud."
+              "text": "We are afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro3:r2",
-              "text": "They is loud."
+              "text": "They are afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro3:r3",
-              "text": "They are loudly."
+              "text": "We are bored."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-34:intro3:r1",
-              "text": "They are loud."
+              "text": "We are afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro3:r2",
-              "text": "They is loud."
+              "text": "They are afraid."
             },
             {
               "responseId": "en:lesson-01:session-34:intro3:r3",
-              "text": "They are loudly."
+              "text": "We are bored."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За соседним столом хохочут так, что вы себя не слышите. Коллега закатывает глаза. Согласитесь: они шумные.",
-          "uk": "За сусіднім столом регочуть так, що ви себе не чуєте. Колега закочує очі. Погодьтеся: вони галасливі."
+          "ru": "Вы и Олег оба боитесь входить. Скажите от вас двоих именно о страхе.",
+          "uk": "Ви та Олег обоє боїтеся заходити. Скажіть від вас двох саме про страх."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "961c9c8dbf016e4f93234ac7964eebed23aa255d3472c56e4a89e11d676744b9"
+  "introFingerprint": "ccab7a8c5ffc8be7cfcd62ffe52cc7af0bb1ce68762d5d62b4d00efc102ca498"
 }

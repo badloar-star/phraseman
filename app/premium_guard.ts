@@ -56,6 +56,18 @@ let _cachedAccessResult: boolean | null = null;
 let _accessCacheTime = 0;
 let _accessCacheGeneration = -1;
 let _lastCloudAccessRefreshTime = 0;
+// зачем (R61b, Ревизор d0de15329 + ревью Opus): поколение аккаунта, для которого последнее восстановление ПРОЧИТАЛО облако.
+// Без этой метки «нет» по потолку ожидания, после молча неудачного восстановления (restoreFromCloud отдаёт false без броска)
+// или при пропуске по TTL после неудачи кэшировалось на 5 мин как будто облако проверено. -1 — не подтверждено.
+let _cloudRefreshConfirmedGeneration = -1;
+/** refreshed — облако прочитано сейчас; confirmed_skip — пропуск, но облако этого поколения уже прочитано; unconfirmed — нет. */
+type CloudRefreshOutcome = 'refreshed' | 'confirmed_skip' | 'unconfirmed';
+
+/** Статус попытки восстановления (cloud_sync CloudRestoreAttempt) или null, если формы нет. */
+function restoreAttemptConfirmed(attempt: unknown): boolean | null {
+  if (attempt && typeof attempt === 'object' && 'status' in attempt) return (attempt as { status: unknown }).status !== 'failed';
+  return null;
+}
 let _cloudAccessRefreshInFlight: Promise<boolean> | null = null;
 const _realPremiumBackgroundRefreshes = new Map<number, Promise<void>>();
 let _premiumAccountTransitionEpoch = 0;
@@ -87,6 +99,7 @@ export function invalidatePremiumCache(): void {
 export function beginPremiumAccountTransition(): number {
   invalidatePremiumCache();
   _lastCloudAccessRefreshTime = 0;
+  _cloudRefreshConfirmedGeneration = -1;
   _cloudAccessRefreshInFlight = null;
   _premiumAccountDrainEpoch = _premiumAccountTransitionEpoch;
   _premiumAccountTransitionEpoch += 1;
@@ -761,8 +774,9 @@ async function getVerifiedPremiumAccessStatusTraced(
     if (isDevRuntime) console.log('[PREMIUM-GUARD] fast_no_cloud: «нет» без облака не кэшируем — полная проверка сходит в облако');
     return false;
   }
-  const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded(generation);
-  mark(`cloud_refresh:${String(cloudRefreshed)}`);
+  const cloudRefresh = await refreshPremiumAccessFromCloudIfNeeded(generation);
+  const cloudRefreshed = cloudRefresh === 'refreshed';
+  mark(`cloud_refresh:${cloudRefresh}`);
   if (!accountGenerationIsCurrent(generation)) return false;
   if (cloudRefreshed) {
     invalidatePremiumCache();
@@ -775,7 +789,15 @@ async function getVerifiedPremiumAccessStatusTraced(
   }
 
   const giftAtEnd = await giftCopyStillActive();
-  return accountGenerationIsCurrent(generation) ? finish(giftAtEnd) : false;
+  if (!accountGenerationIsCurrent(generation)) return false;
+  if (giftAtEnd) return finish(true);
+  // зачем (R61b): «нет» по потолку ожидания, после неудачного восстановления или пропуска без подтверждения — не ответ облака.
+  // Не кэшируем: следующая полная проверка увидит доехавшее восстановление (Plus только в облаке после переустановки).
+  if (cloudRefresh === 'unconfirmed') {
+    console.log('[PREMIUM-GUARD] full_unconfirmed: «нет» без подтверждения облака не кэшируем'); // guard-ok: ветка решения
+    return false;
+  }
+  return finish(false);
 }
 
 /** Потолок облачной проверки подарка (план §CORE-0165): держатель подарка с копией его не ждёт вовсе. */
@@ -907,17 +929,20 @@ function cacheAccess(result: boolean, generation: AccountGenerationToken): boole
   return result;
 }
 
-async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerationToken): Promise<boolean> {
-  if (!accountGenerationIsCurrent(generation)) return false;
+async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerationToken): Promise<CloudRefreshOutcome> {
+  if (!accountGenerationIsCurrent(generation)) return 'unconfirmed';
   const now = Date.now();
   if (_cloudAccessRefreshInFlight) return waitCloudAccessRefreshWithCeiling(_cloudAccessRefreshInFlight, 'joined_in_flight');
   const sinceLastMs = now - _lastCloudAccessRefreshTime;
   if (sinceLastMs < CLOUD_ACCESS_REFRESH_TTL_MS) {
-    console.log(`[PREMIUM-CLOUD] skip reason=ttl ageMs=${sinceLastMs} ttlMs=${CLOUD_ACCESS_REFRESH_TTL_MS}`); // guard-ok: ранний выход
-    return false;
+    const confirmedSkip = _cloudRefreshConfirmedGeneration === generation.generation;
+    console.log(`[PREMIUM-CLOUD] skip reason=ttl ageMs=${sinceLastMs} ttlMs=${CLOUD_ACCESS_REFRESH_TTL_MS} confirmed=${confirmedSkip}`); // guard-ok: ранний выход
+    return confirmedSkip ? 'confirmed_skip' : 'unconfirmed';
   }
 
   _lastCloudAccessRefreshTime = now;
+  // Новая попытка: прошлое подтверждение не в счёт, пока эта не прочитает облако (иначе неудача прикрылась бы старым «да»).
+  _cloudRefreshConfirmedGeneration = -1;
   _cloudAccessRefreshInFlight = (async () => {
     const startedAt = Date.now();
     try {
@@ -927,16 +952,35 @@ async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerati
       // users/{id} и страницы карточек читались дважды. Идёт восстановление — ждём его; было удачное недавно — не повторяем.
       const inFlight = cloudSync.peekCloudRestoreInFlight();
       const sinceRestoreMs = Date.now() - cloudSync.lastCloudRestoreCompletedAt();
+      // зачем (R61b, ревью Opus): restoreFromCloud при сбое отдаёт false БЕЗ броска — «прочитано ли облако» решает метка
+      // lastCloudRestoreCompletedAt (ставится только при status != failed для текущего владельца), а не сам факт возврата.
+      let confirmed: boolean;
+      let via: string;
       if (inFlight) {
         console.log('[PREMIUM-CLOUD] restore joined_in_flight_boot_restore — второе восстановление не запускаем'); // guard-ok: ветка решения
-        await inFlight;
+        const attempt = await inFlight;
+        confirmed = restoreAttemptConfirmed(attempt) ?? cloudSync.lastCloudRestoreCompletedAt() >= startedAt;
+        via = 'joined';
       } else if (cloudSync.lastCloudRestoreCompletedAt() > 0 && sinceRestoreMs < CLOUD_ACCESS_REFRESH_TTL_MS) {
         console.log(`[PREMIUM-CLOUD] restore skipped reason=recent_restore ageMs=${sinceRestoreMs}`); // guard-ok: ветка решения
+        confirmed = true;
+        via = 'recent_restore';
       } else {
-        await cloudSync.restoreFromCloud();
+        const applied = await cloudSync.restoreFromCloud();
+        // true — облако прочитано и применено; false — «прочитано, менять нечего» (метка стоит) или сбой (метки нет).
+        confirmed = applied === true || cloudSync.lastCloudRestoreCompletedAt() >= startedAt;
+        via = 'own_restore';
       }
-      console.log(`[PREMIUM-CLOUD] restore done ms=${Date.now() - startedAt}`); // guard-ok: итог сети
-      return accountGenerationIsCurrent(generation);
+      console.log(`[PREMIUM-CLOUD] restore done ms=${Date.now() - startedAt} via=${via} confirmed=${confirmed}`); // guard-ok: итог сети
+      if (!accountGenerationIsCurrent(generation)) return false;
+      if (!confirmed) {
+        // Молча неудачное восстановление — как ошибка: повтор через 2 мин, а не через 30.
+        _lastCloudAccessRefreshTime = Date.now() - CLOUD_ACCESS_REFRESH_TTL_MS + CLOUD_ACCESS_REFRESH_FAILED_RETRY_MS;
+        console.warn(`[PREMIUM-CLOUD] retry_after_unconfirmed inMs=${CLOUD_ACCESS_REFRESH_FAILED_RETRY_MS}`); // guard-ok: ветка повтора
+        return false;
+      }
+      _cloudRefreshConfirmedGeneration = generation.generation;
+      return true;
     } catch (error) {
       // Немой catch запрещён: облако не ответило — доступ остаётся по локальному решению, причина в журнале.
       console.warn('[PREMIUM-CLOUD] restoreFromCloud failed', error instanceof Error ? error.message : String(error));
@@ -954,15 +998,16 @@ async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerati
 }
 
 /** Ждать охранный restore не дольше потолка; по потолку — «облако не обновило» (fail-closed: доступ не выдаётся), restore идёт дальше фоном. */
-function waitCloudAccessRefreshWithCeiling(inFlight: Promise<boolean>, origin: 'started' | 'joined_in_flight'): Promise<boolean> {
+function waitCloudAccessRefreshWithCeiling(inFlight: Promise<boolean>, origin: 'started' | 'joined_in_flight'): Promise<CloudRefreshOutcome> {
   let timer: ReturnType<typeof setTimeout> | null = null;
-  const ceiling = new Promise<boolean>((resolve) => {
+  const ceiling = new Promise<CloudRefreshOutcome>((resolve) => {
     timer = setTimeout(() => {
       console.warn(`[PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=${CLOUD_ACCESS_REFRESH_WAIT_CEILING_MS} origin=${origin} — решаем по локальным данным, restore доезжает фоном`); // guard-ok: потолок
-      resolve(false);
+      resolve('unconfirmed');
     }, CLOUD_ACCESS_REFRESH_WAIT_CEILING_MS);
   });
-  return Promise.race([inFlight, ceiling]).finally(() => {
+  const outcome = inFlight.then((ok): CloudRefreshOutcome => (ok ? 'refreshed' : 'unconfirmed'));
+  return Promise.race([outcome, ceiling]).finally(() => {
     if (timer) clearTimeout(timer);
   });
 }

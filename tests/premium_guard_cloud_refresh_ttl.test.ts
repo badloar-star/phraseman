@@ -49,6 +49,10 @@ afterEach(() => {
 test('охранный restore у бесплатного — не чаще раза в 30 минут', async () => {
   let now = 1_800_000_000_000;
   jest.spyOn(Date, 'now').mockImplementation(() => now);
+  // зачем (R61b): как в cloud_sync — удачное восстановление (облако прочитано, менять нечего) ставит метку «прочитано».
+  let restoredAt = 0;
+  restoreFromCloud.mockImplementation(async () => { restoredAt = Date.now(); return false; });
+  lastCloudRestoreCompletedAt.mockImplementation(() => restoredAt);
   const guard = require('../app/premium_guard');
   expect(guard.CLOUD_ACCESS_REFRESH_TTL_MS).toBe(30 * MIN);
 

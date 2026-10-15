@@ -15,6 +15,8 @@ const getCustomerInfo = jest.fn();
 const getAppUserID = jest.fn(async () => 'r61-user');
 const readGiftAccessFromCloud = jest.fn(async () => null as null | { grantedAtMs: number | null; endsAtMs: number | null });
 const restoreFromCloud = jest.fn(async () => false);
+// Метка «облако прочитано» (cloud_sync.lastCloudRestoreCompletedAt): удачное восстановление в тесте ставит её само.
+let lastRestoreAt = 0;
 
 jest.mock('../app/events', () => ({ ...jest.requireActual('../app/events'), emitAppEvent: jest.fn() }));
 jest.mock('react-native-purchases', () => ({ __esModule: true, default: { getCustomerInfo, getAppUserID } }));
@@ -22,7 +24,7 @@ jest.mock('../app/config', () => ({ IS_EXPO_GO: false }));
 jest.mock('../app/cloud_sync', () => ({
   restoreFromCloud: () => restoreFromCloud(),
   peekCloudRestoreInFlight: () => null,
-  lastCloudRestoreCompletedAt: () => 0,
+  lastCloudRestoreCompletedAt: () => lastRestoreAt,
 }));
 jest.mock('../app/gift_access_cloud', () => ({ readGiftAccessFromCloud }));
 jest.mock('../app/revenuecat_projection_sync', () => ({ syncRevenueCatProjectionForAccount: jest.fn(async () => true) }));
@@ -45,6 +47,7 @@ beforeEach(() => {
   Object.keys(asyncStore).forEach((k) => delete asyncStore[k]);
   readGiftAccessFromCloud.mockResolvedValue(null);
   restoreFromCloud.mockImplementation(async () => false);
+  lastRestoreAt = 0;
   getCustomerInfo.mockResolvedValue({ entitlements: { active: {} }, activeSubscriptions: [] });
   require('../app/account_generation').beginAccountGeneration('r61-user');
   (globalThis as { __DEV__?: boolean }).__DEV__ = false;
@@ -62,6 +65,7 @@ describe('R61: «нет» без облака не отравляет общий
     // Восстановление из облака приносит доступ (здесь — проверенная копия подарка, как в loyalty_gift_local_copy).
     restoreFromCloud.mockImplementation(async () => {
       asyncStore[KEY] = giftCopy(Date.now() + 5 * HOUR);
+      lastRestoreAt = Date.now();
       return true;
     });
     const g = guard();
@@ -85,6 +89,36 @@ describe('R61: «нет» без облака не отравляет общий
     await expect(g.getVerifiedPremiumAccessStatus({ allowCloudRefresh: false })).resolves.toBe(true);
     delete asyncStore[KEY];
     await expect(g.getVerifiedPremiumAccessStatus({ allowCloudRefresh: false })).resolves.toBe(true);
+  });
+
+  // зачем (R61b, Ревизор d0de15329): то же «нет без облака» на полном пути — по потолку ожидания восстановления.
+  it('восстановление дольше 5 с → «нет» не закэширован → следующая проверка после восстановления даёт «да»', async () => {
+    let restoreDone = false;
+    restoreFromCloud.mockImplementation(() => new Promise((resolve) => {
+      setTimeout(() => {
+        asyncStore[KEY] = giftCopy(Date.now() + 5 * HOUR);
+        lastRestoreAt = Date.now();
+        restoreDone = true;
+        resolve(true);
+      }, 5_500);
+    }));
+    const g = guard();
+    await expect(g.getVerifiedPremiumAccessStatus()).resolves.toBe(false);
+    while (!restoreDone) {
+      // eslint-disable-next-line no-await-in-loop
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    await expect(g.getVerifiedPremiumAccessStatus()).resolves.toBe(true);
+  }, 15_000);
+
+  // зачем (ревью Opus R61b): restoreFromCloud при сбое отдаёт false БЕЗ броска — это не подтверждение облака.
+  it('молча неудачное восстановление (false без броска) → «нет» не закэширован → копия появилась → «да»', async () => {
+    restoreFromCloud.mockImplementation(async () => false);
+    const g = guard();
+    await expect(g.getVerifiedPremiumAccessStatus()).resolves.toBe(false);
+    asyncStore[KEY] = giftCopy(Date.now() + 5 * HOUR);
+    await expect(g.getVerifiedPremiumAccessStatus()).resolves.toBe(true);
+    expect(restoreFromCloud).toHaveBeenCalledTimes(1);
   });
 
   it('смена аккаунта посреди быстрой проверки → «нет» без записи в кэш', async () => {

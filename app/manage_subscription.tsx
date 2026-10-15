@@ -82,6 +82,9 @@ import { resolvePaywallReferencePrices } from './paywall_reference_prices';
 import { withPurchaseFlow } from './purchase_flow_activity';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
+/** Потолок ожидания магазина при «Восстановить» (решение координатора 15.10). */
+const RESTORE_CEILING_MS = 8000;
+
 type ManageSubscriptionCopy = {
   ru: string;
   uk: string;
@@ -309,6 +312,7 @@ export default function ManageSubscription() {
   // одна операция гасила бы кнопку другой и человек не понимал бы, что занято.
   const [restoring, setRestoring] = useState(false);
   const restoringRef = useRef(false);
+  const restoreRunRef = useRef(0); // зачем (потолок 15.10): номер запуска «Восстановить» — поздний finally старого запуска не снимает замок нового
   const [showRestoreEmpty, setShowRestoreEmpty] = useState(false);
   const [showCancelSheet, setShowCancelSheet] = useState(false);
   const [cancelReason, setCancelReason] = useState<string | null>(null);
@@ -543,6 +547,16 @@ export default function ManageSubscription() {
     restoringRef.current = true;
     setRestoring(true);
     const startedAt = Date.now();
+    // зачем (решение координатора 15.10, бета-тест А4): без потолка крутилка «Восстановить» могла висеть вечно, если магазин не отвечает. Через RESTORE_CEILING_MS снимаем замок и спиннер и говорим «Не удалось связаться
+    // с магазином»; сам запрос не отменяем — если он всё же завершится успехом, Plus применится как обычно (деньги не теряем). Номер запуска: поздний `finally` старого запуска не снимает замок нового.
+    const runId = ++restoreRunRef.current;
+    const ceilingTimer = setTimeout(() => {
+      if (restoreRunRef.current !== runId || !restoringRef.current) return;
+      console.warn(`[RESTORE] ceiling:${RESTORE_CEILING_MS}ms магазин не ответил — снимаем крутилку, тост «не удалось связаться» (запрос не отменяем)`); // guard-ok: ветка решения называет значение
+      restoringRef.current = false;
+      if (isOperationCurrent()) setRestoring(false);
+      emitAppEvent('action_toast', storeUnreachableToast());
+    }, RESTORE_CEILING_MS);
     try {
       await initRevenueCat(isOperationCurrent);
       if (!await syncRevenueCatIdentity(isOperationCurrent)) {
@@ -628,9 +642,12 @@ export default function ManageSubscription() {
         },
       });
     } finally {
-      // зачем: ref снимаем всегда (откат замка), state — только своей генерации аккаунта.
-      restoringRef.current = false;
-      if (isOperationCurrent()) setRestoring(false);
+      clearTimeout(ceilingTimer);
+      // зачем: ref снимаем всегда (откат замка), state — только своей генерации аккаунта; если за это время стартовал более новый запуск — его замок не трогаем.
+      if (restoreRunRef.current === runId) {
+        restoringRef.current = false;
+        if (isOperationCurrent()) setRestoring(false);
+      }
     }
   }, [restoring]);
 

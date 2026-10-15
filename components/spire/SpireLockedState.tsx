@@ -10,12 +10,15 @@ import type { Lang } from '../../constants/i18n';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useSpirePalette } from './useSpirePalette';
 import { spireText } from './spire_strings';
+import { offlineBannerText } from '../OfflineBanner';
 
-function SpireLockedState({ lang }: Readonly<{ lang: Lang }>) {
+// зачем (решение координатора 15.10, бета-тест А4): конфиг не прочитался из-за сети — «откроется чуть позже» было неверной причиной; `offline` показывает уже переведённое «Нет интернета» (строка баннера, новых строк нет)
+function SpireLockedState({ lang, offline = false }: Readonly<{ lang: Lang; offline?: boolean }>) {
   const p = useSpirePalette();
+  const text = offline ? offlineBannerText(lang) : spireText(lang, 'lockedTitle');
   return (
-    <View style={s.root} testID="spire-locked" accessible accessibilityRole="text" accessibilityLabel={spireText(lang, 'lockedTitle')}>
-      <Text style={[s.title, { color: p.text }]}>{spireText(lang, 'lockedTitle')}</Text>
+    <View style={s.root} testID={offline ? 'spire-offline-locked' : 'spire-locked'} accessible accessibilityRole="text" accessibilityLabel={text}>
+      <Text style={[s.title, { color: p.text }]}>{text}</Text>
     </View>
   );
 }

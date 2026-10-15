@@ -10,6 +10,7 @@ import { V2 } from '../../../constants/v2Style';
 import { colorWithAlpha } from '../../v2/plateAlpha';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { HOME_PLATE_ALPHA } from './homePlate';
+import { animateNextLayoutTransition } from '../../../app/smooth_layout';
 import VideoThumb from '../../../app/flashcards/VideoThumb';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 
@@ -19,6 +20,9 @@ type Props = {
   ownerActive: boolean;
   onSeeAll: () => void;
 };
+
+/** Через сколько мс без видео блок тихо скрывается (решение координатора 15.10). */
+export const VIDEO_RAIL_GIVE_UP_MS = 10_000;
 
 /** The Home snapshot is already loaded for the unread count; no second feed request. */
 export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll }: Props) {
@@ -38,8 +42,32 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
     if (!ownerActive) setActiveVideoId(null);
   }, [ownerActive]);
 
+  // зачем (решение координатора 15.10, бета-тест А4; владелец 01.10 «никаких недоступно»): без видео и без связи серые скелеты висели вечно. Теперь через 10 с без данных блок тихо скрывается,
+  // а когда видео появились (сеть вернулась, Главная перечитала) — возвращается сам. Ни «недоступно», ни кнопки; скрытие/возврат — через animateNextLayoutTransition (раскладка не прыгает).
+  const hasVideos = videos.length > 0;
+  const [gaveUp, setGaveUp] = useState(false);
+  useEffect(() => {
+    if (hasVideos) {
+      if (gaveUp) {
+        console.log(`[HOME-VIDEO] блок возвращён: видео появились status=${status}`); // guard-ok: ветка решения называет значение
+        animateNextLayoutTransition();
+        setGaveUp(false);
+      }
+      return undefined;
+    }
+    if (gaveUp) return undefined;
+    const timer = setTimeout(() => {
+      console.log(`[HOME-VIDEO] блок скрыт: ${VIDEO_RAIL_GIVE_UP_MS} мс без видео status=${status}`); // guard-ok: ветка решения называет значение
+      animateNextLayoutTransition();
+      setGaveUp(true);
+    }, VIDEO_RAIL_GIVE_UP_MS);
+    return () => clearTimeout(timer);
+  }, [hasVideos, gaveUp, status]);
+
   const title = triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Vídeos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Wideo' });
   const seeAll = triLang(lang, { ru: 'Смотреть все', uk: 'Дивитися всі', en: 'See all', es: 'Ver todos', 'pt-BR': 'Ver todos', vi: 'Xem tất cả', id: 'Lihat semua', tr: 'Tümünü gör', pl: 'Zobacz wszystkie' });
+
+  if (!hasVideos && gaveUp) return null;
 
   return (
     <View testID="home-v2-video-rail" style={s.section}>

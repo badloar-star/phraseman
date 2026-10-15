@@ -45,6 +45,21 @@ const AUTO_HIDE_MS = 10_000;
 const L = (lang: string, map: Record<string, string>): string =>
   triLang(lang as Lang, map as unknown as Record<Lang, string>);
 
+/** «Нет интернета» на 9 языках — один источник для баннера и экранов без сети (Пик без конфига, решение координатора 15.10). */
+export function offlineBannerText(lang: string): string {
+  return L(lang, {
+    ru: 'Нет интернета',
+    uk: 'Немає інтернету',
+    en: 'No internet',
+    es: 'Sin internet',
+    'pt-BR': 'Sem internet',
+    vi: 'Không có mạng',
+    id: 'Tidak ada internet',
+    tr: 'İnternet yok',
+    pl: 'Brak internetu',
+  });
+}
+
 /**
  * зачем: гибрид «Световод» (макет .motion-mockups/phraseman-hybrid.html,
  * сцена T3 «Оффлайн-баннер»). Персистентный статус: вход из света (y -12→0,
@@ -337,17 +352,7 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
     );
   }
 
-  const offlineText = L(lang, {
-    ru: 'Нет интернета',
-    uk: 'Немає інтернету',
-    en: 'No internet',
-    es: 'Sin internet',
-    'pt-BR': 'Sem internet',
-    vi: 'Không có mạng',
-    id: 'Tidak ada internet',
-    tr: 'İnternet yok',
-    pl: 'Brak internetu',
-  });
+  const offlineText = offlineBannerText(lang);
 
   if (isHybrid) {
     return (

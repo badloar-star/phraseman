@@ -985,6 +985,11 @@ export default function LearningV2DirectSessionPlayerV1() {
     //
     // Немой уход запрещён: причина обязана пережить перезапуск, владелец
     // ловит это на телефоне.
+    // зачем (решение координатора 15.10, бета-тест А4): единый префикс [V2-BRIDGE] для поиска — человек нажал «Начать» и молча оказывается на карте; причина и все значения моста в одной строке
+    console.warn(
+      "[V2-BRIDGE] bounce_to_map reason=learning_v2_session_ready_handoff_missing",
+      JSON.stringify({ courseSessionId: first(params.id) ?? null, sessionRunId: routedSessionRunId || null, lessonOrdinal, sessionOrdinal }),
+    ); // guard-ok: причина ухода называется всегда
     DebugLogger.error(
       "[V2-SESSION] handoff_missing",
       new Error(

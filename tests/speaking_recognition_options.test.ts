@@ -12,22 +12,26 @@ describe('speaking recognition start options', () => {
     (Platform as any).OS = originalOS;
   });
 
-  it('includes the full phrase plus unique word tokens as contextualStrings', () => {
+  // зачем (владелец 15.10, «проверка речи принимает всё»): фразу-ответ распознавателю НЕ подсказываем —
+  // иначе он «слышит» правильную фразу в неверной речи. В словарь — только имена и длинные редкие слова.
+  it('never biases the recognizer with the answer phrase or common words', () => {
     const ctx = buildContextualStrings('I would like a coffee');
-    expect(ctx[0]).toBe('I would like a coffee');
-    expect(ctx).toEqual(expect.arrayContaining(['I', 'would', 'like', 'a', 'coffee']));
+    expect(ctx).not.toContain('I would like a coffee');
+    expect(ctx).toEqual([]);
   });
 
-  it('de-duplicates repeated word tokens case-insensitively', () => {
-    const ctx = buildContextualStrings('the cat the dog');
-    const lower = ctx.map((s) => s.toLowerCase());
-    // "the" must appear once among the tokens (the full phrase is a separate entry).
-    const theCount = lower.filter((s) => s === 'the').length;
-    expect(theCount).toBe(1);
+  it('keeps only proper nouns and long rare words, without punctuation', () => {
+    const ctx = buildContextualStrings('We met Anna near the restaurant, in Paris.');
+    expect(ctx).toEqual(['Anna', 'restaurant', 'Paris']);
+  });
+
+  it('de-duplicates kept words case-insensitively', () => {
+    const ctx = buildContextualStrings('Anna and anna visited Anna');
+    expect(ctx.filter((s) => s.toLowerCase() === 'anna').length).toBe(1);
   });
 
   it('caps contextualStrings at 100 entries', () => {
-    const long = Array.from({ length: 200 }, (_, i) => `w${i}`).join(' ');
+    const long = Array.from({ length: 200 }, (_, i) => `vocabulary${i}`).join(' ');
     expect(buildContextualStrings(long).length).toBeLessThanOrEqual(100);
   });
 

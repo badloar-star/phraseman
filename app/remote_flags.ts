@@ -65,6 +65,9 @@ export type RemoteBoolKey =
   // управляемый из «Пульта» баннер акции (текст/ссылка/срок в текстовых ключах).
   // Сама скидка на подписку настраивается в сторах отдельно — баннер только зовёт.
   | 'promo_banner_enabled'
+  // зачем (владелец 15.10, «проверка речи принимает всё»): аварийный выключатель строгой проверки слов.
+  // Дефолт true; false в remote_config/app.bools вернёт прежнее мягкое правило без релиза.
+  | 'speaking_strict_check_enabled'
   // Раздел «Промокод» в настройках + серверная активация promoCodeRedeem.
   // Дефолт FALSE = sell-switch: промокоды видны и активируются только когда
   // админ включил их в «Пульте».
@@ -224,6 +227,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
   // выключить её мгновенно (кнопка «Пропустить» бьёт по показам пейвола).
   onboarding_skip_enabled: true,
+  // Строгая проверка речи: значимые слова фразы обязаны прозвучать (kill-switch, дефолт ВКЛ).
+  speaking_strict_check_enabled: true,
   // Global client kill-switch only. Server owns percentage rollout by canonical stableUid.
   weekly_review_ai_v2_enabled: true,
   // Verified lesson-completion soft upsells ship enabled; Remote Config remains the kill switch.
@@ -460,7 +465,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
   const allowedBools = new Set<RemoteBoolKey>([
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
-    'energy_mistake_charge',
+    'energy_mistake_charge', 'speaking_strict_check_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
     'accounts_v2_legacy_sync_disabled',

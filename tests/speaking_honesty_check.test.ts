@@ -20,12 +20,18 @@ describe('speaking honesty adjustment (biased vs control score)', () => {
 
   it('can honestly drop a "pass" below the 75 threshold', () => {
     const adjusted = applyControlScore(88, 20);
-    expect(adjusted.score).toBe(45);
+    expect(adjusted.score).toBe(20 + CONTROL_SCORE_TOLERANCE);
+    expect(adjusted.score).toBeLessThan(75);
     expect(adjusted.flagged).toBe(true);
   });
 
   it('never raises the score when the control pass heard MORE than the biased one', () => {
     expect(applyControlScore(70, 95)).toEqual({ score: 70, flagged: false });
+  });
+
+  it('tolerance is 15: a neutral 60 can no longer carry a pass (60+15 = 75 is the edge)', () => {
+    expect(CONTROL_SCORE_TOLERANCE).toBe(15);
+    expect(applyControlScore(95, 50).score).toBe(65);
   });
 
   it('clamps inputs to the 0..100 score range', () => {

@@ -3,6 +3,7 @@ import {
   scorePronunciationTranscript,
   type TranscriptSegment,
 } from './pronunciation_scoring_core';
+import { getRemoteBool } from './remote_flags';
 
 export const SPEECH_PRONUNCIATION_PASS_THRESHOLD = PRONUNCIATION_PASS_THRESHOLD;
 export const SPEECH_PRONUNCIATION_SCORING_PROVIDER = 'device_speech_recognition' as const;
@@ -22,6 +23,14 @@ export type PronunciationScoringResult = {
   provider: typeof SPEECH_PRONUNCIATION_SCORING_PROVIDER;
   scoringVersion: string;
   recognitionConfidence: number;
+  /** Значимые слова цели, которых не было в речи (для логов [SPEAK-SCORE] и подсказки). */
+  missingWords: string[];
+  /** Итог проверки слов (строгой или мягкой — по флагу). */
+  strictWordsOk: boolean;
+  /** Какой режим проверки слов применён. */
+  strictMode: boolean;
+  /** Уверенность ОС по каждому слову цели ([слово, 0..1 | null]); пока только лог/подсказка, без порога. */
+  wordConfidence: Array<[string, number | null]>;
 };
 
 export type ScorePronunciationTranscriptInput = {
@@ -35,11 +44,15 @@ export type ScorePronunciationTranscriptInput = {
 export function scoreSpeechPronunciationTranscript(
   input: ScorePronunciationTranscriptInput,
 ): PronunciationScoringResult {
+  // зачем (15.10): строгая проверка слов включена по умолчанию; выключатель — remote_config/app.bools,
+  // читается из уже загруженного кэша (getRemoteBool), без новых запросов к Firestore.
+  const strictMode = getRemoteBool('speaking_strict_check_enabled');
   const scored = scorePronunciationTranscript({
     targetText: input.targetText,
     transcript: input.transcript,
     threshold: SPEECH_PRONUNCIATION_PASS_THRESHOLD,
     segments: input.segments,
+    strictWords: strictMode,
   });
   const rawConfidence = typeof input.recognitionConfidence === 'number'
     && Number.isFinite(input.recognitionConfidence)
@@ -57,6 +70,10 @@ export function scoreSpeechPronunciationTranscript(
     provider: SPEECH_PRONUNCIATION_SCORING_PROVIDER,
     scoringVersion: SPEECH_PRONUNCIATION_SCORING_VERSION,
     recognitionConfidence: Math.max(0, Math.min(1, rawConfidence)),
+    missingWords: scored.missingWords ?? [],
+    strictWordsOk: scored.strictWordsOk ?? scored.passed,
+    strictMode,
+    wordConfidence: scored.wordConfidence ?? [],
   };
 }
 

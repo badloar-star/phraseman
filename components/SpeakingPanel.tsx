@@ -32,6 +32,7 @@ import {
   speakingTargetTokens,
 } from '../app/speaking_word_match';
 import {
+  buildContextualStrings,
   buildControlRecognitionOptions,
   buildSpeakingStartOptions,
 } from '../app/speaking_recognition_options';
@@ -628,15 +629,32 @@ export function SpeakingPanel({
       }
       const biased = scoreSpeechPronunciationTranscript({ targetText, transcript: text, segments });
       const { score: honestScore, flagged } = applyControlScore(biased.score, control);
-      const passed = honestScore >= biased.threshold;
+      // зачем (владелец/координатор 15.10, «проверка речи принимает всё»): раньше зачёт решал только процент
+      // (honestScore ≥ 75), а строгая проверка «все значимые слова сказаны» из оценщика игнорировалась —
+      // чужое слово во фразе проходило. Теперь нужны оба условия. Если контрольный прогон не запустился
+      // (control === null), поправки нет — решает основная строгая проверка biased.passed.
+      const passed = biased.passed && honestScore >= biased.threshold;
+      const verdictReason = passed
+        ? 'pass'
+        : !biased.strictWordsOk
+          ? 'missing_words'
+          : honestScore < biased.threshold && flagged
+            ? 'control_disagrees'
+            : 'below_threshold';
       micTrace('score', { captureGeneration, transcript: text, biased: biased.score, control, honest: honestScore, threshold: biased.threshold, flagged, passed });
       // зачем (§126 п.6, 04.10): жалоба «проверка слишком мягкая» (trust/believe, it/that, scare/afraid). Распознавание
       // фразы подсказывает движку цель (contextualStrings), честность чинит контрольный прогон — а если он вернул
       // null, поправки нет. micTrace — console.log, в релизе вырезан; итог оценки нужен и в релизе: одна строка на попытку.
-      console.warn('[SPEAK-SCORE]', JSON.stringify({
+      // Лог (владелец 15.10, «сначала логи»): эталон, что услышал телефон, что ему подсказывали, балл,
+      // какие значимые слова не найдены, режим проверки, был ли контроль и ПОЧЕМУ такой вердикт.
+      console.warn('[SPEAK-SCORE]', JSON.stringify({ // guard-ok: одна строка на попытку, нужна в релизе (диагностика вердикта)
         target: targetText.slice(0, 120), transcript: text.slice(0, 120),
-        biased: biased.score, control, honest: honestScore, threshold: biased.threshold, flagged, passed,
-        controlApplied: control !== null,
+        hints: buildContextualStrings(targetText),
+        // уверенность ОС по каждому слову цели (null — не услышано / ОС не отдаёт); порог — после релиза по этим данным
+        wordConfidence: biased.wordConfidence.slice(0, 16),
+        biased: biased.score, control, honest: honestScore, threshold: biased.threshold, flagged,
+        strictMode: biased.strictMode, strictWordsOk: biased.strictWordsOk, missingWords: biased.missingWords,
+        controlApplied: control !== null, passed, reason: verdictReason,
       }));
       const report = buildSpokenWordReport({ targetText, transcript: text, segments });
       // Новая оценка попытки → сбрасываем прошлую тренировку слов начисто.

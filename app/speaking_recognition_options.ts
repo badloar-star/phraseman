@@ -82,20 +82,34 @@ export function iosTaskHintForTarget(targetText: string): 'confirmation' | 'dict
   return wordCount <= 2 ? 'confirmation' : 'dictation';
 }
 
-/** Contextual bias strings: the whole phrase plus its individual word tokens,
- *  de-duplicated, capped at Apple's documented 100-phrase limit. */
+/** Слово длиной от RARE_WORD_MIN_LENGTH букв считаем «редким словарём» — на нём движок спотыкается чаще. */
+const RARE_WORD_MIN_LENGTH = 8;
+
+/**
+ * Contextual bias strings — ТОЛЬКО словарь, без ответа.
+ * зачем (владелец/координатор 15.10, «проверка речи принимает всё»): раньше сюда шла вся целевая фраза
+ * и каждое её слово — распознаватель «слышал» подсказанный ответ даже в неверной речи. Теперь фразу-ответ
+ * и обычные слова не подсказываем; оставляем только то, на чём движок реально ошибается: имена собственные
+ * (с большой буквы не в начале фразы) и длинные редкие слова. Дедуп без регистра, лимит Apple — 100.
+ */
 export function buildContextualStrings(targetText: string): string[] {
-  const phrase = targetText.trim();
   const tokens = speakingTargetTokens(targetText);
   const seen = new Set<string>();
   const out: string[] = [];
-  for (const s of [phrase, ...tokens]) {
-    const v = s.trim();
-    if (v && !seen.has(v.toLowerCase())) {
-      seen.add(v.toLowerCase());
-      out.push(v);
-    }
-  }
+  tokens.forEach((raw, index) => {
+    const v = raw.trim();
+    if (!v) return;
+    const letters = v.replace(/[^\p{L}]/gu, '');
+    const properNoun = index > 0 && /^\p{Lu}/u.test(v);
+    const rare = letters.length >= RARE_WORD_MIN_LENGTH;
+    if (!properNoun && !rare) return;
+    // знаки препинания по краям («Paris,» / «restaurant.») в словарь не несём
+    const clean = v.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '');
+    const key = clean.toLowerCase();
+    if (!clean || seen.has(key)) return;
+    seen.add(key);
+    out.push(clean);
+  });
   return out.slice(0, 100);
 }
 
@@ -128,7 +142,7 @@ export function buildSpeakingStartOptions(
     // iOS can finish after a short completed fragment while the UI still says
     // that the user should keep holding the button.
     continuous: holdToTalk,
-    // Phrase biasing — the biggest accuracy lever for a fixed-phrase app.
+    // Только редкий словарь (имена, длинные слова) — НЕ фраза-ответ, см. buildContextualStrings.
     contextualStrings,
     // Ask for several hypotheses; the scorer picks the best match to the target.
     maxAlternatives: 5,

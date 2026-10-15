@@ -17,8 +17,10 @@
 //
 // Pure, no React/native imports, fully unit-testable.
 
-/** Allowed gap between the biased and control scores before we intervene. */
-export const CONTROL_SCORE_TOLERANCE = 25;
+/** Allowed gap between the biased and control scores before we intervene.
+ *  зачем (владелец/координатор 15.10, «проверка речи принимает всё»): было 25 — контрольные 50 всё равно давали
+ *  зачёт (50+25=75). 15 оставляет запас на разницу движков, но не пропускает «услышал, потому что подсказали». */
+export const CONTROL_SCORE_TOLERANCE = 15;
 
 export type HonestyAdjustedScore = {
   /** Final honest score, 0..100. */

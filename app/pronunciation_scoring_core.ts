@@ -13,6 +13,16 @@ export type PronunciationScoreResult = {
   normalizedTarget: string;
   normalizedTranscript: string;
   breakdown: PronunciationScoreBreakdown;
+  /** Значимые слова цели, которых нет в распознанном тексте (для логов и подсказки). */
+  missingWords?: string[];
+  /** Прошла ли строгая проверка «все значимые слова сказаны». */
+  strictWordsOk?: boolean;
+  /**
+   * Уверенность распознавателя по каждому слову цели: [слово цели, уверенность 0..1 | null].
+   * null — слово не услышано или ОС не отдаёт уверенность (iOS < 17, Android < 14, не on-device).
+   * Пока ТОЛЬКО для логов/подсказки: порог «не сказано» включим после релиза по данным (владелец 15.10).
+   */
+  wordConfidence?: Array<[string, number | null]>;
 };
 
 // Порог зачёта произношения. Был 90% — слишком жёстко: движок распознавания
@@ -263,6 +273,78 @@ function longestCommonSubsequence(a: readonly string[], b: readonly string[]): n
   return previous[b.length] ?? 0;
 }
 
+// зачем (владелец/координатор 15.10, «проверка речи принимает всё»): строгая проверка слов.
+// Служебные слова (артикли, «of/to/de/di»), которые движок часто роняет и пропуск которых не меняет
+// смысл фразы, можно не услышать. Все остальные слова цели обязаны прозвучать. Список — для en/es/fr/de/it
+// после normalizePhrase (нижний регистр, без диакритики-символов).
+const OPTIONAL_FUNCTION_WORDS: ReadonlySet<string> = new Set([
+  'a', 'an', 'the', 'of', 'to',
+  'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'lo', 'de', 'del', 'al',
+  'le', 'les', 'une', 'des', 'du', 'l', 'd',
+  'der', 'die', 'das', 'den', 'dem', 'ein', 'eine', 'einen', 'einem', 'einer', 'eines',
+  // итальянское «i» сюда НЕ входит: в английском это «I», пропуск меняет смысл
+  'il', 'gli', 'uno', 'di',
+]);
+
+/** Сколько опечаток (букв) прощаем значимому слову: короткие — точно, длинные — ±1–2 буквы (акцент, огрех движка). */
+function strictLetterAllowance(word: string): number {
+  if (word.length <= 3) return 0;
+  if (word.length <= 6) return 1;
+  return 2;
+}
+
+function strictWordMatch(target: string, heard: string): boolean {
+  if (target === heard) return true;
+  // Созвучные написания (centre/center, knight/night) — движок легитимно вернул другое написание.
+  if (target.length >= 4 && heard.length >= 4 && soundsAlike(target, heard)) return true;
+  return charDistance(target, heard) <= strictLetterAllowance(target);
+}
+
+/**
+ * Строгая проверка: каждое значимое слово цели найдено в распознанном тексте (одно распознанное слово
+ * закрывает только одно слово цели). Порядок и лишние слова не важны — их учитывает процент.
+ * `lowConfidenceSlack` — сколько слов распознаватель сам пометил как неуверенные (огрех движка, не ученика).
+ */
+function strictWordCheck(
+  targetWords: readonly string[],
+  transcriptWords: readonly string[],
+  lowConfidenceSlack: number,
+): { ok: boolean; missing: string[]; heardFor: Array<string | null> } {
+  const used = new Array<boolean>(transcriptWords.length).fill(false);
+  const missing: string[] = [];
+  // какое распознанное слово закрыло каждое слово цели (для пословной уверенности)
+  const heardFor: Array<string | null> = [];
+  for (const target of targetWords) {
+    if (OPTIONAL_FUNCTION_WORDS.has(target)) {
+      // служебное слово: если прозвучало — занимаем его, чтобы оно не «закрыло» другое слово
+      const idx = transcriptWords.findIndex((heard, i) => !used[i] && heard === target);
+      if (idx >= 0) used[idx] = true;
+      heardFor.push(idx >= 0 ? transcriptWords[idx]! : null);
+      continue;
+    }
+    const idx = transcriptWords.findIndex((heard, i) => !used[i] && strictWordMatch(target, heard));
+    if (idx >= 0) used[idx] = true;
+    else missing.push(target);
+    heardFor.push(idx >= 0 ? transcriptWords[idx]! : null);
+  }
+  return { ok: missing.length <= lowConfidenceSlack, missing, heardFor };
+}
+
+/** Нормализованное распознанное слово → уверенность ОС (минимум, если слово встретилось несколько раз). */
+function buildWordConfidenceMap(segments: readonly TranscriptSegment[] | undefined): Map<string, number> {
+  const map = new Map<string, number>();
+  if (!segments) return map;
+  for (const seg of segments) {
+    const conf = seg?.confidence;
+    if (typeof conf !== 'number' || !Number.isFinite(conf) || conf < 0) continue; // -1 / нет = ОС не отдаёт
+    for (const w of words(seg?.segment ?? '')) {
+      const prev = map.get(w);
+      map.set(w, prev === undefined ? conf : Math.min(prev, conf));
+    }
+  }
+  return map;
+}
+
 function pct(value: number): number {
   return Math.max(0, Math.min(100, Math.round(value * 100)));
 }
@@ -309,6 +391,8 @@ export function scorePronunciationTranscript(input: {
   threshold?: number;
   /** Optional per-word segments (iOS 17+/Android 14+ on-device) for soft-miss. */
   segments?: readonly TranscriptSegment[];
+  /** Строгая проверка значимых слов (по умолчанию ВКЛ). false — прежнее мягкое правило (аварийный выключатель). */
+  strictWords?: boolean;
 }): PronunciationScoreResult {
   const targetWords = words(input.targetText);
   const transcriptWords = words(input.transcript);
@@ -331,7 +415,7 @@ export function scorePronunciationTranscript(input: {
   // never leaks into the next (synchronous) scoring call.
   lowConfidenceTranscriptWords = buildLowConfidenceWordSet(input.segments);
   try {
-    return computeScore(targetWords, transcriptWords, normalizedTarget, normalizedTranscript, threshold);
+    return computeScore(targetWords, transcriptWords, normalizedTarget, normalizedTranscript, threshold, input.strictWords !== false, buildWordConfidenceMap(input.segments));
   } finally {
     lowConfidenceTranscriptWords = new Set();
   }
@@ -343,6 +427,8 @@ function computeScore(
   normalizedTarget: string,
   normalizedTranscript: string,
   threshold: number,
+  strictWords: boolean,
+  confidenceByWord: ReadonlyMap<string, number>,
 ): PronunciationScoreResult {
   const distance = levenshtein(targetWords, transcriptWords);
   const wordAccuracy = pct(1 - distance / Math.max(targetWords.length, transcriptWords.length));
@@ -388,12 +474,24 @@ function computeScore(
   ).length;
   const everyTargetWordHeard = uncoveredTargets <= omissionAllowance + lowConfidenceSlack;
 
+  // Строгий режим (по умолчанию): вместо «прощаем любое одно слово на длинной фразе» — прощаем только
+  // служебные слова; значимые сверяются по длине (strictWordMatch). Мягкий — прежнее правило.
+  const strict = strictWordCheck(targetWords, transcriptWords, lowConfidenceSlack);
+  const wordsOk = strictWords ? strict.ok : everyTargetWordHeard;
+
   return {
     score,
-    passed: score >= threshold && repeatedOccurrencesCovered && everyTargetWordHeard,
+    passed: score >= threshold && repeatedOccurrencesCovered && wordsOk,
     threshold,
     normalizedTarget,
     normalizedTranscript,
     breakdown: { wordAccuracy, orderAccuracy, completeness },
+    missingWords: strict.missing,
+    strictWordsOk: wordsOk,
+    wordConfidence: targetWords.map((target, i): [string, number | null] => {
+      const heard = strict.heardFor[i];
+      const conf = heard ? confidenceByWord.get(heard) : undefined;
+      return [target, typeof conf === 'number' ? Math.round(conf * 100) / 100 : null];
+    }),
   };
 }

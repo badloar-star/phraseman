@@ -20,6 +20,21 @@ import { chargesEnergyOnMistake, energyActivityForAttemptsSessionId, useEnergyMo
 import { createEnergySessionIntent } from '../app/energy_session_operation_ledger';
 import { useEnergy } from '../components/EnergyContext';
 
+/** Вердикт, пришедший до гидратации: привязан к занятию и поколению аккаунта, чтобы ответы урока A не списали сердца урока B. */
+type QueuedVerdict = Readonly<{
+  answerAttemptId: string;
+  verdict: SessionAttemptVerdict;
+  sessionId: string;
+  accountGeneration: number;
+}>;
+
+/**
+ * Потолок гидратации сердец.
+ * зачем (Ревизор 2.80, 15.10): если чтение восстановления/кошелька повиснет, все вердикты остались бы в очереди, а сердца — 3/3. После потолка
+ * экран оживает (`hydrated=true`), но прочитанному не верим (`hydrationTrusted=false`) — руны сессии не сжигаются; поздний ответ отбрасывается.
+ */
+export const SESSION_ATTEMPTS_HYDRATE_CEILING_MS = 3000;
+
 export type UseSessionAttemptsInput = Readonly<{
   token: AccountGenerationToken;
   sessionId: string;
@@ -71,6 +86,15 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   // энергии 2 обе считались «не последней». Считаем ещё не записанные списания сами.
   const pendingMistakeSpendsRef = useRef(0);
 
+  const pendingVerdictsRef = useRef<QueuedVerdict[]>([]);
+  /** Состояние до первой проекции очереди — база для честного повтора, если сохранённого состояния нет. */
+  const queuedBaseRef = useRef<SessionAttemptsStateV1 | null>(null);
+  /** Номер прогона гидратации: поздний ответ прошлого прогона (смена занятия, потолок) не трогает текущее состояние. */
+  const hydrateRunRef = useRef(0);
+  /** Поднимает синхронно settleQueue (чтобы живой ответ не вклинился между базой и повтором), опускает смена занятия. */
+  const hydratedRef = useRef(false);
+  const registerVerdictNowRef = useRef<((verdictInput: Readonly<{ answerAttemptId: string; verdict: SessionAttemptVerdict }>, source: 'live' | 'replayed_after_hydration') => SessionAttemptsEffect) | null>(null);
+
   const adoptState = useCallback((next: SessionAttemptsStateV1): void => {
     stateRef.current = next;
     setState(next);
@@ -85,6 +109,13 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
 
   useEffect(() => {
     if (sessionIdRef.current === input.sessionId) return;
+    // зачем (Ревизор 2.80): очередь вердиктов принадлежит занятию — при смене занятия она не переходит в следующее
+    if (pendingVerdictsRef.current.length > 0) {
+      console.warn('[ATTEMPTS-VERDICT]', JSON.stringify({ source: 'dropped_on_session_change', from: sessionIdRef.current, to: input.sessionId, dropped: pendingVerdictsRef.current.length })); // guard-ok: сброс очереди с причиной
+    }
+    pendingVerdictsRef.current = [];
+    queuedBaseRef.current = null;
+    hydratedRef.current = false;
     sessionIdRef.current = input.sessionId;
     const next = createSessionAttemptsState({
       sessionId: input.sessionId,
@@ -104,18 +135,63 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     setRuneBalance(stars.balance);
   }, [input.token]);
 
+  /**
+   * Гидратация закончилась (прочитано / потолок / сбой): база — сохранённое состояние, иначе состояние до первой проекции очереди; затем
+   * синхронно повторяем очередь СВОЕГО занятия и поколения аккаунта. Синхронно — чтобы живой ответ не вклинился между базой и повтором.
+   */
+  const settleQueue = useCallback((restored: SessionAttemptsStateV1 | null, reason: 'hydrated' | 'ceiling' | 'failed'): void => {
+    const base = restored ?? queuedBaseRef.current;
+    queuedBaseRef.current = null;
+    if (base && base !== stateRef.current) adoptState(base);
+    hydratedRef.current = true;
+    const queued = pendingVerdictsRef.current.splice(0);
+    if (queued.length === 0) return;
+    const own = queued.filter((item) => item.sessionId === input.sessionId && item.accountGeneration === input.token.generation);
+    console.log('[ATTEMPTS-VERDICT]', JSON.stringify({ sessionId: input.sessionId, source: 'replay_after_hydration', reason, count: own.length, skippedForeign: queued.length - own.length, base: restored ? 'stored' : 'before_queue' })); // guard-ok: применяем очередь после гидратации
+    for (const item of own) registerVerdictNowRef.current?.({ answerAttemptId: item.answerAttemptId, verdict: item.verdict }, 'replayed_after_hydration');
+  }, [adoptState, input.sessionId, input.token.generation]);
+
   const hydrate = useCallback(async (): Promise<void> => {
     setRecoveryError(null);
     if (input.persistenceEnabled === false) {
       setHydrated(true);
       return;
     }
-    try {
+    const run = hydrateRunRef.current + 1;
+    hydrateRunRef.current = run;
+    const startedAt = Date.now();
+    let ceilingTimer: ReturnType<typeof setTimeout> | null = null;
+    const work = (async () => {
       await recoverPreparedSessionAttemptRecoveries(input.token);
       const [stored] = await Promise.all([
         hydrateSessionAttemptsState(input.token, input.sessionId),
         refreshResources(),
       ]);
+      return stored;
+    })();
+    const ceiling = new Promise<'timeout'>((resolve) => {
+      ceilingTimer = setTimeout(() => resolve('timeout'), SESSION_ATTEMPTS_HYDRATE_CEILING_MS);
+    });
+    try {
+      const outcome = await Promise.race([
+        work.then((stored) => ({ kind: 'ok' as const, stored })),
+        ceiling.then(() => ({ kind: 'timeout' as const })),
+      ]);
+      if (run !== hydrateRunRef.current) {
+        console.log('[ATTEMPTS-HYDRATE]', JSON.stringify({ sessionId: input.sessionId, outcome: 'stale_run_ignored', ms: Date.now() - startedAt })); // guard-ok: ранний выход называет причину
+        return;
+      }
+      if (outcome.kind === 'timeout') {
+        console.warn('[ATTEMPTS-HYDRATE]', JSON.stringify({ sessionId: input.sessionId, outcome: 'ceiling', ceilingMs: SESSION_ATTEMPTS_HYDRATE_CEILING_MS, queued: pendingVerdictsRef.current.length })); // guard-ok: потолок гидратации
+        setHydrationTrusted(false);
+        setRecoveryError('session_attempts_hydrate_timeout');
+        void work.then(() => {
+          console.warn('[ATTEMPTS-HYDRATE]', JSON.stringify({ sessionId: input.sessionId, outcome: 'late_result_ignored', ms: Date.now() - startedAt })); // guard-ok: поздний ответ не затирает вердикты
+        }).catch(noteSwallowedHandler('useSessionAttempts:hydrate_late'));
+        settleQueue(null, 'ceiling');
+        return;
+      }
+      const stored = outcome.stored;
       /**
        * зачем (владелец 2026-09-15): сердечки обязаны держаться до конца
        * занятия — потратил два, вышел, вернулся в ТО ЖЕ занятие, там одно.
@@ -127,13 +203,15 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
        * стабильным, мы обязаны закрыть и эту дверь — здесь, в одной точке,
        * а не на каждом из девяти экранов.
        */
+      let restored: SessionAttemptsStateV1 | null = null;
       if (stored && stored.phase === 'stopped_no_energy' && !mistakeChargeActive) {
         // зачем: владелец вернул режим А, пока занятие стояло в остановке режима Б, — не держим человека взаперти.
         console.log('[ENERGY-MODE] restored stopped session in mode A → active', JSON.stringify({ sessionId: input.sessionId }));
-        adoptState({ ...stored, phase: 'active' });
-      } else if (stored && stored.phase !== 'ended') adoptState(stored);
+        restored = { ...stored, phase: 'active' };
+      } else if (stored && stored.phase !== 'ended') restored = stored;
       // Состояние прочитано без сбоя — только теперь ему можно верить.
       setHydrationTrusted(true);
+      settleQueue(restored, 'hydrated');
     } catch (error) {
       /*
        * зачем (аудит 2026-09-03): при сбое чтения это НЕ значит «ресурсов нет» — значит «мы не знаем». Автосброс не должен принимать
@@ -144,10 +222,12 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
        */
       setHydrationTrusted(false);
       setRecoveryError(error instanceof Error ? error.message : 'session_attempts_hydrate_failed');
+      if (run === hydrateRunRef.current) settleQueue(null, 'failed');
     } finally {
-      setHydrated(true);
+      if (ceilingTimer) clearTimeout(ceilingTimer);
+      if (run === hydrateRunRef.current) setHydrated(true);
     }
-  }, [adoptState, input.persistenceEnabled, input.sessionId, input.token, mistakeChargeActive, refreshResources]);
+  }, [input.persistenceEnabled, input.sessionId, input.token, mistakeChargeActive, refreshResources, settleQueue]);
 
   useEffect(() => {
     if (input.autoHydrate === false) {
@@ -215,8 +295,9 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
 
   // зачем (Ревизор 2.75, Сверка: сердца 3/3 при ошибках — подозрение на немой ранний выход редьюсера phase !== 'active' / дубликат id): каждый вердикт пишет [ATTEMPTS-VERDICT]
   // с состоянием ДО и ПОСЛЕ — видно, какая ветка сработала. Ранний выход без эффекта (duplicate/phase) теперь не немой.
-  const hydratedRef = useRef(hydrated);
-  hydratedRef.current = hydrated;
+  // поднимает и settleQueue (синхронно, раньше рендера), и любой путь, где hydrated=true без гидратации (autoHydrate=false, без записи);
+  // опускает только смена занятия
+  if (hydrated) hydratedRef.current = true;
   const hydrationTrustedRef = useRef(hydrationTrusted);
   hydrationTrustedRef.current = hydrationTrusted;
   const registerVerdictNow = useCallback((verdictInput: Readonly<{
@@ -238,26 +319,39 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
 
   // зачем (Сверка 4b2f7ac3c: вероятная причина — очень быстрый первый ответ пришёл ДО гидратации сердец, и редьюсер отбросил вердикт): вердикт до гидратации не отбрасываем,
   // а ставим в очередь и применяем после неё, по порядку, с логом.
-  const pendingVerdictsRef = useRef<Array<{ answerAttemptId: string; verdict: SessionAttemptVerdict }>>([]);
-  const registerVerdictNowRef = useRef(registerVerdictNow);
+  // зачем (Ревизор 2.80, 15.10): вызывающие (lesson1 и ещё ~22 места) решают «остаться на вопросе» по эффекту — 'none' из очереди пролистывал
+  // вопрос на третьей быстрой ошибке. Теперь вердикт до гидратации сразу применяется к ЛОКАЛЬНОМУ состоянию (без записи на диск и без списания
+  // энергии) и возвращает честный эффект. После гидратации очередь повторяется по-настоящему (запись, энергия) поверх сохранённого состояния
+  // или состояния до первой проекции (settleQueue) — проекция отбрасывается, двойного счёта нет.
   registerVerdictNowRef.current = registerVerdictNow;
+  const projectVerdict = useCallback((verdictInput: Readonly<{ answerAttemptId: string; verdict: SessionAttemptVerdict }>): SessionAttemptsEffect => {
+    if (mistakeChargeActive && energyActivity && verdictInput.verdict === 'pedagogical_wrong') {
+      const energyNow = energyRef.current;
+      // ещё не списанные ошибки очереди (кроме этой) — как pendingMistakeSpendsRef для живых ответов
+      const priorQueuedMistakes = Math.max(0, pendingVerdictsRef.current.filter((item) => item.verdict === 'pedagogical_wrong').length - 1);
+      const available = energyNow.energy + energyNow.bonusEnergy - pendingMistakeSpendsRef.current - priorQueuedMistakes;
+      const outcome = energyNow.isUnlimited ? 'free' : available <= 1 ? 'exhausted' : 'charged';
+      const projected = reduceSessionAttempts(stateRef.current, { type: 'energy_mistake', answerAttemptId: verdictInput.answerAttemptId, outcome });
+      if (projected.state !== stateRef.current) adoptState(projected.state);
+      return projected.effect;
+    }
+    const projected = reduceSessionAttempts(stateRef.current, { type: 'verdict', answerAttemptId: verdictInput.answerAttemptId, verdict: verdictInput.verdict });
+    if (projected.state !== stateRef.current) adoptState(projected.state);
+    return projected.effect;
+  }, [adoptState, energyActivity, mistakeChargeActive]);
   const registerVerdict = useCallback((verdictInput: Readonly<{
     answerAttemptId: string;
     verdict: SessionAttemptVerdict;
   }>): SessionAttemptsEffect => {
     if (!hydratedRef.current && input.persistenceEnabled !== false) {
-      pendingVerdictsRef.current.push({ answerAttemptId: verdictInput.answerAttemptId, verdict: verdictInput.verdict });
-      console.log('[ATTEMPTS-VERDICT]', JSON.stringify({ sessionId: input.sessionId, source: 'queued_before_hydration', answerAttemptId: verdictInput.answerAttemptId, verdict: verdictInput.verdict, queued: pendingVerdictsRef.current.length })); // guard-ok: вердикт до гидратации поставлен в очередь
-      return 'none';
+      if (pendingVerdictsRef.current.length === 0) queuedBaseRef.current = stateRef.current;
+      pendingVerdictsRef.current.push({ answerAttemptId: verdictInput.answerAttemptId, verdict: verdictInput.verdict, sessionId: input.sessionId, accountGeneration: input.token.generation });
+      const projectedEffect = projectVerdict(verdictInput);
+      console.log('[ATTEMPTS-VERDICT]', JSON.stringify({ sessionId: input.sessionId, source: 'queued_before_hydration', answerAttemptId: verdictInput.answerAttemptId, verdict: verdictInput.verdict, queued: pendingVerdictsRef.current.length, projectedEffect, remainingProjected: stateRef.current.remainingAttempts })); // guard-ok: вердикт до гидратации поставлен в очередь
+      return projectedEffect;
     }
     return registerVerdictNow(verdictInput, 'live');
-  }, [input.persistenceEnabled, input.sessionId, registerVerdictNow]);
-  useEffect(() => {
-    if (!hydrated || pendingVerdictsRef.current.length === 0) return;
-    const queued = pendingVerdictsRef.current.splice(0);
-    console.log('[ATTEMPTS-VERDICT]', JSON.stringify({ sessionId: input.sessionId, source: 'replay_after_hydration', count: queued.length })); // guard-ok: применяем очередь после гидратации
-    for (const item of queued) registerVerdictNowRef.current(item, 'replayed_after_hydration');
-  }, [hydrated, input.sessionId]);
+  }, [input.persistenceEnabled, input.sessionId, input.token.generation, projectVerdict, registerVerdictNow]);
 
   /** Режим Б: можно ли продолжить остановленное занятие — Plus или хотя бы 1 энергия восстановилась. */
   // Ожидающие списания вычитаем: сразу после остановки энергия в контексте ещё 1 (журнал не записан) — без этого

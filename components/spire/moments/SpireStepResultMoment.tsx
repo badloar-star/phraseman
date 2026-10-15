@@ -26,6 +26,7 @@ import { SPIRE_FLOOR_COUNT, spireStepsIn } from '../spire_tower_model';
 import { useSpirePalette } from '../useSpirePalette';
 import { MomentFullScreen } from './moments_layout';
 import { stepMomentText } from './step_moment_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 /** В ступени 10 заданий (spire_game_strings.failSub: «Новый набор из 10 заданий»). */
@@ -160,7 +161,7 @@ function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: S
         <View style={s.coinGap}>
           <MomentCoin rank={coinRank} size={80} mood={mood} say={asked ? stepMomentText(lang, 'againQ') : undefined} emote={sweat ? 'sweat' : null} emoteCount={2} testID={`${testID}-coin`} />
         </View>
-        <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(450)} accessibilityRole="header" style={[s.hLg, { color: p.text }]} testID={`${testID}-title`}>{title}</Animated.Text>
+        <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(450)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hLg, { color: p.text }]} testID={`${testID}-title`}>{title}</Animated.Text>
         <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(600)} style={[s.p, { color: p.textSecondary }]}>{spireGameText(lang, 'failSub', { n: outcome.floorBefore })}</Animated.Text>
       </View>
       <View style={s.foot}>

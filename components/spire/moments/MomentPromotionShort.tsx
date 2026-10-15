@@ -22,6 +22,7 @@ import { MomentCoin } from './moments_coin';
 import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentNumber, momentText } from './moments_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 /** Тайминги эталона (вариант B), мс: монета cheer + искры 400 · фейерверк, дрожь, итог 900 · тексты 422/648/813 · кнопки 1044. */
 export const MOMENT_PROMO_SHORT_TIMELINE = { cheer: 400, final: 900, overline: 422, title: 648, body: 813, buttons: 1044 } as const;
@@ -82,7 +83,7 @@ function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, bo
         <View style={s.center}>
           <MomentCoin rank={myCoinRank} size={120} mood={cheer ? 'cheer' : 'idle'} glints emote={cheer ? 'star' : null} emoteCount={4} testID={`${testID}-coin`} />
           <Animated.Text entering={beat(T.overline)} style={[s.ov, { color: p.accentTextSafe }]} testID={`${testID}-overline`}>{momentText(lang, 'promoShortOverline', { league }).toUpperCase()}</Animated.Text>
-          <Animated.Text entering={beat(T.title)} accessibilityRole="header" style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{momentText(lang, 'promoShortTitle')}</Animated.Text>
+          <Animated.Text entering={beat(T.title)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{momentText(lang, 'promoShortTitle')}</Animated.Text>
           <Animated.Text entering={beat(T.body)} style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{promotionShortBody(lang, myPlace, weekCoins, bonusCoins)}</Animated.Text>
         </View>
         <Animated.View entering={beat(T.buttons)} style={[s.dock, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>

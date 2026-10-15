@@ -22,6 +22,7 @@ import { useSpireShadow } from '../spire/useSpireShadow';
 import { V2Button } from '../v2/V2Kit';
 import { spireGameText } from '../spire/spire_game_strings';
 import { perfectMomentText } from './perfect_moment_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../moments/title_scale';
 
 /** Тайминги образца, мс: штамп 900, удар 1500, конфетти 1700, тексты 2000 + 200 × i. */
 export const PERFECT_MOMENT_TIMELINE = { stamp: 900, hit: 1500, confetti: 1700, texts: 2000, textStep: 200 } as const;
@@ -87,7 +88,7 @@ function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testI
               </Animated.View>
             </View>
           </View>
-          <Animated.Text entering={textIn(0)} accessibilityRole="header" style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{stepMomentText(lang, 'ofTasks', { ok: total, all: total })}</Animated.Text>
+          <Animated.Text entering={textIn(0)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{stepMomentText(lang, 'ofTasks', { ok: total, all: total })}</Animated.Text>
           <Animated.Text entering={textIn(1)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-sub`}>{perfectMomentText(lang, 'noMistakes', { n: coinsEarned })}</Animated.Text>
         </View>
         <Animated.View entering={textIn(2)} style={s.foot}>

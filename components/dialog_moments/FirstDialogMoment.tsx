@@ -20,6 +20,7 @@ import StreakConfetti from '../streak/moments/StreakConfetti';
 import { V2_TYPE } from '../../constants/v2Style';
 import { V2Button } from '../v2/V2Kit';
 import { firstDialogStats, firstDialogText } from './first_dialog_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../moments/title_scale';
 
 /** Тайминги образца, мс: монета 300, конфетти 700, тексты 900 + 220 × i. */
 export const FIRST_DIALOG_TIMELINE = { cheer: 300, confetti: 700, texts: 900, textStep: 220 } as const;
@@ -67,7 +68,7 @@ function FirstDialogMoment({ lang, studyTarget, coinRank, turns, goalsDone, goal
         <View style={s.body}>
           <MomentCoin rank={coinRank} size={110} mood={cheer ? 'cheer' : 'idle'} say={cheer ? firstDialogText(lang, 'say') : undefined} emote={cheer ? 'heart' : null} emoteCount={4} glints testID={`${testID}-coin`} />
           <Animated.Text entering={beat(0)} style={[s.ov, { color: p.accentTextSafe }]}>{firstDialogText(lang, 'overline').toUpperCase()}</Animated.Text>
-          <Animated.Text entering={beat(1)} accessibilityRole="header" style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{firstDialogText(lang, 'title', { adv })}</Animated.Text>
+          <Animated.Text entering={beat(1)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{firstDialogText(lang, 'title', { adv })}</Animated.Text>
           <Animated.Text entering={beat(2)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-stats`}>{firstDialogStats(lang, turns, goalsDone, goalsTotal)}</Animated.Text>
         </View>
         <Animated.View entering={beat(3)} style={s.foot}>

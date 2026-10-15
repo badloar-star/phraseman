@@ -21,6 +21,7 @@ import { MomentFullScreen } from '../spire/moments/moments_layout';
 import MomentCoin, { type MomentCoinEmote, type MomentCoinMood } from './MomentCoin';
 import type { WelcomeBackDecision } from '../../modules/welcome_back/welcome_back_model';
 import { welcomeBackCardsLabel, welcomeBackHomeLabel, welcomeBackStatsLine, welcomeBackTitle } from '../../modules/welcome_back/welcome_back_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from './title_scale';
 
 /** Тайм-лист образца m21. */
 export const WELCOME_BACK_TIMELINE = { peekMs: 1000, cheerMs: 1800, beatStepMs: 300, beatMs: 500 } as const;
@@ -115,7 +116,7 @@ function WelcomeBackMoment({ lang, coinRank, decision, onCards, onHome, testID =
             testID={`${testID}-coin`}
           />
           <Beat index={0} on={beatsOn} reduceMotion={reduceMotion}>
-            <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{welcomeBackTitle(lang)}</Text>
+            <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]}>{welcomeBackTitle(lang)}</Text>
           </Beat>
           <Beat index={1} on={beatsOn} reduceMotion={reduceMotion}>
             <Text style={[s.body16, { color: p.textSecondary }]} testID={`${testID}-stats`}>{statsLine}</Text>

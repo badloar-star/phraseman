@@ -21,6 +21,7 @@ import { useSpirePalette } from '../spire/useSpirePalette';
 import { KitSheetModal } from '../v2/KitSheetModal';
 import { V2Button } from '../v2/V2Kit';
 import { lessonExitText } from './lesson_exit_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../moments/title_scale';
 
 /** Тайминги образца: дрожь + «пот» на 0,4 с, кивок на 1,0 с. */
 export const LESSON_EXIT_SHIVER_MS = 400;
@@ -73,7 +74,7 @@ function LessonExitSheet({ lang, visible, energyNote, onContinue, onLeave, testI
         <View style={s.head}>
           <MomentCoin rank={coinRank} size={60} mood={mood} emote={emote} shadow={false} testID={`${testID}-coin`} />
           <View style={s.copy}>
-            <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{lessonExitText(lang, 'title')}</Text>
+            <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]}>{lessonExitText(lang, 'title')}</Text>
             <Text style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{body}</Text>
           </View>
         </View>

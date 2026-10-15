@@ -22,6 +22,7 @@ import { MomentCoin } from './moments_coin';
 import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentText } from './moments_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 export type MomentDownProps = Readonly<{
   lang: Lang;
@@ -106,7 +107,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
           />
           {awake ? null : <Animated.View pointerEvents="none" style={[s.tapRing, ringStyle]} accessible={false} />}
         </View>
-        <Text accessibilityRole="header" style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{title}</Text>
+        <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{title}</Text>
         <Text style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{body}</Text>
       </View>
       <View style={[s.dock, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>

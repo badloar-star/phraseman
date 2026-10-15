@@ -41,6 +41,7 @@ import { MomentCoin } from './moments_coin';
 import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentNumber, momentText } from './moments_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 export type MomentRoomRow = Readonly<{
   uid: string;
@@ -263,7 +264,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
             </Animated.View>
             {phase.final ? (
               <Animated.View style={[s.final, { paddingBottom: Math.max(insets.bottom, 12) + 24 }, finalStyle]} testID={`${testID}-final`}>
-                <Text accessibilityRole="header" style={[s.hXl, { color: p.text }]}>{league}</Text>
+                <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hXl, { color: p.text }]}>{league}</Text>
                 {bonusCoins > 0 ? <Text style={[s.pBonus, { color: p.textSecondary }]}>{momentText(lang, 'promoBonus', { n: bonusCoins })}</Text> : null}
                 <View style={s.playWrap}>
                   <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={onPlay} testID={`${testID}-play`} />

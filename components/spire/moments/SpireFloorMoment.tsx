@@ -32,6 +32,7 @@ import { useSpireScene } from '../useSpireScene';
 import MomentFirework, { useMomentRumble } from './moments_effects';
 import { MomentFullScreen } from './moments_layout';
 import { stepMomentText } from './step_moment_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 const TOWER_W = 280;
 const TOWER_H = 240;
@@ -112,7 +113,7 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
           </View>
           <MomentCoin rank={coinRank} size={56} mood={peek ? 'peek' : 'idle'} shadow={false} testID={`${testID}-coin`} />
         </View>
-        <Text accessibilityRole="header" style={[s.hLg, { color: p.text }]} testID={`${testID}-title`}>{guardNext ? spireGameText(lang, 'guardAhead') : spireGameText(lang, 'floorAhead', { n: next })}</Text>
+        <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hLg, { color: p.text }]} testID={`${testID}-title`}>{guardNext ? spireGameText(lang, 'guardAhead') : spireGameText(lang, 'floorAhead', { n: next })}</Text>
         <Text style={[s.p, { color: p.textSecondary }]}>{sub}</Text>
       </View>
       <View style={s.foot}>
@@ -156,7 +157,7 @@ function SummitView({ lang, coins, coinRank, onNext, busy, testID }: SpireFloorM
         <View style={s.summitCoin}>
           <MomentCoin rank={coinRank} size={120} mood={cheer ? 'cheer' : 'idle'} glints emote={cheer ? 'heart' : null} emoteCount={5} testID={`${testID}-coin`} />
         </View>
-        <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(400)} accessibilityRole="header" style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{stepMomentText(lang, 'floorN', { n: SPIRE_FLOOR_COUNT })}</Animated.Text>
+        <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(400)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{stepMomentText(lang, 'floorN', { n: SPIRE_FLOOR_COUNT })}</Animated.Text>
         <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(500)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-bonus`}>{stepMomentText(lang, 'summitBonus', { n: coins.summitBonus })}</Animated.Text>
       </View>
       <View style={s.foot}>

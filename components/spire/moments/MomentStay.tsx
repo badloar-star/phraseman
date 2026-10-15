@@ -20,6 +20,7 @@ import { MomentCoin } from './moments_coin';
 import { MOMENT_DIM_COLOR } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentLeagueIn, momentNumber, momentText } from './moments_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 export type MomentStayProps = Readonly<{
   lang: Lang;
@@ -75,7 +76,7 @@ function MomentStay({ lang, tier, coinRank, place, weekCoins, gapToTop5, onPlay,
         <View style={s.coinWrap}>
           <MomentCoin rank={coinRank} size={80} mood={saying ? 'nod' : 'idle'} say={saying ? momentText(lang, 'staySay') : undefined} testID={`${testID}-coin`} />
         </View>
-        <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{momentText(lang, 'stayTitle', { league })}</Text>
+        <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]}>{momentText(lang, 'stayTitle', { league })}</Text>
         <Text style={[s.body, { color: p.textSecondary }]}>
           {bodyBefore}
           {hasGap ? <Text style={[s.bold, { color: p.text }]}>{momentNumber(gapToTop5)}</Text> : null}

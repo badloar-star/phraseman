@@ -22,6 +22,7 @@ import { MomentFullScreen } from './moments_layout';
 import { momentText } from './moments_strings';
 import { positionMomentText } from './position_moment_strings';
 import { stepMomentText } from './step_moment_strings';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 const ROW_GAP = 6;
 const FALLBACK_ROW_H = 48;
@@ -106,7 +107,7 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
       <View style={s.full}>
         <View style={s.body}>
           <Text style={[s.ov, { color: p.textSecondary }]}>{`${spireGameText(lang, 'stepPassed').toUpperCase()} · +${coinsGained} ${spireGameText(lang, 'coins').toUpperCase()}`}</Text>
-          <Text accessibilityRole="header" style={[s.hMd, { color: p.text }]} testID={`${testID}-heading`}>{heading}</Text>
+          <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hMd, { color: p.text }]} testID={`${testID}-heading`}>{heading}</Text>
           <View style={s.ladder}>
             {zone ? (
               <View pointerEvents="none" style={[s.zone, { top: zoneTop, backgroundColor: p.correct, boxShadow: `0 0 12px ${p.correct}` }]}>

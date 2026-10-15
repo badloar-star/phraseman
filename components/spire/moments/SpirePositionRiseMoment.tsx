@@ -157,7 +157,8 @@ const s = StyleSheet.create({
   hMd: { marginTop: 6, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center' },
   ladder: { alignSelf: 'stretch', marginTop: 16, gap: ROW_GAP },
   zone: { position: 'absolute', left: -8, right: -8, height: 2, zIndex: 3 },
-  zoneLbl: { position: 'absolute', right: 8, top: -18, fontSize: 10, letterSpacing: 2, fontWeight: '800' },
+  // зачем (D145: размеры текста только 13/16; лист приёмки m01/m05, Макеты 15.10): подпись «ТОП-5» на линии зоны — 13 (было 10)
+  zoneLbl: { position: 'absolute', right: 8, top: -20, fontSize: 13, lineHeight: 17, letterSpacing: 2, fontWeight: '800' },
   foot: { gap: 0 },
   gap: { height: 12 },
 });

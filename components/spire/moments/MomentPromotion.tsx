@@ -9,6 +9,7 @@
 // 7300 монета садится на этаж · 7700 «Этаж 1» · 8800 дрожь + фейерверк + итог. Анимации на UI-потоке (Reanimated); reduceMotion — без движения: сразу итоговый вид. Haptics/звук — по тайм-листу.
 // Где и когда показывать — решает Ядро (флаг moments_v3, D191); здесь — только компонент с пропсами.
 // ═══════════════════════════════════════════════════════════════════════════
+import { V2_TYPE } from '../../../constants/v2Style';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import Animated, {
@@ -298,7 +299,8 @@ const s = StyleSheet.create({
   center: { justifyContent: 'center' },
   act3: { ...StyleSheet.absoluteFillObject },
   // `.ov`: 12/16, разрядка 2,6, капс
-  ov: { fontSize: 12, lineHeight: 16, letterSpacing: 2.6, fontWeight: '700', textTransform: 'uppercase', textAlign: 'center' },
+  // зачем (D145: размеры текста только 13/16; лист приёмки m01/m05, Макеты 15.10): надзаголовок m01 — V2_TYPE.overline (13/17 · 700 · трекинг 1,4), как в листе
+  ov: { ...V2_TYPE.overline, textTransform: 'uppercase', textAlign: 'center' },
   hMd: { marginTop: 6, fontSize: 21, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center' },
   hXl: { fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' },
   ladder: { alignSelf: 'stretch', marginTop: 18, gap: ROW_GAP },
@@ -310,7 +312,8 @@ const s = StyleSheet.create({
   meRing: { ...StyleSheet.absoluteFillObject, borderRadius: 16 },
   // `.zone-line`: линия 2 px по ширине таблицы (+8 с краёв), подпись ТОП-5 справа над линией
   zone: { position: 'absolute', left: -8, right: -8, height: 2, zIndex: 3 },
-  zoneLbl: { position: 'absolute', right: 8, top: -18, fontSize: 10, letterSpacing: 2, fontWeight: '800' },
+  // зачем (D145: размеры текста только 13/16; лист приёмки m01/m05, Макеты 15.10): подпись «ТОП-5» на линии зоны — 13 (было 10), поднята выше линии на высоту строки
+  zoneLbl: { position: 'absolute', right: 8, top: -20, fontSize: 13, lineHeight: 17, letterSpacing: 2, fontWeight: '800' },
   tower: { position: 'absolute' },
   // маркер «Ты здесь» 34: кольцо светлое, внутри чёрный круг 30 с монетой 26, ореол 10
   marker: { position: 'absolute', width: 34, height: 34, borderRadius: 17, backgroundColor: '#F2F1F6', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 10px rgba(255,255,255,0.12)' }, // theme-exempt: маркер «Ты здесь» как в SpireTower (метка текущего этажа)

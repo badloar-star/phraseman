@@ -107,20 +107,22 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
   );
 }
 
-const ART_SIZE = 46;
-const ART_SIZE_SOLO = 64;
+// зачем (координатор 15.10, эталон Главной: карточка «Продолжить» 96, не 80): рисунок 64 + плашка 22 + зазор 3 = 89 из 96 (по 3–4 сверху и снизу); без плашки рисунок 80
+const CARD_HEIGHT = 96;
+const ART_SIZE = 64;
+const ART_SIZE_SOLO = 80;
 
 const s = StyleSheet.create({
   card: {
-    height: 80,
+    height: CARD_HEIGHT,
     borderRadius: V2.radius.card,
     overflow: 'hidden',
     flexDirection: 'row',
   },
-  // зачем (владелец 15.10): колонка арта — рисунок (contain, целиком) и под ним плашка «Урок N», друг на друга не заходят: 46 + 3 + 22 = 71 из 80, по 4–5 сверху и снизу
+  // зачем (владелец 15.10): колонка арта — рисунок (contain, целиком) и под ним плашка «Урок N», друг на друга не заходят: 64 + 3 + 22 = 89 из 96
   art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '32%', opacity: 0.95, alignItems: 'center', justifyContent: 'center' },
   artImage: { width: ART_SIZE, height: ART_SIZE },
-  // без плашки (нет последнего урока) рисунок может занять всю высоту с теми же отступами
+  // без плашки (нет последнего урока) рисунок крупнее — 80 из 96
   artImageSolo: { width: ART_SIZE_SOLO, height: ART_SIZE_SOLO },
   artPending: { opacity: 0.35 },
   // Заготовки повторяют строки: заголовок 20, счётчик — в строке полосы.
@@ -138,7 +140,7 @@ const s = StyleSheet.create({
     justifyContent: 'center',
   },
   badgeText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
-  copy: { flex: 1, justifyContent: 'center', paddingVertical: 10, paddingLeft: 16, paddingRight: '34%' },
+  copy: { flex: 1, justifyContent: 'center', paddingVertical: 14, paddingLeft: 16, paddingRight: '34%' },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700', letterSpacing: -0.3 },
   counter: { ...V2_TYPE.subtitle, fontVariant: ['tabular-nums'] },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8 },

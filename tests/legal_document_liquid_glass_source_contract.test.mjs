@@ -51,8 +51,9 @@ const LEGAL_FILES = [
   // 14.10 (D189, владелец «ДА, СРАЗУ»): гость удаляется с сервера сразу — сроки хранения и §20 (14 дней только для входа через Google/Apple); дата 14 октября.
   // 15.10 (координатор, к выкладке 17.10): §13 — запись голоса остаётся на телефоне во ВСЕХ голосовых упражнениях, iOS — распознаватель Apple,
   // Android — локальная модель Whisper (файл скачивается с Hugging Face); §16 — Hugging Face в списке сервисов. Пин догнан и под 3af755000 (D189, текст сменили, пин нет).
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'f9bbaa7413eff81757838bab91176a4490ad2769f602f41fe5314a35d60674fd'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'cf6592ceb58310a87516400d8ebb699154f3be3e00d74bf04e8edf99cc6a4e45'],
+  // 15.10 (координатор, #52 «ДА»): §9 — проверка подписки RevenueCat при каждом запуске, до онбординга и без покупки; основание — исполнение и законный интерес.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '0d87656b683b8373e180be312fae723733a0f8b24616e0b5f86b3e6346c46497'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'b2e60d2df6b64d04947c5dcc44757c48ec536c51e33d26e9a294d3a1a0e81666'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],
@@ -124,6 +125,8 @@ function loadRoute(kind, { lang, os }) {
     './legal/terms_of_use_en_ios.json': termsIos,
     './navigation_back': { safeRouterBack: (_router, fallback) => calls.back.push(fallback) },
     './platform_ui_preview': { useEffectivePlatformOS: () => os },
+    // R58 #53 (15.10): экраны документов открывают сайт через общую функцию с тостом при сбое
+    './open_legal_link': { openLegalLink: (url) => { calls.sequence.push(`url:${url}`); } },
   };
   const source = kind === 'privacy' ? privacySource : termsSource;
   const exports = executeModule(source, `${kind}_screen.tsx`, modules);

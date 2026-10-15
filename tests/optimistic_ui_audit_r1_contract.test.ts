@@ -26,7 +26,8 @@ describe('Optimistic UI audit R1 — cheap gaps stay closed', () => {
     expect(bar).toMatch(/try \{\s*res = await addCommunityPackToLibrary\(pack, studyTarget\);\s*\} catch/);
     expect(bar).toMatch(/\[OPT-UI\] pack_add threw/);
     expect(bar).toMatch(/emitAppEvent\('action_toast', packAddFailureToast\(res\)\)/);
-    expect(bar).toMatch(/setSnapshot\(before\)/);
+    // зачем (аудит Optimistic UI 15.10, дыра №6): откат не отменяет чужое более новое действие — «newer» откатывает только свои поля, иначе целиком прежний снимок
+    expect(bar).toMatch(/setSnapshot\(newer \? .* : before\)/);
   });
 
   it('comment reactions, pins, deletes and hides roll back and tell the user', () => {

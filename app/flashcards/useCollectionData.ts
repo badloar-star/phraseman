@@ -705,7 +705,9 @@ export function useCollectionData(opts: {
         communityPublished,
         activePackId,
       });
-    } catch {
+    } catch (error) {
+      // зачем (бета-тест А4, 15.10, «никакого немого catch»): причину отказа загрузки коллекции видно в журнале, а не только по пустому экрану
+      console.warn(`[FC-COLLECTION] load FAILED stale=${!isCurrentAccountGeneration(accountToken)} —`, error instanceof Error ? error.message : String(error)); // guard-ok: причина отказа в catch
       if (!isCurrentAccountGeneration(accountToken)) return;
       setLoading(false);
       setLoadError(true);

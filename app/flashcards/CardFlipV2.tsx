@@ -108,7 +108,7 @@ function CardFlipV2Impl({ g, front, back, frontLabel, backLabel, backNote, heigh
               <Ionicons name="volume-high-outline" size={18} color={g.text} />
             </Pressable>
           ) : null}
-          <Text style={[styles.word, { color: g.text, lineHeight: lh(40) }]}>{front}</Text>
+          <Text numberOfLines={wordLines(height, lh(40))} ellipsizeMode="tail" style={[styles.word, { color: g.text, lineHeight: lh(40) }]}>{front}</Text>
           {turnHint}
         </>,
         frontStyle,
@@ -117,7 +117,7 @@ function CardFlipV2Impl({ g, front, back, frontLabel, backLabel, backNote, heigh
       {face(
         <>
           <Text style={[styles.label, { color: g.secondary, lineHeight: lh(17) }]}>{backLabel}</Text>
-          <Text style={[styles.word, styles.wordBack, { color: g.text, lineHeight: lh(36) }]}>{back}</Text>
+          <Text numberOfLines={wordLines(height, lh(36))} ellipsizeMode="tail" style={[styles.word, styles.wordBack, { color: g.text, lineHeight: lh(36) }]}>{back}</Text>
           {backNote ? <Text style={[styles.note, { color: g.secondary, lineHeight: lh(20) }]}>{backNote}</Text> : null}
           {turnHint}
         </>,
@@ -126,6 +126,11 @@ function CardFlipV2Impl({ g, front, back, frontLabel, backLabel, backNote, heigh
       )}
     </Pressable>
   );
+}
+
+// зачем (бета-тест А4, 15.10): карточка фиксированной высоты, слово 34pt без лимита строк — длинная фраза (немецкий, шрифт ×1.3) вылезала за края и налезала на метку; число строк считается из высоты (поля 20+20), лишнее — «…»
+export function wordLines(height: number, lineHeight: number): number {
+  return Math.max(1, Math.floor((height - 40) / Math.max(1, lineHeight)));
 }
 
 export const CardFlipV2 = memo(CardFlipV2Impl);

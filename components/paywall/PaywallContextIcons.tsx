@@ -47,7 +47,7 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
   course_after_lesson3: BOOK,
   lesson_b1: BOOK,
   // зачем (Сверка paywall-gap-001/007/009/010/011, 15.10): значок входа — стопка слоёв и «+» как в эталоне paywall-gaps-states (kit `layers` / `plus`, сетка 24 ×2).
-  flashcard_limit: LAYERS,
+  flashcard_limit: [...LAYERS],
   flashcard_training: [
     { t: 'p', d: 'M14 18 A12.5 12.5 0 0 1 36 20' },
     { t: 'p', d: 'M36 12 V20 H28' },
@@ -68,7 +68,7 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
     { t: 'p', d: 'M10 24 H38' },
   ],
   // зачем: «создать свой набор» — стопка карточек с плюсом.
-  pack_create: LAYERS,
+  pack_create: [...LAYERS],
   // зачем: пламя было выше центра (y 6..32, offY=-5) — низ капсулы казался
   // пустым. Сдвинуто на +5 по Y, симметрично вокруг (24,24).
   streak: [

@@ -241,7 +241,18 @@ export default function FlashcardsMyPacksScreen() {
   const [accountGeneration, setAccountGeneration] = useState(captureAccountGeneration);
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
   const [deletePackTarget, setDeletePackTarget] = useState<FlashcardMarketPack | null>(null);
-  const [deletePackBusy, setDeletePackBusy] = useState(false);
+  // зачем (бета-тест 15.10, Б19): «идёт удаление» — у каждого набора своё. Общий флаг без сети не снимался, и окно СЛЕДУЮЩЕГО
+  // набора открывалось с выключенными «Отмена»/фоном/назад и вечным индикатором — человек застревал в окне.
+  const [deletingPackIds, setDeletingPackIds] = useState<ReadonlySet<string>>(() => new Set());
+  const deletePackBusy = !!deletePackTarget && deletingPackIds.has(deletePackTarget.id);
+  const setDeletePackBusy = useCallback((packId: string, busy: boolean) => {
+    setDeletingPackIds((prev) => {
+      if (prev.has(packId) === busy) return prev;
+      const next = new Set(prev);
+      if (busy) next.add(packId); else next.delete(packId);
+      return next;
+    });
+  }, []);
   // зачем (FINAL_PHASE п.7, Optimistic UI): удаление убирает набор из списка сразу; пока сервер
   // не ответил, фоновая перезагрузка «Моих наборов» не должна вернуть его обратно.
   const pendingDeletePackIdsRef = useRef<Set<string>>(pendingPackDeletes); // общий с экраном набора (deleteOwnPack.ts)
@@ -317,7 +328,10 @@ export default function FlashcardsMyPacksScreen() {
         : Promise.resolve({ ids: [] as string[], status: 'ready' as const }),
       getCanonicalUserId()
         .then((value) => ({ value, status: 'ready' as const }))
-        .catch(() => ({ value: null, status: 'stale' as const })),
+        .catch((error: unknown) => {
+          console.warn('[MY-PACKS] canonical user id FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok: причина отказа в catch (бета-тест А4)
+          return { value: null, status: 'stale' as const };
+        }),
     ]);
     if (!isCurrentAccountGeneration(operationAccount)) {
       return { groups: EMPTY_GROUPS, status: 'stale', accountScope: operationScope };
@@ -374,7 +388,10 @@ export default function FlashcardsMyPacksScreen() {
     const toFetch = missing.filter((id) => !cachedMissing.includes(id));
     const fetched = toFetch.length > 0
       ? await Promise.all(toFetch.map((id) => fetchCommunityPackMetaResult(id, studyTarget)
-        .catch(() => ({ status: 'error' as const }))))
+        .catch((error: unknown) => {
+          console.warn(`[MY-PACKS] pack meta FAILED id=${id} —`, error instanceof Error ? error.message : String(error)); // guard-ok: причина отказа в catch (бета-тест А4)
+          return { status: 'error' as const };
+        })))
       : [];
     if (!isCurrentAccountGeneration(operationAccount)) {
       console.log('[MY-PACKS] resolve skip reason=account_changed');
@@ -673,7 +690,7 @@ export default function FlashcardsMyPacksScreen() {
     // сервер догоняет фоном; при ошибке набор возвращается на прежнее место.
     let removedFrom: { group: 'added' | 'created'; index: number } | null = null;
     pendingDeletePackIdsRef.current.add(pack.id);
-    setDeletePackBusy(true);
+    setDeletePackBusy(pack.id, true);
     setGroups((prev) => {
       const addedIdx = prev.added.findIndex((item) => item.id === pack.id);
       const createdIdx = prev.created.findIndex((item) => item.id === pack.id);
@@ -710,9 +727,9 @@ export default function FlashcardsMyPacksScreen() {
       }));
     } finally {
       pendingDeletePackIdsRef.current.delete(pack.id);
-      setDeletePackBusy(false);
+      setDeletePackBusy(pack.id, false);
     }
-  }, [deletePackBusy, deletePackTarget, studyTarget]);
+  }, [deletePackBusy, deletePackTarget, setDeletePackBusy, studyTarget]);
 
   useEffect(() => {
     if (loadStatus !== 'ready') return;

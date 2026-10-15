@@ -442,7 +442,8 @@ export default function FlashcardsHubScreen() {
       primeFlashcardsCollectionCache(studyTarget);
       void loadSelectedSavedContour(studyTarget).then((cards) => {
         if (!cancelled) setSavedCount(cards.length);
-      }).catch(() => {
+      }).catch((error: unknown) => {
+        console.warn(`[FC-HUB] saved count FAILED cancelled=${cancelled} —`, error instanceof Error ? error.message : String(error)); // guard-ok: причина отказа в catch (бета-тест А4)
         if (!cancelled) setSavedCount(null);
       });
       /**

@@ -21,3 +21,20 @@ describe('А4: человеческие состояния', () => {
     expect(read('components/spire/SpireWeekSubtitle.tsx')).toMatch(/subtitle: \{ fontSize: 16, lineHeight: 20, flexShrink: 1 \}/);
   });
 });
+
+describe('А4 (часть 2): Карточки', () => {
+  it('карточка-флип: слово ограничено числом строк по высоте карточки (132 → 2 строки, 196 → 3)', () => {
+    const src = read('app/flashcards/CardFlipV2.tsx');
+    expect(src).toContain('numberOfLines={wordLines(height, lh(40))} ellipsizeMode="tail"');
+    expect(src).toContain('numberOfLines={wordLines(height, lh(36))} ellipsizeMode="tail"');
+    expect(src).toContain('Math.floor((height - 40) / Math.max(1, lineHeight))');
+  });
+
+  it('загрузка коллекции, счётчик сохранённых и «Мои наборы» пишут причину отказа вместо немого catch', () => {
+    expect(read('app/flashcards/useCollectionData.ts')).toContain('[FC-COLLECTION] load FAILED');
+    expect(read('app/flashcards/FlashcardsHubScreen.tsx')).toContain('[FC-HUB] saved count FAILED');
+    const myPacks = read('app/flashcards_my_packs.tsx');
+    expect(myPacks).toContain('[MY-PACKS] canonical user id FAILED');
+    expect(myPacks).toContain('[MY-PACKS] pack meta FAILED');
+  });
+});

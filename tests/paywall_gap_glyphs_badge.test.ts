@@ -8,8 +8,8 @@ const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..',
 describe('пейвол Plus: значки и плашка тарифа по эталону', () => {
   const icons = read('components/paywall/PaywallContextIcons.tsx');
   it('«место закончилось» и «собери набор» — одна стопка слоёв, «добавь фразу» — плюс', () => {
-    expect(icons).toContain('flashcard_limit: LAYERS,');
-    expect(icons).toContain('pack_create: LAYERS,');
+    expect(icons).toContain('flashcard_limit: [...LAYERS],');
+    expect(icons).toContain('pack_create: [...LAYERS],');
     expect(icons).toContain("{ t: 'p', d: 'M24 8 L41 16.6 L24 25.2 L7 16.6 Z' }");
     expect(icons).toMatch(/flashcard_create: \[\s*\{ t: 'p', d: 'M24 10 V38' \},\s*\{ t: 'p', d: 'M10 24 H38' \},\s*\],/);
   });

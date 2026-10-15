@@ -45113,7 +45113,7 @@
       "mockup": {
         "file": "docs/design/v2-app/learning-v2-voice-limit.html",
         "phone": 6,
-        "label": "Пейвол сейчас (context dialog_limit)",
+        "label": "Пейвол сейчас (context ai_voice_input)",
         "mapping": "pinned"
       },
       "mockup_pinned": "Координатор 15.10 (D194): голос в курсе — цифра остатка на микрофоне 3→2→1→0, на нуле бейдж PLUS и пейвол, у Plus цифры нет",
@@ -45145,7 +45145,7 @@
         "log": ""
       },
       "added_reason": "владелец D194 15.10 через координатора",
-      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong; в коде контекст пейвола ai_voice_input (VOICE_LIMIT_PAYWALL_CONTEXT), на макете подпись context dialog_limit — сверить текст пейвола"
+      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong; эталон пейвола = ai_voice_input (координатор 15.10: дневной голос; кадр assets/d194/paywall_ai_voice_input_now.png). Подзаголовок «весь диалог вслух» для входа из курса — оставлен до релиза (улучшение владельцу)"
     }
   ]
 }

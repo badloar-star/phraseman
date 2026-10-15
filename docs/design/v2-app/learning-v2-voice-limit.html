@@ -675,8 +675,8 @@ const BLOCKS = [
     col('Free — 0: бейдж PLUS, тап → пейвол', rc({ vb: 0 }), 'd194-0'),
     col('Plus — без цифры и без лимита', rc({ plus: true }), 'd194-plus'),
   ]),
-  block('d194-pw', 'Тап по микрофону при «0» — пейвол Plus', 'Тот же вход, что у голоса Диалогов (D165: premium_modal context=dialog_limit). Ниже — как пейвол выглядит в коде сейчас.', [
-    `<article class="col"><div class="lbl">Пейвол сейчас (context dialog_limit)</div><img class="pwimg" src="assets/d194/paywall_dialog_limit_now.png" alt="Пейвол Plus — ответы в диалогах закончились"><div class="d194-note">Заголовок «Ответы в диалогах закончились / 30 ответов в месяц» — про месячный лимит ответов, а не про голос. Для D194 (и уже для голоса Диалогов D165) нужен свой контекст пейвола — например «Голос на сегодня закончился · Бесплатно — 3 голосовых ответа в день. С Plus без лимита». Текст — решение владельца / Ядра.</div></article>`,
+  block('d194-pw', 'Тап по микрофону при «0» — пейвол Plus', 'premium_modal context=ai_voice_input — дневной лимит голоса, тот же контекст, что у голоса Диалогов (VOICE_LIMIT_PAYWALL_CONTEXT в коде). Ниже — как пейвол выглядит в коде сейчас.', [
+    `<article class="col"><div class="lbl">Пейвол сейчас (context ai_voice_input)</div><img class="pwimg" src="assets/d194/paywall_ai_voice_input_now.png" alt="Пейвол Plus — отвечай голосом"><div class="d194-note">Эталон — пейвол ai_voice_input, как в коде (координатор 15.10: дневной голос, а не месячный лимит ответов dialog_limit). Строки — app/paywall_context_texts.ts: «3 из 3 реплик» · «Отвечай голосом» · «Бесплатно — 3 реплики голосом в день. С Plus говори сколько хочешь.» · «Микрофон прямо в поле ответа».</div></article>`,
   ]),
 ];
 // ?only=<id блока> — служебный режим для проверки скриншотом по блокам

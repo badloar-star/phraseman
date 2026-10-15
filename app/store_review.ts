@@ -36,7 +36,9 @@ export async function openStoreReviewPage(): Promise<boolean> {
     const browserStoreUrl = Platform.OS === 'ios' ? STORE_URL_IOS : STORE_URL_ANDROID;
     await WebBrowser.openBrowserAsync(browserStoreUrl);
     return true;
-  } catch {
+  } catch (error) {
+    // зачем (R58 #55): немой catch запрещён — стор не открылся ни одним способом
+    console.warn('[REVIEW-PROMPT] store: не открылся ни один адрес', error instanceof Error ? error.message : String(error)); // guard-ok: причина в журнал
     return false;
   }
 }

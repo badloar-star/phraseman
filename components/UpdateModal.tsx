@@ -4,7 +4,7 @@
 // Кнопка "Закрыть" → скрывает модальник.
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { memo } from 'react';
+import React, { memo, useRef } from 'react';
 import {
   type GestureResponderEvent,
   Modal,
@@ -172,17 +172,30 @@ function UpdateModal({
   const tx = pickUpdateText(lang);
   const glass = liquidGlassTokens(liquidGlassThemeId);
 
+  // зачем (R58 #57, аудит кнопок 15.10): двойной тап «Обновить» дважды открывал стор и дважды отдавал слот окна
+  const openingStoreRef = useRef(false);
   const handleUpdate = (_event?: GestureResponderEvent) => {
+    if (openingStoreRef.current) {
+      console.log('[UPDATE-MODAL] повторный тап — стор уже открывается'); // guard-ok: ранний выход
+      return;
+    }
     hapticTap();
     if (onPrimaryPress) {
       onPrimaryPress();
       return;
     }
-    if (!storeUrl) return;
+    if (!storeUrl) {
+      console.warn('[UPDATE-MODAL] нет ссылки на стор — кнопка ничего не делает'); // guard-ok: ранний выход логируется
+      return;
+    }
+    openingStoreRef.current = true;
+    setTimeout(() => { openingStoreRef.current = false; }, 1500);
     onWillOpenExternalUrl?.();
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        void Linking.openURL(storeUrl).catch(() => {
+        void Linking.openURL(storeUrl).catch((error: unknown) => {
+          console.warn('[UPDATE-MODAL] стор не открылся', error instanceof Error ? error.message : String(error)); // guard-ok: причина в журнал
+          openingStoreRef.current = false;
           onExternalOpenFailed?.();
         });
       });

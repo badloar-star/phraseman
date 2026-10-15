@@ -74,10 +74,20 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
   }, [overlayVisible, variant]);
 
   const close = () => onClose();
+  // зачем (R58 #55, аудит кнопок 15.10): «оценено» ставилось, даже если стор не открылся — просьба больше не появлялась,
+  // а оценки не было. Теперь отметка только при открытом сторе; двойной тап не открывает стор дважды.
+  const rateInFlightRef = useRef(false);
   const rate = async () => {
+    if (rateInFlightRef.current) return;
+    rateInFlightRef.current = true;
     close();
-    await openStoreReviewPage();
-    await markReviewRated();
+    try {
+      const opened = await openStoreReviewPage();
+      console.log(`[REVIEW-PROMPT] rate: стор открыт=${String(opened)}`); // guard-ok: итог жеста
+      if (opened) await markReviewRated();
+    } finally {
+      rateInFlightRef.current = false;
+    }
   };
 
   if (!overlayVisible || !variant) return null;

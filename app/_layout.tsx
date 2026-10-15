@@ -2198,12 +2198,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, [ready, showOnboarding]);
 
   const closeReleaseNotesModal = useCallback(async () => {
-    if (releaseNotesVariant === 'v2') {
+    // зачем (R58 #22, аудит кнопок 15.10): «Понятно» закрывало окно только ПОСЛЕ записи отметки, а у v1 не было catch —
+    // сбой хранилища оставлял окно на экране. Закрываем сразу, отметку пишем фоном (причина сбоя — в журнал).
+    const variant = releaseNotesVariant;
+    setReleaseNotesVariant(null);
+    if (variant === 'v2') {
       await dismissReleaseNotesV2ModalPermanently().catch(noteSwallowedHandler('_layout:useCallback.dismissReleaseNotesV2ModalPermanently'));
     } else {
-      await dismissReleaseNotesModalPermanently();
+      await dismissReleaseNotesModalPermanently().catch(noteSwallowedHandler('_layout:useCallback.dismissReleaseNotesModalPermanently'));
     }
-    setReleaseNotesVariant(null);
   }, [releaseNotesVariant]);
 
   useEffect(() => {

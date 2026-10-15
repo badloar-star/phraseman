@@ -26,6 +26,28 @@ describe('Learning V2 optional mistake loop', () => {
     expect(mistakeSession).toContain("const persistSession = entrySource === 'cards'");
   });
 
+  // зачем (Ревизор 15.10, 🟡 к 332d3a62f): вместе с картой ушли проверки «порог 5» и «граница Plus» — это деньги, сторож обязан
+  // их держать. Петля на карте больше не рисуется (runtime и узел сейчас никем не подключены), но те же правила живут в
+  // «Моих ошибках»: от 5 ошибок — платная сессия (энергия), у Free 1 сессия в сутки, дальше — пейвол Plus; Plus идёт без чека.
+  test('money: a session of 5+ mistakes costs energy, 1–4 is free', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const session = require('../modules/mistake-practice/session') as typeof import('../modules/mistake-practice/session');
+    expect(session.MISTAKE_PRACTICE_ENERGY_MIN_COUNT).toBe(5);
+    expect([1, 4, 5, 12].map((n) => session.mistakePracticeSessionCostsEnergy(n))).toEqual([false, false, true, true]);
+  });
+
+  test('money: Free gets one mistakes session a day, then the Plus paywall; Plus skips the daily receipt', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { REVENUE_DAILY_LIMITS } = require('../app/revenue_daily_limits') as typeof import('../app/revenue_daily_limits');
+    expect(REVENUE_DAILY_LIMITS.mistake_practice_starts).toBe(1);
+    const gate = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'useMistakePracticeStartGate.ts'), 'utf8');
+    expect(gate).toMatch(/if \(quota\.status === 'exhausted'\) \{\s*openPaywall\(\);\s*return false;/);
+    expect(gate).toContain("params: { context: 'mistake_practice', source }");
+    expect(gate).toMatch(/if \(quota\.limit === null\) return true; \/\/ Plus/);
+    expect(node).toMatch(/plus: ', нужен Plus'/);
+    expect(node).toContain('locked: boolean;');
+  });
+
   test('loop node copy: optional, no shouting caps, Plus presentation', () => {
     expect(node).toContain('Необязательная петля');
     expect(node).not.toContain('styles.eyebrow');

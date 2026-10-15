@@ -40,7 +40,11 @@ if (home.includes('data-approved-studio="20260908"')) {
   if (home.includes('/assets/voice-design.css') || home.includes('class="hero wrap"')) throw new Error('legacy_layout_bridge_must_not_return');
   const app = readRequired(path.join(root,'app/index.html'),'app_page_missing');
   // 2.0: телефон со снимком экрана на /app/ убран по одобренному макету (без «студии»); сцена и обзор остаются
-  requireAll(app, isV2Home ? ['app-intro-scene', 'app-overview'] : ['app-intro-scene', 'app-overview', 'app-device-screen', 'app-screen-owner-20260908.png'], 'approved_app_scene_missing');
+  // 2.0 (Ревизор 15.10: не ослаблять): вместо телефона-студии страница показывает настоящие экраны приложения — уроки, карточки,
+  // диалоги — и ведёт на скачивание; файлы снимков обязаны существовать (битая картинка = пустая витрина).
+  const v2AppScreens = ['/assets/approved/app-lessons.webp', '/assets/approved/app-cards.webp', '/assets/approved/app-dialogs.webp'];
+  requireAll(app, isV2Home ? ['app-intro-scene', 'app-overview', ...v2AppScreens, 'href="/download/"'] : ['app-intro-scene', 'app-overview', 'app-device-screen', 'app-screen-owner-20260908.png'], 'approved_app_scene_missing');
+  if (isV2Home) for (const shot of v2AppScreens) readRequired(path.join(root, shot.slice(1)), 'approved_app_screen_asset_missing');
   const gift = readRequired(path.join(root,'gift/index.html'),'gift_missing');
   requireAll(gift,['id="giftForm"','id="giftTo"','id="giftFrom"','id="buyerEmail"','id="cardBtn"','id="paypal-buttons"','id="giftCertificate"','gift-certificate-yearly.webp'], 'original_gift_behavior_missing');
   const test = readRequired(path.join(root,'english-level-test/index.html'),'level_test_missing');

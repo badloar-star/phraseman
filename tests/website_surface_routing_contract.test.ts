@@ -53,6 +53,9 @@ describe('current website release contract', () => {
     );
     // ветка 2.0 и запрет возврата конструктора плана (квиз /start/ и сбор e-mail)
     expect(verifier).toContain('v2_home_surface_missing');
+    // /app/ в 2.0: настоящие экраны приложения и путь на скачивание, файлы снимков существуют (Ревизор 15.10)
+    expect(verifier).toContain('approved_app_screen_asset_missing');
+    expect(verifier).toContain("'/assets/approved/app-lessons.webp', '/assets/approved/app-cards.webp', '/assets/approved/app-dialogs.webp'");
     expect(verifier).toContain('retired_plan_builder_lead_capture_present');
     expect(verifier).toContain('plan_builder_quiz_mode_reachable');
     expect(verifier).toContain('retired_plan_builder_redirect_missing');

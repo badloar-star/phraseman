@@ -697,12 +697,53 @@ export function factoryNativeLearningV2InitialRewardBindingV1() {
   });
 }
 
-export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
+type FactoryNativeMaterializeInputV1 = Readonly<{
   lessonOrdinal: number;
   sessionOrdinal: number;
   interfaceLocale: LearningV2InterfaceLocale;
   disabledInteractionIds?: readonly string[];
-}>) {
+}>;
+
+/**
+ * R08 (координатор 15.10, замер Сверки: подготовка 1-го занятия prepare total_ms=13348, JS загружен на 100%): сборка
+ * материала занятия — чистая функция от (урок, занятие, язык, отключённые задания) над статичными данными бандла, но
+ * её звали ПОВТОРНО (client_v3: каждое занятие ≤ текущего ради карточек слов + сборка + пересборка с отключённым аудио),
+ * и каждый раз заново считались SHA-256 детей (~200 КБ канонического JSON). Результат заморожен — отдаём из кэша.
+ * Размер ограничен (последние FACTORY_NATIVE_MATERIALIZE_CACHE_MAX), только память процесса.
+ */
+const FACTORY_NATIVE_MATERIALIZE_CACHE_MAX = 12;
+const factoryNativeMaterializeCache = new Map<string, ReturnType<typeof materializeFactoryNativeLearningV2SessionV1Uncached>>();
+
+export function materializeFactoryNativeLearningV2SessionV1(input: FactoryNativeMaterializeInputV1) {
+  const disabledKey = input.disabledInteractionIds?.length ? [...input.disabledInteractionIds].sort().join(",") : "";
+  const key = `${input.lessonOrdinal}:${input.sessionOrdinal}:${input.interfaceLocale}:${disabledKey}`;
+  if (factoryNativeMaterializeCache.has(key)) {
+    const hit = factoryNativeMaterializeCache.get(key) ?? null;
+    // свежий доступ — в конец (LRU)
+    factoryNativeMaterializeCache.delete(key);
+    factoryNativeMaterializeCache.set(key, hit);
+    if (typeof __DEV__ !== "undefined" && __DEV__) console.log(`[V2-PREP] materialize cache_hit l=${input.lessonOrdinal} s=${input.sessionOrdinal} locale=${input.interfaceLocale} disabled=${input.disabledInteractionIds?.length ?? 0}`);
+    return hit;
+  }
+  const startedAt = Date.now();
+  const built = materializeFactoryNativeLearningV2SessionV1Uncached(input);
+  const ms = Date.now() - startedAt;
+  factoryNativeMaterializeCache.set(key, built);
+  while (factoryNativeMaterializeCache.size > FACTORY_NATIVE_MATERIALIZE_CACHE_MAX) {
+    const oldest = factoryNativeMaterializeCache.keys().next().value;
+    if (oldest === undefined) break;
+    factoryNativeMaterializeCache.delete(oldest);
+  }
+  console.log(`[V2-PREP] materialize built l=${input.lessonOrdinal} s=${input.sessionOrdinal} locale=${input.interfaceLocale} disabled=${input.disabledInteractionIds?.length ?? 0} ms=${ms} ok=${built !== null}`); // guard-ok: одна строка на сборку (замер R08)
+  return built;
+}
+
+/** Только для тестов: сбросить кэш сборки материала. */
+export function __resetFactoryNativeMaterializeCacheForTests(): void {
+  factoryNativeMaterializeCache.clear();
+}
+
+function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativeMaterializeInputV1) {
   const row = FACTORY_NATIVE_MANIFEST_V1.find((candidate) =>
     candidate.lessonOrdinal === input.lessonOrdinal && candidate.sessionOrdinal === input.sessionOrdinal);
   if (!row || !LEARNING_V2_INTERFACE_LOCALES.includes(input.interfaceLocale)) return null;

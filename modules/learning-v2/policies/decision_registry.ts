@@ -296,22 +296,62 @@ const SHA256_CONSTANTS = [
 const rotateRight = (value: number, bits: number): number =>
   (value >>> bits) | (value << (32 - bits));
 
+/**
+ * UTF-8 в заранее выделенный Uint8Array (два прохода: длина, затем запись). Байты те же, что у utf8Bytes.
+ * зачем (R08, координатор 15.10): sha256Utf8 копил ~200 КБ сообщения в обычном массиве чисел через push — на Hermes
+ * это секунды блокировки JS-потока при подготовке занятия. Алгоритм хэша не меняется, только хранение байтов.
+ */
+const utf8EncodeTyped = (value: string): Uint8Array => {
+  assertCanonicalString(value);
+  let length = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    const codePoint = value.codePointAt(index) as number;
+    if (codePoint > 0xffff) index += 1;
+    length += codePoint <= 0x7f ? 1 : codePoint <= 0x7ff ? 2 : codePoint <= 0xffff ? 3 : 4;
+  }
+  const bytes = new Uint8Array(length);
+  let at = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    const codePoint = value.codePointAt(index) as number;
+    if (codePoint > 0xffff) index += 1;
+    if (codePoint <= 0x7f) bytes[at++] = codePoint;
+    else if (codePoint <= 0x7ff) {
+      bytes[at++] = 0xc0 | (codePoint >>> 6);
+      bytes[at++] = 0x80 | (codePoint & 0x3f);
+    } else if (codePoint <= 0xffff) {
+      bytes[at++] = 0xe0 | (codePoint >>> 12);
+      bytes[at++] = 0x80 | ((codePoint >>> 6) & 0x3f);
+      bytes[at++] = 0x80 | (codePoint & 0x3f);
+    } else {
+      bytes[at++] = 0xf0 | (codePoint >>> 18);
+      bytes[at++] = 0x80 | ((codePoint >>> 12) & 0x3f);
+      bytes[at++] = 0x80 | ((codePoint >>> 6) & 0x3f);
+      bytes[at++] = 0x80 | (codePoint & 0x3f);
+    }
+  }
+  return bytes;
+};
+
 export const sha256Utf8 = (value: string): string => {
-  const message = utf8Bytes(value);
-  const bitLength = message.length * 8;
-  message.push(0x80);
-  while (message.length % 64 !== 56) message.push(0);
+  const data = utf8EncodeTyped(value);
+  const byteLength = data.length;
+  const bitLength = byteLength * 8;
+  // дополнение FIPS 180-4: 0x80, нули до 56 mod 64, затем длина в битах (64 бита, big-endian) — как в прежней версии
+  const paddedLength = Math.ceil((byteLength + 9) / 64) * 64;
+  const message = new Uint8Array(paddedLength);
+  message.set(data);
+  message[byteLength] = 0x80;
   const high = Math.floor(bitLength / 0x100000000);
   const low = bitLength >>> 0;
-  for (let shift = 24; shift >= 0; shift -= 8) message.push((high >>> shift) & 0xff);
-  for (let shift = 24; shift >= 0; shift -= 8) message.push((low >>> shift) & 0xff);
+  for (let shift = 24, at = paddedLength - 8; shift >= 0; shift -= 8, at += 1) message[at] = (high >>> shift) & 0xff;
+  for (let shift = 24, at = paddedLength - 4; shift >= 0; shift -= 8, at += 1) message[at] = (low >>> shift) & 0xff;
 
   const hash = [
     0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
     0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
   ];
-  const words = new Array<number>(64);
-  for (let offset = 0; offset < message.length; offset += 64) {
+  const words = new Uint32Array(64);
+  for (let offset = 0; offset < paddedLength; offset += 64) {
     for (let index = 0; index < 16; index += 1) {
       const start = offset + index * 4;
       words[index] = (
@@ -322,13 +362,13 @@ export const sha256Utf8 = (value: string): string => {
       ) >>> 0;
     }
     for (let index = 16; index < 64; index += 1) {
-      const s0 = rotateRight(words[index - 15], 7) ^ rotateRight(words[index - 15], 18) ^
-        (words[index - 15] >>> 3);
-      const s1 = rotateRight(words[index - 2], 17) ^ rotateRight(words[index - 2], 19) ^
-        (words[index - 2] >>> 10);
+      const w15 = words[index - 15];
+      const w2 = words[index - 2];
+      const s0 = rotateRight(w15, 7) ^ rotateRight(w15, 18) ^ (w15 >>> 3);
+      const s1 = rotateRight(w2, 17) ^ rotateRight(w2, 19) ^ (w2 >>> 10);
       words[index] = (words[index - 16] + s0 + words[index - 7] + s1) >>> 0;
     }
-    let [a, b, c, d, e, f, g, h] = hash;
+    let a = hash[0], b = hash[1], c = hash[2], d = hash[3], e = hash[4], f = hash[5], g = hash[6], h = hash[7];
     for (let index = 0; index < 64; index += 1) {
       const sigma1 = rotateRight(e, 6) ^ rotateRight(e, 11) ^ rotateRight(e, 25);
       const choose = (e & f) ^ (~e & g);

@@ -1,233 +1,138 @@
-# Английский · Урок 1 · Занятие 55 — «Повторяем am, is, are»
+# Английский · Урок 1 · Занятие 55 — Кто о чём позаботится
 
-Сегодня сосед зашёл одолжить отвёртку. В коротком разговоре вы скажете о себе, о брате, о жильцах и о квартире.
+**Ситуация.** Вы обсуждаете с другом подготовку семейной поездки: кто выполняет обещания, кто справляется сам и кому нужна постоянная помощь.
 
-**Что вы повторите:** `I am`, `you are`, `he is`, `she is`, `it is`, `we are`, `they are` и отрицание с `not`
-**Новые слова:** —
-**Возвращаются:** tired, quiet, kind, ready, safe, warm, busy, cold
+**Что вы освоите:** различить ответственность, самостоятельность и зависимость от помощи
+**Новые слова:** responsible, independent, dependent
 
 ---
 
 ## Интро 1
 
-### Три слова на все случаи: am, is, are
+### На него можно положиться
 
-В английской фразе между тем, о ком говорят, и его признаком обычно стоит форма `to be`. Она меняется: `I am`, `he is`, `we are`.
+`responsible` — «ответственный». Здесь речь о человеке, который серьёзно относится к обязанностям: `He is responsible`. Друг обещал проверить билеты и сделал это вовремя. Даже чемодан ещё не собран, а билеты уже в порядке.
 
-`tired` — «устал». Про себя это всегда `I am tired`: рядом с `I` стоит только `am`, ни в одной фразе оно не заменяется на другое.
+**Друг выполняет обещания и внимательно относится к обязанностям. Назовите его ответственным.**
 
-**Сосед спрашивает, как вы после недели. Скажите про себя.**
-
-- ✅ **I am tired.**
-- ❌ I is tired. — *`is` идёт к «он», «она», «оно». Про себя — `am`.*
-- ❌ I tired. — *Между `I` и `tired` нужно `am`.*
+- ✅ **He is responsible.**
+- ❌ He is dependent. — *Это о зависимости. Здесь оцениваем ответственность: `responsible`.*
+- ❌ He are responsible. — *После `He` нужно `is`.*
 
 ---
 
 ## Интро 2
 
-### Один человек — is, несколько — are
+### Справляется сам
 
-`he is`, `she is`, `it is` — когда речь про одного. `we are`, `they are` — когда их много.
+`independent` — «самостоятельный», «независимый». `She is independent` — «Она самостоятельная». Сестра сама планирует свои дела и принимает решения. Самостоятельность не означает, что человек никогда не просит помощи.
 
-`quiet` — «тихий». Про одного соседа это `he is quiet`, про всех жильцов сразу — `they are quiet`. Само слово при этом не меняется; меняется форма `to be` перед ним.
+**Сестра сама организует свои дела и принимает решения. Назовите её независимой.**
 
-**Сосед спрашивает про жильцов сверху. Их несколько, и шума от них нет.**
-
-- ✅ **They are quiet.**
-- ❌ They is quiet. — *`is` — про одного. Их много, значит `are`.*
-- ❌ They quiet. — *Между `they` и `quiet` нужно `are`.*
+- ✅ **She is independent.**
+- ❌ She is dependent. — *`dependent` означает зависимость, а здесь самостоятельность: `independent`.*
+- ❌ She are independent. — *После `She` нужно `is`.*
 
 ---
 
 ## Интро 3
 
-### Где ставить not
+### Нужна постоянная поддержка
 
-Чтобы сказать «не», ставим `not` сразу после формы `to be`: `I am not`, `he is not`, `we are not`.
+`dependent` — «зависимый»: человек нуждается в поддержке других. В разговоре о том, может ли маленький ребёнок обходиться без взрослых, `He is dependent` означает, что он зависит от их заботы. Одна разовая просьба помочь с чемоданом ещё не делает человека зависимым.
 
-Рука по привычке тянется поставить «не» перед словом, как по-русски. Тянуть не надо: `I not tired` — это уже не английский.
+**Вы обсуждаете самостоятельность малыша: он постоянно нуждается в заботе взрослых. Скажите, что он зависим от их помощи.**
 
-`cold` — «холодно». Про квартиру говорят `it is cold`, а если топят нормально — `it is not cold`.
-
-**Сосед уверен, что в вашей квартире мёрзнут. Это не так.**
-
-- ✅ **It is not cold.**
-- ❌ It not cold. — *После `It` нужна форма `is`. `not` ставят после `is`, а не вместо него.*
-- ❌ It is no cold. — *`no` тут не работает. Отрицание к слову о признаке — `not`.*
+- ✅ **He is dependent.**
+- ❌ He is independent. — *Малыш пока не обходится без заботы взрослых: `dependent`.*
+- ❌ He are dependent. — *После `He` нужно `is`.*
 
 ---
 
-## Практика — 22 задания
+## Практика (17 заданий)
 
-**1 · Выберите форму — сосед спрашивает, как вы**
-<!-- interaction_id: en:lesson-01:session-55:i01; family: context_gap_grammar -->
-I ___ tired. → **am** · is · are
-- is — *`is` — про «он», «она», «оно». Про себя — `am`.*
-- are — *`are` идёт к «ты» и к «многим». Про себя — `am`.*
+**1 · Друг выполняет обещания и серьёзно относится к обязанностям. Назовите его ответственным**
+<!-- interaction_id: en:lesson-01:session-55:i01; family: phrase_builder -->
+Плитки: `responsible` `is` `He` `are` → **He is responsible.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is responsible.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-55:i02; family: listen_choose -->
-`kind` — «добрый». 🔊 *kind* → **kind** · kid · kite
-- kid — *Это «ребёнок». В `kind` перед «д» есть «н».*
-- kite — *Это «воздушный змей». Кончается на «т», а не на «д».*
+🔊 *She is independent.* → **She is independent.** · She is dependent. · She is responsible.
+- She is dependent. — *В записи последнее слово — `independent`, а в этом варианте — `dependent`.*
+- She is responsible. — *В записи последнее слово — `independent`, а в этом варианте — `responsible`.*
 
-**3 · Вставьте слово — сосед спрашивает, добрый ли ваш начальник**
+**3 · Двое друзей внимательно выполняют свои обязанности. Назовите их ответственными**
 <!-- interaction_id: en:lesson-01:session-55:i03; family: context_gap_grammar -->
-He is ___ . → **kind** · quiet · ready
-- quiet — *«Тихий» — про громкость, а не про характер. Спрашивали про доброту.*
-- ready — *«Готов» — про того, кто собрался идти. Про доброту — `kind`.*
+They ___ responsible. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Про двоих — `They are`.*
 
-**4 · Соберите фразу — про вашего брата, он всегда собран**
-<!-- interaction_id: en:lesson-01:session-55:i04; family: phrase_builder -->
-Плитки: `He` `is` `ready.` `are` → **He is ready.**
-*Плитка `are` лишняя: `he` — один человек, поэтому нужна форма `is`: `He is ready.`*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-55:i04; family: speed_match -->
+responsible — ответственный · independent — самостоятельный · dependent — зависимый · dangerous — опасный
 
-**5 · Выберите форму — про жильцов сверху**
-<!-- interaction_id: en:lesson-01:session-55:i05; family: context_gap_grammar -->
-They ___ quiet. → **are** · is · am
-- is — *Жильцов много. К «многим» идёт `are`.*
-- am — *`am` — только про себя.*
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-55:i05; family: listen_build_dictation -->
+🔊 *He's dependent.* Плитки: `dependent` `He's` `They're` → **He's dependent.**
+*(плитка `They're` лишняя: здесь нужно `He's` — `He's dependent.`)*
 
-**6 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-55:i06; family: speed_match -->
-tired — устал · quiet — тихий · kind — добрый · ready — готов
+**6 · Сестра сама организует повседневные дела и принимает решения. Назовите её независимой**
+<!-- interaction_id: en:lesson-01:session-55:i06; family: phrase_builder -->
+Плитки: `independent` `is` `She` `are` → **She is independent.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is independent.`)*
 
-**7 · Соберите фразу — «мы заняты»**
-<!-- interaction_id: en:lesson-01:session-55:i07; family: phrase_builder -->
-`busy` — «занят». Плитки: `are` `busy` `we` `is` → **We are busy.**
-*Плитка `is` лишняя: `we` — это несколько человек, поэтому нужна форма `are`: `We are busy.`*
+**7 · Коротко скажите о себе: «Я ответственный»**
+<!-- interaction_id: en:lesson-01:session-55:i07; family: scripted_repeat_compare -->
+🎙 **I'm responsible.**
 
-**8 · Вставьте слово — сосед уточняет, занята ли она**
+**8 · Речь о том, может ли малыш обходиться без взрослых: без постоянной заботы взрослых он пока не обходится. Назовите эту зависимость**
 <!-- interaction_id: en:lesson-01:session-55:i08; family: context_gap_grammar -->
-She is ___ busy. → **not** · no · am
-- no — *После `is` для отрицания нужно `not`, не `no`.*
-- am — *`am` бывает с `I`; здесь после `is` нужно `not`.*
+He is ___ . → **dependent** · independent · dangerous
+- independent — *Это самостоятельность. Малышу постоянно нужна помощь: `dependent`.*
+- dangerous — *Это опасность. Здесь нужно `dependent`.*
 
-**9 · Различите звуки — какое из двух про «тепло»?**
-<!-- interaction_id: en:lesson-01:session-55:i09; family: sound_contrast -->
-`warm` — «тёплый». 🔊 Два слова подряд.
-*warm · worm* → **warm**
-- worm — *Это «червяк». Слово про тепло — `warm`, с «а» в написании.*
+**9 · Послушайте фразу о месте**
+<!-- interaction_id: en:lesson-01:session-55:i09; family: listen_choose -->
+🔊 *It is dangerous.* → **It is dangerous.** · It is familiar. · It is unfamiliar.
+- It is familiar. — *В записи последнее слово — `dangerous`, а в этом варианте — `familiar`.*
+- It is unfamiliar. — *В записи последнее слово — `dangerous`, а в этом варианте — `unfamiliar`.*
 
-**10 · Вставьте слово — сосед волнуется, как у вас зимой**
-<!-- interaction_id: en:lesson-01:session-55:i10; family: context_gap_grammar -->
-It is ___ . → **warm** · tired · ready
-- tired — *«Устал» — это про человека, а не про комнату.*
-- ready — *«Готов» — про того, кто собрался идти. Про тепло — `warm`.*
+**10 · Соедините знакомые слова со значениями**
+<!-- interaction_id: en:lesson-01:session-55:i10; family: speed_match -->
+familiar — знакомый · unfamiliar — незнакомый · unknown — неизвестный · dangerous — опасный
 
-**11 · Послушайте и соберите — «ты в безопасности»**
+**11 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-55:i11; family: listen_build_dictation -->
-`safe` — «в безопасности». 🔊 *You are safe.* Плитки: `are` `safe` `you` `am` → **You are safe.**
-*Плитка `am` лишняя: `am` употребляют только с `I`; после `you` нужна форма `are`: `You are safe.`*
+🔊 *We're independent.* Плитки: `independent` `We're` `He's` → **We're independent.**
+*(плитка `He's` лишняя: здесь нужно `We're` — `We're independent.`)*
 
-**12 · Выберите форму — в квартире тихо**
-<!-- interaction_id: en:lesson-01:session-55:i12; family: context_gap_grammar -->
-It ___ quiet here. → **is** · am · are
-- am — *`am` — только про себя. Про «оно» — `is`.*
-- are — *«Оно» — одно. К нему `is`.*
+**12 · На фотографии вы узнаёте вокзал, где часто бывали. Скажите, что место вам знакомо**
+<!-- interaction_id: en:lesson-01:session-55:i12; family: phrase_builder -->
+Плитки: `familiar` `is` `It` `are` → **It is familiar.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is familiar.`)*
 
-**13 · Соберите фразу — «я не замёрз»**
-<!-- interaction_id: en:lesson-01:session-55:i13; family: phrase_builder -->
-`cold` — «холодно». Плитки: `not` `I` `cold` `am` → **I am not cold.**
+**13 · Время отправления ещё не установлено. Вы с другом обсуждаете это время. Скажите, что оно неизвестно**
+<!-- interaction_id: en:lesson-01:session-55:i13; family: scripted_repeat_compare -->
+🎙 **It is unknown.**
 
-**14 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-55:i14; family: speed_match -->
-busy — занят · safe — в безопасности · warm — тёплый · cold — холодный
+**14 · Вы с другом серьёзно относитесь к своим обязанностям. Назовите вас обоих ответственными**
+<!-- interaction_id: en:lesson-01:session-55:i14; family: context_gap_grammar -->
+We ___ responsible. → **are** · am · is
+- am — *После `We` нужно `are`.*
+- is — *Про нас — `We are`.*
 
-**15 · Соберите фразу — они ещё собираются, выходить рано**
-<!-- interaction_id: en:lesson-01:session-55:i15; family: phrase_builder -->
-Плитки: `they` `ready` `not` `are` `is` → **They are not ready.**
-*Плитка `is` лишняя: `they` — это несколько человек, поэтому нужна форма `are`: `They are not ready.`*
+**15 · Послушайте короткую фразу и выберите её**
+<!-- interaction_id: en:lesson-01:session-55:i15; family: listen_choose -->
+🔊 *She's independent.* → **She's independent.** · She's dependent. · She's responsible.
+- She's dependent. — *В записи последнее слово — `independent`, а в этом варианте — `dependent`.*
+- She's responsible. — *В записи последнее слово — `independent`, а в этом варианте — `responsible`.*
 
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-55:i16:s01; family: scripted_repeat_compare -->
-Сосед спрашивает, всё ли у вас хорошо. Скажите, что хорошо.
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-55:i16; family: speed_match -->
+responsible — ответственный · independent — независимый · dependent — зависимый · unfamiliar — незнакомый
 
-🎙 **I am fine.**
+**17 · В клубе новая организаторша вовремя выполняет обещания и внимательно относится к обязанностям. Назовите её ответственной**
+<!-- interaction_id: en:lesson-01:session-55:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **She is responsible.**
 
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-55:i16:s02; family: scripted_repeat_compare -->
-Сосед спрашивает, тепло ли у вас дома. Скажите, что здесь тепло.
-
-🎙 **It is warm here.**
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-55:i16:s03; family: scripted_repeat_compare -->
-Сосед спрашивает, не замёрзли ли вы. Скажите, что вам не холодно.
-
-🎙 **I am not cold.**
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-55:i17:s01; family: scripted_repeat_compare -->
-Сосед спрашивает, устали ли вы. Скажите, что устали.
-
-🎙 **I am tired.**
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-55:i17:s02; family: scripted_repeat_compare -->
-Сосед спрашивает, в безопасности ли вы. Скажите, что в безопасности.
-
-🎙 **I am safe.**
-
-**21 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-55:i17:s03; family: scripted_repeat_compare -->
-Сосед спрашивает, тихо ли у жильцов сверху. Скажите, что тихо.
-
-🎙 **They are quiet.**
-
-**22 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-55:i17:s04; family: scripted_repeat_compare -->
-Сосед спрашивает, занят ли брат. Скажите, что брат не занят.
-
-🎙 **He is not busy.**
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=speed_match, 7=phrase_builder, 8=context_gap_grammar, 9=sound_contrast, 10=context_gap_grammar, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| tired | интро 1, 1, 6, 10, 17 | интро 1, 1, 17 |
-| quiet | интро 2, 3, 5, 6, 12, 17 | интро 2, 5, 12, 17 |
-| kind | 2, 3, 6 | 2, 3 |
-| ready | 3, 4, 6, 10, 15 | 4, 15 |
-| safe | 11, 14, 17 | 11, 17 |
-| warm | 9, 10, 14, 16 | 9, 10, 16 |
-| busy | 7, 8, 14, 17 | 7, 8, 17 |
-| cold | интро 3, 13, 14 | интро 3, 13 |
-
-**2. Страницы интро — слово ответа стоит в тексте НАД вопросом**
-
-| страница | ключ ✅ ответа | где он в тексте |
-|---|---|---|
-| Интро 1 | `tired` | абзац 2: «`tired` — „устал“. Про себя это всегда `I am tired`» |
-| Интро 2 | `quiet` | абзац 2: «`quiet` — „тихий“… `they are quiet`» |
-| Интро 3 | `cold` | абзац 3: «`cold` — „холодно“… `it is not cold`» |
-
-**3. Доска пар — отработка ДО доски**
-
-| слово | отработка ДО доски |
-|---|---|
-| tired (доска 6) | интро 1, задание 1 |
-| quiet (доска 6) | интро 2, задания 3, 5 |
-| kind (доска 6) | задания 2, 3 |
-| ready (доска 6) | задания 3, 4 |
-| busy (доска 14) | задания 7, 8 |
-| safe (доска 14) | задание 11 |
-| warm (доска 14) | задания 9, 10 |
-| cold (доска 14) | интро 3, задание 13 |
-
-Доски 6 и 14 не имеют общих слов.
-
----

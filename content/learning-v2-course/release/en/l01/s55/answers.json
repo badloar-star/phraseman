@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-55:i01",
-    "correctText": "am",
-    "correctResponseId": "en:lesson-01:session-55:i01:r1"
+    "correctText": "He is responsible.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i02",
-    "correctText": "kind",
+    "correctText": "She is independent.",
     "correctResponseId": "en:lesson-01:session-55:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-55:i03",
-    "correctText": "kind",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-55:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-55:i04",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-55:i04:r1"
+    "correctText": "en:lesson-01:session-55:i04:p1=responsible\nen:lesson-01:session-55:i04:p2=independent\nen:lesson-01:session-55:i04:p3=dependent\nen:lesson-01:session-55:i04:p4=dangerous",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i05",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-55:i05:r1"
+    "correctText": "He's dependent.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i06",
-    "correctText": "en:lesson-01:session-55:i06:p1=tired\nen:lesson-01:session-55:i06:p2=quiet\nen:lesson-01:session-55:i06:p3=kind\nen:lesson-01:session-55:i06:p4=ready",
+    "correctText": "She is independent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i07",
-    "correctText": "We are busy.",
+    "correctText": "I'm responsible.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i08",
-    "correctText": "She is not busy.",
-    "correctResponseId": null
+    "correctText": "dependent",
+    "correctResponseId": "en:lesson-01:session-55:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-55:i09",
-    "correctText": "warm",
+    "correctText": "It is dangerous.",
     "correctResponseId": "en:lesson-01:session-55:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-55:i10",
-    "correctText": "warm",
-    "correctResponseId": "en:lesson-01:session-55:i10:r1"
+    "correctText": "en:lesson-01:session-55:i10:p1=familiar\nen:lesson-01:session-55:i10:p2=unfamiliar\nen:lesson-01:session-55:i10:p3=unknown\nen:lesson-01:session-55:i10:p4=dangerous",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i11",
-    "correctText": "You are safe.",
+    "correctText": "We're independent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i12",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-55:i12:r1"
+    "correctText": "It is familiar.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i13",
-    "correctText": "I am not cold.",
+    "correctText": "It is unknown.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-55:i14",
-    "correctText": "en:lesson-01:session-55:i14:p1=busy\nen:lesson-01:session-55:i14:p2=safe\nen:lesson-01:session-55:i14:p3=warm\nen:lesson-01:session-55:i14:p4=cold",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-55:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-55:i15",
-    "correctText": "They are not ready.",
+    "correctText": "She's independent.",
+    "correctResponseId": "en:lesson-01:session-55:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i16",
+    "correctText": "en:lesson-01:session-55:i16:p1=responsible\nen:lesson-01:session-55:i16:p2=independent\nen:lesson-01:session-55:i16:p3=dependent\nen:lesson-01:session-55:i16:p4=unfamiliar",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-55:i16:s01",
-    "correctText": "I am fine.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-55:i16:s02",
-    "correctText": "It is warm here.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-55:i16:s03",
-    "correctText": "I am not cold.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-55:i17:s01",
-    "correctText": "I am tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-55:i17:s02",
-    "correctText": "I am safe.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-55:i17:s03",
-    "correctText": "They are quiet.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-55:i17:s04",
-    "correctText": "He is not busy.",
+    "interactionId": "en:lesson-01:session-55:i17",
+    "correctText": "She is responsible.",
     "correctResponseId": null
   }
 ]

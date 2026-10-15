@@ -1,159 +1,138 @@
-# Англійська · Урок 2 · Заняття 42 — «Перед прогулянкою»
+# Англійська · Урок 2 · Заняття 42 — Помилка в довіднику
 
-**Сцена заняття.** У неділю вранці ви вперше приходите на зустріч любителів піших прогулянок у парку. Друг часто тут буває. Ви уточнюєте час збору й хочете зрозуміти, чи вам раді в цій компанії.
+**Ситуація.** Ви з Анною перевіряєте довідник місцевих клубів. У ньому неправильно вказано адресу майстерні, а один клуб уже припинив роботу. Олег спокійно й ввічливо допомагає розібратися.
 
-**Як сказати:** застосування `Am I…?` для перевірки часу приходу й ставлення до вас
-**Нові слова:** —
-**Повертаються:** welcome, here, early, late
+**Що ви опануєте:** повідомити про неточні відомості та запитати про їхню точність
+**Нові слова:** inaccurate
 
 ---
 
 ## Інтро 1
 
-### Раніше чи із запізненням
+### У відомостях є помилка
 
-`Am I early?` — «Я прийшов раніше запланованого?» Так перевіряють, чи прийшли раніше запланованого часу. `early` — «рано», а `late` — «пізно, із запізненням». Запитання `Am I late?` означає «Я запізнився?» Обидва починаються з `Am I`: ви запитуєте про себе. Останнє слово обирайте за тим, що хочете уточнити.
+`inaccurate` — «неточний, з помилками». У довіднику вказано неправильну адресу майстерні: `It is inaccurate` — «Він неточний». Так можна сказати про запис у довіднику. Це оцінка відомостей, а не характеру автора: помилка в адресі ще не робить людину обманщиком.
 
-**У парку біля місця зустрічі поки мало людей. Запитайте друга, чи прийшли ви раніше запланованого часу.**
+**У записі довідника неправильно вказано адресу майстерні. Скажіть повною фразою, що запис неточний.**
 
-- ✅ **Am I early?**
-- ❌ Am I late? — *Це «Я запізнився?» Ви хочете уточнити, чи прийшли ви раніше запланованого часу: `early`.*
-- ❌ Are you early? — *Це запитання до друга про його прихід. Ви запитуєте про себе: `Am I early?`*
+- ✅ **It is inaccurate.**
+- ❌ It is accurate. — *Це «точний». У записі є помилка.*
+- ❌ It inaccurate. — *Між `It` і `inaccurate` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### Як вас приймають
+### Спочатку уточнити
 
-`Am I welcome here?` — «Мені тут раді?» Тут `welcome` — «бажаний», а `here` — «тут». Ви запитуєте, як люди ставляться до вашого приходу. Слово «рано» стосується лише часу; вирішити, що воно означає «вам не раді», — це додумати за співрозмовника цілу відповідь.
+`Is it inaccurate?` — «Це неточно?» Тут ви ще запитуєте, чи є помилка. `Yes, it is` підтверджує неточність, а `No, it is not` її заперечує. Адресу зі старого довідника варто перевірити: папір може мати солідний вигляд, але сам містом давно не гуляв.
 
-**Друг привів вас у незнайому компанію в парку. Запитайте його, чи вам тут раді.**
+**Анна запитує «Is it inaccurate?» про запис із неправильною адресою. Підтвердьте неточність короткою відповіддю «так».**
 
-- ✅ **Am I welcome here?**
-- ❌ Am I early? — *Це запитання про час. Зараз ви хочете дізнатися, чи раді вашому приходу.*
-- ❌ Are you welcome here? — *Так ви запитаєте, чи другові тут раді. Запитання про себе починається з `Am I`.*
+- ✅ **Yes, it is.**
+- ❌ No, it is not. — *Це заперечує неточність, а адреса справді неправильна.*
+- ❌ Yes, it are. — *З `it` потрібно `is`: `Yes, it is`.*
 
 ---
 
 ## Інтро 3
 
-### Сумнів чи повідомлення
+### Про людину й про клуб
 
-`I am not late` — «Я не запізнився». Так ви повідомляєте, що встигли вчасно. Спочатку `I am`, далі `not`, потім `late`: заперечення стосується запізнення. А `Am I late?` — «Я запізнився?» — допоможе це уточнити. Вирішіть, чи потрібна вам відповідь співрозмовника, чи ви вже повідомляєте йому результат.
+`polite` — «ввічливий»: Олег спокійно вислуховує запитання й дякує за зауваження. `He is polite`. А `inactive` — «такий, що не діє»: клуб більше не працює. `It is inactive`. Ввічливість Олега не виправляє довідник автоматично, але обговорювати помилку з ним приємно.
 
-**Організатор пояснив, що до початку прогулянки ще десять хвилин. Повідомте другові, що ви не запізнилися.**
+**Олег спокійно відповідає й дякує за зауваження. Коротко скажіть, що він ввічливий.**
 
-- ✅ **I am not late.**
-- ❌ Am I late? — *Це запитання. Час початку ви вже уточнили й тепер повідомляєте, що не запізнилися.*
-- ❌ I am late. — *Без `not` вийде «Я запізнився». Вам треба сказати протилежне: `I am not late`.*
+- ✅ **He's polite.**
+- ❌ He's inactive. — *Це про бездіяльність, а потрібно відзначити ввічливість.*
+- ❌ She's polite. — *Йдеться про Олега: `He's`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть — яке запитання прозвучало біля входу до парку**
-<!-- interaction_id: en:lesson-02:session-42:i01; family: listen_choose -->
-Ціль: `Am I early?`
-Варіанти: `Am I early?` · `Am I late?` · `Are you early?`
-- Am I late? — *У цьому запитанні останнє слово `late` — «із запізненням». У записі звучить `early` — «рано».*
-- Are you early? — *Це запитання до співрозмовника. Запис починається з `Am I`: людина запитує про себе.*
+**1 · У записі вказано неправильну адресу. Скажіть повною фразою, що запис неточний**
+<!-- interaction_id: en:lesson-02:session-42:i01; family: phrase_builder -->
+Плитки: `inaccurate` `is` `It` `are` → **It is inaccurate.**
+*(плитка `are` зайва: тут потрібно `is` — `It is inaccurate.`)*
 
+**2 · Послухайте фразу про Олега**
+<!-- interaction_id: en:lesson-02:session-42:i02; family: listen_choose -->
+🔊 *He is polite.* → **He is polite.** · He is honest. · He is active.
+- He is honest. — *У записі останнє слово — `polite`, а в цьому варіанті — `honest`.*
+- He is active. — *У записі останнє слово — `polite`, а в цьому варіанті — `active`.*
 
-**2 · Вставте слово — ви не впевнені, чи встигли до початку прогулянки; запитайте: «Я запізнився?»**
-<!-- interaction_id: en:lesson-02:session-42:i02; family: context_gap_grammar -->
-Ціль: `Am I ___ ?`
-Варіанти: `late` · `here` · `ready`
-- here — *Це «тут». Ви уточнюєте, чи не запізнилися, тому потрібне `late`.*
-- ready — *Це «готовий». Зараз запитання про час вашого приходу: `Am I late?`*
+**3 · Уточніть, чи є неточність у цьому записі**
+<!-- interaction_id: en:lesson-02:session-42:i03; family: context_gap_grammar -->
+___ it inaccurate? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it inaccurate?`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-42:i04; family: speed_match -->
+inaccurate — неточний · accurate — точний · polite — ввічливий · inactive — такий, що не діє
 
-**3 · Складіть фразу — друг не знає точного часу збору; запитайте організатора, чи ви запізнилися**
-<!-- interaction_id: en:lesson-02:session-42:i03; family: phrase_builder -->
-Ціль: `Am I late?`
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-42:i05; family: listen_build_dictation -->
+🔊 *Yes, it is.* Плитки: `is` `it` `Yes,` `No,` → **Yes, it is.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, it is.`)*
 
-**4 · Вставте слово — друг телефонує дізнатися, чи ви дійшли до місця зустрічі; скажіть: «Я тут»**
-<!-- interaction_id: en:lesson-02:session-42:i04; family: context_gap_grammar -->
-Ціль: `I am ___ .`
-Варіанти: `here` · `early` · `welcome`
-- early — *Вийде «Я прийшов рано». Друг запитує, чи ви дійшли, тому повідомте, що ви тут: `here`.*
-- welcome — *Це слово про те, чи вам раді. Для повідомлення про ваше місце потрібне `here`.*
-
-
-**5 · Послухайте й виберіть — яке запитання учасник зустрічі поставив другові**
-<!-- interaction_id: en:lesson-02:session-42:i05; family: listen_choose -->
-Ціль: `Am I welcome here?`
-Варіанти: `Am I welcome here?` · `Am I early?` · `Are you welcome here?`
-- Am I early? — *Це «Я прийшов раніше запланованого?» У записі людина запитує, чи їй раді: `Am I welcome here?`*
-- Are you welcome here? — *Так запитують про співрозмовника. Запис починається з `Am I`: учасник запитує про себе.*
-
-
-**6 · Складіть фразу — друг шукає інших учасників; ви бачите їх біля місця збору, повідомте: «Вони тут»**
+**6 · Анна знайшла помилку в довіднику, але ви ще не бачили її. Запитайте, що неточно**
 <!-- interaction_id: en:lesson-02:session-42:i06; family: phrase_builder -->
-Ціль: `They are here.`
+Плитки: `inaccurate` `is` `What` `Where` → **What is inaccurate?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is inaccurate?`)*
 
-**7 · Вставте слово — ви вперше прийшли в цю компанію; запитайте друга, чи вам тут раді**
-<!-- interaction_id: en:lesson-02:session-42:i07; family: context_gap_grammar -->
-Ціль: `___ I welcome here?`
-Варіанти: `Am` · `Is` · `Are`
-- Is — *Запитання про себе з `I` тут починається з `Am`: `Am I welcome here?`*
-- Are — *Сполучення `Are I` для цього запитання не підходить. Потрібні перші два слова `Am I`.*
+**7 · Адреса в записі не відповідає справжній. Коротко скажіть, що запис неточний**
+<!-- interaction_id: en:lesson-02:session-42:i07; family: scripted_repeat_compare -->
+🎙 **It's inaccurate.**
 
+**8 · Клуб уже припинив роботу. На «Is it inactive?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-42:i08; family: context_gap_grammar -->
+Yes, it ___. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Відповідь — `Yes, it is`.*
 
-**8 · Послухайте й складіть — організатор уточнює у вашого друга час його приходу**
-<!-- interaction_id: en:lesson-02:session-42:i08; family: listen_build_dictation -->
-Ціль: `Are you early?`
+**9 · Послухайте фразу про клуб**
+<!-- interaction_id: en:lesson-02:session-42:i09; family: listen_choose -->
+🔊 *It is inactive.* → **It is inactive.** · It is inaccurate. · It is active.
+- It is inaccurate. — *У записі останнє слово — `inactive`, а в цьому варіанті — `inaccurate`.*
+- It is active. — *У записі останнє слово — `inactive`, а в цьому варіанті — `active`.*
 
-**9 · З’єднайте пари — слова для розмови перед прогулянкою**
-<!-- interaction_id: en:lesson-02:session-42:i09; family: speed_match -->
-Пари: `welcome` — бажаний · `here` — тут · `early` — рано · `late` — із запізненням
-Ціль: `welcome · here · early · late`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-42:i10; family: speed_match -->
+polite — ввічливий · inactive — такий, що не діє · accurate — точний · inaccurate — неточний
 
-**10 · Вставте слово — організатор ще готується до зустрічі; уточніть, чи не прийшли ви раніше, ніж потрібно**
-<!-- interaction_id: en:lesson-02:session-42:i10; family: context_gap_grammar -->
-Ціль: `Am I ___ ?`
-Варіанти: `early` · `late` · `welcome`
-- late — *Це запитання про запізнення. Ви уточнюєте, чи прийшли раніше запланованого часу: `Am I early?`*
-- welcome — *Так ви запитаєте, чи вам раді. Зараз треба перевірити час приходу: `early`.*
+**11 · Послухайте й складіть фразу про відомості**
+<!-- interaction_id: en:lesson-02:session-42:i11; family: listen_build_dictation -->
+🔊 *They are not accurate.* Плитки: `accurate` `not` `are` `They` `is` → **They are not accurate.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not accurate.`)*
 
+**12 · Ви ще не знайомі з Олегом. Запитайте Анну, чи він ввічливий**
+<!-- interaction_id: en:lesson-02:session-42:i12; family: phrase_builder -->
+Плитки: `polite` `he` `Is` `Are` → **Is he polite?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is he polite?`)*
 
-**11 · Складіть фразу — організатор назвав час початку, і ви зрозуміли, що встигли; повідомте другові, що ви не запізнилися**
-<!-- interaction_id: en:lesson-02:session-42:i11; family: phrase_builder -->
-Ціль: `I am not late.`
+**13 · Клуб більше не працює. Коротко повідомте, що він не діє**
+<!-- interaction_id: en:lesson-02:session-42:i13; family: scripted_repeat_compare -->
+🎙 **It's inactive.**
 
-**12 · Послухайте й виберіть — що організатор сказав вашому другові**
-<!-- interaction_id: en:lesson-02:session-42:i12; family: listen_choose -->
-Ціль: `You are welcome here.`
-Варіанти: `You are welcome here.` · `You are welcome.` · `You are not welcome here.`
-- You are welcome. — *У цьому варіанті немає `here`. У записі організатор каже повністю: `You are welcome here` — «Вам тут раді».*
-- You are not welcome here. — *Слово `not` змінює зміст на заперечний. У записі його немає: організатор каже другові, що йому раді.*
-
-
-**13 · Складіть фразу — друг хоче поставити організатору запитання, але не бачить його; запитайте іншого учасника, чи організатор тут**
-<!-- interaction_id: en:lesson-02:session-42:i13; family: phrase_builder -->
-Ціль: `Is he here?`
-
-**14 · Вставте слово — новий учасник запитує вас, як поставити запитання «Я прийшов раніше запланованого?»; допоможіть йому**
+**14 · Ви перевірили інший запис: в адресі теж помилка. Запереченням скажіть, що запис не точний**
 <!-- interaction_id: en:lesson-02:session-42:i14; family: context_gap_grammar -->
-Ціль: `Am ___ early?`
-Варіанти: `I` · `you` · `he`
-- you — *Це «ти» або «ви». У запитанні «Я прийшов раніше запланованого?» потрібне `I`: `Am I early?`*
-- he — *Це «він». Учасник запитує про себе, тому тут потрібне `I`.*
+It ___ not accurate. → **is** · am · are
+- am — *З `It` потрібно `is`.*
+- are — *Фраза — `It is not accurate`.*
 
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-42:i15; family: listen_choose -->
+🔊 *Are they inaccurate?* → **Are they inaccurate?** · Are they accurate? · Are they official?
+- Are they accurate? — *У записі останнє слово — `inaccurate`, а в цьому варіанті — `accurate`.*
+- Are they official? — *У записі останнє слово — `inaccurate`, а в цьому варіанті — `official`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-42:i15; family: scripted_repeat_compare -->
-Ціль: `Am I early?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-42:i16; family: speed_match -->
+inactive — такий, що не діє · inaccurate — неточний · polite — ввічливий · accurate — точний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-42:i16; family: scripted_repeat_compare -->
-Ціль: `I am here.`
-
-**17 · Складіть фразу — із часом збору ви розібралися, але ще не знаєте, як компанія ставиться до вашого першого приходу; запитайте друга, чи вам тут раді**
-<!-- interaction_id: en:lesson-02:session-42:i17; family: phrase_builder -->
-Ціль: `Am I welcome here?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=context_gap_grammar, 5=listen_choose, 6=phrase_builder, 7=context_gap_grammar, 8=listen_build_dictation, 9=speed_match, 10=context_gap_grammar, 11=phrase_builder, 12=listen_choose, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Анна пропонує перевірити ще один запис. Запитайте, чи він неточний**
+<!-- interaction_id: en:lesson-02:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it inaccurate?**
 

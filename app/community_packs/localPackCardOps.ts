@@ -8,6 +8,7 @@
  */
 import { communityPackCardsToCardItems } from './communityFirestore';
 import { loadLocalAuthorPacks, saveLocalAuthorPack, type LocalAuthorPack } from './localAuthorPacks';
+import { withLocalPackLock } from './local_pack_lock';
 import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from './schema';
 
 export type LocalPackCardSnapshot = Readonly<{ packId: string; card: CommunityPackCardPayload; index: number }>;
@@ -42,7 +43,12 @@ async function persist(pack: LocalAuthorPack, cards: CommunityPackCardPayload[])
 }
 
 /** Убирает карточку; null — набор или карточка не найдены (или набор уже опубликован). */
-export async function removeCardFromLocalPack(packId: string, cardId: string): Promise<LocalPackCardSnapshot | null> {
+export function removeCardFromLocalPack(packId: string, cardId: string): Promise<LocalPackCardSnapshot | null> {
+  // зачем (аудит Optimistic UI 15.10): чтение и запись набора — под очередью по набору, чтобы две быстрые правки не затирали друг друга
+  return withLocalPackLock(packId, () => removeCardFromLocalPackLocked(packId, cardId));
+}
+
+async function removeCardFromLocalPackLocked(packId: string, cardId: string): Promise<LocalPackCardSnapshot | null> {
   console.log(`${LOG} старт packId=${packId} cardId=${cardId}`);
   const pack = (await loadLocalAuthorPacks()).find((item) => item.id === packId);
   if (!pack) {
@@ -65,7 +71,11 @@ export async function removeCardFromLocalPack(packId: string, cardId: string): P
 }
 
 /** Возвращает карточку на её место; false — набор исчез или карточка уже есть. */
-export async function restoreCardToLocalPack(snapshot: LocalPackCardSnapshot): Promise<boolean> {
+export function restoreCardToLocalPack(snapshot: LocalPackCardSnapshot): Promise<boolean> {
+  return withLocalPackLock(snapshot.packId, () => restoreCardToLocalPackLocked(snapshot));
+}
+
+async function restoreCardToLocalPackLocked(snapshot: LocalPackCardSnapshot): Promise<boolean> {
   const pack = (await loadLocalAuthorPacks()).find((item) => item.id === snapshot.packId);
   if (!pack) {
     console.warn(`${LOG} возврат: набор исчез packId=${snapshot.packId}`);

@@ -11,6 +11,7 @@ import { normalizePackCardTexts, normalizePackLanguage } from '../flashcards/pac
 import { isDevCardsFail } from '../dev_cards_state';
 import type { CardItem } from '../flashcards/types';
 import { loadLocalAuthorPacks, saveLocalAuthorPack, type LocalAuthorPack } from './localAuthorPacks';
+import { withLocalPackLock } from './local_pack_lock';
 import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from './schema';
 
 const LOG = '[PACK-CARD-ADD]';
@@ -66,7 +67,12 @@ function sameText(a: string, b: string): boolean {
   return a.trim().toLocaleLowerCase() === b.trim().toLocaleLowerCase();
 }
 
-export async function addCardToLocalPack(packId: string, card: CardItem): Promise<AddCardToLocalPackResult> {
+export function addCardToLocalPack(packId: string, card: CardItem): Promise<AddCardToLocalPackResult> {
+  // зачем (аудит Optimistic UI 15.10): две быстрые правки одного набора идут по очереди — вторая читает уже записанное первой
+  return withLocalPackLock(packId, () => addCardToLocalPackLocked(packId, card));
+}
+
+async function addCardToLocalPackLocked(packId: string, card: CardItem): Promise<AddCardToLocalPackResult> {
   console.log(`${LOG} старт packId=${packId} cardId=${card.id}`);
   // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `fail=pack_write` — запись в набор не удалась (тост «Не удалось добавить»); в стор-сборке геттер выключен.
   if (isDevCardsFail('pack_write')) {

@@ -1,172 +1,138 @@
-# Английский · Урок 2 · Занятие 9 — «Is he / Is she»
+# Английский · Урок 2 · Занятие 9 — Можно пересесть?
 
-**Сцена занятия.** Кафе в центре, столик у окна. Спутник кивает на людей за соседними столиками и тихо спрашивает ваше мнение.
-**Как сказать:** спросить о человеке: `Is he / Is she + слово?`
-**Новые слова:** handsome, pretty
-**Возвращаются:** cold, curious
+**Ситуация.** В театре вы хотите пересесть с другом ближе к сцене. Уточняете возможность пересадки и удобно ли будет на новых местах.
+
+**Что вы освоите:** спросить о возможности и состоянии, поставив am, is или are перед тем, о ком спрашиваем
+**Новые слова:** possible
 
 ---
 
 ## Интро 1
 
-### `handsome` — привлекательный мужчина
+### Возможно?
 
-`handsome` — «красивый, привлекательный». Так чаще говорят о мужчине: приятное лицо, уверенный вид, аккуратная одежда. Это не означает «богатый» или «модный». Спутник уже готов вынести эстетический вердикт, хотя кофе ещё не принесли. Вопрос о мужчине звучит `Is he handsome?`.
+`possible` — «возможный». `It is possible` — «Это возможно». Чтобы спросить, поменяйте начало местами: `Is it possible?` — «Это возможно?» Вы уточняете, можно ли пересесть. Вопрос ещё не даёт разрешения: кресло у сцены не становится вашим от одного вопросительного знака.
 
-**За соседним столиком сидит Том в аккуратном костюме. Спросите спутника, кажется ли Том привлекательным.**
+**Вы хотите пересесть ближе к сцене. Сотрудник уже знает о вашем желании. Спросите, возможно ли это.**
 
-- ✅ **Is he handsome?**
-- ❌ He is handsome? — *Это порядок слов сообщения. Вопрос начинают с `is`.*
-- ❌ Is handsome he? — *После `is` ставят `he`, затем `handsome`.*
+- ✅ **Is it possible?**
+- ❌ Is possible it? — *После `Is` нужно `it`, затем `possible`.*
+- ❌ Are it possible? — *С `it` нужно `is`: `Is it possible?`.*
 
 ---
 
 ## Интро 2
 
-### `pretty` — приятно смотреть
+### Спросите собеседника
 
-`pretty` — «красивая, привлекательная». Так часто говорят о женщине или девушке, а ещё о вещи или месте, на которые приятно смотреть. Здесь речь о человеке. Слово не обещает ни особого стиля, ни дорогой одежды. Чтобы спросить о женщине, говорим `Is she pretty?`: сначала `is she`, затем `pretty`.
+`You are sure` — «Вы уверены». В обычном вопросе `are` выходит вперёд: `Are you sure?` — «Вы уверены?» Так же: `Are you comfortable?` — «Вам удобно?» Здесь учимся спрашивать, а не утверждать.
 
-**У стойки ждёт заказ Мира в ярком платье. Спросите спутника, кажется ли Мира привлекательной.**
+**Друг говорит, что на другом ряду будет лучше. Спросите, уверен ли он.**
 
-- ✅ **Is she pretty?**
-- ❌ She is pretty? — *Это сообщение. В вопросе `is` ставят перед `she`.*
-- ❌ Is pretty she? — *После `is` ставят `she`, затем `pretty`.*
+- ✅ **Are you sure?**
+- ❌ Is you sure? — *С `you` нужно `are`, и в вопросе оно стоит первым.*
+- ❌ Are sure you? — *После `Are` идёт `you`: `Are you sure?`.*
 
 ---
 
 ## Интро 3
 
-### `he` — про мужчину, `she` — про женщину
+### О себе и о других
 
-В вопросе `Is he handsome?` слово `he` указывает на мужчину, а в `Is she pretty?` слово `she` — на женщину. Порядок один: `is`, затем `he` или `she`, потом слово с описанием. `Handsome` чаще выбирают для мужчины, `pretty` — для женщины. Это обычный выбор слов, а не строгий запрет.
+Форма остаётся знакомой: с `I` — `am`, с `he` или `she` — `is`, с `we` или `they` — `are`. Меняется место: `Am I tall?` — «Я высокий?», `Is she interested?` — «Ей интересно?», `Are they comfortable?` — «Им удобно?»
 
-**Спутник показывает на Миру в красивом платье. Спросите, кажется ли она привлекательной.**
+**Анна разглядывает афишу. Вы не знаете, заинтересовал ли её спектакль. Спросите друга, интересно ли ей.**
 
-- ✅ **Is she pretty?**
-- ❌ Is he pretty? — *В сцене женщина, поэтому нужно `she`.*
-- ❌ Is she handsome? — *Здесь тренируем обычный выбор `pretty` для женщины.*
+- ✅ **Is she interested?**
+- ❌ Are she interested? — *С `she` нужно `is`: `Is she interested?`.*
+- ❌ Is he interested? — *Анна — `she`. `He` означало бы «он».*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — handsome**
-<!-- interaction_id: en:lesson-02:session-09:i01; family: listen_choose -->
-Цель: `handsome`
+**1 · Сотрудник понял, что вы хотите пересесть. Спросите, возможно ли это**
+<!-- interaction_id: en:lesson-02:session-09:i01; family: phrase_builder -->
+Плитки: `possible` `it` `Is` `Are` → **Is it possible?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it possible?`)*
 
-**2 · Послушайте и выберите — handsome**
+**2 · Послушайте вопрос другу**
 <!-- interaction_id: en:lesson-02:session-09:i02; family: listen_choose -->
-Цель: `handsome`
-Варианты: `handsome` · `pretty` · `curious`
-- pretty — *Pretty обычно описывает красивую женщину или приятную на вид вещь; handsome чаще описывает привлекательного мужчину.*
-- curious — *Curious означает «любопытный»; handsome означает «красивый, привлекательный».*
+🔊 *Are you sure?* → **Are you sure?** · Are you comfortable? · Are you interested?
+- Are you comfortable? — *В записи последнее слово — `sure`, а в этом варианте — `comfortable`.*
+- Are you interested? — *В записи последнее слово — `sure`, а в этом варианте — `interested`.*
 
+**3 · Друг сел на новое место. Спросите, удобно ли ему**
+<!-- interaction_id: en:lesson-02:session-09:i03; family: context_gap_grammar -->
+___ you comfortable? → **Are** · Am · Is
+- Am — *С `you` нужно `Are`.*
+- Is — *С `you` вопрос начинается с `Are`.*
 
-**3 · Карточка слова — pretty**
-<!-- interaction_id: en:lesson-02:session-09:i03; family: listen_choose -->
-Цель: `pretty`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-09:i04; family: speed_match -->
+possible — возможный · sure — уверенный · interested — заинтересованный · comfortable — чувствующий себя удобно
 
-**4 · Послушайте и выберите — pretty**
-<!-- interaction_id: en:lesson-02:session-09:i04; family: listen_choose -->
-Цель: `pretty`
-Варианты: `pretty` · `handsome` · `cold`
-- handsome — *Handsome чаще описывает привлекательного мужчину; pretty — красивую женщину или приятную на вид вещь.*
-- cold — *Cold означает «замёрзший»; pretty означает «красивая, привлекательная».*
+**5 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-02:session-09:i05; family: listen_build_dictation -->
+🔊 *Is he tall?* Плитки: `tall` `he` `Is` `Are` → **Is he tall?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is he tall?`)*
 
+**6 · Вы примеряете рост к росту высокого друга. Спросите его, высокий ли вы**
+<!-- interaction_id: en:lesson-02:session-09:i06; family: phrase_builder -->
+Плитки: `tall` `I` `Am` `Are` → **Am I tall?**
+*(плитка `Are` лишняя: здесь нужно `Am` — `Am I tall?`)*
 
-**5 · Соедините слова и значения**
-<!-- interaction_id: en:lesson-02:session-09:i05; family: speed_match -->
-Пары: `handsome` — привлекательный мужчина · `pretty` — привлекательная женщина · `cold` — замёрзший · `curious` — любопытный
-Цель: `handsome · pretty · cold · curious`
+**7 · Об Анне пока неясно, хочет ли она смотреть спектакль. Спросите друга, интересно ли ей**
+<!-- interaction_id: en:lesson-02:session-09:i07; family: scripted_repeat_compare -->
+🎙 **Is she interested?**
 
-**6 · Послушайте и соберите вопрос о мужчине**
-<!-- interaction_id: en:lesson-02:session-09:i06; family: listen_build_dictation -->
-Цель: `Is he handsome?`
-🔊 *Is he handsome?* Плитки: `Is` `he` `handsome` `she`
-*Плитка `she` лишняя: вопрос задан о мужчине, поэтому нужен `he`: `Is he handsome?`*
+**8 · Вы обсуждаете возраст актёра. Спросите, молод ли он**
+<!-- interaction_id: en:lesson-02:session-09:i08; family: context_gap_grammar -->
+___ he young? → **Is** · Am · Are
+- Am — *С `he` нужно `Is`.*
+- Are — *Про него спрашиваем `Is he`.*
 
-**7 · Карточка слова — cheerful**
-<!-- interaction_id: en:lesson-02:session-09:i07; family: listen_choose -->
-Цель: `cheerful`
-Значение: «весёлый». Так описывают человека, чьё хорошее настроение видно по поведению.
+**9 · Послушайте вопрос об актёре**
+<!-- interaction_id: en:lesson-02:session-09:i09; family: listen_choose -->
+🔊 *Is he short?* → **Is he short?** · Is he tall? · Is he young?
+- Is he tall? — *В записи последнее слово — `short`, а в этом варианте — `tall`.*
+- Is he young? — *В записи последнее слово — `short`, а в этом варианте — `young`.*
 
-**8 · Карточка слова — curious**
-<!-- interaction_id: en:lesson-02:session-09:i08; family: listen_choose -->
-Цель: `curious`
-Значение: «любопытный». Так описывают человека, которому интересно и который это показывает: разглядывает или переспрашивает.
+**10 · Соедините описания со значениями**
+<!-- interaction_id: en:lesson-02:session-09:i10; family: speed_match -->
+tall — высокий человек · short — невысокий человек · young — молодой · possible — возможный
 
-**9 · Вставьте слово — Том в аккуратном костюме кажется привлекательным**
-<!-- interaction_id: en:lesson-02:session-09:i09; family: context_gap_grammar -->
-Цель: `Is he ___ ?`
-Варианты: `handsome` · `cold` · `curious`
-- cold — *Сцена не говорит, что ему холодно.*
-- curious — *Сцена описывает внешность, а не любопытство.*
+**11 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-02:session-09:i11; family: listen_build_dictation -->
+🔊 *Are they comfortable?* Плитки: `comfortable` `they` `Are` `Is` → **Are they comfortable?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are they comfortable?`)*
 
+**12 · Вы с другом собираетесь сменить ряд, но ещё сомневаетесь. Спросите за вас обоих: «Мы уверены?»**
+<!-- interaction_id: en:lesson-02:session-09:i12; family: phrase_builder -->
+Плитки: `sure` `we` `Are` `Is` → **Are we sure?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are we sure?`)*
 
-**10 · Соберите фразу — Мира за столиком читает меню и без конца поглядывает на соседний столик**
-<!-- interaction_id: en:lesson-02:session-09:i10; family: phrase_builder -->
-Цель: `Is she curious?`
-Плитки: `Is` `she` `curious` `he`
-*Плитка `he` лишняя: в сцене Мира, поэтому нужен `she`: `Is she curious?`*
+**13 · Вы предлагаете другу сходить на этот спектакль. Спросите его, интересно ли ему**
+<!-- interaction_id: en:lesson-02:session-09:i13; family: scripted_repeat_compare -->
+🎙 **Are you interested?**
 
-**11 · Карточка слова — upset**
-<!-- interaction_id: en:lesson-02:session-09:i11; family: listen_choose -->
-Цель: `upset`
-Значение: «расстроенный». Что-то пошло не так, и настроение испортилось.
+**14 · Вы уже объяснили сотруднику, что хотите пересесть. Дополните вопрос о возможности**
+<!-- interaction_id: en:lesson-02:session-09:i14; family: context_gap_grammar -->
+___ it possible? → **Is** · Are · Am
+- Are — *С `it` нужно `Is`.*
+- Am — *С `it` спрашиваем `Is it`.*
 
-**12 · Вставьте слово — Том отодвинул чашку и молча смотрит в стол**
-<!-- interaction_id: en:lesson-02:session-09:i12; family: context_gap_grammar -->
-Цель: `Is he ___ ?`
-Варианты: `upset` · `handsome` · `curious`
-- handsome — *«Красивый» описывает внешность. Здесь видно, что мужчина расстроен.*
-- curious — *«Любопытный» — тот, кому интересно и кто рассматривает вокруг. Здесь мужчина расстроен, а не любопытен.*
+**15 · Послушайте вопрос об актрисе**
+<!-- interaction_id: en:lesson-02:session-09:i15; family: listen_choose -->
+🔊 *Is she young?* → **Is she young?** · Is she tall? · Is she short?
+- Is she tall? — *В записи последнее слово — `young`, а в этом варианте — `tall`.*
+- Is she short? — *В записи последнее слово — `young`, а в этом варианте — `short`.*
 
-**13 · Послушайте и соберите вопрос: «Ей холодно?»**
-<!-- interaction_id: en:lesson-02:session-09:i13; family: listen_build_dictation -->
-Собеседница кутается в шарф у входа в кафе. Спросите, холодно ли ей.
-Цель: `Is she cold?`
-Плитки: `Is` `she` `cold` `he`
-*Плитка `he` лишняя: речь о женщине в шарфе, поэтому нужен `she`: `Is she cold?`*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-09:i16; family: speed_match -->
+sure — уверенный · comfortable — чувствующий себя удобно · interested — заинтересованный · young — молодой
 
-**14 · Послушайте два слова и выберите слово, с которого начинается вопрос**
-<!-- interaction_id: en:lesson-02:session-09:i14; family: sound_contrast -->
-Слушайте начало: в `his` перед гласным слышится согласный звук [h], а в `is` его нет.
-Варианты: `is` · `his`
-- his — *«Его». В начале есть звук [h]; в вопросе `Is she cold?` нужно короткое `is` без него.*
+**17 · Сотрудник понял вашу просьбу занять два места ближе к сцене, но ещё не ответил. Спросите, возможно ли это**
+<!-- interaction_id: en:lesson-02:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it possible?**
 
-**15 · Соедините слова и их значения**
-<!-- interaction_id: en:lesson-02:session-09:i15; family: speed_match -->
-Сопоставьте четыре уже изученных слова с их значениями.
-Пары: `handsome` — привлекательный мужчина · `pretty` — красивая, привлекательная · `cheerful` — весёлый · `curious` — любопытный
-
-**16 · Вставьте слово — подруга смотрит на женщину, которая сидит одна и плачет**
-<!-- interaction_id: en:lesson-02:session-09:i16; family: context_gap_grammar -->
-Цель: `___ she upset?`
-Варианты: `Is` · `Are` · `Am`
-- Are — *`Are` сочетается с `you` и `we`; с `she` в вопросе нужен `is`.*
-- Am — *`Am` бывает только с `I`; с `she` в вопросе нужен `is`.*
-
-**17 · Скажите вслух — вопрос о Томе у стойки**
-<!-- interaction_id: en:lesson-02:session-09:i17:s01; family: scripted_repeat_compare -->
-Том у стойки кажется вам привлекательным. Спросите о нём.
-🎙 **Is he handsome?**
-
-**18 · Скажите вслух — вопрос о Мире у окна**
-<!-- interaction_id: en:lesson-02:session-09:i17:s02; family: scripted_repeat_compare -->
-Мира у окна с интересом наблюдает за соседним столиком. Спросите о ней.
-🎙 **Is she curious?**
-
-**19 · Скажите вслух — вопрос о Томе с чашкой**
-<!-- interaction_id: en:lesson-02:session-09:i17:s03; family: scripted_repeat_compare -->
-Том с чашкой у входа в кафе дрожит и застёгивает пальто. Спросите о нём.
-🎙 **Is he cold?**
-
-## Для сборщика
-
-atomic_practice: practice.atomic.json
-new_words:
-handsome — красивый, привлекательный — Так чаще говорят о мужчине с приятной внешностью.
-pretty — красивая, привлекательная — Так часто говорят о женщине или о приятной на вид вещи.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=speed_match, 6=listen_build_dictation, 7=listen_choose, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_choose, 12=context_gap_grammar, 13=listen_build_dictation, 14=sound_contrast, 15=speed_match, 16=context_gap_grammar, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare

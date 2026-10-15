@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-09:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-09:intro1:r2": {
-          "ru": "Это порядок слов сообщения. Вопрос начинают с `is`.",
-          "uk": "Це порядок слів повідомлення. Запитання починають з `is`."
+          "ru": "После `Is` нужно `it`, затем `possible`.",
+          "uk": "Після `Is` потрібно `it`, потім `possible`."
         },
         "en:lesson-02:session-09:intro1:r3": {
-          "ru": "После `is` ставят `he`, затем `handsome`.",
-          "uk": "Після `is` ставлять `he`, потім `handsome`."
+          "ru": "С `it` нужно `is`: `Is it possible?`.",
+          "uk": "З `it` потрібно `is`: `Is it possible?`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-09:intro2:r2": {
-          "ru": "Это сообщение. В вопросе `is` ставят перед `she`.",
-          "uk": "Це повідомлення. У запитанні `is` ставлять перед `she`."
+          "ru": "С `you` нужно `are`, и в вопросе оно стоит первым.",
+          "uk": "З `you` потрібно `are`, і в запитанні воно стоїть першим."
         },
         "en:lesson-02:session-09:intro2:r3": {
-          "ru": "После `is` ставят `she`, затем `pretty`.",
-          "uk": "Після `is` ставлять `she`, потім `pretty`."
+          "ru": "После `Are` идёт `you`: `Are you sure?`.",
+          "uk": "Після `Are` йде `you`: `Are you sure?`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-09:intro3:r2": {
-          "ru": "В сцене женщина, поэтому нужно `she`.",
-          "uk": "У сцені жінка, тому потрібне `she`."
+          "ru": "С `she` нужно `is`: `Is she interested?`.",
+          "uk": "З `she` потрібно `is`: `Is she interested?`."
         },
         "en:lesson-02:session-09:intro3:r3": {
-          "ru": "Здесь тренируем обычный выбор `pretty` для женщины.",
-          "uk": "Тут тренуємо звичний вибір `pretty` для жінки."
+          "ru": "Анна — `she`. `He` означало бы «он».",
+          "uk": "Анна — `she`. `He` означало б «він»."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "183293f310021fee969c7be8e0df2236d0a90a8fd8e2dd590d710244c8142cd8"
+  "auxiliaryFingerprint": "bba4e6eb18ee71595290bd23957da2fde7228354a6844d2779e7c752a9ec592a"
 }

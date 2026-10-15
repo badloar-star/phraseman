@@ -808,6 +808,9 @@ function initialSelectionForSources(
   if (requestedSourceId && valid.has(requestedSourceId)) return new Set([requestedSourceId]);
   const fromDecks = swipeSourceIdsForDeckIds(sources, requestedDeckIds);
   if (fromDecks.length > 0) return new Set(fromDecks);
+  // зачем (аудит кнопок Карточек #3, координатор 15.10): человек выбрал конкретные наборы (`?deck=`), но экран не нашёл их среди своих источников («Первые 50 слов», свой неопубликованный набор) —
+  // раньше подставлялось ВСЁ и тренировалась не та колода. Теперь без подмены: ничего не отмечено, человек выбирает сам.
+  if (requestedDeckIds.length > 0) return new Set();
   return valid;
 }
 
@@ -2133,7 +2136,12 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         if (kept.size > 0) { tfPrep('sources:selected', { by: 'kept', ids: [...kept] }); return kept; }
         // Кэша наборов не было — предвыбор из `?deck=` делаем на приехавшем списке.
         const fromDecks = swipeSourceIdsForDeckIds(next, requestedDeckIds);
-        tfPrep('sources:selected', { by: fromDecks.length > 0 ? 'requestedDeckIds' : 'all_valid', ids: fromDecks.length > 0 ? fromDecks : [...valid], requestedDeckIds });
+        tfPrep('sources:selected', { by: fromDecks.length > 0 ? 'requestedDeckIds' : requestedDeckIds.length > 0 ? 'requested_not_found' : 'all_valid', ids: fromDecks.length > 0 ? fromDecks : requestedDeckIds.length > 0 ? [] : [...valid], requestedDeckIds });
+        // зачем (аудит #3): запрошенные наборы не нашлись — НЕ подменяем всей библиотекой (тренировалась не та колода)
+        if (fromDecks.length === 0 && requestedDeckIds.length > 0) {
+          console.warn(`[SWIPE-DECKS] запрошенные наборы не найдены среди источников — ничего не отмечаем requested=${JSON.stringify(requestedDeckIds)} sources=${JSON.stringify([...valid])}`); // guard-ok: причина пустого выбора
+          return new Set<string>();
+        }
         return fromDecks.length > 0 ? new Set(fromDecks) : valid;
       });
       tfPrep('sources:loaded', { total: next.length, ids: next.map((source) => `${source.id}:${source.count}`), requestedSourceId, requestedDeckIds });

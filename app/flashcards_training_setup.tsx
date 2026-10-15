@@ -561,6 +561,15 @@ export default function FlashcardsTrainingSetupScreen() {
     resetStartLock();
     return () => cancelQueuedStart('blur');
   }, [cancelQueuedStart, resetStartLock]));
+  // зачем (аудит кнопок Карточек #18, 15.10): вернулись на экран (добавили набор, сохранили карточки) — список наборов обновляется, а не остаётся снимком первого входа.
+  // Первый фокус пропускаем (данные грузит сам вход); кэш списка по языку сам решает, пересобирать ли (срок/состав моих наборов — #19).
+  const focusSeenRef = useRef(false);
+  useFocusEffect(useCallback(() => {
+    if (!focusSeenRef.current) { focusSeenRef.current = true; return undefined; }
+    console.log('[FC-TRAIN-SETUP] refocus → перезагрузка списка наборов');
+    setLoadRevision((value) => value + 1);
+    return undefined;
+  }, []));
 
   const leave = useCallback(() => {
     safeRouterBack(router, '/flashcards' as never);

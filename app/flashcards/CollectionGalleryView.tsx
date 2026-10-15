@@ -6,8 +6,9 @@
  * (изменить, удалить; удаление с «Вернуть» делает контейнер), «Тренировать» — плавающая кнопка внизу. Поиск открывается в полосе масштаба,
  * результаты идут в две колонки без строки «Найдено». Выбор нескольких карточек, строка лимита Free и подсказка про удаление остались.
  */
+import { useStudyTarget } from '../../components/StudyTargetContext';
+import { markDeleteHintSeen } from './delete_hint_seen';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
@@ -27,7 +28,6 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { useLang } from '../../components/LangContext';
 import { pluralWithCount, pluralWord } from '../../constants/plural';
 import { hapticTap } from '../../hooks/use-haptics';
-import { noteSwallowedHandler } from '../swallow_log';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
 
 type Props = Readonly<{
@@ -111,6 +111,8 @@ export default function CollectionGalleryView({
   isEditableCustomCard, onEditCard, onDeleteCardById, selectionMode, selectedIds, onToggleSelection, selectedCount, canCreatePack,
   selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, searchField, gridTopGap,
 }: Props) {
+  // зачем (аудит #10): ключ подсказки — по цели обучения, как читает useCollectionData
+  const { studyTarget: hintStudyTarget } = useStudyTarget();
   const g = useLv2Glass();
   // зачем (EN-проход Сверки 12.10, cards-007/010 «Тренировать» по-русски при uiLang=en): подписи экрана — это ЯЗЫК ИНТЕРФЕЙСА, а `lang` приходит КОНТЕНТНЫЙ (flashcardContentLang: у en/pt-BR/vi… он ru/uk/es) —
   // поэтому все подписи (кнопки, подсказка, лимит) шли на языке перевода карточек, а не интерфейса. Контентный `lang` остаётся только для перевода на плитке.
@@ -234,8 +236,8 @@ export default function CollectionGalleryView({
   }, [pressedCard, showDeleteHint]);
   const dismissHint = useCallback(() => {
     onSetShowDeleteHint(false);
-    AsyncStorage.setItem('flashcard_delete_hint_seen', '1').catch(noteSwallowedHandler('CollectionGalleryView:dismissHint'));
-  }, [onSetShowDeleteHint]);
+    markDeleteHintSeen(hintStudyTarget, 'CollectionGalleryView:dismissHint');
+  }, [hintStudyTarget, onSetShowDeleteHint]);
   const onZoomStep = useCallback((next: number) => setStep(next, undefined, 'ползунок'), [setStep]);
 
   return (

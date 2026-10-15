@@ -50,6 +50,7 @@ import {
 import type { FcDeckId, FcPresetMode } from './mode_prefs';
 import type { FlashcardContentLang } from './types';
 import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { ownedPackIdsVersion } from '../community_packs/owned_pack_ids_signal'; // зачем: #19 — версия состава моих наборов сбрасывает кэш списка по языку
 
 type IconName = keyof typeof Ionicons.glyphMap;
 
@@ -147,7 +148,20 @@ function splitLocalAuthorPacks(
 let _warmDeckOptions: { key: string; options: DeckSheetOption[] } | null = null;
 // зачем (п.83): списки наборов ЧУЖИХ языков (localOnly) — отдельная память по ключу «аккаунт+цель+язык+режим»: не трогают
 // снимок текущего языка и диск; повторный выбор языка на настройке тренировки — 0 мс. Живёт до конца процесса.
-const _localOnlyDeckOptions = new Map<string, DeckSheetOption[]>();
+// зачем (аудит кнопок Карточек #19, координатор 15.10): запись раньше жила до перезапуска — добавленный/купленный/созданный набор другого языка не появлялся. Теперь у записи срок жизни и версия состава моих наборов
+// (сигнал community_pack_added / «убрать из моих»): изменился состав или прошло LOCAL_ONLY_DECK_OPTIONS_TTL_MS — собираем заново.
+const LOCAL_ONLY_DECK_OPTIONS_TTL_MS = 60_000;
+const _localOnlyDeckOptions = new Map<string, { options: DeckSheetOption[]; builtAtMs: number; ownedVersion: number }>();
+function localOnlyDeckOptionsFresh(key: string): DeckSheetOption[] | null {
+  const hit = _localOnlyDeckOptions.get(key);
+  if (!hit) return null;
+  if (hit.ownedVersion !== ownedPackIdsVersion() || Date.now() - hit.builtAtMs > LOCAL_ONLY_DECK_OPTIONS_TTL_MS) {
+    console.log(`[FC-DECKS] localOnly cache drop key=${key} reason=${hit.ownedVersion !== ownedPackIdsVersion() ? 'owned_changed' : 'ttl'}`); // guard-ok: причина сброса
+    _localOnlyDeckOptions.delete(key);
+    return null;
+  }
+  return hit.options;
+}
 /**
  * Когда список наборов собирался последний раз. Нужен, чтобы прогрев из хаба не
  * поднимал семь источников заново на каждое открытие вкладки.
@@ -339,9 +353,10 @@ export async function loadFcDeckOptions(
    * и купленный набор обязан появиться при следующем заходе, а не «когда-нибудь».
    */
   const reuseKey = deckOptionsCacheKey(mode, lang, studyTarget);
-  if (localOnly && reuseKey && _localOnlyDeckOptions.has(reuseKey)) {
+  const localOnlyHit = localOnly && reuseKey ? localOnlyDeckOptionsFresh(reuseKey) : null;
+  if (localOnlyHit) {
     console.log(`[FC-DECKS] build:skip localOnly=yes — список языка уже собран, отдаём из памяти`);
-    return _localOnlyDeckOptions.get(reuseKey)!;
+    return localOnlyHit;
   }
   if (reuseKey && _warmDeckOptions?.key === reuseKey
     && Date.now() - _warmDeckOptionsBuiltAtMs < DECK_OPTIONS_REBUILD_MIN_GAP_MS) {
@@ -515,7 +530,7 @@ export async function loadFcDeckOptions(
   const key = deckOptionsCacheKey(mode, lang, studyTarget);
   if (localOnly) {
     console.log(`[FC-DECKS] build:done localOnly=yes наборов=${out.length} за ${Date.now() - startedAtMs}мс, снимок не трогаем, память=${key ? 'пишем' : 'НЕТ КЛЮЧА'}`);
-    if (key) _localOnlyDeckOptions.set(key, out);
+    if (key) _localOnlyDeckOptions.set(key, { options: out, builtAtMs: Date.now(), ownedVersion: ownedPackIdsVersion() });
     return out;
   }
   console.log(`[FC-DECKS] build:done наборов=${out.length} всего за ${Date.now() - startedAtMs}мс, снимок=${key ? 'пишем' : 'НЕТ КЛЮЧА (аккаунт не готов)'}`);
@@ -627,7 +642,7 @@ export function peekFcDeckOptionsLocal(
 ): DeckSheetOption[] | null {
   const key = deckOptionsCacheKey(mode, lang, studyTarget);
   if (!key) return null;
-  return _localOnlyDeckOptions.get(key) ?? (_warmDeckOptions?.key === key ? _warmDeckOptions.options : null);
+  return localOnlyDeckOptionsFresh(key) ?? (_warmDeckOptions?.key === key ? _warmDeckOptions.options : null);
 }
 
 export function __resetDeckOptionsWarmCacheForTests(): void {

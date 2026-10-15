@@ -1187,7 +1187,7 @@ export default function FlashcardsScreen() {
   const savedSurface = activeCat === 'saved' && !packDeeplink;
   // зачем (cards-v2 `savedLimit`, координатор 12.10): Free, упёршийся в 50 сохранённых, видит пилюлю «50/50» в шапке и «Безлимит с Plus» внизу
   // вместо секции «+N скрыто». Скрытые лимитом карточки по-прежнему скрыты (уже сохранённое не отбираем: открываются с Plus).
-  const savedLimitReached = savedSurface && !isPremium && (hiddenByLimitCount > 0 || savedCards.length >= FREE_SAVED_CARD_LIMIT);
+  const savedLimitReached = savedSurface && !isPremium && (hiddenByLimitCount > 0 || savedCardsForPackLanguage.length >= FREE_SAVED_CARD_LIMIT); // зачем (аудит кнопок Карточек #11, 15.10): лимит Free действует по языку набора, а «50/50» считал все языки
   // зачем (владелец 04.10: «карточки открываются горизонтальными разворачивающимися»): тап по плитке раскрывает карточку по центру (ExpandedCardV2),
   // а не открывает стопку. «Сохранено» читается из общего хранилища сохранённых по английскому слову.
   const openedCard = useMemo(() => (openedCardId ? listCards.find((card) => card.id === openedCardId) ?? null : null), [openedCardId, listCards]);
@@ -1533,7 +1533,7 @@ export default function FlashcardsScreen() {
             onExitSelection={exitSelectionMode}
             onSearch={() => setSearchOpen((open) => !open)}
             searchOpen={searchOpen || searchInput.length > 0}
-            limitLabel={savedLimitReached ? `${Math.min(savedCards.length, FREE_SAVED_CARD_LIMIT)}/${FREE_SAVED_CARD_LIMIT}` : null}
+            limitLabel={savedLimitReached ? `${Math.min(savedCardsForPackLanguage.length, FREE_SAVED_CARD_LIMIT)}/${FREE_SAVED_CARD_LIMIT}` : null}
             limitIcon="bookmark-outline"
             onCreate={openCreateEditor}
           />

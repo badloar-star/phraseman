@@ -5,8 +5,9 @@
  * FlatList + FlashcardListItem, swipe-удаление, delete-hint онбординг,
  * escort-скролл к деталям, free-limit секция и действия тренировки.
  */
+import { useStudyTarget } from '../../components/StudyTargetContext';
+import { markDeleteHintSeen, resetDeleteHintSeen } from './delete_hint_seen';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
@@ -45,7 +46,6 @@ import { CardItem, CategoryId, resolveFlashcardBackText, type FlashcardContentLa
 import { DebugLogger } from '../debug-logger';
 import { buildSourceLabel } from './source_labels';
 import { remainingCardsToMinimum } from './saved_card_selection';
-import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
@@ -183,6 +183,8 @@ export default function CollectionListView({
   onOpenVideoMoment = null,
   videoMomentLabel,
 }: Props) {
+  // зачем (аудит #10): ключ подсказки — по цели обучения, как читает useCollectionData
+  const { studyTarget: hintStudyTarget } = useStudyTarget();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
@@ -324,9 +326,9 @@ export default function CollectionListView({
     if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
     Animated.timing(deleteHintAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
       onSetShowDeleteHint(false);
-      AsyncStorage.setItem('flashcard_delete_hint_seen', '1').catch(noteSwallowedHandler('CollectionListView:useCallback.setItem'));
+      markDeleteHintSeen(hintStudyTarget, 'CollectionListView:dismissDeleteHint');
     });
-  }, [deleteHintAnim, onSetShowDeleteHint]);
+  }, [deleteHintAnim, hintStudyTarget, onSetShowDeleteHint]);
 
   useEffect(() => {
     if (!showDeleteHint) return;
@@ -634,7 +636,7 @@ export default function CollectionListView({
         {!selectionMode && IS_EXPO_GO && !showDeleteHint && (
           <TouchableOpacity
             onPress={() => {
-              AsyncStorage.removeItem('flashcard_delete_hint_seen');
+              resetDeleteHintSeen(hintStudyTarget);
               deleteHintAnim.setValue(0);
               onSetShowDeleteHint(true);
             }}

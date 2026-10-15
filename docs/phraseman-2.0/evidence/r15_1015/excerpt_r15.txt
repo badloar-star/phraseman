@@ -1,0 +1,41 @@
+10-15 16:23:02.164 I/ReactNativeJS(26730): [ONB-SHOW] effective=false show=false devRoute=false path=/ reason=initial_state
+10-15 16:23:07.426 I/ReactNativeJS(26730): [ONB-SHOW] effective=true show=true devRoute=false path=/ reason=boot onboarding_done=null qa=off
+10-15 16:24:27.603 I/ReactNativeJS(26730): [ONB-SHOW] effective=false show=false devRoute=false path=/home reason=onboarding_done
+10-15 16:24:58.085 I/ReactNativeJS(26730): [SIGNIN] ui:tap provider=google context=settings
+10-15 16:24:58.301 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:9b5b4ba6","localStable":"h:26bf465d","requireOwnership":false,"t":8799438}
+10-15 16:25:11.881 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":8813018}
+10-15 16:25:11.882 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:9b5b4ba6","preProviderStable":"h:26bf465d","t":8813020}
+10-15 16:25:12.689 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":8813826}
+10-15 16:25:13.713 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":103,"getAllKeysMs":824,"selected":2217,"filterMs":16,"multiGetMs":161,"bytes":4615,"top5":"achievements_v1=2504 customization_selection_operation_v1:<id>:1:customization_l","t":8814849}
+10-15 16:25:13.723 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":22,"t":8814861}
+10-15 16:25:13.728 I/ReactNativeJS(26730): [GUEST-CLEAN] 1/22 key=user_avatar kind=default len=1 shape=num+
+10-15 16:25:13.729 I/ReactNativeJS(26730): [GUEST-CLEAN] 2/22 key=user_frame kind=default len=5 shape=str5(not_json)
+10-15 16:25:13.730 I/ReactNativeJS(26730): [GUEST-CLEAN] 3/22 key=streak_count kind=default len=1 shape=num+
+10-15 16:25:13.731 I/ReactNativeJS(26730): [GUEST-CLEAN] 4/22 key=active_days_v1 kind=default len=34 shape={anchor:str10,bits:str1}
+10-15 16:25:13.731 I/ReactNativeJS(26730): [GUEST-CLEAN] 5/22 key=legacy_free_lesson_cap_v1 kind=default len=1 shape=num+
+10-15 16:25:13.732 I/ReactNativeJS(26730): [GUEST-CLEAN] 6/22 key=legacy_free_lesson_migration_v1 kind=service len=8 shape=str8(not_json)
+10-15 16:25:13.733 I/ReactNativeJS(26730): [GUEST-CLEAN] 7/22 key=achievement_foundation_progress_v2 kind=default len=126 shape={version:num+,maxEligibleShardBalance:num0,activeDates:arr1[str10],comeback:null,paidAccess:{plus:false,pro:false}}
+10-15 16:25:13.733 I/ReactNativeJS(26730): [GUEST-CLEAN] 8/22 key=phraseman_foreground_usage_ms_v1 kind=service len=6 shape=num+
+10-15 16:25:13.733 I/ReactNativeJS(26730): [GUEST-CLEAN] 9/22 key=phraseman_foreground_daily_ms_v1 kind=service len=21 shape={2026-10-15:num+}
+10-15 16:25:13.735 I/ReactNativeJS(26730): [GUEST-CLEAN] 10/22 key=lesson_progress_v2::fr::legacy_free_lesson_cap_v1 kind=default len=1 shape=num+
+10-15 16:25:13.736 I/ReactNativeJS(26730): [GUEST-CLEAN] 11/22 key=lesson_progress_v2::fr::legacy_free_lesson_migration_v1 kind=progress len=8 shape=str8(not_json)
+10-15 16:25:13.757 I/ReactNativeJS(26730): [GUEST-CLEAN] 12/22 key=achievements_v1 kind=default len=2504 shape=arr32[{id:str8,unlockedAt:null,notified:false,shardClaimed:true}]
+10-15 16:25:13.758 I/ReactNativeJS(26730): [GUEST-CLEAN] 13/22 key=cloud_last_sync_snapshot_v1 kind=progress len=173 shape={user_avatar:str1,user_avatar_frame:str5,user_avatar_aura:str0,streak_count:str1,<id>:str2,<id>:str2}
+10-15 16:25:13.762 I/ReactNativeJS(26730): [GUEST-CLEAN] 14/22 key=stable_auth_link_cache_v1 kind=service len=100 shape={key:str65,linkedAt:num+}
+10-15 16:25:13.763 I/ReactNativeJS(26730): [GUEST-CLEAN] 15/22 key=cloud_migration_v1 kind=service len=1 shape=num+
+10-15 16:25:13.763 I/ReactNativeJS(26730): [GUEST-CLEAN] 16/22 key=user_profile kind=default len=267 shape={name:str11,learningGoal:str5,minutesPerDay:num+,currentLevel:str2,targetLevel:str2,preferredNotificationTim:str5,onboardingCompleted:true,createdAt:str24,estimatedDaysToTarget:num+,estimatedTargetDate:str10}
+10-15 16:25:13.763 I/ReactNativeJS(26730): [GUEST-CLEAN] 17/22 key=energy_state kind=service len=120 shape={schemaVersion:num+,current:num+,lastSettledAt:num+,recoveryCreditMicrounits:num0,recoveryDivisionRemainde:num0}
+10-15 16:25:13.764 I/ReactNativeJS(26730): [GUEST-CLEAN] 18/22 key=client_shard_phone_state_outbox_v1:<id>:1 kind=default len=169 shape={schemaVersion:str34,ownerStableId:str36,lineage:num+,operationIds:arr0,acknowledgedOperationIds:arr0}
+10-15 16:25:13.765 I/ReactNativeJS(26730): [GUEST-CLEAN] 19/22 key=customization_selection_head_v1:<id>:1 kind=progress len=194 shape={schemaVersion:str31,ownerStableId:str36,lineage:num+,operationId:str23,revision:num+,auditFloorRevision:num+}
+10-15 16:25:13.765 I/ReactNativeJS(26730): [GUEST-CLEAN] 20/22 key=customization_selection_operation_v1:<id>:1:customization_le kind=progress len=432 shape={schemaVersion:str36,operationId:str23,ownerStableId:str36,lineage:num+,accountGeneration:num+,parentOperationId:null,revision:num+,source:str6,selection:{avatarValue:str1,frameId:str5,storedAuraSelection:null,level:num+},createdAtMs:num0,requestFingerprint:str64}
+10-15 16:25:13.767 I/ReactNativeJS(26730): [GUEST-CLEAN] 21/22 key=level_spin_star_projection_v1:<id> kind=default len=199 shape={schemaVersion:str36,ownerStableId:str36,operations:arr0,acknowledged:{},serverBalance:num0,serverEarnedTotal:num0,serverSeq:num0}
+10-15 16:25:13.774 I/ReactNativeJS(26730): [GUEST-CLEAN] 22/22 key=v2:required-session-local-commit-index:v1:v2:progress:v1:<id kind=service len=165 shape=str165(not_json)
+10-15 16:25:13.777 I/ReactNativeJS(26730): [GUEST-CLEAN] summary dirty=22 default=11 service=7 progress=4 decision=not_clean
+10-15 16:25:13.780 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":22,"progress":4,"t":8814914}
+10-15 16:25:13.783 W/ReactNativeJS(26730): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":22,"progress":4,"t":8814914}
+10-15 16:25:13.807 I/ReactNativeJS(26730): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":false,"stableId":"c55276bc"}'
+10-15 16:25:14.619 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":8815756}
+10-15 16:25:14.621 W/ReactNativeJS(26730): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:26bf465d","tookMs":16320,"t":8815757}
+10-15 16:25:14.622 W/ReactNativeJS(26730): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:26bf465d","tookMs":16320,"t":8815757}
+10-15 16:25:15.635 I/ReactNativeJS(26730): [AUTH-SWITCH-OFFER] resume_credential not_stored provider=google reason=caller_not_capturing
+10-15 16:25:15.643 I/ReactNativeJS(26730): [SIGNIN] ui:returned provider=google result=error in=17558ms

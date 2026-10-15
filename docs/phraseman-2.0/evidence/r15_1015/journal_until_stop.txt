@@ -1,0 +1,140 @@
+10-15 16:22:50.076 I/SVERKA  (26695): === ABA GC: pm clear, лог очищен 16:22:50 ===
+10-15 16:23:01.204 W/ReactNativeJS(26730): [JS-STALL] +903ms поток стоял 903ms (с +0ms)
+10-15 16:23:01.933 W/ReactNativeJS(26730): [JS-STALL] +1633ms поток стоял 708ms (с +925ms)
+10-15 16:23:02.591 W/ReactNativeJS(26730): [JS-STALL] +2290ms поток стоял 656ms (с +1634ms)
+10-15 16:23:03.415 W/ReactNativeJS(26730): [JS-STALL] +3109ms поток стоял 819ms (с +2290ms)
+10-15 16:23:03.752 W/ReactNativeJS(26730): [JS-STALL] +3452ms поток стоял 343ms (с +3109ms)
+10-15 16:23:05.276 I/ReactNativeJS(26730): [ACC-MUT] firestore_cache_clear check ms=2 marker=0 lock=0 reason=none source=startup_multiget
+10-15 16:23:06.116 I/ReactNativeJS(26730): [ACC-SWITCH-BACKUP] owners=0 roots=0 pages=0 pruned=0 prunedShelves=0 prunedPages=0 agedShelves=0 source=cold_start ms=1179
+10-15 16:23:06.674 W/ReactNativeJS(26730): [JS-STALL] +6371ms поток стоял 2598ms (с +3773ms)
+10-15 16:23:06.674 W/ReactNativeJS(26730): [JS-STALL] heartbeat +6371ms splash=hidden@+4372ms
+10-15 16:23:07.867 W/ReactNativeJS(26730): [JS-STALL] +7567ms поток стоял 1196ms (с +6371ms)
+10-15 16:23:08.342 W/ReactNativeJS(26730): [JS-STALL] +8042ms поток стоял 379ms (с +7663ms)
+10-15 16:23:09.460 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 1052ms
+10-15 16:23:09.514 W/ReactNativeJS(26730): [JS-STALL] +9206ms поток стоял 1030ms (с +8176ms)
+10-15 16:23:10.063 I/ReactNativeJS(26730): [WARM-FETCH] fn=authEnsureStableLink outcome=warm_ok code=200 ms=1657 source=onboarding
+10-15 16:23:10.069 I/ReactNativeJS(26730): [WARM-FETCH] fn=authStampAnonOwnership outcome=warm_ok code=200 ms=1625 source=onboarding
+10-15 16:23:10.074 I/ReactNativeJS(26730): [WARM-FETCH] fn=authMergeStableAccounts outcome=warm_ok code=200 ms=1631 source=onboarding
+10-15 16:23:11.667 W/ReactNativeJS(26730): [JS-STALL] +11368ms поток стоял 310ms (с +11058ms)
+10-15 16:23:11.681 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 320ms
+10-15 16:23:11.697 W/ReactNativeJS(26730): [JS-STALL] heartbeat +11397ms splash=hidden@+4372ms
+10-15 16:23:14.334 W/ReactNativeJS(26730): [JS-STALL] +14034ms поток стоял 1230ms (с +12804ms)
+10-15 16:23:14.336 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 1231ms
+10-15 16:23:15.024 W/ReactNativeJS(26730): [JS-STALL] +14725ms поток стоял 629ms (с +14096ms)
+10-15 16:23:15.025 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 630ms
+10-15 16:23:15.456 W/ReactNativeJS(26730): [JS-STALL] +15156ms поток стоял 404ms (с +14752ms)
+10-15 16:23:15.459 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 405ms
+10-15 16:23:15.919 W/ReactNativeJS(26730): [JS-STALL] +15619ms поток стоял 317ms (с +15302ms)
+10-15 16:23:15.919 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 318ms
+10-15 16:23:16.715 W/ReactNativeJS(26730): [JS-STALL] heartbeat +16415ms splash=hidden@+4372ms
+10-15 16:23:17.273 W/ReactNativeJS(26730): [JS-STALL] +16973ms поток стоял 307ms (с +16666ms)
+10-15 16:23:17.276 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 308ms
+10-15 16:23:20.899 W/ReactNativeJS(26730): [JS-STALL] +20599ms поток стоял 3615ms (с +16984ms)
+10-15 16:23:20.901 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 3616ms
+10-15 16:23:21.651 W/ReactNativeJS(26730): [JS-STALL] skipped_background ms=238 gap=739ms counted=501ms at=+21351ms
+10-15 16:23:21.653 W/ReactNativeJS(26730): [JS-STALL] +21351ms поток стоял 501ms (с +20850ms)
+10-15 16:23:21.675 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome skipped_background ms=242 gap=744ms counted=502ms
+10-15 16:23:21.677 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 502ms
+10-15 16:23:21.874 W/ReactNativeJS(26730): [JS-STALL] heartbeat +21574ms splash=hidden@+4372ms
+10-15 16:23:22.597 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 579ms
+10-15 16:23:22.599 W/ReactNativeJS(26730): [JS-STALL] +22298ms поток стоял 580ms (с +21718ms)
+10-15 16:23:22.994 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 270ms
+10-15 16:23:22.996 W/ReactNativeJS(26730): [JS-STALL] +22696ms поток стоял 271ms (с +22425ms)
+10-15 16:23:23.422 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 421ms
+10-15 16:23:23.425 W/ReactNativeJS(26730): [JS-STALL] +23125ms поток стоял 419ms (с +22706ms)
+10-15 16:23:25.103 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 1200ms
+10-15 16:23:25.108 W/ReactNativeJS(26730): [JS-STALL] +24807ms поток стоял 1203ms (с +23604ms)
+10-15 16:23:25.679 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 263ms
+10-15 16:23:25.681 W/ReactNativeJS(26730): [JS-STALL] +25380ms поток стоял 263ms (с +25117ms)
+10-15 16:23:26.978 W/ReactNativeJS(26730): [JS-STALL] heartbeat +26678ms splash=hidden@+4372ms
+10-15 16:23:28.222 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 1245ms
+10-15 16:23:28.224 W/ReactNativeJS(26730): [JS-STALL] +27924ms поток стоял 1246ms (с +26678ms)
+10-15 16:23:30.673 W/ReactNativeJS(26730): [JS-STALL] +30373ms поток стоял 1287ms (с +29086ms)
+10-15 16:23:30.676 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 1289ms
+10-15 16:23:30.903 I/SVERKA  (27120): === ABA ONB: Начать 16:23:31 ===
+10-15 16:23:31.159 W/ReactNativeJS(26730): [JS-STALL] +30859ms поток стоял 287ms (с +30572ms)
+10-15 16:23:31.159 W/ReactNativeJS(26730): [JS-STALL] onboarding step=welcome поток стоял 288ms
+10-15 16:23:31.925 W/ReactNativeJS(26730): [JS-STALL] +31626ms поток стоял 765ms (с +30861ms)
+10-15 16:23:31.926 W/ReactNativeJS(26730): [JS-STALL] onboarding step=privacy поток стоял 766ms
+10-15 16:23:32.073 W/ReactNativeJS(26730): [JS-STALL] heartbeat +31771ms splash=hidden@+4372ms
+10-15 16:23:32.350 W/ReactNativeJS(26730): [JS-STALL] +32050ms поток стоял 279ms (с +31771ms)
+10-15 16:23:32.350 W/ReactNativeJS(26730): [JS-STALL] onboarding step=privacy поток стоял 274ms
+10-15 16:23:32.679 W/ReactNativeJS(26730): [JS-STALL] +32380ms поток стоял 310ms (с +32070ms)
+10-15 16:23:32.682 W/ReactNativeJS(26730): [JS-STALL] onboarding step=privacy поток стоял 311ms
+10-15 16:23:35.430 I/SVERKA  (27138): === ABA ONB: Позже 16:23:35 ===
+10-15 16:23:35.966 W/ReactNativeJS(26730): [JS-STALL] +35655ms поток стоял 341ms (с +35314ms)
+10-15 16:23:35.970 W/ReactNativeJS(26730): [JS-STALL] onboarding step=niceToMeet поток стоял 356ms
+10-15 16:23:37.102 W/ReactNativeJS(26730): [JS-STALL] heartbeat +36803ms splash=hidden@+4372ms
+10-15 16:23:39.789 I/SVERKA  (27149): === ABA ONB: Продолжить 1/3 16:23:39 ===
+10-15 16:23:42.139 W/ReactNativeJS(26730): [JS-STALL] heartbeat +41839ms splash=hidden@+4372ms
+10-15 16:23:44.120 I/SVERKA  (27160): === ABA ONB: Продолжить 2/3 16:23:44 ===
+10-15 16:23:44.934 W/ReactNativeJS(26730): [JS-STALL] +44634ms поток стоял 256ms (с +44378ms)
+10-15 16:23:44.939 W/ReactNativeJS(26730): [JS-STALL] onboarding step=improve поток стоял 258ms
+10-15 16:23:47.172 W/ReactNativeJS(26730): [JS-STALL] heartbeat +46872ms splash=hidden@+4372ms
+10-15 16:23:48.361 I/SVERKA  (27171): === ABA ONB: Продолжить 3/3 16:23:48 ===
+10-15 16:23:52.217 W/ReactNativeJS(26730): [JS-STALL] heartbeat +51918ms splash=hidden@+4372ms
+10-15 16:23:52.849 I/SVERKA  (27187): === ABA ONB: анкета Друзья 16:23:53 ===
+10-15 16:23:54.064 I/SVERKA  (27196): === ABA ONB: Продолжить 16:23:54 ===
+10-15 16:23:57.280 W/ReactNativeJS(26730): [JS-STALL] heartbeat +56981ms splash=hidden@+4372ms
+10-15 16:23:58.466 I/SVERKA  (27218): === ABA ONB: Выбрать язык 16:23:58 ===
+10-15 16:24:00.394 W/ReactNativeJS(26730): [JS-STALL] watchdog stop +60094ms
+10-15 16:24:02.918 I/SVERKA  (27233): === ABA ONB: уровень 16:24:03 ===
+10-15 16:24:04.234 I/SVERKA  (27242): === ABA ONB: Продолжить 16:24:04 ===
+10-15 16:24:05.052 W/ReactNativeJS(26730): [JS-STALL] onboarding step=notifications поток стоял 254ms
+10-15 16:24:05.328 W/ReactNativeJS(26730): [JS-STALL] onboarding step=notifications поток стоял 269ms
+10-15 16:24:08.533 I/SVERKA  (27254): === ABA ONB: Не сейчас 16:24:08 ===
+10-15 16:24:09.232 W/ReactNativeJS(26730): [JS-STALL] onboarding step=name поток стоял 260ms
+10-15 16:24:13.209 I/SVERKA  (27269): === ABA ONB: Да 16:24:13 ===
+10-15 16:24:13.709 W/ReactNativeJS(26730): [JS-STALL] onboarding step=name поток стоял 409ms
+10-15 16:24:14.486 I/SVERKA  (27278): === ABA ONB: Продолжить 16:24:14 ===
+10-15 16:24:15.386 W/ReactNativeJS(26730): [JS-STALL] onboarding step=trialReminder поток стоял 686ms
+10-15 16:24:15.952 W/ReactNativeJS(26730): [JS-STALL] onboarding step=trialReminder поток стоял 293ms
+10-15 16:24:20.968 W/ReactNativeJS(26730): [JS-STALL] onboarding step=onboardingPaywall поток стоял 290ms
+10-15 16:24:27.110 W/ReactNativeJS(26730): [JS-STALL] onboarding step=onboardingPaywall поток стоял 1173ms
+10-15 16:24:29.780 I/ReactNativeJS(26730): [ACC-SWITCH-BACKUP] skip reason=already_ran source=cold_start
+10-15 16:24:32.490 I/SVERKA  (27346): === ABA S2-BEGIN 16:24:32 ===
+10-15 16:24:58.085 I/ReactNativeJS(26730): [SIGNIN] ui:tap provider=google context=settings
+10-15 16:25:11.019 I/SVERKA  (27643): === ABA S2-PICKED 16:25:11 ===
+10-15 16:25:13.728 I/ReactNativeJS(26730): [GUEST-CLEAN] 1/22 key=user_avatar kind=default len=1 shape=num+
+10-15 16:25:13.729 I/ReactNativeJS(26730): [GUEST-CLEAN] 2/22 key=user_frame kind=default len=5 shape=str5(not_json)
+10-15 16:25:13.730 I/ReactNativeJS(26730): [GUEST-CLEAN] 3/22 key=streak_count kind=default len=1 shape=num+
+10-15 16:25:13.731 I/ReactNativeJS(26730): [GUEST-CLEAN] 4/22 key=active_days_v1 kind=default len=34 shape={anchor:str10,bits:str1}
+10-15 16:25:13.731 I/ReactNativeJS(26730): [GUEST-CLEAN] 5/22 key=legacy_free_lesson_cap_v1 kind=default len=1 shape=num+
+10-15 16:25:13.732 I/ReactNativeJS(26730): [GUEST-CLEAN] 6/22 key=legacy_free_lesson_migration_v1 kind=service len=8 shape=str8(not_json)
+10-15 16:25:13.733 I/ReactNativeJS(26730): [GUEST-CLEAN] 7/22 key=achievement_foundation_progress_v2 kind=default len=126 shape={version:num+,maxEligibleShardBalance:num0,activeDates:arr1[str10],comeback:null,paidAccess:{plus:false,pro:false}}
+10-15 16:25:13.733 I/ReactNativeJS(26730): [GUEST-CLEAN] 8/22 key=phraseman_foreground_usage_ms_v1 kind=service len=6 shape=num+
+10-15 16:25:13.733 I/ReactNativeJS(26730): [GUEST-CLEAN] 9/22 key=phraseman_foreground_daily_ms_v1 kind=service len=21 shape={2026-10-15:num+}
+10-15 16:25:13.735 I/ReactNativeJS(26730): [GUEST-CLEAN] 10/22 key=lesson_progress_v2::fr::legacy_free_lesson_cap_v1 kind=default len=1 shape=num+
+10-15 16:25:13.736 I/ReactNativeJS(26730): [GUEST-CLEAN] 11/22 key=lesson_progress_v2::fr::legacy_free_lesson_migration_v1 kind=progress len=8 shape=str8(not_json)
+10-15 16:25:13.757 I/ReactNativeJS(26730): [GUEST-CLEAN] 12/22 key=achievements_v1 kind=default len=2504 shape=arr32[{id:str8,unlockedAt:null,notified:false,shardClaimed:true}]
+10-15 16:25:13.758 I/ReactNativeJS(26730): [GUEST-CLEAN] 13/22 key=cloud_last_sync_snapshot_v1 kind=progress len=173 shape={user_avatar:str1,user_avatar_frame:str5,user_avatar_aura:str0,streak_count:str1,<id>:str2,<id>:str2}
+10-15 16:25:13.762 I/ReactNativeJS(26730): [GUEST-CLEAN] 14/22 key=stable_auth_link_cache_v1 kind=service len=100 shape={key:str65,linkedAt:num+}
+10-15 16:25:13.763 I/ReactNativeJS(26730): [GUEST-CLEAN] 15/22 key=cloud_migration_v1 kind=service len=1 shape=num+
+10-15 16:25:13.763 I/ReactNativeJS(26730): [GUEST-CLEAN] 16/22 key=user_profile kind=default len=267 shape={name:str11,learningGoal:str5,minutesPerDay:num+,currentLevel:str2,targetLevel:str2,preferredNotificationTim:str5,onboardingCompleted:true,createdAt:str24,estimatedDaysToTarget:num+,estimatedTargetDate:str10}
+10-15 16:25:13.763 I/ReactNativeJS(26730): [GUEST-CLEAN] 17/22 key=energy_state kind=service len=120 shape={schemaVersion:num+,current:num+,lastSettledAt:num+,recoveryCreditMicrounits:num0,recoveryDivisionRemainde:num0}
+10-15 16:25:13.764 I/ReactNativeJS(26730): [GUEST-CLEAN] 18/22 key=client_shard_phone_state_outbox_v1:<id>:1 kind=default len=169 shape={schemaVersion:str34,ownerStableId:str36,lineage:num+,operationIds:arr0,acknowledgedOperationIds:arr0}
+10-15 16:25:13.765 I/ReactNativeJS(26730): [GUEST-CLEAN] 19/22 key=customization_selection_head_v1:<id>:1 kind=progress len=194 shape={schemaVersion:str31,ownerStableId:str36,lineage:num+,operationId:str23,revision:num+,auditFloorRevision:num+}
+10-15 16:25:13.765 I/ReactNativeJS(26730): [GUEST-CLEAN] 20/22 key=customization_selection_operation_v1:<id>:1:customization_le kind=progress len=432 shape={schemaVersion:str36,operationId:str23,ownerStableId:str36,lineage:num+,accountGeneration:num+,parentOperationId:null,revision:num+,source:str6,selection:{avatarValue:str1,frameId:str5,storedAuraSelection:null,level:num+},createdAtMs:num0,requestFingerprint:str64}
+10-15 16:25:13.767 I/ReactNativeJS(26730): [GUEST-CLEAN] 21/22 key=level_spin_star_projection_v1:<id> kind=default len=199 shape={schemaVersion:str36,ownerStableId:str36,operations:arr0,acknowledged:{},serverBalance:num0,serverEarnedTotal:num0,serverSeq:num0}
+10-15 16:25:13.774 I/ReactNativeJS(26730): [GUEST-CLEAN] 22/22 key=v2:required-session-local-commit-index:v1:v2:progress:v1:<id kind=service len=165 shape=str165(not_json)
+10-15 16:25:13.777 I/ReactNativeJS(26730): [GUEST-CLEAN] summary dirty=22 default=11 service=7 progress=4 decision=not_clean
+10-15 16:25:14.555 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=streak_milestone_pending reason=owner_changed to=none
+10-15 16:25:14.555 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_changed to=none
+10-15 16:25:14.556 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_changed to=none
+10-15 16:25:14.562 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=spire_report_client reason=owner_changed to=none
+10-15 16:25:14.567 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=spire_room_client reason=owner_changed to=none
+10-15 16:25:14.568 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_changed to=none
+10-15 16:25:14.570 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=home_continue_mark reason=owner_changed to=none
+10-15 16:25:14.572 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=home_continue_v2_progress reason=owner_changed to=none
+10-15 16:25:14.583 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_changed to=none
+10-15 16:25:14.584 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_changed to=none
+10-15 16:25:14.586 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_changed to=none
+10-15 16:25:14.601 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=voice_daily_allowance reason=owner_changed to=none
+10-15 16:25:14.603 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=spire_position_feed reason=owner_changed to=none
+10-15 16:25:14.606 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=spire_owner_epoch reason=owner_changed to=none
+10-15 16:25:14.607 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_changed to=none
+10-15 16:25:14.608 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_changed to=none
+10-15 16:25:14.610 I/ReactNativeJS(26730): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_changed to=none
+10-15 16:25:15.635 I/ReactNativeJS(26730): [AUTH-SWITCH-OFFER] resume_credential not_stored provider=google reason=caller_not_capturing
+10-15 16:25:15.643 I/ReactNativeJS(26730): [SIGNIN] ui:returned provider=google result=error in=17558ms
+10-15 16:25:17.752 I/SVERKA  (27667): === ABA S2-SIGNED 16:25:18 ===

@@ -378,14 +378,32 @@ function SessionContent() {
   // Энергия закрепляется только первым удачным ходом ученика, значит при нуле реплик она ещё не закреплена. Возврат идёт через тот же
   // расчёт попытки (ключ — energyOp): ровно один раз, повтор и гонка с первым ходом — пропуск; журнал энергии по тому же id не вернёт дважды.
   // Срабатывает и на итоге с нулём реплик, и при уходе с экрана без реплик.
+  // Ревизор 15.10 (🟡 к e7cd23a94): при уходе решает не число реплик, а «ответил ли собеседник хоть раз» — закрепление энергии
+  // ставит только удачный ход. Реплики без ответа (сбой сети, лимит) → возврат. Ход ещё в полёте → решение откладывается до его
+  // исхода (finally в runPendingTurn): удачный ход закрепит энергию, неудачный — вернёт; раньше поздний провал терял её.
+  const turnInFlightRef = useRef(false);
+  const leftScreenRef = useRef(false);
   const refundEmptyDialogue = (where: 'summary' | 'leave') => {
+    if (where === 'leave') leftScreenRef.current = true;
     const learnerTurnsNow = learnerTurnsRef.current;
-    if (learnerTurnsNow > 0) {
+    const energy = energySettlerRef.current?.peek() ?? null;
+    if (where === 'summary' && learnerTurnsNow > 0) {
       console.log('[DIALOG-ENERGY-REFUND] skip: learner spoke', JSON.stringify({ where, learnerTurns: learnerTurnsNow, scenarioId })); // guard-ok: ветвление называет причину
       return;
     }
-    console.warn('[DIALOG-ENERGY-REFUND] zero learner turns → refund', JSON.stringify({ where, scenarioId, energy: energySettlerRef.current?.peek() ?? null })); // guard-ok: причина возврата
-    settleEnergy('refund', where === 'summary' ? 'dialogue_zero_learner_turns' : 'dialogue_left_without_turns');
+    if (turnInFlightRef.current) {
+      console.log('[DIALOG-ENERGY-REFUND] defer: turn in flight → исход хода решит', JSON.stringify({ where, learnerTurns: learnerTurnsNow, scenarioId, energy })); // guard-ok: отложенное решение
+      return;
+    }
+    if (energy?.settledAs === 'acknowledge') {
+      console.log('[DIALOG-ENERGY-REFUND] skip: partner answered, energy kept', JSON.stringify({ where, learnerTurns: learnerTurnsNow, scenarioId })); // guard-ok: ветвление называет причину
+      return;
+    }
+    const reason = learnerTurnsNow === 0
+      ? (where === 'summary' ? 'dialogue_zero_learner_turns' : 'dialogue_left_without_turns')
+      : 'dialogue_left_no_answered_turn';
+    console.warn('[DIALOG-ENERGY-REFUND] nothing received → refund', JSON.stringify({ where, reason, learnerTurns: learnerTurnsNow, scenarioId, energy })); // guard-ok: причина возврата
+    settleEnergy('refund', reason);
   };
   const refundEmptyDialogueRef = useRef(refundEmptyDialogue);
   refundEmptyDialogueRef.current = refundEmptyDialogue;
@@ -476,6 +494,7 @@ function SessionContent() {
       return;
     }
     setSending(true);
+    turnInFlightRef.current = true;
     // зачем (E3, координатор 12.10): пилюля «N/30» уменьшается в момент отправки; повтор того же хода её не трогает.
     coaching.beginQuotaTurn(pending.turnId);
     try {
@@ -525,6 +544,12 @@ function SessionContent() {
     } finally {
       setSending(false);
       turnStartingRef.current = false;
+      turnInFlightRef.current = false;
+      // Человек ушёл, пока ход был в полёте: удачный ход уже закрепил энергию (расчёт пропустит), провал — возвращаем.
+      if (leftScreenRef.current) {
+        console.log('[DIALOG-ENERGY-REFUND] turn settled after leave', JSON.stringify({ scenarioId, energy: energySettlerRef.current?.peek() ?? null })); // guard-ok: исход отложенного решения
+        settleEnergy('refund', 'dialogue_left_turn_unanswered');
+      }
     }
   };
 

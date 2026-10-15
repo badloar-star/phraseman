@@ -31,14 +31,32 @@ describe('[DIALOG-ENERGY-REFUND] · пустой разговор возвращ
     expect(actions.refund).not.toHaveBeenCalled();
   });
 
-  it('сессия: возврат только при нуле реплик — на итоге и при уходе с экрана', () => {
+  it('сессия: итог — только при нуле реплик; уход — если собеседник ни разу не ответил; ход в полёте — решает его исход', () => {
     const at = src.indexOf('const refundEmptyDialogue = (where');
     expect(at).toBeGreaterThan(-1);
-    const fn = src.slice(at, at + 900);
-    expect(fn).toContain('if (learnerTurnsNow > 0) {');
-    expect(fn).toContain("'[DIALOG-ENERGY-REFUND] zero learner turns → refund'");
-    expect(fn).toContain("settleEnergy('refund', where === 'summary' ? 'dialogue_zero_learner_turns' : 'dialogue_left_without_turns');");
+    const fn = src.slice(at, at + 2400);
+    expect(fn).toContain("if (where === 'summary' && learnerTurnsNow > 0) {");
+    expect(fn).toContain("'[DIALOG-ENERGY-REFUND] defer: turn in flight → исход хода решит'");
+    expect(fn).toContain("if (energy?.settledAs === 'acknowledge') {");
+    expect(fn).toContain("'[DIALOG-ENERGY-REFUND] nothing received → refund'");
+    expect(fn).toContain("settleEnergy('refund', reason);");
     expect(src).toContain("useEffect(() => () => { refundEmptyDialogueRef.current('leave'); }, []);");
     expect(src).toContain("if (learnerTurns === 0) refundEmptyDialogue('summary');");
+    // Ревизор 15.10: первый ход провалился уже после ухода — finally хода возвращает энергию (удачный ход её уже закрепил).
+    const fin = src.slice(src.indexOf('turnInFlightRef.current = false;'), src.indexOf('turnInFlightRef.current = false;') + 500);
+    expect(fin).toContain('if (leftScreenRef.current) {');
+    expect(fin).toContain("settleEnergy('refund', 'dialogue_left_turn_unanswered');");
+  });
+
+  it('ход провалился после ухода — возврат один; ход удался после ухода — энергия закреплена, возврата нет', async () => {
+    const failed = { acknowledge: jest.fn(async () => true), refund: jest.fn(async () => undefined) };
+    const s1 = createDialogueEnergySettler('op_left_failed', { getActions: () => failed, onRefunded: jest.fn() });
+    await expect(s1.settle('refund', 'dialogue_left_turn_unanswered')).resolves.toBe('refunded');
+    expect(failed.refund).toHaveBeenCalledTimes(1);
+    const ok = { acknowledge: jest.fn(async () => true), refund: jest.fn(async () => undefined) };
+    const s2 = createDialogueEnergySettler('op_left_ok', { getActions: () => ok, onRefunded: jest.fn() });
+    await s2.settle('acknowledge', 'first_turn_ok');
+    await expect(s2.settle('refund', 'dialogue_left_turn_unanswered')).resolves.toBe('skipped_already_settled');
+    expect(ok.refund).not.toHaveBeenCalled();
   });
 });

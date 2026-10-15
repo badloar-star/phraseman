@@ -307,6 +307,13 @@ export async function markSeen(id: string): Promise<boolean> {
     info(`seen: skip id=${id} reason=no_owner`);
     return false;
   }
+  // зачем (аудит Optimistic UI 15.10): кольцо гаснет в том же кадре, если список уже в памяти, — не ждёт очередь записей и диск.
+  const cached = lists.get(owner);
+  const instant = cached ? markStorySeen(cached, id) : null;
+  if (instant?.changed) {
+    lists.set(owner, instant.list);
+    recompute('seen_instant');
+  }
   const run = writeChain.then(async () => {
     const list = await loadOwner(owner);
     if (!isCurrentAccountGeneration(token, owner)) {
@@ -314,14 +321,16 @@ export async function markSeen(id: string): Promise<boolean> {
       return false;
     }
     const result = markStorySeen(list, id);
-    if (!result.changed) {
+    // Мгновенная пометка уже в памяти → здесь «не изменилось», но на диск её всё равно надо положить.
+    if (!result.changed && !instant?.changed) {
       info(`seen: skip id=${id} reason=${list.some((event) => event.id === id) ? 'already_seen' : 'not_found'}`);
       return false;
     }
-    lists.set(owner, result.list);
+    const next = result.changed ? result.list : list;
+    lists.set(owner, next);
     recompute('seen');
-    const saved = await persist(owner, result.list, `seen ${id}`);
-    info(`seen: ok id=${id} saved=${String(saved)}`);
+    const saved = await persist(owner, next, `seen ${id}`);
+    info(`seen: ok id=${id} instant=${String(Boolean(instant?.changed))} saved=${String(saved)}`);
     return true;
   });
   writeChain = run.catch(() => undefined);

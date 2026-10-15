@@ -19,6 +19,8 @@ import { captureAccountGeneration, isCurrentAccountGeneration } from './account_
 const LOG = '[LEGACY-BONUS]';
 const DONE_PREFIX = 'legacy_bonus_done_v1:';
 const RETRY_AFTER_MS = 12 * 60 * 60_000;
+/** Потолок ожидания ответа для окна «Встречайте 2.0» (координатор 15.10): позже — окно не показываем. */
+const WELCOME_MAX_WAIT_MS = 8_000;
 
 export type LegacyBonusStatus = 'converted' | 'replayed' | 'nothing' | 'merged_orphan' | 'disabled';
 export type LegacyBonusResult = Readonly<{
@@ -93,7 +95,14 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
     const { getApp } = await import('@react-native-firebase/app');
     const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
     const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'legacyBonusConvertMine');
-    const response = await fn({ ownerStableId: owner });
+    // зачем (координатор 15.10, аудит Optimistic UI): ответ позже потолка — окно не всплывает посреди урока; начисление и кошелёк
+    // всё равно доливаем (сервер идемпотентен), а без ответа вовсе — повтор при следующем запуске.
+    let timedOut = false;
+    const timer = setTimeout(() => {
+      timedOut = true;
+      console.warn(`${LOG} timeout ms=${WELCOME_MAX_WAIT_MS} source=${source} — окно не покажем, ответ дождёмся фоном`);
+    }, WELCOME_MAX_WAIT_MS);
+    const response = await fn({ ownerStableId: owner }).finally(() => clearTimeout(timer));
     const result = parseResponse(response?.data);
     if (!result) {
       console.warn(`${LOG} bad_response source=${source} ms=${Date.now() - startedAt}`);
@@ -115,6 +124,10 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
       return;
     }
     if (showZeroWelcome || result.coins.total <= 0) {
+      if (timedOut) {
+        console.log(`${LOG} welcome skip reason=timeout ms=${Date.now() - startedAt} status=${result.status}`);
+        return;
+      }
       welcome = { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
       console.log(`${LOG} welcome show=zero upgraded=${result.upgraded}`);
       emit();
@@ -131,6 +144,10 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
       console.log(`${LOG} wallet merged balance=${visible.balance} seq=${result.starsSeq}`);
     } catch (error: unknown) {
       console.warn(`${LOG} wallet_merge_failed reason=${error instanceof Error ? error.message : String(error)} — баланс догонит следующий снимок`);
+    }
+    if (timedOut) {
+      console.log(`${LOG} welcome skip reason=timeout ms=${Date.now() - startedAt} total=${result.coins.total} (монеты начислены, окно не всплывает поздно)`);
+      return;
     }
     welcome = { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
     emit();

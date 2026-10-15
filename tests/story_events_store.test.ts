@@ -70,6 +70,14 @@ describe('story_events_store', () => {
     expect(JSON.parse(mockStore['story_events_v1:stable-a']!).events).toHaveLength(4);
   });
 
+  it('просмотр гасит кольцо в том же кадре (до записи на диск), а диск догоняет (аудит Optimistic UI 15.10)', async () => {
+    await recordStoryEvent('achievement', { achievementId: 'a2' });
+    const pending = markSeen('achievement:a2');
+    expect(peekStoryEventsSnapshot().unseenCount).toBe(0);
+    await expect(pending).resolves.toBe(true);
+    expect(JSON.parse(mockStore['story_events_v1:stable-a']!).events[0].seen).toBe(true);
+  });
+
   it('marks a story seen: the ring goes out and stays out after reload', async () => {
     await recordStoryEvent('achievement', { achievementId: 'a1' });
     await expect(markSeen('achievement:a1')).resolves.toBe(true);

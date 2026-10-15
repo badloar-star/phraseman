@@ -1,164 +1,138 @@
-# Английский · Урок 1 · Занятие 17 — «Знакомство с коллегами»
+# Английский · Урок 1 · Занятие 17 — Гость у вашей двери
 
-**Ситуация.** В первое утро на новой работе руководитель знакомит вас с Максом и Анной. Вы говорите, какие они.
+**Ситуация.** Вы встречаете друга в гостевом доме после сильного дождя. Он сомневается, туда ли пришёл, и вы объясняете, что ему рады и он в безопасности.
 
-**Что вы освоите:** как сказать о мужчине `He is` и о женщине `She is`
-**Новые слова:** nice, new, tall, friendly
-**Возвращаются:** kind, quiet, tired, new, tall
+**Что вы освоите:** сказать о собеседнике `You are`, о нас `We are`, о других людях `They are`
+**Новые слова:** welcome, safe, right
 
 ---
 
 ## Интро 1
 
-### Слово из трёх букв, которое не выкинуть
+### Гостю рады
 
-`He` — «он», `she` — «она». Между человеком и словом о нём встаёт `is`.
+`welcome` — «желанный»: вы рады, что человек пришёл. Скажите другу `You are welcome` — «Тебе здесь рады». `you` значит «ты» или «вы»; после него нужно `are`. Даже если гость один: звать второго ради `are` не нужно.
 
-По-русски «он высокий» обходится двумя словами, по-английски нужно три: `He is tall`.
+**Друг ещё у двери и сомневается, можно ли войти. Скажите ему, что вы рады его приходу.**
 
-Выбросить `is` тянет всех. Но `He tall` звучит как фраза, которую оборвали на полуслове.
-
-**Начальник кивает на самого высокого парня. Скажите про него.**
-
-- ✅ **He is tall.**
-- ❌ He tall. — *`is` пропало. По-русски связка не нужна, по-английски без `is` фраза не стоит.*
-- ❌ He am tall. — *`am` бывает только рядом с `I`. Про него — всегда `is`.*
+- ✅ **You are welcome.**
+- ❌ You welcome. — *Между `You` и `welcome` нужно `are`: `You are welcome`.*
+- ❌ You am welcome. — *`am` подходит к `I`. Здесь вы обращаетесь к другу: `You are`.*
 
 ---
 
 ## Интро 2
 
-### `nice` и `friendly` — не одно и то же
+### Мы в безопасности
 
-`nice` — «хороший». Человек нормальный, день вам не портит.
+`safe` — «в безопасности». Дождь закончился, вы оба уже в доме: `We are safe` — «Мы в безопасности». `we` значит «мы». После него тоже стоит `are`. Когда успокаиваете только друга, скажите `You are safe` — «Ты в безопасности».
 
-`friendly` — «дружелюбный»: подходит первым, зовёт на обед.
+**Вы с другом уже в доме, опасности нет. Скажите за вас обоих: «Мы в безопасности».**
 
-Разница в том, какой человек сам по себе и как он поворачивается к людям. Молчун в углу вполне может быть `nice` — просто вы узнаете об этом через полгода.
-
-**Начальник показывает на женщину, которая уже дважды подошла к вам поболтать. Скажите про неё.**
-
-- ✅ **She is friendly.**
-- ❌ She is nice. — *`nice` — «приятная» вообще. Но тут важно, что она подходит сама, а это `friendly`.*
-- ❌ He is friendly. — *`he` — это «он». Про женщину — `she`.*
+- ✅ **We are safe.**
+- ❌ We is safe. — *После `We` нужна форма `are`, а не `is`.*
+- ❌ I am safe. — *Это «Я в безопасности». Чтобы сказать за вас обоих, начните с `We are`.*
 
 ---
 
 ## Интро 3
 
-### `new` — и про куртку, и про человека
+### Они правы
 
-`new` — «новый». Про куртку, про телефон — и про людей тоже.
+`right` здесь значит «прав». Двое гостей назвали верный адрес: `They are right` — «Они правы». `they` — «они», после него ставим `are`. Само `right` остаётся таким же. А одному другу можно сказать `You are right` — «Ты прав».
 
-Только `She is new` не значит, что её вчера достали из коробки. На работе это «недавно здесь»: вторая неделя, до сих пор ищет туалет.
+**Двое гостей верно назвали адрес дома. Скажите другу про них: «Они правы».**
 
-`kind` — «добрый», и это уже про поступки: помогает, когда его не просили.
-
-**Начальник представляет женщину, которая вышла на работу в прошлый понедельник. Скажите про неё.**
-
-- ✅ **She is new.**
-- ❌ She new. — *После `she` нужно `is`: `She is new`.*
-- ❌ She is kind. — *Это «добрая» — про поступки. «Недавно пришла» — `new`.*
+- ✅ **They are right.**
+- ❌ They is right. — *С `They` нужно `are`: речь о них.*
+- ❌ They are rights. — *В описании людей слово `right` не получает `-s`: `They are right`.*
 
 ---
 
 ## Практика (17 заданий)
 
-**1 · Карточка слова — tall**
-<!-- interaction_id: en:lesson-01:session-17:i01; family: listen_choose -->
-> **tall** — «высокий». Про рост человека: приходится нагибаться в дверях.
+**1 · Соберите фразу — скажите другу у двери: «Тебе здесь рады»**
+<!-- interaction_id: en:lesson-01:session-17:i01; family: phrase_builder -->
+Плитки: `welcome` `are` `You` `am` → **You are welcome.**
+*(плитка `am` лишняя: здесь нужно `are` — `You are welcome.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите фразу хозяина**
 <!-- interaction_id: en:lesson-01:session-17:i02; family: listen_choose -->
-🔊 *tall* → **tall** · tell · ball
-- tell — *Другая гласная: `tall` — «тол», `tell` — «тэл».*
-- ball — *Начинается с «б». `tall` — с «т».*
+🔊 *You are safe.* → **You are safe.** · We are safe. · You are right.
+- We are safe. — *В записи первое слово — `You`, а в этом варианте — `We`.*
+- You are right. — *В записи последнее слово — `safe`, а в этом варианте — `right`.*
 
-**3 · Карточка слова — nice**
-<!-- interaction_id: en:lesson-01:session-17:i03; family: listen_choose -->
-> **nice** — «приятный». Общая оценка человека. Молчаливый человек тоже может быть `nice`.
+**3 · Вставьте слово — двое гостей правильно назвали адрес: «Они правы»**
+<!-- interaction_id: en:lesson-01:session-17:i03; family: context_gap_grammar -->
+They ___ right. → **are** · is · am
+- is — *После `They` нужно `are`. `is` подходит к `He`, `She` или `It`.*
+- am — *`am` ставим с `I`. Здесь говорится о них: `They are`.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-17:i04; family: listen_choose -->
-🔊 *nice* → **nice** · night · mice
-- night — *В конце «т». `nice` заканчивается на «с».*
-- mice — *Начинается с «м». Слушайте первый звук: у `nice` он «н».*
+**4 · Соедините слова и значения**
+<!-- interaction_id: en:lesson-01:session-17:i04; family: speed_match -->
+welcome — желанный · safe — в безопасности · right — прав · ready — готов
 
-**5 · Соберите фразу — руководитель показывает на Макса, самого высокого в комнате**
-<!-- interaction_id: en:lesson-01:session-17:i05; family: phrase_builder -->
-Плитки: `is` `He` `tall` → **He is tall.**
+**5 · Послушайте и соберите услышанное**
+<!-- interaction_id: en:lesson-01:session-17:i05; family: listen_build_dictation -->
+🔊 *We are safe.* Плитки: `safe` `are` `We` `You` → **We are safe.**
+*(плитка `You` лишняя: здесь нужно `We` — `We are safe.`)*
 
-**6 · Вставьте слово — Лина говорит: «Анна очень приятная». Скажите об Анне по-английски**
-<!-- interaction_id: en:lesson-01:session-17:i06; family: context_gap_grammar -->
-She ___ nice. → **is** · am · are
-- am — *`am` живёт только рядом с `I`. Про неё — `is`.*
-- are — *`are` — для «вы». Про неё одну — `is`.*
+**6 · Соберите фразу — остальные гости тоже укрылись в доме: «Они в безопасности»**
+<!-- interaction_id: en:lesson-01:session-17:i06; family: phrase_builder -->
+Плитки: `safe` `are` `They` `is` → **They are safe.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are safe.`)*
 
-**7 · Карточка слова — friendly**
-<!-- interaction_id: en:lesson-01:session-17:i07; family: listen_choose -->
-> **friendly** — «дружелюбный». Подходит первым и сам начинает разговор.
+**7 · Скажите вслух — друг верно прочитал номер дома: «Ты прав»**
+<!-- interaction_id: en:lesson-01:session-17:i07; family: scripted_repeat_compare -->
+🎙 **You are right.**
 
-**8 · Различите звуки — new или no**
-<!-- interaction_id: en:lesson-01:session-17:i08; family: sound_contrast -->
-🔊 Два слова подряд.
-*new · no* → **new**
-- no — *`no` — «нет». Здесь прозвучало `new` — «новый».*
+**8 · Вставьте слово — высокий друг помог достать полотенце. Скажите: «Ты высокий»**
+<!-- interaction_id: en:lesson-01:session-17:i08; family: context_gap_grammar -->
+You ___ tall. → **are** · am · is
+- am — *С `You` используем `are`; `am` нужно, когда говорим `I am`.*
+- is — *`is` подходит к `He`, а вы говорите самому другу: `You are`.*
 
-**9 · Послушайте и соберите — Анна первой позвала вас на обед; скажите, что она дружелюбная**
-<!-- interaction_id: en:lesson-01:session-17:i09; family: listen_build_dictation -->
-🔊 *She is friendly.* Плитки: `friendly` `She` `is` `He` → **She is friendly.**
-*(плитка `He` лишняя: `He` не подходит к Анне. Нужна фраза `She is friendly.`)*
+**9 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-17:i09; family: listen_choose -->
+🔊 *They are welcome.* → **They are welcome.** · You are welcome. · They are ready.
+- You are welcome. — *В записи первое слово — `They`, а в этом варианте — `You`.*
+- They are ready. — *В записи последнее слово — `welcome`, а в этом варианте — `ready`.*
 
+**10 · Соедините слова с их значениями**
+<!-- interaction_id: en:lesson-01:session-17:i10; family: speed_match -->
+tall — высокий · short — невысокий · young — молодой · happy — счастливый
 
-**10 · Вставьте слово — Лина говорит: «Макс — приятный человек». Передайте её характеристику по-английски**
-<!-- interaction_id: en:lesson-01:session-17:i10; family: context_gap_grammar -->
-He is ___ . → **nice** · tall · new
-- tall — *`tall` — «высокий»: это про рост, а здесь нужна характеристика `nice` — «приятный».*
-- new — *«Недавно пришёл» — не про характер.*
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-17:i11; family: listen_build_dictation -->
+🔊 *You are ready.* Плитки: `ready` `are` `You` `We` → **You are ready.**
+*(плитка `We` лишняя: здесь нужно `You` — `You are ready.`)*
 
-**11 · Карточка слова — tired**
-<!-- interaction_id: en:lesson-01:session-17:i11; family: listen_choose -->
-> **tired** — «усталый». Уже с утра выглядит так, будто рабочий день кончился.
-
-**12 · Соберите фразу — Макс у окна зевает третий раз подряд**
+**12 · Соберите фразу — хозяин рад всей вашей компании. Скажите другу: «Нам здесь рады»**
 <!-- interaction_id: en:lesson-01:session-17:i12; family: phrase_builder -->
-Плитки: `He` `is` `tired` → **He is tired.**
+Плитки: `welcome` `are` `We` `am` → **We are welcome.**
+*(плитка `am` лишняя: здесь нужно `are` — `We are welcome.`)*
 
-**13 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-17:i13; family: speed_match -->
-tall — высокий · nice — приятный · new — новый · friendly — дружелюбный
+**13 · Скажите вслух — вы с другом предположили, что это нужный дом, и хозяин подтвердил адрес: «Мы правы»**
+<!-- interaction_id: en:lesson-01:session-17:i13; family: scripted_repeat_compare -->
+🎙 **We are right.**
 
-**14 · Карточка слова — quiet**
-<!-- interaction_id: en:lesson-01:session-17:i14; family: listen_choose -->
-> **quiet** — «тихий». Человек, который за весь день не сказал ни слова.
+**14 · Вставьте слово — друг спрашивает, нет ли опасности. Успокойте его: «Ты в безопасности»**
+<!-- interaction_id: en:lesson-01:session-17:i14; family: context_gap_grammar -->
+You are ___ . → **safe** · young · short
+- young — *`young` — «молодой». Сейчас речь об отсутствии опасности: `safe`.*
+- short — *`short` здесь описывает рост. Отсутствие опасности — `safe`.*
 
-**15 · Соберите фразу — Макс весь день молчит за своим столом**
-<!-- interaction_id: en:lesson-01:session-17:i15; family: phrase_builder -->
-Плитки: `quiet` `is` `He` `tall` → **He is quiet.**
-*(плитка `tall` лишняя: это «высокий», а Макс здесь тихий)*
+**15 · Послушайте и выберите фразу о том, как открыть замок**
+<!-- interaction_id: en:lesson-01:session-17:i15; family: listen_choose -->
+🔊 *It is easy.* → **It is easy.** · It is difficult. · It is important.
+- It is difficult. — *В записи последнее слово — `easy`, а в этом варианте — `difficult`.*
+- It is important. — *В записи последнее слово — `easy`, а в этом варианте — `important`.*
 
-**16 · Вставьте слово — Анна помогла найти кабинет и принесла кофе**
-<!-- interaction_id: en:lesson-01:session-17:i16; family: context_gap_grammar -->
-She is ___ . → **kind** · tired · tall
-- tired — *Это «устала», а она наоборот на ногах и помогает.*
-- tall — *Про рост. Помогла — это `kind`.*
+**16 · Соедините слова и значения**
+<!-- interaction_id: en:lesson-01:session-17:i16; family: speed_match -->
+easy — лёгкий · difficult — трудный · important — важный · here — здесь
 
-**17 · Скажите вслух — Макс у окна зевает третий раз подряд**
-<!-- interaction_id: en:lesson-01:session-17:i17; family: scripted_repeat_compare -->
-🎙 **He is tired.**
+**17 · Скажите вслух — на встрече соседей новичок спрашивает, можно ли присоединиться. Скажите ему, что вы рады его приходу**
+<!-- interaction_id: en:lesson-01:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **You are welcome.**
 
----
-
-## Для сборщика
-
-new_words:
-nice — приятный — «приятный». Общая оценка человека. Молчаливый человек тоже может быть `nice`.
-new — новый — «новый». Про человека — «недавно здесь, работает вторую неделю».
-tall — высокий — «высокий». Про рост человека: приходится нагибаться в дверях.
-friendly — дружелюбный — «дружелюбный». Подходит первым и сам начинает разговор.
-tired — усталый — «усталый». Уже с утра выглядит так, будто рабочий день кончился.
-quiet — тихий — «тихий». Человек, который за весь день не сказал ни слова.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=sound_contrast, 9=listen_build_dictation, 10=context_gap_grammar, 11=word_card, 12=phrase_builder, 13=speed_match, 14=word_card, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
-
----

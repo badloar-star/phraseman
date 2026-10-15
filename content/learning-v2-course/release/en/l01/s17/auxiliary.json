@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-17:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-17:intro1:r2": {
-          "ru": "`is` пропало. По-русски связка не нужна, по-английски без `is` фраза не стоит.",
-          "uk": "`is` зникло. Українською зв'язка не потрібна, англійською без `is` фраза не стоїть."
+          "ru": "Между `You` и `welcome` нужно `are`: `You are welcome`.",
+          "uk": "Між `You` та `welcome` потрібно `are`: `You are welcome`."
         },
         "en:lesson-01:session-17:intro1:r3": {
-          "ru": "`am` бывает только рядом с `I`. Про него — всегда `is`.",
-          "uk": "`am` буває тільки поруч із `I`. Про нього — завжди `is`."
+          "ru": "`am` подходит к `I`. Здесь вы обращаетесь к другу: `You are`.",
+          "uk": "`am` поєднується з `I`. Тут ви звертаєтеся до друга: `You are`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-17:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-17:intro2:r2": {
-          "ru": "`nice` — «приятная» вообще. Но тут важно, что она подходит сама, а это `friendly`.",
-          "uk": "`nice` — «приємна» взагалі. Але тут важливо, що вона підходить сама, а це `friendly`."
+          "ru": "После `We` нужна форма `are`, а не `is`.",
+          "uk": "Після `We` потрібне `are`, а не `is`."
         },
         "en:lesson-01:session-17:intro2:r3": {
-          "ru": "`he` — это «он». Про женщину — `she`.",
-          "uk": "`he` — це «він». Про жінку — `she`."
+          "ru": "Это «Я в безопасности». Чтобы сказать за вас обоих, начните с `We are`.",
+          "uk": "Це «Я в безпеці». Щоб сказати за вас обох, почніть із `We are`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-17:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-17:intro3:r2": {
-          "ru": "После `she` нужно `is`: `She is new`.",
-          "uk": "Після `she` потрібне `is`: `She is new`."
+          "ru": "С `They` нужно `are`: речь о них.",
+          "uk": "Із `They` потрібно `are`: йдеться про них."
         },
         "en:lesson-01:session-17:intro3:r3": {
-          "ru": "Это «добрая» — про поступки. «Недавно пришла» — `new`.",
-          "uk": "Це «добра» — про вчинки. «Недавно прийшла» — `new`."
+          "ru": "В описании людей слово `right` не получает `-s`: `They are right`.",
+          "uk": "Коли описуємо людей, слово `right` не отримує `-s`: `They are right`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "aabc858e37d6823d1344ded1a993cf5b71f02bd06a961204f9eb7e1cdae450d0"
+  "auxiliaryFingerprint": "8f3576fb32b82b62f405511b12667e42257fb502bc01fadaa5c499d1dd00f99c"
 }

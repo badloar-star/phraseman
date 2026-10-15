@@ -451,15 +451,16 @@ function tierBadgeText(
   if (tier === 'none') return '';
   const displayLang: Lang = spanishUiActive ? 'es' : lang;
   const set = triLang(displayLang, {
-    ru: { up: 'НОВЫЙ РАНГ', down: 'РАНГ ПОНИЖЕН' },
-    uk: { up: 'НОВИЙ РАНГ', down: 'РАНГ ЗНИЖЕНО' },
-    en: { up: 'NEW RANK', down: 'RANK DOWN' },
-    es: { up: 'NUEVO RANGO', down: 'RANGO BAJADO' },
-    'pt-BR': { up: 'NOVO RANK', down: 'RANK REDUZIDO' },
-    vi: { up: 'HẠNG MỚI', down: 'GIẢM HẠNG' },
-    id: { up: 'RANK BARU', down: 'RANK TURUN' },
-    tr: { up: 'YENİ RÜTBE', down: 'RÜTBE DÜŞTÜ' },
-    pl: { up: 'NOWA RANGA', down: 'RANGA OBNIŻONA' },
+    // зачем (координатор 15.10): кикер тоста МЕДАЛИ урока говорил про «ранг» и путался с рангом за монеты.
+    ru: { up: 'НОВАЯ МЕДАЛЬ', down: 'МЕДАЛЬ ПОТЕРЯНА' },
+    uk: { up: 'НОВА МЕДАЛЬ', down: 'МЕДАЛЬ ВТРАЧЕНО' },
+    en: { up: 'NEW MEDAL', down: 'MEDAL LOST' },
+    es: { up: 'NUEVA MEDALLA', down: 'MEDALLA PERDIDA' },
+    'pt-BR': { up: 'NOVA MEDALHA', down: 'MEDALHA PERDIDA' },
+    vi: { up: 'HUY CHƯƠNG MỚI', down: 'MẤT HUY CHƯƠNG' },
+    id: { up: 'MEDALI BARU', down: 'MEDALI HILANG' },
+    tr: { up: 'YENİ MADALYA', down: 'MADALYA GİTTİ' },
+    pl: { up: 'NOWY MEDAL', down: 'MEDAL UTRACONY' },
   });
   return promoted ? set.up : set.down;
 }

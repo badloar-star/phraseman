@@ -21,12 +21,14 @@ describe('MedalToast planned locale runtime copy', () => {
     expect(source).toContain('Złoty medal');
   });
 
-  it('has explicit rank badge labels for planned locales', () => {
-    expect(source).toContain('NOVO RANK');
-    expect(source).toContain('HẠNG MỚI');
-    expect(source).toContain('RANK BARU');
-    expect(source).toContain('YENİ RÜTBE');
-    expect(source).toContain('NOWA RANGA');
+  // зачем (координатор 15.10): кикер тоста МЕДАЛИ писал «НОВЫЙ РАНГ» и путался с рангом за монеты — теперь «НОВАЯ МЕДАЛЬ».
+  it('has explicit medal badge labels for planned locales (not «rank»)', () => {
+    expect(source).toContain('NOVA MEDALHA');
+    expect(source).toContain('HUY CHƯƠNG MỚI');
+    expect(source).toContain('MEDALI BARU');
+    expect(source).toContain('YENİ MADALYA');
+    expect(source).toContain('NOWY MEDAL');
+    expect(source).not.toMatch(/НОВЫЙ РАНГ|NEW RANK|NOVO RANK|RANK BARU|YENİ RÜTBE|NOWA RANGA/);
   });
 
   it('owns a real swipe gesture and exposes an immediate dismiss callback', () => {

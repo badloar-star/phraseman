@@ -1,158 +1,138 @@
-# Англійська · Урок 2 · Заняття 36 — «Хто чи де? Слухаємо запитання»
+# Англійська · Урок 2 · Заняття 36 — Просто посидимо у друзів
 
-**Сцена заняття.** Вечірка в сусідів у розпалі. У кімнаті грає музика, гості розмовляють одночасно. Ви з другом намагаєтеся розчути запитання й зрозуміти, хто з гостей господар дому.
+**Ситуація.** Після робочого тижня друзі кличуть вас додому на піцу. Анна уточнює, як одягнутися, а сонний Олег просить зустрітися трохи раніше.
 
-**Як сказати:** повторення `Who is…?` на слух і вголос; розрізнення з `Where is…?`
-**Нові слова:** —
-**Повертаються:** host, guest, noisy, sure, here
+**Що ви опануєте:** сказати про неформальну обстановку й домовитися про час
+**Нові слова:** informal
 
 ---
 
 ## Інтро 1
 
-### Почути, про що запитують
+### Без церемоній
 
-`Who is he?` — «Хто він?», а `Where is he?` — «Де він?» Прислухайтеся до початку: далі в обох запитаннях те саме `is he`. З `Who` треба пояснити, хто ця людина. З `Where` — де вона перебуває. Закінчення легко впізнати, але для правильної відповіді важливіше не пропустити перше слово.
+`informal` — «неформальний, невимушений». Зустріч удома з піцою та звичайним одягом: `It is informal`. Це не означає, що можна бути неввічливим. Просто урочистої промови перед першим шматком піци не потрібно.
 
-**У галасливій кімнаті ви бачите незнайомого чоловіка біля колонки. Запитайте друга, хто він.**
+**Друзі кличуть на звичайні домашні посиденьки без церемоній. Скажіть повною фразою, що зустріч неформальна.**
 
-- ✅ **Who is he?**
-- ❌ Where is he? — *Це «Де він?». Чоловіка ви бачите; щоб дізнатися, хто він, почніть із `Who`.*
-- ❌ Is he here? — *Це «Він тут?». Вам треба дізнатися, хто ця людина, а не перевірити, чи вона тут: `Who is he?`*
+- ✅ **It is informal.**
+- ❌ It informal. — *Між `It` і `informal` потрібно `is`.*
+- ❌ It is formal. — *Це офіційний формат, а за умовою звичайна домашня зустріч.*
 
 ---
 
 ## Інтро 2
 
-### Дослухати до кінця
+### Краще запитати
 
-`Who is she?` — «Хто вона?» Останнє слово тут `she` — «вона». Порівняйте: `Who is he?` — «Хто він?» Дослухайте запитання до кінця. Інакше можна чудово розповісти про чоловіка у відповідь на «Хто вона?» — і дарма старатися. Коли запитуєте самі, ставте `is` перед `she` або `he`.
+`Is it informal?` — «Це неформальна зустріч?» Якщо так, дайте відповідь `Yes, it is`. Слово `informal` описує формат, але не перелічує всього одягу, який можна вдягнути. Якщо сумніваєтеся, чи підходить ваше вбрання, уточніть у господарів.
 
-**Друг указує на жінку біля колонки. Запитайте, хто вона.**
+**Анна запитує: `Is it informal?` Ви знаєте, що це невимушені посиденьки. Дайте коротку відповідь «так».**
 
-- ✅ **Who is she?**
-- ❌ Who is he? — *З `he` вийде «Хто він?». Тут запитання про жінку, тому потрібне `she`.*
-- ❌ Who she is? — *В окремому запитанні `is` стоїть перед `she`: `Who is she?`*
+- ✅ **Yes, it is.**
+- ❌ No, it is not. — *Так ви заперечуєте неформальний формат. За умовою він неформальний.*
+- ❌ Yes, it are. — *З `it` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### З’ясувати, хто господар
+### Сонний, але ще не спить
 
-`Who is the host?` — «Хто господар вечора?» `host` — той, хто приймає гостей. Українською «Хто господар?» звучить цілком завершено, тож так і хочеться заощадити на `is`. Але в повному англійському запитанні його залишаємо: `Who is`, потім `the host`. Нам треба дізнатися, хто господар, тому беремо `Who`.
+`sleepy` — «сонний, хоче спати». Олег позіхає, але розмовляє з вами: `He is sleepy`. Це не те саме, що `asleep` — «спить». `flexible` — «гнучкий»: якщо готові змінити час, скажіть `I am flexible`. Можна зустрітися раніше, поки Олег ще бере участь у розмові.
 
-**Поруч кілька гостей. Дізнайтеся в друга, хто з них господар вечора.**
+**Олег позіхає й каже, що хоче спати. Коротко скажіть, що він сонний.**
 
-- ✅ **Who is the host?**
-- ❌ Who the host? — *У повному англійському запитанні пропущено `is`. Воно потрібне після `Who`.*
-- ❌ Where is the host? — *Це «Де господар?». Тут ви хочете дізнатися, хто з людей господар, тому почніть із `Who`.*
+- ✅ **He's sleepy.**
+- ❌ He's asleep. — *Це «Він спить». Олег поки розмовляє.*
+- ❌ She's sleepy. — *Йдеться про Олега: `He's`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть — яке запитання друг поставив про чоловіка біля колонки**
-<!-- interaction_id: en:lesson-02:session-36:i01; family: listen_choose -->
-Ціль: `Who is he?`
-Варіанти: `Who is he?` · `Where is he?` · `Who is she?`
-- Where is he? — *Це запитання про місце. На записі спочатку звучить `Who`: друг запитує, хто цей чоловік.*
-- Who is she? — *У цьому варіанті запитання про жінку. На записі останнє слово — `he`, «він».*
+**1 · Це домашні посиденьки без церемоній. Скажіть повною фразою, що зустріч неформальна**
+<!-- interaction_id: en:lesson-02:session-36:i01; family: phrase_builder -->
+Плитки: `informal` `is` `It` `are` → **It is informal.**
+*(плитка `are` зайва: тут потрібно `is` — `It is informal.`)*
 
+**2 · Послухайте фразу про Олега**
+<!-- interaction_id: en:lesson-02:session-36:i02; family: listen_choose -->
+🔊 *He is sleepy.* → **He is sleepy.** · He is flexible. · He is asleep.
+- He is flexible. — *У записі останнє слово — `sleepy`, а в цьому варіанті — `flexible`.*
+- He is asleep. — *У записі останнє слово — `sleepy`, а в цьому варіанті — `asleep`.*
 
-**2 · Складіть фразу — запитайте про жінку поруч із другом: «Хто вона?»**
-<!-- interaction_id: en:lesson-02:session-36:i02; family: phrase_builder -->
-Ціль: `Who is she?`
+**3 · Запитайте про формат зустрічі: чи вона неформальна?**
+<!-- interaction_id: en:lesson-02:session-36:i03; family: context_gap_grammar -->
+___ it informal? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it informal?`.*
 
-**3 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-02:session-36:i03; family: listen_choose -->
-Ціль: `host`
-Варіанти: `host` · `post` · `roast`
-- post — *`Post` — «пошта». Послухайте перший звук: у записі `host`.*
-- roast — *`Roast` — «печеня». Послухайте перший звук: у записі `host`.*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-36:i04; family: speed_match -->
+informal — неформальний · formal — офіційний, строгий за стилем · sleepy — сонний · flexible — гнучкий
 
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-36:i05; family: listen_build_dictation -->
+🔊 *They are not flexible.* Плитки: `flexible` `not` `are` `They` `is` → **They are not flexible.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not flexible.`)*
 
-**4 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-36:i04; family: scripted_repeat_compare -->
-Ціль: `The host is noisy.`
+**6 · Анна сказала, що один із друзів хоче спати. Запитайте, хто сонний**
+<!-- interaction_id: en:lesson-02:session-36:i06; family: phrase_builder -->
+Плитки: `sleepy` `is` `Who` `Where` → **Who is sleepy?**
+*(плитка `Where` зайва: тут потрібно `Who` — `Who is sleepy?`)*
 
-**5 · Вставте слово — музика заважає розмові; запитайте друга: «Тут шумно?»**
-<!-- interaction_id: en:lesson-02:session-36:i05; family: context_gap_grammar -->
-Ціль: `Is it ___ here?`
-Варіанти: `noisy` · `sure` · `guest`
-- sure — *Це «впевнений». Для запитання про шум потрібне `noisy`.*
-- guest — *Це «гість», людина. Тут потрібен опис обстановки — `noisy`.*
+**7 · Вам підходять і ранній, і пізній час. Коротко скажіть, що ви готові підлаштуватися**
+<!-- interaction_id: en:lesson-02:session-36:i07; family: scripted_repeat_compare -->
+🎙 **I'm flexible.**
 
+**8 · Олег розмовляє з вами. На «Is he asleep?» доповніть коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-36:i08; family: context_gap_grammar -->
+No, he ___ not. → **is** · am · are
+- am — *З `he` потрібно `is`.*
+- are — *Відповідь — `No, he is not`.*
 
-**6 · Послухайте й виберіть — що друг запитав про чоловіка біля колонки**
-<!-- interaction_id: en:lesson-02:session-36:i06; family: listen_choose -->
-Ціль: `Is he the host?`
-Варіанти: `Is he the host?` · `Who is the host?` · `Where is the host?`
-- Who is the host? — *Це «Хто господар?». На записі друг уточнює, чи цей чоловік — господар: «Він господар?»*
-- Where is the host? — *Це «Де господар?». На записі немає `Where`: запитання починається з `Is he`.*
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-36:i09; family: listen_choose -->
+🔊 *Is she flexible?* → **Is she flexible?** · Is she sleepy? · Is she formal?
+- Is she sleepy? — *У записі останнє слово — `flexible`, а в цьому варіанті — `sleepy`.*
+- Is she formal? — *У записі останнє слово — `flexible`, а в цьому варіанті — `formal`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-36:i10; family: speed_match -->
+sleepy — сонний · flexible — гнучкий · informal — неформальний · formal — офіційний, строгий за стилем
 
-**7 · Складіть фразу — друг шукає одного гостя; той підійшов до вас, скажіть: «Гість тут»**
-<!-- interaction_id: en:lesson-02:session-36:i07; family: phrase_builder -->
-Ціль: `The guest is here.`
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-36:i11; family: listen_build_dictation -->
+🔊 *It is not formal.* Плитки: `formal` `not` `is` `It` `are` → **It is not formal.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not formal.`)*
 
-**8 · Послухайте й виберіть — яке запитання ставить сусід, що підійшов**
-<!-- interaction_id: en:lesson-02:session-36:i08; family: listen_choose -->
-Ціль: `Who is the guest?`
-Варіанти: `Who is the guest?` · `Where is the guest?` · `Who is the host?`
-- Where is the guest? — *Так запитують, де гість. На записі початок `Who is`: сусід хоче дізнатися, хто цей гість.*
-- Who is the host? — *Тут запитання про господаря. Сусід вимовив наприкінці `guest` — «гість».*
+**12 · Олег відійшов, і ви не бачите його в кімнаті. Запитайте, де він**
+<!-- interaction_id: en:lesson-02:session-36:i12; family: phrase_builder -->
+Плитки: `he` `is` `Where` `Who` → **Where is he?**
+*(плитка `Who` зайва: тут потрібно `Where` — `Where is he?`)*
 
+**13 · Ви з’ясували, що зустріч неформальна. Коротко повідомте про це Анні**
+<!-- interaction_id: en:lesson-02:session-36:i13; family: scripted_repeat_compare -->
+🎙 **It's informal.**
 
-**9 · Послухайте й складіть — друг говорить про господаря**
-<!-- interaction_id: en:lesson-02:session-36:i09; family: listen_build_dictation -->
-Ціль: `The host is here.`
+**14 · Ви зовсім не хочете спати. Скажіть, що ви не сонні**
+<!-- interaction_id: en:lesson-02:session-36:i14; family: context_gap_grammar -->
+I ___ not sleepy. → **am** · is · are
+- is — *З `I` потрібно `am`.*
+- are — *Фраза — `I am not sleepy`.*
 
-**10 · Вставте слово — ви точно знаєте, хто господар; скажіть другові: «Я впевнений»**
-<!-- interaction_id: en:lesson-02:session-36:i10; family: context_gap_grammar -->
-Ціль: `I am ___ .`
-Варіанти: `sure` · `here` · `noisy`
-- here — *Це «тут». Ви хочете підтвердити впевненість у відповіді: `I am sure`.*
-- noisy — *Це «галасливий». Тут ідеться про те, що ви точно знаєте відповідь, — `sure`.*
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-36:i15; family: listen_choose -->
+🔊 *Are you sleepy?* → **Are you sleepy?** · Are you flexible? · Are you asleep?
+- Are you flexible? — *У записі останнє слово — `sleepy`, а в цьому варіанті — `flexible`.*
+- Are you asleep? — *У записі останнє слово — `sleepy`, а в цьому варіанті — `asleep`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-36:i16; family: speed_match -->
+formal — офіційний, строгий за стилем · informal — неформальний · flexible — гнучкий · sleepy — сонний
 
-**11 · Складіть фразу — друг запитує, чи знайомі двоє гостей; ви не знаєте й зізнаєтеся: «Я не впевнений»**
-<!-- interaction_id: en:lesson-02:session-36:i11; family: phrase_builder -->
-Ціль: `I am not sure.`
-
-**12 · Послухайте й виберіть — друг запитує про жінку, яку загубив із поля зору**
-<!-- interaction_id: en:lesson-02:session-36:i12; family: listen_choose -->
-Ціль: `Is she here?`
-Варіанти: `Is she here?` · `Is he here?` · `Who is she?`
-- Is he here? — *У цьому варіанті запитання про чоловіка. На записі звучить `she`: друг запитує про жінку.*
-- Who is she? — *Це «Хто вона?». Друг запитав, чи вона тут: наприкінці прозвучало `here`.*
-
-
-**13 · Послухайте й складіть — гість говорить про колонку**
-<!-- interaction_id: en:lesson-02:session-36:i13; family: listen_build_dictation -->
-Ціль: `It is noisy.`
-
-**14 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-36:i14; family: scripted_repeat_compare -->
-Ціль: `Where is the host?`
-
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-36:i15; family: scripted_repeat_compare -->
-Ціль: `Is he here?`
-
-**16 · Складіть фразу — друг чекає на одну гостю; покажіть на жінку, яка підійшла, і запитайте: «Вона та гостя?»**
-<!-- interaction_id: en:lesson-02:session-36:i16; family: phrase_builder -->
-Ціль: `Is she the guest?`
-
-**17 · Послухайте й виберіть — яке запитання ви поставили про господаря вечірки**
-<!-- interaction_id: en:lesson-02:session-36:i17; family: listen_choose -->
-Ціль: `Who is the host?`
-Варіанти: `Who is the host?` · `Where is the host?` · `Who is the guest?`
-- Where is the host? — *`Where` питає про місце: «Де господар?». Тут треба дізнатися людину, тому `Who is the host?`.*
-- Who is the guest? — *`What` питає «що?». Перед вами люди, і ви хочете дізнатися, хто з них господар: `Who is the host?`.*
-
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=scripted_repeat_compare, 5=context_gap_grammar, 6=listen_choose, 7=phrase_builder, 8=listen_choose, 9=listen_build_dictation, 10=context_gap_grammar, 11=phrase_builder, 12=listen_choose, 13=listen_build_dictation, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=phrase_builder, 17=listen_choose
+**17 · Ви хочете зустрітися раніше. Запитайте Анну, чи готова вона підлаштуватися за часом**
+<!-- interaction_id: en:lesson-02:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Are you flexible?**
 

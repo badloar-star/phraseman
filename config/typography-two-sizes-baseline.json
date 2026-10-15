@@ -1,5 +1,5 @@
 {
-  "total": 18,
+  "total": 23,
   "files": {
     "components/ForceUpdateGate.tsx": 2,
     "components/GlobalBroadcastModal.tsx": 5,
@@ -7,6 +7,10 @@
     "components/PersonalAdminMessageModal.tsx": 3,
     "components/ReleaseNotesV2Modal.tsx": 1,
     "components/ui/new/OfflineDataNotice.tsx": 1,
-    "components/UpdateModal.tsx": 2
+    "components/UpdateModal.tsx": 2,
+    "modules/learning-v2/modes/mode_feedback_v1.tsx": 5
+  },
+  "exemptions": {
+    "modules/learning-v2/modes/mode_feedback_v1.tsx": "пакет V2 Codex (48e9a2993), выпуск принят владельцем 15.10 (D198) — правка размеров текста в следующем обновлении; записка Codex"
   }
 }

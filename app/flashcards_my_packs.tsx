@@ -721,7 +721,14 @@ export default function FlashcardsMyPacksScreen() {
           return { ...prev, [at.group]: list };
         });
       }
-      emitAppEvent('action_toast', actionToastTri('error', {
+      // зачем (бета-тест 15.10, Б19): без сети — человеческое «нет интернета, набор на месте», а не общее «не удалось»
+      const code = String((error as { code?: unknown } | null)?.code ?? '');
+      const offline = /unavailable|deadline-exceeded|network/i.test(code) || /network|internet|offline|timed? ?out/i.test(String(error));
+      DebugLogger.warn('[MY-PACKS]', `удаление набора ${pack.id}: тост=${offline ? 'offline' : 'generic'} code=${code || '-'}`);
+      emitAppEvent('action_toast', actionToastTri('error', offline ? {
+        ru: 'Нет интернета. Набор на месте.', uk: 'Немає інтернету. Набір на місці.', en: 'No internet. The pack is still here.', es: 'Sin internet. El pack sigue aquí.',
+        'pt-BR': 'Sem internet. O pacote continua aqui.', vi: 'Không có mạng. Bộ thẻ vẫn còn.', id: 'Tidak ada internet. Paket masih ada.', tr: 'İnternet yok. Paket yerinde.', pl: 'Brak internetu. Zestaw został.',
+      } : {
         ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Could not delete the pack.', es: 'No se pudo eliminar el pack.',
         'pt-BR': 'Não foi possível excluir o pacote.', vi: 'Không thể xóa bộ thẻ.', id: 'Paket tidak dapat dihapus.', tr: 'Paket silinemedi.', pl: 'Nie udało się usunąć zestawu.',
       }));

@@ -39,7 +39,11 @@ describe('[FS-READS] счётчик чтений Firestore (dev)', () => {
 
   it('шаблон пути прячет id, стек даёт боевые функции', () => {
     expect(fsPathTemplate('users/AbC123/notifications/n1')).toBe('users/{id}/notifications/{id}');
-    expect(fsPathTemplate('remote_config/app')).toBe('remote_config/{id}');
+    // общие настройки — с id (видно повтор одного документа), личные коллекции — без
+    expect(fsPathTemplate('remote_config/app')).toBe('remote_config/app');
+    expect(fsPathTemplate('config/spire_v1')).toBe('config/spire_v1');
+    expect(fsPathTemplate('config/spire_v1/rooms/r1')).toBe('config/{id}/rooms/{id}');
+    expect(fsCallerFromStack('Error\n    at apply (http://x/b:1:1)\n    at next (http://x/b:2:2)\n    at loadSpireConfig (http://x/b:3:3)')).toBe('loadSpireConfig');
     const stack = 'Error\n    at wrapped (http://x/dev_firestore_read_counter.bundle:1:1)\n    at getDoc (http://x/node_modules/rnfb.js:2:2)\n    at loadProfile (http://x/index.bundle:3:3)\n    at useHome (http://x/index.bundle:4:4)';
     expect(fsCallerFromStack(stack)).toBe('loadProfile<useHome');
   });

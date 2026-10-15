@@ -99,3 +99,11 @@ Owner: Codex (файл), Ядро (ханк)
 Полный вывод: `node scripts/learning_v2_release_parity_gate.mjs`, строки `[BUILD][WARN] source_release_parity:…`.
 
 Что сделать после релиза: перевыпустить s05/s08/s09 (и s02, s10) из ваших исходников, чтобы гейт сошёлся без справки.
+
+## Типографика D145: mode_feedback_v1 — во временном исключении (15.10, координатор)
+
+`modules/learning-v2/modes/mode_feedback_v1.tsx` (пакет V2, 48e9a2993) использует 5 размеров текста, кроме разрешённых 16/13.
+
+- Сторож `tests/typography_two_sizes_ratchet.test.mjs` падал. Файл внесён в `config/typography-two-sizes-baseline.json` (поле `exemptions`): выпуск принят владельцем (D198).
+- Вёрстку не трогали.
+- Что сделать Codex в следующем обновлении: перевести размеры на шкалу `V2_TYPE` (16/21 и 13/17) и убрать файл из базы.

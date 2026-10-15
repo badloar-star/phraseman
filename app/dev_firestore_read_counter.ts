@@ -26,13 +26,19 @@ let installed = false;
 let now: () => number = () => Date.now();
 let log: (line: string) => void = (line) => console.log(line); // guard-ok: dev-трасса
 
-/** users/AbC/notifications/x → users/{id}/notifications/{id}: шаблон коллекции без идентификаторов. */
+// Общие (не личные) коллекции: id документа — имя настройки, а не человек; показываем, чтобы видеть повтор ОДНОГО документа.
+const PUBLIC_TOP = new Set(['config', 'remote_config', 'app_config', 'daily_phrases', 'app_messages', 'global_broadcast_modals']);
+
+/** users/AbC/notifications/x → users/{id}/notifications/{id}; config/spire_v1 → config/spire_v1 (общая настройка). */
 export function fsPathTemplate(path: string): string {
-  return String(path || '?').split('/').filter(Boolean).map((part, index) => (index % 2 === 1 ? '{id}' : part)).join('/') || '?';
+  const parts = String(path || '?').split('/').filter(Boolean);
+  const keepId = parts.length === 2 && PUBLIC_TOP.has(parts[0]);
+  return parts.map((part, index) => (index % 2 === 1 && !keepId ? '{id}' : part)).join('/') || '?';
 }
 
 const SKIP_LINE = /dev_firestore_read_counter|[\\/]node_modules[\\/]/;
-const SKIP_NAME = /^(?:anonymous|tryCallOne|tryCallTwo|doResolve|__callFunction|asyncGeneratorStep|_asyncToGenerator|_next|_throw|step|fulfilled|rejected|wrapped|Promise.*|get|onSnapshot|getDoc|getDocs|onSnapshotModular)$/;
+// Служебные кадры промисов/генераторов (async после Babel = генератор: apply/next/invoke) — не «кто читает».
+const SKIP_NAME = /^(?:anonymous|tryCallOne|tryCallTwo|doResolve|__callFunction|asyncGeneratorStep|_asyncToGenerator|_next|_throw|step|fulfilled|rejected|wrapped|Promise.*|get|onSnapshot|getDoc|getDocs|onSnapshotModular|apply|call|next|throw|invoke|_invoke|tryCatch|Generator.*|\?anon.*|callback|run|flush)$/;
 
 /** Две ближайшие боевые функции из стека (Hermes dev: «at имя (url:строка:кол)»). */
 export function fsCallerFromStack(stack: string | undefined): string {

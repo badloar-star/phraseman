@@ -91,6 +91,19 @@ export function currentSection(input: Readonly<{ pathname: string | null | undef
   return sectionOfPathname(input.pathname);
 }
 
+/**
+ * Корневой трекер для экранов ПОВЕРХ таббара («Мои наборы», каталог, ролик…).
+ * зачем (🔴 Макеты c1_r60b, 15.10: язык «Карточек» не сбрасывался, строк reset не было вообще): пока поверх таббара открыт экран, навигатор вкладок заморожен и
+ * эффект в (tabs)/_layout НЕ видит смену пути — раздел «Карточки» для него не наступал, а значит и не заканчивался. Корень приложения не заморожен.
+ * Правило: экран раздела поверх таббара → раздел наступил; любой другой путь, пока считался раздел «Карточки» → вышли (вкладки и их активность ведёт (tabs)/_layout).
+ */
+export function trackPushedRoute(pathname: string | null | undefined): void {
+  const path = String(pathname ?? '');
+  const pushed = path === '/video' || path.startsWith('/video/') ? null : sectionOfPathname(path);
+  if (pushed) { trackSection(pushed, `root_pathname=${path}`); return; }
+  if (lastSection === 'cards') trackSection(null, `root_pathname=${path} (left cards screens)`);
+}
+
 /** Зовётся при смене вкладки или пути. */
 export function trackCurrentSection(input: Parameters<typeof currentSection>[0]): void {
   trackSection(currentSection(input), `pathname=${String(input.pathname)} tab=${String(input.activeTabRoute)} routeIsTab=${input.routeIsTab}`);

@@ -84,3 +84,11 @@ describe('подпись языка набора на экране ролика 
     expect(read('app/lingman_video_watch.tsx')).toContain("languageTags?.[0]?.split('-')[0] ?? pack?.packLanguage ?? studyTarget");
   });
 });
+
+describe('«Видео → Наборы»: тап по набору ролика (Макеты 15.10)', () => {
+  it('набор с id video_<id> или полем videoId открывается экраном ролика, а не загрузкой карточек документа', () => {
+    const src = read('app/flashcards_video_packs.tsx');
+    expect(src).toContain('const openAsVideoId = isVideoPhraseSetPackId(pack.id)');
+    expect(src).toContain('videoIdFromOwnedCommunityId(pack.id)');
+  });
+});

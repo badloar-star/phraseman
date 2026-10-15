@@ -141,3 +141,27 @@ describe('трассировка трекера раздела (Макеты 15.
     log.mockRestore();
   });
 });
+
+describe('экраны поверх таббара: корневой трекер (Макеты c1_r60b)', () => {
+  const sectionModule = require('../app/section_language') as typeof import('../app/section_language');
+  beforeEach(() => {
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    sectionModule.resetSectionLanguage('cards', 'test');
+    sectionModule.__resetSectionLanguageForTests();
+  });
+  afterEach(() => jest.restoreAllMocks());
+
+  it('«Мои наборы» поверх таббара → es → назад на вкладку → язык раздела сброшен, хотя таббар заморожен и своих событий не видел', () => {
+    sectionModule.trackPushedRoute('/flashcards_my_packs');
+    sectionModule.setSectionLanguageOverride('cards', 'es');
+    sectionModule.trackPushedRoute('/flashcards_packs'); // внутри раздела
+    expect(sectionModule.getSectionLanguageOverride('cards')).toBe('es');
+    sectionModule.trackPushedRoute('/home');
+    expect(sectionModule.getSectionLanguageOverride('cards')).toBeNull();
+  });
+
+  it('вкладка «Видео» (/video) корнем игнорируется — вкладки ведёт таббар', () => {
+    sectionModule.trackPushedRoute('/video');
+    expect(sectionModule.currentSection({ pathname: '/video', routeIsTab: true, activeTabRoute: '/(tabs)/home' })).toBeNull();
+  });
+});

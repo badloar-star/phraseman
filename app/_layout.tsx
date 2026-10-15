@@ -322,6 +322,7 @@ import { APP_FONT_FAMILY } from './typography';
 import { getLocalDayKey } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
 import { noteNavRoute } from './nav_paint_trace';
+import { trackPushedRoute } from './section_language';
 import { shouldRunFullAppBootstrap } from './native_runtime_capability';
 import {
   acknowledgeAppMessageModal,
@@ -1205,6 +1206,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   pathnameRef.current = pathname;
   // зачем (PM-220): release-метка [NAV-PAINT] на каждую смену маршрута — метод измерения навигации и тренировок.
   noteNavRoute(pathname);
+  // зачем (🔴 Макеты 15.10): язык раздела «Карточки» должен сбрасываться при уходе — корень не заморожен под экранами поверх таббара, в отличие от (tabs)/_layout
+  useEffect(() => { trackPushedRoute(pathname); }, [pathname]);
   const warmDeepLinkTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const coldExamBestPctRestoreOptions = useMemo(() => ({
     canPublishExamBestPctOverlay: () => {

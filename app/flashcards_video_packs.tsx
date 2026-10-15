@@ -40,6 +40,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useEffectiveStudyTarget } from './section_language';
+import { videoIdFromOwnedCommunityId } from './flashcards/my_packs_video_meta';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -386,8 +387,11 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     }
     // зачем: набор фраз ролика открывается так же, как по тапу на фразу —
     // экраном ролика с его фразами (lingman_videos по videoId), без staging.
-    if (isVideoPhraseSetPackId(pack.id)) {
-      const videoId = videoIdFromPackId(pack.id);
+    // зачем (Макеты 15.10: «Видео → Наборы», тап по строке ничего не открывал): набор ролика из каталога сообщества имеет id `video_<id>` (не `video:<id>`) и шёл в загрузку карточек документа —
+    // документа нет, загрузка молча кончалась тостом. Любой набор ролика (оба вида id или поле videoId) открывается экраном ролика.
+    const openAsVideoId = isVideoPhraseSetPackId(pack.id) ? videoIdFromPackId(pack.id) : (videoIdFromOwnedCommunityId(pack.id) ?? (typeof pack.videoId === 'string' && pack.videoId ? pack.videoId : null));
+    if (openAsVideoId !== null) {
+      const videoId = openAsVideoId;
       const channelId = videoChannelIdOf(pack);
       DebugLogger.info(LOG, `открываю ролик с фразами: videoId=${videoId} channelId=${channelId || '—'}`);
       // зачем (video-011, координатор 05.10): набор «Из видео» ведёт на экран ролика (плеер, набор, фразы), а не на ленту.

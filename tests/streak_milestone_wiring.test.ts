@@ -83,9 +83,10 @@ describe('подключение на месте', () => {
     const pending = read('app/streak_milestone_pending.ts');
     expect(pending).not.toMatch(/AsyncStorage|SecureStore|setItem/);
   });
+  // R64 (edd75a0e3): ленивая загрузка ловит сбой модуля — помощник снимает удержание слота #36, экран итога не виснет
   it('итог урока: хост грузится лениво, идёт первым, идеал-окно и оценка ждут', () => {
     const src = read('app/lesson_complete.tsx');
-    expect(src).toContain("const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));");
+    expect(src).toContain("const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));");
     expect(src).toContain('const milestoneHold = momentsV3 && milestoneHoldRaw;');
     expect(src).toContain('perfectDecision.show && !milestoneHold');
     expect(src).toContain('showReview && !perfectMomentOpen && !milestoneHold');
@@ -93,16 +94,16 @@ describe('подключение на месте', () => {
   });
   it('итог разговора: хост грузится лениво и идёт перед окном «Первый разговор»', () => {
     const src = read('app/dialogue_v2_completion.tsx');
-    expect(src).toContain("const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));");
+    expect(src).toContain("const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));");
     expect(src).toContain('goalsTotal > 0 && !milestoneHold');
     expect(src.indexOf('<StreakMilestoneHost')).toBeLessThan(src.indexOf('<FirstDialogHost'));
   });
   it('итог карточек и итог «Моих ошибок»: тот же ленивый хост', () => {
     const cards = read('app/flashcards/SessionResultScreen.tsx');
-    expect(cards).toContain("const StreakMilestoneHost = lazy(() => import('../../components/streak/moments/StreakMilestoneHost'));");
+    expect(cards).toContain("const StreakMilestoneHost = lazy(() => import('../../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));");
     expect(cards).toContain('milestoneHold ? (');
     const mistakes = read('app/mistake_practice_session.tsx');
-    expect(mistakes).toContain("const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));");
+    expect(mistakes).toContain("const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));");
     expect(mistakes.indexOf('milestoneHold ? (')).toBeGreaterThan(mistakes.indexOf('<MistakeSessionFinale'));
   });
   it('хост: решение через gate + диск, журнал [STREAK-MILESTONE], «открыто» до забора ожидающего, тост без блокировки касаний, сцены в Modal', () => {

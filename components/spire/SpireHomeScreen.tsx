@@ -361,7 +361,7 @@ export default function SpireHomeScreen() {
           <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock} onClimb={climb} />
         )}
       </View>
-      {momentsV3 ? <Suspense fallback={null}><SpireMomentsLayer lang={lang} outcome={momentOutcome ? game.outcome : null} coins={config.coins} coinRank={myCoinRank} busy={game.starting} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}
+      {momentsV3 ? <Suspense fallback={null}><SpireMomentsLayer lang={lang} outcome={momentOutcome ? game.outcome : null} coins={config.coins} coinRank={myCoinRank} busy={game.starting} stepActive={game.session !== null || game.pending !== null} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}
       {game.uid && game.stableId ? (
         <SpireStepScreen
           lang={lang}

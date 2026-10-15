@@ -19,16 +19,28 @@ export type SpireMomentsLayerProps = Readonly<{
   coins: SpireCoinsConfig;
   coinRank: number | null;
   busy: boolean;
+  /** Ступень идёт или готовится («Готовим ступень…» / сессия ступени) — позиционные окна ждут её конца. */
+  stepActive?: boolean;
   onClimb: () => void;
   onLater: () => void;
 }>;
 
-function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, onClimb, onLater }: SpireMomentsLayerProps) {
+function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, stepActive = false, onClimb, onLater }: SpireMomentsLayerProps) {
   const positions = useSpirePositionMoments();
+  // зачем (Ревизор P17, 15.10): окна m05 ждали только закрытия итога ступени — после «Ещё раз» итог гас, и «Позиция выросла» всплывала поверх
+  // «Готовим ступень…» при идущем таймере ступени. Теперь окно ждёт, пока закрыт итог И нет идущей/готовящейся ступени.
+  const blocked = outcome !== null || stepActive || busy;
+  const blockReason = outcome !== null ? 'outcome' : stepActive ? 'step' : busy ? 'starting' : 'free';
+  const lastLoggedRef = React.useRef<string | null>(null);
+  React.useEffect(() => {
+    if (lastLoggedRef.current === blockReason) return;
+    lastLoggedRef.current = blockReason;
+    console.log(`[SPIRE-RISE-QUEUE] позиционные окна ${blocked ? 'ждут' : 'свободны'}: причина=${blockReason === 'outcome' ? 'открыт итог ступени' : blockReason === 'step' ? 'идёт или готовится ступень' : blockReason === 'starting' ? 'старт ступени' : 'нет'} (итог=${String(outcome !== null)} ступень=${String(stepActive)} старт=${String(busy)}) решение Ядра: rise=${positions.rise?.key ?? '—'} overtake=${positions.overtake?.key ?? '—'} lastChance=${positions.lastChance?.key ?? '—'}`); // guard-ok: журнал смены очереди
+  }, [blockReason, blocked, busy, outcome, positions.lastChance?.key, positions.overtake?.key, positions.rise?.key, stepActive]);
   return (
     <>
       {outcome ? <SpireOutcomeMomentHost lang={lang} outcome={outcome} coins={coins} coinRank={coinRank} busy={busy} onClimb={onClimb} onLater={onLater} /> : null}
-      <SpirePositionMomentsHost lang={lang} coinRank={coinRank} positions={positions} blocked={outcome !== null} busy={busy} onClimb={onClimb} />
+      <SpirePositionMomentsHost lang={lang} coinRank={coinRank} positions={positions} blocked={blocked} busy={busy} onClimb={onClimb} />
     </>
   );
 }

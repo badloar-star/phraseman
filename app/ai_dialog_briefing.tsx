@@ -25,6 +25,7 @@ import {
   aiDialogContentAvailableForTarget,
   aiDialogTargetGateCopy,
 } from './ai_dialog_target_gate';
+import { useOrphanDialogRouteRedirect } from './orphan_dialog_route_redirect';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 
 type RecoveryScreenProps = {
@@ -118,6 +119,9 @@ export function MissingDialogueScreen() {
 
 export default function AiDialogBriefingRoute() {
   const { studyTarget } = useStudyTarget();
+  // зачем (R56): сиротский экран — в стор-сборке вход по ссылке уводит на Главную
+  const orphanBlocked = useOrphanDialogRouteRedirect('ai_dialog_briefing');
+  if (orphanBlocked) return null;
   return <DialogueTargetBoundary target={studyTarget}><AiDialogBriefingBody /></DialogueTargetBoundary>;
 }
 

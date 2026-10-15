@@ -107,6 +107,7 @@ import MicAllowanceBadge from '../components/MicAllowanceBadge';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
+import { useOrphanDialogRouteRedirect } from './orphan_dialog_route_redirect';
 import { dialogueLanguageMeta, resolveDialogueStudyTarget } from './dialogue_language_registry';
 import { dialogueScenarioForTarget } from './dialogue_language_packs';
 import { dialogueScenarioPresentation } from './dialogue_scenario_presentation';
@@ -3697,6 +3698,9 @@ export default function AiDialogSessionRoute() {
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string; runId?: string }>();
   const sessionKey = `${studyTarget}:${params.scenarioId ?? ''}:${params.lessonId ?? ''}:${params.runId ?? ''}`;
   const scenario = resolveDialogueRouteScenario(params, studyTarget, buildLessonDialogScenario);
+  // зачем (R56): сиротский экран — в стор-сборке вход по ссылке уводит на Главную (без энергии и квоты новых Диалогов)
+  const orphanBlocked = useOrphanDialogRouteRedirect('ai_dialog_session');
+  if (orphanBlocked) return null;
   if (!scenario) return <MissingDialogueScreen />;
   return (
     <AiDialogConsentGate>

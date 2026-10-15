@@ -1277,6 +1277,8 @@ const FOUNDATION_ACHIEVEMENT_EVENT_TYPES: ReadonlySet<AchievementEvent['type']> 
   'streak_freeze_used',
 ]);
 
+const untrackedAchievementEventsLogged = new Set<string>();
+
 const ACHIEVEMENT_QUEUE_MAX_ACCOUNTS = 8;
 const achievementQueueByAccount = new Map<string, {
   tail: Promise<unknown>;
@@ -1456,7 +1458,15 @@ export const checkAchievements = async (
   event: AchievementEvent,
   accountToken?: AccountGenerationToken,
 ): Promise<Achievement[]> => {
-  if (!FOUNDATION_ACHIEVEMENT_EVENT_TYPES.has(event.type)) return [];
+  if (!FOUNDATION_ACHIEVEMENT_EVENT_TYPES.has(event.type)) {
+    // зачем (R56, аудит кнопок 15.10): ранний выход был немым — вызовы friend/mistake/lesson/… выглядели рабочими.
+    // Новые события НЕ включаем (решение координатора), но видно, что они мёртвые: одна строка на тип за запуск.
+    if (!untrackedAchievementEventsLogged.has(event.type)) {
+      untrackedAchievementEventsLogged.add(event.type);
+      console.log(`[ACH-CHECK] skip:event_not_tracked type=${event.type}`); // guard-ok: ранний выход логируется
+    }
+    return [];
+  }
   const operationToken = accountToken ?? captureAccountGeneration();
   if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) {
     console.log('[ACH-CHECK] exit:no_account', JSON.stringify({ event: event.type, hasStableId: Boolean(operationToken.stableId) }));

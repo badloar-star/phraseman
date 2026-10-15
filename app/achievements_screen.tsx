@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, memo, useCallback, useMemo, useRef } from 'react';
 import {
   View, Text, SectionList, TouchableOpacity, Pressable, Image, ScrollView, useWindowDimensions,
   InteractionManager,
@@ -500,6 +500,8 @@ function AchievementModal({
   revealLockedDetails: boolean;
   studyTarget: RuntimeStudyTarget;
 }) {
+  // зачем (R56, аудит кнопок 15.10): двойной тап «Поделиться» открывал два системных окна
+  const shareInFlightRef = useRef(false);
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -679,10 +681,18 @@ function AchievementModal({
                 paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center',
               }}
               onPress={async () => {
-                const msg = buildAchievementShareMessage(lang, name, STORE_URL);
-                const result = await Share.share({ message: msg }).catch(noteSwallowedAs('achievements_screen:AchievementModal.share', null));
-                if (result?.action === 'sharedAction') {
-                  void checkAchievements({ type: 'achievement_shared', studyTarget });
+                if (shareInFlightRef.current) {
+                  console.log('[ACH-SHARE] повторный тап — окно «Поделиться» уже открыто'); // guard-ok: ранний выход
+                  return;
+                }
+                shareInFlightRef.current = true;
+                try {
+                  const msg = buildAchievementShareMessage(lang, name, STORE_URL);
+                  const result = await Share.share({ message: msg }).catch(noteSwallowedAs('achievements_screen:AchievementModal.share', null));
+                  // зачем (R56): событие achievement_shared проверка достижений не отслеживает (пустой вызов) — убран; итог в журнал
+                  console.log(`[ACH-SHARE] итог action=${result?.action ?? 'none'} studyTarget=${studyTarget}`); // guard-ok: итог жеста
+                } finally {
+                  shareInFlightRef.current = false;
                 }
               }}
             >

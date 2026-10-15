@@ -55,6 +55,7 @@ import { captureAccountGeneration } from './account_generation';
 import { DIALOGUE_LANGUAGE_PACKS } from './dialogue_language_packs';
 import { triLang } from '../constants/i18n';
 import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
+import { useOrphanDialogRouteRedirect } from './orphan_dialog_route_redirect';
 import { dialogueLanguageMeta, resolveDialogueStudyTarget } from './dialogue_language_registry';
 import AiDialogConsentGate from './ai_dialog_consent_gate';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
@@ -696,6 +697,9 @@ function AiCompanionSession() {
 // т.к. это тот же тип фичи (AI-диалог) с той же формулировкой согласия.
 export default function AiCompanionSessionRoute() {
   const { studyTarget } = useStudyTarget();
+  // зачем (R56): сиротский экран — в стор-сборке вход по ссылке уводит на Главную (без энергии и квоты)
+  const orphanBlocked = useOrphanDialogRouteRedirect('ai_companion_session');
+  if (orphanBlocked) return null;
   return (
     <AiCompanionPlusGate>
       <AiDialogConsentGate>

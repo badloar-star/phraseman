@@ -54,6 +54,7 @@ import {
 import { type StudyTargetLang } from './study_target_lang_dev';
 import { commitPhoneStateDurableAction } from './phone_state_recovery';
 import { DebugLogger } from './debug-logger';
+import { actionToastTri, emitAppEvent } from './events';
 import { fill, onboardingCopy, type OnboardingCopyKey } from '../components/onboarding/clean_onboarding_copy';
 import { languageNameOf } from '../components/onboarding/clean_onboarding_options';
 import { IS_STORE_RELEASE } from './config';
@@ -196,6 +197,13 @@ export default function LanguageWelcomeScreen() {
 
   const languageName = target ? languageNameOf(lc, target) : '';
 
+  const languageActivateFailedToast = () => actionToastTri('error', {
+    ru: 'Не получилось включить язык. Попробуй ещё раз.', uk: 'Не вдалося увімкнути мову. Спробуй ще раз.',
+    en: "Couldn't turn on the language. Try again.", es: 'No se pudo activar el idioma. Inténtalo de nuevo.',
+    'pt-BR': 'Não foi possível ativar o idioma. Tente de novo.', vi: 'Không bật được ngôn ngữ. Hãy thử lại.',
+    id: 'Bahasa tidak dapat diaktifkan. Coba lagi.', tr: 'Dil açılamadı. Tekrar dene.', pl: 'Nie udało się włączyć języka. Spróbuj ponownie.',
+  });
+
   const activateLanguage = useCallback(() => {
     if (!target || !goal || !level || busy) return;
     void hapticTap();
@@ -208,10 +216,15 @@ export default function LanguageWelcomeScreen() {
         });
         if (committed) {
           setStep('done'); // язык активирован → экран-подтверждение, а не молчаливый выход
+        } else {
+          // зачем (R56, аудит кнопок 15.10): неподтверждённая запись — кнопка отпускалась молча, человек не понимал, что произошло
+          console.warn(`[LANG-WELCOME] activate: не подтверждено target=${target}`); // guard-ok: ветка неудачи
+          emitAppEvent('action_toast', languageActivateFailedToast());
         }
       } catch (e) {
-      // Local durability recovery owns retry and neutral user feedback.
+      // Local durability recovery owns retry; человеку — понятный ответ (раньше экран молчал).
       DebugLogger.error('language_welcome:committed', e instanceof Error ? e : new Error(String(e)), 'warning');
+      emitAppEvent('action_toast', languageActivateFailedToast());
     } finally {
         setBusy(false);
       }

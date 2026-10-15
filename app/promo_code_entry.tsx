@@ -282,16 +282,31 @@ export default function PromoCodeEntryScreen() {
         console.warn('[PROMO] redeem: аккаунт сменился во время запроса — результат отброшен');
         return;
       }
-      setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
+      if (res.status !== 'redeemed') {
+        setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
+      }
       if (res.status === 'redeemed') {
-        const marker = await persistRedeemedPromoAccess({
+        // зачем (R56, аудит кнопок 15.10): «успех» показывался ДО локальной записи VIP — при сбое записи человек видел
+        // ошибку, хотя сервер доступ уже выдал. Сначала запись (один повтор), при провале — синхронизация с сервером
+        // (кэш доступа сбрасывается ниже, PremiumContext перечитает), и только потом «Готово».
+        const persistInput = {
           code: normalizePromoCodeInput(rawCode),
           rewardKind: res.rewardKind,
           vipUntilMs: res.vipUntilMs,
           grantAtMs: res.grantAtMs,
           generation,
-        });
+        };
+        let marker: Awaited<ReturnType<typeof persistRedeemedPromoAccess>> | null = null;
+        for (let attempt = 1; attempt <= 2 && marker === null; attempt += 1) {
+          try {
+            marker = await persistRedeemedPromoAccess(persistInput);
+          } catch (persistError: unknown) {
+            console.warn(`[PROMO] redeem: локальная запись VIP не удалась attempt=${attempt}`, persistError instanceof Error ? persistError.message : String(persistError)); // guard-ok: причина в журнал
+          }
+        }
         if (!generation.stableId || !isCurrentAccountGeneration(generation, generation.stableId)) return;
+        if (marker === null) console.warn('[PROMO] redeem: VIP выдан сервером, локальная запись не удалась — доступ подтянется синхронизацией'); // guard-ok: ветка
+        setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
         setCelebrationMarker(marker);
         setCelebrationCode(normalizePromoCodeInput(rawCode));
         setCelebrationReward(res.rewardKind === 'lifetime' ? { kind: 'lifetime' } : res.rewardKind === 'days' || typeof res.rewardDays === 'number' ? { kind: 'days', days: res.rewardDays } : null);

@@ -77,6 +77,7 @@ const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.08)'; // theme-exempt: семанти
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { onAccountOwnerChanged } from './account_owner_change';
+import { useGuardedNav } from '../hooks/use-guarded-nav';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -1827,6 +1828,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const statsRuntimeActive = useRuntimeActive();
     const statsRefreshDirtyRef = useRef(false);
     const router = useRouter();
+    // зачем (R56, аудит кнопок 15.10): быстрый двойной тап «Заморозить серию» без Plus открывал два пейвола
+    const guardedNav = useGuardedNav();
     const insets = useStableSafeAreaInsets();
     const { theme: t, f, isDark, themeMode, liquidGlassThemeId } = useTheme();
     // зачем (results.html «Серия и статистика»): фон страницы и кнопка «назад» — токены стекла темы.
@@ -2194,7 +2197,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const handleFreezeStreak = async () => {
         hapticTap();
         if (!isPremium) {
-            router.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'stats_streak', streak: String(totalStreak) } } as any);
+            guardedNav.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'stats_streak', streak: String(totalStreak) } } as any);
             return;
         }
         if (premiumFreezeUsed) {

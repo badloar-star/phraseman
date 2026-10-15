@@ -65,6 +65,9 @@
   .timer { height: 38px; background: #1F1F21; font-size: 18px; padding: 0 24px; }
   .mic { width: 92px; height: 92px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 #fff, 0 14px 30px -12px rgba(0,0,0,.8); }
   .mic.live { box-shadow: 0 0 0 12px rgba(255,255,255,.08), 0 0 0 26px rgba(255,255,255,.035); animation: ring 1.6s ease-in-out infinite; }
+  /* зачем (владелец 15.10 ~11:10, D196): один счётчик голоса Free на все микрофоны — цифра остатка на кнопке микрофона; 0 → «PLUS»; у Plus цифры нет */
+  .mic { position: relative; }
+  .mic .vbdg { position: absolute; top: -4px; right: -6px; min-width: 30px; height: 30px; padding: 0 9px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: #0B0C0E; color: #fff; font-size: 15px; line-height: 20px; font-weight: 800; font-variant-numeric: tabular-nums; box-shadow: 0 6px 12px -6px rgba(0,0,0,.6), 0 0 0 2px var(--bg, #0C0D10); z-index: 2; }
   @keyframes ring { 50% { box-shadow: 0 0 0 16px rgba(255,255,255,.06), 0 0 0 34px rgba(255,255,255,.02); } }
   .micl { display: block; color: var(--sec); margin-top: 16px; font-size: 15px; }
   .wave { display: flex; gap: 4px; align-items: center; justify-content: center; height: 44px; margin-top: 30px; }
@@ -432,13 +435,13 @@ const SPEAK_Q = `<div class="qc" style="margin-top:34px"><div class="k">Скаж
 const wave = () => `<div class="wave">${Array.from({ length: 23 }, (_, i) => `<i style="--h:${8 + Math.round(30 * Math.abs(Math.sin(i * .8 + 1)))}px;--d:${(i % 5) * 120}ms"></i>`).join('')}</div>`;
 const speakWait = () => phone(`
   ${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}
-  <div class="center" style="margin-top:84px"><span class="mic t">${icon('mic', 's28')}</span><span class="micl">Удерживайте и говорите</span></div>`,
+  <div class="center" style="margin-top:84px"><span class="mic t">${icon('mic', 's28')}<span class="vbdg">3</span></span><span class="micl">Удерживайте и говорите</span></div>`,
   { fixed: bot(`<div class="cta gh t">Не могу говорить</div>`) });
 const speakRec = () => phone(`
   ${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}
   <div class="heard">I’ll get back<span class="caret"></span></div>
   ${wave()}
-  <div class="center" style="margin-top:22px"><span class="mic live t">${icon('mic', 's28')}</span><span class="micl">Слушаю…</span></div>`);
+  <div class="center" style="margin-top:22px"><span class="mic live t">${icon('mic', 's28')}<span class="vbdg">2</span></span><span class="micl">Слушаю…</span></div>`);
 const speakOk = () => phone(`${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}<div class="heard" style="color:#A6E8B9">I’ll get back to you</div>`,
   { overlay: fbOk('so', 'Верно') });
 const speakNo = () => phone(`${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}<div class="heard">I’ll get bag to you</div>`,

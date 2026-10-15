@@ -80,6 +80,7 @@ import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
+import { SETTINGS_OPEN_SIGN_IN_PARAM } from './account_switch_copy';
 import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
 import { syncToCloud } from './cloud_sync';
@@ -662,6 +663,7 @@ export default function LessonComplete() {
   const [showReview, setShowReview] = useState(false);
   const [reviewContext, setReviewContext] = useState<ReviewContext>('perfect_lesson');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
+  const [guestSignInInvite, setGuestSignInInvite] = useState(false); // аудит кнопок №3: строка в итоге 2.0 вместо мёртвого окна
   const [lessonScore, setLessonScore] = useState<number>(0);
   // зачем (D121 / learn.html E1–E3): звёзды итога — по проценту верных, не по медали; нет оценки — 0 звёзд.
   const resultStars = lessonScore > 0 ? lessonStarCountFromPercent(lessonScoreToPercent(lessonScore)) : 0;
@@ -1230,7 +1232,10 @@ export default function LessonComplete() {
     const timer = setTimeout(async () => {
       try {
         const shown = await AsyncStorage.getItem(AUTH_PROMPT_SHOWN_KEY);
-        if (shown === '1') return;
+        if (shown === '1') {
+          console.log('[GUEST-SIGNIN-INVITE]', JSON.stringify({ lessonsDone: lessonId, shownBefore: true, decision: 'skip_shown_before' }));
+          return;
+        }
         const linked = await getLinkedAuthInfo();
         // зачем (Авторизация 12.10, settings-gap-001): привязка `account=linked` подставная — отметку «окно входа уже показано» на диск не пишем
         if (linked && isDevAccountLinkedDemo()) {
@@ -1240,9 +1245,19 @@ export default function LessonComplete() {
         if (linked) {
           // Уже залогинен (через онбординг или из Settings) — помечаем чтобы больше не дёргать
           AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(noteSwallowedHandler('lesson_complete:useEffect.setItem'));
+          console.log('[GUEST-SIGNIN-INVITE]', JSON.stringify({ isGuest: false, lessonsDone: lessonId, shownBefore: false, decision: 'skip_linked' }));
           return;
         }
-        if (!cancelled) setShowAuthPrompt(true);
+        // зачем (координатор 15.10, аудит кнопок №3): окно входа рисуется только в мёртвой legacy-ветке — гость его не видел, а
+        // невидимое окно съедало первое «Назад». В 2.0 — одна строка-приглашение (один раз: метка ставится при показе).
+        if (cancelled) {
+          console.log('[GUEST-SIGNIN-INVITE]', JSON.stringify({ isGuest: true, lessonsDone: lessonId, shownBefore: false, decision: 'skip_unmounted' }));
+          return;
+        }
+        console.log('[GUEST-SIGNIN-INVITE]', JSON.stringify({ isGuest: true, lessonsDone: lessonId, shownBefore: false, decision: 'show' }));
+        AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(noteSwallowedHandler('lesson_complete:guestSignInInvite.setItem'));
+        animateNextLayoutTransition(); // строка встаёт в уже показанный итог — сдвиг плавный
+        setGuestSignInInvite(true);
       } catch (e) {
       // игнорируем — модалку просто не покажем
       DebugLogger.error('lesson_complete:linked', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -1441,6 +1456,15 @@ export default function LessonComplete() {
                 lessonNamesForLang(lang)[lessonId - 1],
               ].filter(Boolean).join(' · ')}
               stars={isComboCompletion ? null : resultStars}
+              noteAction={guestSignInInvite ? {
+                label: triLang(lang, { ru: 'Один клик через Google — и прогресс в безопасности.', en: 'One tap with Google — and your progress is safe.', uk: 'Один тап через Google — і прогрес у безпеці.', es: 'Un toque en Google y tu progreso queda a salvo.', 'pt-BR': 'Um toque no Google e seu progresso fica seguro.', vi: 'Một chạm qua Google — tiến trình của bạn an toàn.', id: 'Sekali ketuk lewat Google — progresmu aman.', tr: 'Google ile tek dokunuş — ilerlemen güvende.', pl: 'Jedno kliknięcie przez Google — postępy są bezpieczne.' }),
+                testID: 'lesson-complete-guest-signin-invite',
+                onPress: () => {
+                  console.log('[GUEST-SIGNIN-INVITE]', JSON.stringify({ lessonsDone: lessonId, decision: 'tap' }));
+                  setGuestSignInInvite(false);
+                  router.push({ pathname: '/(tabs)/settings', params: { [SETTINGS_OPEN_SIGN_IN_PARAM]: '1' } } as any);
+                },
+              } : undefined}
               starsNote={joinResultNotes(!isComboCompletion && resultStars === 1
                 ? triLang(lang, { ru: 'Для следующего урока нужно 2★', en: 'You need 2★ for the next lesson', uk: 'Для наступного уроку потрібно 2★', es: 'Necesitas 2★ para la siguiente lección', 'pt-BR': 'Você precisa de 2★ para a próxima lição', vi: 'Cần 2★ để mở bài tiếp theo', id: 'Butuh 2★ untuk pelajaran berikutnya', tr: 'Sonraki ders için 2★ gerekir', pl: 'Do następnej lekcji potrzeba 2★' })
                 : nextLessonUnlockHint

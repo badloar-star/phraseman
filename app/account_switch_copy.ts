@@ -142,6 +142,8 @@ export function accountSwitchRequiredGuestCopy(lang: Lang): AccountSwitchRequire
 
 /** Параметр маршрута Настроек: открыть окно «Сменить аккаунт?» сразу (кнопка из окна входа). */
 export const SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM = 'switchAccount';
+/** Параметр маршрута Настроек: открыть окно входа сразу (приглашение гостю в итоге урока 1). */
+export const SETTINGS_OPEN_SIGN_IN_PARAM = 'signIn';
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */
 export default function __RouteShim() {

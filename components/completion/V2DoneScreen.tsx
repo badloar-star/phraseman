@@ -46,6 +46,8 @@ export type V2DoneScreenProps = Readonly<{
   /** 0–3; null — у режима нет звёзд (комбо, карточки). */
   stars: number | null;
   starsNote?: string;
+  /** Нажимаемая строка под starsNote (тот же кегль, без карточки): приглашение войти гостю после урока 1. */
+  noteAction?: Readonly<{ label: string; onPress: () => void; testID?: string }>;
   correct: number | null;
   wrong: number | null;
   coinsGained: number;
@@ -142,6 +144,26 @@ export const BalancePill = memo(function BalancePill({ g, lang }: { g: Lv2Glass;
   );
 });
 
+/**
+ * зачем (координатор 15.10, аудит кнопок №3): строка-действие в ритме starsNote — без карточки и обводки; цвет основного
+ * текста (не приглушённый) и шеврон отличают её от справки; область нажатия 44 dp, хаптик, role button.
+ */
+function NoteAction({ action, g }: { action: NonNullable<V2DoneScreenProps['noteAction']>; g: Lv2Glass }) {
+  return (
+    <Pressable
+      testID={action.testID}
+      accessibilityRole="button"
+      accessibilityLabel={action.label}
+      hitSlop={6}
+      onPress={() => { hapticTap(); action.onPress(); }}
+      style={({ pressed }) => [s.noteAction, { opacity: pressed ? 0.6 : 1 }]}
+    >
+      <Text style={[s.starsNote, s.noteActionText, { color: g.text }]}>{action.label}</Text>
+      <Ionicons name="chevron-forward" size={16} color={g.text} />
+    </Pressable>
+  );
+}
+
 export default function V2DoneScreen(props: V2DoneScreenProps) {
   const g = useLv2Glass();
   const { lang } = useLang();
@@ -200,6 +222,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
               <>
                 {props.subtitle ? <Text style={[s.chainName, { color: g.text }]}>{props.subtitle}</Text> : null}
                 {props.starsNote ? <Text style={[s.starsNote, { color: g.secondary }]}>{props.starsNote}</Text> : null}
+                {props.noteAction ? <NoteAction action={props.noteAction} g={g} /> : null}
               </>
             ))}
           </>
@@ -221,6 +244,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
           </View>
         ) : null}
         {!Chain && props.starsNote ? <Text style={[s.starsNote, { color: g.secondary }]}>{props.starsNote}</Text> : null}
+        {!Chain && props.noteAction ? <NoteAction action={props.noteAction} g={g} /> : null}
 
         {hasStats ? beat(3, (
           <View style={[s.stats, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
@@ -347,6 +371,8 @@ const s = StyleSheet.create({
   scoreText: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   stars: { flexDirection: 'row', justifyContent: 'center', gap: 14, marginTop: 22 },
   starsNote: { textAlign: 'center', fontSize: 16, fontWeight: '700', marginTop: 10 },
+  noteAction: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', alignSelf: 'center', gap: 4, minHeight: 44, marginTop: 4, paddingHorizontal: 8 },
+  noteActionText: { marginTop: 0, flexShrink: 1 },
   stats: { flexDirection: 'row', borderRadius: 16, marginTop: 20, paddingVertical: 15 },
   stat: { flex: 1, alignItems: 'center' },
   statDivider: { borderLeftWidth: StyleSheet.hairlineWidth }, // shadow-ok: вертикальный разделитель-линия между цифрами, не контейнер

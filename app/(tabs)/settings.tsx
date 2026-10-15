@@ -50,7 +50,7 @@ import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } fr
 import { readAccountSwitchUnsavedCardsDecision } from '../account_switch_unsaved_cards';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { useGlassAlert } from '../../hooks/use-glass-alert';
-import { plusTransferSwitchNotice, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM, shouldShowPlusTransferSwitchNotice } from '../account_switch_copy';
+import { plusTransferSwitchNotice, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM, SETTINGS_OPEN_SIGN_IN_PARAM, shouldShowPlusTransferSwitchNotice } from '../account_switch_copy';
 import { peekStableId } from '../stable_id';
 import { ACCOUNT_SWITCH_UI_DEADLINE_MS, awaitWithStillRunningNotice, isAccountSwitchStillRunning } from '../account_switch_deadline';
 import { accountSwitchStillRunningCopy } from '../account_switch_still_running_copy';
@@ -569,6 +569,15 @@ export default function SettingsMain() {
     }
     router.setParams({ [SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM]: undefined });
   }, [openSwitchParam, router, setSwitchAccountStage]);
+  // зачем (координатор 15.10, аудит кнопок №3): строка-приглашение гостю в итоге урока 1 ведёт сюда — окно входа открывается сразу.
+  const openSignInParam = useLocalSearchParams<{ [SETTINGS_OPEN_SIGN_IN_PARAM]?: string }>()[SETTINGS_OPEN_SIGN_IN_PARAM];
+  useEffect(() => {
+    if (openSignInParam !== '1') return;
+    console.log('[GUEST-SIGNIN-INVITE] settings: open sign-in from lesson result invite');
+    setAuthPromptMounted(true);
+    setAuthPromptVisible(true);
+    router.setParams({ [SETTINGS_OPEN_SIGN_IN_PARAM]: undefined });
+  }, [openSignInParam, router]);
   // зачем (Account V2, 8L): защита от двойного тапа на время проверки невыгруженных карточек
   // перед «Сменить без сохранения» (стадия в это время ещё 'idle').
   const unsavedCardsCheckBusyRef = useRef(false);

@@ -41,6 +41,22 @@ describe('parseVoicePrefs', () => {
   });
 });
 
+describe('результат записи выбора (аудит Optimistic UI 15.10)', () => {
+  it('успешная запись возвращает true', async () => {
+    await expect(setEnVoiceId('voice-ok')).resolves.toBe(true);
+  });
+
+  it('сбой диска возвращает false, кэш остаётся (экран сам откатит выбор), причина в журнале [VOICE-PICK]', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    jest.spyOn(AsyncStorage, 'setItem').mockRejectedValueOnce(new Error('disk_full'));
+    await expect(setEnVoiceId('voice-fail')).resolves.toBe(false);
+    expect(peekEnVoiceId()).toBe('voice-fail');
+    expect(warn.mock.calls.some((call) => String(call[0]).includes('[VOICE-PICK]') && String(call[0]).includes('disk_full'))).toBe(true);
+    // setItem не восстанавливаем mockRestore: у мока хранилища он сбросил бы рабочую реализацию; once-отказ уже израсходован
+    warn.mockRestore();
+  });
+});
+
 describe('set/get + синхронный кэш peekEnVoiceId', () => {
   it('setEnVoiceId персистит в fc_voice_prefs_v1 и мгновенно обновляет кэш', async () => {
     await setEnVoiceId('en-us-x-iol-local');

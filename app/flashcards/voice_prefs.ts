@@ -67,8 +67,12 @@ export async function getVoicePrefs(): Promise<FcVoicePrefs> {
   }
 }
 
-/** Сохранить выбор (null = вернуться к системному). Кэш — мгновенно, диск — фоном. */
-export async function setEnVoiceId(voiceId: string | null): Promise<void> {
+/**
+ * Сохранить выбор (null = вернуться к системному). Кэш — мгновенно, диск — фоном.
+ * зачем (аудит Optimistic UI 15.10): раньше сбой записи только уходил в DebugLogger и экран не знал о нём — выбор «держался» до перезапуска и молча пропадал.
+ * Теперь возвращает true, если диск принял запись; false — экран откатывает выбор (`[VOICE-PICK]`).
+ */
+export async function setEnVoiceId(voiceId: string | null): Promise<boolean> {
   cachedVoiceIdEn = voiceId && voiceId.trim().length > 0 ? voiceId : null;
   hydrated = true;
   try {
@@ -85,9 +89,12 @@ export async function setEnVoiceId(voiceId: string | null): Promise<void> {
       FC_VOICE_PREFS_KEY,
       JSON.stringify({ ...base, voiceIdEn: cachedVoiceIdEn }),
     );
+    return true;
   } catch (e) {
-      DebugLogger.error('voice_prefs:p', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+    console.warn(`[VOICE-PICK] запись выбора голоса на диск не удалась id=${cachedVoiceIdEn ?? 'авто'} — ${e instanceof Error ? e.message : String(e)}`); // guard-ok: причина отказа записи
+    DebugLogger.error('voice_prefs:p', e instanceof Error ? e : new Error(String(e)), 'warning');
+    return false;
+  }
 }
 
 /** Только для юнит-тестов: сброс модульного кэша. */

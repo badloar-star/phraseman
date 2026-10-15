@@ -14,7 +14,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { isDevCardsHeld } from './dev_cards_state';
 import { useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
@@ -30,6 +30,7 @@ import { nestedBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface'
 import { getVoicesOnce, peekVoicesCache, voiceTitle, type FcVoiceLike } from './flashcards/tts_voices';
 import { getVoicePrefs, setEnVoiceId } from './flashcards/voice_prefs';
 import { safeRouterBack } from './navigation_back';
+import { emitAppEvent } from './events';
 import {
   applyUserSettingsNow,
   getUserSettingsSnapshot,
@@ -38,6 +39,22 @@ import {
 } from './user_settings_store';
 
 const PREVIEW_PHRASE = 'Look forward to seeing you';
+
+// зачем (аудит Optimistic UI 15.10): сбой записи выбора голоса/скорости раньше молчал — выбор «держался» до перезапуска и пропадал; теперь откат + короткая подсказка (тот же текст, что у переключателей Приватности)
+function notifySaveFailed(): void {
+  emitAppEvent('action_toast', {
+    type: 'error',
+    messageRu: 'Не удалось сохранить настройку. Попробуй ещё раз.',
+    messageUk: 'Не вдалося зберегти налаштування. Спробуй ще раз.',
+    messageEn: "Couldn't save the setting. Try again.",
+    messageEs: 'No se pudo guardar el ajuste. Inténtalo de nuevo.',
+    messagePtBr: 'Não foi possível salvar a configuração. Tente de novo.',
+    messageVi: 'Không lưu được cài đặt. Hãy thử lại.',
+    messageId: 'Pengaturan gagal disimpan. Coba lagi.',
+    messageTr: 'Ayar kaydedilemedi. Tekrar dene.',
+    messagePl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
+  });
+}
 
 /** Novelty/спец-голоса iOS — не для обучения (§3.8: исключить eloquence/novelty). */
 const NOVELTY_NAMES = new Set([
@@ -82,15 +99,32 @@ export default function FlashcardsVoicePickerScreen() {
   const [voices, setVoices] = useState<FcVoiceLike[]>(() => (peekVoicesCache() ?? []).filter(isPickableEnVoice));
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [settings, setSettings] = useState<UserSettings>(() => getUserSettingsSnapshot());
+  // зачем (аудит Optimistic UI 15.10): актуальный выбор в ref — откат при сбое записи берёт прежнее значение, а не устаревшее из замыкания; номер выбора — поздний ответ старого тапа не откатывает свежий
+  const selectedIdRef = useRef<string | null>(null);
+  const pickSeqRef = useRef(0);
+  const userPickedRef = useRef(false);
+  const settingsRef = useRef<UserSettings>(settings);
+  const rateSeqRef = useRef(0);
 
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const [list, prefs] = await Promise.all([getVoicesOnce(), getVoicePrefs()]);
-      if (cancelled) return;
-      setVoices(list.filter(isPickableEnVoice));
-      setSelectedId(prefs.voiceIdEn);
-      if (!isDevCardsHeld('voices_loading')) setLoading(false);
+      try {
+        const [list, prefs] = await Promise.all([getVoicesOnce(), getVoicePrefs()]);
+        if (cancelled) return;
+        setVoices(list.filter(isPickableEnVoice));
+        // позднее чтение диска не затирает выбор, который человек успел сделать, пока список грузился
+        if (userPickedRef.current) {
+          console.log(`[VOICE-PICK] загрузка списка пришла после выбора человека — оставляю его выбор id=${selectedIdRef.current ?? 'авто'}, диск=${prefs.voiceIdEn ?? 'авто'}`); // guard-ok: ветка решения называет значения
+        } else {
+          selectedIdRef.current = prefs.voiceIdEn;
+          setSelectedId(prefs.voiceIdEn);
+        }
+      } catch (error) {
+        console.warn(`[VOICE-PICK] загрузка списка голосов/выбора не удалась — ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина отказа
+      } finally {
+        if (!cancelled && !isDevCardsHeld('voices_loading')) setLoading(false);
+      }
     })();
     return () => {
       cancelled = true;
@@ -126,8 +160,22 @@ export default function FlashcardsVoicePickerScreen() {
   const pickVoice = useCallback(
     (voiceId: string | null) => {
       fcHaptic('tap');
+      const previous = selectedIdRef.current;
+      const seq = ++pickSeqRef.current;
+      userPickedRef.current = true;
+      selectedIdRef.current = voiceId;
       setSelectedId(voiceId);
-      void setEnVoiceId(voiceId);
+      void setEnVoiceId(voiceId).then((saved) => {
+        if (saved) return;
+        if (pickSeqRef.current !== seq) {
+          console.warn(`[VOICE-PICK] запись выбора ${voiceId ?? 'авто'} не удалась, но уже есть более новый выбор (seq=${pickSeqRef.current}) — откат не нужен`); // guard-ok: ранний выход называет причину
+          return;
+        }
+        console.warn(`[VOICE-PICK] запись выбора ${voiceId ?? 'авто'} не удалась — откат на ${previous ?? 'авто'}`); // guard-ok: ветка отката
+        selectedIdRef.current = previous;
+        setSelectedId(previous);
+        notifySaveFailed();
+      });
       previewWith(voiceId);
     },
     [previewWith],
@@ -137,10 +185,22 @@ export default function FlashcardsVoicePickerScreen() {
   const pickRate = useCallback(
     (rate: number) => {
       fcHaptic('tap');
-      setSettings((prev) => {
-        const next = { ...prev, speechRate: normalizeSpeechRate(rate) };
-        applyUserSettingsNow(next);
-        return next;
+      const previous = settingsRef.current;
+      const next = { ...previous, speechRate: normalizeSpeechRate(rate) };
+      const seq = ++rateSeqRef.current;
+      settingsRef.current = next;
+      setSettings(next);
+      // зачем (аудит Optimistic UI 15.10): запись настроек — вне setState-апдейтера (он должен быть чистым), результат пишет откат + подсказку
+      void applyUserSettingsNow(next).then((saved) => {
+        if (saved) return;
+        if (rateSeqRef.current !== seq) {
+          console.warn(`[VOICE-PICK] запись скорости ${next.speechRate} не удалась, но уже есть более новая (seq=${rateSeqRef.current}) — откат не нужен`); // guard-ok: ранний выход называет причину
+          return;
+        }
+        console.warn(`[VOICE-PICK] запись скорости ${next.speechRate} не удалась — откат на ${previous.speechRate}`); // guard-ok: ветка отката
+        settingsRef.current = previous;
+        setSettings(previous);
+        notifySaveFailed();
       });
       stop();
       speak(PREVIEW_PHRASE, rate, { language: 'en-US', voiceId: selectedId });

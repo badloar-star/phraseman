@@ -160,7 +160,11 @@ function buildReport() {
   const catalogWarehouseMissingFromSql = [...catalogWarehouse]
     .filter(name => !warehouseSet.has(name))
     .sort();
-  const declaredWithoutCallSite = [...declared].filter(name => !canonicalCalled.has(name)).sort();
+  // зачем (Ядро 15.10, D187): событие, чью фичу удалили, остаётся в каталоге ради истории в хранилище (запросы админки за прошлые
+  // недели), но вызовов у него быть не должно. Поле `retired` (причина) снимает требование вызова и, наоборот, запрещает вызов.
+  const retired = new Set(catalog.filter(event => typeof event.retired === 'string' && event.retired.length > 0).map(event => event.name));
+  const declaredWithoutCallSite = [...declared].filter(name => !canonicalCalled.has(name) && !retired.has(name)).sort();
+  const retiredButCalled = [...retired].filter(name => canonicalCalled.has(name)).sort();
   const validMeasuredEvents = new Set();
   const metricErrors = [];
   for (const metric of governance.metrics) {
@@ -188,6 +192,7 @@ function buildReport() {
     ...unknownWarehoused.map(name => `unknown_warehouse_event:${name}`),
     ...catalogWarehouseMissingFromSql.map(name => `catalog_event_missing_from_sql:${name}`),
     ...declaredWithoutCallSite.map(name => `declared_event_without_call_evidence:${name}`),
+    ...retiredButCalled.map(name => `retired_event_still_called:${name}`),
     ...warehousedWithoutMetric.map(name => `warehouse_event_without_metric:${name}`),
     ...unknownWarehouseFields.map(name => `warehouse_field_not_governed:${name}`),
     ...metricErrors,

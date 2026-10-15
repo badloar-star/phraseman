@@ -28,6 +28,7 @@ const ALLOWED = new Map([
   ['components/ActivityHeatmap365.tsx', 'чтение защищено `?? \'en-US\'` (коды локалей, не тексты)'],
   ['constants/lessons.ts', 'чтение защищено запасным списком названий'],
   ['constants/avatars.ts', 'чтение защищено `||` и необязательным обращением'],
+  ['components/spire/moments/moments_strings.ts', 'LEAGUE_LOCATIVE[lang] читается только после сужения lang до ru/uk/pl (падеж; в en падежа нет — имя как есть)'],
 ]);
 
 function listFiles() {

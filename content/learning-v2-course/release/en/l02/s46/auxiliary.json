@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-46:intro1:r2": {
+          "ru": "Между `It` и `appropriate` нужно `is`.",
+          "uk": "Між `It` і `appropriate` потрібно `is`."
+        },
+        "en:lesson-02:session-46:intro1:r3": {
+          "ru": "Это отрицает уместность. По условию тон подходит.",
+          "uk": "Це заперечує доречність. За умовою тон підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-46:intro2:r2": {
+          "ru": "Это утверждение. Вы пока спрашиваете.",
+          "uk": "Це твердження. Ви поки запитуєте."
+        },
+        "en:lesson-02:session-46:intro2:r3": {
+          "ru": "Это вопрос об официальном статусе, а не об уместности шутки.",
+          "uk": "Це запитання про офіційний статус, а не про доречність жарту."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-46:intro3:r2": {
+          "ru": "Это о статусе. Сейчас нужно сказать об отсутствии пользы.",
+          "uk": "Це про статус. Зараз потрібно сказати про відсутність користі."
+        },
+        "en:lesson-02:session-46:intro3:r3": {
+          "ru": "Это «полезный», а список в этой задаче не помогает.",
+          "uk": "Це «корисний», а список у цьому завданні не допомагає."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "66b40a2e496f9ca4bc867a079dc118b1b1dcb0ac0414b8b330c189553550a7ad"
+}

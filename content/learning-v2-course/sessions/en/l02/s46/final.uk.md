@@ -1,155 +1,138 @@
-# Англійська · Урок 2 · Заняття 46 — «Перевірка зв’язку»
+# Англійська · Урок 2 · Заняття 46 — Слова для привітання
 
-**Сцена заняття.** У неділю вранці ви зідзвонюєтеся з ведучим перед коротким телефонним інтерв’ю. Він пропонує спочатку перевірити звук. Ви уточнюєте, чи чути ваш голос і чи розбірливо звучить мовлення.
+**Ситуація.** Ви з Анною готуєте привітання для вчителя. Вибираєте тон і обговорюєте жарт. Олег надіслав свій неофіційний варіант програми; старий список без імен для вашого завдання марний.
 
-**Як сказати:** застосування запитань про себе під час перевірки чутності й розбірливості мовлення
-**Нові слова:** audible, clear
-**Повертаються:** ready, sure
+**Що ви опануєте:** сказати, що підходить ситуації, та запитати про доречність
+**Нові слова:** appropriate
 
 ---
 
 ## Інтро 1
 
-### Чи чути голос
+### Підходить ситуації
 
-`audible` — «чутний»: звук досить гучний, щоб його почули. `Am I audible?` — «Мене чути?» Це формальне запитання, доречне під час перевірки зв’язку. Воно допомагає з’ясувати, чи чутний ваш голос. Розбірливість іще не перевірена: чути голос і розбирати слова — різні речі.
+`appropriate` — «доречний, відповідний ситуації». Для привітання вчителя ви вибрали теплий і шанобливий тон: `It is appropriate`. Це оцінка з урахуванням нагоди та слухачів. Жарт може чудово підійти другові на кухні й зовсім інакше прозвучати перед усім залом.
 
-**Ведучий попросив перевірити звук перед інтерв’ю. Запитайте, чи він чує ваш голос.**
+**Теплий шанобливий тон підходить вашому привітанню вчителя. Скажіть повною фразою, що він доречний.**
 
-- ✅ **Am I audible?**
-- ❌ Am I ready? — *Це «Я готовий?» Зараз ви перевіряєте, чи доходить ваш голос: `audible`.*
-- ❌ Are you audible? — *Це запитання про голос ведучого. Ви запитуєте про свій: `Am I audible?`*
+- ✅ **It is appropriate.**
+- ❌ It appropriate. — *Між `It` і `appropriate` потрібно `is`.*
+- ❌ It is not appropriate. — *Це заперечує доречність. За умовою тон підходить.*
 
 ---
 
 ## Інтро 2
 
-### Голос чути — а слова зрозумілі?
+### Запитати про жарт
 
-`clear` — «розбірливий, зрозумілий». Під час перевірки зв’язку `Am I clear?` — «Я говорю розбірливо?» В іншій розмові це може прозвучати суворо: «Я зрозуміло висловився?» Тому варто уточнити, що ви перевіряєте звук: хочете налагодити зв’язок, а не виховувати співрозмовника.
+`Is it appropriate?` — «Це доречно?» Так можна запитати про жарт, одяг або вибраний тон, коли ситуація вже зрозуміла. У відповіді `Yes, it is` підтверджують доречність, а `No, it is not` її заперечують. Доречність — не властивість жарту на всі часи: важлива конкретна нагода.
 
-**Ведучий підтвердив, що голос чути. Тепер уточніть, чи розбірливо звучать ваші слова.**
+**Ви сумніваєтеся, чи підходить жарт для привітання вчителя перед усім залом. Запитайте Анну, чи він доречний.**
 
-- ✅ **Am I clear?**
-- ❌ Am I audible? — *Це перевірка чутності. Голос уже чути; тепер ви уточнюєте розбірливість: `clear`.*
-- ❌ Are you clear? — *Так ви запитаєте про мовлення ведучого. Зараз ви перевіряєте своє: `Am I clear?`*
+- ✅ **Is it appropriate?**
+- ❌ It is appropriate. — *Це твердження. Ви поки запитуєте.*
+- ❌ Is it official? — *Це запитання про офіційний статус, а не про доречність жарту.*
 
 ---
 
 ## Інтро 3
 
-### Перевірити в співрозмовника
+### Джерело й користь
 
-`I am not sure` — «Я не впевнений». Так можна повідомити, що ви ще сумніваєтеся в результаті перевірки. Себе ви чуєте, але за співрозмовника відповісти не можете. У нього запитують `Am I audible?` — «Мене чути?» Саме він скаже, чи доходить ваш голос до іншого кінця зв’язку.
+`unofficial` — «неофіційний»: Олег накидав програму від себе, організатори її не затверджували. `It is unofficial`. `useless` — «марний»: старий список без імен не допомагає розподілити привітання, `It is useless`. Неофіційний матеріал не обов’язково марний: це різні ознаки.
 
-**Ведучий запитує, чи впевнені ви, що перевірку зв’язку завершено. Ви ще сумніваєтеся. Скажіть про це.**
+**Старий список без імен ніяк не допомагає розподілити привітання. Коротко скажіть, що він марний.**
 
-- ✅ **I am not sure.**
-- ❌ I am sure. — *Без `not` вийде «Я впевнений». Вам треба повідомити про сумнів.*
-- ❌ Am I audible? — *Це запитання про чутність. Зараз ви відповідаєте, чи впевнені: `I am not sure`.*
+- ✅ **It's useless.**
+- ❌ It's unofficial. — *Це про статус. Зараз потрібно сказати про відсутність користі.*
+- ❌ It's useful. — *Це «корисний», а список у цьому завданні не допомагає.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — audible**
-<!-- interaction_id: en:lesson-02:session-46:i01; family: listen_choose -->
-Ціль: `audible`
+**1 · Теплий шанобливий тон підходить привітанню. Скажіть повною фразою, що він доречний**
+<!-- interaction_id: en:lesson-02:session-46:i01; family: phrase_builder -->
+Плитки: `appropriate` `is` `It` `are` → **It is appropriate.**
+*(плитка `are` зайва: тут потрібно `is` — `It is appropriate.`)*
 
-**2 · Послухайте й виберіть — яке слово вимовив ведучий**
+**2 · Послухайте фразу про список**
 <!-- interaction_id: en:lesson-02:session-46:i02; family: listen_choose -->
-Ціль: `audible`
-Варіанти: `audible` · `edible` · `laudable`
-- edible — *Це «їстівний». Перший голосний схожий на початок українського слова «етика». В `audible` початковий голосний інший — переслухайте початок.*
-- laudable — *Це «похвальний». Слово починається зі звука «л», а `audible` — із голосного.*
+🔊 *It is useless.* → **It is useless.** · It is useful. · It is unofficial.
+- It is useful. — *У записі останнє слово — `useless`, а в цьому варіанті — `useful`.*
+- It is unofficial. — *У записі останнє слово — `useless`, а в цьому варіанті — `unofficial`.*
 
+**3 · Уточніть, чи доречний жарт для цього привітання**
+<!-- interaction_id: en:lesson-02:session-46:i03; family: context_gap_grammar -->
+___ it appropriate? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it appropriate?`.*
 
-**3 · Картка слова — clear**
-<!-- interaction_id: en:lesson-02:session-46:i03; family: listen_choose -->
-Ціль: `clear`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-46:i04; family: speed_match -->
+appropriate — доречний · useless — марний · unofficial — неофіційний · useful — корисний
 
-**4 · Послухайте й виберіть — яке слово прозвучало**
-<!-- interaction_id: en:lesson-02:session-46:i04; family: listen_choose -->
-Ціль: `clear`
-Варіанти: `clear` · `near` · `fear`
-- near — *Це «близько». Слово починається зі звука «н», а `clear` — зі звука «к».*
-- fear — *Це «страх». На початку `fear` чути звук «ф», а слово в записі починається зі звука «к»: `clear`.*
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-46:i05; family: listen_build_dictation -->
+🔊 *No, it is not.* Плитки: `not` `is` `it` `No,` `Yes,` → **No, it is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, it is not.`)*
 
+**6 · Ви вибираєте між кількома варіантами привітання. Запитайте Анну, що доречно**
+<!-- interaction_id: en:lesson-02:session-46:i06; family: phrase_builder -->
+Плитки: `appropriate` `is` `What` `Where` → **What is appropriate?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is appropriate?`)*
 
-**5 · Складіть фразу — ведучий просить перевірити мікрофон у телефоні; запитайте, чи вас чути**
-<!-- interaction_id: en:lesson-02:session-46:i05; family: phrase_builder -->
-Ціль: `Am I audible?`
+**7 · Анна запропонувала шанобливе звертання, яке підходить учителеві. Коротко скажіть, що воно доречне**
+<!-- interaction_id: en:lesson-02:session-46:i07; family: scripted_repeat_compare -->
+🎙 **It's appropriate.**
 
-**6 · Вставте слово — ведучий сказав, що голос чути; уточніть, чи розбірливо звучать ваші слова**
-<!-- interaction_id: en:lesson-02:session-46:i06; family: context_gap_grammar -->
-Ціль: `Am I ___ ?`
-Варіанти: `clear` · `audible` · `ready`
-- audible — *Голос уже чути. Зараз ви перевіряєте, чи легко розібрати слова: `clear`.*
-- ready — *Це «готовий». Зараз запитання про розбірливість вашого мовлення, тому потрібне `clear`.*
+**8 · Програму Олега організатори не затверджували. На «Is it unofficial?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-46:i08; family: context_gap_grammar -->
+Yes, it ___. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Відповідь — `Yes, it is`.*
 
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-46:i09; family: listen_choose -->
+🔊 *Is it unofficial?* → **Is it unofficial?** · Is it official? · Is it appropriate?
+- Is it official? — *У записі останнє слово — `unofficial`, а в цьому варіанті — `official`.*
+- Is it appropriate? — *У записі останнє слово — `unofficial`, а в цьому варіанті — `appropriate`.*
 
-**7 · Послухайте й виберіть — яке запитання ведучий поставив під час перевірки звуку**
-<!-- interaction_id: en:lesson-02:session-46:i07; family: listen_choose -->
-Ціль: `Am I clear?`
-Варіанти: `Am I clear?` · `Am I audible?` · `Are you clear?`
-- Am I audible? — *Це запитання про чутність. Останнє слово в записі — `clear`: ведучий перевіряє розбірливість свого мовлення.*
-- Are you clear? — *Це запитання до вас. Запис починається з `Am I`: ведучий запитує про себе.*
-
-
-**8 · Складіть фразу — ведучий запитує, чи впевнені ви, що все перевірили; ви ще сумніваєтеся**
-<!-- interaction_id: en:lesson-02:session-46:i08; family: phrase_builder -->
-Ціль: `I am not sure.`
-
-**9 · Вставте слово — ведучий запитує, чи підготували ви свої нотатки; вони перед вами, скажіть: «Я готовий»**
-<!-- interaction_id: en:lesson-02:session-46:i09; family: context_gap_grammar -->
-Ціль: `I am ___ .`
-Варіанти: `ready` · `sure` · `late`
-- sure — *Це «впевнений». Ви повідомляєте про готовність до інтерв’ю: `ready`.*
-- late — *Це «запізнився» або «запізнююся». Зараз ідеться про підготовлені нотатки: `I am ready`.*
-
-
-**10 · З’єднайте пари — слова перед інтерв’ю**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-46:i10; family: speed_match -->
-Пари: `audible` — чутний · `clear` — розбірливий · `ready` — готовий · `sure` — впевнений
-Ціль: `audible · clear · ready · sure`
+unofficial — неофіційний · useful — корисний · appropriate — доречний · useless — марний
 
-**11 · Складіть фразу — ведучий перевіряє своє мовлення; ви легко розбираєте його слова, підтвердьте: «Ви говорите розбірливо»**
-<!-- interaction_id: en:lesson-02:session-46:i11; family: phrase_builder -->
-Ціль: `You are clear.`
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-46:i11; family: listen_build_dictation -->
+🔊 *It is not appropriate.* Плитки: `appropriate` `not` `is` `It` `are` → **It is not appropriate.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not appropriate.`)*
 
-**12 · Вставте слово — ви відсунули телефон і хочете перевірити, чи досі чути ваш голос**
-<!-- interaction_id: en:lesson-02:session-46:i12; family: context_gap_grammar -->
-Ціль: `___ I audible?`
-Варіанти: `Am` · `Are` · `Is`
-- Are — *Запитання про себе з `I` починається з `Am`: `Am I audible?`*
-- Is — *Сполучення `Is I` не підходить для цього запитання. Потрібні перші два слова `Am I`.*
+**12 · Анна відклала старий список. Запитайте, чи він марний для вашого завдання**
+<!-- interaction_id: en:lesson-02:session-46:i12; family: phrase_builder -->
+Плитки: `useless` `it` `Is` `Are` → **Is it useless?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it useless?`)*
 
+**13 · Олег написав програму від себе, без затвердження організаторами. Коротко скажіть, що вона неофіційна**
+<!-- interaction_id: en:lesson-02:session-46:i13; family: scripted_repeat_compare -->
+🎙 **It's unofficial.**
 
-**13 · Послухайте й складіть — ведучий оцінює вашу спільну готовність до початку інтерв’ю**
-<!-- interaction_id: en:lesson-02:session-46:i13; family: listen_build_dictation -->
-Ціль: `We are not ready.`
-
-**14 · Вставте слово — ведучий перевіряє свої записи; запитайте, чи готовий він починати**
+**14 · Цей жарт висміює особисту неприємність учителя й не підходить привітанню. Скажіть, що він недоречний**
 <!-- interaction_id: en:lesson-02:session-46:i14; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `ready` · `audible` · `early`
-- audible — *Це запитання про чутність його голосу. Зараз ви уточнюєте готовність ведучого: `ready`.*
-- early — *Це «рано». Ви запитуєте, чи готовий співрозмовник, тому потрібне `Are you ready?`*
+It ___ not appropriate. → **is** · am · are
+- am — *З `It` потрібно `is`.*
+- are — *Фраза — `It is not appropriate`.*
 
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-46:i15; family: listen_choose -->
+🔊 *Is it appropriate?* → **Is it appropriate?** · Is it useful? · Is it unofficial?
+- Is it useful? — *У записі останнє слово — `appropriate`, а в цьому варіанті — `useful`.*
+- Is it unofficial? — *У записі останнє слово — `appropriate`, а в цьому варіанті — `unofficial`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-46:i15; family: scripted_repeat_compare -->
-Ціль: `You are clear.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-46:i16; family: speed_match -->
+useless — марний · appropriate — доречний · useful — корисний · unofficial — неофіційний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-46:i16; family: scripted_repeat_compare -->
-Ціль: `I am ready.`
-
-**17 · Складіть фразу — ви змінили положення телефона; перед інтерв’ю запитайте ведучого, чи розбірливо тепер звучать ваші слова**
-<!-- interaction_id: en:lesson-02:session-46:i17; family: phrase_builder -->
-Ціль: `Am I clear?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Олег пропонує новий жарт для привітання. Запитайте Анну, чи він доречний**
+<!-- interaction_id: en:lesson-02:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it appropriate?**
 

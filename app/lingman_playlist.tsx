@@ -103,7 +103,9 @@ export default function LingmanPlaylistScreen() {
     if (url) void Linking.openURL(url);
   };
 
-  const subtitle = playlist ? `${playlist.itemCount} ${copy.videos}${catalog?.channel.displayName ? ` · ${catalog.channel.displayName}` : ''}` : '';
+  // зачем (Макеты R57, 15.10): число в подзаголовке — из реально загруженного списка плейлиста, когда он готов (раньше «6 видео», а в списке 2)
+  const shownCount = allChannel.status === 'ready' ? videos.length : playlist?.itemCount ?? 0;
+  const subtitle = playlist ? `${shownCount} ${copy.videos}${catalog?.channel.displayName ? ` · ${catalog.channel.displayName}` : ''}` : '';
 
   return (
     <ScreenGradient artBackdrop="home">

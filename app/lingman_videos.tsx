@@ -477,10 +477,14 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   useEffect(() => { setPages(1); }, [catalog?.channel.id]);
   const allVideos = fullVideos ?? catalog?.videos ?? snapshot?.videos.map(legacyVideoSnapshot) ?? [];
   // зачем (аудит #24, 15.10): снимок экрана видео обрезает плейлисты до 8 — пока полный список не пришёл, показываем снимок, потом все плейлисты канала
-  const playlistsForGrid = useMemo(
-    () => (allChannel.playlists.length > (catalog?.playlists.length ?? 0) ? allChannel.playlists.map(allVideosPlaylistToSnapshot) : catalog?.playlists ?? []),
-    [allChannel.playlists, catalog?.playlists],
-  );
+  // зачем (Макеты R57, 15.10): плейлист без роликов в сетке не показываем, а счётчик «N видео» берём из реально загруженного списка (у «Метод цепочек» было «6 видео», в списке 2). Пока полный список не пришёл — снимок как есть.
+  const playlistsForGrid = useMemo(() => {
+    const base = allChannel.playlists.length > (catalog?.playlists.length ?? 0) ? allChannel.playlists.map(allVideosPlaylistToSnapshot) : catalog?.playlists ?? [];
+    if (allChannel.status !== 'ready') return base;
+    const counts = new Map<string, number>();
+    for (const item of allChannel.items) for (const id of item.playlistIds) counts.set(id, (counts.get(id) ?? 0) + 1);
+    return base.filter((playlist) => (counts.get(playlist.id) ?? 0) > 0).map((playlist) => ({ ...playlist, itemCount: counts.get(playlist.id) ?? 0 }));
+  }, [allChannel.items, allChannel.playlists, allChannel.status, catalog?.playlists]);
   const favorites = useVideoFavorites();
   // зачем (Firebase-экономия): счётчики сохранений читаем только для показанных страниц, а не для всех 100 роликов.
   const shownVideoIds = useMemo(() => allVideos.slice(0, pages * ALL_VIDEOS_PAGE_SIZE).map((video) => video.id), [allVideos, pages]);
@@ -489,6 +493,17 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     const byId = new Map(allVideos.map((video) => [video.id, video] as const));
     return favorites.savedIds.map((id) => byId.get(id)).filter((video): video is YoutubeVideoSnapshot => !!video);
   }, [allVideos, favorites.savedIds]);
+  // зачем (Макеты R59, 15.10): закладка в сетке добавляла строку «Сохранённые видео» над сеткой — сетка уезжала вниз прямо под пальцем. Пока строка появляется/исчезает, держим прокрутку: смещаем на её высоту (+ отступ 18).
+  const hasSavedRow = !savedOnly && savedVideos.length > 0;
+  const scrollYRef = useRef(0);
+  const savedRowHRef = useRef(0);
+  const SAVED_ROW_MARGIN = 18;
+  useEffect(() => {
+    if (hasSavedRow || savedRowHRef.current === 0) return;
+    const shift = savedRowHRef.current + SAVED_ROW_MARGIN;
+    savedRowHRef.current = 0;
+    if (scrollYRef.current > 8) homeListRef.current?.scrollToOffset({ offset: Math.max(0, scrollYRef.current - shift), animated: false });
+  }, [hasSavedRow]);
   // Optimistic: вид меняется сразу (стор публикует локально), отказ сети — стор откатывает, тут тост.
   const toggleSave = useCallback((videoId: string) => {
     void favorites.toggle(videoId).then((outcome) => {
@@ -718,9 +733,15 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       </Pressable>
     </ScrollView>
   );
-  const savedRow = !savedOnly && savedVideos.length > 0 ? (
+  const savedRow = hasSavedRow ? (
     <TouchableOpacity
       testID="video-saved-row"
+      onLayout={(e) => {
+        const h = Math.round(e.nativeEvent.layout.height);
+        const prev = savedRowHRef.current;
+        savedRowHRef.current = h;
+        if (prev === 0 && h > 0 && scrollYRef.current > 8) homeListRef.current?.scrollToOffset({ offset: scrollYRef.current + h + SAVED_ROW_MARGIN, animated: false });
+      }}
       accessibilityRole="button"
       accessibilityLabel={copy.savedVideos}
       activeOpacity={0.8}
@@ -812,6 +833,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         ) : (
           <FlashList
             ref={homeListRef}
+            onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; }}
+            scrollEventThrottle={64}
             decelerationRate="fast"
             testID="lingman-videos-list"
             data={homeListVideos}

@@ -5420,7 +5420,8 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
   },
   offersCta: {
     marginTop: 18,
-    height: 56,
+    // зачем (аудит R58 #49, 15.10): крупный системный шрифт не должен резать подпись кнопки — 56 это минимум, высота по содержимому; вид по умолчанию прежний
+    minHeight: 56,
     borderRadius: 28,
     backgroundColor: P.ctaFill,
     alignItems: 'center',

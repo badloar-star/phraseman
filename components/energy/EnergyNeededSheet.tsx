@@ -14,6 +14,7 @@ import { emitEnergyToast } from './energy_toasts';
 import { useLang } from '../LangContext';
 import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 const TAG = '[ENERGY-NEEDED]';
 
@@ -72,6 +73,7 @@ const Countdown = memo(function Countdown({ missingUnits, color }: { missingUnit
  * пока не восстановилась хотя бы 1 энергия. Шторка снизу с тикающим таймером, пятью ячейками энергии и «Продолжить с Plus».
  */
 function EnergyNeededSheet({ visible, onWait, onPlus, onRestored, required = 1 }: Props) {
+  const insets = useStableSafeAreaInsets(); // зачем (аудит R58 #60, 15.10): кнопка шторки не прижимается к полосе жестов — нижний отступ 30 или системная вставка + 16
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -142,7 +144,7 @@ function EnergyNeededSheet({ visible, onWait, onPlus, onRestored, required = 1 }
       backdropColor="rgba(0,0,0,0.6)" // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
       testID="energy-needed-sheet"
     >
-      <View style={[styles.sheet, { backgroundColor: g.opaqueSheet }]}>
+      <View style={[styles.sheet, { backgroundColor: g.opaqueSheet, paddingBottom: Math.max(30, insets.bottom + 16) }]}>
         {cascade(LUM.ladder[1], 'title', (
           <Text accessibilityRole="header" style={[styles.title, { color: g.text }]} testID="energy-needed-title">{title}</Text>
         ))}

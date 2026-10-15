@@ -88,3 +88,20 @@ describe('аудит кнопок: Видео', () => {
     expect(src).toContain('copy.premiereStarted');
   });
 });
+
+describe('аудит кнопок: Видео, добавки Макетов R57/R59 (15.10)', () => {
+  it('плейлисты без роликов скрыты из сетки, счётчик «N видео» — из загруженного списка', () => {
+    const videos = read('app/lingman_videos.tsx');
+    expect(videos).toContain("if (allChannel.status !== 'ready') return base;");
+    expect(videos).toContain('.filter((playlist) => (counts.get(playlist.id) ?? 0) > 0).map((playlist) => ({ ...playlist, itemCount: counts.get(playlist.id) ?? 0 }))');
+    const playlist = read('app/lingman_playlist.tsx');
+    expect(playlist).toContain("const shownCount = allChannel.status === 'ready' ? videos.length : playlist?.itemCount ?? 0;");
+  });
+
+  it('закладка в сетке держит прокрутку: строка «Сохранённые» сдвигает список на свою высоту', () => {
+    const videos = read('app/lingman_videos.tsx');
+    expect(videos).toContain('const hasSavedRow = !savedOnly && savedVideos.length > 0;');
+    expect(videos).toContain('scrollToOffset({ offset: scrollYRef.current + h + SAVED_ROW_MARGIN, animated: false })');
+    expect(videos).toContain('onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; }}');
+  });
+});

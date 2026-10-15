@@ -39,7 +39,8 @@ export const STORY_CLOSE_MS = 320;
 export const STORY_PREV_ZONE = 0.32;
 /** Удержание дольше этого — пауза, мс. */
 export const STORY_HOLD_MS = 220;
-const HEADER_H = 110;
+/** Высота шапки (✕, полоса) ниже системной вставки сверху, dp — зона, где тап не листает. */
+const HEADER_BELOW_INSET = 70;
 const CLOSE_DRAG_PX = 90;
 const CLOSE_DRAG_VELOCITY = 800;
 const EASE_ENTER = Easing.bezier(0.32, 0.72, 0, 1);
@@ -169,11 +170,13 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
   }, []);
 
   // ── жесты ────────────────────────────────────────────────────────────────
+  // зачем (аудит R58 #59, 15.10): шапка с ✕ — не зона листания; зона = вырез/статус-бар + 70 (кнопка ✕ и полоса), а не константа 110 — на вырезе ✕ раньше листал сторис
+  const headerH = insets.top + HEADER_BELOW_INSET;
   const onTapAt = useCallback((x: number, y: number) => {
-    if (y < HEADER_H) return; // шапка с ✕ — не зона листания
+    if (y < headerH) return;
     DebugLogger.info(LOG, `тап x=${Math.round(x)} зона=${x < winW * STORY_PREV_ZONE ? 'назад' : 'дальше'}`);
     go(x < winW * STORY_PREV_ZONE ? indexRef.current - 1 : indexRef.current + 1);
-  }, [go, winW]);
+  }, [go, headerH, winW]);
 
   const gesture = useMemo(() => {
     const tap = Gesture.Tap().maxDuration(250).onEnd((e, ok) => { if (ok) runOnJS(onTapAt)(e.x, e.y); });

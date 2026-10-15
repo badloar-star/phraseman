@@ -16,6 +16,7 @@
  */
 import { tryPlayV2Event } from '../modules/sound_v2/legacy_bridge';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Modal,
@@ -262,10 +263,13 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
     onClose();
   }, [onClose]);
 
+  const router = useRouter();
   const handleCtaPress = useCallback(() => {
     hapticSuccess();
     handleClose();
-  }, [handleClose]);
+    // зачем (аудит R58 #58, 15.10): «К занятиям» обещает переход, а только закрывало окно — теперь ведёт на вкладку занятий (окно закрывается первым, переход догоняет)
+    router.push('/(tabs)/lessons' as never);
+  }, [handleClose, router]);
 
   const isFinal = act === 'act3' || act === 'promo';
 

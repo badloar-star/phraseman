@@ -19,6 +19,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { DialogueV2BriefingScreen } from '../components/dialogs/DialogueV2BriefingScreen';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
+import DialogueIncomingCall from '../components/dialogs/DialogueIncomingCall';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import AiDialogConsentModal from '../components/AiDialogConsentModal';
@@ -216,6 +217,11 @@ export default function DialogueV2BriefingRoute() {
   const [noEnergy, setNoEnergy] = useState(false);
   // зачем (макет dialogs.html B3: шторка согласия поверх брифинга): спрашиваем ДО списания энергии.
   const [consentAsk, setConsentAsk] = useState(false);
+  // зачем (владелец 15.10, m16: «сразу делаем и сразу включаем»): «Входящий звонок» перед брифингом — один раз на открытие сцены, без флага;
+  // «Ответить» открывает брифинг (задания всплывают по очереди), «Потом» — назад. У закрытой по рангу сцены звонка нет.
+  const [callOpen, setCallOpen] = useState(true);
+  const [revealRows, setRevealRows] = useState(false);
+  const glass = useDialogueGlass();
   // зачем (владелец 01.10: «диалоги открываются без загрузки»): первый кадр — из каталога в
   // памяти/снимке (peek), сеть только обновляет фоном и не откатывает показанное на «недоступно».
   const [state, setState] = useState<BriefingState>(() => {
@@ -344,10 +350,12 @@ export default function DialogueV2BriefingRoute() {
     });
   };
 
+  const showCall = callOpen && model.unlocked;
   return (
     <>
     <DialogueV2BriefingScreen
       {...model}
+      revealRows={revealRows}
       showEnergy={!energyUnlimited}
       currentRank={localCoinRank}
       labels={labels}
@@ -382,6 +390,17 @@ export default function DialogueV2BriefingRoute() {
       }}
     />
     {/* макет B5: закрытие окна уводит с экрана диалога */}
+    {showCall ? (
+      <DialogueIncomingCall
+        lang={lang}
+        glass={glass}
+        partnerName={model.participants[0]?.displayName?.trim() || null}
+        cefr={model.cefr}
+        sceneTitle={model.title}
+        onAnswer={() => { setRevealRows(true); setCallOpen(false); }}
+        onLater={() => { setCallOpen(false); safeRouterBack(router, '/ai_dialog_home' as never); }}
+      />
+    ) : null}
     <AiDialogConsentModal visible={consentAsk} lang={lang} onAccept={onConsentAccept} onDecline={onConsentDecline} />
     {/* зачем (Макеты 2bac25805, dialogs-011; правило владельца 15.09 «тексты модалов по разделу»): без activity окно падало на «classic_lesson» и в Диалогах говорило «Для урока нужно 1 ⚡». */}
     {/* зачем (координатор 14.10, 🔴): «Получить Plus» уводил назад вместе с окном — пейвол терялся. Plus закрывает только окно: человек

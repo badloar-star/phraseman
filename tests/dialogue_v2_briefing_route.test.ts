@@ -62,6 +62,9 @@ jest.mock('../components/dialogs/DialogueV2BriefingScreen', () => ({
   DialogueV2BriefingScreen: (props: unknown) => mockScreen(props),
 }));
 jest.mock('../components/feedback/PressableScale', () => ({ PressableScale: 'PressableScale' }));
+// зачем (m16, владелец 15.10): «Входящий звонок» поверх брифинга — свой тест tests/dialogue_incoming_call_m16.test.tsx; здесь проверяется старт диалога
+const mockIncomingCall = jest.fn();
+jest.mock('../components/dialogs/DialogueIncomingCall', () => ({ __esModule: true, default: (props: unknown) => { mockIncomingCall(props); return null; } }));
 // По умолчанию тариф ещё не известен → запрет по месячному остатку не действует (прежние проверки не меняются).
 const mockUsePremium = jest.fn(() => ({ accessResolved: false, hasPremiumAccess: false }));
 jest.mock('../components/PremiumContext', () => ({ usePremium: () => mockUsePremium() }));

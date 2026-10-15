@@ -16,6 +16,7 @@ import {
 } from './glass/DialogueGlassKit';
 import { glassTone } from './glass/glassTone';
 import { formatDialogObjectiveLabel } from './dialog_objective_label';
+import { BriefingRevealRow } from './DialogueIncomingCall';
 
 // зачем (владелец 2026-09-30): брифинг «1 в 1» по макету dialogs.html B1/B2 (Liquid Glass):
 // медальон сцены 88, бейдж уровня, крупное название, карточка брифинга, карточка «Задания»
@@ -46,6 +47,8 @@ export type DialogueV2BriefingScreenProps = Readonly<{
   }>;
   onBack: () => void;
   onStart: () => void;
+  /** m16: после «Ответить» на звонок строки заданий всплывают по очереди; false — сразу на месте. */
+  revealRows?: boolean;
 }>;
 
 /**
@@ -59,6 +62,7 @@ export function DialogueV2BriefingScreen({
   briefing,
   objectives,
   rankRequired,
+  revealRows = false,
   showEnergy = false,
   unlocked,
   currentRank,
@@ -99,8 +103,8 @@ export function DialogueV2BriefingScreen({
           <View testID="dialogue-v2-briefing-tasks" style={[card, styles.listCard]}>
             <Text maxFontSizeMultiplier={1.3} style={[styles.kicker, { color: glass.secondary }]}>{labels.tasks}</Text>
             {objectives.map((objective, index) => (
+              <BriefingRevealRow key={objective.id} index={index} active={revealRows}>
               <View
-                key={objective.id}
                 style={styles.obj}
               >
                 {index > 0 ? <RowDivider color={glass.dividerTone} /> : null}
@@ -110,6 +114,7 @@ export function DialogueV2BriefingScreen({
                 </View>
                 <Text maxFontSizeMultiplier={1.4} style={[styles.objText, { color: glass.text }]}>{formatDialogObjectiveLabel(objective.label)}</Text>
               </View>
+              </BriefingRevealRow>
             ))}
           </View>
 

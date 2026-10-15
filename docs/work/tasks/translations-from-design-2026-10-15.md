@@ -174,3 +174,13 @@ pt-BR «Não deu para…» — неформально, как «не получ�
 2. **Окно «Встречайте PhraseMan 2.0»** (`modules/legacy_bonus/legacy_bonus_strings.ts`, 9 языков): заголовок, «Твои бонусы переходят в монеты», «Итого», «Понятно», названия строк (Опыт (XP) / Жемчуг / Вращения колеса), слово «монета» (формы). Подзаголовок «Всё, что ты накопил раньше…» удалён по решению владельца.
 3. Правки переводчика к окну «Встречайте» (id заголовок, vi/tr/pl «вращения») внесены в код.
 4. Цифра голоса на микрофонах — слов нет (только число и «PLUS»).
+
+### ПРАВКИ ПЕРЕВОДЧИКА — сверка 15.10 ~12:20 (d10576ebd, 40fa3014c, dc5589c86): правок нет
+
+- **«Промокод применён» — «Plus на N дней» / «Plus навсегда»** (`components/premium_celebration/celebrationLiquidCopy.ts`, d10576ebd): принято как есть.
+  Число дней склоняется через общий `pluralWithCount` (с польским «21 dni» после 8de2094b5); tr «30 günlük Plus» / «Kalıcı Plus» и vi «trong 30 ngày» —
+  естественный порядок слов; «навсегда»: forever / para siempre / para sempre / vĩnh viễn / selamanya / na zawsze — верно.
+- **«Встречайте PhraseMan 2.0»** (`modules/legacy_bonus/legacy_bonus_strings.ts`, 40fa3014c): все 4 правки из d5960a686 внесены
+  (id «Inilah PhraseMan 2.0», vi «Lượt quay», tr «Çark çevirme hakkı», pl «Zakręcenia kołem»); бренд не переведён — верно.
+- **Лимит голоса** (dc5589c86): коммит меняет только момент списания попытки — новых текстов нет; строка «Голос на сегодня закончился»
+  в `app/learning_v2_direct_session_player_v1.tsx` уже с правкой pl «Na dziś koniec prób głosowych».

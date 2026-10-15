@@ -9,7 +9,9 @@ import { IS_EXPO_GO } from './config';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Включатель текущей одноразовой кампании «что нового». */
-export const RELEASE_NOTES_MODAL_ENABLED = true;
+// зачем (владелец 15.10, страховка Ревизора a5702f09b): в 2.0 никаких окон «что нового» — ни нового, ни старого 1.6.12;
+// раньше старое держали только ворота 2.0 в _layout, теперь закрыто и здесь.
+export const RELEASE_NOTES_MODAL_ENABLED = false;
 
 /**
  * Тексты описывают возможности build 118. На более раннем билде окно нельзя

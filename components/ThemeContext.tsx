@@ -44,6 +44,9 @@ export const FONT_SCALE: Record<FontSize, number> = {
   large:  1.30,  // большой
 };
 
+// зачем (владелец 15.10): выбор размера шрифта убран из Настроек — все на «среднем»; вернуть выбор = true здесь и строку в Настройках.
+export const FONT_SIZE_USER_CHOICE_ENABLED = false;
+
 export const FONT_SIZE_LABELS: Record<FontSize, {
   ru: string;
   uk: string;
@@ -580,6 +583,15 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       // active visual selection is persisted independently as liquid_glass_theme.
       if (themeStr !== LEGACY_GRAPHITE_THEME_MODE) {
         void AsyncStorage.setItem('app_theme', LEGACY_GRAPHITE_THEME_MODE);
+      }
+      // зачем (владелец 15.10, Ревизор a5702f09b): «Размер шрифта» убран из Настроек — всем «средний» уже на старте, а не только
+      // после открытия Настроек; сохранённый крупный/мелкий один раз переписываем на medium (без перерисовки: состояние и так medium).
+      if (!FONT_SIZE_USER_CHOICE_ENABLED) {
+        if (fontStr && fontStr !== 'medium') {
+          console.log('[SETTINGS-FONT] reset', JSON.stringify({ from: fontStr, to: 'medium', reason: 'picker_removed', at: 'hydrate' }));
+          AsyncStorage.setItem('app_font_size', 'medium').catch(noteSwallowedHandler('ThemeContext:font_size_reset'));
+        }
+        return;
       }
       if (fontStr && fontStr in FONT_SCALE) setFontSizeState(fontStr as FontSize);
     })().catch(noteSwallowedHandler('ThemeContext:promise_1')); // fail-soft: defaults are already Graphite + medium

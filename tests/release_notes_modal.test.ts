@@ -11,6 +11,7 @@ jest.mock('../app/app_build_id', () => ({
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  RELEASE_NOTES_MODAL_ENABLED,
   RELEASE_NOTES_NEW_USER_CUTOFF_MS,
   dismissReleaseNotesModalPermanently,
   shouldOfferReleaseNotesModal,
@@ -24,13 +25,15 @@ describe('release notes modal gate', () => {
     mockGetAppReleaseBuildId.mockReturnValue(118);
   });
 
-  it('offers the modal to an eligible existing user on the release build', async () => {
+  // зачем (владелец 15.10): кампания 1.6.12 выключена — даже подходящий старый пользователь окно не видит
+  it('never offers the legacy 1.6.12 modal now that the campaign is switched off (owner 15.10)', async () => {
+    expect(RELEASE_NOTES_MODAL_ENABLED).toBe(false);
     await AsyncStorage.multiSet([
       ['install_date', String(RELEASE_NOTES_NEW_USER_CUTOFF_MS - 1)],
       ['onboarding_done', '1'],
     ]);
 
-    await expect(shouldOfferReleaseNotesModal()).resolves.toBe(true);
+    await expect(shouldOfferReleaseNotesModal()).resolves.toBe(false);
   });
 
   it('does not offer the modal to new users installed on or after the cutoff', async () => {

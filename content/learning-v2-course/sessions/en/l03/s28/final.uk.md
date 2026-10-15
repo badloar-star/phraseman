@@ -1,175 +1,138 @@
-# Англійська · Урок 3 · Заняття 28 — «Ця або та річ»
+# Англійська · Урок 3 · Заняття 28 — Стільці для зустрічі
 
-**Сцена заняття.** Ви з другом збираєтеся вийти з магазину. Частина речей лежить поруч на касі, частина залишилася далі біля входу; ви вибираєте потрібну річ коротким проханням і розрізняєте `this` та `that` на слух.
+**Ситуація.** Ви з Анною готуєте зустріч про подорожі. На столі лежать карти, а Олег розставляє стільці. Місць виявилося менше, ніж гостей, тому ви змінюєте розташування й уточнюєте, де запасні стільці.
 
-**Як сказати:** розрізняти `this` та `that` у короткому проханні про річ поруч або вдалині
-**Нові слова:** suitcase, backpack, wallet
-**Для повторення:** phone, key, bag, screen
+**Що ви опануєте:** назвати кілька стільців, знайти потрібні стільці й сказати про предмети загалом
+**Нові слова:** chairs
 
 ---
 
 ## Інтро 1
 
-### Вибрати річ поруч
+### Місце для кожного
 
-`suitcase` — «валіза». Валіза стоїть поруч із вами біля каси: `This suitcase, please.` — «Ця валіза, будь ласка».
+`chair` — «стілець», `chairs` — «стільці». `They are chairs` — «Це стільці». Для кількох стільців додаємо `s`, перед `chairs` не ставимо `a`. Олег приніс один стілець на трьох гостей. Якщо це не гра з музикою, краще принести ще. Потрібні `chairs` — стільці.
 
-Після `this` одразу йде назва речі, без `a`: `this suitcase`. Слово `this` показує, що потрібна саме ближня валіза, а не інша біля входу.
+**На фотографії кілька стільців. Назвіть їх одним англійським словом.**
 
-**Валіза стоїть просто перед вами біля каси. Виберіть цю валізу коротким проханням.**
-
-- ✅ **This suitcase, please.**
-- ❌ That suitcase, please. — *`that` указує на далеку річ. Валіза поруч, тому потрібне `this`.*
-- ❌ This a suitcase, please. — *Після `this` назва речі йде без `a`: `this suitcase`.*
+- ✅ **chairs**
+- ❌ chair — *`chair` — один стілець; кілька — `chairs`.*
+- ❌ a chairs — *Перед назвою кількох стільців не ставимо `a`.*
 
 ---
 
 ## Інтро 2
 
-### Вибрати річ вдалині
+### Стільці загалом і наші стільці
 
-`backpack` — «рюкзак». Рюкзак залишився біля входу. Для далекої речі вибираємо `that`: `That backpack, please.` — «Той рюкзак, будь ласка».
+`Chairs are different` — «Стільці різні». Можна говорити про стільці загалом: вони бувають різної висоти й форми. Перед `chairs` тут немає `the`. `The chairs are upstairs` — «Стільці нагорі»: ідеться про конкретні стільці для зустрічі. `Where are the chairs?` — «Де стільці?»
 
-У короткому проханні `this` вибирає предмет поруч, а `that` — предмет далі. Наприкінці називаємо річ: `this suitcase`, `that backpack`.
+**Ви говорите про стільці загалом та їхню різну форму, без указівки на певні стільці. Виберіть фразу «Стільці різні».**
 
-**Рюкзак залишився на стійці біля входу. Виберіть той рюкзак коротким проханням.**
-
-- ✅ **That backpack, please.**
-- ❌ This backpack, please. — *Рюкзак знаходиться біля входу. Тут потрібне `that`, а не `this`.*
-- ❌ That a backpack, please. — *Після `that` назва речі йде без `a`: `that backpack`.*
+- ✅ **Chairs are different.**
+- ❌ The chairs are different. — *`The chairs` — певні стільці. Тут ідеться про стільці загалом: `Chairs`.*
+- ❌ A chairs are different. — *Перед `chairs` не ставимо `a`.*
 
 ---
 
 ## Інтро 3
 
-### Почути `this` або `that`
+### Можна переставити
 
-`wallet` — «гаманець». Для речі поруч скажіть `This wallet, please.`, вдалині — `That wallet, please.`
+`correct` — «правильний», `certain` — «упевнений», `serious` — «серйозний», `flexible` — «гнучкий, готовий пристосуватися». Анна готова змінити розташування: `She is flexible` — «Вона готова пристосуватися». Тут ідеться про підхід до планів, а не про розтяжку. Олег упевнений у своїй відповіді: `He is certain` — «Він упевнений». Ви перевірили карти: `The maps are correct` — «Карти правильні».
 
-Не вгадуйте за початком: дослухайте `this` або `that` до кінця й дивіться, де лежить річ. Каса не любить лотерей: одне слово вирішує, який гаманець поїде з вами.
+**Анна знає, які стільці потрібні для зустрічі. Запитайте, де стільці.**
 
-**Гаманець лежить просто перед вами на прилавку. Виберіть цей гаманець коротким проханням.**
-
-- ✅ **This wallet, please.**
-- ❌ That wallet, please. — *Гаманець лежить просто перед вами. Потрібне вказівне слово `this`.*
-- ❌ This a wallet, please. — *Після `this` слово `wallet` іде одразу, без `a`.*
+- ✅ **Where are the chairs?**
+- ❌ Where is the chairs? — *Стільців кілька: потрібно `are`.*
+- ❌ What are the chairs? — *Про місце запитуємо `Where` — «Де».*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — suitcase**
-<!-- interaction_id: en:lesson-03:session-28:i01; family: listen_choose -->
-Ціль: `suitcase`
+**1 · Ви звірили карти з місцевістю й переконалися, що помилок немає. Повідомте «Карти правильні»**
+<!-- interaction_id: en:lesson-03:session-28:i01; family: phrase_builder -->
+Плитки: `correct` `are` `maps` `The` `is` → **The maps are correct.**
+*(плитка `is` зайва: тут потрібно `are` — `The maps are correct.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-28:i03; family: scripted_repeat_compare -->
-Ціль: `backpack`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-28:i02; family: listen_choose -->
+🔊 *chairs* → **chairs** · cars · cats
+- cars — *У записі перше слово — `chairs`, а в цьому варіанті — `cars`.*
+- cats — *У записі перше слово — `chairs`, а в цьому варіанті — `cats`.*
 
-**3 · Виберіть назву — на прилавку лежить гаманець**
-<!-- interaction_id: en:lesson-03:session-28:i05; family: context_gap_grammar -->
-Ціль: `___`
-Варіанти: `wallet` · `backpack` · `suitcase`
-- backpack — *Backpack — рюкзак. Тут потрібен гаманець: wallet.*
-- suitcase — *Suitcase — валіза. Тут потрібен гаманець: wallet.*
+**3 · Назвіть кілька стільців одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-28:i03; family: context_gap_grammar -->
+___ → **chairs** · chair · a chairs
+- chair — *Кілька стільців — `chairs`.*
+- a chairs — *Перед `chairs` не ставимо `a`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-28:i04; family: speed_match -->
+chairs — стільці · maps — карти місцевості · correct — правильний · certain — упевнений
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-28:i02; family: scripted_repeat_compare -->
-Ціль: `suitcase`
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-28:i05; family: listen_build_dictation -->
+🔊 *The chairs are upstairs.* Плитки: `upstairs` `are` `chairs` `The` `is` → **The chairs are upstairs.**
+*(плитка `is` зайва: тут потрібно `are` — `The chairs are upstairs.`)*
 
-**5 · Послухайте й виберіть — яке слово назвав друг**
-<!-- interaction_id: en:lesson-03:session-28:i04; family: listen_choose -->
-Значення варіантів: `backpack` — рюкзак · `backpacker` — турист із рюкзаком · `package` — посилка · `baggage` — багаж
-Ціль: `backpack`
-Варіанти: `backpack` · `backpacker` · `package` · `baggage`
-- backpacker — *Після повного `backpack` у `backpacker` чути ще один склад `er`.*
-- package — *`package` починається звуком `p`, а `backpack` — звуком `b`.*
-- baggage — *Після `ba` у `baggage` чути `g`, а в `backpack` — `k`.*
+**6 · Скажіть «Стільці різні» про стільці загалом, наприклад про їхню форму**
+<!-- interaction_id: en:lesson-03:session-28:i06; family: phrase_builder -->
+Плитки: `different` `are` `Chairs` `is` → **Chairs are different.**
+*(плитка `is` зайва: тут потрібно `are` — `Chairs are different.`)*
 
+**7 · Олег упевнений у своїй відповіді. Скажіть «Він упевнений» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-28:i07; family: scripted_repeat_compare -->
+🎙 **He's certain.**
 
-**6 · Розрізніть слово — wallet або wall**
-<!-- interaction_id: en:lesson-03:session-28:i06; family: sound_contrast -->
-Ціль: `wallet`
-Варіанти: `wallet` · `wall`
-- wall — *Wall — стіна. У записі після wall чути et: wallet.*
+**8 · Ви говорите про різну форму стільців загалом, без указівки на конкретні стільці**
+<!-- interaction_id: en:lesson-03:session-28:i08; family: context_gap_grammar -->
+___ are different. → **Chairs** · The chairs · A chairs
+- The chairs — *`The chairs` — певні стільці. Тут потрібне загальне `Chairs`.*
+- A chairs — *Перед `chairs` не ставимо `a`.*
 
+**9 · Послухайте опис Олега**
+<!-- interaction_id: en:lesson-03:session-28:i09; family: listen_choose -->
+🔊 *He is serious.* → **He is serious.** · He is certain. · He is flexible.
+- He is certain. — *У записі останнє слово — `serious`, а в цьому варіанті — `certain`.*
+- He is flexible. — *У записі останнє слово — `serious`, а в цьому варіанті — `flexible`.*
 
-**7 · З'єднайте слова зі значеннями — речі перед виходом**
-<!-- interaction_id: en:lesson-03:session-28:i07; family: speed_match -->
-Пари: `suitcase` — валіза · `backpack` — рюкзак · `wallet` — гаманець · `bag` — сумка
-Ціль: `suitcase · backpack · wallet · bag`
+**10 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-28:i10; family: speed_match -->
+serious — серйозний · flexible — готовий пристосуватися · chairs — стільці · maps — карти місцевості
 
-**8 · Розрізніть слово — This або That**
-<!-- interaction_id: en:lesson-03:session-28:i08; family: sound_contrast -->
-Ціль: `This`
-Варіанти: `This` · `That`
-- That — *That використовують для предмета далі. Тут предмет поруч: This.*
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-28:i11; family: listen_build_dictation -->
+🔊 *The maps are here.* Плитки: `here` `are` `maps` `The` `is` → **The maps are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The maps are here.`)*
 
+**12 · Анна знає, які стільці потрібні. Запитайте, де стільці**
+<!-- interaction_id: en:lesson-03:session-28:i12; family: phrase_builder -->
+Плитки: `chairs` `the` `are` `Where` `What` → **Where are the chairs?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where are the chairs?`)*
 
-**9 · Виберіть форму — той рюкзак стоїть там**
-<!-- interaction_id: en:lesson-03:session-28:i09; family: context_gap_grammar -->
-Ціль: `That ___ there.`
-Варіанти: `is` · `are`
-- are — *Are — для кількох предметів. Тут один рюкзак: That is there.*
+**13 · Анна готова пристосуватися до змін у плані. Скажіть про це зі скороченням, почніть із «Вона»**
+<!-- interaction_id: en:lesson-03:session-28:i13; family: scripted_repeat_compare -->
+🎙 **She's flexible.**
 
+**14 · Ви повідомляєте, де кілька підготовлених стільців**
+<!-- interaction_id: en:lesson-03:session-28:i14; family: context_gap_grammar -->
+The chairs ___ upstairs. → **are** · is · am
+- is — *Стільців кілька: потрібно `are`.*
+- am — *З `the chairs` тут потрібно `are`.*
 
-**10 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-28:i10; family: scripted_repeat_compare -->
-Ціль: `This wallet, please.`
+**15 · Послухайте повідомлення про Олега**
+<!-- interaction_id: en:lesson-03:session-28:i15; family: listen_choose -->
+🔊 *He is certain.* → **He is certain.** · He is serious. · He is flexible.
+- He is serious. — *У записі останнє слово — `certain`, а в цьому варіанті — `serious`.*
+- He is flexible. — *У записі останнє слово — `certain`, а в цьому варіанті — `flexible`.*
 
-**11 · Складіть коротке прохання — валіза стоїть поруч із вами**
-<!-- interaction_id: en:lesson-03:session-28:i11; family: phrase_builder -->
-Ціль: `This suitcase, please.`
+**16 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-28:i16; family: speed_match -->
+correct — правильний · certain — упевнений · serious — серйозний · flexible — готовий пристосуватися
 
-**12 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-28:i12; family: listen_build_dictation -->
-Ціль: `That backpack, please.`
-
-**13 · Вставте вказівне слово — гаманець лежить просто перед вами на прилавку**
-<!-- interaction_id: en:lesson-03:session-28:i13; family: context_gap_grammar -->
-Ціль: `___ wallet, please.`
-Варіанти: `This` · `That` · `A` · `Is`
-- That — *`that` указує на далеку річ. Гаманець просто перед вами, тому потрібне `This`.*
-- A — *Перед `wallet` у цьому проханні потрібне вказівне слово відстані. Для ближньої речі це `This`.*
-- Is — *`Is` відкриває запитання, а тут вибирають ближню річ: `This wallet, please`.*
-
-
-**14 · Послухайте й виберіть значення точного прохання**
-<!-- interaction_id: en:lesson-03:session-28:i14; family: listen_choose -->
-Ціль: `This bag, please.`
-Варіанти: `Цю сумку, будь ласка` · `Ту сумку, будь ласка` · `Цей ключ, будь ласка` · `Той ключ, будь ласка`
-- Ту сумку, будь ласка — *У записі прозвучало `this`, прохання про ближню сумку; для далекої сумки прозвучало б `that bag`.*
-- Цей ключ, будь ласка — *Вказівне слово `this` збігається, але в записі назвали `bag`, а не `key`.*
-- Той ключ, будь ласка — *Тут відрізняються обидва ключові слова: прозвучали `this bag`, а не `that key`.*
-
-
-**15 · Складіть коротке прохання — телефон лежить далеко на вітрині**
-<!-- interaction_id: en:lesson-03:session-28:i15; family: phrase_builder -->
-Ціль: `That phone, please.`
-
-**16 · Вставте вказівне слово — ключ лежить поруч із вами**
-<!-- interaction_id: en:lesson-03:session-28:i16; family: context_gap_grammar -->
-Ціль: `___ key, please.`
-Варіанти: `This` · `That` · `Is` · `A`
-- That — *`that` указує на далеку річ. Ключ поруч, тому потрібне `This`.*
-- Is — *`Is` відкриває запитання. Тут потрібне коротке прохання: `This key, please`.*
-- A — *Перед `key` у цьому проханні потрібне вказівне слово відстані. Для ближньої речі це `This`.*
-
-
-**17 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-28:i17:s01; family: listen_build_dictation -->
-Ціль: `This suitcase, please.`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-28:i17:s02; family: scripted_repeat_compare -->
-Ціль: `That backpack, please.`
-
-**19 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-28:i17:s03; family: phrase_builder -->
-Ціль: `This wallet, please.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=sound_contrast, 9=context_gap_grammar, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=phrase_builder
+**17 · В іншій кімнаті клубу ви готуєте нову зустріч. Олег знає, які стільці виділені вам. Запитайте, де стільці**
+<!-- interaction_id: en:lesson-03:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where are the chairs?**
 

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-28:intro1:r2": {
+          "ru": "`chair` — один стул; несколько — `chairs`.",
+          "uk": "`chair` — один стілець; кілька — `chairs`."
+        },
+        "en:lesson-03:session-28:intro1:r3": {
+          "ru": "Перед названием нескольких стульев не ставим `a`.",
+          "uk": "Перед назвою кількох стільців не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-28:intro2:r2": {
+          "ru": "`The chairs` — определённые стулья. Здесь речь о стульях вообще: `Chairs`.",
+          "uk": "`The chairs` — певні стільці. Тут ідеться про стільці загалом: `Chairs`."
+        },
+        "en:lesson-03:session-28:intro2:r3": {
+          "ru": "Перед `chairs` не ставим `a`.",
+          "uk": "Перед `chairs` не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-28:intro3:r2": {
+          "ru": "Стульев несколько: нужно `are`.",
+          "uk": "Стільців кілька: потрібно `are`."
+        },
+        "en:lesson-03:session-28:intro3:r3": {
+          "ru": "О месте спрашиваем `Where` — «Где».",
+          "uk": "Про місце запитуємо `Where` — «Де»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "db8f441c046846794209cc0d4c4ab6eb3173f6be2bb09a4b457f371608734b51"
+}

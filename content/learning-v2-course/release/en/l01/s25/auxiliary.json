@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-25:intro1:r2": {
-          "ru": "В английской фразе нужна форма `is`: `It is small`.",
-          "uk": "В англійській фразі потрібна форма `is`: `It is small`."
+          "ru": "После `I` ставим `am`: `I am proud`.",
+          "uk": "Після `I` ставимо `am`: `I am proud`."
         },
         "en:lesson-01:session-25:intro1:r3": {
-          "ru": "`am` живёт только рядом с `I`. Про вещь — `is`.",
-          "uk": "`am` живе тільки поряд з `I`. Про річ — `is`."
+          "ru": "`are` подходит к `You`, `We`, `They`, а с `I` нужно `am`.",
+          "uk": "`are` поєднується з `You`, `We`, `They`, а з `I` потрібно `am`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-25:intro2:r2": {
-          "ru": "`dark` не меняется. Хвостов у него не бывает.",
-          "uk": "`dark` не змінюється. Хвостів у нього не буває."
+          "ru": "После `He` нужно `is`; `am` ставим после `I`.",
+          "uk": "Після `He` потрібно `is`; `am` ставимо після `I`."
         },
         "en:lesson-01:session-25:intro2:r3": {
-          "ru": "Между `it` и словом нужна форма `is`.",
-          "uk": "Між `it` і словом потрібна форма `is`."
+          "ru": "Для `He`, `She`, `It` здесь выбираем `is`.",
+          "uk": "Для `He`, `She`, `It` тут вибираємо `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-25:intro3:r2": {
-          "ru": "В конце слова есть `e`: `expensive`. На слух её не слышно, а писать надо.",
-          "uk": "У кінці слова є `e`: `expensive`. На слух її не чути, а писати треба."
+          "ru": "После `We` нужно `are`; `am` остаётся с `I`.",
+          "uk": "Після `We` потрібно `are`; `am` залишається з `I`."
         },
         "en:lesson-01:session-25:intro3:r3": {
-          "ru": "`he` — про мужчину. Счёт — вещь, значит `it`.",
-          "uk": "`he` — про чоловіка. Рахунок — річ, отже `it`."
+          "ru": "`is` подходит к `He`, `She`, `It`. После `We` нужно `are`.",
+          "uk": "`is` поєднується з `He`, `She`, `It`. Після `We` потрібно `are`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1e9a61865406925054df8f2fde46e565d3ee8cac027d188df97474f00832f9df"
+  "auxiliaryFingerprint": "48804bf32483e18c03d911630195fc5c929581e10a1403711139adbf1716eaee"
 }

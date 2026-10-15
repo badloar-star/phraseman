@@ -1,218 +1,141 @@
-# Англійська · Урок 1 · Заняття 25 — «It is»
+# Англійська · Урок 1 · Заняття 25 — Після шкільної вистави
 
-**Ситуація.** Першого вечора в новій квартирі в Дубліні ви оглядаєте кімнату, рахунок за оренду та воду з крана.
-**Як сказати:** `It is`, коли описуєте річ, кімнату або погоду.
-**Нові слова:** small, dark, expensive, cold
-**Повертаються:** new, warm, quiet, nice
+**Ситуація.** Ви прийшли на шкільну виставу племінниці. Після виступу обговорюєте з родиною, хто пишається результатом, хто здивований і кому соромно за свій вчинок.
+
+**Що ви опануєте:** вибирати am після I, is після He/She/It та are після You/We/They у короткому описі
+**Нові слова:** proud, ashamed, surprised
 
 ---
 
 ## Інтро 1
 
-### `It` — «воно», про річ
+### Я пишаюся
 
-`It` — це «воно»: про предмет, кімнату, погоду. Не про людину.
+`proud` тут — «пишається». Племінниця впоралася зі складною роллю, і ви кажете: `I am proud` — «Я пишаюся». Спочатку виберіть, про кого говорите: після `I` потрібно `am`. Слово `proud` форму не вибирає — її визначає початок фрази.
 
-Після `it` у такій фразі ставлять `is`: `It is small`.
+**Ви пишаєтеся виступом племінниці. Скажіть про своє почуття.**
 
-Українською ми кажемо «кімната маленька» і чудово живемо без дієслова. Англійською `It small` не збереться — `is` тримає фразу.
-
-**Відчинили двері: кімната три на чотири метри. Скажіть про неї.**
-
-- ✅ **It is small.**
-- ❌ It small. — *В англійській фразі потрібна форма `is`: `It is small`.*
-- ❌ It am small. — *`am` живе тільки поряд з `I`. Про річ — `is`.*
+- ✅ **I am proud.**
+- ❌ I is proud. — *Після `I` ставимо `am`: `I am proud`.*
+- ❌ I are proud. — *`are` поєднується з `You`, `We`, `They`, а з `I` потрібно `am`.*
 
 ---
 
 ## Інтро 2
 
-### `dark` — темно
+### Мені соромно
 
-`dark` — «темний, темно». Про кімнату без світла, про вулицю ввечері.
+`ashamed` — «соромно». Ви голосно розмовляли під час виступу й тепер шкодуєте: `I am ashamed` — «Мені соромно». Про іншу людину: `He is ashamed` або `She is ashamed`. Це не просто сором’язливість: людині соромно за щось.
 
-Фраза будується так само: `It is dark`. Спершу `it`, потім `is`, потім саме слово.
+**Брат висміяв чужу помилку, а тепер йому соромно за це. Скажіть про нього.**
 
-Не шукайте окремого слова для «темно» і «темна» — в англійській це одне `dark` і для кімнати, і для вечора за вікном.
-
-**Клацнули вимикач — лампочки немає. Скажіть, що темно.**
-
-- ✅ **It is dark.**
-- ❌ It is darks. — *`dark` не змінюється. Хвостів у нього не буває.*
-- ❌ It dark. — *Між `it` і словом потрібна форма `is`.*
+- ✅ **He is ashamed.**
+- ❌ He am ashamed. — *Після `He` потрібно `is`; `am` ставимо після `I`.*
+- ❌ He are ashamed. — *Для `He`, `She`, `It` тут вибираємо `is`.*
 
 ---
 
 ## Інтро 3
 
-### `expensive` — дорого
+### Оце несподівано
 
-`expensive` — «дорогий». Довге слово, і наголос у ньому на середину: «ікс-ПЕН-сив».
+`surprised` — «здивований». Родина не очікувала такого гарного виступу: `We are surprised` — «Ми здивовані». Після `You`, `We`, `They` вибираємо `are`. Навіть якщо ви здивувалися за трьох, про себе все одно кажете `I am surprised`.
 
-`It is expensive` — «це дорого». Фраза, яку в чужому місті ви скажете частіше, ніж хотілося б.
+**Ви й сестра не очікували, що племінниця так добре заспіває. Скажіть за вас обох: «Ми здивовані».**
 
-І ще одне: `cold` — «холодно». Про батарею, про воду з крана, про весь цей вечір.
-
-**Дивитеся на рахунок за квартиру і присвистуєте. Одна фраза.**
-
-- ✅ **It is expensive.**
-- ❌ It is expensiv. — *У кінці слова є `e`: `expensive`. На слух її не чути, а писати треба.*
-- ❌ He is expensive. — *`he` — про чоловіка. Рахунок — річ, отже `it`.*
+- ✅ **We are surprised.**
+- ❌ We am surprised. — *Після `We` потрібно `are`; `am` залишається з `I`.*
+- ❌ We is surprised. — *`is` поєднується з `He`, `She`, `It`. Після `We` потрібно `are`.*
 
 ---
 
-## Практика (20 завдань, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · Картка слова — small**
-<!-- interaction_id: en:lesson-01:session-25:i01; family: listen_choose -->
-> **small** — «маленький». Кімната, у якій валізу доводиться ставити на ліжко.
+**1 · Складіть фразу — ви пишаєтеся племінницею**
+<!-- interaction_id: en:lesson-01:session-25:i01; family: phrase_builder -->
+Плитки: `proud` `am` `I` `is` `are` → **I am proud.**
+*(плитка `is` зайва: тут потрібно `am` — `I am proud.`)*
+*(плитка `are` зайва: тут потрібно `am` — `I am proud.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-25:i02; family: listen_choose -->
-🔊 *small* → **small** · smell · tall
-- small — *У записі `small` починається зі «см» і закінчується звуком «ол», не як `smell` і не як `tall`.*
-- smell — *У `small` рот округлюється, «смоол». У `smell` губи не круглі — звичайне українське «е».*
-- tall — *Кінець той самий, початок різний. `small` починається зі «см».*
+🔊 *She is surprised.* → **She is surprised.** · He is surprised. · She is proud.
+- He is surprised. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
+- She is proud. — *У записі останнє слово — `surprised`, а в цьому варіанті — `proud`.*
 
-**3 · Картка слова — dark**
-<!-- interaction_id: en:lesson-01:session-25:i03; family: listen_choose -->
-> **dark** — «темний, темно». Вечір за вікном, а лампу ви ще не знайшли.
+**3 · Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-25:i03; family: context_gap_grammar -->
+They ___ ashamed. → **are** · is · am
+- is — *Після `They` вибираємо `are`, а не `is`.*
+- am — *`am` потрібне з `I`. Тут ідеться про них: `They are`.*
 
-**4 · Складіть фразу — про кімнату без світла**
-<!-- interaction_id: en:lesson-01:session-25:i04; family: phrase_builder -->
-Плитки: `is` `dark` `It` → **It is dark.**
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-25:i04; family: speed_match -->
+proud — пишається · ashamed — соромно · surprised — здивований · different — різний
 
-**5 · Картка слова — expensive**
-<!-- interaction_id: en:lesson-01:session-25:i05; family: listen_choose -->
-> **expensive** — «дорогий». Ціна, через яку ви перечитуєте цінник удруге.
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-01:session-25:i05; family: listen_build_dictation -->
+🔊 *We are proud.* Плитки: `proud` `are` `We` `is` → **We are proud.**
+*(плитка `is` зайва: тут потрібно `are` — `We are proud.`)*
 
-**6 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-25:i06; family: listen_choose -->
-🔊 *expensive* → **expensive** · expense · extensive
-- expensive — *У записі `expensive` після `ex-` чути «пен», а не коротке `expense` чи `extensive` з «тен».*
-- expense — *Коротше на склад. У `expensive` у кінці чути «сив».*
-- extensive — *Схоже, але в середині «т»: екс-ТЕН-сив. У нашому слові «п».*
+**6 · Братові соромно за грубий жарт. Складіть фразу про його почуття**
+<!-- interaction_id: en:lesson-01:session-25:i06; family: phrase_builder -->
+Плитки: `ashamed` `is` `He` `am` `are` → **He is ashamed.**
+*(плитка `am` зайва: тут потрібно `is` — `He is ashamed.`)*
+*(плитка `are` зайва: тут потрібно `is` — `He is ashamed.`)*
 
-**7 · Вставте слово — кімната три на чотири метри**
-<!-- interaction_id: en:lesson-01:session-25:i07; family: context_gap_grammar -->
-It is ___ . → **small** · dark · expensive
-- small — *Кімната три на чотири метри, тому `small` — «маленька»; не йдеться ні про світло, ні про ціну.*
-- dark — *Це про світло, а не про розмір. Про розмір — `small`.*
-- expensive — *Це про ціну. Про розмір — `small`.*
+**7 · Сестра каже, що не очікувала такого завершення. Скажіть їй: «Ти здивована»**
+<!-- interaction_id: en:lesson-01:session-25:i07; family: scripted_repeat_compare -->
+🎙 **You are surprised.**
 
-**8 · Картка слова — cold**
-<!-- interaction_id: en:lesson-01:session-25:i08; family: listen_choose -->
-> **cold** — «холодно, холодний». Батарея вимкнена, і ви це вже відчули.
+**8 · Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе**
+<!-- interaction_id: en:lesson-01:session-25:i08; family: context_gap_grammar -->
+I ___ ashamed. → **am** · is · are
+- is — *Із `I` потрібна форма `am`.*
+- are — *Про себе починаємо з `I am`.*
 
-**9 · Вставте слово — про воду з крана**
-<!-- interaction_id: en:lesson-01:session-25:i09; family: context_gap_grammar -->
-It ___ cold. → **is** · am · are
-- is — *Про воду кажуть `It`, тому у `It is cold.` потрібна форма `is`.*
-- am — *`am` стоїть тільки поряд з `I`. Про річ — `is`.*
-- are — *`are` — не для одного предмета. Тут `is`.*
+**9 · Послухайте й виберіть фразу**
+<!-- interaction_id: en:lesson-01:session-25:i09; family: listen_choose -->
+🔊 *They are surprised.* → **They are surprised.** · We are surprised. · They are proud.
+- We are surprised. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
+- They are proud. — *У записі останнє слово — `surprised`, а в цьому варіанті — `proud`.*
 
-**10 · Складіть фразу — ви подивилися на рахунок**
-<!-- interaction_id: en:lesson-01:session-25:i10; family: phrase_builder -->
-Плитки: `expensive` `It` `is` `he` → **It is expensive.**
-*(плитка `he` зайва: `he` — про чоловіка, а рахунок — річ)*
+**10 · З’єднайте знайомі слова та значення**
+<!-- interaction_id: en:lesson-01:session-25:i10; family: speed_match -->
+married — перебуває у шлюбі · single — не перебуває у шлюбі (в анкеті) · welcome — бажаний · safe — у безпеці
 
-**11 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-25:i11; family: speed_match -->
-small — маленький · dark — темний · expensive — дорогий · cold — холодний
+**11 · Послухайте й складіть почуте**
+<!-- interaction_id: en:lesson-01:session-25:i11; family: listen_build_dictation -->
+🔊 *I am surprised.* Плитки: `surprised` `am` `I` `is` → **I am surprised.**
+*(плитка `is` зайва: тут потрібно `am` — `I am surprised.`)*
 
-**12 · Вставте слово — квартиру ви щойно зняли, все в ній як з голочки**
-<!-- interaction_id: en:lesson-01:session-25:i12; family: context_gap_grammar -->
-It is ___ . → **new** · dark · small
-- new — *Квартиру щойно зняли, тому `new` — «нова», не про світло й не про розмір.*
-- dark — *Про світло, а не про вік речі. Щойно куплене — `new`.*
-- small — *Про розмір. «Нове» — `new`.*
+**12 · Мама пишається донькою після виступу. Складіть фразу про маму**
+<!-- interaction_id: en:lesson-01:session-25:i12; family: phrase_builder -->
+Плитки: `proud` `is` `She` `am` `are` → **She is proud.**
+*(плитка `am` зайва: тут потрібно `is` — `She is proud.`)*
+*(плитка `are` зайва: тут потрібно `is` — `She is proud.`)*
 
-**13 · Складіть фразу — у дворі ані звуку**
-<!-- interaction_id: en:lesson-01:session-25:i13; family: phrase_builder -->
-Плитки: `quiet` `is` `It` → **It is quiet.**
+**13 · Сестра правильно назвала автора вистави. Скажіть їй уголос: «Ти маєш рацію»**
+<!-- interaction_id: en:lesson-01:session-25:i13; family: scripted_repeat_compare -->
+🎙 **You are right.**
 
-**14 · Вставте слово — ви ввімкнули обігрівач, за годину в кімнаті добре**
+**14 · Ви порівняли сьогоднішню виставу з торішньою. Скажіть про сьогоднішню: «Вона інша»**
 <!-- interaction_id: en:lesson-01:session-25:i14; family: context_gap_grammar -->
-It is ___ . → **warm** · cold · dark
-- warm — *Після обігрівача в кімнаті `warm` — «тепло», не холодно і не темно.*
-- cold — *Навпаки: обігрівач якраз прибрав холод.*
-- dark — *Про світло. Про тепло — `warm`.*
+It ___ different. → **is** · am · are
+- am — *Про виставу тут кажемо `It is`.*
+- are — *Після `It` потрібна форма `is`.*
 
-**15 · Послухайте і складіть — «це гарно»**
-<!-- interaction_id: en:lesson-01:session-25:i15; family: listen_build_dictation -->
-🔊 *It is nice.* Плитки: `nice` `It` `is` `am` → **It is nice.**
-Зайва плитка `am`: з `It` ставлять `is` — `It is nice`.
-*(плитка `am` зайва: `am` зайве: з `It` ставлять `is` — `It is nice`.)*
+**15 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-25:i15; family: listen_choose -->
+🔊 *We are ashamed.* → **We are ashamed.** · They are ashamed. · We are surprised.
+- They are ashamed. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
+- We are surprised. — *У записі останнє слово — `ashamed`, а в цьому варіанті — `surprised`.*
 
-
-**16 · З'єднайте пари — слова, які вже звучали**
+**16 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-25:i16; family: speed_match -->
-new — новий · warm — теплий · quiet — тихий · nice — приємний
+right — має рацію · proud — пишається · ashamed — соромно · surprised — здивований
 
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-25:i17:s01; family: scripted_repeat_compare -->
-🎙 **It is small.**
-
-**18 · Скажіть уголос — у кімнаті темно**
-<!-- interaction_id: en:lesson-01:session-25:i17:s02; family: scripted_repeat_compare -->
-🎙 **It is dark.**
-
-**19 · Послухайте і складіть — надворі тихо**
-<!-- interaction_id: en:lesson-01:session-25:i17:s03; family: listen_build_dictation -->
-🔊 *It is quiet.* Плитки: `quiet` `It` `is` `are` → **It is quiet.**
-Зайва плитка `are`: з `It` ставлять `is` — `It is quiet`.
-*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is quiet`.)*
-
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-25:i17:s04; family: scripted_repeat_compare -->
-🎙 **It is cold.**
-
----
-
-## Для сборщика
-
-new_words:
-small — маленький — «маленький». Кімната, у якій валізу доводиться ставити на ліжко.
-dark — темний, темно — «темний, темно». Вечір за вікном, а лампу ви ще не знайшли.
-expensive — дорогий — «дорогий». Ціна, через яку ви перечитуєте цінник удруге.
-cold — холодно, холодний — «холодно, холодний». Батарея вимкнена, і ви це вже відчули.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=phrase_builder, 5=listen_choose, 6=listen_choose, 7=context_gap_grammar, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=listen_build_dictation, 16=speed_match, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| new | 12 (встав слово), 16 (дошка пар) | 12 — правильна відповідь |
-| warm | 14 (встав слово), 16 (дошка пар) | 14 — правильна відповідь |
-| quiet | 13 (складання фрази), 16 (дошка пар) | 13 — правильна відповідь |
-| nice | 15 (послухай і склади), 16 (дошка пар) | 15 — правильна відповідь |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | small | так — «`It is small` — „воно маленьке“, `small` — „маленький“» |
-| Інтро 2 | dark | так — «`dark` — „темний, темно“», «`It is dark`» |
-| Інтро 3 | expensive | так — «`expensive` — „дорогий“», «`It is expensive`» |
-
-**3. Дошка пар**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| small (дошка 11) | зав. 1 | зав. 2 слух, зав. 7 вибір |
-| dark (дошка 11) | зав. 3 | зав. 4 складання фрази |
-| expensive (дошка 11) | зав. 5 | зав. 6 слух, зав. 10 складання |
-| cold (дошка 11) | зав. 8 | зав. 9 фраза `It is cold` |
-| new (дошка 16) | з минулих сесій | зав. 12 вибір |
-| warm (дошка 16) | з минулих сесій | зав. 14 вибір |
-| quiet (дошка 16) | з минулих сесій | зав. 13 складання |
-| nice (дошка 16) | з минулих сесій | зав. 15 складання на слух |
-
----
+**17 · Ваша команда завершила складний проєкт. Ви всі пишаєтеся результатом. Скажіть це за всю команду однією фразою**
+<!-- interaction_id: en:lesson-01:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **We are proud.**
 

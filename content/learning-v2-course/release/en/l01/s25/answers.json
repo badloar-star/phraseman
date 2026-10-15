@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-25:i01",
-    "correctText": "small",
+    "correctText": "I am proud.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-25:i02",
-    "correctText": "small",
+    "correctText": "She is surprised.",
     "correctResponseId": "en:lesson-01:session-25:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-25:i03",
-    "correctText": "dark",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-25:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-25:i04",
-    "correctText": "It is dark.",
+    "correctText": "en:lesson-01:session-25:i04:p1=proud\nen:lesson-01:session-25:i04:p2=ashamed\nen:lesson-01:session-25:i04:p3=surprised\nen:lesson-01:session-25:i04:p4=different",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-25:i05",
-    "correctText": "expensive",
+    "correctText": "We are proud.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-25:i06",
-    "correctText": "expensive",
-    "correctResponseId": "en:lesson-01:session-25:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-25:i07",
-    "correctText": "small",
-    "correctResponseId": "en:lesson-01:session-25:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-25:i08",
-    "correctText": "cold",
+    "correctText": "He is ashamed.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-25:i07",
+    "correctText": "You are surprised.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i08",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-25:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-25:i09",
-    "correctText": "is",
+    "correctText": "They are surprised.",
     "correctResponseId": "en:lesson-01:session-25:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-25:i10",
-    "correctText": "It is expensive.",
+    "correctText": "en:lesson-01:session-25:i10:p1=married\nen:lesson-01:session-25:i10:p2=single\nen:lesson-01:session-25:i10:p3=welcome\nen:lesson-01:session-25:i10:p4=safe",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-25:i11",
-    "correctText": "en:lesson-01:session-25:i11:p1=small\nen:lesson-01:session-25:i11:p2=dark\nen:lesson-01:session-25:i11:p3=expensive\nen:lesson-01:session-25:i11:p4=cold",
+    "correctText": "I am surprised.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-25:i12",
-    "correctText": "new",
-    "correctResponseId": "en:lesson-01:session-25:i12:r1"
+    "correctText": "She is proud.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-25:i13",
-    "correctText": "It is quiet.",
+    "correctText": "You are right.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-25:i14",
-    "correctText": "warm",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-25:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-25:i15",
-    "correctText": "It is nice.",
-    "correctResponseId": null
+    "correctText": "We are ashamed.",
+    "correctResponseId": "en:lesson-01:session-25:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-25:i16",
-    "correctText": "en:lesson-01:session-25:i16:p1=new\nen:lesson-01:session-25:i16:p2=warm\nen:lesson-01:session-25:i16:p3=quiet\nen:lesson-01:session-25:i16:p4=nice",
+    "correctText": "en:lesson-01:session-25:i16:p1=right\nen:lesson-01:session-25:i16:p2=proud\nen:lesson-01:session-25:i16:p3=ashamed\nen:lesson-01:session-25:i16:p4=surprised",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-25:i17:s01",
-    "correctText": "It is small.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-25:i17:s02",
-    "correctText": "It is dark.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-25:i17:s03",
-    "correctText": "It is quiet.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-25:i17:s04",
-    "correctText": "It is cold.",
+    "interactionId": "en:lesson-01:session-25:i17",
+    "correctText": "We are proud.",
     "correctResponseId": null
   }
 ]

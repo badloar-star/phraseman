@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-25",
   "learningOutcomeByLocale": {
-    "ru": "`It is`, когда описываете вещь, комнату или погоду.",
-    "uk": "`It is`, коли описуєте річ, кімнату або погоду."
+    "ru": "выбирать am после I, is после He/She/It и are после You/We/They в коротком описании",
+    "uk": "вибирати am після I, is після He/She/It та are після You/We/They у короткому описі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`It` — «оно», про вещь",
-        "uk": "`It` — «воно», про річ"
+        "ru": "Я горжусь",
+        "uk": "Я пишаюся"
       },
       "bodyByLocale": {
-        "ru": "`It` — это «оно»: про предмет, комнату, погоду. Не про человека.\n\nПосле `it` в такой фразе ставят `is`: `It is small`.\n\nПо-русски «комната маленькая» прекрасно живёт без глагола. По-английски `It small` не соберётся: `is` держит фразу.",
-        "uk": "`It` — це «воно»: про предмет, кімнату, погоду. Не про людину.\n\nПісля `it` у такій фразі ставлять `is`: `It is small`.\n\nУкраїнською ми кажемо «кімната маленька» і чудово живемо без дієслова. Англійською `It small` не збереться — `is` тримає фразу."
+        "ru": "`proud` здесь — «гордится». Племянница справилась с трудной ролью, и вы говорите: `I am proud` — «Я горжусь». Сначала выберите, о ком говорите: после `I` нужно `am`. Слово `proud` форму не выбирает — её определяет начало фразы.",
+        "uk": "`proud` тут — «пишається». Племінниця впоралася зі складною роллю, і ви кажете: `I am proud` — «Я пишаюся». Спочатку виберіть, про кого говорите: після `I` потрібно `am`. Слово `proud` форму не вибирає — її визначає початок фрази."
       },
       "question": {
         "interactionId": "en:lesson-01:session-25:intro1:q",
         "promptByLocale": {
-          "ru": "Открыли дверь: комната метра три на четыре. Скажите про неё.",
-          "uk": "Відчинили двері: кімната три на чотири метри. Скажіть про неї."
+          "ru": "Вы гордитесь выступлением племянницы. Скажите о своём чувстве.",
+          "uk": "Ви пишаєтеся виступом племінниці. Скажіть про своє почуття."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-25:intro1:r1",
-              "text": "It is small."
+              "text": "I am proud."
             },
             {
               "responseId": "en:lesson-01:session-25:intro1:r2",
-              "text": "It small."
+              "text": "I is proud."
             },
             {
               "responseId": "en:lesson-01:session-25:intro1:r3",
-              "text": "It am small."
+              "text": "I are proud."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-25:intro1:r1",
-              "text": "It is small."
+              "text": "I am proud."
             },
             {
               "responseId": "en:lesson-01:session-25:intro1:r2",
-              "text": "It small."
+              "text": "I is proud."
             },
             {
               "responseId": "en:lesson-01:session-25:intro1:r3",
-              "text": "It am small."
+              "text": "I are proud."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Открыли дверь: комната метра три на четыре. Скажите про неё.",
-          "uk": "Відчинили двері: кімната три на чотири метри. Скажіть про неї."
+          "ru": "Вы гордитесь выступлением племянницы. Скажите о своём чувстве.",
+          "uk": "Ви пишаєтеся виступом племінниці. Скажіть про своє почуття."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`dark` — темно",
-        "uk": "`dark` — темно"
+        "ru": "Мне стыдно",
+        "uk": "Мені соромно"
       },
       "bodyByLocale": {
-        "ru": "`dark` — «тёмный, темно». Про комнату без света, про улицу вечером.\n\nФраза строится так же: `It is dark`. Сначала `it`, потом `is`, потом само слово.\n\nНе ищите отдельного слова для «темно» и «тёмная» — в английском это одно `dark` и для комнаты, и для вечера за окном.",
-        "uk": "`dark` — «темний, темно». Про кімнату без світла, про вулицю ввечері.\n\nФраза будується так само: `It is dark`. Спершу `it`, потім `is`, потім саме слово.\n\nНе шукайте окремого слова для «темно» і «темна» — в англійській це одне `dark` і для кімнати, і для вечора за вікном."
+        "ru": "`ashamed` — «стыдно». Вы громко разговаривали во время выступления и теперь жалеете: `I am ashamed` — «Мне стыдно». Про другого человека: `He is ashamed` или `She is ashamed`. Это не просто стеснительность: человеку стыдно за что-то.",
+        "uk": "`ashamed` — «соромно». Ви голосно розмовляли під час виступу й тепер шкодуєте: `I am ashamed` — «Мені соромно». Про іншу людину: `He is ashamed` або `She is ashamed`. Це не просто сором’язливість: людині соромно за щось."
       },
       "question": {
         "interactionId": "en:lesson-01:session-25:intro2:q",
         "promptByLocale": {
-          "ru": "Щёлкнули выключателем — лампочки нет. Скажите, что темно.",
-          "uk": "Клацнули вимикач — лампочки немає. Скажіть, що темно."
+          "ru": "Брат высмеял чужую ошибку, а теперь ему стыдно за это. Скажите о нём.",
+          "uk": "Брат висміяв чужу помилку, а тепер йому соромно за це. Скажіть про нього."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-25:intro2:r1",
-              "text": "It is dark."
+              "text": "He is ashamed."
             },
             {
               "responseId": "en:lesson-01:session-25:intro2:r2",
-              "text": "It is darks."
+              "text": "He am ashamed."
             },
             {
               "responseId": "en:lesson-01:session-25:intro2:r3",
-              "text": "It dark."
+              "text": "He are ashamed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-25:intro2:r1",
-              "text": "It is dark."
+              "text": "He is ashamed."
             },
             {
               "responseId": "en:lesson-01:session-25:intro2:r2",
-              "text": "It is darks."
+              "text": "He am ashamed."
             },
             {
               "responseId": "en:lesson-01:session-25:intro2:r3",
-              "text": "It dark."
+              "text": "He are ashamed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Щёлкнули выключателем — лампочки нет. Скажите, что темно.",
-          "uk": "Клацнули вимикач — лампочки немає. Скажіть, що темно."
+          "ru": "Брат высмеял чужую ошибку, а теперь ему стыдно за это. Скажите о нём.",
+          "uk": "Брат висміяв чужу помилку, а тепер йому соромно за це. Скажіть про нього."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`expensive` — дорого",
-        "uk": "`expensive` — дорого"
+        "ru": "Вот это неожиданно",
+        "uk": "Оце несподівано"
       },
       "bodyByLocale": {
-        "ru": "`expensive` — «дорогой». Длинное слово, и ударение в нём на середину: «икс-ПЕН-сив».\n\n`It is expensive` — «это дорого». Фраза, которую в чужом городе вы скажете чаще, чем хотелось бы.\n\nИ ещё одно: `cold` — «холодно». Про батарею, про воду из крана, про весь этот вечер.",
-        "uk": "`expensive` — «дорогий». Довге слово, і наголос у ньому на середину: «ікс-ПЕН-сив».\n\n`It is expensive` — «це дорого». Фраза, яку в чужому місті ви скажете частіше, ніж хотілося б.\n\nІ ще одне: `cold` — «холодно». Про батарею, про воду з крана, про весь цей вечір."
+        "ru": "`surprised` — «удивлён». Семья не ожидала такого хорошего выступления: `We are surprised` — «Мы удивлены». После `You`, `We`, `They` выбираем `are`. Даже если вы удивились за троих, про себя всё равно говорите `I am surprised`.",
+        "uk": "`surprised` — «здивований». Родина не очікувала такого гарного виступу: `We are surprised` — «Ми здивовані». Після `You`, `We`, `They` вибираємо `are`. Навіть якщо ви здивувалися за трьох, про себе все одно кажете `I am surprised`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-25:intro3:q",
         "promptByLocale": {
-          "ru": "Смотрите на счёт за квартиру и присвистываете. Одна фраза.",
-          "uk": "Дивитеся на рахунок за квартиру і присвистуєте. Одна фраза."
+          "ru": "Вы и сестра не ожидали, что племянница так хорошо споёт. Скажите за вас обоих: «Мы удивлены».",
+          "uk": "Ви й сестра не очікували, що племінниця так добре заспіває. Скажіть за вас обох: «Ми здивовані»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-25:intro3:r1",
-              "text": "It is expensive."
+              "text": "We are surprised."
             },
             {
               "responseId": "en:lesson-01:session-25:intro3:r2",
-              "text": "It is expensiv."
+              "text": "We am surprised."
             },
             {
               "responseId": "en:lesson-01:session-25:intro3:r3",
-              "text": "He is expensive."
+              "text": "We is surprised."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-25:intro3:r1",
-              "text": "It is expensive."
+              "text": "We are surprised."
             },
             {
               "responseId": "en:lesson-01:session-25:intro3:r2",
-              "text": "It is expensiv."
+              "text": "We am surprised."
             },
             {
               "responseId": "en:lesson-01:session-25:intro3:r3",
-              "text": "He is expensive."
+              "text": "We is surprised."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Смотрите на счёт за квартиру и присвистываете. Одна фраза.",
-          "uk": "Дивитеся на рахунок за квартиру і присвистуєте. Одна фраза."
+          "ru": "Вы и сестра не ожидали, что племянница так хорошо споёт. Скажите за вас обоих: «Мы удивлены».",
+          "uk": "Ви й сестра не очікували, що племінниця так добре заспіває. Скажіть за вас обох: «Ми здивовані»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ad47541f9d2911e89986f9aa3385f3e1835b4691462ff530aa1dcbac8f7852b7"
+  "introFingerprint": "c2c173e22f777106a9d7c4c5b838e4651f71c2338274f8f088b2d43e32169725"
 }

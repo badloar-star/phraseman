@@ -11,7 +11,12 @@ describe('Dialogue strict voice lifecycle contract', () => {
     expect(scenario).toContain('readSpeechRecognitionLocaleInventory(speechModule, asrPlatform)');
     expect(scenario).toContain('resolveDialogueAsrCapability');
     expect(scenario.indexOf('voiceInputGate.canStartAttempt()')).toBeLessThan(scenario.indexOf('speechModule.start('));
-    expect(scenario.indexOf('voiceInputGate.commitStartedAttempt()')).toBeGreaterThan(scenario.indexOf("addListener('start'"));
+    // R25 (координатор 15.10, после aa62db9b6): списание вынесено в commitAttemptOnce (одна попытка на сессию захвата) —
+    // он вызывается ТОЛЬКО внутри слушателя 'start' и первого result при удержании; прямого списания больше нигде нет.
+    expect(scenario.match(/voiceInputGate\.commitStartedAttempt\(\)/g)).toHaveLength(1);
+    expect(scenario.match(/commitAttemptOnce\('(start|result)'\)/g)).toEqual(["commitAttemptOnce('start')", "commitAttemptOnce('result')"]);
+    expect(scenario.indexOf("commitAttemptOnce('start')")).toBeGreaterThan(scenario.indexOf("addListener('start'"));
+    expect(scenario.indexOf("commitAttemptOnce('result')")).toBeGreaterThan(scenario.indexOf("addListener('result'"));
   });
 
   it('settles a released recognizer, removes listeners and ignores late callbacks', () => {

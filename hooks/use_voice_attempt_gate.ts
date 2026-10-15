@@ -7,7 +7,7 @@
 //   • commitStartedAttempt — в момент РЕАЛЬНОГО начала записи (подтверждённый старт распознавания): списывает одну попытку, цифра на значке падает сразу (Optimistic UI, подписка на память);
 //   • одна попытка = один ключ (повторный вызов того же старта не спишет второй раз).
 // Plus — без лимита и без списания. Журнал: [VOICE-LIMIT] (общий модуль) и [VOICE-GATE] — какая поверхность и чем решено.
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'expo-router';
 
 import { trackEvent } from '../app/analytics';
@@ -16,6 +16,7 @@ import {
   VOICE_LIMIT_PAYWALL_CONTEXT,
   recordVoiceDailyAttempt,
   useVoiceDailyAllowance,
+  voiceAccessSource,
   voiceDailyAllowanceGate,
   type VoiceAllowanceSurface,
   type VoiceDailyAllowance,
@@ -33,9 +34,13 @@ export type VoiceAttemptGate = Readonly<{
   commitStartedAttempt: () => void;
   /** canStartAttempt + commitStartedAttempt в одном шаге — для кнопок, где «тап» = «старт» (удержание, запись по касанию). */
   tryStartAttempt: () => boolean;
+  /** R13: лимит на нуле в запасном режиме (доступ ещё неизвестен) — пейвол не показан, ждём ответа ≤ 10 с (индикатор на кнопке). */
+  awaitingAccess: boolean;
 }>;
 
 const PAYWALL_DEBOUNCE_MS = 600;
+/** R13: сколько ждать настоящего ответа о подписке на нуле в запасном режиме, прежде чем показать пейвол. */
+export const VOICE_ACCESS_AWAIT_CEILING_MS = 10_000;
 
 export function useVoiceAttemptGate(input: Readonly<{ surface: VoiceAllowanceSurface; source: PaywallSource }>): VoiceAttemptGate {
   const { surface, source } = input;
@@ -47,22 +52,56 @@ export function useVoiceAttemptGate(input: Readonly<{ surface: VoiceAllowanceSur
   const lastPaywallAtRef = useRef(Number.NEGATIVE_INFINITY);
   const locked = allowance.kind === 'limited' && allowance.exhausted;
 
+  // зачем (координатор R13 15.10, «платящий не должен видеть купи Plus»): на нуле в ЗАПАСНОМ режиме (доступ неизвестен, кэша
+  // аккаунта нет) это может быть Plus, чья подписка ещё резолвится. Пейвол не показываем — ждём настоящего ответа ≤ 10 с:
+  // Plus → можно говорить (следующий тап пишет), Free или таймаут → обычный пейвол.
+  const [awaitingAccess, setAwaitingAccess] = useState(false);
+
+  const openVoicePaywall = useCallback((reason: string): void => {
+    lastPaywallAtRef.current = Date.now();
+    console.log(`[VOICE-GATE] ${surface}: лимит исчерпан → пейвол ${VOICE_LIMIT_PAYWALL_CONTEXT} source=${source} reason=${reason}`); // guard-ok: ветка решения называет значение
+    void trackEvent('paywall_shown', { context: VOICE_LIMIT_PAYWALL_CONTEXT, source });
+    // литерал контекста — для сторожа точек входа пейвола; значение то же, что VOICE_LIMIT_PAYWALL_CONTEXT
+    router.push({ pathname: '/premium_modal', params: { context: 'ai_voice_input', source } } as never);
+  }, [router, source, surface]);
+
+  useEffect(() => {
+    if (!awaitingAccess) return undefined;
+    if (accessResolved || hasPremiumAccess) {
+      setAwaitingAccess(false);
+      if (hasPremiumAccess) {
+        console.log(`[ACCESS-RESOLVE] voice_await_done ${JSON.stringify({ surface, result: 'plus', action: 'record_allowed' })}`); // guard-ok: итог ожидания
+        return undefined;
+      }
+      console.log(`[ACCESS-RESOLVE] voice_await_done ${JSON.stringify({ surface, result: 'free', action: 'paywall' })}`); // guard-ok: итог ожидания
+      openVoicePaywall('await_resolved_free');
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      setAwaitingAccess(false);
+      console.warn(`[ACCESS-RESOLVE] voice_await_done ${JSON.stringify({ surface, result: 'timeout', ceilingMs: VOICE_ACCESS_AWAIT_CEILING_MS, action: 'paywall' })}`); // guard-ok: итог ожидания
+      openVoicePaywall('await_timeout');
+    }, VOICE_ACCESS_AWAIT_CEILING_MS);
+    return () => clearTimeout(timer);
+  }, [accessResolved, awaitingAccess, hasPremiumAccess, openVoicePaywall, surface]);
+
   const canStartAttempt = useCallback((): boolean => {
     const allowed = voiceDailyAllowanceGate(surface, { accessResolved, hasPremiumAccess });
+    if (!allowed && voiceAccessSource({ accessResolved, hasPremiumAccess }) === 'fallback') {
+      console.log(`[VOICE-GATE] ${surface}: лимит в запасном режиме — пейвол не показываем, ждём ответа о подписке ≤ ${VOICE_ACCESS_AWAIT_CEILING_MS} мс`); // guard-ok: ветка решения
+      setAwaitingAccess(true);
+      return false;
+    }
     if (!allowed) {
       const now = Date.now();
       if (now - lastPaywallAtRef.current < PAYWALL_DEBOUNCE_MS) {
         console.log(`[VOICE-GATE] ${surface}: лимит исчерпан, повторный тап ${now - lastPaywallAtRef.current} мс после пейвола — игнор`); // guard-ok: ранний выход называет причину
         return false;
       }
-      lastPaywallAtRef.current = now;
-      console.log(`[VOICE-GATE] ${surface}: лимит исчерпан → пейвол ${VOICE_LIMIT_PAYWALL_CONTEXT} source=${source}`); // guard-ok: ветка решения называет значение
-      void trackEvent('paywall_shown', { context: VOICE_LIMIT_PAYWALL_CONTEXT, source });
-      // литерал контекста — для сторожа точек входа пейвола; значение то же, что VOICE_LIMIT_PAYWALL_CONTEXT, источник типизирован PaywallSource
-      router.push({ pathname: '/premium_modal', params: { context: 'ai_voice_input', source } } as never);
+      openVoicePaywall('limit_reached');
     }
     return allowed;
-  }, [accessResolved, hasPremiumAccess, router, source, surface]);
+  }, [accessResolved, hasPremiumAccess, openVoicePaywall, surface]);
 
   const commitStartedAttempt = useCallback((): void => {
     seqRef.current += 1;
@@ -77,7 +116,7 @@ export function useVoiceAttemptGate(input: Readonly<{ surface: VoiceAllowanceSur
   }, [canStartAttempt, commitStartedAttempt]);
 
   return useMemo(
-    () => ({ allowance, locked, canStartAttempt, commitStartedAttempt, tryStartAttempt }),
-    [allowance, canStartAttempt, commitStartedAttempt, locked, tryStartAttempt],
+    () => ({ allowance, locked, canStartAttempt, commitStartedAttempt, tryStartAttempt, awaitingAccess }),
+    [allowance, awaitingAccess, canStartAttempt, commitStartedAttempt, locked, tryStartAttempt],
   );
 }

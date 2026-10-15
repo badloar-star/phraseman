@@ -50,12 +50,8 @@ import { safeRouterBack } from './navigation_back';
 import { getLocalDayKey } from './local_date';
 import {
   FREE_DIALOG_VOICE_DAILY_LIMIT,
-  dialogVoiceLimitDecision,
-  hydrateDialogVoiceAttempts,
   peekDialogVoiceAttempts,
-  subscribeDialogVoiceAttempts,
 } from './dialogue_v2_voice_daily_limit';
-import { effectiveVoiceAccess } from './voice_daily_allowance';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -283,18 +279,11 @@ function SessionContent() {
   });
   // зачем (владелец 12.10, п.81, вариант А; макет C15 / dialogs-028): Free — 3 голосовые попытки в день, после третьей на
   // микрофоне PLUS и тап ведёт в Plus; Plus — без лимита. Первый кадр берёт счётчик из памяти, диск догоняет фоном.
-  const [voiceAttempts, setVoiceAttempts] = useState(() => peekDialogVoiceAttempts());
-  useEffect(() => {
-    const sync = () => setVoiceAttempts(peekDialogVoiceAttempts());
-    const unsubscribe = subscribeDialogVoiceAttempts(sync);
-    void hydrateDialogVoiceAttempts().then(sync);
-    return unsubscribe;
-  }, []);
-  // зачем (Ревизор R1-c): доступ неизвестен дольше 8 с — для лимита голоса считаем Free (иначе без сети лимита нет весь запуск)
-  const voiceLimitDecision = dialogVoiceLimitDecision({ ...effectiveVoiceAccess({ accessResolved, hasPremiumAccess }), count: voiceAttempts });
-  // зачем (Ревизор R1-a 15.10): Диалоги V2 на общем хуке, как свободный разговор — ключ попытки, отложенное списание при
-  // неизвестном доступе, пейвол с защитой от двойного тапа и событием paywall_shown (своя ветка этого не умела).
+  // зачем (Ревизор R1-a/R13 15.10): Диалоги V2 на общем хуке, как свободный разговор — ключ попытки, отложенное списание при
+  // неизвестном доступе, пейвол с защитой от двойного тапа и paywall_shown. Значок PLUS берётся из того же остатка, что гейт
+  // (с отложенными в памяти попытками) — иначе в запасном режиме значок показывал «осталось 1», а тап открывал пейвол.
   const voiceGate = useVoiceAttemptGate({ surface: 'dialogs', source: 'dialogue_v2_session' });
+  const voiceLimitDecision = voiceGate.locked ? 'limit_reached' : 'allowed';
   const commitVoiceAttempt = voiceGate.commitStartedAttempt;
   // Попытка = НАЧАТАЯ запись: считаем переход в recording, а не тап (отмена до старта и отказ микрофона — не попытка).
   const prevVoiceStatusRef = useRef(voice.status);

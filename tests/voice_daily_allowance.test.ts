@@ -164,6 +164,33 @@ describe('голос на сегодня (D165 + D194)', () => {
     expect(logs.some((l) => l.includes('deferred_dropped'))).toBe(true);
   });
 
+  it('R13: офлайн, кэш Free ЭТОГО аккаунта — лимит сразу, без ожидания 8 с; на диск отложенные не пишутся', async () => {
+    const { beginAccountGeneration } = require('../app/account_generation') as typeof import('../app/account_generation');
+    const UNKNOWN = { accessResolved: false, hasPremiumAccess: false } as const;
+    await hydrateDialogVoiceAttempts();
+    beginAccountGeneration('owner-free');
+    expect(effectiveVoiceAccess(FREE)).toEqual(FREE); // настоящий ответ — запомнили
+    expect(effectiveVoiceAccess(UNKNOWN, Date.now() + 100)).toEqual(FREE); // сразу, без 8 с
+    expect(logs.some((l) => l.includes('[ACCESS-RESOLVE] voice source=cache'))).toBe(true);
+    expect(recordVoiceDailyAttempt('lessons', 'c:1', UNKNOWN)).toBe(1);
+    expect(recordVoiceDailyAttempt('lessons', 'c:2', UNKNOWN)).toBe(2);
+    expect(recordVoiceDailyAttempt('lessons', 'c:3', UNKNOWN)).toBe(3);
+    expect(voiceDailyAllowanceGate('course_v2', UNKNOWN)).toBe(false);
+    const stored = await AsyncStorage.getItem(DIALOG_VOICE_ATTEMPTS_KEY);
+    expect(stored === null ? 0 : (JSON.parse(stored) as { count: number }).count).toBe(0);
+  });
+
+  it('R13: кэш Plus ЭТОГО аккаунта — лимита нет, пока доступ резолвится; у другого аккаунта кэш не применяется', () => {
+    const { beginAccountGeneration } = require('../app/account_generation') as typeof import('../app/account_generation');
+    const UNKNOWN = { accessResolved: false, hasPremiumAccess: false } as const;
+    beginAccountGeneration('owner-plus');
+    effectiveVoiceAccess(PLUS);
+    expect(effectiveVoiceAccess(UNKNOWN, Date.now() + 60_000)).toEqual(PLUS);
+    expect(voiceDailyAllowanceGate('course_v2', UNKNOWN)).toBe(true);
+    beginAccountGeneration('owner-other');
+    expect(effectiveVoiceAccess(UNKNOWN, Date.now() + 100)).toEqual(UNKNOWN);
+  });
+
   it('R1-b: смена владельца отбрасывает отложенные попытки — попытка A не засчитывается B', async () => {
     const { beginAccountGeneration } = require('../app/account_generation') as typeof import('../app/account_generation');
     await hydrateDialogVoiceAttempts();

@@ -134,3 +134,13 @@ Governance-ID: TG-771014A4ECD6
   Ожидание: −1 users/{id} и −2 flashcard_pages (+ mistake_* и прочие чтения второго прохода) на каждом старте.
 - config ×2 в этих журналах не воспроизвёлся (нет строк config) — держу под наблюдением.
 - Тесты: premium_guard + ttl (+2 новых) 33/33, cloud_restore_* + boot_restore_defer зелёные; late-restore 133/133.
+Governance-ID: TG-4C2FD4B70D87
+
+### R13 + R25 (15.10, 15:38)
+- R13 (а) кэш: последний настоящий статус ЭТОГО аккаунта (voice_last_known_access_v1, ключ stableId, ≤8 владельцев,
+  только признак Plus и время) применяется сразу; запасной Free — только без кэша. Лог `[ACCESS-RESOLVE] voice source=cache|fallback`.
+- R13 (б) useVoiceAttemptGate: на нуле в запасном режиме пейвол не показывается — awaitingAccess ≤ 10 с; Plus → можно говорить,
+  Free/таймаут → пейвол (`voice_await_done`). Индикатор на кнопках — поле awaitingAccess, хосты подключает Дизайн.
+- Ревизор 🟡: значок Диалогов V2 = voiceGate.locked (тот же остаток с отложенными, что у гейта).
+- R25: сторож dialogue_strict_voice_lifecycle — commitAttemptOnce только в 'start' и первом result.
+- Тесты: голос + хук + пейвол-реестр 38/38; R25 + диалоги 17/17; типы 0.

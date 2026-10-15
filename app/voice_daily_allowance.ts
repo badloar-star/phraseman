@@ -15,8 +15,10 @@
  * Журнал: [VOICE-LIMIT] — вход, решение и значение, которое его решило, списание, блок.
  */
 import { useEffect, useMemo, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { usePremium } from '../components/PremiumContext';
+import { captureAccountGeneration } from './account_generation';
 import { onAccountOwnerChanged } from './account_owner_change';
 import {
   FREE_DIALOG_VOICE_DAILY_LIMIT,
@@ -135,11 +137,82 @@ function isAccessFallback(access: Access, nowMs: number): boolean {
   return nowMs - accessWaitStartedAtMs >= ACCESS_UNKNOWN_GRACE_MS;
 }
 
+// зачем (координатор R13 15.10, «платящий не должен видеть купи Plus»): сначала КЭШ — последний настоящий статус ЭТОГО
+// аккаунта (Plus или Free) применяется сразу, без ожидания 8 с; запасной Free — только когда кэша нет. Ключ — stableId
+// владельца, хранится только признак Plus и время (локально, 0 чтений Firestore, новых данных о человеке нет).
+const ACCESS_CACHE_KEY = 'voice_last_known_access_v1';
+const ACCESS_CACHE_MAX_OWNERS = 8;
+type CachedAccess = Readonly<{ plus: boolean; at: number }>;
+let accessCache: Record<string, CachedAccess> = {};
+let accessSourceLogKey = '';
+
+void AsyncStorage.getItem(ACCESS_CACHE_KEY).then((raw) => {
+  if (!raw) return;
+  try {
+    const parsed = JSON.parse(raw) as Record<string, CachedAccess>;
+    accessCache = { ...parsed, ...accessCache };
+  } catch (error) {
+    console.warn(`${LOG} access_cache_unparsable ${JSON.stringify({ error: error instanceof Error ? error.message : String(error) })}`); // guard-ok: битый кэш — решаем без него
+  }
+}, (error: unknown) => {
+  console.warn(`${LOG} access_cache_read_failed ${JSON.stringify({ error: error instanceof Error ? error.message : String(error) })}`); // guard-ok: без кэша — обычный путь
+});
+
+function currentOwnerKey(): string | null {
+  return captureAccountGeneration().stableId;
+}
+
+function rememberResolvedAccess(access: Access, nowMs: number): void {
+  if (!access.accessResolved) return;
+  const owner = currentOwnerKey();
+  if (!owner) return;
+  const prev = accessCache[owner];
+  if (prev && prev.plus === access.hasPremiumAccess) return;
+  const entries = Object.entries({ ...accessCache, [owner]: { plus: access.hasPremiumAccess, at: nowMs } })
+    .sort((a, b) => b[1].at - a[1].at)
+    .slice(0, ACCESS_CACHE_MAX_OWNERS);
+  accessCache = Object.fromEntries(entries);
+  void AsyncStorage.setItem(ACCESS_CACHE_KEY, JSON.stringify(accessCache)).catch((error: unknown) => {
+    console.warn(`${LOG} access_cache_write_failed ${JSON.stringify({ error: error instanceof Error ? error.message : String(error) })}`); // guard-ok: кэш — подсказка, не источник правды
+  });
+}
+
+export type VoiceAccessSource = 'network' | 'cache' | 'waiting' | 'fallback';
+
+/** Откуда решение о доступе для лимита голоса: настоящий ответ, кэш аккаунта, ещё ждём (≤ 8 с) или запасной Free. */
+export function voiceAccessSource(access: Access, nowMs: number = Date.now()): VoiceAccessSource {
+  if (access.accessResolved || access.hasPremiumAccess) return 'network';
+  const owner = currentOwnerKey();
+  if (owner && accessCache[owner]) return 'cache';
+  return isAccessFallback(access, nowMs) ? 'fallback' : 'waiting';
+}
+
+function logAccessSource(source: VoiceAccessSource, access: Access, nowMs: number): void {
+  const gen = captureAccountGeneration().generation;
+  const key = `${gen}:${source}:${access.hasPremiumAccess}`;
+  if (key === accessSourceLogKey) return;
+  accessSourceLogKey = key;
+  console.warn(`[ACCESS-RESOLVE] voice source=${source} ${JSON.stringify({ ownerGen: gen, plus: access.hasPremiumAccess, ms: nowMs - accessWaitStartedAtMs })}`); // guard-ok: причина решения доступа для лимита
+}
+
 export function effectiveVoiceAccess(access: Access, nowMs: number = Date.now()): Access {
+  if (access.accessResolved || access.hasPremiumAccess) {
+    isAccessFallback(access, nowMs);
+    rememberResolvedAccess(access, nowMs);
+    return access;
+  }
+  const owner = currentOwnerKey();
+  const cached = owner ? accessCache[owner] : undefined;
+  if (cached) {
+    const fromCache = { accessResolved: true, hasPremiumAccess: cached.plus };
+    logAccessSource('cache', fromCache, nowMs);
+    return fromCache;
+  }
   if (!isAccessFallback(access, nowMs)) return access;
   if (!accessFallbackLogged) {
     accessFallbackLogged = true;
     console.warn(`[ACCESS-RESOLVE] voice_fallback_free ${JSON.stringify({ waitedMs: nowMs - accessWaitStartedAtMs, graceMs: ACCESS_UNKNOWN_GRACE_MS })}`); // guard-ok: причина резолва для лимита
+    logAccessSource('fallback', { accessResolved: true, hasPremiumAccess: false }, nowMs);
   }
   return { accessResolved: true, hasPremiumAccess: false };
 }
@@ -152,7 +225,10 @@ export function msUntilVoiceAccessFallback(access: Access, nowMs: number = Date.
 
 /** Отложенные до выяснения доступа попытки; в запасном режиме входят в лимит (на диск не пишутся). */
 function pendingCountFor(rawAccess: Access, nowMs: number): number {
-  return isAccessFallback(rawAccess, nowMs) ? pendingUnresolvedKeys.length : 0;
+  if (rawAccess.accessResolved || rawAccess.hasPremiumAccess) return 0;
+  // доступ не выяснен, но для лимита уже Free (кэш аккаунта или запасной режим) — отложенные в памяти входят в лимит
+  const effective = effectiveVoiceAccess(rawAccess, nowMs);
+  return effective.accessResolved && !effective.hasPremiumAccess ? pendingUnresolvedKeys.length : 0;
 }
 const pendingListeners = new Set<() => void>();
 function emitPending(): void {
@@ -166,7 +242,7 @@ export function voiceDailyAllowanceGate(surface: VoiceAllowanceSurface, rawAcces
   const count = peekCount() + pending;
   const decision = dialogVoiceLimitDecision({ ...access, count });
   const allowed = decision !== 'limit_reached';
-  console.log(`${LOG} gate ${JSON.stringify({ surface, decision, count, pendingInMemory: pending, fallback: access !== rawAccess, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, hydrated: isDialogVoiceAttemptsHydrated(), allowed })}`);
+  console.log(`${LOG} gate ${JSON.stringify({ surface, decision, count, pendingInMemory: pending, source: voiceAccessSource(rawAccess, nowMs), limit: FREE_DIALOG_VOICE_DAILY_LIMIT, hydrated: isDialogVoiceAttemptsHydrated(), allowed })}`);
   return allowed;
 }
 
@@ -190,9 +266,9 @@ export function recordVoiceDailyAttempt(surface: VoiceAllowanceSurface, attemptK
       pendingUnresolvedKeys.push({ surface, attemptKey });
       emitPending();
     }
-    const fallback = isAccessFallback(rawAccess, nowMs);
-    console.log(`${LOG} attempt:deferred ${JSON.stringify({ surface, reason: 'access_unknown', fallback, pending: pendingUnresolvedKeys.length })}`);
-    return peekDialogVoiceAttempts() + (fallback ? pendingUnresolvedKeys.length : 0);
+    const inLimit = pendingCountFor(rawAccess, nowMs);
+    console.log(`${LOG} attempt:deferred ${JSON.stringify({ surface, reason: 'access_unknown', source: voiceAccessSource(rawAccess, nowMs), pending: pendingUnresolvedKeys.length })}`);
+    return peekDialogVoiceAttempts() + inLimit;
   }
   const access = rawAccess;
   if (access.hasPremiumAccess) {
@@ -325,6 +401,8 @@ export function resetVoiceDailyAllowanceForTests(): void {
   accessWaitStartedAtMs = Date.now();
   lastRawAccessKnown = false;
   accessFallbackLogged = false;
+  accessCache = {};
+  accessSourceLogKey = '';
 }
 
 /* expo-router: keep this utility from being treated as a screen */

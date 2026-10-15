@@ -18,6 +18,8 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getDevPlanOverride } from './dev_vip_override';
+import { MANAGE_NO_ACCESS_PAYWALL, decideManageAccess } from './manage_subscription_access';
+import { usePremium } from '../components/PremiumContext';
 import { peekPremiumPlan, rememberPremiumPlan } from './premium_plan_peek';
 import { isDevManageLoadingHold } from './dev_paywall_state';
 import {
@@ -773,6 +775,37 @@ export default function ManageSubscription() {
   }, [saveOffer, cancelReason, openStoreCancel]);
 
   const overlayActive = showCancelSheet || showRestoreEmpty;
+
+  // зачем (координатор 15.10, Макеты ed4f4a6ff): «Plus активирован» — только при доступе. Нет доступа — обычный пейвол (источник notification_premium_expiry), доступ неизвестен — тихий скелетон.
+  const { hasPremiumAccess, accessResolved } = usePremium();
+  const manageGate = decideManageAccess({ hasPremiumAccess, accessResolved, routePlanKnown: routeParamPlan !== null, devPlanOverride: getDevPlanOverride() !== null });
+  const manageSource = Array.isArray(params.source) ? (params.source[0] ?? '') : (params.source ?? '');
+  const manageRedirectedRef = useRef(false);
+  useEffect(() => {
+    console.log(`[PLUS-MANAGE] решение=${manageGate.decision} причина=${manageGate.reason} доступ=${String(hasPremiumAccess)} выяснен=${String(accessResolved)} планИзМаршрута=${String(routeParamPlan)} источник=${manageSource || 'нет'}`); // guard-ok: журнал решения экрана «Подписка Plus»
+    if (manageGate.decision !== 'paywall') return;
+    if (manageRedirectedRef.current) { console.log('[PLUS-MANAGE] переход на пейвол уже выполнен'); return; } // guard-ok: ранний выход с причиной
+    manageRedirectedRef.current = true;
+    console.log(`[PLUS-MANAGE] нет подписки → пейвол context=${MANAGE_NO_ACCESS_PAYWALL.params.context} source=${MANAGE_NO_ACCESS_PAYWALL.params.source}`); // guard-ok: ветка перехода
+    router.replace({ pathname: MANAGE_NO_ACCESS_PAYWALL.pathname, params: { ...MANAGE_NO_ACCESS_PAYWALL.params } } as never);
+  }, [manageGate.decision, manageGate.reason, hasPremiumAccess, accessResolved, routeParamPlan, manageSource, router]);
+
+  if (manageGate.decision !== 'show') {
+    // зачем: ни «активирован», ни спиннера — тихие плашки на месте карточки статуса (первый кадр без мигания, высота как у настоящей карточки)
+    return (
+      <LinearGradient colors={[glass.bgTop, glass.bgBottom]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
+        <SafeAreaView style={S.safe}>
+          <View testID="manage-subscription-access-skeleton" style={S.safeContent} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+            <View style={[S.statusCard, { backgroundColor: glass.opaqueCard, minHeight: 132 }]}>
+              <View style={{ width: '38%', height: 14, borderRadius: 7, backgroundColor: glass.buttonFillDisabled }} />
+              <View style={{ width: '62%', height: 24, borderRadius: 12, backgroundColor: glass.buttonFillDisabled, marginTop: 14 }} />
+              <View style={{ width: '48%', height: 14, borderRadius: 7, backgroundColor: glass.buttonFillDisabled, marginTop: 18 }} />
+            </View>
+          </View>
+        </SafeAreaView>
+      </LinearGradient>
+    );
+  }
 
   return (
     <LinearGradient colors={[glass.bgTop, glass.bgBottom]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>

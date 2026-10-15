@@ -3444,9 +3444,16 @@ function CleanOnboarding({
     setCodeSheet(kind);
   }, []);
 
+  // зачем (аудит R58 #48, координатор 15.10): замок был на state — два тапа в одном кадре оба видели codeBusy=false и гасили
+  // промокод дважды; после успеха finally снимал занятость, и до закрытия шита кнопка снова нажималась. Замок — ref,
+  // занятость после успеха держится до закрытия шита.
+  const codeBusyRef = useRef(false);
   const submitCode = useCallback(async () => {
     const raw = codeValue.trim();
-    if (!raw || codeBusy) return;
+    if (!raw) { console.log(`[ONB-CODE] submit ignored reason=empty kind=${codeSheet}`); return; } // guard-ok: ранний выход пишет причину
+    if (codeBusyRef.current || codeBusy) { console.log(`[ONB-CODE] submit ignored reason=busy kind=${codeSheet}`); return; } // guard-ok: ранний выход пишет причину
+    codeBusyRef.current = true;
+    let keepBusyUntilClose = false;
     setCodeBusy(true);
     setCodeFeedback(null);
     try {
@@ -3463,7 +3470,13 @@ function CleanOnboarding({
           });
           // Доступ уже выдан — цены больше не нужны, согласия собраны раньше:
           // завершаем онбординг.
-          setTimeout(() => { setCodeSheet(null); void completeOnboardingRef.current(); }, LUM.bloomDriftMs);
+          keepBusyUntilClose = true;
+          setTimeout(() => {
+            setCodeSheet(null);
+            codeBusyRef.current = false;
+            setCodeBusy(false);
+            void completeOnboardingRef.current();
+          }, LUM.bloomDriftMs);
           return;
         }
         const text = res.status === 'not_found' ? oc.promoNotFound
@@ -3484,7 +3497,12 @@ function CleanOnboarding({
           ok: true,
           text: status === 'applied' ? oc.friendOk : oc.friendAlreadyLinked,
         });
-        setTimeout(() => closeCodeSheet(), LUM.bloomDriftMs);
+        keepBusyUntilClose = true;
+        setTimeout(() => {
+          closeCodeSheet();
+          codeBusyRef.current = false;
+          setCodeBusy(false);
+        }, LUM.bloomDriftMs);
         return;
       }
       const text = status === 'invalid' ? oc.friendInvalid
@@ -3495,7 +3513,10 @@ function CleanOnboarding({
         : oc.friendFailed;
       setCodeFeedback({ ok: false, text });
     } finally {
-      setCodeBusy(false);
+      if (!keepBusyUntilClose) {
+        codeBusyRef.current = false;
+        setCodeBusy(false);
+      }
     }
   }, [closeCodeSheet, codeBusy, codeSheet, codeValue]);
 

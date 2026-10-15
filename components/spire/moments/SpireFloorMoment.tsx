@@ -27,7 +27,8 @@ import SpireTowerSvg from '../SpireTowerSvg';
 import { spireGameText } from '../spire_game_strings';
 import { spireStepsCount } from '../spire_plurals';
 import { spireText } from '../spire_strings';
-import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireFloorCoinsOf, spireIsGuard, spireStepsIn } from '../spire_tower_model';
+import { floorMomentFrame } from './floor_moment_frame';
+import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, spireFloorCoinsOf, spireIsGuard, spireStepsIn } from '../spire_tower_model';
 import { useSpirePalette } from '../useSpirePalette';
 import { useSpireScene } from '../useSpireScene';
 import MomentFirework, { useMomentRumble } from './moments_effects';
@@ -66,10 +67,10 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
   const skin = useMemo(() => spireSkinForTier(outcome.local.tier), [outcome.local.tier]);
   const [litFloor, setLitFloor] = useState(reduceMotion ? next : outcome.floorBefore);
   const [peek, setPeek] = useState(reduceMotion);
-  const k = TOWER_W / SPIRE_TW;
   // окно башни: центр на следующем этаже (образец `focus: 5`)
-  const focus = SPIRE_TOWER_GEOM.floors[Math.max(0, Math.min(SPIRE_FLOOR_COUNT, next) - 1)]!;
-  const shift = Math.round(TOWER_H / 2 - (focus.y + focus.h / 2) * k);
+  // зачем (Ревизор 15.10, R02; закон владельца 14.10 «пик башни не обрезается, свет тоже»): на 13–15 этаже центровка окна 280×240 срезала верх башни (шпиль, ореол) — кадр считает floorMomentFrame:
+  // масштаб вписывает запас над верхним этажом и низ следующего этажа в высоту окна, окно прижимается к верху башни; нижние этажи — центровка, как в образце.
+  const { k, towerW, shift } = useMemo(() => floorMomentFrame(skin, next, TOWER_W, TOWER_H), [skin, next]);
 
   useEffect(() => {
     console.log(`[FLOOR-MOMENT] этаж ${outcome.floorBefore} пройден → ${next}, монеты=${reward} страж=${String(guardNext)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
@@ -95,8 +96,8 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
       <View style={s.body}>
         <Animated.Text entering={reduceMotion ? undefined : FadeIn} style={[s.ov, { color: p.textSecondary }]}>{spireGameText(lang, 'floorCleared', { n: outcome.floorBefore }).toUpperCase()}</Animated.Text>
         <View style={[s.window, { width: TOWER_W, height: TOWER_H }]} testID={`${testID}-tower`}>
-          <View style={{ width: TOWER_W, height: Math.round(SPIRE_TOWER_GEOM.height * k), transform: [{ translateY: shift }] }}>
-            <SpireTowerSvg lang={lang} myFloor={litFloor} selected={0} onSelect={noopSelect} width={TOWER_W} skin={skin} scene={scene} />
+          <View style={{ width: towerW, height: Math.round(SPIRE_TOWER_GEOM.height * k), alignSelf: 'center', transform: [{ translateY: shift }] }}>
+            <SpireTowerSvg lang={lang} myFloor={litFloor} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} />
           </View>
         </View>
         <View style={s.rewardRow}>

@@ -233,6 +233,13 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     scrollToFloor(myFloor, true, 'смена-этажа'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
   }, [myFloor, scale, reduceMotion, tx, ty, scrollToFloor]);
 
+  // зачем (Ревизор 15.10, R02 п.5): тап по этажу 14–15 с нижнего этажа оставлял верх башни (шпиль, ореол) за краем окна — выбранный верхний этаж прокручивает окно к верху башни (общий расчёт spireWindowScrollY)
+  useEffect(() => {
+    if (scale <= 0 || !placedRef.current || selected < SPIRE_FLOOR_COUNT - 1 || selected === myFloor) return;
+    scrollToFloor(selected, true, 'выбран-верхний-этаж'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected]);
+
   // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не просыпается зря
   // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются
   // зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): небо, звёзды, облака, земля и подписи — из токенов темы; башня — наряд лиги

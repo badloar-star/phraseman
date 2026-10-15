@@ -6183,7 +6183,8 @@ export default function LessonsTab({
                   position: "absolute",
                   left: 24,
                   right: 24,
-                  bottom: 130,
+                  // зачем (Ревизор 15.10, R03): было жёсткое 130 — подсказка наезжала на капсулу таб-бара; теперь от общего источника «верх капсулы + дыхание»
+                  bottom: tabContentBottomPad,
                   alignItems: "center",
                 },
                 learningV2DenialHintStyle,

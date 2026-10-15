@@ -115,8 +115,9 @@ const ART_SIZE = 64;
 const ART_SIZE_SOLO = 80;
 
 const s = StyleSheet.create({
+  // зачем (Ревизор 15.10, R03): при крупном системном шрифте (1.3) фиксированные 96 с overflow hidden резали текст — теперь 96 это минимум, высота растёт по содержимому
   card: {
-    height: CARD_HEIGHT,
+    minHeight: CARD_HEIGHT,
     borderRadius: V2.radius.card,
     overflow: 'hidden',
     flexDirection: 'row',

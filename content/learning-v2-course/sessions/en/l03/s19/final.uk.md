@@ -1,160 +1,138 @@
-# Англійська · Урок 3 · Заняття 19 — «Що робити з y»
+# Англійська · Урок 3 · Заняття 19 — Сумки разом
 
-**Сцена заняття.** Ви із сестрою перевіряєте доставку для домашнього вечора: збірку коротких оповідань, пазл із картою світу та батарейки для настільної лампи. Читаєте написи на пакованнях, зазираєте до книжки й вирішуєте, які коробки зберегти.
+**Ситуація.** Ви з Анною зустрічаєте гостей у майстерні. Гості залишили кілька сумок у сусідній кімнаті. Олег переставив їх і забув попередити вас. Тепер ви шукаєте речі й уточнюєте, чи всі сумки лежать разом.
 
-**Як сказати:** у назвах кількох предметів кінцева `y` після приголосної літери змінюється на `ies`: `stories`, `countries`, `batteries`; знайомі рамки `They are`, `Are they`, `They are not`  
-**Нові слова:** story, country, battery  
-**Повертаються:** box
+**Що ви опануєте:** назвати кілька сумок і запитати, де вони розташовані
+**Нові слова:** bags
 
 ---
 
 ## Інтро 1
 
-### До розв’язки — одна заміна
+### Одна сумка й кілька
 
-`story` — «історія», розповідь про події. Для кількох історій кінцеву `y` міняємо на `ies`: `stories`. Рука тягнеться просто додати `s` і перейти до розв’язки, але перед `y` стоїть приголосна літера `r`: тут потрібна заміна. `stories` — «історії».
+`bag` — «сумка», `bags` — «сумки». До назви однієї сумки додаємо `s`. `They are bags` — «Це сумки». Слово `a` перед `bags` не потрібне: сумок кілька. Олег обіцяв принести одну сумку, а прийшов із трьома. Для такого уточнення англійській вистачило однієї додаткової літери.
 
-**Сестра читає опис збірки: усередині кілька коротких історій. Оберіть англійську назву для них.**
+**Гості залишили кілька сумок. Назвіть усю групу одним англійським словом.**
 
-- ✅ **stories**
-- ❌ storys — *Ви додали `s`, але зберегли `y`. Після приголосної літери кінцеву `y` міняємо на `ies`: `stories`.*
-- ❌ story — *Так називається одна історія. У збірці їх кілька, тому тут потрібне `stories`.*
+- ✅ **bags**
+- ❌ bag — *`bag` називає одну сумку, а тут потрібне `bags`.*
+- ❌ a bags — *Перед назвою кількох сумок не ставимо `a`.*
 
 ---
 
 ## Інтро 2
 
-### Подивіться перед y
+### Усі в одному місці
 
-`country` — «країна». Кілька країн — `countries`. Подивіться на кінець слова: перед `y` стоїть приголосна літера `r`. Прибираємо `y` і на її місці пишемо `ies`; решта слова лишається. Кілька країн називаємо фразою `They are countries` — «Це країни».
+`The bags are together` — «Сумки разом». Ви обоє знаєте, про які сумки йдеться; тут `together` означає, що вони розташовані в одному місці. Для кількох сумок потрібно `are`. `alone` — «сам, без компанії», а `nearby` — «поблизу». `The room is nearby` — «Кімната поблизу»: кімната одна, тому `is`.
 
-**На коробці пазла названо Францію та Німеччину. Сестра питає, що це за місця; скажіть «Це країни».**
+**Ви з Анною знайшли всі гостьові сумки в одному місці. Повідомте «Сумки разом».**
 
-- ✅ **They are countries.**
-- ❌ They are countrys. — *Перед кінцевою `y` стоїть приголосна `r`. Для кількох країн міняємо `y` на `ies`: `countries`.*
-- ❌ They is countries. — *Франція та Німеччина — дві країни. У цій фразі потрібен початок `They are`; форма `countries` правильна.*
+- ✅ **The bags are together.**
+- ❌ The bags is together. — *Сумок кілька, тому тут потрібно `are`.*
+- ❌ The bags together. — *Після `The bags` потрібно `are`.*
 
 ---
 
 ## Інтро 3
 
-### Перевірити маленьке паковання
+### Запитати про місце
 
-`battery` — «батарейка». У пакованні їх може бути кілька — `batteries`: перед кінцевою `y` стоїть приголосна `r`, тому міняємо `y` на `ies`. Хочете уточнити, чи всередині батарейки? Запитайте `Are they batteries?` — «Це батарейки?» Назва зберігає `ies`.
+`Where are the bags?` — «Де сумки?» Починаємо з `Where are`, бо сумок кілька. Потім іде `the bags`: співрозмовник розуміє, які речі ви шукаєте. `guilty` — «винен». Олег сам визнає, що заплутав усіх, переставивши сумки без попередження: `He is guilty` — «Він винен».
 
-**Сестра відкриває пакунок із кількома маленькими циліндрами. Уточніть: «Це батарейки?»**
+**Олег знає, які сумки ви шукаєте. Запитайте, де сумки.**
 
-- ✅ **Are they batteries?**
-- ❌ Are they batterys? — *Для кількох батарейок кінцеву `y` після приголосної міняємо на `ies`: `batteries`.*
-- ❌ Are they battery? — *Це питання про кілька предметів. Назву однієї батарейки треба замінити на `batteries`.*
+- ✅ **Where are the bags?**
+- ❌ Where is the bags? — *Сумок кілька: потрібне запитання з `are`.*
+- ❌ What are the bags? — *`What` запитує, що це. Про місце запитуємо `Where`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — story**
-<!-- interaction_id: en:lesson-03:session-19:i01; family: listen_choose -->
-Ціль: `story`
+**1 · Олег показує кілька загорнутих речей. Це сумки. Назвіть їх повною фразою**
+<!-- interaction_id: en:lesson-03:session-19:i01; family: phrase_builder -->
+Плитки: `bags` `are` `They` `is` → **They are bags.**
+*(плитка `is` зайва: тут потрібно `are` — `They are bags.`)*
 
-**2 · Послухайте й оберіть — яке слово сказала сестра**
+**2 · Послухайте повідомлення про сумки**
 <!-- interaction_id: en:lesson-03:session-19:i02; family: listen_choose -->
-Ціль: `story`
-Варіанти: `story` · `store` · `stormy`
-- store — *`store` — «магазин». У ньому один склад, а в `story` — два: після першої голосної частини чути продовження. Дослухайте слово.*
-- stormy — *`stormy` — «штормовий». Перед останньою голосною губи змикаються на «м». У `story` там чути англійський звук `r`, і губи не змикаються. Дослухайте середину слова.*
+🔊 *The bags are together.* → **The bags are together.** · The bags are here. · The bags are nearby.
+- The bags are here. — *У записі останнє слово — `together`, а в цьому варіанті — `here`.*
+- The bags are nearby. — *У записі останнє слово — `together`, а в цьому варіанті — `nearby`.*
 
+**3 · Ви називаєте кілька сумок гостей**
+<!-- interaction_id: en:lesson-03:session-19:i03; family: context_gap_grammar -->
+They are ___. → **bags** · bag · a bags
+- bag — *Сумок кілька, тому потрібно `bags`.*
+- a bags — *Перед назвою кількох сумок не ставимо `a`.*
 
-**3 · Картка слова — country**
-<!-- interaction_id: en:lesson-03:session-19:i03; family: listen_choose -->
-Ціль: `country`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-19:i04; family: speed_match -->
+bags — сумки · together — разом · alone — сам, без компанії · room — кімната
 
-**4 · Послухайте й оберіть — яке слово вимовила сестра**
-<!-- interaction_id: en:lesson-03:session-19:i04; family: listen_choose -->
-Ціль: `country`
-Варіанти: `country` · `county` · `entry`
-- county — *`county` — «графство». У першому складі голосний переходить в інший звук, а в `country` він звучить рівно. Слухайте перший склад.*
-- entry — *`entry` — «вхід». Воно починається з голосного, а `country` — зі звука «к». Кінець схожий, тож шукайте різницю на початку.*
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-19:i05; family: listen_build_dictation -->
+🔊 *The room is nearby.* Плитки: `nearby` `is` `room` `The` `are` → **The room is nearby.**
+*(плитка `are` зайва: тут потрібно `is` — `The room is nearby.`)*
 
+**6 · Олег знає, які гостьові сумки ви шукаєте. Запитайте, де сумки**
+<!-- interaction_id: en:lesson-03:session-19:i06; family: phrase_builder -->
+Плитки: `bags` `the` `are` `Where` `What` → **Where are the bags?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where are the bags?`)*
 
-**5 · Зберіть фразу — сестра питає, що це за тексти у збірці; це короткі історії, скажіть «Це історії»**
-<!-- interaction_id: en:lesson-03:session-19:i05; family: phrase_builder -->
-Ціль: `They are stories.`
-Варіанти: `story`
+**7 · Анна вийшла, інших людей поруч немає. Скажіть про себе «Я сам» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-19:i07; family: scripted_repeat_compare -->
+🎙 **I'm alone.**
 
-**6 · Картка слова — battery**
-<!-- interaction_id: en:lesson-03:session-19:i06; family: listen_choose -->
-Ціль: `battery`
-
-**7 · Послухайте й оберіть — яке слово сказала сестра**
-<!-- interaction_id: en:lesson-03:session-19:i07; family: listen_choose -->
-Ціль: `battery`
-Варіанти: `battery` · `flattery` · `buttery`
-- flattery — *`flattery` — «лестощі». На початку чути поєднання «фл», а в `battery` — «б». Решта слова звучить схоже.*
-- buttery — *`buttery` — «маслянистий». У `battery` рот на першій голосній відкривається ширше, ніж у `buttery`. Порівняйте початок.*
-
-
-**8 · Вставте назву — сестра читає на коробці пазла «Франція, Німеччина»; скажіть про ці місця «Це країни»**
+**8 · Усі потрібні сумки розташовані в одному місці. Доповніть повідомлення**
 <!-- interaction_id: en:lesson-03:session-19:i08; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `countries` · `countrys` · `country`
-- countrys — *Перед `y` стоїть приголосна літера. Для кількох країн потрібно міняти `y` на `ies`, а не дописувати `s`.*
-- country — *Так називається одна країна. Тут названо дві, тому обираємо `countries`.*
+The bags ___ together. → **are** · is · am
+- is — *З кількома сумками тут потрібно `are`.*
+- am — *З `The bags` потрібно `are`.*
 
+**9 · Послухайте повідомлення про Олега після його зізнання**
+<!-- interaction_id: en:lesson-03:session-19:i09; family: listen_choose -->
+🔊 *He is guilty.* → **He is guilty.** · He is lucky. · He is alone.
+- He is lucky. — *У записі останнє слово — `guilty`, а в цьому варіанті — `lucky`.*
+- He is alone. — *У записі останнє слово — `guilty`, а в цьому варіанті — `alone`.*
 
-**9 · Зберіть питання — сестра тримає паковання з кількома маленькими циліндрами; запитайте «Це батарейки?»**
-<!-- interaction_id: en:lesson-03:session-19:i09; family: phrase_builder -->
-Ціль: `Are they batteries?`
-Варіанти: `battery`
+**10 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-19:i10; family: speed_match -->
+nearby — поблизу · guilty — винен · bags — сумки · room — кімната
 
-**10 · Вставте назву — сестра питає про дві порожні коробки, які ви лишили для зберігання; скажіть «Це коробки» (`box` — «коробка», `boxes` — «коробки`)**
-<!-- interaction_id: en:lesson-03:session-19:i10; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `boxes` · `box` · `boxs`
-- box — *Коробок дві. У цій фразі потрібна форма для кількох: `boxes`.*
-- boxs — *Для кількох коробок до `box` дописуємо `es`: `boxes`. Однієї доданої `s` замало.*
-
-
-**11 · Послухайте й зберіть — сестра говорить про тексти на пакованні**
+**11 · Послухайте й складіть повідомлення**
 <!-- interaction_id: en:lesson-03:session-19:i11; family: listen_build_dictation -->
-Ціль: `They are not stories.`
-Варіанти: `story`
+🔊 *The bags are here.* Плитки: `here` `are` `bags` `The` `is` → **The bags are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The bags are here.`)*
 
-**12 · З’єднайте назви з українськими значеннями — слова під час перевірки доставки**
-<!-- interaction_id: en:lesson-03:session-19:i12; family: speed_match -->
-Пари: `stories` — історії · `countries` — країни · `batteries` — батарейки · `boxes` — коробки
-Ціль: `stories · countries · batteries · boxes`
+**12 · Ви знайшли всі гостьові сумки в одному місці. Повідомте «Сумки разом»**
+<!-- interaction_id: en:lesson-03:session-19:i12; family: phrase_builder -->
+Плитки: `together` `are` `bags` `The` `is` → **The bags are together.**
+*(плитка `is` зайва: тут потрібно `are` — `The bags are together.`)*
 
-**13 · Послухайте й оберіть — що сказала сестра**
-<!-- interaction_id: en:lesson-03:session-19:i13; family: listen_choose -->
-Ціль: `Are they countries?`
-Варіанти: `Are they countries?` · `They are countries.` · `Are they stories?`
-- They are countries. — *Тут спочатку `They are`: це повідомлення. У записі питання починається з `Are they`.*
-- Are they stories? — *Це питання про історії: `stories`. У записі наприкінці звучить `countries` — «країни».*
+**13 · Олег визнав, що саме він спричинив плутанину із сумками. Скажіть «Він винен» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-19:i13; family: scripted_repeat_compare -->
+🎙 **He's guilty.**
 
+**14 · Ви запитуєте, де кілька сумок, про які обоє знаєте**
+<!-- interaction_id: en:lesson-03:session-19:i14; family: context_gap_grammar -->
+Where ___ the bags? → **are** · is · am
+- is — *Сумок кілька: `Where are the bags?`.*
+- am — *З `the bags` тут потрібно `are`.*
 
-**14 · Зберіть питання — сестра складає два паковання, а ви не бачите їх через стіл; уточніть «Це коробки?»**
-<!-- interaction_id: en:lesson-03:session-19:i14; family: phrase_builder -->
-Ціль: `Are they boxes?`
-Варіанти: `box`
+**15 · Послухайте ще одне повідомлення про сумки**
+<!-- interaction_id: en:lesson-03:session-19:i15; family: listen_choose -->
+🔊 *The bags are nearby.* → **The bags are nearby.** · The bags are here. · The bags are together.
+- The bags are here. — *У записі останнє слово — `nearby`, а в цьому варіанті — `here`.*
+- The bags are together. — *У записі останнє слово — `nearby`, а в цьому варіанті — `together`.*
 
-**15 · Вставте назву — на пакованні позначено чотири батарейки для лампи; скажіть «Це батарейки»**
-<!-- interaction_id: en:lesson-03:session-19:i15; family: context_gap_grammar -->
-Ціль: `They are ___.`
-Варіанти: `batteries` · `batterys` · `battery`
-- batterys — *До кінцевої `y` після приголосної не просто додаємо `s`: міняємо `y` на `ies`. Виходить `batteries`.*
-- battery — *Батарейок чотири. Для кількох потрібне `batteries`, а не назва однієї батарейки.*
+**16 · З’єднайте слова зі значеннями в цій сцені**
+<!-- interaction_id: en:lesson-03:session-19:i16; family: speed_match -->
+together — разом · alone — сам, без компанії · nearby — поблизу · guilty — винен
 
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-19:i16; family: scripted_repeat_compare -->
-Ціль: `They are not countries.`
-
-**17 · Складіть фразу — сестра питає, що лежить у відкритому пакунку; ви дістали чотири батарейки для лампи**
-<!-- interaction_id: en:lesson-03:session-19:i17; family: phrase_builder -->
-Ціль: `They are batteries.`
-Варіанти: `battery`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=listen_choose, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Гості збираються йти. Їхні сумки знову переставили, й Анна знає куди. Запитайте, де сумки**
+<!-- interaction_id: en:lesson-03:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where are the bags?**
 

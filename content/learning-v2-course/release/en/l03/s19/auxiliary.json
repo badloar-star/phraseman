@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-19:intro1:r2": {
+          "ru": "`bag` называет одну сумку, а здесь нужны `bags`.",
+          "uk": "`bag` називає одну сумку, а тут потрібне `bags`."
+        },
+        "en:lesson-03:session-19:intro1:r3": {
+          "ru": "Перед названием нескольких сумок не ставим `a`.",
+          "uk": "Перед назвою кількох сумок не ставимо `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-19:intro2:r2": {
+          "ru": "Сумок несколько, поэтому здесь нужно `are`.",
+          "uk": "Сумок кілька, тому тут потрібно `are`."
+        },
+        "en:lesson-03:session-19:intro2:r3": {
+          "ru": "После `The bags` нужно `are`.",
+          "uk": "Після `The bags` потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-19:intro3:r2": {
+          "ru": "Сумок несколько: нужен вопрос с `are`.",
+          "uk": "Сумок кілька: потрібне запитання з `are`."
+        },
+        "en:lesson-03:session-19:intro3:r3": {
+          "ru": "`What` спрашивает, что это. О месте спрашиваем `Where`.",
+          "uk": "`What` запитує, що це. Про місце запитуємо `Where`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "378cfd3662accfe1bffed18b2cf8781d35908b62264ea850a95e47468ab1350a"
+}

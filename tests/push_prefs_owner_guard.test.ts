@@ -31,7 +31,12 @@ import {
   beginAccountGeneration,
   invalidateAccountGeneration,
 } from '../app/account_generation';
-import { flushServerPushPrefsForTests, updateServerPushPrefs } from '../app/push_token_registration';
+import {
+  cancelPendingServerPushPrefsForAccountDelete,
+  flushPendingServerPushPrefsBeforeOwnerChange,
+  flushServerPushPrefsForTests,
+  updateServerPushPrefs,
+} from '../app/push_token_registration';
 
 describe('pushPrefs — владелец записи (P24)', () => {
   let logs: string[] = [];
@@ -90,5 +95,56 @@ describe('pushPrefs — владелец записи (P24)', () => {
     expect(mockSet).toHaveBeenCalledTimes(1);
     expect(mockDocIds).toEqual(['stable_guest']);
     expect(mockSet.mock.calls[0]![0]).toEqual({ pushPrefs: { streak: true, offers: true, league: true } });
+  });
+});
+
+// зачем (Ревизор P24b, 15.10): тумблер + «Выйти» раньше 1,5 с — новое значение должно дойти до документа A, а в гостя — ничего.
+describe('pushPrefs — досылка A перед выходом (P24b)', () => {
+  beforeEach(async () => {
+    mockSet.mockClear();
+    mockDocIds.length = 0;
+    mockStableId = 'stable_A';
+    mockOnLink = null;
+    __resetAccountGenerationForTests();
+    await AsyncStorage.removeItem('server_push_prefs_last_written');
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+  });
+  afterEach(() => jest.restoreAllMocks());
+
+  it('тумблер → выход через 0,5 с → новое значение в документе A, в гостя ничего', async () => {
+    beginAccountGeneration('stable_A');
+    void updateServerPushPrefs({ streak: false, offers: false, league: true });
+    await expect(flushPendingServerPushPrefsBeforeOwnerChange()).resolves.toBe('flushed');
+    expect(mockDocIds).toEqual(['stable_A']);
+    expect(mockSet.mock.calls[0]![0]).toEqual({ pushPrefs: { streak: false, offers: false, league: true } });
+    invalidateAccountGeneration();
+    mockStableId = 'stable_guest';
+    beginAccountGeneration('stable_guest');
+    await flushServerPushPrefsForTests();
+    expect(mockSet).toHaveBeenCalledTimes(1);
+    expect(mockDocIds).toEqual(['stable_A']);
+  });
+
+  // зачем (координатор 15.10): при удалении досылки нет — users/{A} удаляется, запись могла бы пересечься со стиранием.
+  it('удаление аккаунта → skip_delete, в документ ничего не пишется', async () => {
+    beginAccountGeneration('stable_A');
+    void updateServerPushPrefs({ streak: false, offers: true, league: false });
+    expect(cancelPendingServerPushPrefsForAccountDelete()).toBe('skip_delete');
+    await flushServerPushPrefsForTests();
+    expect(mockSet).not.toHaveBeenCalled();
+    expect(cancelPendingServerPushPrefsForAccountDelete()).toBe('none');
+  });
+
+  it('без отложенной записи выход ничего не ждёт', async () => {
+    beginAccountGeneration('stable_A');
+    await expect(flushPendingServerPushPrefsBeforeOwnerChange()).resolves.toBe('none');
+    expect(mockSet).not.toHaveBeenCalled();
+  });
+
+  it('медленная запись — потолок, выход идёт дальше', async () => {
+    beginAccountGeneration('stable_A');
+    mockSet.mockImplementationOnce(() => new Promise<undefined>(() => undefined));
+    void updateServerPushPrefs({ streak: true, offers: true, league: true });
+    await expect(flushPendingServerPushPrefsBeforeOwnerChange(30)).resolves.toBe('timeout');
   });
 });

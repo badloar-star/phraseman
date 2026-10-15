@@ -189,6 +189,7 @@ let pushPrefsWriteChain: Promise<void> = Promise.resolve();
 // уносили выбор прошлого аккаунта в users/{гость}. Владелец (поколение аккаунта) запоминается при тапе; смена
 // поколения отменяет отложенную запись, а начатая запись сверяет владельца перед set.
 let pendingPushPrefsOwner: AccountGenerationToken | null = null;
+let pushPrefsWritesInFlight = 0;
 let pushPrefsOwnerSubscription: { remove: () => void } | null = null;
 
 function isSamePushPrefsOwner(owner: AccountGenerationToken, now: AccountGenerationToken): boolean {
@@ -242,9 +243,50 @@ function flushPendingPushPrefs(): void {
     return;
   }
   pushPrefsLog('flush', { taps, streak: prefs.streak, offers: prefs.offers, league: prefs.league });
+  pushPrefsWritesInFlight += 1;
   pushPrefsWriteChain = pushPrefsWriteChain
     .then(() => writeServerPushPrefsNow(prefs, owner))
-    .finally(() => waiters.forEach((resolve) => resolve()));
+    .finally(() => {
+      pushPrefsWritesInFlight -= 1;
+      waiters.forEach((resolve) => resolve());
+    });
+}
+
+/**
+ * Дослать отложенную запись пуш-настроек ТЕКУЩЕГО владельца до смены аккаунта (выход/смена), не дольше `timeoutMs`.
+ * зачем (Ревизор P24b, координатор 15.10): тумблер + «Выйти» раньше 1,5 с — P24 отменял запись (верно для гостя), и новое
+ * значение так и не доходило до users/{A}: при следующем входе приходило старое, сервер слал отключённые пуши. Нет записи в
+ * очереди и в пути — ничего не ждём (выход не замедляется). Не успели — лог flush_timeout, выход идёт дальше.
+ */
+/**
+ * Удаление аккаунта: досылки НЕТ — документ users/{A} удаляется, запись в него могла бы пересечься со стиранием на сервере
+ * (и воскресить документ). Отложенная запись отменяется; уже ушедшую в сеть отменить нельзя — пишем, что она была в пути.
+ * зачем (координатор 15.10, P24b).
+ */
+export function cancelPendingServerPushPrefsForAccountDelete(): 'skip_delete' | 'none' {
+  const hadPending = pendingPushPrefs !== null;
+  if (hadPending) cancelPendingPushPrefs('account_delete', captureAccountGeneration());
+  pushPrefsLog('skip_delete', { hadPending, inFlight: pushPrefsWritesInFlight });
+  return hadPending ? 'skip_delete' : 'none';
+}
+
+export async function flushPendingServerPushPrefsBeforeOwnerChange(
+  timeoutMs: number = PUSH_PREFS_WRITE_DEBOUNCE_MS,
+): Promise<'none' | 'flushed' | 'timeout'> {
+  const hadPending = pendingPushPrefs !== null;
+  const inFlightBefore = pushPrefsWritesInFlight;
+  if (!hadPending && inFlightBefore === 0) return 'none';
+  const startedAt = Date.now();
+  if (pendingPushPrefsTimer) clearTimeout(pendingPushPrefsTimer);
+  if (hadPending) flushPendingPushPrefs();
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const outcome = await Promise.race([
+    pushPrefsWriteChain.then(() => 'flushed' as const),
+    new Promise<'timeout'>((resolve) => { timer = setTimeout(() => resolve('timeout'), timeoutMs); }),
+  ]);
+  if (timer) clearTimeout(timer);
+  pushPrefsLog(outcome === 'flushed' ? 'flush_before_owner_change' : 'flush_timeout', { ms: Date.now() - startedAt, hadPending, inFlightBefore });
+  return outcome;
 }
 
 /**

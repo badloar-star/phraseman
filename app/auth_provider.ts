@@ -4212,6 +4212,15 @@ async function signOutAndWipeForAccountSwitchReserved(
     ) {
       return { ok: false, reason: 'sync_failed' };
     }
+    // зачем (Ревизор P24b, координатор 15.10): тумблер пушей + «Выйти» раньше 1,5 с — новое значение A должно дойти до users/{A}.
+    // Досылаем ЗДЕСЬ, пока A авторизован и его поколение активно: дальше смена поколения отменит остаток (P24). Нет записи — не ждём.
+    try {
+      const { flushPendingServerPushPrefsBeforeOwnerChange } = await import('./push_token_registration');
+      const pushPrefsFlush = await flushPendingServerPushPrefsBeforeOwnerChange();
+      signoutStage('push_prefs_flush', { outcome: pushPrefsFlush });
+    } catch (pushPrefsFlushError) {
+      signoutStage('push_prefs_flush', { outcome: 'failed', code: identityErrorCode(pushPrefsFlushError) });
+    }
     // 1. Гарантируем что весь локальный прогресс ушёл в облако.
     //    Осколки синкаются отдельным путём и в forceSyncToCloud не входят —
     //    без этого вызова баланс офлайн-сессии терялся при смене аккаунта.
@@ -4520,6 +4529,8 @@ export type DeleteAccountHandoff =
 const legacyDeletionServerEnqueuedOperations = new Set<string>();
 
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
+  // зачем (координатор 15.10, P24b): при удалении отложенную запись пуш-настроек НЕ досылаем, а отменяем — users/{A} удаляется.
+  void cancelPendingPushPrefsForAccountDelete('begin_account_deletion');
   // зачем (Авторизация 12.10, settings-gap-001): привязка подставная — удаление отказывает ДО отмены входа, замков, записи и сети.
   if (isDevAccountLinkedDemo()) {
     console.warn('[DEV-STATE] account: удаление отклонено — привязка только для показа (account=linked)'); // guard-ok: dev-ветка
@@ -5196,6 +5207,7 @@ export type RemoteAccountDeleteResult =
 
 /** Clears a device whose still-signed-in provider account was deleted elsewhere. */
 export async function handleAccountDeletedOnAnotherDevice(): Promise<RemoteAccountDeleteResult> {
+  void cancelPendingPushPrefsForAccountDelete('deleted_on_another_device');
   discardAccountSwitchResumeCredential('account_deleted_elsewhere');
   const freshIdentity = await ensureFreshPostDeletionIdentity('identity_retired', {
     subject: 'auth',
@@ -5248,6 +5260,17 @@ function signOutCurrentProviderKeepingSwitchResume(): Promise<void> {
 const SWITCH_PUSH_CLEANUP_CAP_MS = 4_000;
 
 /** Снять локальные уведомления и push-токен уходящего аккаунта. Никогда не бросает; итог — [ACC-SWITCH-WIPE] push_cleanup. */
+/** Удаление аккаунта: отменить отложенную запись пуш-настроек (досылки нет). Никогда не бросает — причина в журнал. */
+async function cancelPendingPushPrefsForAccountDelete(source: string): Promise<void> {
+  try {
+    const { cancelPendingServerPushPrefsForAccountDelete } = await import('./push_token_registration');
+    const outcome = cancelPendingServerPushPrefsForAccountDelete();
+    console.log(`[PUSH-PREFS] account_delete source=${source} outcome=${outcome}`); // guard-ok: одна строка на удаление
+  } catch (error) {
+    console.warn(`[PUSH-PREFS] account_delete source=${source} cancel_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+  }
+}
+
 async function clearAccountPushBeforeSwitchSignOut(): Promise<void> {
   const startedAtMs = Date.now();
   // зачем (Авторизация 15.10): владелец A — из памяти, без ensureAnonUser (тот посреди карантина смены мог выдать новую личность)

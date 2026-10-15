@@ -2647,12 +2647,18 @@ export default function LessonsTab({
     if (__DEV__) {
       console.log(
         "[V2-PAGE] setPage",
-        JSON.stringify({ from: pageRaw, to: next, presentation, initialPage }),
+        JSON.stringify({ from: pageRaw, to: next, presentation, initialPage, instanceId: instanceIdRef.current, runtimeOwnerId, visible: lessonsTabVisible }),
         new Error("trace").stack?.split("\n").slice(1, 5).join(" | "),
       );
     }
     setPageRaw(next);
-  }, [pageRaw, presentation, initialPage]);
+  }, [pageRaw, presentation, initialPage, runtimeOwnerId, lessonsTabVisible]);
+  // зачем (координатор 15.10, Сверка Б11: тап «Новые уроки» прошёл в логике, а на экране остался список A1): какой
+  // ЭКЗЕМПЛЯР вкладки что реально нарисовал после смены страницы — в одном запуске живут до трёх экземпляров (inst 1–3),
+  // и нужно увидеть, тот ли экземпляр получил тап, что виден на экране.
+  useEffect(() => {
+    console.log("[V2-MAP] page:commit", JSON.stringify({ instanceId: instanceIdRef.current, page, branch: page === "v2" ? "v2_map" : page === "dialogs" ? "dialogs" : "legacy_list", presentation, runtimeOwnerId, visible: lessonsTabVisible, atMs: Date.now() }));
+  }, [page, presentation, runtimeOwnerId, lessonsTabVisible]);
   // зачем: карта Learning V2 занимает весь экран, а раздел открывается ВНУТРИ
   // вкладки — таббар с Главной оставался поверх карты (владелец 20.09).
   // Прячем его только пока открыта карта; при уходе запрос отпускается сам.
@@ -4468,8 +4474,9 @@ export default function LessonsTab({
     // зачем: здесь выставлялся уровень текущего урока, чтобы список открылся
     // на нужном разделе. Список теперь сплошной (владелец 21.09), уровень
     // выбирать не нужно — человек просто листает.
+    console.log("[V2-MAP] openLegacyLessons", JSON.stringify({ instanceId: instanceIdRef.current, from: "legacy_lessons_intro_or_button" })); // зачем (Б11): кто возвращает экран на список A1
     setPage("lessons");
-  }, []);
+  }, [setPage]);
   const legacyLessonsIntroDef = featureIntroById(
     "legacy_lessons_first_visit",
   )!;
@@ -4525,10 +4532,10 @@ export default function LessonsTab({
     // меряется всё остальное, если вход снова начнёт тормозить.
     if (__DEV__) {
       (globalThis as { __v2OpenT0?: number }).__v2OpenT0 = Date.now();
-      console.log("[V2-OPEN] tap", JSON.stringify({ from: "openNewLessons" }));
+      console.log("[V2-OPEN] tap", JSON.stringify({ from: "openNewLessons", instanceId: instanceIdRef.current, runtimeOwnerId, visible: lessonsTabVisible }));
     }
     setPage("v2");
-  }, []);
+  }, [setPage, runtimeOwnerId, lessonsTabVisible]);
   // зачем (владелец 2026-09-17): вход в «комбинированный урок» — несколько тем
   // вперемешку. Гейт Plus/Pro стоит ЗДЕСЬ, до перехода: выбор тем — платная
   // механика, и показывать экран, с которого нельзя стартовать, значит обмануть.

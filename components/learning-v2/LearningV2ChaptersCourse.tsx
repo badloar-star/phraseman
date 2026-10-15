@@ -183,6 +183,16 @@ export default function LearningV2ChaptersCourse(props: Props) {
     [isSessionVisible, lessonRows],
   );
   const completed = useMemo(() => new Set(props.completedSessionIds), [props.completedSessionIds]);
+  // зачем (координатор 15.10, Сверка Б11: карты V2 на экране нет): смонтирована ли карта и что в ней — уроков видно,
+  // строк собрано, занятий в выбранном уроке. Ноль здесь = карта есть, но пустая; нет строки mount = карта не рисовалась.
+  useEffect(() => {
+    console.log("[V2-MAP] chapters:mount", JSON.stringify({ scopeKey: props.scopeKey, atMs: Date.now() }));
+    return () => console.log("[V2-MAP] chapters:unmount", JSON.stringify({ scopeKey: props.scopeKey }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: только монтирование/размонтирование
+  }, []);
+  useEffect(() => {
+    console.log("[V2-MAP] chapters:rows", JSON.stringify({ titles: props.titles.length, visibleLessons: visibleLessonOrdinals.length, selectedLessonOrdinal, rows: rows.length, lessonRows: lessonRows.length, chapters: chapterRows.length, sessions: sessionRows.length, allLessonsOpen, active: props.active }));
+  }, [props.titles.length, visibleLessonOrdinals.length, selectedLessonOrdinal, rows.length, lessonRows.length, chapterRows.length, sessionRows.length, allLessonsOpen, props.active]);
   const currentLessonTitle = props.titles[selectedLessonOrdinal - 1] ?? "";
 
   const toggleChapter = useCallback((chapterOrdinal: number) => {

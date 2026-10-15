@@ -1,214 +1,138 @@
-# Англійська · Урок 2 · Заняття 1 — «Are you»
+# Англійська · Урок 2 · Заняття 1 — Можна відмовитися
 
-**Сцена заняття.** Суботній ранок у хостелі. Сусід по кімнаті вже на ногах і засипає вас запитаннями, поки ви намагаєтеся зрозуміти, де ви і котра година.
+**Ситуація.** Друзі пропонують вечірню екскурсію. Ви обговорюєте, чи впевнені у виборі, чи цікава пропозиція й чи зручно вам сидіти в автобусі.
 
-**Як сказати:** `Are you + слово` — запитання до співрозмовника
-**Нові слова:** thirsty, dizzy
-**Повертаються:** awake, hungry, lost
+**Що ви опануєте:** додати not після am, is або are, щоб сказати «не»
+**Нові слова:** sure, interested, comfortable
 
 ---
 
 ## Інтро 1
 
-### Запитання починається з `are`
+### Я не впевнений
 
-`awake` — «прокинувся». Щоб запитати про це іншу людину, англійська міняє два слова місцями: не `You are awake`, а `Are you awake?`
+`sure` — «впевнений», коли ви не сумніваєтеся у відповіді або виборі. `I am sure` — «Я впевнений». Для заперечення поставте `not` після `am`: `I am not sure` — «Я не впевнений». Не потрібно вдавати впевненість, якщо ви ще навіть не подивилися маршрут.
 
-Змінюється тільки порядок слів; голос наприкінці теж іде вгору. Так будується будь-яке запитання з `are` — про сон, про голод, про що завгодно.
+**Ви сумніваєтеся, чи підходить вам екскурсія. Скажіть: «Я не впевнений».**
 
-**Сусід трясе вас за плече о сьомій ранку. Запитайте, чи ви взагалі прокинулися.**
-
-- ✅ **Are you awake?**
-- ❌ You are awake? — *Слова стоять як у повідомленні, а не в запитанні. Щоб запитати, `are` виходить наперед.*
-- ❌ Are awake you? — *`you` відірване від `are`. Ці двоє йдуть парою: спочатку `are`, одразу за ним той, про кого питають.*
+- ✅ **I am not sure.**
+- ❌ I am sure. — *Тут немає заперечення. Для «не впевнений» потрібно `not` після `am`.*
+- ❌ I not sure. — *`not` не замінює `am`: потрібно `I am not sure`.*
 
 ---
 
 ## Інтро 2
 
-### `hungry` і `thirsty` — голод і спрага
+### Їй нецікаво
 
-`hungry` — «голодний». `thirsty` — «хочу пити». Обидва про нестачу, але одне про їжу, друге про воду.
+`interested` — «зацікавлений». `She is interested` — «Їй цікаво». Якщо пропозиція сестру не приваблює: `She is not interested` — «Їй нецікаво». `is` залишається, а `not` стає відразу після нього.
 
-Порядок той самий: `are` наперед, `you` за ним, слово в кінець. `Are you hungry?` `Are you thirsty?` Переплутати легко: голод і спрага часто приходять разом, а слова різні.
+**Сестрі запропонована екскурсія нецікава. Розкажіть про це другові.**
 
-**Сусід дістав печиво і простягає вам. Він питає про їжу.**
-
-- ✅ **Are you hungry?**
-- ❌ Are you thirsty? — *Це «хочете пити?». Печиво спрагу не лікує.*
-- ❌ You hungry are? — *Слова розсипалися. Порядок жорсткий: `are`, потім `you`, і аж тоді саме слово.*
+- ✅ **She is not interested.**
+- ❌ She is interested. — *Це «Їй цікаво». Для заперечення додайте `not` після `is`.*
+- ❌ She not interested. — *Після `She` зберігаємо `is`: `She is not interested`.*
 
 ---
 
 ## Інтро 3
 
-### `dizzy` і `lost` — два способи загубитися
+### Нам незручно
 
-`dizzy` — «голова паморочиться». Встали надто різко, і кімната поїхала.
+`comfortable` — «той, хто почувається зручно», а про крісло — «зручний». `We are comfortable` — «Нам зручно». Якщо вам із другом тісно на сидінні: `We are not comfortable` — «Нам незручно». Після `are` теж ставимо `not`.
 
-`lost` — «заблукав». З головою все гаразд, а от де ви — питання.
+**Вам із другом незручно сидіти. Скажіть про це за вас обох.**
 
-Обидва про розгубленість, але питають про різне: `dizzy` — про самопочуття, `lost` — про дорогу. Про голову спитають удома, про дорогу — на вулиці.
-
-**Ви підвелися з ліжка і хитнулися. Сусід питає про вашу голову.**
-
-- ✅ **Are you dizzy?**
-- ❌ Are you lost? — *Це «ви заблукали?». Людина стоїть у своїй же кімнаті.*
-- ❌ You are dizzy? — *Порядок як у повідомленні. У запитанні `are` іде першим.*
+- ✅ **We are not comfortable.**
+- ❌ We are comfortable. — *Це «Нам зручно». Тут потрібне заперечення: `are not`.*
+- ❌ We not comfortable. — *`are` не зникає: `We are not comfortable`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — awake**
-<!-- interaction_id: en:lesson-02:session-01:i01; family: listen_choose -->
-Ціль: `awake`
+**1 · Ви сумніваєтеся у виборі екскурсії. Складіть «Я не впевнений»**
+<!-- interaction_id: en:lesson-02:session-01:i01; family: phrase_builder -->
+Плитки: `sure` `not` `am` `I` `is` → **I am not sure.**
+*(плитка `is` зайва: тут потрібно `am` — `I am not sure.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте фразу про сестру**
 <!-- interaction_id: en:lesson-02:session-01:i02; family: listen_choose -->
-Ціль: `awake`
-Варіанти: `awake` · `away` · `wake`
-- away — *Це «геть, у від'їзді». Про сон у ньому нічого немає.*
-- wake — *Те саме слово без початкового складу. В `awake` перед ним є ще один короткий склад.*
+🔊 *She is not interested.* → **She is not interested.** · She is not ready. · She is not sure.
+- She is not ready. — *У записі останнє слово — `interested`, а в цьому варіанті — `ready`.*
+- She is not sure. — *У записі останнє слово — `interested`, а в цьому варіанті — `sure`.*
 
+**3 · Вам обом незручно сидіти. Доповніть фразу**
+<!-- interaction_id: en:lesson-02:session-01:i03; family: context_gap_grammar -->
+We ___ not comfortable. → **are** · am · is
+- am — *Після `We` потрібно `are`, потім `not`.*
+- is — *Про нас — `We are not`.*
 
-**3 · Картка слова — thirsty**
-<!-- interaction_id: en:lesson-02:session-01:i03; family: listen_choose -->
-Ціль: `thirsty`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-01:i04; family: speed_match -->
+sure — впевнений · interested — зацікавлений · comfortable — почувається зручно · ready — готовий
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-01:i04; family: listen_choose -->
-Ціль: `thirsty`
-Варіанти: `thirsty` · `thirty` · `sixty`
-- thirty — *Це «тридцять», число. Мова була не про лічбу, а про воду.*
-- sixty — *Це «шістдесят». Теж число, до спраги стосунку не має.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-01:i05; family: listen_build_dictation -->
+🔊 *I am not sure.* Плитки: `sure` `not` `am` `I` `are` → **I am not sure.**
+*(плитка `are` зайва: тут потрібно `am` — `I am not sure.`)*
 
+**6 · Сестру пропозиція не приваблює. Скажіть, що їй нецікаво**
+<!-- interaction_id: en:lesson-02:session-01:i06; family: phrase_builder -->
+Плитки: `interested` `not` `is` `She` `are` → **She is not interested.**
+*(плитка `are` зайва: тут потрібно `is` — `She is not interested.`)*
 
-**5 · Складіть фразу — запитайте, чи прокинувся сусід**
-<!-- interaction_id: en:lesson-02:session-01:i05; family: phrase_builder -->
-Ціль: `Are you awake?`
-Плитки: `Are` `you` `awake` `am` → **Are you awake?**
-*Плитка `am` зайва: `am` уживають тільки з `I`; у запитанні до `you` потрібна форма `are`: `Are you awake?`*
+**7 · Ви з другом сидите тісно й незручно. Скажіть: «Нам незручно»**
+<!-- interaction_id: en:lesson-02:session-01:i07; family: scripted_repeat_compare -->
+🎙 **We are not comfortable.**
 
-**6 · Картка слова — hungry**
-<!-- interaction_id: en:lesson-02:session-01:i06; family: listen_choose -->
-Ціль: `hungry`
+**8 · Ви ще не готові виходити. Доповніть заперечення про себе**
+<!-- interaction_id: en:lesson-02:session-01:i08; family: context_gap_grammar -->
+I ___ not ready. → **am** · is · are
+- is — *Про себе — `I am not`.*
+- are — *Після `I` потрібно `am`, потім `not`.*
 
-**7 · Картка слова — dizzy**
-<!-- interaction_id: en:lesson-02:session-01:i07; family: listen_choose -->
-Ціль: `dizzy`
+**9 · Послухайте фразу про друга**
+<!-- interaction_id: en:lesson-02:session-01:i09; family: listen_choose -->
+🔊 *He is not here.* → **He is not here.** · He is not ready. · He is not happy.
+- He is not ready. — *У записі останнє слово — `here`, а в цьому варіанті — `ready`.*
+- He is not happy. — *У записі останнє слово — `here`, а в цьому варіанті — `happy`.*
 
-**8 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-01:i08; family: listen_choose -->
-Ціль: `dizzy`
-Варіанти: `dizzy` · `busy` · `lucky`
-- busy — *Це «зайнятий». Про самопочуття воно нічого не каже.*
-- lucky — *Це «щасливчик, везучий». До паморочення в голові стосунку не має.*
+**10 · З’єднайте знайомі слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-01:i10; family: speed_match -->
+responsible — відповідальний · independent — незалежний · dependent — залежний · cheap — недорогий
 
+**11 · Послухайте й складіть оцінку ціни**
+<!-- interaction_id: en:lesson-02:session-01:i11; family: listen_build_dictation -->
+🔊 *It is not cheap.* Плитки: `cheap` `not` `is` `It` `are` → **It is not cheap.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not cheap.`)*
 
-**9 · Вставте слово — сусід простягає бутерброд і питає про їжу**
-<!-- interaction_id: en:lesson-02:session-01:i09; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `hungry` · `dizzy` · `awake`
-- dizzy — *Це про паморочення в голові. Бутерброд тут не допоможе.*
-- awake — *Це «прокинувся». Питають не про це, а про голод.*
-
-
-**10 · Картка слова — lost**
-<!-- interaction_id: en:lesson-02:session-01:i10; family: listen_choose -->
-Ціль: `lost`
-
-**11 · Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся Сусід питає:**
-<!-- interaction_id: en:lesson-02:session-01:i11; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `lost` · `thirsty` · `hungry`
-- thirsty — *Це «хочете пити?». Карта в руках говорить про інше.*
-- hungry — *Це про голод. З картою на розі людина шукає дорогу.*
-
-
-**12 · Складіть запитання — сусід накриває на стіл і кличе вас їсти**
+**12 · Анна й Олег незадоволені зміненим маршрутом. Скажіть: «Вони не раді»**
 <!-- interaction_id: en:lesson-02:session-01:i12; family: phrase_builder -->
-Ціль: `Are you hungry?`
-Плитки: `Are` · `you` · `hungry` · `is`
-*Плитка `is` зайва: у запитанні до `you` потрібна форма `are`: `Are you hungry?`*
+Плитки: `happy` `not` `are` `They` `is` → **They are not happy.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not happy.`)*
 
-**13 · Послухайте і складіть — «ви хочете пити?»**
-<!-- interaction_id: en:lesson-02:session-01:i13; family: listen_build_dictation -->
-Ціль: `Are you thirsty?`
-🔊 *Are you thirsty?* Плитки: `Are` `you` `thirsty` `hungry` → **Are you thirsty?**
-*Плитка `hungry` зайва: `hungry` — «голодний», а тут питають, чи ви хочете пити: `Are you thirsty?`*
+**13 · Вас просять підтвердити час зустрічі, але ви сумніваєтеся. Скажіть, що не впевнені**
+<!-- interaction_id: en:lesson-02:session-01:i13; family: scripted_repeat_compare -->
+🎙 **I am not sure.**
 
-**14 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-01:i14; family: speed_match -->
-Пари: `awake` — прокинувся · `thirsty` — хочу пити · `hungry` — голодний · `dizzy` — голова паморочиться
-Ціль: `awake · thirsty · hungry · dizzy`
+**14 · Сестрі нецікава запропонована екскурсія. Доповніть фразу**
+<!-- interaction_id: en:lesson-02:session-01:i14; family: context_gap_grammar -->
+She ___ not interested. → **is** · am · are
+- am — *Після `She` потрібно `is`, потім `not`.*
+- are — *Про сестру — `She is not`.*
 
-**15 · Складіть фразу — ви різко встали і схопилися за стіну; сусід питає про голову**
-<!-- interaction_id: en:lesson-02:session-01:i15; family: phrase_builder -->
-Ціль: `Are you dizzy?`
+**15 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-02:session-01:i15; family: listen_choose -->
+🔊 *We are not comfortable.* → **We are not comfortable.** · We are not ready. · We are not sure.
+- We are not ready. — *У записі останнє слово — `comfortable`, а в цьому варіанті — `ready`.*
+- We are not sure. — *У записі останнє слово — `comfortable`, а в цьому варіанті — `sure`.*
 
-**16 · Промовте одне запитання — сусід повернувся з вулиці і роздивляється вивіску за вікном; запитайте, чи він не заблукав**
-<!-- interaction_id: en:lesson-02:session-01:i16; family: scripted_repeat_compare -->
-Ціль: `Are you lost?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-01:i16; family: speed_match -->
+sure — впевнений · interested — зацікавлений · comfortable — почувається зручно · fine — у порядку
 
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-01:i17:s01; family: scripted_repeat_compare -->
-Ціль: `Are you awake?`
+**17 · У кафе друг запитує, чи пам’ятаєте ви, який столик заброньовано. Ви сумніваєтеся. Скажіть, що не впевнені**
+<!-- interaction_id: en:lesson-02:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am not sure.**
 
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-01:i17:s02; family: scripted_repeat_compare -->
-Ціль: `Are you hungry?`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-01:i17:s03; family: scripted_repeat_compare -->
-Ціль: `Are you thirsty?`
-
-## Для сборщика
-
-new_words:
-thirsty — хочу пити — «хочу пити». У горлі сухо, і в голові тільки пляшка води.
-dizzy — голова паморочиться — «голова паморочиться». Кімната хитнулася, хоча ви стоїте на місці.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=context_gap_grammar, 10=listen_choose, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| awake | 1, 2, 5, 9, 14, 17 | 2 (слух), 5 (складання), 17 (голос) |
-| hungry | 6, 9, 12, 13, 14, 17 | 9 (вставка), 17 (голос) |
-| lost | 10, 11, 16 | 11 (вставка), 16 (складання) |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи є це слово в тексті НАД запитанням |
-|---|---|---|
-| Інтро 1 | awake | так — «`awake` — „прокинувся“», `Are you awake?` |
-| Інтро 2 | hungry | так — «`hungry` — „голодний“», `Are you hungry?` |
-| Інтро 3 | dizzy | так — «`dizzy` — „голова паморочиться“», `Are you dizzy?` |
-
-**3. Дошка пар (завдання 14)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| awake | 1 | 2 (слух), 5 (складання) |
-| thirsty | 3 | 4 (слух), 13 (диктант) |
-| hungry | 6 | 9 (вставка), 12 (вставка) |
-| dizzy | 7 | 8 (слух) |
-
----
-
-🟡 **Варто врахувати**
-- Пастка з Інтро 1 (`You are awake?` як питання) для українця менш «природна», ніж для росіянина, бо в українській питання теж будується інтонацією без перестановки — тому пастка залишена, вона реалістична саме як помилка.
-- У завданні 8 `lucky` українською точніше «щасливчик/везучий» — узяв обидва варіанти, щоб не звужувати до розмовного.
-
-Итог:
-- Сделана украинская версия урока — только она, как и просили.
-- Английские слова, фразы, задания, их номера и служебный блок остались без изменений, байт в байт.
-- Переписан только объясняющий текст: живым украинским, без кальки с русского.
-- Определения слов и разборы ошибок пересказаны по-своему, а не переведены дословно (например, «спрага», «голова паморочиться», «заблукав»).
-- Ловушки оставлены прежними — они реалистичны и для украиноязычного ученика.

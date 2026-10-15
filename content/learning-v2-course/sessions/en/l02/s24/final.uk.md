@@ -1,188 +1,138 @@
-# Англійська · Урок 2 · Заняття 24 — «Дорогу здобувають запитаннями»
+# Англійська · Урок 2 · Заняття 24 — Перед поїздкою на виставку
 
-**Сцена заняття.** Вечір, Дублін. Супутник поруч втомився, потяг за півгодини, а дорогу доводиться здобувати в перехожих — по одному запитанню за раз.
+**Ситуація.** Ви з Анною й Олегом збираєтеся на виставку. Перевіряєте квитки й самопочуття, закінчуєте пазл перед виходом. Олег зізнається, що без дозволу з’їв підготовлене для всіх печиво.
 
-**Як сказати:** повторення — `Where is + місце`, `Are you + слово`, відповідь `it is + прийменник місця`
+**Що ви опануєте:** повторити короткі відповіді про людей і речі
 **Нові слова:** —
-**Повертаються:** station, bridge, corner, near, behind, lost, tired, thirsty
 
 ---
 
 ## Інтро 1
 
-### `lost` — «заблукав»
+### Відповідаємо на саме запитання
 
-`lost` — «заблукав», «не розумію, де я». Слово про людину, а не про місце: місто стоїть там, де стояло, загубилися ви.
+`well` — «той, хто добре почувається», `unwell` — «той, хто погано почувається». Вам недобре. На `Are you well?` дайте відповідь `No, I am not`. Але на `Are you unwell?` — `Yes, I am`: ви підтверджуєте погане самопочуття. `Yes` не обіцяє, що все добре: воно підтверджує те, про що запитали.
 
-Щоб про це запитати, `are` виходить наперед, а `you` стає одразу за ним: `Are you lost?` Порядок — і є все запитання, більше нічого додавати не треба.
+**Анні недобре. Олег запитує вас: `Is she unwell?` Дайте коротку відповідь «так».**
 
-**Супутник утретє озирається на всі боки й мовчить. Запитайте прямо.**
-
-- ✅ **Are you lost?**
-- ❌ You are lost? — *Так ви не запитали, а оголосили йому, що він заблукав. У запитанні `are` іде першим.*
-- ❌ Are you lose? — *Хвіст обірвано. Про людину — `lost`, із «-t» на кінці.*
+- ✅ **Yes, she is.**
+- ❌ No, she is not. — *Так ви заперечуєте погане самопочуття Анни.*
+- ❌ Yes, she are. — *З `she` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### `where` запитує про місце
+### Перевіряємо речі
 
-`where` — «де». За ним одразу `is`, потім саме місце: `Where is the station?` — «де вокзал?». `station` — «вокзал», `bridge` — «міст», `corner` — «ріг» (там, де сходяться дві вулиці).
+`broken` — «зламаний», `complete` — «повний, завершений», `valid` — «дійсний». Пазл з усіма деталями — `complete`, квиток на потрібний сеанс — `valid`. Пазл із діркою ще не повністю складений. Килим, який видно в цій дірці, за останню деталь не рахується.
 
-`is` тримається другого місця міцно. Відправите його в кінець — фразу зрозуміють, але звучатиме поламано.
+**У пазлі бракує деталі. Друг запитує: `Is it complete?` Дайте коротку відповідь «ні».**
 
-**Вам сказали йти до мосту, але до якого — незрозуміло. Запитайте перехожого.**
-
-- ✅ **Where is the bridge?**
-- ❌ Where the bridge is? — *`is` поїхало в кінець. Його місце друге, одразу за `where`.*
-- ❌ What is the bridge? — *Це «що таке міст?». Перехожий почне розповідати про річку, а вам потрібна дорога.*
+- ✅ **No, it is not.**
+- ❌ Yes, it is. — *Це підтвердить, що все складено. Деталі поки бракує.*
+- ❌ No, it are not. — *З `it` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### `near` і `behind` — відповідь про місце
+### Хто винен
 
-Вам відповідять коротко. `near` — «поряд», `behind` — «позаду», `shops` — «крамниці». Перед ними стоїть `it is`: `It is near`, `It is behind the shops`.
+`guilty` — «винний», `innocent` — «невинний». Анна не чіпала печиво: `She is innocent`. Олег порушив домовленість і з’їв його без дозволу: `He is guilty`. Скорочено — `He's guilty`. Щоб запитати, поставте `is` перед `he`: `Is he guilty?`.
 
-Після `behind` називають, за чим саме: `It is behind the shops` — «за крамницями». Після `near` можна й не уточнювати.
+**Ви дізналися, що печиво без дозволу з’їв Олег, а Анна його не чіпала. Коротко скажіть, що вона невинна.**
 
-**Перехожий киває: вокзал прямо за крамницями. Скажіть це його словами.**
-
-- ✅ **It is behind the shops.**
-- ❌ It behind the shops. — *Між `it` і словом про місце потрібне `is`.*
-- ❌ It is near the shops. — *`near` — «поряд», а вокзал саме позаду крамниць, не збоку від них.*
+- ✅ **She's innocent.**
+- ❌ She's guilty. — *Анна не чіпала печиво. Тут потрібно `innocent`.*
+- ❌ He's innocent. — *Йдеться про Анну: `She's`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-02:session-24:i01; family: listen_choose -->
-Ціль: `station`
-Варіанти: `station` · `stand` · `stay`
-- stand — *Це «стояти». Коротше: у `station` два склади, у `stand` один.*
-- stay — *Це «залишитися». Теж один склад проти двох у `station`.*
+**1 · Ви показуєте один квиток. Запитайте, чи він дійсний**
+<!-- interaction_id: en:lesson-02:session-24:i01; family: phrase_builder -->
+Плитки: `valid` `it` `Is` `Are` → **Is it valid?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it valid?`)*
 
+**2 · Послухайте фразу про Анну**
+<!-- interaction_id: en:lesson-02:session-24:i02; family: listen_choose -->
+🔊 *She is unwell.* → **She is unwell.** · She is well. · She is innocent.
+- She is well. — *У записі останнє слово — `unwell`, а в цьому варіанті — `well`.*
+- She is innocent. — *У записі останнє слово — `unwell`, а в цьому варіанті — `innocent`.*
 
-**2 · Вставте слово — ви шукаєте будівлю з потягами**
-<!-- interaction_id: en:lesson-02:session-24:i02; family: context_gap_grammar -->
-Ціль: `Where is the ___ ?`
-Варіанти: `station` · `corner` · `bridge`
-- corner — *«Ріг вулиці». Про потяги там не знають.*
-- bridge — *«Міст». Через річку він вас проведе, але потяги стоять не на ньому.*
+**3 · Ви добре почуваєтеся. На «Are you well?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-24:i03; family: context_gap_grammar -->
+Yes, I ___. → **am** · is · are
+- is — *Відповідаєте про себе: `I am`.*
+- are — *У відповіді з `I` потрібно `am`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-24:i04; family: speed_match -->
+well — той, хто добре почувається · unwell — той, хто погано почувається · yes — так · no — ні
 
-**3 · Складіть фразу — «де міст?»**
-<!-- interaction_id: en:lesson-02:session-24:i03; family: phrase_builder -->
-Ціль: `Where is the bridge?`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-24:i05; family: listen_build_dictation -->
+🔊 *They are not valid.* Плитки: `valid` `not` `are` `They` `is` → **They are not valid.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not valid.`)*
 
-**4 · Розрізніть звуки — яке з двох про ріг вулиці?**
-<!-- interaction_id: en:lesson-02:session-24:i04; family: sound_contrast -->
-Варіанти: `corner` · `corridor`
-- corridor — *Це «коридор», три склади. У `corner` їх два.*
+**6 · Олег порушив домовленість і з’їв чуже печиво. Скажіть повною фразою, що він винний**
+<!-- interaction_id: en:lesson-02:session-24:i06; family: phrase_builder -->
+Плитки: `guilty` `is` `He` `are` → **He is guilty.**
+*(плитка `are` зайва: тут потрібно `is` — `He is guilty.`)*
 
+**7 · У застібки сумки відламався зубець, вона не закривається. Коротко скажіть, що вона зламана**
+<!-- interaction_id: en:lesson-02:session-24:i07; family: scripted_repeat_compare -->
+🎙 **It's broken.**
 
-**5 · Вставте слово — перехожий показує на кінець вулиці, де вона повертає**
-<!-- interaction_id: en:lesson-02:session-24:i05; family: context_gap_grammar -->
-Ціль: `It is at the ___ .`
-Варіанти: `corner` · `station` · `bridge`
-- station — *Вулиця не повертає вокзалом. Місце, де сходяться дві вулиці, — `corner`.*
-- bridge — *Міст іде через річку, а тут просто поворот вулиці.*
-
-
-**6 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-24:i06; family: speed_match -->
-Пари: `station` — вокзал · `bridge` — міст · `corner` — ріг вулиці · `lost` — заблукав
-Ціль: `station · bridge · corner · lost`
-
-**7 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-02:session-24:i07; family: listen_choose -->
-Ціль: `near`
-Варіанти: `near` · `name` · `nine`
-- name — *Голосна інша: у `name` вона звучить як «ей».*
-- nine — *У `nine` голосна звучить як «ай». У `near` — тягнеться до «і».*
-
-
-**8 · Вставте слово — вокзал прямо перед вами, іти хвилину**
+**8 · Анна не чіпала печиво. На «Is she guilty?» доповніть коротку відповідь «ні»**
 <!-- interaction_id: en:lesson-02:session-24:i08; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `near` · `behind` · `lost`
-- behind — *«Позаду» — а вокзал у вас перед очима, не за спиною.*
-- lost — *Це про людину, а не про будівлю. Вокзал нікуди не губився.*
+No, she ___ not. → **is** · am · are
+- am — *З `she` потрібно `is`.*
+- are — *Відповідь — `No, she is not`.*
 
+**9 · Послухайте фразу**
+<!-- interaction_id: en:lesson-02:session-24:i09; family: listen_choose -->
+🔊 *It is complete.* → **It is complete.** · It is broken. · It is valid.
+- It is broken. — *У записі останнє слово — `complete`, а в цьому варіанті — `broken`.*
+- It is valid. — *У записі останнє слово — `complete`, а в цьому варіанті — `valid`.*
 
-**9 · Послухайте й складіть — «він позаду мосту»**
-<!-- interaction_id: en:lesson-02:session-24:i09; family: listen_build_dictation -->
-Ціль: `It is behind the bridge.`
-🔊 *It is behind the bridge.* Плитки: `It` `is` `behind` `the` `bridge` `near`
-*Плитка `near` зайва: у записі місце знаходиться `behind the bridge` — «позаду мосту», а не «поруч».*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-24:i10; family: speed_match -->
+guilty — винний · innocent — невинний · broken — зламаний · complete — повний, завершений
 
-**10 · Вставте `is` — виберіть слово для запитання про місце**
-<!-- interaction_id: en:lesson-02:session-24:i10; family: context_gap_grammar -->
-Ціль: `Where ___ the corner?`
-Варіанти: `is` · `are` · `am`
-- are — *Про одне місце — `is`. `are` іде з іншими словами.*
-- am — *Це лише про себе: `I am`. Про ріг вулиці так не запитують.*
+**11 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-24:i11; family: listen_build_dictation -->
+🔊 *Yes, they are.* Плитки: `are` `they` `Yes,` `No,` → **Yes, they are.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, they are.`)*
 
+**12 · Запасна сумка справна. На запитання про її застібку «Is it broken?» дайте коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-24:i12; family: phrase_builder -->
+Плитки: `not` `is` `it` `No,` `Yes,` → **No, it is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, it is not.`)*
 
-**11 · Розрізніть звуки — яке з двох про втому?**
-<!-- interaction_id: en:lesson-02:session-24:i11; family: sound_contrast -->
-Варіанти: `tired` · `third`
-- third — *Починається з міжзубного звука: язик між зубами. У `tired` перший звук — звичайне «т».*
+**13 · Ви бачили, що Анна не чіпала печиво. Коротко скажіть, що вона невинна**
+<!-- interaction_id: en:lesson-02:session-24:i13; family: scripted_repeat_compare -->
+🎙 **She's innocent.**
 
+**14 · Друг вставляє деталь у пазл. Запитайте, чи він тепер повністю складений**
+<!-- interaction_id: en:lesson-02:session-24:i14; family: context_gap_grammar -->
+___ it complete? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it complete?`.*
 
-**12 · Вставте слово — супутник просить води, втретє за десять хвилин**
-<!-- interaction_id: en:lesson-02:session-24:i12; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `thirsty` · `tired` · `lost`
-- tired — *«Втомився». Від утоми води не просять.*
-- lost — *«Заблукав». Він поруч із вами й нікуди не подівся, йому просто хочеться пити.*
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-24:i15; family: listen_choose -->
+🔊 *Are you well?* → **Are you well?** · Are you unwell? · Are you guilty?
+- Are you unwell? — *У записі останнє слово — `well`, а в цьому варіанті — `unwell`.*
+- Are you guilty? — *У записі останнє слово — `well`, а в цьому варіанті — `guilty`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-24:i16; family: speed_match -->
+valid — дійсний · complete — повний, завершений · yes — так · no — ні
 
-**13 · Складіть запитання — супутник утретє просить води і сідає на кожну лавку; запитайте, чи він втомився**
-<!-- interaction_id: en:lesson-02:session-24:i13; family: phrase_builder -->
-Ціль: `Are you tired?`
-Плитки: `Are` `you` `tired` `is`
-*Плитка `is` зайва: запитання до співрозмовника з `you` починається з `Are you`, а не з `is`.*
-
-**14 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-24:i14; family: speed_match -->
-Пари: `near` — поряд · `behind` — позаду · `tired` — втомився · `thirsty` — хоче пити
-Ціль: `near · behind · tired · thirsty`
-
-**15 · Складіть фразу — сцена вимагає відповіді, а не запитання**
-<!-- interaction_id: en:lesson-02:session-24:i15; family: phrase_builder -->
-Ціль: `It is near.`
-Плитки: `It` `is` `near` `are`
-*Плитка `are` зайва: ви говорите про одне місце, тому відповідь починається з `It is`.*
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-24:i16:s01; family: scripted_repeat_compare -->
-Ціль: `Where is the station?`
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-24:i16:s02; family: scripted_repeat_compare -->
-Ціль: `Are you tired?`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-24:i17:s01; family: scripted_repeat_compare -->
-Ціль: `Are you lost?`
-
-**19 · Послухайте й складіть — ви уточнюєте у перехожого, де вокзал**
-<!-- interaction_id: en:lesson-02:session-24:i17:s02; family: listen_build_dictation -->
-Ціль: `Where is the station?`
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-24:i17:s03; family: scripted_repeat_compare -->
-Ціль: `It is behind the shops.`
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-24:i17:s04; family: scripted_repeat_compare -->
-Ціль: `Are you thirsty?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=sound_contrast, 5=context_gap_grammar, 6=speed_match, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare, 21=scripted_repeat_compare
+**17 · Ви добре почуваєтеся. Анна запитує лише вас: «Are you unwell?» Дайте коротку відповідь «ні», не повторюючи unwell**
+<!-- interaction_id: en:lesson-02:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **No, I am not.**
 

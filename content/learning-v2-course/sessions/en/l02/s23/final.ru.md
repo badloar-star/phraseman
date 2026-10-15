@@ -1,207 +1,138 @@
-# Английский · Урок 2 · Занятие 23 — «Угол и мост»
+# Английский · Урок 2 · Занятие 23 — Билет на сегодняшний сеанс
 
-**Сцена занятия.** Дублин к вечеру. Вы идёте пешком к реке, спрашиваете дорогу у прохожих и по ответам собираете город: где угол, где мост, где всё остальное.
+**Ситуация.** Вы идёте на фестиваль кино с Анной и Олегом. Сравниваете билеты, выбираете немой фильм и знакомите друзей друг с другом.
 
-**Как сказать:** повторение `Where is + место` и ответа `it is + предлог места`
-**Новые слова:** corner, bridge
-**Возвращаются:** street, near, behind, shops, station
+**Что вы освоите:** уточнить, действует ли билет, и ответить коротко
+**Новые слова:** valid
 
 ---
 
 ## Интро 1
 
-### `corner` — «угол»
+### Билетом можно пользоваться
 
-`corner` — «угол». И угол комнаты, и угол улицы, где одна упирается в другую. На карте это второе: место, куда вам скажут свернуть.
+`valid` — «действительный». Про билет это значит, что им можно воспользоваться по его условиям: `It is valid` — «Он действителен». У вас билет только на вчерашний сеанс. Сегодня он уже не `valid`, даже если вчера вы очень хотели пойти.
 
-Спросить про него просто: `Where is the corner?` `is` стоит вторым, сразу за `where`.
+**Кассир подтвердил, что ваш билет подходит на сегодняшний сеанс. Сообщите это полной фразой.**
 
-**Вы у реки, вам сказали свернуть на углу. Спросите прохожего, где этот угол.**
-
-- ✅ **Where is the corner?**
-- ❌ Where the corner is? — *`is` уехало в конец. Его место второе, сразу за `where`.*
-- ❌ What is the corner? — *Так вы спросите, что такое угол. Прохожий начнёт объяснять про две улицы.*
+- ✅ **It is valid.**
+- ❌ It valid. — *Между `It` и `valid` нужно `is`.*
+- ❌ It is not valid. — *Это значит, что билет недействителен. Кассир подтвердил обратное.*
 
 ---
 
 ## Интро 2
 
-### `bridge` — «мост»
+### Уточнить у кассира
 
-`bridge` — «мост». В Дублине их через реку столько, что «идите к мосту» — почти не подсказка, и вам придётся уточнять, к какому.
+Вы не уверены, подходит ли билет: `Is it valid?` — «Он действителен?» Если показываете два билета, спросите `Are they valid?`. Здесь `they` — билеты, и с ним нужно `are`.
 
-Перед местом ставят маленькое `the`: `Where is the bridge?` Так показывают, что речь про один определённый мост, а не про мосты вообще.
+**Вы показываете кассиру два билета. Спросите, действительны ли они.**
 
-**Женщина у витрины машет рукой куда-то вперёд. Спросите, где мост.**
-
-- ✅ **Where is the bridge?**
-- ❌ Where is bridge? — *Перед местом нужен `the`: не любой мост вообще, а тот самый, про который речь.*
-- ❌ Where the bridge? — *Пропало `is`. Без него вопрос разваливается.*
+- ✅ **Are they valid?**
+- ❌ Is they valid? — *С `they` нужно `are`.*
+- ❌ They are valid. — *Это сообщение. Для вопроса поставьте `Are` перед `they`.*
 
 ---
 
 ## Интро 3
 
-### Как отвечают про место
+### Ответ про свой билет
 
-Ответ про место начинается с `it is`, и только потом идёт где: `It is near.` — «он рядом», `It is behind the shops.` — «он за магазинами».
+На `Is it valid?` можно ответить `Yes, it is` — «Да» или `No, it is not` — «Нет». А сообщить о билете без вопроса можно коротко: `It's valid`. В коротком ответе «да» остаётся полное `is`: `Yes, it is`.
 
-Одно `near` тоже поймут, но полный ответ звучит естественнее — и его вы услышите чаще.
+**Друг спрашивает: `Is it valid?` Ваш билет действует только на вчерашний сеанс. Ответьте коротким «нет».**
 
-**Парень с рюкзаком тормозит вас: где вокзал? Он в двух шагах — ответьте целиком.**
-
-- ✅ **It is near.**
-- ❌ Is near. — *Пропало `it`. Ответ начинается с него: `It is near`.*
-- ❌ It near. — *Между `it` и словом о месте нужно `is`.*
+- ✅ **No, it is not.**
+- ❌ Yes, it is. — *Так вы подтвердите, что билет действует. В условии он был только на вчера.*
+- ❌ No, it not. — *После `it` нужно `is`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — corner**
-<!-- interaction_id: en:lesson-02:session-23:i01; family: listen_choose -->
-Цель: `corner`
+**1 · Кассир подтвердил, что билет действует. Сообщите это полной фразой**
+<!-- interaction_id: en:lesson-02:session-23:i01; family: phrase_builder -->
+Плитки: `valid` `is` `It` `are` → **It is valid.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is valid.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте фразу об Анне**
 <!-- interaction_id: en:lesson-02:session-23:i02; family: listen_choose -->
-Цель: `corner`
-Варианты: `corner` · `corn` · `cover`
-- corn — *Это «кукуруза». Короче на слог: в `corner` два, в `corn` один.*
-- cover — *«Накрывать». Из этой тройки про угол улицы только `corner`.*
+🔊 *She is married.* → **She is married.** · She is single. · She is silent.
+- She is single. — *В записи последнее слово — `married`, а в этом варианте — `single`.*
+- She is silent. — *В записи последнее слово — `married`, а в этом варианте — `silent`.*
 
+**3 · Спросите, действительны ли два билета**
+<!-- interaction_id: en:lesson-02:session-23:i03; family: context_gap_grammar -->
+___ they valid? → **Are** · Am · Is
+- Am — *С `they` нужно `Are`.*
+- Is — *Вопрос о двух билетах — `Are they valid?`.*
 
-**3 · Карточка слова — bridge**
-<!-- interaction_id: en:lesson-02:session-23:i03; family: listen_choose -->
-Цель: `bridge`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-23:i04; family: speed_match -->
+valid — действительный · married — женатый, замужняя · single — без пары · different — разный, другой
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-23:i04; family: listen_choose -->
-Цель: `bridge`
-Варианты: `bridge` · `fridge` · `bread`
-- fridge — *«Холодильник». Отличается первым звуком: `f` против `b`.*
-- bread — *«Хлеб». Гласная другая: в `bridge` слышно «и», в `bread` — «э».*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-02:session-23:i05; family: listen_build_dictation -->
+🔊 *It is not valid.* Плитки: `valid` `not` `is` `It` `are` → **It is not valid.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not valid.`)*
 
-
-**5 · Вставьте слово — вам сказали «ждите на углу», а вы не поняли на каком**
-<!-- interaction_id: en:lesson-02:session-23:i05; family: context_gap_grammar -->
-Цель: `Where is the ___ ?`
-Варианты: `corner` · `station` · `shops`
-- station — *«Вокзал» — вас про него не просили, встреча назначена на углу.*
-- shops — *«Магазины» — тоже не то место, вам назвали угол.*
-
-
-**6 · Соберите фразу — «где мост?»**
+**6 · У вас с Олегом билеты на разные фильмы. Скажите полной фразой, что билеты разные**
 <!-- interaction_id: en:lesson-02:session-23:i06; family: phrase_builder -->
-Цель: `Where is the bridge?`
+Плитки: `different` `are` `They` `is` → **They are different.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are different.`)*
 
-**7 · Послушайте и соберите — «он рядом»**
-<!-- interaction_id: en:lesson-02:session-23:i07; family: listen_build_dictation -->
-Цель: `It is near.`
-🔊 *It is near.* Плитки: `It` `is` `near` `behind`
-*Плитка `behind` лишняя: в записи сказано `near` — «рядом», а не `behind` — «позади».*
+**7 · У Олега нет партнёра, он ни с кем не встречается. Коротко скажите, что он без пары**
+<!-- interaction_id: en:lesson-02:session-23:i07; family: scripted_repeat_compare -->
+🎙 **He's single.**
 
-**8 · Вставьте слово — вокзал стоит прямо за рядом магазинов**
+**8 · Анна замужем. На «Is she married?» дополните короткое «да»**
 <!-- interaction_id: en:lesson-02:session-23:i08; family: context_gap_grammar -->
-Цель: `The station is ___ the shops.`
-Варианты: `behind` · `near` · `corner`
-- near — *«Рядом» — но вам сказали конкретнее: вокзал именно за магазинами.*
-- corner — *Это «угол», а не слово о том, где что стоит.*
+Yes, she ___. → **is** · am · are
+- am — *С `she` нужно `is`.*
+- are — *Короткий ответ — `Yes, she is`.*
 
+**9 · Послушайте фразу о фильме**
+<!-- interaction_id: en:lesson-02:session-23:i09; family: listen_choose -->
+🔊 *It is silent.* → **It is silent.** · It is valid. · It is different.
+- It is valid. — *В записи последнее слово — `silent`, а в этом варианте — `valid`.*
+- It is different. — *В записи последнее слово — `silent`, а в этом варианте — `different`.*
 
-**9 · Различите звуки — какое из двух про «мост»?**
-<!-- interaction_id: en:lesson-02:session-23:i09; family: sound_contrast -->
-Варианты: `bridge` · `fridge`
-- fridge — *Это «холодильник». Первый звук другой: `f` вместо `b`.*
-
-
-**10 · Соедините пары**
+**10 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-23:i10; family: speed_match -->
-Пары: `corner` — угол · `bridge` — мост · `near` — рядом · `behind` — за
-Цель: `corner · bridge · near · behind`
+silent — беззвучный, немой · valid — действительный · different — разный, другой · married — женатый, замужняя
 
-**11 · Вставьте слово — магазины видно, только когда перейдёшь мост**
-<!-- interaction_id: en:lesson-02:session-23:i11; family: context_gap_grammar -->
-Цель: `The shops are ___ the bridge.`
-Варианты: `behind` · `near` · `station`
-- near — *Тогда бы вы их увидели с этого берега. Магазины открываются только за мостом.*
-- station — *«Вокзал» — это место, а не слово о том, где оно.*
+**11 · Послушайте и соберите короткий ответ**
+<!-- interaction_id: en:lesson-02:session-23:i11; family: listen_build_dictation -->
+🔊 *No, they are not.* Плитки: `not` `are` `they` `No,` `Yes,` → **No, they are not.**
+*(плитка `Yes,` лишняя: здесь нужно `No,` — `No, they are not.`)*
 
-
-**12 · Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район**
+**12 · Вы выбираете фильм. Спросите, немой ли он**
 <!-- interaction_id: en:lesson-02:session-23:i12; family: phrase_builder -->
-Цель: `Where is the street?`
-Плитки: `Where` `is` `the` `street` `it`
-*Плитка `it` лишняя: вопрос о месте начинается с `Where is`; `It is` начинает ответ, а не вопрос.*
+Плитки: `silent` `it` `Is` `Are` → **Is it silent?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it silent?`)*
 
-**13 · Вставьте слово — вы спрашиваете, как пройти к поездам**
-<!-- interaction_id: en:lesson-02:session-23:i13; family: context_gap_grammar -->
-Цель: `Where is the ___ ?`
-Варианты: `station` · `corner` · `bridge`
-- corner — *«Угол» — к поездам он не ведёт.*
-- bridge — *«Мост» — тоже не то место, где ходят поезда.*
+**13 · Кассир проверил билет: он подходит на этот сеанс. Коротко сообщите, что он действителен**
+<!-- interaction_id: en:lesson-02:session-23:i13; family: scripted_repeat_compare -->
+🎙 **It's valid.**
 
+**14 · Олег не женат. Дополните фразу об этом**
+<!-- interaction_id: en:lesson-02:session-23:i14; family: context_gap_grammar -->
+He ___ not married. → **is** · am · are
+- am — *После `He` нужно `is`.*
+- are — *Про Олега — `He is not married`.*
 
-**14 · Послушайте и соберите — «магазины за вокзалом»**
-<!-- interaction_id: en:lesson-02:session-23:i14; family: listen_build_dictation -->
-Цель: `The shops are behind the station.`
+**15 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-23:i15; family: listen_choose -->
+🔊 *Are they different?* → **Are they different?** · Are they valid? · Are they silent?
+- Are they valid? — *В записи последнее слово — `different`, а в этом варианте — `valid`.*
+- Are they silent? — *В записи последнее слово — `different`, а в этом варианте — `silent`.*
 
-**15 · Соберите ответ — у вас спросили про вокзал, а он в двух шагах**
-<!-- interaction_id: en:lesson-02:session-23:i15; family: phrase_builder -->
-Цель: `It is near.`
-Плитки: `It` `is` `near` `are`
-*Плитка `are` лишняя: речь об одном вокзале, поэтому ответ начинается с `It is`.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-23:i16; family: speed_match -->
+single — без пары · different — разный, другой · silent — беззвучный, немой · valid — действительный
 
-**16 · Послушайте и соберите — сотрудник у схемы объясняет, где находится улица**
-<!-- interaction_id: en:lesson-02:session-23:i16; family: listen_build_dictation -->
-Цель: `The street is behind the station.`
+**17 · Кассир подтвердил: оба билета действуют. Анна спрашивает вас о билетах: «Are they valid?» Ответьте коротким «да», не повторяя valid**
+<!-- interaction_id: en:lesson-02:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Yes, they are.**
 
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-23:i17:s01; family: scripted_repeat_compare -->
-Цель: `Where is the bridge?`
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-23:i17:s02; family: scripted_repeat_compare -->
-Цель: `It is near.`
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-23:i17:s03; family: scripted_repeat_compare -->
-Цель: `It is behind the shops.`
-
-## Для сборщика
-
-new_words:
-corner — угол — Место, где одна улица упирается в другую. «Встретимся на углу» — вот про этот `corner`.
-bridge — мост — То, по чему переходят реку. В Дублине без этого слова далеко не уйдёте.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=listen_build_dictation, 8=context_gap_grammar, 9=sound_contrast, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=context_gap_grammar, 14=listen_build_dictation, 15=phrase_builder, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| street | 12, 16 | 12, 16 |
-| near | 7, 8, 10, 11, 15 | 7, 10, 15 |
-| behind | 7, 8, 10, 11, 14, 16 | 8, 10, 11, 14, 16 |
-| shops | 5, 8, 11, 14 | 14 |
-| station | 5, 8, 11, 13, 14, 16 | 13, 14, 16 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | corner | да — «`corner` — „угол“» и разобран сам вопрос `Where is the corner?` |
-| Интро 2 | bridge | да — «`bridge` — „мост“», порядок слов вопроса объяснён на странице 1 |
-| Интро 3 | near | да — «`It is near.` — „он рядом“», `near` переведено прямо в тексте |
-
-**3. Доска пар (задание 10)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| corner | 1 | 2 (слух), 5 (выбор) |
-| bridge | 3 | 4 (слух), 6 (сборка), 9 (звуки) |
-| near | из прошлых занятий | 7 (сборка на слух), 8 (вариант выбора) |
-| behind | из прошлых занятий | 7 (плитка), 8 (правильный ответ) |
-
----

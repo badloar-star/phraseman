@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-23:i01",
-    "correctText": "corner",
+    "correctText": "It is valid.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i02",
-    "correctText": "corner",
+    "correctText": "She is married.",
     "correctResponseId": "en:lesson-02:session-23:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-23:i03",
-    "correctText": "bridge",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-23:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-23:i04",
-    "correctText": "bridge",
-    "correctResponseId": "en:lesson-02:session-23:i04:r1"
+    "correctText": "en:lesson-02:session-23:i04:p1=valid\nen:lesson-02:session-23:i04:p2=married\nen:lesson-02:session-23:i04:p3=single\nen:lesson-02:session-23:i04:p4=different",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i05",
-    "correctText": "corner",
-    "correctResponseId": "en:lesson-02:session-23:i05:r1"
+    "correctText": "It is not valid.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i06",
-    "correctText": "Where is the bridge?",
+    "correctText": "They are different.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i07",
-    "correctText": "It is near.",
+    "correctText": "He's single.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i08",
-    "correctText": "behind",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-23:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-23:i09",
-    "correctText": "bridge",
+    "correctText": "It is silent.",
     "correctResponseId": "en:lesson-02:session-23:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-23:i10",
-    "correctText": "en:lesson-02:session-23:i10:p1=corner\nen:lesson-02:session-23:i10:p2=bridge\nen:lesson-02:session-23:i10:p3=near\nen:lesson-02:session-23:i10:p4=behind",
+    "correctText": "en:lesson-02:session-23:i10:p1=silent\nen:lesson-02:session-23:i10:p2=valid\nen:lesson-02:session-23:i10:p3=different\nen:lesson-02:session-23:i10:p4=married",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i11",
-    "correctText": "behind",
-    "correctResponseId": "en:lesson-02:session-23:i11:r1"
+    "correctText": "No, they are not.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i12",
-    "correctText": "Where is the street?",
+    "correctText": "Is it silent?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i13",
-    "correctText": "station",
-    "correctResponseId": "en:lesson-02:session-23:i13:r1"
+    "correctText": "It's valid.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-23:i14",
-    "correctText": "The shops are behind the station.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-23:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-23:i15",
-    "correctText": "It is near.",
-    "correctResponseId": null
+    "correctText": "Are they different?",
+    "correctResponseId": "en:lesson-02:session-23:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-23:i16",
-    "correctText": "The street is behind the station.",
+    "correctText": "en:lesson-02:session-23:i16:p1=single\nen:lesson-02:session-23:i16:p2=different\nen:lesson-02:session-23:i16:p3=silent\nen:lesson-02:session-23:i16:p4=valid",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-23:i17:s01",
-    "correctText": "Where is the bridge?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-23:i17:s02",
-    "correctText": "It is near.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-23:i17:s03",
-    "correctText": "It is behind the shops.",
+    "interactionId": "en:lesson-02:session-23:i17",
+    "correctText": "Yes, they are.",
     "correctResponseId": null
   }
 ]

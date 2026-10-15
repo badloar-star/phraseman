@@ -20,6 +20,7 @@ import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
+import { captureAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -184,6 +185,36 @@ let pendingPushPrefsTimer: ReturnType<typeof setTimeout> | null = null;
 let pendingPushPrefsTaps = 0;
 let pendingPushPrefsWaiters: Array<() => void> = [];
 let pushPrefsWriteChain: Promise<void> = Promise.resolve();
+// зачем (Ревизор P24, координатор 15.10): запись брала ensureAnonUser() в момент записи — тумблеры + сразу «Выйти»
+// уносили выбор прошлого аккаунта в users/{гость}. Владелец (поколение аккаунта) запоминается при тапе; смена
+// поколения отменяет отложенную запись, а начатая запись сверяет владельца перед set.
+let pendingPushPrefsOwner: AccountGenerationToken | null = null;
+let pushPrefsOwnerSubscription: { remove: () => void } | null = null;
+
+function isSamePushPrefsOwner(owner: AccountGenerationToken, now: AccountGenerationToken): boolean {
+  return owner.generation === now.generation && owner.stableId === now.stableId;
+}
+
+function cancelPendingPushPrefs(reason: string, now: AccountGenerationToken): void {
+  const waiters = pendingPushPrefsWaiters;
+  pushPrefsLog('cancel', { reason, taps: pendingPushPrefsTaps, fromGeneration: pendingPushPrefsOwner?.generation ?? null, toGeneration: now.generation, toPhase: now.phase });
+  if (pendingPushPrefsTimer) clearTimeout(pendingPushPrefsTimer);
+  pendingPushPrefsTimer = null;
+  pendingPushPrefs = null;
+  pendingPushPrefsOwner = null;
+  pendingPushPrefsTaps = 0;
+  pendingPushPrefsWaiters = [];
+  waiters.forEach((resolve) => resolve());
+}
+
+function watchPushPrefsOwner(): void {
+  if (pushPrefsOwnerSubscription) return;
+  pushPrefsOwnerSubscription = subscribeAccountGeneration((token) => {
+    if (pendingPushPrefs && pendingPushPrefsOwner && !isSamePushPrefsOwner(pendingPushPrefsOwner, token)) {
+      cancelPendingPushPrefs('owner_changed', token);
+    }
+  });
+}
 
 function pushPrefsLog(step: string, data: Record<string, unknown>): void {
   console.log(`[PUSH-PREFS] ${step}`, JSON.stringify(data)); // guard-ok: каждый шаг записи настроек пушей называет причину
@@ -192,18 +223,27 @@ function pushPrefsLog(step: string, data: Record<string, unknown>): void {
 function flushPendingPushPrefs(): void {
   pendingPushPrefsTimer = null;
   const prefs = pendingPushPrefs;
+  const owner = pendingPushPrefsOwner ?? captureAccountGeneration();
   const taps = pendingPushPrefsTaps;
   const waiters = pendingPushPrefsWaiters;
   pendingPushPrefs = null;
+  pendingPushPrefsOwner = null;
   pendingPushPrefsTaps = 0;
   pendingPushPrefsWaiters = [];
   if (!prefs) {
     waiters.forEach((resolve) => resolve());
     return;
   }
+  const ownerAtFlush = captureAccountGeneration();
+  if (!isSamePushPrefsOwner(owner, ownerAtFlush)) {
+    // Подписка на смену поколения — основной путь отмены; эта проверка страхует, если подписку сняли.
+    pushPrefsLog('cancel', { reason: 'owner_changed', stage: 'flush', taps, fromGeneration: owner.generation, toGeneration: ownerAtFlush.generation, toPhase: ownerAtFlush.phase });
+    waiters.forEach((resolve) => resolve());
+    return;
+  }
   pushPrefsLog('flush', { taps, streak: prefs.streak, offers: prefs.offers, league: prefs.league });
   pushPrefsWriteChain = pushPrefsWriteChain
-    .then(() => writeServerPushPrefsNow(prefs))
+    .then(() => writeServerPushPrefsNow(prefs, owner))
     .finally(() => waiters.forEach((resolve) => resolve()));
 }
 
@@ -212,6 +252,12 @@ function flushPendingPushPrefs(): void {
  * Промис завершается после этой записи (или пропуска) — интерфейс его не ждёт.
  */
 export function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<void> {
+  const owner = captureAccountGeneration();
+  if (pendingPushPrefs && pendingPushPrefsOwner && !isSamePushPrefsOwner(pendingPushPrefsOwner, owner)) {
+    cancelPendingPushPrefs('owner_changed_between_taps', owner);
+  }
+  pendingPushPrefsOwner = owner;
+  watchPushPrefsOwner();
   pendingPushPrefs = { streak: prefs.streak, offers: prefs.offers, league: prefs.league };
   pendingPushPrefsTaps += 1;
   if (pendingPushPrefsTimer) clearTimeout(pendingPushPrefsTimer);
@@ -228,7 +274,7 @@ export async function flushServerPushPrefsForTests(): Promise<void> {
   await pushPrefsWriteChain;
 }
 
-async function writeServerPushPrefsNow(prefs: ServerPushPrefs): Promise<void> {
+async function writeServerPushPrefsNow(prefs: ServerPushPrefs, owner: AccountGenerationToken): Promise<void> {
   const startedAt = Date.now();
   try {
     const db = getFirestore();
@@ -240,6 +286,11 @@ async function writeServerPushPrefsNow(prefs: ServerPushPrefs): Promise<void> {
     const stableId = await ensureAnonUser();
     if (!stableId) {
       pushPrefsLog('skip', { reason: 'no_stable_id' });
+      return;
+    }
+    const ownerNow = captureAccountGeneration();
+    if (!isSamePushPrefsOwner(owner, ownerNow) || (owner.stableId !== null && owner.stableId !== stableId)) {
+      pushPrefsLog('skip', { reason: 'owner_changed', stage: 'before_link', fromGeneration: owner.generation, toGeneration: ownerNow.generation });
       return;
     }
     const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('push_token_registration:promise_2', false));
@@ -256,6 +307,10 @@ async function writeServerPushPrefsNow(prefs: ServerPushPrefs): Promise<void> {
       return;
     }
 
+    if (!isSamePushPrefsOwner(owner, captureAccountGeneration())) {
+      pushPrefsLog('skip', { reason: 'owner_changed', stage: 'before_set', fromGeneration: owner.generation });
+      return;
+    }
     // Поле `lessons` больше не пишем: этот тип напоминания удалён.
     await db.collection('users').doc(stableId).set(
       { pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league } },

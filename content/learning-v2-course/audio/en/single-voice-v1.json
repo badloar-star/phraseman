@@ -54706,6 +54706,309 @@
           "byteSize": 39552
         }
       ]
+    },
+    "l04/s13/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a taxi here?",
+          "file": "fd309b54106a0843cbb703d77a9dad151444546cea3547f5374fe8c81f7230f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd309b54106a0843cbb703d77a9dad151444546cea3547f5374fe8c81f7230f9.mp3",
+          "contentHash": "646963328446bffdba716a3cd28d54bf499c7e4e30e05621e45d10d660afacc9",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s13/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "That is a supermarket.",
+          "file": "bc1d0fefd9a16c41376a2a6a093894219bf435cc98fe236fe70f6b1651f2c407.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc1d0fefd9a16c41376a2a6a093894219bf435cc98fe236fe70f6b1651f2c407.mp3",
+          "contentHash": "54c20d7818071f9db6b36ff719828f5c0da3f5c918475783051e8bfb628dbc9c",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s13/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's public.",
+          "file": "2dfb4b38056535ba8b9930965597fe03f644c122af14dfef9ea58f26631b4aeb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2dfb4b38056535ba8b9930965597fe03f644c122af14dfef9ea58f26631b4aeb.mp3",
+          "contentHash": "01dab44d76af81b5d650b555ab2634137cfd2dc99024dcbd39df55f43f6fba2f",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s13/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a window.",
+          "file": "20374a7fb62630d962e94a15c61e71e730e7d603b6d2a0b669ff45ea62e9bb2d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/20374a7fb62630d962e94a15c61e71e730e7d603b6d2a0b669ff45ea62e9bb2d.mp3",
+          "contentHash": "44d66a55fa1d2f640450c1bf76df2fbfbfba266cb2c8d2f879f53c1e4adaeba4",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l04/s13/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "taxi",
+          "file": "b52a32690c8d3bf39087c7509a59e6f48b7906d06eeff6c5a852b9f2336f6b95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b52a32690c8d3bf39087c7509a59e6f48b7906d06eeff6c5a852b9f2336f6b95.mp3",
+          "contentHash": "ea1f33ffea59102c9106482f30ab44fc87d5376ed0d2d2d60a857ec7cb5379be",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l04/s13/task/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "taxi",
+          "file": "221c5347f7025ee310353aa45f2c6b693fc643e955197b0b09090000e03c2423.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/221c5347f7025ee310353aa45f2c6b693fc643e955197b0b09090000e03c2423.mp3",
+          "contentHash": "a493b0a8bff746a8901688fa09a806963a4f01c1baaef0f0e36ed8adbe9f493a",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s13/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "taxi",
+          "file": "07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "contentHash": "217d27331222e12a1f85a6be341966a5806976418612dfb443f5e2be7e2b26cc",
+          "byteSize": 24576
+        },
+        {
+          "text": "public",
+          "file": "360f7d7869abce066d112a3614074300961146c2662239958c060ad6fc083114.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/360f7d7869abce066d112a3614074300961146c2662239958c060ad6fc083114.mp3",
+          "contentHash": "bcf949261738753a7b5058b5ca60a7459322389acfa5757dc1752c92b5984a73",
+          "byteSize": 20352
+        },
+        {
+          "text": "window",
+          "file": "aed834ecaa8d1b0f19a14c7408a94e5cca72fc64158871e3a9c5ee06285f32f2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/44ff7b02c80d38b26dd6aa31-onyx.mp3",
+          "contentHash": "957c4b61e7b8cfc6009ba216d24f17a4f6dbdfcd36c93ce98d45c9caba423dcd",
+          "byteSize": 18048
+        },
+        {
+          "text": "supermarket",
+          "file": "63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "contentHash": "8d5cc3538a7a8c8f0172915ae1e5359ca9307fa53f146a7b277aaa28f9f4a264",
+          "byteSize": 6912
+        }
+      ]
+    },
+    "l04/s13/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a taxi?",
+          "file": "febd1ae67068ab2e07500ae784f7280ae88ce2cd2bde092788cab1ca36519a27.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/febd1ae67068ab2e07500ae784f7280ae88ce2cd2bde092788cab1ca36519a27.mp3",
+          "contentHash": "84dec247ba008b95182838f50c64c43e6ba83a424608ba4ef6be018a4b4a7a5b",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s13/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "That is a supermarket.",
+          "file": "4b3405258107d43238969da8eede1bb556bc5fc6f0ed8397b5d549b14eebeb7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b3405258107d43238969da8eede1bb556bc5fc6f0ed8397b5d549b14eebeb7a.mp3",
+          "contentHash": "afec0116bdcd5cdc01bb3ac2b1f97cb1f671d5c73e01e1a6af51d4b0467d91d4",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s13/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's public.",
+          "file": "5c381194a9ff0de17b853ab9c37b117f48ffca5836d1ea8331b5465ec43d51f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c381194a9ff0de17b853ab9c37b117f48ffca5836d1ea8331b5465ec43d51f2.mp3",
+          "contentHash": "58fff619750f6ba56e50d83817fd1181da2c9bc66faef045992ad19b215fe2b6",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l04/s13/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are there taxis here?",
+          "file": "f4d45f57f55da631e12dd2bb467d65461775ed17876489509fbb54827652badb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f4d45f57f55da631e12dd2bb467d65461775ed17876489509fbb54827652badb.mp3",
+          "contentHash": "40bb214be82b76a7709d719f83ec5f7bbb2585d57a83abdec856f38c5b63260b",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s13/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a window?",
+          "file": "47e0f27f8b0ab3a49d2984abbcdac2d9ec3b5bfd736195cb9238c12f604d3769.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47e0f27f8b0ab3a49d2984abbcdac2d9ec3b5bfd736195cb9238c12f604d3769.mp3",
+          "contentHash": "b81788349e249504f2cfaa413ddad7dbe36921629f919c88f4aecfe72e58dfa9",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l04/s13/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "taxi",
+          "file": "221c5347f7025ee310353aa45f2c6b693fc643e955197b0b09090000e03c2423.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/221c5347f7025ee310353aa45f2c6b693fc643e955197b0b09090000e03c2423.mp3",
+          "contentHash": "a493b0a8bff746a8901688fa09a806963a4f01c1baaef0f0e36ed8adbe9f493a",
+          "byteSize": 29952
+        },
+        {
+          "text": "taxis",
+          "file": "477ae072dd2c7bc53f37c0168dd67672edee627c41fccc40e4d7074320ec1974.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/477ae072dd2c7bc53f37c0168dd67672edee627c41fccc40e4d7074320ec1974.mp3",
+          "contentHash": "3e1dac9e108813a4cec35f47c0962f7c0bee0fbb14cf53faeb5553ce361b94a3",
+          "byteSize": 18048
+        },
+        {
+          "text": "window",
+          "file": "4abcf13044a6b240c9bad030bf619f9b076d7576238d626fe073fe647b15ad9a.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/44ff7b02c80d38b26dd6aa31-nova.mp3",
+          "contentHash": "96e855051b83033a160d284b701e2c2bce36f9aa78372ba17b17a108fa224fa3",
+          "byteSize": 18816
+        },
+        {
+          "text": "public",
+          "file": "02d44fc4456ba117f36b5787330cc72938ce818475960c3eb4c69c9dd81ec0c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02d44fc4456ba117f36b5787330cc72938ce818475960c3eb4c69c9dd81ec0c3.mp3",
+          "contentHash": "40c6ba3b2ff8b67ad8127a47a64e21f612a76d8501b44f799b5801cccde4a569",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s13/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a supermarket here.",
+          "file": "a5dffe3c484c0f70c43c7186905df8a0c26209c1b64755b3d6815c5687565eb9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5dffe3c484c0f70c43c7186905df8a0c26209c1b64755b3d6815c5687565eb9.mp3",
+          "contentHash": "8aa6e834064a3f9c6d2194443ea20c2850db0078687a2dc0b8cc301c47934ee1",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l04/s13/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There are taxis here.",
+          "file": "b1a87095c001dba5e18c6a3488127d5ee275b09a436e06f40e8bc683bbfcf8b3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b1a87095c001dba5e18c6a3488127d5ee275b09a436e06f40e8bc683bbfcf8b3.mp3",
+          "contentHash": "ab72e161d3ea9c92616fd1c9f1fffda48ccb2dadf9270a0bf5f49c1625af293f",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s13/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a window here?",
+          "file": "df6bc9a4cda5805f2ca076f6bde86eedf04a2a28cecc2608e6020fa669bd02a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/df6bc9a4cda5805f2ca076f6bde86eedf04a2a28cecc2608e6020fa669bd02a2.mp3",
+          "contentHash": "962b69fa51f40350710d8dd4059f2b3135d8cc88e310d1498ba79ff984d00c63",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s13/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a supermarket here?",
+          "file": "6aef3330345353a0fb107bfbf480e653334637b00193d10593525710b535d282.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6aef3330345353a0fb107bfbf480e653334637b00193d10593525710b535d282.mp3",
+          "contentHash": "a3a2a464e60ff01fbac7fa2d49fa25d538cc09d65c2fc9870cfdcc62b7ec2874",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s13/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It is public.",
+          "file": "de868b7a3c1188c97b38d6111f1ad5b8f0b931ff9a873820bf9e7884bcabb194.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de868b7a3c1188c97b38d6111f1ad5b8f0b931ff9a873820bf9e7884bcabb194.mp3",
+          "contentHash": "e3718dde570cac0d8ab9ba74968aded8b06f74168c8ed488526e2e6a65f507b3",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s13/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "taxi",
+          "file": "1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "contentHash": "022f82bbfeeb55d35f57b455b3bca699bc3ac83cf766f5d4c8343d0cd3be2b24",
+          "byteSize": 19584
+        },
+        {
+          "text": "public",
+          "file": "77618bd6edfcff28a67996ffbd05c5781d4cb3ad6cfa07ea44eacac3c0e064f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77618bd6edfcff28a67996ffbd05c5781d4cb3ad6cfa07ea44eacac3c0e064f7.mp3",
+          "contentHash": "f1d0388d76eebb73929b35b16a89e79ca98bb031d56e6c4f3a4ff80169cc0a2e",
+          "byteSize": 19584
+        },
+        {
+          "text": "window",
+          "file": "c259a9d2cb378083f2967713b6942452d93b7391661c3785c7b830702d1e7a0b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/44ff7b02c80d38b26dd6aa31-ash.mp3",
+          "contentHash": "142bc9d9213eb71ce1ed627f2f09dd8358129aac9407d84712a5bb8924ccaa04",
+          "byteSize": 22656
+        },
+        {
+          "text": "supermarket",
+          "file": "8c78c6b0c260ee1ab348b73e0db9104f173630465eba6c010d60302060b223e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8c78c6b0c260ee1ab348b73e0db9104f173630465eba6c010d60302060b223e8.mp3",
+          "contentHash": "38980c97e772788f8412b659fca9355fd82fbf6a849c59506b4ee4da2e6aad85",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s13/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a taxi here?",
+          "file": "c7b85db6ea70b8d9f068c312da10d90daeac9883f244de5a2f480fcf6ce3d967.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c7b85db6ea70b8d9f068c312da10d90daeac9883f244de5a2f480fcf6ce3d967.mp3",
+          "contentHash": "ddace1a77b847a73cdce7a88b4a8d71dabdfeba83bdcf3316407a93ece362fb7",
+          "byteSize": 43008
+        }
+      ]
     }
   },
   "settings": {

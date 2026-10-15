@@ -100,4 +100,21 @@ describe('очередь вердиктов привязана к занятию
     expect(logs.some((l) => l.includes('"reason":"ceiling"'))).toBe(true);
     jest.useRealTimers();
   });
+
+  it('медленное чтение после потолка: пока не доверяем — на диск не пишем, поздний ответ ничего не записывает (Ревизор 2.82)', async () => {
+    jest.useFakeTimers();
+    let release!: () => void;
+    mockHydrateGate = new Promise<void>((r) => { release = r; });
+    const { result } = await renderHook(() => useSessionAttempts({ token, sessionId: 'lesson:1', initialQuestionId: 'q1' }));
+    await act(async () => { result.current.registerVerdict(wrong('a:1')); });
+    await act(async () => { jest.advanceTimersByTime(SESSION_ATTEMPTS_HYDRATE_CEILING_MS + 10); await Promise.resolve(); await Promise.resolve(); });
+    expect(result.current.hydrationTrusted).toBe(false);
+    await act(async () => { result.current.registerVerdict(wrong('a:2')); }); // живой ответ после потолка
+    expect(mockPersist).not.toHaveBeenCalled();
+    expect(logs.some((l) => l.includes('"outcome":"persist_skipped_untrusted"'))).toBe(true);
+    jest.useRealTimers();
+    await act(async () => { release(); await new Promise((r) => setTimeout(r, 0)); }); // медленное чтение всё же пришло
+    expect(mockPersist).not.toHaveBeenCalled();
+    expect(logs.some((l) => l.includes('"outcome":"late_result_ignored"'))).toBe(true);
+  });
 });

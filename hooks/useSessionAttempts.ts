@@ -93,6 +93,13 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   const hydrateRunRef = useRef(0);
   /** Поднимает синхронно settleQueue (чтобы живой ответ не вклинился между базой и повтором), опускает смена занятия. */
   const hydratedRef = useRef(false);
+  /**
+   * Доверенное ли чтение уже было в ЭТОМ занятии — синхронно, раньше рендера (повтор очереди идёт в том же тике).
+   * зачем (Ревизор 2.82, 15.10, 🟡 2 к aa60163f8): после потолка/сбоя чтения база «до очереди» могла быть 3/3 — запись её на диск вернула бы
+   * потраченные сердца, если медленное чтение потом всё же придёт. Пока не доверяем — на диск не пишем, состояние только в памяти.
+   */
+  const trustedNowRef = useRef(false);
+  const persistSkipLoggedRef = useRef(false);
   const registerVerdictNowRef = useRef<((verdictInput: Readonly<{ answerAttemptId: string; verdict: SessionAttemptVerdict }>, source: 'live' | 'replayed_after_hydration') => SessionAttemptsEffect) | null>(null);
 
   const adoptState = useCallback((next: SessionAttemptsStateV1): void => {
@@ -102,6 +109,14 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
 
   const persist = useCallback((next: SessionAttemptsStateV1): void => {
     if (input.persistenceEnabled === false) return;
+    if (!trustedNowRef.current) {
+      // Запись догонит при следующем доверенном старте этого занятия; одна строка журнала на занятие, без потока.
+      if (!persistSkipLoggedRef.current) {
+        persistSkipLoggedRef.current = true;
+        console.warn('[ATTEMPTS-HYDRATE]', JSON.stringify({ sessionId: input.sessionId, outcome: 'persist_skipped_untrusted', remaining: next.remainingAttempts, phase: next.phase })); // guard-ok: пропуск записи с причиной
+      }
+      return;
+    }
     // The active screen keeps its local reducer state. Remount recovery stays
     // fail-closed and never invents a resource debit. PM-229: the failure reason is logged.
     void persistSessionAttemptsState(input.token, next).catch(noteSwallowedHandler('useSessionAttempts:promise_1'));
@@ -116,6 +131,8 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     pendingVerdictsRef.current = [];
     queuedBaseRef.current = null;
     hydratedRef.current = false;
+    trustedNowRef.current = false;
+    persistSkipLoggedRef.current = false;
     sessionIdRef.current = input.sessionId;
     const next = createSessionAttemptsState({
       sessionId: input.sessionId,
@@ -183,6 +200,7 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
       }
       if (outcome.kind === 'timeout') {
         console.warn('[ATTEMPTS-HYDRATE]', JSON.stringify({ sessionId: input.sessionId, outcome: 'ceiling', ceilingMs: SESSION_ATTEMPTS_HYDRATE_CEILING_MS, queued: pendingVerdictsRef.current.length })); // guard-ok: потолок гидратации
+        trustedNowRef.current = false;
         setHydrationTrusted(false);
         setRecoveryError('session_attempts_hydrate_timeout');
         void work.then(() => {
@@ -209,7 +227,8 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
         console.log('[ENERGY-MODE] restored stopped session in mode A → active', JSON.stringify({ sessionId: input.sessionId }));
         restored = { ...stored, phase: 'active' };
       } else if (stored && stored.phase !== 'ended') restored = stored;
-      // Состояние прочитано без сбоя — только теперь ему можно верить.
+      // Состояние прочитано без сбоя — только теперь ему можно верить (и писать на диск).
+      trustedNowRef.current = true;
       setHydrationTrusted(true);
       settleQueue(restored, 'hydrated');
     } catch (error) {
@@ -220,6 +239,7 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
        * `hydrated` при этом поднимается всё равно (ниже, в `finally`): экран обязан ожить, иначе вернётся то самое зависание.
        * Разницу несёт отдельный флаг достоверности.
        */
+      trustedNowRef.current = false;
       setHydrationTrusted(false);
       setRecoveryError(error instanceof Error ? error.message : 'session_attempts_hydrate_failed');
       if (run === hydrateRunRef.current) settleQueue(null, 'failed');

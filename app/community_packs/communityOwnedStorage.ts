@@ -219,6 +219,13 @@ export async function removeCommunityOwnedPackId(
   }
   const next = loaded.ids.filter((item) => item !== id);
   const key = flashcardsCommunityOwnedPacksKey(studyTarget);
+  // зачем (Ревизор R47 🟡): надгробие — РАНЬШЕ списка. Не записалась отметка — список не трогаем (иначе набор вернётся при восстановлении); экран откатит строку.
+  try {
+    await stampOwnedTombstone(id, true, studyTarget);
+  } catch (error: unknown) {
+    console.warn(`[MY-PACKS] tombstone remove-stamp FAILED pack=${id} reason=${error instanceof Error ? error.message : String(error)} — набор оставлен`); // guard-ok: причина сбоя
+    return 'stale';
+  }
   await AsyncStorage.setItem(key, JSON.stringify(next));
   const cacheKey = warmOwnedIdsKey(key, token);
   if (cacheKey && isCurrentAccountGeneration(token)) warmOwnedIdsByKey.set(cacheKey, next);
@@ -234,9 +241,6 @@ export async function removeCommunityOwnedPackId(
   }
   const target = storageStudyTarget(studyTarget);
   // зачем (R47): надгробие для легаси-синка + выгрузка существующим путём (без отдельного документа).
-  await stampOwnedTombstone(id, true, studyTarget).catch((error: unknown) => {
-    console.warn(`[MY-PACKS] tombstone remove-stamp FAILED pack=${id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
-  });
   void import('../cloud_sync').then((mod) => mod.syncToCloud()).catch((error: unknown) => {
     console.warn(`[MY-PACKS] tombstone syncToCloud FAILED pack=${id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
   });

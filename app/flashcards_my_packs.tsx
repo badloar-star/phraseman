@@ -433,18 +433,27 @@ export default function FlashcardsMyPacksScreen() {
         return [] as FlashcardMarketPack[];
       });
       const storedTitles = await loadCommunityOwnedPackTitles(studyTarget);
-      for (const id of videoOwnedIds) {
+      // зачем (Ревизор R60 🟡 (а), 💸): чтение документа — только если ролика нет в наборах фраз, параллельно и с отметкой «документа нет» (строка всё равно строится из названия).
+      const builtList = await Promise.all(videoOwnedIds.map(async (id) => {
         const phraseHit = phraseSetPacks.some((pack) => pack.videoId === videoIdFromOwnedCommunityId(id));
-        const communityDoc = phraseHit ? null : await fetchCommunityPackMetaResult(id, studyTarget)
-          .then((result) => (result.status === 'found' ? result.pack : null))
-          .catch((error: unknown) => {
-            console.warn(`[MY-PACKS] video_owned doc FAILED id=${id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
-            return null;
-          });
+        const missingKey = `${studyTarget}:${id}`;
+        let communityDoc: FlashcardMarketPack | null = null;
+        if (!phraseHit && !missingPackCache.isMissing(missingKey, nowMs)) {
+          communityDoc = await fetchCommunityPackMetaResult(id, studyTarget)
+            .then((result) => {
+              if (result.status === 'missing') missingPackCache.markMissing(missingKey, nowMs);
+              return result.status === 'found' ? result.pack : null;
+            })
+            .catch((error: unknown) => {
+              console.warn(`[MY-PACKS] video_owned doc FAILED id=${id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+              return null;
+            });
+        }
         const built = buildOwnedVideoPackMeta({ packId: id, phraseSetPacks, communityDoc, storedTitle: storedTitles[id] });
         console.log(`[MY-PACKS] video_owned out id=${id} source=${built.source} title=${built.pack.titleRu} cards=${built.pack.cardCount}`); // guard-ok: итог ветки
-        videoOwnedMetas.push(built.pack);
-      }
+        return built.pack;
+      }));
+      videoOwnedMetas.push(...builtList);
     }
     const regularMissing = missing.filter((id) => !videoOwnedIds.includes(id));
     const cachedMissing = regularMissing.filter((id) => missingPackCache.isMissing(`${studyTarget}:${id}`, nowMs));

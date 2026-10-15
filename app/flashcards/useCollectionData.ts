@@ -77,8 +77,10 @@ import {
   peekStagedCommunityPackCards,
   peekStagedCommunityPackMeta,
   stagedCommunityPackCardsPromise,
+  stageCommunityPackCardsForNavigation,
 } from '../community_packs/staging';
 import { peekCommunityPackOpen, startCommunityPackOpen } from '../community_packs/stage_with_retry';
+import { LOAD_GATE_TOTAL_MS } from '../load_gate_config';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { ugcCardChrome } from '../community_packs/ugcCardThemePresets';
 import {
@@ -752,7 +754,11 @@ export function useCollectionData(opts: {
     const parallelStartedAt = Date.now();
     const opening = (deeplinkRetryTick > 0
       ? (console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'start', source: 'retry', packId: deeplinkPackId })), // guard-ok: повтор по тапу
-        startCommunityPackOpen(deeplinkPackId, studyTarget, undefined, 'deeplink'))
+        // зачем (Ревизор 3e4531ac1 🟡 (1), 💸): «Повторить» = ОДИН заход на нажатие с потолком 12 с, а не новая серия тихих повторов; пока заход идёт, экран показывает ожидание — кнопки нет.
+        Promise.race([
+          stageCommunityPackCardsForNavigation(deeplinkPackId, studyTarget),
+          new Promise<CardItem[]>((resolve) => { setTimeout(() => resolve([]), LOAD_GATE_TOTAL_MS); }),
+        ]))
       : null)
       ?? peekCommunityPackOpen(deeplinkPackId, studyTarget)
       ?? (previewPackIdRef.current === deeplinkPackId
@@ -769,6 +775,10 @@ export function useCollectionData(opts: {
         if (cancelledOpen) return;
         apply(cards);
         setDeeplinkCardsState(cards.length > 0 ? 'ready' : 'failed');
+      }).catch((error: unknown) => {
+        // зачем (Ревизор 3e4531ac1 🟡 (2)): отказ загрузки без catch оставлял скелет навсегда — теперь причина в журнале и состояние «не удалось».
+        console.warn(`[PACK-OPEN] cards_fetch FAILED packId=${deeplinkPackId} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+        if (!cancelledOpen) setDeeplinkCardsState('failed');
       });
       return () => { cancelledOpen = true; };
     }

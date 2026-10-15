@@ -10,9 +10,11 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { triLang, type Lang } from '../../constants/i18n';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 
 export default function PackOpenFailedView({ lang, onRetry, onBack }: Readonly<{ lang: Lang; onRetry: () => void; onBack: () => void }>) {
   const g = useLv2Glass();
+  const insets = useStableSafeAreaInsets(); // зачем (Ревизор 3e4531ac1 🟡 (3)): «Назад» не должна уходить под жестовую полосу
   const title = triLang(lang, {
     ru: 'Не удалось загрузить', uk: 'Не вдалося завантажити', en: "Couldn't load this pack", es: 'No se pudo cargar',
     'pt-BR': 'Não foi possível carregar', vi: 'Không tải được', id: 'Gagal memuat', tr: 'Yüklenemedi', pl: 'Nie udało się wczytać',
@@ -31,7 +33,7 @@ export default function PackOpenFailedView({ lang, onRetry, onBack }: Readonly<{
   return (
     <View style={[styles.root, { backgroundColor: g.bg }]} testID="fc-pack-open-failed">
       <KitEmpty g={g} icon="cloud-offline-outline" title={title} detail={detail} action={retry} actionIcon="refresh" onAction={onRetry} actionTestID="fc-pack-open-retry" />
-      <Pressable accessibilityRole="button" accessibilityLabel={back} hitSlop={12} onPress={onBack} style={styles.back} testID="fc-pack-open-back">
+      <Pressable accessibilityRole="button" accessibilityLabel={back} hitSlop={12} onPress={onBack} style={[styles.back, { bottom: 16 + insets.bottom }]} testID="fc-pack-open-back">
         <Text style={[styles.backText, { color: g.text }]}>{back}</Text>
       </Pressable>
     </View>

@@ -26,6 +26,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { splitDeckParam } from './deck_selection';
+import { videoIdFromOwnedCommunityId } from './my_packs_video_meta';
 import { STARTER_FIRST_50_PACK_ID, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
 import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
@@ -294,7 +295,12 @@ async function loadPackDeckCards(
       console.warn(`[FC-DECKS] pack:${packId} localOnly: офлайн-кэш маркета не прочитался —`, error instanceof Error ? error.message : String(error));
       return null;
     });
-    return offline ? deckCardsFromCardItems(offline.cards.filter((c) => c.sourceId === `DEV:${packId}`), lang) : [];
+    if (offline) {
+      const offlineCards = offline.cards.filter((c) => c.sourceId === `DEV:${packId}`);
+      if (offlineCards.length > 0) return deckCardsFromCardItems(offlineCards, lang);
+    }
+    // зачем (🔴 тренировка набора из видео, 15.10): без документа сообщества карточки — из кэша фраз ролика
+    return deckCardsFromCardItems(await videoFallbackCards(packId, studyTarget, true), lang);
   }
   const startedAtMs = Date.now();
   const communityCards = await withTimeout(
@@ -320,9 +326,18 @@ async function loadPackDeckCards(
   });
   if (cache) {
     const packCards = cache.cards.filter((c) => c.sourceId === `DEV:${packId}`);
-    return deckCardsFromCardItems(packCards, lang);
+    if (packCards.length > 0) return deckCardsFromCardItems(packCards, lang);
   }
-  return [];
+  // зачем (🔴 тренировка набора из видео, 15.10): документа `video_<id>` нет или он пуст — карточки из фраз ролика (кэш 6 ч), набор не пропадает из колод
+  const videoCards = await videoFallbackCards(packId, studyTarget, false);
+  return deckCardsFromCardItems(videoCards, lang);
+}
+
+/** Карточки набора ролика из фраз; модуль подгружается лениво — обычные наборы его не платят (холодный старт). */
+async function videoFallbackCards(packId: string, studyTarget: RuntimeStudyTarget | undefined, cacheOnly: boolean): Promise<CardItem[]> {
+  if (!videoIdFromOwnedCommunityId(packId)) return [];
+  const { loadVideoPackFallbackCards } = await import('./video_pack_fallback');
+  return loadVideoPackFallbackCards(packId, studyTarget, { cacheOnly });
 }
 
 /** Предел ожидания сети для карточек набора сообщества: дольше — офлайн-кэш. */

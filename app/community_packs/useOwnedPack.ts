@@ -59,7 +59,8 @@ export function useOwnedPack(packId: string): boolean {
     let cancelled = false;
     const apply = (): void => {
       void sharedOwnedIds(target).then((snapshot) => {
-        if (cancelled) return;
+        // зачем (Ревизор R60 🟡 (б)): чтение для прежнего владельца могло прийти позже и вернуть «уже добавлен» по чужим наборам
+        if (cancelled || snapshot.version !== ownedPackIdsVersion()) return;
         const next = snapshot.ids.has(communityId);
         setOwned((prev) => (prev === next ? prev : next));
       });

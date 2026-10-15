@@ -1,6 +1,7 @@
 // зачем (Ревизор P23, координатор 15.10): карточка «Продолжить» на Главной показывает то, что свежее — старый урок или занятие V2;
 // метки только локальные; смена аккаунта их чистит; запуск V2 на вкладке «Уроки» пишет метку, старые уроки — время.
 import fs from 'node:fs';
+import { lastOpenedLessonKey } from '../app/target_storage_keys';
 import path from 'node:path';
 
 const mockStore = new Map<string, string>();
@@ -21,12 +22,11 @@ import {
   pickHomeContinue,
   recordHomeContinueLegacy,
   recordHomeContinueV2,
-  refreshHomeContinueV2Progress,
   resetHomeContinueMarksForTests,
   type HomeContinueV2Mark,
 } from '../app/home_continue_mark';
 
-const v2 = (atMs: number): HomeContinueV2Mark => ({ lessonOrdinal: 1, sessionOrdinal: 4, sessionId: 'lesson-01:session:04', done: 3, total: 11, route: { id: 'lesson-01:session:04' }, atMs });
+const v2 = (atMs: number): HomeContinueV2Mark => ({ lessonOrdinal: 1, sessionOrdinal: 4, sessionId: 'lesson-01:session:04', route: { id: 'lesson-01:session:04' }, atMs });
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
 
 describe('P23 · выбор карточки «Продолжить»', () => {
@@ -58,12 +58,12 @@ describe('P23 · метки: только локально, сверка про�
     expect(marks.v2?.atMs).toBe(2000);
     expect(marks.legacyAtMs).toBe(1500);
   });
-  it('вкладка «Уроки» обновляет «пройдено / выпущено» той же метки, время не меняется', () => {
-    recordHomeContinueV2('en', v2(2000));
-    refreshHomeContinueV2Progress('en', 1, 5, 11);
-    expect(peekHomeContinueMarks('en')?.v2).toMatchObject({ done: 5, total: 11, atMs: 2000 });
-    refreshHomeContinueV2Progress('en', 2, 9, 9);
-    expect(peekHomeContinueMarks('en')?.v2).toMatchObject({ done: 5 });
+  // зачем (координатор 15.10, поправка 1): «пройдено / выпущено» в метке не хранится — иначе после занятия число устаревало
+  it('метка не хранит прогресс; старая метка с done/total читается без них', async () => {
+    mockStore.set(`${lastOpenedLessonKey('es')}__continue_v2`, JSON.stringify({ ...v2(2000), done: 3, total: 11 }));
+    const marks = await loadHomeContinueMarks('es');
+    expect(marks.v2).toEqual(v2(2000));
+    expect(marks.v2).not.toHaveProperty('done');
   });
   it('смена владельца аккаунта чистит память и ключи', async () => {
     recordHomeContinueV2('en', v2(2000));
@@ -80,13 +80,43 @@ describe('P23 · подключение экранов', () => {
   it('Главная выбирает свежее, тап ведёт в занятие V2, журнал [HOME-CONTINUE]', () => {
     const home = read('app/(tabs)/home.tsx');
     expect(home).toContain('const continueChoice = pickHomeContinue(continueInput);');
-    expect(home).toContain('nav.push(homeContinueV2Href(continueV2.route) as never);');
+    expect(home).toContain('void launchHomeContinueV2(continueV2.route, {');
     expect(home).toContain('v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED ? continueMarks.v2 : null');
     expect(home).toContain('logHomeContinueChoice(continueChoice, continueInput, String(studyTarget));');
+    // прогресс — при показе, на каждый возврат на Главную
+    expect(home).toContain('useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive)');
+    expect(home).not.toMatch(/continueV2\.(done|total)\b/);
   });
   it('запуск занятия V2 пишет метку, старые уроки пишут время', () => {
     expect(read('app/(tabs)/lessons.tsx')).toContain('recordHomeContinueV2(studyTarget, {');
     expect(read('app/lesson1.tsx')).toContain('recordHomeContinueLegacy(studyTarget);');
     expect(read('app/lesson_menu.tsx')).toContain('recordHomeContinueLegacy(studyTarget);');
+  });
+});
+
+// зачем (координатор 15.10, поправка 2): метка теряется, если в занятие V2 ведёт вход мимо вкладки «Уроки». Сейчас вход один —
+// launchSelectedLearningV2Session (карта learning-v2/course рисует ту же вкладку); глубоких ссылок и «следующего занятия» внутри
+// занятия нет. Сторож: новый вход в /learning-v2/session/[id] обязан поставить метку (или попасть сюда осознанно).
+describe('P23 · все входы в занятие V2 ставят метку', () => {
+  const ALLOWED = new Map<string, string>([
+    // R09: маршрут занятия строит только общий модуль запуска; его зовут вкладка «Уроки» и карточка «Продолжить» (обе ставят метку)
+    ['app/learning_v2_session_launch_v1.ts', ''],
+    ['app/_learning_v2_authoring_preview.tsx', ''], // дев-превью автора, не курс игрока
+  ]);
+  const walk = (dir: string): string[] => fs.readdirSync(path.join(__dirname, '..', dir), { withFileTypes: true }).flatMap((e) => {
+    const rel = `${dir}/${e.name}`;
+    if (e.isDirectory()) return e.name === 'node_modules' ? [] : walk(rel);
+    return /\.(ts|tsx)$/.test(e.name) ? [rel] : [];
+  });
+  it('пути в занятие есть только там, где пишется метка', () => {
+    const pushers = [...walk('app'), ...walk('components')]
+      .filter((rel) => !rel.startsWith('app/learning-v2/session/'))
+      .filter((rel) => /pathname:\s*["']\/learning-v2\/session\/\[id\]["']/.test(read(rel)));
+    expect(pushers.sort()).toEqual([...ALLOWED.keys()].sort());
+    for (const [rel, marker] of ALLOWED) if (marker) expect(read(rel)).toContain(marker);
+    const callers = [...walk('app'), ...walk('components')].filter((rel) => rel !== 'app/learning_v2_session_launch_v1.ts' && read(rel).includes('learningV2SessionHrefV1('));
+    expect(callers.sort()).toEqual(['app/(tabs)/lessons.tsx', 'app/learning_v2_home_continue_route.ts']);
+    expect(read('app/(tabs)/lessons.tsx')).toContain('rememberHomeContinueV2(selected, sessionId)');
+    expect(read('app/learning_v2_home_continue_route.ts')).toContain('recordHomeContinueV2(ctx.studyTarget as RuntimeStudyTarget');
   });
 });

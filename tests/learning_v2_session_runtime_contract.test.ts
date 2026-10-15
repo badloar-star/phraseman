@@ -240,7 +240,9 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
   // зачем (05.10): подготовка занятия переехала из плеера на вкладку «Уроки» (1d70c8fc5): карта готовит занятие до
   // перехода, плеер получает готовый handle и берёт из него материал. Завершение больше не требует handle —
   // у авторского предпросмотра его нет; обязательны прогон и его сводка.
-  expect(lessons).toContain("mod.prepareCurrentLearningV2CourseSessionV3({");
+  // R09 (15.10): подготовку вкладка зовёт из общего модуля запуска — тем же путём, что Главная
+  expect(lessons).toContain("prepareLearningV2SessionRunV1(");
+  expect(source("app/learning_v2_session_launch_v1.ts")).toContain("mod.prepareCurrentLearningV2CourseSessionV3({");
   expect(runtime).toContain("resolveLearningV2CourseSessionReadyMaterialV3(");
   expect(finishBody).toContain(
     "if (!run || finishing || finishingRef.current || !runSummary) return;",

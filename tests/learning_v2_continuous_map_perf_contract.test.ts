@@ -143,7 +143,9 @@ describe("Learning V2 continuous map performance contract", () => {
     expect(layout).not.toMatch(deletedCoordinatorImport);
     expect(layout).not.toMatch(deletedBackgroundImport);
     // Загружаются лениво и ровно один раз (промис кэшируется).
-    expect(lessons).toContain("loadLearningV2SessionClientV3");
+    // R09 (15.10): ленивый загрузчик клиента занятий переехал в общий модуль запуска (вкладка и Главная — один путь)
+    expect(readFileSync(join(__dirname, "..", "app", "learning_v2_session_launch_v1.ts"), "utf8")).toContain("loadLearningV2SessionClientV3");
+    expect(lessons).toContain("prepareLearningV2SessionRunV1(");
     expect(lessons).toContain("loadLearningV2AudioPackV1");
     // Проверка «есть ли озвучка» идёт по лёгкому срезу, а не по 504 КБ.
     expect(lessons).toContain("learningV2HasPublishedAudioV1");

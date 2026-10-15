@@ -18,7 +18,6 @@ import { Platform,
   TextInput,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Crypto from "expo-crypto";
 // зачем: FadeInDown и withDelay остались без потребителей после снятия входного
 // каскада глав и «наливания» кольца прогресса — вкладка открывается статично.
 import Reanimated, {
@@ -215,36 +214,9 @@ import { learningV2HasPublishedAudioV1 } from "../learning_v2_published_audio_se
 // Ленивые загрузчики тяжёлых модулей Learning V2.
 // Промис кэшируется: модуль парсится ОДИН раз, при первом запуске занятия,
 // а не при каждом открытии раздела. Суммарно снимает ~2,2 МБ с входа.
-type LearningV2SessionClientV3Module =
-  typeof import("../learning_v2_course_released_session_client_v3");
-let learningV2SessionClientV3Promise: Promise<LearningV2SessionClientV3Module> | null =
-  null;
-// зачем: тайминг трассировки нужен синхронно — handle физически не может
-// существовать до загрузки модуля, поэтому держим ссылку на уже загруженный
-// модуль и не заворачиваем разметку трассы в лишний then.
-let learningV2SessionClientV3Loaded: LearningV2SessionClientV3Module | null = null;
-function loadLearningV2SessionClientV3() {
-  if (!learningV2SessionClientV3Promise) {
-    learningV2SessionClientV3Promise = import(
-      "../learning_v2_course_released_session_client_v3"
-    )
-      .then((mod) => {
-        learningV2SessionClientV3Loaded = mod;
-        return mod;
-      })
-      .catch((error) => {
-        // Немой catch запрещён: без этого модуля занятие не запустится.
-        learningV2SessionClientV3Promise = null;
-        DebugLogger.error(
-          "learning_v2:session_client_lazy_import",
-          error instanceof Error ? error : new Error(String(error)),
-          "warning",
-        );
-        throw error;
-      });
-  }
-  return learningV2SessionClientV3Promise;
-}
+// зачем (R09, координатор 15.10): клиент занятий V3, подготовка, передача «готово» и маршрут занятия живут в
+// learning_v2_session_launch_v1 — тем же путём запускает занятие карточка «Продолжить» на Главной (в релизе без передачи
+// плеер уходит на карту). Модуль клиента по-прежнему ленивый и кэшируется там.
 
 let learningV2AudioPackPromise:
   | Promise<typeof import("../learning_v2_lesson_audio_pack_v1")>
@@ -275,7 +247,8 @@ import { learningV2LessonIsAccessible } from "../learning_v2_access_policy";
 import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } from "../learning_v2_session_availability_v1";
 import { LEARNING_V2_HIDDEN, logLearningV2Hidden } from "../learning_v2_visibility_switch";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
-import { recordHomeContinueV2, refreshHomeContinueV2Progress } from "../home_continue_mark";
+import { recordHomeContinueV2 } from "../home_continue_mark";
+import { learningV2SessionHrefV1, peekLearningV2SessionClientV3, prepareLearningV2SessionRunV1, stageLearningV2ReadyHandoffV1 } from "../learning_v2_session_launch_v1";
 import {
   factoryNativeLearningV2AvailabilityV1,
   factoryNativeLearningV2NewWordCountV1,
@@ -1455,18 +1428,6 @@ function startLessonsPage(initial: "lessons" | "v2"): "lessons" | "dialogs" | "v
   return start;
 }
 
-/**
- * Потолок ожидания подготовки занятия.
- *
- * зачем: владелец 21.09 — в логе прогрева занятия 2 не было НИ `ready`, НИ
- * ошибки: сетевой вызов подготовки висел без срока, и промис оставался в кэше
- * навсегда. Мёртвая запись в кэше хуже отказа — повторная попытка подхватывала
- * её и ждала вместе с ней.
- *
- * 12 секунд: это подготовка настоящего занятия (материал урока), она законно
- * дольше фоновой мелочи, но человек не должен ждать дольше при живой сети.
- */
-const LEARNING_V2_PREPARE_TIMEOUT_MS = 12_000;
 
 const LEARNING_V2_SESSION_STATE_ICON: Readonly<
   Record<
@@ -3211,45 +3172,20 @@ export default function LessonsTab({
       const key = learningV2PreparationKeyFor(lessonOrdinal, sessionOrdinal);
       const cached = learningV2PreparedLaunchesRef.current.get(key);
       if (cached) return cached;
-      const sessionRunId = Crypto.randomUUID();
-      const operation = learningV2DevUnlockAllActive && studyTarget === "en"
-        ? Promise.resolve({ key, sessionRunId, handle: null })
-        : loadLearningV2SessionClientV3()
-            .then((mod) =>
-              mod.prepareCurrentLearningV2CourseSessionV3({
-                locator: {
-                  environment: learningV2Catalog?.environment ?? "production",
-                  targetLanguage: studyTarget,
-                  studyTarget,
-                  learnerSourceLocale: lang,
-                  seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
-                  lessonOrdinal,
-                  sessionOrdinal,
-                },
-                sessionRunId,
-              }),
-            )
-            .then((handle) => ({ key, sessionRunId, handle }));
-      // зачем: владелец 21.09 — в логе прогрева для занятия 2 НЕ приходило ни
-      // `ready`, ни ошибки: промис просто висел. Причина та же, что у тёмного
-      // экрана Главной — сетевой вызов (prepareCurrentLearningV2CourseSessionV3)
-      // без таймаута. Подставить пустой результат нельзя: занятие без данных не
-      // откроется, поэтому по сроку ОТКЛОНЯЕМ — тогда кэш чистится ниже и
-      // следующая попытка начинается заново, а не ждёт мёртвый промис вечно.
-      const courseSessionId = learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal);
-      const timed = new Promise<LearningV2PreparedSessionLaunch>((_, reject) => {
-        const timer = setTimeout(() => {
-          reject(new Error(
-            `learning_v2_session_prepare_timeout: ${courseSessionId} ${LEARNING_V2_PREPARE_TIMEOUT_MS}ms`,
-          ));
-        }, LEARNING_V2_PREPARE_TIMEOUT_MS);
-        void operation.then(
-          () => clearTimeout(timer),
-          () => clearTimeout(timer),
-        );
-      });
+      // зачем (R09): подготовка (клиент V3 + срок 12 с) — общая с Главной; здесь только кэш карты по ключу занятия
+      const operation = prepareLearningV2SessionRunV1(
+        {
+          environment: learningV2Catalog?.environment ?? "production",
+          seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+          studyTarget,
+          learnerSourceLocale: lang,
+          lessonOrdinal,
+          sessionOrdinal,
+        },
+        { devUnlockedDrafts: learningV2DevUnlockAllActive && studyTarget === "en" },
+      ).then((ready) => ({ key, ...ready }));
       let guarded: Promise<LearningV2PreparedSessionLaunch>;
-      guarded = Promise.race([operation, timed]).catch((error) => {
+      guarded = operation.catch((error) => {
         if (learningV2PreparedLaunchesRef.current.get(key) === guarded) {
           learningV2PreparedLaunchesRef.current.delete(key);
         }
@@ -3291,7 +3227,7 @@ export default function LessonsTab({
       }
       // зачем: handle выдаёт сам ленивый модуль — значит к этому моменту он уже
       // загружен, и тайминг берётся синхронно, без лишнего then вокруг трассы.
-      const sessionClient = learningV2SessionClientV3Loaded;
+      const sessionClient = peekLearningV2SessionClientV3();
       if (!sessionClient) {
         // Немой ранний выход запрещён: трасса без тайминга — это дыра в
         // диагностике запуска, владелец должен видеть причину в логе.
@@ -3627,11 +3563,6 @@ export default function LessonsTab({
           )
         );
       });
-      // зачем (P23): вкладка сверила занятия урока — карточка «Продолжить» на Главной показывает свежее «пройдено / выпущено» (метка того же урока)
-      {
-        const released = sessions.filter((session) => studyTarget !== "en" || learningV2FactoryNativeSessionIds.has(learningV2CourseSessionIdV1(lessonOrdinal, session.sessionOrdinal)));
-        refreshHomeContinueV2Progress(studyTarget, lessonOrdinal, released.filter((session) => session.state === "completed").length, released.length);
-      }
       const current = available.find((session) => session.state === "current");
       if (current) {
         // Немой catch запрещён: отказ обязан назвать причину.
@@ -3747,17 +3678,14 @@ export default function LessonsTab({
     ],
   );
   // зачем (Ревизор P23, координатор 15.10): карточка «Продолжить» на Главной знала только старые уроки — запуск занятия V2 пишет
-  // метку «последнее V2» (урок, занятие, пройдено/выпущено в уроке, маршрут без одноразовых sessionRunId/skipIntro, время). Только локально.
+  // метку «последнее V2» (урок, занятие, маршрут без одноразовых sessionRunId/skipIntro, время). Только локально; «пройдено / выпущено»
+  // Главная считает сама при показе (координатор 15.10, поправка 1).
   const rememberHomeContinueV2 = useCallback((selected: Readonly<{ lessonOrdinal: number; sessionOrdinal: number; state: LearningV2AccordionSessionStateV1 }>, sessionId: string) => {
     {
-      const lessonPrefix = `${learningV2CourseSessionIdV1(selected.lessonOrdinal, 1).split(":session:")[0]}:`;
-      const releasedInLesson = [...learningV2FactoryNativeSessionIds].filter((id) => id.startsWith(lessonPrefix));
       recordHomeContinueV2(studyTarget, {
         lessonOrdinal: selected.lessonOrdinal,
         sessionOrdinal: selected.sessionOrdinal,
         sessionId,
-        done: learningV2Progress.completedSessionIds.filter((id) => releasedInLesson.includes(id)).length,
-        total: releasedInLesson.length,
         route: {
           id: sessionId,
           runtimeMode: "direct_v1",
@@ -3771,7 +3699,7 @@ export default function LessonsTab({
         atMs: Date.now(),
       });
     }
-  }, [learningV2Catalog?.environment, learningV2Catalog?.seasonId, learningV2FactoryNativeSessionIds, learningV2Progress.completedSessionIds, studyTarget]);
+  }, [learningV2Catalog?.environment, learningV2Catalog?.seasonId, studyTarget]);
   const launchSelectedLearningV2Session = useCallback((skipIntro: boolean) => {
     const selected = selectedLearningV2Session;
     if (!selected || !selectedLearningV2PreparationKey) return;
@@ -3805,26 +3733,8 @@ export default function LessonsTab({
         learningV2PreparedLaunchesRef.current.delete(
           selectedLearningV2PreparationKey,
         );
-        if (ready.handle) {
-          // зачем: handle выдал сам ленивый модуль — он уже загружен, поэтому
-          // передача идёт синхронно и не задерживает переход на экран занятия.
-          const sessionClient = learningV2SessionClientV3Loaded;
-          if (sessionClient) {
-            sessionClient.stageLearningV2CourseSessionReadyHandoffV3(ready.handle);
-          } else {
-            // Немой отказ запрещён: без передачи экран занятия уйдёт в сеть за
-            // тем, что уже готово локально.
-            const readyHandle = ready.handle;
-            DebugLogger.error(
-              "learning_v2:ready_handoff_module_missing",
-              new Error("handle есть, но модуль клиента сессии не загружен"),
-              "warning",
-            );
-            void loadLearningV2SessionClientV3().then((mod) =>
-              mod.stageLearningV2CourseSessionReadyHandoffV3(readyHandle),
-            );
-          }
-        }
+        // зачем: handle выдал сам ленивый модуль — передача синхронная и не задерживает переход (общая с Главной, R09)
+        stageLearningV2ReadyHandoffV1(ready.handle);
         setSelectedLearningV2Session(null);
         rememberHomeContinueV2(selected, sessionId); // зачем (P23): метка «последнее V2» для карточки «Продолжить» на Главной
         requestAnimationFrame(() => {
@@ -3834,28 +3744,17 @@ export default function LessonsTab({
               JSON.stringify({ sessionId, sessionRunId: ready.sessionRunId, from: "lessons.tsx:modalLaunch" }),
             );
           }
-          router.push({
-            pathname: "/learning-v2/session/[id]",
-            params: {
-              id: sessionId,
-              runtimeMode: "direct_v1",
-              previewMode:
-                learningV2DevUnlockAllActive && studyTarget === "en"
-                  ? "dev_unlocked_drafts_v1"
-                  : undefined,
-              previewOrigin: "course",
-              lessonOrdinal: String(selected.lessonOrdinal),
-              sessionOrdinal: String(selected.sessionOrdinal),
-              releaseEnvironment:
-                learningV2Catalog?.environment ?? "production",
-              releaseSeasonId:
-                learningV2Catalog?.seasonId ?? "learning-v2",
-              runKind:
-                selected.state === "completed" ? "repeat" : "initial",
-              sessionRunId: ready.sessionRunId,
-              skipIntro: skipIntro ? "1" : undefined,
-            },
-          } as never);
+          router.push(learningV2SessionHrefV1({
+            sessionId,
+            lessonOrdinal: selected.lessonOrdinal,
+            sessionOrdinal: selected.sessionOrdinal,
+            environment: learningV2Catalog?.environment ?? "production",
+            seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+            repeat: selected.state === "completed",
+            sessionRunId: ready.sessionRunId,
+            skipIntro,
+            devUnlockedDrafts: learningV2DevUnlockAllActive && studyTarget === "en",
+          }) as never);
         });
       })
       .catch((error) => {

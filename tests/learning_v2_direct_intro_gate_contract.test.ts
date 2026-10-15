@@ -12,8 +12,12 @@ const player = read("app/learning_v2_direct_session_player_v1.tsx");
 const client = read("app/learning_v2_course_released_session_client_v3.ts");
 const copy = read("app/learning_v2_session_copy.ts");
 
-assert.match(lessons, /prepareCurrentLearningV2CourseSessionV3/);
-assert.match(lessons, /stageLearningV2CourseSessionReadyHandoffV3/);
+// R09 (15.10): подготовка и передача «готово» — в общем модуле запуска; вкладка «Уроки» (и Главная) зовут его
+const launch = read("app/learning_v2_session_launch_v1.ts");
+assert.match(launch, /prepareCurrentLearningV2CourseSessionV3/);
+assert.match(launch, /stageLearningV2CourseSessionReadyHandoffV3/);
+assert.match(lessons, /prepareLearningV2SessionRunV1\(/);
+assert.match(lessons, /stageLearningV2ReadyHandoffV1\(ready\.handle\)/);
 assert.match(
   lessons,
   /Promise\.all\(\[prepared, modalExit\]\)[\s\S]{0,1800}sessionRunId:\s*ready\.sessionRunId/,

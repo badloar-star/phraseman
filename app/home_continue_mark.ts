@@ -4,7 +4,8 @@
 // зачем (Ревизор P23, координатор 15.10, задача до сборки): карточка знала только старые уроки (ключ lastOpenedLessonKey пишут lesson1 и
 // lesson_menu). Кто занимался только курсом V2 — карточки не было; кто ушёл из старых уроков в V2 — карточка навсегда показывала старый
 // «Урок N» и вела в старое меню. Теперь:
-//   • запуск занятия V2 (вкладка «Уроки») пишет метку «последнее V2»: урок, занятие, «пройдено / выпущено» в уроке, параметры маршрута, время;
+//   • запуск занятия V2 (вкладка «Уроки») пишет метку «последнее V2»: урок, занятие, параметры маршрута, время (координатор 15.10,
+//     поправка 1: «пройдено / выпущено» в метке НЕ хранится — Главная считает его при показе, learning_v2_home_continue_route);
 //   • старые уроки пишут время рядом со своим lastOpenedLessonKey;
 //   • Главная выбирает свежее по времени (pickHomeContinue) и пишет решение в [HOME-CONTINUE].
 // Только локально: AsyncStorage + память процесса для первого кадра, ни одного чтения/записи Firestore. Смена владельца аккаунта
@@ -23,10 +24,6 @@ export type HomeContinueV2Mark = Readonly<{
   lessonOrdinal: number;
   sessionOrdinal: number;
   sessionId: string;
-  /** Пройдено занятий в уроке (на момент запуска / последней сверки вкладки «Уроки»). */
-  done: number;
-  /** Выпущено занятий в уроке. */
-  total: number;
   /** Параметры маршрута /learning-v2/session/[id] — тап на Главной открывает то же занятие. */
   route: Readonly<Record<string, string>>;
   atMs: number;
@@ -56,9 +53,10 @@ function parseV2(raw: string | null): HomeContinueV2Mark | null {
   try {
     const v = JSON.parse(raw) as Partial<HomeContinueV2Mark>;
     const ok = Number.isInteger(v.lessonOrdinal) && Number.isInteger(v.sessionOrdinal) && typeof v.sessionId === 'string'
-      && Number.isFinite(v.done) && Number.isFinite(v.total) && Number.isFinite(v.atMs) && v.route && typeof v.route === 'object';
+      && Number.isFinite(v.atMs) && v.route && typeof v.route === 'object';
     if (!ok) { console.warn(`${LOG} mark: метка V2 битая — игнорируем`); return null; }
-    return v as HomeContinueV2Mark;
+    // зачем: метки первой версии P23 несли done/total — берём только нужные поля
+    return { lessonOrdinal: v.lessonOrdinal!, sessionOrdinal: v.sessionOrdinal!, sessionId: v.sessionId!, route: v.route!, atMs: v.atMs! };
   } catch (error) {
     console.warn(`${LOG} mark: метка V2 не читается (${error instanceof Error ? error.message : String(error)})`);
     return null;
@@ -96,17 +94,8 @@ function write(target: RuntimeStudyTarget, next: HomeContinueMarks, persist: () 
 /** Запуск/продолжение занятия V2. */
 export function recordHomeContinueV2(target: RuntimeStudyTarget, mark: HomeContinueV2Mark): void {
   const prev = memory.get(tk(target)) ?? { v2: null, legacyAtMs: null };
-  console.log(`${LOG} mark: V2 урок ${mark.lessonOrdinal} занятие ${mark.sessionOrdinal} (${mark.done}/${mark.total}) target=${target}`);
+  console.log(`${LOG} mark: V2 урок ${mark.lessonOrdinal} занятие ${mark.sessionOrdinal} target=${target}`);
   write(target, { ...prev, v2: mark }, () => AsyncStorage.setItem(v2Key(target), JSON.stringify(mark)), 'метка V2');
-}
-
-/** Вкладка «Уроки» сверила прогресс курса — обновить «пройдено / выпущено» в метке того же урока (время не трогаем). */
-export function refreshHomeContinueV2Progress(target: RuntimeStudyTarget, lessonOrdinal: number, done: number, total: number): void {
-  const prev = memory.get(tk(target));
-  const v2 = prev?.v2;
-  if (!prev || !v2 || v2.lessonOrdinal !== lessonOrdinal || (v2.done === done && v2.total === total)) return;
-  const next = { ...v2, done, total };
-  write(target, { ...prev, v2: next }, () => AsyncStorage.setItem(v2Key(target), JSON.stringify(next)), 'прогресс V2');
 }
 
 /** Открыт старый урок — время рядом с lastOpenedLessonKey. */
@@ -134,7 +123,7 @@ export function pickHomeContinue(input: HomeContinueInput): HomeContinueChoice {
 /** Журнал решения: что выбрано и почему, с временем обеих меток. */
 export function logHomeContinueChoice(choice: HomeContinueChoice, input: HomeContinueInput, target: string): void {
   const v2 = input.v2;
-  console.log(`${LOG} выбор=${choice.kind} причина=${choice.reason === 'none' ? 'нет ни старого урока, ни занятия V2' : choice.reason === 'legacy_only' ? 'только старый урок' : choice.reason === 'v2_only' ? 'только V2' : choice.reason === 'v2_newer' ? 'V2 свежее' : 'старый урок свежее'} время: старый=${input.hasLegacyLesson ? (input.legacyAtMs ?? 'нет метки') : 'нет урока'} V2=${v2 ? `${v2.atMs} (урок ${v2.lessonOrdinal}, занятие ${v2.sessionOrdinal}, ${v2.done}/${v2.total})` : 'нет'} target=${target}`); // guard-ok: журнал решения карточки
+  console.log(`${LOG} выбор=${choice.kind} причина=${choice.reason === 'none' ? 'нет ни старого урока, ни занятия V2' : choice.reason === 'legacy_only' ? 'только старый урок' : choice.reason === 'v2_only' ? 'только V2' : choice.reason === 'v2_newer' ? 'V2 свежее' : 'старый урок свежее'} время: старый=${input.hasLegacyLesson ? (input.legacyAtMs ?? 'нет метки') : 'нет урока'} V2=${v2 ? `${v2.atMs} (урок ${v2.lessonOrdinal}, занятие ${v2.sessionOrdinal})` : 'нет'} target=${target}`); // guard-ok: журнал решения карточки
 }
 
 /**

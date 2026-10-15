@@ -107,3 +107,17 @@ describe('отметка «документа нет» — только при �
     expect(failing.communityCardsDocConfirmedMissingSince('video_BBBBBBBBBBB', t1)).toBe(false);
   });
 });
+
+describe('подпись автора набора ролика — название канала (🟡 Ревизора 15.10)', () => {
+  it('buildVideoPhraseSetPacks кладёт название канала в authorName; нет названия — пусто', () => {
+    const { buildVideoPhraseSetPacks } = require('../app/video_phrase_set_packs') as typeof import('../app/video_phrase_set_packs');
+    const sets = [{ videoId: 'OHxgJuazJO0', phraseCount: 5, publishedAtMs: 1 }, { videoId: 'AAAAAAAAAAA', phraseCount: 3, publishedAtMs: 2 }];
+    const catalog = new Map([
+      ['OHxgJuazJO0', { title: 'T', channelId: 'c1', packLanguage: 'en' as const, channelName: 'Professor Lingman' }],
+      ['AAAAAAAAAAA', { title: 'U', channelId: 'c2', packLanguage: 'en' as const }],
+    ]);
+    const packs = buildVideoPhraseSetPacks(sets, catalog);
+    expect(packs.find((p) => p.videoId === 'OHxgJuazJO0')?.authorName).toBe('Professor Lingman');
+    expect(packs.find((p) => p.videoId === 'AAAAAAAAAAA')?.authorName).toBe('');
+  });
+});

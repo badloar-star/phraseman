@@ -307,6 +307,8 @@ export function useCommunityAuthor(pack: PackAuthorRef | null | undefined, lang:
   }, [sid, seed]);
 
   if (official) return { name: official, coinRank: null };
+  // зачем (Ревизор 15.10): у набора ролика без названия канала подпись пустая, а не «Автор сообщества» — автора-человека у него нет
+  if (pack?.videoId && !sid && !seed) return { name: '', coinRank: null };
   return { name: communityAuthorLabel(author.nick, lang), coinRank: author.coinRank };
 }
 

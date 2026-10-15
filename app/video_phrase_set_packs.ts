@@ -32,7 +32,8 @@ export const VIDEO_PHRASE_SET_PACK_PREFIX = 'video:';
 type CatalogRow = [string, string, string, PackLanguage, number];
 // зачем (смета Firebase 13.10, п. 3): версия каталога и его копия лежат рядом с наборами — пока версия не сменилась, каналы не перечитываются.
 // Поля необязательные: копия без них (до 13.10) даёт один полный проход, ключ кэша не менялся.
-type CachedVideoPacks = { savedAtMs: number; packs: FlashcardMarketPack[]; catalogVersion?: string; catalog?: CatalogRow[] };
+// channelNames: id канала → название из манифеста (подпись автора набора; зачем — 🟡 Ревизора 15.10: вместо «Автор сообщества» — название канала, без лишних чтений: манифест и так читается)
+type CachedVideoPacks = { savedAtMs: number; packs: FlashcardMarketPack[]; catalogVersion?: string; catalog?: CatalogRow[]; channelNames?: Record<string, string> };
 
 let memory: CachedVideoPacks | null = null;
 let inFlight: Promise<FlashcardMarketPack[]> | null = null;
@@ -57,7 +58,7 @@ export function packLanguageFromTags(tags: readonly string[]): PackLanguage {
 }
 
 export type VideoPhraseSetRow = Readonly<{ videoId: string; phraseCount: number; publishedAtMs: number }>;
-export type VideoCatalogInfo = Readonly<{ title: string; channelId: string; packLanguage: PackLanguage; durationSec?: number }>;
+export type VideoCatalogInfo = Readonly<{ title: string; channelId: string; packLanguage: PackLanguage; durationSec?: number; channelName?: string }>;
 
 /**
  * Чистая сборка строк: только ролики с опубликованными фразами. Ролик без
@@ -74,6 +75,7 @@ export function buildVideoPhraseSetPacks(
     .map((set) => {
       const info = catalog.get(set.videoId);
       const title = info?.title?.trim() || set.videoId;
+      const channelName = info?.channelName?.trim() ?? '';
       return {
         id: `${VIDEO_PHRASE_SET_PACK_PREFIX}${set.videoId}`,
         codeName: title,
@@ -84,7 +86,7 @@ export function buildVideoPhraseSetPacks(
         cardCount: set.phraseCount,
         priceShards: 0,
         salesCount: 0,
-        authorName: '',
+        authorName: channelName, // пусто, если названия канала нет (подпись тогда не рисуется)
         isOfficial: true,
         packLanguage: info?.packLanguage ?? 'en',
         listingStatus: 'published',
@@ -145,17 +147,17 @@ async function readDiskCache(): Promise<CachedVideoPacks | null> {
   }
 }
 
-function catalogFromRows(rows: readonly CatalogRow[]): Map<string, VideoCatalogInfo> {
+function catalogFromRows(rows: readonly CatalogRow[], channelNames: Readonly<Record<string, string>> = {}): Map<string, VideoCatalogInfo> {
   const map = new Map<string, VideoCatalogInfo>();
   for (const [id, title, channelId, packLanguage, durationSec] of rows) {
-    map.set(id, { title, channelId, packLanguage, ...(durationSec > 0 ? { durationSec } : {}) });
+    map.set(id, { title, channelId, packLanguage, ...(durationSec > 0 ? { durationSec } : {}), ...(channelNames[channelId] ? { channelName: channelNames[channelId] } : {}) });
   }
   return map;
 }
 
 // зачем (проверка типов 13.10, TS18048): fetchFromNetwork ВСЕГДА кладёт catalog (единственный return — строки копии или свежие, при
 // пустом каталоге — []), поэтому поле обязательное; падения «catalog undefined» при пустом каталоге не было — тип был шире правды.
-type NetworkResult = { packs: FlashcardMarketPack[]; catalogVersion?: string; catalog: CatalogRow[] };
+type NetworkResult = { packs: FlashcardMarketPack[]; catalogVersion?: string; catalog: CatalogRow[]; channelNames: Record<string, string> };
 
 async function fetchFromNetwork(cached: CachedVideoPacks | null): Promise<NetworkResult> {
   const startedAt = Date.now();
@@ -181,8 +183,10 @@ async function fetchFromNetwork(cached: CachedVideoPacks | null): Promise<Networ
   let catalogVersion: string | undefined = cached?.catalogVersion;
   let catalogSource: 'cache_same_version' | 'network' | 'cache_fallback' = 'cache_fallback';
   let catalogChannelErrors = 0;
+  let channelNames: Record<string, string> = { ...(cached?.channelNames ?? {}) };
   try {
     const manifest = await fetchYoutubeCatalogManifest();
+    channelNames = Object.fromEntries(manifest.channels.filter((channel) => channel.displayName?.trim()).map((channel) => [channel.id, channel.displayName.trim()]));
     if (cached?.catalogVersion === manifest.activeVersion && cached.catalog) {
       catalogSource = 'cache_same_version';
       catalogVersion = manifest.activeVersion;
@@ -216,10 +220,10 @@ async function fetchFromNetwork(cached: CachedVideoPacks | null): Promise<Networ
     DebugLogger.warn(LOG, `catalog: манифест/корень не прочитан — беру копию (строк ${catalogRows.length}), версию не обновляю`);
   }
 
-  const catalog = catalogFromRows(catalogRows);
+  const catalog = catalogFromRows(catalogRows, channelNames);
   const packs = buildVideoPhraseSetPacks(sets, catalog);
   DebugLogger.info(LOG, `source=video_phrase_sets сеть: роликов ${sets.length}, каталог=${catalogSource} (строк ${catalogRows.length}, ошибок каналов ${catalogChannelErrors}), с каталогом ${sets.filter((s) => catalog.has(s.videoId)).length}, с длительностью ${packs.filter((p) => (p.videoDurationSec ?? 0) > 0).length}, наборов ${packs.length}, ${Date.now() - startedAt} мс`);
-  return { packs, ...(catalogVersion ? { catalogVersion } : {}), catalog: catalogRows };
+  return { packs, ...(catalogVersion ? { catalogVersion } : {}), catalog: catalogRows, channelNames };
 }
 
 /**
@@ -239,12 +243,12 @@ export async function loadVideoPhraseSetPacks(options?: { forceRemote?: boolean 
   if (inFlight) return inFlight;
   inFlight = (async () => {
     try {
-      const { packs, catalogVersion, catalog } = await fetchFromNetwork(memory);
+      const { packs, catalogVersion, catalog, channelNames } = await fetchFromNetwork(memory);
       if (packs.length === 0 && memory && memory.packs.length > 0) {
         DebugLogger.warn(LOG, `сеть вернула 0 — оставляю кэш (${memory.packs.length})`);
         return memory.packs;
       }
-      memory = { savedAtMs: Date.now(), packs, ...(catalogVersion ? { catalogVersion } : {}), ...(catalog.length > 0 ? { catalog } : {}) };
+      memory = { savedAtMs: Date.now(), packs, ...(catalogVersion ? { catalogVersion } : {}), ...(catalog.length > 0 ? { catalog } : {}), ...(Object.keys(channelNames).length > 0 ? { channelNames } : {}) };
       await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(memory)).catch((error: unknown) => {
         DebugLogger.error(`${LOG}:writeDiskCache`, error, 'warning');
       });

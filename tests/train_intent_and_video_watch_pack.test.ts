@@ -69,3 +69,12 @@ describe('R60 (Макеты c1_r70r60): оба пути открывают тр�
     expect(swipe).toContain('phraseVideoIdsForCards.has(videoId)');
   });
 });
+
+describe('защёлка «окно режимов ИЛИ прямой старт» (Ревизор 935f6a931)', () => {
+  it('открылось окно → fallback не стартует; fallback стартовал → окно не открывается поверх сессии', () => {
+    const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
+    expect(hub).toContain('[TRAIN-INTENT] sheet_suppressed_after_fallback');
+    expect(hub).toContain('if (visible || attempt.sheetOpened || !deck) {');
+    expect(hub).toContain('attempt.fallbackAtMs = Date.now();');
+  });
+});

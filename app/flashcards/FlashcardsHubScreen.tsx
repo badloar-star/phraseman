@@ -648,7 +648,17 @@ export default function FlashcardsHubScreen() {
   }, [router]);
 
   const hubParams = useLocalSearchParams<{ train?: string; deck?: string; cnt?: string }>();
+  // зачем (Ревизор 935f6a931 🟡): защёлка «окно режимов ИЛИ прямой старт» — не оба. Окно открылось → fallback не стартует; fallback стартовал → окно позже не открываем поверх сессии.
+  const trainAttemptRef = useRef<{ sheetOpened: boolean; fallbackAtMs: number | null } | null>(null);
+  useEffect(() => {
+    if (modeSheetVisible && trainAttemptRef.current && trainAttemptRef.current.fallbackAtMs === null) trainAttemptRef.current.sheetOpened = true;
+  }, [modeSheetVisible]);
   const onTrainPress = () => {
+        const attemptState = trainAttemptRef.current;
+        if (attemptState && attemptState.fallbackAtMs !== null && Date.now() - attemptState.fallbackAtMs < 10_000) {
+          console.log(`[TRAIN-INTENT] sheet_suppressed_after_fallback sinceFallbackMs=${Date.now() - attemptState.fallbackAtMs}`); // guard-ok: окно не открываем поверх стартовавшей сессии
+          return;
+        }
         void hapticTap();
         console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
           quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit,
@@ -707,6 +717,8 @@ export default function FlashcardsHubScreen() {
   openTrainAfterTransitionRef.current = (source: string) => {
     let cancelled = false;
     const t0 = Date.now();
+    const attempt = { sheetOpened: false, fallbackAtMs: null as number | null };
+    trainAttemptRef.current = attempt;
     console.log(`[TRAIN-INTENT] hub:schedule source=${source} deckPending=${String(pendingDeckRef.current?.deckId ?? 'none')}`); // guard-ok: постановка открытия
     const handle = InteractionManager.runAfterInteractions(() => {
       if (cancelled) { console.log(`[TRAIN-INTENT] hub: отменено до открытия (экран ушёл) source=${source}`); return; } // guard-ok: ранний выход
@@ -717,12 +729,16 @@ export default function FlashcardsHubScreen() {
         const visible = modeSheetVisibleRef.current;
         const deck = pendingDeckRef.current;
         console.log(`[TRAIN-INTENT] hub:sheet-state через 900мс visible=${String(visible)} deck=${String(deck?.deckId ?? 'none')}`); // guard-ok: итог открытия окна
-        if (visible || !deck) return;
+        if (visible || attempt.sheetOpened || !deck) {
+          console.log(`[TRAIN-INTENT] hub:fallback не нужен visible=${String(visible)} sheetOpenedDuringAttempt=${String(attempt.sheetOpened)} deck=${String(deck?.deckId ?? 'none')}`); // guard-ok: окно открылось — прямой старт не нужен
+          return;
+        }
         if (trainGateRef.current.trainingLocked || !trainGateRef.current.trainingEntryReady) {
           console.log('[TRAIN-INTENT] hub:fallback пропущен — доступ ещё не подтверждён или лимит исчерпан'); // guard-ok: причина без прямого старта
           return;
         }
         console.log(`[TRAIN-INTENT] hub:fallback direct deck=${deck.deckId} mode=truefalse — окно не появилось`); // guard-ok: прямой старт
+        attempt.fallbackAtMs = Date.now();
         pendingModeRef.current = 'truefalse';
         finishDismissalRef.current();
       }, 900);

@@ -374,6 +374,23 @@ function SessionContent() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [serverSessionState]);
 
+  // зачем (Ревизор 15.10, 🟡 к e4719fc1e): пустой разговор — ни одной реплики ученика — человек ничего не получил, энергию возвращаем.
+  // Энергия закрепляется только первым удачным ходом ученика, значит при нуле реплик она ещё не закреплена. Возврат идёт через тот же
+  // расчёт попытки (ключ — energyOp): ровно один раз, повтор и гонка с первым ходом — пропуск; журнал энергии по тому же id не вернёт дважды.
+  // Срабатывает и на итоге с нулём реплик, и при уходе с экрана без реплик.
+  const refundEmptyDialogue = (where: 'summary' | 'leave') => {
+    const learnerTurnsNow = learnerTurnsRef.current;
+    if (learnerTurnsNow > 0) {
+      console.log('[DIALOG-ENERGY-REFUND] skip: learner spoke', JSON.stringify({ where, learnerTurns: learnerTurnsNow, scenarioId })); // guard-ok: ветвление называет причину
+      return;
+    }
+    console.warn('[DIALOG-ENERGY-REFUND] zero learner turns → refund', JSON.stringify({ where, scenarioId, energy: energySettlerRef.current?.peek() ?? null })); // guard-ok: причина возврата
+    settleEnergy('refund', where === 'summary' ? 'dialogue_zero_learner_turns' : 'dialogue_left_without_turns');
+  };
+  const refundEmptyDialogueRef = useRef(refundEmptyDialogue);
+  refundEmptyDialogueRef.current = refundEmptyDialogue;
+  useEffect(() => () => { refundEmptyDialogueRef.current('leave'); }, []);
+
   // зачем (C19): «слишком много сообщений» — без «Повторить», пока не остынет; потом повтор можно.
   useEffect(() => {
     if (!rateLimitCooling) return undefined;
@@ -582,6 +599,7 @@ function SessionContent() {
     }
     const learnerMessages = messages.filter((message) => message.author === 'learner');
     const learnerTurns = learnerMessages.length;
+    if (learnerTurns === 0) refundEmptyDialogue('summary');
     if (typeof __DEV__ !== 'undefined' && __DEV__) {
       // зачем (dialogs-038 / dialogs-041, «сперва логи»): какое условие завершило диалог и что уходит в итог и серию.
       const objectives = model?.objectives ?? [];

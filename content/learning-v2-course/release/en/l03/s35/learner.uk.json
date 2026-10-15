@@ -7,187 +7,307 @@
       "interactionId": "en:lesson-03:session-35:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте та виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-35:i01:r1",
-          "text": "photo"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег захворів. Повідомте «Він хворий»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i01:audio"
-      ],
-      "accessibilityLabel": "Послухайте та виберіть слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег захворів. Повідомте «Він хворий»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i01:audio",
-          "transcript": "photo"
+        "family": "phrase_builder",
+        "targetPhrase": "He is ill.",
+        "localizedMeaning": {
+          "ru": "Олег заболел. Сообщите «Он болен»",
+          "uk": "Олег захворів. Повідомте «Він хворий»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "He",
+          "is",
+          "ill"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-35:i01:r1",
-            "targetText": "photo",
-            "meaningByLocale": null
+            "responseId": "en:lesson-03:session-35:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег захворів. Повідомте «Він хворий»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is ill.`",
+              "uk": "тут потрібно `is` — `He is ill.`"
+            }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "photo",
-          "definitionByLocale": {
-            "ru": "«фотография». Снимок, сделанный камерой или телефоном.",
-            "uk": "«фотографія». Знімок, зроблений камерою або телефоном."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i03",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i03:audio",
-          "transcript": "album"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "album",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i05",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i05:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i05:audio",
-          "transcript": "frame"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "frame",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-35:i02",
-      "ordinal": 7,
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-35:i02:r1",
+          "text": "photos"
+        },
+        {
+          "responseId": "en:lesson-03:session-35:i02:r2",
+          "text": "phones"
+        },
+        {
+          "responseId": "en:lesson-03:session-35:i02:r3",
+          "text": "parks"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-35:i02:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Послухайте й виберіть слово",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-35:i02:audio",
-          "transcript": "photo"
+          "transcript": "photos"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "photo",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-35:i02:r1",
+            "targetText": "photos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i02:r2",
+            "targetText": "phones",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i02:r3",
+            "targetText": "parks",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `photos`, а в этом варианте — `phones`.",
+              "uk": "У записі перше слово — `photos`, а в цьому варіанті — `phones`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `photos`, а в этом варианте — `parks`.",
+              "uk": "У записі перше слово — `photos`, а в цьому варіанті — `parks`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть кілька фотографій одним англійським словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-35:i03:r1",
+          "text": "photos"
+        },
+        {
+          "responseId": "en:lesson-03:session-35:i03:r2",
+          "text": "photo"
+        },
+        {
+          "responseId": "en:lesson-03:session-35:i03:r3",
+          "text": "photoes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть кілька фотографій одним англійським словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите несколько фотографий одним английским словом",
+          "uk": "Назвіть кілька фотографій одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i03:r1",
+            "text": "photos"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i03:r2",
+            "text": "photo"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i03:r3",
+            "text": "photoes"
+          }
+        ],
+        "testedDimension": "Назвіть кілька фотографій одним англійським словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть кілька фотографій одним англійським словом",
+            "feedbackByLocale": {
+              "ru": "Несколько фотографий — `photos`.",
+              "uk": "Кілька фотографій — `photos`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть кілька фотографій одним англійським словом",
+            "feedbackByLocale": {
+              "ru": "Для нескольких пишем `photos`, без `e`.",
+              "uk": "Для кількох пишемо `photos`, без `e`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-35:i04",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте та виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-35:i04:r1",
-          "text": "album"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте та виберіть слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i04:audio",
-          "transcript": "album"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-03:session-35:i04:r1",
-            "targetText": "album",
-            "meaningByLocale": null
+            "pairId": "en:lesson-03:session-35:i04:p1",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-35:i04:p2",
+            "target": "ill",
+            "meaningByLocale": {
+              "ru": "болен",
+              "uk": "хворий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-35:i04:p3",
+            "target": "formal",
+            "meaningByLocale": {
+              "ru": "официальный",
+              "uk": "офіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-35:i04:p4",
+            "target": "cars",
+            "meaningByLocale": {
+              "ru": "машины",
+              "uk": "машини"
+            }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "album",
-          "definitionByLocale": {
-            "ru": "«альбом».",
-            "uk": "«альбом»."
+        "leftColumn": [
+          "photos",
+          "ill",
+          "formal",
+          "cars"
+        ],
+        "rightColumn": [
+          "фотографії",
+          "хворий",
+          "офіційний",
+          "машини"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-35:i05:audio",
+          "transcript": "These are photos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These are photos.",
+        "orderedTokens": [
+          "These",
+          "are",
+          "photos"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `These are photos.`",
+              "uk": "тут потрібно `are` — `These are photos.`"
+            }
           }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -196,23 +316,67 @@
       "interactionId": "en:lesson-03:session-35:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Фотографії лежать на дальній полиці. Назвіть їх зі словом для кількох далі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фотографії лежать на дальній полиці. Назвіть їх зі словом для кількох далі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are photos.",
+        "localizedMeaning": {
+          "ru": "Фотографии лежат на дальней полке. Назовите их со словом для нескольких дальше",
+          "uk": "Фотографії лежать на дальній полиці. Назвіть їх зі словом для кількох далі"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "photos"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Фотографії лежать на дальній полиці. Назвіть їх зі словом для кількох далі",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Those are photos.`",
+              "uk": "тут потрібно `are` — `Those are photos.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "prompt": "На знімках просто перед вами люди спеціально позували для фотографій в офіційному стилі. Скажіть «Ці фотографії в офіційному стилі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-35:i06:audio"
+        "en:lesson-03:session-35:i07:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "На знімках просто перед вами люди спеціально позували для фотографій в офіційному стилі. Скажіть «Ці фотографії в офіційному стилі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i06:audio",
-          "transcript": "frame"
+          "audioTargetId": "en:lesson-03:session-35:i07:audio",
+          "transcript": "These photos are formal."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "frame",
+        "targetPhrase": "These photos are formal.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -227,161 +391,207 @@
     },
     {
       "interactionId": "en:lesson-03:session-35:i08",
-      "ordinal": 10,
+      "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i08:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i08:audio",
-          "transcript": "photo"
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви показуєте на кілька фотографій поруч",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-35:i08:r1",
+          "text": "These"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "photo",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-03:session-35:i08:r2",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-35:i08:r3",
+          "text": "That"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте на кілька фотографій поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете на несколько фотографий рядом",
+          "uk": "Ви показуєте на кілька фотографій поруч"
+        },
+        "gappedTargetPhrase": "___ are photos.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i08:r1",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i08:r2",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i08:r3",
+            "text": "That"
+          }
+        ],
+        "testedDimension": "Ви показуєте на кілька фотографій поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви показуєте на кілька фотографій поруч",
+            "feedbackByLocale": {
+              "ru": "`This` — один предмет; для нескольких рядом нужно `These`.",
+              "uk": "`This` — один предмет; для кількох поруч потрібне `These`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви показуєте на кілька фотографій поруч",
+            "feedbackByLocale": {
+              "ru": "`That` — один дальше; здесь несколько рядом: `These`.",
+              "uk": "`That` — один далі; тут кілька поруч: `These`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-35:i09",
-      "ordinal": 11,
+      "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точну фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-35:i09:r1",
+          "text": "Those cars are outside."
+        },
+        {
+          "responseId": "en:lesson-03:session-35:i09:r2",
+          "text": "These cars are outside."
+        },
+        {
+          "responseId": "en:lesson-03:session-35:i09:r3",
+          "text": "The cars are outside."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-35:i09:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Послухайте й виберіть точну фразу",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-35:i09:audio",
-          "transcript": "album"
+          "transcript": "Those cars are outside."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "album",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-35:i09:r1",
+            "targetText": "Those cars are outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i09:r2",
+            "targetText": "These cars are outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i09:r3",
+            "targetText": "The cars are outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть точну фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Those`, а в этом варианте — `These`.",
+              "uk": "У записі перше слово — `Those`, а в цьому варіанті — `These`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть точну фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Those`, а в этом варианте — `The`.",
+              "uk": "У записі перше слово — `Those`, а в цьому варіанті — `The`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-35:i10",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i10:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i10:audio",
-          "transcript": "frame"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "frame",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте слова зі значеннями — стіл оформлювача",
+      "prompt": "З’єднайте слова зі значеннями в наших прикладах",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З'єднайте слова зі значеннями — стіл оформлювача",
+      "accessibilityLabel": "З’єднайте слова зі значеннями в наших прикладах",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-35:i07:p1",
-            "target": "photo",
+            "pairId": "en:lesson-03:session-35:i10:p1",
+            "target": "these",
             "meaningByLocale": {
-              "ru": "фотография",
-              "uk": "фотографія"
+              "ru": "эти, несколько рядом",
+              "uk": "ці, кілька поруч"
             }
           },
           {
-            "pairId": "en:lesson-03:session-35:i07:p2",
-            "target": "album",
+            "pairId": "en:lesson-03:session-35:i10:p2",
+            "target": "those",
             "meaningByLocale": {
-              "ru": "альбом",
-              "uk": "альбом"
+              "ru": "те, несколько дальше",
+              "uk": "ті, кілька далі"
             }
           },
           {
-            "pairId": "en:lesson-03:session-35:i07:p3",
-            "target": "frame",
+            "pairId": "en:lesson-03:session-35:i10:p3",
+            "target": "photos",
             "meaningByLocale": {
-              "ru": "рамка",
-              "uk": "рамка"
+              "ru": "фотографии",
+              "uk": "фотографії"
             }
           },
           {
-            "pairId": "en:lesson-03:session-35:i07:p4",
-            "target": "screen",
+            "pairId": "en:lesson-03:session-35:i10:p4",
+            "target": "cars",
             "meaningByLocale": {
-              "ru": "экран",
-              "uk": "екран"
+              "ru": "машины",
+              "uk": "машини"
             }
           }
         ],
         "leftColumn": [
-          "photo",
-          "album",
-          "frame",
-          "screen"
+          "these",
+          "those",
+          "photos",
+          "cars"
         ],
         "rightColumn": [
-          "фотографія",
-          "альбом",
-          "рамка",
-          "екран"
+          "ці, кілька поруч",
+          "ті, кілька далі",
+          "фотографії",
+          "машини"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -401,32 +611,47 @@
       "interactionId": "en:lesson-03:session-35:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть твердження — поруч лежить одна фотографія",
+      "prompt": "Послухайте й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть твердження — поруч лежить одна фотографія",
+      "audioTargetIds": [
+        "en:lesson-03:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is a photo.",
-        "localizedMeaning": {
-          "ru": "Соберите утверждение — рядом лежит одна фотография",
-          "uk": "Складіть твердження — поруч лежить одна фотографія"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-35:i11:audio",
+          "transcript": "Those photos are formal."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Those photos are formal.",
         "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "photo"
+          "Those",
+          "photos",
+          "are",
+          "formal"
         ],
         "authoredDistractorTokens": [
-          "These",
-          "are",
-          "photos"
+          "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Those photos are formal.`",
+              "uk": "тут потрібно `are` — `Those photos are formal.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -434,88 +659,217 @@
       "interactionId": "en:lesson-03:session-35:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "listen_choose",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви стоїте поруч із кількома машинами клубу. Повідомте «Ці машини тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви стоїте поруч із кількома машинами клубу. Повідомте «Ці машини тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These cars are here.",
+        "localizedMeaning": {
+          "ru": "Вы стоите рядом с несколькими машинами клуба. Сообщите «Эти машины здесь»",
+          "uk": "Ви стоїте поруч із кількома машинами клубу. Повідомте «Ці машини тут»"
+        },
+        "orderedTokens": [
+          "These",
+          "cars",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви стоїте поруч із кількома машинами клубу. Повідомте «Ці машини тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `These cars are here.`",
+              "uk": "тут потрібно `are` — `These cars are here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна запитує, чому Олег не прийшов. Повідомте «Він хворий» зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Анна запитує, чому Олег не прийшов. Повідомте «Він хворий» зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-35:i13:audio",
+          "transcript": "He's ill."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He's ill.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точне значення фрази",
+      "prompt": "Ви описуєте кілька фотографій в офіційному стилі на дальній полиці",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-35:i12:r1",
-          "text": "Это фотографии"
+          "responseId": "en:lesson-03:session-35:i14:r1",
+          "text": "are"
         },
         {
-          "responseId": "en:lesson-03:session-35:i12:r2",
-          "text": "Это фотография"
+          "responseId": "en:lesson-03:session-35:i14:r2",
+          "text": "is"
         },
         {
-          "responseId": "en:lesson-03:session-35:i12:r3",
-          "text": "Это альбомы"
+          "responseId": "en:lesson-03:session-35:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви описуєте кілька фотографій в офіційному стилі на дальній полиці",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете несколько фотографий в официальном стиле на дальней полке",
+          "uk": "Ви описуєте кілька фотографій в офіційному стилі на дальній полиці"
+        },
+        "gappedTargetPhrase": "Those photos ___ formal.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви описуєте кілька фотографій в офіційному стилі на дальній полиці",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-35:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви описуєте кілька фотографій в офіційному стилі на дальній полиці",
+            "feedbackByLocale": {
+              "ru": "Фотографий несколько: нужно `are`.",
+              "uk": "Фотографій кілька: потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви описуєте кілька фотографій в офіційному стилі на дальній полиці",
+            "feedbackByLocale": {
+              "ru": "С `Those photos` здесь нужно `are`.",
+              "uk": "З `Those photos` тут потрібно `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точну фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-35:i15:r1",
+          "text": "These photos are formal."
         },
         {
-          "responseId": "en:lesson-03:session-35:i12:r4",
-          "text": "Эти фотографии, пожалуйста"
+          "responseId": "en:lesson-03:session-35:i15:r2",
+          "text": "Those photos are formal."
+        },
+        {
+          "responseId": "en:lesson-03:session-35:i15:r3",
+          "text": "The photos are formal."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-35:i12:audio"
+        "en:lesson-03:session-35:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
+      "accessibilityLabel": "Послухайте й виберіть точну фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i12:audio",
-          "transcript": "These are photos."
+          "audioTargetId": "en:lesson-03:session-35:i15:audio",
+          "transcript": "These photos are formal."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-35:i12:r1",
-            "targetText": "Это фотографии",
+            "responseId": "en:lesson-03:session-35:i15:r1",
+            "targetText": "These photos are formal.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-35:i12:r2",
-            "targetText": "Это фотография",
+            "responseId": "en:lesson-03:session-35:i15:r2",
+            "targetText": "Those photos are formal.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-35:i12:r3",
-            "targetText": "Это альбомы",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-35:i12:r4",
-            "targetText": "Эти фотографии, пожалуйста",
+            "responseId": "en:lesson-03:session-35:i15:r3",
+            "targetText": "The photos are formal.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-35:i12:r2",
+            "responseId": "en:lesson-03:session-35:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точну фразу",
             "feedbackByLocale": {
-              "ru": "Так называют один снимок. В записи `these are` и форма `photos` показывают несколько фотографий.",
-              "uk": "Так називають один знімок. У записі `these are` і форма `photos` указують на кілька фотографій."
+              "ru": "В записи первое слово — `These`, а в этом варианте — `Those`.",
+              "uk": "У записі перше слово — `These`, а в цьому варіанті — `Those`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-35:i12:r3",
+            "responseId": "en:lesson-03:session-35:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точну фразу",
             "feedbackByLocale": {
-              "ru": "Число совпадает, но в записи назвали `photos` — фотографии, а не альбомы.",
-              "uk": "Число збігається, але в записі назвали `photos` — фотографії, а не альбоми."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-35:i12:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
-            "feedbackByLocale": {
-              "ru": "Это просьба выбрать снимки. В записи несколько фотографий просто называют.",
-              "uk": "Це прохання вибрати знімки. У записі кілька фотографій просто називають."
+              "ru": "В записи первое слово — `These`, а в этом варианте — `The`.",
+              "uk": "У записі перше слово — `These`, а в цьому варіанті — `The`."
             }
           }
         ],
@@ -525,381 +879,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-35:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте вказівне слово — поруч лежать кілька альбомів",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-35:i13:r1",
-          "text": "These"
-        },
-        {
-          "responseId": "en:lesson-03:session-35:i13:r2",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-35:i13:r3",
-          "text": "Those"
-        },
-        {
-          "responseId": "en:lesson-03:session-35:i13:r4",
-          "text": "Is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте вказівне слово — поруч лежать кілька альбомів",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — рядом лежат несколько альбомов",
-          "uk": "Вставте вказівне слово — поруч лежать кілька альбомів"
-        },
-        "gappedTargetPhrase": "___ are albums.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-35:i13:r1",
-            "text": "These"
-          },
-          {
-            "responseId": "en:lesson-03:session-35:i13:r2",
-            "text": "This"
-          },
-          {
-            "responseId": "en:lesson-03:session-35:i13:r3",
-            "text": "Those"
-          },
-          {
-            "responseId": "en:lesson-03:session-35:i13:r4",
-            "text": "Is"
-          }
-        ],
-        "testedDimension": "Вставьте указатель — рядом лежат несколь",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-35:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — рядом лежат несколь",
-            "feedbackByLocale": {
-              "ru": "`this` относится к одному предмету и требует `is`. Здесь альбомов несколько.",
-              "uk": "`this` стосується одного предмета й потребує `is`. Тут альбомів кілька."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-35:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — рядом лежат несколь",
-            "feedbackByLocale": {
-              "ru": "`those` показывает на несколько предметов вдали. Альбомы лежат рядом, поэтому нужно `these`.",
-              "uk": "`those` вказує на кілька предметів удалині. Альбоми лежать поруч, тому потрібно `these`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-35:i13:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — рядом лежат несколь",
-            "feedbackByLocale": {
-              "ru": "`Is are albums` не образует фразу. В начале нужен указатель `These`.",
-              "uk": "`Is are albums` не утворює фразу. На початку потрібне вказівне слово `These`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть твердження — кілька рамок лежать перед вами",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть твердження — кілька рамок лежать перед вами",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "These are frames.",
-        "localizedMeaning": {
-          "ru": "Соберите утверждение — несколько рамок лежат перед вами",
-          "uk": "Складіть твердження — кілька рамок лежать перед вами"
-        },
-        "orderedTokens": [
-          "These",
-          "are",
-          "frames"
-        ],
-        "authoredDistractorTokens": [
-          "This",
-          "is",
-          "a",
-          "frame"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i15:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i15:audio",
-          "transcript": "This is an album."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "This is an album.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-03:session-35:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротке прохання — виберіть кілька рамок поруч",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротке прохання — виберіть кілька рамок поруч",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "These frames, please.",
-        "localizedMeaning": {
-          "ru": "Соберите короткую просьбу — выберите несколько рамок рядом",
-          "uk": "Складіть коротке прохання — виберіть кілька рамок поруч"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-35:i16:p1",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-35:i16:p2",
+            "target": "ill",
+            "meaningByLocale": {
+              "ru": "болен",
+              "uk": "хворий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-35:i16:p3",
+            "target": "formal",
+            "meaningByLocale": {
+              "ru": "официальный",
+              "uk": "офіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-35:i16:p4",
+            "target": "cars",
+            "meaningByLocale": {
+              "ru": "машины",
+              "uk": "машини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "photos",
+          "ill",
+          "formal",
+          "cars"
+        ],
+        "rightColumn": [
+          "фотографії",
+          "хворий",
+          "офіційний",
+          "машини"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "orderedTokens": [
-          "These",
-          "frames,",
-          "please"
-        ],
-        "authoredDistractorTokens": [
-          "This",
-          "frame",
-          "are"
-        ],
-        "slotFeedback": []
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-35:i17:s01",
+      "interactionId": "en:lesson-03:session-35:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "prompt": "На іншій зустрічі гість запитує про кілька знімків на дальній полиці. Назвіть їх повною фразою зі словом для кількох далі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-35:i17:s01:audio"
+        "en:lesson-03:session-35:i17:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "На іншій зустрічі гість запитує про кілька знімків на дальній полиці. Назвіть їх повною фразою зі словом для кількох далі",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i17:s01:audio",
-          "transcript": "These are photos."
+          "audioTargetId": "en:lesson-03:session-35:i17:audio",
+          "transcript": "Those are photos."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "These are photos.",
+        "targetPhrase": "Those are photos.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть одну фразу — крок 2 із 6",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть одну фразу — крок 2 із 6",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is an album.",
-        "localizedMeaning": {
-          "ru": "Соберите одну фразу",
-          "uk": "Складіть одну фразу — крок 2 із 6"
-        },
-        "orderedTokens": [
-          "This",
-          "is",
-          "an",
-          "album."
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i17:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i17:s03:audio",
-          "transcript": "These are frames."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "These are frames.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i17:s04",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть одну фразу — крок 4 із 6",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть одну фразу — крок 4 із 6",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This photo, please.",
-        "localizedMeaning": {
-          "ru": "Соберите одну фразу",
-          "uk": "Складіть одну фразу — крок 4 із 6"
-        },
-        "orderedTokens": [
-          "This",
-          "photo,",
-          "please."
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i17:s05",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i17:s05:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i17:s05:audio",
-          "transcript": "This album, please."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "This album, please.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-35:i17:s06",
-      "ordinal": 25,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте та складіть одну фразу — крок 6 із 6",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-35:i17:s06:audio"
-      ],
-      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 6 із 6",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-35:i17:s06:audio",
-          "transcript": "These frames, please."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These frames, please.",
-        "orderedTokens": [
-          "These",
-          "frames,",
-          "please."
-        ],
-        "distractorTokens": []
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 22,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2855fdb6a7a01f861d8d3f8a8497587ae8bbe32726a321fec496c42c96ec2b0b"
+  "learnerFingerprint": "043ad20686a73dd3d3589d5d2a39fcafd92cbde1bac4fcfd39cb9113c3b31b79"
 }

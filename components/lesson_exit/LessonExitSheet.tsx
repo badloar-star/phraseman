@@ -7,6 +7,7 @@
 // (energyNote: не Plus и не тестер) и с числами из app/energy_contract.ts (окно бесплатного повторного входа D159, цена попытки). Компонент ничего не списывает и не пишет: «Выйти» зовёт прежний выход
 // урока (колбэк), «Продолжить»/фон/«назад» закрывают шторку. Звуки V2: sheet_open на появлении, tap на дрожи; хаптик: лёгкий на появлении, средний на дрожи. reduceMotion — монета стоит.
 // ═══════════════════════════════════════════════════════════════════════════
+import { V2_TYPE } from '../../constants/v2Style';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
@@ -93,7 +94,7 @@ const s = StyleSheet.create({
   copy: { flex: 1, minWidth: 0 },
   // `.h-md` 21/26/700
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m15: заголовок шторки 26/31 · 800 · −0,4
-  title: { fontSize: 26, lineHeight: 31, fontWeight: '800', letterSpacing: -0.4 },
+  title: { ...V2_TYPE.sheetTitle },
   body: { marginTop: 4, fontSize: 16, lineHeight: 22 },
   // кнопки: отступ сверху 18, зазор 12
   acts: { marginTop: 18 },

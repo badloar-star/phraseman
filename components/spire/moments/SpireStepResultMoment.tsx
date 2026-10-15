@@ -7,6 +7,7 @@
 // время и бюджет, ошибки, ступень на этаже, монеты за ступень; «N из 10» — по числу ошибок. Компонент ничего не пишет: «Дальше»/«Ещё раз» зовут прежний обработчик подъёма (climb), «К башне» — dismissOutcome.
 // Показывается только за флагом moments_v3 (решает вызывающий); kinds floor/summit/save_failed — другой момент (m07) или прежняя плашка.
 // ═══════════════════════════════════════════════════════════════════════════
+import { V2_TYPE } from '../../../constants/v2Style';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
@@ -195,7 +196,7 @@ const s = StyleSheet.create({
   timerSmall: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   hXl: { marginTop: 20, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' },
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m06: «3 ошибки — ступень не пройдена» 24/30 · 800 · −0,3
-  hLg: { marginTop: 14, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
+  hLg: { marginTop: 14, ...V2_TYPE.momentTitleLg, textAlign: 'center' },
   p: { marginTop: 4, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   stair: { marginTop: 22, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'flex-end', gap: 6 },
   stairBar: { flex: 1, borderRadius: 6 },

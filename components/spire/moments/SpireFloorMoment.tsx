@@ -194,7 +194,7 @@ const s = StyleSheet.create({
   pill: { height: 44, borderRadius: 22, paddingLeft: 10, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 8 },
   pillText: { fontSize: 21, lineHeight: 26, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m07: «5 этаж — Страж» 24/30 · 800 · −0,3
-  hLg: { marginTop: 12, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
+  hLg: { marginTop: 12, ...V2_TYPE.momentTitleLg, textAlign: 'center' },
   hXl: { marginTop: 14, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' },
   p: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   summitCoin: { marginTop: 10 },

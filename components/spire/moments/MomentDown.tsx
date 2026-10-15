@@ -7,6 +7,7 @@
 // Закон владельца 14.10 (уточнён): меняется ТОЛЬКО формулировка — в текстах монета не «задремала/проснулась/разбуди»; анимация сна, «z», «!» и эмоции монеты остаются как в одобренном образце.
 // Ранг, монеты и фразы НЕ меняются — компонент ничего не пишет, только показывает; «напомнить вечером» — колбэк наверх (Ядро решает, как ставить напоминание). reduceMotion — без движения.
 // ═══════════════════════════════════════════════════════════════════════════
+import { V2_TYPE } from '../../../constants/v2Style';
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, { Easing, cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
@@ -128,7 +129,7 @@ const s = StyleSheet.create({
   // `.tapme`: кольцо 44 в центре монеты, пульсирует «тапни»
   tapRing: { position: 'absolute', width: TAP_RING, height: TAP_RING, borderRadius: TAP_RING / 2, borderWidth: 2, borderColor: 'rgba(255,255,255,0.8)' }, // guard-ok: это не контейнер, а пульсирующее кольцо-подсказка (эталон .tapme); theme-exempt: кольцо-подсказка «тапни» — иллюстрация образца (.tapme)
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m03: заголовок 24/30 · 800 · −0,3
-  title: { fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
+  title: { ...V2_TYPE.momentTitleLg, textAlign: 'center' },
   body: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
   // `.dock`: поля 20, снизу 36; кнопки через 12
   dock: { position: 'absolute', left: 20, right: 20, bottom: 0 },

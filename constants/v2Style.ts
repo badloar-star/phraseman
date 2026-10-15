@@ -254,6 +254,13 @@ export const V2 = {
 export const V2_TYPE = {
   largeTitle: { fontSize: 34, lineHeight: 40, fontWeight: '800' as const, letterSpacing: -0.6 },
   title: { fontSize: 24, lineHeight: 30, fontWeight: '800' as const, letterSpacing: -0.3 },
+  // зачем: расхождения заголовков моментов возвращались, единый источник (Макеты 15.10, листы приёмки m02/m03/m06/m07/m14/m15; вес 800 на Android рисуется как 700 — известное расхождение шрифта)
+  /** Заголовок окна момента (GlassAlertDialog `title`): «Остаёшься в …», «Хватает на ранг N». */
+  momentTitle: { fontSize: 23, lineHeight: 29, fontWeight: '800' as const, letterSpacing: -0.3 },
+  /** Крупный заголовок момента: «Новая неделя», «3 ошибки — ступень не пройдена», «5 этаж — Страж». */
+  momentTitleLg: { fontSize: 24, lineHeight: 30, fontWeight: '800' as const, letterSpacing: -0.3 },
+  /** Заголовок шторки момента: «Выйти из урока?». */
+  sheetTitle: { fontSize: 26, lineHeight: 31, fontWeight: '800' as const, letterSpacing: -0.4 },
   section: { fontSize: 20, lineHeight: 26, fontWeight: '700' as const, letterSpacing: -0.2 },
   // зачем (D145, владелец 01.10): обычный текст — ровно 2 размера, 16 и 13; иерархия весом и цветом.
   // Заголовки выше (largeTitle/title/section) — по утверждённым макетам.

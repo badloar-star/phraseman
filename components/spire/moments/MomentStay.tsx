@@ -6,6 +6,7 @@
 // монета 80, заголовок 27/32/700, текст 16/22 (вторичный, цифра дистанции — основным), кнопка «Играть» без стрелки. Анимация: окно пружиной 520 мс, кивок + реплика с 0,4 с;
 // reduceMotion — сразу в конечном виде. Монеты НЕ начисляет и ничего не пишет: компонент только показывает результат, пришедший пропсами. Где и когда показывать — решает Ядро (флаг moments_v3).
 // ═══════════════════════════════════════════════════════════════════════════
+import { V2_TYPE } from '../../../constants/v2Style';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, FadeIn, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
@@ -96,7 +97,7 @@ const s = StyleSheet.create({
   coinWrap: { alignItems: 'center', justifyContent: 'center', paddingTop: 42 },
   // `.h-lg`: 27/32/700, отступ сверху 12
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m02: заголовок окна 23/29 · 800 · −0,3
-  title: { marginTop: 12, fontSize: 23, lineHeight: 29, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
+  title: { marginTop: 12, ...V2_TYPE.momentTitle, textAlign: 'center' },
   // `.p`: 16/22
   body: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   bold: { fontWeight: '600' },

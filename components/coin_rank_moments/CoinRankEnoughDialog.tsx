@@ -7,6 +7,7 @@
 // Анимация: окно пружиной (520 мс), на 400 мс монета прыгает (jump), следующая пульсирует (бесконечно, только при фокусе экрана и активном приложении). Звуки V2: sheet_open на появлении, coin_rank на прыжке.
 // Компонент ничего не списывает и не пишет: «Повысить» ведёт в существующую церемонию чеканки (колбэк), «Позже» закрывает. Условия показа и подключение — Ядро (флаг moments_v3).
 // ═══════════════════════════════════════════════════════════════════════════
+import { V2_TYPE } from '../../constants/v2Style';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -104,7 +105,7 @@ const s = StyleSheet.create({
   // `.modal`: поля 20, радиус 28, отступы 26/22/22, по центру
   card: { borderRadius: 28, paddingTop: 26, paddingHorizontal: 22, paddingBottom: 22, alignItems: 'center' },
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m14: заголовок окна 23/29 · 800 · −0,3
-  title: { marginTop: 12, fontSize: 23, lineHeight: 29, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
+  title: { marginTop: 12, ...V2_TYPE.momentTitle, textAlign: 'center' },
   body: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   // ряд «текущая → следующая»: зазор 10, сверху 14
   coins: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 14 },

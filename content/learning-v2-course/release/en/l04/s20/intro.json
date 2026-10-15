@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "назвать гриб и спросить о грибах с any, сообщить об их наличии с some",
+    "uk": "назвати гриб і запитати про гриби з any, повідомити про їхню наявність із some"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один гриб и несколько",
+        "uk": "Один гриб і кілька"
+      },
+      "bodyByLocale": {
+        "ru": "`mushroom` — «гриб», `mushrooms` — «грибы». `This is a mushroom` — «Это гриб». Один большой гриб — всё ещё `a mushroom`, даже если он занял всю тарелку. Несколько маленьких — уже `mushrooms`. Размер и количество — разные вещи.",
+        "uk": "`mushroom` — «гриб», `mushrooms` — «гриби». `This is a mushroom` — «Це гриб». Один великий гриб — усе ще `a mushroom`, навіть якщо він зайняв усю тарілку. Кілька маленьких — уже `mushrooms`. Розмір і кількість — різні речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один гриб рядом: «Это гриб».",
+          "uk": "Назвіть один гриб поруч: «Це гриб»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-20:intro1:r1",
+              "text": "This is a mushroom."
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro1:r2",
+              "text": "These are mushrooms."
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro1:r3",
+              "text": "This is a mushrooms."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-20:intro1:r1",
+              "text": "This is a mushroom."
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro1:r2",
+              "text": "These are mushrooms."
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro1:r3",
+              "text": "This is a mushrooms."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один гриб рядом: «Это гриб».",
+          "uk": "Назвіть один гриб поруч: «Це гриб»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Есть ли грибы?",
+        "uk": "Чи є гриби?"
+      },
+      "bodyByLocale": {
+        "ru": "`There are some mushrooms` — «Есть немного грибов». Точное количество не называем. `Are there any mushrooms?` — «Есть ли грибы?» Так спрашиваем, когда ещё не знаем ответа. Со знакомыми картами: `maps` — «карты», `Are there any maps?` — «Есть ли карты?»",
+        "uk": "`There are some mushrooms` — «Є трохи грибів». Точної кількості не називаємо. `Are there any mushrooms?` — «Чи є гриби?» Так запитуємо, коли ще не знаємо відповіді. Із знайомими картами: `maps` — «карти», `Are there any maps?` — «Чи є карти?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы ещё не посмотрели продукты. Спросите «Здесь есть грибы?» с `any`.",
+          "uk": "Ви ще не подивилися продукти. Запитайте «Тут є гриби?» з `any`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-20:intro2:r1",
+              "text": "Are there any mushrooms here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro2:r2",
+              "text": "Is there any mushrooms here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro2:r3",
+              "text": "Are there a mushrooms here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-20:intro2:r1",
+              "text": "Are there any mushrooms here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro2:r2",
+              "text": "Is there any mushrooms here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro2:r3",
+              "text": "Are there a mushrooms here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы ещё не посмотрели продукты. Спросите «Здесь есть грибы?» с `any`.",
+          "uk": "Ви ще не подивилися продукти. Запитайте «Тут є гриби?» з `any`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Карту не прятал",
+        "uk": "Карту не ховав"
+      },
+      "bodyByLocale": {
+        "ru": "`innocent` — «невиновный», `yes` — «да». Друг нашёл свою карту и спрашивает: «Значит, ты невиновен?» Вы отвечаете: `Yes, I am innocent` — «Да, я невиновен». Сокращённо: `Yes, I’m innocent`. Это можно сказать и шутливо о пропавшей карте. `platform` — «платформа»: `That is a platform` — «То — платформа». На карте можно найти и её.",
+        "uk": "`innocent` — «невинний», `yes` — «так». Друг знайшов свою карту й запитує: «Отже, ти невинний?» Ви відповідаєте: `Yes, I am innocent` — «Так, я невинний». Скорочено: `Yes, I’m innocent`. Це можна сказати й жартома про зниклу карту. `platform` — «платформа»: `That is a platform` — «То — платформа». На карті можна знайти і її."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг убедился, что вы не прятали карту. Ответьте «Да, я невиновен» с сокращением.",
+          "uk": "Друг переконався, що ви не ховали карту. Дайте відповідь «Так, я невинний» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-20:intro3:r1",
+              "text": "Yes, I'm innocent."
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro3:r2",
+              "text": "Yes, I'm guilty."
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro3:r3",
+              "text": "No, I'm innocent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-20:intro3:r1",
+              "text": "Yes, I'm innocent."
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro3:r2",
+              "text": "Yes, I'm guilty."
+            },
+            {
+              "responseId": "en:lesson-04:session-20:intro3:r3",
+              "text": "No, I'm innocent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг убедился, что вы не прятали карту. Ответьте «Да, я невиновен» с сокращением.",
+          "uk": "Друг переконався, що ви не ховали карту. Дайте відповідь «Так, я невинний» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "66716cd03c4920b2b3e7f2a7b1f7c95e6ca425c1f8839040c448c02c310d720d"
+}

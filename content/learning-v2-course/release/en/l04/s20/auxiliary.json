@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-20:intro1:r2": {
+          "ru": "Это несколько грибов; здесь один: `This is a mushroom`.",
+          "uk": "Це кілька грибів; тут один: `This is a mushroom`."
+        },
+        "en:lesson-04:session-20:intro1:r3": {
+          "ru": "После `a` нужна форма для одного гриба: `mushroom`.",
+          "uk": "Після `a` потрібна форма для одного гриба: `mushroom`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-20:intro2:r2": {
+          "ru": "Грибов несколько: `Are there any mushrooms here?`.",
+          "uk": "Грибів кілька: `Are there any mushrooms here?`."
+        },
+        "en:lesson-04:session-20:intro2:r3": {
+          "ru": "`a` относится к одному грибу; здесь нужен вопрос с `any mushrooms`.",
+          "uk": "`a` стосується одного гриба; тут потрібне запитання з `any mushrooms`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-20:intro3:r2": {
+          "ru": "`guilty` — виноват; здесь вы невиновны: `innocent`.",
+          "uk": "`guilty` — винний; тут ви невинні: `innocent`."
+        },
+        "en:lesson-04:session-20:intro3:r3": {
+          "ru": "В условии нужно подтвердить «Да»: `Yes`.",
+          "uk": "В умові потрібно підтвердити «Так»: `Yes`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "49cc2fcecc879a3ad6474eb8537348b5d1591dbcf9cb963842dba392d093a046"
+}

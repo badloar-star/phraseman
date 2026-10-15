@@ -44529,7 +44529,12 @@
       "reviewed_at": null,
       "blocked_reason": null,
       "release": "r1",
-      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=ink&appearance=light&legacybonus=demo&next=/(tabs)/home",
+        "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
+        "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
+      }
     },
     {
       "id": "whats-new-002",
@@ -44565,7 +44570,12 @@
       "reviewed_at": null,
       "blocked_reason": null,
       "release": "r1",
-      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=marine&appearance=dark&legacybonus=demo&next=/(tabs)/home",
+        "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
+        "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
+      }
     },
     {
       "id": "whats-new-003",
@@ -44601,7 +44611,12 @@
       "reviewed_at": null,
       "blocked_reason": null,
       "release": "r1",
-      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=ink&appearance=light&legacybonus=pearls&next=/(tabs)/home",
+        "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
+        "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
+      }
     },
     {
       "id": "whats-new-004",
@@ -44637,7 +44652,12 @@
       "reviewed_at": null,
       "blocked_reason": null,
       "release": "r1",
-      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=marine&appearance=dark&legacybonus=pearls&next=/(tabs)/home",
+        "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
+        "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
+      }
     },
     {
       "id": "whats-new-005",
@@ -44673,7 +44693,12 @@
       "reviewed_at": null,
       "blocked_reason": null,
       "release": "r1",
-      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=ink&appearance=light&legacybonus=nothing&next=/(tabs)/home",
+        "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
+        "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
+      }
     },
     {
       "id": "whats-new-006",
@@ -44709,7 +44734,12 @@
       "reviewed_at": null,
       "blocked_reason": null,
       "release": "r1",
-      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=marine&appearance=dark&legacybonus=nothing&next=/(tabs)/home",
+        "taps": "окно при входе; видео (строки сгорают в монеты); снять — legacybonus=off",
+        "log": "варианты Ядра 396fb19b0: demo (а) · pearls (б) · nothing (в, только заголовок для обновившихся)"
+      }
     },
     {
       "id": "moments-v3-m04-a",
@@ -45183,11 +45213,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=1&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=1&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0003",
@@ -45225,11 +45256,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=3&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=3&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0007",
@@ -45267,11 +45299,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=7&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0014",
@@ -45309,11 +45342,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=14&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=14&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0030",
@@ -45351,11 +45385,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=30&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=30&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0050",
@@ -45393,11 +45428,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=50&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=50&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0100",
@@ -45435,11 +45471,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=100&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=100&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0150",
@@ -45477,11 +45514,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=150&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=150&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0200",
@@ -45519,11 +45557,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=200&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=200&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0250",
@@ -45561,11 +45600,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=250&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=250&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0300",
@@ -45603,11 +45643,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=300&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=300&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0365",
@@ -45645,11 +45686,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=365&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=365&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0400",
@@ -45687,11 +45729,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=400&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=400&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0500",
@@ -45729,11 +45772,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=500&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=500&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0600",
@@ -45771,11 +45815,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=600&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=600&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0730",
@@ -45813,11 +45858,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=730&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=730&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0800",
@@ -45855,11 +45901,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=800&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=800&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d0900",
@@ -45897,11 +45944,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=900&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=900&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "streak-milestone-d1000",
@@ -45939,11 +45987,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=1000&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=1000&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново"
     },
     {
       "id": "moments-v3-m19",
@@ -45980,11 +46029,12 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=7&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "пройти урок до конца → рубеж поверх итога; видео",
-        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+        "taps": "сначала link_fast (итог блиц-карточек сразу: devJumpToFinale → SessionResultScreen с хостом рубежа; на эмуляторе не прогонялось — проверить первым кадром); не открылся — link: пройти урок до конца. Рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]",
+        "link_fast": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1"
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
-      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает; кадры снимать ссылками d7/d30/d100 (streak=7/30/100) и сверять ещё и с m19-A/B/C; если вариант m19 и d-кадр того же дня расходятся — решает Дизайн"
+      "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново; кадры снимать ссылками d7/d30/d100 (streak=7/30/100) и сверять ещё и с m19-A/B/C; если вариант m19 и d-кадр того же дня расходятся — решает Дизайн"
     }
   ]
 }

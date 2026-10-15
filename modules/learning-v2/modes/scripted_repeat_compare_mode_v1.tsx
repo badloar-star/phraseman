@@ -38,6 +38,7 @@ import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2LocalHoldToTalkStatusV1 } from "../../../hooks/use_learning_v2_local_hold_to_talk_v1";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
+import { learningV2ScriptedRepeatAnswerBearingContentRevealedV1 } from "../contracts/mode_native_payload_v1";
 import { LearningV2ModeFeedbackLaneV1 } from "./mode_feedback_v1";
 import { learningV2ModeRepeatCompareCopyV1 } from "./mode_copy_v1";
 
@@ -52,6 +53,8 @@ export interface ScriptedRepeatCompareModePropsV1 extends LearningV2ModeCommonPr
   readonly voiceStatus: LearningV2LocalHoldToTalkStatusV1;
   readonly transcript: string;
   readonly instruction: string | null;
+  /** True only after the host has received a scored/submitted learner attempt. */
+  readonly attemptSubmitted?: boolean;
 }
 
 export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModePropsV1) {
@@ -70,6 +73,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     modePayload,
     phase,
     referenceAudioState,
+    attemptSubmitted,
   } = props;
 
   if (modePayload && modePayload.family !== "scripted_repeat_compare") {
@@ -91,6 +95,40 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
   const referenceLoading = referenceAudioState === "loading";
   const referenceDisabled = referenceLoading || recording || requesting;
   const copy = learningV2ModeRepeatCompareCopyV1(interfaceLocale);
+  const revealPolicyValue =
+    modePayload?.family === "scripted_repeat_compare"
+      ? modePayload.scriptedRepeatRevealPolicy
+      : undefined;
+  // Any present-but-invalid policy stays hidden. Validated guided payloads omit
+  // the field and retain their historical visible model-first behavior.
+  const answerBearingContentRevealed =
+    learningV2ScriptedRepeatAnswerBearingContentRevealedV1(
+      revealPolicyValue,
+      attemptSubmitted === true,
+    );
+  const targetPhrase =
+    modePayload?.family === "scripted_repeat_compare"
+      ? modePayload.targetPhrase
+      : "";
+  const normalizedLeakText = (value: string): string =>
+    value
+      .normalize("NFKC")
+      .replace(/\s+/gu, " ")
+      .trim()
+      .toLocaleLowerCase("en");
+  const normalizedTarget = normalizedLeakText(targetPhrase);
+  const containsTarget = (value: string | null): boolean =>
+    Boolean(
+      normalizedTarget &&
+        value &&
+        normalizedLeakText(value).includes(normalizedTarget),
+    );
+  const visiblePrompt =
+    !answerBearingContentRevealed && containsTarget(prompt) ? "" : prompt;
+  const visibleInstruction =
+    !answerBearingContentRevealed && containsTarget(instruction)
+      ? null
+      : instruction;
   const audioPulse = useSharedValue(1);
   const audioProgress = useSharedValue(0);
   // Кольцо — конечная анимация хода звука, ведёт только referencePlaying:
@@ -149,8 +187,12 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     // зачем (сверка с learning-v2.html rc, 05.10): заголовок слева 600; эталон 22; фраза 24; подсказка 10; разбор 18;
     // вердикт 16 (раньше ровный gap 14 и всё по центру). Сама кнопка эталона — решение владельца 26.08, не меняю.
     <View style={sx.root}>
-      <Text style={[sx.taskLabel, { color: g.secondary }]}>{prompt}</Text>
-      {onPlayFullPhraseAudio && (
+      {visiblePrompt ? (
+        <Text style={[sx.taskLabel, { color: g.secondary }]}>
+          {visiblePrompt}
+        </Text>
+      ) : null}
+      {answerBearingContentRevealed && onPlayFullPhraseAudio && (
         // зачем (learning-v2.html, rc): эталон — круглая кнопка на токенах стекла с кольцом хода
         // звука (прежнее решение владельца 26.08 сохранено), значок динамика/паузы вместо текстовых
         // символов; реальное состояние аудио по-прежнему берётся из referenceAudioState.
@@ -205,18 +247,20 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
         </View>
       )}
 
-      <Text style={[sx.targetPhrase, compact && { fontSize: 26, lineHeight: 31, marginTop: 10 }, { color: g.text }]}>
-        {modePayload?.family === "scripted_repeat_compare"
-          ? modePayload.targetPhrase
-          : ""}
-      </Text>
+      {answerBearingContentRevealed && targetPhrase ? (
+        <Text style={[sx.targetPhrase, compact && { fontSize: 26, lineHeight: 31, marginTop: 10 }, { color: g.text }]}>
+          {targetPhrase}
+        </Text>
+      ) : null}
 
-      {instruction && (
-        <Text style={[sx.instruction, { color: g.secondary }]}>{instruction}</Text>
+      {visibleInstruction && (
+        <Text style={[sx.instruction, { color: g.secondary }]}>{visibleInstruction}</Text>
       )}
 
-      {explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
-      <LearningV2ModeFeedbackLaneV1 feedback={learnerFeedback} interfaceLocale={interfaceLocale} />
+      {answerBearingContentRevealed && explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
+      {answerBearingContentRevealed ? (
+        <LearningV2ModeFeedbackLaneV1 feedback={learnerFeedback} interfaceLocale={interfaceLocale} />
+      ) : null}
       {resolved && (
         // зачем (learning-v2.html, `.verdict.ok`): «Отлично сказано!» — значок-галочка и текст
         // зелёным по центру, без плашки-заливки.

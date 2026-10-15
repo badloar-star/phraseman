@@ -17,7 +17,7 @@
   {
     "interactionId": "en:lesson-01:session-11:i04",
     "correctText": "lazy",
-    "correctResponseId": "en:lesson-01:session-11:i04:r2"
+    "correctResponseId": "en:lesson-01:session-11:i04:r1"
   },
   {
     "interactionId": "en:lesson-01:session-11:i05",
@@ -85,23 +85,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-11:i18:s01",
+    "interactionId": "en:lesson-01:session-11:i18",
     "correctText": "You are not wrong.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-11:i18:s02",
-    "correctText": "You are not lazy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-11:i18:s03",
-    "correctText": "You are not alone.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-11:i18:s04",
-    "correctText": "You are kind.",
     "correctResponseId": null
   }
 ]

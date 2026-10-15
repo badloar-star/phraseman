@@ -88,14 +88,9 @@ export function resolveLearningV2AuthoringPreviewSpeechTextV1(
     if (payload.referenceAudio?.transcript.trim()) {
       return payload.referenceAudio.transcript.trim();
     }
-    const correctResponseId = payload.choiceFeedback.find(
-      (entry) => entry.correct,
-    )?.responseId;
-    return (
-      payload.localizedMeaningChoices.find(
-        (entry) => entry.responseId === correctResponseId,
-      )?.targetText.trim() || null
-    );
+    // Learner-wire payloads intentionally carry no explicit correctness map.
+    // Without an authored transcript there is no safe answer-free fallback.
+    return null;
   }
   if (payload.family === "listen_build_dictation") {
     return (

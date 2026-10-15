@@ -90,6 +90,36 @@ export function learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
   }
 }
 
+export function learningV2FactoryMissingAudioInteractionIdsV1(
+  learner: LearningV2CourseSessionLearnerChildV1,
+): readonly string[] {
+  const missing: string[] = [];
+  for (const interaction of learner.interactions) {
+    if (interaction.audioTargetIds.length === 0) continue;
+    const payload = interaction.modePayload;
+    const references = payload?.family === "sound_contrast"
+      ? [payload.audioA, payload.audioB].filter(
+          (candidate): candidate is NonNullable<typeof candidate> => candidate !== null,
+        )
+      : payload && "referenceAudio" in payload && payload.referenceAudio
+        ? [payload.referenceAudio]
+        : [];
+    if (
+      (payload?.family === "sound_contrast" && references.length !== 2) ||
+      (payload?.family !== "sound_contrast" && references.length !== 1)
+    ) {
+      throw new Error("learning_v2_factory_reference_audio_missing");
+    }
+    const complete = references.every((reference) =>
+      VOICES.every((voiceId) =>
+        factoryAudioTables().entryByCoordinate.has(`${reference.transcript}\u0000${voiceId}`),
+      ),
+    );
+    if (!complete) missing.push(interaction.interactionId);
+  }
+  return Object.freeze(missing);
+}
+
 export function buildLearningV2FactoryBundledAudioChildV1(
   learner: LearningV2CourseSessionLearnerChildV1,
 ): ReturnType<typeof materializeLearningV2CourseSessionAudioChildV1> | null {

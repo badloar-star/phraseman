@@ -28,8 +28,8 @@
             "responseId": "en:lesson-01:session-11:i01:r1",
             "targetText": "crazy",
             "meaningByLocale": {
-              "ru": "«сумасшедший». Так говорят про себя в конце тяжёлого дня, и обычно преувеличивают.",
-              "uk": "«божевільний». Так кажуть про себе наприкінці важкого дня, і зазвичай перебільшують."
+              "ru": "«сумасшедший». Так человек может преувеличенно назвать себя после тяжёлого дня.",
+              "uk": "«божевільний». Так людина може перебільшено назвати себе після важкого дня."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "crazy",
           "definitionByLocale": {
-            "ru": "«сумасшедший». Так говорят про себя в конце тяжёлого дня, и обычно преувеличивают.",
-            "uk": "«божевільний». Так кажуть про себе наприкінці важкого дня, і зазвичай перебільшують."
+            "ru": "«сумасшедший». Так человек может преувеличенно назвать себя после тяжёлого дня.",
+            "uk": "«божевільний». Так людина може перебільшено назвати себе після важкого дня."
           }
         }
       },
@@ -101,19 +101,19 @@
           {
             "responseId": "en:lesson-01:session-11:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — crazy",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "Похоже на слух, но начинается с «л». `crazy` — с «кр».",
-              "uk": "Схоже на слух, але починається з «л». `crazy` — з «кр»."
+              "ru": "`lazy` значит «ленивый», а `crazy` — «сумасшедший».",
+              "uk": "`lazy` означає «лінивий», а `crazy` — «божевільний»."
             }
           },
           {
             "responseId": "en:lesson-01:session-11:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — crazy",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Уютный». В середине «з», без «р» в начале.",
-              "uk": "«Затишний». Усередині «з», без «р» на початку."
+              "ru": "`cozy` значит «уютный»; это не слово о настроении после тяжёлого дня.",
+              "uk": "`cozy` означає «затишний»; це не слово про настрій після важкого дня."
             }
           }
         ],
@@ -171,15 +171,15 @@
       "purpose": "supported_practice",
       "family": "sound_contrast",
       "inputMode": "single_choice",
-      "prompt": "Различите звуки — какое из двух про «ленивая»?",
+      "prompt": "Послушайте два слова и выберите то, которое значит «ленивая»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-11:i04:r1",
-          "text": "crazy"
+          "text": "lazy"
         },
         {
           "responseId": "en:lesson-01:session-11:i04:r2",
-          "text": "lazy"
+          "text": "crazy"
         }
       ],
       "mediaIds": [],
@@ -187,30 +187,30 @@
         "en:lesson-01:session-11:i04:audioA",
         "en:lesson-01:session-11:i04:audioB"
       ],
-      "accessibilityLabel": "Различите звуки — какое из двух про «ленивая»?",
+      "accessibilityLabel": "Послушайте два слова и выберите то, которое значит «ленивая»",
       "modePayload": {
         "family": "sound_contrast",
-        "contrastA": "crazy",
-        "contrastB": "lazy",
+        "contrastA": "lazy",
+        "contrastB": "crazy",
         "ipaA": "",
         "ipaB": "",
         "audioA": {
           "audioTargetId": "en:lesson-01:session-11:i04:audioA",
-          "transcript": "crazy"
+          "transcript": "lazy"
         },
         "audioB": {
           "audioTargetId": "en:lesson-01:session-11:i04:audioB",
-          "transcript": "lazy"
+          "transcript": "crazy"
         },
-        "testedPhoneticContrast": "Различите звуки — какое из двух про «лен",
+        "testedPhoneticContrast": "Послушайте два слова и выберите то, которое значит «ленивая»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-11:i04:r1",
+            "responseId": "en:lesson-01:session-11:i04:r2",
             "correct": false,
-            "testedDimension": "Различите звуки — какое из двух про «лен",
+            "testedDimension": "Послушайте два слова и выберите то, которое значит «ленивая»",
             "feedbackByLocale": {
-              "ru": "Это «сумасшедшая», совсем про другое. Решает начало: crazy — «кр», lazy — мягкое «л». Слушайте первый звук.",
-              "uk": "Це «божевільна», зовсім про інше. Вирішує початок: crazy — «кр», lazy — м'яке «л». Слухайте перший звук."
+              "ru": "`crazy` значит «сумасшедшая»; «ленивая» — `lazy`.",
+              "uk": "`crazy` означає «божевільна»; «лінива» — `lazy`."
             }
           }
         ]
@@ -271,8 +271,8 @@
             "responseId": "en:lesson-01:session-11:i06:r1",
             "targetText": "wrong",
             "meaningByLocale": {
-              "ru": "«неправ, ошибаешься». Говорят «ронг»: буква `w` в начале молчит.",
-              "uk": "«неправий, помиляєшся». Кажуть «ронг»: буква `w` на початку мовчить."
+              "ru": "«неправ, ошибаешься». Так говорят о неверном ответе или ошибке.",
+              "uk": "«неправий, помиляєшся». Так кажуть про неправильну відповідь або помилку."
             }
           }
         ],
@@ -282,8 +282,8 @@
         "wordCard": {
           "word": "wrong",
           "definitionByLocale": {
-            "ru": "«неправ, ошибаешься». Говорят «ронг»: буква `w` в начале молчит.",
-            "uk": "«неправий, помиляєшся». Кажуть «ронг»: буква `w` на початку мовчить."
+            "ru": "«неправ, ошибаешься». Так говорят о неверном ответе или ошибке.",
+            "uk": "«неправий, помиляєшся». Так кажуть про неправильну відповідь або помилку."
           }
         }
       },
@@ -344,19 +344,19 @@
           {
             "responseId": "en:lesson-01:session-11:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — wrong",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Длинный». Отличается только первым звуком: `wrong` — «ронг», `long` — «лонг».",
-              "uk": "«Довгий». Відрізняється тільки першим звуком: `wrong` — «ронг», `long` — «лонг»."
+              "ru": "`long` значит «длинный», а `wrong` — «неправильный».",
+              "uk": "`long` означає «довгий», а `wrong` — «неправильний»."
             }
           },
           {
             "responseId": "en:lesson-01:session-11:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — wrong",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "Другая гласная: «ринг», а не «ронг».",
-              "uk": "Інша голосна: «ринг», а не «ронг»."
+              "ru": "`ring` значит «кольцо», а `wrong` — «неправильный».",
+              "uk": "`ring` означає «кільце», а `wrong` — «неправильний»."
             }
           }
         ],
@@ -371,7 +371,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — она уверена, что ошиблась, но она права",
+      "prompt": "Вставьте слово — Мира уверена, что ошиблась, но вы сверили её ответ: он верный",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-11:i08:r1",
@@ -392,7 +392,7 @@
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — она уверена, что ошиблась, но она права",
+          "ru": "Вставьте слово — Мира уверена, что ошиблась, но вы сверили её ответ: он верный",
           "uk": "Вставте слово — вона певна, що помилилася, але вона має рацію"
         },
         "gappedTargetPhrase": "You are not ___ .",
@@ -410,12 +410,12 @@
             "text": "tired"
           }
         ],
-        "testedDimension": "Вставьте слово — она уверена, что ошибла",
+        "testedDimension": "Вставьте слово — Мира уверена, что ошиблась, но вы сверили её ответ: он верный",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-11:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — она уверена, что ошибла",
+            "testedDimension": "Вставьте слово — Мира уверена, что ошиблась, но вы сверили её ответ: он верный",
             "feedbackByLocale": {
               "ru": "«Занята» — про дела, а не про правоту.",
               "uk": "«Зайнята» — про справи, а не про правоту."
@@ -424,10 +424,10 @@
           {
             "responseId": "en:lesson-01:session-11:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — она уверена, что ошибла",
+            "testedDimension": "Вставьте слово — Мира уверена, что ошиблась, но вы сверили её ответ: он верный",
             "feedbackByLocale": {
-              "ru": "«Устала» — тоже не про то. Ошибаешься — `wrong`.",
-              "uk": "«Втомилася» — теж не про те. Помиляєшся — `wrong`."
+              "ru": "`tired` значит «уставшая»; здесь вы отвечаете на сомнение Миры в правильности ответа.",
+              "uk": "`tired` означає «втомилася»; тут ви відповідаєте на сумнів Міри щодо правильності відповіді."
             }
           }
         ]
@@ -532,19 +532,19 @@
           {
             "responseId": "en:lesson-01:session-11:i10:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — kind",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Ребёнок». Короче: в `kind` в конце ещё «нд».",
-              "uk": "«Дитина». Коротше: у `kind` наприкінці ще «нд»."
+              "ru": "`kid` — «ребёнок», а `kind` — «добрый».",
+              "uk": "`kid` — «дитина», а `kind` — «добрий»."
             }
           },
           {
             "responseId": "en:lesson-01:session-11:i10:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — kind",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Найти». Отличается первым звуком: «ф», а не «к».",
-              "uk": "«Знайти». Відрізняється першим звуком: «ф», а не «к»."
+              "ru": "`find` значит «найти», а `kind` описывает доброго человека.",
+              "uk": "`find` означає «знайти», а `kind` описує добру людину."
             }
           }
         ],
@@ -559,7 +559,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы спросили её про встречу, она знает точно",
+      "prompt": "Вставьте слово — Мира проверила календарь и уверенно подтвердила время встречи",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-11:i11:r1",
@@ -580,7 +580,7 @@
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы спросили её про встречу, она знает точно",
+          "ru": "Вставьте слово — Мира проверила календарь и уверенно подтвердила время встречи",
           "uk": "Вставте слово — ви спитали її про зустріч, вона знає точно"
         },
         "gappedTargetPhrase": "She said: I am ___ .",
@@ -598,24 +598,24 @@
             "text": "wrong"
           }
         ],
-        "testedDimension": "Вставьте слово — вы спросили её про встр",
+        "testedDimension": "Вставьте слово — Мира проверила календарь и уверенно подтвердила время встречи",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-11:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы спросили её про встр",
+            "testedDimension": "Вставьте слово — Мира проверила календарь и уверенно подтвердила время встречи",
             "feedbackByLocale": {
-              "ru": "«Одна» — про компанию, а не про уверенность.",
-              "uk": "«Сама» — про товариство, а не про впевненість."
+              "ru": "`alone` значит «одна», а здесь Мира подтверждает, что уверена.",
+              "uk": "`alone` означає «сама», а тут Міра підтверджує, що впевнена."
             }
           },
           {
             "responseId": "en:lesson-01:session-11:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы спросили её про встр",
+            "testedDimension": "Вставьте слово — Мира проверила календарь и уверенно подтвердила время встречи",
             "feedbackByLocale": {
-              "ru": "«Ошибаюсь» — она как раз говорит обратное.",
-              "uk": "«Помиляюся» — вона якраз каже протилежне."
+              "ru": "`wrong` значит «неправ»; Мира подтвердила время, а не усомнилась в нём.",
+              "uk": "`wrong` означає «неправий»; Міра підтвердила час, а не засумнівалася в ньому."
             }
           }
         ]
@@ -701,7 +701,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — вы возражаете коллеге",
+      "prompt": "Вставьте слово — Мира из-за одной ошибки называет себя «сумасшедшей», а вы её поддерживаете",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-11:i13:r1",
@@ -718,12 +718,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — вы возражаете коллеге",
+      "accessibilityLabel": "Вставьте слово — вы возражаете коллеге",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы возражаете коллеге",
-          "uk": "Вставте скріпку — ви заперечуєте колезі"
+          "ru": "Вставьте слово — Мира из-за одной ошибки называет себя «сумасшедшей», а вы её поддерживаете",
+          "uk": "Вставте слово — ви заперечуєте колезі"
         },
         "gappedTargetPhrase": "You ___ not crazy.",
         "gapOptions": [
@@ -740,12 +740,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте скрепку — вы возражаете коллеге",
+        "testedDimension": "Вставьте слово — Мира из-за одной ошибки называет себя «сумасшедшей», а вы её поддерживаете",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-11:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы возражаете коллеге",
+            "testedDimension": "Вставьте слово — Мира из-за одной ошибки называет себя «сумасшедшей», а вы её поддерживаете",
             "feedbackByLocale": {
               "ru": "`am` живёт только с `I` и никуда от него не уходит.",
               "uk": "`am` живе тільки з `I` і нікуди від нього не йде."
@@ -754,7 +754,7 @@
           {
             "responseId": "en:lesson-01:session-11:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы возражаете коллеге",
+            "testedDimension": "Вставьте слово — Мира из-за одной ошибки называет себя «сумасшедшей», а вы её поддерживаете",
             "feedbackByLocale": {
               "ru": "Не для `you`. Про человека напротив — `you are`.",
               "uk": "Не для `you`. Про людину навпроти — `you are`."
@@ -770,17 +770,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — она колеблется, а вы видите, что решение у неё есть",
+      "prompt": "Соберите фразу — Мира уверена в своём ответе; вы сверили его по инструкции и убедились, что он верный",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — она колеблется, а вы видите, что решение у неё есть",
+      "accessibilityLabel": "Соберите фразу — Мира уверена в своём ответе; вы сверили его по инструкции и убедились, что он верный",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are sure.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — она колеблется, а вы видите, что решение у неё есть",
-          "uk": "Складіть фразу — вона вагається, а ви бачите, що рішення в неї є"
+          "ru": "Соберите фразу — Мира уверена в своём ответе; вы сверили его по инструкции и убедились, что он верный",
+          "uk": "Складіть фразу — Міра впевнена у своїй відповіді; ви звірили її за інструкцією й переконалися, що вона правильна"
         },
         "orderedTokens": [
           "You",
@@ -790,7 +790,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира уверена в своём ответе; вы сверили его по инструкции и убедились, что он верный",
+            "feedbackByLocale": {
+              "ru": "вы подтверждаете, что Мира уверена",
+              "uk": "ви підтверджуєте, що Міра впевнена"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -800,13 +810,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «ты не одна»",
+      "prompt": "Послушайте и соберите — Лина осталась рядом с Мирой после встречи; скажите ей: «ты не одна»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-11:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «ты не одна»",
+      "accessibilityLabel": "Послушайте и соберите — Лина осталась рядом с Мирой после встречи; скажите ей: «ты не одна»",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -824,7 +834,17 @@
         "authoredDistractorTokens": [
           "no"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — Лина осталась рядом с Мирой после встречи; скажите ей: «ты не одна»",
+            "feedbackByLocale": {
+              "ru": "отрицание в этой фразе — `not`; `no` здесь не подходит.",
+              "uk": "заперечення в цій фразі — `not`; `no` тут не підходить."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -834,17 +854,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — она отмахивается от вашего «спасибо»",
+      "prompt": "Соберите фразу — Мира принесла вам забытый блокнот, а вы благодарите её",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — она отмахивается от вашего «спасибо»",
+      "accessibilityLabel": "Соберите фразу — Мира принесла вам забытый блокнот, а вы благодарите её",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are kind.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — она отмахивается от вашего «спасибо»",
-          "uk": "Складіть фразу — вона відмахується від вашого «дякую»"
+          "ru": "Соберите фразу — Мира принесла вам забытый блокнот, а вы благодарите её",
+          "uk": "Складіть фразу — Міра принесла вам забутий блокнот, а ви дякуєте їй"
         },
         "orderedTokens": [
           "You",
@@ -854,56 +874,81 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира принесла вам забытый блокнот, а вы благодарите её",
+            "feedbackByLocale": {
+              "ru": "вы называете Миру доброй, без отрицания",
+              "uk": "ви називаєте Міру доброю, без заперечення"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-11:i17",
       "ordinal": 20,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «ты не занята?»",
+      "prompt": "Послушайте и соберите — Лина спрашивает Миру, может ли та помочь с коробками. Мира свободна; скажите ей: «ты не занята»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «ты не занята?»",
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — Лина спрашивает Миру, может ли та помочь с коробками. Мира свободна; скажите ей: «ты не занята»",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "You are not busy.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «ты не занята?»",
-          "uk": "Складіть фразу — «ти не зайнята?»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i17:audio",
+          "transcript": "You are not busy."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are not busy.",
         "orderedTokens": [
           "You",
           "are",
           "not",
           "busy"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — Лина спрашивает Миру, может ли та помочь с коробками. Мира свободна; скажите ей: «ты не занята»",
+            "feedbackByLocale": {
+              "ru": "с `you` нужна форма `are`; `is` относится к `he`, `she` или `it`.",
+              "uk": "із `you` потрібна форма `are`; `is` вживають із `he`, `she` або `it`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-11:i18:s01",
+      "interactionId": "en:lesson-01:session-11:i18",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — Лина сверила цифры Миры с таблицей: они верны. Мира сомневается; скажите ей, что она не ошибается",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-11:i18:s01:audio"
+        "en:lesson-01:session-11:i18:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — Лина сверила цифры Миры с таблицей: они верны. Мира сомневается; скажите ей, что она не ошибается",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-11:i18:s01:audio",
+          "audioTargetId": "en:lesson-01:session-11:i18:audio",
           "transcript": "You are not wrong."
         },
         "slowReferenceAudio": null,
@@ -919,112 +964,13 @@
         ]
       },
       "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-11:i18:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-11:i18:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-11:i18:s02:audio",
-          "transcript": "You are not lazy."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are not lazy.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-11:i18:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-11:i18:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-11:i18:s03:audio",
-          "transcript": "You are not alone."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are not alone.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-11:i18:s04",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-11:i18:s04:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-11:i18:s04:audio",
-          "transcript": "You are kind."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are kind.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "aa551c561b8f9d20fc47b24125d21e504f9cf0601556fad540fef911e0aa45a6"
+  "learnerFingerprint": "225dbc2bbafdc65f9a559202e96e0117b4cdce9f2e831bcb36480ff9ad58811b"
 }

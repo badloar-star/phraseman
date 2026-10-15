@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-09:intro1:r2": {
+          "ru": "`am` используют только после `I`. После `you` нужно `are`.",
+          "uk": "`am` використовують лише після `I`. Після `you` потрібне `are`."
+        },
+        "en:lesson-01:session-09:intro1:r3": {
+          "ru": "После `you` нужно `are`: `You are tired`.",
+          "uk": "Після `you` потрібне `are`: `You are tired`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-09:intro2:r2": {
+          "ru": "Это значит «тебе жаль». В ответ на спасибо так не говорят; здесь уместно `You are welcome`.",
+          "uk": "Це означає «тобі шкода». У відповідь на «дякую» так не кажуть; тут доречне `You are welcome`."
+        },
+        "en:lesson-01:session-09:intro2:r3": {
+          "ru": "`are` потерялась. Полная фраза — три слова, и первые два всегда вместе.",
+          "uk": "`are` загубилася. Повна фраза — три слова, і перші два завжди разом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-09:intro3:r2": {
+          "ru": "После `you` нужно `are`: `You are funny`.",
+          "uk": "Після `you` потрібне `are`: `You are funny`."
+        },
+        "en:lesson-01:session-09:intro3:r3": {
+          "ru": "`is` не используют после `you`; здесь нужно `are`.",
+          "uk": "`is` не використовують після `you`; тут потрібне `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2479a007a3de1c2f07cd5f00195ab1bacb5b7a722c3ad18b6cbe6a4eda1ce71f"
+}

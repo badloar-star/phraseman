@@ -1,0 +1,1069 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — early",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — early",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i01:audio",
+          "transcript": "early"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-10:i01:r1",
+            "targetText": "early",
+            "meaningByLocale": {
+              "ru": "«рано». Вы приходите, когда ещё никого нет, и ждёте с кофе.",
+              "uk": "«рано». Ви приходите, коли ще нікого немає, і чекаєте з кавою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "early",
+          "definitionByLocale": {
+            "ru": "«рано». Вы приходите, когда ещё никого нет, и ждёте с кофе.",
+            "uk": "«рано». Ви приходите, коли ще нікого немає, і чекаєте з кавою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-10:i02:r1",
+          "text": "early"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i02:r2",
+          "text": "earn"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i02:r3",
+          "text": "ear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i02:audio",
+          "transcript": "early"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-10:i02:r1",
+            "targetText": "early",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i02:r2",
+            "targetText": "earn",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i02:r3",
+            "targetText": "ear",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — early",
+            "feedbackByLocale": {
+              "ru": "`earn` значит «зарабатывать»; здесь речь о том, что Мира пришла рано.",
+              "uk": "`earn` означає «заробляти»; тут ідеться про те, що Міра прийшла рано."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — early",
+            "feedbackByLocale": {
+              "ru": "`ear` значит «ухо»; здесь речь о том, что Мира пришла рано.",
+              "uk": "`ear` означає «вухо»; тут ідеться про те, що Міра прийшла рано."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i03:audio",
+          "transcript": "fast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-10:i03:r1",
+            "targetText": "fast",
+            "meaningByLocale": {
+              "ru": "«быстрый, быстро». Про речь, про шаг, про то, как человек ест, когда времени в обрез.",
+              "uk": "«швидкий, швидко». Про мовлення, про крок, про те, як людина їсть, коли часу обмаль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fast",
+          "definitionByLocale": {
+            "ru": "«быстрый, быстро». Про речь, про шаг, про то, как человек ест, когда времени в обрез.",
+            "uk": "«швидкий, швидко». Про мовлення, про крок, про те, як людина їсть, коли часу обмаль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-10:i04:r1",
+          "text": "fast"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i04:r2",
+          "text": "face"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i04:r3",
+          "text": "first"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i04:audio",
+          "transcript": "fast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-10:i04:r1",
+            "targetText": "fast",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i04:r2",
+            "targetText": "face",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i04:r3",
+            "targetText": "first",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — fast",
+            "feedbackByLocale": {
+              "ru": "`face` значит «лицо»; здесь говорится о скорости.",
+              "uk": "`face` означає «обличчя»; тут ідеться про швидкість."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — fast",
+            "feedbackByLocale": {
+              "ru": "`first` значит «первый»; здесь говорится о скорости.",
+              "uk": "`first` означає «перший»; тут ідеться про швидкість."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — Міра прийшла до початку зустрічі й уже сидить за столиком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — Міра вже за столиком",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are early.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Мира пришла до начала встречи и уже сидит за столиком",
+          "uk": "Складіть фразу — Міра прийшла до початку зустрічі й уже сидить за столиком"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "early"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — Міра прийшла до початку зустрічі й уже сидить за столиком",
+            "feedbackByLocale": {
+              "ru": "после `You` используют `are`, а `am` бывает только после `I`",
+              "uk": "після `You` використовують `are`, а `am` буває лише після `I`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Міра доїла свій сендвіч за хвилину",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-10:i06:r1",
+          "text": "fast"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i06:r2",
+          "text": "early"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i06:r3",
+          "text": "sorry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Міра доїла свій сендвіч за хвилину",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Мира доела свой сэндвич за минуту",
+          "uk": "Вставте слово — Міра доїла свій сендвіч за хвилину"
+        },
+        "gappedTargetPhrase": "You are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-10:i06:r1",
+            "text": "fast"
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i06:r2",
+            "text": "early"
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i06:r3",
+            "text": "sorry"
+          }
+        ],
+        "testedDimension": "Вставте слово — Міра доїла свій сендвіч за хвилину",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Міра доїла свій сендвіч за хвилину",
+            "feedbackByLocale": {
+              "ru": "`early` значит, что человек пришёл раньше; здесь описана скорость еды.",
+              "uk": "`early` означає, що людина прийшла раніше; тут описано швидкість їжі."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Міра доїла свій сендвіч за хвилину",
+            "feedbackByLocale": {
+              "ru": "`sorry` значит «извините»; здесь Мира не извиняется, а быстро ест.",
+              "uk": "`sorry` означає «вибачте»; тут Міра не вибачається, а швидко їсть."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i07:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-10:i07:r1",
+            "targetText": "quiet",
+            "meaningByLocale": {
+              "ru": "«тихий/тихая, молчаливый/молчаливая». Человек не отвечает и смотрит в чашку.",
+              "uk": "«тихий/тиха, мовчазний/мовчазна». Людина не відповідає і дивиться в горнятко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quiet",
+          "definitionByLocale": {
+            "ru": "«тихий/тихая, молчаливый/молчаливая». Человек не отвечает и смотрит в чашку.",
+            "uk": "«тихий/тиха, мовчазний/мовчазна». Людина не відповідає і дивиться в горнятко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-10:i08:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i08:r2",
+          "text": "quite"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i08:r3",
+          "text": "queen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i08:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-10:i08:r1",
+            "targetText": "quiet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i08:r2",
+            "targetText": "quite",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i08:r3",
+            "targetText": "queen",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — quiet",
+            "feedbackByLocale": {
+              "ru": "`quite` значит «довольно»; здесь подходит слово со значением «тихий».",
+              "uk": "`quite` означає «доволі»; тут підходить слово зі значенням «тихий»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — quiet",
+            "feedbackByLocale": {
+              "ru": "`queen` значит «королева»; здесь описывается молчаливый человек.",
+              "uk": "`queen` означає «королева»; тут описано мовчазну людину."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Міра мовчить; скажіть їй про це",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-10:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Міра мовчить; скажіть їй про це",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Мира молчит; скажите ей об этом",
+          "uk": "Вставте слово — Міра мовчить; скажіть їй про це"
+        },
+        "gappedTargetPhrase": "You ___ quiet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-10:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставте слово — Міра мовчить; скажіть їй про це",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Міра мовчить; скажіть їй про це",
+            "feedbackByLocale": {
+              "ru": "`Am` используется с `I`. Для `you` нужно `are`.",
+              "uk": "`Am` використовується з `I`. Для `you` потрібне `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Міра мовчить; скажіть їй про це",
+            "feedbackByLocale": {
+              "ru": "`is` используют с `he`, `she` или `it`; после `you` нужно `are`.",
+              "uk": "`is` використовують із `he`, `she` або `it`; після `you` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — «ти швидка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — «ти швидка»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i10:audio",
+          "transcript": "You are fast."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are fast.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "fast"
+        ],
+        "authoredDistractorTokens": [
+          "early"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть — «ти швидка»",
+            "feedbackByLocale": {
+              "ru": "она описывает ранний приход, а здесь говорится о скорости — `fast`",
+              "uk": "вона описує ранній прихід, а тут ідеться про швидкість — `fast`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-10:i11:p1",
+            "target": "early",
+            "meaningByLocale": {
+              "ru": "рано",
+              "uk": "рано"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-10:i11:p2",
+            "target": "fast",
+            "meaningByLocale": {
+              "ru": "быстро",
+              "uk": "швидко"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-10:i11:p3",
+            "target": "quiet",
+            "meaningByLocale": {
+              "ru": "тихий/тихая",
+              "uk": "тихий/тиха"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-10:i11:p4",
+            "target": "late",
+            "meaningByLocale": {
+              "ru": "поздно",
+              "uk": "пізно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "early",
+          "fast",
+          "quiet",
+          "late"
+        ],
+        "rightColumn": [
+          "рано",
+          "швидко",
+          "тихий/тиха",
+          "пізно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Міра дивиться на годинник і хапає сумку; скажіть їй, що вона запізнюється",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Міра дивиться на годинник і хапає сумку; скажіть їй, що вона запізнюється",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i12:audio",
+          "transcript": "You are late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are quiet.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Мира молчит над пустой чашкой; скажите ей об этом",
+          "uk": "Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це",
+            "feedbackByLocale": {
+              "ru": "с `You` используют `are`, а не `is`",
+              "uk": "з `You` використовують `are`, а не `is`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Міра вибачається, що тікає",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-10:i14:r1",
+          "text": "sorry"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i14:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-10:i14:r3",
+          "text": "early"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Міра вибачається, що тікає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Мира извиняется, что убегает",
+          "uk": "Вставте слово — Міра вибачається, що тікає"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-10:i14:r1",
+            "text": "sorry"
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i14:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i14:r3",
+            "text": "early"
+          }
+        ],
+        "testedDimension": "Вставте слово — Міра вибачається, що тікає",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Міра вибачається, що тікає",
+            "feedbackByLocale": {
+              "ru": "`quiet` значит «молчаливая»; здесь Мира говорит и извиняется.",
+              "uk": "`quiet` означає «мовчазна»; тут Міра говорить і вибачається."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Міра вибачається, що тікає",
+            "feedbackByLocale": {
+              "ru": "`early` значит «рано»; здесь Мира извиняется за то, что уходит.",
+              "uk": "`early` означає «рано»; тут Міра вибачається за те, що йде."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — Міра вдягла куртку, взяла сумку й каже, що готова йти; скажіть їй про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — Міра вдягла куртку, взяла сумку й каже, що готова йти; скажіть їй про це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are ready.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Мира надела куртку, взяла сумку и говорит, что готова идти; скажите ей об этом",
+          "uk": "Складіть фразу — Міра вдягла куртку, взяла сумку й каже, що готова йти; скажіть їй про це"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "busy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — Міра вдягла куртку, взяла сумку й каже, що готова йти; скажіть їй про це",
+            "feedbackByLocale": {
+              "ru": "Мира говорит, что готова идти — `ready`, а не «занята»",
+              "uk": "Міра каже, що готова йти — `ready`, а не «зайнята»"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Олег питає, чому ви не можете піти; скажіть, що ви зайняті",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Олег питає, чому ви не можете піти; скажіть, що ви зайняті",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i16:audio",
+          "transcript": "I am busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари — слова, які вже ваші",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари — слова, які вже ваші",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-10:i17:p1",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал/устала",
+              "uk": "втомлений/втомлена"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-10:i17:p2",
+            "target": "sorry",
+            "meaningByLocale": {
+              "ru": "извините",
+              "uk": "вибачте"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-10:i17:p3",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "занят/занята",
+              "uk": "зайнятий/зайнята"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-10:i17:p4",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов/готова",
+              "uk": "готовий/готова"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tired",
+          "sorry",
+          "busy",
+          "ready"
+        ],
+        "rightColumn": [
+          "втомлений/втомлена",
+          "вибачте",
+          "зайнятий/зайнята",
+          "готовий/готова"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Міра прийшла до відкриття офісу; скажіть їй, що вона прийшла рано",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i18:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Міра прийшла до відкриття офісу; скажіть їй, що вона прийшла рано",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i18:audio",
+          "transcript": "You are early."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are early.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — після довгої дороги ви кажете Олегові, що втомилися",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — після довгої дороги ви кажете Олегові, що втомилися",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am tired.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — после долгой дороги вы говорите Олегу, что устали",
+          "uk": "Складіть фразу — після довгої дороги ви кажете Олегові, що втомилися"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i19:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — після довгої дороги ви кажете Олегові, що втомилися",
+            "feedbackByLocale": {
+              "ru": "после `I` используют `am`, а не `is`",
+              "uk": "після `I` використовують `am`, а не `is`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i19:tile:d2",
+            "correct": false,
+            "testedDimension": "Складіть фразу — після довгої дороги ви кажете Олегові, що втомилися",
+            "feedbackByLocale": {
+              "ru": "вы говорите, что устали, поэтому отрицание не нужно",
+              "uk": "ви кажете, що втомилися, тому заперечення не потрібне"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Міра швидко відповідає на запитання; скажіть їй, що вона швидка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i20:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Міра швидко відповідає на запитання; скажіть їй, що вона швидка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i20:audio",
+          "transcript": "You are fast."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are fast.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d18f3fa4c005c01d1f52bd75f37c60c185f3e077d1d39ce5e6a027bb1548c4ce"
+}

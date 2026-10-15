@@ -4,7 +4,7 @@ import {
   type SessionSource,
 } from "../content/source/session_shard_from_source_v1";
 import type { LearningV2IntroTextRunV1 } from "../content/intro_semantic_runs_v1";
-import type { LearningV2ModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
+import type { LearningV2LearnerModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
 import type { Lesson1AuthoringStatusV1 } from "../content/source/lesson1_authoring_registry_v1";
 import { hashCanonicalBody } from "../policies/decision_registry";
 import type {
@@ -62,11 +62,11 @@ export type LearningV2StaticOwnerReviewInteractionV1 = Readonly<{
   interactionId: string;
   ordinal: number;
   purpose: LearningV2CourseSessionPracticeInteractionV1["purpose"];
-  family: LearningV2ModeNativePayloadV1["family"];
+  family: LearningV2LearnerModeNativePayloadV1["family"];
   inputMode: LearningV2CourseSessionPracticeInteractionV1["inputMode"];
   mediaIds: readonly string[];
   audioTargetIds: readonly string[];
-  modePayload: LearningV2ModeNativePayloadV1;
+  modePayload: LearningV2LearnerModeNativePayloadV1;
   scriptedAlternate: LearningV2CourseSessionPracticeInteractionV1["scriptedAlternate"];
 }>;
 
@@ -106,7 +106,7 @@ export type LearningV2StaticOwnerReviewBundleV1 = Readonly<{
 
 function requireModePayload(
   interaction: LearningV2CourseSessionPracticeInteractionV1,
-): LearningV2ModeNativePayloadV1 {
+): LearningV2LearnerModeNativePayloadV1 {
   if (!interaction.modePayload) {
     throw new Error(
       `learning_v2_static_owner_review_mode_payload_missing:${interaction.interactionId}`,

@@ -1,0 +1,133 @@
+# Learning V2 — минимальный список путей для git add (s01–s15). Ядро, 2026-10-15 09:37:00. add строго по списку, без -A.
+# Колонки: статус | mtime | возраст_мин | путь. Возраст < 15 — Codex пишет сейчас → отложить (решение владельца 15.10).
+
+## a) generated_release s01–s15
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s01/answers.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s01/auxiliary.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s01/intro.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s01/learner.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s01/learner.uk.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s02/answers.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s02/auxiliary.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s02/intro.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s02/learner.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s02/learner.uk.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s03/answers.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s03/auxiliary.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s03/intro.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s03/learner.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s03/learner.uk.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s04/answers.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s04/auxiliary.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s04/intro.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s04/learner.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s04/learner.uk.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s05/answers.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s05/auxiliary.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s05/intro.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s05/learner.json
+M	10-14 21:04	752	modules/learning-v2/content/factory_native/generated_release/en/l01/s05/learner.uk.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s06/answers.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s06/auxiliary.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s06/intro.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s06/learner.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s06/learner.uk.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s07/answers.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s07/auxiliary.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s07/intro.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s07/learner.json
+M	10-14 21:51	705	modules/learning-v2/content/factory_native/generated_release/en/l01/s07/learner.uk.json
+M	10-14 22:31	665	modules/learning-v2/content/factory_native/generated_release/en/l01/s08/intro.json
+M	10-14 22:31	665	modules/learning-v2/content/factory_native/generated_release/en/l01/s08/learner.json
+M	10-14 23:22	614	modules/learning-v2/content/factory_native/generated_release/en/l01/s09/answers.json
+M	10-14 23:22	614	modules/learning-v2/content/factory_native/generated_release/en/l01/s09/intro.json
+M	10-14 23:22	614	modules/learning-v2/content/factory_native/generated_release/en/l01/s09/learner.json
+M	10-15 00:07	569	modules/learning-v2/content/factory_native/generated_release/en/l01/s10/answers.json
+M	10-15 00:07	569	modules/learning-v2/content/factory_native/generated_release/en/l01/s10/intro.json
+M	10-15 00:07	569	modules/learning-v2/content/factory_native/generated_release/en/l01/s10/learner.json
+M	10-15 01:35	481	modules/learning-v2/content/factory_native/generated_release/en/l01/s11/answers.json
+M	10-15 01:35	481	modules/learning-v2/content/factory_native/generated_release/en/l01/s11/intro.json
+M	10-15 01:35	481	modules/learning-v2/content/factory_native/generated_release/en/l01/s11/learner.json
+M	10-15 03:20	376	modules/learning-v2/content/factory_native/generated_release/en/l01/s12/answers.json
+M	10-15 03:20	376	modules/learning-v2/content/factory_native/generated_release/en/l01/s12/intro.json
+M	10-15 03:36	360	modules/learning-v2/content/factory_native/generated_release/en/l01/s12/learner.json
+M	10-15 04:16	320	modules/learning-v2/content/factory_native/generated_release/en/l01/s13/answers.json
+M	10-15 04:16	320	modules/learning-v2/content/factory_native/generated_release/en/l01/s13/intro.json
+M	10-15 04:16	320	modules/learning-v2/content/factory_native/generated_release/en/l01/s13/learner.json
+M	10-15 04:57	279	modules/learning-v2/content/factory_native/generated_release/en/l01/s14/answers.json
+M	10-15 04:57	279	modules/learning-v2/content/factory_native/generated_release/en/l01/s14/auxiliary.json
+M	10-15 04:57	279	modules/learning-v2/content/factory_native/generated_release/en/l01/s14/intro.json
+M	10-15 04:57	279	modules/learning-v2/content/factory_native/generated_release/en/l01/s14/learner.json
+M	10-15 04:57	279	modules/learning-v2/content/factory_native/generated_release/en/l01/s14/learner.uk.json
+M	10-15 05:28	248	modules/learning-v2/content/factory_native/generated_release/en/l01/s15/answers.json
+M	10-15 05:28	248	modules/learning-v2/content/factory_native/generated_release/en/l01/s15/intro.json
+M	10-15 05:28	248	modules/learning-v2/content/factory_native/generated_release/en/l01/s15/learner.json
+??	10-14 22:31	665	modules/learning-v2/content/factory_native/generated_release/en/l01/s08/auxiliary.json
+??	10-14 22:31	665	modules/learning-v2/content/factory_native/generated_release/en/l01/s08/learner.uk.json
+??	10-14 23:22	614	modules/learning-v2/content/factory_native/generated_release/en/l01/s09/auxiliary.json
+??	10-14 23:22	614	modules/learning-v2/content/factory_native/generated_release/en/l01/s09/learner.uk.json
+??	10-15 00:07	569	modules/learning-v2/content/factory_native/generated_release/en/l01/s10/auxiliary.json
+??	10-15 00:07	569	modules/learning-v2/content/factory_native/generated_release/en/l01/s10/learner.uk.json
+??	10-15 01:35	481	modules/learning-v2/content/factory_native/generated_release/en/l01/s11/auxiliary.json
+??	10-15 01:35	481	modules/learning-v2/content/factory_native/generated_release/en/l01/s11/learner.uk.json
+??	10-15 03:20	376	modules/learning-v2/content/factory_native/generated_release/en/l01/s12/auxiliary.json
+??	10-15 03:36	360	modules/learning-v2/content/factory_native/generated_release/en/l01/s12/learner.uk.json
+??	10-15 04:16	320	modules/learning-v2/content/factory_native/generated_release/en/l01/s13/auxiliary.json
+??	10-15 04:16	320	modules/learning-v2/content/factory_native/generated_release/en/l01/s13/learner.uk.json
+??	10-15 05:28	248	modules/learning-v2/content/factory_native/generated_release/en/l01/s15/auxiliary.json
+??	10-15 05:28	248	modules/learning-v2/content/factory_native/generated_release/en/l01/s15/learner.uk.json
+
+## b) factory_native модули
+M	10-15 05:28	248	modules/learning-v2/content/factory_native/factory_native_catalog_v1.generated.ts
+M	10-15 07:44	112	modules/learning-v2/content/factory_native/factory_native_course_v1.ts
+M	10-15 05:28	248	modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated.ts
+
+## c) потолок
+M	10-15 05:30	246	app/learning_v2_bundle_availability_v1.generated.ts
+
+## d) озвучка
+M	10-14 16:51	1006	app/learning_v2_factory_production_audio_entries_v1.generated.ts
+M	10-14 21:50	706	app/learning_v2_factory_production_audio_v1.ts
+M	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/manifest.json
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/0526898a4ad11f81558422101ba9734fe97b3bc15b7e34a163c24f800175516a.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/0c03c836893726e8e3f6dccce6fa6d761a0885f07199cfee18a7a1aaa4cfd660.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/0f1e9ce015a8ee947b1004d43a922c71624edf011c8edf4b0532c76efc400c60.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/1c67ea838bec003042eff085cb421207191b151c619e0d8f79b242c42fc16c97.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/3a1f5ee616d4de7264988a241c43c7745eafeff1d969e7bfd213ed8ad431c554.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/3fbf4286c5c7aa0de8cc674ec71fc7a87d182bf4b8c1031df6d9a8e20794a6d4.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/5082b2a19573973f0624e8a21f032fd1ca48ac7cd5d9ccd15cc5b7395df50850.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/74b4ebba639cc04333a8424792c5409c4d26cb0bcffd7f00dcc15c244c5a9546.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/7795ac50066d9dbc1267ee9f098b4521a69725113625e4102c5124ed4baba1fc.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/7e6dca5ef36e83463d338d9cd77bb4a578f343516b26f3081b632fa55572aa23.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/80d397ebfa743089399259ad3967d24e0dcfa135d3af8e71a2f9c9c0ab20d38e.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/97ddbba7fd659ad9b29ebd6def079165b1d4f6f1a2b619720f833bd1e66d07e6.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/9ca60eb6690efc06e88bd11fb14b6485b1e14aaca820b84dc60fde931ed5a683.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/bc21b864e075de38e19f72c7c9c615235034cb6bb33fc797d4118190383acce1.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/eb361149f5d8d50054cb0537b6a00b3a216e779ce19b2a85febe7f91cb2f70cb.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/f6189fe5b62cb04d65e1f1117f8a23379cce95d3647a1bbf88f34e528a0a3d06.mp3
+??	10-14 16:48	1008	assets/audio/learning-v2/factory-production-v1/batches/19c802047804a6a2a5e418c2b0de439e1323603429427f4b224262394f331841/receipt.json
+
+## e) пропуски озвучки + клиент выпуска (ТОЛЬКО вместе)
+M	10-14 21:51	705	app/learning_v2_course_released_session_client_v3.ts
+??	10-14 22:30	666	app/learning_v2_factory_runtime_audio_omissions_v1.ts
+
+## f) активация
+??	10-15 05:28	248	content/learning-v2-course/activation/en/active-sessions.v1.json
+??	10-15 05:27	249	content/learning-v2-course/activation/en/runtime-audio-omissions.v1.json
+
+## итог: файлов 102; изменены за последние 15 мин: 0
+
+## g) замыкание по импортам и типам (плеер, интро, режимы, preview) — без них HEAD+набор не сходится по типам
+ M	10-14 06:51	1624	app/learning_v2_session_intro.tsx
+ M	10-13 23:19	2076	modules/learning-v2/modes/mode_contract_v1.ts
+ M	10-14 00:08	2027	modules/learning-v2/modes/mode_feedback_v1.tsx
+ M	10-15 07:48	127	modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx
+ M	10-13 23:19	2076	modules/learning-v2/preview/authoring_device_preview_v1.ts
+ M	10-13 23:19	2076	modules/learning-v2/preview/static_owner_review_bundle_v1.ts
+ M	10-14 21:07	768	modules/learning-v2/runtime/course_session_client_children_v1.ts
+ M	10-15 07:48	127	modules/learning-v2/contracts/mode_native_payload_v1.ts
+ M	10-15 07:42	133	modules/learning-v2/content/source/session_package_from_shard_v1.ts
+
+## итог: 112 путей; свежее 15 мин: 0
+## проверки экспорта HEAD+112: потолок 15; гейт озвучки PASS (15/15); типы 0 ошибок (набор + 72 потребителя)
+## квитанции accepted/… не включены: их не читают ни рантайм, ни гейты

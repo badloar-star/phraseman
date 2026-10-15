@@ -14,10 +14,11 @@ import {
 } from "../policies/decision_registry";
 import type { LearningV2CourseSessionInteractionProfileV1 } from "./course_session_release_package_v1";
 import {
+  projectLearningV2ModeNativePayloadForLearnerV1,
   validateLearningV2ModeTextAnalysisV1,
   validateLearningV2ModeNativePayloadV1,
-  type LearningV2ModeNativePayloadV1,
   type LearningV2ModeChoiceDiagnosticV1,
+  type LearningV2LearnerModeNativePayloadV1,
   type LearningV2ModeTextAnalysisV1,
 } from "../contracts/mode_native_payload_v1";
 import {
@@ -31,7 +32,10 @@ export const LEARNING_V2_COURSE_SESSION_LEARNER_CHILD_SCHEMA_V1 =
   "learning-v2-course-session-learner-child.v1" as const;
 export const LEARNING_V2_COURSE_SESSION_AUXILIARY_CHILD_SCHEMA_V1 =
   "learning-v2-course-session-auxiliary-child.v1" as const;
-export const LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1 = 256 * 1024;
+// Keep the client parser aligned with the release-package contract. Rich
+// learner projections can legitimately exceed 256 KiB after locale expansion,
+// while the release package already caps this child at 4 MiB.
+export const LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1 = 4 * 1024 * 1024;
 
 export type LearningV2CourseSessionLocalizedTextV1 = Readonly<
   Record<LearningV2InterfaceLocale, string>
@@ -130,7 +134,7 @@ export interface LearningV2CourseSessionPracticeInteractionV1 {
   readonly mediaIds: readonly string[];
   readonly audioTargetIds: readonly string[];
   readonly accessibilityLabel: string;
-  readonly modePayload: LearningV2ModeNativePayloadV1 | null;
+  readonly modePayload: LearningV2LearnerModeNativePayloadV1 | null;
   readonly scriptedAlternate: Readonly<{
     alternateId: string;
     instruction: string;
@@ -198,6 +202,7 @@ export interface LearningV2CourseSessionAuxiliaryChildV1 {
 }
 
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/u;
+const HASH_RE = /^[a-f0-9]{64}$/u;
 const LANGUAGE_RE =
   /^[a-z]{2,3}(?:-[A-Z][a-z]{3})?(?:-(?:[A-Z]{2}|[0-9]{3}))?$/u;
 const CONTROL_RE =
@@ -205,6 +210,8 @@ const CONTROL_RE =
 const RESERVED = new Set(["__proto__", "prototype", "constructor"]);
 const introHandles = new WeakSet<object>();
 const learnerHandles = new WeakSet<object>();
+const learnerRawByHandle = new WeakMap<object, string>();
+const learnerProjectionFingerprintByHandle = new WeakMap<object, string>();
 const auxiliaryHandles = new WeakSet<object>();
 
 function fail(): never {
@@ -337,7 +344,7 @@ function preflight(value: unknown): void {
   let nodes = 0;
   while (stack.length) {
     const current = stack.pop()!;
-    if (++nodes > 12_000 || current.depth > 20) fail();
+    if (++nodes > 200_000 || current.depth > 64) fail();
     if (typeof current.value === "string") {
       if (
         current.value.length > 8_192 ||
@@ -348,7 +355,7 @@ function preflight(value: unknown): void {
       if (!Number.isSafeInteger(current.value) || Object.is(current.value, -0))
         fail();
     } else if (Array.isArray(current.value)) {
-      if (current.value.length > 128) fail();
+      if (current.value.length > 100_000) fail();
       current.value.forEach((child) =>
         stack.push({ value: child, depth: current.depth + 1 }),
       );
@@ -596,7 +603,7 @@ export function parseLearningV2CourseSessionLearnerChildV1(
   )
     fail();
   const ids = new Set<string>();
-  const interactions = Object.freeze(
+  const sourceInteractions = Object.freeze(
     value.interactions.map((entry, index) => {
       if (!record(entry)) fail();
       exactKeys(entry, INTERACTION_KEYS);
@@ -689,8 +696,8 @@ export function parseLearningV2CourseSessionLearnerChildV1(
     targetLanguage: value.targetLanguage as string,
     interactionProfile:
       value.interactionProfile as LearningV2CourseSessionInteractionProfileV1,
-    interactions,
-    practiceInteractionCount: interactions.length,
+    interactions: sourceInteractions,
+    practiceInteractionCount: sourceInteractions.length,
     firstPracticeOrdinal: 4 as const,
     evaluatorPayload: "absent_by_exact_schema" as const,
     acceptedAnswerPayload: "absent_by_exact_schema" as const,
@@ -710,9 +717,24 @@ export function parseLearningV2CourseSessionLearnerChildV1(
     fail();
   const result = Object.freeze({
     ...body,
+    interactions: Object.freeze(
+      sourceInteractions.map((interaction) =>
+        Object.freeze({
+          ...interaction,
+          modePayload:
+            interaction.modePayload === null
+              ? null
+              : projectLearningV2ModeNativePayloadForLearnerV1(
+                  interaction.modePayload,
+                  interaction.family,
+                ),
+        }),
+      ),
+    ),
     learnerFingerprint: value.learnerFingerprint as string,
   });
   learnerHandles.add(result);
+  learnerRawByHandle.set(result, raw);
   return result;
 }
 
@@ -722,10 +744,27 @@ export function materializeLearningV2CourseSessionLearnerChildV1(
     "courseSessionId" | "targetLanguage" | "interactionProfile" | "interactions"
   >,
 ) {
+  const interactions = Object.freeze(
+    input.interactions.map((interaction) =>
+      Object.freeze({
+        ...interaction,
+        modePayload:
+          interaction.modePayload === null
+            ? null
+            : projectLearningV2ModeNativePayloadForLearnerV1(
+                interaction.modePayload,
+                interaction.family,
+              ),
+      }),
+    ),
+  );
   const body = {
     schemaVersion: LEARNING_V2_COURSE_SESSION_LEARNER_CHILD_SCHEMA_V1,
-    ...input,
-    practiceInteractionCount: input.interactions.length,
+    courseSessionId: input.courseSessionId,
+    targetLanguage: input.targetLanguage,
+    interactionProfile: input.interactionProfile,
+    interactions,
+    practiceInteractionCount: interactions.length,
     firstPracticeOrdinal: 4 as const,
     evaluatorPayload: "absent_by_exact_schema" as const,
     acceptedAnswerPayload: "absent_by_exact_schema" as const,
@@ -735,6 +774,49 @@ export function materializeLearningV2CourseSessionLearnerChildV1(
   return parseLearningV2CourseSessionLearnerChildV1(
     canonicalJsonV1({ ...body, learnerFingerprint: hashCanonicalBody(body) }),
   );
+}
+
+/**
+ * Binds a server-verified learner-safe transport projection back to the
+ * immutable source learner fingerprint used by the audio/package join. The
+ * projected canonical bytes remain the only bytes that can be re-encoded.
+ */
+export function bindLearningV2CourseSessionLearnerProjectionToSourceV1({
+  projectedLearner,
+  projectedLearnerRaw,
+  expectedProjectionFingerprint,
+  sourceLearnerFingerprint,
+}: Readonly<{
+  projectedLearner: LearningV2CourseSessionLearnerChildV1;
+  projectedLearnerRaw: string;
+  expectedProjectionFingerprint: string;
+  sourceLearnerFingerprint: string;
+}>): LearningV2CourseSessionLearnerChildV1 {
+  if (
+    !learnerHandles.has(projectedLearner) ||
+    !HASH_RE.test(expectedProjectionFingerprint) ||
+    !HASH_RE.test(sourceLearnerFingerprint) ||
+    projectedLearner.learnerFingerprint !== expectedProjectionFingerprint ||
+    learnerRawByHandle.get(projectedLearner) !== projectedLearnerRaw
+  ) fail();
+  const bound = Object.freeze({
+    ...projectedLearner,
+    learnerFingerprint: sourceLearnerFingerprint,
+  });
+  learnerHandles.add(bound);
+  learnerRawByHandle.set(bound, projectedLearnerRaw);
+  learnerProjectionFingerprintByHandle.set(
+    bound,
+    expectedProjectionFingerprint,
+  );
+  return bound;
+}
+
+export function learnerProjectionFingerprintV1(
+  value: LearningV2CourseSessionLearnerChildV1,
+): string {
+  if (!learnerHandles.has(value)) fail();
+  return learnerProjectionFingerprintByHandle.get(value) ?? value.learnerFingerprint;
 }
 
 const AUX_ROOT_KEYS = [
@@ -1073,7 +1155,9 @@ export const encodeLearningV2CourseSessionLearnerChildV1 = (
   value: LearningV2CourseSessionLearnerChildV1,
 ) => {
   if (!learnerHandles.has(value)) fail();
-  return canonicalJsonV1(value);
+  const raw = learnerRawByHandle.get(value);
+  if (!raw) fail();
+  return raw;
 };
 export const isLearningV2CourseSessionLearnerChildV1 = (
   value: unknown,

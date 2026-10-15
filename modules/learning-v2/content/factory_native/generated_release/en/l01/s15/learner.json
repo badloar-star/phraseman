@@ -101,19 +101,19 @@
           {
             "responseId": "en:lesson-01:session-15:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — polite",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Пилот». Ударение в начале: PIE-lot. В `polite` — в конце: po-LITE.",
-              "uk": "«Пілот». Наголос на початку: PIE-lot. У `polite` — у кінці: po-LITE."
+              "ru": "`pilot` — пилот, а `polite` — вежливый; это разные слова и значения.",
+              "uk": "`pilot` — пілот, а `polite` — ввічлива; це різні слова й значення."
             }
           },
           {
             "responseId": "en:lesson-01:session-15:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — polite",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Тарелка». Один слог вместо двух.",
-              "uk": "«Тарілка». Один склад замість двох."
+              "ru": "`plate` — тарелка, а `polite` описывает вежливого человека.",
+              "uk": "`plate` — тарілка, а `polite` описує ввічливу людину."
             }
           }
         ],
@@ -220,19 +220,19 @@
           {
             "responseId": "en:lesson-01:session-15:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — serious",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Серия». Начало то же, а конец другой: SI-riz в два слога против SI-ri-es в три.",
-              "uk": "«Серія». Початок той самий, а кінець інший: SI-riz у два склади проти SI-ri-es у три."
+              "ru": "`series` — серия, а `serious` значит «серьёзный».",
+              "uk": "`series` — серія, а `serious` означає «серйозний»."
             }
           },
           {
             "responseId": "en:lesson-01:session-15:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — serious",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Обслуживание». Первый слог тянется без «и», у `serious` — чёткое «си».",
-              "uk": "«Обслуговування». Перший склад звучить як «сер», у `serious` — як «сі»."
+              "ru": "`service` — обслуживание, а `serious` описывает серьёзное отношение.",
+              "uk": "`service` — обслуговування, а `serious` описує серйозне ставлення."
             }
           }
         ],
@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — коллега всем говорит «спасибо»",
+      "prompt": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i05:r1",
@@ -264,12 +264,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — коллега всем говорит «спасибо»",
+      "accessibilityLabel": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — коллега всем говорит «спасибо»",
-          "uk": "Вставте слово — колега всім каже «дякую»"
+          "ru": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
+          "uk": "Вставте слово — Віка всім каже «дякую»; ви кажете їй: «ти ввічлива»"
         },
         "gappedTargetPhrase": "You are ___ .",
         "gapOptions": [
@@ -291,7 +291,7 @@
           {
             "responseId": "en:lesson-01:session-15:i05:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега всем говорит «с",
+            "testedDimension": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
             "feedbackByLocale": {
               "ru": "«Серьёзный» — про другое. Тут человек вежливый.",
               "uk": "«Серйозний» — про інше. Тут людина ввічлива."
@@ -300,9 +300,9 @@
           {
             "responseId": "en:lesson-01:session-15:i05:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега всем говорит «с",
+            "testedDimension": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
             "feedbackByLocale": {
-              "ru": "«Устал» — про силы, а не про манеры. Тут человек благодарит.",
+              "ru": "«Уставшая» — про силы, а не про манеры. Тут Вика благодарит коллег.",
               "uk": "«Втомлений» — про сили, а не про манери. Тут людина дякує."
             }
           }
@@ -335,7 +335,12 @@
           "serious"
         ],
         "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "slotFeedback": [],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -364,8 +369,8 @@
             "responseId": "en:lesson-01:session-15:i07:r1",
             "targetText": "lucky",
             "meaningByLocale": {
-              "ru": "«везучий». Не заслужил, не рассчитал — просто повезло.",
-              "uk": "«щасливий». Не заслужив, не розрахував — просто пощастило."
+              "ru": "«везучий» или «везучая»: человеку просто повезло.",
+              "uk": "«везучий» або «везуча»: людині просто пощастило."
             }
           }
         ],
@@ -375,8 +380,8 @@
         "wordCard": {
           "word": "lucky",
           "definitionByLocale": {
-            "ru": "«везучий». Не заслужил, не рассчитал — просто повезло.",
-            "uk": "«щасливий». Не заслужив, не розрахував — просто пощастило."
+            "ru": "«везучий» или «везучая»: человеку просто повезло.",
+            "uk": "«везучий» або «везуча»: людині просто пощастило."
           }
         }
       },
@@ -437,19 +442,19 @@
           {
             "responseId": "en:lesson-01:session-15:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — lucky",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Удача». Без хвоста «-и» на конце.",
-              "uk": "«Удача». Без хвостика «-і» в кінці."
+              "ru": "`luck` — удача, а `lucky` — везучая.",
+              "uk": "`luck` — удача, а `lucky` — везуча."
             }
           },
           {
             "responseId": "en:lesson-01:session-15:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — lucky",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Замок». Похоже на слух, но гласная другая: в `lock` она ближе к «о», в `lucky` — к «а». И `lock` в один слог.",
-              "uk": "«Замок». Схоже на слух, але голосна інша: у `lock` вона ближча до «о», у `lucky` — до «а». І `lock` в один склад."
+              "ru": "`lock` — замок, а `lucky` значит «везучая».",
+              "uk": "`lock` — замок, а `lucky` означає «везуча»."
             }
           }
         ],
@@ -556,19 +561,19 @@
           {
             "responseId": "en:lesson-01:session-15:i10:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — sad",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Сказал». Гласная другая: в `said` — как в «мэр», в `sad` рот открывается шире.",
-              "uk": "«Сказав». Голосна інша: у `said` — як в «мер», у `sad` рот відкривається ширше."
+              "ru": "`said` значит «сказал», а `sad` — «грустный».",
+              "uk": "`said` означає «сказав», а `sad` — «сумний»."
             }
           },
           {
             "responseId": "en:lesson-01:session-15:i10:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — sad",
+            "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "«Песок». Лишний звук «н» в середине.",
-              "uk": "«Пісок». Зайвий звук «н» усередині."
+              "ru": "`sand` значит «песок», а `sad` — «грустный».",
+              "uk": "`sand` означає «пісок», а `sad` — «сумний»."
             }
           }
         ],
@@ -611,16 +616,16 @@
             "pairId": "en:lesson-01:session-15:i11:p3",
             "target": "lucky",
             "meaningByLocale": {
-              "ru": "везучий",
-              "uk": "щасливий"
+              "ru": "везучий / везучая",
+              "uk": "везучий / везуча"
             }
           },
           {
             "pairId": "en:lesson-01:session-15:i11:p4",
             "target": "sad",
             "meaningByLocale": {
-              "ru": "грустный",
-              "uk": "сумний"
+              "ru": "грустный / грустная",
+              "uk": "сумний / сумна"
             }
           }
         ],
@@ -633,8 +638,8 @@
         "rightColumn": [
           "вежливый",
           "серьёзный",
-          "везучий",
-          "грустный"
+          "везучий / везучая",
+          "грустный / грустная"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -646,7 +651,8 @@
           "speed",
           "accuracy",
           "personal_best"
-        ]
+        ],
+        "choiceFeedback": []
       },
       "scriptedAlternate": null
     },
@@ -656,7 +662,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — вы говорите коллеге, что ему повезло",
+      "prompt": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i12:r1",
@@ -673,12 +679,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — вы говорите коллеге, что ему повезло",
+      "accessibilityLabel": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы говорите коллеге, что ему повезло",
-          "uk": "Вставте скріпку — ви кажете колезі, що йому пощастило"
+          "ru": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
+          "uk": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово"
         },
         "gappedTargetPhrase": "You ___ lucky.",
         "gapOptions": [
@@ -695,12 +701,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
+        "testedDimension": "Выберите нужное слово после `you`.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-15:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
+            "testedDimension": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
             "feedbackByLocale": {
               "ru": "`am` бывает только при `I`. Про собеседника — `are`.",
               "uk": "`am` буває тільки при `I`. Про співрозмовника — `are`."
@@ -709,10 +715,10 @@
           {
             "responseId": "en:lesson-01:session-15:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
+            "testedDimension": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
             "feedbackByLocale": {
-              "ru": "Чужая скрепка. При `you` — только `are`.",
-              "uk": "Чужа скріпка. При `you` — тільки `are`."
+              "ru": "`is` не подходит к обращению `you`; здесь нужно `are`.",
+              "uk": "`is` не підходить до звертання `you`; тут потрібно `are`."
             }
           }
         ]
@@ -725,13 +731,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «ты не грустный»",
+      "prompt": "Вика говорит, что просто устала и не грустит. Скажите ей: «ты не грустная»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-15:i13:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «ты не грустный»",
+      "accessibilityLabel": "Вика говорит, что просто устала и не грустит. Скажите ей: «ты не грустная»",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -749,7 +755,22 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Вика говорит, что просто устала и не грустит. Скажите ей: «ты не грустная»",
+            "feedbackByLocale": {
+              "ru": "с `you` употребляется `are`; `am` используют с `I`.",
+              "uk": "з `you` вживається `are`; `am` вживають з `I`."
+            }
+          }
+        ],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -799,10 +820,10 @@
     {
       "interactionId": "en:lesson-01:session-15:i15",
       "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — поезд отменили, все забегали, а он сел и открыл книгу",
+      "prompt": "Прослушайте первую запись и выберите услышанное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i15:r1",
@@ -810,55 +831,38 @@
         },
         {
           "responseId": "en:lesson-01:session-15:i15:r2",
-          "text": "sad"
-        },
-        {
-          "responseId": "en:lesson-01:session-15:i15:r3",
-          "text": "honest"
+          "text": "come"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — поезд отменили, все забегали, а он сел и открыл книгу",
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i15:audioA",
+        "en:lesson-01:session-15:i15:audioB"
+      ],
+      "accessibilityLabel": "Прослушайте первую запись и выберите услышанное слово",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — поезд отменили, все забегали, а он сел и открыл книгу",
-          "uk": "Вставте слово — на колегу накричали в слухавку, а він відповів рівним голосом"
+        "family": "sound_contrast",
+        "contrastA": "calm",
+        "contrastB": "come",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-15:i15:audioA",
+          "transcript": "calm"
         },
-        "gappedTargetPhrase": "You are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-15:i15:r1",
-            "text": "calm"
-          },
-          {
-            "responseId": "en:lesson-01:session-15:i15:r2",
-            "text": "sad"
-          },
-          {
-            "responseId": "en:lesson-01:session-15:i15:r3",
-            "text": "honest"
-          }
-        ],
-        "testedDimension": "Вставьте слово — поезд отменили, все заб",
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-15:i15:audioB",
+          "transcript": "come"
+        },
+        "testedPhoneticContrast": "Прослушайте первую запись и выберите услышанное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-15:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — поезд отменили, все заб",
+            "testedDimension": "Прослушайте первую запись и выберите услышанное слово",
             "feedbackByLocale": {
-              "ru": "«Грустный» — про другое: человек не грустил, он держался.",
-              "uk": "«Сумний» — про інше: людина не сумувала, вона трималася."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-15:i15:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — поезд отменили, все заб",
-            "feedbackByLocale": {
-              "ru": "«Честный» — про правду, а не про ровный голос.",
-              "uk": "«Чесний» — про правду, а не про рівний голос."
+              "ru": "`come` стоит во второй записи; в первой записи — `calm`.",
+              "uk": "`come` стоїть у другому записі; у першому записі — `calm`."
             }
           }
         ]
@@ -914,48 +918,66 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 1 из 2",
+      "prompt": "Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
+      "accessibilityLabel": "Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are honest.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «ты честный, я не грустный»",
-          "uk": "Складіть фразу — «ти чесний, я не сумний»"
+          "ru": "Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»",
+          "uk": "Складіть фразу — Віка чесно зізналася, що не встигла відповісти; скажіть їй: «ти чесна»"
         },
         "orderedTokens": [
           "You",
           "are",
-          "honest."
+          "honest"
         ],
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i17:s01:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»",
+            "feedbackByLocale": {
+              "ru": "`is` не подходит к обращению `you`; здесь нужно `are`.",
+              "uk": "`is` не підходить до звертання `you`; тут потрібно `are`."
+            }
+          }
+        ],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-15:i17:s02",
       "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 2 из 2",
+      "prompt": "Вика думает, что вы расстроены; скажите ей, что вы не грустите",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Вика думает, что вы расстроены; скажите ей, что вы не грустите",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am not sad.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «ты честный, я не грустный»",
-          "uk": "Складіть фразу — «ти чесний, я не сумний»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i17:s02:audio",
+          "transcript": "I am not sad."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not sad.",
         "orderedTokens": [
           "I",
           "am",
@@ -965,7 +987,22 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i17:s02:tile:d1",
+            "correct": false,
+            "testedDimension": "Вика думает, что вы расстроены; скажите ей, что вы не грустите",
+            "feedbackByLocale": {
+              "ru": "когда говорите о себе, используйте `I am`, не `I is`.",
+              "uk": "коли говорите про себе, використовуйте `I am`, а не `I is`."
+            }
+          }
+        ],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -1018,73 +1055,98 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 1 из 2",
+      "prompt": "Соберите фразу — Вика помогла человеку с коробками; скажите ей: «ты добрая»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
+      "accessibilityLabel": "Соберите фразу — Вика помогла человеку с коробками; скажите ей: «ты добрая»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are kind.",
         "localizedMeaning": {
-          "ru": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
-          "uk": "Складіть дві фрази — подякуйте їй за доброту і зізнайтеся, що втомилися"
+          "ru": "Соберите фразу — Вика помогла человеку с коробками; скажите ей: «ты добрая»",
+          "uk": "Складіть фразу — Віка допомогла людині з коробками; скажіть їй: «ти добра»"
         },
         "orderedTokens": [
           "You",
           "are",
-          "kind."
+          "kind"
         ],
         "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "slotFeedback": [],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-15:i19:s02",
       "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 2 из 2",
+      "prompt": "Послушайте и соберите — Вика зовёт гулять, но вы весь день носили коробки; скажите, что вы устали",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i19:s02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — Вика зовёт гулять, но вы весь день носили коробки; скажите, что вы устали",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am tired.",
-        "localizedMeaning": {
-          "ru": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
-          "uk": "Складіть дві фрази — подякуйте їй за доброту і зізнайтеся, що втомилися"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i19:s02:audio",
+          "transcript": "I am tired."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am tired.",
         "orderedTokens": [
           "I",
           "am",
           "tired"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i19:s02:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — Вика зовёт гулять, но вы весь день носили коробки; скажите, что вы устали",
+            "feedbackByLocale": {
+              "ru": "когда говорите о себе, используйте `I am`, не `I is`.",
+              "uk": "коли говорите про себе, використовуйте `I am`, а не `I is`."
+            }
+          }
+        ],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-15:i20:s01",
+      "interactionId": "en:lesson-01:session-15:i20",
       "ordinal": 25,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-15:i20:s01:audio"
+        "en:lesson-01:session-15:i20:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-15:i20:s01:audio",
+          "audioTargetId": "en:lesson-01:session-15:i20:audio",
           "transcript": "You are polite."
         },
         "slowReferenceAudio": null,
@@ -1097,82 +1159,17 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-15:i20:s02",
-      "ordinal": 26,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-15:i20:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-15:i20:s02:audio",
-          "transcript": "You are calm."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are calm.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-15:i20:s03",
-      "ordinal": 27,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-15:i20:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-15:i20:s03:audio",
-          "transcript": "You are lucky."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are lucky.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        ],
+        "choiceFeedback": []
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 24,
+  "practiceInteractionCount": 22,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5bee975c63054e9a29818989d202840813889fe39e7648db338f9e1a8b9cf242"
+  "learnerFingerprint": "c7a2cba3a317f91df4341ab62f9b1d531380e608d5a6ef1ce24633032aa74584"
 }

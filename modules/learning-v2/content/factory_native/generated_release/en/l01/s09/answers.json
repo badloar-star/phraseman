@@ -61,13 +61,13 @@
   },
   {
     "interactionId": "en:lesson-01:session-09:i13",
-    "correctText": "right",
-    "correctResponseId": "en:lesson-01:session-09:i13:r1"
+    "correctText": "You are right.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i14",
-    "correctText": "early",
-    "correctResponseId": "en:lesson-01:session-09:i14:r1"
+    "correctText": "You are early.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i15",

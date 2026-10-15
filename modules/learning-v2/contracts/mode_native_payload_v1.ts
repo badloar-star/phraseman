@@ -5,6 +5,68 @@ export type LearningV2ModeAudioReferenceV1 = Readonly<{
   transcript: string;
 }>;
 
+export const LEARNING_V2_SCRIPTED_REPEAT_REVEAL_POLICY_SCHEMA_V1 =
+  "learning-v2-scripted-repeat-reveal-policy.v1" as const;
+
+export type LearningV2ScriptedRepeatRevealPolicyV1 = Readonly<{
+  schemaVersion: typeof LEARNING_V2_SCRIPTED_REPEAT_REVEAL_POLICY_SCHEMA_V1;
+  revealAfter: "first_submitted_attempt";
+  answerExposedBeforeAttempt: false;
+  targetPhraseVisibleBeforeAttempt: false;
+  referenceAudioAvailableBeforeAttempt: false;
+  modelPlaybackAvailableBeforeAttempt: false;
+}>;
+
+export const LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1:
+  LearningV2ScriptedRepeatRevealPolicyV1 = Object.freeze({
+    schemaVersion: LEARNING_V2_SCRIPTED_REPEAT_REVEAL_POLICY_SCHEMA_V1,
+    revealAfter: "first_submitted_attempt",
+    answerExposedBeforeAttempt: false,
+    targetPhraseVisibleBeforeAttempt: false,
+    referenceAudioAvailableBeforeAttempt: false,
+    modelPlaybackAvailableBeforeAttempt: false,
+  });
+
+const SCRIPTED_REPEAT_REVEAL_POLICY_KEYS_V1 = Object.freeze([
+  "answerExposedBeforeAttempt",
+  "modelPlaybackAvailableBeforeAttempt",
+  "referenceAudioAvailableBeforeAttempt",
+  "revealAfter",
+  "schemaVersion",
+  "targetPhraseVisibleBeforeAttempt",
+] as const);
+
+export function isLearningV2ScriptedRepeatRevealPolicyV1(
+  value: unknown,
+): value is LearningV2ScriptedRepeatRevealPolicyV1 {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const policy = value as Record<string, unknown>;
+  const actualKeys = Object.keys(policy).sort();
+  const expectedKeys = [...SCRIPTED_REPEAT_REVEAL_POLICY_KEYS_V1].sort();
+  return (
+    actualKeys.length === expectedKeys.length &&
+    actualKeys.every((key, index) => key === expectedKeys[index]) &&
+    policy.schemaVersion ===
+      LEARNING_V2_SCRIPTED_REPEAT_REVEAL_POLICY_SCHEMA_V1 &&
+    policy.revealAfter === "first_submitted_attempt" &&
+    policy.answerExposedBeforeAttempt === false &&
+    policy.targetPhraseVisibleBeforeAttempt === false &&
+    policy.referenceAudioAvailableBeforeAttempt === false &&
+    policy.modelPlaybackAvailableBeforeAttempt === false
+  );
+}
+
+export function learningV2ScriptedRepeatAnswerBearingContentRevealedV1(
+  revealPolicy: unknown,
+  attemptSubmitted: boolean,
+): boolean {
+  if (revealPolicy === undefined) return true;
+  return (
+    isLearningV2ScriptedRepeatRevealPolicyV1(revealPolicy) &&
+    attemptSubmitted === true
+  );
+}
+
 export type LearningV2ModeChoiceFeedbackV1 = Readonly<{
   responseId: string;
   correct: boolean;
@@ -20,6 +82,17 @@ export type LearningV2ModeChoiceFeedbackV1 = Readonly<{
   minimalContrastByLocale?: LearningV2Localized<string>;
   acceptabilityBoundaryByLocale?: LearningV2Localized<string>;
 }>;
+
+/**
+ * Learner-wire feedback deliberately omits the authoring-time correctness
+ * marker. The local evaluator capsule is the only runtime correctness
+ * authority; the retained row is display copy selected after that evaluator
+ * returns a verdict.
+ */
+export type LearningV2LearnerModeChoiceFeedbackV1 = Omit<
+  LearningV2ModeChoiceFeedbackV1,
+  "correct"
+>;
 
 export type LearningV2ModePhraseUnitExplanationV1 = Readonly<{
   text: string;
@@ -146,6 +219,7 @@ export type LearningV2ModeNativePayloadV1 =
       recordControlPolicy: "hold_press_release_with_accessible_toggle";
       modelPlayback: "reference_and_slow";
       learnerPlayback: "available_after_capture";
+      scriptedRepeatRevealPolicy?: LearningV2ScriptedRepeatRevealPolicyV1;
       honestOutcomeStates: readonly [
         "PASS_CONFIDENT",
         "NEEDS_WORK_CONFIDENT",
@@ -154,6 +228,20 @@ export type LearningV2ModeNativePayloadV1 =
       ];
       explanationV1?: Readonly<{ phrase: LearningV2ModeTextAnalysisV1 }>;
     }>;
+
+type LearningV2LearnerModePayloadProjectionV1<T> =
+  T extends Readonly<{ choiceFeedback: readonly LearningV2ModeChoiceFeedbackV1[] }>
+    ? Omit<T, "choiceFeedback"> & Readonly<{
+        choiceFeedback: readonly LearningV2LearnerModeChoiceFeedbackV1[];
+      }>
+    : T extends Readonly<{ slotFeedback: readonly LearningV2ModeChoiceFeedbackV1[] }>
+      ? Omit<T, "slotFeedback"> & Readonly<{
+          slotFeedback: readonly LearningV2LearnerModeChoiceFeedbackV1[];
+        }>
+      : T;
+
+export type LearningV2LearnerModeNativePayloadV1 =
+  LearningV2LearnerModePayloadProjectionV1<LearningV2ModeNativePayloadV1>;
 
 const FAMILY_REQUIRED_FIELDS: Readonly<
   Record<LearningV2ModeNativePayloadV1["family"], readonly string[]>
@@ -233,8 +321,76 @@ export function validateLearningV2ModeNativePayloadV1(
       throw new Error(`learning_v2_mode_native_payload_field_missing:${family}:${field}`);
     }
   }
+  if (
+    "scriptedRepeatRevealPolicy" in payload &&
+    (family !== "scripted_repeat_compare" ||
+      !isLearningV2ScriptedRepeatRevealPolicyV1(
+        payload.scriptedRepeatRevealPolicy,
+      ))
+  ) {
+    throw new Error("learning_v2_scripted_repeat_reveal_policy_invalid");
+  }
   validateOptionalAnalyses(payload, family);
   return Object.freeze(payload) as unknown as LearningV2ModeNativePayloadV1;
+}
+
+function stripLearnerCorrectnessMarkersV1(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return Object.freeze(value.map(stripLearnerCorrectnessMarkersV1));
+  }
+  if (value && typeof value === "object") {
+    return Object.freeze(
+      Object.fromEntries(
+        Object.entries(value as Record<string, unknown>)
+          .filter(([key]) => key !== "correct")
+          .map(([key, child]) => [
+            key,
+            stripLearnerCorrectnessMarkersV1(child),
+          ]),
+      ),
+    );
+  }
+  return value;
+}
+
+function retainWrongSlotFeedbackRowsV1(
+  payload: LearningV2ModeNativePayloadV1,
+): LearningV2ModeNativePayloadV1 {
+  if (!("slotFeedback" in payload)) return payload;
+  const rows = payload.slotFeedback as readonly (LearningV2ModeChoiceFeedbackV1 | LearningV2LearnerModeChoiceFeedbackV1)[];
+  const carriesCorrectnessMarkers = rows.some((row) =>
+    Object.prototype.hasOwnProperty.call(row, "correct"),
+  );
+  if (!carriesCorrectnessMarkers) return payload;
+  return Object.freeze({
+    ...payload,
+    // Ordered-token feedback is useful only for the distractor that caused a
+    // wrong attempt. Correct rows would become indistinguishable after the
+    // marker is stripped and could be shown as the explanation for an error.
+    slotFeedback: Object.freeze(rows.filter((row) =>
+      "correct" in row && row.correct === false,
+    )),
+  }) as LearningV2ModeNativePayloadV1;
+}
+
+/**
+ * Exact learner-wire redaction. It retains the validated mode payload for
+ * backward compatibility while removing every nested property named
+ * `correct`. For ordered-token modes it retains only explicitly wrong rows
+ * before stripping the marker, so a correct-row explanation cannot later be
+ * mistaken for error feedback. Target phrases and audio transcripts remain
+ * because current modes reveal/use them as instructional media after an
+ * attempt. This is not a cryptographic secrecy boundary: the evaluator
+ * capsule is intentionally device-inspectable.
+ */
+export function projectLearningV2ModeNativePayloadForLearnerV1(
+  value: unknown,
+  expectedFamily?: LearningV2ModeNativePayloadV1["family"],
+): LearningV2LearnerModeNativePayloadV1 {
+  const payload = validateLearningV2ModeNativePayloadV1(value, expectedFamily);
+  return stripLearnerCorrectnessMarkersV1(
+    retainWrongSlotFeedbackRowsV1(payload),
+  ) as LearningV2LearnerModeNativePayloadV1;
 }
 
 function localizedTextPresent(value: unknown): boolean {

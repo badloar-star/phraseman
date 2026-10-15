@@ -76,8 +76,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-14:i16",
-    "correctText": "scared",
-    "correctResponseId": "en:lesson-01:session-14:i16:r1"
+    "correctText": "You are scared.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-14:i17",
@@ -85,23 +85,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-14:i18:s01",
+    "interactionId": "en:lesson-01:session-14:i18",
     "correctText": "You are safe.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-14:i18:s02",
-    "correctText": "You are dry.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-14:i18:s03",
-    "correctText": "You are warm.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-14:i18:s04",
-    "correctText": "You are ready.",
     "correctResponseId": null
   }
 ]

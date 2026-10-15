@@ -18,8 +18,10 @@ import {
 import { buildLearningV2Session1BundledAudioChildV1 } from "./learning_v2_session1_production_audio_v1";
 import {
   buildLearningV2FactoryBundledAudioChildV1,
+  learningV2FactoryMissingAudioInteractionIdsV1,
   learningV2FactoryRemoteAudioFileForTranscriptVoiceV1,
 } from "./learning_v2_factory_production_audio_v1";
+import { resolveLearningV2FactoryRuntimeAudioOmissionsV1 } from "./learning_v2_factory_runtime_audio_omissions_v1";
 import { buildLearningV2EsSession1BundledAudioChildV1 } from "./learning_v2_es_session1_production_audio_v1";
 import { buildLearningV2EsSession2BundledAudioChildV1 } from "./learning_v2_es_session2_production_audio_v1";
 import { peekStableId } from "./stable_id";
@@ -43,6 +45,8 @@ import {
 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
 import {
   LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1,
+  bindLearningV2CourseSessionLearnerProjectionToSourceV1,
+  learnerProjectionFingerprintV1,
   materializeLearningV2CourseSessionLearnerChildV1,
   parseLearningV2CourseSessionAuxiliaryChildV1,
   parseLearningV2CourseSessionIntroChildV1,
@@ -71,15 +75,18 @@ import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — не�
 
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 =
   "learning-v2-course-released-session-cache.v3" as const;
+export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V4 =
+  "learning-v2-course-released-session-cache.v4" as const;
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_MAX_ENTRIES_V3 = 6;
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_MAX_BYTES_V3 =
   40 * 1024 * 1024;
 export const LEARNING_V2_COURSE_SESSION_READY_SCHEMA_V3 =
   "learning-v2-course-session-ready.v3" as const;
 
-const STORAGE_KEY = "learning_v2_course_released_session_cache_v3";
+const STORAGE_KEY = "learning_v2_course_released_session_cache_v4";
+const LEGACY_STORAGE_KEY_V3 = "learning_v2_course_released_session_cache_v3";
 const FUNCTIONS_REGION = "us-central1";
-const CALLABLE_NAME = "learningV2CourseReleasedSessionGetV3";
+const CALLABLE_NAME = "learningV2CourseReleasedSessionGetV4";
 const HASH_RE = /^[a-f0-9]{64}$/u;
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/u;
 const encoder = new TextEncoder();
@@ -176,7 +183,7 @@ export type LearningV2CourseSessionReadyTimingV3 = Readonly<{
 }>;
 
 type CallableResponse = Readonly<{
-  schemaVersion: "v2-course-released-session-response.v3";
+  schemaVersion: "v2-course-released-session-response.v4";
   releaseId: string;
   activeRootFingerprint: string;
   activeBaseRootFingerprint: string;
@@ -191,19 +198,21 @@ type CallableResponse = Readonly<{
   packageFingerprint: string;
   childSetFingerprint: string;
   introFingerprint: string;
-  learnerFingerprint: string;
-  auxiliaryFingerprint: string;
+  sourceLearnerFingerprint: string;
+  learnerProjectionFingerprint: string;
+  sourceAuxiliaryFingerprint: string;
+  auxiliaryProjectionFingerprint: string;
   evaluatorCapsuleSetFingerprint: string;
   audioExtensionFingerprint: string;
   audioFingerprint: string;
   canonicalIntroRaw: string;
-  canonicalLearnerRaw: string;
+  canonicalLearnerProjectionRaw: string;
   canonicalEvaluatorCapsuleRaw: string;
-  canonicalAuxiliaryRaw: string;
+  canonicalAuxiliaryProjectionRaw: string;
   canonicalAudioChildRaw: string;
-  transportAuthority: "firebase_callable_auth_and_app_check_boundary";
+  transportAuthority: "authenticated_callable_only";
   repositoryOriginProjection: "active_v3_composite_text_audio_exact_session_join";
-  learnerProjection: "intro_learner_capsule_auxiliary_audio_child_only";
+  learnerProjection: "canonical_learner_and_auxiliary_wire_projection_v2";
   evaluatorIsolation: "server_sidecar_not_exposed";
   answerPayload: "absent";
   correctnessAuthority: "local_device_only";
@@ -228,7 +237,7 @@ type CacheRow = Readonly<{
 }>;
 
 type CacheEnvelope = Readonly<{
-  schemaVersion: typeof LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3;
+  schemaVersion: typeof LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V4;
   rows: readonly CacheRow[];
 }>;
 
@@ -248,14 +257,14 @@ const RESPONSE_KEYS = Object.freeze([
   "audioExtensionFingerprint",
   "audioFingerprint",
   "audioLessonIndexFingerprint",
-  "auxiliaryFingerprint",
+  "auxiliaryProjectionFingerprint",
   "baseLessonIndexFingerprint",
   "cacheAuthority",
   "canonicalAudioChildRaw",
-  "canonicalAuxiliaryRaw",
+  "canonicalAuxiliaryProjectionRaw",
   "canonicalEvaluatorCapsuleRaw",
   "canonicalIntroRaw",
-  "canonicalLearnerRaw",
+  "canonicalLearnerProjectionRaw",
   "childSetFingerprint",
   "completionAuthority",
   "correctnessAuthority",
@@ -264,7 +273,9 @@ const RESPONSE_KEYS = Object.freeze([
   "evaluatorIsolation",
   "evidenceAuthority",
   "introFingerprint",
-  "learnerFingerprint",
+  "learnerProjectionFingerprint",
+  "sourceLearnerFingerprint",
+  "sourceAuxiliaryFingerprint",
   "learnerProjection",
   "lessonId",
   "lessonOrdinal",
@@ -296,6 +307,7 @@ const readyInFlight = new Map<
   Promise<LearningV2CourseSessionReadyHandleV3>
 >();
 let writeChain: Promise<void> = Promise.resolve();
+let legacyCachePurgeV4: Promise<void> | null = null;
 
 function fail(): never {
   throw new Error("learning_v2_course_released_session_app_client_v3_invalid");
@@ -376,7 +388,7 @@ function cacheKey(
 ): string {
   if (!HASH_RE.test(accountScopeHash)) fail();
   return [
-    "learning-v2:course-session-v3",
+    "learning-v2:course-session-v4",
     accountScopeHash,
     locator.environment,
     locator.targetLanguage,
@@ -417,14 +429,16 @@ function parseResponse(
     row.packageFingerprint,
     row.childSetFingerprint,
     row.introFingerprint,
-    row.learnerFingerprint,
-    row.auxiliaryFingerprint,
+    row.sourceLearnerFingerprint,
+    row.learnerProjectionFingerprint,
+    row.sourceAuxiliaryFingerprint,
+    row.auxiliaryProjectionFingerprint,
     row.evaluatorCapsuleSetFingerprint,
     row.audioExtensionFingerprint,
     row.audioFingerprint,
   ];
   if (
-    row.schemaVersion !== "v2-course-released-session-response.v3" ||
+    row.schemaVersion !== "v2-course-released-session-response.v4" ||
     !ID_RE.test(row.releaseId) ||
     hashes.some((hash) => !HASH_RE.test(hash)) ||
     row.activeRootFingerprint !== locator.activeRootFingerprint ||
@@ -433,11 +447,11 @@ function parseResponse(
     row.courseSessionId !== expectedSessionId ||
     row.sessionOrdinal !== locator.sessionOrdinal ||
     row.transportAuthority !==
-      "firebase_callable_auth_and_app_check_boundary" ||
+      "authenticated_callable_only" ||
     row.repositoryOriginProjection !==
       "active_v3_composite_text_audio_exact_session_join" ||
     row.learnerProjection !==
-      "intro_learner_capsule_auxiliary_audio_child_only" ||
+      "canonical_learner_and_auxiliary_wire_projection_v2" ||
     row.evaluatorIsolation !== "server_sidecar_not_exposed" ||
     row.answerPayload !== "absent" ||
     row.correctnessAuthority !== "local_device_only" ||
@@ -453,17 +467,17 @@ function parseResponse(
     row.completionAuthority !== "none" ||
     row.releaseAuthority !== false ||
     typeof row.canonicalIntroRaw !== "string" ||
-    typeof row.canonicalLearnerRaw !== "string" ||
+    typeof row.canonicalLearnerProjectionRaw !== "string" ||
     typeof row.canonicalEvaluatorCapsuleRaw !== "string" ||
-    typeof row.canonicalAuxiliaryRaw !== "string" ||
+    typeof row.canonicalAuxiliaryProjectionRaw !== "string" ||
     typeof row.canonicalAudioChildRaw !== "string" ||
     byteSize(row.canonicalIntroRaw) >
       LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1 ||
-    byteSize(row.canonicalLearnerRaw) >
+    byteSize(row.canonicalLearnerProjectionRaw) >
       LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1 ||
     byteSize(row.canonicalEvaluatorCapsuleRaw) >
       LEARNING_V2_COURSE_SESSION_EVALUATOR_CAPSULE_CHILD_MAX_BYTES_V1 ||
-    byteSize(row.canonicalAuxiliaryRaw) >
+    byteSize(row.canonicalAuxiliaryProjectionRaw) >
       LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1 ||
     byteSize(row.canonicalAudioChildRaw) >
       LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1
@@ -472,15 +486,21 @@ function parseResponse(
   const introChild = parseLearningV2CourseSessionIntroChildV1(
     row.canonicalIntroRaw,
   );
-  const learnerChild = parseLearningV2CourseSessionLearnerChildV1(
-    row.canonicalLearnerRaw,
+  const projectedLearnerChild = parseLearningV2CourseSessionLearnerChildV1(
+    row.canonicalLearnerProjectionRaw,
   );
+  const learnerChild = bindLearningV2CourseSessionLearnerProjectionToSourceV1({
+    projectedLearner: projectedLearnerChild,
+    projectedLearnerRaw: row.canonicalLearnerProjectionRaw,
+    expectedProjectionFingerprint: row.learnerProjectionFingerprint,
+    sourceLearnerFingerprint: row.sourceLearnerFingerprint,
+  });
   const evaluatorCapsuleChild =
     parseLearningV2CourseSessionEvaluatorCapsuleChildV1(
       row.canonicalEvaluatorCapsuleRaw,
     );
   const auxiliaryChild = parseLearningV2CourseSessionAuxiliaryChildV1(
-    row.canonicalAuxiliaryRaw,
+    row.canonicalAuxiliaryProjectionRaw,
   );
   const audioChild = parseLearningV2CourseSessionAudioChildV1(
     row.canonicalAudioChildRaw,
@@ -493,10 +513,13 @@ function parseResponse(
     auxiliaryChild.courseSessionId !== expectedSessionId ||
     audioChild.courseSessionId !== expectedSessionId ||
     introChild.introFingerprint !== row.introFingerprint ||
-    learnerChild.learnerFingerprint !== row.learnerFingerprint ||
+    learnerChild.learnerFingerprint !== row.sourceLearnerFingerprint ||
+    learnerProjectionFingerprintV1(learnerChild) !==
+      row.learnerProjectionFingerprint ||
     evaluatorCapsuleChild.capsuleSetFingerprint !==
       row.evaluatorCapsuleSetFingerprint ||
-    auxiliaryChild.auxiliaryFingerprint !== row.auxiliaryFingerprint ||
+    auxiliaryChild.auxiliaryFingerprint !==
+      row.auxiliaryProjectionFingerprint ||
     audioChild.learnerFingerprint !== learnerChild.learnerFingerprint ||
     audioChild.audioFingerprint !== row.audioFingerprint ||
     learnerChild.targetLanguage !== locator.targetLanguage
@@ -547,7 +570,7 @@ function setPeek(
 
 function emptyEnvelope(): CacheEnvelope {
   return Object.freeze({
-    schemaVersion: LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3,
+    schemaVersion: LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V4,
     rows: Object.freeze([]),
   });
 }
@@ -566,7 +589,7 @@ function parseEnvelope(raw: string | null): CacheEnvelope {
   exactKeys(value, ["rows", "schemaVersion"]);
   if (
     value.schemaVersion !==
-      LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 ||
+      LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V4 ||
     !Array.isArray(value.rows) ||
     value.rows.length > LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_MAX_ENTRIES_V3
   )
@@ -613,7 +636,7 @@ function parseEnvelope(raw: string | null): CacheEnvelope {
     });
   });
   return Object.freeze({
-    schemaVersion: LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3,
+    schemaVersion: LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V4,
     rows: Object.freeze(rows),
   });
 }
@@ -637,7 +660,7 @@ function boundedRows(rows: readonly CacheRow[]): readonly CacheRow[] {
     )
       break;
     const raw = canonicalJsonV1({
-      schemaVersion: LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3,
+      schemaVersion: LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V4,
       rows: [...selected, row],
     });
     if (byteSize(raw) <= LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_MAX_BYTES_V3)
@@ -657,7 +680,7 @@ async function persistRow(row: CacheRow): Promise<void> {
       await AsyncStorage.setItem(
         STORAGE_KEY,
         canonicalJsonV1({
-          schemaVersion: LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3,
+          schemaVersion: LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V4,
           rows,
         }),
       );
@@ -713,7 +736,7 @@ async function fetchNetwork(
     Readonly<{ activeRootFingerprint: string | null }>,
 ): Promise<unknown> {
   return withBackgroundNetworkLease(
-    "learning-v2.course-released-session-v3",
+    "learning-v2.course-released-session-v4",
     async (lease) => {
       lease.assertCurrent();
       const callable = httpsCallable<
@@ -773,7 +796,7 @@ export function peekCurrentLearningV2CourseReleasedSessionV3(
   const stableId = peekStableId();
   if (!stableId) return null;
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
-  const prefix = `learning-v2:course-session-v3:${accountScopeHash}:${locator.environment}:${locator.targetLanguage}:${locator.studyTarget}:${locator.learnerSourceLocale}:${locator.seasonId}:`;
+  const prefix = `learning-v2:course-session-v4:${accountScopeHash}:${locator.environment}:${locator.targetLanguage}:${locator.studyTarget}:${locator.learnerSourceLocale}:${locator.seasonId}:`;
   const matches = [...peek.entries()].filter(
     ([key, material]) =>
       key.startsWith(prefix) &&
@@ -784,6 +807,8 @@ export function peekCurrentLearningV2CourseReleasedSessionV3(
 }
 
 export async function hydrateLearningV2CourseReleasedSessionCacheV3(): Promise<void> {
+  legacyCachePurgeV4 ??= AsyncStorage.removeItem(LEGACY_STORAGE_KEY_V3);
+  await legacyCachePurgeV4;
   await readEnvelope();
 }
 
@@ -837,7 +862,7 @@ export function bundledLearningV2CourseSessionMaterialV3(
     const requestedLocale = LEARNING_V2_INTERFACE_LOCALES.includes(
       locator.learnerSourceLocale as LearningV2InterfaceLocale,
     ) ? locator.learnerSourceLocale as LearningV2InterfaceLocale : "ru";
-    const factory = materializeFactoryNativeLearningV2SessionV1({
+    let factory = materializeFactoryNativeLearningV2SessionV1({
       lessonOrdinal: locator.lessonOrdinal,
       sessionOrdinal: locator.sessionOrdinal,
       interfaceLocale: requestedLocale,
@@ -847,6 +872,35 @@ export function bundledLearningV2CourseSessionMaterialV3(
     if (!factory) {
       console.warn(`[V2-BUNDLED] null step=factory_native_materialize lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} locale=${requestedLocale}`);
       return null;
+    }
+    const missingAudioInteractionIds = learningV2FactoryMissingAudioInteractionIdsV1(
+      factory.learnerChild,
+    );
+    if (missingAudioInteractionIds.length > 0) {
+      const session = `en/l${String(locator.lessonOrdinal).padStart(2, "0")}/s${String(locator.sessionOrdinal).padStart(2, "0")}`;
+      const disabledInteractionIds = resolveLearningV2FactoryRuntimeAudioOmissionsV1({
+        session,
+        courseSessionId: factory.courseSessionId,
+        factorySourceFingerprint: factory.sourceFingerprint,
+        missingInteractionIds: missingAudioInteractionIds,
+      });
+      if (!disabledInteractionIds) {
+        console.warn(`[V2-BUNDLED] null step=audio_omission_policy lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal}`);
+        return null;
+      }
+      factory = materializeFactoryNativeLearningV2SessionV1({
+        lessonOrdinal: locator.lessonOrdinal,
+        sessionOrdinal: locator.sessionOrdinal,
+        interfaceLocale: requestedLocale,
+        disabledInteractionIds,
+      });
+      if (
+        !factory ||
+        learningV2FactoryMissingAudioInteractionIdsV1(factory.learnerChild).length > 0
+      ) {
+        console.warn(`[V2-BUNDLED] null step=audio_omission_materialize lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal}`);
+        return null;
+      }
     }
     const courseSessionId = factory.courseSessionId;
     const lessonId = learningV2CourseLessonIdV1(locator.lessonOrdinal);
@@ -1511,7 +1565,10 @@ export async function clearLearningV2CourseReleasedSessionCacheV3(): Promise<voi
   readyInFlight.clear();
   readyHandoffs.clear();
   writeChain = writeChain
-    .then(() => AsyncStorage.removeItem(STORAGE_KEY))
+    .then(async () => {
+      await AsyncStorage.removeItem(STORAGE_KEY);
+      await AsyncStorage.removeItem(LEGACY_STORAGE_KEY_V3);
+    })
     .catch(noteSwallowedAs('learning_v2_course_released_session_client_v3:promise_5', undefined));
   await writeChain;
 }

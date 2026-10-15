@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-02:i09",
-    "correctText": "am",
+    "correctText": "I am sorry.",
     "correctResponseId": "en:lesson-01:session-02:i09:r1"
   },
   {
@@ -56,8 +56,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-02:i12",
-    "correctText": "here",
-    "correctResponseId": "en:lesson-01:session-02:i12:r1"
+    "correctText": "I am here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-02:i13",
@@ -71,8 +71,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-02:i14:s02",
-    "correctText": "I am sorry.",
-    "correctResponseId": null
+    "correctText": "sorry",
+    "correctResponseId": "en:lesson-01:session-02:i14:s02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-02:i15",
@@ -97,7 +97,7 @@
   {
     "interactionId": "en:lesson-01:session-02:i17:s03",
     "correctText": "I am fine.",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-02:i17:s03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-02:i17:s04",

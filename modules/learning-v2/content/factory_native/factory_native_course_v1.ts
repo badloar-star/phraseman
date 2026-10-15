@@ -20,12 +20,14 @@ import {
   materializeLearningV2CourseSessionEvaluatorCapsuleChildV1,
   type LearningV2CourseSessionEvaluatorCapsuleInputV1,
 } from "../../runtime/course_session_evaluator_capsule_child_v1";
-import type {
-  LearningV2ModeNativePayloadV1,
-  LearningV2ModeChoiceDiagnosticV1,
-  LearningV2ModePhraseExplanationV1,
-  LearningV2ModeSpeedPairAnalysisV1,
-  LearningV2ModeTextAnalysisV1,
+import {
+  LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+  isLearningV2ScriptedRepeatRevealPolicyV1,
+  type LearningV2ModeNativePayloadV1,
+  type LearningV2ModeChoiceDiagnosticV1,
+  type LearningV2ModePhraseExplanationV1,
+  type LearningV2ModeSpeedPairAnalysisV1,
+  type LearningV2ModeTextAnalysisV1,
 } from "../../contracts/mode_native_payload_v1";
 import { hashCanonicalBody, sha256Utf8 } from "../../policies/decision_registry";
 import { getTranscription } from "../../../../app/transcription";
@@ -77,6 +79,15 @@ function localized(value: unknown): LearningV2CourseSessionLocalizedTextV1 {
   ) as LearningV2CourseSessionLocalizedTextV1;
 }
 
+function optionalLocalized(value: unknown): LearningV2CourseSessionLocalizedTextV1 | undefined {
+  if (value === undefined) return undefined;
+  const source = record(value);
+  const ru = String(source.ru ?? "").replace(/\s+/gu, " ").trim();
+  const uk = String(source.uk ?? ru).replace(/\s+/gu, " ").trim();
+  if (!ru && !uk) return undefined;
+  return localized(value);
+}
+
 function factoryNativeTextAnalysisV1(rawValue: unknown): LearningV2ModeTextAnalysisV1 {
   const raw = record(rawValue);
   return Object.freeze({
@@ -124,11 +135,15 @@ export function factoryNativeExplanationV1(rawValue: unknown): Readonly<{
   if (raw.analysisV1 !== undefined) return Object.freeze({
     analysisV1: factoryNativeSpeedPairAnalysisV1(raw.analysisV1),
   });
-  if (raw.phrase === undefined) return Object.freeze({
-    completionFeedbackByLocale: localized(raw.completionFeedbackByLocale),
-  });
+  if (raw.phrase === undefined) {
+    const completionFeedbackByLocale = optionalLocalized(raw.completionFeedbackByLocale);
+    return Object.freeze({
+      ...(completionFeedbackByLocale ? { completionFeedbackByLocale } : {}),
+    });
+  }
+  const completionFeedbackByLocale = optionalLocalized(raw.completionFeedbackByLocale);
   return Object.freeze({
-    ...(raw.completionFeedbackByLocale === undefined ? {} : { completionFeedbackByLocale: localized(raw.completionFeedbackByLocale) }),
+    ...(completionFeedbackByLocale ? { completionFeedbackByLocale } : {}),
     phrase: factoryNativeTextAnalysisV1(raw.phrase),
   });
 }
@@ -187,8 +202,7 @@ export function factoryNativeIntroResponseAnalysisByIdV1(input: Readonly<{
   const entry = auxiliary.entries.map(record).find((candidate) => candidate.interactionId === input.sourceInteractionId);
   if (!entry || !entry.responseAnalysisById) throw new Error("learning_v2_factory_native_intro_analysis_missing");
   const sourceAnalysis = record(entry.responseAnalysisById);
-  if (Object.keys(sourceAnalysis).length !== input.sourceResponseIds.length ||
-    input.sourceResponseIds.some((responseId) => !(responseId in sourceAnalysis)))
+  if (input.sourceResponseIds.some((responseId) => !(responseId in sourceAnalysis)))
     throw new Error("learning_v2_factory_native_intro_analysis_incomplete");
   return Object.freeze(Object.fromEntries(input.sourceResponseIds.map((responseId) => {
     const byAuthoredLocale = record(sourceAnalysis[responseId]);
@@ -404,6 +418,7 @@ function nativeModePayload(
   courseSessionId: string,
   fallbackLocalizedScene: LearningV2CourseSessionLocalizedTextV1,
   interactionFamily: string,
+  interactionPurpose: string,
   fallbackSourceAudioTargetId: string,
 ): LearningV2ModeNativePayloadV1 {
   const raw = record(rawValue);
@@ -433,7 +448,7 @@ function nativeModePayload(
   if (family === "phrase_builder") {
     const explanationV1 = factoryNativeExplanationV1(raw.explanationV1);
     const completionFeedbackByLocale = explanationV1?.completionFeedbackByLocale
-      ?? (raw.completionFeedbackByLocale === undefined ? undefined : localized(raw.completionFeedbackByLocale));
+      ?? optionalLocalized(raw.completionFeedbackByLocale);
     return Object.freeze({
     family,
     targetPhrase: String(raw.targetPhrase),
@@ -476,7 +491,7 @@ function nativeModePayload(
   if (family === "listen_build_dictation") {
     const explanationV1 = factoryNativeExplanationV1(raw.explanationV1);
     const completionFeedbackByLocale = explanationV1?.completionFeedbackByLocale
-      ?? (raw.completionFeedbackByLocale === undefined ? undefined : localized(raw.completionFeedbackByLocale));
+      ?? optionalLocalized(raw.completionFeedbackByLocale);
     return Object.freeze({
     family,
     referenceAudio: audioRef(raw.referenceAudio),
@@ -530,6 +545,18 @@ function nativeModePayload(
   }
   if (family === "scripted_repeat_compare") {
     const explanationV1 = factoryNativeExplanationV1(raw.explanationV1);
+    if (
+      raw.scriptedRepeatRevealPolicy !== undefined &&
+      !isLearningV2ScriptedRepeatRevealPolicyV1(
+        raw.scriptedRepeatRevealPolicy,
+      )
+    ) {
+      throw new Error("learning_v2_factory_native_scripted_repeat_reveal_policy_invalid");
+    }
+    const scriptedRepeatRevealPolicy =
+      interactionPurpose === "independent_check"
+        ? LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1
+        : raw.scriptedRepeatRevealPolicy;
     return Object.freeze({
       family,
       referenceAudio: audioRef(raw.referenceAudio), slowReferenceAudio: audioRef(raw.slowReferenceAudio),
@@ -537,6 +564,9 @@ function nativeModePayload(
       recordControlPolicy: "hold_press_release_with_accessible_toggle" as const,
       modelPlayback: "reference_and_slow" as const,
       learnerPlayback: "available_after_capture" as const,
+      ...(scriptedRepeatRevealPolicy === undefined
+        ? {}
+        : { scriptedRepeatRevealPolicy }),
       honestOutcomeStates: Object.freeze(["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"] as const),
       ...(explanationV1?.phrase ? { explanationV1: Object.freeze({ phrase: explanationV1.phrase }) } : {}),
     });
@@ -551,6 +581,14 @@ function shortMeaning(definition: string, word: string, lessonOrdinal: number, s
   // Preserve its exact reviewed definition instead of inventing a word-level
   // translation from a later phrase.
   if (word.toLocaleLowerCase("en") === "one" && lessonOrdinal === 2 && sessionOrdinal === 29)
+    return definition.trim();
+  // Accepted L01/S05 deliberately explains `lost` with a short plain
+  // definition rather than decorative quotation marks. The reviewed bytes are
+  // already canonical; preserve that exact gloss instead of rejecting the
+  // session or inventing a replacement translation.
+  if (word.toLocaleLowerCase("en") === "lost" && lessonOrdinal === 1 && sessionOrdinal === 5)
+    return definition.trim();
+  if (word.toLocaleLowerCase("en") === "full" && lessonOrdinal === 1 && sessionOrdinal === 7)
     return definition.trim();
   throw new Error(
     `learning_v2_factory_native_word_translation_missing:l${String(lessonOrdinal).padStart(2, "0")}` +
@@ -663,6 +701,7 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
   lessonOrdinal: number;
   sessionOrdinal: number;
   interfaceLocale: LearningV2InterfaceLocale;
+  disabledInteractionIds?: readonly string[];
 }>) {
   const row = FACTORY_NATIVE_MANIFEST_V1.find((candidate) =>
     candidate.lessonOrdinal === input.lessonOrdinal && candidate.sessionOrdinal === input.sessionOrdinal);
@@ -718,6 +757,19 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
 
   const rawLearner = record(row.loadLearner(authoredLocale));
   const rawInteractions = rawLearner.interactions as unknown[];
+  const disabledInteractionIds = input.disabledInteractionIds ?? [];
+  const disabledInteractionIdSet = new Set(disabledInteractionIds);
+  if (disabledInteractionIdSet.size !== disabledInteractionIds.length) {
+    throw new Error("learning_v2_factory_native_disabled_interaction_duplicate");
+  }
+  for (const disabledInteractionId of disabledInteractionIdSet) {
+    const source = rawInteractions
+      .map(record)
+      .find((interaction) => String(interaction.interactionId) === disabledInteractionId);
+    if (!source || record(source.modePayload).isWordCard === true) {
+      throw new Error("learning_v2_factory_native_disabled_interaction_unknown");
+    }
+  }
   const rawAnswers = row.loadAnswers();
   if (!Array.isArray(rawAnswers)) throw new Error("learning_v2_factory_native_answers_invalid");
   const answers = new Map(rawAnswers.map((value) => {
@@ -767,6 +819,12 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
       }));
       continue;
     }
+    if (disabledInteractionIdSet.has(oldInteractionId)) {
+      // Audio omissions remove only the unusable practice interaction. Any
+      // preceding word-card encounter still belongs to the learner journey,
+      // so retain it for the next enabled interaction instead of dropping it.
+      continue;
+    }
     const answer = answers.get(oldInteractionId);
     if (!answer) throw new Error("learning_v2_factory_native_answer_missing");
     let responseOptions = Object.freeze((raw.responseOptions as unknown[]).map((value) => {
@@ -806,6 +864,7 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
       courseSessionId,
       fallbackLocalizedScene,
       String(raw.family),
+      String(raw.purpose),
       String((Array.isArray(raw.audioTargetIds) ? raw.audioTargetIds[0] : undefined) ?? `${oldInteractionId}:audio`),
     );
     const sourceAudioTargetIds = Array.isArray(raw.audioTargetIds)
@@ -892,7 +951,11 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
       ? factoryNativeIntroResponseAnalysisByIdV1({
           rawAuxiliary,
           sourceInteractionId: String(rawQuestion.interactionId),
-          sourceResponseIds,
+          // Learner runtime exposes explanations only for wrong selections.
+          // Accepted artifacts may retain a complete analysis table as review
+          // evidence, but the auxiliary projection must align exactly with the
+          // wrong-only feedback table consumed by the player.
+          sourceResponseIds: sourceResponseIds.filter((responseId) => responseId !== sourceCorrectResponseId),
           oldPrefix,
           courseSessionId,
         })

@@ -25,6 +25,7 @@ import type {
 // заполняет восемь полей полномочий, которых у ручного объекта не было.
 import { materializeLearningV2CourseSessionEvaluatorCapsuleChildV1 } from '../../runtime/course_session_evaluator_capsule_child_v1';
 import { v2LocalEvaluatorInputKindForFamilyV1 } from '../../runtime/local_evaluator_capsule_v1';
+import { LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1 } from '../../contracts/mode_native_payload_v1';
 // зачем sha256Utf8 вместо node:crypto (инцидент 2026-08-17): этот файл
 // вызывается из app/learning_v2_course_released_session_client_v3.ts прямо на
 // устройстве (бандл урока 1 без сети) — node:crypto недоступен в рантайме RN,
@@ -247,6 +248,21 @@ function purposeFor(purpose: string): string {
     PURPOSE_IN_RUNTIME[purpose as keyof typeof PURPOSE_IN_RUNTIME];
   if (!mapped) throw new Error(`session_package_unsupported_purpose:${purpose}`);
   return mapped;
+}
+
+function modePayloadForLearner(
+  card: LearningV2GeneratedSessionCardV1,
+): LearningV2GeneratedSessionCardV1['modePayload'] {
+  const payload = card.modePayload;
+  if (
+    payload?.family !== 'scripted_repeat_compare' ||
+    purposeFor(card.purpose) !== 'independent_check'
+  ) return payload;
+  return Object.freeze({
+    ...payload,
+    scriptedRepeatRevealPolicy:
+      LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+  });
 }
 
 function inputModeFor(
@@ -1122,11 +1138,12 @@ export function buildSessionChildBodiesFromShard(
         interfaceLocale,
         options?.allowUnavailableAuthoredChoiceTargets === true,
       );
-      const speedMatchMeanings = card.modePayload?.family === 'speed_match'
-        ? card.modePayload.pairGrid.map((pair) => pair.meaningByLocale[locale]).join(' · ')
+      const modePayload = modePayloadForLearner(card);
+      const speedMatchMeanings = modePayload?.family === 'speed_match'
+        ? modePayload.pairGrid.map((pair) => pair.meaningByLocale[locale]).join(' · ')
         : null;
-      const speedMatchTargets = card.modePayload?.family === 'speed_match'
-        ? card.modePayload.pairGrid.map((pair) => pair.target).join(' · ')
+      const speedMatchTargets = modePayload?.family === 'speed_match'
+        ? modePayload.pairGrid.map((pair) => pair.target).join(' · ')
         : null;
       return {
         interactionId: card.cardId,
@@ -1137,10 +1154,10 @@ export function buildSessionChildBodiesFromShard(
         prompt: task.prompt,
         responseOptions: task.responseOptions,
         mediaIds: [],
-        audioTargetIds: card.modePayload
-          ? learningV2ModeNativeAudioTargetIdsV1(card.modePayload)
+        audioTargetIds: modePayload
+          ? learningV2ModeNativeAudioTargetIdsV1(modePayload)
           : [],
-        modePayload: card.modePayload,
+        modePayload,
         accessibilityLabel: speedMatchMeanings && speedMatchTargets
           ? `${speedMatchTargets}. ${speedMatchMeanings}.`
           : (card.accessibilityLabelByLocale as Record<string, string>)[locale] ?? '',

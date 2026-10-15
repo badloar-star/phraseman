@@ -55,7 +55,6 @@ import {
 } from "../components/lesson_intro_rich";
 import { splitLearningV2IntroTitleByTargetsV1 } from "./learning_v2_intro_title_semantics_v1";
 import { useScaledTextStyles } from '../hooks/useLineScale';
-import { LearningV2TextAnalysisV1 } from "../modules/learning-v2/modes/mode_feedback_v1";
 import type {
   LearningV2ModeChoiceDiagnosticV1,
   LearningV2ModeTextAnalysisV1,
@@ -439,18 +438,6 @@ export default function LearningV2SessionIntro({
       "")
     : "";
   const answered = selectedCorrectIndex !== null;
-  const analysisChoiceIndex = answered
-    ? selectedCorrectIndex
-    : wrongCount >= 2 && wrongChoiceNudge.choiceIndex >= 0
-      ? wrongChoiceNudge.choiceIndex
-      : null;
-  const choiceAnalysis = question && analysisChoiceIndex !== null
-    ? resolveChoiceAnalysis?.(
-        question.questionId,
-        analysisChoiceIndex,
-        question.responseIdsInVisibleOrder?.[analysisChoiceIndex] ?? null,
-      ) ?? null
-    : null;
 
   useEffect(() => {
     if (screens.length === 0) onComplete([]);
@@ -738,16 +725,6 @@ export default function LearningV2SessionIntro({
                       {questionExplanation}
                     </Text>
                   )}
-                  {choiceAnalysis ? (
-                    <View accessibilityLiveRegion="polite">
-                      <LearningV2TextAnalysisV1 analysis={choiceAnalysis.analysis} interfaceLocale={lang} />
-                      {choiceAnalysis.diagnostics?.minimalContrastByLocale[lang] ? (
-                        <Text style={[sx.explanation, { color: g.secondary }]}>
-                          {choiceAnalysis.diagnostics.minimalContrastByLocale[lang]}
-                        </Text>
-                      ) : null}
-                    </View>
-                  ) : null}
                 </View>
               )}
             </View>

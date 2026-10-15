@@ -105,6 +105,7 @@ import {
   type LearningV2CourseSessionInteractionCompletionV1,
 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
 import type { V2LocalEvaluatorResponseV1 } from "../modules/learning-v2/runtime/local_evaluator_capsule_v1";
+import { learningV2ScriptedRepeatAnswerBearingContentRevealedV1 } from "../modules/learning-v2/contracts/mode_native_payload_v1";
 import { learningV2CourseSessionVoiceResponseV1 } from "../modules/learning-v2/runtime/course_session_voice_response_v1";
 import { getStableId } from "./stable_id";
 import { captureAccountGeneration } from "./account_generation";
@@ -610,6 +611,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [transcript, setTranscript] = useState("");
   const [voiceAttemptResult, setVoiceAttemptResult] =
     useState<LearningV2VoiceAttemptResult | null>(null);
+  const [voiceAttemptSubmitted, setVoiceAttemptSubmitted] = useState(false);
   const voiceCancelRef = useRef<() => void>(() => {});
   const [sessionRunes, setSessionRunes] = useState(0);
   // One timestamp seals the whole local-first composite and its immediate HUD.
@@ -1437,10 +1439,21 @@ export default function LearningV2DirectSessionPlayerV1() {
       return null;
     return payload.slowReferenceAudio?.transcript.trim() || null;
   }, [allowsDeviceSpeech, practice]);
+  const scriptedRepeatRevealPolicy =
+    practice?.modePayload?.family === "scripted_repeat_compare"
+      ? practice.modePayload.scriptedRepeatRevealPolicy
+      : undefined;
+  const practiceAnswerBearingContentRevealed =
+    learningV2ScriptedRepeatAnswerBearingContentRevealedV1(
+      scriptedRepeatRevealPolicy,
+      voiceAttemptSubmitted || result === "correct",
+    );
   const practiceReferenceAvailable =
-    fullPhraseAudio !== null || previewPracticeSpeechText !== null;
+    practiceAnswerBearingContentRevealed &&
+    (fullPhraseAudio !== null || previewPracticeSpeechText !== null);
   const practiceSlowReferenceAvailable =
-    fullPhraseAudio !== null || previewPracticeSlowSpeechText !== null;
+    practiceAnswerBearingContentRevealed &&
+    (fullPhraseAudio !== null || previewPracticeSlowSpeechText !== null);
   const practiceReferenceKey = practice
     ? `practice:${practice.interactionId}`
     : null;
@@ -1553,6 +1566,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     setOrderedIds([]);
     setTranscript("");
     setVoiceAttemptResult(null);
+    setVoiceAttemptSubmitted(false);
     voiceCancelRef.current();
   }, [managedAudio, stopPreviewAudio]);
 
@@ -3012,6 +3026,9 @@ export default function LearningV2DirectSessionPlayerV1() {
                 voiceStatus={modeVoiceStatus}
                 transcript={transcript}
                 instruction={practice.scriptedAlternate?.instruction ?? null}
+                attemptSubmitted={
+                  voiceAttemptSubmitted || result === "correct"
+                }
                 onPick={() => {}}
                 onAppendToken={() => {}}
                 onUndoToken={() => {}}
@@ -3324,7 +3341,9 @@ export default function LearningV2DirectSessionPlayerV1() {
                 theme={buildSpeakingPanelTheme(t)}
                 recognitionLocale={voiceRecognitionLocale}
                 presentation="inline"
-                renderInlineSurface={!voiceAttemptResult}
+                renderInlineSurface={
+                  practiceAnswerBearingContentRevealed && !voiceAttemptResult
+                }
                 holdActive={voiceHoldActive}
                 onStatusChange={(status) => {
                   const nextStatus = learningV2VoiceUiStatusFromSpeakingPanel(status);
@@ -3344,6 +3363,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                   setOrderedIds([]);
                   setTranscript(heard);
                   setVoiceAttemptResult({ score, passed, transcript: heard });
+                  setVoiceAttemptSubmitted(true);
                   evaluate(
                     learningV2CourseSessionVoiceResponseV1(
                       practice,

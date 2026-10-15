@@ -2,8 +2,8 @@ import React from "react";
 import { Text, View } from "react-native";
 import type { LearningV2InterfaceLocale } from "../content/generator_course_contract";
 import type {
-  LearningV2ModeChoiceFeedbackV1,
-  LearningV2ModeNativePayloadV1,
+  LearningV2LearnerModeChoiceFeedbackV1,
+  LearningV2LearnerModeNativePayloadV1,
   LearningV2ModeTextAnalysisV1,
 } from "../contracts/mode_native_payload_v1";
 
@@ -13,13 +13,13 @@ export type LearningV2ModeLearnerFeedbackV1 = Readonly<{
   authored: boolean;
   responseId: string | null;
   analysis: LearningV2ModeTextAnalysisV1 | null;
-  diagnostics: Pick<LearningV2ModeChoiceFeedbackV1,
+  diagnostics: Pick<LearningV2LearnerModeChoiceFeedbackV1,
     "errorType" | "whyTemptingByLocale" | "whyWrongHereByLocale" | "minimalContrastByLocale" | "acceptabilityBoundaryByLocale"
   > | null;
 }>;
 
-function diagnosticsFromRow(row: LearningV2ModeChoiceFeedbackV1 | undefined) {
-  if (!row || row.correct) return null;
+function diagnosticsFromRow(row: LearningV2LearnerModeChoiceFeedbackV1 | undefined) {
+  if (!row) return null;
   return Object.freeze({
     errorType: row.errorType,
     whyTemptingByLocale: row.whyTemptingByLocale,
@@ -54,8 +54,8 @@ const WRONG_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, string
 });
 
 function payloadFeedbackRows(
-  payload: LearningV2ModeNativePayloadV1 | null,
-): readonly LearningV2ModeChoiceFeedbackV1[] {
+  payload: LearningV2LearnerModeNativePayloadV1 | null,
+): readonly LearningV2LearnerModeChoiceFeedbackV1[] {
   if (!payload) return [];
   if ("choiceFeedback" in payload) return payload.choiceFeedback;
   if ("slotFeedback" in payload) return payload.slotFeedback;
@@ -70,11 +70,21 @@ export function resolveLearningV2ModeFeedbackV1({
   orderedResponseIds,
 }: Readonly<{
   interfaceLocale: LearningV2InterfaceLocale;
-  modePayload: LearningV2ModeNativePayloadV1 | null;
+  modePayload: LearningV2LearnerModeNativePayloadV1 | null;
   outcome: "correct" | "wrong";
   selectedResponseId: string | null;
   orderedResponseIds: readonly string[];
 }>): LearningV2ModeLearnerFeedbackV1 {
+  if (outcome === "correct") {
+    return Object.freeze({
+      tone: "correct",
+      text: CORRECT_VERDICT_BY_LOCALE[interfaceLocale],
+      authored: false,
+      responseId: null,
+      analysis: null,
+      diagnostics: null,
+    });
+  }
   if (modePayload?.family === "scripted_repeat_compare" && modePayload.explanationV1?.phrase) {
     const analysis = modePayload.explanationV1.phrase;
     const authoredText = analysis.explanationByLocale[interfaceLocale]?.trim();
@@ -87,29 +97,15 @@ export function resolveLearningV2ModeFeedbackV1({
       diagnostics: null,
     });
   }
-  if (outcome === "correct" && modePayload && (
-    modePayload.family === "phrase_builder" || modePayload.family === "listen_build_dictation"
-  )) {
-    const authoredCompletion = (
-      modePayload.explanationV1?.completionFeedbackByLocale?.[interfaceLocale]
-      ?? modePayload.completionFeedbackByLocale?.[interfaceLocale]
-    )?.trim();
-    if (authoredCompletion) return Object.freeze({
-      tone: "correct",
-      text: authoredCompletion,
-      authored: true,
-      responseId: null,
-      analysis: modePayload.explanationV1?.phrase ?? null,
-      diagnostics: null,
-    });
-  }
+  const orderedTokenMode = modePayload?.family === "phrase_builder" ||
+    modePayload?.family === "listen_build_dictation";
   const rows = payloadFeedbackRows(modePayload);
-  const candidateIds = selectedResponseId
-    ? [selectedResponseId]
-    : orderedResponseIds;
-  const authored = candidateIds
-    .map((responseId) => rows.find((row) => row.responseId === responseId && row.correct === (outcome === "correct")))
-    .find((row): row is LearningV2ModeChoiceFeedbackV1 => row !== undefined);
+  const candidates = selectedResponseId
+    ? rows.filter((row) => row.responseId === selectedResponseId)
+    : orderedTokenMode
+      ? rows.filter((row) => new Set(orderedResponseIds).has(row.responseId))
+      : [];
+  const authored = candidates.length === 1 ? candidates[0] : undefined;
   const authoredText = authored?.feedbackByLocale[interfaceLocale]?.trim();
   if (authored && authoredText) {
     return Object.freeze({
@@ -122,10 +118,8 @@ export function resolveLearningV2ModeFeedbackV1({
     });
   }
   return Object.freeze({
-    tone: outcome,
-    text: outcome === "correct"
-      ? CORRECT_VERDICT_BY_LOCALE[interfaceLocale]
-      : WRONG_VERDICT_BY_LOCALE[interfaceLocale],
+    tone: "wrong",
+    text: WRONG_VERDICT_BY_LOCALE[interfaceLocale],
     authored: false,
     responseId: null,
     analysis: null,

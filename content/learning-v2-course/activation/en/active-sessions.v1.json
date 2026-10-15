@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "learning_v2_active_sessions_v1",
+  "courseReleaseState": "HOLD",
+  "activeSessions": [
+    {
+      "session": "en/l01/s01",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s01/f537e8fe7e168549d1e1bc2299d4c26ac038d2bfc11575f5ce50ab7a1acd9207/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "2cd8409c2e37a97e5e059f69e228ddd1cfb02da3393e3faf425aa4a7e87e7e85"
+    },
+    {
+      "session": "en/l01/s02",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s02/fec409ef4b0039f658485d93736d78b5101bb6a73c69e3d37b4cf97c3d7cb116/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "9fa5b35cd4ce0446a22873110cbb9ae40162b08cdfaa8f64b090e04512477c84"
+    },
+    {
+      "session": "en/l01/s03",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s03/2957755fba8272749258e92cc473dbb1618d299fc074b19e702d95168a5ffca6/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "aae2d4fba248171cc9e6862744d0272b2d9d3044c46436b975eeb88e0242ddde"
+    },
+    {
+      "session": "en/l01/s04",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s04/a154b2ad0b9cee08a7a38d7a758a0d8f5e990961d54507ffa8c6bf1ba4b8b2aa/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "29bd2555630bd067937486a2313f4b2678b5319daed800229b5f6b2334aec446"
+    },
+    {
+      "session": "en/l01/s05",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s05/86fd1363db86f190546b013309532e4a8d2c21d0d8cc3ac84e6c1a4bc8b6538a/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "adca34bcdf5ef3d2007ac6adc023874a24238d1a655b67c37372645f21b9a702"
+    },
+    {
+      "session": "en/l01/s06",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s06/0dd511080e4b05b022dff13e80ef934a3bc94f9141efa584faf411daad01e755/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "5924fa304dd4a4e3afcba11ec520c272cdcd996e737f4f0c1bd6c337e213f58a"
+    },
+    {
+      "session": "en/l01/s07",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s07/83dcf236bf528e30551f152adbee6a068a65e1addca14cf7a0116ebbdf9bdcc7/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "917f8a999547b78b8e481fe30fc820adfca53ca66359edbfb6e82630fc85a745"
+    },
+    {
+      "session": "en/l01/s08",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s08/abcc1794aea92f92e2df4cf5f0a3a33f560d0140865f80026ead97752cd57477/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "f6bef2caba216f954e73737138dce192bcfb0caec9671cb4889fd459402a0fab"
+    },
+    {
+      "session": "en/l01/s09",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s09/9a53fac66007c96f4f46c8fd47cacebeb08ba3359d8bf5749e683157793044ec/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "d7f9430e3121cf541d922a3c1c1c975bde96735538d5d75aa4ab424d4e4edaba"
+    },
+    {
+      "session": "en/l01/s10",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s10/f77803358c13c22f2c51cb6b7b4821322b45290ddfce7185345ecaa05fcd1ba4/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "57a2378df4e7fff8a7613452c1f6d3a30bdee7c0b7919e461c8a097bae7b2bc4"
+    },
+    {
+      "session": "en/l01/s11",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s11/1445fa85a7dc2eb496a574ec93c379f1f616019628bbb95fd7f6cb0a5b60c35d/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "b3225f3f70f310efe339e7693003dbe483596296fa3fe0d7148e8c8f75ac9214"
+    },
+    {
+      "session": "en/l01/s12",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s12/e10d6dc1a99359d29755c4ec20af69c36cf16d6391659a794e57b0d1762f4ca3/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "1646a700c90324ac4e17a35e6d4809f4a52c25ed4df4b2c8ea441950170e88f2"
+    },
+    {
+      "session": "en/l01/s13",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s13/538f4e2004ba4575944a49a00bd80a34d7d1c18407175b49acd7e1f6afb8670b/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "91bd34c0e421347bb5f4d09ea7c12df96aa4fe2da17f2cfa1ca7bfa69c4a8c68"
+    },
+    {
+      "session": "en/l01/s14",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s14/93af682f890f9aef485221c2a493e795f6e82c414dfe48f0d0e251527723e77b/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "0e9d4a793d5706fc385241ba4b6a67385d6727a5abc96a63b67857df1f026e27"
+    },
+    {
+      "session": "en/l01/s15",
+      "acceptanceReceiptPath": "content/learning-v2-course/accepted/en/l01/s15/a7dc0771ac43c4e9682b6eaf2ba91b1fb88dffa0f1d59a8d1523f8b41377266f/acceptance-receipt.json",
+      "acceptanceReceiptSha256": "521336dfdeac934ed7aed9b62062ad00caae97703cfa4c466300e3a837f72796"
+    }
+  ]
+}

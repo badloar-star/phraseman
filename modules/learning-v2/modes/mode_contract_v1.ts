@@ -25,7 +25,7 @@ import type { LearningV2ActivityFamilyCode } from "../telemetry";
 import type {
   LearningV2InterfaceLocale,
 } from "../content/generator_course_contract";
-import type { LearningV2ModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
+import type { LearningV2LearnerModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
 import type { LearningV2ModeLearnerFeedbackV1 } from "./mode_feedback_v1";
 
 /** Единая машина состояний режима. Совпадает по смыслу с "Контракт состояний"
@@ -57,7 +57,7 @@ export interface LearningV2ModeOptionV1 {
 export interface LearningV2ModeCommonPropsV1 {
   readonly family: LearningV2ActivityFamilyCode;
   readonly interfaceLocale: LearningV2InterfaceLocale;
-  readonly modePayload: LearningV2ModeNativePayloadV1 | null;
+  readonly modePayload: LearningV2LearnerModeNativePayloadV1 | null;
   readonly phase: LearningV2ModePhaseV1;
   readonly prompt: string;
   readonly options: readonly LearningV2ModeOptionV1[];

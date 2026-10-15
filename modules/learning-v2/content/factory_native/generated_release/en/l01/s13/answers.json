@@ -85,23 +85,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-13:i18:s01",
+    "interactionId": "en:lesson-01:session-13:i18",
     "correctText": "You are kind.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-13:i18:s02",
-    "correctText": "You are brave.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-13:i18:s03",
-    "correctText": "I am ready.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-13:i18:s04",
-    "correctText": "I am strong.",
     "correctResponseId": null
   }
 ]

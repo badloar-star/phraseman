@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "learning_v2_runtime_audio_omissions_v1",
+  "sessions": [
+    {
+      "session": "en/l01/s06",
+      "courseSessionId": "en:lesson-01:session-06",
+      "runtimeCourseSessionId": "lesson-01:session:06",
+      "candidateBundleSha256": "0dd511080e4b05b022dff13e80ef934a3bc94f9141efa584faf411daad01e755",
+      "factorySourceFingerprint": "b186db8e7b16ae07c4ef75549b2e12929ba33f80066131dd42dec4e920a80f25",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-06:i16",
+        "en:lesson-01:session-06:i19"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:06:i16",
+        "lesson-01:session:06:i19"
+      ]
+    },
+    {
+      "session": "en/l01/s07",
+      "courseSessionId": "en:lesson-01:session-07",
+      "runtimeCourseSessionId": "lesson-01:session:07",
+      "candidateBundleSha256": "83dcf236bf528e30551f152adbee6a068a65e1addca14cf7a0116ebbdf9bdcc7",
+      "factorySourceFingerprint": "41f7a55e9d302f40b739ba9825a70aae14a76cf18769e144890ae48c7fe35daf",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-07:i14",
+        "en:lesson-01:session-07:i16"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:07:i14",
+        "lesson-01:session:07:i16"
+      ]
+    },
+    {
+      "session": "en/l01/s08",
+      "courseSessionId": "en:lesson-01:session-08",
+      "runtimeCourseSessionId": "lesson-01:session:08",
+      "candidateBundleSha256": "abcc1794aea92f92e2df4cf5f0a3a33f560d0140865f80026ead97752cd57477",
+      "factorySourceFingerprint": "ed9e021275c9e11d6b485e68c3956587b02cb032a2b40c4e642d90cc4dd8953e",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-08:i17:s02"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:08:i17:s02"
+      ]
+    },
+    {
+      "session": "en/l01/s09",
+      "courseSessionId": "en:lesson-01:session-09",
+      "runtimeCourseSessionId": "lesson-01:session:09",
+      "candidateBundleSha256": "9a53fac66007c96f4f46c8fd47cacebeb08ba3359d8bf5749e683157793044ec",
+      "factorySourceFingerprint": "1701ee6f87394eeb12018020e773c6ee49b1642ff07822d8efa573870f5312ca",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-09:i14",
+        "en:lesson-01:session-09:i18:s02",
+        "en:lesson-01:session-09:i18:s04"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:09:i14",
+        "lesson-01:session:09:i18:s02",
+        "lesson-01:session:09:i18:s04"
+      ]
+    },
+    {
+      "session": "en/l01/s10",
+      "courseSessionId": "en:lesson-01:session-10",
+      "runtimeCourseSessionId": "lesson-01:session:10",
+      "candidateBundleSha256": "f77803358c13c22f2c51cb6b7b4821322b45290ddfce7185345ecaa05fcd1ba4",
+      "factorySourceFingerprint": "f2259f33f0146d34d769a536f3a2114e515bf720a9305ac1b882bc8b9096fe8f",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-10:i12",
+        "en:lesson-01:session-10:i18"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:10:i12",
+        "lesson-01:session:10:i18"
+      ]
+    },
+    {
+      "session": "en/l01/s11",
+      "courseSessionId": "en:lesson-01:session-11",
+      "runtimeCourseSessionId": "lesson-01:session:11",
+      "candidateBundleSha256": "1445fa85a7dc2eb496a574ec93c379f1f616019628bbb95fd7f6cb0a5b60c35d",
+      "factorySourceFingerprint": "4ebf35a89ba1ca33e3171e8872bc3964a8fcb4e252d428359b24a626f0d9de66",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-11:i17",
+        "en:lesson-01:session-11:i18"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:11:i17",
+        "lesson-01:session:11:i18"
+      ]
+    },
+    {
+      "session": "en/l01/s12",
+      "courseSessionId": "en:lesson-01:session-12",
+      "runtimeCourseSessionId": "lesson-01:session:12",
+      "candidateBundleSha256": "e10d6dc1a99359d29755c4ec20af69c36cf16d6391659a794e57b0d1762f4ca3",
+      "factorySourceFingerprint": "b868110c1a628ed5a3d45b73799d314f76329de74a2a871275fc967fb003eca7",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-12:i08",
+        "en:lesson-01:session-12:i16",
+        "en:lesson-01:session-12:i20"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:12:i08",
+        "lesson-01:session:12:i16",
+        "lesson-01:session:12:i20"
+      ]
+    },
+    {
+      "session": "en/l01/s13",
+      "courseSessionId": "en:lesson-01:session-13",
+      "runtimeCourseSessionId": "lesson-01:session:13",
+      "candidateBundleSha256": "538f4e2004ba4575944a49a00bd80a34d7d1c18407175b49acd7e1f6afb8670b",
+      "factorySourceFingerprint": "0c9766f7f9d491f1fb57ec9b7a90cb803b755f1d2e2a60ea4028f8c8e3e9fd1d",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-13:i18"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:13:i18"
+      ]
+    },
+    {
+      "session": "en/l01/s14",
+      "courseSessionId": "en:lesson-01:session-14",
+      "runtimeCourseSessionId": "lesson-01:session:14",
+      "candidateBundleSha256": "93af682f890f9aef485221c2a493e795f6e82c414dfe48f0d0e251527723e77b",
+      "factorySourceFingerprint": "c3419c64101d73aebfce639c19968d303926032eaa32c45a7079f5eb856958e7",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-14:i10"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:14:i10"
+      ]
+    },
+    {
+      "session": "en/l01/s15",
+      "courseSessionId": "en:lesson-01:session-15",
+      "runtimeCourseSessionId": "lesson-01:session:15",
+      "candidateBundleSha256": "a7dc0771ac43c4e9682b6eaf2ba91b1fb88dffa0f1d59a8d1523f8b41377266f",
+      "factorySourceFingerprint": "85586ea333d94db42ac9bfd749e15802871e1dd2a2b6d8d2ba471474f9af4962",
+      "disabledInteractionIds": [
+        "en:lesson-01:session-15:i15",
+        "en:lesson-01:session-15:i17:s02"
+      ],
+      "runtimeDisabledInteractionIds": [
+        "lesson-01:session:15:i15",
+        "lesson-01:session:15:i17:s02"
+      ]
+    }
+  ]
+}

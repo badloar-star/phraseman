@@ -66,8 +66,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-07:i14",
-    "correctText": "sure",
-    "correctResponseId": "en:lesson-01:session-07:i14:r1"
+    "correctText": "I am not lost.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-07:i15",
@@ -76,8 +76,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-07:i16",
-    "correctText": "hungry",
-    "correctResponseId": "en:lesson-01:session-07:i16:r1"
+    "correctText": "I am hungry.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-07:i17",
@@ -85,23 +85,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-07:i18:s01",
+    "interactionId": "en:lesson-01:session-07:i18",
     "correctText": "I am tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-07:i18:s02",
-    "correctText": "I am not lost.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-07:i18:s03",
-    "correctText": "I am fine.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-07:i18:s04",
-    "correctText": "I am glad.",
     "correctResponseId": null
   }
 ]

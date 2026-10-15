@@ -1,159 +1,138 @@
-# Англійська · Урок 4 · Заняття 2 — «Сад за будинком»
+# Англійська · Урок 4 · Заняття 2 — У районі є сад
 
-**Сцена заняття.** Ви оглядаєте спільні зони нового будинку й знаходите спільний сад за будівлею. Ви вчитеся повідомляти, що сад є і де він розташований.
-**Як сказати:** закріпити повну стверджувальну форму `There is + singular` і додати знайомі `near/behind`.
+**Ситуація.** Ви з другом вивчаєте новий район. Тут є сад і кінотеатр. Після прогулянки ви відпочиваєте й ділитеся враженнями: чи спокійні ви, чи задоволені вибором і чи впевнено почуваєтеся.
+
+**Що ви опануєте:** повідомити про наявність саду й описати свій стан знайомими скороченнями
 **Нові слова:** garden
-**Повертаються:** a, there, is, here, near, behind, house, building, quiet, small, new
+
+---
 
 ## Інтро 1
 
-### Один спільний сад
+### Є сад
 
-`garden` — «сад». Якщо на території є один сад, скажіть `There is a garden.` Спочатку йде `There is`, потім `a` і назва одного місця. `A` потрібне, бо йдеться про один уперше названий сад. `There is a garden.` — добра новина: подвір’я виявилося не лише парковкою.
+`garden` — «сад». `There is a garden` — «Є сад»: повідомляємо про наявність одного місця. Потрібні `is` і `a`. `There is a garden here` — «Тут є сад». Сад на карті поливати не потрібно, а справжній — уже інша річ.
 
-**Працівник уперше показує вам спільний сад. Виберіть точну фразу.**
+**Повідомте, що тут є сад.**
 
-- ✅ **There is a garden.**
-- ❌ There is an garden. — *`Garden` починається зі звука /ɡ/, тому потрібне `a`, а не `an`.*
-- ❌ There is garden. — *Перед одним уперше названим садом потрібне `a`: `a garden`.*
+- ✅ **There is a garden here.**
+- ❌ There are a garden here. — *Один сад: `There is a garden there`.*
+- ❌ There is garden here. — *Перед одним садом потрібне `a`: `a garden`.*
 
 ---
 
 ## Інтро 2
 
-### Сад поруч із будинком
+### Упевнено й спокійно
 
-`near` — «поруч із». Фраза `There is a garden near the house.` повідомляє одразу дві речі: сад є, і він поруч із будинком. Спочатку назвіть сад, потім додайте його місце: `near the house`. Один сад — `There is a garden`.
+`confident` — «упевнений у собі»: ви спокійно спілкуєтеся в новому місці. `I am confident` — «Я впевнений у собі». Скорочення: `I am` → `I’m`. `relaxed` — «розслаблений, спокійний»: після прогулянки ви відпочиваєте, `I am relaxed` — «Я розслаблений». Це стан людини, а не характеристика саду.
 
-**На плані сад позначено поруч із будинком. Виберіть точне повідомлення.**
+**Ви відпочили й почуваєтеся розслаблено. Скажіть «Я розслаблений» зі скороченням.**
 
-- ✅ **There is a garden near the house.**
-- ❌ There is a garden behind the house. — *`Behind` означає «за будинком», а на цьому плані сад поруч із ним.*
-- ❌ There a garden near the house. — *Після `There` зникло `is`.*
+- ✅ **I'm relaxed.**
+- ❌ I'm confident. — *Це впевненість у собі. Тут говоримо про розслабленість: `relaxed`.*
+- ❌ I are relaxed. — *Після `I` потрібна форма `am`: `I am`, скорочено `I’m`.*
 
 ---
 
 ## Інтро 3
 
-### Сад за будівлею
+### Задоволені вибором
 
-`behind` означає «за, позаду». `There is a garden behind the building.` — «За будівлею є сад». Після назви саду додайте місце: `behind the building`. Після `behind` називають орієнтир: `the building`; так фраза уточнює, де розташований сад. `There is a garden` повідомляє, що сад один.
+`satisfied` — «задоволений»: новий район виправдав ваші очікування. `I am satisfied` — «Я задоволений». `cinema` — «кінотеатр»: `There is a cinema here` — «Тут є кінотеатр». `apple` — «яблуко»: `This is an apple` — «Це яблуко». Перед голосним звуком в `apple` потрібне `an`, а перед `garden` — `a`.
 
-**Працівник веде вас за будівлю. Виберіть точну фразу.**
+**Ви вибрали район і задоволені результатом. Скажіть «Я задоволений».**
 
-- ✅ **There is a garden behind the building.**
-- ❌ There is a garden near the building. — *`Near` означає «поруч», а сад розташований за будівлею.*
-- ❌ There garden behind the building. — *Для повідомлення про наявність потрібен повний початок `There is`.*
+- ✅ **I am satisfied.**
+- ❌ I am relaxed. — *Це розслабленість, а тут задоволення результатом: `satisfied`.*
+- ❌ I is satisfied. — *Після `I` потрібне `am`.*
 
 ---
 
-## Практика — по одній цілі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-02:i01; family: listen_choose -->
-Ціль: `garden`
-🔊 *garden*
-Значення варіантів: garden — сад · guard — охорона · garment — предмет одягу
-→ **garden** · guard · garment
-- guard — *У записі чути `garden`: кінець /dən/, а не слово `guard`.*
-- garment — *У `garment` після /gɑː/ чути /mənt/; у записі `garden` — /dən/.*
+**1 · Друг дістає яблуко. Назвіть його: «Це яблуко»**
+<!-- interaction_id: en:lesson-04:session-02:i01; family: phrase_builder -->
+Плитки: `apple` `an` `is` `This` `are` → **This is an apple.**
+*(плитка `are` зайва: тут потрібно `is` — `This is an apple.`)*
 
-**2 · Промовте нове слово «сад»**
-<!-- interaction_id: en:lesson-04:session-02:i02; family: scripted_repeat_compare -->
-Ціль: `garden`
-🎙 **garden**
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-02:i02; family: listen_choose -->
+🔊 *garden* → **garden** · cinema · hospital
+- cinema — *У записі перше слово — `garden`, а в цьому варіанті — `cinema`.*
+- hospital — *У записі перше слово — `garden`, а в цьому варіанті — `hospital`.*
 
-**3 · Вставте слово «сад»**
+**3 · Назвіть сад одним англійським словом**
 <!-- interaction_id: en:lesson-04:session-02:i03; family: context_gap_grammar -->
-___ → **garden** · guarding · garage · garland
-- guarding — *`Guarding` — охорона. Для саду потрібне `garden`.*
-- garage — *`Garage` — гараж. Сад — `garden`.*
-- garland — *`Garland` — гірлянда. Тут потрібне слово `garden` — «сад».*
+___ → **garden** · cinema · library
+- cinema — *Сад — `garden`, а `cinema` — кінотеатр.*
+- library — *Сад — `garden`, а `library` — бібліотека.*
 
-**4 · З'єднайте слова екскурсії з їхніми значеннями**
+**4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-02:i04; family: speed_match -->
-Пари: `house` — будинок · `near` — поруч · `behind` — за, позаду · `here` — тут
+garden — сад · confident — упевнений у собі · relaxed — розслаблений · cinema — кінотеатр
 
-**5 · Послухайте й виберіть точний зміст повідомлення**
-<!-- interaction_id: en:lesson-04:session-02:i05; family: listen_choose -->
-Ціль: `There is a small garden behind the building.`
-🔊 *There is a small garden behind the building.*
-Значення варіантів: There is a small garden behind the building. — За будівлею є маленький сад. · There is a small garden near the house. — Поруч із будинком є маленький сад. · There is a quiet garden behind the building. — За будівлею є тихий сад.
-→ **There is a small garden behind the building.** · There is a small garden near the house. · There is a quiet garden behind the building.
-- There is a small garden near the house. — *У записі звучить `behind the building`, а не `near the house`.*
-- There is a quiet garden behind the building. — *У записі сад `small`, а не `quiet`.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-02:i05; family: listen_build_dictation -->
+🔊 *There is a garden.* Плитки: `garden` `a` `is` `There` `are` → **There is a garden.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a garden.`)*
 
-**6 · Промовте повідомлення про сад поруч із будинком**
-<!-- interaction_id: en:lesson-04:session-02:i06; family: scripted_repeat_compare -->
-Ціль: `There is a quiet garden near the house.`
-🎙 **There is a quiet garden near the house.**
+**6 · Друг не знає району. Повідомте «Тут є кінотеатр»**
+<!-- interaction_id: en:lesson-04:session-02:i06; family: phrase_builder -->
+Плитки: `here` `cinema` `a` `is` `There` `are` → **There is a cinema here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a cinema here.`)*
 
-**7 · Сад розташований за будинком. Вставте точне слово**
-<!-- interaction_id: en:lesson-04:session-02:i07; family: context_gap_grammar -->
-There is a garden ___ the house. → **behind** · near · here
-- near — *`Near` означає «поруч із». За умовою сад за будинком, тому потрібне `behind`.*
-- here — *`Here` не ставлять перед `the house`. Тут потрібна сполука `behind the house`.*
+**7 · Ви впевнено спілкуєтеся з новими людьми. Скажіть «Я впевнений у собі» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-02:i07; family: scripted_repeat_compare -->
+🎙 **I'm confident.**
 
-**8 · Послухайте й складіть повідомлення про маленький сад**
-<!-- interaction_id: en:lesson-04:session-02:i08; family: listen_build_dictation -->
-Ціль: `There is a small garden near the building.`
-🔊 *There is a small garden near the building.*
-Плитки: `There` · `is` · `a` · `small` · `garden` · `near` · `the` · `building` · `an`
+**8 · Повідомте, що тут є один сад**
+<!-- interaction_id: en:lesson-04:session-02:i08; family: context_gap_grammar -->
+There is ___ garden here. → **a** · an · are
+- an — *`garden` починається з приголосного звука: `a garden`.*
+- are — *Тут потрібен артикль `a`; `is` уже стоїть після `There`.*
 
-**9 · Складіть повідомлення про тихий сад за будинком**
-<!-- interaction_id: en:lesson-04:session-02:i09; family: phrase_builder -->
-Ціль: `There is a quiet garden behind the house.`
-Плитки: `There` · `is` · `a` · `quiet` · `garden` · `behind` · `the` · `house` · `an`
+**9 · Послухайте, як людина описує свій стан після вибору району**
+<!-- interaction_id: en:lesson-04:session-02:i09; family: listen_choose -->
+🔊 *I am satisfied.* → **I am satisfied.** · I am relaxed. · I am confident.
+- I am relaxed. — *У записі останнє слово — `satisfied`, а в цьому варіанті — `relaxed`.*
+- I am confident. — *У записі останнє слово — `satisfied`, а в цьому варіанті — `confident`.*
 
-**10 · Під час екскурсії показують новий сад поруч із будинком. Промовте повідомлення**
-<!-- interaction_id: en:lesson-04:session-02:i10; family: scripted_repeat_compare -->
-Ціль: `There is a new garden near the house.`
-🎙 **There is a new garden near the house.**
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-02:i10; family: speed_match -->
+satisfied — задоволений · apple — яблуко · cinema — кінотеатр · relaxed — розслаблений
 
-**11 · Йдеться про один тихий сад. Вставте правильну форму**
-<!-- interaction_id: en:lesson-04:session-02:i11; family: context_gap_grammar -->
-There ___ a quiet garden behind the building. → **is** · a · am
-- a — *Після `There` потрібна форма `is`. Артикль `a` вже стоїть перед `quiet garden`.*
-- am — *`Am` уживається з `I`. Повідомлення про наявність починається з `There is`.*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-02:i11; family: listen_build_dictation -->
+🔊 *This is a garden.* Плитки: `garden` `a` `is` `This` `are` → **This is a garden.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a garden.`)*
 
-**12 · Послухайте й виберіть точний зміст повідомлення**
-<!-- interaction_id: en:lesson-04:session-02:i12; family: listen_choose -->
-Ціль: `There is a small garden near the house.`
-🔊 *There is a small garden near the house.*
-Значення варіантів: There is a small garden near the house. — Поруч із будинком є маленький сад. · There is a small garden behind the house. — За будинком є маленький сад. · There is a new garden near the house. — Поруч із будинком є новий сад.
-→ **There is a small garden near the house.** · There is a small garden behind the house. · There is a new garden near the house.
-- There is a small garden behind the house. — *У записі звучить `near the house`, а не `behind the house`.*
-- There is a new garden near the house. — *У записі сад `small`, а не `new`.*
+**12 · Ви відпочили після прогулянки. Скажіть «Я розслаблений» повною формою**
+<!-- interaction_id: en:lesson-04:session-02:i12; family: phrase_builder -->
+Плитки: `relaxed` `am` `I` `is` → **I am relaxed.**
+*(плитка `is` зайва: тут потрібно `am` — `I am relaxed.`)*
 
-**13 · Складіть повідомлення про сад поруч із будівлею**
-<!-- interaction_id: en:lesson-04:session-02:i13; family: phrase_builder -->
-Ціль: `There is a garden near the building.`
-Плитки: `There` · `is` · `a` · `garden` · `near` · `the` · `building` · `an`
+**13 · Район виправдав очікування. Скажіть «Я задоволений» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-02:i13; family: scripted_repeat_compare -->
+🎙 **I'm satisfied.**
 
-**14 · Ви вийшли у двір і побачили тихий сад. Промовте повідомлення**
-<!-- interaction_id: en:lesson-04:session-02:i14; family: scripted_repeat_compare -->
-Ціль: `There is a quiet garden here.`
-🎙 **There is a quiet garden here.**
+**14 · Ви показуєте далі на карті: там є сад**
+<!-- interaction_id: en:lesson-04:session-02:i14; family: context_gap_grammar -->
+There ___ a garden there. → **is** · are · am
+- are — *Один сад: `There is a garden there`.*
+- am — *Для наявності одного саду потрібне `There is`.*
 
-**15 · Поруч із будівлею розташований один новий сад. Вставте артикль**
-<!-- interaction_id: en:lesson-04:session-02:i15; family: context_gap_grammar -->
-There is ___ new garden near the building. → **a** · an · is
-- an — *`New` починається зі звука /n/, тому потрібне `a`, а не `an`.*
-- is — *У цьому місці потрібен артикль перед `new garden`: `a new garden`.*
+**15 · Послухайте опис стану людини**
+<!-- interaction_id: en:lesson-04:session-02:i15; family: listen_choose -->
+🔊 *I am confident.* → **I am confident.** · I am satisfied. · I am relaxed.
+- I am satisfied. — *У записі останнє слово — `confident`, а в цьому варіанті — `satisfied`.*
+- I am relaxed. — *У записі останнє слово — `confident`, а в цьому варіанті — `relaxed`.*
 
-**16 · Послухайте й складіть повідомлення**
-<!-- interaction_id: en:lesson-04:session-02:i16; family: listen_build_dictation -->
-Ціль: `There is a new garden behind the house.`
-🔊 *There is a new garden behind the house.*
-Плитки: `There` · `is` · `a` · `new` · `garden` · `behind` · `the` · `house` · `an`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-02:i16; family: speed_match -->
+garden — сад · confident — упевнений у собі · satisfied — задоволений · apple — яблуко
 
-**17 · складіть точне повідомлення про місце саду**
-<!-- interaction_id: en:lesson-04:session-02:i17; family: phrase_builder -->
-Ціль: `There is a quiet garden near the building.`
-Плитки: `There` · `is` · `a` · `quiet` · `garden` · `near` · `the` · `building` · `an`
+**17 · Ви приїхали в гості в інший район і побачили сад. Друг ще не знає про нього. Повідомте «Тут є сад»**
+<!-- interaction_id: en:lesson-04:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **There is a garden here.**
 
-## Для збирача
-
-atomic_practice: practice.atomic.json
-new_words: garden — сад — Ділянка з рослинами біля будинку або будівлі.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=speed_match, 5=listen_choose, 6=scripted_repeat_compare, 7=context_gap_grammar, 8=listen_build_dictation, 9=phrase_builder, 10=scripted_repeat_compare, 11=context_gap_grammar, 12=listen_choose, 13=phrase_builder, 14=scripted_repeat_compare, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder

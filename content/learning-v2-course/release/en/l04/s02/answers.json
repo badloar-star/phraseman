@@ -1,13 +1,13 @@
 [
   {
     "interactionId": "en:lesson-04:session-02:i01",
-    "correctText": "garden",
-    "correctResponseId": "en:lesson-04:session-02:i01:r1"
+    "correctText": "This is an apple.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i02",
     "correctText": "garden",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-04:session-02:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-02:i03",
@@ -16,72 +16,72 @@
   },
   {
     "interactionId": "en:lesson-04:session-02:i04",
-    "correctText": "en:lesson-04:session-02:i04:p1=house\nen:lesson-04:session-02:i04:p2=near\nen:lesson-04:session-02:i04:p3=behind\nen:lesson-04:session-02:i04:p4=here",
+    "correctText": "en:lesson-04:session-02:i04:p1=garden\nen:lesson-04:session-02:i04:p2=confident\nen:lesson-04:session-02:i04:p3=relaxed\nen:lesson-04:session-02:i04:p4=cinema",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i05",
-    "correctText": "There is a small garden behind the building.",
-    "correctResponseId": "en:lesson-04:session-02:i05:r1"
+    "correctText": "There is a garden.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i06",
-    "correctText": "There is a quiet garden near the house.",
+    "correctText": "There is a cinema here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i07",
-    "correctText": "behind",
-    "correctResponseId": "en:lesson-04:session-02:i07:r1"
+    "correctText": "I'm confident.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i08",
-    "correctText": "There is a small garden near the building.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-02:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-02:i09",
-    "correctText": "There is a quiet garden behind the house.",
-    "correctResponseId": null
+    "correctText": "I am satisfied.",
+    "correctResponseId": "en:lesson-04:session-02:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-02:i10",
-    "correctText": "There is a new garden near the house.",
+    "correctText": "en:lesson-04:session-02:i10:p1=satisfied\nen:lesson-04:session-02:i10:p2=apple\nen:lesson-04:session-02:i10:p3=cinema\nen:lesson-04:session-02:i10:p4=relaxed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i11",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-04:session-02:i11:r1"
+    "correctText": "This is a garden.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i12",
-    "correctText": "There is a small garden near the house.",
-    "correctResponseId": "en:lesson-04:session-02:i12:r1"
+    "correctText": "I am relaxed.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i13",
-    "correctText": "There is a garden near the building.",
+    "correctText": "I'm satisfied.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i14",
-    "correctText": "There is a quiet garden here.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-02:i14:r1"
   },
   {
     "interactionId": "en:lesson-04:session-02:i15",
-    "correctText": "a",
+    "correctText": "I am confident.",
     "correctResponseId": "en:lesson-04:session-02:i15:r1"
   },
   {
     "interactionId": "en:lesson-04:session-02:i16",
-    "correctText": "There is a new garden behind the house.",
+    "correctText": "en:lesson-04:session-02:i16:p1=garden\nen:lesson-04:session-02:i16:p2=confident\nen:lesson-04:session-02:i16:p3=satisfied\nen:lesson-04:session-02:i16:p4=apple",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i17",
-    "correctText": "There is a quiet garden near the building.",
+    "correctText": "There is a garden here.",
     "correctResponseId": null
   }
 ]

@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-02",
   "learningOutcomeByLocale": {
-    "ru": "закрепить полную утвердительную форму `There is + singular` и добавить знакомые `near/behind`.",
-    "uk": "закріпити повну стверджувальну форму `There is + singular` і додати знайомі `near/behind`."
+    "ru": "сообщить о наличии сада и описать своё состояние знакомыми сокращениями",
+    "uk": "повідомити про наявність саду й описати свій стан знайомими скороченнями"
   },
   "pages": [
     {
@@ -12,52 +11,52 @@
       "pageId": "en:lesson-04:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один общий сад",
-        "uk": "Один спільний сад"
+        "ru": "Есть сад",
+        "uk": "Є сад"
       },
       "bodyByLocale": {
-        "ru": "`garden` — «сад». Если на территории есть один сад, скажите `There is a garden.` Сначала идёт `There is`, затем `a` и название одного места. `A` нужно, потому что речь идёт об одном впервые названном саде. `There is a garden.` — хорошая новость: двор оказался не только парковкой.",
-        "uk": "`garden` — «сад». Якщо на території є один сад, скажіть `There is a garden.` Спочатку йде `There is`, потім `a` і назва одного місця. `A` потрібне, бо йдеться про один уперше названий сад. `There is a garden.` — добра новина: подвір’я виявилося не лише парковкою."
+        "ru": "`garden` — «сад». `There is a garden` — «Есть сад»: сообщаем о наличии одного места. Нужны `is` и `a`. `There is a garden here` — «Здесь есть сад». Сад на карте поливать не нужно, а настоящий — уже другое дело.",
+        "uk": "`garden` — «сад». `There is a garden` — «Є сад»: повідомляємо про наявність одного місця. Потрібні `is` і `a`. `There is a garden here` — «Тут є сад». Сад на карті поливати не потрібно, а справжній — уже інша річ."
       },
       "question": {
         "interactionId": "en:lesson-04:session-02:intro1:q",
         "promptByLocale": {
-          "ru": "Сотрудник впервые показывает вам общий сад. Выберите точную фразу.",
-          "uk": "Працівник уперше показує вам спільний сад. Виберіть точну фразу."
+          "ru": "Сообщите, что здесь есть сад.",
+          "uk": "Повідомте, що тут є сад."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-02:intro1:r1",
-              "text": "There is a garden."
+              "text": "There is a garden here."
             },
             {
               "responseId": "en:lesson-04:session-02:intro1:r2",
-              "text": "There is an garden."
+              "text": "There are a garden here."
             },
             {
               "responseId": "en:lesson-04:session-02:intro1:r3",
-              "text": "There is garden."
+              "text": "There is garden here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-02:intro1:r1",
-              "text": "There is a garden."
+              "text": "There is a garden here."
             },
             {
               "responseId": "en:lesson-04:session-02:intro1:r2",
-              "text": "There is an garden."
+              "text": "There are a garden here."
             },
             {
               "responseId": "en:lesson-04:session-02:intro1:r3",
-              "text": "There is garden."
+              "text": "There is garden here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сотрудник впервые показывает вам общий сад. Выберите точную фразу.",
-          "uk": "Працівник уперше показує вам спільний сад. Виберіть точну фразу."
+          "ru": "Сообщите, что здесь есть сад.",
+          "uk": "Повідомте, що тут є сад."
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сад рядом с домом",
-        "uk": "Сад поруч із будинком"
+        "ru": "Уверенно и спокойно",
+        "uk": "Упевнено й спокійно"
       },
       "bodyByLocale": {
-        "ru": "`near` — «рядом с». Фраза `There is a garden near the house.` сообщает сразу две вещи: сад есть, и он рядом с домом. Сначала назовите сад, затем добавьте его место: `near the house`. Один сад — `There is a garden`.",
-        "uk": "`near` — «поруч із». Фраза `There is a garden near the house.` повідомляє одразу дві речі: сад є, і він поруч із будинком. Спочатку назвіть сад, потім додайте його місце: `near the house`. Один сад — `There is a garden`."
+        "ru": "`confident` — «уверенный в себе»: вы спокойно общаетесь в новом месте. `I am confident` — «Я уверен в себе». Сокращение: `I am` → `I’m`. `relaxed` — «расслабленный, спокойный»: после прогулки вы отдыхаете, `I am relaxed` — «Я расслаблен». Это состояние человека, а не характеристика сада.",
+        "uk": "`confident` — «упевнений у собі»: ви спокійно спілкуєтеся в новому місці. `I am confident` — «Я впевнений у собі». Скорочення: `I am` → `I’m`. `relaxed` — «розслаблений, спокійний»: після прогулянки ви відпочиваєте, `I am relaxed` — «Я розслаблений». Це стан людини, а не характеристика саду."
       },
       "question": {
         "interactionId": "en:lesson-04:session-02:intro2:q",
         "promptByLocale": {
-          "ru": "На плане сад отмечен рядом с домом. Выберите точное сообщение.",
-          "uk": "На плані сад позначено поруч із будинком. Виберіть точне повідомлення."
+          "ru": "Вы отдохнули и чувствуете себя расслабленно. Скажите «Я расслаблен» с сокращением.",
+          "uk": "Ви відпочили й почуваєтеся розслаблено. Скажіть «Я розслаблений» зі скороченням."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-02:intro2:r1",
-              "text": "There is a garden near the house."
+              "text": "I'm relaxed."
             },
             {
               "responseId": "en:lesson-04:session-02:intro2:r2",
-              "text": "There is a garden behind the house."
+              "text": "I'm confident."
             },
             {
               "responseId": "en:lesson-04:session-02:intro2:r3",
-              "text": "There a garden near the house."
+              "text": "I are relaxed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-02:intro2:r1",
-              "text": "There is a garden near the house."
+              "text": "I'm relaxed."
             },
             {
               "responseId": "en:lesson-04:session-02:intro2:r2",
-              "text": "There is a garden behind the house."
+              "text": "I'm confident."
             },
             {
               "responseId": "en:lesson-04:session-02:intro2:r3",
-              "text": "There a garden near the house."
+              "text": "I are relaxed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На плане сад отмечен рядом с домом. Выберите точное сообщение.",
-          "uk": "На плані сад позначено поруч із будинком. Виберіть точне повідомлення."
+          "ru": "Вы отдохнули и чувствуете себя расслабленно. Скажите «Я расслаблен» с сокращением.",
+          "uk": "Ви відпочили й почуваєтеся розслаблено. Скажіть «Я розслаблений» зі скороченням."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сад за зданием",
-        "uk": "Сад за будівлею"
+        "ru": "Довольны выбором",
+        "uk": "Задоволені вибором"
       },
       "bodyByLocale": {
-        "ru": "`behind` значит «за, позади». `There is a garden behind the building.` — «За зданием есть сад». После названия сада добавьте место: `behind the building`. После `behind` называют ориентир: `the building`. `There is a garden` сообщает, что сад один.",
-        "uk": "`behind` означає «за, позаду». `There is a garden behind the building.` — «За будівлею є сад». Після назви саду додайте місце: `behind the building`. Після `behind` називають орієнтир: `the building`; так фраза уточнює, де розташований сад. `There is a garden` повідомляє, що сад один."
+        "ru": "`satisfied` — «довольный»: новый район оправдал ваши ожидания. `I am satisfied` — «Я доволен». `cinema` — «кинотеатр»: `There is a cinema here` — «Здесь есть кинотеатр». `apple` — «яблоко»: `This is an apple` — «Это яблоко». Перед гласным звуком в `apple` нужен `an`, а перед `garden` — `a`.",
+        "uk": "`satisfied` — «задоволений»: новий район виправдав ваші очікування. `I am satisfied` — «Я задоволений». `cinema` — «кінотеатр»: `There is a cinema here` — «Тут є кінотеатр». `apple` — «яблуко»: `This is an apple` — «Це яблуко». Перед голосним звуком в `apple` потрібне `an`, а перед `garden` — `a`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-02:intro3:q",
         "promptByLocale": {
-          "ru": "Сотрудник ведёт вас за здание. Выберите точную фразу.",
-          "uk": "Працівник веде вас за будівлю. Виберіть точну фразу."
+          "ru": "Вы выбрали район и довольны результатом. Скажите «Я доволен».",
+          "uk": "Ви вибрали район і задоволені результатом. Скажіть «Я задоволений»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-02:intro3:r1",
-              "text": "There is a garden behind the building."
+              "text": "I am satisfied."
             },
             {
               "responseId": "en:lesson-04:session-02:intro3:r2",
-              "text": "There is a garden near the building."
+              "text": "I am relaxed."
             },
             {
               "responseId": "en:lesson-04:session-02:intro3:r3",
-              "text": "There garden behind the building."
+              "text": "I is satisfied."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-02:intro3:r1",
-              "text": "There is a garden behind the building."
+              "text": "I am satisfied."
             },
             {
               "responseId": "en:lesson-04:session-02:intro3:r2",
-              "text": "There is a garden near the building."
+              "text": "I am relaxed."
             },
             {
               "responseId": "en:lesson-04:session-02:intro3:r3",
-              "text": "There garden behind the building."
+              "text": "I is satisfied."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сотрудник ведёт вас за здание. Выберите точную фразу.",
-          "uk": "Працівник веде вас за будівлю. Виберіть точну фразу."
+          "ru": "Вы выбрали район и довольны результатом. Скажите «Я доволен».",
+          "uk": "Ви вибрали район і задоволені результатом. Скажіть «Я задоволений»."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e948cb13ba31ca4721b28e7477c1f737df392cb0b0ee18bb681d80b4a1f9f30f"
+  "introFingerprint": "9dd7fa3830726b27bf5f7d8705caa774e75babb25e85cec2f71543b850219ce7"
 }

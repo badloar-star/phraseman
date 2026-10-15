@@ -1465,6 +1465,9 @@ function RegistrationPromptModal({
 
   const handleLaterRef = useRef(handleLater);
   handleLaterRef.current = handleLater;
+  // зачем (Макеты 15.10: «[Worklets] Tried to modify key `current` of an object which has been already passed to a worklet» ×2 каждые 0,5 с на «Друзьях»): worklet-коллбэк withTiming раньше брал `handleLaterRef.current` ВНУТРИ себя —
+  // ref-объект попадал в worklet и становился неизменяемым, а присваивание `handleLaterRef.current = …` в каждом рендере после первого закрытия писало предупреждение. В worklet уходит стабильная функция, ref остаётся обычным JS-объектом.
+  const invokeHandleLater = useCallback(() => { handleLaterRef.current(); }, []);
 
   // Анимированное закрытие (крестик/фон/«Позже»): лист уезжает вниз + подложка тает,
   // затем общий путь handleLater (те же правила, включая signInSlow).
@@ -1475,9 +1478,9 @@ function RegistrationPromptModal({
     backdropO.value = withTiming(0, { duration: 200 });
     sheetOpacity.value = withTiming(0, { duration: 180 });
     sheetY.value = withTiming(SHEET_HIDDEN, { duration: 240, easing: REasing.out(REasing.cubic) }, (finished) => {
-      if (finished) runOnJS(handleLaterRef.current)();
+      if (finished) runOnJS(invokeHandleLater)();
     });
-  }, [backdropO, sheetOpacity, sheetY, loadingProvider, recoveryDismissAllowed, signInSlow]);
+  }, [invokeHandleLater, backdropO, sheetOpacity, sheetY, loadingProvider, recoveryDismissAllowed, signInSlow]);
 
   const closeAfterSwipe = useCallback(() => {
     void handleLaterRef.current();

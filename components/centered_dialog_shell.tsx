@@ -88,15 +88,18 @@ export default function CenteredDialogShell({
 
   const handleCloseRef = useRef(onClose);
   handleCloseRef.current = onClose;
+  // зачем (Макеты 15.10: «[Worklets] Tried to modify key `current` of an object which has been already passed to a worklet» ×2 каждые 0,5 с на «Друзьях»): worklet-коллбэк withTiming раньше брал `handleCloseRef.current` ВНУТРИ себя —
+  // ref-объект попадал в worklet и становился неизменяемым, а присваивание `handleCloseRef.current = …` в каждом рендере после первого закрытия писало предупреждение. В worklet уходит стабильная функция, ref остаётся обычным JS-объектом.
+  const invokeHandleClose = useCallback(() => { handleCloseRef.current(); }, []);
 
   const dismissDialog = useCallback(() => {
     hapticTap();
     backdropO.value = withTiming(0, { duration: 160 });
     dialogScale.value = withTiming(0.96, { duration: 160, easing: REasing.in(REasing.cubic) });
     dialogO.value = withTiming(0, { duration: 160 }, (finished) => {
-      if (finished) runOnJS(handleCloseRef.current)();
+      if (finished) runOnJS(invokeHandleClose)();
     });
-  }, [backdropO, dialogO, dialogScale]);
+  }, [invokeHandleClose, backdropO, dialogO, dialogScale]);
 
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropO.value }));
   const dialogStyle = useAnimatedStyle(() => ({

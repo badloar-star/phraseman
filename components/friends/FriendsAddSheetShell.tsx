@@ -127,13 +127,16 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
 
   const handleCloseRef = useRef(onClose);
   handleCloseRef.current = onClose;
+  // зачем (Макеты 15.10: «[Worklets] Tried to modify key `current` of an object which has been already passed to a worklet» ×2 каждые 0,5 с на «Друзьях»): worklet-коллбэк withTiming раньше брал `handleCloseRef.current` ВНУТРИ себя —
+  // ref-объект попадал в worklet и становился неизменяемым, а присваивание `handleCloseRef.current = …` в каждом рендере после первого закрытия писало предупреждение. В worklet уходит стабильная функция, ref остаётся обычным JS-объектом.
+  const invokeHandleClose = useCallback(() => { handleCloseRef.current(); }, []);
   const animateOut = useCallback(() => {
     Keyboard.dismiss();
     backdropO.value = withTiming(0, { duration: KIT_MOTION.dimMs });
     slide.value = withTiming(1, { duration: SHEET_OUT_MS, easing: SHEET_EASE }, (finished) => {
-      if (finished) runOnJS(handleCloseRef.current)();
+      if (finished) runOnJS(invokeHandleClose)();
     });
-  }, [backdropO, slide]);
+  }, [invokeHandleClose, backdropO, slide]);
   const dismiss = useCallback(() => {
     hapticTap();
     animateOut();

@@ -115,6 +115,9 @@ export default function DialogHowToSaySheet({
 
   const handleCloseRef = useRef(onClose);
   handleCloseRef.current = onClose;
+  // зачем (Макеты 15.10: «[Worklets] Tried to modify key `current` of an object which has been already passed to a worklet» ×2 каждые 0,5 с на «Друзьях»): worklet-коллбэк withTiming раньше брал `handleCloseRef.current` ВНУТРИ себя —
+  // ref-объект попадал в worklet и становился неизменяемым, а присваивание `handleCloseRef.current = …` в каждом рендере после первого закрытия писало предупреждение. В worklet уходит стабильная функция, ref остаётся обычным JS-объектом.
+  const invokeHandleClose = useCallback(() => { handleCloseRef.current(); }, []);
   const dismissFallbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
     if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
@@ -133,9 +136,9 @@ export default function DialogHowToSaySheet({
       handleCloseRef.current();
     }, KIT_MOTION.sheetMs + DISMISS_FALLBACK_SLACK_MS); // страховка не должна обрывать уход шторки
     sheetY.value = withTiming(SHEET_HIDDEN, { duration: KIT_MOTION.sheetMs, easing: KIT_SHEET_EASE }, (finished) => {
-      if (finished) runOnJS(handleCloseRef.current)();
+      if (finished) runOnJS(invokeHandleClose)();
     });
-  }, [backdropO, sheetY, reduceMotion]);
+  }, [invokeHandleClose, backdropO, sheetY, reduceMotion]);
 
   const closeAfterSwipe = useCallback(() => {
     handleCloseRef.current();

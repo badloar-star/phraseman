@@ -91,6 +91,9 @@ export default function ReferralSheetShell({
 
   const handleCloseRef = useRef(onClose);
   handleCloseRef.current = onClose;
+  // зачем (Макеты 15.10: «[Worklets] Tried to modify key `current` of an object which has been already passed to a worklet» ×2 каждые 0,5 с на «Друзьях»): worklet-коллбэк withTiming раньше брал `handleCloseRef.current` ВНУТРИ себя —
+  // ref-объект попадал в worklet и становился неизменяемым, а присваивание `handleCloseRef.current = …` в каждом рендере после первого закрытия писало предупреждение. В worklet уходит стабильная функция, ref остаётся обычным JS-объектом.
+  const invokeHandleClose = useCallback(() => { handleCloseRef.current(); }, []);
   const dismissFallbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
     if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
@@ -108,9 +111,9 @@ export default function ReferralSheetShell({
       handleCloseRef.current();
     }, KIT_MOTION.sheetMs + 80);
     sheetY.value = withTiming(SHEET_HIDDEN, { duration: KIT_MOTION.sheetMs, easing: sheetEase() }, (finished) => {
-      if (finished) runOnJS(handleCloseRef.current)();
+      if (finished) runOnJS(invokeHandleClose)();
     });
-  }, [backdropO, sheetOpacity, sheetY]);
+  }, [invokeHandleClose, backdropO, sheetOpacity, sheetY]);
 
   const closeAfterSwipe = useCallback(() => {
     handleCloseRef.current();

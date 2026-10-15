@@ -24,7 +24,39 @@ const re9 = new RegExp(`(?:^\\s*([A-Za-z_]\\w*|\\d+)\\s*:\\s*\\[|const\\s+([A-Z_
 for (const f of FILES) { const src = fs.readFileSync(path.join(ROOT, f), 'utf8'); let m;
   while ((m = re9.exec(src))) { let key = m[1] || m[2]; if (/^\d+$/.test(key)) { const owner = [...src.slice(0, m.index).matchAll(/const\s+([A-Za-z_]\w*)\s*[:=]/g)].pop(); key = `${owner ? owner[1] : '?'}[${key}]`; }
     STR.push({ file: f, key, t: m.slice(3, 12).map((x) => x.replace(/\\'/g, "'")) }); } }
-log('строк (9 языков)', STR.length, 'файлов', FILES.length);
+// зачем (координатор 15.10: «доведи покрытие до максимума»): кроме таблиц *_strings.ts строки живут в компонентах —
+// объектом { ru: '…', uk: '…', … 'pt-BR': '…', … pl: '…' } и вызовом L('ru', 'uk', …) на 9 языков. Их тоже берём, ключ = файл:строка;
+// по таким строкам видно и захардкоженные в компоненте тексты (для сторожа переводов).
+const LANG_KEYS = ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl'];
+const reObj = new RegExp(LANG_KEYS.map((k) => `${k.replace(/'/g, "['\"]?")}\\s*:\\s*${Q}`).join('\\s*,\\s*'), 'g');
+const reL = new RegExp(`\\bL\\(\\s*${Array(9).fill(Q).join('\\s*,\\s*')}\\s*\\)`, 'g');
+const CODE = [];
+(function walk(d) { for (const e of fs.readdirSync(path.join(ROOT, d), { withFileTypes: true })) { const rel = d + '/' + e.name;
+  if (e.isDirectory()) { if (!/node_modules|__tests__|^dev$/.test(e.name)) walk(rel); } else if (/\.tsx?$/.test(e.name) && !/\.test\./.test(e.name) && !/_strings\.ts$/.test(e.name)) CODE.push(rel); } })('app');
+for (const d of ['components', 'modules']) (function walk(dd) { for (const e of fs.readdirSync(path.join(ROOT, dd), { withFileTypes: true })) { const rel = dd + '/' + e.name;
+  if (e.isDirectory()) { if (!/node_modules|__tests__|^dev$/.test(e.name)) walk(rel); } else if (/\.tsx?$/.test(e.name) && !/\.test\./.test(e.name) && !/_strings\.ts$/.test(e.name)) CODE.push(rel); } })(d);
+let inline = 0;
+for (const f of CODE) { const src = fs.readFileSync(path.join(ROOT, f), 'utf8'); if (!/ru\s*:|\bL\(/.test(src)) continue;
+  // зачем: порядок ключей в объектах разный ({ ru, en, uk, … } в lesson_complete) — блок { … ru: '…' … } разбираем по каждому языку отдельно
+  const reBlock = /\{[^{}]*?\bru\s*:\s*'(?:[^'\\]|\\.)*'[^{}]*\}/g; let b;
+  while ((b = reBlock.exec(src))) { const blk = b[0];
+    const t = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'].map((l) => { const m = new RegExp(`(?:^|[\\s,{])['"]?${l.replace('-', '\\-')}['"]?\\s*:\\s*${Q}`).exec(blk); return m ? m[1].replace(/\\'/g, "'") : null; });
+    if (t.every(Boolean)) { STR.push({ file: f, key: `${f.split('/').pop()}:${src.slice(0, b.index).split('\n').length}`, inline: true, t }); inline++; } }
+  reL.lastIndex = 0; let ml; while ((ml = reL.exec(src))) { const line = src.slice(0, ml.index).split('\n').length;
+    STR.push({ file: f, key: `${f.split('/').pop()}:${line}`, inline: true, t: ml.slice(1, 10).map((x) => x.replace(/\\'/g, "'")) }); inline++; } }
+log('строк (9 языков)', STR.length, 'из них в компонентах', inline, 'файлов строк', FILES.length);
+// параметры: камень лиги и «по-английски» — по языку из кода (SPIRE_TIER_NAMES, study_language_words adv)
+const TIERS = {}; { const src = fs.readFileSync(path.join(ROOT, 'modules/spire/tier_names.ts'), 'utf8');
+  for (const m of src.matchAll(/(ru|uk|en|es|'pt-BR'|vi|id|tr|pl):\s*Object\.freeze\(\[([^\]]+)\]\)/g)) TIERS[m[1].replace(/'/g, '')] = [...m[2].matchAll(/'([^']+)'/g)].map((x) => x[1]); }
+const ADV = {}; { const src = fs.readFileSync(path.join(ROOT, 'constants/study_language_words.ts'), 'utf8'); const order = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+  [...src.matchAll(/adv:\s*\{\s*en:\s*'([^']+)'/g)].forEach((m, i) => { if (order[i]) ADV[order[i]] = m[1]; }); }
+log('камней по языкам', Object.keys(TIERS).length, 'adv', Object.keys(ADV).length);
+function localParam(v, lang) {
+  const ti = (TIERS.ru || []).findIndex((t) => v === t || (v.length >= 5 && v.startsWith(t.slice(0, Math.max(4, t.length - 1)))));
+  if (ti >= 0 && TIERS[lang]) return TIERS[lang][ti];
+  if (ADV.ru && v === ADV.ru && ADV[lang]) return ADV[lang];
+  return v;
+}
 const esc = (s) => s.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
 // подстановка: русский шаблон → регулярка с группами по {имя}; те же значения вставляем в шаблон нужного языка
 function translate(text, lang) {
@@ -32,10 +64,10 @@ function translate(text, lang) {
   for (const s of STR) { const ru = s.t[0]; const names = [...ru.matchAll(/\{([a-zA-Z]+)\}/g)].map((x) => x[1]);
     let rx; try { rx = new RegExp('^' + esc(ru).replace(/\\?\{[a-zA-Z]+\\?\}/g, '(.+?)').replace(/\{[a-zA-Z]+\}/g, '(.+?)') + '$', 'i'); } catch (e) { continue; }
     const m = rx.exec(t); if (!m) continue;
-    let out = s.t[IDX[lang]]; names.forEach((n, i) => { out = out.split(`{${n}}`).join(m[i + 1]); });
+    let out = s.t[IDX[lang]]; names.forEach((n, i) => { out = out.split(`{${n}}`).join(localParam(m[i + 1], lang)); });
     // регистр образца: капс в эталоне (надзаголовки) — тот же капс в языке
     if (t === t.toUpperCase() && t !== t.toLowerCase()) out = out.toUpperCase();
-    return { key: s.key, file: s.file, out }; }
+    return { key: s.key, file: s.file, inline: !!s.inline, out }; }
   return null;
 }
 
@@ -66,7 +98,8 @@ function translate(text, lang) {
       return out; }, v.vid);
     const plan = texts.map((x) => ({ ...x, tr: Object.fromEntries(LANGS.map((l) => [l, translate(x.text, l)])) }));
     const hit = plan.filter((x) => x.tr.ru).length; const miss = plan.filter((x) => !x.tr.ru && /[А-Яа-яЁё]{2}/.test(x.text)).map((x) => x.text);
-    COVER.push({ vid: v.vid, all: plan.filter((x) => /[А-Яа-яЁё]{2}/.test(x.text)).length, hit, miss });
+    const inl = plan.filter((x) => x.tr.ru && x.tr.ru.inline).map((x) => `${x.text.slice(0, 30)} → ${x.tr.ru.key}`);
+    COVER.push({ vid: v.vid, all: plan.filter((x) => /[А-Яа-яЁё]{2}/.test(x.text)).length, hit, miss, inl });
     for (const lang of LANGS) {
       const sub = plan.map((x) => ({ n: x.n, s: x.tr[lang] ? x.tr[lang].out : x.text, key: x.tr[lang] ? x.tr[lang].key : null }));
       const found = await pg.evaluate(({ vid, sub }) => {
@@ -115,8 +148,8 @@ function translate(text, lang) {
     '## На ru (в самом образце при 360 pt ×1.15)', '', '| момент | проблема | текст | величина |', '|---|---|---|---|',
     ...ROWS.filter((r) => r.lang === 'ru' && r.k !== 'наложение').map((r) => `| ${r.vid} | ${r.k} | ${r.t} | ${r.d} |`), '',
     `Наложений на ru: ${ROWS.filter((r) => r.lang === 'ru' && r.k === 'наложение').length} — сцена башни/кольца рисуется поверх текста намеренно; в отчёт выше идут только наложения, которых нет на ru.`, '',
-    '## Покрытие подстановки', '', '| вариант | русских текстов | с ключом кода | без ключа (остались ru) |', '|---|---|---|---|',
-    ...COVER.map((c) => `| ${c.vid} | ${c.all} | ${c.hit} | ${c.miss.slice(0, 6).map((x) => '«' + x.slice(0, 30) + '»').join(', ')}${c.miss.length > 6 ? ' …' : ''} |`), '',
+    '## Покрытие подстановки', '', `Итого: русских текстов ${COVER.reduce((a, c) => a + c.all, 0)}, подставлено ${COVER.reduce((a, c) => a + c.hit, 0)} (из них строкой в компоненте, не в *_strings.ts — ${COVER.reduce((a, c) => a + c.inl.length, 0)}).`, '', '| вариант | русских текстов | с ключом кода | строки в компоненте (не *_strings.ts) | без ключа (остались ru) |', '|---|---|---|---|---|',
+    ...COVER.map((c) => `| ${c.vid} | ${c.all} | ${c.hit} | ${c.inl.slice(0, 4).join('; ')}${c.inl.length > 4 ? ' …' : ''} | ${c.miss.slice(0, 6).map((x) => '«' + x.slice(0, 30) + '»').join(', ')}${c.miss.length > 6 ? ' …' : ''} |`), '',
     `JS-ошибок страницы: ${errs.length}${errs.length ? ' — ' + errs[0] : ''}`, ''];
   fs.writeFileSync(OUT, L.join('\n')); log('записан', path.relative(ROOT, OUT), 'находок (не ru)', byKey.size, 'на ru', ROWS.filter((r) => r.lang === 'ru').length);
 })();

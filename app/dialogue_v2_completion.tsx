@@ -32,7 +32,9 @@ import { animateNextLayoutTransition } from './smooth_layout';
 import type { DialogueV2CoachingMood } from './dialogue_v2_turn_coaching_client';
 import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { triLang, type Lang } from '../constants/i18n';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { navOnce } from './nav_once';
+import { hapticTap, hapticWarning } from '../hooks/use-haptics';
 import { RowDivider } from '../components/v2/RowDivider';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -53,6 +55,8 @@ const FirstDialogHost = lazy(() => import('../components/dialog_moments/FirstDia
 // (было → стало), «Диалог был полезен?» и «Готово» / «Ещё раз». Прежних наград 2.0 не показывает.
 // Монет за диалог нет: решения о награде нет — не выдумываем.
 
+/** «Повторить» итог держит вид «занято» не меньше этого: мгновенный отказ иначе не виден глазом ([DIALOG-REPEAT]). */
+const RETRY_MIN_BUSY_MS = 700;
 const SESSION_RE = /^d2s_[A-Za-z0-9_-]{32,96}$/;
 const SCENARIO_RE = /^(?=.{1,64}$)[a-z0-9]+(?:_[a-z0-9]+)*$/;
 const TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -238,17 +242,37 @@ export default function DialogueV2CompletionRoute() {
   // «занята» до ответа, повторный отказ — «Не получилось, попробуй ещё раз»; причина каждого отказа — в [DIALOG-SUMMARY] выше.
   const [retrying, setRetrying] = useState(false);
   const [retryFailed, setRetryFailed] = useState(false);
+  // зачем (Сверка 15.10, координатор; [DIALOG-REPEAT]): «Повторить» нажимался без видимой реакции — быстрый отказ (сеть/сервер
+  // отвечают мгновенно) снимал «занято» за миллисекунды, а после первого отказа текст «Не получилось» уже стоял: второй тап
+  // не менял на экране ничего. Теперь «занято» держится не меньше RETRY_MIN_BUSY_MS, повторный отказ — с хаптиком.
+  const retryStartedAtRef = useRef(0);
+  const retryAttemptRef = useRef(0);
   const retryCompletion = useCallback(() => {
-    if (retrying) return;
-    console.log('[DIALOG-SUMMARY] retry tap', JSON.stringify({ session: sessionId ? sessionId.slice(0, 12) : null })); // guard-ok: одна строка на тап
+    console.log('[DIALOG-REPEAT] retry tap', JSON.stringify({ // guard-ok: одна строка на тап
+      session: sessionId ? sessionId.slice(0, 12) : null, retrying, stateKind: state.kind, retryFailed, attempt: retryAttemptRef.current + 1,
+    }));
+    if (retrying) {
+      console.log('[DIALOG-REPEAT] retry skip reason=already_retrying — кнопка «занята», повтор уже идёт'); // guard-ok: ранний выход
+      return;
+    }
+    retryAttemptRef.current += 1;
+    retryStartedAtRef.current = Date.now();
+    void hapticTap();
     setRetrying(true);
     runCompletion();
-  }, [retrying, runCompletion, sessionId]);
+  }, [retryFailed, retrying, runCompletion, sessionId, state.kind]);
   useEffect(() => {
     if (!retrying || state.kind === 'loading') return;
-    setRetrying(false);
-    setRetryFailed(state.kind === 'unavailable');
-    console.log('[DIALOG-SUMMARY] retry result', JSON.stringify({ shown: state.kind })); // guard-ok: одна строка на исход повтора
+    const elapsedMs = Date.now() - retryStartedAtRef.current;
+    const holdMs = Math.max(0, RETRY_MIN_BUSY_MS - elapsedMs);
+    const timer = setTimeout(() => {
+      const failed = state.kind === 'unavailable';
+      setRetrying(false);
+      setRetryFailed(failed);
+      if (failed) void hapticWarning(); // отказ ощущается, даже если текст уже «Не получилось»
+      console.log('[DIALOG-REPEAT] retry result', JSON.stringify({ shown: state.kind, attempt: retryAttemptRef.current, answeredMs: elapsedMs, heldMs: holdMs })); // guard-ok: одна строка на исход повтора
+    }, holdMs);
+    return () => clearTimeout(timer);
   }, [retrying, state.kind]);
 
   useEffect(() => {
@@ -352,7 +376,21 @@ export default function DialogueV2CompletionRoute() {
   }, []);
   const close = () => safeRouterBack(router, '/ai_dialog_home' as never);
   const again = () => {
-    if (!scenarioId) return;
+    // зачем ([DIALOG-REPEAT], Сверка 15.10): «Ещё раз» молча ничего не делал без сцены и на двойной тап — каждый выход с причиной.
+    // Энергия и месячная квота Free проверяются на брифинге при «Начать» (там же пейвол dialog_limit), здесь только переход.
+    console.log('[DIALOG-REPEAT] again tap', JSON.stringify({ scenarioId: scenarioId ?? null })); // guard-ok: одна строка на тап
+    if (!scenarioId) {
+      console.warn('[DIALOG-REPEAT] again skip reason=no_scenario_id — брифинг открыть не из чего, ухожу в список диалогов'); // guard-ok: ранний выход
+      close();
+      return;
+    }
+    if (!navOnce(`dialogue_v2_completion:again:${scenarioId}`)) {
+      console.log('[DIALOG-REPEAT] again skip reason=double_tap'); // guard-ok: ранний выход
+      return;
+    }
+    void hapticTap();
+    console.log('[DIALOG-REPEAT] again → /dialogue_v2_briefing (replace)', JSON.stringify({ scenarioId })); // guard-ok: куда ушёл роутер
+    markNextNavigationAsReplace();
     router.replace({ pathname: '/dialogue_v2_briefing', params: { scenarioId } } as never);
   };
 

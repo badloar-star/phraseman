@@ -1,0 +1,34 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+// зачем (Сверка 15.10, координатор; [DIALOG-REPEAT]): «Повторить» итога диалога нажимался без видимой реакции — быстрый отказ снимал
+// «занято» за миллисекунды, а после первого отказа текст «Не получилось» уже стоял. «Ещё раз» молча выходил без сцены и не защищался
+// от двойного тапа. Сторож держит: минимальная «занятость», хаптик на отказ, журнал каждой ветки, никаких немых выходов.
+const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'dialogue_v2_completion.tsx'), 'utf8').replace(/\r\n/g, '\n');
+
+describe('dialogue result: «Повторить» and «Ещё раз» always answer the tap', () => {
+  it('retry keeps the busy look for at least RETRY_MIN_BUSY_MS and buzzes on a repeated failure', () => {
+    expect(src).toMatch(/const RETRY_MIN_BUSY_MS = \d{3,4};/);
+    const effect = src.slice(src.indexOf('const holdMs = Math.max(0, RETRY_MIN_BUSY_MS - elapsedMs);'), src.indexOf('}, [retrying, state.kind]);'));
+    expect(effect).toContain('setTimeout(');
+    expect(effect).toContain('if (failed) void hapticWarning();');
+    expect(effect).toContain('return () => clearTimeout(timer);');
+    expect(effect).toContain('[DIALOG-REPEAT] retry result');
+  });
+
+  it('retry tap is logged and the already-retrying exit says why', () => {
+    const retry = src.slice(src.indexOf('const retryCompletion = useCallback('), src.indexOf('}, [retryFailed, retrying, runCompletion, sessionId, state.kind]);'));
+    expect(retry).toContain('[DIALOG-REPEAT] retry tap');
+    expect(retry).toContain('[DIALOG-REPEAT] retry skip reason=already_retrying');
+    expect(retry).toContain('void hapticTap();');
+  });
+
+  it('«Ещё раз»: no silent return — no scene goes back to the list, double tap is locked, the route is logged', () => {
+    const again = src.slice(src.indexOf('const again = () => {'), src.indexOf("router.replace({ pathname: '/dialogue_v2_briefing'"));
+    expect(again).toContain('[DIALOG-REPEAT] again tap');
+    expect(again).toMatch(/if \(!scenarioId\) \{[\s\S]*?reason=no_scenario_id[\s\S]*?close\(\);\s*return;/);
+    expect(again).toMatch(/if \(!navOnce\(`dialogue_v2_completion:again:\$\{scenarioId\}`\)\) \{[\s\S]*?reason=double_tap/);
+    expect(again).toContain('[DIALOG-REPEAT] again → /dialogue_v2_briefing (replace)');
+    expect(again).toContain('markNextNavigationAsReplace();');
+  });
+});

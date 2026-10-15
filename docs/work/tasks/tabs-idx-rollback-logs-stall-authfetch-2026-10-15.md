@@ -3,6 +3,7 @@
 Governance-ID: TG-22C218C3BE77
 Governance-ID: TG-7E9855736D15
 Governance-ID: TG-C04A72BCCA62
+Governance-ID: TG-3DECB0CD2FD0
 Status: В работе — коммит в окно 08:00
 Owner: 5 · АВТОРИЗАЦИЯ
 
@@ -50,4 +51,17 @@ ReleasedTabLayout (у второго своё состояние, тап он н
 либо выброшенный рендер (ссылки active/visual/page присваиваются в фазе рендера). Шаг 2 (только логи, окно 09:00): `inst=` в
 [TABS-RENDER]/[TABS-IDX] (prev для «changed» — свой на экземпляр), [TABS-INST] mount/unmount, [TABS-COMMIT] — что реально
 показано (useLayoutEffect без зависимостей, тот же флаг трассировки). Починка — по фактам повтора.
+
+## Диагноз по r7k (Сверка 10:46–10:48, cdef32432) — два экземпляра вкладок
+
+- `[TABS-INST] mount inst=1` при старте; `mount inst=2` в 10:47:11 — когда `/dev_state` сделал `router.replace('/home')`:
+  replace снимает dev-экран и кладёт в корневой стек НОВЫЙ `(tabs)`, старый остаётся под ним (unmount нет).
+- Видимый inst=2 чистый: тап → коммит → pathname → коммит, отката нет. «Откат» r7c/r7f — скрытый inst=1: тапа не видит,
+  догоняет по pathname и перерисовывает всё дерево вкладок впустую — 0,3–0,7 с JS на каждый тап (коммит render#31 — 735 мс).
+- В dev это известный артефакт (`app/dev_state.tsx`: dismissTo не переключал вкладку → вернули replace). Тот же приём в боевом коде:
+  `router.replace('/(tabs)/home')` с экранов поверх вкладок — lesson_complete (2), exam (3), diagnostic_test (2), paywall_purchase,
+  language_welcome, app/_layout (4), notifications / notification_tap_handler.
+- Дальше (сперва логи): r7l у Сверки — урок/экзамен до конца → «На главную» → тапы, без dev-ссылки после старта; ищем mount inst=2.
+  Подтвердится — один фикс на всех: единственный `(tabs)` в корневом стеке (getId/singular) или помощник «к вкладкам» (dismissTo при
+  живом `(tabs)` + проверка переключения вкладки по [TABS-IDX]). Корневая навигация + чужие зоны — после сборки 16.10, по слову координатора.
 

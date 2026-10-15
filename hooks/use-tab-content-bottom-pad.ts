@@ -1,11 +1,25 @@
+import { useEffect } from 'react';
+import { FLOATING_PILL_BOTTOM_GAP, V2_TAB_BAR_HEIGHT, tabPillTopOffset } from '../components/v2/tab_bar_geometry';
 import { useScreen } from './use-screen';
 
-/** Зазор между плавающей капсулой таб-бара и зоной системных жестов — синхрон с app/(tabs)/_layout.tsx. */
-export const FLOATING_PILL_BOTTOM_GAP = 6;
+export { FLOATING_PILL_BOTTOM_GAP };
 /** Воздух между последним элементом контента и верхом капсулы при докрутке до конца. */
-const CONTENT_BREATHING_GAP = 16;
-/** Минимальный отступ капсулы от низа экрана, когда insets.bottom = 0 (аппаратные кнопки). */
-const MIN_PILL_EDGE_INSET = 8;
+export const CONTENT_BREATHING_GAP = 16;
+
+/**
+ * Расстояние от низа окна до ВЕРХА плавающей капсулы таб-бара (реальная высота 66, а не старая 56/60 из useScreen).
+ * зачем (владелец 15.10): доки, подсказки и тосты вкладок ставятся «верх капсулы + зазор» — только от этого значения, без жёстких «bottomPad − N».
+ */
+export function useTabPillTop(): number {
+  const { bottomInset, height, uiScale, tabBarHeight } = useScreen();
+  const top = tabPillTopOffset(bottomInset);
+  // зачем (владелец 15.10, «сперва логи»): откуда берётся нижний отступ вкладок — insets, высота экрана, старая высота таб-бара (56/60) против настоящей капсулы (66), верх капсулы; только dev
+  useEffect(() => {
+    if (typeof __DEV__ === 'undefined' || __DEV__ !== true) return;
+    console.log('[TAB-PILL]', JSON.stringify({ bottomInset, screenH: height, uiScale, oldTabBarHeight: tabBarHeight, pillHeight: V2_TAB_BAR_HEIGHT, pillTop: top })); // guard-ok: dev-журнал раскладки таб-бара
+  }, [bottomInset, height, uiScale, tabBarHeight, top]);
+  return top;
+}
 
 /**
  * Нижний padding скролл-контента пяти таб-экранов.
@@ -15,11 +29,5 @@ const MIN_PILL_EDGE_INSET = 8;
  * элемент можно докрутить ВЫШЕ капсулы и он останется доступным для нажатия.
  */
 export function useTabContentBottomPad(): number {
-  const { tabBarHeight, bottomInset } = useScreen();
-  return (
-    tabBarHeight +
-    Math.max(bottomInset, MIN_PILL_EDGE_INSET) +
-    FLOATING_PILL_BOTTOM_GAP +
-    CONTENT_BREATHING_GAP
-  );
+  return useTabPillTop() + CONTENT_BREATHING_GAP;
 }

@@ -1232,7 +1232,10 @@ export function SpeakingPanel({
     ) => {
       const c = candidate.trim();
       if (!c) return;
-      const s = scoreSpeechPronunciationTranscript({ targetText, transcript: c, segments }).score;
+      // зачем (Ревизор/координатор 15.10): из альтернатив движка берём ту, что ПРОШЛА строгую проверку слов,
+      // а не просто с большим процентом — иначе «чужое слово, но 90 %» перебивало верный вариант #2.
+      const scored = scoreSpeechPronunciationTranscript({ targetText, transcript: c, segments });
+      const s = (scored.passed ? 1000 : 0) + scored.score;
       if (s > bestScore) {
         bestScore = s;
         best = c;

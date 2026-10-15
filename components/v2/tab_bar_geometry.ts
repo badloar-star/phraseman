@@ -7,6 +7,27 @@
 export const TAB_BAR_SIDE_MARGIN = 12;
 /** Внутренний отступ капсулы: от края до первого/последнего слота и от верха до плашки. */
 export const TAB_BAR_PAD = 9;
+/** Высота плавающей капсулы таб-бара (референс владельца 24.09, макет tabbar-variants.html). */
+export const V2_TAB_BAR_HEIGHT = 66;
+/** Зазор между капсулой и зоной системных жестов. */
+export const FLOATING_PILL_BOTTOM_GAP = 6;
+/** Минимальный отступ капсулы от низа окна, когда системной полосы нет (аппаратные кнопки). */
+export const TAB_DOCK_MIN_BOTTOM_PAD = 8;
+
+/**
+ * Расстояние от низа окна до НИЗА капсулы.
+ *
+ * зачем (владелец 15.10, «такого нигде не должно быть»; Ревизор): кнопка «Играть» Пика уходила под капсулу, потому что общий отступ считал СТАРУЮ высоту таб-бара (56/60 из useScreen), а настоящая
+ * капсула — 66. Теперь «низ» и «верх» капсулы считаются в ОДНОМ месте: `app/(tabs)/_layout.tsx`, скролл-отступ вкладок, тосты и доки берут отсюда.
+ */
+export function tabPillBottomOffset(bottomInset: number): number {
+  return Math.max(bottomInset, TAB_DOCK_MIN_BOTTOM_PAD) + FLOATING_PILL_BOTTOM_GAP;
+}
+
+/** Расстояние от низа окна до ВЕРХА капсулы: всё, что должно стоять над таб-баром, отсчитывается от него (+ зазор), без «− N» от отступа. */
+export function tabPillTopOffset(bottomInset: number): number {
+  return tabPillBottomOffset(bottomInset) + V2_TAB_BAR_HEIGHT;
+}
 
 export type TabBarGeometry = Readonly<{
   /** Левый и правый отступ капсулы от края окна (с учётом безопасных зон). */

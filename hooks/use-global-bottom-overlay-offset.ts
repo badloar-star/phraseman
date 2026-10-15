@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { usePathname, useSegments } from 'expo-router';
+import { tabPillTopOffset } from '../components/v2/tab_bar_geometry';
 import { useScreen } from './use-screen';
 
 /** Зазор между низом тоста и верхом таб-бара / зоной жестов */
@@ -37,8 +38,9 @@ export function isMainTabSurfacePath(pathname: string | null | undefined): boole
 }
 
 /**
- * Расстояние от низа окна для полноширинного оверлея: safe area + (на табах) высота кастомного
- * таб-бара, как в `paddingBottom: tabBarHeight + PB` в (tabs)/_layout.
+ * Расстояние от низа окна для полноширинного оверлея: safe area, а на табах — верх плавающей капсулы
+ * (`tabPillTopOffset`, тот же источник, что в (tabs)/_layout) + зазор. Старая высота таб-бара 56/60 из useScreen
+ * была меньше настоящей капсулы (66) — тосты наезжали на неё (владелец 15.10).
  *
  * usePathname() в корне иногда отдаёт неочевидный путь; useSegments()[0] === '(tabs)' надёжно
  * для четырёх основных табов. Без учёта таба тосты наезжали на навигацию.
@@ -50,13 +52,12 @@ export function useGlobalBottomOverlayOffset(): number {
   // сложный»). Нужен только первый сегмент, поэтому сразу сужаем до string:
   // union исчезает, а сравнение с '(tabs)' работает как раньше.
   const rootSegment: string = useSegments()[0] ?? '';
-  const { tabBarHeight, bottomInset } = useScreen();
+  const { bottomInset } = useScreen();
 
   return useMemo(() => {
-    const nav = Math.max(bottomInset, MIN_BOTTOM_INSET);
     const inTabsGroup = rootSegment === '(tabs)';
     const onTabSurface = isMainTabSurfacePath(pathname) || inTabsGroup;
-    const tab = onTabSurface ? tabBarHeight : 0;
-    return nav + tab + OVERLAY_GAP;
-  }, [pathname, rootSegment, tabBarHeight, bottomInset]);
+    if (onTabSurface) return tabPillTopOffset(bottomInset) + OVERLAY_GAP;
+    return Math.max(bottomInset, MIN_BOTTOM_INSET) + OVERLAY_GAP;
+  }, [pathname, rootSegment, bottomInset]);
 }

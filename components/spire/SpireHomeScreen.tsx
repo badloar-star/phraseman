@@ -29,7 +29,7 @@ import { DebugLogger } from '../../app/debug-logger';
 import { useTabNav } from '../../app/TabContext';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
-import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
+import { useTabContentBottomPad, useTabPillTop } from '../../hooks/use-tab-content-bottom-pad';
 import type { SpireConfigDoc } from '../../modules/spire/config_contract';
 import type { SpireWeekLocal } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
@@ -69,10 +69,9 @@ import { SPIRE_BETA_LANGS, asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek
 
 const LOG = '[SPIRE]';
 const DASH = '—';
-// зачем (координатор 13.10, [SPIRE-LAYOUT] floor 7): запас под списком 120/150/300 — из макета (pb), но док растёт (подпись причины, панель итога, крупный системный шрифт), и константа
-// перестаёт его покрывать. Док стоит на `bottomPad - DOCK_LIFT` (стиль дока ниже, значение то же), поэтому последнему блоку нужно `dockH + DOCK_GAP - DOCK_LIFT` сверх bottomPad
-// (safe area и панель вкладок уже внутри bottomPad). Макетные значения остаются ПОЛОМ — вид в обычных состояниях не меняется.
-const DOCK_LIFT = 24;
+// зачем (координатор 13.10, [SPIRE-LAYOUT] floor 7): запас под списком 120/150/300 — из макета, но док растёт (подпись причины, панель итога, крупный шрифт), поэтому последнему блоку нужно `dockBottom + dockH + DOCK_GAP - bottomPad`;
+// макетные значения остаются ПОЛОМ. Владелец 15.10 («Играть» под капсулой): док стоит на «верх капсулы + зазор» (`useTabPillTop`), а не на «отступ контента минус число» (отсчёт от старой высоты таб-бара, −14…18 dp).
+const DOCK_PILL_GAP = 12;
 const DOCK_GAP = 16;
 export default function SpireHomeScreen() {
   const { lang } = useLang();
@@ -83,6 +82,7 @@ export default function SpireHomeScreen() {
   const { hasPremiumAccess } = usePremium();
   const realCoinRank = useMyCoinRank();
   const bottomPad = useTabContentBottomPad();
+  const pillTop = useTabPillTop(); const dockBottom = pillTop + DOCK_PILL_GAP;
   // зачем (координатор 11.10): DEV-превью на моках (/dev_spire_preview) подаёт сюда готовую модель; в боевом пути preview всегда null,
   // и экран работает как раньше — конфиг, локальная неделя и игра из реальных источников.
   const preview = useSpirePreview();
@@ -202,7 +202,7 @@ export default function SpireHomeScreen() {
   // зачем (Макеты spire-gap-008: подпись «Задания этой недели ещё готовятся» наезжала на ряд друзей): в макете запас под нижней панелью 120 dp, а с подписью
   // над кнопкой (причина блокировки старта) — 150 dp (подпись 18 + отступ 10 + запас); без этого низ списка на конце прокрутки уходит под подпись.
   const scrollTailPad = game.outcome ? 300 : game.startBlock ? 150 : 120;
-  const tailNeeded = dockH > 0 ? Math.ceil(dockH + DOCK_GAP - DOCK_LIFT) : 0;
+  const tailNeeded = dockH > 0 ? Math.ceil(dockBottom + dockH + DOCK_GAP - bottomPad) : 0;
   const tailPad = Math.max(scrollTailPad, tailNeeded);
 
   const myFloor = week ? Math.min(week.floor, SPIRE_FLOOR_COUNT) : null;
@@ -228,11 +228,11 @@ export default function SpireHomeScreen() {
   // (paddingBottom − отступ дока снизу − высота дока); ≥ DOCK_GAP — чисто. Видны оба слагаемых запаса (макетный пол и вычисленный от дока), этаж и откуда значения.
   useEffect(() => {
     logSpireLayout('clearance', {
-      floor: shownFloor, myFloor, dockH: roundLayout(dockH), bottomPad: roundLayout(bottomPad), tailFloor: scrollTailPad, tailFromDock: tailNeeded, tailUsed: tailPad,
-      endClearance: roundLayout(tailPad + DOCK_LIFT - dockH), minClearance: DOCK_GAP,
+      floor: shownFloor, myFloor, dockH: roundLayout(dockH), bottomPad: roundLayout(bottomPad), pillTop: roundLayout(pillTop), dockBottom: roundLayout(dockBottom), tailFloor: scrollTailPad, tailFromDock: tailNeeded, tailUsed: tailPad,
+      endClearance: roundLayout(bottomPad + tailPad - dockBottom - dockH), minClearance: DOCK_GAP,
       source: preview ? 'DEV-превью' : 'живые данные', outcome: game.outcome ? game.outcome.kind : 'none', startBlock: game.startBlock ?? 'none',
     });
-  }, [shownFloor, myFloor, dockH, bottomPad, scrollTailPad, tailNeeded, tailPad, preview, game.outcome, game.startBlock]);
+  }, [shownFloor, myFloor, dockH, bottomPad, dockBottom, scrollTailPad, tailNeeded, tailPad, preview, game.outcome, game.startBlock]);
   const onSelect = useCallback((floor: number) => setSelected(floor), []);
   const openAll = useCallback(() => setShowAll(true), []);
   const closeAll = useCallback(() => setShowAll(false), []);
@@ -336,16 +336,16 @@ export default function SpireHomeScreen() {
       </ScrollView>
       <View
         pointerEvents="box-none"
-        style={[s.dock, { bottom: bottomPad - 24 }]}
+        style={[s.dock, { bottom: dockBottom }]}
         onLayout={(e) => {
           const h = e.nativeEvent.layout.height;
           const dy = Math.round(e.nativeEvent.layout.y);
           setDockTop((prev) => (prev === dy ? prev : dy));
           setDockH((prev) => (Math.abs(prev - h) < 0.5 ? prev : h)); // зачем: порог 0,5 dp — дрожь округления не гоняет перерисовку; док на запас списка не влияет (absolute), цикла нет
-          logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(h), bottomOffset: roundLayout(bottomPad - DOCK_LIFT) });
+          logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(h), bottomOffset: roundLayout(dockBottom), pillTop: roundLayout(pillTop) });
         }}
       >
-        <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={[s.scrim, { bottom: -Math.max(40, bottomPad - 24) }]} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
+        <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={[s.scrim, { bottom: -Math.max(40, dockBottom) }]} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
         {game.outcome && !momentOutcome ? (
           <SpireResultPanel
             lang={lang}

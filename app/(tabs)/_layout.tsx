@@ -20,7 +20,7 @@ import { HOME_ENTRANCE } from '../../constants/motion';
 import { TabBarVisibilityProvider, useTabBarVisibility } from '../../components/TabBarVisibilityContext';
 import V2TabBar, { V2_TAB_BAR_HEIGHT, type V2TabBarItem } from '../../components/v2/V2TabBar';
 import { useCommunityTabDot } from '../../hooks/use_community_tab_dot';
-import { FLOATING_PILL_BOTTOM_GAP } from '../../hooks/use-tab-content-bottom-pad';
+import { FLOATING_PILL_BOTTOM_GAP, TAB_DOCK_MIN_BOTTOM_PAD } from '../../components/v2/tab_bar_geometry';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { PerfR1Profile, useMountTrace, useNavActionTrace } from '../perf_r1_probe';
@@ -379,8 +379,6 @@ function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
   return next;
 }
 
-/** Минимальный отступ панели таббара от низа, когда системной полосы нет. */
-const TAB_DOCK_MIN_BOTTOM_PAD = 8;
 /** Запас над капсулой в оверлее — чтобы тень под ней не обрезалась. */
 const TAB_BAR_WRAP_SHADOW_ROOM = 24;
 // зачем (владелец 24.09, референс): та же механика сжатия при скролле вниз, что

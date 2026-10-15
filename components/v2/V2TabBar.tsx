@@ -21,7 +21,7 @@ import { alphaHex } from '../../constants/v2Style';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../../app/debug-logger';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import { TAB_BAR_PAD, TAB_BAR_SIDE_MARGIN, computeTabBarGeometry, tabCapRightFits } from './tab_bar_geometry';
+import { TAB_BAR_PAD, TAB_BAR_SIDE_MARGIN, V2_TAB_BAR_HEIGHT, computeTabBarGeometry, tabCapRightFits } from './tab_bar_geometry';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -36,7 +36,8 @@ export type V2TabBarItem = Readonly<{
 
 // зачем: размеры сняты с референса владельца 24.09 и утверждены на макете
 // docs/design/tabbar/tabbar-variants.html (вариант «В · Тёплая кромка»).
-export const V2_TAB_BAR_HEIGHT = 66;
+// зачем (владелец 15.10): значение живёт в tab_bar_geometry — от него считают верх капсулы скролл-отступ, тосты и доки; здесь только повторный экспорт для прежних импортов
+export { V2_TAB_BAR_HEIGHT };
 const PAD = TAB_BAR_PAD;
 const CAP_H = V2_TAB_BAR_HEIGHT - PAD * 2;
 const CAP_RADIUS = 18;

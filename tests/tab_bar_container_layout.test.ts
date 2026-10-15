@@ -35,7 +35,9 @@ describe('контейнер таб-бара в _layout.tsx', () => {
   });
 
   it('отступ капсулы снизу не меньше минимума (панель жестов) и берётся из одной формулы', () => {
-    expect(src).toMatch(/const TAB_DOCK_MIN_BOTTOM_PAD = \d+;/);
+    // минимум и зазор — из общего источника геометрии капсулы (tab_bar_geometry), не локальные числа
+    expect(src).toContain("from '../../components/v2/tab_bar_geometry'");
+    expect(src).not.toMatch(/const TAB_DOCK_MIN_BOTTOM_PAD = \d+;/);
     expect(src).toMatch(/const tabBarBottom = Math\.max\(PB, TAB_DOCK_MIN_BOTTOM_PAD\) \+ FLOATING_PILL_BOTTOM_GAP;/);
     expect(src).toMatch(/bottomOffset=\{tabBarBottom\}/);
   });

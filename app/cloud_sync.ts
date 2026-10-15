@@ -4165,10 +4165,34 @@ async function applyRestoreFromUserDocTraced(
   // логу нельзя понять, почему откатило.
   if (shouldRestoreCloudProgress && progressServerAuthoritative) {
     assertCurrent();
+    // зачем (координатор 15.10, аудит Optimistic UI п.2): серию прочитали в начале восстановления, а между чтением и этой
+    // записью шло ожидание pending-событий — урок в этом окне поднимал серию, а снимок Главной получал устаревшее слитое
+    // число (цифра на миг падала). Перечитываем серию прямо перед записью снимка и сливаем со свежим значением — тем же
+    // правилом по дате активности, что guardStreakPairs ниже. Чтение не удалось → прежнее слитое (снимок обязан обновиться).
+    let snapshotStreak = mergedStreak.streak;
+    try {
+      const [nowStreakRaw, nowLastActiveRaw, nowStreakLastRaw] = await Promise.all([
+        AsyncStorage.getItem('streak_count'),
+        AsyncStorage.getItem('last_active_date'),
+        AsyncStorage.getItem('streak_last_date'),
+      ]);
+      if (nowStreakRaw !== localStreakRaw || nowLastActiveRaw !== localLastActiveRaw || nowStreakLastRaw !== localStreakLastRaw) {
+        snapshotStreak = mergeStreakByActivityDate(
+          { streak: nowStreakRaw, lastActive: nowLastActiveRaw, streakLast: nowStreakLastRaw },
+          { streak: cloudData['streak_count'], lastActive: cloudData['last_active_date'], streakLast: cloudData['streak_last_date'] },
+        ).streak;
+        console.warn(`[STREAK] snapshot_guard changed_since_read read=${String(localStreakRaw)}@${String(localLastActiveRaw)} now=${String(nowStreakRaw)}@${String(nowLastActiveRaw)} staleMerged=${mergedStreak.streak} → snapshot=${snapshotStreak} readAgoMs=${Date.now() - streakReadAtMs}`);
+      } else {
+        console.log(`[STREAK] snapshot_guard ok — серия не менялась с чтения (${String(localStreakRaw)}), в снимок слитое ${snapshotStreak}`);
+      }
+    } catch (error) {
+      console.warn(`[STREAK] snapshot_guard read_failed (${error instanceof Error ? error.message : String(error)}) — в снимок прежнее слитое ${snapshotStreak}`);
+    }
+    assertCurrent();
     // Do this before AsyncStorage writes. SQLITE_FULL may reject persistence,
     // but must not make intact server legacy reward/streak render as Level 1 / zero days.
     // зачем (баг 01.10): в снимок — серия, слитая по дате активности, а не голая облачная.
-    patchAppSnapshotFromAuthoritativeCloudProgress(root, Date.now(), mergedStreak.streak);
+    patchAppSnapshotFromAuthoritativeCloudProgress(root, Date.now(), snapshotStreak);
   }
   if (!shouldRestoreCloudProgress) {
     const stickyKeys = [

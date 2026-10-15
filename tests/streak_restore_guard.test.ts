@@ -65,6 +65,37 @@ describe('защита серии при восстановлении (restore_g
     expect(await originalGet('last_active_date')).toBe('2026-10-11');
   });
 
+  // зачем (координатор 15.10, аудит Optimistic UI п.2): снимок Главной пишется ДО пар AsyncStorage — раньше туда шло устаревшее
+  // слитое число, хотя урок уже сдвинул серию: цифра на Главной прыгала (8 → 6). Теперь снимок сверяется со свежей серией.
+  it('сервер главный: серия изменилась после чтения → в снимок Главной свежее слияние, а не устаревшее', async () => {
+    await AsyncStorage.multiSet([['streak_count', '5'], ['last_active_date', '2026-10-10'], ['streak_last_date', '2026-10-10']]);
+    const getMock = AsyncStorage.getItem as unknown as jest.Mock;
+    const realGetImpl = getMock.getMockImplementation() as (key: string) => Promise<string | null>;
+    let mutated = false;
+    getMock.mockImplementation(async (key: string) => {
+      const value = await realGetImpl(key);
+      if (key === 'streak_last_date' && !mutated && (await realGetImpl('streak_count')) === '5') {
+        mutated = true;
+        await AsyncStorage.setItem('streak_count', '6');
+        await AsyncStorage.setItem('last_active_date', '2026-10-11');
+        await AsyncStorage.setItem('streak_last_date', '2026-10-11');
+      }
+      return value;
+    });
+    try {
+      await __cloudSyncTestHooks.applyRestoreFromUserDoc({
+        exists: true,
+        data: () => ({ progressServerAuthoritative: true, progress: { streak_count: 8, last_active_date: '2026-10-09', streak_last_date: '2026-10-09' } }),
+      });
+    } finally {
+      getMock.mockImplementation(realGetImpl);
+    }
+    // устаревшее слияние (5@10.10 с облаком 8@09.10) = 8; свежее (6@11.10 с облаком) = 6 — снимок обязан получить 6, а не 8 (потом 6 — прыжок)
+    expect(logs.some((l) => l.includes('[STREAK] snapshot_guard changed_since_read') && l.includes('staleMerged=8') && l.includes('snapshot=6'))).toBe(true);
+    const snapLine = logs.find((l) => l.includes('[STREAK] snapshot:authoritative_cloud')) ?? '';
+    expect(snapLine).toContain('merged=6');
+  });
+
   it('серия не менялась после чтения → путь прежний, лог restore_guard ok', async () => {
     await AsyncStorage.multiSet([['streak_count', '5'], ['last_active_date', '2026-10-10'], ['streak_last_date', '2026-10-10']]);
     await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({

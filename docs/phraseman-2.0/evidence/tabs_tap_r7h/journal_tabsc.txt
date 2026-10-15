@@ -1,0 +1,28 @@
+10-15 09:38:41.848 I/SVERKA  ( 7095): === TABSC start 09:39:21 ===
+10-15 09:38:41.977 I/SVERKA  ( 7099): === TABSC switch 1 lessons 09:39:21 ===
+10-15 09:38:44.338 W/ReactNativeJS( 6751): [JS-STALL] heartbeat +27061ms splash=hidden@+11864ms
+10-15 09:38:45.710 W/ReactNativeJS( 6751): '[cloud_sync] authEnsureStableLink callable failed', [Error: forceSyncToCloud:auth_link_callable]
+10-15 09:38:45.867 I/ReactNativeJS( 6751): [ENSURE-LINK] authoritative_memo miss reason=empty
+10-15 09:38:46.566 I/SVERKA  ( 7114): === TABSC switch 1 settings 09:39:26 ===
+10-15 09:38:49.374 W/ReactNativeJS( 6751): [JS-STALL] heartbeat +32097ms splash=hidden@+11864ms
+10-15 09:38:51.025 W/ReactNativeJS( 6751): [JS-STALL] +33746ms поток стоял 717ms (с +33029ms)
+10-15 09:38:51.257 I/SVERKA  ( 7126): === TABSC switch 1 home 09:39:31 ===
+10-15 09:38:54.383 W/ReactNativeJS( 6751): [JS-STALL] heartbeat +37106ms splash=hidden@+11864ms
+10-15 09:38:55.776 I/SVERKA  ( 7149): === TABSC switch 2 lessons 09:39:35 ===
+10-15 09:38:57.879 W/ReactNativeJS( 6751): '[cloud_sync] authEnsureStableLink callable failed', [Error: forceSyncToCloud:auth_link_callable]
+10-15 09:38:59.425 W/ReactNativeJS( 6751): [JS-STALL] heartbeat +42148ms splash=hidden@+11864ms
+10-15 09:39:00.292 I/SVERKA  ( 7163): === TABSC switch 2 settings 09:39:40 ===
+10-15 09:39:04.489 W/ReactNativeJS( 6751): [JS-STALL] heartbeat +47213ms splash=hidden@+11864ms
+10-15 09:39:04.788 I/SVERKA  ( 7175): === TABSC switch 2 home 09:39:44 ===
+10-15 09:39:09.523 W/ReactNativeJS( 6751): [JS-STALL] heartbeat +52246ms splash=hidden@+11864ms
+10-15 09:39:14.618 W/ReactNativeJS( 6751): [JS-STALL] heartbeat +57341ms splash=hidden@+11864ms
+10-15 09:39:14.856 I/SVERKA  ( 7201): === TABSC paywall 1 open-tap 09:39:54 ===
+10-15 09:39:17.326 W/ReactNativeJS( 6751): [JS-STALL] watchdog stop +60050ms
+10-15 09:39:20.331 I/SVERKA  ( 7217): === TABSC paywall 1 close-tap 09:40:00 ===
+10-15 09:39:25.360 I/SVERKA  ( 7242): === TABSC paywall 1 tab-tap 09:40:05 ===
+10-15 09:39:35.617 I/SVERKA  ( 7272): === TABSC paywall 2 open-tap 09:40:15 ===
+10-15 09:39:41.229 I/SVERKA  ( 7288): === TABSC paywall 2 close-tap 09:40:21 ===
+10-15 09:39:45.665 I/SVERKA  ( 7309): === TABSC paywall 2 tab-tap 09:40:25 ===
+10-15 09:39:55.879 I/SVERKA  ( 7335): === TABSC paywall 3 open-tap 09:40:35 ===
+10-15 09:40:02.006 I/SVERKA  ( 7348): === TABSC paywall 3 close-tap 09:40:41 ===
+10-15 09:40:07.442 I/SVERKA  ( 7369): === TABSC paywall 3 tab-tap 09:40:47 ===

@@ -976,8 +976,8 @@ export default function LessonComplete() {
       // зачем (аудит Optimistic UI Уроков, 13.10): раньше 32 последовательных `getItem` держали экран «Сохраняю результат…»; теперь один `multiGet` (lesson_progress_scan.ts), время — в [LESSON-RESULT-SAVE].
       const scanStartedAt = Date.now();
       const { lessonCount, perfectCount, wasPerfect } = await scanLessonProgress(studyTarget, lessonId);
-      // зачем (координатор 15.10, ИДЕАЛ): откуда взят wasPerfect — сводка прохождения по первым попыткам текущего урока (lesson_progress_scan)
-      DebugLogger.info('[LESSON-RESULT]', JSON.stringify({ lessonId, wasPerfect, wasPerfectSource: 'scanLessonProgress:firstTry', lessonCount, perfectCount }));
+      // зачем (координатор 15.10, ИДЕАЛ): откуда взят wasPerfect — сводка прохождения, прежнее правило (≥45 верных, без «wrong»); ИДЕАЛ на экране от него не зависит
+      DebugLogger.info('[LESSON-RESULT]', JSON.stringify({ lessonId, wasPerfect, wasPerfectSource: 'scanLessonProgress:legacy45', lessonCount, perfectCount }));
       DebugLogger.info('[LESSON-RESULT-SAVE]', `grantBonus: этапы lesson=${lessonId} первый бонус=${scanStartedAt - grantStartedAt}мс, сводка прохождения=${Date.now() - scanStartedAt}мс`);
       checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(noteSwallowedHandler('lesson_complete:useCallback.checkAchievements'));
       const activeDays = wasPerfect ? await getReviewActiveDays() : 0;

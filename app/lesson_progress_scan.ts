@@ -8,7 +8,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DebugLogger } from './debug-logger';
-import { lessonFirstTryCountsFromProgress } from './lesson_first_try_counts';
 import { lessonProgressKey } from './target_storage_keys';
 
 const LOG = '[LESSON-RESULT-SAVE]';
@@ -44,18 +43,11 @@ export function summarizeLessonProgress(
         continue;
       }
       const p = parsed as string[];
-      // зачем (Сверка c17199343 / 282ff3006, координатор 15.10): «идеальный проход» текущего урока = все задания верно с ПЕРВОЙ попытки.
-      // Раньше: только при ≥45 верных (урок из 3 заданий — никогда) и без учёта 'replay_correct' (исправленный промах считался идеалом).
-      // Счётчики lessonCount/perfectCount по всем урокам не трогаем — только флаг текущего прохода.
-      if (lessonId === currentLessonId) {
-        const firstTry = lessonFirstTryCountsFromProgress(p, 0);
-        wasPerfect = p.length > 0 && firstTry.wrong === 0 && firstTry.correct === p.length;
-      }
       const correct = p.filter((x) => x === 'correct' || x === 'replay_correct').length;
       if (correct >= LESSON_PROGRESS_PASS_CORRECT) {
         lessonCount += 1;
         const wrong = p.filter((x) => x === 'wrong').length;
-        // wasPerfect текущего урока решается выше — по первым попыткам
+        if (wrong === 0 && lessonId === currentLessonId) wasPerfect = true;
         if (wrong === 0) perfectCount += 1;
       }
     } catch (error) {

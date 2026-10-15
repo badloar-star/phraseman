@@ -115,3 +115,23 @@ retrySet pt-BR «Outro conjunto», pl «Inny zestaw»; failHearts uk «Сход�
 
 Длина: самая длинная строка (pl, п. 4) — тост, переносится по строкам; кнопок и заголовков среди правок нет.
 Пункт 5 (m06) — к сведению, правки Тем/Макетов, не трогаю.
+
+### ПРАВКИ ПЕРЕВОДЧИКА — v2 (15.10, 09:02): п. 4 под новый русский
+
+Новый ru (Дизайн, по правилу «без технических слов»): «Набор сохранён. Снять с публикации не получилось — попробуй ещё раз.»
+Строки выше для п. 4 («сохрани ещё раз при подключении») **заменяются** этими. Без «онлайн/подключения», без названия кнопки — как в ru.
+
+| язык | текст |
+|---|---|
+| ru | Набор сохранён. Снять с публикации не получилось — попробуй ещё раз. |
+| uk | Набір збережено. Зняти з публікації не вийшло — спробуй ще раз. |
+| en | Pack saved. Couldn’t unpublish it — try again. |
+| es | Pack guardado. No se pudo retirar la publicación: inténtalo de nuevo. |
+| pt-BR | Pacote salvo. Não deu para despublicar — tente de novo. |
+| vi | Đã lưu bộ thẻ. Chưa hủy công khai được — thử lại nhé. |
+| id | Paket tersimpan. Publikasi belum bisa dicabut — coba lagi. |
+| tr | Paket kaydedildi. Yayından kaldırılamadı — tekrar dene. |
+| pl | Zestaw zapisany. Nie udało się wycofać publikacji — spróbuj jeszcze raz. |
+
+Почему так: «набор» по глоссарию (en pack, es pack, pt-BR pacote, vi bộ thẻ, id/tr paket, pl zestaw); es — двоеточие вместо тире (норма испанского);
+pt-BR «Não deu para…» — неформально, как «не получилось»; vi «nhé» — мягкое «ты»-обращение; tr/id/pl — повелительное на «ты».

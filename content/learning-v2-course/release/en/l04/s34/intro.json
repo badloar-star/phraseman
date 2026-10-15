@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "назвать поручень, сообщить о его наличии или отсутствии и описать положение кошелька",
+    "uk": "назвати поручень, повідомити про його наявність чи відсутність і описати розташування гаманця"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "За что держаться",
+        "uk": "За що триматися"
+      },
+      "bodyByLocale": {
+        "ru": "`handrail` — «поручень»: за него держатся рукой, например на лестнице. Один поручень — `a handrail`. `This is a handrail` — «Это поручень». Если за него держатся три человека, поручень не становится тремя: всё ещё `a handrail`.",
+        "uk": "`handrail` — «поручень»: за нього тримаються рукою, наприклад на сходах. Один поручень — `a handrail`. `This is a handrail` — «Це поручень». Якщо за нього тримаються троє людей, поручень не стає трьома: усе ще `a handrail`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите один поручень рядом.",
+          "uk": "Покажіть один поручень поруч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-34:intro1:r1",
+              "text": "This is a handrail."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro1:r2",
+              "text": "This is handrail."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro1:r3",
+              "text": "These are handrails."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-34:intro1:r1",
+              "text": "This is a handrail."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro1:r2",
+              "text": "This is handrail."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro1:r3",
+              "text": "These are handrails."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите один поручень рядом.",
+          "uk": "Покажіть один поручень поруч."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кошелёк на кухне",
+        "uk": "Гаманець на кухні"
+      },
+      "bodyByLocale": {
+        "ru": "`wallet` — «кошелёк», `worktop` — «кухонная столешница». `The wallet is on the worktop` — «Кошелёк на столешнице». `on` здесь означает на поверхности. `The wallet is under the worktop` — «Кошелёк под столешницей»: стоит сменить предлог, и искать придётся в другом месте.",
+        "uk": "`wallet` — «гаманець», `worktop` — «кухонна стільниця». `The wallet is on the worktop` — «Гаманець на стільниці». `on` тут означає на поверхні. `The wallet is under the worktop` — «Гаманець під стільницею»: варто змінити прийменник, і шукати доведеться в іншому місці."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Кошелёк лежит на поверхности столешницы. Выберите описание.",
+          "uk": "Гаманець лежить на поверхні стільниці. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-34:intro2:r1",
+              "text": "The wallet is on the worktop."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro2:r2",
+              "text": "The wallet is under the worktop."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro2:r3",
+              "text": "The wallet are on the worktop."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-34:intro2:r1",
+              "text": "The wallet is on the worktop."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro2:r2",
+              "text": "The wallet is under the worktop."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro2:r3",
+              "text": "The wallet are on the worktop."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Кошелёк лежит на поверхности столешницы. Выберите описание.",
+          "uk": "Гаманець лежить на поверхні стільниці. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Есть, нет и неактивно",
+        "uk": "Є, немає й неактивний"
+      },
+      "bodyByLocale": {
+        "ru": "`Is there a handrail?` — «Есть поручень?» Если его нет: `There isn’t a handrail`. Нет ни одного поручня: `There aren’t any handrails`. `inactive` — «неактивный». О неактивной учётной записи можно сказать `It is inactive` или короче `It’s inactive`. Неактивная запись существует, но не активна; это не то же самое, что её вообще нет.",
+        "uk": "`Is there a handrail?` — «Є поручень?» Якщо його немає: `There isn’t a handrail`. Немає жодного поручня: `There aren’t any handrails`. `inactive` — «неактивний». Про неактивний обліковий запис можна сказати `It is inactive` або коротше `It’s inactive`. Неактивний запис існує, але не активний; це не те саме, що його взагалі немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Учётная запись существует, но неактивна. Выберите описание с сокращением.",
+          "uk": "Обліковий запис існує, але неактивний. Виберіть опис зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-34:intro3:r1",
+              "text": "It's inactive."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro3:r2",
+              "text": "It's active."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro3:r3",
+              "text": "It are inactive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-34:intro3:r1",
+              "text": "It's inactive."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro3:r2",
+              "text": "It's active."
+            },
+            {
+              "responseId": "en:lesson-04:session-34:intro3:r3",
+              "text": "It are inactive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Учётная запись существует, но неактивна. Выберите описание с сокращением.",
+          "uk": "Обліковий запис існує, але неактивний. Виберіть опис зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fff56adc0983c904e39cf8df5e2d6ad9b9c4f96fd2d4a9cc4054a51902d72076"
+}

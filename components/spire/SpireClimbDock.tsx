@@ -7,7 +7,7 @@
 // скачался / ещё не собран — строка причины над кнопкой, без красных ошибок.
 // Двойной тап защищён выше (useSpireGame: один старт за раз) и здесь (busy).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -49,9 +49,16 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
   // «Попробовать Plus» в шторке ведёт в прежний пейвол с той же атрибуцией (no_energy / spire_no_energy) — путь покупки не тронут.
   const [noEnergySheet, setNoEnergySheet] = useState(false);
   const openPlus = useCallback(() => {
-    console.log('[M22] dock: шторка открыта');
+    console.log(`[M22-SHOW] open source=dock_link energy=${energy} bonus=${bonusEnergy}`);
     setNoEnergySheet(true);
-  }, []);
+  }, [energy, bonusEnergy]);
+  // зачем (Ревизор P12, 15.10): энергия восполнилась при открытой шторке → ветка noEnergy размонтирует шторку, а флаг
+  // оставался true, и при следующей нехватке шторка всплывала сама, без тапа. Шторка — только по действию человека.
+  useEffect(() => {
+    if (noEnergy || !noEnergySheet) return;
+    console.log(`[M22-SHOW] reset reason=energy_restored energy=${energy} bonus=${bonusEnergy}`);
+    setNoEnergySheet(false);
+  }, [noEnergy, noEnergySheet, energy, bonusEnergy]);
   const closeSheet = useCallback(() => {
     console.log('[M22] dock: шторка закрыта (подожду / фон / назад)');
     setNoEnergySheet(false);

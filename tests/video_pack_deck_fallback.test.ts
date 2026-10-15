@@ -81,3 +81,29 @@ describe('доводка Ревизора a607a2e9c', () => {
     expect(src.indexOf('missingPackCache.isMissing(videoMissingKey')).toBeLessThan(src.indexOf('const communityCards = await withTimeout('));
   });
 });
+
+describe('отметка «документа нет» — только при подтверждённом exists=false', () => {
+  const load = (get: () => Promise<{ exists: boolean; data?: () => unknown }>) => {
+    jest.resetModules();
+    jest.doMock('@react-native-firebase/firestore', () => ({
+      __esModule: true,
+      default: () => ({ collection: () => ({ doc: () => ({ get }) }) }),
+    }));
+    jest.doMock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
+    return require('../app/community_packs/communityFirestore') as typeof import('../app/community_packs/communityFirestore');
+  };
+  afterEach(() => { jest.dontMock('@react-native-firebase/firestore'); jest.dontMock('../app/config'); jest.resetModules(); });
+
+  it('exists=false → подтверждено; таймаут/ошибка → нет', async () => {
+    const missing = load(async () => ({ exists: false }));
+    const t0 = Date.now();
+    expect(await missing.fetchCommunityPackCards('video_AAAAAAAAAAA')).toEqual([]);
+    expect(missing.communityCardsDocConfirmedMissingSince('video_AAAAAAAAAAA', t0)).toBe(true);
+
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const failing = load(async () => { throw new Error('network'); });
+    const t1 = Date.now();
+    expect(await failing.fetchCommunityPackCards('video_BBBBBBBBBBB')).toEqual([]);
+    expect(failing.communityCardsDocConfirmedMissingSince('video_BBBBBBBBBBB', t1)).toBe(false);
+  });
+});

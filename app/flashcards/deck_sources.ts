@@ -336,7 +336,13 @@ async function loadPackDeckCards(
     if (packCards.length > 0) return deckCardsFromCardItems(packCards, lang);
   }
   // зачем (🔴 тренировка набора из видео, 15.10): документа `video_<id>` нет или он пуст — карточки из фраз ролика (кэш 6 ч), набор не пропадает из колод
-  if (videoIdFromOwnedCommunityId(packId)) missingPackCache.markMissing(videoMissingKey, Date.now()); // следующий вход не читает пустой документ
+  // отметка — только при ПОДТВЕРЖДЁННОМ exists=false (не таймаут, не сетевая ошибка, не чужой язык): иначе на медленной сети настоящий документ скрылся бы на 30 мин
+  if (videoIdFromOwnedCommunityId(packId)) {
+    const { communityCardsDocConfirmedMissingSince } = await import('../community_packs/communityFirestore');
+    const confirmedMissing = communityCardsDocConfirmedMissingSince(packId, startedAtMs);
+    console.log(`[DECK] video_fallback pack=${packId} документ: confirmedMissing=${confirmedMissing} (метка только при подтверждённом exists=false)`); // guard-ok: решение об отметке
+    if (confirmedMissing) missingPackCache.markMissing(videoMissingKey, Date.now());
+  }
   const videoCards = await videoFallbackCards(packId, studyTarget, false);
   return deckCardsFromCardItems(videoCards, lang);
 }

@@ -766,6 +766,16 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown, pa
   return out;
 }
 
+/**
+ * Подтверждённое «документа набора нет» (Firestore ответил exists=false), по id → время ответа.
+ * зачем (Ревизор 7d6c993fb, 15.10): пустой результат fetchCommunityPackCards бывает и от таймаута, и от сетевой ошибки, и от чужого языка — отметку «нет документа»
+ * ставить можно только после настоящего exists=false. Таймаут и ошибка сюда не попадают.
+ */
+const confirmedMissingCardDocs = new Map<string, number>();
+export function communityCardsDocConfirmedMissingSince(packId: string, sinceMs: number): boolean {
+  return (confirmedMissingCardDocs.get(packId) ?? -1) >= sinceMs;
+}
+
 export async function fetchCommunityPackCards(
   packId: string,
   studyTarget?: RuntimeStudyTarget,
@@ -785,7 +795,8 @@ export async function fetchCommunityPackCards(
   try {
     const snap = await firestore().collection(COMMUNITY_PACKS_COLLECTION).doc(packId).get();
     console.log(`[PACK-OPEN] cards:doc packId=${packId} exists=${snap.exists} ms=${Date.now() - tRead}`);
-    if (!snap.exists) return [];
+    if (!snap.exists) { confirmedMissingCardDocs.set(packId, Date.now()); return []; }
+    confirmedMissingCardDocs.delete(packId);
     const d = snap.data() as Record<string, unknown> | undefined;
     if (!d) { console.log(`[PACK-OPEN] cards:no_data packId=${packId}`); return []; }
     if (!communityPackDocMatchesStudyTarget(d, studyTarget)) { console.log(`[PACK-OPEN] cards:target_mismatch packId=${packId}`); return []; }

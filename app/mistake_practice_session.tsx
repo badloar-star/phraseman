@@ -640,6 +640,15 @@ function MistakePracticeSessionScreen() {
           if (cancelled) return;
           if (energyResult === 'cancelled' || energyResult === 'insufficient') {
             console.log('[MISTAKES-GATE] session:not_paid → not saved', JSON.stringify({ energyResult })); // guard-ok
+            // зачем (аудит R48): раньше экран закрывался молча. Вход проверяет энергию заранее; сюда попадаем только при гонке
+            // (энергия ушла между тапом и стартом) — человеку называем причину.
+            if (energyResult === 'insufficient') {
+              emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Не хватает энергии на тренировку.', uk: 'Не вистачає енергії на тренування.', en: 'Not enough energy for this practice.',
+                es: 'No tienes energía suficiente para la práctica.', 'pt-BR': 'Energia insuficiente para o treino.', vi: 'Không đủ năng lượng cho buổi luyện tập.',
+                id: 'Energi tidak cukup untuk latihan ini.', tr: 'Bu pratik için yeterli enerji yok.', pl: 'Za mało energii na ten trening.',
+              }));
+            }
             safeRouterBack(router, backFallback as never);
             return;
           }

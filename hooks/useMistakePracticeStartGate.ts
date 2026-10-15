@@ -1,8 +1,10 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 
 import { usePremium } from '../components/PremiumContext';
+import { useEnergy } from '../components/EnergyContext';
+import { mistakePracticeSessionCostsEnergy } from '../modules/mistake-practice/session';
 import { trackEvent } from '../app/analytics';
 import { captureAccountGeneration } from '../app/account_generation';
 import type { PaywallSource } from '../app/paywall_entry_contract';
@@ -16,9 +18,13 @@ export type MistakePracticeStartGate = Readonly<{
   locked: boolean;
   /**
    * Вызывать в кадре тапа «Разобрать». true — сессию можно открывать СЕЙЧАС
-   * (чек списывается фоном), false — уже увели на пейвол.
+   * (чек списывается фоном), false — уже увели на пейвол или показали «Нужна энергия».
+   * sessionCount — сколько ошибок в будущей сессии (от 5 — платная, см. mistakePracticeSessionCostsEnergy).
    */
-  tryStartSession: () => boolean;
+  tryStartSession: (sessionCount?: number) => boolean;
+  /** true — энергии на платную сессию нет: экран показывает NoEnergyModal; суточная попытка НЕ потрачена. */
+  noEnergy: boolean;
+  dismissNoEnergy: () => void;
 }>;
 
 /**
@@ -34,6 +40,9 @@ export type MistakePracticeStartGate = Readonly<{
 export function useMistakePracticeStartGate(source: PaywallSource): MistakePracticeStartGate {
   const router = useRouter();
   const { accessResolved } = usePremium();
+  const { predictStartRefusal } = useEnergy();
+  const [noEnergy, setNoEnergy] = useState(false);
+  const dismissNoEnergy = useCallback(() => setNoEnergy(false), []);
   const quota = useRevenueDailyQuotaPreview('mistake_practice_starts');
   const inFlightRef = useRef(false);
   const locked = quota.status === 'exhausted';
@@ -43,12 +52,21 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
     router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice', source } } as never);
   }, [router, source]);
 
-  const tryStartSession = useCallback((): boolean => {
+  const tryStartSession = useCallback((sessionCount?: number): boolean => {
     console.log('[MISTAKES-GATE] tap', JSON.stringify({
-      surface: source, status: quota.status, used: quota.used, limit: quota.limit, bypass: quota.bypass,
+      surface: source, status: quota.status, used: quota.used, limit: quota.limit, bypass: quota.bypass, sessionCount: sessionCount ?? null,
     }));
     if (quota.status === 'exhausted') {
       openPaywall();
+      return false;
+    }
+    // зачем (аудит R48, координатор 15.10): при 0 энергии попытка дня сгорала до проверки энергии, а тренировка открывалась
+    // и молча закрывалась. Теперь энергию проверяем ДО траты попытки: не хватает — шторка «Нужна энергия», попытка цела.
+    // Короткие наборы (1–4) энергию не берут — их не проверяем. 'unknown' (энергия ещё не прочитана) пускает: решит сам старт.
+    const paid = sessionCount !== undefined && mistakePracticeSessionCostsEnergy(sessionCount);
+    if (paid && predictStartRefusal('mistake_practice') === 'insufficient') {
+      console.log('[MISTAKES-GATE] no_energy → шторка, попытка дня не тронута', JSON.stringify({ surface: source, sessionCount })); // guard-ok: ранний выход
+      setNoEnergy(true);
       return false;
     }
     if (quota.limit === null) return true; // Plus / «Фри» — чек не нужен.
@@ -71,7 +89,7 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
       })
       .finally(() => { inFlightRef.current = false; });
     return true;
-  }, [accessResolved, openPaywall, quota, source]);
+  }, [accessResolved, openPaywall, predictStartRefusal, quota, source]);
 
-  return { quota, locked, tryStartSession };
+  return { quota, locked, tryStartSession, noEnergy, dismissNoEnergy };
 }

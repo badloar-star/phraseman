@@ -144,6 +144,11 @@ export interface EnergyContextValue {
   spendOne: (intent: EnergySessionIntent) => Promise<boolean>;  // returns false if no energy
   /** Ask before a paid start and return a distinct cancel/no-energy outcome. */
   confirmSpendOne: (intent: EnergySessionIntent) => Promise<EnergyStartResult>;
+  /**
+   * Синхронный прогноз старта БЕЗ списания: 'insufficient' — confirmActivityStart откажет из-за энергии;
+   * 'ok' — пустит; 'unknown' — энергия ещё не прочитана (решит настоящий старт). Те же правила, что в старте.
+   */
+  predictStartRefusal: (activity: EnergyActivityKey) => 'ok' | 'insufficient' | 'unknown';
   /** Spend N units: bonus first, then base. Returns false if total available < n (atomic). */
   spendAmount: (n: number, intent: EnergySessionIntent) => Promise<boolean>;
   /** Multi-energy equivalent of confirmSpendOne. */
@@ -184,6 +189,7 @@ const EnergyContext = createContext<EnergyContextValue>({
   refundActivityStart: async () => {},
   spendOne: async () => true,
   confirmSpendOne: async () => 'spent',
+  predictStartRefusal: () => 'unknown',
   spendAmount: async () => true,
   confirmSpendAmount: async () => 'spent',
   refundOne: async () => {},
@@ -1101,6 +1107,22 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     return confirmActivityStart(energyActivityForSessionKind(intent.grant.kind), intent);
   }, [confirmActivityStart]);
 
+  // зачем (аудит R48, координатор 15.10): «Мои ошибки» при 0 энергии сначала тратили суточную Free-попытку, а потом старт
+  // отказывал и экран молча закрывался. Экраны входа спрашивают прогноз ДО траты попытки. Правила — зеркало confirmActivityStart
+  // (режимы А/Б, бонус, кредит возвратов), только чтение рефов, без списания и без сети.
+  const predictStartRefusal = useCallback((activity: EnergyActivityKey): 'ok' | 'insufficient' | 'unknown' => {
+    const cost = activityEnergyCost(activity);
+    const available = bonusRef.current + refundCreditRef.current + energyRef.current;
+    const verdict: 'ok' | 'insufficient' | 'unknown' = cost === 0 ? 'ok'
+      : !energyReadyRef.current ? 'unknown'
+        : isUnlimitedRef.current ? 'ok'
+          : isFreeInMistakeMode(activity) ? 'ok'
+            : chargesEnergyOnMistake(activity) ? (available < 1 ? 'insufficient' : 'ok')
+              : available < cost ? 'insufficient' : 'ok';
+    console.log('[ENERGY-GATE] predict', JSON.stringify({ activity, cost, available, ready: energyReadyRef.current, unlimited: isUnlimitedRef.current, mode: peekEnergyMode(), verdict })); // guard-ok: одна строка на тап входа
+    return verdict;
+  }, []);
+
   const refundActivityStart = useCallback(async (operationId: string, reason: string): Promise<void> => {
     if (!energyReadyRef.current) await load();
     if (!energyReadyRef.current) throw new Error('energy_state_unavailable');
@@ -1243,13 +1265,13 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     energy, bonusEnergy, bonusEnergyCapacity, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
     confirmActivityStart, spendMistakeEnergy, canStartInMistakeMode, refundActivityStart,
-    spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
+    spendOne, confirmSpendOne, predictStartRefusal, spendAmount, confirmSpendAmount,
     refundOne, acknowledgeSessionStart, reload, refillToMax, energyReady,
   }), [
     energy, bonusEnergy, bonusEnergyCapacity, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
     confirmActivityStart, spendMistakeEnergy, canStartInMistakeMode, refundActivityStart,
-    spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
+    spendOne, confirmSpendOne, predictStartRefusal, spendAmount, confirmSpendAmount,
     refundOne, acknowledgeSessionStart, reload, refillToMax, energyReady,
   ]);
 

@@ -131,7 +131,7 @@ export default function MistakeDetailScreen() {
       return;
     }
     hapticTap();
-    if (!gate.tryStartSession()) return;
+    if (!gate.tryStartSession(1)) return; // одна ошибка — бесплатно, энергию не проверяем
     openingRef.current = true;
     trackMistakePracticeEvent('mistake_practice_setup_started', {
       study_target: target, entry_source: 'mistake_detail', requested_length: '1', ready_count: 1, session_count: 1, costs_energy: false,

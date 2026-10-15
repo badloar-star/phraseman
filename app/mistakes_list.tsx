@@ -23,6 +23,7 @@ import { peekMistakesHubSnapshot } from './mistakes_hub';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeListItem } from './mistake_practice_insights';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { safeRouterBack } from './navigation_back';
+import NoEnergyModal from '../components/NoEnergyModal';
 
 /**
  * Список ошибок — «Все ошибки» (макет docs/design/v2-app/mistakes-panel.html, экраны «Все ошибки — ждут» и «Все ошибки — исправлены», вариант Б «Панель»).
@@ -137,7 +138,7 @@ export default function MistakesListScreen() {
   const startPractice = useCallback(() => {
     if (openingRef.current || readyInGroup < 1) return;
     hapticTap();
-    if (!gate.tryStartSession()) return;
+    if (!gate.tryStartSession(readyInGroup)) return;
     openingRef.current = true;
     trackMistakePracticeEvent('mistake_practice_setup_started', {
       study_target: target,
@@ -153,7 +154,7 @@ export default function MistakesListScreen() {
   const startReview = useCallback(() => {
     if (openingRef.current || correctedInGroup < 1) return;
     hapticTap();
-    if (!gate.tryStartSession()) return;
+    if (!gate.tryStartSession(correctedInGroup)) return;
     openingRef.current = true;
     trackMistakePracticeEvent('mistake_practice_setup_started', {
       study_target: target,
@@ -258,6 +259,8 @@ export default function MistakesListScreen() {
           <PanelDock><PanelCta g={g} testID="mistakes-list-start" label={`${copy.practice} ${readyInGroup}`} onPress={startPractice} /></PanelDock>
         ) : null}
       </SafeAreaView>
+      {/* зачем (аудит R48): платная сессия при нехватке энергии — шторка вместо молчаливого закрытия тренировки; попытка дня цела */}
+      <NoEnergyModal variant="learn" visible={gate.noEnergy} activity="mistake_practice" onBeforeOpenPremium={gate.dismissNoEnergy} onClose={gate.dismissNoEnergy} />
     </ScreenGradient>
   );
 }

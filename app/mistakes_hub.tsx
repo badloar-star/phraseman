@@ -27,6 +27,7 @@ import { isDevMistakesDemoOn } from './dev_mistakes_demo';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import { rememberMistakeDetailDraft } from './mistake_detail_draft';
 import { safeRouterBack } from './navigation_back';
+import NoEnergyModal from '../components/NoEnergyModal';
 import { peekStableId } from './stable_id';
 
 /**
@@ -179,7 +180,7 @@ export default function MistakesHubScreen() {
   const startSession = useCallback(() => {
     if (openingRef.current || sheetReady < 1) return;
     hapticTap();
-    if (!gate.tryStartSession()) return;
+    if (!gate.tryStartSession(sheetReady)) return;
     openingRef.current = true;
     const costsEnergy = mistakePracticeSessionCostsEnergy(sheetReady);
     trackMistakePracticeEvent('mistake_practice_setup_started', {
@@ -361,6 +362,8 @@ export default function MistakesHubScreen() {
           </View>
         </PanelSheet>
       </SafeAreaView>
+      {/* зачем (аудит R48): платная сессия при нехватке энергии — шторка вместо молчаливого закрытия тренировки; попытка дня цела */}
+      <NoEnergyModal variant="learn" visible={gate.noEnergy} activity="mistake_practice" onBeforeOpenPremium={gate.dismissNoEnergy} onClose={gate.dismissNoEnergy} />
     </ScreenGradient>
   );
 }

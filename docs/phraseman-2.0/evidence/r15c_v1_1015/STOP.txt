@@ -1,0 +1,1 @@
+16:47:59 СТОП на шаге «S2»: СТОП: незнакомое окно: пакет com.google.android.permissioncontroller

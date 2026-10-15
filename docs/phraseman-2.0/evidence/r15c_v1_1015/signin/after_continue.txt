@@ -1,0 +1,320 @@
+--------- beginning of main
+10-15 16:54:56.144 I/ReactNativeJS(31335): [ACC-MUT] switch_stage confirm→wiping
+10-15 16:54:56.152 I/ReactNativeJS(31335): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":false,"allowPendingShardSpendDiscard":false}'
+10-15 16:54:56.449 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":23,"t":10597586}
+10-15 16:54:57.477 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":1050,"pendingSpend":0,"t":10598612}
+10-15 16:54:57.493 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":1067,"t":10598630}
+10-15 16:54:57.502 I/ReactNativeJS(31335): [ENSURE-LINK] authoritative_memo miss reason=generation_changed
+10-15 16:55:00.939 I/ReactNativeJS(31335): [LEGACY-V2-SYNC] force_sync key=flashcards_v1 decision=absent local=null
+10-15 16:55:00.944 I/ReactNativeJS(31335): [LEGACY-V2-SYNC] force_sync key=flashcards_v2::fr::flashcards_v1 decision=absent local=null
+10-15 16:55:00.949 I/ReactNativeJS(31335): [FLASHCARD-FUTURE-STASH] stash skip reason=nothing_kept
+10-15 16:55:02.173 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":5746,"synced":true,"t":10603309}
+10-15 16:55:02.175 W/ReactNativeJS(31335): [ACC-SWITCH-WIPE] signout force_sync {"synced":true,"allowWipeWithoutSync":false,"t":10603311}
+10-15 16:55:02.180 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":5751,"t":10603314}
+10-15 16:55:02.183 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":5757,"t":10603319}
+10-15 16:55:02.194 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":5768,"entries":0,"t":10603330}
+10-15 16:55:05.300 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":8873,"t":10606436}
+10-15 16:55:05.337 W/ReactNativeJS(31335): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-15 16:55:05.341 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage marker_done {"sinceStartMs":8912,"t":10606475}
+10-15 16:55:05.345 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=streak_milestone_pending reason=owner_changed to=none
+10-15 16:55:05.346 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_changed to=none
+10-15 16:55:05.349 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_changed to=none
+10-15 16:55:05.351 I/ReactNativeJS(31335): [INFO] [SPIRE-REPORT]: owner_changed: сброс памяти (день серии=нет, недель в памяти=0)
+10-15 16:55:05.360 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=spire_report_client reason=owner_changed to=none
+10-15 16:55:05.363 I/ReactNativeJS(31335): [INFO] [SPIRE]: owner_changed: комнат в памяти сброшено=0, запросов в полёте=0
+10-15 16:55:05.364 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=spire_room_client reason=owner_changed to=none
+10-15 16:55:05.369 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_changed to=none
+10-15 16:55:05.375 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=home_continue_mark reason=owner_changed to=none
+10-15 16:55:05.379 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=home_continue_v2_progress reason=owner_changed to=none
+10-15 16:55:05.382 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_changed to=none
+10-15 16:55:05.385 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_changed to=none
+10-15 16:55:05.387 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_changed to=none
+10-15 16:55:05.391 I/ReactNativeJS(31335): [VOICE-LIMIT] owner_changed {"droppedPending":0}
+10-15 16:55:05.393 I/ReactNativeJS(31335): [VOICE-LIMIT] access_wait_restart {"reason":"owner_changed","graceMs":8000}
+10-15 16:55:05.396 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=voice_daily_allowance reason=owner_changed to=none
+10-15 16:55:05.398 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=spire_position_feed reason=owner_changed to=none
+10-15 16:55:05.404 I/ReactNativeJS(31335): '[SPIRE]', 'owner_changed', '{"epoch":2,"listeners":0}'
+10-15 16:55:05.409 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=spire_owner_epoch reason=owner_changed to=none
+10-15 16:55:05.412 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_changed to=none
+10-15 16:55:05.416 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:05.417 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_changed to=none
+10-15 16:55:05.420 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_changed to=none
+10-15 16:55:05.421 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:05.424 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:05.426 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'bump', '{"reason":"left_active","prevPhase":"active","nextPhase":"transitioning","generation":4,"epoch":3}'
+10-15 16:55:05.431 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'bump', '{"reason":"left_active","prevPhase":"active","nextPhase":"transitioning","generation":4,"epoch":1}'
+10-15 16:55:05.442 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":9008,"t":10606571}
+10-15 16:55:05.445 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":9017,"t":10606580}
+10-15 16:55:05.797 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"head:read_journals","ms":337,"sinceResumeMs":346}'
+10-15 16:55:05.799 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:05.801 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:05.803 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:05.805 W/ReactNativeJS(31335): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-15 16:55:05.813 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"quiesce:premium","ms":0,"idle":true}'
+10-15 16:55:05.816 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"quiesce:cloud","ms":5,"idle":true}'
+10-15 16:55:05.819 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"quiesce:restore","ms":7,"idle":true}'
+10-15 16:55:05.821 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:quiesce","ms":12,"sinceResumeMs":369,"outcome":"true"}'
+10-15 16:55:05.822 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:05.824 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:05.825 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:05.843 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":6,"sinceResumeMs":376,"outcome":"ok"}'
+10-15 16:55:05.867 I/ReactNativeJS(31335): [FS-READS] listen:close #2 users/{id}/access_projection/{id} жил=367086ms снимков=1 оплачено=0
+10-15 16:55:05.872 I/ReactNativeJS(31335): '[V2-MAP] lessons-pane', '{"freezeWanted":true,"coverLessons":true,"shouldLoad":true,"epoch":3,"phase":"transitioning","atMs":1792079705869}'
+10-15 16:55:05.933 I/ReactNativeJS(31335): '[V2-MAP] lessons-pane', '{"freezeWanted":true,"coverLessons":true,"shouldLoad":true,"epoch":1,"phase":"transitioning","atMs":1792079705928}'
+10-15 16:55:05.941 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:skip — phase="transitioning", stableId=null
+10-15 16:55:05.996 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":5,"epoch":3}'
+10-15 16:55:05.999 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":6,"epoch":3}'
+10-15 16:55:06.149 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":5,"epoch":1}'
+10-15 16:55:06.154 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":6,"epoch":1}'
+10-15 16:55:06.403 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:skip — phase="transitioning", stableId=null
+10-15 16:55:07.045 I/ReactNativeJS(31335): [PUSH-TOKEN-CLEAR] cleared ms=1185
+10-15 16:55:07.093 I/ReactNativeJS(31335): [PUSH-TOKEN-CLEAR] skip reason=caller_clears_token source=cancelAllNotifications
+10-15 16:55:07.093 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] push_cleanup result=notifications:ok,push_token:ok ms=1247
+10-15 16:55:07.098 I/ReactNativeJS(31335): [auth_provider] signOutCurrentProvider: start
+10-15 16:55:07.251 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:signOut","ms":1406,"sinceResumeMs":1799,"outcome":"ok"}'
+10-15 16:55:07.442 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":183,"sinceResumeMs":1986,"from":"prepared","to":"provider_signed_out","lockWaitMs":0}'
+10-15 16:55:07.452 I/ReactNativeJS(31335): [AA-S7] bootstrap skip reason=cutover_off v2=off
+10-15 16:55:07.458 I/ReactNativeJS(31335): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-15 16:55:08.197 W/ReactNativeJS(31335): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-15 16:55:08.200 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":752,"sinceResumeMs":2747,"to":"provider_signed_out","totalSinceQueuedMs":944}'
+10-15 16:55:08.202 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:08.207 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:08.209 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:08.212 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":7,"epoch":3}'
+10-15 16:55:08.216 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":7,"epoch":1}'
+10-15 16:55:08.219 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":16,"sinceResumeMs":2766,"outcome":"ok"}'
+10-15 16:55:08.551 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:skip — phase="transitioning", stableId=null
+10-15 16:55:09.434 I/ReactNativeJS(31335): [DIALOG-DONE] wipe removed=0
+10-15 16:55:09.437 I/ReactNativeJS(31335): '[DIALOG-MEMORY] disk:wipe', '{"removed":0}'
+10-15 16:55:09.442 I/ReactNativeJS(31335): [INFO] [PROFILE-CARD]: чужая визитка: копии стёрты (account_wipe) {"memory":0,"stale":0,"timer":false}
+10-15 16:55:09.463 I/ReactNativeJS(31335): [ACC-WIPE] app_messages {"app_messages_cache_v2":1,"app_messages_last_background_refresh_ms_v2":1,"app_messages_login_forced_v1":1,"friend_blocked_v1":1,"mistake_restore_full_done_v1":1}
+10-15 16:55:09.492 I/ReactNativeJS(31335): [ACC-WIPE] owner_residue count=22 {"global_broadcast_modal_dismissed_D0SUUo8UfiqSL1vjbDHI::generation:1:uid:<owner>":1,"mistake_practice_restore_mark_v1:<owner>:de":1,"mistake_practice_restore_mark_v1:<owner>:en":1,"mistake_practice_restore_mark_v1:<owner>:es":1,"mistake_practice_restore_mark_v1:<owner>:fr":1,"mistake_practice_restore_mark_v1:<owner>:it":1,"mistake_practice_upload_mark_v1:<owner>:de":1,"mistake_practice_upload_mark_v1:<owner>:en":1,"mistake_practice_upload_mark_v1:<owner>:es":1,"mistake_practice_upload_mark_v1:<owner>:fr":1,"mistake_practice_upload_mark_v1:<owner>:it":1,"phone_state_integrity_last_check_v1:<owner>:1":1,"progress_server_snapshot_migrated_v1:<owner>":1,"public_profile_snapshot_v1:<owner>":1,"story_events_v1:<owner>":1,"support_diagnostics_v1:<owner>:1":1,"support_diagnostics_v1:<owner>:3":1,"today_tasks_v1:<owner>":1,"user_notifications_cache_v2:<owner>":1,"user_notifications_last_refresh_ms_v2:<owner>":1,"user_referral_code_v2:legacy-checked:<owner>":1,"video_favorites_v1::<owner>":1}
+10-15 16:55:09.498 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] survivors={"before":134,"knownLeak":[],"otherCount":68,"otherShapeCount":60,"other":{"account_switch_emergency_backup_page_v1:mv9pzg0t-ayr5e4q1bab":9,"account_switch_backup_gc_last_run_v1":1,"account_switch_emergency_backup_latest_v1":1,"account_switch_shelved_prune_last_run_v1":1,"achievements_progress_backfill_v4":1,"age_consent_cloud_pending_v1":1,"analytics_consent_v1":1,"app_content_schema_version":1,"app_health_last_12qtkuv":1,"app_health_last_14kq968":1,"app_health_last_19c7l2d":1,"app_health_last_h5qci2":1,"app_health_last_npvp0y":1,"app_health_last_ojui3v":1,"app_health_last_t9nqwe":1,"app_session_count":1,"community_seller_inbox_empty_v1":1,"community_tab_seen_at_v1":1,"daily_phrase_home_pulse_day_v1":1,"daily_phrase_peek_v1":1,"daily_phrase_remote_cache_v1":1,"daily_phrase_v3":1,"debug_logs_v1":1,"dialogue_v2_warm_last_at_v1":1,"friends_tab_swr_v1":1,"home_daily_greeting_v1":1,"home_survey_entry_v1":1,"last_phrase_date_v3":1,"lesson_unlock_repair_v3":1,"lingman_youtube_last_successful_snapshot_v2":1,"mistake_practice_legacy_cleanup_v1":1,"name_index_synced_for_v1":1,"notifications_enabled":1,"onboarding_analytics_help_v1":1,"onboarding_completed_at_ms_v1":1,"onboarding_discovery_source":1,"onboarding_flow_version_v1":1,"onboarding_funnel_attempt_v1":1,"onboarding_funnel_completed_ack_v1":1,"onboarding_funnel_completed_pending_v1":1,"onboarding_funnel_consent_pending_v1":1,"onboarding_funnel_started_ack_v1":1,"onboarding_funnel_started_pending_v1":1,"onboarding_plan_billing":1,"onboarding_requested_study_target_v1":1,"onboarding_source":1,"onboarding_terms_privacy_accepted_v1":1,"phraseman_stable_uid_cache":1,"pm_app_welcome_played_v1":1,"referrals_state_cache_v3":1,"remote_config_cache_v1":1,"remote_config_fetched_at_v1":1,"smart_reminder_activity_v1":1,"spire_config_cache_v1":1,"streak_rule_v137_since":1,"study_target_v1":1,"theme_default_follow_system_v1":1,"today_tasks_available_kinds_v1":1,"user_age_bracket_v1":1,"winback_last_active_at_v1":1},"ownerScoped":{"global_broadcast_modal_dismissed_D0SUUo8UfiqSL1vjbDHI::generation:1:uid:<owner>":1,"mistake_practice_restore_mark_v1:<owner>:de":1,"mistake_practice_restore_mark_v1:<owner>:en":1,"mistake_practice_restore_mark_v1:<owner>:es":1,"mistake_practice_restore_mark_v1:<owner>:fr":1,"mistake_practice_restore_mark_v1:<owner>:it":1,"mistake_practice_upload_mark_v1:<owner>:de":1,"mistake_practice_upload_mark_v1:<owner>:en":1,"mistake_practice_upload_mark_v1:<owner>:es":1,"mistake_practice_upload_mark_v1:<owner>:fr":1,"mistake_practice_upload_mark_v1:<owner>:it":1,"phone_state_integrity_last_check_v1:<owner>:1":1,"progress_server_snapshot_migrated_v1:<owner>":1,"public_profile_snapshot_v1:<owner>":1,"story_events_v1:<owner>":1,"support_diagnostics_v1:<owner>:1":1,"support_diagnostics_v1:<owner>:3":1,"today_tasks_v1:<owner>":1,"user_notifications_cache_v2:<owner>":1,"user_notifications_last_refresh_ms_v2:<owner>":1,"user_referral_code_v2:legacy-checked:<owner>":1,"video_favorites_v1::<owner>":1}}
+10-15 16:55:09.514 I/ReactNativeJS(31335): [ACC-MUT] firestore_cache_clear marked reason=account_wipe
+10-15 16:55:09.842 I/ReactNativeJS(31335): '[FRIENDS-WARM] сброс при смене аккаунта', '{"hadWarm":true,"hadProfiles":0}'
+10-15 16:55:09.862 W/ReactNativeJS(31335): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":308,"collectKeysMs":37,"collectKeysKeys":2217,"noteStashMs":68,"removeKeysMs":774,"removeKeysKeys":2214,"giftReceiptsMs":3,"customizationMs":16,"dialogueMemoryMs":6,"profileCardPublicMs":5,"appMessagesMs":20,"appMessagesKeys":5,"lateLearningV2Ms":9,"lateLearningV2Keys":8,"giftReceipts2Ms":1,"finalScanMs":16,"resetMemoryMs":373,"totalMs":1636,"failure":null,"t":10610999}
+10-15 16:55:09.864 W/ReactNativeJS(31335): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1638,"caller":"_wipeLocalAccountData <- wipeLocalAccountData <- wipeLocalData","waitedMs":0}'
+10-15 16:55:09.866 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:wipeLocalData","ms":1644,"sinceResumeMs":4414,"outcome":"ok"}'
+10-15 16:55:10.342 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":473,"sinceResumeMs":4889,"from":"provider_signed_out","to":"local_data_cleared","lockWaitMs":1}'
+10-15 16:55:10.364 W/ReactNativeJS(31335): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-15 16:55:10.366 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":23,"sinceResumeMs":4914,"to":"local_data_cleared","totalSinceQueuedMs":499}'
+10-15 16:55:10.368 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:10.370 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:10.371 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:10.372 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":8,"epoch":3}'
+10-15 16:55:10.373 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":8,"epoch":1}'
+10-15 16:55:10.376 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":8,"sinceResumeMs":4923,"outcome":"ok"}'
+10-15 16:55:10.378 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:10.380 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:10.383 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:10.386 W/ReactNativeJS(31335): '[STABLE-ID-CLEAR]', '{"step":"waited","queueMs":0,"drainMs":0,"hadLoad":false}'
+10-15 16:55:10.389 W/ReactNativeJS(31335): [PROFILE-FLIP] cleared {"previous":"h:63fea73f","t":10611526}
+10-15 16:55:10.392 W/ReactNativeJS(31335): [WARNING] [PROFILE-FLIP] cleared: [PROFILE-FLIP] cleared {"previous":"h:63fea73f","t":10611526}
+10-15 16:55:10.407 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":9,"epoch":3}'
+10-15 16:55:10.493 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":9,"epoch":1}'
+10-15 16:55:10.614 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:skip — phase="transitioning", stableId=null
+10-15 16:55:10.684 W/ReactNativeJS(31335): [PLUS-TRANSFER] hold begin {"reason":"stable_id_cleared","from":"h:63fea73f","to":"none","heldPlus":false,"plan":null,"t":10611821}
+10-15 16:55:10.686 W/ReactNativeJS(31335): '[STABLE-ID-CLEAR]', '{"trace":6,"secureDelete":209,"secureDeleteLegacy":14,"secureVerify":38,"asyncRemove":25,"asyncVerify":1,"staleMarker":2,"emit":3,"secureStore":true,"totalMs":298}'
+10-15 16:55:10.702 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:clearStableId","ms":325,"sinceResumeMs":5250,"outcome":"ok"}'
+10-15 16:55:10.705 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":3,"sinceResumeMs":5254,"from":"local_data_cleared","to":"stable_id_cleared","lockWaitMs":0}'
+10-15 16:55:10.740 W/ReactNativeJS(31335): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-15 16:55:10.741 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":34,"sinceResumeMs":5289,"to":"stable_id_cleared","totalSinceQueuedMs":38}'
+10-15 16:55:10.801 W/ReactNativeJS(31335): [PROFILE-FLIP] startup source {"source":"generated","stable":"h:98874b56","t":10611937}
+10-15 16:55:12.181 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"anon:ensureAnonUser","ms":1436}'
+10-15 16:55:12.183 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"anon:getStableId","ms":0}'
+10-15 16:55:12.184 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:ensureAnonymousIdentity","ms":1441,"sinceResumeMs":6732,"outcome":"ok"}'
+10-15 16:55:12.246 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":60,"sinceResumeMs":6793,"from":"stable_id_cleared","to":"anonymous_authenticated","lockWaitMs":0}'
+10-15 16:55:12.251 I/ReactNativeJS(31335): [AA-S7] bootstrap skip reason=cutover_off v2=off
+10-15 16:55:12.253 I/ReactNativeJS(31335): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-15 16:55:12.273 W/ReactNativeJS(31335): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-15 16:55:12.276 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":27,"sinceResumeMs":6822,"to":"anonymous_authenticated","totalSinceQueuedMs":89}'
+10-15 16:55:12.278 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:12.280 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:12.285 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:12.288 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":10,"epoch":3}'
+10-15 16:55:12.290 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":10,"epoch":1}'
+10-15 16:55:12.291 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":14,"sinceResumeMs":6839,"outcome":"ok"}'
+10-15 16:55:12.523 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":231,"sinceResumeMs":7071,"from":"anonymous_authenticated","to":"fresh_stable_created","lockWaitMs":0}'
+10-15 16:55:12.536 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:skip — phase="transitioning", stableId=null
+10-15 16:55:12.595 W/ReactNativeJS(31335): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-15 16:55:12.597 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":73,"sinceResumeMs":7145,"to":"fresh_stable_created","totalSinceQueuedMs":305}'
+10-15 16:55:12.598 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:12.600 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:12.602 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:12.607 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":8,"sinceResumeMs":7154,"outcome":"ok"}'
+10-15 16:55:12.624 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":11,"epoch":3}'
+10-15 16:55:12.726 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":11,"epoch":1}'
+10-15 16:55:12.845 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":236,"sinceResumeMs":7393,"from":"fresh_stable_created","to":"ready","lockWaitMs":0}'
+10-15 16:55:12.862 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:skip — phase="transitioning", stableId=null
+10-15 16:55:13.375 W/ReactNativeJS(31335): [SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=recovering reason=null
+10-15 16:55:13.377 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":530,"sinceResumeMs":7924,"to":"ready","totalSinceQueuedMs":767}'
+10-15 16:55:13.377 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:13.379 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:13.380 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:13.382 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":12,"epoch":3}'
+10-15 16:55:13.383 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":12,"epoch":1}'
+10-15 16:55:13.385 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":7,"sinceResumeMs":7933,"outcome":"ok"}'
+10-15 16:55:13.592 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:skip — phase="transitioning", stableId=null
+10-15 16:55:13.659 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"tail:clear_marker","ms":273,"sinceResumeMs":8208,"cleared":true}'
+10-15 16:55:13.675 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"tail:remove_receipt","ms":16,"sinceResumeMs":8224}'
+10-15 16:55:13.677 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=streak_milestone_pending reason=owner_arrived_after_other to=other
+10-15 16:55:13.678 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_arrived_after_other to=other
+10-15 16:55:13.678 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_arrived_after_other to=other
+10-15 16:55:13.680 I/ReactNativeJS(31335): [INFO] [SPIRE-REPORT]: owner_changed: сброс памяти (день серии=нет, недель в памяти=0)
+10-15 16:55:13.680 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=spire_report_client reason=owner_arrived_after_other to=other
+10-15 16:55:13.682 I/ReactNativeJS(31335): [INFO] [SPIRE]: owner_changed: комнат в памяти сброшено=0, запросов в полёте=0
+10-15 16:55:13.684 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=spire_room_client reason=owner_arrived_after_other to=other
+10-15 16:55:13.685 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_arrived_after_other to=other
+10-15 16:55:13.686 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=home_continue_mark reason=owner_arrived_after_other to=other
+10-15 16:55:13.686 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=home_continue_v2_progress reason=owner_arrived_after_other to=other
+10-15 16:55:13.688 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_arrived_after_other to=other
+10-15 16:55:13.688 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_arrived_after_other to=other
+10-15 16:55:13.690 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_arrived_after_other to=other
+10-15 16:55:13.690 I/ReactNativeJS(31335): [VOICE-LIMIT] owner_changed {"droppedPending":0}
+10-15 16:55:13.693 I/ReactNativeJS(31335): [VOICE-LIMIT] access_wait_restart {"reason":"owner_changed","graceMs":8000}
+10-15 16:55:13.693 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=voice_daily_allowance reason=owner_arrived_after_other to=other
+10-15 16:55:13.694 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=spire_position_feed reason=owner_arrived_after_other to=other
+10-15 16:55:13.696 I/ReactNativeJS(31335): '[SPIRE]', 'owner_changed', '{"epoch":3,"listeners":0}'
+10-15 16:55:13.698 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=spire_owner_epoch reason=owner_arrived_after_other to=other
+10-15 16:55:13.699 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_arrived_after_other to=other
+10-15 16:55:13.700 I/ReactNativeJS(31335): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 16:55:13.701 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_arrived_after_other to=other
+10-15 16:55:13.704 I/ReactNativeJS(31335): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_arrived_after_other to=other
+10-15 16:55:13.706 I/ReactNativeJS(31335): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"account_generation_changed"}'
+10-15 16:55:13.706 I/ReactNativeJS(31335): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"account_generation_changed"}
+10-15 16:55:13.708 I/ReactNativeJS(31335): [WHATSNEW-GATE] owner_changed from=7afbde… to=82c218… hadWindow=false pendingClear=false — память сброшена, метка прошлого владельца в хранилище остаётся
+10-15 16:55:13.711 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'bump', '{"reason":"new_active","prevPhase":"transitioning","nextPhase":"active","generation":13,"epoch":4}'
+10-15 16:55:13.713 I/ReactNativeJS(31335): '[LESSONS-EPOCH]', 'bump', '{"reason":"new_active","prevPhase":"transitioning","nextPhase":"active","generation":13,"epoch":2}'
+10-15 16:55:13.714 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"tail:activate_generation","ms":37,"sinceResumeMs":8262}'
+10-15 16:55:13.717 W/ReactNativeJS(31335): '[ACC-SPEED]', '{"step":"resume_done","ms":8266,"sinceResumeMs":8266,"result":"completed"}'
+10-15 16:55:13.719 W/ReactNativeJS(31335): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":17293,"kind":"resumed","t":10614856}
+10-15 16:55:13.720 I/ReactNativeJS(31335): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":true,"tookMs":17569}'
+10-15 16:55:13.721 I/ReactNativeJS(31335): [ACC-MUT] switch_stage wiping→idle
+10-15 16:55:14.019 I/ReactNativeJS(31335): '[V2-MAP] lessons-pane', '{"freezeWanted":true,"coverLessons":false,"shouldLoad":true,"epoch":4,"phase":"active","atMs":1792079714017}'
+10-15 16:55:14.024 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=coin_rank_v1:82c218cc-18c9-4415-877b-05871ec44bc0 writesInFlight=0', '', { [Stack] name: 'Stack' }
+10-15 16:55:14.029 I/ReactNativeJS(31335): '[V2-MAP] lessons-pane', '{"freezeWanted":true,"coverLessons":false,"shouldLoad":true,"epoch":2,"phase":"active","atMs":1792079714027}'
+10-15 16:55:14.038 I/ReactNativeJS(31335): [AUTH-APPLE-BTN] variant=dark background=#FFFFFF shape=sheet
+10-15 16:55:14.041 I/ReactNativeJS(31335): [ACC-SPEED] warm skip source=registration_prompt reason=throttled sinceLastMs=514271
+10-15 16:55:14.048 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:start stableId=82c218cc-18c9-4415-877b-05871ec44bc0 generation=13
+10-15 16:55:14.049 I/ReactNativeJS(31335): [COLD-START] fc_train_entry.bootstrap:start proc=10615186ms src=_layout {"generation":13}
+10-15 16:55:14.225 I/ReactNativeJS(31335): [COLD-START] phone_state.identity:start proc=10615362ms src=phone_state_bootstrap
+10-15 16:55:14.227 I/ReactNativeJS(31335): [COLD-START] phone_state.identity:ok proc=10615364ms src=phone_state_bootstrap {"stepMs":1}
+10-15 16:55:14.228 I/ReactNativeJS(31335): [COLD-START] phone_state.account_context:start proc=10615365ms src=phone_state_bootstrap
+10-15 16:55:14.232 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=stable_auth_link_cache_v1 writesInFlight=0', ''
+10-15 16:55:14.236 W/ReactNativeJS(31335): '[LV2-RETRY-CURSOR] slow', '{"op":"load","outcome":"ok","heldMs":519,"stages":{"lock_wait":1,"scope_hash":1,"get_item":518}}'
+10-15 16:55:14.241 W/ReactNativeJS(31335): [PLUS-TRANSFER] restore start {"trigger":"after_switch","attempt":1,"appUserID":"h:98874b56","reason":"stable_id_cleared","heldPlus":false,"t":10615378}
+10-15 16:55:14.243 I/ReactNativeJS(31335): [INFO] [RC-IDENTITY]: syncRevenueCatIdentity: параллельный вызов присоединён к идущему
+10-15 16:55:14.245 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=premium_vip_snapshot_v1:82c218cc-18c9-4415-877b-05871ec44bc0 writesInFlight=0', ''
+10-15 16:55:14.249 W/ReactNativeJS(31335): [LEGACY-BONUS] failed source=owner_changed reason=NOT_FOUND ms=531
+10-15 16:55:14.278 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss many=5 first=premium_active', ''
+10-15 16:55:15.017 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:lineage_read 785мс proc=10616152ms found=false
+10-15 16:55:15.387 I/ReactNativeJS(31335): '[APP-MESSAGES-REFRESH]', '{"mode":"login_force","markSource":"first_login","minIntervalMs":0}'
+10-15 16:55:15.388 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=app_messages_cache_v2:82c218cc-18c9-4415-877b-05871ec44bc0 writesInFlight=0', ''
+10-15 16:55:15.394 I/ReactNativeJS(31335): [COLD-START] phone_state.account_context:ok proc=10616531ms src=phone_state_bootstrap {"stepMs":1165}
+10-15 16:55:15.394 I/ReactNativeJS(31335): [COLD-START] phone_state.open_account:start proc=10616531ms src=phone_state_bootstrap
+10-15 16:55:15.396 I/ReactNativeJS(31335): [COLD-START] phone_state.db_open:start proc=10616532ms src=phone_state_runtime
+10-15 16:55:15.396 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:digest 0мс proc=10616534ms
+10-15 16:55:15.402 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:secure_store_read 4мс proc=10616539ms found=false
+10-15 16:55:15.408 W/ReactNativeJS(31335): '[LV2-RETRY-CURSOR] slow', '{"op":"persist","outcome":"ok","heldMs":1169,"stages":{"lock_wait":0,"scope_hash":1,"encode_and_self_parse":1,"get_previous":36,"set_item":1113,"verify_get":18}}'
+10-15 16:55:15.409 W/ReactNativeJS(31335): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1171,"caller":"withExactActiveScope <- persistLearningV2CompletionRetryCursor <- reserveAttempt","waitedMs":0}'
+10-15 16:55:15.422 I/ReactNativeJS(31335): [PHONE-STATE-DB] deferred_integrity:flag_read pending=false
+10-15 16:55:15.434 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:created_and_stored 31мс proc=10616571ms
+10-15 16:55:15.435 I/ReactNativeJS(31335): [PHONE-STATE-DB] deferred_integrity:flag_read_ms 38
+10-15 16:55:15.437 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:credentials_from_memory
+10-15 16:55:15.438 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:credentials 2мс
+10-15 16:55:15.439 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:in "phone-state-v1-67c286ef4a89f65f80606983811b0a95-1.db" +1ms step=1ms proc=10616576ms jsLagMax=0ms
+10-15 16:55:15.450 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:step 1/5 файл открыт +12ms step=11ms proc=10616588ms jsLagMax=0ms
+10-15 16:55:15.457 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:step 2/5 ключ применён +18ms step=6ms proc=10616594ms jsLagMax=0ms
+10-15 16:55:15.463 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:step 3/5 cipher_version={"cipher_version":"4.7.0 community"} +25ms step=7ms proc=10616600ms jsLagMax=0ms
+10-15 16:55:15.464 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:step 4/5 полная проверка целостности отложена в фон +25ms step=0ms proc=10616601ms jsLagMax=0ms
+10-15 16:55:15.489 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:step 5/5 страница данных расшифрована, sqlite_master tables=0, user_version={"user_version":0} +51ms step=26ms proc=10616626ms jsLagMax=0ms
+10-15 16:55:15.548 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:step 6/6 проба записи прошла через WAL — база пригодна +110ms step=59ms proc=10616685ms jsLagMax=18ms
+10-15 16:55:15.548 I/ReactNativeJS(31335): [PHONE-STATE-DB] open:ok +110ms step=0ms proc=10616686ms jsLagMax=0ms
+10-15 16:55:15.549 I/ReactNativeJS(31335): [COLD-START] phone_state.db_open:ok proc=10616686ms src=phone_state_runtime {"stepMs":154}
+10-15 16:55:15.553 I/ReactNativeJS(31335): [COLD-START] phone_state.schema_migrate:start proc=10616688ms src=phone_state_runtime
+10-15 16:55:15.579 I/ReactNativeJS(31335): [COLD-START] phone_state.schema_migrate:ok proc=10616716ms src=phone_state_runtime {"stepMs":29}
+10-15 16:55:15.608 I/ReactNativeJS(31335): [COLD-START] phone_state.open_account:ok proc=10616745ms src=phone_state_bootstrap {"stepMs":213}
+10-15 16:55:15.608 I/ReactNativeJS(31335): [COLD-START] phone_state.import_legacy:start proc=10616746ms src=phone_state_bootstrap
+10-15 16:55:15.609 I/ReactNativeJS(31335): [COLD-START] phone_state.import_core_progress:start proc=10616746ms src=phone_state_runtime
+10-15 16:55:15.680 I/ReactNativeJS(31335): [GIFT-ACCESS-READ] network users/82c218 ms=289
+10-15 16:55:15.736 I/ReactNativeJS(31335): [COLD-START] phone_state.import_core_progress:ok proc=10616874ms src=phone_state_runtime {"stepMs":128}
+10-15 16:55:15.740 I/ReactNativeJS(31335): [COLD-START] phone_state.import_registers:start proc=10616875ms src=phone_state_runtime
+10-15 16:55:15.754 I/ReactNativeJS(31335): [COLD-START] phone_state.import_registers:ok proc=10616891ms src=phone_state_runtime {"stepMs":16}
+10-15 16:55:15.754 I/ReactNativeJS(31335): [COLD-START] phone_state.import_economy:start proc=10616892ms src=phone_state_runtime
+10-15 16:55:15.768 I/ReactNativeJS(31335): [COLD-START] phone_state.import_economy:ok proc=10616905ms src=phone_state_runtime {"stepMs":13}
+10-15 16:55:15.768 I/ReactNativeJS(31335): [COLD-START] phone_state.import_legacy:ok proc=10616905ms src=phone_state_bootstrap {"stepMs":160}
+10-15 16:55:15.768 I/ReactNativeJS(31335): [COLD-START] phone_state.install_sync:start proc=10616906ms src=phone_state_bootstrap
+10-15 16:55:15.778 I/ReactNativeJS(31335): [FIRST-FRAME] deferred:register label=client_shard_phone_state_backfill fallbackMs=2500 proc=10616916ms
+10-15 16:55:15.782 I/ReactNativeJS(31335): [COLD-START] phone_state.install_sync:ok proc=10616919ms src=phone_state_bootstrap {"stepMs":14}
+10-15 16:55:15.782 I/ReactNativeJS(31335): [FC-TRAIN-ENTRY] bootstrap:ok started=true за 1738мс (started=false → lifecycle не сконфигурирован)
+10-15 16:55:15.784 I/ReactNativeJS(31335): [COLD-START] fc_train_entry.bootstrap:ok proc=10616920ms src=_layout {"started":true,"totalMs":1739}
+10-15 16:55:15.792 W/ReactNativeJS(31335): [FIRST-FRAME] deferred:release label=client_shard_phone_state_backfill trigger=home_painted splash=hidden waitedMs=14
+10-15 16:55:15.794 W/ReactNativeJS(31335): [FIRST-FRAME] deferred:start label=client_shard_phone_state_backfill proc=10616930ms
+10-15 16:55:16.357 I/ReactNativeJS(31335): [INFO] [COIN-DIVERGENCE] recover:projection_absent: {"owner":"82c218cc","snapshotStars":"no_progress","storedOperations":0,"phoneCredits":0,"phoneAcks":0}
+10-15 16:55:16.357 I/ReactNativeJS(31335): [INFO] [COIN-DIVERGENCE] observe:no_progress_snapshot: {"serverBalance":0,"serverSeq":0,"operations":0,"unacknowledged":0}
+10-15 16:55:16.360 I/ReactNativeJS(31335): [INFO] [COIN-DIVERGENCE] observe:no_progress_snapshot: {"serverBalance":0,"serverSeq":0,"operations":0,"unacknowledged":0}
+10-15 16:55:16.363 I/ReactNativeJS(31335): [FS-READS] listen:open #3 users/{id}/access_projection/{id} by=unknown t=531582ms
+10-15 16:55:16.423 I/ReactNativeJS(31335): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=null)
+10-15 16:55:16.425 W/ReactNativeJS(31335): '[COIN-RECOVER] slow', '{"outcome":"ok","totalMs":639,"stages":{"account_lock_wait":0,"part_stored_ops":13,"part_phone_state":14,"phone_state_and_stored_ops":14,"phone_credit_fingerprints":0,"storage_lock_wait":11,"storage_reads":548,"prepared_fingerprints":0,"practice_journal_reads":0,"compute_projection":3,"compaction":1,"multi_set":61,"prepared_clear":1},"counts":{"phoneCredits":0,"storedOperations":0,"projectionBytes":0,"prepared":0,"projectionOperations":0,"compacted":0,"writes":2,"writeBytes":201,"skippedUnchanged":0}}'
+10-15 16:55:16.427 I/ReactNativeJS(31335): [INFO] [COIN-DIVERGENCE] publish: {"owner":"82c218cc","snapshotStars":"no_progress","snapshotSource":null,"nextStars":0,"serverBalance":0,"serverSeq":0,"operations":0,"unacknowledged":0,"unacknowledgedBySchema":{},"dropToZero":false,"caller":"at ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:182631:24) <- at next (native) <- at asyncGeneratorStep (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98795:19)"}
+10-15 16:55:16.431 I/ReactNativeJS(31335): [PHONE-STATE-DB] deferred_integrity:scheduled через 30000мс
+10-15 16:55:16.560 I/ReactNativeJS(31335): [BAN-CHECK] restore_doc noted banned=false waiters=0
+10-15 16:55:16.643 I/ReactNativeJS(31335): [INFO] [STARTUP-READS]: app_messages: network read messages=2 userMessages=0 states=0
+10-15 16:55:16.646 I/ReactNativeJS(31335): [APP-MESSAGE] fresh_install verdict fresh=true reason=recent ageMs=447599 raw=1792079269044
+10-15 16:55:16.648 I/ReactNativeJS(31335): [APP-MESSAGE] skip reason=fresh_install count=1 ids=eXsVSyM2SeaDylSYimFs ageMs=447599
+10-15 16:55:16.712 I/ReactNativeJS(31335): [GIFT-ACCESS-READ] seed skip hasUid=true hasProgress=false
+10-15 16:55:16.714 I/ReactNativeJS(31335): [INFO] [COIN-DIVERGENCE] observe:no_progress_snapshot: {"serverBalance":0,"serverSeq":0,"operations":0,"unacknowledged":0}
+10-15 16:55:16.715 I/ReactNativeJS(31335): [INFO] [COIN-DIVERGENCE] observe:no_progress_snapshot: {"serverBalance":0,"serverSeq":0,"operations":0,"unacknowledged":0}
+10-15 16:55:16.716 I/ReactNativeJS(31335): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=null)
+10-15 16:55:16.717 I/ReactNativeJS(31335): [INFO] [COIN-DIVERGENCE] publish: {"owner":"82c218cc","snapshotStars":"no_progress","snapshotSource":null,"nextStars":0,"serverBalance":0,"serverSeq":0,"operations":0,"unacknowledged":0,"unacknowledgedBySchema":{},"dropToZero":false,"caller":"at ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:183463:24) <- at next (native) <- at asyncGeneratorStep (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98795:19)"}
+10-15 16:55:16.718 I/ReactNativeJS(31335): '[OVERLAY-QUEUE]', '{"holder":"никто","asking":[],"waiting":[],"wants":{"update":false,"authRecovery":false,"releaseNotes":null,"broadcast":null,"appMessageModal":null,"personalAdminMessage":null,"notifNudge":false},"onboarding":false}'
+10-15 16:55:16.724 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:lineage_read 9мс proc=10617858ms found=true
+10-15 16:55:16.727 W/ReactNativeJS(31335): [FIRST-FRAME] deferred:done label=client_shard_phone_state_backfill taskMs=934 syncMs=2 proc=10617864ms
+10-15 16:55:16.730 W/ReactNativeJS(31335): '[RC-IDENTITY] premium_reload:wait_capped', '{"waitMs":3000,"epoch":7}'
+10-15 16:55:16.749 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:lineage_read 3мс proc=10617885ms found=true
+10-15 16:55:17.476 W/ReactNativeJS(31335): '[RC-IDENTITY] sync:slow', '{"totalMs":3770,"result":true,"steps":{"is_configured":18,"canonical_user_id":0,"get_app_user_id":512,"log_in:ok":3233,"verify_app_user_id":6,"set_attributes":1}}'
+10-15 16:55:17.477 W/ReactNativeJS(31335): '[RC-IDENTITY] premium_reload:late_sync', '{"lateReady":true,"epoch":7,"current":true}'
+10-15 16:55:17.505 W/ReactNativeJS(31335): [STATS-RECONCILE] in target=en cloudType=none cloudDays=0 localStored=none localDays=0 mergedDays=0 readMs=12
+10-15 16:55:17.523 W/ReactNativeJS(31335): [PLUS-TRANSFER] restore result {"result":"retry","reason":"restore_failed","code":"3","attempt":1,"appUserID":"h:98874b56","t":10618659}
+10-15 16:55:17.532 W/ReactNativeJS(31335): [WARNING] [PLUS-TRANSFER] restore result: [PLUS-TRANSFER] restore result {"result":"retry","reason":"restore_failed","code":"3","attempt":1,"appUserID":"h:98874b56","t":10618659}
+10-15 16:55:17.539 W/ReactNativeJS(31335): [STATS-RECONCILE] in target=fr cloudType=none cloudDays=0 localStored=none localDays=0 mergedDays=0 readMs=3
+10-15 16:55:17.585 W/ReactNativeJS(31335): '[BOOT-STATS]', '{"importMs":1,"reconcileEnMs":43,"reconcileFrMs":49,"dev":true}'
+10-15 16:55:17.599 I/ReactNativeJS(31335): [STREAK] cloud_restore local=0@null cloud=0@undefined merged=0@null restore=false phoneOwns=false serverAuth=false pending=false
+10-15 16:55:17.699 I/ReactNativeJS(31335): [STREAK] restore_guard ok branch=local_sticky — серия не менялась с чтения (null), пишем слитое 0
+10-15 16:55:17.799 I/ReactNativeJS(31335): '[BOOT-RESTORE-APPLY]', '{"totalMs":1086,"tailMs":0,"lastPoint":"at:complete_true","points":{"at:authority":0,"at:stats_import":779,"at:stats_en":1,"at:stats_fr":43,"at:streak_reads":58,"at:pending_events":3,"at:sticky_keys_loop":3,"at:fc_merge_loop":0,"at:user_name":0,"at:counters_multiget":3,"at:monotonic_loop":3,"at:login_bonus":0,"at:auras":1,"at:sticky_owned":4,"at:sticky_lessons":7,"at:target_sticky":42,"at:daily_helpers_loop":23,"at:gift_perks":0,"at:fc_locks":0,"at:fc_pages":1,"at:personal_plan":0,"at:fc_unlock":50,"at:gift_remove":0,"at:snapshot_write":3,"at:complete_true":62},"gc":{"at:authority":"0gc/0ms","at:stats_import":"5gc/50ms","at:stats_en":"0gc/0ms","at:stats_fr":"0gc/0ms","at:streak_reads":"1gc/10ms","at:pending_events":"0gc/0ms","at:sticky_keys_loop":"0gc/0ms","at:fc_merge_loop":"0gc/0ms","at:user_name":"0gc/0ms","at:counters_multiget":"0gc/0ms","at:monotonic_loop":"0gc/0ms","at:login_bonus":"0gc/0ms","at:auras":"0gc/0ms","at:sticky_owned":"0gc/0ms","at:sticky_lessons":"0gc/0ms","at:target_sticky":"0gc/0ms","at:daily_helpers_loop":"0gc/0ms","at:gift_perks":"0gc/0ms","at:fc_locks":"0gc/0ms","at:fc_pages":"0gc/0ms","at:personal_plan":"0gc/0ms","at:fc_unlock":"0gc/0ms","at:gift_remove":"0gc/0ms","at:snapshot_write":"0gc/0ms","at:complete_true":"1gc/11ms"},"tailGc":"0gc/0ms","applied":true}'
+10-15 16:55:17.800 I/ReactNativeJS(31335): [PROGRESS-RESEED] skip reason=not_authoritative flag=undefined
+10-15 16:55:17.808 I/ReactNativeJS(31335): '[MISTAKE-RESTORE]', '{"reason":"full_first_restore","targets":["en","es","fr","de","it"],"active":"en","withLocalEvents":[],"fullRestoreDone":false}'
+10-15 16:55:17.812 I/ReactNativeJS(31335): [ERROR-JOURNAL-THROTTLE] target=en источник=нет отметки → сервер
+10-15 16:55:19.001 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=mistake_practice_v2::en::owner%3A82c218cc-18c9-4415-877b-05871ec44bc0%3Aevents_v2 writesInFlight=0', ''
+10-15 16:55:19.029 I/ReactNativeJS(31335): [ERROR-JOURNAL-THROTTLE] target=es источник=нет отметки → сервер
+10-15 16:55:19.804 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=mistake_practice_v2::es::owner%3A82c218cc-18c9-4415-877b-05871ec44bc0%3Aevents_v2 writesInFlight=0', ''
+10-15 16:55:19.866 I/ReactNativeJS(31335): [ERROR-JOURNAL-THROTTLE] target=fr источник=нет отметки → сервер
+10-15 16:55:20.975 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=mistake_practice_v2::fr::owner%3A82c218cc-18c9-4415-877b-05871ec44bc0%3Aevents_v2 writesInFlight=0', ''
+10-15 16:55:20.979 W/ReactNativeJS(31335): [PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=5000 origin=joined_in_flight — решаем по локальным данным, restore доезжает фоном
+10-15 16:55:20.980 W/ReactNativeJS(31335): [PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=5000 origin=started — решаем по локальным данным, restore доезжает фоном
+10-15 16:55:20.990 W/ReactNativeJS(31335): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":6709,"result":false,"steps":{"tester_flags":1110,"tester_no_limits":25,"verified_local":51,"intro":0,"loyalty_gift_local:false":7,"loyalty_gift_cloud":208,"cloud_refresh:false":5299}}'
+10-15 16:55:20.996 W/ReactNativeJS(31335): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":7290,"result":false,"steps":{"tester_flags":20,"tester_no_limits":521,"verified_local":36,"intro":0,"loyalty_gift_local:false":1109,"loyalty_gift_cloud":291,"cloud_refresh:false":5299}}'
+10-15 16:55:20.999 I/ReactNativeJS(31335): [ENERGY-RESTORE] runLoad: unlimited=false reason=none:limited
+10-15 16:55:21.048 I/ReactNativeJS(31335): [ENERGY-RESTORE] readAndRecoverState: onDisk=EMPTY lastSettledAt=1792079721017 elapsedMs=0 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 16:55:21.074 I/ReactNativeJS(31335): [ERROR-JOURNAL-THROTTLE] target=de источник=нет отметки → сервер
+10-15 16:55:21.141 I/ReactNativeJS(31335): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792079721017 elapsedMs=81 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 16:55:22.189 W/ReactNativeJS(31335): [PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=5000 origin=joined_in_flight — решаем по локальным данным, restore доезжает фоном
+10-15 16:55:22.193 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=mistake_practice_v2::de::owner%3A82c218cc-18c9-4415-877b-05871ec44bc0%3Aevents_v2 writesInFlight=0', ''
+10-15 16:55:22.202 W/ReactNativeJS(31335): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":5458,"result":false,"steps":{"tester_flags":2,"tester_no_limits":0,"verified_local":1,"intro":0,"loyalty_gift_local:false":0,"loyalty_gift_cloud":1,"cloud_refresh:false":5442}}'
+10-15 16:55:22.221 W/ReactNativeJS(31335): '[PREMIUM-RESOLVE] reload:done', '{"epoch":7,"totalMs":8516,"steps":{"identity_sync:capped":3025,"dev_override":10,"verified_local":3,"verified_cloud:false":5459,"tester_flags":19,"intro_state":0},"access":false}'
+10-15 16:55:22.325 W/ReactNativeJS(31335): '[PREMIUM-RESOLVE] reload:done', '{"epoch":7,"totalMs":102,"steps":{"dev_override":26,"verified_local":48,"verified_cloud:false":2,"tester_flags":26,"intro_state":0},"access":false}'
+10-15 16:55:23.523 I/ReactNativeJS(31335): [ERROR-JOURNAL-THROTTLE] target=it источник=нет отметки → сервер
+10-15 16:55:24.804 W/ReactNativeJS(31335): '[SNAPSHOT-RT] miss key=mistake_practice_v2::it::owner%3A82c218cc-18c9-4415-877b-05871ec44bc0%3Aevents_v2 writesInFlight=0', ''
+10-15 16:55:24.913 I/ReactNativeJS(31335): [MISTAKE-RESTORE] метка полного восстановления записана
+10-15 16:55:24.913 I/ReactNativeJS(31335): '[BOOT-RESTORE-STEP]', '{"totalMs":9229,"syncMissingDocument":true,"lastStage":"mistake_rewards:it","stages":{"anon":0,"stable_link":678,"user_doc_read":196,"migration_flag":87,"apply":1155,"reseed":1,"mistake_restore_select":7,"mistake_events:en":1215,"mistake_rewards:en":5,"mistake_events:es":827,"mistake_rewards:es":9,"mistake_events:fr":1182,"mistake_rewards:fr":16,"mistake_events:de":1251,"mistake_rewards:de":377,"mistake_events:it":2166,"mistake_rewards:it":7},"gc":{"anon":"0gc/0ms","stable_link":"6gc/73ms","user_doc_read":"0gc/0ms","migration_flag":"1gc/9ms","apply":"7gc/71ms","reseed":"0gc/0ms","mistake_restore_select":"0gc/0ms","mistake_events:en":"5gc/59ms","mistake_rewards:en":"0gc/0ms","mistake_events:es":"6gc/76ms","mistake_rewards:es":"0gc/0ms","mistake_events:fr":"6gc/70ms","mistake_rewards:fr":"0gc/0ms","mistake_events:de":"7gc/81ms","mistake_rewards:de":"4gc/41ms","mistake_events:it":"12gc/142ms","mistake_rewards:it":"0gc/0ms"},"status":"restored","failureReason":null}'
+10-15 16:55:25.035 I/ReactNativeJS(31335): [PREMIUM-CLOUD] restore done ms=9354
+10-15 16:55:25.043 W/ReactNativeJS(31335): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":4046,"result":false,"steps":{"tester_flags":20,"tester_no_limits":1,"verified_local":39,"intro":0,"loyalty_gift_local:false":16,"loyalty_gift_cloud":1,"cloud_refresh:true":3962}}'
+10-15 16:55:26.369 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:lineage_read 32мс proc=10627504ms found=true
+10-15 16:55:26.389 I/ReactNativeJS(31335): [INFO] [STARTUP-READS]: flashcard_pending_grants: trigger=account result={"status":"maintained","removed":0,"retained":0} tookMs=46
+10-15 16:55:46.821 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:digest 0мс proc=10647957ms
+10-15 16:55:46.840 I/ReactNativeJS(31335): [PHONE-STATE-DB] key:secure_store_read 17мс proc=10647975ms found=true
+10-15 16:55:46.850 I/ReactNativeJS(31335): [PHONE-STATE-DB] deferred_integrity:connection_open 30мс
+10-15 16:55:46.855 I/ReactNativeJS(31335): [PHONE-STATE-DB] deferred_integrity:due=true reason=never_checked
+10-15 16:55:46.893 I/ReactNativeJS(31335): [PHONE-STATE-DB] deferred_integrity:clean за 10мс
+10-15 16:55:46.893 I/ReactNativeJS(31335): [PHONE-STATE-DB] deferred_integrity:main_probe 13мс (задержка запроса приложения во время проверки)
+10-15 16:55:46.898 I/ReactNativeJS(31335): [PHONE-STATE-DB] deferred_integrity:result clean

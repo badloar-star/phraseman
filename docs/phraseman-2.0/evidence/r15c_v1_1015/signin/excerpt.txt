@@ -1,0 +1,18 @@
+10-15 16:48:41.042 I/ReactNativeJS(31335): [SIGNIN] ui:tap provider=google context=settings
+10-15 16:48:41.189 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:7dbd1409","localStable":"h:63fea73f","requireOwnership":false,"t":10222325}
+10-15 16:48:54.529 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":10235651}
+10-15 16:48:54.530 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:7dbd1409","preProviderStable":"h:63fea73f","t":10235667}
+10-15 16:48:55.414 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":10236548}
+10-15 16:48:56.389 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":118,"getAllKeysMs":804,"selected":2217,"filterMs":9,"multiGetMs":151,"bytes":49516,"top5":"cloud_last_sync_snapshot_v1=45019 achievements_v1=2504 customization_selection_o","t":10237526}
+10-15 16:48:56.435 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":25,"t":10237573}
+10-15 16:48:56.509 I/ReactNativeJS(31335): [GUEST-CLEAN] summary dirty=25 default=14 service=10 progress=1 decision=not_clean
+10-15 16:48:56.510 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":25,"progress":1,"t":10237647}
+10-15 16:48:56.510 W/ReactNativeJS(31335): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":25,"progress":1,"t":10237647}
+10-15 16:48:56.633 I/ReactNativeJS(31335): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":false,"stableId":"7afbde37"}'
+10-15 16:48:57.381 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":10238519}
+10-15 16:48:57.383 W/ReactNativeJS(31335): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:63fea73f","tookMs":16196,"t":10238519}
+10-15 16:48:57.385 W/ReactNativeJS(31335): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:63fea73f","tookMs":16196,"t":10238519}
+10-15 16:48:58.383 I/ReactNativeJS(31335): [AUTH-SWITCH-OFFER] resume_credential not_stored provider=google reason=caller_not_capturing
+10-15 16:48:58.390 I/ReactNativeJS(31335): [SIGNIN] ui:returned provider=google result=error in=17349ms
+10-15 16:49:08.398 I/ReactNativeJS(31335): [AUTH-SWITCH-OFFER] tap → settings switch dialog
+10-15 16:49:09.804 I/ReactNativeJS(31335): [AUTH-SWITCH-OFFER] settings: open switch dialog from sign-in offer

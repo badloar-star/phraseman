@@ -1,0 +1,101 @@
+10-15 16:46:11.517 I/SVERKA  (31301): === ABA GC: pm clear, лог очищен 16:46:11 ===
+10-15 16:46:29.320 W/ReactNativeJS(31335): [JS-STALL] +1482ms поток стоял 1477ms (с +5ms)
+10-15 16:46:30.134 W/ReactNativeJS(31335): [JS-STALL] +2296ms поток стоял 735ms (с +1561ms)
+10-15 16:46:31.723 W/ReactNativeJS(31335): [JS-STALL] +3886ms поток стоял 1587ms (с +2299ms)
+10-15 16:46:32.197 W/ReactNativeJS(31335): [JS-STALL] +4359ms поток стоял 473ms (с +3886ms)
+10-15 16:46:32.830 W/ReactNativeJS(31335): [JS-STALL] +4992ms поток стоял 335ms (с +4657ms)
+10-15 16:46:32.846 W/ReactNativeJS(31335): [JS-STALL] heartbeat +5008ms splash=shown
+10-15 16:46:33.838 W/ReactNativeJS(31335): [JS-STALL] +6000ms поток стоял 886ms (с +5114ms)
+10-15 16:46:33.984 I/ReactNativeJS(31335): [ACC-MUT] firestore_cache_clear check ms=2 marker=0 lock=0 reason=none source=startup_multiget
+10-15 16:46:35.208 I/ReactNativeJS(31335): [ACC-SWITCH-BACKUP] owners=0 roots=0 pages=0 pruned=0 prunedShelves=0 prunedPages=0 agedShelves=0 source=cold_start ms=1625
+10-15 16:46:36.729 W/ReactNativeJS(31335): [JS-STALL] +8892ms поток стоял 2888ms (с +6004ms)
+10-15 16:46:37.218 W/ReactNativeJS(31335): [JS-STALL] +9380ms поток стоял 488ms (с +8892ms)
+10-15 16:46:37.801 W/ReactNativeJS(31335): [JS-STALL] +9963ms поток стоял 583ms (с +9380ms)
+10-15 16:46:37.856 W/ReactNativeJS(31335): [JS-STALL] heartbeat +10019ms splash=hidden@+5325ms
+10-15 16:46:38.352 W/ReactNativeJS(31335): [JS-STALL] +10514ms поток стоял 266ms (с +10248ms)
+10-15 16:46:38.752 W/ReactNativeJS(31335): [JS-STALL] +10915ms поток стоял 356ms (с +10559ms)
+10-15 16:46:39.344 W/ReactNativeJS(31335): [JS-STALL] +11506ms поток стоял 499ms (с +11007ms)
+10-15 16:46:39.855 W/ReactNativeJS(31335): [JS-STALL] +12014ms поток стоял 314ms (с +11700ms)
+10-15 16:46:40.036 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 270ms
+10-15 16:46:40.967 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 870ms
+10-15 16:46:40.968 W/ReactNativeJS(31335): [JS-STALL] +13130ms поток стоял 871ms (с +12259ms)
+10-15 16:46:43.058 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome skipped_background ms=883 gap=1741ms counted=858ms
+10-15 16:46:43.059 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 858ms
+10-15 16:46:43.059 W/ReactNativeJS(31335): [JS-STALL] skipped_background ms=902 gap=1742ms counted=840ms at=+15222ms
+10-15 16:46:43.060 W/ReactNativeJS(31335): [JS-STALL] +15222ms поток стоял 840ms (с +14382ms)
+10-15 16:46:43.060 W/ReactNativeJS(31335): [JS-STALL] heartbeat +15222ms splash=hidden@+5325ms
+10-15 16:46:43.061 I/ReactNativeJS(31335): [WARM-FETCH] fn=authMergeStableAccounts outcome=warm_ok code=200 ms=3261 source=onboarding
+10-15 16:46:43.061 I/ReactNativeJS(31335): [WARM-FETCH] fn=authEnsureStableLink outcome=warm_ok code=200 ms=3282 source=onboarding
+10-15 16:46:43.062 I/ReactNativeJS(31335): [WARM-FETCH] fn=authStampAnonOwnership outcome=warm_ok code=200 ms=3263 source=onboarding
+10-15 16:46:43.904 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 444ms
+10-15 16:46:43.933 W/ReactNativeJS(31335): [JS-STALL] +16094ms поток стоял 471ms (с +15623ms)
+10-15 16:46:47.648 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 2996ms
+10-15 16:46:47.649 W/ReactNativeJS(31335): [JS-STALL] +19811ms поток стоял 2997ms (с +16814ms)
+10-15 16:46:48.051 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 329ms
+10-15 16:46:48.058 W/ReactNativeJS(31335): [JS-STALL] +20220ms поток стоял 336ms (с +19884ms)
+10-15 16:46:48.068 W/ReactNativeJS(31335): [JS-STALL] heartbeat +20230ms splash=hidden@+5325ms
+10-15 16:46:50.600 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 2437ms
+10-15 16:46:50.601 W/ReactNativeJS(31335): [JS-STALL] +22764ms поток стоял 2438ms (с +20326ms)
+10-15 16:46:52.152 W/ReactNativeJS(31335): [JS-STALL] +24314ms поток стоял 1469ms (с +22845ms)
+10-15 16:46:52.157 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 1467ms
+10-15 16:46:52.273 I/SVERKA  (31756): === ABA ONB: Начать 16:46:52 ===
+10-15 16:46:53.945 W/ReactNativeJS(31335): [JS-STALL] +26107ms поток стоял 1761ms (с +24346ms)
+10-15 16:46:53.954 W/ReactNativeJS(31335): [JS-STALL] heartbeat +26107ms splash=hidden@+5325ms
+10-15 16:46:53.956 W/ReactNativeJS(31335): [JS-STALL] onboarding step=welcome поток стоял 1772ms
+10-15 16:46:54.932 W/ReactNativeJS(31335): [JS-STALL] +27094ms поток стоял 833ms (с +26261ms)
+10-15 16:46:54.936 W/ReactNativeJS(31335): [JS-STALL] onboarding step=privacy поток стоял 834ms
+10-15 16:46:57.046 I/SVERKA  (31780): === ABA ONB: Позже 16:46:57 ===
+10-15 16:46:58.956 W/ReactNativeJS(31335): [JS-STALL] +31118ms поток стоял 3932ms (с +27186ms)
+10-15 16:46:58.957 W/ReactNativeJS(31335): [JS-STALL] heartbeat +31118ms splash=hidden@+5325ms
+10-15 16:46:58.961 W/ReactNativeJS(31335): [JS-STALL] onboarding step=privacy поток стоял 3937ms
+10-15 16:47:00.183 W/ReactNativeJS(31335): [JS-STALL] +32343ms поток стоял 1146ms (с +31197ms)
+10-15 16:47:00.204 W/ReactNativeJS(31335): [JS-STALL] onboarding step=niceToMeet поток стоял 1163ms
+10-15 16:47:01.474 W/ReactNativeJS(31335): [JS-STALL] onboarding step=niceToMeet поток стоял 1054ms
+10-15 16:47:01.489 W/ReactNativeJS(31335): [JS-STALL] +33639ms поток стоял 1058ms (с +32581ms)
+10-15 16:47:01.603 I/SVERKA  (31798): === ABA ONB: Продолжить 1/3 16:47:01 ===
+10-15 16:47:02.452 W/ReactNativeJS(31335): [JS-STALL] onboarding step=niceToMeet поток стоял 726ms
+10-15 16:47:02.454 W/ReactNativeJS(31335): [JS-STALL] +34615ms поток стоял 730ms (с +33885ms)
+10-15 16:47:02.748 W/ReactNativeJS(31335): [JS-STALL] onboarding step=niceToMeet поток стоял 252ms
+10-15 16:47:02.748 W/ReactNativeJS(31335): [JS-STALL] +34911ms поток стоял 255ms (с +34656ms)
+10-15 16:47:06.311 I/SVERKA  (31824): === ABA ONB: Продолжить 2/3 16:47:06 ===
+10-15 16:47:08.445 W/ReactNativeJS(31335): [JS-STALL] onboarding step=niceToMeet skipped_background ms=3909 gap=5160ms counted=1251ms
+10-15 16:47:08.446 W/ReactNativeJS(31335): [JS-STALL] onboarding step=niceToMeet поток стоял 1251ms
+10-15 16:47:08.449 W/ReactNativeJS(31335): [JS-STALL] skipped_background ms=3917 gap=5163ms counted=1246ms at=+40610ms
+10-15 16:47:08.451 W/ReactNativeJS(31335): [JS-STALL] +40610ms поток стоял 1246ms (с +39364ms)
+10-15 16:47:08.454 W/ReactNativeJS(31335): [JS-STALL] heartbeat +40610ms splash=hidden@+5325ms
+10-15 16:47:09.022 W/ReactNativeJS(31335): [JS-STALL] onboarding step=niceToMeet поток стоял 307ms
+10-15 16:47:09.025 W/ReactNativeJS(31335): [JS-STALL] +41186ms поток стоял 309ms (с +40877ms)
+10-15 16:47:09.918 W/ReactNativeJS(31335): [JS-STALL] onboarding step=niceToMeet поток стоял 283ms
+10-15 16:47:09.921 W/ReactNativeJS(31335): [JS-STALL] +42084ms поток стоял 287ms (с +41797ms)
+10-15 16:47:10.913 I/SVERKA  (31838): === ABA ONB: Продолжить 3/3 16:47:11 ===
+10-15 16:47:11.208 W/ReactNativeJS(31335): [JS-STALL] onboarding step=promise поток стоял 260ms
+10-15 16:47:11.209 W/ReactNativeJS(31335): [JS-STALL] +43371ms поток стоял 264ms (с +43107ms)
+10-15 16:47:13.071 W/ReactNativeJS(31335): [JS-STALL] onboarding step=promise поток стоял 954ms
+10-15 16:47:13.076 W/ReactNativeJS(31335): [JS-STALL] +45235ms поток стоял 958ms (с +44277ms)
+10-15 16:47:13.512 W/ReactNativeJS(31335): [JS-STALL] heartbeat +45675ms splash=hidden@+5325ms
+10-15 16:47:14.646 W/ReactNativeJS(31335): [JS-STALL] onboarding step=promise поток стоял 538ms
+10-15 16:47:14.647 W/ReactNativeJS(31335): [JS-STALL] +46809ms поток стоял 538ms (с +46271ms)
+10-15 16:47:15.632 I/SVERKA  (31856): === ABA ONB: анкета Друзья 16:47:15 ===
+10-15 16:47:16.924 I/SVERKA  (31864): === ABA ONB: Продолжить 16:47:17 ===
+10-15 16:47:17.690 W/ReactNativeJS(31335): [JS-STALL] +49853ms поток стоял 271ms (с +49582ms)
+10-15 16:47:17.691 W/ReactNativeJS(31335): [JS-STALL] onboarding step=improve поток стоял 272ms
+10-15 16:47:18.619 W/ReactNativeJS(31335): [JS-STALL] heartbeat +50782ms splash=hidden@+5325ms
+10-15 16:47:21.446 I/SVERKA  (31886): === ABA ONB: Выбрать язык 16:47:21 ===
+10-15 16:47:23.716 W/ReactNativeJS(31335): [JS-STALL] heartbeat +55879ms splash=hidden@+5325ms
+10-15 16:47:26.137 I/SVERKA  (31905): === ABA ONB: уровень 16:47:26 ===
+10-15 16:47:27.371 I/SVERKA  (31914): === ABA ONB: Продолжить 16:47:27 ===
+10-15 16:47:27.895 W/ReactNativeJS(31335): [JS-STALL] watchdog stop +60057ms
+10-15 16:47:28.428 I/ReactNativeJS(31335): [ENSURE-LINK] authoritative_memo hit ageMs=47244 generation=1
+10-15 16:47:30.493 I/ReactNativeJS(31335): [ENSURE-LINK] authoritative_memo hit ageMs=49309 generation=1
+10-15 16:47:31.651 I/SVERKA  (31941): === ABA ONB: Не сейчас 16:47:31 ===
+10-15 16:47:32.258 W/ReactNativeJS(31335): [JS-STALL] onboarding step=name поток стоял 251ms
+10-15 16:47:36.224 I/SVERKA  (31956): === ABA ONB: Да 16:47:36 ===
+10-15 16:47:36.604 W/ReactNativeJS(31335): [JS-STALL] onboarding step=name поток стоял 390ms
+10-15 16:47:37.530 I/SVERKA  (31969): === ABA ONB: Продолжить 16:47:37 ===
+10-15 16:47:38.162 W/ReactNativeJS(31335): [JS-STALL] onboarding step=trialReminder поток стоял 416ms
+10-15 16:47:38.706 W/ReactNativeJS(31335): [JS-STALL] onboarding step=trialReminder поток стоял 305ms
+10-15 16:47:39.262 W/ReactNativeJS(31335): [JS-STALL] onboarding step=trialReminder поток стоял 419ms
+10-15 16:47:44.256 W/ReactNativeJS(31335): [JS-STALL] onboarding step=onboardingPaywall поток стоял 302ms
+10-15 16:47:50.170 W/ReactNativeJS(31335): [JS-STALL] onboarding step=onboardingPaywall поток стоял 1194ms
+10-15 16:47:52.830 I/ReactNativeJS(31335): [ACC-SWITCH-BACKUP] skip reason=already_ran source=cold_start
+10-15 16:47:56.199 I/SVERKA  (32041): === ABA S2-BEGIN 16:47:56 ===

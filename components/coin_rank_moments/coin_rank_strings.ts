@@ -13,7 +13,7 @@ const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 
 const S = {
   title: ['Хватает на ранг {n}', 'Вистачає на ранг {n}', 'You can afford rank {n}', 'Te alcanza para el rango {n}', 'Dá para o rank {n}', 'Đủ để lên hạng {n}', 'Cukup untuk peringkat {n}', '{n}. rütbe için yetiyor', 'Stać cię na rangę {n}'],
   body: ['{coins} {word} — ранг {n} стоит {price}.', '{coins} {word} — ранг {n} коштує {price}.', '{coins} {word} — rank {n} costs {price}.', '{coins} {word} — el rango {n} cuesta {price}.', '{coins} {word} — o rank {n} custa {price}.', '{coins} {word} — hạng {n} giá {price}.', '{coins} {word} — peringkat {n} seharga {price}.', '{coins} {word} — {n}. rütbe {price} tutuyor.', '{coins} {word} — ranga {n} kosztuje {price}.'],
-  upgrade: ['Повысить за {price}', 'Підвищити за {price}', 'Upgrade for {price}', 'Subir por {price}', 'Subir por {price}', 'Nâng cấp với {price}', 'Naikkan seharga {price}', '{price} karşılığında yükselt', 'Awansuj za {price}'],
+  upgrade: ['Повысить за {price}', 'Підвищити за {price}', 'Upgrade for {price}', 'Subir por {price}', 'Subir por {price}', 'Nâng cấp với {price}', 'Naikkan seharga {price}', '{price} ile yükselt', 'Awansuj za {price}'],
   later: ['Позже', 'Пізніше', 'Later', 'Más tarde', 'Depois', 'Để sau', 'Nanti', 'Sonra', 'Później'],
 } as const satisfies Readonly<Record<string, Nine>>;
 

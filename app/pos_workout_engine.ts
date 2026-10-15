@@ -434,13 +434,13 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
       ru: 'Найди, что слово уточняет: действие, место, время или частоту.',
       uk: 'Знайди, що слово уточнює: дію, місце, час або частоту.',
       en: 'Find what the word describes: the action, place, time, or frequency.',
-      es: 'Mira qué precisa: acción, lugar, tiempo o frecuencia.', 'pt-BR': "Veja o que a palavra especifica: ação, lugar, tempo ou frequência.", vi: "Xem từ đang уточня điều gì: hành động, nơi chốn, thời gian hay tần suất.", id: "Lihat apa yang diperjelas kata itu: tindakan, tempat, waktu, atau frekuensi.", tr: "Kelimenin neyi belirttiğini bul: eylem, yer, zaman ya da sıklık.", pl: "Zobacz, co słowo doprecyzowuje: czynność, miejsce, czas albo częstotliwość.",
+      es: 'Mira qué precisa: acción, lugar, tiempo o frecuencia.', 'pt-BR': "Veja o que a palavra especifica: ação, lugar, tempo ou frequência.", vi: "Xem từ đang bổ nghĩa cho điều gì: hành động, nơi chốn, thời gian hay tần suất.", id: "Lihat apa yang diperjelas kata itu: tindakan, tempat, waktu, atau frekuensi.", tr: "Kelimenin neyi belirttiğini bul: eylem, yer, zaman ya da sıklık.", pl: "Zobacz, co słowo doprecyzowuje: czynność, miejsce, czas albo częstotliwość.",
     },
     mistakeWhy: {
       ru: 'Ошибка похожа на пропуск уточнения: как, где, когда или насколько часто.',
       uk: 'Помилка схожа на пропуск уточнення: як, де, коли або як часто.',
       en: 'The mistake looks like a missing detail: how, where, when, or how often.',
-      es: 'Parece faltar una precisión: cómo, dónde, cuándo o frecuencia.', 'pt-BR': "Parece faltar uma precisão: como, onde, quando ou com que frequência.", vi: "Có vẻ thiếu phần уточня: như thế nào, ở đâu, khi nào hoặc thường xuyên thế nào.", id: "Sepertinya ada penjelas yang hilang: bagaimana, di mana, kapan, atau seberapa sering.", tr: "Bir belirleme eksik gibi: nasıl, nerede, ne zaman ya da ne sıklıkta.", pl: "Wygląda na brak doprecyzowania: jak, gdzie, kiedy albo jak często.",
+      es: 'Parece faltar una precisión: cómo, dónde, cuándo o frecuencia.', 'pt-BR': "Parece faltar uma precisão: como, onde, quando ou com que frequência.", vi: "Có vẻ thiếu phần bổ nghĩa: như thế nào, ở đâu, khi nào hoặc thường xuyên thế nào.", id: "Sepertinya ada penjelas yang hilang: bagaimana, di mana, kapan, atau seberapa sering.", tr: "Bir belirleme eksik gibi: nasıl, nerede, ne zaman ya da ne sıklıkta.", pl: "Wygląda na brak doprecyzowania: jak, gdzie, kiedy albo jak często.",
     },
     nextStep: {
       ru: 'Следующий пул закрепит позицию наречий в коротких фразах.',

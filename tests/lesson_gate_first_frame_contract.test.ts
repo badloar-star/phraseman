@@ -20,9 +20,11 @@ describe('меню урока: скелет вместо пустого фона
   it('решение гейта не менялось: fail-closed старт и ревалидация, ошибка проверки = закрыто', () => {
     expect(menu).toMatch(/const \[isLessonLocked, setIsLessonLocked\] = useState\(true\);/);
     expect(menu).toMatch(/const \[lockStateLoaded, setLockStateLoaded\] = useState\(false\);/);
-    expect(menu).toMatch(/const lessonLaunchBlocked = !lockStateLoaded \|\| isLessonLocked;/);
-    expect(menu).toMatch(/setLockStateLoaded\(false\);\n\s*lockCheckStartedAtRef\.current = Date\.now\(\);\n[\s\S]*?setIsLessonLocked\(true\);/);
-    expect(menu).toMatch(/by: 'error_fail_closed'[\s\S]*?setIsLessonLocked\(true\);/);
+    // 15.10 (7d564d137): запуск закрыт ещё и пока идёт тихая перепроверка (lockRevalidating) — строже прежнего, fail-closed сохранён
+    expect(menu).toMatch(/const lessonLaunchBlocked = !lockStateLoaded \|\| isLessonLocked \|\| lockRevalidating;/);
+    // 15.10: новый урок/аккаунт — прежний fail-closed старт (скелет + закрыто до подтверждения); подтверждённый в заходе урок перепроверяется тихо, запуск закрыт (lockRevalidating); сеттеры результата — по поколению проверки
+    expect(menu).toMatch(/lockCheckStartedAtRef\.current = Date\.now\(\);[\s\S]*?setLockStateLoaded\(false\);[\s\S]*?setIsLessonLocked\(true\);/);
+    expect(menu).toMatch(/by: 'error_fail_closed'[\s\S]*?gatedSetLocked\(true\);/);
   });
 
   it('скелет ничего не включает: без нажатий, скрыт от скринридера, строки того же размера, что у LessonMenuRow, без обводок', () => {
@@ -50,8 +52,9 @@ describe('шлюз входа в урок: скелет урока вместо 
   it('решение шлюза не тронуто: содержимое монтируется только при available, закрыто/ошибка — на экран отказа', () => {
     expect(boundary).toMatch(/if \(gate === 'available'\) \{\n\s*setAuthorizedRouteKey\(routeKey\);\n\s*return;\n\s*\}/);
     expect(boundary).toContain('openLessonPremiumPaywall(router, lessonId);');
-    expect(boundary).toMatch(/openLessonAccessGate\(router, lessonId\);\n\s*\}\)\n\s*\.catch\(/);
-    expect(boundary).toMatch(/if \(!cancelled\) openLessonAccessGate\(router, lessonId\);/);
+    // 15.10 (f81d8c79d): охранник передаёт меню своё решение (gate) для сверки замков в журнале — решение то же: не available → меню замка
+    expect(boundary).toMatch(/openLessonAccessGate\(router, lessonId, String\(gate\)\);\n\s*\}\)\n\s*\.catch\(/);
+    expect(boundary).toMatch(/if \(!cancelled\) openLessonAccessGate\(router, lessonId, 'resolver_error'\);/);
     expect(boundary).toContain('return <Screen {...props} />;');
     // экран монтируется строго после проверки authorized
     expect(boundary.indexOf('if (!authorized)')).toBeLessThan(boundary.indexOf('return <Screen {...props} />;'));

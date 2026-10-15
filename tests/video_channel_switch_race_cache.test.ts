@@ -165,7 +165,9 @@ describe('R2: снимки каналов в памяти', () => {
   it('экран: смена канала без снимка — скелетон и шапка по манифесту; RSS-лента чужого канала не подставляется', () => {
     const screen = fs.readFileSync(path.join(ROOT, 'app/lingman_videos.tsx'), 'utf8');
     expect(screen).toContain('const snapshot = !pendingChannel && loadedKey === currentRenderKey ? cachedSnapshot : null;');
-    expect(screen).toContain(': pendingChannel ?? legacyChannelSnapshot();');
+    // 15.10 (Макеты c1_video3): шапка ожидаемого канала остаётся (канал нового языка по манифесту), но без промежуточного имени-метки; гонка не тронута — лента чужого канала по-прежнему не показывается
+    expect(screen).toContain("? { ...pendingChannel, displayName: '' }");
+    expect(screen).toContain(': legacyChannelSnapshot();');
     expect(screen).toContain('rememberYoutubeChannelMemorySnapshot(tokenScope, next);');
     expect(screen).toContain('if (switchingToUncachedChannel) {');
     expect(screen).toContain('testID="youtube-catalog-loading"');

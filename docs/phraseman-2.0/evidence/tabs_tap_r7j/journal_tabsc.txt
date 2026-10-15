@@ -1,0 +1,30 @@
+10-15 10:38:40.342 W/ReactNativeJS(29902): [JS-STALL] +1002ms поток стоял 1001ms (с +1ms)
+10-15 10:38:40.897 W/ReactNativeJS(29902): [JS-STALL] +1557ms поток стоял 503ms (с +1054ms)
+10-15 10:38:41.411 W/ReactNativeJS(29902): [JS-STALL] +2070ms поток стоял 512ms (с +1558ms)
+10-15 10:38:41.418 I/ReactNativeJS(29902): [TAP-LAT] → dev_state · без касания (редирект/таймер) · коммит→кадр 59.4мс
+10-15 10:38:41.418 I/ReactNativeJS(29902): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (59мс) · рендеры: stack 1×(36мс, всего 36мс)
+10-15 10:38:42.199 W/ReactNativeJS(29902): [JS-STALL] +2858ms поток стоял 541ms (с +2317ms)
+10-15 10:38:42.540 W/ReactNativeJS(29902): [JS-STALL] +3197ms поток стоял 339ms (с +2858ms)
+10-15 10:38:44.441 W/ReactNativeJS(29902): [JS-STALL] heartbeat +5100ms splash=hidden@+3496ms
+10-15 10:38:44.751 I/ReactNativeJS(29902): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-15 10:38:44.752 W/ReactNativeJS(29902): [PAYWALL] цены прогреты: нет кэша importMs=0 hydrateMs=14
+10-15 10:38:49.456 W/ReactNativeJS(29902): [JS-STALL] heartbeat +10115ms splash=hidden@+3496ms
+10-15 10:38:54.561 W/ReactNativeJS(29902): [JS-STALL] heartbeat +15221ms splash=hidden@+3496ms
+10-15 10:38:59.632 W/ReactNativeJS(29902): [JS-STALL] heartbeat +20291ms splash=hidden@+3496ms
+10-15 10:39:04.321 W/ReactNativeJS(29902): [JS-STALL] +24980ms поток стоял 1531ms (с +23449ms)
+10-15 10:39:04.687 W/ReactNativeJS(29902): [JS-STALL] heartbeat +25346ms splash=hidden@+3496ms
+10-15 10:39:08.719 W/ReactNativeJS(29902): [JS-STALL] +29378ms поток стоял 731ms (с +28647ms)
+10-15 10:39:09.690 W/ReactNativeJS(29902): [JS-STALL] heartbeat +30350ms splash=hidden@+3496ms
+10-15 10:39:14.707 W/ReactNativeJS(29902): [JS-STALL] heartbeat +35366ms splash=hidden@+3496ms
+10-15 10:39:19.760 W/ReactNativeJS(29902): [JS-STALL] heartbeat +40419ms splash=hidden@+3496ms
+10-15 10:39:24.810 W/ReactNativeJS(29902): [JS-STALL] heartbeat +45469ms splash=hidden@+3496ms
+10-15 10:39:29.860 W/ReactNativeJS(29902): [JS-STALL] heartbeat +50520ms splash=hidden@+3496ms
+10-15 10:39:34.873 W/ReactNativeJS(29902): [JS-STALL] heartbeat +55532ms splash=hidden@+3496ms
+10-15 10:39:39.351 W/ReactNativeJS(29902): [JS-STALL] watchdog stop +60009ms
+10-15 10:39:41.732 I/SVERKA  (30500): === TABSJ ready-wait done 10:40:21 i=24 ===
+10-15 10:39:59.703 I/SVERKA  (30534): === TABSJ switch 1 lessons 10:40:39 ===
+10-15 10:40:04.208 I/SVERKA  (30550): === TABSJ switch 1 settings 10:40:44 ===
+10-15 10:40:08.713 I/SVERKA  (30562): === TABSJ switch 1 home 10:40:48 ===
+10-15 10:40:13.323 I/SVERKA  (30574): === TABSJ switch 2 lessons 10:40:53 ===
+10-15 10:40:17.952 I/SVERKA  (30586): === TABSJ switch 2 settings 10:40:57 ===
+10-15 10:40:22.582 I/SVERKA  (30598): === TABSJ switch 2 home 10:41:02 ===

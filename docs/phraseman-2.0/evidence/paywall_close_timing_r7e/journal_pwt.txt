@@ -1,15 +1,22 @@
-10-15 10:11:12.757 I/SVERKA  (20628): === PWT start 10:11:52 ===
-10-15 10:11:15.086 W/ReactNativeJS(20366): [JS-STALL] heartbeat +44648ms splash=hidden@+8166ms
-10-15 10:11:18.239 I/SVERKA  (20641): === PWT 1 open-tap 10:11:58 ===
-10-15 10:11:20.193 W/ReactNativeJS(20366): [JS-STALL] heartbeat +49752ms splash=hidden@+8166ms
-10-15 10:11:25.232 W/ReactNativeJS(20366): [JS-STALL] heartbeat +54793ms splash=hidden@+8166ms
-10-15 10:11:27.613 I/SVERKA  (20677): === PWT 1 close-tap 10:12:07 ===
-10-15 10:11:30.235 W/ReactNativeJS(20366): [JS-STALL] heartbeat +59797ms splash=hidden@+8166ms
-10-15 10:11:30.472 W/ReactNativeJS(20366): [JS-STALL] watchdog stop +60034ms
-10-15 10:11:35.019 I/SVERKA  (20719): === PWT 1 tab-tap 10:12:14 ===
-10-15 10:11:44.887 I/SVERKA  (20741): === PWT 2 open-tap 10:12:24 ===
-10-15 10:11:53.030 I/SVERKA  (20779): === PWT 2 close-tap 10:12:32 ===
-10-15 10:12:00.409 I/SVERKA  (20813): === PWT 2 tab-tap 10:12:40 ===
-10-15 10:12:10.261 I/SVERKA  (20835): === PWT 3 open-tap 10:12:50 ===
-10-15 10:12:18.762 I/SVERKA  (20862): === PWT 3 close-tap 10:12:58 ===
-10-15 10:12:25.613 I/SVERKA  (20898): === PWT 3 tab-tap 10:13:05 ===
+10-15 10:41:06.548 I/SVERKA  (30877): === PWT start 10:41:46 ===
+10-15 10:41:10.653 I/ReactNativeJS(30646): [TAP-LAT] [TABS-RENDER] #11 inst=1 seq=25 t=70653 changed=visited:4→5 mounted:4→5
+10-15 10:41:10.989 I/ReactNativeJS(30646): [TAP-LAT] [TABS-COMMIT] inst=1 seq=26 t=70988 render#11 active=0 visual=0 page=0 pathname=/dev_state
+10-15 10:41:11.000 W/ReactNativeJS(30646): [JS-STALL] +25672ms поток стоял 347ms (с +25325ms)
+10-15 10:41:11.037 I/ReactNativeJS(30646): [SETTINGS-ACCOUNT-CARD] t=71035 focus active=false dirty=true authReady=false shown=none focusTick=1
+10-15 10:41:11.111 W/ReactNativeJS(30646): [JS-STALL] heartbeat +25784ms splash=hidden@+5455ms
+10-15 10:41:12.000 I/SVERKA  (30893): === PWT 1 open-tap 10:41:51 ===
+10-15 10:41:16.150 W/ReactNativeJS(30646): [JS-STALL] heartbeat +30823ms splash=hidden@+5455ms
+10-15 10:41:20.202 I/SVERKA  (30924): === PWT 1 close-tap 10:42:00 ===
+10-15 10:41:21.193 W/ReactNativeJS(30646): [JS-STALL] heartbeat +35865ms splash=hidden@+5455ms
+10-15 10:41:26.233 W/ReactNativeJS(30646): [JS-STALL] heartbeat +40906ms splash=hidden@+5455ms
+10-15 10:41:27.210 I/SVERKA  (30958): === PWT 1 tab-tap 10:42:07 ===
+10-15 10:41:31.262 W/ReactNativeJS(30646): [JS-STALL] heartbeat +45935ms splash=hidden@+5455ms
+10-15 10:41:36.288 W/ReactNativeJS(30646): [JS-STALL] heartbeat +50961ms splash=hidden@+5455ms
+10-15 10:41:36.721 I/SVERKA  (30984): === PWT 2 open-tap 10:42:16 ===
+10-15 10:41:41.323 W/ReactNativeJS(30646): [JS-STALL] heartbeat +55996ms splash=hidden@+5455ms
+10-15 10:41:44.607 I/SVERKA  (31018): === PWT 2 close-tap 10:42:24 ===
+10-15 10:41:45.418 W/ReactNativeJS(30646): [JS-STALL] watchdog stop +60090ms
+10-15 10:41:51.572 I/SVERKA  (31053): === PWT 2 tab-tap 10:42:31 ===
+10-15 10:42:01.212 I/SVERKA  (31079): === PWT 3 open-tap 10:42:41 ===
+10-15 10:42:08.924 I/SVERKA  (31106): === PWT 3 close-tap 10:42:48 ===
+10-15 10:42:15.532 I/SVERKA  (31143): === PWT 3 tab-tap 10:42:55 ===

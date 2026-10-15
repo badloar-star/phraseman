@@ -49,8 +49,10 @@ const LEGAL_FILES = [
   // остаётся на телефоне, уходит только текст (Android — системный распознаватель), §19/§20 запись о выполненном удалении + заявка 14 дней.
   // 13.10 (координатор по решению владельца об умном напоминании): §12 — время занятий хранится и обрабатывается только на телефоне.
   // 14.10 (D189, владелец «ДА, СРАЗУ»): гость удаляется с сервера сразу — сроки хранения и §20 (14 дней только для входа через Google/Apple); дата 14 октября.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'fb2fba150d46f9351781db568e01bfa33275ce546f2bfcf2f2613b4c296c6d09'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '20731282a029c760472b0288fb8b004b962e51bf77229a08c9a4f6bc8e52c60d'],
+  // 15.10 (координатор, к выкладке 17.10): §13 — запись голоса остаётся на телефоне во ВСЕХ голосовых упражнениях, iOS — распознаватель Apple,
+  // Android — локальная модель Whisper (файл скачивается с Hugging Face); §16 — Hugging Face в списке сервисов. Пин догнан и под 3af755000 (D189, текст сменили, пин нет).
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'f9bbaa7413eff81757838bab91176a4490ad2769f602f41fe5314a35d60674fd'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'cf6592ceb58310a87516400d8ebb699154f3be3e00d74bf04e8edf99cc6a4e45'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],

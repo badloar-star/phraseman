@@ -1,0 +1,20 @@
+10-15 20:02:49.188 I/ReactNativeJS(29984): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:03:15.137 I/ReactNativeJS(30235): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:03:50.694 I/ReactNativeJS(30564): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:04:10.084 I/ReactNativeJS(30757): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:04:30.477 I/ReactNativeJS(30936): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:05:27.921 I/ReactNativeJS(31479): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:05:52.604 I/ReactNativeJS(31738): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:06:32.249 I/ReactNativeJS(32092): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:06:50.035 I/ReactNativeJS(32242): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:07:10.105 I/ReactNativeJS(32408): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:08:08.187 I/ReactNativeJS(  793): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:08:31.572 I/ReactNativeJS( 1606): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:09:09.976 I/ReactNativeJS( 2169): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:09:29.009 I/ReactNativeJS( 2332): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:09:48.778 I/ReactNativeJS( 2535): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:10:45.816 I/ReactNativeJS( 3186): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:11:10.928 I/ReactNativeJS( 3444): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:11:49.652 I/ReactNativeJS( 3878): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:12:07.840 I/ReactNativeJS( 4048): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false
+10-15 20:12:26.611 I/ReactNativeJS( 4235): [STATUSBAR-CANVAS] theme=ink mode=canvas-copy safeTop=50 featherExtra=36 windowH=914 armed=false

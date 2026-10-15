@@ -149,3 +149,12 @@ describe('аудит кнопок: Видео 🟡 (15.10)', () => {
     expect(src).toContain('hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}');
   });
 });
+
+describe('«ничего под таббаром»: Видео, состояния «нет роликов» и «сейчас недоступно» (координатор 15.10)', () => {
+  it('оба состояния берут нижний отступ вкладки из общего источника (useTabContentBottomPad), а не оставляют низ без запаса', () => {
+    const src = read('app/lingman_videos.tsx');
+    const matches = src.match(/contentContainerStyle=\{\[styles\.unavailable, inTab \? \{ paddingBottom: tabContentBottomPad \} : null\]\}/g) ?? [];
+    expect(matches.length).toBe(2);
+    expect(src).not.toContain('contentContainerStyle={styles.unavailable}');
+  });
+});

@@ -741,7 +741,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       testID="youtube-catalog-no-videos"
       decelerationRate="fast"
       refreshControl={<HybridRefreshControl refreshing={false} onRefresh={() => void loadCatalog(undefined, true)} />}
-      contentContainerStyle={styles.unavailable}
+      contentContainerStyle={[styles.unavailable, inTab ? { paddingBottom: tabContentBottomPad } : null]} // зачем (проверка «ничего под таббаром», координатор 15.10): нижний отступ вкладки из общего источника — «нет роликов»/«сейчас недоступно» при крупном шрифте не уходят под капсулу
     >
       <View style={[styles.unavailableTile, { backgroundColor: g.opaqueControl }]}><Ionicons name="videocam-off-outline" size={24} color={g.text} /></View>
       <Text accessibilityRole="header" style={[styles.unavailableTitle, { color: g.secondary }]}>{copy.noVideos}</Text>
@@ -827,7 +827,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             testID="youtube-catalog-unavailable"
             decelerationRate="fast"
             refreshControl={<HybridRefreshControl refreshing={false} onRefresh={() => retryCatalogAfterUnavailable('tap')} />}
-            contentContainerStyle={styles.unavailable}
+            contentContainerStyle={[styles.unavailable, inTab ? { paddingBottom: tabContentBottomPad } : null]} // зачем (проверка «ничего под таббаром», координатор 15.10): нижний отступ вкладки из общего источника — «нет роликов»/«сейчас недоступно» при крупном шрифте не уходят под капсулу
           >
             <View style={[styles.unavailableTile, { backgroundColor: g.opaqueControl }]}><Ionicons name="cloud-offline-outline" size={24} color={g.text} /></View>
             <Text accessibilityRole="header" accessibilityLabel={copy.unavailable} style={[styles.unavailableTitle, { color: g.secondary }]}>{copy.catalogFailed}</Text>

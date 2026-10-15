@@ -230,6 +230,8 @@ describe('рубежи серии — флаг, подключение, исхо
     'components/stories/StorySlides.tsx', 'modules/story_events/story_event_sources.ts',
     // зачем (координатор 15.10, m10 «семь ударов» за moments_v3): цепочка итога урока берёт цвет огня/отметки (use_streak_colors) и слово «день» (streakDayWord) — грузится только require'ом при включённом флаге
     'components/completion/V2DoneChain.tsx', 'components/completion/done_chain_strings.ts',
+    // зачем (координатор 15.10, m04 A за moments_v3): карточка «Итог недели» читает только лёгкий флаг (use_moments_v3_flag) — экран Пика правит другая сессия, проп не протянуть
+    'components/spire/SpireWeekResultCard.tsx',
   ];
   it('components/streak/moments импортируют только перечисленные места; новый импортёр — осознанное решение Ядра', () => {
     const offenders: string[] = [];

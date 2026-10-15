@@ -1,0 +1,21 @@
+10-15 17:02:38.890 I/ReactNativeJS( 4476): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=ink&lv2progress=4&next=/(tabs)/home","initial":true,"out":"/dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&theme=ink&lv2pro
+10-15 17:02:39.455 W/ReactNativeJS( 4476): '[DEV-STATE] route: старт', '{"request":{"theme":"ink","onboarding":"done","intros":"seen","overlays":"off","uiLang":"ru","lv2progress":4,"next":"/(tabs)/home"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-15 17:02:39.474 I/ReactNativeJS( 4476): [DEV-STATE] step theme=ink/-: старт
+10-15 17:02:39.896 I/ReactNativeJS( 4476): [DEV-STATE] step theme=ink/-: ок за 422 мс
+10-15 17:02:39.901 I/ReactNativeJS( 4476): [DEV-STATE] step onboarding=done: старт
+10-15 17:02:40.296 I/ReactNativeJS( 4476): [DEV-STATE] step onboarding=done: ок за 395 мс
+10-15 17:02:40.297 I/ReactNativeJS( 4476): [DEV-STATE] step overlays=off: старт
+10-15 17:02:40.388 I/ReactNativeJS( 4476): [DEV-STATE] step overlays=off: ок за 92 мс
+10-15 17:02:40.391 I/ReactNativeJS( 4476): [DEV-STATE] step uiLang=ru: старт
+10-15 17:02:40.401 I/ReactNativeJS( 4476): [DEV-STATE] step uiLang=ru: ок за 8 мс
+10-15 17:02:40.402 I/ReactNativeJS( 4476): [DEV-STATE] step lv2progress=4: старт
+10-15 17:02:40.410 I/ReactNativeJS( 4476): [DEV-STATE] lv2progress=4
+10-15 17:02:40.412 I/ReactNativeJS( 4476): [DEV-STATE] step lv2progress=4: ок за 10 мс
+10-15 17:02:40.413 I/ReactNativeJS( 4476): [DEV-STATE] step intros=seen: старт
+10-15 17:02:40.683 I/ReactNativeJS( 4476): [DEV-STATE] step intros=seen: ок за 271 мс
+10-15 17:02:40.685 I/ReactNativeJS( 4476): '[DEV-STATE] applied', '{"applied":{"theme":"ink/-","onboarding":"done","overlays":"off","uiLang":"ru","lv2progress":"4","intros":"seen"},"skipped":{},"next":"/(tabs)/home"}'
+10-15 17:02:40.688 W/ReactNativeJS( 4476): '[DEV-STATE] route: фикстуры применены', '1232мс', '{"applied":{"theme":"ink/-","onboarding":"done","overlays":"off","uiLang":"ru","lv2progress":"4","intros":"seen"},"skipped":{},"next":"/(tabs)/home"}'
+10-15 17:02:51.744 I/ReactNativeJS( 4476): '[HOME-CONTINUE] card', '{"visible":false,"reason":"last_lesson_pending","lessonId":null,"progress":null,"studyTarget":"en","source":"hydration_or_loadData"}'
+10-15 17:02:51.798 I/ReactNativeJS( 4476): [HOME-CONTINUE] выбор=none причина=нет ни старого урока, ни занятия V2 время: старый=нет урока V2=нет target=en
+10-15 17:02:54.708 I/ReactNativeJS( 4476): [HOME-CONTINUE] early: ключ «последний урок» raw=null → урока нет — заготовка снимается сразу за 2897 мс studyTarget=en
+10-15 17:02:56.155 I/ReactNativeJS( 4476): '[HOME-CONTINUE] card', '{"visible":false,"reason":"no_last_lesson","lessonId":null,"progress":null,"studyTarget":"en","source":"hydration_or_loadData"}'

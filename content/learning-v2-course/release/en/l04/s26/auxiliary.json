@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-26:intro1:r2": {
+          "ru": "`under` — под; пакет стоит на поверхности: `on`.",
+          "uk": "`under` — під; пакет стоїть на поверхні: `on`."
+        },
+        "en:lesson-04:session-26:intro1:r3": {
+          "ru": "О молоке говорим `The milk is`.",
+          "uk": "Про молоко кажемо `The milk is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-26:intro2:r2": {
+          "ru": "Это «на столешнице»; в условии под ней: `under`.",
+          "uk": "Це «на стільниці»; в умові під нею: `under`."
+        },
+        "en:lesson-04:session-26:intro2:r3": {
+          "ru": "Кошек несколько: `The cats are`.",
+          "uk": "Котів кілька: `The cats are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-26:intro3:r2": {
+          "ru": "`careful` — осторожный; здесь признаёте неосторожность: `careless`.",
+          "uk": "`careful` — обережний; тут визнаєте необережність: `careless`."
+        },
+        "en:lesson-04:session-26:intro3:r3": {
+          "ru": "С `I` нужно `am`: `I’m careless`.",
+          "uk": "З `I` потрібне `am`: `I’m careless`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f73ddb29d1c06c8c182c10ce57b28257b5202816b2ba051db669ad35bf13abc1"
+}

@@ -41,7 +41,7 @@ import { formatRelativeVideoDate } from '../components/video/formatRelativeVideo
 import { LINGMAN_BACK_FALLBACK, safeRouterBack } from './navigation_back';
 import { peekYoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
 import type { VideoPhrasesSource } from './video_phrases_client';
-import { subscribeYoutubePosition } from './youtube_player_seek_bus';
+import { peekYoutubeResume, subscribeYoutubePosition } from './youtube_player_seek_bus';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useVideoFavorites } from '../hooks/use_video_favorites';
 import { actionToastTri, emitAppEvent } from './events';
@@ -91,7 +91,8 @@ export default function LingmanVideoWatchScreen() {
   const [playerOpen, setPlayerOpen] = useState(true);
   // зачем (координатор 15.10): «Тренировать» ставит ролик на паузу сразу (плеер снимается — звук глохнет мгновенно), позиция запоминается; «Назад» возвращает ролик на ту же секунду без перезапуска с нуля.
   const lastPositionRef = useRef(0);
-  const [resumeSec, setResumeSec] = useState<number | null>(null);
+  // Вход в ролик с сохранённой позицией (≤30 мин, из модульной карты шины плеера) → с той же секунды, без автозапуска; явный startSec (тап по фразе) главнее.
+  const [resumeSec, setResumeSec] = useState<number | null>(() => (startSec === undefined && videoId ? peekYoutubeResume(videoId, 'watch_enter') : null));
   useEffect(() => {
     if (!videoId) return undefined;
     return subscribeYoutubePosition(videoId, (value) => { lastPositionRef.current = value; });

@@ -72,6 +72,21 @@ function subscribe(listener: () => void): () => void {
   return () => { listeners.delete(listener); };
 }
 
+/**
+ * Нейтральные маршруты: модальные и временные экраны, которые НЕ начинают и НЕ заканчивают раздел.
+ * зачем (Ревизор f3ad957df, требование владельца 15.10): пейвол из «Карточек» с выбранным es сбрасывал язык раздела — после закрытия снова язык из Настроек; то же при переходе из набора в ролик.
+ * Человек возвращается назад в тот же раздел, значит выбор должен жить. Список держим ЗДЕСЬ, в одном месте: шторки настроек/аккаунта, пейвол и подписка, юридические страницы, опрос.
+ */
+export const NEUTRAL_ROUTE_PREFIXES: readonly string[] = [
+  '/premium_modal', '/paywall', '/manage_subscription', '/promo_code_entry', '/referrals', '/account_details',
+  '/settings_edu', '/settings_notifications', '/settings_themes', '/settings_language', '/privacy_settings', '/support_report', '/privacy_screen', '/terms_screen', '/survey_screen',
+];
+
+export function isNeutralRoute(pathname: string | null | undefined): boolean {
+  const path = String(pathname ?? '');
+  return NEUTRAL_ROUTE_PREFIXES.some((prefix) => path === prefix || path.startsWith(`${prefix}/`) || path.startsWith(`${prefix}?`));
+}
+
 /** Раздел по пути экрана (null — вне разделов с локальным языком). */
 export function sectionOfPathname(pathname: string | null | undefined): LanguageSection | null {
   const path = String(pathname ?? '');
@@ -99,6 +114,11 @@ export function currentSection(input: Readonly<{ pathname: string | null | undef
  */
 export function trackPushedRoute(pathname: string | null | undefined): void {
   const path = String(pathname ?? '');
+  // зачем (Ревизор f3ad957df): модальные/временные маршруты и ролик, открытый ИЗ «Карточек», раздел не меняют
+  if (isNeutralRoute(path) || (lastSection === 'cards' && path.startsWith('/lingman_video_watch'))) {
+    console.log(`[SECTION-LANG] ${JSON.stringify({ event: 'neutral_route', pathname: path, lastSection })}`); // guard-ok: нейтральный маршрут — раздел не меняется
+    return;
+  }
   const pushed = path === '/video' || path.startsWith('/video/') ? null : sectionOfPathname(path);
   if (pushed) { trackSection(pushed, `root_pathname=${path}`); return; }
   if (lastSection === 'cards') trackSection(null, `root_pathname=${path} (left cards screens)`);
@@ -106,6 +126,10 @@ export function trackPushedRoute(pathname: string | null | undefined): void {
 
 /** Зовётся при смене вкладки или пути. */
 export function trackCurrentSection(input: Parameters<typeof currentSection>[0]): void {
+  if (!input.routeIsTab && isNeutralRoute(input.pathname)) {
+    console.log(`[SECTION-LANG] ${JSON.stringify({ event: 'neutral_route', pathname: input.pathname, lastSection })}`); // guard-ok: нейтральный маршрут — раздел не меняется
+    return;
+  }
   trackSection(currentSection(input), `pathname=${String(input.pathname)} tab=${String(input.activeTabRoute)} routeIsTab=${input.routeIsTab}`);
 }
 

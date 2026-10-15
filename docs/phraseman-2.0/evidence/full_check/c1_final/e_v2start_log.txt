@@ -1,0 +1,16 @@
+10-15 19:24:06.993 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=pending tap→audio=pending tap→modal=100ms materialPrewarmed=false audioPrewarmed=false
+10-15 19:24:07.022 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=pending tap→modal=100ms materialPrewarmed=true audioPrewarmed=false
+10-15 19:24:07.022 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=100ms materialPrewarmed=true audioPrewarmed=true
+10-15 19:24:09.464 I/ReactNativeJS(18602): [V2-START] tap {"lesson":1,"session":1,"skipIntro":true,"prepared":true}
+10-15 19:24:09.772 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=100ms materialPrewarmed=true audioPrewarmed=true
+10-15 19:24:09.772 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=100ms materialPrewarmed=true audioPrewarmed=true
+10-15 19:24:09.773 I/ReactNativeJS(18602): [V2-START] ready {"lesson":1,"session":1,"tapToReadyMs":309}
+10-15 19:24:10.944 W/ReactNativeJS(18602): [NAV-PAINT] group=training route=/learning-v2/session/lesson-01:session:01 ms=728
+10-15 19:24:32.862 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=pending tap→audio=pending tap→modal=109ms materialPrewarmed=false audioPrewarmed=false
+10-15 19:24:32.881 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=pending tap→modal=109ms materialPrewarmed=true audioPrewarmed=false
+10-15 19:24:32.882 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=109ms materialPrewarmed=true audioPrewarmed=true
+10-15 19:24:35.216 I/ReactNativeJS(18602): [V2-START] tap {"lesson":1,"session":1,"skipIntro":true,"prepared":true}
+10-15 19:24:35.496 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=109ms materialPrewarmed=true audioPrewarmed=true
+10-15 19:24:35.496 I/ReactNativeJS(18602): [LEARNING-V2-PERF] lesson-01:session:01 tap→material=0ms tap→audio=0ms tap→modal=109ms materialPrewarmed=true audioPrewarmed=true
+10-15 19:24:35.497 I/ReactNativeJS(18602): [V2-START] ready {"lesson":1,"session":1,"tapToReadyMs":281}
+10-15 19:24:36.157 W/ReactNativeJS(18602): [NAV-PAINT] group=training route=/learning-v2/session/lesson-01:session:01 ms=339

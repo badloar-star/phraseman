@@ -1,0 +1,5 @@
+10-15 19:23:01.721 I/ReactNativeJS(18602): '[SPIRE-BUDGET]', '{"towerTop":442,"towerSavedAtMeasure":0,"fullTowerTop":442,"dockTop":646,"gap":16,"infoH":90,"fullInfoH":90,"rawFit":98,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":120,"podiumColumns":true,"limits":[180,140,48]}'
+10-15 19:23:01.800 I/ReactNativeJS(18602): '[SPIRE-BUDGET]', '{"towerTop":402,"towerSavedAtMeasure":40,"fullTowerTop":442,"dockTop":646,"gap":16,"infoH":52,"fullInfoH":90,"rawFit":98,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":176,"podiumColumns":true,"limits":[180,140,48]}'
+10-15 19:23:01.814 I/ReactNativeJS(18602): [INFO] [SPIRE]: pack: нужен lang=en tier=0 week=2026-W42
+10-15 19:23:02.280 I/ReactNativeJS(18602): [INFO] [SPIRE]: pack: с диска hash=sp1_Q76daQPtWayiQoeVMxxGPTQBaAKPQRk1
+10-15 19:23:02.497 I/ReactNativeJS(18602): '[SPIRE-BUDGET]', '{"towerTop":448,"towerSavedAtMeasure":40,"fullTowerTop":488,"dockTop":646,"gap":16,"infoH":52,"fullInfoH":90,"rawFit":52,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":130,"podiumColumns":true,"limits":[180,140,48]}'

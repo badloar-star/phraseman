@@ -1,0 +1,6 @@
+10-15 19:22:06.897 I/ReactNativeJS(18229): '[SPIRE-BUDGET]', '{"towerTop":435,"towerSavedAtMeasure":0,"fullTowerTop":435,"dockTop":646,"gap":16,"infoH":84,"fullInfoH":84,"rawFit":111,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":120,"podiumColumns":true,"limits":[180,140,48]}'
+10-15 19:22:06.988 I/ReactNativeJS(18229): '[SPIRE-BUDGET]', '{"towerTop":395,"towerSavedAtMeasure":40,"fullTowerTop":435,"dockTop":646,"gap":16,"infoH":52,"fullInfoH":84,"rawFit":111,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":183,"podiumColumns":true,"limits":[180,140,48]}'
+10-15 19:22:10.460 I/ReactNativeJS(18229): [INFO] [SPIRE]: pack: нужен lang=en tier=0 week=2026-W42
+10-15 19:22:10.666 I/ReactNativeJS(18229): [INFO] [SPIRE]: pack: скачиваем spire_packs/en/0/2026-W42.json
+10-15 19:22:10.721 I/ReactNativeJS(18229): '[SPIRE-BUDGET]', '{"towerTop":406,"towerSavedAtMeasure":40,"fullTowerTop":446,"dockTop":646,"gap":16,"infoH":52,"fullInfoH":84,"rawFit":100,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":172,"podiumColumns":true,"limits":[180,140,48]}'
+10-15 19:22:12.059 I/ReactNativeJS(18229): [INFO] [SPIRE]: pack: сеть ok hash=sp1_Q76daQPtWayiQoeVMxxGPTQBaAKPQRk1 этажей=15 байт=1496336 за 1393мс

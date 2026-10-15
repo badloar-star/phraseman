@@ -27,6 +27,7 @@ import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } fr
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { splitDeckParam } from './deck_selection';
 import { videoIdFromOwnedCommunityId } from './my_packs_video_meta';
+import { missingPackCache } from './my_packs_missing_cache';
 import { STARTER_FIRST_50_PACK_ID, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
 import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
@@ -302,6 +303,12 @@ async function loadPackDeckCards(
     // зачем (🔴 тренировка набора из видео, 15.10): без документа сообщества карточки — из кэша фраз ролика
     return deckCardsFromCardItems(await videoFallbackCards(packId, studyTarget, true), lang);
   }
+  // зачем (Ревизор a607a2e9c 💸, 15.10): документа `video_<id>` нет — это уже известно (отметка общая с «Моими наборами»): сразу фразы ролика, без пустого чтения и ожидания сети.
+  const videoMissingKey = `${studyTarget}:${packId}`;
+  if (videoIdFromOwnedCommunityId(packId) && missingPackCache.isMissing(videoMissingKey, Date.now())) {
+    console.log(`[DECK] video_fallback pack=${packId} документа нет (отметка) — сразу фразы ролика, чтение пропущено`); // guard-ok: ветка пропуска чтения
+    return deckCardsFromCardItems(await videoFallbackCards(packId, studyTarget, false), lang);
+  }
   const startedAtMs = Date.now();
   const communityCards = await withTimeout(
     fetchCommunityPackCards(packId),
@@ -329,6 +336,7 @@ async function loadPackDeckCards(
     if (packCards.length > 0) return deckCardsFromCardItems(packCards, lang);
   }
   // зачем (🔴 тренировка набора из видео, 15.10): документа `video_<id>` нет или он пуст — карточки из фраз ролика (кэш 6 ч), набор не пропадает из колод
+  if (videoIdFromOwnedCommunityId(packId)) missingPackCache.markMissing(videoMissingKey, Date.now()); // следующий вход не читает пустой документ
   const videoCards = await videoFallbackCards(packId, studyTarget, false);
   return deckCardsFromCardItems(videoCards, lang);
 }

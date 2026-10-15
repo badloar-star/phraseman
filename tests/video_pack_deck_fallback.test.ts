@@ -72,3 +72,12 @@ describe('подключение и 🟡 Ревизора', () => {
     expect(read('app/flashcards/PackOpenFailedView.tsx')).toContain('insets.bottom');
   });
 });
+
+describe('доводка Ревизора a607a2e9c', () => {
+  it('известное «документа нет» пропускает пустое чтение и сразу берёт фразы; первое «нет» помечается', () => {
+    const src = read('app/flashcards/deck_sources.ts');
+    expect(src).toContain('missingPackCache.isMissing(videoMissingKey, Date.now())');
+    expect(src).toContain('missingPackCache.markMissing(videoMissingKey, Date.now())');
+    expect(src.indexOf('missingPackCache.isMissing(videoMissingKey')).toBeLessThan(src.indexOf('const communityCards = await withTimeout('));
+  });
+});

@@ -191,6 +191,13 @@ describe('голос на сегодня (D165 + D194)', () => {
     expect(effectiveVoiceAccess(UNKNOWN, Date.now() + 100)).toEqual(UNKNOWN);
   });
 
+  it('R45: кэш «был ли Plus» (R13) стирается при выходе, смене и удалении аккаунта — ключ в общем списке стирания', () => {
+    const { ACCOUNT_SWITCH_LEAK_KEYS } = require('../app/account_switch_leak_keys') as typeof import('../app/account_switch_leak_keys');
+    const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'voice_daily_allowance.ts'), 'utf8') as string;
+    expect(src).toContain("const ACCESS_CACHE_KEY = 'voice_last_known_access_v1';");
+    expect(ACCOUNT_SWITCH_LEAK_KEYS).toContain('voice_last_known_access_v1');
+  });
+
   it('R1-b: смена владельца отбрасывает отложенные попытки — попытка A не засчитывается B', async () => {
     const { beginAccountGeneration } = require('../app/account_generation') as typeof import('../app/account_generation');
     await hydrateDialogVoiceAttempts();

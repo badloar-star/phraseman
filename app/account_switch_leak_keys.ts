@@ -18,6 +18,8 @@ export const ACCOUNT_SWITCH_LEAK_KEYS: readonly string[] = Object.freeze([
   'lessons_pearl_unlocked_v1', 'lessons_pearl_unlocked_v1_fr',
   'dialogs_completed_ids_v1', 'dialogs_free_lifetime_used_v2', 'dialogs_free_lifetime_count_v3',
   'dialogue_v2_voice_attempts_v1', 'dialogue_v2_why_allowance:v1',
+  // R45 (Ревизор 15.10): кэш «stableId → был ли Plus» для лимита голоса (R13) — политика обещает стереть локальные данные
+  'voice_last_known_access_v1',
   'stats_preload_cache_v5', 'lifetime_profile_stats_snapshot_v1',
   'streak_server_sync_day_v1', 'streak_week_day_markers_v1',
   'ban_status_cached_v1', 'ban_status_cached_at_v1',

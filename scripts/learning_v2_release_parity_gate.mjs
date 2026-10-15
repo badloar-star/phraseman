@@ -591,6 +591,19 @@ function printScopeResult(result) {
   if (result.issues.length > 20) console.error(`- ... ${result.issues.length - 20} more differences`);
 }
 
+/**
+ * Расхождение исходники ↔ выпуск по ВЫПУЩЕННЫМ занятиям — справка, а не блок.
+ * зачем: владелец 15.10: выпуск принят как есть, исходники Codex — WIP следующей версии (s05/s08/s09 перевыпуск после релиза).
+ * Справкой считается ТОЛЬКО случай, когда проверка реально дошла до сверки (строка «semantic parity: BLOCKED (N mismatches)»)
+ * и не встала на паузу фабрики; сбой запуска, пауза фабрики, сверка всего курса (потолок не прочитан) — по-прежнему блок.
+ */
+export function isReleasedSemanticDriftAdvisory(result, ceiling) {
+  if (result.ready || result.code || !Number.isInteger(ceiling)) return false;
+  const output = String(result.output ?? "");
+  return /source\/release semantic parity: BLOCKED \(\d+ mismatches\)/u.test(output)
+    && !output.includes("factory_intro_practice_course_hold");
+}
+
 function printSemanticResult(result) {
   if (result.stdout) process.stdout.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);
@@ -658,9 +671,15 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const copyResult = scoped(validateReleaseParity(DEFAULT_CANONICAL_ROOT, DEFAULT_APP_COPY_ROOT), ceiling, "файлы канон ↔ копия");
     printScopeResult(scopeResult);
     printSemanticResult(semanticResult);
+    // зачем: владелец 15.10: выпуск принят как есть, исходники Codex — WIP следующей версии (справка с полным списком выше, не блок)
+    const semanticAdvisory = isReleasedSemanticDriftAdvisory(semanticResult, ceiling);
+    if (semanticAdvisory) {
+      const drift = (String(semanticResult.output).match(/source_release_parity:/gu) ?? []).length;
+      console.log(`Learning V2 source/release semantic parity: ADVISORY (${drift} расхождений исходники ↔ выпуск в выпущенных ${ceiling}; выпуск принят владельцем 15.10, исходники — WIP Codex)`);
+    }
     printQualityResult(qualityResult);
     printResult(copyResult);
-    process.exitCode = scopeResult.ready && semanticResult.ready && qualityResult.ready && copyResult.ready ? 0 : 1;
+    process.exitCode = scopeResult.ready && (semanticResult.ready || semanticAdvisory) && qualityResult.ready && copyResult.ready ? 0 : 1;
     }
   }
 }

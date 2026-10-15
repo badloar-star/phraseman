@@ -2,7 +2,7 @@
 // зачем: невыпущенные занятия (их нельзя открыть) не держат выпуск красным, а замечание в выпущенном — по-прежнему красное.
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { releasedSessionOrdinal, releasedSessionScope, splitByReleasedScope } from '../scripts/learning_v2_release_parity_gate.mjs';
+import { isReleasedSemanticDriftAdvisory, releasedSessionOrdinal, releasedSessionScope, splitByReleasedScope } from '../scripts/learning_v2_release_parity_gate.mjs';
 
 test('номер занятия — из пути копии и из id задания', () => {
   assert.equal(releasedSessionOrdinal('l01/s07/answers.json'), 7);
@@ -27,4 +27,14 @@ test('потолок не прочитан — строго, весь курс',
   assert.equal(splitByReleasedScope(issues, null).blocking.length, 1);
   assert.equal(releasedSessionScope(null).length, releasedSessionScope(1000).length);
   assert.deepEqual(releasedSessionScope(2), ['en/l01/s01', 'en/l01/s02']);
+});
+
+test('расхождение исходники ↔ выпуск в выпущенных — справка; пауза фабрики, сбой и весь курс — блок (владелец 15.10)', () => {
+  const drift = { ready: false, output: '[BUILD][WARN] source_release_parity:en/l01/s09:x\n[BUILD][WARN] source/release semantic parity: BLOCKED (135 mismatches)' };
+  assert.equal(isReleasedSemanticDriftAdvisory(drift, 15), true);
+  assert.equal(isReleasedSemanticDriftAdvisory(drift, null), false);
+  assert.equal(isReleasedSemanticDriftAdvisory({ ...drift, output: drift.output + '\nfactory_intro_practice_course_hold:check' }, 15), false);
+  assert.equal(isReleasedSemanticDriftAdvisory({ ready: false, code: 'SEMANTIC_CHECKER_FAILED_TO_START', output: '' }, 15), false);
+  assert.equal(isReleasedSemanticDriftAdvisory({ ready: false, output: 'что-то другое' }, 15), false);
+  assert.equal(isReleasedSemanticDriftAdvisory({ ready: true, output: '' }, 15), false);
 });

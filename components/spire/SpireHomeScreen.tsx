@@ -361,7 +361,6 @@ export default function SpireHomeScreen() {
           <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock} onClimb={climb} />
         )}
       </View>
-      {/* зачем (Ревизор, вопрос к P17): при save_failed итог показывает прежняя панель SpireResultPanel — слою идёт outcome=null, поэтому такая открытая панель тоже держит позиционные окна (stepActive) */}
       {momentsV3 ? <Suspense fallback={null}><SpireMomentsLayer lang={lang} outcome={momentOutcome ? game.outcome : null} coins={config.coins} coinRank={myCoinRank} busy={game.starting} stepActive={game.session !== null || game.pending !== null || (game.outcome !== null && !momentOutcome)} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}
       {game.uid && game.stableId ? (
         <SpireStepScreen

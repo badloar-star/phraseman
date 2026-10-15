@@ -9,9 +9,8 @@ describe('lessons full-bleed safe-area contract', () => {
     const tabsLayout = fs.readFileSync(path.join(root, 'app', '(tabs)', '_layout.tsx'), 'utf8');
 
     expect(lessons).toContain('const insets = useStableSafeAreaInsets();');
-    // R69: внутри вкладки фон наследуется от оболочки (она рисует его от y=0) — своя копия через forceFullBleed начиналась ниже inset и давала шов
-    expect(lessons).toContain('<ScreenGradient>\n        {page === "lessons" ? (');
-    expect(lessons).not.toContain('<ScreenGradient forceFullBleed>');
+    // R69: своё полотно страницы нужно (под ней плотный слой), но оно поднимается над верхом страницы на inset вкладки и совпадает с полотном оболочки
+    expect(lessons).toContain('<ScreenGradient forceFullBleed bleedTop={isRetainedTab ? insets.top : 0}>');
     expect(lessons).toContain('const headerTopPad = isRetainedTab ? 12 : insets.top + 12;');
     expect(lessons).toContain('paddingTop: headerTopPad');
     // зачем: полоса под строкой состояния красится фоном видимой вкладки («Уроки» — свой фон), чтобы арт Главной

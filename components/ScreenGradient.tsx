@@ -679,9 +679,14 @@ interface Props {
    * Можно передать высоту хедера, чтобы маска покрыла и его.
    */
   topFade?: boolean | TopFadeMaskProps;
+  /**
+   * зачем (R69 «шов под статус-баром», Сверка 15.10): страница внутри оболочки вкладок начинается ниже верхнего inset, и её собственная копия полотна (forceFullBleed) рисовалась со своего верха —
+   * на границе inset она расходилась с копией оболочки. bleedTop (dp) поднимает слой полотна над верхом страницы на inset: геометрия совпадает с оболочкой, пиксели те же, шва нет.
+   */
+  bleedTop?: number;
 }
 
-function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, forceFullBleed, artBackdrop, topFade }: Props) {
+function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, forceFullBleed, artBackdrop, topFade, bleedTop = 0 }: Props) {
   const { theme: t, themeMode } = useTheme();
   const reduceMotion = useReduceMotionEnabled();
   const isNested = useContext(GradientActiveCtx);
@@ -732,6 +737,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
 
   const bgLayerStyle: ViewStyle = {
     ...StyleSheet.absoluteFillObject,
+    top: -Math.max(0, bleedTop),
     ...(staticY !== undefined
       ? { transform: [{ translateY: staticY }] }
       : animatedY !== undefined

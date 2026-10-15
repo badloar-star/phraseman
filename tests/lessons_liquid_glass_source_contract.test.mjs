@@ -9,8 +9,7 @@ test('legacy lesson list resolves the active Liquid Glass theme above its real l
   // R69 (Сверка 15.10): градиент страницы начинается прозрачным (фон оболочки без шва под статус-баром), затем те же тона темы
   assert.ok(lessons.includes('colors={[alphaHex(learnGlass.bgTop, 0), learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}'), 'full-bleed themed background');
   assert.ok(lessons.includes('locations={[0, 0.1, 0.55, 1]}'), 'themed background starts transparent, no seam under the status bar');
-  assert.ok(lessons.includes('<ScreenGradient>\n        {page === "lessons" ? ('), 'legacy catalog inherits the themed shell canvas (R69: no second backdrop below the safe area)');
-  assert.ok(!lessons.includes('<ScreenGradient forceFullBleed>'), 'no forced second full-bleed backdrop inside the tab');
+  assert.ok(lessons.includes('<ScreenGradient forceFullBleed bleedTop={isRetainedTab ? insets.top : 0}>'), 'legacy catalog keeps its themed full-bleed canvas, lifted over the safe area to match the shell (R69)');
   // зачем (стиль «Тень» 12.10, координатор: красные сторожи): круглые кнопки шапки без кромки, с малой тенью.
   assert.ok(lessons.includes('boxShadow: nestedBoxShadow(learnGlass)'), 'header controls use the nested shadow');
   assert.ok(!lessons.includes('borderColor: learnGlass.glassEdge'), 'header controls have no glass edge');

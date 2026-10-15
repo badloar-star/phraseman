@@ -13588,7 +13588,7 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "no_release_surface",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_release_surface_proof": {
@@ -13602,7 +13602,7 @@
       },
       "blocked_reason": null,
       "prev_status": "pending",
-      "removed_reason": "Learning V2 в сборке 16.10: выпуск — 14 занятий урока 1 (владелец 15.10 через координатора); итоговый экзамен — занятие 56, за потолком выпуска. Вернуть в pending, когда занятие 56 войдёт в выпуск."
+      "removed_reason": "владелец 15.10 (через координатора): в выпуске 14 занятий урока 1 — экзамен урока (занятие 56) и его итоги вне выпуска. Вернуть в pending, когда занятие 56 войдёт в выпуск."
     },
     {
       "id": "learning-v2-028",
@@ -15483,7 +15483,7 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "no_release_surface",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_release_surface_proof": {
@@ -15497,7 +15497,7 @@
       },
       "blocked_reason": null,
       "prev_status": "pending",
-      "removed_reason": "Learning V2 в сборке 16.10: выпуск — 14 занятий урока 1 (владелец 15.10 через координатора); итог экзамена урока «следующий урок открыт» — после занятия 56, за потолком выпуска. Вернуть в pending, когда занятие 56 войдёт в выпуск."
+      "removed_reason": "владелец 15.10 (через координатора): в выпуске 14 занятий урока 1 — экзамен урока (занятие 56) и его итоги вне выпуска. Вернуть в pending, когда занятие 56 войдёт в выпуск."
     },
     {
       "id": "learning-v2-073",
@@ -15529,7 +15529,7 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "no_release_surface",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_release_surface_proof": {
@@ -15543,7 +15543,7 @@
       },
       "blocked_reason": null,
       "prev_status": "pending",
-      "removed_reason": "Learning V2 в сборке 16.10: выпуск — 14 занятий урока 1 (владелец 15.10 через координатора); итог экзамена урока «следующий урок ещё в работе» — после занятия 56, за потолком выпуска. Вернуть в pending, когда занятие 56 войдёт в выпуск."
+      "removed_reason": "владелец 15.10 (через координатора): в выпуске 14 занятий урока 1 — экзамен урока (занятие 56) и его итоги вне выпуска. Вернуть в pending, когда занятие 56 войдёт в выпуск."
     },
     {
       "id": "learning-v2-074",
@@ -34839,14 +34839,15 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "removed_by_owner",
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending",
+      "prev_status": "removed_by_owner",
       "prev_blocked_reason": "NO_CODE (12.10): в коде нет — шаг «Уровень» выключен в коде (CleanOnboarding.tsx:217). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
       "blocked_reason": null,
       "release": "r1",
-      "removed_reason": "п.85 владелец: шаг «Уровень» убран из макета (онбординг заморожен, шаг выключен намеренно)"
+      "removed_reason": null,
+      "restored_reason": "владелец 15.10 (через координатора): шаг «Сколько английского ты знаешь» ВКЛЮЧЁН; эталон — светлая «Сумерки» (тема по умолчанию для светлого телефона)"
     },
     {
       "id": "onboarding-017",
@@ -34873,14 +34874,15 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "removed_by_owner",
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending",
+      "prev_status": "removed_by_owner",
       "prev_blocked_reason": "NO_CODE (12.10): в коде нет — шаг «Уровень» выключен в коде (CleanOnboarding.tsx:217). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
       "blocked_reason": null,
       "release": "r1",
-      "removed_reason": "п.85 владелец: шаг «Уровень» убран из макета (онбординг заморожен, шаг выключен намеренно)"
+      "removed_reason": null,
+      "restored_reason": "владелец 15.10 (через координатора): шаг «Сколько английского ты знаешь» ВКЛЮЧЁН; эталон — светлая «Сумерки» (тема по умолчанию для светлого телефона)"
     },
     {
       "id": "onboarding-018",
@@ -44207,6 +44209,70 @@
       },
       "shot_at": null,
       "shot_at_source": null
+    },
+    {
+      "id": "onboarding-031",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 31,
+        "label": "Онбординг · Уровень · «Океан»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Уровень (выключен в сборке) · тёмная «Океан»",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "restored_reason": "владелец 15.10: шаг «Уровень» включён; эталон в тёмной теме по умолчанию «Океан» (новая строка)"
+    },
+    {
+      "id": "onboarding-032",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 32,
+        "label": "Онбординг · Уровень · выбрано · «Океан»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Уровень: выбрано · тёмная «Океан»",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "restored_reason": "владелец 15.10: шаг «Уровень» включён; эталон в тёмной теме по умолчанию «Океан» (новая строка)"
     },
     {
       "id": "home-004",

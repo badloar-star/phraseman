@@ -7,6 +7,7 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { V2IconTile } from '../../v2/V2Glass';
 import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
+import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { todayRingColors, useStreakColors } from '../../streak/moments/use_streak_colors';
 import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
 
@@ -33,6 +34,7 @@ type Props = {
  * «Показать все» владелец убрал: тап по задаче сразу ведёт в активность.
  */
 export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }: Props) {
+  useRenderCause('home:today', () => ({ title, tasks, onOpenTask, surveyRow }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
   const rowGlass = useHomePlateStyle(true);

@@ -6,6 +6,7 @@ import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import { useHomePlateStyle } from './homePlate';
 import type { HomeFeatureTile } from './home_v2_types';
+import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 
 /**
  * Три плитки новой Главной (референс 2.0): Уроки / Диалоги / Карточки.
@@ -34,6 +35,7 @@ let wrapperRenders = 0;
 let viewRenders = 0;
 
 export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeatureTile[] }) {
+  useRenderCause('home:tiles', () => ({ tiles }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const pressRef = useRef<readonly HomeFeatureTile[]>(tiles);
   pressRef.current = tiles;
   if (__DEV__) {

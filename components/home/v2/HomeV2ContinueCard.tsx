@@ -8,6 +8,7 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { colorWithAlpha } from '../../v2/plateAlpha';
 import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import { nestedBoxShadow, useShadowGlass } from '../../v2/ShadowSurface';
+import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 
 type Props = {
   title: string;
@@ -43,6 +44,7 @@ type Props = {
  * две строки вместо четырёх, высота 80 вместо ≈ 158.
  */
 export default function HomeV2ContinueCard({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
+  useRenderCause('home:continue', () => ({ title, done, total, art, artAccent, artWide, badge, accessibilityLabel, onPress, onLongPress, pending }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): значок-плашка и стрелка — вложенные, с малой тенью вместо кромки

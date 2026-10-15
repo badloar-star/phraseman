@@ -8,6 +8,7 @@ import type { LingmanYoutubeVideo } from '../../../app/lingman_youtube';
 import { triLang } from '../../../constants/i18n';
 import { V2 } from '../../../constants/v2Style';
 import { colorWithAlpha } from '../../v2/plateAlpha';
+import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { HOME_PLATE_ALPHA } from './homePlate';
 import VideoThumb from '../../../app/flashcards/VideoThumb';
 import { useShadowGlass } from '../../v2/ShadowSurface';
@@ -21,6 +22,7 @@ type Props = {
 
 /** The Home snapshot is already loaded for the unread count; no second feed request. */
 export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll }: Props) {
+  useRenderCause('home:video_rail', () => ({ videos, status, ownerActive, onSeeAll }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const { lang } = useLang();
   const p = useV2Palette();
   const glass = useShadowGlass();

@@ -53,6 +53,7 @@ import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
 import StoryAvatarSlot from '../../components/stories/StoryAvatarSlot';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { usePerfR1Probe } from '../perf_r1_probe';
+import { useRenderCause } from '../render_cause_probe';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
@@ -2546,6 +2547,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
     // зачем ((в)): ПОСЛЕДНИЙ объявленный пассивный эффект Главной — к нему все её эффекты первого монтирования уже отработали.
     useEffect(() => { logHomeFirstMountEffectsTiming(); }, []);
+    // зачем (координатор 15.10, «перерисовки Главной»): [HOME-RENDERS] — сколько раз и ПОЧЕМУ рендерится Главная за 10 с после холодного старта и после возврата на вкладку (окно открывает смена homeRuntimeActive).
+    // Перечислены состояния и контексты корня; рендер без изменений в списке пишется как parent_or_unlisted (родитель или хук, которого здесь нет). В релизе — пустая функция, снимок не строится.
+    useRenderCause('home', () => ({
+        t, f, themeMode, liquidGlassAppearance, myCoinRank, lang, studyTarget, streakToday, cloudProfileRefreshing, todayTasks, homeRuntimeActive, tabContentBottomPad, nav, router,
+        cardsTileCenter, cardArrivals, dailyPhraseCardVisible, homeOnboardingDone, userName, streak, displayStreak, homeStatsReady, weekDone, weekDotAnimationToken, weekMarkers, weekPoints,
+        lastLesson, continueResolved, mistakeAccountGeneration, mistakeReadySnapshot, homeV2Videos, homeV2VideoStatus, homeV2VideoNoChannel, homeFeatureTipsReplayCount, homeFeatureTipIndex,
+        homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, profileIntroRequested, titleModalVisible, selectedTitleKey, specialTitleStats,
+        celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance, runesKnown, belowFoldReady,
+        overlayActiveKey, rankEnough,
+    }), homeRuntimeActive, true);
     return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>
       <ScreenGradient>
       <View style={{ flex: 1 }}>

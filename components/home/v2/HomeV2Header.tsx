@@ -6,6 +6,7 @@ import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import { useHomePlateLog, useHomePlateStyle } from './homePlate';
 import KitSpinner from '../../v2/KitSpinner';
+import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 
 type StatChip = Readonly<{
   testID: string;
@@ -31,6 +32,7 @@ type Props = {
 
 /** One compact utility row; the Home title and slogan are intentionally absent. */
 export default function HomeV2Header({ bellSlot, avatarSlot, stats, refreshing = false }: Props) {
+  useRenderCause('home:header', () => ({ bellSlot, avatarSlot, stats, refreshing }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   useHomePlateLog(); // [HOME-PLATE]: один раз на показ Главной

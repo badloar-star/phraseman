@@ -4,6 +4,21 @@
 
 ---
 
+## 2026-10-15 — «Найти и вернуть оплату» на /premium/
+
+**Что сломано на живом сайте.** `knowly-www/premium/index.html` подключает `/assets/start.js?v=3` и `body data-quiz-mode="paywall"`, а `production.js` на «Выбрать Plus/Pro» раскрывает `#production-flow` и кликает план внутри `#quiz-root`. Но самого `knowly-www/assets/start.js` нет: **файл (840 строк) удалён 2026-09-19 в коммите `1d70c8fc5` «release: prepare 1.6.21 build 127»** — вместе с правками выпуска, без отдельной причины (похоже на случайность). Последняя рабочая версия — `1d70c8fc5^` (правки `de53f8a8b` 27.08 и `a0b9b88fc` 15.08).
+
+**Как работала покупка (из start.js, режим paywall):** «Phraseman Premium · Откройте Phraseman целиком» → таблица Бесплатно/Premium → планы Месяц / Год («Выгоднее 58%») / Навсегда с ценами с сервера (`pricesEndpoint`, кэш 1 ч, фолбэк `webPrices`) → email (+ ник) → гарантия 7 дней → «Оплатить картой» (`checkoutEndpoint` = `webCheckoutCreate` → Stripe, автопродление) или PayPal (SDK по публичному `paypalClientId`, `paypalOrderCreate`/`paypalOrderCapture`, разово) → `/start/thanks/` (ожидание → код активации → Настройки → Промокоды). Плашка «Карта российского банка? → Telegram» по часовому поясу.
+
+**Сервер и ключи — ничего нового не нужно.** Все адреса и публичный PayPal client-id уже в `knowly-www/assets/site-config.js`; функции `webCheckoutCreate`, `paypalOrderCreate`, `paypalOrderCapture`, `webOrderStatus`, `webLeadCapture` экспортируются из `functions/src/index.ts`; страница «Подарить» уже ходит в те же адреса (с `gift: true`), а `web_checkout.ts` обрабатывает и обычную покупку («Спасибо за покупку Phraseman!», продление). Серверный код не трогал.
+
+**Готовая правка для живого сайта (НЕ применена, без выкладки):** `docs/design/site-2.0/fix/restore-premium-start-js.patch` — возвращает `knowly-www/assets/start.js` из `1d70c8fc5^`. `git apply --check` — чисто, `node --check` — без ошибок синтаксиса. Применить: `git apply docs/design/site-2.0/fix/restore-premium-start-js.patch`, затем коммит и выкладка 17.10.
+Перед выкладкой проверить на эмуляторе/стейдже: покупка картой и PayPal на /premium/ (не подарок) доходит до кода на /start/thanks/. Тексты в восстановленном файле — на «вы» (как было); перевод на «ты» — вместе с переносом дизайна.
+
+**Макет C:** `c/premium.html` — шаг оплаты заменён на восстановленный сценарий (тексты start.js, «ты»): состояния `flow`, `p-email-err`, `p-busy`, `p-pay-err`, `p-paypal-err`, `p-ru` (посетитель из России). Выбор тарифа на карточке передаётся в шаг оплаты; оплата ведёт в `start-thanks.html`. Проверено 375/768/1280, ошибок нет.
+
+---
+
 ## 2026-10-15 — тарифы: шаг оплаты (решение владельца)
 
 Владелец: «Выбрать Plus/Pro» ведёт на такой же шаг оплаты, как в подарке. В `c/premium.html` вместо пустой загрузки — блок «Оформление»: сводка тарифа и цена, переключатель Месяц/Год/Pro, «Твой email — на него придёт код активации», «Оплатить картой» и PayPal, строка «Итоговая сумма и условия…» и ссылка «Оплата в России». После оплаты — `start-thanks.html?plan=…#waiting`.

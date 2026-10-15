@@ -626,13 +626,42 @@ a.lrow:hover .ch { color: var(--text); transform: translateX(2px); }
 .p-gift-card p { color: var(--sec); font-size: var(--t-l); margin-top: 8px; }
 .p-flow { display: none; padding-bottom: clamp(48px, 7vw, 96px); scroll-margin-top: 110px; }
 .pp:not([data-pg="plans"]) .p-flow { display: block; animation: stIn 420ms var(--ease); }
-.p-flow-card { max-width: 620px; margin-inline: auto; padding: clamp(22px, 4vw, 36px); border-radius: 30px; display: grid; gap: 18px; }
-.p-sum { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--track); }
-.p-sum-h { font-size: clamp(26px, 3vw, 32px); letter-spacing: -.03em; line-height: 1.1; margin-top: 6px; }
-.p-sum-sub { display: block; margin-top: 4px; font-size: 14px; color: var(--sec); font-weight: 600; }
-.p-sum-price { font-size: clamp(32px, 4vw, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; transition: opacity 200ms var(--ease); }
-.p-switch .opt { padding: 12px 14px; gap: 10px; }
-.p-switch .tt { font-size: 15px; }
+.p-flow-card { max-width: 720px; margin-inline: auto; padding: clamp(22px, 4vw, 40px); border-radius: 30px; display: grid; gap: 20px; }
+.p-head { display: grid; gap: 10px; }
+.p-title { font-size: clamp(30px, 4vw, 44px); letter-spacing: -.035em; line-height: 1.05; }
+.p-lead { color: var(--sec); font-size: var(--t-l); max-width: 52ch; }
+.p-cmp { border-radius: 20px; background: var(--control); padding: 4px 0; }
+:root[data-mode="light"] .p-cmp { background: #F4F4F6; }
+.p-cmp-r { display: grid; grid-template-columns: minmax(0, 1fr) 96px 96px; gap: 10px; align-items: center; padding: 12px 18px; font-size: 15px; }
+.p-cmp-r + .p-cmp-r { border-top: 1px solid var(--track); }
+.p-cmp-r > span:not(:first-child) { text-align: center; justify-self: center; font-size: 13px; font-weight: 600; }
+.p-cmp-h { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.p-cmp-r .dim, .p-cmp-r .no { color: var(--muted); }
+.p-cmp-r .acc { color: var(--fill); }
+.p-plans .opt { padding: 16px 18px; }
+.p-plans .tx { display: grid; gap: 2px; justify-items: start; }
+.p-best { margin-bottom: 4px; }
+.p-pr { display: grid; justify-items: end; text-align: right; flex: none; }
+.p-pr b { font-size: 20px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.p-pr small { font-size: 12px; color: var(--sec); }
+.p-ru, .p-guar { display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 18px; background: var(--control); font-size: 14px; color: var(--sec); line-height: 1.45; }
+.p-ru .tile, .p-guar .tile { width: 38px; height: 38px; border-radius: 11px; color: var(--fill); }
+.p-ru b { color: var(--text); }
+.p-ru a, .p-alt a, .p-skip a { color: var(--fill); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.p-ru { display: none; }
+.pp[data-pg="p-ru"] .p-ru { display: flex; }
+.pp[data-pg="p-ru"] .p-alt { display: none; }
+.p-methods { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.p-methods span { font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 999px; background: var(--control); color: var(--sec); }
+.p-alt, .p-skip { font-size: 14px; color: var(--sec); text-align: center; }
+.p-faq { margin-top: 0; border-radius: 20px; background: var(--control); padding: 2px 0; }
+.p-faq details { margin: 0 18px; }
+.p-faq summary { font-size: 15px; padding: 16px 0; }
+.p-faq .pm { width: 28px; height: 28px; background: var(--card-solid); }
+@media (max-width: 540px) {
+  .p-cmp-r { grid-template-columns: minmax(0, 1fr) 70px 70px; padding: 12px 14px; font-size: 14px; }
+  .p-plans .opt { align-items: flex-start; }
+}
 .g-err:empty { display: none; }
 .g-pay { display: grid; gap: 10px; }
 .g-pay .btn { width: 100%; }
@@ -726,10 +755,10 @@ a.lrow:hover .ch { color: var(--text); transform: translateX(2px); }
   <button type="button" class="mtheme" data-theme-open2>Тема сайта<span class="theme-btn" aria-hidden="true"><i></i></span></button>
 </nav>
 
-<div class="states" aria-label="Состояния макета"><div class="in"><b>Макет</b><button type="button" data-show="plans" aria-pressed="false">Цены</button><button type="button" data-show="flow" aria-pressed="false">Оплата</button><button type="button" data-show="p-email-err" aria-pressed="false">Нет email</button><button type="button" data-show="p-busy" aria-pressed="false">Открываем оплату</button><button type="button" data-show="p-pay-err" aria-pressed="false">Ошибка карты</button><button type="button" data-show="p-paypal-err" aria-pressed="false">Ошибка PayPal</button></div></div>
+<div class="states" aria-label="Состояния макета"><div class="in"><b>Макет</b><button type="button" data-show="plans" aria-pressed="false">Цены</button><button type="button" data-show="flow" aria-pressed="false">Оплата</button><button type="button" data-show="p-email-err" aria-pressed="false">Нет email</button><button type="button" data-show="p-busy" aria-pressed="false">Открываем оплату</button><button type="button" data-show="p-pay-err" aria-pressed="false">Ошибка карты</button><button type="button" data-show="p-paypal-err" aria-pressed="false">Ошибка PayPal</button><button type="button" data-show="p-ru" aria-pressed="false">Посетитель из России</button></div></div>
 <main id="content">
 
-<i class="st-mark" data-state="plans"></i><i class="st-mark" data-state="flow"></i><i class="st-mark" data-state="p-email-err"></i><i class="st-mark" data-state="p-busy"></i><i class="st-mark" data-state="p-pay-err"></i><i class="st-mark" data-state="p-paypal-err"></i>
+<i class="st-mark" data-state="plans"></i><i class="st-mark" data-state="flow"></i><i class="st-mark" data-state="p-email-err"></i><i class="st-mark" data-state="p-busy"></i><i class="st-mark" data-state="p-pay-err"></i><i class="st-mark" data-state="p-paypal-err"></i><i class="st-mark" data-state="p-ru"></i>
 <div class="pp" id="pp">
 <section class="phead center"><div class="wrap">
   <span class="ov">Phraseman Plus / Pro</span>
@@ -776,23 +805,47 @@ a.lrow:hover .ch { color: var(--text); transform: translateX(2px); }
 </div></section>
 
 <section id="production-flow" class="p-flow" aria-label="Оформление"><div class="wrap">
+  <!-- зачем: шаг оплаты восстановлен из удалённого knowly-www/assets/start.js (последняя версия — 1d70c8fc5^),
+       режим paywall: тексты дословно, «вы» → «ты» по решению владельца 15.10. -->
   <form class="glass p-flow-card" id="payForm" novalidate>
-    <div class="p-sum">
-      <div><span class="ov">Оформление</span><h2 class="p-sum-h" id="sumName">Год Plus</h2><span class="p-sum-sub" id="sumSub">366 дней доступа</span></div>
-      <div class="p-sum-price" id="sumPrice">€27,99</div>
+    <div class="p-head">
+      <span class="ov">Phraseman Premium</span>
+      <h2 class="p-title">Открой Phraseman <span class="accent-t">целиком</span></h2>
+      <p class="p-lead">Все планы и темы, без лимитов энергии, ИИ-диалоги с разбором твоих ошибок. Активация — кодом в приложении за минуту.</p>
     </div>
-    <div class="choice cols3 p-switch" role="radiogroup" aria-label="Тариф">
-      <button type="button" class="opt" data-pick="monthly" role="radio" aria-pressed="false"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="tt">Месяц Plus</span><span class="st">€3,99</span></span></button>
-      <button type="button" class="opt" data-pick="yearly" role="radio" aria-pressed="true"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="tt">Год Plus</span><span class="st">€27,99</span></span></button>
-      <button type="button" class="opt" data-pick="lifetime" role="radio" aria-pressed="false"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="tt">Pro навсегда</span><span class="st">€99,99</span></span></button>
+    <div class="p-cmp" role="table" aria-label="Сравнение Бесплатно и Premium">
+      <div class="p-cmp-r p-cmp-h" role="row"><span role="columnheader"></span><span role="columnheader">Бесплатно</span><span role="columnheader" class="accent-t">Premium</span></div>
+      <div class="p-cmp-r" role="row"><span>Уроки, фразы дня и лиги</span><span class="ok"><svg class="i s18" aria-hidden="true"><use href="#i-check"/></svg></span><span class="ok acc"><svg class="i s18" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+      <div class="p-cmp-r" role="row"><span>Все планы и темы: Поездка, Работа, Переезд…</span><span class="no">—</span><span class="ok acc"><svg class="i s18" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+      <div class="p-cmp-r" role="row"><span>Энергия на уроки</span><span class="dim">дневной лимит</span><span class="acc">без лимитов</span></div>
+      <div class="p-cmp-r" role="row"><span>ИИ-диалоги с разбором твоих ошибок</span><span class="no">—</span><span class="ok acc"><svg class="i s18" aria-hidden="true"><use href="#i-check"/></svg></span></div>
     </div>
-    <label class="field"><span>Твой email — на него придёт код активации</span><input class="input" id="pMail" type="email" required maxlength="200" placeholder="you@example.com" autocomplete="email" inputmode="email"></label>
-    <p class="hint err g-err" id="pErr" role="alert"></p>
+    <div class="choice p-plans" role="radiogroup" aria-label="Тариф">
+      <button type="button" class="opt" data-pick="monthly" role="radio" aria-pressed="false"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="tt">Месяц</span><span class="st">попробовать в своём темпе</span></span><span class="p-pr"><b>€3.99</b><small>в месяц</small></span></button>
+      <button type="button" class="opt" data-pick="yearly" role="radio" aria-pressed="true"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="badge acc p-best">Выгоднее 58%</span><span class="tt">Год</span><span class="st">самый популярный выбор</span></span><span class="p-pr"><b>€27.99</b><small>≈ €2.33/мес</small></span></button>
+      <button type="button" class="opt" data-pick="lifetime" role="radio" aria-pressed="false"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="tt">Навсегда</span><span class="st">один платёж — доступ навсегда</span></span><span class="p-pr"><b>€99.99</b><small>один раз</small></span></button>
+    </div>
+    <div class="row2">
+      <label class="field"><span>Email — для чека и активации</span><input class="input" id="pMail" type="email" required maxlength="200" placeholder="you@example.com" autocomplete="email" inputmode="email"></label>
+      <label class="field"><span>Ник в приложении (если уже установил — необязательно)</span><input class="input" id="pNick" type="text" maxlength="60" placeholder="например, Maks_42" autocomplete="off"></label>
+    </div>
+    <div class="p-ru" id="pRu"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-globe"/></svg></span><span><b>Карта российского банка?</b> Оплата через Telegram — без VPN, около двух минут. <a href="russia.html">Оплатить через Telegram →</a></span></div>
+    <div class="p-guar"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-shield"/></svg></span><span>7 дней гарантии: не подойдёт — вернём деньги без вопросов. Просто напиши в поддержку.</span></div>
     <div class="g-pay p-pay">
       <button class="btn btn-primary" type="submit" id="pCard"><svg class="i s18" aria-hidden="true"><use href="#i-card"/></svg><span id="pCardLbl">Оплатить картой</span></button>
       <button type="button" class="btn btn-ghost g-pp-btn" id="pPp" aria-label="PayPal"><b>Pay</b><b class="pp2">Pal</b></button>
     </div>
-    <p class="g-terms">Итоговая сумма и условия отображаются перед оплатой.<br>Карта российского банка не проходит? <a href="russia.html">Оплата в России</a></p>
+    <div class="p-methods" aria-label="Способы оплаты"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>PayPal</span></div>
+    <p class="hint err g-err" id="pErr" role="alert"></p>
+    <p class="p-alt" id="pAlt">Карта российского банка? <a href="russia.html">Оплата через Telegram →</a></p>
+    <p class="g-terms">Оплата проходит на защищённых страницах Stripe / PayPal. Мы не видим и не храним данные карты. Сразу после оплаты ты получишь личный код активации.</p>
+    <div class="faq p-faq">
+      <details><summary>Как активируется Premium?<span class="pm"><svg class="i s18" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Сразу после оплаты ты увидишь личный код активации (и он сохранится у нас — не потеряется). Введи его в приложении: Настройки → Промокоды — Premium включится мгновенно. Код вводится один раз: при продлении подписки доступ дальше продлевается автоматически. Если приложения ещё нет — сначала установи его, ссылки будут на следующем экране.</p></details>
+      <details><summary>На каких устройствах работает?<span class="pm"><svg class="i s18" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>На всех, где ты вошёл в свой аккаунт Phraseman: iPhone, iPad и Android. Код вводится один раз на любом из них.</p></details>
+      <details><summary>Как работает продление и отмена?<span class="pm"><svg class="i s18" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Оплата картой продлевается автоматически (месяц/месяц или год/год) — отключить можно в любой момент одним письмом в поддержку, сделаем сразу. Оплата через PayPal — разовая, на выбранный срок, ничего не спишется само. В первые 7 дней вернём оплату полностью без вопросов.</p></details>
+      <details><summary>Что-то пойдёт не так — я не потеряю деньги?<span class="pm"><svg class="i s18" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Нет. Каждая оплата сохраняется у нас вместе с кодом, а команда видит её мгновенно. Если код не сработает или потеряется — напиши в поддержку, восстановим за пару часов.</p></details>
+    </div>
+    <p class="p-skip">Пока не готов решить? <a href="download.html">Скачай приложение бесплатно →</a> Premium подождёт.</p>
   </form>
 </div></section>
 </div>
@@ -974,14 +1027,10 @@ function pmStateHook(tag, root, onState) {
   if (!root) { console.warn('[PREMIUM] нет корня страницы'); return; }
   var cards = Array.prototype.slice.call(root.querySelectorAll('.p-plan'));
   var picks = Array.prototype.slice.call(root.querySelectorAll('[data-pick]'));
-  var PLAN = {
-    monthly: { name: 'Месяц Plus', sub: '31 день доступа', price: '€3,99' },
-    yearly: { name: 'Год Plus', sub: '366 дней доступа', price: '€27,99' },
-    lifetime: { name: 'Pro навсегда', sub: 'Полный доступ навсегда', price: '€99,99' }
-  };
+  // тексты ошибок — дословно из start.js (paywall), «вы» → «ты»
   var MSG = {
-    email: 'Укажи email — на него придёт код активации.',
-    card: 'Оплата не открылась. Попробуй ещё раз или напиши в поддержку.',
+    email: 'Укажи email — на него придёт чек и подтверждение активации.',
+    card: 'Не получилось открыть оплату. Попробуй ещё раз или напиши в поддержку.',
     paypal: 'PayPal не ответил. Попробуй карту или напиши в поддержку.'
   };
   var form = document.getElementById('payForm'), mail = document.getElementById('pMail'), err = document.getElementById('pErr');
@@ -992,10 +1041,6 @@ function pmStateHook(tag, root, onState) {
     chosen = p;
     cards.forEach(function (c) { var on = c.dataset.plan === p; c.classList.toggle('sel', on); var b = c.querySelector('[data-open-plan]'); if (b) b.setAttribute('aria-pressed', String(on)); });
     picks.forEach(function (o) { o.setAttribute('aria-pressed', String(o.dataset.pick === p)); });
-    var d = PLAN[p]; if (!d) return;
-    document.getElementById('sumName').textContent = d.name;
-    document.getElementById('sumSub').textContent = d.sub;
-    document.getElementById('sumPrice').textContent = d.price;
   }
   function setErr(t) { err.textContent = t || ''; }
   function setBusy(on) {

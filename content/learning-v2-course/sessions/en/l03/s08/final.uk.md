@@ -1,166 +1,138 @@
-# Англійська · Урок 3 · Заняття 8 — «Що вже знайшлося»
+# Англійська · Урок 3 · Заняття 8 — Розібрати знахідки
 
-**Сцена заняття.** Ви з другом складаєте список речей, які знайшли після переїзду. Називаєте предмети, уточнюєте, що саме досі загорнуте, і виправляєте неточні записи у списку.
+**Ситуація.** Після зустрічі клубу ви з Анною розбираєте залишені речі. На столі лежать ключ, яблуко, книжка, карта, ручка й чашка. Поруч стоїть сумка. Ви називаєте знахідки, уточнюєте, що приховує упаковка, й виправляєте помилкові здогади.
 
-**Як сказати:** контрольне застосування `a + noun` у знайомих твердженнях, запитаннях і запереченнях  
-**Нові слова:** shelf  
-**Повертаються:** mirror, chair, key, basket, stool, door, tag
+**Що ви опануєте:** обрати a або an і назвати предмет у повідомленні, запитанні та запереченні
+**Нові слова:** —
 
 ---
 
 ## Інтро 1
 
-### На маленькому слові не заощаджуємо
+### Сім знайомих назв
 
-`shelf` — «полиця»: довга дошка на стіні, на яку ставлять речі. У списку це теж один предмет: `a shelf`. На маленькому `a` у цій фразі не заощадити: воно стоїть перед `shelf`. Для повної фрази додайте `It is`: `It is a shelf` — «Це полиця».
+Повторимо: `key` — «ключ», `apple` — «яблуко», `book` — «книжка», `bag` — «сумка», `map` — «карта», `pen` — «ручка», `cup` — «чашка». Перед `apple` потрібне `an`: перший звук голосний. Перед рештою назв тут `a`. Олег уже приготувався віднести яблуко до загублених речей. Добре, що спочатку запитав: Анна ще збирається його з’їсти.
 
-**Друг додає знайдену полицю до списку. Назвіть її повною фразою.**
+**Анна показує яблуко. Назвіть його повною фразою.**
 
-- ✅ **It is a shelf.**
-- ❌ It is shelf. — *Перед назвою одного предмета в цій фразі потрібне `a`: `a shelf`.*
-- ❌ It a shelf. — *Назва `a shelf` уже на місці. Щоб утворилася повна фраза, після `It` додайте `is`.*
+- ✅ **It is an apple.**
+- ❌ It is a apple. — *Перед голосним звуком у `apple` потрібно `an`.*
+- ❌ It is apple. — *У назві яблука тут не можна пропускати `an`.*
 
 ---
 
 ## Інтро 2
 
-### Спочатку уточніть
+### Що знайшли й де шукати
 
-`shelf` — «полиця». Її вже додали до списку, але друг показує на неї ще раз і просить перевірити запис. Для запитання переставте перші два слова: `Is it a shelf?` — «Це полиця?» Назва `a shelf` залишається разом: запитання змінює порядок, але не назву предмета.
+`What is it?` — «Що це?» — допомагає дізнатися назву. `Where is it?` — «Де це?» — допомагає знайти річ, яку вже обговорюєте. Якщо ви припускаєте книжку, запитайте `Is it a book?` У відповіді `It is a book` і запитанні `Is it a book?` назва `a book` залишається разом.
 
-**Друг показує на нову полицю біля стіни й просить звірити запис. Запитайте: «Це полиця?».**
+**Анна тримає плаский предмет в упаковці. Запитайте, чи це книжка.**
 
-- ✅ **Is it a shelf?**
-- ❌ Is it shelf? — *У запитанні назва теж залишається з `a`: `Is it a shelf?`.*
-- ❌ Are it a shelf? — *Про один предмет запитуємо `Is it`. `Are` тут не поєднується з `it`.*
+- ✅ **Is it a book?**
+- ❌ Is it book? — *У назві `a book` зникло `a`.*
+- ❌ It is a book. — *Це повідомлення, а потрібне запитання.*
 
 ---
 
 ## Інтро 3
 
-### Виправте назву
+### Виправити здогад
 
-`shelf` — «полиця». Іноді в списку опиняються схожі речі. Щоб сказати, що предмет не полиця, після `It is` додайте `not`, а потім збережіть `a shelf`: `It is not a shelf` — «Це не полиця». Слово `not` виправляє запис, але не розбирає назву `a shelf` на частини.
+`It is not a map` — «Це не карта». Після `is` ставимо `not`, потім назву цілком: `a map`. Для яблука буде `It is not an apple`: заперечення не змінює вибору `a` чи `an`. Якщо не знаєте, що перед вами, можна спочатку запитати. Впевнений вигляд Олега ще не перетворює малюнок на карту.
 
-**Друг узяв табурет і помилково позначив його як полицю. Скажіть: «Це не полиця».**
+**Олег прийняв малюнок за карту. Скажіть повною фразою «Це не карта».**
 
-- ✅ **It is not a shelf.**
-- ❌ It not a shelf. — *Перед `not` пропущено `is`. Повний початок — `It is not`.*
-- ❌ It is not shelf. — *Після `not` залиште назву цілком: `a shelf`.*
+- ✅ **It is not a map.**
+- ❌ It is not map. — *Після `not` зберігаємо `a map`.*
+- ❌ It not a map. — *Перед `not` потрібно `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Вставте слово — друг указує на нову полицю; назвіть її повною фразою (`shelf` — «полиця»)**
-<!-- interaction_id: en:lesson-03:session-08:i01; family: context_gap_grammar -->
-Ціль: `It is ___ shelf.`
-Варіанти: `a` · `is` · `am`
-- is — *`is` уже стоїть після `It`. Перед назвою `shelf` тут потрібне `a`.*
-- am — *`am` не ставимо перед назвою предмета. Потрібна частина `a shelf`.*
+**1 · На столі яблуко. Назвіть його повною фразою**
+<!-- interaction_id: en:lesson-03:session-08:i01; family: phrase_builder -->
+Плитки: `apple` `an` `is` `It` `are` → **It is an apple.**
+*(плитка `are` зайва: тут потрібно `is` — `It is an apple.`)*
 
+**2 · Послухайте, який предмет називає Анна**
+<!-- interaction_id: en:lesson-03:session-08:i02; family: listen_choose -->
+🔊 *It is a book.* → **It is a book.** · It is a bag. · It is a map.
+- It is a bag. — *У записі останнє слово — `book`, а в цьому варіанті — `bag`.*
+- It is a map. — *У записі останнє слово — `book`, а в цьому варіанті — `map`.*
 
-**2 · Послухайте й складіть — друг говорить про предмет біля стіни**
-<!-- interaction_id: en:lesson-03:session-08:i02; family: listen_build_dictation -->
-Ціль: `It is a shelf.`
-Варіанти: `mirror`
+**3 · Під упаковкою круглий плід. Запитайте, чи це яблуко**
+<!-- interaction_id: en:lesson-03:session-08:i03; family: context_gap_grammar -->
+Is it ___ apple? → **an** · a · is
+- a — *Перед голосним звуком у `apple` потрібно `an`, у запитанні також.*
+- is — *Після `it` тут потрібна назва `an apple`, не ще одне `is`.*
 
-**3 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-08:i03; family: scripted_repeat_compare -->
-Ціль: `Is it a shelf?`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-08:i04; family: speed_match -->
+key — ключ · apple — яблуко · book — книжка · bag — сумка
 
-**4 · Складіть коротку назву — друг показує на кошик; назвіть його двома словами (`basket` — «кошик»)**
-<!-- interaction_id: en:lesson-03:session-08:i04; family: phrase_builder -->
-Ціль: `A basket.`
-Варіанти: `is`
+**5 · Послухайте й складіть назву знахідки**
+<!-- interaction_id: en:lesson-03:session-08:i05; family: listen_build_dictation -->
+🔊 *It is a key.* Плитки: `key` `a` `is` `It` `are` → **It is a key.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a key.`)*
 
-**5 · Послухайте й виберіть — що сказав друг, звіряючись зі списком**
-<!-- interaction_id: en:lesson-03:session-08:i05; family: listen_choose -->
-Ціль: `It is a basket.`
-Варіанти: `It is a basket.` · `Is it a basket?` · `It is not a basket.`
-- Is it a basket? — *Це запитання починається з `Is it`. У записі спершу звучить `It`, а потім `is`: `It is a basket`.*
-- It is not a basket. — *У цьому варіанті є додаткове `not`. У записі після `is` одразу звучить `a basket`.*
+**6 · Ви вже говорите про сумку, але тепер не бачите її. Запитайте, де вона**
+<!-- interaction_id: en:lesson-03:session-08:i06; family: phrase_builder -->
+Плитки: `it` `is` `Where` `What` → **Where is it?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is it?`)*
 
-
-**6 · Вставте слово — друг позначив табурет як полицю; скажіть «Це не полиця»**
-<!-- interaction_id: en:lesson-03:session-08:i06; family: context_gap_grammar -->
-Ціль: `It ___ not a shelf.`
-Варіанти: `is` · `are` · `am`
-- are — *Для цієї фрази про предмет потрібне `It is not`. `are` після `It` не підходить.*
-- am — *`am` поєднується з `I`. Тут початок — `It is not`.*
-
-
-**7 · Промовте одну фразу**
+**7 · Анна підняла чашку. Назвіть її зі скороченням**
 <!-- interaction_id: en:lesson-03:session-08:i07; family: scripted_repeat_compare -->
-Ціль: `It is a shelf.`
+🎙 **It's a cup.**
 
-**8 · З’єднайте назви з українськими значеннями — перші знахідки**
-<!-- interaction_id: en:lesson-03:session-08:i08; family: speed_match -->
-Пари: `shelf` — полиця · `mirror` — дзеркало · `chair` — стілець · `key` — ключ
-Ціль: `shelf · mirror · chair · key`
+**8 · Олег показує ручку. Доповніть її назву повною фразою**
+<!-- interaction_id: en:lesson-03:session-08:i08; family: context_gap_grammar -->
+It ___ a pen. → **is** · are · am
+- are — *З `It` потрібно `is`.*
+- am — *Фраза — `It is a pen`.*
 
-**9 · Складіть запитання — друг показує інший загорнутий предмет для сидіння; уточніть «Це стілець?»**
-<!-- interaction_id: en:lesson-03:session-08:i09; family: phrase_builder -->
-Ціль: `Is it a chair?`
-Варіанти: `Are`
+**9 · Послухайте запитання про знахідку**
+<!-- interaction_id: en:lesson-03:session-08:i09; family: listen_choose -->
+🔊 *Is it a bag?* → **Is it a bag?** · Is it a book? · Is it a cup?
+- Is it a book? — *У записі останнє слово — `bag`, а в цьому варіанті — `book`.*
+- Is it a cup? — *У записі останнє слово — `bag`, а в цьому варіанті — `cup`.*
 
-**10 · Вставте слово — друг запитує про папірець, прив’язаний до покупки; скажіть «Це бірка»**
-<!-- interaction_id: en:lesson-03:session-08:i10; family: context_gap_grammar -->
-Ціль: `It ___ a tag.`
-Варіанти: `is` · `are` · `am`
-- are — *Називаючи цей предмет, говоримо `It is a tag`. `are` з `It` не поєднується.*
-- am — *Після `It` тут потрібне `is`, а `am` підходить до `I`.*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-08:i10; family: speed_match -->
+map — карта · pen — ручка · cup — чашка · key — ключ
 
-
-**11 · Послухайте й складіть — друг виправляє один рядок списку**
+**11 · Послухайте й складіть заперечення Олега**
 <!-- interaction_id: en:lesson-03:session-08:i11; family: listen_build_dictation -->
-Ціль: `It is not a shelf.`
-Варіанти: `are`
+🔊 *It is not a book.* Плитки: `book` `a` `not` `is` `It` `are` → **It is not a book.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not a book.`)*
 
-**12 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-08:i12; family: scripted_repeat_compare -->
-Ціль: `It is a tag.`
+**12 · Анна прийняла аркуш із малюнком за карту. Скажіть повною фразою «Це не карта»**
+<!-- interaction_id: en:lesson-03:session-08:i12; family: phrase_builder -->
+Плитки: `map` `a` `not` `is` `It` `are` → **It is not a map.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not a map.`)*
 
-**13 · Складіть запитання — друг просить звірити запис про полицю; запитайте «Це полиця?» (`shelf` — «полиця»)**
-<!-- interaction_id: en:lesson-03:session-08:i13; family: phrase_builder -->
-Ціль: `Is it a shelf?`
-Варіанти: `Are`
+**13 · Олег запитує, що ви дістали із сумки. Це яблуко. Назвіть його зі скороченням**
+<!-- interaction_id: en:lesson-03:session-08:i13; family: scripted_repeat_compare -->
+🎙 **It's an apple.**
 
-**14 · Вставте слово — друг показує на зняті з петель двері; назвіть їх повною фразою (`door` — «двері»)**
+**14 · Олег прийняв металеву підвіску за ключ. Доповніть «Це не ключ»**
 <!-- interaction_id: en:lesson-03:session-08:i14; family: context_gap_grammar -->
-Ціль: `It is ___ door.`
-Варіанти: `a` · `am` · `are`
-- am — *Після `It is` тут потрібна назва `a door`. Додаткове `am` перед `door` не ставимо.*
-- are — *У повній фразі вже є `is`. Перед назвою `door` потрібне `a`.*
+It is not ___ key. → **a** · an · is
+- an — *Перед приголосним звуком у `key` потрібно `a`.*
+- is — *Перед `key` потрібно `a`; `is` уже є.*
 
+**15 · Послухайте назву предмета**
+<!-- interaction_id: en:lesson-03:session-08:i15; family: listen_choose -->
+🔊 *It is a pen.* → **It is a pen.** · It is a key. · It is a cup.
+- It is a key. — *У записі останнє слово — `pen`, а в цьому варіанті — `key`.*
+- It is a cup. — *У записі останнє слово — `pen`, а в цьому варіанті — `cup`.*
 
-**15 · З’єднайте назви з українськими значеннями — решта у списку**
-<!-- interaction_id: en:lesson-03:session-08:i15; family: speed_match -->
-Пари: `basket` — кошик · `stool` — табурет · `door` — двері · `tag` — бірка
-Ціль: `basket · stool · door · tag`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-08:i16; family: speed_match -->
+apple — яблуко · book — книжка · map — карта · cup — чашка
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-08:i16; family: scripted_repeat_compare -->
-Ціль: `Is it a mirror?`
-
-**17 · Складіть фразу — працівниця показує полицю з книжками й просить назвати її**
-<!-- interaction_id: en:lesson-03:session-08:i17:s01; family: phrase_builder -->
-Ціль: `It is a shelf.`
-Варіанти: `are` · `am`
-
-**18 · Послухайте й виберіть — працівниця показує полицю; уточніть, чи це полиця**
-<!-- interaction_id: en:lesson-03:session-08:i17:s02; family: listen_choose -->
-Ціль: `Is it a shelf?`
-Варіанти: `Is it a shelf?` · `It is a shelf.` · `Is it a mirror?`
-- It is a shelf. — *У записі запитання: `Is it a shelf?`, а не твердження.*
-- Is it a mirror? — *У записі назвали `shelf`, а не `mirror`.*
-
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-08:i17:s03; family: scripted_repeat_compare -->
-Ціль: `It is not a shelf.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=context_gap_grammar, 2=listen_build_dictation, 3=scripted_repeat_compare, 4=phrase_builder, 5=listen_choose, 6=context_gap_grammar, 7=scripted_repeat_compare, 8=speed_match, 9=phrase_builder, 10=context_gap_grammar, 11=listen_build_dictation, 12=scripted_repeat_compare, 13=phrase_builder, 14=context_gap_grammar, 15=speed_match, 16=scripted_repeat_compare, 17=phrase_builder, 18=listen_choose, 19=scripted_repeat_compare
+**17 · Біля виходу ви помітили тонкий предмет під стільцем, але не можете роздивитися його. Запитайте Анну, чи це ручка**
+<!-- interaction_id: en:lesson-03:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it a pen?**
 

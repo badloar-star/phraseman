@@ -78,23 +78,28 @@ function pick(row: Nine, lang: Lang): string {
   return row[LANG_INDEX[lang] ?? 2];
 }
 
-/** Слово «день» в правильной форме для числа n (ru/uk/pl — три формы, en/es/pt — две, vi/id/tr — одна). Чистая функция: проверяет сторож. */
+// зачем (координатор 15.10, сторож переводов): формы слова «день» — языковой объект на все 9 языков, а не русские литералы в switch.
+// Формы: [одна, несколько, много]; у языков с двумя формами третья равна второй, с одной — все три одинаковы.
+const DAY_FORMS: Readonly<Record<string, readonly [string, string, string]>> = {
+  ru: ['день', 'дня', 'дней'],
+  uk: ['день', 'дні', 'днів'],
+  en: ['day', 'days', 'days'],
+  es: ['día', 'días', 'días'],
+  'pt-BR': ['dia', 'dias', 'dias'],
+  vi: ['ngày', 'ngày', 'ngày'],
+  id: ['hari', 'hari', 'hari'],
+  tr: ['gün', 'gün', 'gün'],
+  pl: ['dzień', 'dni', 'dni'],
+};
+
+/** Слово «день» в правильной форме для числа n (ru/uk — три формы, en/es/pt-BR/pl — две, vi/id/tr — одна). Чистая функция: проверяет сторож. */
 export function streakDayWord(lang: Lang, n: number): string {
   const a = Math.abs(Math.trunc(n));
   const m10 = a % 10;
   const m100 = a % 100;
-  const slavic = (one: string, few: string, many: string): string => (m10 === 1 && m100 !== 11 ? one : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? few : many);
-  switch (lang) {
-    case 'ru': return slavic('день', 'дня', 'дней');
-    case 'uk': return slavic('день', 'дні', 'днів');
-    case 'pl': return a === 1 ? 'dzień' : 'dni';
-    case 'es': return a === 1 ? 'día' : 'días';
-    case 'pt-BR': return a === 1 ? 'dia' : 'dias';
-    case 'vi': return 'ngày';
-    case 'id': return 'hari';
-    case 'tr': return 'gün';
-    default: return a === 1 ? 'day' : 'days';
-  }
+  const forms = DAY_FORMS[lang] ?? DAY_FORMS.en!;
+  if (lang === 'ru' || lang === 'uk') return m10 === 1 && m100 !== 11 ? forms[0] : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? forms[1] : forms[2];
+  return a === 1 ? forms[0] : forms[1];
 }
 
 /** Подставляет {n}/{left}/{next} и слова «день» ({dn}/{dl}/{dx}) в правильной форме. */

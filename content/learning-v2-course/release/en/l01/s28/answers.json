@@ -1,122 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-28:i01",
-    "correctText": "broken",
+    "correctText": "It is correct.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i02",
-    "correctText": "broken",
+    "correctText": "I am certain.",
     "correctResponseId": "en:lesson-01:session-28:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-28:i03",
-    "correctText": "open",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-28:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-28:i04",
-    "correctText": "open",
-    "correctResponseId": "en:lesson-01:session-28:i04:r1"
+    "correctText": "en:lesson-01:session-28:i04:p1=correct\nen:lesson-01:session-28:i04:p2=certain\nen:lesson-01:session-28:i04:p3=serious\nen:lesson-01:session-28:i04:p4=prepared",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i05",
-    "correctText": "It is broken.",
+    "correctText": "She is certain.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i06",
-    "correctText": "closed",
+    "correctText": "We are serious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i07",
-    "correctText": "closed",
-    "correctResponseId": "en:lesson-01:session-28:i07:r1"
+    "correctText": "I am certain.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i08",
-    "correctText": "closed",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-28:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-28:i09",
-    "correctText": "empty",
-    "correctResponseId": null
+    "correctText": "You are correct.",
+    "correctResponseId": "en:lesson-01:session-28:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-28:i10",
-    "correctText": "empty",
-    "correctResponseId": "en:lesson-01:session-28:i10:r1"
+    "correctText": "en:lesson-01:session-28:i10:p1=awake\nen:lesson-01:session-28:i10:p2=asleep\nen:lesson-01:session-28:i10:p3=available\nen:lesson-01:session-28:i10:p4=lost",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i11",
-    "correctText": "It is empty.",
+    "correctText": "They are certain.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i12",
-    "correctText": "en:lesson-01:session-28:i12:p1=broken\nen:lesson-01:session-28:i12:p2=open\nen:lesson-01:session-28:i12:p3=closed\nen:lesson-01:session-28:i12:p4=empty",
+    "correctText": "You are correct.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i13",
-    "correctText": "cold",
-    "correctResponseId": "en:lesson-01:session-28:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:i14",
-    "correctText": "It is open.",
+    "correctText": "She is careful.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-28:i14",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-28:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-28:i15",
-    "correctText": "closed",
+    "correctText": "We are prepared.",
     "correctResponseId": "en:lesson-01:session-28:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-28:i16",
-    "correctText": "hot",
-    "correctResponseId": "en:lesson-01:session-28:i16:r1"
+    "correctText": "en:lesson-01:session-28:i16:p1=careful\nen:lesson-01:session-28:i16:p2=correct\nen:lesson-01:session-28:i16:p3=certain\nen:lesson-01:session-28:i16:p4=serious",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i17",
-    "correctText": "It is small.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:i18",
-    "correctText": "new",
-    "correctResponseId": "en:lesson-01:session-28:i18:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:i19",
-    "correctText": "en:lesson-01:session-28:i19:p1=cold\nen:lesson-01:session-28:i19:p2=hot\nen:lesson-01:session-28:i19:p3=small\nen:lesson-01:session-28:i19:p4=new",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:i20:s01",
-    "correctText": "It is broken.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:i20:s02",
-    "correctText": "It is empty.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:i20:s03",
-    "correctText": "It is cold.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:i21:s01",
-    "correctText": "It is closed.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:i21:s02",
-    "correctText": "It is small.",
+    "correctText": "It is correct.",
     "correctResponseId": null
   }
 ]

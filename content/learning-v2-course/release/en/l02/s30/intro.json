@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-30",
   "learningOutcomeByLocale": {
-    "ru": "повторение `What is + вещь` — на новых словах города",
-    "uk": "повторення `What is + річ` — на нових словах міста"
+    "ru": "сказать, что вещь в другом месте, и отличить это от пропажи",
+    "uk": "сказати, що річ в іншому місці, й відрізнити це від зникнення"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`noise` — звук, который мешает",
-        "uk": "`noise` — звук, який заважає"
+        "ru": "Не здесь, а в другом месте",
+        "uk": "Не тут, а в іншому місці"
       },
       "bodyByLocale": {
-        "ru": "`noise` — «шум». Звук, который мешает и от которого хочется отойти: дрель, сирена, гул из подвала.\n\nСпросить, что это гудит, можно так: сперва `What`, сразу за ним `is`, потом `the`, и только последним — само слово.",
-        "uk": "`noise` — «шум». Звук, від якого хочеться відійти: дриль, сирена, гул із підвалу.\n\nЗапитати, що воно там гуде, можна так: спершу `What`, одразу за ним `is`, потім `the`, і аж останнім — саме слово."
+        "ru": "`elsewhere` — «в другом месте». Лейки на столе нет: `It is elsewhere` — «Она в другом месте». Само слово не говорит, где именно. Лейка может быть на балконе. Переставлять горшки на столе десятый раз ради этого не обязательно.",
+        "uk": "`elsewhere` — «в іншому місці». Лійки на столі немає: `It is elsewhere` — «Вона в іншому місці». Саме слово не говорить, де саме. Лійка може бути на балконі. Переставляти горщики на столі вдесяте заради цього не обов’язково."
       },
       "question": {
         "interactionId": "en:lesson-02:session-30:intro1:q",
         "promptByLocale": {
-          "ru": "Из-за угла тянется низкий гул, и непонятно, что это. Спросите прохожего.",
-          "uk": "З-за рогу тягнеться низький гул, і незрозуміло, що це. Запитайте перехожого."
+          "ru": "Анна перенесла лейку со стола на балкон. Не называя балкон, скажите полной фразой, что она в другом месте.",
+          "uk": "Анна перенесла лійку зі столу на балкон. Не називаючи балкона, скажіть повною фразою, що вона в іншому місці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-30:intro1:r1",
-              "text": "What is the noise?"
+              "text": "It is elsewhere."
             },
             {
               "responseId": "en:lesson-02:session-30:intro1:r2",
-              "text": "What the noise is?"
+              "text": "It elsewhere."
             },
             {
               "responseId": "en:lesson-02:session-30:intro1:r3",
-              "text": "What is the noisy?"
+              "text": "It is not elsewhere."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-30:intro1:r1",
-              "text": "What is the noise?"
+              "text": "It is elsewhere."
             },
             {
               "responseId": "en:lesson-02:session-30:intro1:r2",
-              "text": "What the noise is?"
+              "text": "It elsewhere."
             },
             {
               "responseId": "en:lesson-02:session-30:intro1:r3",
-              "text": "What is the noisy?"
+              "text": "It is not elsewhere."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Из-за угла тянется низкий гул, и непонятно, что это. Спросите прохожего.",
-          "uk": "З-за рогу тягнеться низький гул, і незрозуміло, що це. Запитайте перехожого."
+          "ru": "Анна перенесла лейку со стола на балкон. Не называя балкон, скажите полной фразой, что она в другом месте.",
+          "uk": "Анна перенесла лійку зі столу на балкон. Не називаючи балкона, скажіть повною фразою, що вона в іншому місці."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Начало одно, конец разный",
-        "uk": "Початок один, кінець різний"
+        "ru": "Не на месте — ещё не потерялось",
+        "uk": "Не на місці — ще не загубилося"
       },
       "bodyByLocale": {
-        "ru": "У этих вопросов одинаковое начало: `What is the`. Дальше меняется только последнее слово.\n\n`What is the noise?` — про звук. `What is the name?` — про название (`name` — «имя, название»). `What is the street?` — про улицу. В этих вопросах начало одно, а последнее слово подставляете любое.",
-        "uk": "У цих запитань однаковий початок: `What is the`. Далі змінюється тільки останнє слово.\n\n`What is the noise?` — про звук. `What is the name?` — про назву (`name` — «ім'я, назва»). `What is the street?` — про вулицю. У цих запитаннях початок один, а останнє слово підставляєте будь-яке."
+        "ru": "`missing` — «пропавший, отсутствующий на своём месте». Если нужной вещи нет и вы не знаете, куда она делась: `It is missing`. А если Анна просто отнесла её на балкон, можно сказать `It is elsewhere`. Вещь в другом месте не обязательно потеряна.",
+        "uk": "`missing` — «зниклий, відсутній на своєму місці». Якщо потрібної речі немає й ви не знаєте, куди вона поділася: `It is missing`. А якщо Анна просто віднесла її на балкон, можна сказати `It is elsewhere`. Річ в іншому місці не обов’язково загублена."
       },
       "question": {
         "interactionId": "en:lesson-02:session-30:intro2:q",
         "promptByLocale": {
-          "ru": "Вы стоите на перекрёстке и не знаете, куда попали. Спросите про улицу.",
-          "uk": "Ви стоїте на перехресті й не знаєте, куди потрапили. Запитайте про вулицю."
+          "ru": "Вы знаете, что лейка на балконе. На вопрос `Is it missing?` ответьте коротким «нет»: она не пропала.",
+          "uk": "Ви знаєте, що лійка на балконі. На запитання `Is it missing?` дайте коротку відповідь «ні»: вона не зникла."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-30:intro2:r1",
-              "text": "What is the street?"
+              "text": "No, it is not."
             },
             {
               "responseId": "en:lesson-02:session-30:intro2:r2",
-              "text": "What the street is?"
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-02:session-30:intro2:r3",
-              "text": "What is the noise?"
+              "text": "No, it are not."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-30:intro2:r1",
-              "text": "What is the street?"
+              "text": "No, it is not."
             },
             {
               "responseId": "en:lesson-02:session-30:intro2:r2",
-              "text": "What the street is?"
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-02:session-30:intro2:r3",
-              "text": "What is the noise?"
+              "text": "No, it are not."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы стоите на перекрёстке и не знаете, куда попали. Спросите про улицу.",
-          "uk": "Ви стоїте на перехресті й не знаєте, куди потрапили. Запитайте про вулицю."
+          "ru": "Вы знаете, что лейка на балконе. На вопрос `Is it missing?` ответьте коротким «нет»: она не пропала.",
+          "uk": "Ви знаєте, що лійка на балконі. На запитання `Is it missing?` дайте коротку відповідь «ні»: вона не зникла."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`queue` — очередь",
-        "uk": "`queue` — черга"
+        "ru": "Живое или погибшее",
+        "uk": "Живе чи загибле"
       },
       "bodyByLocale": {
-        "ru": "`queue` — «очередь». Люди стоят друг за другом и ждут.\n\nПишется `queue`, а произносится «кью» — совсем не так, как выглядит на письме. Это слово стоит запомнить сразу вместе со звучанием.\n\nВ вопрос оно встаёт последним — там же, где стояло `noise`.",
-        "uk": "`queue` — «черга». Люди стоять один за одним і чекають.\n\nПишеться `queue`, а вимовляється «к'ю» — зовсім не так, як виглядає на письмі. Це слово варто запам'ятати одразу з тим, як воно звучить.\n\nУ запитання воно стає останнім — там само, де стояло `noise`."
+        "ru": "`alive` — «живой», `dead` — «мёртвый, погибший». Это можно сказать и о растении: `It is alive`. Если оно погибло: `It is dead`. `Is it alive?` — «Оно живое?» Сухой лист сам по себе ещё не доказывает, что всё растение погибло.",
+        "uk": "`alive` — «живий», `dead` — «мертвий, загиблий». Це можна сказати й про рослину: `It is alive`. Якщо вона загинула: `It is dead`. `Is it alive?` — «Вона жива?» Сухий листок сам по собі ще не доводить, що вся рослина загинула."
       },
       "question": {
         "interactionId": "en:lesson-02:session-30:intro3:q",
         "promptByLocale": {
-          "ru": "У двери стоят человек десять, и вы не понимаете, за чем. Спросите.",
-          "uk": "Біля дверей стоїть із десяток людей, і ви не розумієте, за чим. Запитайте."
+          "ru": "На растении появились новые листья. Скажите полной фразой, что оно живое.",
+          "uk": "На рослині з’явилися нові листки. Скажіть повною фразою, що вона жива."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-30:intro3:r1",
-              "text": "What is the queue?"
+              "text": "It is alive."
             },
             {
               "responseId": "en:lesson-02:session-30:intro3:r2",
-              "text": "What is the noise?"
+              "text": "It is dead."
             },
             {
               "responseId": "en:lesson-02:session-30:intro3:r3",
-              "text": "What the queue is?"
+              "text": "It alive."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-30:intro3:r1",
-              "text": "What is the queue?"
+              "text": "It is alive."
             },
             {
               "responseId": "en:lesson-02:session-30:intro3:r2",
-              "text": "What is the noise?"
+              "text": "It is dead."
             },
             {
               "responseId": "en:lesson-02:session-30:intro3:r3",
-              "text": "What the queue is?"
+              "text": "It alive."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У двери стоят человек десять, и вы не понимаете, за чем. Спросите.",
-          "uk": "Біля дверей стоїть із десяток людей, і ви не розумієте, за чим. Запитайте."
+          "ru": "На растении появились новые листья. Скажите полной фразой, что оно живое.",
+          "uk": "На рослині з’явилися нові листки. Скажіть повною фразою, що вона жива."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e1394457b116433fc206e76b721fe2bb246b91a4eaf7b038361c7f55991320e"
+  "introFingerprint": "1c9dc7920fd4aa42a937d8430e3bae29fcfd3d3d5fc0bafc646290114ea6943e"
 }

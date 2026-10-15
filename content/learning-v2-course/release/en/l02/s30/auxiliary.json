@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-30:intro1:r2": {
+          "ru": "Между `It` и `elsewhere` нужно `is`.",
+          "uk": "Між `It` і `elsewhere` потрібно `is`."
+        },
+        "en:lesson-02:session-30:intro1:r3": {
+          "ru": "Это отрицает нахождение в другом месте. Лейку перенесли.",
+          "uk": "Це заперечує перебування в іншому місці. Лійку перенесли."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-30:intro2:r2": {
+          "ru": "В условии вы отрицаете пропажу: место известно.",
+          "uk": "За умовою ви заперечуєте зникнення: місце відоме."
+        },
+        "en:lesson-02:session-30:intro2:r3": {
+          "ru": "С `it` нужно `is`.",
+          "uk": "З `it` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-30:intro3:r2": {
+          "ru": "Это значит, что растение погибло. Здесь оно растёт.",
+          "uk": "Це означає, що рослина загинула. Тут вона росте."
+        },
+        "en:lesson-02:session-30:intro3:r3": {
+          "ru": "Между `It` и `alive` нужно `is`.",
+          "uk": "Між `It` і `alive` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dd0afe8f7f9f8170c20d74d65825508d6811876b2fb27c4a0b7d07bb88bcc493"
+}

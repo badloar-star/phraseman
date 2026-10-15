@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-30:i01",
-    "correctText": "noise",
+    "correctText": "It is elsewhere.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i02",
-    "correctText": "про звук",
+    "correctText": "It is alive.",
     "correctResponseId": "en:lesson-02:session-30:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-30:i03",
-    "correctText": "queue",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-30:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-30:i04",
-    "correctText": "queue",
-    "correctResponseId": "en:lesson-02:session-30:i04:r1"
+    "correctText": "en:lesson-02:session-30:i04:p1=elsewhere\nen:lesson-02:session-30:i04:p2=alive\nen:lesson-02:session-30:i04:p3=dead\nen:lesson-02:session-30:i04:p4=missing",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i05",
-    "correctText": "noise",
-    "correctResponseId": "en:lesson-02:session-30:i05:r1"
+    "correctText": "It is not complete.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i06",
-    "correctText": "What is the noise?",
+    "correctText": "They are elsewhere.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i07",
-    "correctText": "queue",
-    "correctResponseId": "en:lesson-02:session-30:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-30:i08",
-    "correctText": "crowded",
+    "correctText": "It's missing.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-30:i09",
+    "interactionId": "en:lesson-02:session-30:i08",
     "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i09",
+    "correctText": "It is complete.",
     "correctResponseId": "en:lesson-02:session-30:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-30:i10",
-    "correctText": "What is the noise?",
+    "correctText": "en:lesson-02:session-30:i10:p1=complete\nen:lesson-02:session-30:i10:p2=elsewhere\nen:lesson-02:session-30:i10:p3=missing\nen:lesson-02:session-30:i10:p4=alive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i11",
-    "correctText": "en:lesson-02:session-30:i11:p1=noise\nen:lesson-02:session-30:i11:p2=queue\nen:lesson-02:session-30:i11:p3=street\nen:lesson-02:session-30:i11:p4=name",
+    "correctText": "They are dead.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i12",
-    "correctText": "street",
-    "correctResponseId": "en:lesson-02:session-30:i12:r1"
+    "correctText": "Is it complete?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i13",
-    "correctText": "What is the name?",
+    "correctText": "It's not dead.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-30:i14",
-    "correctText": "noisy",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-30:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-30:i15",
-    "correctText": "crowded",
+    "correctText": "Is it dead?",
     "correctResponseId": "en:lesson-02:session-30:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-30:i16",
-    "correctText": "What is the street?",
+    "correctText": "en:lesson-02:session-30:i16:p1=dead\nen:lesson-02:session-30:i16:p2=alive\nen:lesson-02:session-30:i16:p3=complete\nen:lesson-02:session-30:i16:p4=elsewhere",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-30:i17:s01",
-    "correctText": "What is the noise?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-30:i17:s02",
-    "correctText": "What is the queue?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-30:i17:s03",
-    "correctText": "What is the street?",
+    "interactionId": "en:lesson-02:session-30:i17",
+    "correctText": "Is it elsewhere?",
     "correctResponseId": null
   }
 ]

@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-02:session-30:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — noise",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Лейку перенесли со стола на балкон. Не называйте балкон: скажите полной фразой, что она в другом месте",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-30:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — noise",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лейку перенесли со стола на балкон. Не называйте балкон: скажите полной фразой, что она в другом месте",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-30:i01:audio",
-          "transcript": "noise"
+        "family": "phrase_builder",
+        "targetPhrase": "It is elsewhere.",
+        "localizedMeaning": {
+          "ru": "Лейку перенесли со стола на балкон. Не называйте балкон: скажите полной фразой, что она в другом месте",
+          "uk": "Лійку перенесли зі столу на балкон. Не називайте балкон: скажіть повною фразою, що вона в іншому місці"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "elsewhere"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i01:r1",
-            "targetText": "noise",
-            "meaningByLocale": {
-              "ru": "«шум». Звук, из-за которого приходится повышать голос: дрель за стеной, гул толпы, сирена.",
-              "uk": "«шум». Звук, через який доводиться підвищувати голос: дриль за стіною, гул натовпу, сирена."
+            "responseId": "en:lesson-02:session-30:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Лейку перенесли со стола на балкон. Не называйте балкон: скажите полной фразой, что она в другом месте",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is elsewhere.`",
+              "uk": "тут потрібно `is` — `It is elsewhere.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "noise",
-          "definitionByLocale": {
-            "ru": "«шум». Звук, из-за которого приходится повышать голос: дрель за стеной, гул толпы, сирена.",
-            "uk": "«шум». Звук, через який доводиться підвищувати голос: дриль за стіною, гул натовпу, сирена."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — про что спросили",
+      "prompt": "Послушайте фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i02:r1",
-          "text": "про звук"
+          "text": "It is alive."
         },
         {
           "responseId": "en:lesson-02:session-30:i02:r2",
-          "text": "про название"
+          "text": "It is dead."
         },
         {
           "responseId": "en:lesson-02:session-30:i02:r3",
-          "text": "про улицу"
+          "text": "It is missing."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-30:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — про что спросили",
+      "accessibilityLabel": "Послушайте фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-30:i02:audio",
-          "transcript": "What is the noise?"
+          "transcript": "It is alive."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-30:i02:r1",
-            "targetText": "про звук",
+            "targetText": "It is alive.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-30:i02:r2",
-            "targetText": "про название",
+            "targetText": "It is dead.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-30:i02:r3",
-            "targetText": "про улицу",
+            "targetText": "It is missing.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-02:session-30:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — про что спросили",
+            "testedDimension": "Послушайте фразу",
             "feedbackByLocale": {
-              "ru": "Прозвучало `noise` — это шум. Название — это `name`.",
-              "uk": "Прозвучало `noise` — це шум. Назва — це `name`."
+              "ru": "В записи последнее слово — `alive`, а в этом варианте — `dead`.",
+              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `dead`."
             }
           },
           {
             "responseId": "en:lesson-02:session-30:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — про что спросили",
+            "testedDimension": "Послушайте фразу",
             "feedbackByLocale": {
-              "ru": "Прозвучало `noise`. Улица — это `street`.",
-              "uk": "Прозвучало `noise`. Вулиця — це `street`."
+              "ru": "В записи последнее слово — `alive`, а в этом варианте — `missing`.",
+              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `missing`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-02:session-30:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — queue",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-30:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — queue",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-30:i03:audio",
-          "transcript": "queue"
+      "prompt": "Вы ищете набор инструментов. Спросите, где он",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-30:i03:r1",
+          "text": "is"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-02:session-30:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-30:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете набор инструментов. Спросите, где он",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ищете набор инструментов. Спросите, где он",
+          "uk": "Ви шукаєте набір інструментів. Запитайте, де він"
+        },
+        "gappedTargetPhrase": "Where ___ it?",
+        "gapOptions": [
           {
             "responseId": "en:lesson-02:session-30:i03:r1",
-            "targetText": "queue",
-            "meaningByLocale": {
-              "ru": "«очередь». Люди друг за другом у двери, у кассы, у окошка. Читается «кью» — не так, как выглядит на письме.",
-              "uk": "«черга». Люди один за одним біля дверей, біля каси, біля віконця. Читається «к'ю» — не так, як виглядає на письмі."
-            }
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i03:r3",
+            "text": "are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "queue",
-          "definitionByLocale": {
-            "ru": "«очередь». Люди друг за другом у двери, у кассы, у окошка. Читается «кью» — не так, как выглядит на письме.",
-            "uk": "«черга». Люди один за одним біля дверей, біля каси, біля віконця. Читається «к'ю» — не так, як виглядає на письмі."
+        "testedDimension": "Вы ищете набор инструментов. Спросите, где он",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы ищете набор инструментов. Спросите, где он",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы ищете набор инструментов. Спросите, где он",
+            "feedbackByLocale": {
+              "ru": "Вопрос — `Where is it?`.",
+              "uk": "Запитання — `Where is it?`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,449 +196,60 @@
       "interactionId": "en:lesson-02:session-30:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-30:i04:r1",
-          "text": "queue"
-        },
-        {
-          "responseId": "en:lesson-02:session-30:i04:r2",
-          "text": "street"
-        },
-        {
-          "responseId": "en:lesson-02:session-30:i04:r3",
-          "text": "noise"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-30:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-30:i04:audio",
-          "transcript": "queue"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-30:i04:r1",
-            "targetText": "queue",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i04:r2",
-            "targetText": "street",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i04:r3",
-            "targetText": "noise",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-30:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — queue",
-            "feedbackByLocale": {
-              "ru": "«Улица». Прозвучало `queue` — это про людей у двери, а не про место.",
-              "uk": "«Вулиця». Прозвучало `queue` — це про людей біля дверей, а не про місце."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — queue",
-            "feedbackByLocale": {
-              "ru": "«Шум». Это про звук, а не про людей у двери.",
-              "uk": "«Шум». Це про звук, а не про людей біля дверей."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — из подвала тянется ровный гул, и вы не понимаете что это",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-30:i05:r1",
-          "text": "noise"
-        },
-        {
-          "responseId": "en:lesson-02:session-30:i05:r2",
-          "text": "queue"
-        },
-        {
-          "responseId": "en:lesson-02:session-30:i05:r3",
-          "text": "street"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — из подвала тянется ровный гул, и вы не понимаете что это",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — из подвала тянется ровный гул, и вы не понимаете что это",
-          "uk": "Вставте слово — з підвалу тягнеться рівний гул, і ви не розумієте, що це"
-        },
-        "gappedTargetPhrase": "What is the ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-30:i05:r1",
-            "text": "noise"
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i05:r2",
-            "text": "queue"
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i05:r3",
-            "text": "street"
-          }
-        ],
-        "testedDimension": "Вставьте слово — из подвала тянется ровн",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-30:i05:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — из подвала тянется ровн",
-            "feedbackByLocale": {
-              "ru": "«Очередь». За стеной никто не стоит в очереди, там гудит.",
-              "uk": "«Черга». За стіною ніхто не стоїть у черзі, там гуде."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i05:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — из подвала тянется ровн",
-            "feedbackByLocale": {
-              "ru": "«Улица». Вы спрашиваете не где вы, а что за звук.",
-              "uk": "«Вулиця». Ви запитуєте не де ви, а що це за звук."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы спрашиваете, что это гудит",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы спрашиваете, что это гудит",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "What is the noise?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы спрашиваете, что это гудит",
-          "uk": "Складіть фразу — ви запитуєте, що це гуде"
-        },
-        "orderedTokens": [
-          "What",
-          "is",
-          "the",
-          "noise"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — у входа люди стоят друг за другом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-30:i07:r1",
-          "text": "queue"
-        },
-        {
-          "responseId": "en:lesson-02:session-30:i07:r2",
-          "text": "noise"
-        },
-        {
-          "responseId": "en:lesson-02:session-30:i07:r3",
-          "text": "name"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — у входа люди стоят друг за другом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — у входа люди стоят друг за другом",
-          "uk": "Вставте слово — біля входу люди стоять один за одним"
-        },
-        "gappedTargetPhrase": "What is the ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-30:i07:r1",
-            "text": "queue"
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i07:r2",
-            "text": "noise"
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i07:r3",
-            "text": "name"
-          }
-        ],
-        "testedDimension": "Вставьте слово — у входа люди стоят друг",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-30:i07:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — у входа люди стоят друг",
-            "feedbackByLocale": {
-              "ru": "`noise` — это шум. А перед вами люди друг за другом — `queue`.",
-              "uk": "`noise` — це шум. А перед вами люди один за одним — `queue`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i07:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — у входа люди стоят друг",
-            "feedbackByLocale": {
-              "ru": "«Имя, название». Люди у двери — это `queue`.",
-              "uk": "«Ім'я, назва». Люди біля дверей — це `queue`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — crowded",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-30:i08:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — crowded",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-30:i08:audio",
-          "transcript": "crowded"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-30:i08:r1",
-            "targetText": "crowded",
-            "meaningByLocale": {
-              "ru": "«людно, тесно». Место, где людей столько, что не пройти.",
-              "uk": "«людно, тісно». Місце, де людей стільки, що не пройти."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "crowded",
-          "definitionByLocale": {
-            "ru": "«людно, тесно». Место, где людей столько, что не пройти.",
-            "uk": "«людно, тісно». Місце, де людей стільки, що не пройти."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вопрос собран, но в нём дыра",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-30:i09:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-02:session-30:i09:r2",
-          "text": "the"
-        },
-        {
-          "responseId": "en:lesson-02:session-30:i09:r3",
-          "text": "noise"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вопрос собран, но в нём дыра",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вопрос собран, но в нём дыра",
-          "uk": "Вставте слово — запитання складене, але в ньому діра"
-        },
-        "gappedTargetPhrase": "What ___ the noise?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-30:i09:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i09:r2",
-            "text": "the"
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i09:r3",
-            "text": "noise"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вопрос собран, но в нём",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-30:i09:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вопрос собран, но в нём",
-            "feedbackByLocale": {
-              "ru": "`the` в этом вопросе уже стоит — дальше, перед словом `noise`. Тут нужно другое.",
-              "uk": "`the` в цьому запитанні вже стоїть — далі, перед словом `noise`. Тут потрібне інше."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-30:i09:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вопрос собран, но в нём",
-            "feedbackByLocale": {
-              "ru": "`noise` стоит в конце вопроса. Второй раз оно не нужно.",
-              "uk": "`noise` стоїть у кінці запитання. Вдруге воно не потрібне."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «что это за шум?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-30:i10:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — «что это за шум?»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-30:i10:audio",
-          "transcript": "What is the noise?"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "What is the noise?",
-        "orderedTokens": [
-          "What",
-          "is",
-          "the",
-          "noise"
-        ],
-        "authoredDistractorTokens": [
-          "street"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-30:i11:p1",
-            "target": "noise",
+            "pairId": "en:lesson-02:session-30:i04:p1",
+            "target": "elsewhere",
             "meaningByLocale": {
-              "ru": "шум",
-              "uk": "шум"
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
             }
           },
           {
-            "pairId": "en:lesson-02:session-30:i11:p2",
-            "target": "queue",
+            "pairId": "en:lesson-02:session-30:i04:p2",
+            "target": "alive",
             "meaningByLocale": {
-              "ru": "очередь",
-              "uk": "черга"
+              "ru": "живой",
+              "uk": "живий"
             }
           },
           {
-            "pairId": "en:lesson-02:session-30:i11:p3",
-            "target": "street",
+            "pairId": "en:lesson-02:session-30:i04:p3",
+            "target": "dead",
             "meaningByLocale": {
-              "ru": "улица",
-              "uk": "вулиця"
+              "ru": "мёртвый, погибший",
+              "uk": "мертвий, загиблий"
             }
           },
           {
-            "pairId": "en:lesson-02:session-30:i11:p4",
-            "target": "name",
+            "pairId": "en:lesson-02:session-30:i04:p4",
+            "target": "missing",
             "meaningByLocale": {
-              "ru": "название",
-              "uk": "назва"
+              "ru": "пропавший, отсутствующий",
+              "uk": "зниклий, відсутній"
             }
           }
         ],
         "leftColumn": [
-          "noise",
-          "queue",
-          "street",
-          "name"
+          "elsewhere",
+          "alive",
+          "dead",
+          "missing"
         ],
         "rightColumn": [
-          "шум",
-          "очередь",
-          "улица",
-          "название"
+          "в другом месте",
+          "живой",
+          "мёртвый, погибший",
+          "пропавший, отсутствующий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -628,68 +266,193 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-30:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-02:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:i05:audio",
+          "transcript": "It is not complete."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not complete.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "complete"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-30:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is not complete.`",
+              "uk": "тут потрібно `is` — `It is not complete.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Два инструмента лежат в другом месте. Скажите это полной фразой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Два инструмента лежат в другом месте. Скажите это полной фразой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are elsewhere.",
+        "localizedMeaning": {
+          "ru": "Два инструмента лежат в другом месте. Скажите это полной фразой",
+          "uk": "Два інструменти лежать в іншому місці. Скажіть це повною фразою"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "elsewhere"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-30:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Два инструмента лежат в другом месте. Скажите это полной фразой",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are elsewhere.`",
+              "uk": "тут потрібно `are` — `They are elsewhere.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Одного инструмента нет, и никто не знает, куда он делся. Коротко скажите, что он пропал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Одного инструмента нет, и никто не знает, куда он делся. Коротко скажите, что он пропал",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:i07:audio",
+          "transcript": "It's missing."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's missing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы заблудились, спросите у прохожего название улицы",
+      "prompt": "Растение растёт. На «Is it alive?» дополните короткое «да»",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-30:i12:r1",
-          "text": "street"
+          "responseId": "en:lesson-02:session-30:i08:r1",
+          "text": "is"
         },
         {
-          "responseId": "en:lesson-02:session-30:i12:r2",
-          "text": "crowded"
+          "responseId": "en:lesson-02:session-30:i08:r2",
+          "text": "am"
         },
         {
-          "responseId": "en:lesson-02:session-30:i12:r3",
-          "text": "noise"
+          "responseId": "en:lesson-02:session-30:i08:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы заблудились, спросите у прохожего название улицы",
+      "accessibilityLabel": "Растение растёт. На «Is it alive?» дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы заблудились, спросите у прохожего название улицы",
-          "uk": "Вставте слово — ви заблукали, запитайте в перехожого назву вулиці"
+          "ru": "Растение растёт. На «Is it alive?» дополните короткое «да»",
+          "uk": "Рослина росте. На «Is it alive?» доповніть коротку відповідь «так»"
         },
-        "gappedTargetPhrase": "What is the ___ ?",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-02:session-30:i12:r1",
-            "text": "street"
+            "responseId": "en:lesson-02:session-30:i08:r1",
+            "text": "is"
           },
           {
-            "responseId": "en:lesson-02:session-30:i12:r2",
-            "text": "crowded"
+            "responseId": "en:lesson-02:session-30:i08:r2",
+            "text": "am"
           },
           {
-            "responseId": "en:lesson-02:session-30:i12:r3",
-            "text": "noise"
+            "responseId": "en:lesson-02:session-30:i08:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — вы заблудились, спросит",
+        "testedDimension": "Растение растёт. На «Is it alive?» дополните короткое «да»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i12:r2",
+            "responseId": "en:lesson-02:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы заблудились, спросит",
+            "testedDimension": "Растение растёт. На «Is it alive?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "`crowded` — «людно», это описание. А вам нужно название места.",
-              "uk": "`crowded` — «людно», це опис. А вам потрібна назва місця."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i12:r3",
+            "responseId": "en:lesson-02:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы заблудились, спросит",
+            "testedDimension": "Растение растёт. На «Is it alive?» дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Про звук вы не спрашивали: вам нужно название улицы.",
-              "uk": "Про звук ви не запитували: вам потрібна назва вулиці."
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -697,31 +460,275 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-30:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы спрашиваете название",
+      "interactionId": "en:lesson-02:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу о наборе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-30:i09:r1",
+          "text": "It is complete."
+        },
+        {
+          "responseId": "en:lesson-02:session-30:i09:r2",
+          "text": "It is missing."
+        },
+        {
+          "responseId": "en:lesson-02:session-30:i09:r3",
+          "text": "It is elsewhere."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте фразу о наборе",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:i09:audio",
+          "transcript": "It is complete."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-30:i09:r1",
+            "targetText": "It is complete.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i09:r2",
+            "targetText": "It is missing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i09:r3",
+            "targetText": "It is elsewhere.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу о наборе",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complete`, а в этом варианте — `missing`.",
+              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `missing`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу о наборе",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `complete`, а в этом варианте — `elsewhere`.",
+              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `elsewhere`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы спрашиваете название",
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-30:i10:p1",
+            "target": "complete",
+            "meaningByLocale": {
+              "ru": "полный, завершённый",
+              "uk": "повний, завершений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i10:p2",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i10:p3",
+            "target": "missing",
+            "meaningByLocale": {
+              "ru": "пропавший, отсутствующий",
+              "uk": "зниклий, відсутній"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i10:p4",
+            "target": "alive",
+            "meaningByLocale": {
+              "ru": "живой",
+              "uk": "живий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "complete",
+          "elsewhere",
+          "missing",
+          "alive"
+        ],
+        "rightColumn": [
+          "полный, завершённый",
+          "в другом месте",
+          "пропавший, отсутствующий",
+          "живой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:i11:audio",
+          "transcript": "They are dead."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are dead.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "dead"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-30:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are dead.`",
+              "uk": "тут потрібно `are` — `They are dead.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, полный ли набор инструментов, всё ли в нём на месте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, полный ли набор инструментов, всё ли в нём на месте",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is the name?",
+        "targetPhrase": "Is it complete?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вы спрашиваете название",
-          "uk": "Складіть фразу — ви запитуєте назву"
+          "ru": "Спросите, полный ли набор инструментов, всё ли в нём на месте",
+          "uk": "Запитайте, чи повний набір інструментів, чи все в ньому на місці"
         },
         "orderedTokens": [
-          "What",
-          "is",
-          "the",
-          "name"
+          "Is",
+          "it",
+          "complete"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-30:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Спросите, полный ли набор инструментов, всё ли в нём на месте",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is it complete?`",
+              "uk": "тут потрібно `Is` — `Is it complete?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна решила, что растение погибло, но вы видите новые листья. Коротко скажите, что оно не погибло",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Анна решила, что растение погибло, но вы видите новые листья. Коротко скажите, что оно не погибло",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:i13:audio",
+          "transcript": "It's not dead."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's not dead.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -731,63 +738,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — под окнами долбит отбойный молоток",
+      "prompt": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i14:r1",
-          "text": "noisy"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-02:session-30:i14:r2",
-          "text": "noise"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-30:i14:r3",
-          "text": "queue"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — под окнами долбит отбойный молоток",
+      "accessibilityLabel": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — под окнами долбит отбойный молоток",
-          "uk": "Вставте слово — під вікнами гатить відбійний молоток"
+          "ru": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
+          "uk": "Два горщики перенесли зі столу. Повідомте, що вони в іншому місці"
         },
-        "gappedTargetPhrase": "The street is ___ .",
+        "gappedTargetPhrase": "They ___ elsewhere.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-30:i14:r1",
-            "text": "noisy"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-02:session-30:i14:r2",
-            "text": "noise"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-30:i14:r3",
-            "text": "queue"
+            "text": "is"
           }
         ],
-        "testedDimension": "Вставьте слово — под окнами долбит отбой",
+        "testedDimension": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-30:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — под окнами долбит отбой",
+            "testedDimension": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
             "feedbackByLocale": {
-              "ru": "`noise` — это сам шум, вещь. А улица, на которой шумно, — `noisy`.",
-              "uk": "`noise` — це сам шум, річ. А вулиця, на якій шумно, — `noisy`."
+              "ru": "С `They` нужно `are`.",
+              "uk": "З `They` потрібно `are`."
             }
           },
           {
             "responseId": "en:lesson-02:session-30:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — под окнами долбит отбой",
+            "testedDimension": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
             "feedbackByLocale": {
-              "ru": "`queue` — очередь, люди друг за другом. Про шумное место — `noisy`.",
-              "uk": "`queue` — черга, люди один за одним. Про шумне місце — `noisy`."
+              "ru": "Про два горшка — `They are elsewhere`.",
+              "uk": "Про два горщики — `They are elsewhere`."
             }
           }
         ]
@@ -798,68 +805,75 @@
       "interactionId": "en:lesson-02:session-30:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — тихая улица, но людей столько, что не пройти",
+      "prompt": "Послушайте вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i15:r1",
-          "text": "crowded"
+          "text": "Is it dead?"
         },
         {
           "responseId": "en:lesson-02:session-30:i15:r2",
-          "text": "queue"
+          "text": "Is it alive?"
         },
         {
           "responseId": "en:lesson-02:session-30:i15:r3",
-          "text": "noisy"
+          "text": "Is it complete?"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — тихая улица, но людей столько, что не пройти",
+      "audioTargetIds": [
+        "en:lesson-02:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — тихая улица, но людей столько, что не пройти",
-          "uk": "Вставте слово — тиха вулиця, але людей стільки, що не пройти"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:i15:audio",
+          "transcript": "Is it dead?"
         },
-        "gappedTargetPhrase": "The street is ___ .",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-30:i15:r1",
-            "text": "crowded"
+            "targetText": "Is it dead?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-30:i15:r2",
-            "text": "queue"
+            "targetText": "Is it alive?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-30:i15:r3",
-            "text": "noisy"
+            "targetText": "Is it complete?",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставьте слово — тихая улица, но людей с",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-30:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — тихая улица, но людей с",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "`queue` — сама очередь, вещь. А тут нужно слово про тесноту.",
-              "uk": "`queue` — сама черга, річ. А тут потрібне слово про тісноту."
+              "ru": "В записи последнее слово — `dead`, а в этом варианте — `alive`.",
+              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `alive`."
             }
           },
           {
             "responseId": "en:lesson-02:session-30:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — тихая улица, но людей с",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "«Шумно» — про звук. А речь о том, что людей слишком много.",
-              "uk": "«Шумно» — про звук. А йдеться про те, що людей забагато."
+              "ru": "В записи последнее слово — `dead`, а в этом варианте — `complete`.",
+              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `complete`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -867,123 +881,107 @@
       "interactionId": "en:lesson-02:session-30:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — вы вышли не там, где думали; спросите, что это за улица",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — вы вышли не там, где думали; спросите, что это за улица",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "What is the street?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — вы вышли не там, где думали; спросите, что это за улица",
-          "uk": "Складіть запитання — ви вийшли не там, де думали; запитайте, що це за вулиця"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-30:i16:p1",
+            "target": "dead",
+            "meaningByLocale": {
+              "ru": "мёртвый, погибший",
+              "uk": "мертвий, загиблий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i16:p2",
+            "target": "alive",
+            "meaningByLocale": {
+              "ru": "живой",
+              "uk": "живий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i16:p3",
+            "target": "complete",
+            "meaningByLocale": {
+              "ru": "полный, завершённый",
+              "uk": "повний, завершений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i16:p4",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dead",
+          "alive",
+          "complete",
+          "elsewhere"
+        ],
+        "rightColumn": [
+          "мёртвый, погибший",
+          "живой",
+          "полный, завершённый",
+          "в другом месте"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "orderedTokens": [
-          "What",
-          "is",
-          "the",
-          "street"
-        ],
-        "authoredDistractorTokens": [
-          "noise"
-        ],
-        "slotFeedback": []
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-30:i17:s01",
+      "interactionId": "en:lesson-02:session-30:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Набора инструментов на столе нет. Спросите Анну, в другом ли он месте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-30:i17:s01:audio"
+        "en:lesson-02:session-30:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Набора инструментов на столе нет. Спросите Анну, в другом ли он месте",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-30:i17:s01:audio",
-          "transcript": "What is the noise?"
+          "audioTargetId": "en:lesson-02:session-30:i17:audio",
+          "transcript": "Is it elsewhere?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "What is the noise?",
+        "targetPhrase": "Is it elsewhere?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-30:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-30:i17:s02:audio",
-          "transcript": "What is the queue?"
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What is the queue?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-30:i17:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-30:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-30:i17:s03:audio",
-          "transcript": "What is the street?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What is the street?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -994,11 +992,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e866eaf26b9d3d4a4c06277d9c7dcf40f0717344328e449be8472bfbf0f8765b"
+  "learnerFingerprint": "f1e87b55b6c5f88720e767d8004a4019c9cac113efb28214a39e7ae4a88cc0cd"
 }

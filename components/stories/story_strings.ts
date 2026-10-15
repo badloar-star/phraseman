@@ -7,6 +7,7 @@
 // Переводы кроме RU — предложение, носителем не проверены (как у моментов Пика).
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../constants/i18n';
+import { momentCoinWord } from '../spire/moments/moments_strings';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
@@ -26,11 +27,11 @@ const S = {
   weekUp: ['Ты поднимаешься в {league}', 'Ти піднімаєшся в {league}', 'You move up to {league}', 'Subes a {league}', 'Você sobe para {league}', 'Bạn thăng lên {league}', 'Kamu naik ke {league}', '{league} ligine yükseliyorsun', 'Awansujesz do {league}'],
   weekDown: ['Ты спускаешься в {league}', 'Ти спускаєшся в {league}', 'You move down to {league}', 'Bajas a {league}', 'Você desce para {league}', 'Bạn xuống {league}', 'Kamu turun ke {league}', '{league} ligine iniyorsun', 'Schodzisz do {league}'],
   weekPlace: ['{place} место из {total}', '{place} місце з {total}', 'Place {place} of {total}', 'Puesto {place} de {total}', 'Posição {place} de {total}', 'Hạng {place}/{total}', 'Peringkat {place} dari {total}', '{total} kişi arasında {place}. sıra', '{place}. miejsce z {total}'],
-  weekCoins: ['{coins} монет за неделю', '{coins} монет за тиждень', '{coins} coins this week', '{coins} monedas esta semana', '{coins} moedas na semana', '{coins} xu trong tuần', '{coins} koin minggu ini', 'bu hafta {coins} jeton', '{coins} monet w tygodniu'],
+  weekCoins: ['{coins} {cw} за неделю', '{coins} {cw} за тиждень', '{coins} {cw} this week', '{coins} {cw} esta semana', '{coins} {cw} na semana', '{coins} {cw} trong tuần', '{coins} {cw} minggu ini', 'bu hafta {coins} {cw}', '{coins} {cw} w tygodniu'],
   // ── слайд «ранг монеты» ──
   rankOverline: ['Ранг монеты', 'Ранг монети', 'Coin rank', 'Rango de la moneda', 'Rank da moeda', 'Hạng đồng xu', 'Peringkat koin', 'Jeton rütbesi', 'Ranga monety'],
   rankTitle: ['Ранг {n}', 'Ранг {n}', 'Rank {n}', 'Rango {n}', 'Rank {n}', 'Hạng {n}', 'Peringkat {n}', 'Rütbe {n}', 'Ranga {n}'],
-  rankPaid: ['Куплен за {price} монет', 'Куплений за {price} монет', 'Bought for {price} coins', 'Comprado por {price} monedas', 'Comprado por {price} moedas', 'Mua với {price} xu', 'Dibeli seharga {price} koin', '{price} jetona satın alındı', 'Kupiona za {price} monet'],
+  rankPaid: ['Куплен за {price} {pw}', 'Куплений за {price} {pw}', 'Bought for {price} {pw}', 'Comprado por {price} {pw}', 'Comprado por {price} {pw}', 'Mua với {price} {pw}', 'Dibeli seharga {price} {pw}', '{price} jetona satın alındı', 'Kupiona za {price} {pw}'],
   // ── слайд «ачивка» ──
   achNext: ['Следующая — {n} {dn}', 'Наступна — {n} {dn}', 'Next — {n} {dn}', 'Siguiente — {n} {dn}', 'Próxima — {n} {dn}', 'Tiếp theo — {n} {dn}', 'Berikutnya — {n} {dn}', 'Sonraki — {n} {dn}', 'Następna — {n} {dn}'],
   achOverline: ['Ачивка', 'Ачівка', 'Achievement', 'Logro', 'Conquista', 'Thành tích', 'Pencapaian', 'Başarım', 'Osiągnięcie'],
@@ -45,7 +46,14 @@ export function storyText(lang: Lang, key: StoryStringKey, vars?: Readonly<Recor
   const row = S[key] as Nine;
   const raw = row[LANG_INDEX[lang] ?? LANG_INDEX.en];
   if (!vars) return raw;
-  return raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in vars ? String(vars[name]) : whole));
+  // зачем (Ревизор P19, 15.10): «{coins} монет», «за {price} монет» были зашиты — {cw}/{pw} подбирают форму под число («1 181 монета», «за 1 монету»).
+  const filled: Record<string, string | number> = { ...vars };
+  const count = (v: string | number | undefined): number | null => (typeof v === 'number' ? v : typeof v === 'string' && /\d/.test(v) ? Number(v.replace(/\D/g, '')) : null);
+  const coins = count(vars.coins);
+  const price = count(vars.price);
+  if (coins !== null) filled.cw = momentCoinWord(lang, coins);
+  if (price !== null) filled.pw = momentCoinWord(lang, price, true);
+  return raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in filled ? String(filled[name]) : whole));
 }
 
 /** «сегодня» / «вчера» / «N дн. назад» по возрасту события (календарные сутки по часам устройства). */

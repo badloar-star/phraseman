@@ -3,6 +3,7 @@
 // as SPANISH_UI_LOCALE_ENABLED below.
 import { ENGLISH_UI_LOCALE_ENABLED, SPANISH_UI_LOCALE_ENABLED } from '../app/config';
 import { isDevUiLangEnOn, isDevUiLangOn } from '../app/dev_ui_lang';
+import { pluralWord } from './plural';
 import {
   ACTIVE_INTERFACE_SOURCE_LOCALES,
   PLANNED_INTERFACE_SOURCE_LOCALES,
@@ -161,7 +162,7 @@ export const T = {
     training:     'Повторение',
     wordList:     'Все фразы раунда',
     allLearned:   'Все фразы — твои. Раунд закрыт.',
-    wordsInLesson:(n: number) => `${n} фраз — осваиваем`,
+    wordsInLesson:(n: number) => `${n} ${pluralWord('ru', n, { one: 'фраза', few: 'фразы', many: 'фраз' })} — осваиваем`,
 
     // Настройки
     settings:       'Настройки',
@@ -246,7 +247,7 @@ export const T = {
     training:     'Review',
     wordList:     'All phrases of the round',
     allLearned:   'All phrases are yours. Round closed.',
-    wordsInLesson:(n: number) => `${n} phrases to learn`,
+    wordsInLesson:(n: number) => `${n} ${n === 1 ? 'phrase' : 'phrases'} to learn`,
     settings:       'Settings',
     learningSettings:'How you learn',
     autoCheck:      'Auto-check',
@@ -322,7 +323,7 @@ export const T = {
     training:     'Тренування',
     wordList:     'Список слів',
     allLearned:   'Всі слова вивчено!',
-    wordsInLesson:(n: number) => `${n} слів у цьому уроці`,
+    wordsInLesson:(n: number) => `${n} ${pluralWord('uk', n, { one: 'слово', few: 'слова', many: 'слів' })} у цьому уроці`,
 
     settings:       'Параметри',
     learningSettings:'Параметри навчання',
@@ -410,7 +411,7 @@ export const T = {
     training:     'Práctica',
     wordList:     'Lista de palabras',
     allLearned:   '¡Has aprendido todas las palabras!',
-    wordsInLesson:(n: number) => `${n} palabras en esta lección`,
+    wordsInLesson:(n: number) => `${n} ${n === 1 ? 'palabra' : 'palabras'} en esta lección`,
 
     settings:       'Ajustes',
     learningSettings:'Ajustes del aprendizaje',
@@ -493,7 +494,7 @@ export const T = {
     training:     'Treino',
     wordList:     'Lista de palavras',
     allLearned:   'Você aprendeu todas as palavras!',
-    wordsInLesson:(n: number) => `${n} palavras nesta lição`,
+    wordsInLesson:(n: number) => `${n} ${n === 1 ? 'palavra' : 'palavras'} nesta lição`,
 
     settings:       'Configurações',
     learningSettings:'Configurações de estudo',
@@ -825,7 +826,7 @@ export const T = {
     training:     'Trening',
     wordList:     'Lista słów',
     allLearned:   'Wszystkie słowa są już nauczone!',
-    wordsInLesson:(n: number) => `${n} słów w tej lekcji`,
+    wordsInLesson:(n: number) => `${n} ${pluralWord('pl', n, { one: 'słowo', few: 'słowa', many: 'słów' })} w tej lekcji`,
 
     settings:       'Ustawienia',
     learningSettings:'Ustawienia nauki',

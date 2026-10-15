@@ -8,6 +8,7 @@
 // проверены.
 // ═══════════════════════════════════════════════════════════════════════════
 import { triLang, type Lang } from '../../constants/i18n';
+import { spireStepsWord } from './spire_plurals';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 
@@ -73,7 +74,7 @@ const S = {
   floorAhead: ['Впереди этаж {n}', 'Попереду поверх {n}', 'Floor {n} is next', 'Ahora, el piso {n}', 'A seguir, o andar {n}', 'Phía trước là tầng {n}', 'Berikutnya lantai {n}', 'Sırada {n}. kat', 'Przed tobą piętro {n}'],
   guardSub: ['{n} этаж — смешанный набор, монеты ×{m}', '{n} поверх — змішаний набір, монети ×{m}', 'Floor {n}: mixed set, coins ×{m}', 'Piso {n}: set mixto, monedas ×{m}', 'Andar {n}: conjunto misto, moedas ×{m}', 'Tầng {n}: bộ hỗn hợp, xu ×{m}', 'Lantai {n}: set campuran, koin ×{m}', '{n}. kat: karışık set, jeton ×{m}', 'Piętro {n}: zestaw mieszany, monety ×{m}'],
   onFloorN: ['Ты на {n} этаже', 'Ти на {n} поверсі', 'You are on floor {n}', 'Estás en el piso {n}', 'Você está no andar {n}', 'Bạn ở tầng {n}', 'Kamu di lantai {n}', '{n}. kattasın', 'Jesteś na {n} piętrze'],
-  summitSub: ['{s} ступеней за неделю · {p} место в комнате', '{s} сходинок за тиждень · {p} місце в кімнаті', '{s} steps this week · place {p} in the room', '{s} escalones esta semana · puesto {p} en la sala', '{s} degraus na semana · {p}º lugar na sala', '{s} bậc trong tuần · hạng {p} trong phòng', '{s} anak tangga minggu ini · peringkat {p} di ruang', 'Bu hafta {s} basamak · odada {p}. sıra', '{s} stopni w tygodniu · {p}. miejsce w pokoju'],
+  summitSub: ['{s} {sw} за неделю · {p} место в комнате', '{s} {sw} за тиждень · {p} місце в кімнаті', '{s} {sw} this week · place {p} in the room', '{s} {sw} esta semana · puesto {p} en la sala', '{s} {sw} na semana · {p}º lugar na sala', '{s} {sw} trong tuần · hạng {p} trong phòng', '{s} {sw} minggu ini · peringkat {p} di ruang', 'Bu hafta {s} {sw} · odada {p}. sıra', '{s} {sw} w tygodniu · {p}. miejsce w pokoju'],
   aboveCloudsCta: ['Выше — над облаками', 'Вище — над хмарами', 'Higher — above the clouds', 'Más arriba, sobre las nubes', 'Mais alto, acima das nuvens', 'Lên nữa — trên mây', 'Lebih tinggi — di atas awan', 'Daha yukarı — bulutların üstü', 'Wyżej — nad chmury'],
   saveFailed: ['Ступень не сохранилась. Попробуй ещё раз', 'Сходинка не збереглась. Спробуй ще раз', 'The step wasn’t saved. Try again', 'El escalón no se guardó. Inténtalo de nuevo', 'O degrau não foi salvo. Tente de novo', 'Chưa lưu được bậc. Thử lại nhé', 'Anak tangga tidak tersimpan. Coba lagi', 'Basamak kaydedilmedi. Tekrar dene', 'Stopień się nie zapisał. Spróbuj ponownie'],
   // зачем (координатор 13.10, Дизайн 497a2535d): сервер не засчитал ступень и маркер откатился — точная причина, а не общее «не сохранилась».
@@ -119,7 +120,9 @@ export function spireGameText(lang: Lang, key: SpireGameStringKey, vars?: Readon
   const [ru, uk, en, es, ptBR, vi, id, tr, pl] = S[effectiveKey];
   const raw = triLang(lang, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl });
   if (!vars) return raw;
-  return raw.replace(/\{([a-z0-9]+)\}/giu, (m, name: string) => (name in vars ? String(vars[name]) : m));
+  // зачем (Ревизор P19, 15.10): «{s} ступеней» было зашито — {sw} подбирает форму под число («1 ступень», «22 ступени»).
+  const filled: Record<string, string | number> = typeof vars.s === 'number' ? { ...vars, sw: spireStepsWord(lang, vars.s) } : vars;
+  return raw.replace(/\{([a-z0-9]+)\}/giu, (m, name: string) => (name in filled ? String(filled[name]) : m));
 }
 
 /** 1:42 — оставшееся время ступени. */

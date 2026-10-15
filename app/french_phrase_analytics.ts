@@ -1,4 +1,5 @@
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
+import { pluralWord } from '../constants/plural';
 import type {
   PersonalInsight,
   PhraseAnalyticsResult,
@@ -148,16 +149,16 @@ export async function computeFrenchPhraseAnalytics(
           'weak_category',
           'red',
           {
-            ru: `Во французском чаще всего проседает категория ${topCategory.category}: ${topCategory.mistakeCount} ошибок за 30 дней.`,
-            uk: `У французькій найчастіше просідає категорія ${topCategory.category}: ${topCategory.mistakeCount} помилок за 30 днів.`,
-            en: `In French, the weakest category is ${topCategory.category}: ${topCategory.mistakeCount} mistakes in 30 days.`,
-            es: `En francés, la categoría que más falla es ${topCategory.category}: ${topCategory.mistakeCount} errores en 30 días.`,
-            ptBR: `Em francês, a categoria que mais pesa é ${topCategory.category}: ${topCategory.mistakeCount} erros em 30 dias.`,
-            'pt-BR': `Em francês, a categoria que mais pesa é ${topCategory.category}: ${topCategory.mistakeCount} erros em 30 dias.`,
+            ru: `Во французском чаще всего проседает категория ${topCategory.category}: ${topCategory.mistakeCount} ${pluralWord('ru', topCategory.mistakeCount, { one: 'ошибка', few: 'ошибки', many: 'ошибок' })} за 30 дней.`,
+            uk: `У французькій найчастіше просідає категорія ${topCategory.category}: ${topCategory.mistakeCount} ${pluralWord('uk', topCategory.mistakeCount, { one: 'помилка', few: 'помилки', many: 'помилок' })} за 30 днів.`,
+            en: `In French, the weakest category is ${topCategory.category}: ${topCategory.mistakeCount} ${topCategory.mistakeCount === 1 ? 'mistake' : 'mistakes'} in 30 days.`,
+            es: `En francés, la categoría que más falla es ${topCategory.category}: ${topCategory.mistakeCount} ${topCategory.mistakeCount === 1 ? 'error' : 'errores'} en 30 días.`,
+            ptBR: `Em francês, a categoria que mais pesa é ${topCategory.category}: ${topCategory.mistakeCount} ${topCategory.mistakeCount === 1 ? 'erro' : 'erros'} em 30 dias.`,
+            'pt-BR': `Em francês, a categoria que mais pesa é ${topCategory.category}: ${topCategory.mistakeCount} ${topCategory.mistakeCount === 1 ? 'erro' : 'erros'} em 30 dias.`,
             vi: `Trong tiếng Pháp, nhóm yếu nhất là ${topCategory.category}: ${topCategory.mistakeCount} lỗi trong 30 ngày.`,
             id: `Dalam bahasa Prancis, kategori yang paling lemah adalah ${topCategory.category}: ${topCategory.mistakeCount} kesalahan dalam 30 hari.`,
             tr: `Fransızcada en çok zorlayan kategori ${topCategory.category}: 30 günde ${topCategory.mistakeCount} hata.`,
-            pl: `We francuskim najsłabsza jest kategoria ${topCategory.category}: ${topCategory.mistakeCount} błędów w 30 dni.`,
+            pl: `We francuskim najsłabsza jest kategoria ${topCategory.category}: ${topCategory.mistakeCount} ${pluralWord('pl', topCategory.mistakeCount, { one: 'błąd', few: 'błędy', many: 'błędów' })} w 30 dni.`,
           },
         )
       : undefined,

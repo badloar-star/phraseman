@@ -4,6 +4,7 @@ import { Modal, Platform, Pressable, ScrollView, Text, TouchableOpacity, useWind
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { getReviewVariant, markReviewPrompted, markReviewRated, type ReviewContext, type ReviewVariant } from '../app/review_utils';
 import { openStoreReviewPage } from '../app/store_review';
+import { pluralWord } from '../constants/plural';
 import { triLang, type Lang } from '../constants/i18n';
 import { useOverlayVisible } from './OverlayArbiter';
 import { useTheme } from './ThemeContext';
@@ -134,7 +135,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2 }}>{labelForContext('streak_milestone', lang)}</Text>
-            <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700', marginTop: 2 }}>{triLang(lang, { ru: `${streakDays} дней подряд`, uk: `${streakDays} днів поспіль`, en: `${streakDays} days in a row`, es: `${streakDays} días seguidos`, 'pt-BR': `${streakDays} dias seguidos`, vi: `${streakDays} ngày liên tiếp`, id: `${streakDays} hari berturut-turut`, tr: `${streakDays} gün üst üste`, pl: `${streakDays} dni z rzędu` })}</Text>
+            <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700', marginTop: 2 }}>{triLang(lang, { ru: `${streakDays} ${pluralWord('ru', streakDays, { one: 'день', few: 'дня', many: 'дней' })} подряд`, uk: `${streakDays} ${pluralWord('uk', streakDays, { one: 'день', few: 'дні', many: 'днів' })} поспіль`, en: `${streakDays} ${streakDays === 1 ? 'day' : 'days'} in a row`, es: `${streakDays} ${streakDays === 1 ? 'día seguido' : 'días seguidos'}`, 'pt-BR': `${streakDays} ${streakDays === 1 ? 'dia seguido' : 'dias seguidos'}`, vi: `${streakDays} ngày liên tiếp`, id: `${streakDays} hari berturut-turut`, tr: `${streakDays} gün üst üste`, pl: `${streakDays} ${pluralWord('pl', streakDays, { one: 'dzień', few: 'dni', many: 'dni' })} z rzędu` })}</Text>
           </View>
         </View>
       ) : null}

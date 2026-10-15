@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
+import { pluralWord } from '../constants/plural';
 import { statsDailyBreakdownKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { onAccountOwnerChanged } from './account_owner_change';
 
@@ -330,9 +331,9 @@ function buildInsights(days: Activity365Day[], todayKey: string, currentStreak: 
       titleRu: 'Ритм закрепляется',
       titleUk: 'Ритм закріплюється',
       titleEs: 'El hábito se consolida',
-      bodyRu: `Серия ${currentStreak} дней уже работает как привычка. Самое ценное сейчас — не повышать нагрузку резко.`,
-      bodyUk: `Серія ${currentStreak} днів уже працює як звичка. Найцінніше зараз — не підвищувати навантаження різко.`,
-      bodyEs: `Una racha de ${currentStreak} días ya parece hábito. Ahora conviene no subir la carga de golpe.`,
+      bodyRu: `Серия ${currentStreak} ${pluralWord('ru', currentStreak, { one: 'день', few: 'дня', many: 'дней' })} уже работает как привычка. Самое ценное сейчас — не повышать нагрузку резко.`,
+      bodyUk: `Серія ${currentStreak} ${pluralWord('uk', currentStreak, { one: 'день', few: 'дні', many: 'днів' })} уже працює як звичка. Найцінніше зараз — не підвищувати навантаження різко.`,
+      bodyEs: `Una racha de ${currentStreak} ${currentStreak === 1 ? 'día' : 'días'} ya parece hábito. Ahora conviene no subir la carga de golpe.`,
     });
   }
 

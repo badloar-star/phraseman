@@ -1,4 +1,4 @@
-import { runeWord } from '../../constants/runes';
+import { pluralWord } from '../../constants/plural';
 
 export const SESSION_ATTEMPTS_COPY_LOCALES = [
   'ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl',
@@ -25,7 +25,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     restoreForRunes: 'Восстановить · 25 монет',
     restartWithEnergy: 'Начать заново',
     endSession: 'Завершить сессию',
-    notEnoughRunes: (missing) => `Нужно ещё ${missing} ${missing === 1 ? 'монету' : runeWord('ru', missing)}`,
+    notEnoughRunes: (missing) => `Нужно ещё ${missing} ${pluralWord('ru', missing, { one: 'монету', few: 'монеты', many: 'монет' })}`,
   },
   uk: {
     attemptsStatus: (remaining, total) => `Спроби: ${remaining} із ${total}`,
@@ -34,7 +34,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     restoreForRunes: 'Відновити · 25 монет',
     restartWithEnergy: 'Почати заново',
     endSession: 'Завершити сесію',
-    notEnoughRunes: (missing) => `Потрібно ще ${missing} монет`,
+    notEnoughRunes: (missing) => `Потрібно ще ${missing} ${pluralWord('uk', missing, { one: 'монету', few: 'монети', many: 'монет' })}`,
   },
   en: {
     attemptsStatus: (remaining, total) => `Attempts: ${remaining} of ${total}`,
@@ -52,7 +52,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     restoreForRunes: 'Recuperar · 25 monedas',
     restartWithEnergy: 'Empezar de nuevo',
     endSession: 'Terminar sesión',
-    notEnoughRunes: (missing) => `Te faltan ${missing} monedas`,
+    notEnoughRunes: (missing) => `Te ${missing === 1 ? 'falta' : 'faltan'} ${missing} ${missing === 1 ? 'moneda' : 'monedas'}`,
   },
   'pt-BR': {
     attemptsStatus: (remaining, total) => `Tentativas: ${remaining} de ${total}`,
@@ -61,7 +61,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     restoreForRunes: 'Recuperar · 25 moedas',
     restartWithEnergy: 'Começar de novo',
     endSession: 'Encerrar sessão',
-    notEnoughRunes: (missing) => `Faltam ${missing} moedas`,
+    notEnoughRunes: (missing) => `${missing === 1 ? 'Falta' : 'Faltam'} ${missing} ${missing === 1 ? 'moeda' : 'moedas'}`,
   },
   vi: {
     attemptsStatus: (remaining, total) => `Lượt thử: ${remaining}/${total}`,
@@ -97,7 +97,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     restoreForRunes: 'Odnów · 25 monet',
     restartWithEnergy: 'Zacznij od nowa',
     endSession: 'Zakończ sesję',
-    notEnoughRunes: (missing) => `Potrzebujesz jeszcze ${missing} monet`,
+    notEnoughRunes: (missing) => `Potrzebujesz jeszcze ${missing} ${pluralWord('pl', missing, { one: 'monetę', few: 'monety', many: 'monet' })}`,
   },
 };
 

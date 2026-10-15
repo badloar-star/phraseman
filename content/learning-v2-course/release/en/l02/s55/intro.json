@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-55",
   "learningOutcomeByLocale": {
-    "ru": "отложенный возврат слов из семи глав в знакомых вопросах и сообщениях",
-    "uk": "відкладене повернення слів із семи розділів у знайомих запитаннях і повідомленнях"
+    "ru": "описать ненадёжного человека и спросить о самостоятельности",
+    "uk": "описати ненадійну людину й запитати про самостійність"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сначала спросить",
-        "uk": "Спочатку запитати"
+        "ru": "Обещание ещё не доставка",
+        "uk": "Обіцянка ще не доставка"
       },
       "bodyByLocale": {
-        "ru": "`Are you hungry?` — «Вы голодны?» Слово `hungry` значит «голодный». Если сами очень голодны, легко решить, что голодны все. Но за себя вы скажете `I am hungry` — «Я голоден», а у другого человека лучше спросить. Для этого начните с `Are you`, затем добавьте `hungry`.",
-        "uk": "`Are you hungry?` — «Ви голодні?» `hungry` означає «голодний». Коли самі дуже голодні, легко вирішити, що голодні всі. Але про себе ви скажете `I am hungry` — «Я голодний», а іншу людину краще запитати. Для цього почніть із `Are you`, а потім додайте `hungry`."
+        "ru": "`unreliable` — «ненадёжный»: на человека трудно положиться. Олег часто не выполняет обещания: `He is unreliable`. Его «буду через пять минут» вы слышите уже полчаса. Здесь вы оцениваете повторяющееся поведение, а не объявляете человека ненадёжным за одно опоздание.",
+        "uk": "`unreliable` — «ненадійний»: на людину важко покластися. Олег часто не виконує обіцянок: `He is unreliable`. Його «буду за п’ять хвилин» ви чуєте вже пів години. Тут ви оцінюєте повторювану поведінку, а не оголошуєте людину ненадійною через одне запізнення."
       },
       "question": {
         "interactionId": "en:lesson-02:session-55:intro1:q",
         "promptByLocale": {
-          "ru": "По дороге вы предлагаете перекусить. Спросите друга, голоден ли он.",
-          "uk": "Дорогою ви пропонуєте перекусити. Запитайте друга, чи голодний він."
+          "ru": "Олег часто не выполняет обещания. Вы считаете его ненадёжным. Скажите это полной фразой.",
+          "uk": "Олег часто не виконує обіцянок. Ви вважаєте його ненадійним. Скажіть це повною фразою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-55:intro1:r1",
-              "text": "Are you hungry?"
+              "text": "He is unreliable."
             },
             {
               "responseId": "en:lesson-02:session-55:intro1:r2",
-              "text": "I am hungry."
+              "text": "He unreliable."
             },
             {
               "responseId": "en:lesson-02:session-55:intro1:r3",
-              "text": "Are we hungry?"
+              "text": "He are unreliable."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-55:intro1:r1",
-              "text": "Are you hungry?"
+              "text": "He is unreliable."
             },
             {
               "responseId": "en:lesson-02:session-55:intro1:r2",
-              "text": "I am hungry."
+              "text": "He unreliable."
             },
             {
               "responseId": "en:lesson-02:session-55:intro1:r3",
-              "text": "Are we hungry?"
+              "text": "He are unreliable."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "По дороге вы предлагаете перекусить. Спросите друга, голоден ли он.",
-          "uk": "Дорогою ви пропонуєте перекусити. Запитайте друга, чи голодний він."
+          "ru": "Олег часто не выполняет обещания. Вы считаете его ненадёжным. Скажите это полной фразой.",
+          "uk": "Олег часто не виконує обіцянок. Ви вважаєте його ненадійним. Скажіть це повною фразою."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Много ли там людей",
-        "uk": "Чи багато там людей"
+        "ru": "Ответственность и самостоятельность",
+        "uk": "Відповідальність і самостійність"
       },
       "bodyByLocale": {
-        "ru": "`crowded` — «многолюдный, переполненный». `Is it crowded?` — «Там много людей?» Так можно спросить о месте, которое вы обсуждаете. Сначала убедитесь, что понятно, куда относится `it`. Вы знаете, какой магазин имеете в виду, но собеседнику это тоже нужно понимать.",
-        "uk": "`crowded` — «людний, переповнений». `Is it crowded?` — «Там багато людей?» Так можна запитати про місце, яке ви обговорюєте. Спершу переконайтеся, що зрозуміло, чого стосується `it`. Ви знаєте, який магазин маєте на увазі, але співрозмовникові це теж треба знати."
+        "ru": "`responsible` — «ответственный»: Анна серьёзно относится к делу. `independent` — «самостоятельный»: она справляется без постоянной помощи. `She is independent`. `dependent` — «зависимый»: новый помощник пока зависит от её помощи. Просить помощь не значит быть ненадёжным: это разные признаки.",
+        "uk": "`responsible` — «відповідальний»: Анна серйозно ставиться до справи. `independent` — «самостійний»: вона справляється без постійної допомоги. `She is independent`. `dependent` — «залежний»: новий помічник поки залежить від її допомоги. Просити допомогу не означає бути ненадійним: це різні ознаки."
       },
       "question": {
         "interactionId": "en:lesson-02:session-55:intro2:q",
         "promptByLocale": {
-          "ru": "Друг предложил зайти в магазин за углом. Уточните, много ли там людей.",
-          "uk": "Друг запропонував зайти до магазину за рогом. Уточніть, чи багато там людей."
+          "ru": "Анна справляется без постоянной помощи. Сообщите полной фразой, что она самостоятельна.",
+          "uk": "Анна справляється без постійної допомоги. Повідомте повною фразою, що вона самостійна."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-55:intro2:r1",
-              "text": "Is it crowded?"
+              "text": "She is independent."
             },
             {
               "responseId": "en:lesson-02:session-55:intro2:r2",
-              "text": "Is it noisy?"
+              "text": "She is dependent."
             },
             {
               "responseId": "en:lesson-02:session-55:intro2:r3",
-              "text": "Is it closed?"
+              "text": "She independent."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-55:intro2:r1",
-              "text": "Is it crowded?"
+              "text": "She is independent."
             },
             {
               "responseId": "en:lesson-02:session-55:intro2:r2",
-              "text": "Is it noisy?"
+              "text": "She is dependent."
             },
             {
               "responseId": "en:lesson-02:session-55:intro2:r3",
-              "text": "Is it closed?"
+              "text": "She independent."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг предложил зайти в магазин за углом. Уточните, много ли там людей.",
-          "uk": "Друг запропонував зайти до магазину за рогом. Уточніть, чи багато там людей."
+          "ru": "Анна справляется без постоянной помощи. Сообщите полной фразой, что она самостоятельна.",
+          "uk": "Анна справляється без постійної допомоги. Повідомте повною фразою, що вона самостійна."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обратиться и узнать цену",
-        "uk": "Звернутися й дізнатися ціну"
+        "ru": "Подойдёт ли срок",
+        "uk": "Чи підійде термін"
       },
       "bodyByLocale": {
-        "ru": "`Excuse me` — «Извините», обращение для привлечения внимания. Дальше можно спросить `What is the price?` — «Какая цена?» Слово `price` значит «цена». Вся реплика: `Excuse me. What is the price?` Вы сначала обращаетесь к человеку, а затем объясняете, что хотите узнать.",
-        "uk": "`Excuse me` — «Перепрошую», звертання для привернення уваги. Далі можна запитати `What is the price?` — «Яка ціна?» `price` означає «ціна». Уся репліка: `Excuse me. What is the price?` Спочатку ви звертаєтеся до людини, а потім пояснюєте, що хочете дізнатися."
+        "ru": "`acceptable` — «приемлемый»: предложенный срок вас устраивает. `Is it acceptable?` — «Это приемлемо?» Спрашивайте о конкретном предложении. Надёжность помощника и подходящий срок — отдельные вопросы: хороший срок сам по себе не гарантирует доставку.",
+        "uk": "`acceptable` — «прийнятний»: запропонований термін вас влаштовує. `Is it acceptable?` — «Це прийнятно?» Запитуйте про конкретну пропозицію. Надійність помічника й відповідний термін — окремі питання: хороший термін сам собою не гарантує доставку."
       },
       "question": {
         "interactionId": "en:lesson-02:session-55:intro3:q",
         "promptByLocale": {
-          "ru": "Вы уже сказали продавцу `Excuse me.` Теперь спросите цену.",
-          "uk": "Ви вже сказали продавцеві `Excuse me.` Тепер запитайте ціну."
+          "ru": "Анна предложила срок доставки. Спросите, приемлем ли он.",
+          "uk": "Анна запропонувала термін доставки. Запитайте, чи він прийнятний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-55:intro3:r1",
-              "text": "What is the price?"
+              "text": "Is it acceptable?"
             },
             {
               "responseId": "en:lesson-02:session-55:intro3:r2",
-              "text": "Where is the price?"
+              "text": "It is acceptable."
             },
             {
               "responseId": "en:lesson-02:session-55:intro3:r3",
-              "text": "What are the price?"
+              "text": "Is he unreliable?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-55:intro3:r1",
-              "text": "What is the price?"
+              "text": "Is it acceptable?"
             },
             {
               "responseId": "en:lesson-02:session-55:intro3:r2",
-              "text": "Where is the price?"
+              "text": "It is acceptable."
             },
             {
               "responseId": "en:lesson-02:session-55:intro3:r3",
-              "text": "What are the price?"
+              "text": "Is he unreliable?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже сказали продавцу `Excuse me.` Теперь спросите цену.",
-          "uk": "Ви вже сказали продавцеві `Excuse me.` Тепер запитайте ціну."
+          "ru": "Анна предложила срок доставки. Спросите, приемлем ли он.",
+          "uk": "Анна запропонувала термін доставки. Запитайте, чи він прийнятний."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "65c8d57d4d3469160ef58950f8eb843fbf1bd131440ddaa1704331ded98e264b"
+  "introFingerprint": "f884831893473ed92d5969720fafc621bafad759af5db07627827b67eff146dd"
 }

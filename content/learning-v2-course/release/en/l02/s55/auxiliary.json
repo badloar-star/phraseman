@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-55:intro1:r2": {
+          "ru": "Между `He` и `unreliable` нужно `is`.",
+          "uk": "Між `He` і `unreliable` потрібно `is`."
+        },
+        "en:lesson-02:session-55:intro1:r3": {
+          "ru": "С `He` нужно `is`, не `are`.",
+          "uk": "З `He` потрібно `is`, не `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-55:intro2:r2": {
+          "ru": "Это «Она зависима». По условию Анна справляется самостоятельно.",
+          "uk": "Це «Вона залежна». За умовою Анна справляється самостійно."
+        },
+        "en:lesson-02:session-55:intro2:r3": {
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-55:intro3:r2": {
+          "ru": "Это сообщение, а вы спрашиваете.",
+          "uk": "Це повідомлення, а ви запитуєте."
+        },
+        "en:lesson-02:session-55:intro3:r3": {
+          "ru": "Это вопрос о ненадёжности мужчины, а сейчас речь о сроке.",
+          "uk": "Це запитання про ненадійність чоловіка, а зараз ідеться про термін."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dff8e2a57428278c521797c04dde2c3d0f222e1e5c913d6b05a6727a99d12d37"
+}

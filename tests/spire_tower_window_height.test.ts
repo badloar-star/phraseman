@@ -7,7 +7,7 @@ import { PODIUM_SIZES } from '../components/spire/spire_podium_sizes';
 import {
   SPIRE_COMPACT_FLOOR_INFO_ENABLED, SPIRE_FLOOR_INFO_COMPACT_H, SPIRE_FLOOR_INFO_FULL_H, SPIRE_HEADER_THIN_SAVE, SPIRE_LEVEL_FIT_BELOW, SPIRE_LEVEL_HYSTERESIS,
   SPIRE_PODIUM_COMPACT_SAVE, SPIRE_THIN_HEADER_ENABLED, SPIRE_WINDOW_MAX, SPIRE_WINDOW_MIN, SPIRE_WINDOW_MIN_FIT,
-  spireAboveTowerSaved, spireCardCompact, spireHeaderThin, spireLayoutLevel, spireLevelLimits, spirePodiumCompact, spireScrollMode, spireSteps, spireTowerRawFit, spireTowerWindowHeight, type SpireLayoutLevel,
+  spireAboveTowerSaved, spireCardCompact, spireHeaderThin, spireLayoutLevel, spireLevelLimits, spirePodiumCompact, spireScrollMode, spireStepSave, spireSteps, spireTowerRawFit, spireTowerWindowHeight, type SpireLayoutLevel,
 } from '../components/spire/spire_tower_window';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
@@ -36,8 +36,7 @@ describe('высота окна башни до дока', () => {
 
   it('экран передаёт измерения башне через бюджет, башня берёт высоту из пропа и повторно центрует этаж', () => {
     const home = read('components/spire/SpireHomeScreen.tsx');
-    expect(home).toContain('const budget = useSpireTowerBudget(DOCK_GAP);');
-    expect(home).toContain('const towerWindowH = budget.windowH;');
+    expect(home).toContain('const budget = useSpireTowerBudget(DOCK_GAP, podiumColumns); const towerWindowH = budget.windowH;');
     expect(home).toContain('windowHeight={towerWindowH}');
     expect(home).toContain('budget.onDockTop(Math.round(e.nativeEvent.layout.y))');
     expect(home).toContain('budget.onTowerTop(Math.round(e.nativeEvent.layout.y))');
@@ -46,7 +45,7 @@ describe('высота окна башни до дока', () => {
     expect(home).toContain('compact={budget.podiumCompact}');
     const hook = read('components/spire/use_spire_tower_budget.ts');
     expect(hook).toContain('spireTowerWindowHeight(tower.y, dockTop, gap + infoH, spireScrollMode(level, steps))');
-    expect(hook).toContain('spireLayoutLevel(rawFit, levelRef.current, steps)');
+    expect(hook).toContain('spireLayoutLevel(rawFit, levelRef.current, steps, podiumColumns)');
     expect(hook).toContain('[SPIRE-BUDGET]');
     const tower = read('components/spire/SpireTower.tsx');
     expect(tower).toContain('windowHeight?: number;');
@@ -220,6 +219,49 @@ describe('ступень «тонкая шапка» — подготовлен�
   });
 });
 
+// зачем (Ревизор по c5ccfd458, 🟡): пустая комната / офлайн без данных — в подиуме нет колонок, компакт ничего не сжимает. Экономия 40 не должна ни занижать rawFit, ни сдвигать границы
+describe('пустой подиум (колонок нет) — экономия 0', () => {
+  it('границы без колонок: подиум не экономит, строка этажа — первая реальная ступень (180, прокрутка при 120 − 32 = 88)', () => {
+    expect(spireStepSave('podium', false)).toBe(0);
+    expect(spireStepSave('podium', true)).toBe(SPIRE_PODIUM_COMPACT_SAVE);
+    expect(spireStepSave('card', false)).toBe(32);
+    expect(spireLevelLimits(['podium', 'card'], false)).toEqual([180, 180, 88]);
+    expect(spireLevelLimits(['podium', 'card'], true)).toEqual([180, 140, 48]);
+  });
+
+  it('верх окна не получает прибавку за подиум, которого нет', () => {
+    expect(spireAboveTowerSaved(2, ['podium', 'card'], false)).toBe(0);
+    expect(spireAboveTowerSaved(2, ['podium', 'card'], true)).toBe(SPIRE_PODIUM_COMPACT_SAVE);
+    expect(spireAboveTowerSaved(2, ['header', 'podium', 'card'], false)).toBe(SPIRE_HEADER_THIN_SAVE); // уровень 2 с шапкой = шапка + подиум; подиум без колонок — 0, шапка — своя
+  });
+
+  it('нет качаний при истинном rawFit 64…88 (случай Ревизора): со всех стартов решение стабильно, окно ≥ 120 и карточка выше дока', () => {
+    const dockTop = 754;
+    for (let fullTop = 520; fullTop <= 610; fullTop += 1) { // rawFit = 754 − top − 16 − 84 ≈ 44…134
+      const rawFit = spireTowerRawFit(fullTop, dockTop, 16);
+      const settled = spireLayoutLevel(rawFit, 0, spireSteps(), false);
+      for (const start of [0, 1, 2, 3]) {
+        const next = spireLayoutLevel(rawFit, start, spireSteps(), false);
+        expect([fullTop, start, Math.abs(next - settled) <= 1]).toEqual([fullTop, start, true]); // отличие только гистерезисом на самой границе
+      }
+      // замер при любом уровне даёт тот же rawFit: прибавка за подиум = 0 и без колонок, и в любом режиме
+      const measuredTop = fullTop - spireAboveTowerSaved(settled, spireSteps(), false);
+      expect([fullTop, measuredTop]).toEqual([fullTop, fullTop]);
+      if (spireScrollMode(settled)) continue;
+      const infoH = spireCardCompact(settled) ? SPIRE_FLOOR_INFO_COMPACT_H : SPIRE_FLOOR_INFO_FULL_H;
+      const windowH = spireTowerWindowHeight(measuredTop, dockTop, 16 + infoH, false);
+      expect([fullTop, settled, windowH >= SPIRE_WINDOW_MIN_FIT, measuredTop + windowH + infoH <= dockTop - 16]).toEqual([fullTop, settled, true, true]);
+    }
+  });
+
+  it('хук и экран: колонки считаются по комнате/скелету и попадают и в решение, и в пометку замера', () => {
+    const hook = read('components/spire/use_spire_tower_budget.ts');
+    expect(hook).toContain('useSpireTowerBudget(gap: number, podiumColumns: boolean = true)');
+    expect(hook).toContain('spireAboveTowerSaved(levelRef.current, steps, columnsRef.current)');
+    expect(hook).toContain('columnsRef.current = podiumColumns;');
+  });
+});
+
 describe('компактный подиум: размеры', () => {
   it('самая высокая колонка (1-е место) ниже ровно на 40 dp, остальные не выше неё', () => {
     const colH = (s: typeof PODIUM_SIZES.full, place: number): number => (place === 1 ? s.coinFirst : s.coinOther) + 8 + 21 + 8 + 16 + 8 + s.blocks[place - 1];
@@ -238,7 +280,9 @@ describe('скелет подиума и свайп по окну башни', (
     expect(podium).toContain('const SKELETON_PLACES = [2, 1, 3] as const;');
     expect(podium).toContain('const sizes = compact ? PODIUM_SIZES.compact : PODIUM_SIZES.full;');
     const home = read('components/spire/SpireHomeScreen.tsx');
-    expect(home).toContain('loading={members === null && game.live && game.roomLoad === null}');
+    expect(home).toContain('const podiumLoading = members === null && game.live && game.roomLoad === null;');
+    expect(home).toContain('const podiumColumns = podiumLoading || (members !== null && members.length > 0);');
+    expect(home).toContain('loading={podiumLoading}');
   });
 
   it('жест окна башни: касание блокирует прокрутку страницы и RefreshControl, отпускание — возвращает', () => {
@@ -258,7 +302,7 @@ describe('скелет подиума и свайп по окну башни', (
 
   it('ref уровня пишется не в рендере, а в layout-эффекте (Ревизор по 9c5f781be)', () => {
     const hook = read('components/spire/use_spire_tower_budget.ts');
-    expect(hook).toContain('useLayoutEffect(() => { levelRef.current = level; }, [level]);');
+    expect(hook).toContain('useLayoutEffect(() => { levelRef.current = level; columnsRef.current = podiumColumns; }, [level, podiumColumns]);');
     expect(hook).not.toMatch(/\n  levelRef\.current = level;/);
   });
 

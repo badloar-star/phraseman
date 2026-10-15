@@ -38,6 +38,13 @@ export const SPIRE_HEADER_THIN_SAVE = 22;
 export type SpireStepId = 'header' | 'podium' | 'card';
 /** Экономия каждой ступени, dp. header и podium лежат ВЫШЕ башни (двигают её верх), card — ниже башни (уменьшает карточку под окном). */
 export const SPIRE_STEP_SAVE: Readonly<Record<SpireStepId, number>> = { header: SPIRE_HEADER_THIN_SAVE, podium: SPIRE_PODIUM_COMPACT_SAVE, card: SPIRE_FLOOR_INFO_FULL_H - SPIRE_FLOOR_INFO_COMPACT_H };
+/**
+ * зачем (Ревизор по c5ccfd458, 🟡): компактный подиум экономит 40 dp, только когда в подиуме есть колонки (комната загружена или рисуется скелет). Пустая комната/офлайн без данных — колонок нет, сжимать нечего:
+ * экономия 0, иначе rawFit занижался на 40 и ступень качалась между 2 и режимом прокрутки.
+ */
+export function spireStepSave(id: SpireStepId, podiumColumns: boolean = true): number {
+  return id === 'podium' && !podiumColumns ? 0 : SPIRE_STEP_SAVE[id];
+}
 /** Порядок применения: что режем первым. Тонкая шапка — первая, когда включена. */
 const STEPS_BASE: readonly SpireStepId[] = ['podium', 'card'];
 const STEPS_WITH_HEADER: readonly SpireStepId[] = ['header', 'podium', 'card'];
@@ -55,21 +62,21 @@ export const SPIRE_LEVEL_HYSTERESIS = 16;
 export type SpireLayoutLevel = number;
 
 /** Границы по rawFit для набора ступеней: [включение 1-й ступени, 2-й, …, режим прокрутки]. Для ['podium','card']: [180, 140, 48]; с тонкой шапкой: [180, 158, 118, 26]. */
-export function spireLevelLimits(steps: readonly SpireStepId[] = spireSteps()): readonly number[] {
+export function spireLevelLimits(steps: readonly SpireStepId[] = spireSteps(), podiumColumns: boolean = true): readonly number[] {
   const limits: number[] = [];
   let saved = 0;
   for (const id of steps) {
     limits.push(SPIRE_LEVEL_FIT_BELOW - saved);
-    saved += SPIRE_STEP_SAVE[id];
+    saved += spireStepSave(id, podiumColumns);
   }
   limits.push(SPIRE_WINDOW_MIN_FIT - saved);
   return limits;
 }
 
 /** prev — уровень предыдущего расчёта (гистерезис). rawFit не измерен (NaN) — уровень 0. */
-export function spireLayoutLevel(rawFit: number, prev: SpireLayoutLevel = 0, steps: readonly SpireStepId[] = spireSteps(), enabled: boolean = SPIRE_COMPACT_FLOOR_INFO_ENABLED): SpireLayoutLevel {
+export function spireLayoutLevel(rawFit: number, prev: SpireLayoutLevel = 0, steps: readonly SpireStepId[] = spireSteps(), podiumColumns: boolean = true, enabled: boolean = SPIRE_COMPACT_FLOOR_INFO_ENABLED): SpireLayoutLevel {
   if (!enabled || !Number.isFinite(rawFit)) return 0;
-  const limits = spireLevelLimits(steps);
+  const limits = spireLevelLimits(steps, podiumColumns);
   const below = (i: number): boolean => rawFit < limits[i] + (prev > i ? SPIRE_LEVEL_HYSTERESIS : 0);
   let level = 0;
   while (level < limits.length && below(level)) level += 1;
@@ -86,8 +93,8 @@ export const spirePodiumCompact = (level: SpireLayoutLevel, steps: readonly Spir
 export const spireCardCompact = (level: SpireLayoutLevel, steps: readonly SpireStepId[] = spireSteps()): boolean => spireStepActive(level, 'card', steps);
 export const spireScrollMode = (level: SpireLayoutLevel, steps: readonly SpireStepId[] = spireSteps()): boolean => level === steps.length + 1;
 /** Сколько dp применённые ступени выше башни (шапка, подиум) сняли с верха окна — прибавляется к измеренному верху, чтобы получить верх при полной раскладке. */
-export function spireAboveTowerSaved(level: SpireLayoutLevel, steps: readonly SpireStepId[] = spireSteps()): number {
-  return (['header', 'podium'] as const).reduce((sum, id) => sum + (spireStepActive(level, id, steps) ? SPIRE_STEP_SAVE[id] : 0), 0);
+export function spireAboveTowerSaved(level: SpireLayoutLevel, steps: readonly SpireStepId[] = spireSteps(), podiumColumns: boolean = true): number {
+  return (['header', 'podium'] as const).reduce((sum, id) => sum + (spireStepActive(level, id, steps) ? spireStepSave(id, podiumColumns) : 0), 0);
 }
 
 /**

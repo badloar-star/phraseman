@@ -32,22 +32,24 @@ export type SpireTowerBudget = Readonly<{
 /** y — измеренный верх окна башни; saved — сколько dp сняли с него ступени выше башни В МОМЕНТ замера (шапка, подиум). */
 type TowerMeasure = Readonly<{ y: number; saved: number }>;
 
-export function useSpireTowerBudget(gap: number): SpireTowerBudget {
+/** podiumColumns — в подиуме есть колонки (комната загружена или рисуется скелет); без них компактный подиум ничего не экономит (Ревизор по c5ccfd458). */
+export function useSpireTowerBudget(gap: number, podiumColumns: boolean = true): SpireTowerBudget {
   const [tower, setTower] = useState<TowerMeasure>({ y: 0, saved: 0 });
   const [dockTop, setDockTop] = useState(0);
   const [infoH, setInfoH] = useState(0);
   const fullInfoHRef = useRef(SPIRE_FLOOR_INFO_FULL_H);
+  const columnsRef = useRef(podiumColumns); // колонки подиума на момент последнего зафиксированного кадра — им помечаются замеры
   const levelRef = useRef<SpireLayoutLevel>(0); // уровень последнего ЗАФИКСИРОВАННОГО кадра: им решает гистерезис и им помечаются замеры
   const steps = spireSteps();
   const fullTowerTop = tower.y > 0 ? tower.y + tower.saved : 0;
   const rawFit = spireTowerRawFit(fullTowerTop, dockTop, gap, fullInfoHRef.current);
-  const level = spireLayoutLevel(rawFit, levelRef.current, steps);
+  const level = spireLayoutLevel(rawFit, levelRef.current, steps, podiumColumns);
   // зачем (Ревизор по 9c5f781be): раньше ref писался прямо в рендере; layout-эффект срабатывает при фиксации кадра — до нативной раскладки и onLayout этого кадра, так что замеры помечаются тем режимом, в котором сняты
-  useLayoutEffect(() => { levelRef.current = level; }, [level]);
+  useLayoutEffect(() => { levelRef.current = level; columnsRef.current = podiumColumns; }, [level, podiumColumns]);
   const windowH = spireTowerWindowHeight(tower.y, dockTop, gap + infoH, spireScrollMode(level, steps));
 
   const onTowerTop = useCallback((y: number) => setTower((prev) => {
-    const saved = spireAboveTowerSaved(levelRef.current, steps);
+    const saved = spireAboveTowerSaved(levelRef.current, steps, columnsRef.current);
     return prev.y === y && prev.saved === saved ? prev : { y, saved };
   }), [steps]);
   const onDockTop = useCallback((y: number) => setDockTop((prev) => (prev === y ? prev : y)), []);
@@ -57,8 +59,8 @@ export function useSpireTowerBudget(gap: number): SpireTowerBudget {
   }, [steps]);
 
   useEffect(() => {
-    if (tower.y > 0 && dockTop > 0) console.log('[SPIRE-BUDGET]', JSON.stringify({ towerTop: tower.y, towerSavedAtMeasure: tower.saved, fullTowerTop, dockTop, gap, infoH, fullInfoH: fullInfoHRef.current, rawFit, level, steps: steps.join('>'), applied: steps.filter((_, i) => level > i && level <= steps.length), scrollMode: spireScrollMode(level, steps), windowH, limits: spireLevelLimits(steps) })); // guard-ok: слагаемые бюджета и решение, одна строка на смену
-  }, [tower, fullTowerTop, dockTop, gap, infoH, rawFit, level, windowH, steps]);
+    if (tower.y > 0 && dockTop > 0) console.log('[SPIRE-BUDGET]', JSON.stringify({ towerTop: tower.y, towerSavedAtMeasure: tower.saved, fullTowerTop, dockTop, gap, infoH, fullInfoH: fullInfoHRef.current, rawFit, level, steps: steps.join('>'), applied: steps.filter((_, i) => level > i && level <= steps.length), scrollMode: spireScrollMode(level, steps), windowH, podiumColumns, limits: spireLevelLimits(steps, podiumColumns) })); // guard-ok: слагаемые бюджета и решение, одна строка на смену
+  }, [tower, fullTowerTop, dockTop, gap, infoH, rawFit, level, windowH, steps, podiumColumns]);
 
   return { windowH, level, headerThin: spireHeaderThin(level, steps), podiumCompact: spirePodiumCompact(level, steps), cardCompact: spireCardCompact(level, steps), onTowerTop, onDockTop, onInfoHeight };
 }

@@ -98,9 +98,6 @@ export default function SpireHomeScreen() {
   const [tourSeen, setTourSeen] = useState<boolean | null>(() => (preview ? preview.tourSeen : peekSpireTourSeen()));
   // Измеренная высота дока (кнопка «Подняться» / панель итога): от неё считается нижний запас списка. 0 — ещё не измерен.
   const [dockH, setDockH] = useState(0);
-  // зачем (строка 25 R1_BACKLOG; координатор 15.10, 🔴): окно башни и «компактная карточка этажа» — из измерений верха башни, верха дока и карточки (use_spire_tower_budget), не из модели высоты
-  const budget = useSpireTowerBudget(DOCK_GAP);
-  const towerWindowH = budget.windowH;
   const towerTouch = useSpireTowerTouchLock(); // зачем (координатор 15.10, п. г): пока палец в окне башни — страница и обновление потягиванием не крадут свайп
 
   useEffect(() => {
@@ -261,6 +258,8 @@ export default function SpireHomeScreen() {
   const offline = game.roomLoad?.status === 'offline';
   // Соперники по этажам — из уже закэшированной комнаты (0 новых чтений).
   const rivals = useMemo(() => spireRivalsByFloor(game.rows), [game.rows]);
+  const podiumLoading = members === null && game.live && game.roomLoad === null; const podiumColumns = podiumLoading || (members !== null && members.length > 0); // зачем (Ревизор по c5ccfd458): колонки подиума есть (комната или скелет) — компакт экономит 40 dp; пустая комната/офлайн — 0, иначе ступень качается
+  const budget = useSpireTowerBudget(DOCK_GAP, podiumColumns); const towerWindowH = budget.windowH; // зачем (строка 25 R1_BACKLOG; координатор 15.10, 🔴): окно башни и ступени ужатия — из замеров верха башни, дока и карточки (use_spire_tower_budget), не из модели высоты
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, game.rankBy === 'coins' ? 'rankedByCoins' : 'rankedBySteps')}`;
 
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
@@ -303,7 +302,7 @@ export default function SpireHomeScreen() {
         </View>
         {/* зачем (решение владельца 13.10): блок «Комната недели» (пьедестал 1-2-3 + «Все участники · N») — самый верх экрана, сразу под заголовком, выше башни */}
         <View style={offline ? s.dim : null} testID="spire-room-top">
-          <SpirePodium lang={lang} members={members} onOpenAll={openAll} rankBy={game.rankBy} loading={members === null && game.live && game.roomLoad === null} compact={budget.podiumCompact} />
+          <SpirePodium lang={lang} members={members} onOpenAll={openAll} rankBy={game.rankBy} loading={podiumLoading} compact={budget.podiumCompact} />
         </View>
         {offline ? (
           <View style={[s.note, { backgroundColor: p.cardRaised }]} accessibilityLiveRegion="polite" testID="spire-offline">

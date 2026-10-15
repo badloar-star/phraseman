@@ -1,0 +1,862 @@
+// зачем: координатор/владелец 2026-10-15 — 3 варианта главной knowlyapps.com в стиле PhraseMan 2.0
+// (A «Аврора» тёмная, B «Пастель» светлая, C смелая с переключением тем и живым телефоном).
+// Один шаблон → три самодостаточных HTML: тексты и формулы тем общие, различаются тема и подача.
+// Формулы цвета — ровно constants/liquidGlassGradientThemes.ts и docs/design/v2-app/themes-gradient.html.
+// Запуск: node docs/design/site-2.0/_build.mjs  → site-A.html, site-B.html, site-C.html рядом.
+import { writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const OUT = dirname(fileURLToPath(import.meta.url));
+const SITE = '../../../knowly-www/assets';
+const APP = '../../../assets';
+const URL = 'https://knowlyapps.com';
+
+// Темы 2.0: [имя, glowA, glowB, accent, onAccent]
+const THEMES = [
+  ['Графит', null, null, '#F2F1F6', '#0B0C0E'],
+  ['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'],
+  ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'],
+  ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'],
+  ['Шампань', '#F0BE78', '#E68296', '#F3D39A', '#3A2608'],
+  ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'],
+  ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A'],
+  ['Лёд', '#96DCFF', '#78A0FF', '#BFE6FF', '#0A2A44'],
+  ['Коралл', '#FF645A', '#FFA046', '#FFB0A0', '#4A0F0A'],
+  ['Сирень', '#A78BFA', '#60A5FA', '#D4C8FF', '#24164A'],
+];
+
+const VARIANTS = {
+  A: { title: 'Phraseman · Аврора', mode: 'dark', theme: 1, k: 0.6, label: 'A · Аврора тёмная' },
+  B: { title: 'Phraseman · Пастель', mode: 'light', theme: 0, k: 0, label: 'B · Пастель светлая' },
+  C: { title: 'Phraseman · Живые темы', mode: 'dark', theme: 1, k: 0.6, label: 'C · Живые темы' },
+};
+
+// ---------- значки (линейные, 1.8, как kit.css) ----------
+const SPRITE = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
+<symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 3-2 4-3 5.5S14 18 12.5 19.5 9 20 8.5 18"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.2-1 1.8-1.5 2.3"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+<symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="7" width="13" height="14" rx="2.5"/><path d="M8 3h10.5A2.5 2.5 0 0 1 21 5.5V16"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 10"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+<symbol id="i-mark" viewBox="0 0 24 24"><path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-4-6 4V4.5a1 1 0 0 1 1-1z"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 13.5L3 11l1.5-1.5 7.5 1 4.5-4.5a2 2 0 0 1 3 3L15 13.5l1 7.5-1.5 1.5-2.5-7.5-3 3V21l-1.5 1-1-3.5L3 17.5 4 16h3.5z"/></symbol>
+<symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.5a6.5 6.5 0 0 1 3 5.5"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+<symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 8h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v2M12 3v2"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13M12 8C10 4 6.5 4.5 7 7c.3 1 2 1 5 1zm0 0c2-4 5.5-3.5 5-1-.3 1-2 1-5 1z"/></symbol>
+<symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.5 12.6c0-2.3 1.9-3.4 2-3.5a4.3 4.3 0 0 0-3.4-1.8c-1.4-.2-2.8.8-3.5.8s-1.8-.8-3-.8A4.5 4.5 0 0 0 4.8 9.6c-1.6 2.8-.4 6.9 1.1 9.2.8 1.1 1.7 2.3 2.9 2.3s1.6-.8 3-.8 1.8.8 3 .7 2-1.1 2.8-2.3a9.6 9.6 0 0 0 1.3-2.6 3.9 3.9 0 0 1-2.4-3.5zM14.2 5.6A4 4 0 0 0 15.1 2.7a4.1 4.1 0 0 0-2.7 1.4 3.8 3.8 0 0 0-1 2.8 3.4 3.4 0 0 0 2.8-1.3z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M5 3.5v17l9.5-8.5zM5 3.5l11.5 6.5-2 2M5 20.5l11.5-6.5-2-2M16.5 10l3 1.7c.7.4.7.9 0 1.3l-3 1.7"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
+</svg>`;
+const ic = (id, cls = '') => `<svg class="i ${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+
+// ---------- общий CSS ----------
+const CSS = `
+:root {
+  /* раскладка: левый край — крупная типографика Inter, правый — экраны приложения 2.0; ровная колонка 1160px */
+  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --wrap: 1160px;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --spring: cubic-bezier(.3,1.4,.5,1);
+  /* шкала: текст 16/13 как V2_TYPE, заголовки крупнее для веба */
+  --t-xs: 13px; --t-s: 15px; --t-m: 16px; --t-l: clamp(18px, 1.5vw, 20px);
+  --t-h3: 22px; --t-h2: clamp(32px, 4.4vw, 54px); --t-h1: clamp(46px, 7.2vw, 92px);
+  /* тема: задаёт скрипт applyTheme, здесь — исходные значения, чтобы страница была цельной и без скрипта */
+  --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; --k: .6;
+}
+/* тёмное оформление 2.0: графит + два световых пятна темы; формулы themes-gradient.html */
+:root[data-mode="dark"] {
+  color-scheme: dark;
+  --bg: #0B0C0E; --bg-top: #111317;
+  --text: #FFFFFF; --sec: #A3A6AE; --muted: #80838B;
+  --card: color-mix(in srgb, var(--acc) calc(var(--k) * 10%), rgba(24,24,27,.72));
+  --card-solid: color-mix(in srgb, var(--acc) calc(var(--k) * 10%), #18181B);
+  --edge: color-mix(in srgb, var(--acc) calc(var(--k) * 30%), rgba(255,255,255,.09));
+  --cta: color-mix(in srgb, var(--acc) calc(var(--k) * 100%), #F2F1F6);
+  --cta-ink: var(--on);
+  --tile: color-mix(in srgb, var(--acc) calc(var(--k) * 16%), #2A2A2C);
+  --control: color-mix(in srgb, var(--acc) calc(var(--k) * 8%), #2C2D33);
+  --fill: color-mix(in srgb, var(--acc) calc(var(--k) * 100%), #FFFFFF);
+  --track: rgba(255,255,255,.12);
+  --sheet: color-mix(in srgb, var(--acc) calc(var(--k) * 6%), #1B1B1D);
+  --glow-op: calc(.08 + .62 * var(--k));
+  --smoke: rgba(255,255,255,.06);
+  --shadow: 0 30px 80px rgba(0,0,0,.45);
+  --bar: color-mix(in srgb, var(--acc) calc(var(--k) * 8%), rgba(18,18,21,.92));
+  --phone-rim: #1A1B1F;
+  --page-bg: var(--bg);
+}
+/* светлое оформление 2.0: вариант «Пастель» — сплошные белые карточки на тени, без кромки */
+:root[data-mode="light"] {
+  color-scheme: light;
+  --bg: #F6F6F8; --bg-top: color-mix(in srgb, var(--g1) calc(var(--k) * 22%), #F6F6F8);
+  --text: #111114; --sec: #5C5C63; --muted: #6E6E75;
+  --card: #FFFFFF; --card-solid: #FFFFFF;
+  --edge: transparent;
+  --cta: color-mix(in srgb, var(--acc) calc(var(--k) * 100%), #1C1C1F);
+  --cta-ink: #FFFFFF;
+  --tile: color-mix(in srgb, var(--acc) calc(var(--k) * 40%), #F0F0F3);
+  --control: #ECECEF;
+  --fill: #1C1C1F;
+  --track: rgba(0,0,0,.08);
+  --sheet: #FFFFFF;
+  --glow-op: 0;
+  --smoke: transparent;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 18px 40px rgba(17,17,20,.08);
+  --bar: rgba(255,255,255,.9);
+  --phone-rim: #E4E4E8;
+  --page-bg: linear-gradient(180deg, var(--bg-top), color-mix(in srgb, var(--g2) calc(var(--k) * 20%), #F6F6F8) 1400px, #F6F6F8 2600px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body { margin: 0; background: var(--bg); background-image: var(--page-bg); color: var(--text); font-family: var(--font); font-size: var(--t-m); line-height: 1.55;
+  -webkit-font-smoothing: antialiased; transition: background-color 400ms var(--ease), color 400ms var(--ease); }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { margin: 0; text-wrap: balance; font-weight: 800; }
+p { margin: 0; text-wrap: pretty; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
+.sec-t { color: var(--sec); }
+.skip { position: absolute; left: -999px; top: 8px; }
+.skip:focus { left: 16px; z-index: 60; background: var(--cta); color: var(--cta-ink); padding: 8px 14px; border-radius: 10px; }
+:focus-visible { outline: 2px solid var(--fill); outline-offset: 3px; border-radius: 8px; }
+svg.i { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; display: block; }
+svg.i.s16 { width: 16px; height: 16px; } svg.i.s18 { width: 18px; height: 18px; }
+
+/* световые пятна темы — как V2Backdrop: A сверху-слева, B справа по центру, A снизу */
+.glow { position: absolute; left: 0; right: 0; pointer-events: none; z-index: -1; opacity: var(--glow-op); transition: opacity 400ms var(--ease); }
+.glow.g-top { top: 0; height: 1200px;
+  background: radial-gradient(70% 55% at 8% 0%, var(--g1), transparent 62%), radial-gradient(60% 55% at 100% 45%, var(--g2), transparent 66%); }
+.glow.g-mid { top: 42%; height: 1100px; background: radial-gradient(55% 45% at 0% 50%, var(--g2), transparent 66%); opacity: calc(var(--glow-op) * .55); }
+.glow.g-end { bottom: 0; height: 1000px; background: radial-gradient(70% 50% at 30% 100%, var(--g1), transparent 70%), radial-gradient(50% 45% at 95% 80%, var(--g2), transparent 70%); }
+.page { position: relative; isolation: isolate; overflow: hidden; }
+
+/* кнопки: акцентная пилюля темы — всегда контрастна фону */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px;
+  font: 700 16px/1 var(--font); cursor: pointer; border: 0; white-space: nowrap; color: inherit;
+  transition: transform 240ms var(--spring), filter 160ms, background-color 300ms var(--ease); }
+.btn:active { transform: scale(.97); transition-duration: 90ms; }
+.btn-primary { background: var(--cta); color: var(--cta-ink); box-shadow: 0 10px 30px color-mix(in srgb, var(--cta) 22%, transparent); }
+.btn-primary:hover { filter: brightness(1.06); }
+.btn-ghost { background: var(--control); color: var(--text); }
+.btn-ghost:hover { filter: brightness(1.12); }
+.btn-sm { min-height: 40px; padding: 0 18px; font-size: 14px; }
+.btn .arr { transition: transform 240ms var(--ease); }
+.btn:hover .arr { transform: translateX(3px); }
+
+/* стекло 2.0: карточка + кромка 1px (на светлой — белая на тени) + мягкая дымка внутри */
+.glass { position: relative; background: var(--card); border: 1px solid var(--edge); border-radius: 24px; overflow: hidden; isolation: isolate;
+  box-shadow: var(--shadow); backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); }
+.glass::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(55% 75% at var(--sx, 18%) var(--sy, 0%), var(--smoke), transparent 72%); }
+.tile { width: 46px; height: 46px; border-radius: 13px; background: var(--tile); display: grid; place-items: center; flex: none; color: var(--text); transition: background-color 400ms var(--ease); }
+.ov { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--sec); }
+.accent-t { color: var(--fill); }
+
+/* шапка — матовая капсула */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; padding-block: 12px; }
+.bar { display: flex; align-items: center; gap: 20px; height: 60px; padding: 0 10px 0 22px; border-radius: 999px; background: var(--bar);
+  border: 1px solid var(--edge); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); box-shadow: var(--shadow); }
+.brand { display: flex; align-items: center; font-weight: 800; font-size: 19px; letter-spacing: -.02em; }
+.brand .tail { color: var(--sec); }
+.nav { display: flex; gap: 2px; margin-left: auto; }
+.nav a { font-size: 14px; font-weight: 500; color: var(--sec); padding: 9px 12px; border-radius: 999px; transition: color 160ms, background-color 160ms; }
+.nav a:hover { color: var(--text); background: var(--control); }
+.lang { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--control); gap: 2px; }
+.lang button { border: 0; background: transparent; color: var(--sec); font: 600 13px/1 var(--font); padding: 8px 10px; border-radius: 999px; cursor: pointer; transition: background-color 200ms, color 200ms; }
+.lang button[aria-pressed="true"] { background: var(--card-solid); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.18); }
+
+/* первый экран */
+.hero { padding-block: clamp(40px, 7vw, 96px) clamp(56px, 8vw, 112px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero h1 { font-size: var(--t-h1); line-height: .98; letter-spacing: -.04em; margin-top: 22px; }
+.hero h1 .l2 { display: block; color: var(--sec); }
+.hero .lead { margin-top: 28px; font-size: var(--t-l); color: var(--sec); max-width: 31ch; line-height: 1.5; }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 36px; }
+.fine { font-size: var(--t-s); color: var(--muted); }
+
+/* телефон и экраны 2.0 */
+.phone { position: relative; width: min(100%, 380px); aspect-ratio: 380 / 780; margin-inline: auto; border-radius: 54px; padding: 10px;
+  background: var(--phone-rim); box-shadow: 0 0 0 1px var(--edge), 0 40px 90px rgba(0,0,0,.35); }
+.screen { position: relative; height: 100%; border-radius: 45px; overflow: hidden; background: var(--bg); isolation: isolate; transition: background-color 400ms var(--ease); }
+.screen .sglow { position: absolute; inset: 0; z-index: -1; opacity: var(--glow-op);
+  background: radial-gradient(120% 55% at 10% 0%, var(--g1), transparent 62%), radial-gradient(100% 55% at 100% 45%, var(--g2), transparent 66%), radial-gradient(90% 40% at 30% 105%, var(--g1), transparent 70%); }
+.sb { display: flex; justify-content: space-between; align-items: center; padding: 16px 28px 0 34px; font-size: 15px; font-weight: 600; }
+.sb .bat { width: 24px; height: 12px; border-radius: 4px; border: 1.5px solid currentColor; position: relative; opacity: .95; }
+.sb .bat::after { content: ""; position: absolute; inset: 1.5px; right: 3px; background: currentColor; border-radius: 2px; }
+.home-ind { position: absolute; bottom: 8px; left: 50%; width: 120px; height: 5px; margin-left: -60px; border-radius: 3px; background: var(--text); z-index: 5; }
+.under { padding: 22px 18px 0; opacity: .38; }
+.under .r { display: flex; justify-content: space-between; align-items: center; }
+.under .t { font-size: 24px; font-weight: 800; }
+.under .chips { display: flex; gap: 6px; }
+.under .chips span { font-size: 12px; font-weight: 600; padding: 7px 11px; border-radius: 999px; background: var(--control); color: var(--sec); }
+.under .blk { height: 120px; margin-top: 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--edge); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; top: 26%; background: var(--sheet); border-radius: 30px 30px 0 0;
+  border-top: 1px solid var(--edge); padding: 10px 16px 28px; box-shadow: 0 -20px 50px rgba(0,0,0,.28); animation: sheetUp 900ms var(--ease) 200ms both; }
+.sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--track); margin: 0 auto 16px; }
+.sheet .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; padding: 0 4px; }
+.sheet .phrase { font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -.02em; margin-top: 6px; }
+.acts { display: flex; gap: 8px; }
+.rb { width: 40px; height: 40px; border-radius: 50%; background: var(--control); border: 1px solid var(--edge); display: grid; place-items: center; color: var(--text);
+  cursor: pointer; padding: 0; transition: transform 240ms var(--spring), background-color 200ms, color 200ms; }
+.rb:active { transform: scale(.9); transition-duration: 90ms; }
+.rb.on { background: var(--cta); color: var(--cta-ink); }
+.facts { display: grid; gap: 10px; margin-top: 16px; }
+.fact { background: var(--card); border: 1px solid var(--edge); border-radius: 16px; padding: 13px 15px; }
+:root[data-mode="light"] .fact { background: #F4F4F6; }
+.fact .ov { font-size: 10.5px; letter-spacing: .16em; }
+.fact p { font-size: 14.5px; line-height: 1.45; margin-top: 6px; }
+.wave { display: flex; align-items: center; gap: 3px; height: 18px; margin: 10px 4px 0; }
+.wave i { width: 3px; height: 4px; border-radius: 2px; background: var(--sec); }
+.playing .wave i { background: var(--fill); animation: wv 900ms var(--ease) infinite alternate; animation-delay: calc(var(--n) * -110ms); }
+
+/* хаб «Диалоги» — 1:1 с эталоном (заголовок, пилюли, карточки категорий с дорожкой) */
+.hub { padding: 18px 16px 0; }
+.hub .hrow1 { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-top: 10px; }
+.hub .ti { font-size: 32px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.hub .su { font-size: 13px; color: var(--sec); margin-top: 6px; }
+.pills { display: flex; gap: 6px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 11px; border-radius: 15px; background: var(--control); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pill img { width: 18px; height: 18px; border-radius: 50%; display: block; }
+.cats { display: grid; gap: 9px; margin-top: 20px; }
+.cat { background: var(--card); border: 1px solid var(--edge); border-radius: 18px; padding: 13px 14px 14px; }
+:root[data-mode="light"] .cat, :root[data-mode="light"] .hrow { box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 6px 16px rgba(0,0,0,.05); }
+.cat .r { display: flex; align-items: center; gap: 12px; }
+.cat .tile { width: 42px; height: 42px; border-radius: 11px; }
+.cat .tx { flex: 1; min-width: 0; }
+.cat .tt { font-size: 16px; font-weight: 700; line-height: 1.25; }
+.cat .st { font-size: 13px; color: var(--sec); line-height: 1.3; }
+.cat .fr { font-size: 13px; color: var(--sec); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cat .fr b { font-size: 18px; color: var(--text); }
+.trk { position: relative; height: 5px; border-radius: 3px; background: var(--track); margin-top: 12px; }
+.trk b { position: absolute; left: 0; top: 0; bottom: 0; width: var(--w); border-radius: 3px; background: var(--fill); }
+.trk b::after { content: ""; position: absolute; right: -4px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--fill); }
+.hrow { display: flex; align-items: center; gap: 14px; padding: 11px 14px; min-height: 64px; background: var(--card); border: 1px solid var(--edge); border-radius: 15px; }
+.hrow .tile { width: 42px; height: 42px; border-radius: 11px; }
+.hrow .tt { flex: 1; font-size: 16px; font-weight: 700; }
+.hrow .ch { color: var(--sec); }
+
+/* секции */
+section.block { padding-block: clamp(64px, 9vw, 124px); }
+.head { display: grid; gap: 18px; max-width: 780px; }
+.h2 { font-size: var(--t-h2); line-height: 1.04; letter-spacing: -.035em; }
+.h2 .l2 { display: block; color: var(--sec); }
+.head p { font-size: var(--t-l); color: var(--sec); max-width: 52ch; }
+
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 56px; }
+.step { padding: 26px 26px 30px; display: grid; gap: 14px; align-content: start; }
+.step:nth-child(1) { --sx: 10%; --sy: 0%; } .step:nth-child(2) { --sx: 90%; --sy: 10%; } .step:nth-child(3) { --sx: 40%; --sy: 100%; }
+.step .n { display: flex; align-items: center; justify-content: space-between; }
+.step .n span { font-size: 13px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.step h3 { font-size: var(--t-h3); line-height: 1.2; letter-spacing: -.02em; margin-top: 36px; font-weight: 800; }
+.step p { color: var(--sec); font-size: var(--t-s); line-height: 1.55; }
+.step .trk { margin-top: 8px; height: 4px; }
+.step .trk b::after { display: none; }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.copy { display: grid; gap: 22px; justify-items: start; }
+.copy p { color: var(--sec); font-size: var(--t-l); max-width: 40ch; }
+
+.test-card { --sx: 85%; --sy: 0%; padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: end; border-radius: 30px; }
+.test-card .side { display: grid; gap: 22px; justify-items: start; }
+.test-card .side p { color: var(--sec); font-size: var(--t-l); max-width: 38ch; }
+.cefr { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-top: 34px; }
+.cefr span { display: grid; place-items: center; height: 44px; border-radius: 12px; background: var(--control); font-weight: 700; font-size: 15px; color: var(--sec);
+  transition: background-color 300ms var(--ease), color 300ms var(--ease), transform 300ms var(--spring); }
+.cefr span.on { background: var(--cta); color: var(--cta-ink); transform: translateY(-3px); }
+.note { font-size: var(--t-xs); color: var(--muted); margin-top: 12px; }
+
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 56px; }
+.quote { margin: 0; padding: 30px; display: grid; gap: 26px; align-content: space-between; }
+.quote:nth-child(2) { --sx: 100%; --sy: 100%; }
+.quote p { font-size: clamp(19px, 1.9vw, 23px); line-height: 1.45; letter-spacing: -.01em; font-weight: 500; }
+.quote cite { font-style: normal; display: flex; align-items: center; gap: 12px; font-size: var(--t-s); color: var(--sec); }
+.av { width: 36px; height: 36px; border-radius: 50%; background: var(--tile); display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--text); }
+.more { display: inline-flex; align-items: center; gap: 6px; margin-top: 26px; color: var(--sec); font-size: var(--t-s); font-weight: 600; transition: color 160ms; }
+.more:hover { color: var(--text); }
+
+.cert { --sx: 30%; --sy: 0%; aspect-ratio: 1.42; max-width: 100%; border-radius: 28px; padding: clamp(22px, 3vw, 34px); display: grid; align-content: space-between;
+  transform: rotate(-2deg); transition: transform 600ms var(--ease); }
+.split:hover .cert { transform: rotate(0deg) translateY(-4px); }
+.cert .r { display: flex; justify-content: space-between; align-items: center; }
+.cert .big { font-size: clamp(26px, 3.4vw, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.cert .big span { color: var(--sec); }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opts span { font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 999px; background: var(--control); color: var(--sec); }
+.opts span.on { background: var(--cta); color: var(--cta-ink); }
+
+.links { display: grid; }
+.links a { display: flex; align-items: center; gap: 18px; padding: 20px 4px; border-bottom: 1px solid var(--track); font-size: var(--t-l); font-weight: 600; transition: padding-left 300ms var(--ease); }
+.links a:first-child { border-top: 1px solid var(--track); }
+.links a .tile { width: 40px; height: 40px; border-radius: 11px; color: var(--sec); }
+.links a .t { flex: 1; }
+.links a .ch { color: var(--sec); transition: transform 300ms var(--ease); }
+.links a:hover { padding-left: 10px; }
+.links a:hover .ch { transform: translate(2px, -2px); color: var(--text); }
+
+.faq { margin-top: 48px; padding: 6px 0; border-radius: 26px; --sx: 90%; --sy: 0%; }
+.faq details { border-bottom: 1px solid var(--track); margin: 0 24px; }
+.faq details:last-child { border-bottom: 0; }
+.faq summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; cursor: pointer; font-weight: 700; font-size: var(--t-m); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq .pm { width: 32px; height: 32px; border-radius: 50%; background: var(--control); display: grid; place-items: center; flex: none; transition: transform 300ms var(--ease); }
+.faq details[open] .pm { transform: rotate(45deg); }
+.faq details p { color: var(--sec); font-size: var(--t-s); line-height: 1.6; padding: 0 56px 22px 0; max-width: 70ch; }
+.faq details[open] p { animation: fadeDown 360ms var(--ease); }
+
+.close .glass { --sx: 50%; --sy: 0%; border-radius: 34px; padding: clamp(48px, 8vw, 104px) 24px; display: grid; justify-items: center; gap: 30px; text-align: center; }
+
+/* внутренние страницы: три окна браузера */
+.pages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; align-items: start; }
+.win { border-radius: 20px; overflow: hidden; background: var(--bg); background-image: var(--page-bg); box-shadow: 0 0 0 1px var(--edge), var(--shadow); position: relative; isolation: isolate; }
+.win .wg { position: absolute; inset: 0 0 auto; height: 260px; z-index: -1; opacity: var(--glow-op);
+  background: radial-gradient(80% 70% at 0% 0%, var(--g1), transparent 65%), radial-gradient(70% 70% at 100% 30%, var(--g2), transparent 66%); }
+.win .chrome { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: var(--card-solid); }
+.win .chrome i { width: 9px; height: 9px; border-radius: 50%; background: var(--track); }
+.win .chrome .url { margin-left: 8px; flex: 1; font-size: 11px; color: var(--muted); background: var(--control); border-radius: 7px; padding: 5px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.win .mbar { display: flex; justify-content: space-between; align-items: center; margin: 12px; padding: 8px 8px 8px 14px; border-radius: 999px; background: var(--bar); border: 1px solid var(--edge); font-size: 14px; font-weight: 800; }
+.win .mbar .btn { min-height: 30px; padding: 0 12px; font-size: 12px; box-shadow: none; }
+.win .body { padding: 14px 18px 22px; display: grid; gap: 14px; }
+.win .ov { font-size: 10.5px; }
+.win h3 { font-size: 26px; line-height: 1.05; letter-spacing: -.03em; }
+.win h3 span { display: block; color: var(--sec); }
+.win p { font-size: 13px; color: var(--sec); line-height: 1.5; }
+.stores { display: grid; gap: 8px; }
+.store { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px; background: var(--cta); color: var(--cta-ink); }
+.store.alt { background: var(--control); color: var(--text); }
+.store small { display: block; font-size: 10px; opacity: .75; line-height: 1.1; }
+.store b { display: block; font-size: 14px; line-height: 1.15; }
+.qr { display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 16px; background: var(--card); border: 1px solid var(--edge); }
+.qr img { width: 64px; height: 64px; border-radius: 8px; background: #fff; padding: 4px; flex: none; }
+.qr b { font-size: 13px; display: block; }
+.mini-faq { border-radius: 16px; background: var(--card); border: 1px solid var(--edge); }
+.mini-faq div { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px 14px; font-size: 13px; font-weight: 700; }
+.mini-faq div + div { border-top: 1px solid var(--track); }
+.mini-faq p { padding: 0 14px 14px; margin-top: -4px; }
+.mini-faq .pm { width: 24px; height: 24px; border-radius: 50%; background: var(--control); display: grid; place-items: center; flex: none; }
+.doc { border-radius: 16px; background: var(--card); border: 1px solid var(--edge); padding: 14px; display: grid; gap: 10px; }
+.doc .toc { display: flex; flex-wrap: wrap; gap: 6px; }
+.doc .toc span { font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 999px; background: var(--control); color: var(--sec); }
+.doc h4 { margin: 4px 0 0; font-size: 14px; }
+.doc p { font-size: 12.5px; }
+.doc .meta { font-size: 11px; color: var(--muted); }
+
+footer { padding-block: 64px 48px; border-top: 1px solid var(--track); margin-top: clamp(48px, 8vw, 96px); }
+.foot-top { display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); gap: 32px; }
+.foot-top p { color: var(--sec); font-size: var(--t-s); margin-top: 14px; }
+.foot-col { display: grid; gap: 10px; align-content: start; font-size: var(--t-s); }
+.foot-col b { font-size: var(--t-xs); color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.foot-col a { color: var(--sec); transition: color 160ms; }
+.foot-col a:hover { color: var(--text); }
+.foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 24px; margin-top: 56px; font-size: var(--t-xs); color: var(--muted); }
+.foot-bottom div { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+@keyframes rise { from { transform: translateY(14px); } to { transform: none; } }
+@keyframes sheetUp { from { transform: translateY(40%); } to { transform: none; } }
+@keyframes wv { from { height: 4px; } to { height: var(--h); } }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 900ms var(--ease) both; }
+.rise.d1 { animation-delay: 80ms; } .rise.d2 { animation-delay: 160ms; } .rise.d3 { animation-delay: 240ms; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 1ms !important; }
+  html { scroll-behavior: auto; }
+}
+@media (max-width: 980px) {
+  .nav { display: none; }
+  .lang { margin-left: auto; }
+  .hero .wrap, .split, .test-card { grid-template-columns: minmax(0, 1fr); }
+  .steps, .quotes, .pages { grid-template-columns: minmax(0, 1fr); }
+  .step h3 { margin-top: 18px; }
+  .split .stage { order: 2; }
+  .foot-top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foot-top > :first-child { grid-column: 1 / -1; }
+  .pages { max-width: 460px; }
+}
+@media (max-width: 540px) {
+  .bar { height: 54px; padding: 0 7px 0 16px; gap: 8px; }
+  .lang { display: none; }
+  .bar .btn-sm { padding: 0 14px; }
+  .cefr span { height: 38px; font-size: 13px; }
+  .faq details { margin: 0 18px; }
+  .faq details p { padding-right: 0; }
+  .cert { transform: none; }
+  .foot-top { grid-template-columns: minmax(0, 1fr); }
+}
+`;
+
+// ---------- C: дополнительные стили (переключатель тем, витрина телефона) ----------
+const CSS_C = `
+.hero-c { padding-block: clamp(36px, 6vw, 80px) clamp(40px, 6vw, 80px); text-align: center; }
+.hero-c h1 { font-size: var(--t-h1); line-height: .98; letter-spacing: -.04em; margin-top: 20px; }
+.hero-c h1 .l2 { color: var(--sec); }
+.hero-c .lead { margin: 24px auto 0; font-size: var(--t-l); color: var(--sec); max-width: 34ch; }
+.hero-c .cta-row { justify-content: center; }
+.studio { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: center; margin-top: clamp(40px, 6vw, 72px); text-align: left; }
+.studio .side { display: grid; gap: 14px; }
+.panel { padding: 20px; border-radius: 24px; display: grid; gap: 14px; }
+.panel .lbl { font-size: 13px; font-weight: 700; color: var(--sec); }
+.swatches { display: grid; grid-template-columns: repeat(6, 34px); gap: 10px; }
+.sw { width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer; padding: 0; position: relative; transition: transform 240ms var(--spring); }
+.sw:hover { transform: scale(1.08); }
+.sw:active { transform: scale(.92); }
+.sw[aria-pressed="true"]::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid var(--text); }
+.seg { display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 14px; background: var(--control); }
+.seg button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; background: transparent; color: var(--sec); font: 600 14px/1 var(--font); height: 38px; border-radius: 11px; cursor: pointer; transition: background-color 240ms, color 240ms; }
+.seg button[aria-pressed="true"] { background: var(--card-solid); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+.range { display: flex; align-items: center; gap: 12px; }
+.range input { flex: 1; accent-color: var(--fill); height: 28px; }
+.range b { font-size: 14px; min-width: 40px; text-align: right; font-variant-numeric: tabular-nums; }
+.tabs { display: grid; gap: 8px; }
+.tabs button { display: flex; align-items: center; gap: 12px; border: 0; text-align: left; cursor: pointer; padding: 10px 12px; border-radius: 16px; background: transparent; color: var(--sec); font: 600 15px/1.2 var(--font); transition: background-color 240ms, color 240ms; }
+.tabs button .tile { width: 38px; height: 38px; border-radius: 11px; }
+.tabs button[aria-pressed="true"] { background: var(--card); color: var(--text); box-shadow: var(--shadow); }
+.screen .view { position: absolute; inset: 0; transition: opacity 360ms var(--ease), transform 460ms var(--ease); }
+.screen .view[data-off] { opacity: 0; transform: translateX(14px); pointer-events: none; }
+.coin-row { display: flex; align-items: center; gap: 14px; }
+.coin-row img { width: 56px; height: 56px; border-radius: 50%; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+.coin-row b { font-size: 26px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; display: block; line-height: 1.1; }
+.coin-row span { font-size: 13px; color: var(--sec); }
+.coin-pop { animation: pop 520ms var(--spring); }
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.18); } 100% { transform: scale(1); } }
+@media (max-width: 980px) {
+  .studio { grid-template-columns: minmax(0, 1fr); }
+  .studio .phone { order: -1; }
+  .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+`;
+
+// ---------- контент (тексты сайта, обращение на «ты» по указанию координатора) ----------
+const header = (v) => `
+<header class="top"><div class="wrap"><div class="bar">
+  <a class="brand" href="${URL}/" aria-label="Phraseman — главная">phrase<span class="tail">man</span></a>
+  <nav class="nav" aria-label="Главная навигация">
+    <a href="${URL}/app/" data-en="The app">Приложение</a><a href="${URL}/english-level-test/" data-en="Level test">Тест уровня</a><a href="${URL}/guides/" data-en="Journal">Журнал</a><a href="${URL}/links/" data-en="Channels">Каналы</a><a href="${URL}/gift/" data-en="Give a gift">Подарить</a><a href="${URL}/contact/" data-en="Support">Поддержка</a>
+  </nav>
+  <div class="lang" role="group" aria-label="Язык сайта"><button type="button" data-lang="ru" aria-pressed="true">RU</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+  <a class="btn btn-primary btn-sm" href="${URL}/download/" data-en="Start for free">Начать бесплатно</a>
+</div></div></header>`;
+
+const phraseSheet = (under = true) => `
+${under ? `<div class="under" aria-hidden="true"><div class="r"><span class="t">Сегодня</span><span class="chips"><span>Видео</span><span>Ошибки</span></span></div><div class="blk"></div></div>` : ''}
+<div class="sheet" data-sheet>
+  <div class="grab"></div>
+  <div class="head">
+    <div><div class="ov">Фраза дня</div><div class="phrase">Pitch in</div></div>
+    <div class="acts">
+      <button class="rb" type="button" data-bm aria-label="Сохранить фразу" aria-pressed="false">${ic('mark', 's18')}</button>
+      <button class="rb" type="button" data-say aria-label="Послушать фразу">${ic('sound', 's18')}</button>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true" data-wave></div>
+  <div class="facts">
+    <div class="fact"><div class="ov">Дословно</div><p>Вброситься.</p></div>
+    <div class="fact"><div class="ov">Что значит</div><p>Сброситься деньгами или объединить усилия для общего дела.</p></div>
+    <div class="fact"><div class="ov">Пример</div><p>Собираете на подарок другу или решили вместе убрать парк? Пора pitch in.</p></div>
+  </div>
+</div>`;
+
+const dialogsHub = (coin = false) => `
+<div class="hub">
+  <div class="hrow1"><div><div class="ti">Диалоги</div><div class="su">Практикуй язык в жизненных ситуациях</div></div>
+    <div class="pills">${coin ? `<span class="pill" data-coinpill><img src="${APP}/images/coins/coin_rank_05.webp" alt="" width="18" height="18"><span data-coins>240</span></span>` : ''}<span class="pill">${ic('chat', 's16')}10/10</span></div></div>
+  <div class="cats">
+    <div class="cat"><div class="r"><span class="tile">${ic('people', 's18')}</span><span class="tx"><span class="tt">Общение</span><br><span class="st">Знакомства и разговоры</span></span><span class="fr"><b>4</b> /13</span></div><div class="trk"><b style="--w:31%"></b></div></div>
+    <div class="cat"><div class="r"><span class="tile">${ic('doc', 's18')}</span><span class="tx"><span class="tt">Дела</span><br><span class="st">Работа, учёба и важные дела</span></span><span class="fr"><b>2</b> /19</span></div><div class="trk"><b style="--w:11%"></b></div></div>
+    <div class="cat"><div class="r"><span class="tile">${ic('plane', 's18')}</span><span class="tx"><span class="tt">Поездки</span><br><span class="st">В поездках и на отдыхе</span></span><span class="fr"><b>5</b> /8</span></div><div class="trk"><b style="--w:62%"></b></div></div>
+    <div class="cat"><div class="r"><span class="tile">${ic('cup', 's18')}</span><span class="tx"><span class="tt">Повседневное</span><br><span class="st">Просьбы, советы и мелочи дня</span></span><span class="fr"><b>0</b> /11</span></div><div class="trk"><b style="--w:0%"></b></div></div>
+  </div>
+</div>`;
+
+const todayList = `
+<div class="hub">
+  <div class="hrow1"><div><div class="ti">Сегодня</div></div></div>
+  <div class="cats">
+    <div class="hrow"><span class="tile">${ic('book', 's18')}</span><span class="tt">Уроки</span>${ic('chev', 's18 ch')}</div>
+    <div class="hrow"><span class="tile">${ic('cards', 's18')}</span><span class="tt">Карточки</span>${ic('chev', 's18 ch')}</div>
+    <div class="hrow"><span class="tile">${ic('check', 's18')}</span><span class="tt">Ежедневные задания</span>${ic('chev', 's18 ch')}</div>
+    <div class="hrow"><span class="tile">${ic('chat', 's18')}</span><span class="tt">Диалоги</span>${ic('chev', 's18 ch')}</div>
+  </div>
+  <span class="btn btn-primary" style="margin-top:18px;width:100%;min-height:50px;font-size:15px" aria-hidden="true">Продолжить ${ic('arrow', 's18')}</span>
+</div>`;
+
+const phone = (inner, label, sb = '12:53') => `
+<div class="phone" aria-label="${label}"><div class="screen"><div class="sglow" aria-hidden="true"></div>
+  <div class="sb" aria-hidden="true"><span>${sb}</span><span class="bat"></span></div>
+  ${inner}
+  <div class="home-ind" aria-hidden="true"></div>
+</div></div>`;
+
+const heroAB = `
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="ov rise" data-en="Phraseman · language for life">Phraseman · язык для жизни</span>
+    <h1 class="rise d1" data-en-html="Your voice.&lt;span class=&quot;l2&quot;&gt;In another language.&lt;/span&gt;">Твой голос.<span class="l2">На другом языке.</span></h1>
+    <p class="lead rise d2" data-en="Everyday phrases. Pronunciation practice. A language that becomes your own.">Живые фразы. Практика произношения. Язык, который становится твоим.</p>
+    <div class="cta-row rise d3"><a class="btn btn-primary" href="${URL}/download/"><span data-en="Start for free">Начать бесплатно</span> ${ic('arrow', 's18 arr')}</a><span class="fine">iPhone и Android</span></div>
+  </div>
+  ${phone(phraseSheet(), 'Экран приложения: фраза дня Pitch in')}
+</div></section>`;
+
+const heroC = `
+<section class="hero-c"><div class="wrap">
+  <span class="ov rise" data-en="Phraseman · language for life">Phraseman · язык для жизни</span>
+  <h1 class="rise d1" data-en-html="Your voice.&lt;br&gt;&lt;span class=&quot;l2&quot;&gt;In another language.&lt;/span&gt;">Твой голос.<br><span class="l2">На другом языке.</span></h1>
+  <p class="lead rise d2" data-en="Everyday phrases. Pronunciation practice. A language that becomes your own.">Живые фразы. Практика произношения. Язык, который становится твоим.</p>
+  <div class="cta-row rise d3"><a class="btn btn-primary" href="${URL}/download/"><span data-en="Start for free">Начать бесплатно</span> ${ic('arrow', 's18 arr')}</a><span class="fine">iPhone и Android</span></div>
+
+  <div class="studio">
+    <div class="side">
+      <div class="glass panel" style="--sx:0%;--sy:0%">
+        <span class="lbl">Тема приложения</span>
+        <div class="swatches" id="swatches" role="group" aria-label="Темы"></div>
+        <div class="seg" role="group" aria-label="Оформление">
+          <button type="button" data-mode-btn="dark" aria-pressed="true">${ic('moon', 's16')}Тёмная</button>
+          <button type="button" data-mode-btn="light" aria-pressed="false">${ic('sun', 's16')}Светлая</button>
+        </div>
+        <div class="range"><label for="kSlider" class="lbl">Насыщенность</label><input id="kSlider" type="range" min="0" max="100" step="5" value="60"><b id="kVal">60%</b></div>
+      </div>
+    </div>
+    ${phone(`
+      <div class="view" data-view="phrase">${phraseSheet()}</div>
+      <div class="view" data-view="dialogs" data-off>${dialogsHub(true)}</div>
+      <div class="view" data-view="today" data-off>${todayList}</div>`, 'Живой экран приложения', '9:41')}
+    <div class="side">
+      <div class="tabs" role="group" aria-label="Экран в телефоне">
+        <button type="button" data-tab="phrase" aria-pressed="true"><span class="tile">${ic('sound', 's18')}</span>Фраза дня</button>
+        <button type="button" data-tab="dialogs" aria-pressed="false"><span class="tile">${ic('chat', 's18')}</span>Диалоги</button>
+        <button type="button" data-tab="today" aria-pressed="false"><span class="tile">${ic('check', 's18')}</span>Сегодня</button>
+      </div>
+      <div class="glass panel" style="--sx:100%;--sy:100%">
+        <div class="coin-row"><img src="${APP}/images/coins/coin_rank_05.webp" alt="Монета Phraseman" width="56" height="56" data-coin><div><b><span data-coins>240</span> монет</b><span>Монеты — валюта приложения</span></div></div>
+        <button type="button" class="btn btn-ghost btn-sm" data-earn style="justify-self:start">Пройти урок +12</button>
+      </div>
+    </div>
+  </div>
+</div></section>`;
+
+const method = `
+<section class="block" id="method"><div class="wrap">
+  <div class="head">
+    <span class="ov" data-en="The Phraseman method">Метод Phraseman</span>
+    <h2 class="h2" data-en-html="From familiar words&lt;span class=&quot;l2&quot;&gt;to speaking for yourself.&lt;/span&gt;">От знакомых слов —<span class="l2">к собственной речи.</span></h2>
+    <p data-en="Whole phrases. Sound. Practice. And review that helps you remember.">Фраза целиком. Звучание. Практика. И повторение, которое помогает сохранить выученное.</p>
+  </div>
+  <div class="steps">
+    <article class="glass step"><div class="n"><span class="tile">${ic('ear')}</span><span data-en="01 / Understand">01 / Понимать</span></div><h3 data-en="Learn the phrase. Understand the meaning.">Учи фразу. Сразу со смыслом.</h3><p>Готовые выражения из реальных ситуаций. Слушай озвучку и связывай слова с тем, что хочешь сказать.</p><div class="trk"><b style="--w:33%"></b></div></article>
+    <article class="glass step"><div class="n"><span class="tile">${ic('mic')}</span><span data-en="02 / Speak">02 / Говорить</span></div><h3 data-en="Give words your voice.">Дай словам свой голос.</h3><p>Тренируй произношение, повторяй вслух и переходи к диалогам. От узнавания фразы — к её использованию.</p><div class="trk"><b style="--w:66%"></b></div></article>
+    <article class="glass step"><div class="n"><span class="tile">${ic('cards')}</span><span data-en="03 / Remember">03 / Запоминать</span></div><h3 data-en="Recall it. Keep moving forward.">Вспоминай. Не начинай заново.</h3><p>Карточки и интервальные повторения помогают возвращаться к пройденному и удерживать фразы в памяти.</p><div class="trk"><b style="--w:100%"></b></div></article>
+  </div>
+</div></section>`;
+
+const product = (screen) => `
+<section class="block"><div class="wrap split">
+  <div class="copy">
+    <h2 class="h2" data-en-html="A bigger journey.&lt;span class=&quot;l2&quot;&gt;At your own pace.&lt;/span&gt;">Большой путь.<span class="l2">Твоим шагом.</span></h2>
+    <p>Уроки, карточки и ежедневные задания — всё в одном приложении.</p>
+    <p>Выбирай свой ритм. И продолжай с того места, где остановился.</p>
+    <a class="btn btn-ghost" href="${URL}/app/"><span data-en="Explore the app">Посмотреть приложение</span> ${ic('arrow', 's18 arr')}</a>
+  </div>
+  <div class="stage">${phone(screen, 'Экран приложения', '9:41')}</div>
+</div></section>`;
+
+const test = `
+<section class="block"><div class="wrap"><div class="glass test-card">
+  <div>
+    <h2 class="h2" data-en-html="Everyone has&lt;span class=&quot;l2&quot;&gt;a starting point.&lt;/span&gt;">У каждого —<span class="l2">своя точка старта.</span></h2>
+    <div class="cefr" data-cefr aria-label="Шкала уровней CEFR"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
+    <p class="note">12–20 адаптивных вопросов · уровень по шкале CEFR</p>
+  </div>
+  <div class="side">
+    <p>Уже учил язык? Узнай свой ориентировочный уровень и выбери, с чего продолжить.</p>
+    <a class="btn btn-primary" href="${URL}/english-level-test/"><span data-en="Check your level">Определить уровень</span> ${ic('arrow', 's18 arr')}</a>
+  </div>
+</div></div></section>`;
+
+const reviews = `
+<section class="block" id="reviews"><div class="wrap">
+  <h2 class="h2" data-en-html="When phrases&lt;span class=&quot;l2&quot;&gt;become your own.&lt;/span&gt;">Когда фразы<span class="l2">становятся твоими.</span></h2>
+  <div class="quotes">
+    <blockquote class="glass quote"><p>«Учишь не изолированные слова, а целые фразы, которые реально используют носители».</p><cite><span class="av" aria-hidden="true">Z</span>Zinnur Yusupov · Google Play</cite></blockquote>
+    <blockquote class="glass quote"><p>«Быстро освежает в памяти забытое со школьных лет. Объяснения понятные, лаконичные, много практики».</p><cite><span class="av" aria-hidden="true">S</span>Sveta Melnikova · Google Play</cite></blockquote>
+  </div>
+  <a class="more" href="https://play.google.com/store/apps/details?id=app.phraseman"><span data-en="Read reviews">Читать отзывы</span> ${ic('out', 's18')}</a>
+</div></section>`;
+
+const gift = `
+<section class="block"><div class="wrap split">
+  <div class="copy">
+    <h2 class="h2" data-en-html="A gift that&lt;span class=&quot;l2&quot;&gt;helps them speak.&lt;/span&gt;">Подарок, который<span class="l2">помогает заговорить.</span></h2>
+    <p>Подари язык. А вместе с ним — новые возможности.</p>
+    <a class="btn btn-primary" href="${URL}/gift/"><span data-en="Choose a gift">Выбрать подарок</span> ${ic('arrow', 's18 arr')}</a>
+  </div>
+  <div class="glass cert" aria-label="Подарочный сертификат Phraseman">
+    <div class="r"><span class="ov">Сертификат</span><span class="brand" style="font-size:15px">phrase<span class="tail">man</span></span></div>
+    <div class="big">Чуть больше языка.<br><span>Чуть больше свободы.</span></div>
+    <div class="opts"><span>Plus · месяц</span><span class="on">Plus · год</span><span>Pro · навсегда</span></div>
+  </div>
+</div></section>`;
+
+const journal = `
+<section class="block"><div class="wrap split" style="align-items:start">
+  <div class="head">
+    <h2 class="h2">Понятно о языке.<span class="l2">Без лишней теории.</span></h2>
+    <a class="more" href="${URL}/guides/" style="margin-top:0"><span data-en="All articles">Все материалы</span> ${ic('out', 's18')}</a>
+  </div>
+  <div class="links">
+    <a href="${URL}/guides/speaking-barrier/"><span class="tile">${ic('chat', 's18')}</span><span class="t">Понимаю, но не могу ответить</span>${ic('out', 's18 ch')}</a>
+    <a href="${URL}/guides/english-15-minutes-a-day/"><span class="tile">${ic('clock', 's18')}</span><span class="t">Место для языка каждый день</span>${ic('out', 's18 ch')}</a>
+    <a href="${URL}/guides/english-phrases-for-travel/"><span class="tile">${ic('plane', 's18')}</span><span class="t">Разговоры, с которых начинается поездка</span>${ic('out', 's18 ch')}</a>
+  </div>
+</div></section>`;
+
+const FAQ = [
+  ['Можно начать с нуля?', 'Да. Начинай с базовых фраз и двигайся в своём темпе. Если уже учил язык, тест поможет сориентироваться, с чего продолжить.'],
+  ['Сколько времени нужно на занятие?', 'Можно выделить 15 минут на короткую практику. Это удобный ритм, а не обещание определённого результата: он зависит от твоего уровня, регулярности и практики за пределами приложения.'],
+  ['Что можно попробовать бесплатно?', 'Начни со знакомства с приложением и доступных бесплатных заданий. Состав Plus и Pro и актуальные условия смотри в приложении перед оформлением.'],
+  ['Как заниматься, если стесняюсь говорить?', 'Начни с прослушивания и повторения знакомых фраз в комфортной обстановке. Затем пробуй вспомнить фразу самостоятельно и использовать её в настоящем разговоре.'],
+  ['Где посмотреть условия и способы оплаты?', 'На странице Plus и Pro собраны переходы к действующим предложениям. Для пользователей из России есть отдельная инструкция.'],
+];
+const faq = `
+<section class="block" id="faq"><div class="wrap">
+  <h2 class="h2" data-en-html="The essentials,&lt;span class=&quot;l2&quot;&gt;clearly explained.&lt;/span&gt;">О главном —<span class="l2">открыто.</span></h2>
+  <div class="glass faq">${FAQ.map(([q, a]) => `<details><summary>${q}<span class="pm">${ic('plus', 's18')}</span></summary><p>${a}</p></details>`).join('')}</div>
+</div></section>`;
+
+const close = `
+<section class="block close"><div class="wrap"><div class="glass">
+  <h2 class="h2">Говори увереннее.<span class="l2">В знакомых ситуациях.</span></h2>
+  <a class="btn btn-primary" href="${URL}/download/"><span data-en="Start for free">Начать бесплатно</span> ${ic('arrow', 's18 arr')}</a>
+</div></div></section>`;
+
+const winBar = (url) => `<div class="chrome"><i></i><i></i><i></i><span class="url">${url}</span></div>
+  <div class="mbar"><span>phrase<span style="color:var(--sec)">man</span></span><span class="btn btn-primary">Начать бесплатно</span></div>`;
+const pages = `
+<section class="block" id="pages"><div class="wrap">
+  <div class="head">
+    <span class="ov">Внутренние страницы</span>
+    <h2 class="h2">Тот же стиль<span class="l2">на каждой странице.</span></h2>
+  </div>
+  <div class="pages">
+    <div class="win"><div class="wg"></div>${winBar('knowlyapps.com/download/')}
+      <div class="body">
+        <span class="ov">Phraseman · iOS и Android</span>
+        <h3>Твой голос.<span>Теперь с тобой.</span></h3>
+        <p>Фразы из жизни. Практика произношения. Повторение, которое становится привычкой.</p>
+        <div class="stores">
+          <a class="store" href="${URL}/download/">${ic('apple', 's18')}<span><small>Загрузить в</small><b>App Store</b></span></a>
+          <a class="store alt" href="${URL}/download/">${ic('play', 's18')}<span><small>Доступно в</small><b>Google Play</b></span></a>
+        </div>
+        <div class="qr"><img src="${SITE}/qr-download.svg" alt="QR-код для скачивания" width="64" height="64"><div><b>Открыть на другом устройстве</b><p>Наведи камеру телефона и выбери свой магазин.</p></div></div>
+      </div></div>
+    <div class="win"><div class="wg"></div>${winBar('knowlyapps.com/faq/')}
+      <div class="body">
+        <span class="ov">Понятные ответы</span>
+        <h3>Спросить —<span>хорошее начало.</span></h3>
+        <p>Собрали главное о практике и приложении.</p>
+        <div class="mini-faq">
+          <div>Можно начать с нуля?<span class="pm">${ic('plus', 's16')}</span></div>
+          <div>Куда обратиться, если нужна помощь?<span class="pm" style="transform:rotate(45deg)">${ic('plus', 's16')}</span></div>
+          <p>Напиши на support.phraseman@gmail.com — поддержка отвечает на каждое письмо.</p>
+        </div>
+      </div></div>
+    <div class="win"><div class="wg"></div>${winBar('knowlyapps.com/legal/privacy/')}
+      <div class="body">
+        <span class="ov">Конфиденциальность</span>
+        <h3>Privacy Policy<span>Phraseman by Knowly</span></h3>
+        <div class="doc">
+          <span class="meta">Last updated October 15, 2026</span>
+          <div class="toc"><span>1. Scope</span><span>2. Data we collect</span><span>3. How we use it</span><span>Deletion</span></div>
+          <h4>1. Scope, controller, and acceptance</h4>
+          <p>This Policy applies to the Phraseman mobile app, related online services, support channels, public legal pages, and cloud features operated by Knowly.</p>
+        </div>
+      </div></div>
+  </div>
+</div></section>`;
+
+const footer = `
+<footer><div class="wrap">
+  <div class="foot-top">
+    <div><a class="brand" href="${URL}/">phrase<span class="tail">man</span></a><p>Чуть больше языка.<br>Чуть больше свободы.</p></div>
+    <div class="foot-col"><b>Практиковаться</b><a href="${URL}/app/">О приложении</a><a href="${URL}/download/">Скачать Phraseman</a><a href="${URL}/english-level-test/">Определить уровень</a></div>
+    <div class="foot-col"><b>Открывать больше</b><a href="${URL}/guides/">Гайды и истории</a><a href="${URL}/premium/">Plus и Pro</a><a href="${URL}/gift/">Подарить доступ</a><a href="${URL}/russia/">Оплата в России</a></div>
+    <div class="foot-col"><b>Мы рядом</b><a href="${URL}/contact/">Поддержка</a><a href="${URL}/faq/">Частые вопросы</a><a href="#reviews">Отзывы</a></div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Knowly · Phraseman</span><div><a href="${URL}/legal/privacy/">Конфиденциальность</a><a href="${URL}/legal/terms/">Условия</a><a href="${URL}/legal/data-deletion/">Удаление данных</a></div></div>
+</div></footer>`;
+
+// ---------- общий скрипт ----------
+const JS = (v) => `
+(function () {
+  var THEMES = ${JSON.stringify(THEMES)};
+  var root = document.documentElement;
+  var state = { mode: '${v.mode}', theme: ${v.theme}, k: ${v.k} };
+  function hex(h) { var n = parseInt(h.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  function mix(a, b, t) { var x = hex(a), y = hex(b); return '#' + x.map(function (c, i) { return Math.round(c + (y[i] - c) * t).toString(16).padStart(2, '0'); }).join(''); }
+  function lum(h) { return hex(h).map(function (v) { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }).reduce(function (s, c, i) { return s + c * [.2126, .7152, .0722][i]; }, 0); }
+  function contrast(a, b) { var l = [lum(a), lum(b)].sort(function (p, q) { return q - p; }); return (l[0] + .05) / (l[1] + .05); }
+  // зачем: на светлой кнопка идёт от почти чёрной к пастели темы — текст выбираем по контрасту, как liquidGlassButtonInk
+  function lightInk(cta, on) { if (contrast('#FFFFFF', cta) >= 4.5) return '#FFFFFF'; if (contrast(on, cta) >= 4.5) return on; return '#000000'; }
+  function applyTheme() {
+    var t = THEMES[state.theme], k = t[1] ? state.k : 0;
+    root.dataset.mode = state.mode;
+    root.style.setProperty('--g1', t[1] || '#000000');
+    root.style.setProperty('--g2', t[2] || '#000000');
+    root.style.setProperty('--acc', t[3]);
+    root.style.setProperty('--on', t[4]);
+    root.style.setProperty('--k', k);
+    if (state.mode === 'light') root.style.setProperty('--cta-ink', lightInk(mix('#1C1C1F', t[3], k), t[4]));
+    else root.style.removeProperty('--cta-ink');
+  }
+  applyTheme();
+  window.__pmTheme = { state: state, apply: applyTheme, themes: THEMES };
+
+  // волна и озвучка фразы дня
+  document.querySelectorAll('[data-wave]').forEach(function (w) {
+    [10, 16, 12, 18, 9, 15, 18, 11, 14, 8, 16, 12, 17, 10, 13].forEach(function (h, n) {
+      var i = document.createElement('i'); i.style.setProperty('--h', h + 'px'); i.style.setProperty('--n', n); w.appendChild(i);
+    });
+  });
+  document.querySelectorAll('[data-sheet]').forEach(function (sheet) {
+    var say = sheet.querySelector('[data-say]'), bm = sheet.querySelector('[data-bm]'), timer = null;
+    function stop() { sheet.classList.remove('playing'); say.classList.remove('on'); }
+    say.addEventListener('click', function () {
+      sheet.classList.add('playing'); say.classList.add('on'); clearTimeout(timer);
+      var spoke = false;
+      try {
+        if ('speechSynthesis' in window) {
+          var u = new SpeechSynthesisUtterance('Pitch in'); u.lang = 'en-US'; u.rate = .9;
+          u.onend = function () { timer = setTimeout(stop, 200); };
+          speechSynthesis.cancel(); speechSynthesis.speak(u); spoke = true;
+        }
+      } catch (e) { console.warn('[SITE-2.0] озвучка недоступна:', e && e.message); }
+      timer = setTimeout(stop, spoke ? 2600 : 1400);
+    });
+    bm.addEventListener('click', function () { var on = bm.getAttribute('aria-pressed') !== 'true'; bm.setAttribute('aria-pressed', String(on)); bm.classList.toggle('on', on); });
+  });
+
+  // шкала CEFR — тихий пробег по уровням
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-cefr]').forEach(function (c) {
+    var lv = c.children, idx = 3; lv[idx].classList.add('on');
+    if (!reduce) setInterval(function () { if (document.hidden) return; lv[idx].classList.remove('on'); idx = (idx + 1) % lv.length; lv[idx].classList.add('on'); }, 1800);
+  });
+
+  // RU / EN: заголовки и кнопки берут английский из словаря текущего сайта (window.I18N.en)
+  var store = new WeakMap();
+  document.querySelectorAll('[data-lang]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var lang = b.dataset.lang;
+      document.querySelectorAll('[data-lang]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      root.lang = lang;
+      document.querySelectorAll('[data-en],[data-en-html]').forEach(function (el) {
+        if (!store.has(el)) store.set(el, el.innerHTML);
+        if (lang === 'en') { if (el.dataset.enHtml) el.innerHTML = el.dataset.enHtml; else el.textContent = el.dataset.en; }
+        else el.innerHTML = store.get(el);
+      });
+    });
+  });
+  ${v.studio ? STUDIO_JS : ''}
+})();`;
+
+const STUDIO_JS = `
+  // C: студия тем — выбор темы, светлая/тёмная, насыщенность, экран в телефоне, монеты
+  var sw = document.getElementById('swatches');
+  THEMES.forEach(function (t, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'sw'; b.title = t[0]; b.setAttribute('aria-label', 'Тема ' + t[0]);
+    b.style.background = t[1] ? 'linear-gradient(135deg,' + t[1] + ',' + t[2] + ')' : '#2A2A2C';
+    b.setAttribute('aria-pressed', String(i === state.theme));
+    b.addEventListener('click', function () {
+      state.theme = i; applyTheme();
+      sw.querySelectorAll('.sw').forEach(function (x, j) { x.setAttribute('aria-pressed', String(j === i)); });
+    });
+    sw.appendChild(b);
+  });
+  document.querySelectorAll('[data-mode-btn]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.mode = b.dataset.modeBtn; applyTheme();
+      document.querySelectorAll('[data-mode-btn]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    });
+  });
+  var ks = document.getElementById('kSlider'), kv = document.getElementById('kVal');
+  ks.addEventListener('input', function () { state.k = ks.value / 100; kv.textContent = ks.value + '%'; applyTheme(); });
+  document.querySelectorAll('[data-tab]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-tab]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      document.querySelectorAll('[data-view]').forEach(function (v) { if (v.dataset.view === b.dataset.tab) v.removeAttribute('data-off'); else v.setAttribute('data-off', ''); });
+    });
+  });
+  // зачем: монета — валюта; кнопка показывает мгновенное начисление (локально, без сети)
+  var coins = 240, busy = false;
+  document.querySelector('[data-earn]').addEventListener('click', function () {
+    if (busy) return; busy = true;
+    var from = coins; coins += 12;
+    var t0 = performance.now();
+    (function tick(now) {
+      var p = Math.min(1, (now - t0) / 600), v = Math.round(from + (coins - from) * (1 - Math.pow(1 - p, 3)));
+      document.querySelectorAll('[data-coins]').forEach(function (el) { el.textContent = v; });
+      if (p < 1) requestAnimationFrame(tick); else busy = false;
+    })(t0);
+    document.querySelectorAll('[data-coin],[data-coinpill]').forEach(function (el) { el.classList.remove('coin-pop'); void el.offsetWidth; el.classList.add('coin-pop'); });
+  });`;
+
+function page(key) {
+  const v = { ...VARIANTS[key], studio: key === 'C' };
+  const hero = key === 'C' ? heroC : heroAB;
+  const productScreen = key === 'C' ? todayList : (key === 'A' ? dialogsHub(false) : todayList);
+  return `<!doctype html><meta charset="utf-8">
+<html lang="ru" data-mode="${v.mode}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>${v.title}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Вариант ${v.label}. Сгенерировано docs/design/site-2.0/_build.mjs — правь шаблон, не этот файл. */
+${CSS}${key === 'C' ? CSS_C : ''}
+</style>
+</head>
+<body>
+<a class="skip" href="#content">К содержанию</a>
+${SPRITE}
+<div class="page">
+<div class="glow g-top" aria-hidden="true"></div><div class="glow g-mid" aria-hidden="true"></div><div class="glow g-end" aria-hidden="true"></div>
+${header(v)}
+<main id="content">
+${hero}
+${method}
+${product(productScreen)}
+${test}
+${reviews}
+${gift}
+${journal}
+${faq}
+${pages}
+${close}
+</main>
+${footer}
+</div>
+<script>${JS(v)}</script>
+</body>
+</html>
+`;
+}
+
+for (const key of Object.keys(VARIANTS)) {
+  const file = join(OUT, `site-${key}.html`);
+  writeFileSync(file, page(key), 'utf8');
+  console.log('[SITE-2.0] записан', file);
+}

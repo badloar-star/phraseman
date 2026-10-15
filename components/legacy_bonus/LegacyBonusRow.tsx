@@ -149,9 +149,9 @@ const s = StyleSheet.create({
   val: { minWidth: 64, alignItems: 'flex-end', justifyContent: 'center' },
   valText: { fontSize: 16, lineHeight: 20, fontWeight: '700', fontVariant: ['tabular-nums'], textAlign: 'right' },
   valNew: { position: 'absolute', right: 0, top: 0 },
-  // `.chip`: над значением, пилюля 13/16, 700
+  // `.chip`: над значением, пилюля 13/17 (шкала проекта: 13 → 17; было 16 — красный сторож типографики, координатор 15.10), 700
   chip: { position: 'absolute', right: 0, bottom: '100%', marginBottom: 4, paddingVertical: 4, paddingHorizontal: 9, borderRadius: 999 },
-  chipText: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  chipText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });
 
 export default memo(LegacyBonusRow);

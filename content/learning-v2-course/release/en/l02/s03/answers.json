@@ -1,92 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-03:i01",
-    "correctText": "worried",
+    "correctText": "He is not aware.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i02",
-    "correctText": "worried",
+    "correctText": "I am not convinced.",
     "correctResponseId": "en:lesson-02:session-03:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-03:i03",
-    "correctText": "prepared",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-03:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-03:i04",
-    "correctText": "prepared",
-    "correctResponseId": "en:lesson-02:session-03:i04:r1"
+    "correctText": "en:lesson-02:session-03:i04:p1=aware\nen:lesson-02:session-03:i04:p2=convinced\nen:lesson-02:session-03:i04:p3=concerned\nen:lesson-02:session-03:i04:p4=confident",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i05",
-    "correctText": "en:lesson-02:session-03:i05:p1=worried\nen:lesson-02:session-03:i05:p2=prepared\nen:lesson-02:session-03:i05:p3=hungry\nen:lesson-02:session-03:i05:p4=lost",
+    "correctText": "I'm not convinced.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i06",
-    "correctText": "No, I am not.",
+    "correctText": "She is not aware.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i07",
-    "correctText": "Are you prepared?",
+    "correctText": "We're not concerned.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i08",
-    "correctText": "prepared",
+    "correctText": "am",
     "correctResponseId": "en:lesson-02:session-03:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-03:i09",
-    "correctText": "am",
+    "correctText": "They are not late.",
     "correctResponseId": "en:lesson-02:session-03:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-03:i10",
-    "correctText": "Yes, I am.",
+    "correctText": "en:lesson-02:session-03:i10:p1=relaxed\nen:lesson-02:session-03:i10:p2=satisfied\nen:lesson-02:session-03:i10:p3=free\nen:lesson-02:session-03:i10:p4=heavy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i11",
-    "correctText": "worried",
-    "correctResponseId": "en:lesson-02:session-03:i11:r1"
+    "correctText": "She's not aware.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i12",
-    "correctText": "Yes, I am prepared.",
+    "correctText": "They are not satisfied.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i13",
-    "correctText": "worried",
-    "correctResponseId": "en:lesson-02:session-03:i13:r1"
+    "correctText": "It is not heavy.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-03:i14",
-    "correctText": "en:lesson-02:session-03:i14:p1=yes\nen:lesson-02:session-03:i14:p2=no\nen:lesson-02:session-03:i14:p3=ok\nen:lesson-02:session-03:i14:p4=awake",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-03:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-03:i15",
-    "correctText": "No, I am not.",
+    "correctText": "We're not concerned.",
+    "correctResponseId": "en:lesson-02:session-03:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-03:i16",
+    "correctText": "en:lesson-02:session-03:i16:p1=aware\nen:lesson-02:session-03:i16:p2=convinced\nen:lesson-02:session-03:i16:p3=concerned\nen:lesson-02:session-03:i16:p4=busy",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-03:i16:s01",
-    "correctText": "I am prepared.",
+    "interactionId": "en:lesson-02:session-03:i17",
+    "correctText": "I am not convinced.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-03:i16:s02",
-    "correctText": "No, I am not worried.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-03:i16:s03",
-    "correctText": "I am prepared and awake.",
-    "correctResponseId": "en:lesson-02:session-03:i16:s03:r1"
   }
 ]

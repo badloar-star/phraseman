@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-03",
   "learningOutcomeByLocale": {
-    "ru": "коротко ответить на вопрос `Are you …?`: `Yes, I am.` или `No, I am not.`",
-    "uk": "коротко відповісти на запитання `Are you …?`: `Yes, I am.` або `No, I am not.`"
+    "ru": "сказать, что человек не в курсе, не убеждён или не обеспокоен",
+    "uk": "сказати, що людина не в курсі, не переконана або не стурбована"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`worried` — когда вы волнуетесь",
-        "uk": "`worried` — коли ви хвилюєтеся"
+        "ru": "Не в курсе",
+        "uk": "Не в курсі"
       },
       "bodyByLocale": {
-        "ru": "`worried` — «обеспокоенный, встревоженный»: так вы чувствуете себя, когда не знаете, всё ли будет хорошо. Это не обязательно страх перед опасностью; волноваться можно и из-за опоздания. Рюкзак молчит, зато расписание уже успело вас встревожить. На вопрос `Are you worried?` короткое «да» — `Yes, I am.`.",
-        "uk": "`worried` — «стурбований, схвильований»: так ви почуваєтеся, коли не знаєте, чи все буде добре. Це не обов’язково страх перед небезпекою; хвилюватися можна й через запізнення. Рюкзак мовчить, зате розклад уже встиг вас стривожити. На запитання `Are you worried?` коротке «так» — `Yes, I am.`."
+        "ru": "`aware` — «осведомлённый», «в курсе». Когда всем понятно, о какой новости речь, `He is not aware` — «Он не в курсе». Друг ещё не знает о новом времени встречи. Сообщение отправили всем — кроме человека, который первым придёт.",
+        "uk": "`aware` — «обізнаний», «у курсі». Коли всім зрозуміло, про яку новину йдеться, `He is not aware` — «Він не в курсі». Друг ще не знає про новий час зустрічі. Повідомлення надіслали всім — крім людини, яка прийде першою."
       },
       "question": {
         "interactionId": "en:lesson-02:session-03:intro1:q",
         "promptByLocale": {
-          "ru": "Автобус задерживается, и вы волнуетесь. Сосед спрашивает: `Are you worried?` Ответьте коротко.",
-          "uk": "Автобус затримується, і ви хвилюєтеся. Сусід питає: `Are you worried?` Дайте коротку відповідь."
+          "ru": "Олег ещё не знает, что время встречи изменилось. Вы обсуждаете именно эту новость. Скажите, что он не в курсе.",
+          "uk": "Олег ще не знає, що час зустрічі змінився. Ви обговорюєте саме цю новину. Скажіть, що він не в курсі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-03:intro1:r1",
-              "text": "Yes, I am."
+              "text": "He is not aware."
             },
             {
               "responseId": "en:lesson-02:session-03:intro1:r2",
-              "text": "Yes, I."
+              "text": "He is aware."
             },
             {
               "responseId": "en:lesson-02:session-03:intro1:r3",
-              "text": "Yes, am I."
+              "text": "He not aware."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-03:intro1:r1",
-              "text": "Yes, I am."
+              "text": "He is not aware."
             },
             {
               "responseId": "en:lesson-02:session-03:intro1:r2",
-              "text": "Yes, I."
+              "text": "He is aware."
             },
             {
               "responseId": "en:lesson-02:session-03:intro1:r3",
-              "text": "Yes, am I."
+              "text": "He not aware."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Автобус задерживается, и вы волнуетесь. Сосед спрашивает: `Are you worried?` Ответьте коротко.",
-          "uk": "Автобус затримується, і ви хвилюєтеся. Сусід питає: `Are you worried?` Дайте коротку відповідь."
+          "ru": "Олег ещё не знает, что время встречи изменилось. Вы обсуждаете именно эту новость. Скажите, что он не в курсе.",
+          "uk": "Олег ще не знає, що час зустрічі змінився. Ви обговорюєте саме цю новину. Скажіть, що він не в курсі."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`prepared` — всё нужное готово",
-        "uk": "`prepared` — усе потрібне готове"
+        "ru": "Меня не убедили",
+        "uk": "Мене не переконали"
       },
       "bodyByLocale": {
-        "ru": "`prepared` — «подготовленный, готовый»: нужные вещи собраны, и вы знаете, что делать дальше. Это про подготовку, а не только про желание начать. Рюкзак может выглядеть готовым раньше вас — он уже стоит у двери. На вопрос `Are you prepared?` короткое «нет» — `No, I am not.`.",
-        "uk": "`prepared` — «підготовлений, готовий»: потрібні речі зібрані, і ви знаєте, що робити далі. Це про підготовку, а не лише про бажання почати. Рюкзак може виглядати готовим раніше за вас — він уже стоїть біля дверей. На запитання `Are you prepared?` коротке «ні» — `No, I am not.`."
+        "ru": "`convinced` — «убеждённый». `I am not convinced` — «Я не убеждён»: доводы пока не убедили вас. Коротко: `I'm not convinced`. Это не обязательно значит, что вы уже доказали обратное; вы просто пока не принимаете вывод.",
+        "uk": "`convinced` — «переконаний». `I am not convinced` — «Я не переконаний»: аргументи поки не переконали вас. Коротко: `I'm not convinced`. Це не обов’язково означає, що ви вже довели протилежне; ви просто поки не приймаєте висновок."
       },
       "question": {
         "interactionId": "en:lesson-02:session-03:intro2:q",
         "promptByLocale": {
-          "ru": "Билет ещё на стойке, поэтому вы не готовы. Сосед спрашивает: `Are you prepared?` Ответьте коротко.",
-          "uk": "Квиток ще на стійці, тому ви не готові. Сусід питає: `Are you prepared?` Дайте коротку відповідь."
+          "ru": "Друг объяснил, почему новый план лучше, но его доводы вас пока не убедили. Коротко скажите об этом.",
+          "uk": "Друг пояснив, чому новий план кращий, але його аргументи вас поки не переконали. Коротко скажіть про це."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-03:intro2:r1",
-              "text": "No, I am not."
+              "text": "I'm not convinced."
             },
             {
               "responseId": "en:lesson-02:session-03:intro2:r2",
-              "text": "No, I not am."
+              "text": "I'm convinced."
             },
             {
               "responseId": "en:lesson-02:session-03:intro2:r3",
-              "text": "No, not I am."
+              "text": "I not convinced."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-03:intro2:r1",
-              "text": "No, I am not."
+              "text": "I'm not convinced."
             },
             {
               "responseId": "en:lesson-02:session-03:intro2:r2",
-              "text": "No, I not am."
+              "text": "I'm convinced."
             },
             {
               "responseId": "en:lesson-02:session-03:intro2:r3",
-              "text": "No, not I am."
+              "text": "I not convinced."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Билет ещё на стойке, поэтому вы не готовы. Сосед спрашивает: `Are you prepared?` Ответьте коротко.",
-          "uk": "Квиток ще на стійці, тому ви не готові. Сусід питає: `Are you prepared?` Дайте коротку відповідь."
+          "ru": "Друг объяснил, почему новый план лучше, но его доводы вас пока не убедили. Коротко скажите об этом.",
+          "uk": "Друг пояснив, чому новий план кращий, але його аргументи вас поки не переконали. Коротко скажіть про це."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Короткий ответ оставляет главное",
-        "uk": "Коротка відповідь залишає головне"
+        "ru": "Не обеспокоены",
+        "uk": "Не стурбовані"
       },
       "bodyByLocale": {
-        "ru": "На `Are you worried?` можно ответить `Yes, I am.`, а на `Are you prepared?` — `No, I am not.`. Слова `worried` и `prepared` уже прозвучали в вопросе, поэтому в коротком ответе их не повторяют. Для ответа о себе после `Yes` или `No` говорят `I am`; в отрицании `not` стоит после `am`.",
-        "uk": "На `Are you worried?` можна відповісти `Yes, I am.`, а на `Are you prepared?` — `No, I am not.`. Слова `worried` і `prepared` уже прозвучали в запитанні, тому в короткій відповіді їх не повторюють. Для відповіді про себе після `Yes` або `No` кажуть `I am`; у запереченні `not` стоїть після `am`."
+        "ru": "`concerned` здесь — «обеспокоенный». `We are not concerned` — «Мы не обеспокоены», коротко `We're not concerned`. Так можно сказать, если изменение планов не вызывает у вас тревоги. Это не утверждение, что вам безразличны друзья.",
+        "uk": "`concerned` тут — «стурбований». `We are not concerned` — «Ми не стурбовані», коротко `We're not concerned`. Так можна сказати, якщо зміна планів не викликає у вас тривоги. Це не твердження, що вам байдужі друзі."
       },
       "question": {
         "interactionId": "en:lesson-02:session-03:intro3:q",
         "promptByLocale": {
-          "ru": "Билет уже в кармане, вещи собраны. На вопрос `Are you prepared?` ответьте коротко.",
-          "uk": "Квиток уже в кишені, речі зібрані. На запитання `Are you prepared?` дайте коротку відповідь."
+          "ru": "Вам с сестрой подходит новое время, и перенос не вызывает тревоги. Коротко скажите, что вы не обеспокоены.",
+          "uk": "Вам із сестрою підходить новий час, і перенесення не викликає тривоги. Коротко скажіть, що ви не стурбовані."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-03:intro3:r1",
-              "text": "Yes, I am."
+              "text": "We're not concerned."
             },
             {
               "responseId": "en:lesson-02:session-03:intro3:r2",
-              "text": "Yes, I."
+              "text": "We're concerned."
             },
             {
               "responseId": "en:lesson-02:session-03:intro3:r3",
-              "text": "Yes, am I."
+              "text": "We're not convinced."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-03:intro3:r1",
-              "text": "Yes, I am."
+              "text": "We're not concerned."
             },
             {
               "responseId": "en:lesson-02:session-03:intro3:r2",
-              "text": "Yes, I."
+              "text": "We're concerned."
             },
             {
               "responseId": "en:lesson-02:session-03:intro3:r3",
-              "text": "Yes, am I."
+              "text": "We're not convinced."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Билет уже в кармане, вещи собраны. На вопрос `Are you prepared?` ответьте коротко.",
-          "uk": "Квиток уже в кишені, речі зібрані. На запитання `Are you prepared?` дайте коротку відповідь."
+          "ru": "Вам с сестрой подходит новое время, и перенос не вызывает тревоги. Коротко скажите, что вы не обеспокоены.",
+          "uk": "Вам із сестрою підходить новий час, і перенесення не викликає тривоги. Коротко скажіть, що ви не стурбовані."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9acd825c757540c7cc140002a4a82ff8483406cf545d234656f23de3461fffb6"
+  "introFingerprint": "2bbd5e1c75f479cc7054560abb811f98f856e6530516a7643819ba7127eb5e21"
 }

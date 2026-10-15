@@ -1,165 +1,138 @@
-# Английский · Урок 2 · Занятие 3 — «Yes, I am / No, I am not»
+# Английский · Урок 2 · Занятие 3 — Планы поменялись
 
-**Сцена занятия.** Утро в хостеле. Вы собираетесь выйти и отвечаете соседу, который проверяет, готовы ли вы и не волнуетесь ли перед дорогой.
-**Как сказать:** коротко ответить на вопрос `Are you …?`: `Yes, I am.` или `No, I am not.`
-**Новые слова:** worried, prepared
-**Возвращаются:** hungry, lost, ok, awake
+**Ситуация.** Встречу друзей перенесли. Вы обсуждаете новое время, предложенный план и то, кто знает об изменениях.
+
+**Что вы освоите:** сказать, что человек не в курсе, не убеждён или не обеспокоен
+**Новые слова:** aware, convinced, concerned
 
 ---
 
 ## Интро 1
 
-### `worried` — когда вы волнуетесь
+### Не в курсе
 
-`worried` — «обеспокоенный, встревоженный»: так вы чувствуете себя, когда не знаете, всё ли будет хорошо. Это не обязательно страх перед опасностью; волноваться можно и из-за опоздания. Рюкзак молчит, зато расписание уже успело вас встревожить. На вопрос `Are you worried?` короткое «да» — `Yes, I am.`.
+`aware` — «осведомлённый», «в курсе». Когда всем понятно, о какой новости речь, `He is not aware` — «Он не в курсе». Друг ещё не знает о новом времени встречи. Сообщение отправили всем — кроме человека, который первым придёт.
 
-**Автобус задерживается, и вы волнуетесь. Сосед спрашивает: `Are you worried?` Ответьте коротко.**
+**Олег ещё не знает, что время встречи изменилось. Вы обсуждаете именно эту новость. Скажите, что он не в курсе.**
 
-- ✅ **Yes, I am.**
-- ❌ Yes, I. — *После `I` нужна форма `am`: `Yes, I am.`.*
-- ❌ Yes, am I. — *Это порядок слов вопроса. В ответе сначала `I`, затем `am`.*
+- ✅ **He is not aware.**
+- ❌ He is aware. — *Это «Он в курсе». Здесь нужно `not` после `is`.*
+- ❌ He not aware. — *Нужна связка `is`: `He is not aware`.*
 
 ---
 
 ## Интро 2
 
-### `prepared` — всё нужное готово
+### Меня не убедили
 
-`prepared` — «подготовленный, готовый»: нужные вещи собраны, и вы знаете, что делать дальше. Это про подготовку, а не только про желание начать. Рюкзак может выглядеть готовым раньше вас — он уже стоит у двери. На вопрос `Are you prepared?` короткое «нет» — `No, I am not.`.
+`convinced` — «убеждённый». `I am not convinced` — «Я не убеждён»: доводы пока не убедили вас. Коротко: `I'm not convinced`. Это не обязательно значит, что вы уже доказали обратное; вы просто пока не принимаете вывод.
 
-**Билет ещё на стойке, поэтому вы не готовы. Сосед спрашивает: `Are you prepared?` Ответьте коротко.**
+**Друг объяснил, почему новый план лучше, но его доводы вас пока не убедили. Коротко скажите об этом.**
 
-- ✅ **No, I am not.**
-- ❌ No, I not am. — *`Not` ставят после `am`: `I am not`.*
-- ❌ No, not I am. — *В ответе сначала `I am`, затем `not`.*
+- ✅ **I'm not convinced.**
+- ❌ I'm convinced. — *Без `not` получается «Я убеждён». Здесь нужно `I'm not convinced`.*
+- ❌ I not convinced. — *Нужно `I am not` или `I'm not`.*
 
 ---
 
 ## Интро 3
 
-### Короткий ответ оставляет главное
+### Не обеспокоены
 
-На `Are you worried?` можно ответить `Yes, I am.`, а на `Are you prepared?` — `No, I am not.`. Слова `worried` и `prepared` уже прозвучали в вопросе, поэтому в коротком ответе их не повторяют. Для ответа о себе после `Yes` или `No` говорят `I am`; в отрицании `not` стоит после `am`.
+`concerned` здесь — «обеспокоенный». `We are not concerned` — «Мы не обеспокоены», коротко `We're not concerned`. Так можно сказать, если изменение планов не вызывает у вас тревоги. Это не утверждение, что вам безразличны друзья.
 
-**Билет уже в кармане, вещи собраны. На вопрос `Are you prepared?` ответьте коротко.**
+**Вам с сестрой подходит новое время, и перенос не вызывает тревоги. Коротко скажите, что вы не обеспокоены.**
 
-- ✅ **Yes, I am.**
-- ❌ Yes, I. — *После `I` нужно `am`.*
-- ❌ Yes, am I. — *В ответе порядок `I am`, а не `am I`.*
+- ✅ **We're not concerned.**
+- ❌ We're concerned. — *Это обеспокоенность. Здесь нужна форма с `not`.*
+- ❌ We're not convinced. — *Это «Нас не убедили». Здесь речь об отсутствии тревоги: `concerned`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — worried**
-<!-- interaction_id: en:lesson-02:session-03:i01; family: listen_choose -->
-Цель: `worried`
+**1 · Олег ещё не знает о переносе. Вы обсуждаете эту новость. Скажите, что он не в курсе**
+<!-- interaction_id: en:lesson-02:session-03:i01; family: phrase_builder -->
+Плитки: `aware` `not` `is` `He` `are` → **He is not aware.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is not aware.`)*
 
-**2 · Послушайте и выберите — worried**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-02:session-03:i02; family: listen_choose -->
-Цель: `worried`
-Варианты: `worried` · `prepared` · `ready`
-- prepared — *В записи звучит `worried`.*
-- ready — *В записи звучит `worried`.*
+🔊 *I am not convinced.* → **I am not convinced.** · I am not concerned. · I am not aware.
+- I am not concerned. — *В записи последнее слово — `convinced`, а в этом варианте — `concerned`.*
+- I am not aware. — *В записи последнее слово — `convinced`, а в этом варианте — `aware`.*
 
+**3 · Вас обоих перенос не тревожит. Дополните фразу**
+<!-- interaction_id: en:lesson-02:session-03:i03; family: context_gap_grammar -->
+We ___ not concerned. → **are** · am · is
+- am — *После `We` нужно `are`.*
+- is — *Про нас — `We are not`.*
 
-**3 · Карточка слова — prepared**
-<!-- interaction_id: en:lesson-02:session-03:i03; family: listen_choose -->
-Цель: `prepared`
+**4 · Соедините слова с их значениями здесь**
+<!-- interaction_id: en:lesson-02:session-03:i04; family: speed_match -->
+aware — в курсе · convinced — убеждённый · concerned — обеспокоенный · confident — уверенный в себе
 
-**4 · Послушайте и выберите — prepared**
-<!-- interaction_id: en:lesson-02:session-03:i04; family: listen_choose -->
-Цель: `prepared`
-Варианты: `prepared` · `worried` · `ready`
-- worried — *В записи звучит `prepared`.*
-- ready — *В записи звучит `prepared`.*
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-03:i05; family: listen_build_dictation -->
+🔊 *I'm not convinced.* Плитки: `convinced` `not` `I'm` `He's` → **I'm not convinced.**
+*(плитка `He's` лишняя: здесь нужно `I'm` — `I'm not convinced.`)*
 
-
-**5 · Соедините слова и значения**
-<!-- interaction_id: en:lesson-02:session-03:i05; family: speed_match -->
-Пары: `worried` — обеспокоенный · `prepared` — подготовленный · `hungry` — голодный · `lost` — заблудившийся
-Цель: `worried · prepared · hungry · lost`
-
-**6 · Соберите короткое «нет» — на вопрос `Are you worried?` вы спокойны**
+**6 · Анна ещё не знает о новом месте встречи. Скажите, что она не в курсе обсуждаемого изменения**
 <!-- interaction_id: en:lesson-02:session-03:i06; family: phrase_builder -->
-Цель: `No, I am not.`
-Плитки: `No,` `I` `am` `not` `worried` → **No, I am not.**
-*Плитка `worried` лишняя: это слово описывает тревогу; здесь нужен короткий ответ «нет»: `No, I am not.`*
+Плитки: `aware` `not` `is` `She` `are` → **She is not aware.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is not aware.`)*
 
-**7 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-02:session-03:i07; family: listen_build_dictation -->
-Цель: `Are you prepared?`
-🔊 *Are you prepared?* Плитки: `Are` `you` `prepared?` `worried?` → **Are you prepared?**
-*Плитка `worried?` лишняя: здесь спрашивают, готовы ли вы, поэтому нужно `prepared?`: `Are you prepared?`*
+**7 · Коротко скажите, что вы с сестрой не обеспокоены переносом, который сейчас обсуждаете**
+<!-- interaction_id: en:lesson-02:session-03:i07; family: scripted_repeat_compare -->
+🎙 **We're not concerned.**
 
-**8 · Вставьте слово — билет и вещи уже собраны**
+**8 · Сейчас вы не заняты. Дополните фразу о себе**
 <!-- interaction_id: en:lesson-02:session-03:i08; family: context_gap_grammar -->
-Цель: `I am ___ .`
-Варианты: `prepared` · `worried` · `cold`
-- worried — *Здесь всё готово, поэтому подходит `prepared`.*
-- cold — *В сцене не говорится о холоде.*
+I ___ not busy. → **am** · is · are
+- is — *Про себя — `I am not`.*
+- are — *После `I` нужно `am`.*
 
+**9 · Послушайте фразу о друзьях**
+<!-- interaction_id: en:lesson-02:session-03:i09; family: listen_choose -->
+🔊 *They are not late.* → **They are not late.** · They are not free. · They are not relaxed.
+- They are not free. — *В записи последнее слово — `late`, а в этом варианте — `free`.*
+- They are not relaxed. — *В записи последнее слово — `late`, а в этом варианте — `relaxed`.*
 
-**9 · Послушайте и соберите полный ответ на `Are you prepared?` — «нет, я не подготовлен»**
-<!-- interaction_id: en:lesson-02:session-03:i09; family: listen_build_dictation -->
-Цель: `No, I am not prepared.`
-🔊 *No, I am not prepared.* Плитки: `No,` `I` `am` `not` `prepared` `are` → **No, I am not prepared.**
-*Плитка `are` лишняя: после `I` нужна форма `am`: `No, I am not prepared.`*
+**10 · Соедините знакомые слова со значениями**
+<!-- interaction_id: en:lesson-02:session-03:i10; family: speed_match -->
+relaxed — расслабленный · satisfied — довольный результатом · free — свободный · heavy — тяжёлый по весу
 
-**10 · Соберите короткое «да» — рюкзак закрыт, билет в кармане; вопрос: `Are you prepared?`**
-<!-- interaction_id: en:lesson-02:session-03:i10; family: phrase_builder -->
-Цель: `Yes, I am.`
-Плитки: `Yes,` `I` `am` `prepared` → **Yes, I am.**
-*Плитка `prepared` лишняя: короткий ответ уже содержит нужную форму `am`: `Yes, I am.`*
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-03:i11; family: listen_build_dictation -->
+🔊 *She's not aware.* Плитки: `aware` `not` `She's` `They're` → **She's not aware.**
+*(плитка `They're` лишняя: здесь нужно `She's` — `She's not aware.`)*
 
-**11 · Вставьте слово — автобус опаздывает, а телефон разряжен**
-<!-- interaction_id: en:lesson-02:session-03:i11; family: context_gap_grammar -->
-Цель: `I am ___ .`
-Варианты: `worried` · `prepared` · `hungry`
-- prepared — *Вещи могут быть собраны, но сейчас вы волнуетесь.*
-- hungry — *В сцене причина для тревоги, не для голода.*
-
-
-**12 · Соберите полную фразу — всё для дороги готово**
+**12 · Анну и Олега не устраивает результат обсуждения. Скажите, что они недовольны результатом**
 <!-- interaction_id: en:lesson-02:session-03:i12; family: phrase_builder -->
-Цель: `Yes, I am prepared.`
+Плитки: `satisfied` `not` `are` `They` `is` → **They are not satisfied.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not satisfied.`)*
 
-**13 · Вставьте слово — вы свернули не туда и сообщаете другу, что заблудились**
-<!-- interaction_id: en:lesson-02:session-03:i13; family: context_gap_grammar -->
-Цель: `I am ___ .`
-Варианты: `lost` · `worried` · `awake`
-- worried — *«Worried» подошло бы при сообщении о тревоге; здесь вы сообщаете, что заблудились.*
-- awake — *«Awake» подошло бы в разговоре о сне; здесь вы сообщаете, что заблудились.*
+**13 · Сумка с вещами для встречи мало весит. Скажите, что она не тяжёлая**
+<!-- interaction_id: en:lesson-02:session-03:i13; family: scripted_repeat_compare -->
+🎙 **It is not heavy.**
 
+**14 · Доводы пока не убедили Олега. Дополните фразу о нём**
+<!-- interaction_id: en:lesson-02:session-03:i14; family: context_gap_grammar -->
+He ___ not convinced. → **is** · am · are
+- am — *После `He` нужно `is`.*
+- are — *Про Олега — `He is not`.*
 
-**14 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-03:i14; family: speed_match -->
-Пары: `yes` — да · `no` — нет · `ok` — нормально · `awake` — не спит
-Цель: `yes · no · ok · awake`
+**15 · Послушайте короткую фразу и выберите её**
+<!-- interaction_id: en:lesson-02:session-03:i15; family: listen_choose -->
+🔊 *We're not concerned.* → **We're not concerned.** · We're not convinced. · We're not aware.
+- We're not convinced. — *В записи последнее слово — `concerned`, а в этом варианте — `convinced`.*
+- We're not aware. — *В записи последнее слово — `concerned`, а в этом варианте — `aware`.*
 
-**15 · Вы сверились с картой и знаете дорогу. Вопрос: `Are you lost?` Произнесите полный ответ.**
-<!-- interaction_id: en:lesson-02:session-03:i15; family: scripted_repeat_compare -->
-Цель: `No, I am not lost.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-03:i16; family: speed_match -->
+aware — осведомлённый · convinced — убеждённый · concerned — обеспокоенный · busy — занятый
 
-**16 · Билет в кармане, рюкзак закрыт, всё для дороги собрано. Скажите вслух, что вы готовы.**
-<!-- interaction_id: en:lesson-02:session-03:i16:s01; family: scripted_repeat_compare -->
-Цель: `I am prepared.`
+**17 · Дома друг объясняет, почему стоит переставить стол. Его доводы вас пока не убедили. Скажите, что вы не убеждены**
+<!-- interaction_id: en:lesson-02:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am not convinced.**
 
-**17 · Вы нашли билет и успеваете к автобусу. Скажите вслух, что вы не волнуетесь.**
-<!-- interaction_id: en:lesson-02:session-03:i16:s02; family: scripted_repeat_compare -->
-Цель: `No, I am not worried.`
-
-**18 · вы проснулись, проверили билет и закрыли рюкзак. Вставьте подходящую фразу: сообщите соседу, что вы готовы и уже не спите.**
-<!-- interaction_id: en:lesson-02:session-03:i16:s03; family: context_gap_grammar -->
-___ → **I am prepared and awake.** · I prepared am and awake. · I am prepared awake and.
-- I prepared am and awake. — *После `I` сначала нужна форма `am`; `prepared` описывает ваше состояние.*
-- I am prepared awake and. — *После `prepared` нужно `and`, чтобы соединить два состояния: `prepared and awake`.*
-
-## Для сборщика
-
-atomic_practice: practice.atomic.json
-new_words:
-worried — обеспокоенный, встревоженный — Когда вы не знаете, всё ли будет хорошо.
-prepared — подготовленный, готовый — Когда нужные вещи собраны и вы знаете, что делать дальше.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=speed_match, 6=phrase_builder, 7=listen_build_dictation, 8=context_gap_grammar, 9=listen_build_dictation, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder, 13=context_gap_grammar, 14=speed_match, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=context_gap_grammar

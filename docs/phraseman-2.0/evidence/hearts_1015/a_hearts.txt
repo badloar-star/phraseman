@@ -1,0 +1,4 @@
+10-15 21:28:45.233 I/ReactNativeJS(17777): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:e9641cf1-01bd-4450-97d3-940eb0c62b97:lesson%3Aen%3A1
+10-15 21:28:45.864 I/ReactNativeJS(17777): [HEARTS] ЧТЕНИЕ: найдено осталось=3/3 фаза=active ключ=session_attempts_state_v1:e9641cf1-01bd-4450-97d3-940eb0c62b97:lesson%3Aen%3A1
+10-15 21:28:46.569 I/ReactNativeJS(17777): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:e9641cf1-01bd-4450-97d3-940eb0c62b97:lesson%3Aen%3A1
+10-15 21:29:29.760 I/ReactNativeJS(17777): [HEARTS] ЗАПИСЬ: осталось=2/3 фаза=active ключ=session_attempts_state_v1:e9641cf1-01bd-4450-97d3-940eb0c62b97:lesson%3Aen%3A1

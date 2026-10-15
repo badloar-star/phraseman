@@ -4901,31 +4901,47 @@ async function restoreAndMigrateFromCloudResultTraced(
 // зачем (координатор 15.10, FS-READS, журналы Сверки B11v2b/B16r3): на старте шли ДВА полных восстановления подряд —
 // отложенное загрузочное (_layout, ~20 с) и проверка премиума (premium_guard) поверх него: users/{id} и страницы карточек
 // читались дважды. Держим «идущее восстановление» и время последнего удачного, чтобы премиум присоединялся, а не дублировал.
-let cloudRestoreInFlight: Promise<CloudRestoreAttempt> | null = null;
-let lastCloudRestoreCompletedAtMs = 0;
+// зачем (Ревизор R20-хвост 15.10): дедуп обязан знать ВЛАДЕЛЬЦА — иначе вход в Plus-аккаунт B в пределах 30 мин после
+// восстановления A (или посреди него) пропускал облачную проверку премиума B, и B оставался Free. Учитываем только записи
+// текущего stableId; смена владельца делает их чужими сама.
+let cloudRestoreInFlight: { owner: string | null; run: Promise<CloudRestoreAttempt> } | null = null;
+let lastCloudRestoreCompleted: { owner: string | null; atMs: number } | null = null;
 
-/** Идущее сейчас восстановление (любой вход) или null. */
-export function peekCloudRestoreInFlight(): Promise<unknown> | null {
-  return cloudRestoreInFlight;
+function currentRestoreOwner(): string | null {
+  return captureAccountGeneration().stableId;
 }
 
-/** Когда последнее восстановление закончилось с прочитанным облаком (restored/not_found); 0 — не было. */
+/** Идущее сейчас восстановление ТЕКУЩЕГО владельца или null. */
+export function peekCloudRestoreInFlight(): Promise<unknown> | null {
+  if (!cloudRestoreInFlight) return null;
+  const owner = currentRestoreOwner();
+  if (cloudRestoreInFlight.owner !== owner) {
+    console.log(`[PREMIUM-CLOUD] restore in_flight_other_owner — не присоединяемся`); // guard-ok: ветка решения дедупа
+    return null;
+  }
+  return cloudRestoreInFlight.run;
+}
+
+/** Когда последнее восстановление ТЕКУЩЕГО владельца закончилось с прочитанным облаком; 0 — не было. */
 export function lastCloudRestoreCompletedAt(): number {
-  return lastCloudRestoreCompletedAtMs;
+  if (!lastCloudRestoreCompleted) return 0;
+  return lastCloudRestoreCompleted.owner === currentRestoreOwner() ? lastCloudRestoreCompleted.atMs : 0;
 }
 
 async function restoreAndMigrateFromCloudResult(
   syncMissingDocument: boolean,
   options: CloudRestoreOptions = {},
 ): Promise<CloudRestoreAttempt> {
+  const owner = currentRestoreOwner();
   const run = restoreAndMigrateFromCloudResultMeasured(syncMissingDocument, options);
-  cloudRestoreInFlight = run;
+  const entry = { owner, run };
+  cloudRestoreInFlight = entry;
   try {
     const attempt = await run;
-    if (attempt.status !== 'failed') lastCloudRestoreCompletedAtMs = Date.now();
+    if (attempt.status !== 'failed') lastCloudRestoreCompleted = { owner, atMs: Date.now() };
     return attempt;
   } finally {
-    if (cloudRestoreInFlight === run) cloudRestoreInFlight = null;
+    if (cloudRestoreInFlight === entry) cloudRestoreInFlight = null;
   }
 }
 

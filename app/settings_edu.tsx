@@ -191,10 +191,13 @@ export default function SettingsEdu() {
   // зачем (координатор 12.10, аудит Optimistic UI R1, E4/E6): запись больше не живёт внутри обновителя состояния (двойной вызов в StrictMode = двойная запись); при отказе хранилища откатывается ТОЛЬКО эта строка и только если её не успели изменить снова.
   const latestSettingsRef = useRef(s);
   latestSettingsRef.current = s;
-  const update = (key: keyof UserSettings, val: boolean | number) => {
+  // зачем (аудит Optimistic UI Дизайна 15.10, №4): ползунок скорости озвучки пишет промежуточные значения в состояние, и откат при сбое брал промежуточное,
+  // а не то, что было до жеста. Значение на начало жеста запоминается в onSlidingStart и передаётся как baseline.
+  const speechRateStartRef = useRef<number | null>(null);
+  const update = (key: keyof UserSettings, val: boolean | number, baseline?: boolean | number | null) => {
     editVersionRef.current += 1;
-    const previous = latestSettingsRef.current;
-    const next = { ...previous, [key]: val };
+    const previous = baseline !== undefined && baseline !== null ? { ...latestSettingsRef.current, [key]: baseline } : latestSettingsRef.current;
+    const next = { ...latestSettingsRef.current, [key]: val };
     latestSettingsRef.current = next;
     setS(next);
     void applyUserSettingsNow(next).then((persisted) => {
@@ -441,10 +444,13 @@ export default function SettingsEdu() {
                   maximumValue={1.3}
                   step={0.1}
                   value={normalizeSpeechRate(s.speechRate)}
+                  onSlidingStart={() => { speechRateStartRef.current = normalizeSpeechRate(latestSettingsRef.current.speechRate); }}
                   onValueChange={v => setS(prev => ({ ...prev, speechRate: normalizeSpeechRate(v) }))}
                   onSlidingComplete={v => {
                     const rate = normalizeSpeechRate(v);
-                    update('speechRate', rate);
+                    const startRate = speechRateStartRef.current;
+                    speechRateStartRef.current = null;
+                    update('speechRate', rate, startRate);
                     stopAudio();
                     if (voicePlaybackPolicy.isEnabled()) speakAudio('a dark horse', rate, { language: 'en-US' });
                     else console.log(`[SETTINGS-EDU] speech_rate_preview_skipped reason=voice_disabled rate=${rate}`); // guard-ok: единичный лог на жест, причина тишины при отпускании ползунка

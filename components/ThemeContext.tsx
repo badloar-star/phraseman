@@ -381,6 +381,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   currentChoiceRef.current = { theme: appliedLiquidGlassThemeId, appearance: liquidGlassAppearance, intensity: String(appliedLiquidGlassIntensity) };
   const uiScale = windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
+  const fontSizeRef = useRef<FontSize>('medium');
+  fontSizeRef.current = fontSize;
 
   useEffect(() => {
     setOskolokThemeMode(LEGACY_GRAPHITE_THEME_MODE);
@@ -601,9 +603,15 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     // Retained as a no-op compatibility hook; legacy ownership cannot grant access.
   }, []);
 
+  // зачем (аудит Optimistic UI Дизайна 15.10, №2): размер шрифта меняется сразу, запись на диск догоняет; при ошибке диска — запись в журнал и откат к прежнему размеру
+  // (только если пользователь за это время не выбрал другой — поздний сбой не затирает свежий выбор).
   const setFontSize = useCallback((s: FontSize) => {
+    const previous = fontSizeRef.current;
     setFontSizeState(s);
-    void AsyncStorage.setItem('app_font_size', s);
+    AsyncStorage.setItem('app_font_size', s).catch((error: unknown) => {
+      DebugLogger.error('ThemeContext:font_size_persist_failed', error instanceof Error ? error : new Error(String(error)), 'warning');
+      setFontSizeState((current) => (current === s ? previous : current));
+    });
   }, []);
 
   const f = useMemo(

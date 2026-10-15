@@ -135,3 +135,19 @@ retrySet pt-BR «Outro conjunto», pl «Inny zestaw»; failHearts uk «Сход�
 
 Почему так: «набор» по глоссарию (en pack, es pack, pt-BR pacote, vi bộ thẻ, id/tr paket, pl zestaw); es — двоеточие вместо тире (норма испанского);
 pt-BR «Não deu para…» — неформально, как «не получилось»; vi «nhé» — мягкое «ты»-обращение; tr/id/pl — повелительное на «ты».
+
+### ПРАВКИ ПЕРЕВОДЧИКА — m22 «Энергия закончилась → Plus» (15.10, к cc1c96b09 Авторизации)
+
+Внесены прямо в `components/spire/moments/no_energy_sheet_strings.ts` (финальные строки из 0cf596364). Ru не тронут.
+
+| ключ | язык | было (предложение Авторизации) | стало | почему |
+|---|---|---|---|---|
+| title | uk/es/pt-BR | Енергія закінчилася / Sin energía / Sem energia | Енергія закінчилась / Se acabó la energía / A energia acabou | 1-в-1 как существующее окно «Энергия закончилась» в приложении |
+| sub | en/es/pt-BR/vi/tr | Next one in… / La siguiente en… / A próxima em… / Lượt tiếp theo… / Sonraki {t} içinde | More energy in… / La siguiente llega en… / A próxima chega em… / Năng lượng hồi lại sau… / Sıradaki enerji {t} sonra | «next one» без слова «энергия» повисает; tr «içinde» = «в течение», а не «через» |
+| benefit | en/es/pt-BR/vi/id/tr/pl | Energy never runs out / … | Unlimited energy / Energía ilimitada / Energia ilimitada / Năng lượng không giới hạn / Energi tanpa batas / Sınırsız enerji / Energia bez limitu | так говорят в этих языках про подписку; буквальное «никогда не кончается» — калька |
+| cta | pt-BR | Experimentar o Plus | Testar o Plus | короче для кнопки в одну строку |
+| fineTrial | en/pt-BR | free trial… / teste grátis… | trial via the store / teste pela loja | ru не обещает «бесплатно» — пробный оформляет магазин |
+| fineTrial | es/vi/id/tr/pl/uk | de la tienda / từ cửa hàng / dari toko / mağazadan / ze sklepu / з магазину | en la tienda / qua cửa hàng / lewat toko / mağaza üzerinden / w sklepie / із магазину | «через магазин», а не «пробный, взятый из магазина» |
+| wait | id | Saya tunggu 10 menit | Aku tunggu 10 menit | приложение говорит на «kamu» — пара к нему «aku», не формальное «saya» |
+
+Риск (повтор): «Подожду 10 минут» — число зашито, `{t}` показывает реальный отсчёт. Решать координатору/Авторизации.

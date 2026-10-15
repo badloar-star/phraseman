@@ -1,118 +1,138 @@
-# Англійська · Урок 4 · Заняття 5 — «Листівка доставки»
+# Англійська · Урок 4 · Заняття 5 — Супермаркет на карті
 
-**Сцена заняття.** У поштовій скриньці лежить листівка доставки. У списку вказано один супермаркет і кілька магазинів біля будинку. Треба передати рівно те, що надруковано.
-**Як сказати:** обрати `There is a + singular noun` для одного місця і `There are + plural noun` для кількох.
+**Ситуація.** Ви з другом плануєте день у новому районі: спочатку музей, потім покупки. Ви розгортаєте карту й знаходите супермаркет. У музеї друг сприймає справжнє яблуко за штучне, і ви пояснюєте різницю.
+
+**Що ви опануєте:** повідомити про наявність супермаркету й назвати знайомі предмети з this та that
 **Нові слова:** supermarket
-**Повертаються:** shop, shops, near, house
+
+---
 
 ## Інтро 1
 
-### Один супермаркет
+### Місце для покупок
 
-`supermarket` — «супермаркет»: великий магазин, де купують продукти. У листівці він один, тому йдеться про одне місце, а не про кілька. Для одного місця використовуємо `There is`, а перед його назвою ставимо `a`: `There is a supermarket.`
+`supermarket` — «супермаркет»: великий магазин із продуктами та іншими товарами. `There is a supermarket` — «Є супермаркет». Один супермаркет — `is` і `a`. `There is a supermarket here` — «Тут є супермаркет». Слово довге, але другого візка для нього не потрібно.
 
-**У списку один супермаркет. Оберіть повідомлення.**
+**Повідомте, що в районі є супермаркет.**
 
 - ✅ **There is a supermarket.**
-- ❌ There are a supermarket. — *Супермаркет один, тому потрібне `There is a supermarket`.*
-- ❌ There is supermarket. — *Коли місце одне, перед його назвою потрібен `a`: `a supermarket`.*
+- ❌ There are a supermarket. — *Один супермаркет: `There is a supermarket`.*
+- ❌ There is supermarket. — *Перед одним місцем потрібне `a`: `a supermarket`.*
+
+---
 
 ## Інтро 2
 
-### Кілька магазинів
+### Карта й музей
 
-`There are shops near the supermarket.` — «Біля супермаркету є магазини». `Shops` — кілька магазинів, тому потрібні `are` і форма без `a`. Один супермаркет поруч не змінює числа `shops`: сусіднє слово тут не командує. Дивіться на назву місця після `is/are`.
+`map` — «карта»: `This is a map` — «Це карта», показуємо поруч. `That is a map` — «То — карта», показуємо далі. `museum` — «музей»: `There is a museum here` — «Тут є музей». Перші фрази називають предмет, а `There is` повідомляє, що місце є.
 
-**У списку кілька магазинів біля супермаркету. Оберіть повідомлення.**
+**Ви тримаєте карту й показуєте її другові. Скажіть «Це карта».**
 
-- ✅ **There are shops near the supermarket.**
-- ❌ There is shops near the supermarket. — *`Shops` — це кілька магазинів, тому потрібне `There are`.*
-- ❌ There are a shops near the supermarket. — *`A` ставлять з одним предметом. Тут кілька: просто `shops`.*
+- ✅ **This is a map.**
+- ❌ These are a map. — *Карта одна: `This is a map`.*
+- ❌ This are a map. — *З `This` потрібне `is`.*
+
+---
 
 ## Інтро 3
 
-### Порахуйте місця
+### Справжнє яблуко
 
-`There is a supermarket near the shops.` — «Біля магазинів є супермаркет». Рахуйте місце одразу після форми: один `supermarket` потребує `There is a`. Слова `near the shops` лише уточнюють, де він розташований; кілька магазинів у цей підрахунок не входять. Головний у цій фразі — один супермаркет.
+`real` — «справжній»: перед вами справжнє яблуко, а не штучне. Про нього: `It is real` — «Воно справжнє». Скорочено: `It’s real`. Це характеристика предмета; вона не повідомляє, де він розташований.
 
-**У списку один супермаркет біля магазинів. Оберіть повідомлення.**
+**Друг думає, що яблуко штучне. Скажіть «Воно справжнє» зі скороченням.**
 
-- ✅ **There is a supermarket near the shops.**
-- ❌ There are a supermarket near the shops. — *Супермаркет один, тому потрібні `There is` і `a supermarket`.*
-- ❌ There is supermarkets near the shops. — *Тут один супермаркет: `a supermarket`, а не `supermarkets`.*
+- ✅ **It's real.**
+- ❌ It are real. — *З `It` потрібне `is`, скорочення `It’s`.*
+- ❌ It's hidden. — *`hidden` — прихований, а тут справжнє: `real`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте й оберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-05:i01; family: listen_choose -->
-Ціль: `supermarket`
-🔊 *supermarket*
-Значення варіантів: supermarket — супермаркет · supermodel — супермодель · superhero — супергерой
-→ **supermarket** · supermodel · superhero
-- supermodel — *У записі чути `supermarket`: після `super-` іде `-market`, а не `-model`.*
-- superhero — *У записі чути `supermarket`: після `super-` іде `-market`, а не `-hero`.*
+## Практика (17 завдань)
 
-**2 · Промовте нове слово**
-<!-- interaction_id: en:lesson-04:session-05:i02; family: scripted_repeat_compare -->
-Ціль: `supermarket`
-🎙 **supermarket**
+**1 · Ви показуєте карту у своїх руках: «Це карта»**
+<!-- interaction_id: en:lesson-04:session-05:i01; family: phrase_builder -->
+Плитки: `map` `a` `is` `This` `are` → **This is a map.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a map.`)*
 
-**3 · На вивісці великого продуктового магазину оберіть назву**
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-05:i02; family: listen_choose -->
+🔊 *supermarket* → **supermarket** · museum · garden
+- museum — *У записі перше слово — `supermarket`, а в цьому варіанті — `museum`.*
+- garden — *У записі перше слово — `supermarket`, а в цьому варіанті — `garden`.*
+
+**3 · Назвіть супермаркет одним англійським словом**
 <!-- interaction_id: en:lesson-04:session-05:i03; family: context_gap_grammar -->
-___ → **supermarket** · shop · house
-- shop — *`Shop` — звичайний магазин; на вивісці великого продуктового магазину потрібне `supermarket`.*
-- house — *`House` — будинок, а не місце для покупки продуктів.*
+___ → **supermarket** · museum · bank
+- museum — *`museum` — музей; супермаркет — `supermarket`.*
+- bank — *`bank` — банк; супермаркет — `supermarket`.*
 
-**4 · Послухайте й складіть повідомлення про один супермаркет**
-<!-- interaction_id: en:lesson-04:session-05:i04; family: listen_build_dictation -->
-Ціль: `There is a supermarket near the house.`
-🔊 *There is a supermarket near the house.*
-Плитки: `There` · `is` · `a` · `supermarket` · `near` · `the` · `house` · `are`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-05:i04; family: speed_match -->
+supermarket — супермаркет · real — справжній · map — карта · museum — музей
 
-**5 · Складіть повідомлення про магазини біля будинку**
-<!-- interaction_id: en:lesson-04:session-05:i05; family: phrase_builder -->
-Ціль: `There are shops near the house.`
-Плитки: `There` · `are` · `shops` · `near` · `the` · `house` · `is` · `a`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-05:i05; family: listen_build_dictation -->
+🔊 *There is a supermarket.* Плитки: `supermarket` `a` `is` `There` `are` → **There is a supermarket.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a supermarket.`)*
 
-**6 · Вставте форму для одного магазину**
-<!-- interaction_id: en:lesson-04:session-05:i06; family: context_gap_grammar -->
-There ___ a shop near the supermarket. → **is** · are · am
-- are — *`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину.*
-- am — *`Am` уживають лише з `I`; тут підмет — місце або місця.*
+**6 · Друг не знає району. Повідомте «Тут є музей»**
+<!-- interaction_id: en:lesson-04:session-05:i06; family: phrase_builder -->
+Плитки: `here` `museum` `a` `is` `There` `are` → **There is a museum here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a museum here.`)*
 
-**7 · Промовте повідомлення про магазини**
+**7 · Друг думає, що яблуко штучне. Скажіть «Воно справжнє» зі скороченням**
 <!-- interaction_id: en:lesson-04:session-05:i07; family: scripted_repeat_compare -->
-Ціль: `There are shops near a supermarket.`
-🎙 **There are shops near a supermarket.**
+🎙 **It's real.**
 
-**8 · З'єднайте слова з їхніми значеннями**
-<!-- interaction_id: en:lesson-04:session-05:i08; family: speed_match -->
-Пари: `supermarket` — супермаркет · `shop` — магазин · `near` — поруч · `house` — будинок
+**8 · Повідомте про наявність одного супермаркету**
+<!-- interaction_id: en:lesson-04:session-05:i08; family: context_gap_grammar -->
+There is ___ supermarket here. → **a** · an · are
+- an — *Перший звук у `supermarket` приголосний: `a supermarket`.*
+- are — *`is` уже є; перед одним місцем потрібне `a`.*
 
-**9 · Вставте форму для одного магазину**
-<!-- interaction_id: en:lesson-04:session-05:i09; family: context_gap_grammar -->
-There ___ a shop near the house. → **is** · are · am
-- are — *Магазин один, тому потрібне `is`.*
-- am — *`Am` уживають з `I`; тут потрібна форма `is`.*
+**9 · Послухайте, що людина говорить про яблуко**
+<!-- interaction_id: en:lesson-04:session-05:i09; family: listen_choose -->
+🔊 *It is real.* → **It is real.** · It is hidden. · It is visible.
+- It is hidden. — *У записі останнє слово — `real`, а в цьому варіанті — `hidden`.*
+- It is visible. — *У записі останнє слово — `real`, а в цьому варіанті — `visible`.*
 
-**10 · Складіть повідомлення про супермаркет біля магазину**
-<!-- interaction_id: en:lesson-04:session-05:i10; family: phrase_builder -->
-Ціль: `There is a supermarket near a shop.`
-Плитки: `There` · `is` · `a` · `supermarket` · `near` · `a` · `shop` · `are`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-05:i10; family: speed_match -->
+supermarket — супермаркет · museum — музей · here — тут · there — там
 
-**11 · Послухайте й складіть повідомлення про магазини біля одного будинку**
+**11 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-04:session-05:i11; family: listen_build_dictation -->
-Ціль: `There are shops near a house.`
-🔊 *There are shops near a house.*
-Плитки: `There` · `are` · `shops` · `near` · `a` · `house` · `is` · `the`
+🔊 *That is a map.* Плитки: `map` `a` `is` `That` `are` → **That is a map.**
+*(плитка `are` зайва: тут потрібно `is` — `That is a map.`)*
 
-**12 · складіть повідомлення для листівки**
+**12 · Друг не знає, що за будівля поруч. Назвіть її: «Це супермаркет»**
 <!-- interaction_id: en:lesson-04:session-05:i12; family: phrase_builder -->
-Ціль: `There is a supermarket near two shops.`
-Плитки: `There` · `is` · `a` · `supermarket` · `near` · `two` · `shops` · `are`
+Плитки: `supermarket` `a` `is` `This` `are` → **This is a supermarket.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a supermarket.`)*
 
-## Для збирача
+**13 · Друг шукає карту. Ви побачили її на стійці. Повідомте «Тут є карта»**
+<!-- interaction_id: en:lesson-04:session-05:i13; family: scripted_repeat_compare -->
+🎙 **There is a map here.**
 
-atomic_practice: practice.atomic.json
-new_words: supermarket — супермаркет — Великий магазин, де купують продукти.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=listen_build_dictation, 5=phrase_builder, 6=context_gap_grammar, 7=scripted_repeat_compare, 8=speed_match, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=phrase_builder
+**14 · Ви показуєте інший район на карті. Повідомте «Там є супермаркет»**
+<!-- interaction_id: en:lesson-04:session-05:i14; family: context_gap_grammar -->
+There ___ a supermarket there. → **is** · are · am
+- are — *Один супермаркет: `There is a supermarket there`. Останнє `there` — «там».*
+- am — *Для наявності одного місця потрібне `There is`.*
+
+**15 · Послухайте, яке місце є в районі**
+<!-- interaction_id: en:lesson-04:session-05:i15; family: listen_choose -->
+🔊 *There is a museum.* → **There is a museum.** · There is a supermarket. · There is a bank.
+- There is a supermarket. — *У записі останнє слово — `museum`, а в цьому варіанті — `supermarket`.*
+- There is a bank. — *У записі останнє слово — `museum`, а в цьому варіанті — `bank`.*
+
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-05:i16; family: speed_match -->
+supermarket — супермаркет · real — справжній · map — карта · museum — музей
+
+**17 · В іншій подорожі ви побачили супермаркет. Друг ще не знає про нього. Повідомте «Тут є супермаркет»**
+<!-- interaction_id: en:lesson-04:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **There is a supermarket here.**
+

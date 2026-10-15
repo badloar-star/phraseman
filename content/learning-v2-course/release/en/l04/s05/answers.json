@@ -1,13 +1,13 @@
 [
   {
     "interactionId": "en:lesson-04:session-05:i01",
-    "correctText": "supermarket",
-    "correctResponseId": "en:lesson-04:session-05:i01:r1"
+    "correctText": "This is a map.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-05:i02",
     "correctText": "supermarket",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-04:session-05:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-05:i03",
@@ -16,47 +16,72 @@
   },
   {
     "interactionId": "en:lesson-04:session-05:i04",
-    "correctText": "There is a supermarket near the house.",
+    "correctText": "en:lesson-04:session-05:i04:p1=supermarket\nen:lesson-04:session-05:i04:p2=real\nen:lesson-04:session-05:i04:p3=map\nen:lesson-04:session-05:i04:p4=museum",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-05:i05",
-    "correctText": "There are shops near the house.",
+    "correctText": "There is a supermarket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-05:i06",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-04:session-05:i06:r1"
+    "correctText": "There is a museum here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-05:i07",
-    "correctText": "There are shops near a supermarket.",
+    "correctText": "It's real.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-05:i08",
-    "correctText": "p1=supermarket\np2=shop\np3=near\np4=house",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-05:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-05:i09",
-    "correctText": "is",
+    "correctText": "It is real.",
     "correctResponseId": "en:lesson-04:session-05:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-05:i10",
-    "correctText": "There is a supermarket near a shop.",
+    "correctText": "en:lesson-04:session-05:i10:p1=supermarket\nen:lesson-04:session-05:i10:p2=museum\nen:lesson-04:session-05:i10:p3=here\nen:lesson-04:session-05:i10:p4=there",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-05:i11",
-    "correctText": "There are shops near a house.",
+    "correctText": "That is a map.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-05:i12",
-    "correctText": "There is a supermarket near two shops.",
+    "correctText": "This is a supermarket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i13",
+    "correctText": "There is a map here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-05:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i15",
+    "correctText": "There is a museum.",
+    "correctResponseId": "en:lesson-04:session-05:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i16",
+    "correctText": "en:lesson-04:session-05:i16:p1=supermarket\nen:lesson-04:session-05:i16:p2=real\nen:lesson-04:session-05:i16:p3=map\nen:lesson-04:session-05:i16:p4=museum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i17",
+    "correctText": "There is a supermarket here.",
     "correctResponseId": null
   }
 ]

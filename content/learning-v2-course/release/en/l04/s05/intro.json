@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-05",
   "learningOutcomeByLocale": {
-    "ru": "выбрать `There is a + singular noun` для одного места и `There are + plural noun` для нескольких.",
-    "uk": "обрати `There is a + singular noun` для одного місця і `There are + plural noun` для кількох."
+    "ru": "сообщить о наличии супермаркета и назвать знакомые предметы с this и that",
+    "uk": "повідомити про наявність супермаркету й назвати знайомі предмети з this та that"
   },
   "pages": [
     {
@@ -12,18 +11,18 @@
       "pageId": "en:lesson-04:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один супермаркет",
-        "uk": "Один супермаркет"
+        "ru": "Место для покупок",
+        "uk": "Місце для покупок"
       },
       "bodyByLocale": {
-        "ru": "`supermarket` — «супермаркет»: большой магазин, где покупают продукты. На листовке он один, поэтому речь идёт об одном месте, а не о нескольких. Для одного места используем `There is`, а перед его названием ставим `a`: `There is a supermarket.`",
-        "uk": "`supermarket` — «супермаркет»: великий магазин, де купують продукти. У листівці він один, тому йдеться про одне місце, а не про кілька. Для одного місця використовуємо `There is`, а перед його назвою ставимо `a`: `There is a supermarket.`"
+        "ru": "`supermarket` — «супермаркет»: большой магазин с продуктами и другими товарами. `There is a supermarket` — «Есть супермаркет». Один супермаркет — `is` и `a`. `There is a supermarket here` — «Здесь есть супермаркет». Слово длинное, но второй тележки для него не нужно.",
+        "uk": "`supermarket` — «супермаркет»: великий магазин із продуктами та іншими товарами. `There is a supermarket` — «Є супермаркет». Один супермаркет — `is` і `a`. `There is a supermarket here` — «Тут є супермаркет». Слово довге, але другого візка для нього не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-04:session-05:intro1:q",
         "promptByLocale": {
-          "ru": "В списке один супермаркет. Выберите сообщение.",
-          "uk": "У списку один супермаркет. Оберіть повідомлення."
+          "ru": "Сообщите, что в районе есть супермаркет.",
+          "uk": "Повідомте, що в районі є супермаркет."
         },
         "choicesByLocale": {
           "ru": [
@@ -56,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В списке один супермаркет. Выберите сообщение.",
-          "uk": "У списку один супермаркет. Оберіть повідомлення."
+          "ru": "Сообщите, что в районе есть супермаркет.",
+          "uk": "Повідомте, що в районі є супермаркет."
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Несколько магазинов",
-        "uk": "Кілька магазинів"
+        "ru": "Карта и музей",
+        "uk": "Карта й музей"
       },
       "bodyByLocale": {
-        "ru": "`There are shops near the supermarket.` — «Рядом с супермаркетом есть магазины». `Shops` — несколько магазинов, поэтому нужны `are` и форма без `a`. Один супермаркет рядом не меняет число `shops`: соседнее слово здесь не командует. Смотрите на название места после `is/are`.",
-        "uk": "`There are shops near the supermarket.` — «Біля супермаркету є магазини». `Shops` — кілька магазинів, тому потрібні `are` і форма без `a`. Один супермаркет поруч не змінює числа `shops`: сусіднє слово тут не командує. Дивіться на назву місця після `is/are`."
+        "ru": "`map` — «карта»: `This is a map` — «Это карта», показываем рядом. `That is a map` — «То — карта», показываем дальше. `museum` — «музей»: `There is a museum here` — «Здесь есть музей». Первые фразы называют предмет, а `There is` сообщает, что место есть.",
+        "uk": "`map` — «карта»: `This is a map` — «Це карта», показуємо поруч. `That is a map` — «То — карта», показуємо далі. `museum` — «музей»: `There is a museum here` — «Тут є музей». Перші фрази називають предмет, а `There is` повідомляє, що місце є."
       },
       "question": {
         "interactionId": "en:lesson-04:session-05:intro2:q",
         "promptByLocale": {
-          "ru": "В списке несколько магазинов рядом с супермаркетом. Выберите сообщение.",
-          "uk": "У списку кілька магазинів біля супермаркету. Оберіть повідомлення."
+          "ru": "Вы держите карту и показываете её другу. Скажите «Это карта».",
+          "uk": "Ви тримаєте карту й показуєте її другові. Скажіть «Це карта»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-05:intro2:r1",
-              "text": "There are shops near the supermarket."
+              "text": "This is a map."
             },
             {
               "responseId": "en:lesson-04:session-05:intro2:r2",
-              "text": "There is shops near the supermarket."
+              "text": "These are a map."
             },
             {
               "responseId": "en:lesson-04:session-05:intro2:r3",
-              "text": "There are a shops near the supermarket."
+              "text": "This are a map."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-05:intro2:r1",
-              "text": "There are shops near the supermarket."
+              "text": "This is a map."
             },
             {
               "responseId": "en:lesson-04:session-05:intro2:r2",
-              "text": "There is shops near the supermarket."
+              "text": "These are a map."
             },
             {
               "responseId": "en:lesson-04:session-05:intro2:r3",
-              "text": "There are a shops near the supermarket."
+              "text": "This are a map."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В списке несколько магазинов рядом с супермаркетом. Выберите сообщение.",
-          "uk": "У списку кілька магазинів біля супермаркету. Оберіть повідомлення."
+          "ru": "Вы держите карту и показываете её другу. Скажите «Это карта».",
+          "uk": "Ви тримаєте карту й показуєте її другові. Скажіть «Це карта»."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Считайте места",
-        "uk": "Порахуйте місця"
+        "ru": "Настоящее яблоко",
+        "uk": "Справжнє яблуко"
       },
       "bodyByLocale": {
-        "ru": "`There is a supermarket near the shops.` — «Рядом с магазинами есть супермаркет». Считайте место сразу после формы: один `supermarket` требует `There is a`. Слова `near the shops` только уточняют, где он находится; несколько магазинов в этот подсчёт не входят. Главный в этой фразе — один супермаркет.",
-        "uk": "`There is a supermarket near the shops.` — «Біля магазинів є супермаркет». Рахуйте місце одразу після форми: один `supermarket` потребує `There is a`. Слова `near the shops` лише уточнюють, де він розташований; кілька магазинів у цей підрахунок не входять. Головний у цій фразі — один супермаркет."
+        "ru": "`real` — «настоящий»: перед вами настоящее яблоко, а не искусственное. О нём: `It is real` — «Оно настоящее». Сокращённо: `It’s real`. Это характеристика предмета; она не сообщает, где он находится.",
+        "uk": "`real` — «справжній»: перед вами справжнє яблуко, а не штучне. Про нього: `It is real` — «Воно справжнє». Скорочено: `It’s real`. Це характеристика предмета; вона не повідомляє, де він розташований."
       },
       "question": {
         "interactionId": "en:lesson-04:session-05:intro3:q",
         "promptByLocale": {
-          "ru": "В списке один супермаркет рядом с магазинами. Выберите сообщение.",
-          "uk": "У списку один супермаркет біля магазинів. Оберіть повідомлення."
+          "ru": "Друг думает, что яблоко искусственное. Скажите «Оно настоящее» с сокращением.",
+          "uk": "Друг думає, що яблуко штучне. Скажіть «Воно справжнє» зі скороченням."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-05:intro3:r1",
-              "text": "There is a supermarket near the shops."
+              "text": "It's real."
             },
             {
               "responseId": "en:lesson-04:session-05:intro3:r2",
-              "text": "There are a supermarket near the shops."
+              "text": "It are real."
             },
             {
               "responseId": "en:lesson-04:session-05:intro3:r3",
-              "text": "There is supermarkets near the shops."
+              "text": "It's hidden."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-05:intro3:r1",
-              "text": "There is a supermarket near the shops."
+              "text": "It's real."
             },
             {
               "responseId": "en:lesson-04:session-05:intro3:r2",
-              "text": "There are a supermarket near the shops."
+              "text": "It are real."
             },
             {
               "responseId": "en:lesson-04:session-05:intro3:r3",
-              "text": "There is supermarkets near the shops."
+              "text": "It's hidden."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В списке один супермаркет рядом с магазинами. Выберите сообщение.",
-          "uk": "У списку один супермаркет біля магазинів. Оберіть повідомлення."
+          "ru": "Друг думает, что яблоко искусственное. Скажите «Оно настоящее» с сокращением.",
+          "uk": "Друг думає, що яблуко штучне. Скажіть «Воно справжнє» зі скороченням."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "203b7961cf27402655d5ab83e0ceb593dfeaf8886fa61eddad120d6aa9f201cf"
+  "introFingerprint": "0a5642dafc8d3a0a4d54822acbb6b917f41f2ed3082355eeb501efb46820a699"
 }

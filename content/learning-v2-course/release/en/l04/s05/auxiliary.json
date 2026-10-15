@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-05:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-05:intro1:r2": {
-          "ru": "Супермаркет один, поэтому нужно `There is a supermarket`.",
-          "uk": "Супермаркет один, тому потрібне `There is a supermarket`."
+          "ru": "Один супермаркет: `There is a supermarket`.",
+          "uk": "Один супермаркет: `There is a supermarket`."
         },
         "en:lesson-04:session-05:intro1:r3": {
-          "ru": "Когда место одно, перед его названием нужен `a`: `a supermarket`.",
-          "uk": "Коли місце одне, перед його назвою потрібен `a`: `a supermarket`."
+          "ru": "Перед одним местом нужно `a`: `a supermarket`.",
+          "uk": "Перед одним місцем потрібне `a`: `a supermarket`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-05:intro2:r2": {
-          "ru": "`Shops` — это несколько магазинов, поэтому нужна форма `There are`.",
-          "uk": "`Shops` — це кілька магазинів, тому потрібне `There are`."
+          "ru": "Карта одна: `This is a map`.",
+          "uk": "Карта одна: `This is a map`."
         },
         "en:lesson-04:session-05:intro2:r3": {
-          "ru": "`A` ставят с одним предметом. Здесь несколько: просто `shops`.",
-          "uk": "`A` ставлять з одним предметом. Тут кілька: просто `shops`."
+          "ru": "С `This` нужно `is`.",
+          "uk": "З `This` потрібне `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-05:intro3:r2": {
-          "ru": "Супермаркет один, поэтому нужны `There is` и `a supermarket`.",
-          "uk": "Супермаркет один, тому потрібні `There is` і `a supermarket`."
+          "ru": "С `It` нужно `is`, сокращение `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочення `It’s`."
         },
         "en:lesson-04:session-05:intro3:r3": {
-          "ru": "Здесь один супермаркет: `a supermarket`, а не `supermarkets`.",
-          "uk": "Тут один супермаркет: `a supermarket`, а не `supermarkets`."
+          "ru": "`hidden` — скрытый, а здесь настоящее: `real`.",
+          "uk": "`hidden` — прихований, а тут справжнє: `real`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d641486c97bdb9bb343a4f0c174490f7d02fc2c275e1dea31316bab6079f7bdd"
+  "auxiliaryFingerprint": "93e66bddc48adfc2d885ae1b1575a5d3b29c03b20baf04a2bb15d3f180d1ee3d"
 }

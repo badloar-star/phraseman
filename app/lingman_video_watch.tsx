@@ -180,12 +180,21 @@ export default function LingmanVideoWatchScreen() {
     trainNavTraceStart('video_watch_train_tap');
     const deckId = `pack:video_${videoId}`;
     setPendingTrainIntent({ deckId, count: pack?.cardCount ?? 0 });
-    router.navigate({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
-    trainNavMark('router.navigate called');
+    // зачем (Макеты c1_r60b, ⚡ ~760 мс от navigate до первого рендера хаба — плеер/WebView на экране ролика): сперва освобождаем плеер, переход — в следующем кадре.
+    // Вернулись назад — плеер снова открывается (useFocusEffect ниже).
+    setPlayerOpen(false);
+    trainNavMark('player closed before navigate');
+    requestAnimationFrame(() => {
+      router.navigate({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
+      trainNavMark('router.navigate called');
+    });
   }, [pack?.cardCount, router, videoId]);
 
   // зачем ([NAV-PAINT-TRACE], 15.10): когда экран ролика теряет фокус и когда размонтируется — отдельные отметки цепочки «Тренировать → первый кадр хаба»
-  useFocusEffect(useCallback(() => () => trainNavMark('video screen blur'), []));
+  useFocusEffect(useCallback(() => {
+    setPlayerOpen(true); // вернулись на экран ролика (в том числе после «Тренировать») — плеер снова на месте
+    return () => trainNavMark('video screen blur');
+  }, []));
   useEffect(() => () => trainNavMark('video screen unmount'), []);
 
   return (

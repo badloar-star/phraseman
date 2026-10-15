@@ -92,3 +92,13 @@ describe('«Видео → Наборы»: тап по набору ролика
     expect(src).toContain('videoIdFromOwnedCommunityId(pack.id)');
   });
 });
+
+describe('плеер ролика освобождается до перехода на хаб (⚡ Макеты c1_r60b)', () => {
+  it('setPlayerOpen(false) до navigate (в следующем кадре), на возврате плеер снова открывается', () => {
+    const src = read('app/lingman_video_watch.tsx');
+    const body = src.slice(src.indexOf('const trainVideo = useCallback'), src.indexOf('useFocusEffect(useCallback(() => {'));
+    expect(body.indexOf('setPlayerOpen(false);')).toBeLessThan(body.indexOf('router.navigate('));
+    expect(body).toContain('requestAnimationFrame(() => {');
+    expect(src).toContain('setPlayerOpen(true); // вернулись на экран ролика');
+  });
+});

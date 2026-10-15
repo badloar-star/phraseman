@@ -49,15 +49,15 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'update',
   'authRecovery',
   // spireWeekMoment — окно итога недели Пика (D191, владелец 14.10): «при первом открытии после закрытия недели, раньше всех
-  // окон». Уступает только системным (приветствие новичка, обязательное обновление, восстановление входа). Рисуется в дереве,
-  // не нативным <Modal>, поэтому в NATIVE_MODAL_KEYS не входит.
+  // окон». Уступает только системным (приветствие новичка, обязательное обновление, восстановление входа). Рисуется нативным
+  // <Modal> (SpireWeekMomentHost), поэтому входит в NATIVE_MODAL_KEYS (C1, 15.10).
   'spireWeekMoment',
-  // welcomeBack — окно «С возвращением» (D193, владелец 14.10): после окна итога недели; рисуется в дереве, не нативным <Modal>.
+  // welcomeBack — окно «С возвращением» (D193, владелец 14.10): после окна итога недели; нативный <Modal> в home.tsx.
   'welcomeBack',
   // legacyBonusWelcome — окно «Встречайте PhraseMan 2.0» (D195, Ядро 15.10): старые бонусы стали монетами; после «С возвращением», до «Хватает на ранг».
   // Закрывает человек («Понятно»), таймера нет — выселять нельзя; шторка в нативном окне (HybridSheetShell).
   'legacyBonusWelcome',
-  // coinRankEnough — m14A «Хватает на ранг N» (координатор 14.10): после окон итога недели и «С возвращением»; в дереве, не <Modal>.
+  // coinRankEnough — m14A «Хватает на ранг N» (координатор 14.10): после окон итога недели и «С возвращением»; нативный <Modal> в home.tsx.
   'coinRankEnough',
   'releaseNotes',
   'broadcast',
@@ -128,7 +128,12 @@ export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>
 export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'onboardingWelcome',
   'authRecovery',
+  // зачем (C1, координатор 15.10): эти три окна Главной на деле нативные <Modal>; без них передача слота
+  // «итог недели → С возвращением → Встречайте 2.0 → Хватает на ранг» шла без паузы — риск фриза iOS.
+  'spireWeekMoment',
+  'welcomeBack',
   'legacyBonusWelcome',
+  'coinRankEnough',
   'update',
   'releaseNotes',
   'broadcast',

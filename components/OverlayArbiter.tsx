@@ -35,6 +35,7 @@ import {
   EMPTY_OVERLAY_WANTS,
   hasOtherWaiters,
   isForceEvictable,
+  isNativeModal,
   needsHandoffGap,
   resolveNextOverlay,
   resolveNextOverlayExcluding,
@@ -120,7 +121,10 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
     if (handoffGapRef.current) return; // идёт зазор — не трогаем слот до его конца
     const next = resolveNextOverlay(active, wantsMap);
     if (next === active) return;
-    if (needsHandoffGap(active, next)) {
+    const gap = needsHandoffGap(active, next);
+    // зачем (C1, координатор 15.10): видно, получила ли передача слота паузу нативного окна — три окна Главной были <Modal> вне списка
+    console.log('[OVERLAY-ARB] handoff', JSON.stringify({ from: active, to: next, fromNative: isNativeModal(active), toNative: isNativeModal(next), delayMs: gap ? NATIVE_MODAL_HANDOFF_GAP_MS : 0 })); // guard-ok: трассировка арбитра
+    if (gap) {
       // Закрываем текущую нативную модалку и держим паузу перед показом следующей.
       handoffGapRef.current = true;
       setActive(null);

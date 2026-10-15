@@ -163,7 +163,7 @@ function DialogueIncomingCall({ lang, glass, partnerName, cefr, sceneTitle, onAn
         <View style={s.btns}>
           <View style={s.btnCol}>
             <Pressable testID="dialogue-v2-incoming-later" accessibilityRole="button" accessibilityLabel={c.later} onPress={later} hitSlop={8}
-              style={({ pressed }) => [s.round, { backgroundColor: glass.opaqueControl, transform: [{ scale: pressed ? 0.94 : 1 }] }]}>
+              style={({ pressed }) => [s.round, { backgroundColor: glass.buttonFill /* зачем (координатор 15.10, правило «кнопки не сливаются»): «Позже» на buttonFill (≥ 1,7 : 1 к фону), opaqueControl сливался */, transform: [{ scale: pressed ? 0.94 : 1 }] }]}>
               <Ionicons name="close" size={28} color={glass.text} />
             </Pressable>
             <Text style={[s.lbl, { color: glass.secondary }]}>{c.later}</Text>

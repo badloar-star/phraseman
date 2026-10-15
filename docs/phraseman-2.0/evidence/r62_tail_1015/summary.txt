@@ -1,0 +1,2 @@
+cold1_home: NOTIF-PERM=0 sysdialog=0
+cold2_lessons: NOTIF-PERM=0 sysdialog=0

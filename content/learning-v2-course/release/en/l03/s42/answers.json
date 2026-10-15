@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-42:i01",
-    "correctText": "handle",
-    "correctResponseId": "en:lesson-03:session-42:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-42:i03",
-    "correctText": "lock",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-42:i05",
-    "correctText": "bell",
+    "correctText": "The wallet is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i02",
-    "correctText": "handle",
-    "correctResponseId": null
+    "correctText": "bathroom",
+    "correctResponseId": "en:lesson-03:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i03",
+    "correctText": "bathroom",
+    "correctResponseId": "en:lesson-03:session-42:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i04",
-    "correctText": "lock",
-    "correctResponseId": "en:lesson-03:session-42:i04:r1"
+    "correctText": "en:lesson-03:session-42:i04:p1=bathroom\nen:lesson-03:session-42:i04:p2=polite\nen:lesson-03:session-42:i04:p3=inaccurate\nen:lesson-03:session-42:i04:p4=wallet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i05",
+    "correctText": "This is a bathroom.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i06",
-    "correctText": "bell",
+    "correctText": "The bathroom is there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i07",
-    "correctText": "en:lesson-03:session-42:i07:p1=handle\nen:lesson-03:session-42:i07:p2=lock\nen:lesson-03:session-42:i07:p3=bell\nen:lesson-03:session-42:i07:p4=receipt",
+    "correctText": "He's polite.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i08",
-    "correctText": "handle",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-42:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i09",
-    "correctText": "lock",
-    "correctResponseId": null
+    "correctText": "It is inaccurate.",
+    "correctResponseId": "en:lesson-03:session-42:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i10",
-    "correctText": "bell",
+    "correctText": "en:lesson-03:session-42:i10:p1=bathroom\nen:lesson-03:session-42:i10:p2=wallet\nen:lesson-03:session-42:i10:p3=here\nen:lesson-03:session-42:i10:p4=there",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i11",
-    "correctText": "the",
-    "correctResponseId": "en:lesson-03:session-42:i11:r1"
+    "correctText": "That wallet is there.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i12",
-    "correctText": "Замок сломан",
-    "correctResponseId": "en:lesson-03:session-42:i12:r1"
+    "correctText": "That is a bathroom.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i13",
-    "correctText": "The handle is stuck.",
+    "correctText": "It's inaccurate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i14",
-    "correctText": "The lock is broken.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-42:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i15",
-    "correctText": "the",
+    "correctText": "He is polite.",
     "correctResponseId": "en:lesson-03:session-42:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i16",
-    "correctText": "The bell is silent.",
+    "correctText": "en:lesson-03:session-42:i16:p1=bathroom\nen:lesson-03:session-42:i16:p2=polite\nen:lesson-03:session-42:i16:p3=inaccurate\nen:lesson-03:session-42:i16:p4=wallet",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-42:i17:s01",
-    "correctText": "The handle is stuck.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-42:i17:s02",
-    "correctText": "The lock is broken.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-42:i17:s03",
-    "correctText": "The bell is silent.",
+    "interactionId": "en:lesson-03:session-42:i17",
+    "correctText": "The bathroom is here.",
     "correctResponseId": null
   }
 ]

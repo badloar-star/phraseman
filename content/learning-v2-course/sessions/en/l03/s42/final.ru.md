@@ -1,163 +1,138 @@
-# Английский · Урок 3 · Занятие 42 — «У входной двери три поломки»
+# Английский · Урок 3 · Занятие 42 — Ванная на схеме дома
 
-**Сцена занятия.** Вы и сотрудник стоите у одной входной двери. Ручка заела, замок сломан, а звонок молчит. Нужно назвать каждую конкретную поломку: вы оба видите одни и те же детали двери.
+**Ситуация.** Вы с Анной осматриваете дом. Хозяин вежливо показывает ванную комнату. На старой схеме она отмечена не там, где находится на самом деле. Анна замечает ошибку и заодно находит свой кошелёк.
 
-**Как сказать:** ставить `the`, когда предмет уже понятен обоим из общей ситуации.
-**Новые слова:** handle, lock, bell
-**Для повторения:** the, is, stuck, broken, silent
+**Что вы освоите:** назвать ванную комнату и указать, где находится понятная собеседнику комната
+**Новые слова:** bathroom
 
 ---
 
 ## Интро 1
 
-### Ручка, за которую вы только что взялись
+### Комната, а не ванна
 
-`handle` — «ручка двери». Вы и сотрудник смотрите на эту ручку одной двери. Не нужно сначала вводить её через `a`: из ситуации уже ясно, о какой ручке речь. С `a handle` пришлось бы уточнять, о какой ручке речь; эта уже перед вами, поэтому `the handle`. Скажите: `The handle is stuck.`
+`bathroom` — «ванная комната». Здесь называем всю комнату, а не саму ванну. `This is a bathroom` — «Это ванная комната»: показываем, что это за помещение. Перед `bathroom` нужно `a`, потому что первый звук согласный. Полотенце на стуле ещё не превращает гостиную в ванную.
 
-**Вы тянете ручку входной двери, но она не двигается. Как сообщить сотруднику о конкретной ручке?**
+**Назовите ванную комнату одним английским словом.**
 
-- ✅ **The handle is stuck.**
-- ❌ A handle is stuck. — *`a handle` говорит о какой-то ручке. Здесь вы оба видите ручку этой двери, поэтому нужна `the handle`.*
-- ❌ The handle are stuck. — *`handle` — один предмет, поэтому говорим `is`, а не `are`.*
+- ✅ **bathroom**
+- ❌ kitchen — *`kitchen` — кухня. Ванная комната — `bathroom`.*
+- ❌ room — *`room` — комната вообще. Здесь точнее `bathroom`.*
 
 ---
 
 ## Интро 2
 
-### Замок на той же двери
+### Где та самая ванная
 
-`lock` — «замок». Сотрудник уже осматривает замок на этой входной двери прямо вместе с вами. Он находится на той же двери, поэтому предмет понятен без `a`. `The lock` сразу означает конкретный замок, а не любой замок где-то ещё. Скажите: `The lock is broken.`
+`The bathroom is there` — «Ванная комната там». Вы оба понимаете, о какой комнате идёт речь: хозяин только что её показал. Поэтому здесь `the bathroom`. Не обязательно сначала произносить `a bathroom`: `the` подходит и тогда, когда нужная комната ясна из ситуации.
 
-**Сотрудник проверяет замок на этой двери и видит поломку. Как сказать о конкретном замке?**
+**Хозяин уже показал ванную комнату в конце коридора. Скажите «Ванная комната там».**
 
-- ✅ **The lock is broken.**
-- ❌ A lock is broken. — *`a lock` был бы каким-то одним замком. У вас перед глазами замок этой двери, поэтому нужен `the`.*
-- ❌ The lock are broken. — *Замок один: `The lock is broken.`*
+- ✅ **The bathroom is there.**
+- ❌ The bathroom are there. — *Комната одна: нужно `is`.*
+- ❌ The bathrooms are there. — *Так говорят о нескольких ванных комнатах. Здесь одна: `The bathroom is there`.*
 
 ---
 
 ## Интро 3
 
-### Звонок рядом с дверью
+### Вежливый хозяин, неточная схема
 
-`bell` — «звонок». Вы оба видите звонок рядом с входной дверью и уже пробовали его нажать. Поэтому сразу выбираем `the bell`: это тот самый звонок, который должен был подать звук. Скажите: `The bell is silent.` Звонок молчит так убедительно, будто это его новая работа; `the` всё равно указывает именно на этого молчуна.
+`polite` — «вежливый»: хозяин внимательно выслушивает гостей. `He is polite` — «Он вежливый». `inaccurate` — «неточный»: старая схема показывает комнату не на её месте. О схеме: `It is inaccurate` — «Она неточная». Это ошибка в схеме, а не оценка вежливости хозяина. Анна нашла кошелёк: `The wallet is here` — «Кошелёк здесь».
 
-**Вы нажали звонок у этой двери, но звука нет. Как сказать о конкретном звонке?**
+**На схеме ванная отмечена не там, где она находится. Скажите о схеме «Она неточная».**
 
-- ✅ **The bell is silent.**
-- ❌ A bell is silent. — *`a bell` не указывает на звонок, который вы только что нажали. Здесь нужен `the bell`.*
-- ❌ The bell are silent. — *Звонок один, поэтому нужна форма `is`.*
+- ✅ **It is inaccurate.**
+- ❌ It is accurate. — *`accurate` — точная. Здесь есть ошибка: `inaccurate`.*
+- ❌ It are inaccurate. — *Речь об одной схеме: `It is inaccurate`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — handle**
-<!-- interaction_id: en:lesson-03:session-42:i01; family: listen_choose -->
-Цель: `handle`
+**1 · Анна нашла свой кошелёк рядом. Скажите «Кошелёк здесь»**
+<!-- interaction_id: en:lesson-03:session-42:i01; family: phrase_builder -->
+Плитки: `here` `is` `wallet` `The` `are` → **The wallet is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The wallet is here.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-42:i03; family: scripted_repeat_compare -->
-Цель: `lock`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-42:i02; family: listen_choose -->
+🔊 *bathroom* → **bathroom** · kitchen · window
+- kitchen — *В записи первое слово — `bathroom`, а в этом варианте — `kitchen`.*
+- window — *В записи первое слово — `bathroom`, а в этом варианте — `window`.*
 
-**3 · Послушайте и выберите звонок у этой двери**
-<!-- interaction_id: en:lesson-03:session-42:i05; family: listen_choose -->
-Цель: `bell`
-Варианты: `bell` · `bill` · `ball`
-- bill — *`bill` — это счёт, не звонок.*
-- ball — *`ball` — это мяч, не звонок.*
+**3 · Назовите ванную комнату одним английским словом**
+<!-- interaction_id: en:lesson-03:session-42:i03; family: context_gap_grammar -->
+___ → **bathroom** · kitchen · room
+- kitchen — *`kitchen` — кухня. Здесь нужна ванная комната: `bathroom`.*
+- room — *`room` — комната вообще. Ванная комната — `bathroom`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-42:i04; family: speed_match -->
+bathroom — ванная комната · polite — вежливый · inaccurate — неточный · wallet — кошелёк
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-42:i02; family: scripted_repeat_compare -->
-Цель: `handle`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-42:i05; family: listen_build_dictation -->
+🔊 *This is a bathroom.* Плитки: `bathroom` `a` `is` `This` `are` → **This is a bathroom.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a bathroom.`)*
 
-**5 · Послушайте и выберите — какое слово прозвучало**
-<!-- interaction_id: en:lesson-03:session-42:i04; family: listen_choose -->
-Значения вариантов: `lock` — замок · `rock` — камень · `log` — бревно · `luck` — удача
-Цель: `lock`
-Варианты: `lock` · `rock` · `log` · `luck`
-- rock — *`rock` начинается со звука /r/, а `lock` — с /l/.*
-- log — *`log` заканчивается звуком /ɡ/, а `lock` — /k/.*
-- luck — *В `luck` гласный /ʌ/, а в `lock` — /ɒ/ или /ɑː/.*
+**6 · Хозяин уже показал ванную в конце коридора. Скажите «Ванная комната там»**
+<!-- interaction_id: en:lesson-03:session-42:i06; family: phrase_builder -->
+Плитки: `there` `is` `bathroom` `The` `are` → **The bathroom is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `The bathroom is there.`)*
 
+**7 · Хозяин вежливо общается с гостями. Скажите «Он вежливый» с сокращением**
+<!-- interaction_id: en:lesson-03:session-42:i07; family: scripted_repeat_compare -->
+🎙 **He's polite.**
 
-**6 · Произнесите слово — кнопка звонка рядом с дверью**
-<!-- interaction_id: en:lesson-03:session-42:i06; family: scripted_repeat_compare -->
-Цель: `bell`
+**8 · Вы называете, что это за комната: ванная**
+<!-- interaction_id: en:lesson-03:session-42:i08; family: context_gap_grammar -->
+This is ___ bathroom. → **a** · an · are
+- an — *`bathroom` начинается с согласного звука: `a bathroom`.*
+- are — *Здесь перед названием одной комнаты нужно `a`.*
 
-**7 · Соедините слово со значением — детали входной двери**
-<!-- interaction_id: en:lesson-03:session-42:i07; family: speed_match -->
-Пары: `handle` — ручка двери · `lock` — замок · `bell` — звонок · `receipt` — чек
-Цель: `handle · lock · bell · receipt`
+**9 · Послушайте описание старой схемы**
+<!-- interaction_id: en:lesson-03:session-42:i09; family: listen_choose -->
+🔊 *It is inaccurate.* → **It is inaccurate.** · It is accurate. · It is relevant.
+- It is accurate. — *В записи последнее слово — `inaccurate`, а в этом варианте — `accurate`.*
+- It is relevant. — *В записи последнее слово — `inaccurate`, а в этом варианте — `relevant`.*
 
-**8 · Соберите одну фразу — ручка этой двери заела**
-<!-- interaction_id: en:lesson-03:session-42:i08; family: phrase_builder -->
-Цель: `The handle is stuck.`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-42:i10; family: speed_match -->
+bathroom — ванная комната · wallet — кошелёк · here — здесь · there — там
 
-**9 · Вставьте маленькое слово — замок этой двери сломан**
-<!-- interaction_id: en:lesson-03:session-42:i09; family: context_gap_grammar -->
-Цель: `___ lock is broken.`
-Варианты: `the` · `a` · `an` · `без артикля`
-- a — *Это конкретный замок этой двери, поэтому нужен `the`.*
-- an — *Здесь нужен не `an`, а `the`: замок уже понятен из ситуации.*
-- без артикля — *Перед конкретным исчисляемым предметом здесь нужен `the`.*
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-42:i11; family: listen_build_dictation -->
+🔊 *That wallet is there.* Плитки: `there` `is` `wallet` `That` `are` → **That wallet is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `That wallet is there.`)*
 
+**12 · Гость спрашивает, что за комната дальше по коридору. Назовите её со словом для одного дальше: «Это ванная комната»**
+<!-- interaction_id: en:lesson-03:session-42:i12; family: phrase_builder -->
+Плитки: `bathroom` `a` `is` `That` `are` → **That is a bathroom.**
+*(плитка `are` лишняя: здесь нужно `is` — `That is a bathroom.`)*
 
-**10 · Произнесите одну фразу — звонок у этой двери молчит**
-<!-- interaction_id: en:lesson-03:session-42:i10; family: scripted_repeat_compare -->
-Цель: `The bell is silent.`
-
-**11 · Вставьте маленькое слово — ручка этой двери заела**
-<!-- interaction_id: en:lesson-03:session-42:i11; family: context_gap_grammar -->
-Цель: `___ handle is stuck.`
-Варианты: `the` · `a` · `an` · `без артикля`
-- a — *`a handle` не называет ручку, которую вы оба сейчас видите. Для неё нужно `the`.*
-- an — *`handle` начинается согласным звуком /h/, но здесь главное: речь о конкретной ручке, поэтому `the`.*
-- без артикля — *Вы говорите об одной ручке этой двери, которую видите оба, поэтому перед `handle` нужно `the`.*
-
-
-**12 · Послушайте и выберите точное значение фразы**
-<!-- interaction_id: en:lesson-03:session-42:i12; family: listen_choose -->
-Цель: `The lock is broken.`
-Варианты: `Замок сломан` · `Какой-то замок сломан` · `Ручка заела` · `Звонок молчит`
-- Какой-то замок сломан — *`the lock` — конкретный замок, который понятен обоим, а не какой-то неизвестный.*
-- Ручка заела — *В записи звучит `lock` — «замок», а не `handle` — «ручка двери».*
-- Звонок молчит — *Фраза говорит о замке и `broken`, а не о звонке и `silent`.*
-
-
-**13 · Произнесите одну фразу**
+**13 · Старая схема неверно показывает расположение комнаты. Скажите «Она неточная» с сокращением**
 <!-- interaction_id: en:lesson-03:session-42:i13; family: scripted_repeat_compare -->
-Цель: `The handle is stuck.`
+🎙 **It's inaccurate.**
 
-**14 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-42:i14; family: listen_build_dictation -->
-Цель: `The lock is broken.`
+**14 · Вы говорите об одной понятной вам обоим ванной комнате**
+<!-- interaction_id: en:lesson-03:session-42:i14; family: context_gap_grammar -->
+The bathroom ___ there. → **is** · are · am
+- are — *Комната одна: `The bathroom is there`.*
+- am — *С `The bathroom` нужно `is`.*
 
-**15 · Вставьте маленькое слово — звонок у этой двери молчит**
-<!-- interaction_id: en:lesson-03:session-42:i15; family: context_gap_grammar -->
-Цель: `___ bell is silent.`
-Варианты: `the` · `a` · `an` · `без артикля`
-- a — *`a bell` не показывает на звонок, который вы оба только что проверили. Здесь нужна `the bell`.*
-- an — *`bell` начинается согласным звуком /b/, но конкретный звонок в общей ситуации получает `the`.*
-- без артикля — *Вы говорите об одном звонке у этой двери, который видите оба, поэтому перед `bell` нужно `the`.*
+**15 · Послушайте описание хозяина**
+<!-- interaction_id: en:lesson-03:session-42:i15; family: listen_choose -->
+🔊 *He is polite.* → **He is polite.** · He is honest. · He is brave.
+- He is honest. — *В записи последнее слово — `polite`, а в этом варианте — `honest`.*
+- He is brave. — *В записи последнее слово — `polite`, а в этом варианте — `brave`.*
 
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-42:i16; family: speed_match -->
+bathroom — ванная комната · polite — вежливый · inaccurate — неточный · wallet — кошелёк
 
-**16 · Соберите фразу — сообщите сотруднику о молчащем звонке**
-<!-- interaction_id: en:lesson-03:session-42:i16; family: phrase_builder -->
-Цель: `The bell is silent.`
+**17 · В гостях вы уже осмотрели ванную вместе с другом. Друг снова ищет её, а вы стоите прямо у её двери. Скажите полной фразой «Ванная комната здесь», говоря о той же комнате**
+<!-- interaction_id: en:lesson-03:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The bathroom is here.**
 
-**17 · Вставьте маленькое слово — сотрудник смотрит на ручку этой двери: она сломана**
-<!-- interaction_id: en:lesson-03:session-42:i17; family: context_gap_grammar -->
-Цель: `___ handle is broken.`
-Варианты: `the` · `a` · `an` · `без артикля`
-- a — *`a handle` может казаться подходящим, потому что ручка одна. Но здесь оба смотрят на ручку этой конкретной двери, поэтому нужна известная группа `the handle`. В новой сцене выбирайте `the`, когда предмет уже понятен обоим из ситуации.*
-- an — *`an` ставят перед гласным звуком, поэтому он может вспоминаться как другой вариант артикля. Но `handle` начинается со звука /h/, и здесь речь о конкретной ручке, поэтому нужно `the`. В новой фразе сначала проверьте звук следующего слова, затем — известен ли предмет собеседникам.*
-- без артикля — *Форма без артикля похожа на общее название предмета. Но ученик и сотрудник смотрят на одну понятную ручку двери, поэтому нужно `the handle`. В новой сцене ставьте `the`, когда можно указать на один уже известный предмет.*
-
-
-## Для сборщика
-new_words: handle — ручка двери — Деталь, за которую тянут, чтобы открыть дверь.
-new_words: lock — замок — Механизм на двери, который запирает её.
-new_words: bell — звонок — Кнопка или устройство у двери, которое подаёт звук.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=phrase_builder, 9=context_gap_grammar, 10=scripted_repeat_compare, 11=context_gap_grammar, 12=listen_choose, 13=scripted_repeat_compare, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=context_gap_grammar

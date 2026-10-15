@@ -52,7 +52,11 @@ const CONTRACTIONS: ReadonlyArray<readonly [RegExp, string]> = [
   [/\btill\b/g, 'until'],
   [/\b(i)'?m\b/g, '$1 am'],
   [/\b(you|we|they)'?re\b/g, '$1 are'],
+  // where's/how's/when's/why's (Ревизор 15.10): «Where's the station?» сказанное как «where is» отказывалось.
+  // Апостроф здесь обязателен: «hows»/«whens» без него — не сокращения.
   [/\b(he|she|it|that|there|who|what|here)'?s\b/g, '$1 is'],
+  [/\b(where|how|when|why)'s\b/g, '$1 is'],
+  [/\bcannot\b/g, 'can not'],
   [/\b(i|you|we|they|he|she|it|that|who)'?ll\b/g, '$1 will'],
   [/\b(i|you|we|they|he|she|it|that|who)'?ve\b/g, '$1 have'],
   [/\b(i|you|we|they|he|she|it|that|who)'?d\b/g, '$1 would'],
@@ -87,20 +91,79 @@ const NUMBER_WORDS: Readonly<Record<string, string>> = {
   '9th': 'ninth', '10th': 'tenth', '11th': 'eleventh', '12th': 'twelfth',
 };
 
+const ORDINAL_UNITS: Readonly<Record<number, string>> = {
+  1: 'first', 2: 'second', 3: 'third', 4: 'fourth', 5: 'fifth',
+  6: 'sixth', 7: 'seventh', 8: 'eighth', 9: 'ninth',
+};
+const ORDINAL_TEENS_AND_TENS: Readonly<Record<number, string>> = {
+  13: 'thirteenth', 14: 'fourteenth', 15: 'fifteenth', 16: 'sixteenth', 17: 'seventeenth',
+  18: 'eighteenth', 19: 'nineteenth', 20: 'twentieth', 30: 'thirtieth',
+};
+
+/** 0–99 словами («twenty four»); null — вне диапазона. */
+function underHundredWords(n: number): string | null {
+  if (n < 0 || n > 99) return null;
+  const exact = NUMBER_WORDS[String(n)];
+  if (exact) return exact;
+  const tens = NUMBER_WORDS[String(Math.floor(n / 10) * 10)];
+  const ones = NUMBER_WORDS[String(n % 10)];
+  return tens && ones ? `${tens} ${ones}` : null;
+}
+
+/**
+ * Число цифрами → как его говорят. Годы (1100–1999, 2010–2099) — парами («twenty twenty four»),
+ * 2000–2009 и прочие тысячи — «two thousand four», сотни — «two hundred fifty» (без «and»: лишнее
+ * слово в речи строгая проверка и так прощает).
+ */
+function numberToWords(n: number): string | null {
+  if (n < 100) return underHundredWords(n);
+  if (n > 9999) return null;
+  const yearStyle = (n >= 1100 && n <= 1999) || (n >= 2010 && n <= 2099);
+  if (yearStyle && n % 100 !== 0) {
+    const head = underHundredWords(Math.floor(n / 100));
+    const tail = n % 100 < 10 ? `oh ${NUMBER_WORDS[String(n % 100)]}` : underHundredWords(n % 100);
+    return head && tail ? `${head} ${tail}` : null;
+  }
+  const parts: string[] = [];
+  const thousands = Math.floor(n / 1000);
+  const hundreds = Math.floor((n % 1000) / 100);
+  const rest = n % 100;
+  if (thousands) parts.push(`${NUMBER_WORDS[String(thousands)]} thousand`);
+  if (hundreds) parts.push(`${NUMBER_WORDS[String(hundreds)]} hundred`);
+  if (rest) parts.push(underHundredWords(rest) ?? '');
+  return parts.join(' ').trim() || null;
+}
+
+/** «13th», «21st» → «thirteenth», «twenty first» (до 31-го — даты). */
+function ordinalToWords(tok: string): string | null {
+  const m = /^(\d{1,2})(st|nd|rd|th)$/.exec(tok);
+  if (!m) return null;
+  const n = Number(m[1]);
+  if (ORDINAL_TEENS_AND_TENS[n]) return ORDINAL_TEENS_AND_TENS[n]!;
+  if (n > 20 && n < 40 && n % 10 !== 0) {
+    const tens = NUMBER_WORDS[String(Math.floor(n / 10) * 10)];
+    const unit = ORDINAL_UNITS[n % 10];
+    return tens && unit ? `${tens} ${unit}` : null;
+  }
+  return null;
+}
+
 // Канонизируем числовые токены к словам. Применяется ПОСЛЕ стрипа пунктуации,
 // когда токены уже разделены пробелами.
+// зачем (Ревизор 15.10): годы, сотни, порядковые от 13-го и минуты «7:05» раньше оставались цифрами и
+// не совпадали с речью словами («twenty twenty four») — строгая проверка отказывала верному ответу.
 function normalizeNumbers(value: string): string {
   return value
     .split(' ')
     .map((tok) => {
       const exact = NUMBER_WORDS[tok];
       if (exact) return exact;
-      if (!/^\d{2}$/.test(tok)) return tok;
-      const value = Number(tok);
-      if (value < 21 || value > 99) return tok;
-      const tens = NUMBER_WORDS[String(Math.floor(value / 10) * 10)];
-      const ones = NUMBER_WORDS[String(value % 10)];
-      return tens && ones ? `${tens} ${ones}` : tok;
+      const ordinal = ordinalToWords(tok);
+      if (ordinal) return ordinal;
+      // минуты/доли с ведущим нулём: «05» → «oh five» (так читают время)
+      if (/^0\d$/.test(tok)) return `oh ${NUMBER_WORDS[tok.slice(1)]}`;
+      if (!/^\d{2,4}$/.test(tok)) return tok;
+      return numberToWords(Number(tok)) ?? tok;
     })
     .join(' ');
 }
@@ -159,18 +222,37 @@ function normalizeHomophones(value: string): string {
     .join(' ');
 }
 
+// зачем (Ревизор/координатор 15.10): es/fr/de/it открыты всем, а фильтр [^a-z0-9'] резал буквы с
+// диакритикой в пробел («dónde» → «d nde», «café» → «caf»), и строгая проверка отказывала верной речи,
+// если движок вернул текст без акцентов. Снимаем диакритику (NFD) и раскрываем лигатуры ДО фильтра —
+// одинаково для цели и распознанного текста.
+function foldDiacritics(value: string): string {
+  return value
+    .replace(/ß/g, 'ss')
+    .replace(/æ/g, 'ae')
+    .replace(/œ/g, 'oe')
+    .normalize('NFD')
+    .replace(/\p{M}+/gu, '');
+}
+
+// Элизии fr/it («c'est», «l'homme», «dell'acqua») движок пишет то слитно с апострофом, то раздельно
+// («c est»). Разводим частицу в отдельное слово с обеих сторон — тогда обе записи совпадают.
+const ELISION_RE = /\b(l|d|j|c|n|s|m|t|qu|lorsqu|puisqu|jusqu|dell|dall|nell|sull|all|coll|quell|quest|un|po)'(?=[a-z])/g;
+
 function normalizePhrase(value: string): string {
   const expanded = expandContractions(
-    value
-      .toLowerCase()
-      .replace(/[’`]/g, "'"),
+    foldDiacritics(value.toLowerCase())
+      .replace(/[’`ʼ]/g, "'"),
   )
+    .replace(ELISION_RE, '$1 ')
     .replace(/[^a-z0-9'\s]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
   // Числа → слова, затем омофоны → канон. Порядок: числа сначала (ordinals вроде
   // "1st" должны схлопнуться до "first" до того, как что-то ещё их тронет).
-  return normalizeHomophones(normalizeNumbers(expanded));
+  // «a hundred» = «one hundred» (100 цифрами раскрывается в «one hundred»)
+  const numbered = normalizeNumbers(expanded).replace(/\ba (hundred|thousand|million)\b/g, 'one $1');
+  return normalizeHomophones(numbered);
 }
 
 function words(value: string): string[] {
@@ -314,7 +396,8 @@ function strictWordCheck(
   const missing: string[] = [];
   // какое распознанное слово закрыло каждое слово цели (для пословной уверенности)
   const heardFor: Array<string | null> = [];
-  for (const target of targetWords) {
+  for (let ti = 0; ti < targetWords.length; ti += 1) {
+    const target = targetWords[ti]!;
     if (OPTIONAL_FUNCTION_WORDS.has(target)) {
       // служебное слово: если прозвучало — занимаем его, чтобы оно не «закрыло» другое слово
       const idx = transcriptWords.findIndex((heard, i) => !used[i] && heard === target);
@@ -323,9 +406,34 @@ function strictWordCheck(
       continue;
     }
     const idx = transcriptWords.findIndex((heard, i) => !used[i] && strictWordMatch(target, heard));
-    if (idx >= 0) used[idx] = true;
-    else missing.push(target);
-    heardFor.push(idx >= 0 ? transcriptWords[idx]! : null);
+    if (idx >= 0) {
+      used[idx] = true;
+      heardFor.push(transcriptWords[idx]!);
+      continue;
+    }
+    // зачем (Ревизор 15.10): слитно/раздельно — «email»/«e-mail», «ice cream»/«icecream». Движок пишет
+    // как попало, а это одно и то же сказанное. (а) два распознанных подряд = слово цели;
+    // (б) это слово цели + следующее = одно распознанное.
+    const pair = target.length < 4 ? -1 : transcriptWords.findIndex((heard, i) =>
+      !used[i] && i + 1 < transcriptWords.length && !used[i + 1] && strictWordMatch(target, heard + transcriptWords[i + 1]));
+    if (pair >= 0) {
+      used[pair] = true;
+      used[pair + 1] = true;
+      heardFor.push(transcriptWords[pair]! + transcriptWords[pair + 1]!);
+      continue;
+    }
+    const next = targetWords[ti + 1];
+    const joined = next != null
+      ? transcriptWords.findIndex((heard, i) => !used[i] && strictWordMatch(target + next, heard))
+      : -1;
+    if (joined >= 0) {
+      used[joined] = true;
+      heardFor.push(transcriptWords[joined]!, transcriptWords[joined]!);
+      ti += 1;
+      continue;
+    }
+    missing.push(target);
+    heardFor.push(null);
   }
   return { ok: missing.length <= lowConfidenceSlack, missing, heardFor };
 }

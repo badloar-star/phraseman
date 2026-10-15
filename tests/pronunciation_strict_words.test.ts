@@ -78,3 +78,75 @@ describe('pronunciation scoring: strict significant-word check', () => {
     expect(pass('Could you please open the window for me', 'could you please the window for me', false).passed).toBe(true);
   });
 });
+
+// зачем (Ревизор/координатор 15.10, до сборки): строгая проверка не должна отказывать ВЕРНОЙ речи из-за записи —
+// диакритика, сокращения, элизии fr/it, числа цифрами/словами, слитно/раздельно. Каждая нормализация симметрична:
+// цель и распознанный текст проходят один и тот же путь.
+describe('pronunciation scoring: no false rejects of correct speech', () => {
+  const ok = (targetText: string, transcript: string) =>
+    scorePronunciationTranscript({ targetText, transcript });
+  const both = (a: string, b: string) => {
+    expect({ t: a, h: b, passed: ok(a, b).passed, missing: ok(a, b).missingWords }).toMatchObject({ passed: true });
+    expect({ t: b, h: a, passed: ok(b, a).passed, missing: ok(b, a).missingWords }).toMatchObject({ passed: true });
+  };
+
+  it('en: contractions outside the old list expand symmetrically', () => {
+    both("Where's the station?", 'where is the station');
+    both("How's your mother?", 'how is your mother');
+    both("When's the next train?", 'when is the next train');
+    both("What's your name?", 'what is your name');
+    both('I cannot swim today', "I can't swim today");
+    both("I won't go there", 'I will not go there');
+    both("I'm ready now", 'I am ready now');
+    both("Let's go home", 'let us go home');
+  });
+
+  it('es: accents and ¿¡ do not matter', () => {
+    both('¿Dónde está la estación?', 'donde esta la estacion');
+    both('¡Qué día tan bonito!', 'que dia tan bonito');
+    both('Me gusta el café con leche', 'me gusta el cafe con leche');
+    both('El niño come pan', 'el nino come pan');
+  });
+
+  it('fr: accents and elisions (with or without apostrophe)', () => {
+    both("C'est l'homme de ma vie", 'c est l homme de ma vie');
+    both("J'ai un café", "j'ai un cafe");
+    both("Je n'aime pas ça", 'je n aime pas ca');
+    both("Qu'est-ce que c'est", 'qu est ce que c est');
+    both("L'été est très chaud", "l'ete est tres chaud");
+  });
+
+  it('de: umlauts and ß', () => {
+    both('Die Straße ist sehr groß', 'die strasse ist sehr gross');
+    both('Ich gehe über die Brücke', 'ich gehe uber die brucke');
+    both('Ich gehe über die Brücke', 'ich gehe ueber die bruecke');
+  });
+
+  it('it: accents and elisions', () => {
+    both("Un bicchiere dell'acqua", 'un bicchiere dell acqua');
+    both('Perché è così difficile', 'perche e cosi difficile');
+    both("C'è un'amica qui", 'c e un amica qui');
+  });
+
+  it('numbers: years, hundreds, ordinals, clock time', () => {
+    both('I was born in 2024', 'I was born in twenty twenty four');
+    both('It costs a hundred dollars', 'it costs 100 dollars');
+    both('We have 250 books', 'we have two hundred fifty books');
+    both('The 21st century', 'the twenty first century');
+    both('My birthday is on the 13th', 'my birthday is on the thirteenth');
+    both('The train leaves at 7:05', 'the train leaves at seven oh five');
+  });
+
+  it('compounds written together or apart', () => {
+    both('Send me an email please', 'send me an e-mail please');
+    both('I love ice cream', 'I love icecream');
+  });
+
+  it('still rejects real mistakes after the folding', () => {
+    expect(ok('¿Dónde está la estación?', 'donde la estacion').passed).toBe(false);
+    expect(ok('Die Straße ist sehr groß', 'die strasse ist sehr klein').passed).toBe(false);
+    expect(ok("C'est l'homme de ma vie", "c'est la femme de ma vie").passed).toBe(false);
+    expect(ok('I was born in 2024', 'I was born in 1990').passed).toBe(false);
+    expect(ok("Where's the station?", 'where the station').passed).toBe(false);
+  });
+});

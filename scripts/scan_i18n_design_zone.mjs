@@ -32,7 +32,9 @@ const ZONE = [
   /^app\/lingman_/, /^app\/youtube_/, /^app\/\(tabs\)\/home\.tsx$/, /^components\/home\//, /^components\/paywall\//, /^app\/(paywall|premium_modal)/, /^components\/cards/, /^app\/video/,
 ];
 /** Не интерфейс игрока: тесты, учебный контент уроков (lesson_data*, intro, theory, error_traps — тексты курса на русском, не строки интерфейса), словарь переводов LangContext, dev-инструменты, лаборатории, зонд анимации, словарные данные, пока не переведённые целиком Ядром. */
-const SKIP = /\.test\.|(^|\/)dev[_-]|_dev\b|DevHub|motion_showcase|learning-v2-lab|CardsHubAnimProbe|\/system-cards\.ts$|\/spire_position_moments_core\.ts$|paywall_copy\.ts$|starter_pack_first_50\.ts$|dialogue_v2_visual_fixture\.tsx$|\/lesson_data_|lesson_help_theory_data|lesson_intro_screens|\/error_traps\/|\/LangContext\.tsx$|\/bot_names\.ts$|devToolRegistry|achievement_copy_ru/;
+// зачем (Темы через координатора 15.10): components/dev/ — dev-инструменты (полоса образцов шрифта с кириллицей), вырезаются из стор-сборки.
+// зачем (координатор 15.10, Дизайн): spire_preview_fixtures — моки dev-превью Пика (не интерфейс игрока). Файлы *_gate.ts в пропуск НЕ входят: строки-причины журнала помечаются guard-ok в самом файле.
+const SKIP = /\.test\.|(^|\/)dev[_-]|(^|\/)components\/dev\/|_dev\b|DevHub|motion_showcase|learning-v2-lab|CardsHubAnimProbe|\/system-cards\.ts$|\/spire_position_moments_core\.ts$|paywall_copy\.ts$|starter_pack_first_50\.ts$|dialogue_v2_visual_fixture\.tsx$|\/lesson_data_|lesson_help_theory_data|lesson_intro_screens|\/error_traps\/|\/LangContext\.tsx$|\/bot_names\.ts$|devToolRegistry|achievement_copy_ru|\/spire_preview_fixtures\.ts$/;
 /** Вызовы журнала/служебные — кириллица в них не видна игроку. */
 // зачем (Ядро 15.10): локальные помощники журнала `log(...)` / `logCard(...)` (обёртки над DebugLogger — Пик, окна D191) — тоже журнал, не интерфейс.
 const LOG_CALL = /(console\.\w+|DebugLogger\.\w+|logPublish|noteSwallowed\w*|fsLog|tfPrep|cardsPerfCount|logPackDeck\w*|formatLangFilterLog|logSpire\w+|\blog|\blogCard)\s*\(/;
@@ -158,8 +160,15 @@ function topLevelKeys(src, open, close, skip) {
 
 function lineOf(src, idx) { let n = 1; for (let i = 0; i < idx; i += 1) if (src.charCodeAt(i) === 10) n += 1; return n; }
 
+// зачем (координатор 15.10, Дизайн): таблицы строк с типом `Nine` — девять языков в строгом кортеже, полноту проверяет компилятор (`satisfies Record<string, Nine>`), а читают их по индексу языка,
+// поэтому сторож не должен считать их кириллицу «текстом вне переводов». Признак таблицы — объявление кортежа из девяти строк `type Nine = readonly [string × 9]` и тип `Record<string, Nine>`.
+const NINE_TUPLE = /type Nine = readonly \[(?:string, ){8}string\]/;
+const NINE_RECORD = /Record<string, Nine>/;
+
 function scanFile(rel) {
-  return scanSource(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
+  const text = fs.readFileSync(path.join(ROOT, rel), 'utf8');
+  if (NINE_TUPLE.test(text) && NINE_RECORD.test(text)) return { literals: [], incomplete: [] };
+  return scanSource(text);
 }
 
 /** Разбор одного исходника (экспортируется для теста на синтетических примерах). */

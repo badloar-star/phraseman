@@ -22,3 +22,5 @@ Governance-ID: TG-EA258530B654
 
 ## Rollback
 Отчёт — документ, откат — удаление файла.
+
+Governance-ID: TG-FF532EE7A879

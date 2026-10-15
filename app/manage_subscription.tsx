@@ -946,7 +946,7 @@ export default function ManageSubscription() {
                     withHaptic={false}
                     withSound={false}
                     variant="secondary"
-                    contentStyle={[S.reasonRow, { backgroundColor: sel ? glass.selected : glass.opaqueControl }]}
+                    contentStyle={[S.reasonRow, { backgroundColor: sel ? glass.selected : glass.buttonFillDisabled }]} /* зачем (координатор 15.10, paywalls-023/024; правило «не сливается»): плашка причины на шторке ≥ 1,5 : 1 к шторке во всех темах — opaqueControl с ней сливался */
                   >
                     <Ionicons name={sel ? 'radio-button-on' : 'radio-button-off'} size={20} color={sel ? glass.lightTint : glass.secondary} />
                     <Text style={[S.reasonText, { color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}>{LP(r.ru, r.uk, r.en, r.es, r['pt-BR'], r.vi, r.id, r.tr, r.pl)}</Text>
@@ -960,7 +960,7 @@ export default function ManageSubscription() {
                   onChangeText={setCancelText}
                   placeholder={LP('Расскажи подробнее…', 'Розкажи детальніше…', 'Tell us more…', 'Cuéntanos más…', 'Conte mais…', 'Nói rõ hơn…', 'Ceritakan lebih lanjut…', 'Biraz daha anlat…', 'Napisz więcej…')}
                   placeholderTextColor={glass.mutedText}
-                  style={[S.input, { backgroundColor: glass.opaqueControl, color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}
+                  style={[S.input, { backgroundColor: glass.buttonFillDisabled, color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}
                   multiline
                 />
               )}
@@ -1013,7 +1013,7 @@ export default function ManageSubscription() {
               {saveOffer === 'progress' && offerProgress && (
                 <View style={S.offerStats}>
                   {offerProgress.streak > 0 && (
-                    <View style={[S.offerStat, { backgroundColor: glass.opaqueControl }]}>
+                    <View style={[S.offerStat, { backgroundColor: glass.buttonFillDisabled }]}>
                       <Text style={[S.offerStatNum, { color: glass.lightTint, fontSize: scaled(20), lineHeight: scaled(26) }]}>{offerProgress.streak}</Text>
                       <Text style={[S.offerStatLabel, { color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18) }]}>
                         {LP('дней подряд', 'днів поспіль', 'days in a row', 'días seguidos', 'dias seguidos', 'ngày liên tiếp', 'hari berturut', 'gün üst üste', 'dni z rzędu')}
@@ -1021,7 +1021,7 @@ export default function ManageSubscription() {
                     </View>
                   )}
                   {offerProgress.lessonsCompleted > 0 && (
-                    <View style={[S.offerStat, { backgroundColor: glass.opaqueControl }]}>
+                    <View style={[S.offerStat, { backgroundColor: glass.buttonFillDisabled }]}>
                       <Text style={[S.offerStatNum, { color: glass.lightTint, fontSize: scaled(20), lineHeight: scaled(26) }]}>{offerProgress.lessonsCompleted}</Text>
                       <Text style={[S.offerStatLabel, { color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18) }]}>
                         {LP('уроков', 'уроків', 'lessons', 'lecciones', 'aulas', 'bài học', 'pelajaran', 'ders', 'lekcji')}

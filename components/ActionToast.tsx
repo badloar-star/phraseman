@@ -103,7 +103,8 @@ function actionToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
   return {
     // зачем (overlays.html `.ov-action-toast`, кадры 48–57): сплошная графитовая карточка (#242529) с тонкой
     // кромкой; планка тона — светлая (#d9dbe1), значок и подпись тона — цветом текста, сообщение — вторичным.
-    cardColors: [glass.card, glass.opaqueControl, glass.opaqueControl] as [string, string, string],
+    // зачем (сверка 15.10, paywall-gap-011; правило «стекло непрозрачное, альфа ≥ 0,9»): верх карточки тоста — opaqueCard, а не полупрозрачный card: сквозь тост поверх пейвола читался текст под ним
+    cardColors: [glass.opaqueCard, glass.opaqueControl, glass.opaqueControl] as [string, string, string],
     accent: glass.cta,
     accentSoft: glass.selected,
     border: glass.glassEdge,

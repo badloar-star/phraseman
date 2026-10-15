@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-25:i01",
-    "correctText": "phone",
-    "correctResponseId": "en:lesson-03:session-25:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-25:i03",
-    "correctText": "charger",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-25:i05",
-    "correctText": "cable",
+    "correctText": "They are books.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i02",
-    "correctText": "phone",
-    "correctResponseId": null
+    "correctText": "dogs",
+    "correctResponseId": "en:lesson-03:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i03",
+    "correctText": "dogs",
+    "correctResponseId": "en:lesson-03:session-25:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i04",
-    "correctText": "charger",
-    "correctResponseId": "en:lesson-03:session-25:i04:r1"
+    "correctText": "en:lesson-03:session-25:i04:p1=dogs\nen:lesson-03:session-25:i04:p2=proud\nen:lesson-03:session-25:i04:p3=ashamed\nen:lesson-03:session-25:i04:p4=books",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i05",
+    "correctText": "The dogs are absent.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i06",
-    "correctText": "cable",
+    "correctText": "Books are important.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i07",
-    "correctText": "en:lesson-03:session-25:i07:p1=phone\nen:lesson-03:session-25:i07:p2=charger\nen:lesson-03:session-25:i07:p3=cable\nen:lesson-03:session-25:i07:p4=cups",
+    "correctText": "I'm surprised.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i08",
-    "correctText": "phone",
-    "correctResponseId": null
+    "correctText": "The dogs",
+    "correctResponseId": "en:lesson-03:session-25:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i09",
-    "correctText": "charger",
-    "correctResponseId": null
+    "correctText": "He is ashamed.",
+    "correctResponseId": "en:lesson-03:session-25:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i10",
-    "correctText": "cable",
+    "correctText": "en:lesson-03:session-25:i10:p1=surprised\nen:lesson-03:session-25:i10:p2=absent\nen:lesson-03:session-25:i10:p3=dogs\nen:lesson-03:session-25:i10:p4=books",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i11",
-    "correctText": "This is a phone.",
+    "correctText": "Books are important.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i12",
-    "correctText": "This is a charger.",
+    "correctText": "Where are the dogs?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i13",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-25:i13:r1"
+    "correctText": "She's proud.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i14",
-    "correctText": "Это чашка",
+    "correctText": "Books",
     "correctResponseId": "en:lesson-03:session-25:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i15",
-    "correctText": "This is a bottle.",
-    "correctResponseId": null
+    "correctText": "I am surprised.",
+    "correctResponseId": "en:lesson-03:session-25:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i16",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-03:session-25:i16:r1"
+    "correctText": "en:lesson-03:session-25:i16:p1=proud\nen:lesson-03:session-25:i16:p2=ashamed\nen:lesson-03:session-25:i16:p3=surprised\nen:lesson-03:session-25:i16:p4=absent",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i17",
-    "correctText": "This is a cable.",
+    "correctText": "Dogs are helpful.",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-25:intro1:r2": {
+          "ru": "С `the dogs` речь о конкретных собаках. Здесь говорим о собаках в целом: `Dogs`.",
+          "uk": "З `the dogs` ідеться про конкретних собак. Тут говоримо про собак загалом: `Dogs`."
+        },
+        "en:lesson-03:session-25:intro1:r3": {
+          "ru": "`a` не ставим перед названием нескольких собак.",
+          "uk": "`a` не ставимо перед назвою кількох собак."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-25:intro2:r2": {
+          "ru": "Здесь речь о конкретных ожидаемых собаках: `The dogs`.",
+          "uk": "Тут ідеться про конкретних очікуваних собак: `The dogs`."
+        },
+        "en:lesson-03:session-25:intro2:r3": {
+          "ru": "Собак несколько, поэтому нужно `are`.",
+          "uk": "Собак кілька, тому потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-25:intro3:r2": {
+          "ru": "`The books` указывает на конкретные книги. Здесь речь о книгах в целом.",
+          "uk": "`The books` указує на конкретні книжки. Тут ідеться про книжки загалом."
+        },
+        "en:lesson-03:session-25:intro3:r3": {
+          "ru": "Перед названием нескольких книг не ставим `a`.",
+          "uk": "Перед назвою кількох книжок не ставимо `a`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "948f55e7c7f23458cf0bd97fb65ae61e97ecaf5d6d8fb758758904bfc2e9a6a7"
+}

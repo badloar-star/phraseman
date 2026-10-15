@@ -258,7 +258,7 @@ function MyPacksV2Inner(props: Props) {
             {actionsOwn ? <SheetRow g={g} testID={`fc-my-packs-pack-edit-${actionsFor.id}`} icon="create-outline" title={copy.edit} onPress={runAction(onEdit)} /> : null}
             {actionsOwn && !isPublished(actionsFor) ? <SheetRow g={g} testID="fc-my-packs-action-share" icon="share-outline" title={copy.share} onPress={runAction(onPublish)} /> : null}
             {/* зачем (R1_DIFF_ONE_FIX, cards-section-010): «Удалить набор» красный, как в шторке экрана набора и в макете — разрушительное действие */}
-            <SheetRow g={g} testID={`fc-my-packs-pack-delete-${actionsFor.id}`} icon="trash-outline" title={copy.del} danger onPress={runAction(onDelete)} />
+            <SheetRow g={g} testID={`fc-my-packs-pack-delete-${actionsFor.id}`} icon={actionsOwn ? 'trash-outline' : 'remove-circle-outline'} title={actionsOwn ? copy.del : triLang(lang, { ru: 'Убрать из моих', uk: 'Прибрати з моїх', en: 'Remove from mine', es: 'Quitar de mis packs', 'pt-BR': 'Remover dos meus', vi: 'Bỏ khỏi bộ của tôi', id: 'Hapus dari milikku', tr: 'Benimkilerden çıkar', pl: 'Usuń z moich' })} danger onPress={runAction(onDelete)} />
           </>
         ) : null}
       </PanelSheet>

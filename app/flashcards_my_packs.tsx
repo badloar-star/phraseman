@@ -48,6 +48,7 @@ import { actionToastTri, emitAppEvent } from './events';
 import { formatPackLangTrace } from './flashcards/pack_lang_trace';
 import { clearPendingAddedPackId, missingPackCache, peekPendingAddedPackId, subscribeAddedPack } from './flashcards/my_packs_missing_cache';
 import { applyMyPacksLanguageView } from './flashcards/my_packs_language_view';
+import { removeCommunityOwnedPackId } from './community_packs/communityOwnedStorage';
 import { MyPacksV2 } from './flashcards/MyPacksV2';
 import { runPublishPackFlow } from './flashcards/publish_pack_flow';
 import { safeRouterBack } from './navigation_back';
@@ -639,6 +640,11 @@ export default function FlashcardsMyPacksScreen() {
         ru: 'Удалить набор', uk: 'Видалити набір', en: 'Delete pack', es: 'Eliminar pack',
         'pt-BR': 'Excluir pacote', vi: 'Xóa bộ thẻ', id: 'Hapus paket', tr: 'Paketi sil', pl: 'Usuń zestaw',
       }),
+      // зачем (Ревизор R47, координатор 15.10): чужой (добавленный) набор не удаляется как автор — его «убирают из моих»
+      removeFromMine: triLang(lang, {
+        ru: 'Убрать из моих', uk: 'Прибрати з моїх', en: 'Remove from mine', es: 'Quitar de mis packs',
+        'pt-BR': 'Remover dos meus', vi: 'Bỏ khỏi bộ của tôi', id: 'Hapus dari milikku', tr: 'Benimkilerden çıkar', pl: 'Usuń z moich',
+      }),
       empty: triLang(lang, {
         ru: 'Выбери готовый набор из сообщества или создай свой кнопкой «+» внизу.',
         uk: 'Вибери готовий набір зі спільноти або створи свій кнопкою «+» внизу.',
@@ -716,6 +722,8 @@ export default function FlashcardsMyPacksScreen() {
     [router],
   );
 
+  // зачем (R47): свой набор — тот, что в группе «созданные»; всё остальное в списке — добавленное чужое
+  const deletePackOwn = !!deletePackTarget && groups.created.some((item) => item.id === deletePackTarget.id);
   const deletePack = useCallback(async () => {
     const pack = deletePackTarget;
     if (!pack || deletePackBusy || pendingDeletePackIdsRef.current.has(pack.id)) {
@@ -737,8 +745,19 @@ export default function FlashcardsMyPacksScreen() {
       };
     });
     setDeletePackTarget(null);
-    DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: убран из списка сразу, local=${isLocalAuthorPackId(pack.id)}`);
+    DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: убран из списка сразу, local=${isLocalAuthorPackId(pack.id)} own=${String(deletePackOwn)}`);
     try {
+      if (!deletePackOwn) {
+        // зачем (Ревизор R47): чужой набор — «Убрать из моих»: локально и мгновенно, без серверного «удалить как автор» (он отвечал not_author, набор возвращался с ошибкой); в облако уходит надгробие через снимок библиотеки
+        const result = await removeCommunityOwnedPackId(pack.id, studyTarget);
+        console.log(`[MY-PACKS] remove pack=${pack.id} result=${result}`); // guard-ok: итог «Убрать из моих»
+        if (result !== 'removed') throw new Error(`remove_${result}`);
+        emitAppEvent('action_toast', actionToastTri('success', {
+          ru: 'Набор убран из моих.', uk: 'Набір прибрано з моїх.', en: 'Removed from your packs.', es: 'Quitado de tus packs.',
+          'pt-BR': 'Removido dos seus pacotes.', vi: 'Đã bỏ khỏi bộ của bạn.', id: 'Dihapus dari paketmu.', tr: 'Paketlerinden çıkarıldı.', pl: 'Usunięto z twoich zestawów.',
+        }));
+        return;
+      }
       // зачем (координатор 12.10): ввод-вывод удаления общий с шторкой «Удалить набор» на экране набора — app/community_packs/deleteOwnPack.ts
       await deleteOwnPackEverywhere(pack, studyTarget);
       DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: сервер подтвердил`);
@@ -772,7 +791,7 @@ export default function FlashcardsMyPacksScreen() {
       pendingDeletePackIdsRef.current.delete(pack.id);
       setDeletePackBusy(pack.id, false);
     }
-  }, [deletePackBusy, deletePackTarget, setDeletePackBusy, studyTarget]);
+  }, [deletePackBusy, deletePackOwn, deletePackTarget, setDeletePackBusy, studyTarget]);
 
   useEffect(() => {
     if (loadStatus !== 'ready') return;
@@ -857,7 +876,7 @@ export default function FlashcardsMyPacksScreen() {
             <Pressable accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => { if (!deletePackBusy) setDeletePackTarget(null); }} style={StyleSheet.absoluteFill} />
             <View testID="fc-delete-pack-confirm-modal" style={{ width: '100%', maxWidth: 360, alignSelf: 'center', padding: 22, borderRadius: 26, backgroundColor: g.sheet, boxShadow: plateBoxShadow(g) }}>
               <PlateFill g={g} radius={26} />
-              <Text accessibilityRole="header" style={{ color: g.text, fontSize: 22, fontWeight: '800' }}>{copy.deletePack}</Text>
+              <Text accessibilityRole="header" style={{ color: g.text, fontSize: 22, fontWeight: '800' }}>{deletePackOwn ? copy.deletePack : copy.removeFromMine}</Text>
               <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 22, marginTop: 10 }}>
                 {deletePackTarget ? `«${packTitleForInterface(deletePackTarget, lang) || packHubCodeName(deletePackTarget)}» — ${triLang(lang, {
                   ru: 'набор будет убран из твоих наборов.', uk: 'набір буде прибрано з твоїх наборів.', en: 'this pack will be removed from your packs.', es: 'este pack se quitará de tus packs.',
@@ -869,7 +888,7 @@ export default function FlashcardsMyPacksScreen() {
                   <Text style={{ color: g.text, fontWeight: '800' }}>{triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity testID="fc-delete-pack-confirm-confirm" accessibilityRole="button" disabled={deletePackBusy} onPress={() => { void deletePack(); }} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: EXEMPT_COLOR_1 }}>
-                  {deletePackBusy ? <ActivityIndicator color={EXEMPT_COLOR_2} /> : <Text style={{ color: g.mediaInk, fontWeight: '800' }}>{copy.deletePack}</Text>}
+                  {deletePackBusy ? <ActivityIndicator color={EXEMPT_COLOR_2} /> : <Text style={{ color: g.mediaInk, fontWeight: '800' }}>{deletePackOwn ? copy.deletePack : copy.removeFromMine}</Text>}
                 </TouchableOpacity>
               </View>
             </View>

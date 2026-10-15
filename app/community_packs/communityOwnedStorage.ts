@@ -165,11 +165,64 @@ export async function addCommunityOwnedPackId(
     // `<target>:community_packs` { itemIds }. Фоном, за флагом.
     // зачем (7C): вместе с локальными названиями — производитель шлёт ОТДЕЛЬНОЙ операцией
     // только изменившиеся, чтобы новая установка показывала название, а не код набора.
-    const target = storageStudyTarget(studyTarget);
-    const snapshotTitles = titles;
-    produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'library_snapshot', target, packIds,
-      ...(snapshotTitles === null ? {} : { titles: snapshotTitles }) }));
+    emitLibrarySnapshot(v2Owner, storageStudyTarget(studyTarget), packIds, titles);
   }
+}
+
+/** Единственное место, где состав библиотеки уходит в Account V2 (добавление и «убрать из моих» — один путь, сервер сам различает добавленные и снятые id). */
+function emitLibrarySnapshot(
+  v2Owner: ReturnType<typeof captureAccountsV2OwnerUid>,
+  target: ReturnType<typeof storageStudyTarget>,
+  packIds: readonly string[],
+  snapshotTitles: Record<string, CommunityOwnedPackTitle> | null,
+): void {
+  produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'library_snapshot', target, packIds,
+    ...(snapshotTitles === null ? {} : { titles: snapshotTitles }) }));
+}
+
+/**
+ * «Убрать из моих» для ЧУЖОГО набора (добавленного из сообщества или из видео). Не серверное «удалить как автор» — набор остаётся у автора.
+ *
+ * зачем (Ревизор R47, координатор 15.10): функции «убрать из библиотеки» не было — «Удалить набор» звал серверное удаление автора, чужой набор отвечал not_author, исчезал и возвращался с тостом об ошибке.
+ * Локально и мгновенно: id снят из списка, прогретая копия и локальное название обновлены; в облако уходит снимок библиотеки без этого id — планировщик Account V2 превращает снятый id в removeItemIds,
+ * то есть сервер ставит tombstone, и гидрация при следующем входе (`removedIds` в merge) набор не вернёт. Новых чтений Firestore нет.
+ * Результат: 'removed' — убран; 'not_owned' — такого id в «моих» нет (например, купленный официальный набор); 'stale' — хранилище нечитаемо/аккаунт сменился (ничего не писали).
+ */
+export async function removeCommunityOwnedPackId(
+  id: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<'removed' | 'not_owned' | 'stale'> {
+  if (isDevCommunityPackId(id)) return 'removed';
+  const v2Owner = captureAccountsV2OwnerUid();
+  const token = captureAccountGeneration();
+  const loaded = await loadCommunityOwnedPackIdsResult(studyTarget, token);
+  if (loaded.status !== 'ready' || !isCurrentAccountGeneration(token)) {
+    console.warn(`[MY-PACKS] remove skip pack=${id} reason=${loaded.status === 'ready' ? 'account_changed' : 'storage_stale'}`); // guard-ok: ранний выход с причиной
+    return 'stale';
+  }
+  if (!loaded.ids.includes(id)) {
+    console.log(`[MY-PACKS] remove pack=${id} result=not_owned owned=${loaded.ids.length}`); // guard-ok: набора нет в «моих»
+    return 'not_owned';
+  }
+  const next = loaded.ids.filter((item) => item !== id);
+  const key = flashcardsCommunityOwnedPacksKey(studyTarget);
+  await AsyncStorage.setItem(key, JSON.stringify(next));
+  const cacheKey = warmOwnedIdsKey(key, token);
+  if (cacheKey && isCurrentAccountGeneration(token)) warmOwnedIdsByKey.set(cacheKey, next);
+  let titles: Record<string, CommunityOwnedPackTitle> | null = null;
+  try {
+    const current = await loadCommunityOwnedPackTitles(studyTarget);
+    if (id in current) {
+      titles = Object.fromEntries(Object.entries(current).filter(([packId]) => packId !== id));
+      await AsyncStorage.setItem(flashcardsCommunityOwnedPackTitlesKey(studyTarget), JSON.stringify(titles));
+    }
+  } catch (e) {
+    DebugLogger.error('communityOwnedStorage:remove_titles', e instanceof Error ? e : new Error(String(e)), 'warning');
+  }
+  const target = storageStudyTarget(studyTarget);
+  emitLibrarySnapshot(v2Owner, target, next, titles);
+  console.log(`[MY-PACKS] remove pack=${id} result=removed owned_before=${loaded.ids.length} owned_after=${next.length} target=${target} synced=tombstone_via_snapshot`); // guard-ok: итог убирания
+  return 'removed';
 }
 
 /**

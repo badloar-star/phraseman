@@ -13,7 +13,8 @@ describe('R1_DIFF_ONE_FIX: cards* и dialogs* (два и более пункта
 
   it('cards-section-010: «Удалить набор» в шторке «Мои наборы» красный (danger)', () => {
     const src = read('app/flashcards/MyPacksV2.tsx');
-    expect(src).toMatch(/testID=\{`fc-my-packs-pack-delete-\$\{actionsFor\.id\}`\} icon="trash-outline" title=\{copy\.del\} danger /);
+    expect(src).toMatch(/testID=\{`fc-my-packs-pack-delete-\$\{actionsFor\.id\}`\} icon=\{actionsOwn \? 'trash-outline' : 'remove-circle-outline'\} title=\{actionsOwn \? copy\.del : triLang\(lang, /);
+    expect(src).toContain('danger onPress={runAction(onDelete)}');
   });
 
   it('cards-v2-025: наборы демо-каталога несут три слова превью (в образце три чипа в ряд)', () => {

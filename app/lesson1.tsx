@@ -3892,11 +3892,15 @@ function LessonScreen() {
   }, [lessonId]);
   useEffect(() => {
     if (lessonId < 1 || lessonId > 32) return;
-    if (lastOpenedSyncedRef.current) return;
-    lastOpenedSyncedRef.current = true;
+    // зачем (аудит R58 #7, координатор 15.10): прежде ранний выход по lastOpenedSyncedRef глушил ВСЕ обновления после входа —
+    // карточка «Продолжить» на Главной оставалась с прогрессом момента входа. Диск и отметка времени — один раз на урок,
+    // а снимок в памяти и событие для живой Главной — на каждое изменение correctCount (дёшево: без диска и сети).
     const homeScore = (correctCount / 50 * 5).toFixed(1);
-    void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId)).catch(noteSwallowedHandler('lesson1:useEffect.setItem_2'));
-    recordHomeContinueLegacy(studyTarget); // зачем (P23): карточка «Продолжить» сравнивает время старого урока и занятия V2
+    if (!lastOpenedSyncedRef.current) {
+      lastOpenedSyncedRef.current = true;
+      void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId)).catch(noteSwallowedHandler('lesson1:useEffect.setItem_2'));
+      recordHomeContinueLegacy(studyTarget); // зачем (P23): карточка «Продолжить» сравнивает время старого урока и занятия V2
+    }
     patchHomeScreenHydration({
       lastLessonId: lessonId,
       lastLessonProgress: correctCount,

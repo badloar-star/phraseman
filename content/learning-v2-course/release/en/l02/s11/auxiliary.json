@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-11:intro1:r2": {
-          "ru": "После `he` нужна форма `is`.",
-          "uk": "Після `he` потрібна форма `is`."
+          "ru": "Это значит, что дело может подождать. Здесь оно срочное.",
+          "uk": "Це означає, що справа може зачекати. Тут вона термінова."
         },
         "en:lesson-02:session-11:intro1:r3": {
-          "ru": "Это снова вопрос. В ответе порядок `he is`.",
-          "uk": "Це знову запитання. У відповіді порядок `he is`."
+          "ru": "Речь об одном деле — написать адрес: `It's urgent`.",
+          "uk": "Йдеться про одну справу — написати адресу: `It's urgent`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-11:intro2:r2": {
-          "ru": "`Not` ставят после `is`.",
-          "uk": "`Not` ставлять після `is`."
+          "ru": "С `it` нужно `is`: `Is it urgent?`.",
+          "uk": "З `it` потрібно `is`: `Is it urgent?`."
         },
         "en:lesson-02:session-11:intro2:r3": {
-          "ru": "Между `he` и `not` нужна форма `is`.",
-          "uk": "Між `he` і `not` потрібна форма `is`."
+          "ru": "После `Is` идёт `it`, затем `urgent`.",
+          "uk": "Після `Is` йде `it`, потім `urgent`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-11:intro3:r2": {
-          "ru": "После `he` нужно `is`.",
-          "uk": "Після `he` потрібне `is`."
+          "ru": "Без `not` получается «Срочно». Здесь можно подождать.",
+          "uk": "Без `not` виходить «Терміново». Тут можна зачекати."
         },
         "en:lesson-02:session-11:intro3:r3": {
-          "ru": "В ответе говорят `he is`, а не `is he`.",
-          "uk": "У відповіді кажуть `he is`, а не `is he`."
+          "ru": "Между `It` и `not` нужно `is`.",
+          "uk": "Між `It` і `not` потрібно `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "341040325e520d5914226228bda1c2ab7503d09ace6e62fa2c5db0f364eccd15"
+  "auxiliaryFingerprint": "ffd11d0ffaf3bebf2e489c8147bf9afa09585b44fcc9f3752427a9bcd7fa990c"
 }

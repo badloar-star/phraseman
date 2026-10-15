@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-27:intro1:r2": {
+          "ru": "`on` — на поверхности навеса; стол стоит под ним: `under`.",
+          "uk": "`on` — на поверхні навісу; стіл стоїть під ним: `under`."
+        },
+        "en:lesson-04:session-27:intro1:r3": {
+          "ru": "Один стол: `The table is`.",
+          "uk": "Один стіл: `The table is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-27:intro2:r2": {
+          "ru": "Машин несколько: `The cars are`.",
+          "uk": "Машин кілька: `The cars are`."
+        },
+        "en:lesson-04:session-27:intro2:r3": {
+          "ru": "`in` — внутри; в условии рядом с домом: `next to`.",
+          "uk": "`in` — усередині; в умові поруч із будинком: `next to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-27:intro3:r2": {
+          "ru": "`careless` — неосторожный; щедрый — `generous`.",
+          "uk": "`careless` — необережний; щедрий — `generous`."
+        },
+        "en:lesson-04:session-27:intro3:r3": {
+          "ru": "С `He` нужно `is`: `He’s generous`.",
+          "uk": "З `He` потрібне `is`: `He’s generous`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8b602a9a9349eb5402ae561cc09e90da95749bffddec4e7928e64a69bf6a77a9"
+}

@@ -54403,6 +54403,309 @@
           "byteSize": 45312
         }
       ]
+    },
+    "l04/s12/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a platform here?",
+          "file": "0c8e82475b0312a9c56b02c1c57ef2c136d8e0d40cc7c9a70e91550aa0fe4506.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c8e82475b0312a9c56b02c1c57ef2c136d8e0d40cc7c9a70e91550aa0fe4506.mp3",
+          "contentHash": "7037969a1bf4f4f622e7f8a983b91e78a35d905eaaa086a59cf93876f7f446af",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l04/s12/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a post office here.",
+          "file": "de6d0589f38e3b13060303b9397a2522180b4b767bfe82529015a2cda3627897.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de6d0589f38e3b13060303b9397a2522180b4b767bfe82529015a2cda3627897.mp3",
+          "contentHash": "5e47722f8a20a7fff99deff63d27a8458622c89c059d1d0aeca8c93be3878f82",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s12/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's private.",
+          "file": "be5bf03ec3615adb3fce2af635e3fe692145426dd1449c067f22e73d18a80b43.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be5bf03ec3615adb3fce2af635e3fe692145426dd1449c067f22e73d18a80b43.mp3",
+          "contentHash": "79e72c03291a7e5f4e314f377cd45a85960ce8b1ca4eac4e91c550a146c7a3eb",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s12/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a table.",
+          "file": "61bcdf2ddb656caf4db3bc0eab99306d432f314f83fcbbfa25485722f64e6928.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/61bcdf2ddb656caf4db3bc0eab99306d432f314f83fcbbfa25485722f64e6928.mp3",
+          "contentHash": "dca63c0e3b1ffe5eec5a7ba73b9bc77e1e5c7318e9d39c48edbae57c88800748",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s12/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "platform",
+          "file": "28a7e7622af2cb6d50fc601a0d00a5dd866cf180a5c46939909c7f974d7cb25b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28a7e7622af2cb6d50fc601a0d00a5dd866cf180a5c46939909c7f974d7cb25b.mp3",
+          "contentHash": "5168e67d8b2dd7b00bbe0fe0007ea1bdbb9d3aa1a398637ffe167391119a3de5",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s12/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "platform",
+          "file": "9120c4c02ec513fb39ff04bb90f3adee0be4fc7007b6afcd2881d14de9d22b91.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9120c4c02ec513fb39ff04bb90f3adee0be4fc7007b6afcd2881d14de9d22b91.mp3",
+          "contentHash": "72418191bd030e0e9fde74de601904eec8d4422296b252250ff88011e5df0159",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s12/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "platform",
+          "file": "2a26bd0e87481214c1d4ce800e6e733de70adb4f1d250f09bee47f33d2436b35.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2a26bd0e87481214c1d4ce800e6e733de70adb4f1d250f09bee47f33d2436b35.mp3",
+          "contentHash": "e4942e9d14bad81efbfe0a5ee5b4c41174cf89d2d322fd2ef0124e4d9520f1f4",
+          "byteSize": 37248
+        },
+        {
+          "text": "private",
+          "file": "14303208e484f7236806b80f475a370b17b6a4a1c96bf3d62a03842d63d93e7e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/14303208e484f7236806b80f475a370b17b6a4a1c96bf3d62a03842d63d93e7e.mp3",
+          "contentHash": "995cac0a52ffe53004e397b92ee4b3340197e9ce6cb9435dce95a01b0e574ef7",
+          "byteSize": 18048
+        },
+        {
+          "text": "table",
+          "file": "2e7ffb33c659c727846d56bc7900bc60cc14bfae5b787592869f28d648cfdddf.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0d4fc4a78d3706edccafb665-nova.mp3",
+          "contentHash": "fb7c9f80c5c89457d7d121688bac963bc1c959149129de02a1595116809846fa",
+          "byteSize": 26880
+        },
+        {
+          "text": "post office",
+          "file": "157e1cec0c43c106e5e2ad68355d71db33048ecacc0a859ee4082678c53e8c10.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/157e1cec0c43c106e5e2ad68355d71db33048ecacc0a859ee4082678c53e8c10.mp3",
+          "contentHash": "b7dfc86c0536d12d01b2214fda7f19d99bf9729acd44e436f1f6b67e47bcd2e7",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s12/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a platform?",
+          "file": "8e4602cf2af4070cacdc6f792bf5f912b3e3c93a72fdfd8ce425f85dbede9fb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e4602cf2af4070cacdc6f792bf5f912b3e3c93a72fdfd8ce425f85dbede9fb7.mp3",
+          "contentHash": "853a38a63d4720d2da01689de6eaa670aceae04b1aefd690a813cbb8163f1cae",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s12/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a post office here.",
+          "file": "6548d27c09f0ce56d4eb7b88e18c59c3f568949a438599cdfe9f3b87c7a6574a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6548d27c09f0ce56d4eb7b88e18c59c3f568949a438599cdfe9f3b87c7a6574a.mp3",
+          "contentHash": "671900fe2ed74e8790acd1b27e7831a29464b76d4446d7f5c9edacd1d61fa6db",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l04/s12/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's private.",
+          "file": "be5bf03ec3615adb3fce2af635e3fe692145426dd1449c067f22e73d18a80b43.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be5bf03ec3615adb3fce2af635e3fe692145426dd1449c067f22e73d18a80b43.mp3",
+          "contentHash": "79e72c03291a7e5f4e314f377cd45a85960ce8b1ca4eac4e91c550a146c7a3eb",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s12/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are there platforms here?",
+          "file": "cac4bd8ce710c1427e8fabd2089fb0fd9579844abd75a351ae58cfd75201faab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cac4bd8ce710c1427e8fabd2089fb0fd9579844abd75a351ae58cfd75201faab.mp3",
+          "contentHash": "f1572007b46e1c642c47f41bb9c8310c99a3391f4317fa2005f37d09134ed3a7",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s12/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a table?",
+          "file": "78fc28714fec577e8e94402dbcbec65e57a39bcbc7c6405376e8a4cb46211a06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/78fc28714fec577e8e94402dbcbec65e57a39bcbc7c6405376e8a4cb46211a06.mp3",
+          "contentHash": "67dbd35b8a310222a1b4da814ecb2bbd42b3447d8fc923d79a78a6669130c86b",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l04/s12/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "platform",
+          "file": "1f2dcfe8d4f68135b0579c7083e84dab3160852b1138efc4bdde2292c9b33679.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f2dcfe8d4f68135b0579c7083e84dab3160852b1138efc4bdde2292c9b33679.mp3",
+          "contentHash": "2fdc76104dc5d800d643f4f9ccd732753d108c988b7994cc6a1a600123367fa9",
+          "byteSize": 26112
+        },
+        {
+          "text": "platforms",
+          "file": "56da0d37d09c8a8c0777ef63335dfa88260cdd75d910028d25165023a2eab65b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56da0d37d09c8a8c0777ef63335dfa88260cdd75d910028d25165023a2eab65b.mp3",
+          "contentHash": "cfe5c4d180b0c54ffef29ef0ec63327c7765bb3b7052419e1769a460d809e90e",
+          "byteSize": 34560
+        },
+        {
+          "text": "table",
+          "file": "d3ed0ed726d443cbbf7178e712d50f7151ea41ec98977d89a45998779b1bcebc.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0d4fc4a78d3706edccafb665-coral.mp3",
+          "contentHash": "ea5ba5d89b6f6fcf50d1d51992b7816c4adcc9fd8bef18aed60b55d5ff016323",
+          "byteSize": 24192
+        },
+        {
+          "text": "private",
+          "file": "34b7dea819fb81d7b889a505fc6d9afcbe1c2dbe2f7bc8e72845e5705bd58fa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34b7dea819fb81d7b889a505fc6d9afcbe1c2dbe2f7bc8e72845e5705bd58fa4.mp3",
+          "contentHash": "601677599c48ff54ca5ed5085b795ec7d2750b4467e02d3093872c76c003cbb6",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s12/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a post office?",
+          "file": "bd43e644a2c6f1c7fe7ee2c2c550c5e1173d3d9fdd61f839f5884ab9c91672b5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bd43e644a2c6f1c7fe7ee2c2c550c5e1173d3d9fdd61f839f5884ab9c91672b5.mp3",
+          "contentHash": "537eb74b2b5578f17c79f1cc9f320cfea83fdd7992de5aa1eb87274b25f4da5e",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s12/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "That is a platform.",
+          "file": "77a7d2f5c0e55c9b99d3bdfeed657293d95cabb3c06e338d5cdf61454ed53ad5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77a7d2f5c0e55c9b99d3bdfeed657293d95cabb3c06e338d5cdf61454ed53ad5.mp3",
+          "contentHash": "809657a291f97ec13fa82c496dde8eb4e96056555148b33cd8b19ff3bffa35da",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l04/s12/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a table here?",
+          "file": "48540e9465565f6489516597f66267d9607484aff3d9986cafb58eeecc28abfd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/48540e9465565f6489516597f66267d9607484aff3d9986cafb58eeecc28abfd.mp3",
+          "contentHash": "5064346a7d7df73bd94b1be549fc7f6df4a9abb228c7b1c8d34d3358b52d91ab",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l04/s12/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a platform here.",
+          "file": "c6d5a3eb7fb2603915d404106a47ffb2b9b8345e08a11aa44c48fc0958455c5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c6d5a3eb7fb2603915d404106a47ffb2b9b8345e08a11aa44c48fc0958455c5e.mp3",
+          "contentHash": "b93757ef16d37ffdd859b29c46c6cb7766de27c06eb1fb68bd61836cbb0de12d",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l04/s12/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is private.",
+          "file": "2f87d77568edde5c8e46da1c5a3d0d638a3e439fd2d127fa00ad8136631fac2f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2f87d77568edde5c8e46da1c5a3d0d638a3e439fd2d127fa00ad8136631fac2f.mp3",
+          "contentHash": "40987b5796ff3066b3b16818e88ab8472571060a9d1a4d828a9e54d371ed9af3",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l04/s12/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "platform",
+          "file": "28a7e7622af2cb6d50fc601a0d00a5dd866cf180a5c46939909c7f974d7cb25b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28a7e7622af2cb6d50fc601a0d00a5dd866cf180a5c46939909c7f974d7cb25b.mp3",
+          "contentHash": "5168e67d8b2dd7b00bbe0fe0007ea1bdbb9d3aa1a398637ffe167391119a3de5",
+          "byteSize": 34944
+        },
+        {
+          "text": "private",
+          "file": "246f975baf2ee343754ae2c735833253b4ae3316430836c4e74d3c63df4ec914.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/246f975baf2ee343754ae2c735833253b4ae3316430836c4e74d3c63df4ec914.mp3",
+          "contentHash": "0363c300366b512cf07570aa4cb1479582e17032848cc267e7da969fd460e96d",
+          "byteSize": 34560
+        },
+        {
+          "text": "table",
+          "file": "b5dd307e1c7f668a6462dfdbf9159a8e710a016090dddfbf83b45734554f5cfd.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0d4fc4a78d3706edccafb665-ash.mp3",
+          "contentHash": "9279e1999f21cc6dba5549c1a5af01e7105a092033a9d4d935a3078eb1d83ccc",
+          "byteSize": 30720
+        },
+        {
+          "text": "post office",
+          "file": "1831b82ec4112bc1fbc3901f7d88cb52934483c68a3b4f3148bef6f1b9075328.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1831b82ec4112bc1fbc3901f7d88cb52934483c68a3b4f3148bef6f1b9075328.mp3",
+          "contentHash": "430012a0b5c037d5336a4aa3f0aec2e50b447ea77120b5d03b0f8cc54bf31b1b",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l04/s12/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a platform here?",
+          "file": "0c8e82475b0312a9c56b02c1c57ef2c136d8e0d40cc7c9a70e91550aa0fe4506.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c8e82475b0312a9c56b02c1c57ef2c136d8e0d40cc7c9a70e91550aa0fe4506.mp3",
+          "contentHash": "7037969a1bf4f4f622e7f8a983b91e78a35d905eaaa086a59cf93876f7f446af",
+          "byteSize": 39552
+        }
+      ]
     }
   },
   "settings": {

@@ -72,7 +72,7 @@
       ],
     },
     {
-      id: 'level', type: 'q', title: 'Что сейчас с вашим английским?', sub: 'Честно — план начнётся с правильного места.',
+      id: 'level', type: 'q', title: 'Что сейчас с твоим английским?', sub: 'Честно — план начнётся с правильного места.',
       options: [
         { v: 'zero', e: '🌱', t: 'Начинаю почти с нуля', d: 'помню отдельные слова' },
         { v: 'understand', e: '🙉', t: 'Понимаю, но не говорю', d: 'самый частый ответ' },
@@ -129,7 +129,7 @@
   };
   var LEVEL_META = {
     zero: 'с самых основ',
-    understand: 'с разговорного минимума — понимать вы уже умеете',
+    understand: 'с разговорного минимума — понимать ты уже умеешь',
     mistakes: 'с уверенной речи — чистим ошибки',
     confident: 'с продвинутых живых фраз',
   };
@@ -205,8 +205,8 @@
   function renderIntro() {
     return h('div', { class: 'qscreen' }, [
       h('p', { class: 'kicker' }, ['Бесплатный подбор · 2 минуты']),
-      h('h1', {}, ['Соберём ваш план английского', h('span', { class: 'gold-accent' }, [' под вашу жизнь'])]),
-      h('p', { class: 'sub' }, ['6 коротких вопросов — и вы получите план: с чего начать, сколько заниматься и какие фразы учить первыми.']),
+      h('h1', {}, ['Соберём твой план английского', h('span', { class: 'gold-accent' }, [' под твою жизнь'])]),
+      h('p', { class: 'sub' }, ['6 коротких вопросов — и ты получишь план: с чего начать, сколько заниматься и какие фразы учить первыми.']),
       h('div', { class: 'qstats' }, [
         h('div', {}, [h('b', {}, ['10 000+']), h('span', {}, ['живых фраз'])]),
         h('div', {}, [h('b', {}, ['15 мин']), h('span', {}, ['в день'])]),
@@ -242,7 +242,7 @@
 
   function renderProof() {
     return h('div', { class: 'qscreen' }, [
-      h('p', { class: 'kicker' }, ['Вы не одни']),
+      h('p', { class: 'kicker' }, ['Ты не один']),
       h('h1', {}, ['«Понимаю, но не говорю» — ', h('span', { class: 'gold-accent' }, ['это лечится'])]),
       h('div', { class: 'qproof-card' }, [
         h('div', { class: 'qmark' }, ['“']),
@@ -256,8 +256,8 @@
 
   var BUILD_LINES = [
     'Определяем стартовую точку…',
-    'Подбираем фразы под вашу цель…',
-    'Настраиваем темп под ваше время…',
+    'Подбираем фразы под твою цель…',
+    'Настраиваем темп под твоё время…',
     'Собираем план…',
   ];
 
@@ -267,7 +267,7 @@
     });
     var screen = h('div', { class: 'qscreen qbuild' }, [
       h('div', { class: 'qbuild-ring' }),
-      h('h1', {}, ['Собираем ваш план…']),
+      h('h1', {}, ['Собираем твой план…']),
       h('div', { class: 'qbuild-lines' }, lines),
     ]);
     lines.forEach(function (line, i) {
@@ -305,8 +305,8 @@
     });
     return h('div', { class: 'qscreen' }, [
       h('p', { class: 'kicker' }, ['Готово']),
-      h('h1', {}, ['Ваш план ', h('span', { class: 'gold-accent' }, ['собран'])]),
-      h('p', { class: 'sub' }, ['Вот что мы подобрали по вашим ответам:']),
+      h('h1', {}, ['Твой план ', h('span', { class: 'gold-accent' }, ['собран'])]),
+      h('p', { class: 'sub' }, ['Вот что мы подобрали по твоим ответам:']),
       h('div', { class: 'qplan-card' }, [
         h('div', { class: 'qplan-tag' }, ['Персональный план']),
         h('h2', {}, ['Phraseman · ' + (GOAL_META[(state.answers.goal)] || GOAL_META.self).name]),
@@ -379,15 +379,15 @@
 
     return h('div', { class: 'qscreen' }, [
       h('p', { class: 'kicker' }, ['Почти готово']),
-      h('h1', {}, ['Куда прислать ваш ', h('span', { class: 'gold-accent' }, ['план?'])]),
+      h('h1', {}, ['Куда прислать твой ', h('span', { class: 'gold-accent' }, ['план?'])]),
       h('p', { class: 'sub' }, ['Пришлём план письмом — чтобы не потерялся. А на следующем экране покажем, как открыть его целиком.']),
       h('div', { class: 'qpay-fields qlead-fields' }, [
         h('div', { class: 'field' }, [
-          h('label', { for: 'qlead-email' }, ['Ваш email']),
+          h('label', { for: 'qlead-email' }, ['Твой email']),
           emailInput,
         ]),
       ]),
-      h('p', { class: 'qsecure' }, ['На этот адрес придёт только ваш персональный план.']),
+      h('p', { class: 'qsecure' }, ['На этот адрес придёт только твой персональный план.']),
       errBox,
       h('button', { class: 'btn-gold', type: 'button', onclick: submit }, ['Прислать план и продолжить →']),
       h('button', {
@@ -530,9 +530,9 @@
     if (paywallState.busy) return;
     clearError();
     var email = selectedEmail();
-    if (!email) { showError(localized('Укажите email — на него придёт чек и подтверждение активации.')); return; }
+    if (!email) { showError(localized('Укажи email — на него придёт чек и подтверждение активации.')); return; }
     var endpoint = cfg().checkoutEndpoint;
-    if (!endpoint) { showError(localized('Оплата картой пока подключается. Напишите нам через страницу поддержки — активируем вручную.')); return; }
+    if (!endpoint) { showError(localized('Оплата картой пока подключается. Напиши нам через страницу поддержки — активируем вручную.')); return; }
     paywallState.busy = true;
     var btn = document.getElementById('qpay-card-btn');
     if (btn) { btn.disabled = true; btn.textContent = localized('Открываем оплату…'); }
@@ -550,34 +550,50 @@
       .catch(function () {
         paywallState.busy = false;
         if (btn) { btn.disabled = false; btn.textContent = localized('Оплатить картой'); }
-        showError(localized('Не получилось открыть оплату. Попробуйте ещё раз или напишите в поддержку.'));
+        showError(localized('Не получилось открыть оплату. Попробуй ещё раз или напиши в поддержку.'));
       });
   }
 
+  /* зачем: владелец 2026-10-15 — SDK PayPal писал «Detected container element removed from DOM».
+     Кнопки сначала рисовались в USD (цен ещё нет), потом, когда приходили цены в EUR,
+     mountPaypal чистил контейнер, пока первый рендер ещё шёл. Лечим двумя вещами:
+     (1) первый монтаж ждёт ответа цен (или короткого таймаута), (2) запоздавший рендер
+     «чужой» валюты/старого контейнера пропускается. Валютное поведение не менялось. */
+  var paypalRenderedContainer = null;
+  var paypalDeferTimer = null;
+
   function mountPaypal() {
+    clearTimeout(paypalDeferTimer);
     var clientId = cfg().paypalClientId;
     var container = document.getElementById('paypal-buttons');
-    if (!clientId || !container) return;
+    if (!clientId || !container) { console.log('[PAYWALL] PayPal: нет clientId или контейнера — пропуск', { clientId: !!clientId, container: !!container }); return; }
     var endpointCreate = cfg().paypalCreateEndpoint;
     var endpointCapture = cfg().paypalCaptureEndpoint;
-    if (!endpointCreate || !endpointCapture) return;
+    if (!endpointCreate || !endpointCapture) { console.log('[PAYWALL] PayPal: нет ручек create/capture — пропуск'); return; }
     var sdkCurrency = normalizeCurrency(remoteCurrency).toUpperCase();
     var namespace = 'paypal_' + sdkCurrency.toLowerCase();
 
-    if (paypalRenderedCurrency === sdkCurrency && container.childNodes.length > 0) return;
+    /* уже смонтировано (или монтируется) в эту валюту в этот же контейнер — второй раз не трогаем */
+    if (paypalRenderedCurrency === sdkCurrency && paypalRenderedContainer === container) { console.log('[PAYWALL] PayPal: уже смонтирован в', sdkCurrency, '— пропуск'); return; }
     paypalRenderedCurrency = sdkCurrency;
+    paypalRenderedContainer = container;
     container.innerHTML = '';
+    console.log('[PAYWALL] PayPal: монтируем в', sdkCurrency);
 
     function renderButtons() {
       var paypalSdk = window[namespace];
-      if (!paypalSdk || !paypalSdk.Buttons) return;
+      if (!paypalSdk || !paypalSdk.Buttons) { console.log('[PAYWALL] PayPal: SDK', namespace, 'не готов — пропуск'); return; }
+      if (!container.isConnected || paypalRenderedCurrency !== sdkCurrency || paypalRenderedContainer !== container) {
+        console.log('[PAYWALL] PayPal: запоздавший рендер', sdkCurrency, 'пропущен (контейнер заменён или валюта сменилась на', paypalRenderedCurrency + ')');
+        return;
+      }
       container.innerHTML = '';
       paypalSdk.Buttons({
         style: { layout: 'horizontal', color: 'gold', shape: 'pill', label: 'paypal', height: 44, tagline: false },
         onClick: function (_data, actions) {
           clearError();
           if (!selectedEmail()) {
-            showError(localized('Укажите email — на него придёт подтверждение активации.'));
+            showError(localized('Укажи email — на него придёт подтверждение активации.'));
             return actions.reject();
           }
           track('checkout_click');
@@ -606,7 +622,7 @@
             });
         },
         onError: function () {
-          showError(localized('PayPal не ответил. Попробуйте карту или напишите в поддержку.'));
+          showError(localized('PayPal не ответил. Попробуй карту или напиши в поддержку.'));
         },
       }).render('#paypal-buttons');
     }
@@ -647,18 +663,18 @@
   var MODE_COPY = {
     quiz: {
       kicker: 'Последний шаг',
-      h1a: 'Откройте свой план ', h1b: 'целиком',
-      sub: 'Premium открывает все планы и темы, снимает лимиты энергии и включает ИИ-диалоги с разбором ваших ошибок.',
+      h1a: 'Открой свой план ', h1b: 'целиком',
+      sub: 'Premium открывает все планы и темы, снимает лимиты энергии и включает ИИ-диалоги с разбором твоих ошибок.',
     },
     paywall: {
       kicker: 'Phraseman Premium',
-      h1a: 'Откройте Phraseman ', h1b: 'целиком',
-      sub: 'Все планы и темы, без лимитов энергии, ИИ-диалоги с разбором ваших ошибок. Активация — кодом в приложении за минуту.',
+      h1a: 'Открой Phraseman ', h1b: 'целиком',
+      sub: 'Все планы и темы, без лимитов энергии, ИИ-диалоги с разбором твоих ошибок. Активация — кодом в приложении за минуту.',
     },
     gift: {
       kicker: 'Подарок',
-      h1a: 'Подарите ', h1b: 'Phraseman Premium',
-      sub: 'Один платёж — и вы получите код активации. Перешлите его тому, кому дарите: он введёт код в приложении, и Premium включится сразу. Автопродления нет.',
+      h1a: 'Подари ', h1b: 'Phraseman Premium',
+      sub: 'Один платёж — и ты получишь код активации. Перешли его тому, кому даришь: он введёт код в приложении, и Premium включится сразу. Автопродления нет.',
     },
   };
 
@@ -674,7 +690,7 @@
         ? ' Плюс умные повторения — страховка от «выучил и забыл».'
         : '';
     return h('p', { class: 'qpersonal' }, [
-      'В вашем плане «' + goal.name + '» — фразы, которые нужны в ' + goal.scen + '. В Premium он открывается целиком.' + extra,
+      'В твоём плане «' + goal.name + '» — фразы, которые нужны в ' + goal.scen + '. В Premium он открывается целиком.' + extra,
     ]);
   }
 
@@ -683,7 +699,7 @@
       { t: 'Уроки, фразы дня и лиги', free: '✓', prem: '✓' },
       { t: 'Все планы и темы: Поездка, Работа, Переезд…', free: '—', prem: '✓' },
       { t: 'Энергия на уроки', free: 'дневной лимит', prem: 'без лимитов' },
-      { t: 'ИИ-диалоги с разбором ваших ошибок', free: '—', prem: '✓' },
+      { t: 'ИИ-диалоги с разбором твоих ошибок', free: '—', prem: '✓' },
     ];
     return h('div', { class: 'qcompare', 'aria-label': 'Сравнение Бесплатно и Premium' }, [
       h('div', { class: 'qcompare-row qcompare-head' }, [
@@ -733,13 +749,13 @@
   function paywallFaq(isGift) {
     return h('div', { class: 'qfaq-mini' }, [
       isGift
-        ? h('details', {}, [h('summary', {}, ['Как подарить?']), h('p', {}, ['Сразу после оплаты вы увидите код активации (и он придёт на ваш email). Перешлите код тому, кому дарите, — запиской, сообщением, открыткой. Получатель введёт его в приложении: Настройки → Промокоды — и Premium включится мгновенно.'])])
-        : h('details', {}, [h('summary', {}, ['Как активируется Premium?']), h('p', {}, ['Сразу после оплаты вы увидите личный код активации (и он сохранится у нас — не потеряется). Введите его в приложении: Настройки → Промокоды — Premium включится мгновенно. Код вводится один раз: при продлении подписки доступ дальше продлевается автоматически. Если приложения ещё нет — сначала установите его, ссылки будут на следующем экране.'])]),
-      h('details', {}, [h('summary', {}, ['На каких устройствах работает?']), h('p', {}, ['На всех, где вы вошли в свой аккаунт Phraseman: iPhone, iPad и Android. Код вводится один раз на любом из них.'])]),
+        ? h('details', {}, [h('summary', {}, ['Как подарить?']), h('p', {}, ['Сразу после оплаты ты увидишь код активации (и он придёт на твой email). Перешли код тому, кому даришь, — запиской, сообщением, открыткой. Получатель введёт его в приложении: Настройки → Промокоды — и Premium включится мгновенно.'])])
+        : h('details', {}, [h('summary', {}, ['Как активируется Premium?']), h('p', {}, ['Сразу после оплаты ты увидишь личный код активации (и он сохранится у нас — не потеряется). Введи его в приложении: Настройки → Промокоды — Premium включится мгновенно. Код вводится один раз: при продлении подписки доступ дальше продлевается автоматически. Если приложения ещё нет — сначала установи его, ссылки будут на следующем экране.'])]),
+      h('details', {}, [h('summary', {}, ['На каких устройствах работает?']), h('p', {}, ['На всех, где ты вошёл в свой аккаунт Phraseman: iPhone, iPad и Android. Код вводится один раз на любом из них.'])]),
       isGift
         ? h('details', {}, [h('summary', {}, ['Спишется ли что-то ещё?']), h('p', {}, ['Нет. Подарочная оплата всегда разовая: один платёж — один код на выбранный срок. Никаких автопродлений ни у вас, ни у получателя. В первые 7 дней вернём оплату полностью без вопросов.'])])
         : h('details', {}, [h('summary', {}, ['Как работает продление и отмена?']), h('p', {}, ['Оплата картой продлевается автоматически (месяц/месяц или год/год) — отключить можно в любой момент одним письмом в поддержку, сделаем сразу. Оплата через PayPal — разовая, на выбранный срок, ничего не спишется само. В первые 7 дней вернём оплату полностью без вопросов.'])]),
-      h('details', {}, [h('summary', {}, ['Что-то пойдёт не так — я не потеряю деньги?']), h('p', {}, ['Нет. Каждая оплата сохраняется у нас вместе с кодом, а команда видит её мгновенно. Если код не сработает или потеряется — напишите в поддержку, восстановим за пару часов.'])]),
+      h('details', {}, [h('summary', {}, ['Что-то пойдёт не так — я не потеряю деньги?']), h('p', {}, ['Нет. Каждая оплата сохраняется у нас вместе с кодом, а команда видит её мгновенно. Если код не сработает или потеряется — напиши в поддержку, восстановим за пару часов.'])]),
     ]);
   }
 
@@ -749,6 +765,17 @@
     var isGift = MODE === 'gift';
     setTimeout(function () {
       track('paywall_view');
+      /* зачем: см. комментарий у mountPaypal — не рисуем PayPal в валюте по умолчанию,
+         пока серверные цены (а с ними валюта) не пришли; applyRemotePricePayload сам вызовет монтаж. */
+      if (!remotePrices && cfg().pricesEndpoint) {
+        console.log('[PAYWALL] PayPal отложен до ответа цен (запас 2500 мс)');
+        clearTimeout(paypalDeferTimer);
+        paypalDeferTimer = setTimeout(function () {
+          console.log('[PAYWALL] цены не пришли за 2500 мс — монтируем PayPal в валюте по умолчанию', remoteCurrency);
+          mountPaypal();
+        }, 2500);
+        return;
+      }
       mountPaypal();
     }, 0);
     var emailInput = h('input', { id: 'qpay-email', type: 'email', autocomplete: 'email', placeholder: 'you@example.com' });
@@ -766,7 +793,7 @@
       ]),
       h('div', { class: 'qpay-fields' }, [
         h('div', { class: 'field' }, [
-          h('label', { for: 'qpay-email' }, [isGift ? 'Ваш email — сюда придёт код и чек' : 'Email — для чека и активации']),
+          h('label', { for: 'qpay-email' }, [isGift ? 'Твой email — сюда придёт код и чек' : 'Email — для чека и активации']),
           emailInput,
         ]),
         isGift ? null : h('div', { class: 'field' }, [
@@ -777,7 +804,7 @@
       ruBanner(),
       h('div', { class: 'qguarantee' }, [
         h('span', {}, ['🛡️']),
-        h('span', {}, ['7 дней гарантии: не подойдёт — вернём деньги без вопросов. Просто напишите в поддержку.']),
+        h('span', {}, ['7 дней гарантии: не подойдёт — вернём деньги без вопросов. Просто напиши в поддержку.']),
       ]),
       h('div', { class: 'qpay-buttons' }, [
         h('button', { class: 'btn-gold', type: 'button', id: 'qpay-card-btn', onclick: startCardCheckout }, ['Оплатить картой']),
@@ -789,14 +816,14 @@
         'Карта российского банка? ',
         h('a', { href: '/russia/' }, ['Оплата через Telegram →']),
       ]),
-      h('p', { class: 'qsecure' }, ['Оплата проходит на защищённых страницах Stripe / PayPal. Мы не видим и не храним данные карты. Сразу после оплаты вы получите личный код активации' + (isGift ? ' — его можно подарить.' : '.')]),
+      h('p', { class: 'qsecure' }, ['Оплата проходит на защищённых страницах Stripe / PayPal. Мы не видим и не храним данные карты. Сразу после оплаты ты получишь личный код активации' + (isGift ? ' — его можно подарить.' : '.')]),
       paywallFaq(isGift),
       isGift ? null : h('p', { class: 'qskip' }, [
-        'Пока не готовы решить? ',
+        'Пока не готов решить? ',
         h('a', {
           href: '/download/',
           onclick: function () { track('paywall_skip_download'); },
-        }, ['Скачайте приложение бесплатно →']),
+        }, ['Скачай приложение бесплатно →']),
         ' Premium подождёт.',
       ]),
       backButton(),

@@ -1,0 +1,263 @@
+/* v2/test.css — страница /english-level-test/ в стиле PhraseMan 2.0 (вариант C).
+   зачем: владелец 2026-10-15 — тест выглядит как утверждённый макет c/english-level-test.html, а работает как раньше.
+   Разметку рисуют index.html (стартовый экран) и english-level-test/app.js (вопросы, результат, сертификат);
+   их классы не менялись — здесь только оформление поверх english-level-test/styles.css (он даёт раскладку и анимации).
+   Цвет — только токены base.css. Исключение: сам сертификат (SVG/PNG из certificate.js) — своя палитра, её не трогаем. */
+
+/* ---------- сброс старого фона теста (styles.css рисовал золотую аврору и зерно) ---------- */
+/* зачем: styles.css задаёт body::before/::after как fixed-пятно и зерно; base.css их переопределяет не полностью (остались width, filter, top) */
+body::before { width: auto; border-radius: 0; filter: none; animation: none; transform: none; will-change: auto; bottom: auto; }
+body::after { top: auto; width: auto; background-color: transparent; }
+#app { z-index: auto; }
+
+/* ====================================================================== */
+/* 1. Стартовый экран (index.html, #assessment-root)                       */
+/* ====================================================================== */
+.assessment-page { padding-block: clamp(28px, 5vw, 64px) 0; }
+.assessment-intro { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.assessment-intro > div:first-child { display: grid; gap: 18px; justify-items: start; min-width: 0; }
+.assessment-intro h1 { font-size: clamp(40px, 5.4vw, 72px); }
+.assessment-intro > div:first-child > p:not(.small-note) { font-size: var(--t-l); color: var(--sec); max-width: 46ch; }
+.assessment-intro .small-note { font-size: var(--t-s); line-height: 1.55; color: var(--muted); max-width: 52ch; }
+
+.assessment-card { position: relative; display: grid; gap: 14px; padding: clamp(22px, 3vw, 34px); border-radius: 28px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow); min-width: 0;
+  backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); }
+.assessment-card > label[for="assessment-language"] { font-size: 12px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--sec); }
+.assessment-card select {
+  appearance: none; -webkit-appearance: none; width: 100%; cursor: pointer; padding-right: 44px; font-weight: 600;
+  background-color: var(--control);
+  background-image: linear-gradient(45deg, transparent 50%, var(--sec) 50%), linear-gradient(135deg, var(--sec) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; }
+.assessment-card select option { background: var(--card-solid); color: var(--text); }
+.assessment-card h2 { font-size: clamp(26px, 3vw, 36px); margin-top: 6px; }
+.assessment-card > p { color: var(--sec); font-size: var(--t-s); }
+.assessment-card .button.full { width: 100%; margin-top: 6px; }
+.assessment-consent { display: flex; align-items: flex-start; gap: 12px; font-size: var(--t-s); line-height: 1.5; color: var(--sec); font-weight: 500; cursor: pointer; }
+.assessment-consent input { flex: 0 0 20px; width: 20px; height: 20px; min-height: 20px; margin: 1px 0 0; accent-color: var(--fill); cursor: pointer; }
+#assessment-error { color: var(--bad); font-size: var(--t-s); font-weight: 600; }
+#assessment-error:empty { display: none; }
+
+/* статистика выданных сертификатов */
+.certificate-stats { display: grid; gap: 18px; width: 100%; margin-top: 14px; padding: clamp(18px, 2.4vw, 26px); border-radius: 26px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow); }
+.certificate-stats-heading { display: grid; gap: 8px; }
+.certificate-stats-heading h2 { font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -.03em; }
+.certificate-stats-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.certificate-stat { display: grid; align-content: start; gap: 8px; min-width: 0; padding: 14px; border-radius: 18px; background: var(--control); }
+.certificate-stat-flag { width: 34px; height: 24px; border-radius: 5px; object-fit: cover; display: block; }
+.certificate-stat-language { font-size: 13px; font-weight: 600; color: var(--sec); line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.certificate-stat strong { font-size: clamp(22px, 2.4vw, 30px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; font-variant-numeric: tabular-nums; color: var(--text); min-height: 32px; }
+.certificate-stat-unit { font-size: var(--t-xs); color: var(--muted); }
+.certificate-stats-status { font-size: var(--t-s); color: var(--sec); }
+
+@media (max-width: 980px) { .certificate-stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 860px) { .assessment-intro { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { .certificate-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ====================================================================== */
+/* 2. Приложение теста (#app, рисует app.js)                               */
+/* ====================================================================== */
+#production-test { padding-block: clamp(16px, 3vw, 40px) 0; }
+#app { min-height: 0; width: 100%; max-width: 720px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+#app .elt-view, #app .elt-view--instant { min-width: 0; }
+
+/* кнопки теста — пилюли 2.0, всегда контрастны карточке */
+#app .elt-btn, .elt-cert-modal .elt-btn { min-height: 52px; min-width: 0; padding: 0 26px; border-radius: 999px; border: 0; font: 700 16px/1.2 var(--font); text-align: center;
+  transition: transform 240ms var(--spring), filter 160ms, background-color 300ms var(--ease), color 300ms var(--ease); }
+#app .elt-btn:active, .elt-cert-modal .elt-btn:active { transform: scale(.97); }
+#app .elt-btn:focus-visible, .elt-cert-modal .elt-btn:focus-visible { outline: 2px solid var(--fill); outline-offset: 3px; }
+#app .elt-btn-primary, .elt-cert-modal .elt-btn-primary { background: var(--cta); color: var(--cta-ink); box-shadow: 0 10px 30px color-mix(in srgb, var(--cta) 22%, transparent); }
+#app .elt-btn-primary:hover, .elt-cert-modal .elt-btn-primary:hover { background: var(--cta); filter: brightness(1.06); transform: none; box-shadow: 0 10px 30px color-mix(in srgb, var(--cta) 28%, transparent); }
+#app .elt-btn-secondary, .elt-cert-modal .elt-btn-secondary { background: var(--tile); color: var(--text); }
+#app .elt-btn-secondary:hover, .elt-cert-modal .elt-btn-secondary:hover { background: var(--tile); filter: brightness(1.1); transform: none; }
+#app .elt-btn-ghost, .elt-cert-modal .elt-btn-ghost { background: var(--control); color: var(--sec); }
+#app .elt-btn-ghost:hover, .elt-cert-modal .elt-btn-ghost:hover { background: var(--control); color: var(--text); filter: brightness(1.1); transform: none; }
+#app .elt-btn-hero { min-width: 0; padding: 0 34px; font-size: 16px; border-radius: 999px; }
+#app .elt-btn[disabled] { opacity: .55; pointer-events: none; }
+
+/* шапка внутри теста: бренд слева, язык интерфейса справа */
+#app .elt-brand { justify-content: space-between; padding: 0 0 18px; gap: 12px; }
+#app .elt-brand-link { color: var(--text); animation: none; }
+#app .elt-brand-icon { width: 34px; height: 34px; border-radius: 10px; }
+#app .elt-brand-text b { font-size: 17px; font-weight: 800; letter-spacing: -.02em; }
+#app .elt-brand-text small { font-size: 12px; font-weight: 600; letter-spacing: .08em; color: var(--sec); }
+.elt-ui-locale-trigger { min-height: 40px; padding: 0 12px; border-radius: 999px; background: var(--control); color: var(--text); font-size: 13px; font-weight: 700; }
+.elt-ui-locale-trigger:hover { background: var(--control); filter: brightness(1.12); }
+.elt-ui-locale-trigger:focus-visible { outline: 2px solid var(--fill); }
+.elt-ui-locale-flag { width: 24px; height: 16px; border-radius: 3px; overflow: hidden; box-shadow: none; }
+.elt-ui-locale-flag img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.elt-ui-locale-panel { background: var(--card-solid); border-radius: 20px; padding: 8px; width: 220px; box-shadow: var(--shadow); border: 1px solid var(--edge); }
+.elt-ui-locale-option { padding: 10px 12px; border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text); }
+.elt-ui-locale-option:hover, .elt-ui-locale-option:focus-visible { background: var(--control); }
+.elt-ui-locale-option--active { background: var(--tile); color: var(--text); }
+
+/* ---------- лендинг теста (виден после «Пройти ещё раз») ---------- */
+.elt-landing { min-height: 0; overflow: visible; }
+.elt-landing::before, .elt-cta::before { display: none; }
+.elt-hero { max-width: none; padding: 8px 0 24px; text-align: center; }
+.elt-hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -.035em; line-height: 1.05; margin: 8px 0 18px; animation: none; }
+.elt-language-selector { max-width: none; margin-top: 18px; }
+.elt-language-selector-title { font-size: 12px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--sec); margin-bottom: 14px; }
+.elt-language-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 10px; }
+.elt-language-option { width: auto; min-height: 104px; padding: 14px 8px; border-radius: 20px; background: var(--control); color: var(--text); gap: 10px; justify-content: center; border: 0; }
+.elt-language-option:hover { background: var(--control); filter: brightness(1.12); transform: none; }
+.elt-language-flag { width: 52px; height: 36px; border-radius: 8px; box-shadow: none; overflow: hidden; }
+.elt-language-flag img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.elt-language-name { font-size: 14px; font-weight: 700; }
+.elt-language-option--active { background: var(--cta); color: var(--cta-ink); }
+.elt-language-option--active:hover { background: var(--cta); }
+.elt-language-option--active .elt-language-flag { box-shadow: none; transform: none; }
+.elt-language-option:focus-visible { outline: 2px solid var(--fill); outline-offset: 3px; }
+.elt-counter { margin: 24px auto 22px; animation: none; }
+.elt-counter-value { font-size: clamp(36px, 6vw, 52px); font-weight: 800; letter-spacing: -.04em; color: var(--text); }
+.elt-counter-label { font-size: var(--t-s); text-transform: none; letter-spacing: 0; color: var(--sec); max-width: 36ch; }
+.elt-consent { max-width: 420px; font-size: var(--t-s); line-height: 1.5; color: var(--sec); animation: none; margin-top: 16px; }
+.elt-consent input { width: 20px; height: 20px; min-width: 20px; min-height: 20px; accent-color: var(--fill); }
+.elt-preview { max-width: none; padding: clamp(16px, 3vw, 28px); margin: 18px 0 0; gap: clamp(18px, 3vw, 32px); border-radius: 26px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow); animation: none; }
+.elt-preview-cert { border-radius: 12px; box-shadow: var(--shadow); }
+.elt-preview-text h2 { font-size: clamp(22px, 2.4vw, 28px); letter-spacing: -.03em; }
+.elt-preview-text p { color: var(--sec); font-size: var(--t-s); }
+.elt-trust { gap: 10px; padding: 0; margin-top: 18px; animation: none; }
+.elt-trust li { padding: 0 18px; min-height: 44px; border: 0; border-radius: 999px; background: var(--control); color: var(--text); font-size: var(--t-s); font-weight: 600; }
+.elt-trust svg { width: 16px; height: 16px; color: var(--good); }
+.elt-final-cta { padding: 32px 0 8px; animation: none; }
+.elt-final-cta h2 { font-size: clamp(24px, 3vw, 34px); letter-spacing: -.03em; margin-bottom: 18px; }
+.elt-footer { padding: 22px 0 8px; margin-top: 28px; border-top: 1px solid var(--track); gap: 8px 22px; }
+.elt-footer a { color: var(--muted); font-size: 13px; }
+.elt-footer a:hover { color: var(--text); }
+@media (max-width: 820px) { .elt-preview { flex-direction: column; align-items: stretch; text-align: center; } .elt-preview-card { max-width: none; } .elt-preview-text p { margin-inline: auto; } }
+
+/* ---------- экран вопроса ---------- */
+.elt-test { max-width: none; margin: 0; padding: clamp(20px, 3.4vw, 34px); border-radius: 28px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow);
+  backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); }
+.elt-progress-bar { height: 6px; border-radius: 999px; background: var(--track); margin-bottom: 18px; }
+.elt-progress-fill { border-radius: 999px; background: var(--fill); animation: none; }
+.elt-question-meta { min-height: 48px; margin-bottom: 6px; font-size: 13px; font-weight: 700; letter-spacing: .11em; color: var(--sec); }
+/* кольцевой таймер 45 с: сам круг рисует SVG, цвета — токены; ≤10 c — красный */
+.elt-timer { width: 48px; height: 48px; }
+.elt-timer-track { stroke: var(--track); }
+.elt-timer-ring { stroke: var(--fill); }
+.elt-timer b { font-size: 15px; font-weight: 800; color: var(--text); }
+.elt-timer--low .elt-timer-ring { stroke: var(--bad); }
+.elt-timer--low b { color: var(--bad); }
+.elt-timer-note { color: var(--muted); font-size: var(--t-xs); }
+.elt-scenario { font-size: 13px; font-weight: 700; letter-spacing: .11em; color: var(--sec); margin-bottom: 10px; }
+.elt-instruction { font-size: clamp(19px, 2.2vw, 23px); font-weight: 700; letter-spacing: -.02em; line-height: 1.35; margin-bottom: 14px; color: var(--text); }
+.elt-stimulus { padding: 16px 18px; border: 0; border-radius: 18px; background: var(--control); color: var(--text); font-size: 17px; font-weight: 500; line-height: 1.55; margin-bottom: 20px; }
+.elt-options { gap: 10px; margin-bottom: 22px; }
+.elt-option { gap: 14px; padding: 12px 16px 12px 12px; min-height: 60px; border: 0; border-radius: 20px; background: var(--control); box-shadow: none; color: var(--text); font: 600 16px/1.35 var(--font); }
+.elt-option-text { min-width: 0; overflow-wrap: anywhere; }
+.elt-option-letter { width: 36px; height: 36px; border-radius: 12px; background: var(--tile); color: var(--text); font-size: 14px; font-weight: 800; }
+@media (hover: hover) {
+  .elt-option:hover { background: var(--tile); box-shadow: none; transform: none; }
+  .elt-option:hover .elt-option-letter { background: var(--cta); color: var(--cta-ink); }
+}
+.elt-option:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+.elt-option--picked, .elt-option--picked:hover { background: var(--cta); color: var(--cta-ink); box-shadow: none; transform: scale(.985); }
+.elt-option--picked .elt-option-letter, .elt-option--picked:hover .elt-option-letter { background: color-mix(in srgb, var(--cta-ink) 18%, transparent); color: var(--cta-ink); }
+.elt-option[disabled] { cursor: default; }
+.elt-actions { gap: 10px; }
+#app .elt-actions .elt-btn { flex: 1 1 140px; width: auto; }
+.elt-report-trigger-wrap { margin-top: 6px; }
+.elt-report-trigger { color: var(--sec); font-size: 13px; font-weight: 600; text-decoration-color: color-mix(in srgb, var(--sec) 50%, transparent); }
+.elt-report-trigger:hover { color: var(--text); }
+.elt-report-trigger:focus-visible { outline: 2px solid var(--fill); }
+
+/* ---------- загрузка и ошибка ---------- */
+.elt-loading, .elt-error { flex-direction: column; gap: 10px; min-height: 40vh; padding: 28px; border-radius: 28px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow); color: var(--sec); font-size: var(--t-m); }
+.elt-loading h1, .elt-error h1 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -.03em; }
+.elt-error { color: var(--sec); }
+.elt-error h1 { color: var(--bad); }
+#app .elt-error .elt-btn { width: auto; min-width: 180px; }
+
+/* ---------- окно «Сообщить об ошибке» ---------- */
+.elt-report-backdrop, .elt-cert-backdrop { background: color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.elt-report-panel { padding: 28px; border: 1px solid var(--edge); border-radius: 28px; background: var(--card-solid); box-shadow: var(--shadow); color: var(--text); }
+.elt-report-panel h2 { font-size: 24px; letter-spacing: -.03em; line-height: 1.2; }
+.elt-report-form-view > p, .elt-report-status-text { color: var(--sec); font-size: var(--t-s); }
+.elt-report-close, .elt-cert-close { top: 12px; right: 12px; min-width: 40px; min-height: 40px; width: 40px; height: 40px; border-radius: 50%; background: var(--control); color: var(--text); font-size: 24px; font-weight: 400; transition: filter 160ms; }
+.elt-report-close:hover, .elt-cert-close:hover { filter: brightness(1.15); color: var(--text); }
+.elt-report-close:focus-visible, .elt-cert-close:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+.elt-report-label { font-size: 13px; font-weight: 600; color: var(--sec); }
+.elt-report-input { border: 1px solid transparent; border-radius: 16px; background: var(--control); color: var(--text); padding: 14px 16px; font: 500 16px/1.45 var(--font); }
+.elt-report-input:focus-visible { border-color: color-mix(in srgb, var(--fill) 60%, transparent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--fill) 16%, transparent); }
+.elt-report-input[aria-invalid="true"] { border-color: var(--bad); }
+.elt-report-hint { color: var(--muted); font-size: var(--t-xs); }
+.elt-report-error { color: var(--bad); font-size: var(--t-s); font-weight: 600; }
+.elt-report-cancel, .elt-report-submit, .elt-report-status-close { min-height: 48px; padding: 0 24px; border-radius: 999px; border: 0; font: 700 15px/1 var(--font); transition: filter 160ms, transform 240ms var(--spring); }
+.elt-report-cancel:active, .elt-report-submit:active, .elt-report-status-close:active { transform: scale(.97); }
+.elt-report-cancel { background: var(--control); color: var(--text); }
+.elt-report-submit, .elt-report-status-close { background: var(--cta); color: var(--cta-ink); }
+.elt-report-cancel:hover, .elt-report-submit:hover, .elt-report-status-close:hover { filter: brightness(1.08); }
+.elt-report-cancel:focus-visible, .elt-report-submit:focus-visible, .elt-report-status-close:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+
+/* ---------- результат ---------- */
+.elt-result { min-height: 0; padding: 0; justify-content: flex-start; align-items: stretch; }
+.elt-result-card { max-width: none; padding: clamp(24px, 4vw, 40px); border: 1px solid var(--edge); border-radius: 28px; background: var(--card); box-shadow: var(--shadow); text-align: center;
+  backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); }
+.elt-level-badge { font-size: clamp(96px, 20vw, 168px); font-weight: 800; letter-spacing: -.05em; line-height: .95; color: var(--text); margin: 6px 0 8px; animation: countUp .5s .2s both var(--ease); }
+.elt-result-card h2 { font-size: var(--t-l); font-weight: 600; letter-spacing: -.01em; color: var(--sec); margin-bottom: 24px; line-height: 1.3; }
+.elt-result-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 26px; }
+.elt-stat { padding: 16px 8px; border-radius: 20px; background: var(--control); min-width: 0; }
+.elt-stat-value { font-size: clamp(22px, 3vw, 30px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--text); }
+.elt-stat-label { font-size: 12px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--sec); margin-top: 6px; line-height: 1.25; text-align: center; }
+.elt-name-section { display: grid; gap: 10px; margin: 0; }
+.elt-name-section label { text-align: left; }
+.elt-name-section input { width: 100%; margin: 0; padding: 0 16px; border: 1px solid transparent; border-radius: 14px; background: var(--control); color: var(--text); font: 500 16px/1.4 var(--font); }
+.elt-name-section input:focus-visible { border-color: color-mix(in srgb, var(--fill) 60%, transparent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--fill) 16%, transparent); }
+#app .elt-name-section .elt-btn-primary { width: 100%; }
+.elt-pitch { margin-top: 22px; padding: 20px; border: 0; border-radius: 22px; background: var(--control); }
+.elt-pitch-icon { width: 40px; height: 40px; border-radius: 12px; }
+.elt-pitch-title b { font-size: 17px; font-weight: 800; letter-spacing: -.02em; }
+.elt-pitch-title small { font-size: 12px; font-weight: 700; letter-spacing: .11em; color: var(--sec); }
+.elt-pitch-text { font-size: var(--t-s); color: var(--text); margin-bottom: 12px; }
+.elt-pitch-list li { font-size: var(--t-s); color: var(--sec); margin-bottom: 6px; }
+.elt-pitch-list li::before { color: var(--good); }
+.elt-share { gap: 10px; margin-top: 18px; }
+#app .elt-share .elt-btn { flex: 1 1 180px; width: auto; }
+
+/* кнопки магазинов (рисует app.js): заливка CTA, текст контрастный */
+.elt-store-badges { gap: 10px; }
+.elt-store-badge { min-height: 56px; padding: 8px 20px 8px 16px; border: 0; border-radius: 18px; background: var(--cta); color: var(--cta-ink); }
+.elt-store-badge:hover { transform: none; box-shadow: none; filter: brightness(1.08); }
+.elt-store-badge:focus-visible { outline: 2px solid var(--fill); outline-offset: 3px; }
+.elt-store-badge svg { fill: currentColor; }
+.elt-store-badge small { color: color-mix(in srgb, var(--cta-ink) 72%, transparent); font-size: 11px; }
+.elt-store-badge b { font-size: 16px; font-weight: 800; }
+.elt-store-badges--compact .elt-store-badge { min-height: 52px; }
+
+/* ---------- экран «следующий шаг» ---------- */
+.elt-cta { min-height: 0; overflow: visible; }
+.elt-cta-main { padding: clamp(28px, 4vw, 44px); max-width: none; border-radius: 28px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow); justify-content: flex-start; }
+.elt-cta-level { font-size: clamp(88px, 18vw, 140px); font-weight: 800; letter-spacing: -.05em; line-height: .95; color: var(--text); margin-bottom: 16px; animation: countUp .5s .15s both var(--ease); }
+.elt-cta-main h1 { font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -.035em; }
+.elt-cta-text { color: var(--sec); font-size: var(--t-m); }
+.elt-cta-secondary { gap: 10px; }
+#app .elt-cta-secondary .elt-btn { min-height: 44px; padding: 0 18px; font-size: 14px; width: auto; }
+
+/* ---------- сертификат: окно ---------- */
+.elt-cert-modal { padding: 16px; }
+.elt-cert-container { padding: clamp(22px, 3vw, 32px); border: 1px solid var(--edge); border-radius: 28px; background: var(--card-solid); box-shadow: var(--shadow); color: var(--text); }
+.elt-cert-langs { gap: 6px; margin-bottom: 12px; }
+.elt-cert-lang-btn { min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--control); color: var(--sec); font: 600 13px/1 var(--font); transition: background-color 160ms, color 160ms, transform 240ms var(--spring); }
+.elt-cert-lang-btn.active { background: var(--cta); color: var(--cta-ink); box-shadow: none; }
+@media (hover: hover) { .elt-cert-lang-btn:hover:not(.active) { border-color: transparent; transform: none; color: var(--text); } }
+.elt-cert-close:focus-visible, .elt-cert-lang-btn:focus-visible, .elt-cert-theme-btn:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+.elt-cert-themes { gap: 8px; margin-bottom: 16px; }
+/* превью тем сертификата: цветной кружок (цвет самой темы сертификата) + название */
+.elt-cert-theme-btn { min-height: 44px; gap: 8px; padding: 0 16px 0 10px; border: 0; border-radius: 999px; background: var(--control); color: var(--sec); font: 600 13px/1 var(--font); transition: background-color 160ms, color 160ms; }
+.elt-cert-theme-btn:hover { border-color: transparent; transform: none; color: var(--text); }
+.elt-cert-theme-btn.active { background: var(--cta); color: var(--cta-ink); box-shadow: none; }
+.elt-cert-theme-swatch { width: 22px; height: 22px; box-shadow: 0 0 0 2px var(--card-solid); }
+.elt-cert-wrap svg, .elt-cert-save-link img { border-radius: 10px; box-shadow: var(--shadow); }
+.elt-cert-cta { margin-top: 18px; padding: 14px 18px; border: 0; border-radius: 20px; background: var(--control); }
+.elt-cert-cta-text { font-size: var(--t-s); color: var(--text); }
+.elt-cert-actions { gap: 10px; }
+.elt-cert-modal .elt-cert-actions .elt-btn { width: auto; flex: 1 1 150px; }
+.elt-cert-save-hint { color: var(--sec); }
+@media (max-width: 560px) { .elt-cert-actions .elt-btn { flex-basis: 100%; } }
+
+@media (max-width: 480px) {
+  .elt-result-details { gap: 8px; }
+  .elt-stat { padding: 14px 4px; }
+  #app .elt-btn-hero { width: 100%; padding: 0 20px; }
+}

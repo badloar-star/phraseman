@@ -1,0 +1,253 @@
+/* PhraseMan 2.0 — основа сайта (владелец 2026-10-15: «вариант C — живые темы» на весь сайт).
+   зачем: заменяет старый оформительский слой (approved/site|cinema|product|edition|world|voice|production.css)
+   на страницах, где он был; разметка и скрипты страниц не меняются — стили цепляются за те же классы.
+   Цвет только через токены (11 тем × тёмная/светлая × насыщенность, задаёт v2/theme.js).
+   Эталон вида — docs/design/site-2.0/c/*.html. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --wrap: 1160px;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --spring: cubic-bezier(.3,1.4,.5,1);
+  --t-xs: 13px; --t-s: 15px; --t-m: 16px; --t-l: clamp(18px, 1.5vw, 20px);
+  --t-h3: 22px; --t-h2: clamp(32px, 4.4vw, 54px); --t-h1: clamp(44px, 7vw, 88px);
+  /* тема по умолчанию — «Аврора», 60 % (до загрузки theme.js) */
+  --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; --k: .6;
+  --good: #6FD08C; --bad: #F2766B;
+}
+:root, :root[data-mode="dark"] {
+  color-scheme: dark;
+  --bg: #0B0C0E; --bg-top: #111317;
+  --text: #FFFFFF; --sec: #A3A6AE; --muted: #80838B;
+  --card: color-mix(in srgb, var(--acc) calc(var(--k) * 10%), rgba(24,24,27,.72));
+  --card-solid: color-mix(in srgb, var(--acc) calc(var(--k) * 10%), #18181B);
+  --edge: color-mix(in srgb, var(--acc) calc(var(--k) * 30%), rgba(255,255,255,.09));
+  --cta: color-mix(in srgb, var(--acc) calc(var(--k) * 100%), #F2F1F6);
+  --cta-ink: var(--on);
+  --tile: color-mix(in srgb, var(--acc) calc(var(--k) * 16%), #2A2A2C);
+  --control: color-mix(in srgb, var(--acc) calc(var(--k) * 8%), #2C2D33);
+  --fill: color-mix(in srgb, var(--acc) calc(var(--k) * 100%), #FFFFFF);
+  --track: rgba(255,255,255,.12);
+  --sheet: color-mix(in srgb, var(--acc) calc(var(--k) * 6%), #1B1B1D);
+  --glow-op: calc(.08 + .62 * var(--k));
+  --smoke: rgba(255,255,255,.06);
+  --shadow: 0 30px 80px rgba(0,0,0,.45);
+  --bar: color-mix(in srgb, var(--acc) calc(var(--k) * 8%), rgba(18,18,21,.92));
+  --page-bg: var(--bg);
+  --phone-rim: #1A1B1F;
+}
+:root[data-mode="light"] {
+  color-scheme: light;
+  --bg: #F6F6F8; --bg-top: color-mix(in srgb, var(--g1) calc(var(--k) * 22%), #F6F6F8);
+  --text: #111114; --sec: #5C5C63; --muted: #6E6E75;
+  --card: #FFFFFF; --card-solid: #FFFFFF;
+  --edge: transparent;
+  --cta: color-mix(in srgb, var(--acc) calc(var(--k) * 100%), #1C1C1F);
+  --cta-ink: #FFFFFF;
+  --tile: color-mix(in srgb, var(--acc) calc(var(--k) * 40%), #F0F0F3);
+  --control: #ECECEF;
+  --fill: #1C1C1F;
+  --track: rgba(0,0,0,.08);
+  --sheet: #FFFFFF;
+  --glow-op: 0;
+  --smoke: transparent;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 18px 40px rgba(17,17,20,.08);
+  --bar: rgba(255,255,255,.9);
+  --page-bg: linear-gradient(180deg, var(--bg-top), color-mix(in srgb, var(--g2) calc(var(--k) * 20%), #F6F6F8) 1400px, #F6F6F8 2600px);
+  --good: #1E8A47; --bad: #C2382C;
+  --phone-rim: #E4E4E8;
+}
+
+/* ---------- база ---------- */
+/* зачем: на этом правиле держатся этапы теста, оплаты и формы (старые site.css/production.css его задавали) */
+[hidden] { display: none !important; }
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; }
+body { margin: 0; position: relative; isolation: isolate; min-height: 100vh; background: var(--bg); background-image: var(--page-bg); color: var(--text);
+  font-family: var(--font); font-size: var(--t-m); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+/* световые пятна темы — как V2Backdrop приложения (A сверху-слева, B справа) */
+body::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1200px; z-index: -1; pointer-events: none; opacity: var(--glow-op);
+  background: radial-gradient(70% 55% at 8% 0%, var(--g1), transparent 62%), radial-gradient(60% 55% at 100% 45%, var(--g2), transparent 66%); }
+body::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 900px; z-index: -1; pointer-events: none; opacity: calc(var(--glow-op) * .8);
+  background: radial-gradient(70% 50% at 30% 100%, var(--g1), transparent 70%), radial-gradient(50% 45% at 95% 80%, var(--g2), transparent 70%); }
+img, svg, video { max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--font); font-weight: 800; text-wrap: balance; letter-spacing: -.03em; line-height: 1.05; color: var(--text); }
+h1 { font-size: var(--t-h1); letter-spacing: -.04em; line-height: .98; }
+h2 { font-size: var(--t-h2); }
+h3 { font-size: var(--t-h3); letter-spacing: -.02em; line-height: 1.2; }
+/* вторая строка заголовков (<em>) — серым, без курсива и засечек: так в 2.0 */
+h1 em, h2 em, h3 em { font-style: normal; color: var(--sec); font-family: inherit; font-weight: inherit; }
+p { margin: 0; text-wrap: pretty; }
+p, li { color: inherit; }
+::selection { background: color-mix(in srgb, var(--fill) 35%, transparent); }
+:focus-visible { outline: 2px solid var(--fill); outline-offset: 3px; border-radius: 8px; }
+.container { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.skip { position: absolute; left: -999px; top: 8px; z-index: 60; }
+.skip:focus { left: 16px; background: var(--cta); color: var(--cta-ink); padding: 8px 14px; border-radius: 10px; }
+.desktop-only { display: inline; }
+@media (max-width: 700px) { .desktop-only { display: none; } }
+
+/* мелкий надзаголовок (как «ФРАЗА ДНЯ» в приложении) */
+.eyebrow, .kicker, .chapter-number { display: inline-block; font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--sec); font-family: var(--font); }
+
+/* декоративные миры старого стиля (лес, солнце, параллакс) — в 2.0 их место занимает свечение темы */
+.world, .hero-shade, .gift-shade, .scene-shade, .voice-shade, .world-plane { display: none !important; }
+
+/* ---------- кнопки: пилюля 2.0, всегда контрастна фону ---------- */
+.button, .btn, .btn-gold, .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px;
+  font: 700 16px/1 var(--font); letter-spacing: 0; text-transform: none; cursor: pointer; border: 0; white-space: nowrap; text-decoration: none;
+  transition: transform 240ms var(--spring), filter 160ms, background-color 300ms var(--ease), color 300ms var(--ease); }
+.button:active, .btn:active, .btn-gold:active { transform: scale(.97); transition-duration: 90ms; }
+.button.primary, .btn-gold, .btn-primary, button.primary { background: var(--cta); color: var(--cta-ink); box-shadow: 0 10px 30px color-mix(in srgb, var(--cta) 22%, transparent); }
+.button.primary:hover, .btn-gold:hover, .btn-primary:hover { filter: brightness(1.06); }
+.button.secondary, .button.ghost, .btn-outline { background: var(--control); color: var(--text); box-shadow: none; }
+.button.secondary:hover, .btn-outline:hover { filter: brightness(1.12); }
+.button.small { min-height: 40px; padding: 0 18px; font-size: 14px; }
+.button > span[aria-hidden="true"] { transition: transform 240ms var(--ease); }
+.button:hover > span[aria-hidden="true"] { transform: translateX(3px); }
+.button[disabled], .btn-gold[disabled], button.primary[disabled] { opacity: .55; pointer-events: none; }
+.text-link { display: inline-flex; align-items: center; gap: 6px; color: var(--sec); font-weight: 600; font-size: var(--t-s); transition: color 160ms; }
+.text-link:hover { color: var(--text); }
+
+/* ---------- шапка: матовая капсула ---------- */
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; padding-block: 12px; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+/* зачем: .container даёт width:100% — вместе с боковыми отступами капсула вылезала за край (768px → 783) */
+.site-header .nav-row { width: auto; display: flex; align-items: center; gap: 18px; height: 60px; padding: 0 10px 0 22px !important; max-width: calc(var(--wrap) - 2 * clamp(16px, 4vw, 40px));
+  margin-inline: auto; border-radius: 999px; background: var(--bar); border: 1px solid var(--edge); box-shadow: var(--shadow); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
+@media (max-width: 1240px) { .site-header .nav-row { margin-inline: clamp(16px, 4vw, 40px); } }
+.site-header .brand { display: flex; align-items: center; gap: 0; font-weight: 800; font-size: 19px; letter-spacing: -.02em; color: var(--text); font-family: var(--font); flex: none; }
+.site-header .brand img, .footer .brand img { display: none; } /* золотой знак — не в стиле 2.0; остаётся слово «phraseman» */
+.brand-tail { color: var(--sec); }
+#main-nav { display: flex; gap: 2px; margin-left: auto; align-items: center; }
+#main-nav a { font-size: 14px; font-weight: 500; color: var(--sec); padding: 9px 12px; border-radius: 999px; transition: color 160ms, background-color 160ms; font-family: var(--font); text-transform: none; letter-spacing: 0; }
+#main-nav a:hover, #main-nav a[aria-current="page"] { color: var(--text); background: var(--control); }
+.site-header .nav-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+.site-header .language { display: inline-flex; align-items: center; gap: 4px; font: 600 13px/1 var(--font); color: var(--sec); padding: 10px 12px; border-radius: 999px; background: var(--control); }
+.site-header .language:hover { color: var(--text); }
+.site-header .nav-actions .button.small { background: var(--cta); color: var(--cta-ink); min-height: 40px; padding: 0 16px; font-size: 14px; }
+.site-header .nav-actions .button.small > span { display: none; }
+.menu-button { display: none !important; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--control) !important; color: var(--text); align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+.menu-button svg { width: 20px; height: 20px; }
+.site-language-menu { position: absolute; top: calc(100% + 4px); right: max(16px, calc((100vw - var(--wrap)) / 2 + 40px)); z-index: 40; min-width: 220px; padding: 8px; display: grid; gap: 2px;
+  border-radius: 20px; background: var(--card-solid); border: 1px solid var(--edge); box-shadow: var(--shadow); }
+.site-language-menu[hidden] { display: none; }
+.site-language-menu button { border: 0; background: transparent; color: var(--text); font: 600 15px/1 var(--font); text-align: left; padding: 13px 14px; border-radius: 12px; cursor: pointer; }
+.site-language-menu button:hover, .site-language-menu button.active { background: var(--control); }
+
+/* кнопка и всплывашка темы (добавляет v2/theme.js) */
+.v2-theme-btn { width: 40px; height: 40px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; display: grid; place-items: center; background: var(--control); flex: none; transition: transform 240ms var(--spring); }
+.v2-theme-btn:active { transform: scale(.92); }
+.v2-theme-btn i { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, var(--g1), var(--g2)); box-shadow: 0 0 0 2px var(--card-solid); }
+:root[data-mode="light"] .v2-theme-btn i { box-shadow: 0 0 0 2px #fff; }
+.v2-theme-pop { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 84px); right: max(16px, calc((100vw - var(--wrap)) / 2 + 40px)); z-index: 45; width: min(340px, calc(100vw - 32px));
+  padding: 18px; border-radius: 24px; display: grid; gap: 14px; background: var(--card-solid); border: 1px solid var(--edge); box-shadow: var(--shadow);
+  transform-origin: top right; transition: opacity 220ms var(--ease), transform 260ms var(--ease); }
+.v2-theme-pop[hidden] { display: grid !important; opacity: 0; transform: scale(.96) translateY(-6px); pointer-events: none; visibility: hidden; }
+.v2-pop-label { font-size: 12px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--sec); }
+.v2-swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; justify-items: center; }
+.v2-sw { width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer; padding: 0; position: relative; transition: transform 240ms var(--spring); }
+.v2-sw:hover { transform: scale(1.08); }
+.v2-sw[aria-pressed="true"]::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid var(--text); }
+.v2-seg { display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 14px; background: var(--control); }
+.v2-seg button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; background: transparent; color: var(--sec); font: 600 14px/1 var(--font); height: 38px; border-radius: 11px; cursor: pointer; }
+.v2-seg button svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.v2-seg button[aria-pressed="true"] { background: var(--card-solid); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+.v2-range { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; color: var(--sec); }
+.v2-range input { flex: 1; accent-color: var(--fill); height: 28px; min-width: 0; }
+.v2-range b { font-size: 14px; min-width: 40px; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 980px) {
+  .menu-button { display: inline-flex !important; }
+  #main-nav { display: none; position: absolute; top: calc(100% + 4px); left: clamp(16px, 4vw, 40px); right: clamp(16px, 4vw, 40px); z-index: 40; flex-direction: column; align-items: stretch;
+    padding: 10px; gap: 2px; border-radius: 24px; background: var(--card-solid); border: 1px solid var(--edge); box-shadow: var(--shadow); }
+  #main-nav.open { display: flex; }
+  #main-nav a { font-size: 17px; font-weight: 600; color: var(--text); padding: 14px 16px; border-radius: 14px; }
+  .site-header .nav-row { position: relative; }
+}
+@media (max-width: 520px) {
+  .site-header .nav-row { height: 54px; padding: 0 7px 0 16px !important; gap: 8px; }
+  .site-header .language { display: none; }
+  .site-header .nav-actions .button.small { padding: 0 13px; font-size: 13px; }
+  .v2-theme-btn, .menu-button { width: 36px; height: 36px; }
+}
+/* зачем: на ≤440px бренд + тема + «Начать бесплатно» + меню не помещались в капсулу */
+@media (max-width: 440px) {
+  .site-header .nav-row { gap: 6px; padding: 0 6px 0 14px !important; }
+  .site-header .brand { font-size: 17px; }
+  .site-header .nav-actions { gap: 6px; }
+  .site-header .nav-actions .button.small { padding: 0 11px; font-size: 12.5px; min-height: 36px; }
+  .v2-theme-btn, .menu-button { width: 34px; height: 34px; }
+}
+
+/* ---------- стекло 2.0: карточка + кромка 1px + дымка внутри ---------- */
+.v2-glass, .glass { position: relative; background: var(--card); border: 1px solid var(--edge); border-radius: 24px; box-shadow: var(--shadow); isolation: isolate; overflow: hidden;
+  backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); }
+.v2-glass::before, .glass::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(55% 75% at var(--sx, 18%) var(--sy, 0%), var(--smoke), transparent 72%); }
+
+/* ---------- вопросы-ответы (details/summary) ---------- */
+.faq-list, .qfaq-mini { border-radius: 26px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow); padding: 6px 0; }
+.faq-list details, .qfaq-mini details { border-bottom: 1px solid var(--track); margin: 0 24px; }
+.faq-list details:last-child, .qfaq-mini details:last-child { border-bottom: 0; }
+.faq-list summary, .qfaq-mini summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; cursor: pointer; font-weight: 700; font-size: var(--t-m); color: var(--text); font-family: var(--font); }
+.faq-list summary::-webkit-details-marker, .qfaq-mini summary::-webkit-details-marker { display: none; }
+.faq-list summary span[aria-hidden="true"] { width: 32px; height: 32px; border-radius: 50%; background: var(--control); display: grid; place-items: center; flex: none; font-size: 18px; font-weight: 500; color: var(--text); transition: transform 300ms var(--ease); }
+.faq-list details[open] summary span[aria-hidden="true"] { transform: rotate(45deg); }
+.faq-list details p, .qfaq-mini details p { color: var(--sec); font-size: var(--t-s); line-height: 1.6; padding: 0 56px 22px 0; max-width: 70ch; }
+@media (max-width: 540px) { .faq-list details, .qfaq-mini details { margin: 0 18px; } .faq-list details p { padding-right: 0; } }
+
+/* ---------- поля ввода 2.0 ---------- */
+input[type="text"], input[type="email"], input[type="search"], input[type="tel"], input[type="url"], input:not([type]), select, textarea {
+  font: 500 16px/1.4 var(--font); color: var(--text); background: var(--control); border: 1px solid transparent; border-radius: 14px; min-height: 52px; padding: 0 16px; outline: none;
+  transition: border-color 160ms, box-shadow 160ms, background-color 160ms; }
+textarea { padding: 14px 16px; min-height: 130px; }
+input::placeholder, textarea::placeholder { color: var(--muted); }
+input:focus, select:focus, textarea:focus { border-color: color-mix(in srgb, var(--fill) 60%, transparent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--fill) 16%, transparent); }
+label:not([class]) { color: var(--sec); font-size: 13px; font-weight: 600; } /* зачем: label-карточки (планы) не должны сереть */
+
+/* ---------- подвал ---------- */
+.footer { padding-block: 64px 48px; margin-top: clamp(48px, 8vw, 96px); border-top: 1px solid var(--track); background: transparent !important; color: var(--text); }
+.footer .footer-top { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 3fr); gap: 32px; }
+.footer .footer-top > div:first-child p { color: var(--sec); font-size: var(--t-s); margin-top: 14px; }
+.footer .brand { display: inline-flex; font-weight: 800; font-size: 19px; letter-spacing: -.02em; color: var(--text); }
+.footer .footer-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.footer .footer-links > div { display: grid; gap: 10px; align-content: start; font-size: var(--t-s); }
+.footer .footer-links b { font-size: var(--t-xs); color: var(--muted); font-weight: 600; margin-bottom: 4px; text-transform: none; letter-spacing: 0; }
+.footer .footer-links a { color: var(--sec); transition: color 160ms; }
+.footer .footer-links a:hover { color: var(--text); }
+.footer .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 24px; margin-top: 56px; font-size: var(--t-xs); color: var(--muted); }
+.footer .footer-bottom div { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.footer .footer-bottom a:hover { color: var(--text); }
+@media (max-width: 860px) { .footer .footer-top { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 540px) { .footer .footer-links { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- окно cookies (stats.js) ---------- */
+#pm-cookie-consent { background: var(--card-solid) !important; color: var(--text) !important; border: 1px solid var(--edge) !important; border-radius: 24px !important; box-shadow: var(--shadow) !important; font-family: var(--font) !important; }
+#pm-cookie-consent a { color: var(--fill) !important; }
+#pm-cookie-consent button { font-family: var(--font) !important; border-radius: 999px !important; min-height: 40px; padding: 0 18px !important; font-weight: 700 !important; border: 0 !important; }
+#pm-cookie-consent button:first-of-type { background: var(--cta) !important; color: var(--cta-ink) !important; }
+#pm-cookie-consent button + button { background: var(--control) !important; color: var(--text) !important; }
+
+/* ---------- токены общей «рантайм»-системы (квиз/пейвол/тест/подарок) → тема 2.0 ---------- */
+.runtime-surface, :root[data-mode] .runtime-surface {
+  --accent-1: color-mix(in srgb, var(--fill) 30%, transparent);
+  --accent-2: var(--cta); --accent-3: var(--cta); --accent-ink: var(--cta-ink); --accent-text: var(--fill);
+  --star-color: var(--fill);
+  /* зачем: --bg/--text у рантайма свои имена — ссылка на одноимённую переменную дала бы цикл, поэтому литералы по режиму */
+  --bg: transparent; --surface: var(--card-solid); --surface-2: var(--control);
+  --text: #FFFFFF; --text-muted: var(--sec); --text-dim: var(--muted);
+  --border: var(--edge); --border-hi: color-mix(in srgb, var(--fill) 55%, transparent);
+  --shadow-sm: none; --shadow-md: var(--shadow); --shadow-lg: var(--shadow);
+  --font-body: var(--font); --font-heading: var(--font);
+  --radius: 20px; --radius-lg: 28px; --radius-sm: 14px; --radius-full: 999px;
+  font-family: var(--font); color: var(--text);
+}
+:root[data-mode="light"] .runtime-surface { --text: #111114; }
+
+/* ---------- движение ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 1ms !important; }
+  html { scroll-behavior: auto; }
+}

@@ -4,6 +4,20 @@
 
 ---
 
+## 2026-10-15 — дизайн 2.0 (вариант C) перенесён в настоящий код сайта (слово владельца: «делай»)
+
+**Подход:** разметка и скрипты страниц (оплата, тест, подарок, формы, язык, меню, cookies, статистика) сохранены; заменён визуальный слой.
+- `knowly-www/assets/v2/base.css` — токены 11 тем × тёмная/светлая × насыщенность (формулы liquidGlassGradientThemes), Inter, свечение темы, шапка-капсула, подвал, кнопки, поля, аккордеоны, `[hidden]`, перенастройка токенов `approved/runtime-components.css` на тему.
+- `assets/v2/theme.js` — кнопка темы в шапке (11 цветов, тёмная/светлая, насыщенность), выбор в localStorage `pm-site-theme-v1`; старая «Светлая / тёмная тема» тоже переключает.
+- Стили групп: `v2/home.css` (главная, приложение, скачать, 404), `v2/content.css` (FAQ, поддержка, журнал + 6 статей, 4 юр. страницы, каналы, invite/duel/apple-auth), `v2/money.css` (подарок, тарифы, Россия, «спасибо»), `v2/test.css` (тест уровня).
+- `assets/v2/_swap-head.mjs` — заменил в <head> 23 страниц старые approved/site|cinema|product|edition|world|voice|edition-fonts|production.css на v2 (runtime-components.css оставлен).
+- `assets/v2/legal-toc.js` — оглавление юр. страниц собирается при открытии из h2 (переживает `npm run legal:sync`, который перезаписывает блок документа — проверено имитацией).
+- Тексты RU → «ты» на всех страницах (+ `assets/start.js`, `english-level-test/i18n.js` только RU). EN, data-i18n ключи, meta/OG/JSON-LD, юр. тексты не менялись. С главной убран блок «У каждого — своя точка старта».
+- `start.js`: PayPal больше не рисуется дважды (ждёт ответ цен, запас 2,5 с), ранние выходы логируются `[PAYWALL]`.
+- Тесты юр. копий (`legal_copies_sync_contract`, `aa_guest_honesty_contract`) — зелёные.
+
+---
+
 ## 2026-10-15 ~10:20 — починка оплаты /premium/ ВЫЛОЖЕНА на живой сайт (слово владельца)
 
 - `knowly-www/assets/start.js` восстановлен (коммит `f1db188ae`), выложен на тестовый канал `pay-fix` (https://knowlyapps--pay-fix-cww2f6w8.web.app, до 18.10), владелец посмотрел и одобрил → тот же релиз скопирован в live (`firebase hosting:clone knowlyapps:pay-fix knowlyapps:live`). Канал отличался от live одним файлом — ничего постороннего не уехало.

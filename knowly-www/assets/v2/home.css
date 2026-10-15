@@ -1,0 +1,163 @@
+/* v2/home.css — главная, /app/, /download/, 404 в стиле «PhraseMan 2.0 · вариант C».
+   зачем: эталон — docs/design/site-2.0/c/{index,app,download,404}.html. Цвета только токены base.css
+   (11 тем × тёмная/светлая переключаются вживую), кромки только 1px --edge, разметка и скрипты страниц не тронуты. */
+
+main svg.i { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; display: block; }
+main svg.i.s18 { width: 18px; height: 18px; }
+main .tile { width: 46px; height: 46px; border-radius: 13px; background: var(--tile); display: grid; place-items: center; flex: none; color: var(--text); }
+
+/* вторая строка заголовков — серой блочной строкой (em в h1/h2/h3) */
+main h1 em, main h2 em { display: block; }
+main .eyebrow { display: block; }
+main section { position: relative; }
+.block { padding-block: clamp(56px, 8vw, 112px); }
+.copy { display: grid; gap: 22px; justify-items: start; }
+.copy p { color: var(--sec); font-size: var(--t-l); max-width: 40ch; }
+.lead { font-size: var(--t-l); color: var(--sec); line-height: 1.5; max-width: 34ch; }
+.head { display: grid; gap: 18px; max-width: 780px; justify-items: start; }
+.head p { font-size: var(--t-l); color: var(--sec); max-width: 52ch; }
+.head .text-link { margin-top: 4px; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.split.top { align-items: start; }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 22px; margin-top: 36px; }
+.fine { font-size: var(--t-s); color: var(--muted); }
+
+/* ---------- первый экран главной (по центру) ---------- */
+.hero-c { padding-block: clamp(36px, 6vw, 80px) clamp(40px, 6vw, 80px); }
+.hero-c .container { display: grid; justify-items: center; text-align: center; }
+.hero-c h1 { margin-top: 20px; }
+.hero-c .lead { margin: 24px auto 0; }
+/* на /app/ и /download/ — слева текст, справа телефон */
+.hero-c.split-hero .container { display: grid; justify-items: stretch; text-align: left; }
+.hero-c.split-hero h1 { font-size: clamp(40px, 6vw, 76px); }
+.hero-c.split-hero .copy { gap: 22px; }
+.hero-c.split-hero .lead { margin: 0; }
+.hero-c .stage { display: grid; justify-items: center; }
+
+/* ---------- шаги метода: стеклянные карточки с плиткой-иконкой и дорожкой ---------- */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 56px; }
+.step { padding: 26px 26px 30px; display: grid; gap: 14px; align-content: start; }
+.step:nth-child(1) { --sx: 10%; --sy: 0%; } .step:nth-child(2) { --sx: 90%; --sy: 10%; } .step:nth-child(3) { --sx: 40%; --sy: 100%; }
+.step .n { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.step .method-art { display: grid; place-items: center; width: 56px; height: 56px; flex: none; }
+.step .method-art img { width: 56px; height: 56px; object-fit: contain; display: block; }
+.step .chapter-number { font-size: 13px; font-weight: 600; letter-spacing: .04em; line-height: 17px; text-transform: none; font-variant-numeric: tabular-nums; }
+.step h3 { margin-top: 28px; }
+.step p { color: var(--sec); font-size: var(--t-s); line-height: 1.55; }
+.trk { position: relative; height: 4px; border-radius: 3px; background: var(--track); margin-top: 8px; }
+.trk b { position: absolute; left: 0; top: 0; bottom: 0; width: var(--w); border-radius: 3px; background: var(--fill); }
+
+/* ---------- телефон 2.0, нарисованный CSS ---------- */
+.phone { --rim: color-mix(in srgb, var(--text) 10%, var(--bg)); position: relative; width: min(100%, 360px); aspect-ratio: 380 / 780; margin-inline: auto; border-radius: 54px; padding: 10px;
+  background: var(--rim); box-shadow: 0 0 0 1px var(--edge), 0 40px 90px rgba(0,0,0,.28); }
+.phone .screen { position: relative; height: 100%; border-radius: 45px; overflow: hidden; background: var(--bg); isolation: isolate; }
+.phone .sglow { position: absolute; inset: 0; z-index: -1; opacity: var(--glow-op);
+  background: radial-gradient(120% 55% at 10% 0%, var(--g1), transparent 62%), radial-gradient(100% 55% at 100% 45%, var(--g2), transparent 66%), radial-gradient(90% 40% at 30% 105%, var(--g1), transparent 70%); }
+.phone .sb { display: flex; justify-content: space-between; align-items: center; padding: 16px 28px 0 34px; font-size: 15px; font-weight: 600; }
+.phone .bat { width: 24px; height: 12px; border-radius: 4px; border: 1.5px solid currentColor; position: relative; opacity: .95; }
+.phone .bat::after { content: ""; position: absolute; inset: 1.5px; right: 3px; background: currentColor; border-radius: 2px; }
+.phone .home-ind { position: absolute; bottom: 8px; left: 50%; width: 120px; height: 5px; margin-left: -60px; border-radius: 3px; background: var(--text); z-index: 5; }
+.hub { padding: 18px 16px 0; }
+.hub .hrow1 { margin-top: 10px; }
+.hub .ti { font-size: 32px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.cats { display: grid; gap: 9px; margin-top: 20px; }
+.hrow { display: flex; align-items: center; gap: 14px; padding: 11px 14px; min-height: 64px; background: var(--card); border: 1px solid var(--edge); border-radius: 15px; }
+:root[data-mode="light"] .hrow { box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 6px 16px rgba(0,0,0,.05); }
+.hrow .tile { width: 42px; height: 42px; border-radius: 11px; }
+.hrow .tt { flex: 1; font-size: 16px; font-weight: 700; }
+.hrow .ch { color: var(--sec); }
+.btn-demo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 18px; width: 100%; min-height: 50px; border-radius: 999px; background: var(--cta); color: var(--cta-ink); font-size: 15px; font-weight: 700; }
+
+/* ---------- отзывы ---------- */
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 56px; }
+.quote { margin: 0; padding: 30px; display: grid; gap: 26px; align-content: space-between; }
+.quote:nth-child(2) { --sx: 100%; --sy: 100%; }
+.quote p { font-size: clamp(19px, 1.9vw, 23px); line-height: 1.45; letter-spacing: -.01em; font-weight: 500; }
+.quote cite { font-style: normal; display: flex; align-items: center; gap: 12px; font-size: var(--t-s); color: var(--sec); }
+.av { width: 36px; height: 36px; border-radius: 50%; background: var(--tile); display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--text); flex: none; }
+.cinema-reviews .text-link { margin-top: 26px; }
+
+/* ---------- подарок: сертификат ---------- */
+.cert { --sx: 30%; --sy: 0%; aspect-ratio: 1.42; width: 100%; border-radius: 28px; padding: clamp(22px, 3vw, 34px); display: grid; align-content: space-between; gap: 16px;
+  transform: rotate(-2deg); transition: transform 600ms var(--ease); }
+.split:hover .cert { transform: rotate(0deg) translateY(-4px); }
+.cert .brand { font-weight: 800; font-size: 15px; letter-spacing: -.02em; }
+.cert .big { font-size: clamp(24px, 3.4vw, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.cert .big em { color: var(--sec); font-style: normal; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opts span { font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 999px; background: var(--control); color: var(--sec); }
+.opts span.on { background: var(--cta); color: var(--cta-ink); }
+
+/* ---------- журнал: ссылки-строки ---------- */
+.links { display: grid; }
+.links a { display: flex; align-items: center; gap: 18px; padding: 20px 4px; border-bottom: 1px solid var(--track); font-size: var(--t-l); font-weight: 600; transition: padding-left 300ms var(--ease); }
+.links a:first-child { border-top: 1px solid var(--track); }
+.links .tile { width: 40px; height: 40px; border-radius: 11px; color: var(--sec); }
+.links .t { flex: 1; min-width: 0; }
+.links .ch { color: var(--sec); transition: transform 300ms var(--ease), color 160ms; }
+.links a:hover { padding-left: 10px; }
+.links a:hover .ch { transform: translate(2px, -2px); color: var(--text); }
+
+/* ---------- вопросы-ответы и финальный блок ---------- */
+.cinema-faq .faq-list { margin-top: 48px; }
+.close-card { --sx: 50%; --sy: 0%; border-radius: 34px; padding: clamp(48px, 8vw, 104px) 24px; display: grid; justify-items: center; gap: 30px; text-align: center; }
+.close-card h2 { max-width: 16ch; }
+
+/* ---------- /download/: магазины, QR, следующий шаг ---------- */
+.store-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.store-button { display: inline-flex; align-items: center; gap: 12px; min-height: 60px; padding: 0 24px 0 20px; border-radius: 18px; background: var(--cta); color: var(--cta-ink);
+  transition: transform 240ms var(--spring), filter 160ms; }
+.store-button + .store-button { background: var(--control); color: var(--text); }
+.store-button:hover { filter: brightness(1.08); }
+.store-button:active { transform: scale(.97); }
+.store-button svg { width: 26px; height: 26px; flex: none; }
+.store-button span { display: block; text-align: left; }
+.store-button small { display: block; font-size: 11px; line-height: 1.1; opacity: .75; }
+.store-button strong { display: block; font-size: 18px; line-height: 1.2; font-weight: 700; }
+.download-qr { padding: 6px 18px; border-radius: 20px; max-width: 420px; width: 100%; }
+.download-qr summary { list-style: none; cursor: pointer; padding: 12px 0; font-weight: 700; font-size: var(--t-s); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.download-qr summary::-webkit-details-marker { display: none; }
+.download-qr summary::after { content: "+"; width: 28px; height: 28px; border-radius: 50%; background: var(--control); display: grid; place-items: center; font-weight: 500; transition: transform 300ms var(--ease); }
+.download-qr[open] summary::after { transform: rotate(45deg); }
+.download-qr > div { display: flex; gap: 16px; align-items: center; padding: 4px 0 16px; }
+.download-qr img { width: 96px; height: 96px; border-radius: 12px; background: #fff; padding: 6px; flex: none; }
+.download-qr p { color: var(--sec); font-size: var(--t-s); }
+.next-card { --sx: 20%; --sy: 0%; border-radius: 30px; padding: clamp(28px, 5vw, 56px); display: flex; align-items: center; gap: clamp(20px, 4vw, 48px); }
+.next-card .download-energy { width: 96px; height: 96px; object-fit: contain; flex: none; }
+.next-card .copy { gap: 18px; }
+
+/* ---------- 404 ---------- */
+.nf-page { display: grid; justify-items: center; text-align: center; gap: 22px; padding-block: clamp(48px, 9vw, 120px); }
+.nf { font-size: clamp(120px, 22vw, 260px); font-weight: 800; letter-spacing: -.07em; line-height: .85; color: transparent; -webkit-text-stroke: 2px color-mix(in srgb, var(--text) 30%, transparent); }
+.nf-page .lead { margin-inline: auto; }
+
+/* ---------- адаптив ---------- */
+@media (max-width: 980px) {
+  .split, .steps, .quotes { grid-template-columns: minmax(0, 1fr); }
+  .step h3 { margin-top: 18px; }
+  .split .stage { order: 2; }
+  .hero-c.split-hero .stage { order: 2; }
+  .close-card h2 { max-width: none; }
+}
+@media (max-width: 540px) {
+  .quote { padding: 24px; }
+  .cert { transform: none; }
+  .store-buttons { flex-direction: column; }
+  .store-button { width: 100%; }
+  .next-card { flex-direction: column; align-items: flex-start; }
+  .cta-row .button { width: 100%; }
+}
+
+/* зачем: у капсулы шапки (base.css) width:100% плюс боковые margin давали выход за правый край на 768 px —
+   на моих страницах выравниваем автоширину; в отчёте просим перенести правку в base.css */
+.site-header .nav-row { width: auto; }
+main h1 > br, main h2 > br { display: none; } /* em и так на новой строке — иначе пустая строка */
+/* зачем: на 375 px бренд + тема + «Начать бесплатно» + меню не влезали в капсулу (выход за край на 2 px) —
+   чуть уплотняем только на узких экранах; в отчёте просим перенести в base.css */
+@media (max-width: 440px) {
+  .site-header .nav-row { padding: 0 6px 0 14px !important; gap: 6px; }
+  .site-header .brand { font-size: 16px; }
+  .site-header .nav-actions { gap: 6px; }
+  .site-header .nav-actions .button.small { padding: 0 11px; font-size: 12px; min-height: 34px; }
+  .v2-theme-btn, .menu-button { width: 32px; height: 32px; }
+}

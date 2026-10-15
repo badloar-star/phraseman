@@ -7,41 +7,43 @@
       "interactionId": "en:lesson-03:session-12:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — vase",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег показує незнайомий предмет на плані. Назвіть його: «Це стіл»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-12:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — vase",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег показує незнайомий предмет на плані. Назвіть його: «Це стіл»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i01:audio",
-          "transcript": "vase"
+        "family": "phrase_builder",
+        "targetPhrase": "It is a table.",
+        "localizedMeaning": {
+          "ru": "Олег показывает незнакомый предмет на плане. Назовите его: «Это стол»",
+          "uk": "Олег показує незнайомий предмет на плані. Назвіть його: «Це стіл»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-12:i01:r1",
-            "targetText": "vase",
-            "meaningByLocale": {
-              "ru": "«ваза». В неё ставят срезанные цветы; обычно наливают воду, чтобы они не завяли.",
-              "uk": "«ваза». У неї ставлять зрізані квіти; зазвичай наливають воду, щоб вони не зів’яли."
+            "responseId": "en:lesson-03:session-12:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег показує незнайомий предмет на плані. Назвіть його: «Це стіл»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `a` — `It is a table.`",
+              "uk": "тут потрібно `a` — `It is a table.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "vase",
-          "definitionByLocale": {
-            "ru": "«ваза». В неё ставят срезанные цветы; обычно наливают воду, чтобы они не завяли.",
-            "uk": "«ваза». У неї ставлять зрізані квіти; зазвичай наливають воду, щоб вони не зів’яли."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — яке слово вимовив продавець",
+      "prompt": "Послухайте повідомлення про стіл",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-12:i02:r1",
-          "text": "vase"
+          "text": "The table is here."
         },
         {
           "responseId": "en:lesson-03:session-12:i02:r2",
-          "text": "voice"
+          "text": "The table is old."
         },
         {
           "responseId": "en:lesson-03:session-12:i02:r3",
-          "text": "vice"
+          "text": "The table is new."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-12:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив продавець",
+      "accessibilityLabel": "Послухайте повідомлення про стіл",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-12:i02:audio",
-          "transcript": "vase"
+          "transcript": "The table is here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-12:i02:r1",
-            "targetText": "vase",
+            "targetText": "The table is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-12:i02:r2",
-            "targetText": "voice",
+            "targetText": "The table is old.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-12:i02:r3",
-            "targetText": "vice",
+            "targetText": "The table is new.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-12:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
+            "testedDimension": "Послухайте повідомлення про стіл",
             "feedbackByLocale": {
-              "ru": "`voice` — «голос», в середине слышно «ой». В `vase` звучит долгое «а» или «эй», в зависимости от произношения. Слушайте гласную.",
-              "uk": "`voice` — «голос», у середині чути «ой». У британському `vase` — довге «а», в американському — «ей»; «ой» немає в жодному. Слухайте голосний."
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `old`."
             }
           },
           {
             "responseId": "en:lesson-03:session-12:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
+            "testedDimension": "Послухайте повідомлення про стіл",
             "feedbackByLocale": {
-              "ru": "`vice` — «порок», с «ай» в середине. У `vase` гласная другая: долгое «а» или «эй». Похожего начала на «в» недостаточно.",
-              "uk": "`vice` — «вада», у середині чути «ай». У британському `vase` — довге «а», в американському — «ей»; «ай» немає в жодному. Схожого початку на «в» замало."
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `new`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `new`."
             }
           }
         ],
@@ -126,161 +128,65 @@
       "interactionId": "en:lesson-03:session-12:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — clock",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-12:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — clock",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i03:audio",
-          "transcript": "clock"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-12:i03:r1",
-            "targetText": "clock",
-            "meaningByLocale": {
-              "ru": "«часы». Прибор, который показывает время; например, часы на стене или на столе.",
-              "uk": "«годинник». Прилад, який показує час; наприклад, годинник на стіні або на столі."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "clock",
-          "definitionByLocale": {
-            "ru": "«часы». Прибор, который показывает время; например, часы на стене или на столе.",
-            "uk": "«годинник». Прилад, який показує час; наприклад, годинник на стіні або на столі."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-12:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — яке слово сказав друг",
+      "prompt": "Доповніть назву показаного предмета",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-12:i04:r1",
-          "text": "clock"
+          "responseId": "en:lesson-03:session-12:i03:r1",
+          "text": "a"
         },
         {
-          "responseId": "en:lesson-03:session-12:i04:r2",
-          "text": "clack"
+          "responseId": "en:lesson-03:session-12:i03:r2",
+          "text": "an"
         },
         {
-          "responseId": "en:lesson-03:session-12:i04:r3",
-          "text": "block"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-12:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте й оберіть — яке слово сказав друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i04:audio",
-          "transcript": "clock"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-12:i04:r1",
-            "targetText": "clock",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i04:r2",
-            "targetText": "clack",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i04:r3",
-            "targetText": "block",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-12:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
-            "feedbackByLocale": {
-              "ru": "`clack` — «стук». В `clack` звучит /klæk/, а в `clock` — /klɒk~klɑːk/: главное различие в гласной, а конец /k/ общий.",
-              "uk": "`clack` — «стук». У `clack` звучить /klæk/, а в `clock` — /klɒk~klɑːk/: головна різниця в голосному, а кінець /k/ спільний."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
-            "feedbackByLocale": {
-              "ru": "`block` — «блок». В начале «бл», а у `clock` — «кл». Различие слышно ещё до гласного звука.",
-              "uk": "`block` — «блок». На початку «бл», а в `clock` — «кл». Різницю чути ще до голосного звуку."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-12:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-12:i05:r1",
-          "text": "An"
+          "responseId": "en:lesson-03:session-12:i03:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»",
+      "accessibilityLabel": "Доповніть назву показаного предмета",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is a vase.",
-        "localizedMeaning": {
-          "ru": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
-          "uk": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните название показанного предмета",
+          "uk": "Доповніть назву показаного предмета"
         },
-        "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "vase"
-        ],
-        "authoredDistractorTokens": [
-          "An"
-        ],
-        "slotFeedback": [
+        "gappedTargetPhrase": "It is ___ table.",
+        "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-12:i05:r1",
+            "responseId": "en:lesson-03:session-12:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть назву показаного предмета",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-12:i03:r2",
             "correct": false,
-            "testedDimension": "Складіть коротку назву — друг питає, що ",
+            "testedDimension": "Доповніть назву показаного предмета",
             "feedbackByLocale": {
-              "ru": "После `It` нужна форма `is`, а перед одной вазой — `a`: `It is a vase`.",
-              "uk": "Після `It` потрібна форма `is`, а перед однією вазою — `a`: `It is a vase`."
+              "ru": "Перед `table` нужно `a`, потому что первый звук согласный.",
+              "uk": "Перед `table` потрібно `a`, бо перший звук приголосний."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть назву показаного предмета",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно название `a table`.",
+              "uk": "Тут потрібна назва `a table`."
             }
           }
         ]
@@ -288,44 +194,167 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-12:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-03:session-12:i04",
+      "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — radio",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-12:i06:audio"
-      ],
-      "accessibilityLabel": "Картка слова — radio",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i06:audio",
-          "transcript": "radio"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-03:session-12:i06:r1",
-            "targetText": "radio",
+            "pairId": "en:lesson-03:session-12:i04:p1",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "«радиоприёмник». Прибор, на котором настраивают радиостанцию и слушают её передачи.",
-              "uk": "«радіоприймач». Прилад, за допомогою якого налаштовуються на радіостанцію й слухають її передачі."
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-12:i04:p2",
+            "target": "bag",
+            "meaningByLocale": {
+              "ru": "сумка",
+              "uk": "сумка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-12:i04:p3",
+            "target": "friendly",
+            "meaningByLocale": {
+              "ru": "дружелюбный",
+              "uk": "дружній"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-12:i04:p4",
+            "target": "helpful",
+            "meaningByLocale": {
+              "ru": "готовый помочь",
+              "uk": "готовий допомогти"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "radio",
-          "definitionByLocale": {
-            "ru": "«радиоприёмник». Прибор, на котором настраивают радиостанцию и слушают её передачи.",
-            "uk": "«радіоприймач». Прилад, за допомогою якого налаштовуються на радіостанцію й слухають її передачі."
+        "leftColumn": [
+          "table",
+          "bag",
+          "friendly",
+          "helpful"
+        ],
+        "rightColumn": [
+          "стіл",
+          "сумка",
+          "дружній",
+          "готовий допомогти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-12:i05:audio",
+          "transcript": "Where is the bag?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the bag?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-12:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is the bag?`",
+              "uk": "тут потрібно `Where` — `Where is the bag?`"
+            }
           }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-12:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви показуєте Анні стіл, який ви обоє шукали. Повідомте «Стіл тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте Анні стіл, який ви обоє шукали. Повідомте «Стіл тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The table is here.",
+        "localizedMeaning": {
+          "ru": "Вы показываете Анне стол, который вы оба искали. Сообщите «Стол здесь»",
+          "uk": "Ви показуєте Анні стіл, який ви обоє шукали. Повідомте «Стіл тут»"
+        },
+        "orderedTokens": [
+          "The",
+          "table",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-12:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви показуєте Анні стіл, який ви обоє шукали. Повідомте «Стіл тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The table is here.`",
+              "uk": "тут потрібно `is` — `The table is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -334,146 +363,23 @@
       "interactionId": "en:lesson-03:session-12:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — яке слово вимовив продавець",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-12:i07:r1",
-          "text": "radio"
-        },
-        {
-          "responseId": "en:lesson-03:session-12:i07:r2",
-          "text": "radial"
-        },
-        {
-          "responseId": "en:lesson-03:session-12:i07:r3",
-          "text": "radiant"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Олег охоче допомагає вам готувати зустріч. Скажіть повною фразою «Він охоче допомагає»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-12:i07:audio"
       ],
-      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив продавець",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i07:audio",
-          "transcript": "radio"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-12:i07:r1",
-            "targetText": "radio",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i07:r2",
-            "targetText": "radial",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i07:r3",
-            "targetText": "radiant",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-12:i07:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
-            "feedbackByLocale": {
-              "ru": "`radial` — «радиальный». Начало похоже, но в конце слышно «л». У `radio` слово заканчивается гласным звуком.",
-              "uk": "`radial` — «радіальний». Початок схожий, але наприкінці чути «л». У `radio` слово закінчується голосним звуком."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i07:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
-            "feedbackByLocale": {
-              "ru": "`radiant` — «сияющий». В конце слышно «нт», а у `radio` — гласный звук. Дослушайте слово до конца.",
-              "uk": "`radiant` — «сяйний». Наприкінці чути «нт», а в `radio` — голосний звук. Дослухайте слово до кінця."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-12:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — продавець говорить про час очікування",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-12:i08:r1",
-          "text": "A"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-12:i08:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть — продавець говорить про час очікування",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i08:audio",
-          "transcript": "An hour."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "An hour.",
-        "orderedTokens": [
-          "An",
-          "hour"
-        ],
-        "authoredDistractorTokens": [
-          "A"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-12:i08:r1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть — продавець говори",
-            "feedbackByLocale": {
-              "ru": "В записи перед `hour` звучит `An`, с «н». Само название часа начинается с гласного звука.",
-              "uk": "У записі перед `hour` звучить `An`, із «н». Сама назва години починається з голосного звуку."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-12:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-12:i09:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Олег охоче допомагає вам готувати зустріч. Скажіть повною фразою «Він охоче допомагає»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i09:audio",
-          "transcript": "It is a uniform."
+          "audioTargetId": "en:lesson-03:session-12:i07:audio",
+          "transcript": "He is helpful."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is a uniform.",
+        "targetPhrase": "He is helpful.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -487,63 +393,208 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви говорите про закриту зустріч. Доповніть повідомлення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-12:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-12:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-03:session-12:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорите про закриту зустріч. Доповніть повідомлення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите о закрытой встрече. Дополните сообщение",
+          "uk": "Ви говорите про закриту зустріч. Доповніть повідомлення"
+        },
+        "gappedTargetPhrase": "It ___ private.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-12:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Ви говорите про закриту зустріч. Доповніть повідомлення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви говорите про закриту зустріч. Доповніть повідомлення",
+            "feedbackByLocale": {
+              "ru": "С `It` нужно `is`.",
+              "uk": "З `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви говорите про закриту зустріч. Доповніть повідомлення",
+            "feedbackByLocale": {
+              "ru": "С `It` нужно `is`.",
+              "uk": "З `It` потрібно `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте опис людини за сусідніми дверима",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-12:i09:r1",
+          "text": "He is loud."
+        },
+        {
+          "responseId": "en:lesson-03:session-12:i09:r2",
+          "text": "He is quiet."
+        },
+        {
+          "responseId": "en:lesson-03:session-12:i09:r3",
+          "text": "He is tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте опис людини за сусідніми дверима",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-12:i09:audio",
+          "transcript": "He is loud."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-12:i09:r1",
+            "targetText": "He is loud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i09:r2",
+            "targetText": "He is quiet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i09:r3",
+            "targetText": "He is tired.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте опис людини за сусідніми дверима",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `loud`, а в этом варианте — `quiet`.",
+              "uk": "У записі останнє слово — `loud`, а в цьому варіанті — `quiet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте опис людини за сусідніми дверима",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `loud`, а в этом варианте — `tired`.",
+              "uk": "У записі останнє слово — `loud`, а в цьому варіанті — `tired`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-12:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви з українськими значеннями — біля вітрини",
+      "prompt": "З’єднайте слова зі значеннями в цій сцені",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви з українськими значеннями — біля вітрини",
+      "accessibilityLabel": "З’єднайте слова зі значеннями в цій сцені",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-12:i10:p1",
-            "target": "vase",
+            "target": "loud",
             "meaningByLocale": {
-              "ru": "ваза",
-              "uk": "ваза"
+              "ru": "громкий",
+              "uk": "гучний"
             }
           },
           {
             "pairId": "en:lesson-03:session-12:i10:p2",
-            "target": "clock",
+            "target": "private",
             "meaningByLocale": {
-              "ru": "часы",
-              "uk": "годинник"
+              "ru": "закрытый для посторонних",
+              "uk": "закритий для сторонніх"
             }
           },
           {
             "pairId": "en:lesson-03:session-12:i10:p3",
-            "target": "radio",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "радиоприёмник",
-              "uk": "радіоприймач"
+              "ru": "стол",
+              "uk": "стіл"
             }
           },
           {
             "pairId": "en:lesson-03:session-12:i10:p4",
-            "target": "uniform",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "форма",
-              "uk": "форма"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           }
         ],
         "leftColumn": [
-          "vase",
-          "clock",
-          "radio",
-          "uniform"
+          "loud",
+          "private",
+          "table",
+          "bag"
         ],
         "rightColumn": [
-          "ваза",
-          "часы",
-          "радиоприёмник",
-          "форма"
+          "гучний",
+          "закритий для сторонніх",
+          "стіл",
+          "сумка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -565,46 +616,45 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — продавець описує предмет за склом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-12:i11:r1",
-          "text": "an"
-        }
-      ],
+      "prompt": "Послухайте й складіть повідомлення",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-12:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть — продавець описує предмет за склом",
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-12:i11:audio",
-          "transcript": "It is a clock."
+          "transcript": "The bag is here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is a clock.",
+        "hiddenTargetPhrase": "The bag is here.",
         "orderedTokens": [
-          "It",
+          "The",
+          "bag",
           "is",
-          "a",
-          "clock"
+          "here"
         ],
         "authoredDistractorTokens": [
-          "an"
+          "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-12:i11:r1",
+            "responseId": "en:lesson-03:session-12:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть — продавець описує",
+            "testedDimension": "Послухайте й складіть повідомлення",
             "feedbackByLocale": {
-              "ru": "Перед `clock` в записи звучит `a`. Первый звук названия согласный, поэтому «н» здесь не добавляем.",
-              "uk": "Перед `clock` у записі звучить `a`. Перший звук назви приголосний, тому «н» тут не додаємо."
+              "ru": "здесь нужно `is` — `The bag is here.`",
+              "uk": "тут потрібно `is` — `The bag is here.`"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -612,264 +662,68 @@
       "interactionId": "en:lesson-03:session-12:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — продавець сказав, що чекати 60 хвилин; доповніть коротку відповідь (`hour` — «година»)",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-12:i12:r1",
-          "text": "An"
-        },
-        {
-          "responseId": "en:lesson-03:session-12:i12:r2",
-          "text": "A"
-        },
-        {
-          "responseId": "en:lesson-03:session-12:i12:r3",
-          "text": "Is"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте стіл для зустрічі, про який уже говорили з Олегом. Запитайте, де стіл",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — продавець сказав, що чекати 60 хвилин; доповніть коротку відповідь (`hour` — «година»)",
+      "accessibilityLabel": "Ви шукаєте стіл для зустрічі, про який уже говорили з Олегом. Запитайте, де стіл",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — продавец назвал срок ожидания в 60 минут; дополните короткий ответ (`hour` — «час»)",
-          "uk": "Вставте слово — продавець сказав, що чекати 60 хвилин; доповніть коротку відповідь (`hour` — «година»)"
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the table?",
+        "localizedMeaning": {
+          "ru": "Вы ищете стол для встречи, о котором уже говорили с Олегом. Спросите, где стол",
+          "uk": "Ви шукаєте стіл для зустрічі, про який уже говорили з Олегом. Запитайте, де стіл"
         },
-        "gappedTargetPhrase": "___ hour.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-12:i12:r1",
-            "text": "An"
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i12:r2",
-            "text": "A"
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i12:r3",
-            "text": "Is"
+            "responseId": "en:lesson-03:session-12:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте стіл для зустрічі, про який уже говорили з Олегом. Запитайте, де стіл",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is the table?`",
+              "uk": "тут потрібно `Where` — `Where is the table?`"
+            }
           }
         ],
-        "testedDimension": "Вставте слово — продавець сказав, що чек",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-12:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — продавець сказав, що чек",
-            "feedbackByLocale": {
-              "ru": "В `hour` первая буква не произносится: слово начинается с гласного звука. Перед ним нужно `An`.",
-              "uk": "У `hour` перша літера не вимовляється: слово починається з голосного звуку. Перед ним потрібне `An`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — продавець сказав, що чек",
-            "feedbackByLocale": {
-              "ru": "Здесь называем только срок. Перед `hour` нужно `An`, а `Is` не заменяет маленькое слово перед названием.",
-              "uk": "Тут називаємо лише час. Перед `hour` потрібне `An`, а `Is` не замінює маленьке слово перед назвою."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-12:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть питання — друг помітив невеликий прилад з антеною; запитайте продавця «Це радіоприймач?»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-12:i13:r1",
-          "text": "an"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть питання — друг помітив невеликий прилад з антеною; запитайте продавця «Це радіоприймач?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is it a radio?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — друг заметил небольшой прибор с антенной; спросите у продавца «Это радиоприёмник?»",
-          "uk": "Складіть питання — друг помітив невеликий прилад з антеною; запитайте продавця «Це радіоприймач?»"
-        },
-        "orderedTokens": [
-          "Is",
-          "it",
-          "a",
-          "radio"
-        ],
-        "authoredDistractorTokens": [
-          "an"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-12:i13:r1",
-            "correct": false,
-            "testedDimension": "Складіть питання — друг помітив невелики",
-            "feedbackByLocale": {
-              "ru": "Начало вопроса — `Is it`. Дальше название с `a`, потому что первый звук в `radio` согласный.",
-              "uk": "Початок питання — `Is it`. Далі назва з `a`, бо перший звук у `radio` приголосний."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-12:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — що друг сказав продавцю про час очікування",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-12:i14:r1",
-          "text": "Is it an hour?"
-        },
-        {
-          "responseId": "en:lesson-03:session-12:i14:r2",
-          "text": "It is an hour."
-        },
-        {
-          "responseId": "en:lesson-03:session-12:i14:r3",
-          "text": "Is it a uniform?"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-12:i14:audio"
-      ],
-      "accessibilityLabel": "Послухайте й оберіть — що друг сказав продавцю про час очікування",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i14:audio",
-          "transcript": "Is it an hour?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-12:i14:r1",
-            "targetText": "Is it an hour?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i14:r2",
-            "targetText": "It is an hour.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i14:r3",
-            "targetText": "Is it a uniform?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-12:i14:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — що друг сказав пр",
-            "feedbackByLocale": {
-              "ru": "В записи сначала звучит `Is`, затем `it`. Этот вариант начинается в обратном порядке и сообщает срок вместо вопроса.",
-              "uk": "У записі спершу звучить `Is`, а тоді `it`. Цей варіант починається у зворотному порядку й повідомляє час замість питання."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-12:i14:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й оберіть — що друг сказав пр",
-            "feedbackByLocale": {
-              "ru": "В этом варианте после `a` звучит `uniform`. В записи слышно название времени с `an`: `an hour`.",
-              "uk": "У цьому варіанті після `a` звучить `uniform`. У записі чути назву часу з `an`: `an hour`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-12:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — продавець уточнює назву предмета",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-12:i15:r1",
-          "text": "an"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-12:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть — продавець уточнює назву предмета",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i15:audio",
-          "transcript": "It is not a vase."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not a vase.",
-        "orderedTokens": [
-          "It",
-          "is",
-          "not",
-          "a",
-          "vase"
-        ],
-        "authoredDistractorTokens": [
-          "an"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-12:i15:r1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть — продавець уточню",
-            "feedbackByLocale": {
-              "ru": "В записи после `not` идёт `a vase`. Название начинается с согласного звука, поэтому плитка `an` лишняя.",
-              "uk": "У записі після `not` іде `a vase`. Назва починається з приголосного звуку, тому плитка `an` зайва."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-12:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "prompt": "Анна привітно зустріла гостей. Скажіть «Вона дружня» зі скороченням",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-12:i16:audio"
+        "en:lesson-03:session-12:i13:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Анна привітно зустріла гостей. Скажіть «Вона дружня» зі скороченням",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-12:i16:audio",
-          "transcript": "Is it a clock?"
+          "audioTargetId": "en:lesson-03:session-12:i13:audio",
+          "transcript": "She's friendly."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it a clock?",
+        "targetPhrase": "She's friendly.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -883,47 +737,260 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-12:i17",
-      "ordinal": 20,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — продавець показує радіоприймач, який ви обрали; друг питає, що це, назвіть повною фразою",
+      "interactionId": "en:lesson-03:session-12:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви показуєте сумку, яку ви з Анною щойно шукали. Доповніть повідомлення про неї",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-12:i17:r1",
-          "text": "an"
+          "responseId": "en:lesson-03:session-12:i14:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-12:i14:r2",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-12:i14:r3",
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — продавець показує радіоприймач, який ви обрали; друг питає, що це, назвіть повною фразою",
+      "accessibilityLabel": "Ви показуєте сумку, яку ви з Анною щойно шукали. Доповніть повідомлення про неї",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is a radio.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — продавец показывает радиоприёмник, который вы выбрали; друг спрашивает, что это, назовите полной фразой",
-          "uk": "Складіть фразу — продавець показує радіоприймач, який ви обрали; друг питає, що це, назвіть повною фразою"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете сумку, которую вы с Анной только что искали. Дополните сообщение о ней",
+          "uk": "Ви показуєте сумку, яку ви з Анною щойно шукали. Доповніть повідомлення про неї"
         },
-        "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "radio"
-        ],
-        "authoredDistractorTokens": [
-          "an"
-        ],
-        "slotFeedback": [
+        "gappedTargetPhrase": "___ bag is here.",
+        "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-12:i17:r1",
+            "responseId": "en:lesson-03:session-12:i14:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i14:r2",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Ви показуєте сумку, яку ви з Анною щойно шукали. Доповніть повідомлення про неї",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-12:i14:r2",
             "correct": false,
-            "testedDimension": "Складіть фразу — продавець показує радіо",
+            "testedDimension": "Ви показуєте сумку, яку ви з Анною щойно шукали. Доповніть повідомлення про неї",
             "feedbackByLocale": {
-              "ru": "Перед названием `radio` нужен вариант без «н»: `a`. Сначала соберите `It is`, затем назовите прибор.",
-              "uk": "Перед назвою `radio` потрібен варіант без «н»: `a`. Спершу складіть `It is`, а тоді назвіть прилад."
+              "ru": "Здесь речь о знакомой сумке: `The bag`. Перед `bag` форма `An` также не подходит.",
+              "uk": "Тут ідеться про знайому сумку: `The bag`. Перед `bag` форма `An` також не підходить."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви показуєте сумку, яку ви з Анною щойно шукали. Доповніть повідомлення про неї",
+            "feedbackByLocale": {
+              "ru": "Это сообщение `The bag is here`.",
+              "uk": "Це повідомлення `The bag is here`."
             }
           }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-12:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте опис Анни",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-12:i15:r1",
+          "text": "She is friendly."
+        },
+        {
+          "responseId": "en:lesson-03:session-12:i15:r2",
+          "text": "She is angry."
+        },
+        {
+          "responseId": "en:lesson-03:session-12:i15:r3",
+          "text": "She is busy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте опис Анни",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-12:i15:audio",
+          "transcript": "She is friendly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-12:i15:r1",
+            "targetText": "She is friendly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i15:r2",
+            "targetText": "She is angry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i15:r3",
+            "targetText": "She is busy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-12:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте опис Анни",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `friendly`, а в этом варианте — `angry`.",
+              "uk": "У записі останнє слово — `friendly`, а в цьому варіанті — `angry`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-12:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте опис Анни",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `friendly`, а в этом варианте — `busy`.",
+              "uk": "У записі останнє слово — `friendly`, а в цьому варіанті — `busy`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-12:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями в цій сцені",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями в цій сцені",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-12:i16:p1",
+            "target": "loud",
+            "meaningByLocale": {
+              "ru": "громкий",
+              "uk": "гучний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-12:i16:p2",
+            "target": "friendly",
+            "meaningByLocale": {
+              "ru": "дружелюбный",
+              "uk": "дружній"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-12:i16:p3",
+            "target": "helpful",
+            "meaningByLocale": {
+              "ru": "готовый помочь",
+              "uk": "готовий допомогти"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-12:i16:p4",
+            "target": "private",
+            "meaningByLocale": {
+              "ru": "закрытый для посторонних",
+              "uk": "закритий для сторонніх"
+            }
+          }
+        ],
+        "leftColumn": [
+          "loud",
+          "friendly",
+          "helpful",
+          "private"
+        ],
+        "rightColumn": [
+          "гучний",
+          "дружній",
+          "готовий допомогти",
+          "закритий для сторонніх"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-12:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед наступною зустріччю стіл переставили. Олег знає, який стіл вам потрібен. Запитайте, де стіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Перед наступною зустріччю стіл переставили. Олег знає, який стіл вам потрібен. Запитайте, де стіл",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-12:i17:audio",
+          "transcript": "Where is the table?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the table?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -935,5 +1002,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "42befb1d5e826b0d3c6cb739a78887bbe15e2848a2c730b68556972d68cd7f38"
+  "learnerFingerprint": "f6ae97fdaee5bafacb69a086e5e0abea7a5c1502a684d3b06b73a05591b317a8"
 }

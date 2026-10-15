@@ -1,6 +1,6 @@
 import { useTheme } from "../../ThemeContext";
 import { horizonPalette } from "./model";
-import React, { memo, useEffect, useMemo } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { SvgXml } from "react-native-svg";
 import Animated, {
@@ -42,11 +42,16 @@ export const HorizonArtwork = memo(function HorizonArtwork({
   // других вкладках. Раньше это зависело только от пропа `active`, который
   // передавал ОДИН вызов из трёх. Гейт живёт внутри компонента.
   const runtimeActive = useRuntimeActive();
+  // зачем (R08 🔴, Ревизор fd1d5d589, координатор 15.10): бесконечная анимация, стартующая в одном коммите с крупным монтированием,
+  // на новой архитектуре перебивала вывод React-коммита — интерфейс замирал до следующего касания. Правило: вечный цикл — только после
+  // первой нативной раскладки (onLayout) и только на видимом экране.
+  const [laidOut, setLaidOut] = useState(false);
+  const onArtLayout = useCallback(() => setLaidOut(true), []);
   const float = useSharedValue(0);
   useEffect(() => {
     cancelAnimation(float);
     float.value = 0;
-    if (portal && active && runtimeActive && !reducedMotion) {
+    if (portal && active && runtimeActive && !reducedMotion && laidOut) {
       float.value = withRepeat(
         withSequence(
           withTiming(-4, { duration: 3000, easing: Easing.inOut(Easing.sin) }),
@@ -56,7 +61,7 @@ export const HorizonArtwork = memo(function HorizonArtwork({
       );
     }
     return () => cancelAnimation(float);
-  }, [active, float, portal, reducedMotion, runtimeActive]);
+  }, [active, float, portal, reducedMotion, runtimeActive, laidOut]);
   const style = useAnimatedStyle(() => ({
     transform: [{ translateY: float.value }],
   }));
@@ -66,6 +71,7 @@ export const HorizonArtwork = memo(function HorizonArtwork({
       accessible={false}
       importantForAccessibility="no-hide-descendants"
       style={StyleSheet.absoluteFill}
+      onLayout={laidOut ? undefined : onArtLayout}
     >
       <Animated.View style={[StyleSheet.absoluteFill, style]}>
         <SvgXml xml={xml} width="100%" height="100%" />

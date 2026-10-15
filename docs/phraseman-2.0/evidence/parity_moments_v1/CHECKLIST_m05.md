@@ -21,45 +21,45 @@
 
 | # | элемент | текст ru / ключ / uk | шрифт кегль/строка · вес | цвет: Аврора тёмная | Аврора светлая | Ирис светлая | место, размер, радиус, отступы | появляется, мс |
 |---|---|---|---|---|---|---|---|---|
-| 1 | блок .full | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x0 y0 · 412×915 · отступы 76 24 36 | 89 |
-| 2 | текст «Ступень пройдена · +10 монет» | ru «Ступень пройдена · +10 монет» · `gapCoins` (position_moment_strings.ts) · uk-шаблон «{n} монет» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x72 y80 · 267×17 | 89 |
-| 3 | текст «Ты в топ-5» | ru «Ты в топ-5» · `inTop5` (position_moment_strings.ts) · uk «Ти в топ-5» | 20/26 · 700 · трекинг -0.2 | цвет text / mediaInk | цвет text | цвет text | x154 y103 · 105×26 | 89 |
-| 4 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y145 · 364×48 · радиус 14 · отступы 10 12 · тень | 89 |
-| 5 | картинка `assets/images/coins/coin_rank_12.webp` | — | — | — | — | — | x74 y155 · 28×28 · радиус 50% | 89 |
-| 6 | текст «1» | «1» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y159 · 26×20 | 89 |
-| 7 | текст «Марк» | ru «Марк» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y159 · 219×20 | 89 |
-| 8 | текст «610» | «610» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y159 · 31×20 | 89 |
-| 9 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y199 · 364×48 · радиус 14 · отступы 10 12 · тень | 89 |
-| 10 | картинка `assets/images/coins/coin_rank_07.webp` | — | — | — | — | — | x74 y209 · 28×28 · радиус 50% | 89 |
-| 11 | текст «2» | «2» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y213 · 26×20 | 89 |
-| 12 | текст «Ира» | ru «Ира» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y213 · 219×20 | 89 |
-| 13 | текст «580» | «580» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y213 · 31×20 | 89 |
-| 14 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y253 · 364×48 · радиус 14 · отступы 10 12 · тень | 89 |
-| 15 | картинка `assets/images/coins/coin_rank_08.webp` | — | — | — | — | — | x74 y263 · 28×28 · радиус 50% | 89 |
-| 16 | текст «3» | «3» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y267 · 26×20 | 89 |
-| 17 | текст «Соня» | ru «Соня» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y267 · 219×20 | 89 |
-| 18 | текст «520» | «520» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y267 · 31×20 | 89 |
-| 19 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y307 · 364×48 · радиус 14 · отступы 10 12 · тень | 89 |
-| 20 | картинка `assets/images/coins/coin_rank_04.webp` | — | — | — | — | — | x74 y317 · 28×28 · радиус 50% | 89 |
-| 21 | текст «4» | «4» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y321 · 26×20 | 89 |
-| 22 | текст «Олег» | ru «Олег» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y321 · 219×20 | 89 |
-| 23 | текст «500» | «500» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y321 · 31×20 | 89 |
-| 24 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y361 · 364×48 · радиус 14 · отступы 10 12 · тень | 89 |
-| 25 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x74 y371 · 28×28 · радиус 50% | 89 |
-| 26 | текст «5» | «5» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y375 · 26×20 | 89 |
-| 27 | текст «Ты» | ru «Ты» · `you` (spire_strings.ts) · uk «Ти» | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y375 · 172×20 | 89 |
-| 28 | текст «440» | «440» · число из данных | 16/auto · 700 | цвет text / mediaInk | цвет text | цвет text | x345 y375 · 31×20 | 89 |
-| 29 | текст «+1» | «+1» · число из данных | 13/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет good | цвет good | цвет good | x298 y377 · 35×16 | 1448 |
-| 30 | svg-графика | — | — | — | — | — | x298 y377 · 16×16 | 1448 |
-| 31 | текст «ТОП-5» | ru «ТОП-5» · `zoneTop5` (moments_strings.ts) · uk «ТОП-5» | 10/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг 2 | цвет accentText | цвет accentText / accentBright | цвет accentText / accentBright | x353 y394 · 43×12 | 654 |
-| 32 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y415 · 364×48 · радиус 14 · отступы 10 12 · тень | 89 |
-| 33 | картинка `assets/images/coins/coin_rank_09.webp` | — | — | — | — | — | x74 y425 · 28×28 · радиус 50% | 89 |
-| 34 | текст «6» | «6» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y429 · 26×20 | 89 |
-| 35 | текст «Лена» | ru «Лена» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y429 · 219×20 | 89 |
-| 36 | текст «450» | «450» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y429 · 31×20 | 89 |
-| 37 | текст «Играть ещё» | ru «Играть ещё» · `playMore` (position_moment_strings.ts) · uk «Грати ще» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x24 y751 · 364×52 · радиус 26 · отступы 0 24 · тень | 89 |
-| 38 | иконка Ionicons **arrow-forward** | — | 20/20 · 700 | цвет accentInk / ctaInk | цвет accentInk / ctaInk | цвет accentInk / ctaInk | x248 y766 · 20×20 | 89 |
-| 39 | текст «К башне» | ru «К башне» · `toTower` (step_moment_strings.ts) · uk «До вежі» | 16/22 · 700 | цвет text / mediaInk · фон buttonFill | цвет text · фон buttonFill | цвет text · фон buttonFill | x24 y827 · 364×52 · радиус 26 · отступы 0 24 · тень | 89 |
+| 1 | блок .full | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x0 y0 · 412×915 · отступы 76 24 36 | 85 |
+| 2 | текст «Ступень пройдена · +10 монет» | ru «Ступень пройдена · +10 монет» · `gapCoins` (position_moment_strings.ts) · uk-шаблон «{n} монет» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x72 y80 · 267×17 | 85 |
+| 3 | текст «Ты в топ-5» | ru «Ты в топ-5» · `inTop5` (position_moment_strings.ts) · uk «Ти в топ-5» | 20/26 · 700 · трекинг -0.2 | цвет text / mediaInk | цвет text | цвет text | x154 y103 · 105×26 | 85 |
+| 4 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y145 · 364×48 · радиус 14 · отступы 10 12 · тень | 85 |
+| 5 | картинка `assets/images/coins/coin_rank_12.webp` | — | — | — | — | — | x74 y155 · 28×28 · радиус 50% | 85 |
+| 6 | текст «1» | «1» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y159 · 26×20 | 85 |
+| 7 | текст «Марк» | ru «Марк» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y159 · 219×20 | 85 |
+| 8 | текст «610» | «610» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y159 · 31×20 | 85 |
+| 9 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y199 · 364×48 · радиус 14 · отступы 10 12 · тень | 85 |
+| 10 | картинка `assets/images/coins/coin_rank_07.webp` | — | — | — | — | — | x74 y209 · 28×28 · радиус 50% | 85 |
+| 11 | текст «2» | «2» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y213 · 26×20 | 85 |
+| 12 | текст «Ира» | ru «Ира» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y213 · 219×20 | 85 |
+| 13 | текст «580» | «580» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y213 · 31×20 | 85 |
+| 14 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y253 · 364×48 · радиус 14 · отступы 10 12 · тень | 85 |
+| 15 | картинка `assets/images/coins/coin_rank_08.webp` | — | — | — | — | — | x74 y263 · 28×28 · радиус 50% | 85 |
+| 16 | текст «3» | «3» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y267 · 26×20 | 85 |
+| 17 | текст «Соня» | ru «Соня» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y267 · 219×20 | 85 |
+| 18 | текст «520» | «520» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y267 · 31×20 | 85 |
+| 19 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y307 · 364×48 · радиус 14 · отступы 10 12 · тень | 85 |
+| 20 | картинка `assets/images/coins/coin_rank_04.webp` | — | — | — | — | — | x74 y317 · 28×28 · радиус 50% | 85 |
+| 21 | текст «4» | «4» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y321 · 26×20 | 85 |
+| 22 | текст «Олег» | ru «Олег» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y321 · 219×20 | 85 |
+| 23 | текст «500» | «500» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y321 · 31×20 | 85 |
+| 24 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y361 · 364×48 · радиус 14 · отступы 10 12 · тень | 85 |
+| 25 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x74 y371 · 28×28 · радиус 50% | 85 |
+| 26 | текст «5» | «5» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y375 · 26×20 | 85 |
+| 27 | текст «Ты» | ru «Ты» · `you` (spire_strings.ts) · uk «Ти» | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y375 · 172×20 | 85 |
+| 28 | текст «440» | «440» · число из данных | 16/auto · 700 | цвет text / mediaInk | цвет text | цвет text | x345 y375 · 31×20 | 85 |
+| 29 | текст «+1» | «+1» · число из данных | 13/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет good | цвет good | цвет good | x298 y377 · 35×16 | 1447 |
+| 30 | svg-графика | — | — | — | — | — | x298 y377 · 16×16 | 1447 |
+| 31 | текст «ТОП-5» | ru «ТОП-5» · `zoneTop5` (moments_strings.ts) · uk «ТОП-5» | 13/17 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг 2 | цвет accentText | цвет accentText / accentBright | цвет accentText / accentBright | x343 y392 · 53×17 | 642 |
+| 32 | блок .lrow | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x24 y415 · 364×48 · радиус 14 · отступы 10 12 · тень | 85 |
+| 33 | картинка `assets/images/coins/coin_rank_09.webp` | — | — | — | — | — | x74 y425 · 28×28 · радиус 50% | 85 |
+| 34 | текст «6» | «6» · число из данных | 16/auto · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x36 y429 · 26×20 | 85 |
+| 35 | текст «Лена» | ru «Лена» · **нет в строках кода** | 16/auto · 600 | цвет text / mediaInk | цвет text | цвет text | x114 y429 · 219×20 | 85 |
+| 36 | текст «450» | «450» · число из данных | 16/auto · 700 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x345 y429 · 31×20 | 85 |
+| 37 | текст «Играть ещё» | ru «Играть ещё» · `playMore` (position_moment_strings.ts) · uk «Грати ще» | 16/22 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x24 y751 · 364×52 · радиус 26 · отступы 0 24 · тень | 85 |
+| 38 | иконка Ionicons **arrow-forward** | — | 20/20 · 700 | цвет accentInk / ctaInk | цвет accentInk / ctaInk | цвет accentInk / ctaInk | x248 y766 · 20×20 | 85 |
+| 39 | текст «К башне» | ru «К башне» · `toTower` (step_moment_strings.ts) · uk «До вежі» | 16/22 · 700 | цвет text / mediaInk · фон buttonFill | цвет text · фон buttonFill | цвет text · фон buttonFill | x24 y827 · 364×52 · радиус 26 · отступы 0 24 · тень | 85 |
 
 ## Вариант B — Тост «Ира обгоняет тебя»
 
@@ -74,20 +74,20 @@
 
 | # | элемент | текст ru / ключ / uk | шрифт кегль/строка · вес | цвет: Аврора тёмная | Аврора светлая | Ирис светлая | место, размер, радиус, отступы | появляется, мс |
 |---|---|---|---|---|---|---|---|---|
-| 1 | блок .toast | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x20 y60 · 372×64 · радиус 18 · отступы 12 14 · тень | 86 |
-| 2 | текст «Ира обгоняет тебя» | ru «Ира обгоняет тебя» · `overtake` (position_moment_strings.ts) · uk-шаблон «{name} випереджає тебе» | 16/20 · 700 | цвет text / mediaInk | цвет text | цвет text | x110 y72 · 182×40 | 86 |
-| 3 | текст «Играть» | ru «Играть» · `play` (moments_strings.ts) · uk «Грати» | 13/17 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x304 y72 · 74×40 · радиус 20 · отступы 0 14 · тень | 86 |
-| 4 | картинка `assets/images/coins/coin_rank_07.webp` | — | — | — | — | — | x34 y74 · 36×36 · радиус 50% · тень | 86 |
-| 5 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x62 y74 · 36×36 · радиус 50% · тень | 86 |
-| 6 | текст «на 30 монет недели» | ru «на 30 монет недели» · `overtakeSub` (position_moment_strings.ts) · uk-шаблон «на {n} монет тижня» | 13/20 · 500 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x110 y92 · 182×20 | 86 |
-| 7 | блок .cc | — | — | — | — | — | x158 y330 · 96×112 | 86 |
-| 8 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x158 y330 · 96×96 · радиус 50% | 86 |
+| 1 | блок .toast | — | — | фон-градиент/картинка | фон-градиент/картинка | фон-градиент/картинка | x20 y60 · 372×64 · радиус 18 · отступы 12 14 · тень | 81 |
+| 2 | текст «Ира обгоняет тебя» | ru «Ира обгоняет тебя» · `overtake` (position_moment_strings.ts) · uk-шаблон «{name} випереджає тебе» | 16/20 · 700 | цвет text / mediaInk | цвет text | цвет text | x110 y72 · 182×40 | 81 |
+| 3 | текст «Играть» | ru «Играть» · `play` (moments_strings.ts) · uk «Грати» | 13/17 · 700 | цвет accentInk / ctaInk · фон accent / accentBright | цвет accentInk / ctaInk · фон ctaFill | цвет accentInk / ctaInk · фон ctaFill | x304 y72 · 74×40 · радиус 20 · отступы 0 14 · тень | 81 |
+| 4 | картинка `assets/images/coins/coin_rank_07.webp` | — | — | — | — | — | x34 y74 · 36×36 · радиус 50% · тень | 81 |
+| 5 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x62 y74 · 36×36 · радиус 50% · тень | 81 |
+| 6 | текст «на 30 монет недели» | ru «на 30 монет недели» · `overtakeSub` (position_moment_strings.ts) · uk-шаблон «на {n} монет тижня» | 13/20 · 500 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x110 y92 · 182×20 | 81 |
+| 7 | блок .cc | — | — | — | — | — | x158 y330 · 96×112 | 81 |
+| 8 | картинка `assets/images/coins/coin_rank_05.webp` | — | — | — | — | — | x158 y330 · 96×96 · радиус 50% | 81 |
 
 ### Появляются и уходят до финала (1)
 
 | элемент | текст ru / ключ | появляется, мс | уходит, мс |
 |---|---|---|---|
-| текст «!» | знак анимации монеты «!» | 561 | 1043 |
+| текст «!» | знак анимации монеты «!» | 510 | 1055 |
 
 ## Вариант C — Последний шанс: отсчёт + док без энергии
 
@@ -101,12 +101,12 @@
 
 | # | элемент | текст ru / ключ / uk | шрифт кегль/строка · вес | цвет: Аврора тёмная | Аврора светлая | Ирис светлая | место, размер, радиус, отступы | появляется, мс |
 |---|---|---|---|---|---|---|---|---|
-| 1 | блок .sheet | — | — | фон opaqueSheet / opaqueControl | фон opaqueCard / opaqueSheet | фон opaqueCard / opaqueSheet | x0 y616 · 412×299 · радиус 28 28 0 0 · отступы 12 18 40 · тень | 82 |
-| 2 | текст «Воскресенье · до итога» | ru «Воскресенье · до итога» · `lastOver` (position_moment_strings.ts) · uk «Неділя · до підсумку» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x19 y650 · 374×17 | 82 |
-| 3 | текст «03:12:29» | «03:12:29» · число из данных | 34/40 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x19 y667 · 374×40 | 82 |
-| 4 | текст «До топ-5 — 60 монет. Энергия вернётся через 9:29.» | ru «До топ-5 — 60 монет. Энергия вернётся через 9:29.» · `lastBody` (position_moment_strings.ts) · uk-шаблон «До топ-5 — {gap}. Енергія повернеться через {t}.» · выделено: «60 монет» 600, «9:29» 400 | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x19 y715 · 374×44 | 82 |
-| 5 | текст «Энергия через» | ru «Энергия через» · составлено из `energyIn` | 16/22 · 700 | цвет buttonInkDisabled · фон sheetPlateFillFrom / buttonFillDisabled | цвет buttonInkDisabled · фон buttonFillDisabled | цвет secondary / overline · фон buttonFillDisabled | x19 y775 · 374×52 · радиус 26 · отступы 0 24 | 82 |
-| 6 | текст «9:29» | «9:29» · число из данных | 16/22 · 700 | цвет buttonInkDisabled | цвет buttonInkDisabled | цвет secondary / overline | x266 y790 · 36×22 | 168 |
-| 7 | иконка Ionicons **flash** | — | 18/18 · 700 | цвет buttonInkDisabled | цвет buttonInkDisabled | цвет secondary / overline | x109 y792 · 18×18 | 168 |
-| 8 | текст «Играй без ожидания с Plus» | ru «Играй без ожидания с Plus» · `plusLink` (position_moment_strings.ts) · uk «Грай без очікування з Plus» | 16/auto · 700 | цвет text / mediaInk | цвет text | цвет text | x19 y831 · 374×44 | 168 |
-| 9 | иконка Ionicons **chevron-forward** | — | 16/16 · 700 | цвет text / mediaInk | цвет text | цвет text | x310 y845 · 16×16 | 168 |
+| 1 | блок .sheet | — | — | фон opaqueSheet / opaqueControl | фон opaqueCard / opaqueSheet | фон opaqueCard / opaqueSheet | x0 y616 · 412×299 · радиус 28 28 0 0 · отступы 12 18 40 · тень | 84 |
+| 2 | текст «Воскресенье · до итога» | ru «Воскресенье · до итога» · `lastOver` (position_moment_strings.ts) · uk «Неділя · до підсумку» | 13/17 · 700 · трекинг 1.4 · uppercase | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x19 y650 · 374×17 | 84 |
+| 3 | текст «03:12:29» | «03:12:29» · число из данных | 34/40 · 800 (на Android до нативной сборки — 700: известное расхождение, шрифт; Inter ExtraBold добавлен 0b61ac198) · трекинг -0.6 | цвет text / mediaInk | цвет text | цвет text | x19 y667 · 374×40 | 84 |
+| 4 | текст «До топ-5 — 60 монет. Энергия вернётся через 9:29.» | ru «До топ-5 — 60 монет. Энергия вернётся через 9:29.» · `lastBody` (position_moment_strings.ts) · uk-шаблон «До топ-5 — {gap}. Енергія повернеться через {t}.» · выделено: «60 монет» 600, «9:29» 400 | 16/22 · 400 | цвет secondary / mutedText | цвет secondary / mutedText | цвет secondary / overline | x19 y715 · 374×44 | 84 |
+| 5 | текст «Энергия через» | ru «Энергия через» · составлено из `energyIn` | 16/22 · 700 | цвет buttonInkDisabled · фон sheetPlateFillFrom / buttonFillDisabled | цвет buttonInkDisabled · фон buttonFillDisabled | цвет secondary / overline · фон buttonFillDisabled | x19 y775 · 374×52 · радиус 26 · отступы 0 24 | 84 |
+| 6 | текст «9:29» | «9:29» · число из данных | 16/22 · 700 | цвет buttonInkDisabled | цвет buttonInkDisabled | цвет secondary / overline | x266 y790 · 36×22 | 84 |
+| 7 | иконка Ionicons **flash** | — | 18/18 · 700 | цвет buttonInkDisabled | цвет buttonInkDisabled | цвет secondary / overline | x109 y792 · 18×18 | 84 |
+| 8 | текст «Играй без ожидания с Plus» | ru «Играй без ожидания с Plus» · `plusLink` (position_moment_strings.ts) · uk «Грай без очікування з Plus» | 16/auto · 700 | цвет text / mediaInk | цвет text | цвет text | x19 y831 · 374×44 | 84 |
+| 9 | иконка Ionicons **chevron-forward** | — | 16/16 · 700 | цвет text / mediaInk | цвет text | цвет text | x310 y845 · 16×16 | 166 |

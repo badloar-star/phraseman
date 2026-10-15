@@ -197,6 +197,8 @@
 .em-ph .vignette.cold { background: radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--acc2) 35%, transparent) 100%); }
 .em-ph .zone { background: linear-gradient(90deg, var(--good) 0 17%, var(--control) 17%); }
 .em-ph .zone-line { background: var(--acc); box-shadow: 0 0 12px var(--acc); } .em-ph .zone-lbl { color: var(--acc-text); }
+/* зачем (D145 «16/13 главнее макета», код 30fd4c31e): подпись «ТОП-5» на линии зоны 10 → 13/17 · 800 · 2, как zoneLbl в SpirePositionRiseMoment / MomentPromotion */
+.em-ph .zone-lbl { font-size: 13px; line-height: 17px; top: -20px; }
 .em-ph .delta { color: var(--good); }
 .em-ph .dusk, .em-ph .sky .stars, .em-ph .poster, .em-ph .ice { background: transparent; }
 /* зачем (владелец 14.10 «каша на экране»): полноэкранный момент — отдельный экран темы, а не прозрачный туман поверх подложки:

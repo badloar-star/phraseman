@@ -45,7 +45,7 @@ jest.mock('../modules/sound_v2/sound_v2_flag', () => ({ isSoundV2Enabled: () => 
 
 import DialogueIncomingCall from '../components/dialogs/DialogueIncomingCall';
 
-const glass = { bg: '#000', bgTop: '#111', text: '#fff', secondary: '#aaa', opaqueControl: '#222', cta: '#fff', ctaInk: '#000' } as never;
+const glass = { bg: '#000', bgTop: '#111', text: '#fff', secondary: '#aaa', opaqueControl: '#222', cta: '#fff', ctaInk: '#000', good: '#6FD08C' } as never;
 
 describe('m16 · входящий звонок', () => {
   it('«Входящий · диалог A1», «Mia звонит», сцена; «Ответить» — один раз', async () => {

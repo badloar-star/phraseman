@@ -155,8 +155,9 @@ function DialogueIncomingCall({ lang, glass, partnerName, cefr, sceneTitle, onAn
           <View style={s.btnCol}>
             <Reanimated.View style={pulseStyle}>
               <Pressable testID="dialogue-v2-incoming-answer" accessibilityRole="button" accessibilityLabel={c.answer} onPress={answer} hitSlop={8}
-                style={({ pressed }) => [s.round, { backgroundColor: glass.cta, transform: [{ scale: pressed ? 0.92 : 1 }] }]}>
-                <Ionicons name="mic" size={28} color={glass.ctaInk} />
+                style={({ pressed }) => [s.round, { backgroundColor: glass.good, transform: [{ scale: pressed ? 0.92 : 1 }] }]}>
+                {/* зачем (владелец 15.10, D196): «Ответить» — трубка, а не микрофон: голос не тратит, поэтому без счётчика «осталось сегодня»; цвет «верно» темы */}
+                <Ionicons name="call" size={28} color={glass.bg} />
               </Pressable>
             </Reanimated.View>
             <Text style={[s.lbl, { color: glass.secondary }]}>{c.answer}</Text>

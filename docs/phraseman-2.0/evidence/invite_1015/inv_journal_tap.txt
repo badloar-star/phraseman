@@ -1,0 +1,10 @@
+10-15 19:59:12.156 I/ReactNativeJS(29106): '[GUEST-SIGNIN-INVITE]', '{"lessonsDone":1,"decision":"tap"}'
+10-15 19:59:12.323 I/ReactNativeJS(29106): [LANG-SWITCH] settings study_target=en previous=none source=context
+10-15 19:59:12.477 W/ReactNativeJS(29106): '[HOME-COLD] video:skip', '{"homeRuntimeActive":false,"videoButtonEnabled":true,"runtimeOwnerId":"settings","homeOnboardingDone":false,"sinceFirstRenderMs":131777}', { [Stack] name: 'Stack' }
+10-15 19:59:12.635 I/ReactNativeJS(29106): '[DEEPLINK-SETTINGS]', 'path_change', '{"previous":"/lesson_complete","next":"/settings"}'
+10-15 19:59:12.860 I/ReactNativeJS(29106): '[V2-MAP] page:commit', '{"instanceId":"rd8pax","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"settings","visible":false,"navFocused":false,"atMs":1792090752857}'
+10-15 19:59:13.083 W/ReactNativeJS(29106): '[SETTINGS-PERF] profile id=settings_auth_modal phase=mount actualMs=5', { [Stack] name: 'Stack' }
+10-15 19:59:13.718 I/ReactNativeJS(29106): [GUEST-SIGNIN-INVITE] settings: open sign-in from lesson result invite
+10-15 19:59:13.728 W/ReactNativeJS(29106): [NAV-PAINT] group=tab route=/settings ms=1192
+10-15 19:59:15.242 I/ReactNativeJS(29106): '[MEM-TICK]', '{"tSec":136,"route":"/settings","heapMb":80,"gc":"33gc/330ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":69,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":17
+10-15 19:59:16.077 I/ReactNativeJS(29106): '[V2-MAP] page:commit', '{"instanceId":"owhc55","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"settings","visible":false,"navFocused":true,"atMs":1792090756076}'

@@ -1,0 +1,1 @@
+10-15 19:58:28.610 I/ReactNativeJS(29106): '[GUEST-SIGNIN-INVITE]', '{"isGuest":true,"lessonsDone":1,"shownBefore":false,"decision":"show"}'

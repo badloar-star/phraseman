@@ -1,210 +1,138 @@
-# Английский · Урок 2 · Занятие 18 — «Where are: спрашиваем про несколько»
+# Английский · Урок 2 · Занятие 18 — Сегодня без репетиции
 
-**Сцена занятия.** Торговый центр в выходной. Вы стоите у входа с пакетом и не понимаете, куда идти: всё нужное где-то есть, но указателей нет.
+**Ситуация.** Вы пришли на репетицию любительского спектакля. Обсуждаете самочувствие участников и возможность перенести встречу.
 
-**Как сказать:** `Where are` + несколько предметов
-**Новые слова:** shops, toilets
-**Возвращаются:** street, station, crowded, lost
+**Что вы освоите:** сказать о плохом самочувствии и выбрать короткий ответ по смыслу вопроса
+**Новые слова:** unwell
 
 ---
 
 ## Интро 1
 
-### `shops` — магазины, а не один магазин
+### Мне нездоровится
 
-`shop` — «магазин». Добавили `-s` — `shops`, стало «магазины».
+`unwell` — «плохо себя чувствующий». `I am unwell` — «Мне нездоровится», коротко `I'm unwell`. Слово не называет причину или болезнь. Сегодня можно объяснить своё состояние одной фразой; монолог на три страницы подождёт репетиции.
 
-Пока предмет один, рядом стоит `is`. Как только их несколько, на его место встаёт `are`: `Where are the shops?`
+**Вы плохо себя чувствуете и хотите уйти домой. Коротко сообщите о самочувствии.**
 
-Одно место — `is`, несколько — `are`. Больше во фразе ничего не меняется.
-
-**Вы у входа, магазины где-то дальше. Спросите охранника.**
-
-- ✅ **Where are the shops?**
-- ❌ Where is the shops? — *`shops` не один, значит `is` не подходит. Несколько — `are`.*
-- ❌ Where the shops are? — *`are` уехало в конец. Его место сразу после `where`.*
+- ✅ **I'm unwell.**
+- ❌ I'm well. — *Это хорошее самочувствие. Здесь нужно `unwell`.*
+- ❌ He's unwell. — *Это про него. О себе — `I'm`.*
 
 ---
 
 ## Интро 2
 
-### `toilets` — их несколько
+### Да — на какой вопрос?
 
-`toilets` — «туалеты». В торговом центре их несколько, поэтому и спрашивают про все сразу: `Where are the toilets?`
+`Are you unwell?` — «Вам нездоровится?» Если вам плохо, ответ `Yes, I am` подтверждает это. А на `Are you well?` в той же ситуации нужен ответ `No, I am not`. Сначала услышьте, о чём спрашивают: о хорошем самочувствии или о плохом.
 
-Перед `toilets` и `shops` стоит `the` — как и в прошлых вопросах про улицу и вокзал. Оно маленькое и на слух теряется, но во фразе нужно.
+**Вам нездоровится. Друг спрашивает: `Are you unwell?` Ответьте коротким «да».**
 
-**Вам срочно нужно. Спросите женщину у стойки.**
-
-- ✅ **Where are the toilets?**
-- ❌ Where are toilets? — *Пропало `the`. Перед местом оно нужно: `the toilets`.*
-- ❌ Where is the toilets? — *`toilets` больше одного, тут работает `are`.*
+- ✅ **Yes, I am.**
+- ❌ No, I am not. — *Это отрицало бы плохое самочувствие. Здесь подтвердите: `Yes, I am`.*
+- ❌ Yes, you are. — *Вопрос к вам. Ответ о себе — `I am`.*
 
 ---
 
 ## Интро 3
 
-### Одно место или несколько
+### Слово уже содержит плохое самочувствие
 
-Выбор между `is` и `are` решает одно: ищете вы одно место или несколько. Одно — `is`, несколько — `are`.
+`She is unwell` — «Ей нездоровится». Добавлять `not`, чтобы получить этот смысл, не нужно. `She is not unwell` отрицает плохое самочувствие. На `Is she unwell?` можно коротко ответить `No, she is not`, если ей хорошо.
 
-`street` — «улица», одна: `Where is the street?` Магазинов много: `Where are the shops?` Слово при этом тоже меняется — `shop` превращается в `shops`.
+**Анна хорошо себя чувствует. Друг спрашивает: `Is she unwell?` Ответьте коротким «нет».**
 
-**Вы не находите нужную улицу. Спросите прохожего у выхода.**
-
-- ✅ **Where is the street?**
-- ❌ Where are the street? — *Улица одна, а `are` — про несколько. Про одну — `is`.*
-- ❌ Where the street is? — *`is` встаёт сразу за `where`, а не в конец.*
+- ✅ **No, she is not.**
+- ❌ Yes, she is. — *Так вы подтвердите плохое самочувствие, а Анне хорошо.*
+- ❌ No, she not. — *После `she` нужно `is`: `No, she is not`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — shops**
-<!-- interaction_id: en:lesson-02:session-18:i01; family: listen_choose -->
-Цель: `shops`
+**1 · Вам нездоровится. Скажите об этом полной фразой**
+<!-- interaction_id: en:lesson-02:session-18:i01; family: phrase_builder -->
+Плитки: `unwell` `am` `I` `is` → **I am unwell.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am unwell.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте вопрос об Олеге**
 <!-- interaction_id: en:lesson-02:session-18:i02; family: listen_choose -->
-Цель: `shops`
-Варианты: `shops` · `tops` · `chops`
-- tops — *Начинается с «т», а `shops` — с «ш», как в русском «шорты».*
-- chops — *Начинается с «ч». В `shops` первый звук — «ш».*
+🔊 *Is he unwell?* → **Is he unwell?** · Is he early? · Is he lucky?
+- Is he early? — *В записи последнее слово — `unwell`, а в этом варианте — `early`.*
+- Is he lucky? — *В записи последнее слово — `unwell`, а в этом варианте — `lucky`.*
 
+**3 · Вам плохо. На «Are you unwell?» дополните короткое «да»**
+<!-- interaction_id: en:lesson-02:session-18:i03; family: context_gap_grammar -->
+Yes, I ___. → **am** · is · are
+- is — *Про себя — `I am`.*
+- are — *В ответе о себе нужно `I am`, хотя вопрос начинается с `Are you`.*
 
-**3 · Карточка слова — toilets**
-<!-- interaction_id: en:lesson-02:session-18:i03; family: listen_choose -->
-Цель: `toilets`
+**4 · Соедините слова о людях со значениями**
+<!-- interaction_id: en:lesson-02:session-18:i04; family: speed_match -->
+unwell — плохо себя чувствующий · wrong — неправый, ошибающийся · early — пришедший раньше времени · lucky — удачливый
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-18:i04; family: listen_choose -->
-Цель: `toilets`
-Варианты: `toilets` · `tickets` · `tablets`
-- tickets — *«Билеты». Гласная в начале другая: у `toilets` она тянется, у `tickets` короткая.*
-- tablets — *«Таблетки». Гласная в начале другая: у `toilets` она тянется, у `tablets` открытая.*
+**5 · Послушайте и соберите короткий ответ**
+<!-- interaction_id: en:lesson-02:session-18:i05; family: listen_build_dictation -->
+🔊 *No, she is not.* Плитки: `not` `is` `she` `No,` `Yes,` → **No, she is not.**
+*(плитка `Yes,` лишняя: здесь нужно `No,` — `No, she is not.`)*
 
-
-**5 · Вставьте слово — вы спрашиваете про магазины**
-<!-- interaction_id: en:lesson-02:session-18:i05; family: context_gap_grammar -->
-Цель: `Where ___ the shops?`
-Варианты: `are` · `is` · `am`
-- is — *`is` работает с одним предметом. Магазинов несколько.*
-- am — *Это слово только про себя: `I am`. В вопросе о месте ему делать нечего.*
-
-
-**6 · Соберите вопрос — у туристической карты вы ищете единственный вокзал города**
+**6 · Олег пришёл за полчаса до встречи. На «Is he early?» ответьте коротким «да»**
 <!-- interaction_id: en:lesson-02:session-18:i06; family: phrase_builder -->
-Цель: `Where is the station?`
+Плитки: `is` `he` `Yes,` `No,` → **Yes, he is.**
+*(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, he is.`)*
 
-**7 · Послушайте запись у стойки информации и выберите услышанную фразу**
-<!-- interaction_id: en:lesson-02:session-18:i07; family: listen_choose -->
-Цель: `Where are the toilets?`
-Варианты: `Where are the toilets?` · `Where is the station?` · `Where are the shops?`
-- Where is the station? — *В записи звучит `toilets`, а не `station`.*
-- Where are the shops? — *В записи звучит `toilets`, а не `shops`.*
+**7 · Анне нездоровится. Коротко скажите об этом другу**
+<!-- interaction_id: en:lesson-02:session-18:i07; family: scripted_repeat_compare -->
+🎙 **She's unwell.**
 
+**8 · Перенести репетицию можно. На «Is it impossible?» дополните короткое «нет»**
+<!-- interaction_id: en:lesson-02:session-18:i08; family: context_gap_grammar -->
+No, it ___ not. → **is** · am · are
+- am — *С `it` нужно `is`.*
+- are — *Ответ: `No, it is not`.*
 
-**8 · Карточка слова — crowded**
-<!-- interaction_id: en:lesson-02:session-18:i08; family: listen_choose -->
-Цель: `crowded`
+**9 · Послушайте фразу об Анне**
+<!-- interaction_id: en:lesson-02:session-18:i09; family: listen_choose -->
+🔊 *She is not wrong.* → **She is not wrong.** · She is not early. · She is not unwell.
+- She is not early. — *В записи последнее слово — `wrong`, а в этом варианте — `early`.*
+- She is not unwell. — *В записи последнее слово — `wrong`, а в этом варианте — `unwell`.*
 
-**9 · Вставьте слово — в субботу тут не протолкнуться**
-<!-- interaction_id: en:lesson-02:session-18:i09; family: context_gap_grammar -->
-Цель: `The shops are ___ .`
-Варианты: `crowded` · `lost` · `cold`
-- lost — *«Заблудился» — это про человека, который не знает дороги, а не про магазины.*
-- cold — *«Холодно» — про погоду или про вещь. Речь о толпе, а не о температуре.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-18:i10; family: speed_match -->
+impossible — невозможный · unwell — плохо себя чувствующий · wrong — неправый, ошибающийся · lucky — удачливый
 
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-18:i11; family: listen_build_dictation -->
+🔊 *We're not early.* Плитки: `early` `not` `We're` `He's` → **We're not early.**
+*(плитка `He's` лишняя: здесь нужно `We're` — `We're not early.`)*
 
-**10 · Послушайте и соберите — «где магазины?»**
-<!-- interaction_id: en:lesson-02:session-18:i10; family: listen_build_dictation -->
-Цель: `Where are the shops?`
-🔊 *Where are the shops?* Плитки: `Where` `are` `the` `shops` `is`
-*Плитка `is` лишняя: магазинов несколько, поэтому нужна форма `are`: `Where are the shops?`*
+**12 · Вы хорошо себя чувствуете. На «Are you unwell?» ответьте коротким «нет»**
+<!-- interaction_id: en:lesson-02:session-18:i12; family: phrase_builder -->
+Плитки: `not` `am` `I` `No,` `Yes,` → **No, I am not.**
+*(плитка `Yes,` лишняя: здесь нужно `No,` — `No, I am not.`)*
 
-**11 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-18:i11; family: speed_match -->
-Пары: `shops` — магазины · `toilets` — туалеты · `crowded` — людно · `station` — вокзал
-Цель: `shops · toilets · crowded · station`
+**13 · Вам с другом достались два последних билета на спектакль. Он спрашивает за вас обоих: «Are we lucky?» Ответьте коротким «да» за двоих**
+<!-- interaction_id: en:lesson-02:session-18:i13; family: scripted_repeat_compare -->
+🎙 **Yes, we are.**
 
-**12 · Различите слова — какое из двух про «улицу»?**
-<!-- interaction_id: en:lesson-02:session-18:i12; family: sound_contrast -->
-Варианты: `street` · `treat`
-- treat — *«Угощение». Первый звук другой: `street` начинается со «с», `treat` — с «т».*
+**14 · Анна и Олег хорошо себя чувствуют. Дополните фразу, которая отрицает плохое самочувствие**
+<!-- interaction_id: en:lesson-02:session-18:i14; family: context_gap_grammar -->
+They ___ not unwell. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Про двоих — `They are not`.*
 
+**15 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-18:i15; family: listen_choose -->
+🔊 *Is it impossible?* → **Is it impossible?** · Is it possible? · Is it urgent?
+- Is it possible? — *В записи последнее слово — `impossible`, а в этом варианте — `possible`.*
+- Is it urgent? — *В записи последнее слово — `impossible`, а в этом варианте — `urgent`.*
 
-**13 · Вставьте слово — вы третий раз выходите к одному и тому же входу**
-<!-- interaction_id: en:lesson-02:session-18:i13; family: context_gap_grammar -->
-Цель: `I am ___ .`
-Варианты: `lost` · `crowded` · `cold`
-- crowded — *«Людно» — про место, где много народу, а не про человека.*
-- cold — *«Холодно» — про температуру. Вы не мёрзнете, вы не понимаете, куда идти.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-18:i16; family: speed_match -->
+well — хорошо себя чувствующий · unwell — плохо себя чувствующий · early — пришедший раньше времени · impossible — невозможный
 
+**17 · Вам нездоровится, и вы хотите отменить участие в репетиции. Друг спрашивает: «Are you unwell?» Ответьте коротким «да», не повторяя unwell**
+<!-- interaction_id: en:lesson-02:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Yes, I am.**
 
-**14 · Послушайте и соберите — у карты вы спрашиваете про единственный вокзал**
-<!-- interaction_id: en:lesson-02:session-18:i14; family: listen_build_dictation -->
-Цель: `Where is the station?`
-
-**15 · Вставьте слово — вы у входа и ищете этаж с витринами**
-<!-- interaction_id: en:lesson-02:session-18:i15; family: context_gap_grammar -->
-Цель: `Where are the ___ ?`
-Варианты: `shops` · `station` · `street`
-- station — *«Вокзал» — он не в торговом центре, и он один: тогда было бы `Where is`.*
-- street — *«Улица» — она снаружи, а вы ищете внутри. И улица одна.*
-
-
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-18:i16; family: scripted_repeat_compare -->
-Цель: `Where are the toilets?`
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-18:i17:s01; family: scripted_repeat_compare -->
-Цель: `I am lost.`
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-18:i17:s02; family: scripted_repeat_compare -->
-Цель: `Where are the shops?`
-
-**19 · Послушайте и соберите — у входа в торговый центр вы спрашиваете про туалеты**
-<!-- interaction_id: en:lesson-02:session-18:i17:s03; family: listen_build_dictation -->
-Цель: `Where are the toilets?`
-
-## Для сборщика
-
-new_words:
-shops — магазины — «магазины». Один — `shop`, добавили `-s` — стало несколько.
-toilets — туалеты — «туалеты». В торговом центре их несколько, поэтому и слово стоит на несколько.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=listen_choose, 8=listen_choose, 9=context_gap_grammar, 10=listen_build_dictation, 11=speed_match, 12=sound_contrast, 13=context_gap_grammar, 14=listen_build_dictation, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=listen_build_dictation
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| street | 12, 15 | 12 (различение слов) |
-| station | 6, 11, 14, 15 | 6 (вставка `is`), 11 (доска пар), 14 (сборка фразы) |
-| crowded | 8, 9, 11, 13 | 9 (вставка слова), 11 (доска пар) |
-| lost | 9, 13, 17 | 13 (вставка слова), 17 (финал) |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | Where are the shops? | да — `shops` и `Where are the shops?` в тексте |
-| Интро 2 | Where are the toilets? | да — `toilets` и `Where are the toilets?` в тексте |
-| Интро 3 | Where is the street? | да — `street` и `Where is the street?` в тексте |
-
-**3. Доска пар (задание 11)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| shops | задание 1 | 2 (слух), 5 (вставка), 10 (сборка) |
-| toilets | задание 3 | 4 (слух), 7 (сборка) |
-| crowded | задание 8 | 9 (вставка) |
-| station | из занятия 17 | 6 (вставка `is`) |
-
----

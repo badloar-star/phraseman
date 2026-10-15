@@ -5,6 +5,19 @@ Governance-ID: TG-2EC38B4B985A
 Governance-ID: TG-AE84BCD23332
 Governance-ID: TG-67CE73ADA873
 Governance-ID: TG-EEC1572249B3
+Governance-ID: TG-2037CC4D5B8A
+Governance-ID: TG-5492A09CCAE5
+
+Повторное ревью Opus ~16:00 — APPROVE. Прогон окна поймал сторож переписи `account_authority_legacy_callsite_guard`:
+перепроверка — второй осознанный вызов `isLocalAnonymousIdentityProvenCleanForCredentialHandoff` (1→2, occurrences 122→123);
+перепись обновляется с комментарием-причиной. Плюс тест «монеты только на телефоне при serverSeq 0» (замечание ревью).
+
+Ревью Opus 15:54 — BLOCK, исправляется: (1) 🔴 `isEmptySpinProjection` не видел `unconfirmedLocalLift` (монеты только на
+телефоне), `serverSeq`, `acknowledged`, `compactedSpendTotal` — пустой считается только точная заготовка; (2) 🟡 гонка: проверка
+чистоты шла до замка и тишины синхронизации (auth_provider ~2843 vs 2864–2873) — при первом ответе «чист» перепроверка после
+тишины; (3) тест «неизвестный ключ» на деле не проверял незнакомый ключ — отдельный тест с `client_shard_operation_v1:`; тест
+на `unconfirmedLocalLift > 0`; (4) `unlockedAt` строго `null`; устаревшие комментарии; решение — в `identityTrace(persist)`.
+R46 (онбординг гостя после force-stop) — артефакт: подтверждено Эмулятором 7 (свежая установка, онбординг, force-stop → Главная).
 
 Шаг 1 закоммичен 9f2ba5a62 (15:15:30, [GUEST-CLEAN] с формой значения). Шаг 2 готов к применению: решение по разметке
 (`decision=clean_by_defaults`), user_profile/аватар/рамка — не прогресс, серия ≥ 2 — прогресс; матрица `guest_clean_handoff_matrix`

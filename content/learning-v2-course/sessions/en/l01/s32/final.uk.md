@@ -1,220 +1,138 @@
-# Англійська · Урок 1 · Заняття 32 — «Квартира і погода»
+# Англійська · Урок 1 · Заняття 32 — Перед відкриттям виставки
 
-**Ситуація.** Лена телефонує подрузі Мії й розповідає про нову квартиру та погоду за вікном. Мія питає, чи квартира маленька, чи дорого в ній жити та чи йде дощ.
-**Як сказати:** `It is` і `It is not`, коли описуєте квартиру або погоду.
+**Ситуація.** Ви з друзями готуєте невелику виставку фотографій. Перевіряєте підписи й запрошення, порівнюєте роботи та ділитеся своїми почуттями перед відкриттям.
+
+**Що ви опануєте:** вибрати знайомі am, is, are та слова розділу без нової граматики
 **Нові слова:** —
-**Повертаються:** small, dark, cold, expensive, rainy, warm, clean, quiet
 
 ---
 
 ## Інтро 1
 
-### `not` стає після `is`
+### Початок визначає форму
 
-`small` — «маленька». `It is small` — «вона маленька». Неправда? Ставте `not` одразу після `is`: `It is not small`.
+Після `I` вибираємо `am`, після `He`, `She`, `It` — `is`, після `You`, `We`, `They` — `are`. Це працює і для почуттів, і для інших знайомих описів: `I am proud`, `It is correct`, `They are similar`.
 
-Українською ми кажемо просто «не маленька», без жодного зайвого слова. Тому руку так і тягне викинути `is`. Не викидайте: `not` тримається саме за нього.
+**Ви пишаєтеся своєю роботою на виставці. Скажіть про себе.**
 
-**Подруга по телефону: «Ну що, кімнатка крихітна?» Кімната нормальна. Відповідайте.**
-
-- ✅ **It is not small.**
-- ❌ It not small. — *`is` випало. `not` тримається за `is` — без нього йому нема на чому стояти.*
-- ❌ It is no small. — *`no` тут не працює. Заперечення після `is` — тільки `not`.*
+- ✅ **I am proud.**
+- ❌ I is proud. — *Після `I` потрібна форма `am`.*
+- ❌ We are proud. — *Це за вас та інших людей. Тут треба сказати про себе: `I am proud`.*
 
 ---
 
 ## Інтро 2
 
-### `expensive` — дорого
+### Називаємо потрібне почуття
 
-`expensive` — «дорого». Про ціну квартири, кави, квитка — усе це `it`, тому `It is expensive`, а якщо ціна нормальна — `It is not expensive`.
+`bored` — «нудьгує», `confused` — «заплутався», `worried` — «хвилюється». Людина може відчувати кілька почуттів одночасно, але в кожній відповіді назвіть те, про яке запитують. Упевненість `certain` теж не доводить правильність `correct`: підписи все одно краще звірити.
 
-Три склади, наголос на другий: ік-СПЕН-сив. Рука тягнеться вдарити по першому, як в українському «експорт», — не піддавайтеся.
+**Сестра не розуміє, які підписи стосуються яких фотографій. Назвіть саме її нерозуміння.**
 
-**Подруга: «Оренда, мабуть, шалена?» Платите ви небагато. Скажіть, що ні.**
-
-- ✅ **It is not expensive.**
-- ❌ It is not expensiv. — *Хвіст обірвано. На кінці `-ive`, повністю: `expensive`.*
-- ❌ It not expensive. — *Заперечення вийшло, а `is` лишилося за дверима. Порядок один: `It is not`.*
+- ✅ **She is confused.**
+- ❌ She is bored. — *`bored` — «нудьгує». Тут ідеться про нерозуміння: `confused`.*
+- ❌ She are confused. — *Після `She` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### `rainy` і `warm` — про те, що за вікном
+### Що порівнюємо
 
-`rainy` — «дощово», `warm` — «тепло». Про погоду говорять через `it`, хоча українською там немає жодного «воно»: «дощово» — і все.
+`equal` — «рівні», наприклад суми; `similar` — «схожі», наприклад фотографії; `separate` — «окремі», наприклад замовлення. Схожі знімки ще не однакові: на одному кіт дивиться в камеру, на іншому вже йде у справах.
 
-Тож `it` доведеться ставити завжди, навіть коли його нема куди перекласти: `It is rainy`, `It is warm`. Вважайте це платою за вхід.
+**На двох знімках схожі краєвиди, але деталі різні. Скажіть про схожість знімків.**
 
-**Подруга: «У вас там ллє?» За вікном сухо й тепло. Скажіть про дощ чесно.**
-
-- ✅ **It is not rainy.**
-- ❌ Is not rainy. — *Початок з'їдено. Погода завжди починається з `it`.*
-- ❌ It is not rain. — *`rain` — це сам дощ. Про погоду — `rainy`.*
+- ✅ **They are similar.**
+- ❌ They are separate. — *Це «Вони окремі». Тут треба назвати схожість: `similar`.*
+- ❌ They is similar. — *Після `They` ставимо `are`.*
 
 ---
 
-## Практика (перші завдання)
+## Практика (17 завдань)
 
-**1 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-32:i01; family: listen_choose -->
-🔊 *small* → **small** · smell · mall
-- smell — *Інший голосний посередині, і значення інше. `small` — «маленький».*
-- mall — *Початок відрізано. У `small` попереду `s`.*
+**1 · Уся ваша команда пишається готовою виставкою. Складіть фразу за вас усіх**
+<!-- interaction_id: en:lesson-01:session-32:i01; family: phrase_builder -->
+Плитки: `proud` `are` `We` `is` → **We are proud.**
+*(плитка `is` зайва: тут потрібно `are` — `We are proud.`)*
 
-**2 · Вставте слово — про кімнату, яка вам замала**
-<!-- interaction_id: en:lesson-01:session-32:i02; family: context_gap_grammar -->
-It is ___ . → **small** · warm · quiet
-- warm — *«Тепло» — про повітря, а не про розмір.*
-- quiet — *«Тихо» — про звук. Розмір тут ні до чого.*
+**2 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-32:i02; family: listen_choose -->
+🔊 *He is worried.* → **He is worried.** · She is worried. · He is surprised.
+- She is worried. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
+- He is surprised. — *У записі останнє слово — `worried`, а в цьому варіанті — `surprised`.*
 
-**3 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-32:i03; family: listen_choose -->
-🔊 *dark* → **dark** · park · duck
-- park — *Усе те саме, тільки починається з `p`. Слухайте перший звук.*
-- duck — *Голосний інший і коротший. У `dark` він тягнеться.*
+**3 · Ви звірили час відкриття в запрошенні: він правильний. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-32:i03; family: context_gap_grammar -->
+It ___ correct. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Із `It` тут ставимо `is`.*
 
-**4 · Складіть фразу — «тут темно»**
-<!-- interaction_id: en:lesson-01:session-32:i04; family: phrase_builder -->
-Плитки: `dark` `It` `is` `not` → **It is dark.**
-*Темно і є, заперечувати нічого: плитка `not` зайва.*
-*(плитка `not` зайва: `are` зайве: після `It` ставлять `is` — `It is dark`.)*
+**4 · З’єднайте почуття зі значеннями**
+<!-- interaction_id: en:lesson-01:session-32:i04; family: speed_match -->
+ashamed — соромно · surprised — здивований · bored — нудьгує · confused — заплутався
 
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-01:session-32:i05; family: listen_build_dictation -->
+🔊 *They are available.* Плитки: `available` `are` `They` `We` → **They are available.**
+*(плитка `We` зайва: тут потрібно `They` — `They are available.`)*
 
-**5 · Вставте слово — вікна на сонячний бік, світла повно**
-<!-- interaction_id: en:lesson-01:session-32:i05; family: context_gap_grammar -->
-It is not ___ . → **dark** · rainy · expensive
-- rainy — *Ідеться про світло в кімнаті, а не про небо.*
-- expensive — *«Дорого» — це про ціну, не про освітлення.*
+**6 · Замовлення двох фотографів оформлено окремо. Складіть фразу про окремі замовлення**
+<!-- interaction_id: en:lesson-01:session-32:i06; family: phrase_builder -->
+Плитки: `separate` `are` `They` `is` → **They are separate.**
+*(плитка `is` зайва: тут потрібно `are` — `They are separate.`)*
 
-**6 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-32:i06; family: listen_choose -->
-🔊 *expensive* → **expensive** · expense · offensive
-- expense — *Коротше на склад і без хвоста `-ive`.*
-- offensive — *Схоже закінчення, але початок інший: там `of-`.*
+**7 · Ви особисто перевірили дату виставки й не сумніваєтеся в ній. Скажіть про свою впевненість**
+<!-- interaction_id: en:lesson-01:session-32:i07; family: scripted_repeat_compare -->
+🎙 **I am certain.**
 
-**7 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-32:i07; family: speed_match -->
-small — маленький · dark — темно · expensive — дорого · quiet — тихо
+**8 · Двоє фотографів внесли однакові суми за оренду. Доповніть фразу про рівність сум**
+<!-- interaction_id: en:lesson-01:session-32:i08; family: context_gap_grammar -->
+They ___ equal. → **are** · am · is
+- am — *Після `They` потрібна форма `are`.*
+- is — *Про дві суми кажемо `They are`.*
 
-**8 · Послухайте і складіть — «це недорого»**
-<!-- interaction_id: en:lesson-01:session-32:i08; family: listen_build_dictation -->
-🔊 *It is not expensive.* Плитки: `not` `It` `expensive` `is` → **It is not expensive.**
-
-**9 · Картка слова — cold**
+**9 · Послухайте повідомлення про подругу**
 <!-- interaction_id: en:lesson-01:session-32:i09; family: listen_choose -->
-> **cold** — «холодно». Про повітря в кімнаті, надворі, про воду з крана — усе це `it`: `It is cold`.
+🔊 *She is awake.* → **She is awake.** · He is awake. · She is asleep.
+- He is awake. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
+- She is asleep. — *У записі останнє слово — `awake`, а в цьому варіанті — `asleep`.*
 
-**10 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-32:i10; family: listen_choose -->
-🔊 *cold* → **cold** · called · gold
-- called — *Голосний тягнеться інакше, і це інше слово.*
-- gold — *Попереду `g`. Слухайте перший звук.*
+**10 · З’єднайте знайомі слова та значення**
+<!-- interaction_id: en:lesson-01:session-32:i10; family: speed_match -->
+awake — не спить · asleep — спить · local — місцевий · foreign — іноземний
 
-**11 · Складіть фразу — подруга питає, чи не мерзнете ви вдома**
-<!-- interaction_id: en:lesson-01:session-32:i11; family: phrase_builder -->
-Плитки: `It` `cold` `not` `is` → **It is not cold.**
+**11 · Послухайте й складіть фразу про зниклий знімок**
+<!-- interaction_id: en:lesson-01:session-32:i11; family: listen_build_dictation -->
+🔊 *It is missing.* Плитки: `missing` `is` `It` `He` → **It is missing.**
+*(плитка `He` зайва: тут потрібно `It` — `It is missing.`)*
 
-**12 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-32:i12; family: listen_choose -->
-🔊 *rainy* → **rainy** · rain · train
-- rain — *Без хвоста `-y`. Це сам дощ, а не погода.*
-- train — *Попереду `t`. Слухайте самий початок слова.*
+**12 · Зустріч із фотографом відбудеться в інтернеті. Складіть повідомлення про формат зустрічі**
+<!-- interaction_id: en:lesson-01:session-32:i12; family: phrase_builder -->
+Плитки: `online` `is` `It` `are` → **It is online.**
+*(плитка `are` зайва: тут потрібно `is` — `It is online.`)*
 
-**13 · Вставте слово — зранку ллє не перестаючи**
-<!-- interaction_id: en:lesson-01:session-32:i13; family: context_gap_grammar -->
-It is ___ . → **rainy** · warm · clean
-- warm — *«Тепло» — про температуру, дощу в цьому слові немає.*
-- clean — *«Чисто» — про підлогу й посуд, не про небо.*
+**13 · Друг підтвердив, що не жартує про участь у наступній виставці. Скажіть йому: «Ти серйозно»**
+<!-- interaction_id: en:lesson-01:session-32:i13; family: scripted_repeat_compare -->
+🎙 **You are serious.**
 
-**14 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-32:i14; family: listen_choose -->
-🔊 *warm* → **warm** · worm · farm
-- worm — *Голосний інший, і це «черв'як». Не про погоду.*
-- farm — *Попереду `f`. У `warm` початок м'якший: `w`.*
+**14 · Сестра боїться, що гості не встигнуть приїхати. Назвіть її тривогу**
+<!-- interaction_id: en:lesson-01:session-32:i14; family: context_gap_grammar -->
+She is ___ . → **worried** · bored · proud
+- bored — *`bored` — «нудьгує». Тут вона тривожиться: `worried`.*
+- proud — *`proud` — «пишається». Тут треба назвати тривогу: `worried`.*
 
-**15 · Вставте слово — батареї гарячі, у куртці вдома спекотно**
-<!-- interaction_id: en:lesson-01:session-32:i15; family: context_gap_grammar -->
-It is ___ . → **warm** · small · dark
-- small — *«Маленький» — про розмір кімнати, а йдеться про повітря.*
-- dark — *«Темно» — про світло, а не про температуру.*
+**15 · Послухайте й виберіть фразу про фотографії**
+<!-- interaction_id: en:lesson-01:session-32:i15; family: listen_choose -->
+🔊 *They are similar.* → **They are similar.** · They are equal. · They are separate.
+- They are equal. — *У записі останнє слово — `similar`, а в цьому варіанті — `equal`.*
+- They are separate. — *У записі останнє слово — `similar`, а в цьому варіанті — `separate`.*
 
-**16 · Картка слова — clean**
-<!-- interaction_id: en:lesson-01:session-32:i16; family: listen_choose -->
-> **clean** — «чисто». Підлогу вимито, посуд прибрано, ніщо не валяється: `It is clean`.
+**16 · З’єднайте слова та значення**
+<!-- interaction_id: en:lesson-01:session-32:i16; family: speed_match -->
+alive — живий · dead — мертвий · missing — зниклий · available — вільний, може приділити час
 
-**17 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-32:i17; family: listen_choose -->
-🔊 *clean* → **clean** · clan · green
-- clan — *Голосний коротший. У `clean` він тягнеться: «кліін».*
-- green — *Попереду `gr-`. Початок інший.*
-
-**18 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-32:i18; family: speed_match -->
-cold — холодно · rainy — дощово · warm — тепло · clean — чисто
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-32:i19:s01; family: scripted_repeat_compare -->
-🎙 **It is small.**
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-32:i19:s02; family: scripted_repeat_compare -->
-🎙 **It is not expensive.**
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-32:i19:s03; family: scripted_repeat_compare -->
-🎙 **It is warm.**
-
-**22 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-32:i19:s04; family: scripted_repeat_compare -->
-🎙 **It is rainy.**
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_choose, 7=speed_match, 8=listen_build_dictation, 9=listen_choose, 10=listen_choose, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=listen_choose, 15=context_gap_grammar, 16=listen_choose, 17=listen_choose, 18=speed_match, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| small | 1, 2, 7, 15 (пастка), 19 | 1, 2, 19 |
-| dark | 3, 4, 5, 7, 15 (пастка) | 3, 4, 5 |
-| cold | 9, 10, 11, 18 | 10, 11 |
-| expensive | 5 (пастка), 6, 7, 8, 19 | 6, 8, 19 |
-| rainy | 5 (пастка), 12, 13, 18, 19 | 12, 13, 19 |
-| warm | 2 (пастка), 13 (пастка), 14, 15, 18, 19 | 14, 15, 19 |
-| clean | 13 (пастка), 16, 17, 18 | 17 |
-| quiet | 2 (пастка), 7 | — (лише дошка й пастка) |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | small (`It is not small`) | так — `small` і розбір `not` після `is` |
-| Інтро 2 | expensive (`It is not expensive`) | так — уся сторінка про `expensive` |
-| Інтро 3 | rainy (`It is not rainy`) | так — `rainy` розібрано першим |
-
-**3. Дошка пар**
-
-| слово | відпрацювання ДО дошки |
-|---|---|
-| small (дошка 7) | завдання 1, 2 |
-| dark (дошка 7) | завдання 3, 4, 5 |
-| expensive (дошка 7) | завдання 6 |
-| quiet (дошка 7) | з минулих сесій; у цій сесії — пастка в завданні 2 |
-| cold (дошка 18) | картка 9, завдання 10, 11 |
-| rainy (дошка 18) | завдання 12, 13 |
-| warm (дошка 18) | завдання 14, 15 |
-| clean (дошка 18) | картка 16, завдання 17 |
-
-Дошки не перетинаються словами.
+**17 · Ви складаєте шафу вдома. Дві сторінки інструкції суперечать одна одній, і ви не розумієте, що робити. Назвіть своє нерозуміння однією фразою**
+<!-- interaction_id: en:lesson-01:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am confused.**
 

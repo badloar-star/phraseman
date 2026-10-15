@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-32",
   "learningOutcomeByLocale": {
-    "ru": "`It is` и `It is not`, когда описываете квартиру или погоду.",
-    "uk": "`It is` і `It is not`, коли описуєте квартиру або погоду."
+    "ru": "выбрать знакомые am, is, are и слова главы без новой грамматики",
+    "uk": "вибрати знайомі am, is, are та слова розділу без нової граматики"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`not` встаёт после `is`",
-        "uk": "`not` стає після `is`"
+        "ru": "Начало определяет форму",
+        "uk": "Початок визначає форму"
       },
       "bodyByLocale": {
-        "ru": "`small` — «маленькая». `It is small` — «она маленькая». Неправда? Ставьте `not` сразу после `is`: `It is not small`.\n\nПо-русски мы говорим просто «не маленькая», без всякого лишнего слова. Поэтому руку так и тянет выбросить `is`. Не выбрасывайте: `not` держится именно за него.",
-        "uk": "`small` — «маленька». `It is small` — «вона маленька». Неправда? Ставте `not` одразу після `is`: `It is not small`.\n\nУкраїнською ми кажемо просто «не маленька», без жодного зайвого слова. Тому руку так і тягне викинути `is`. Не викидайте: `not` тримається саме за нього."
+        "ru": "После `I` выбираем `am`, после `He`, `She`, `It` — `is`, после `You`, `We`, `They` — `are`. Это работает и для чувств, и для других знакомых описаний: `I am proud`, `It is correct`, `They are similar`.",
+        "uk": "Після `I` вибираємо `am`, після `He`, `She`, `It` — `is`, після `You`, `We`, `They` — `are`. Це працює і для почуттів, і для інших знайомих описів: `I am proud`, `It is correct`, `They are similar`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-32:intro1:q",
         "promptByLocale": {
-          "ru": "Подруга по телефону: «Ну что, комнатка крошечная?» Комната нормальная. Ответьте.",
-          "uk": "Подруга по телефону: «Ну що, кімнатка крихітна?» Кімната нормальна. Відповідайте."
+          "ru": "Вы гордитесь своей работой на выставке. Скажите о себе.",
+          "uk": "Ви пишаєтеся своєю роботою на виставці. Скажіть про себе."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-32:intro1:r1",
-              "text": "It is not small."
+              "text": "I am proud."
             },
             {
               "responseId": "en:lesson-01:session-32:intro1:r2",
-              "text": "It not small."
+              "text": "I is proud."
             },
             {
               "responseId": "en:lesson-01:session-32:intro1:r3",
-              "text": "It is no small."
+              "text": "We are proud."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-32:intro1:r1",
-              "text": "It is not small."
+              "text": "I am proud."
             },
             {
               "responseId": "en:lesson-01:session-32:intro1:r2",
-              "text": "It not small."
+              "text": "I is proud."
             },
             {
               "responseId": "en:lesson-01:session-32:intro1:r3",
-              "text": "It is no small."
+              "text": "We are proud."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга по телефону: «Ну что, комнатка крошечная?» Комната нормальная. Ответьте.",
-          "uk": "Подруга по телефону: «Ну що, кімнатка крихітна?» Кімната нормальна. Відповідайте."
+          "ru": "Вы гордитесь своей работой на выставке. Скажите о себе.",
+          "uk": "Ви пишаєтеся своєю роботою на виставці. Скажіть про себе."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`expensive` — дорого",
-        "uk": "`expensive` — дорого"
+        "ru": "Называем нужное чувство",
+        "uk": "Називаємо потрібне почуття"
       },
       "bodyByLocale": {
-        "ru": "`expensive` — «дорого». Про цену квартиры, кофе, билета — всё это `it`, поэтому `It is expensive`, а если цена нормальная — `It is not expensive`.\n\nТри слога, ударение на второй: ик-СПЕН-сив. Рука тянется стукнуть по первому, как в русском «экспорт», — не поддавайтесь.",
-        "uk": "`expensive` — «дорого». Про ціну квартири, кави, квитка — усе це `it`, тому `It is expensive`, а якщо ціна нормальна — `It is not expensive`.\n\nТри склади, наголос на другий: ік-СПЕН-сив. Рука тягнеться вдарити по першому, як в українському «експорт», — не піддавайтеся."
+        "ru": "`bored` — «скучает», `confused` — «запутался», `worried` — «волнуется». Человек может испытывать несколько чувств сразу, но в каждом ответе назовите то, о котором спрашивают. Уверенность `certain` тоже не доказывает правильность `correct`: подписи всё равно лучше сверить.",
+        "uk": "`bored` — «нудьгує», `confused` — «заплутався», `worried` — «хвилюється». Людина може відчувати кілька почуттів одночасно, але в кожній відповіді назвіть те, про яке запитують. Упевненість `certain` теж не доводить правильність `correct`: підписи все одно краще звірити."
       },
       "question": {
         "interactionId": "en:lesson-01:session-32:intro2:q",
         "promptByLocale": {
-          "ru": "Подруга: «Аренда, наверное, конская?» Платите вы немного. Скажите, что нет.",
-          "uk": "Подруга: «Оренда, мабуть, шалена?» Платите ви небагато. Скажіть, що ні."
+          "ru": "Сестра не понимает, какие подписи относятся к каким фотографиям. Назовите именно её непонимание.",
+          "uk": "Сестра не розуміє, які підписи стосуються яких фотографій. Назвіть саме її нерозуміння."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-32:intro2:r1",
-              "text": "It is not expensive."
+              "text": "She is confused."
             },
             {
               "responseId": "en:lesson-01:session-32:intro2:r2",
-              "text": "It is not expensiv."
+              "text": "She is bored."
             },
             {
               "responseId": "en:lesson-01:session-32:intro2:r3",
-              "text": "It not expensive."
+              "text": "She are confused."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-32:intro2:r1",
-              "text": "It is not expensive."
+              "text": "She is confused."
             },
             {
               "responseId": "en:lesson-01:session-32:intro2:r2",
-              "text": "It is not expensiv."
+              "text": "She is bored."
             },
             {
               "responseId": "en:lesson-01:session-32:intro2:r3",
-              "text": "It not expensive."
+              "text": "She are confused."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга: «Аренда, наверное, конская?» Платите вы немного. Скажите, что нет.",
-          "uk": "Подруга: «Оренда, мабуть, шалена?» Платите ви небагато. Скажіть, що ні."
+          "ru": "Сестра не понимает, какие подписи относятся к каким фотографиям. Назовите именно её непонимание.",
+          "uk": "Сестра не розуміє, які підписи стосуються яких фотографій. Назвіть саме її нерозуміння."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`rainy` и `warm` — про то, что за окном",
-        "uk": "`rainy` і `warm` — про те, що за вікном"
+        "ru": "Что сравниваем",
+        "uk": "Що порівнюємо"
       },
       "bodyByLocale": {
-        "ru": "`rainy` — «дождливо», `warm` — «тепло». О погоде говорят через `it`, хотя по-русски там вообще нет никакого «оно»: «дождливо» — и всё.\n\nТак что `it` придётся ставить всегда, даже когда его некуда переводить: `It is rainy`, `It is warm`. Считайте это платой за вход.",
-        "uk": "`rainy` — «дощово», `warm` — «тепло». Про погоду говорять через `it`, хоча українською там немає жодного «воно»: «дощово» — і все.\n\nТож `it` доведеться ставити завжди, навіть коли його нема куди перекласти: `It is rainy`, `It is warm`. Вважайте це платою за вхід."
+        "ru": "`equal` — «равные», например суммы; `similar` — «похожие», например фотографии; `separate` — «отдельные», например заказы. Похожие снимки ещё не одинаковые: на одном кот смотрит в камеру, на другом уже уходит по делам.",
+        "uk": "`equal` — «рівні», наприклад суми; `similar` — «схожі», наприклад фотографії; `separate` — «окремі», наприклад замовлення. Схожі знімки ще не однакові: на одному кіт дивиться в камеру, на іншому вже йде у справах."
       },
       "question": {
         "interactionId": "en:lesson-01:session-32:intro3:q",
         "promptByLocale": {
-          "ru": "Подруга: «У вас там льёт?» За окном сухо и тепло. Скажите про дождь честно.",
-          "uk": "Подруга: «У вас там ллє?» За вікном сухо й тепло. Скажіть про дощ чесно."
+          "ru": "На двух снимках похожие пейзажи, но детали разные. Скажите о сходстве снимков.",
+          "uk": "На двох знімках схожі краєвиди, але деталі різні. Скажіть про схожість знімків."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-32:intro3:r1",
-              "text": "It is not rainy."
+              "text": "They are similar."
             },
             {
               "responseId": "en:lesson-01:session-32:intro3:r2",
-              "text": "Is not rainy."
+              "text": "They are separate."
             },
             {
               "responseId": "en:lesson-01:session-32:intro3:r3",
-              "text": "It is not rain."
+              "text": "They is similar."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-32:intro3:r1",
-              "text": "It is not rainy."
+              "text": "They are similar."
             },
             {
               "responseId": "en:lesson-01:session-32:intro3:r2",
-              "text": "Is not rainy."
+              "text": "They are separate."
             },
             {
               "responseId": "en:lesson-01:session-32:intro3:r3",
-              "text": "It is not rain."
+              "text": "They is similar."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга: «У вас там льёт?» За окном сухо и тепло. Скажите про дождь честно.",
-          "uk": "Подруга: «У вас там ллє?» За вікном сухо й тепло. Скажіть про дощ чесно."
+          "ru": "На двух снимках похожие пейзажи, но детали разные. Скажите о сходстве снимков.",
+          "uk": "На двох знімках схожі краєвиди, але деталі різні. Скажіть про схожість знімків."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "223695fbfef008a3788fedfcbead69b9d5f09d61d0f90f8efa2b0c191fa54ce6"
+  "introFingerprint": "399d2381f02b55bf90910e1fcc0fe6be24853d848aa23f7af6b99694844f3da0"
 }

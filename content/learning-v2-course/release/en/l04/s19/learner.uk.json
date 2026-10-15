@@ -366,13 +366,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви з’їли спільні ягоди. Зізнайтеся «Я винен» зі скороченням",
+      "prompt": "Ви без дозволу з’їли всі спільні ягоди. Зізнайтеся «Я винен» зі скороченням",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-19:i07:audio"
       ],
-      "accessibilityLabel": "Ви з’їли спільні ягоди. Зізнайтеся «Я винен» зі скороченням",
+      "accessibilityLabel": "Ви без дозволу з’їли всі спільні ягоди. Зізнайтеся «Я винен» зі скороченням",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -980,5 +980,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8f4018837d8ba1363013c14054e5c5b8243aa243a6deb56fd1084ac6ee89a80c"
+  "learnerFingerprint": "b8e139027e634ab8fd06dd0e822c82853ba4f60eb126b7d655e6059bcfc59033"
 }

@@ -366,13 +366,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы съели общие ягоды. Признайтесь «Я виноват» с сокращением",
+      "prompt": "Вы без разрешения съели все общие ягоды. Признайтесь «Я виноват» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-19:i07:audio"
       ],
-      "accessibilityLabel": "Вы съели общие ягоды. Признайтесь «Я виноват» с сокращением",
+      "accessibilityLabel": "Вы без разрешения съели все общие ягоды. Признайтесь «Я виноват» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -980,5 +980,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8673f5894eb9e305e05b9269215735313b35da5ad9a9b30302d5f038da9adeb4"
+  "learnerFingerprint": "1ef9c148b9519470d8646eb238286add8ce13c74c42d318e74170bf8f7609cef"
 }

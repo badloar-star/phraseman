@@ -24,6 +24,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { studySpeechLocale } from './study_speech_locale';
 import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
@@ -1399,6 +1400,8 @@ const LessonContent = React.memo(function LessonContent({
               {speakingVisible && (
                 <SpeakingPanel
                   targetText={cleanPhraseForDisplay(gradeTarget)}
+                  // зачем (R49, 15.10): без локали панель слушала en-US и на es/fr/de/it-уроках
+                  recognitionLocale={studySpeechLocale(studyTarget, 'lesson1')}
                   lang={lang}
                   theme={buildSpeakingPanelTheme(t)}
                   presentation="inline"

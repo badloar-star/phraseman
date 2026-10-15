@@ -16,6 +16,7 @@ import {
   type SpeechRecognitionModule,
 } from '../../app/speech_recognition_module';
 import { buildSpeakingStartOptions } from '../../app/speaking_recognition_options';
+import { studySpeechLocale } from '../../app/study_speech_locale';
 import { speakingMatchedFlags, speakingTargetTokens } from '../../app/speaking_word_match';
 import { buildSpokenWordReport, type SpokenWordEntry } from '../../app/speaking_word_report';
 import { hapticSuccess, hapticTap, hapticWarning } from '../../hooks/use-haptics';
@@ -285,7 +286,8 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
         try {
           speech.start(
             buildSpeakingStartOptions({
-              lang: 'en-US',
+              // сцены онбординга (aha_scenes) — только английские фразы, поэтому язык явно английский
+              lang: studySpeechLocale('en', 'onboarding_aha'),
               targetText,
               volumeMeter: false,
               persistRecording: true,

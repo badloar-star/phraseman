@@ -93,6 +93,7 @@ import { createLearningV2CourseLocalProgressStoreV1 } from "../modules/learning-
 import { retryLearningV2LocalCompletionV1 } from "../modules/learning-v2/progress/local_completion_retry_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../modules/learning-v2/progress/progress_account_scope";
 import { deriveLearningV2EconomicAccountScopeHash } from "../modules/learning-v2/progress/economic_account_scope";
+import { studySpeechLocale } from "./study_speech_locale";
 // зачем (координатор 11.10, замер после 8a4d86225: манифест factory_native 425 мс всё ещё на первом кадре Главной):
 // этот модуль V2 тянет factory_native_course_v1 → манифест. Нужен только при наградах за сессию — вычисляем лениво.
 type RuneRewardCompositeV1Module = typeof import("../modules/learning-v2/progress/learning_session_rune_reward_composite_v1");
@@ -1978,9 +1979,8 @@ export default function LearningV2DirectSessionPlayerV1() {
     ? material?.factoryPracticeSemantics?.[practice.interactionId]
         ?.canonicalTarget ?? auxiliary?.save.targetText ?? ""
     : "";
-  const voiceRecognitionLocale = runSummary?.targetLanguage === "en"
-    ? "en-US"
-    : (runSummary?.targetLanguage ?? studyTarget);
+  // зачем (R49, 15.10): короткий код «es» вместо «es-ES» не гарантирует нужный распознаватель — точная локаль из общей таблицы.
+  const voiceRecognitionLocale = studySpeechLocale(runSummary?.targetLanguage ?? studyTarget, "learning_v2");
   const cancelVoiceCapture = useCallback(() => {
     setVoiceHoldActive(false);
     setModeVoiceStatus("idle");

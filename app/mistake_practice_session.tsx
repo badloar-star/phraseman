@@ -27,6 +27,7 @@ import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { useStreakMilestoneHold } from './streak_milestone_pending';
+import { studySpeechLocale } from './study_speech_locale';
 // зачем (координатор 15.10): рубеж серии на итоге «Моих ошибок» — тот же ленивый хост
 const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
 import { usePremium } from '../components/PremiumContext';
@@ -1621,7 +1622,7 @@ function MistakePracticeSessionScreen() {
                 targetText={entry.exercise.correctAnswer}
                 lang={lang}
                 theme={speakingTheme}
-                recognitionLocale={studyTarget === 'fr' ? 'fr-FR' : 'en-US'}
+                recognitionLocale={studySpeechLocale(studyTarget, 'mistake_practice')} // зачем (R49): было только fr/en — es/de/it распознавались как английский
                 presentation="inline"
                 holdActive={speechHeld}
                 onScore={({ score }) => {

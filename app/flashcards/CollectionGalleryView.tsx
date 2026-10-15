@@ -40,7 +40,8 @@ type Props = Readonly<{
   limitCta?: Readonly<{ onPress: () => void }> | null;
   onOpenPremiumLimit: () => void;
   onOpenCard: (id: string) => void;
-  onSpeak: (text: string) => void;
+  /** packLanguage — язык набора карточки: по нему выбирается голос озвучки (R57 #7). */
+  onSpeak: (text: string, packLanguage?: string) => void;
   /** Совместимость с контейнером: «силы слова» на плитке больше нет (макет cards-v2, решение координатора 12.10). */
   strengthForCard?: unknown;
   onCardsViewed: (ids: string[]) => void;
@@ -202,7 +203,7 @@ export default function CollectionGalleryView({
     if (selectionMode) { hapticTap(); onToggleSelection(id); return; }
     onOpenCard(id);
   }, [onOpenCard, onToggleSelection, selectionMode]);
-  const onSpeakTile = useCallback((id: string) => { const card = byId.get(id); if (card) onSpeak(card.en); }, [byId, onSpeak]);
+  const onSpeakTile = useCallback((id: string) => { const card = byId.get(id); if (card) onSpeak(card.en, card.packLanguage); }, [byId, onSpeak]);
   const pressedCard = pressedId ? byId.get(pressedId) ?? null : null;
   // зачем (аудит #5, 15.10): долгое нажатие открывало шторку действий и у карточек, для которых строк нет (системные и нередактируемые чужие) — пустое окно, «мёртвый» контрол. Шторка открывается, только если в ней есть что нажать.
   const onLongPressTile = useCallback((id: string) => {

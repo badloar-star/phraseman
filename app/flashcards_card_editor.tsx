@@ -47,6 +47,7 @@ import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { soundDirector } from '../modules/audio/sound_director';
 import { getTranscription, TRANSCRIPTION_ENGINE_VERSION } from './transcription';
+import { speechStudyLanguageOf, studySpeechLocale } from './study_speech_locale';
 import { STR } from './flashcards/constants';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import {
@@ -138,6 +139,10 @@ export default function FlashcardsCardEditorScreen() {
   // зачем: редактор обязан читать и писать библиотеку СВОЕГО языка обучения —
   // без этого карточка, созданная в режиме French, уходила в английский ключ.
   const { studyTarget } = useStudyTarget();
+  // зачем (R57 #8, 15.10): своя карточка — на изучаемом языке. Превью озвучки было зашито en-US, а английская IPA-транскрипция
+  // (app/transcription.ts — словарь только английский) сохранялась и для fr/de/es/it — неверная подсказка произношения.
+  const cardSpeechLang = studySpeechLocale(studyTarget, 'card_editor');
+  const isEnglishCard = speechStudyLanguageOf(studyTarget) === 'en';
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const params = useLocalSearchParams<{ id?: string; create?: string; cat?: string }>();
@@ -332,7 +337,7 @@ export default function FlashcardsCardEditorScreen() {
        */
       animateNextLayoutTransition();
       // Автотранскрипция (app/transcription.ts) — мгновенно, без сети
-      setAssistTranscription(getTranscription(en));
+      setAssistTranscription(isEnglishCard ? getTranscription(en) : '');
       // Дубликат: существующая карточка с таким EN (кроме редактируемой)
       const matches = (existingEnRef.current?.get(assistKey(en)) ?? []).filter(
         (m) => m.id !== editId,
@@ -366,7 +371,7 @@ export default function FlashcardsCardEditorScreen() {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [draftEN, editId, lang]);
+  }, [draftEN, editId, isEnglishCard, lang]);
 
   /** TTS-превью EN (E13) — играет выбранным голосом из fc_voice_prefs_v1. */
   const previewEn = useCallback(() => {
@@ -374,8 +379,8 @@ export default function FlashcardsCardEditorScreen() {
     if (!en) return;
     fcHaptic('tap');
     stopAudio();
-    speakAudio(en, undefined, { language: 'en-US' });
-  }, [draftEN, speakAudio, stopAudio]);
+    speakAudio(en, undefined, { language: cardSpeechLang });
+  }, [cardSpeechLang, draftEN, speakAudio, stopAudio]);
 
   const applySuggestion = useCallback(() => {
     if (!assistSuggestion) return;
@@ -506,7 +511,7 @@ export default function FlashcardsCardEditorScreen() {
       // зачем: без `|| existing` — пустой результат означает «правильной
       // транскрипции нет», и подставлять вместо неё прежнюю (возможно
       // выдуманную старым движком) нельзя (репорт 21.09.2026 про guests).
-      transcription: getTranscription(draftEN.trim()),
+      transcription: isEnglishCard ? getTranscription(draftEN.trim()) : '',
       transcriptionEngineVersion: TRANSCRIPTION_ENGINE_VERSION,
       // Плановые локали: ru/uk/es — базовые поля, остальные 5 языков уходят в
       // sourceLocales (иначе перевод терялся у pt-BR/vi/id/tr/pl).
@@ -595,6 +600,7 @@ export default function FlashcardsCardEditorScreen() {
     draftDescription,
     existing,
     isEdit,
+    isEnglishCard,
     hasOtherLangTranslation,
     lang,
     openCardLimitPaywall,

@@ -64,6 +64,7 @@ import { PracticeCta } from '../components/practice/PracticeStates';
 import SpeechFailBlock from '../components/speech/SpeechFailBlock';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
+import { speechStudyLanguageOf, studySpeechLocale } from './study_speech_locale';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { flashcardContentLang } from './spanish_content_gate';
@@ -248,6 +249,12 @@ export default function FlashcardsSpeakingSession() {
   // зачем (владелец 12.10, п.83, cards-027): тренировка идёт на языке ВЫБРАННЫХ наборов (?target, проверенный хуком: только
   // языки с «Карточками» ready, иначе язык приложения). Энергия и месячная квота — по аккаунту, от языка не зависят.
   const studyTarget = useTrainingStudyTarget();
+  // зачем (R57 #2, 15.10): язык эталона и распознавания — язык набора карточки (packLanguage), иначе изучаемый язык.
+  // Раньше и озвучка, и микрофон были зашиты en-US: fr/de/es/it-карточки читались и слушались по-английски.
+  const cardSpeechLocale = useCallback(
+    (c: { packLanguage?: string } | null | undefined) => studySpeechLocale(speechStudyLanguageOf(c?.packLanguage) ?? studyTarget, 'flashcards_speaking'),
+    [studyTarget],
+  );
   const { speak, stop: stopSpeech } = useAudio();
 
   const params = useLocalSearchParams<{ deck?: string; size?: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
@@ -828,10 +835,10 @@ export default function FlashcardsSpeakingSession() {
   const speakCard = useCallback(
     (c: DeckCard | null) => {
       if (!c) return;
-      // зачем: D128 — эталон карточки клипом OpenAI (английский: echo, как корпус фраз).
-      speak(c.en, undefined, { language: 'en-US', cardAudio: true });
+      // зачем: D128 — эталон карточки клипом OpenAI; язык — набора карточки (R57 #2: был зашит en-US для всех языков).
+      speak(c.en, undefined, { language: cardSpeechLocale(c), cardAudio: true });
     },
-    [speak],
+    [cardSpeechLocale, speak],
   );
 
   /**
@@ -875,7 +882,7 @@ export default function FlashcardsSpeakingSession() {
         if (generation !== echoGenerationRef.current) return;
         fcSpeakTrace('echo:speak', { cardId: c.id, text: c.en, fallbackMs, generation });
         speak(c.en, undefined, {
-          language: 'en-US',
+          language: cardSpeechLocale(c),
           cardAudio: true,
           onStart: () => fcSpeakTrace('echo:started', { cardId: c.id, generation }),
           onDone: () => settle('done'),
@@ -884,7 +891,7 @@ export default function FlashcardsSpeakingSession() {
         });
       }, ECHO_DELAY_MS);
     },
-    [clearEchoTimers, speak],
+    [cardSpeechLocale, clearEchoTimers, speak],
   );
   useEffect(() => clearEchoTimers, [clearEchoTimers]);
 
@@ -1676,6 +1683,8 @@ RU: ${card.translation}`}
               <SpeakingPanel
                 key={`${card.id}:${attemptKeyRef.current}`}
                 targetText={card.en}
+                // зачем (R57 #2): без локали «Говорение» слушало en-US на любых наборах
+                recognitionLocale={cardSpeechLocale(card)}
                 lang={lang}
                 theme={panelTheme}
                 presentation="inline"

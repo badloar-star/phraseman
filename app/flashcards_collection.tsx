@@ -11,7 +11,7 @@ import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_EXPO_GO } from './config';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useSharedValue } from 'react-native-reanimated';
 import { useFeatureAccess } from '../components/PremiumContext';
-import { useAudio, type SpeakOpts } from '../hooks/use-audio';
+import { inferExpoSpeechLanguage, useAudio, type SpeakOpts } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   BackHandler,
@@ -926,6 +926,15 @@ export default function FlashcardsScreen() {
     },
     [speakAudio, packDeeplink, activeCat],
   );
+  // зачем (R57 #7, 15.10): динамик на плитке, раскрытой карточке и в наборе из видео читал fr/de/es/it английским голосом —
+  // текст лицевой стороны шёл без языка. Язык: карточки (packLanguage) → набора → изучаемый; 'none' набора — тишина.
+  const speakFront = useCallback(
+    (text: string, packLanguage?: string) => onSpeakCb(text, {
+      language: inferExpoSpeechLanguage(text, packLanguage ?? currentMarketPack?.packLanguage ?? studyTarget),
+      cardAudio: true,
+    }),
+    [currentMarketPack?.packLanguage, onSpeakCb, studyTarget],
+  );
   const openPremiumLimit = useCallback(() => {
     router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'flashcards_collection', saved: String(savedCards.length) } } as any);
   }, [router, savedCards.length]);
@@ -1493,7 +1502,7 @@ export default function FlashcardsScreen() {
             cardContentLang={cardContentLang}
             onBack={handleCollectionBack}
             onMore={currentMarketPack.isCommunityUgc && !packMine ? () => setPackMoreOpen(true) : null}
-            onSpeak={(text) => onSpeakCb(text)}
+            onSpeak={(text) => speakFront(text, currentMarketPack.packLanguage)}
             onOpenMoment={videoMomentPack ? openVideoMoment : null}
             // зачем (cards-v2 videoSet(), 12.10): «Добавить +» / «✓ В моих наборах» — кнопка ряда под названием (CommunityPackSocialBar variant="setAdd"),
             // а не нижняя «Учить набор»; логика добавления и покупки прежняя.
@@ -1700,7 +1709,7 @@ export default function FlashcardsScreen() {
             limitCta={savedLimitReached ? { onPress: openPremiumLimit } : null}
             onOpenPremiumLimit={openPremiumLimit}
             onOpenCard={openCardFromGallery}
-            onSpeak={(text) => onSpeakCb(text)}
+            onSpeak={speakFront}
             strengthForCard={strengthForCard}
             onCardsViewed={registerFlashcardViewed}
             isEditableCustomCard={isEditableCustomCard}
@@ -2001,7 +2010,7 @@ export default function FlashcardsScreen() {
         canEdit={!!expandedOpened && (expandedEditable || packMine)}
         canDelete={!!expandedOpened && (expandedEditable || expandedOpened.categoryId === 'saved' || packCardDeletable || publishedCardDeletable)}
         onClose={closeOpenedCard}
-        onSpeak={(text) => onSpeakCb(text)}
+        onSpeak={(text) => speakFront(text, expandedOpened?.packLanguage)}
         onEdit={() => {
           const card = expandedOpened;
           setOpenedCardId(null);

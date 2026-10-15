@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
+import { speechStudyLanguageOf, STUDY_SPEECH_LOCALE } from '../app/study_speech_locale';
 import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
@@ -134,11 +135,9 @@ export function inferExpoSpeechLanguage(
   }
   if (nCyr >= 1 && nCyr >= nLat) return contentLangHint === 'uk' ? 'uk-UA' : 'ru-RU';
   if (nLat >= 1 && nCyr === 0) {
-    if (contentLangHint === 'fr') return 'fr-FR';
-    if (contentLangHint === 'de') return 'de-DE';
-    // D130 (30.09): итальянские наборы карточек — итальянский голос, а не английский.
-    if (contentLangHint === 'it') return 'it-IT';
-    return contentLangHint === 'es' ? 'es-ES' : 'en-US';
+    // зачем (R49/R57, 15.10): одна таблица языков речи на всё приложение (app/study_speech_locale.ts) — микрофоны и озвучка
+    // не расходятся. Итальянский (D130) и прочие — оттуда; подсказка 'es-MX'/'ES' тоже понимается.
+    return STUDY_SPEECH_LOCALE[speechStudyLanguageOf(contentLangHint) ?? 'en'];
   }
   return 'en-US';
 }

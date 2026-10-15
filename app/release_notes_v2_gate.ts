@@ -39,7 +39,16 @@ export function isEligibleForReleaseNotesV2(
     && installedAt < release.newUserCutoffMs;
 }
 
+// зачем (владелец 15.10 ~17:55): окно «Что нового · 2.0» НЕ показываем вообще — «бедно для грандиозного обновления».
+// Обновившимся остаётся только шторка «Встречайте PhraseMan 2.0 — бонусы стали монетами» (LegacyBonusWelcomeSheet, D195).
+// Ворота релиза (isReleaseNotesV2ReleaseActive) оставлены включёнными, чтобы не всплыло и старое окно кампании 1.6.12.
+export const RELEASE_NOTES_V2_MODAL_SHOWN = false;
+
 export async function shouldOfferReleaseNotesV2Modal(): Promise<boolean> {
+  if (!RELEASE_NOTES_V2_MODAL_SHOWN) {
+    console.log('[RELEASE-NOTES] v2 skip reason=owner_disabled_whats_new');
+    return false;
+  }
   const release = configuredV2Release();
   if (!release || IS_EXPO_GO) return false;
   const [dismissed, installRaw, onboarding] = await AsyncStorage.multiGet([

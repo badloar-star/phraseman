@@ -6,6 +6,7 @@ jest.mock('../app/app_build_id', () => ({ getAppReleaseBuildId: () => mockBuildI
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   RELEASE_2_0,
+  RELEASE_NOTES_V2_MODAL_SHOWN,
   dismissReleaseNotesV2ModalPermanently,
   isEligibleForReleaseNotesV2,
   isReleaseNotesV2ReleaseActive,
@@ -26,12 +27,14 @@ describe('release 2.0 notes gate', () => {
     await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
   });
 
-  // зачем (№34): окно показывается один раз обновившимся и не показывается новым установкам
-  it('16.10 build: offers once to an onboarded user who installed before the rollout day, never to a new install, never again after dismissal', async () => {
+  // зачем (владелец 15.10): окно «Что нового · 2.0» выключено целиком — даже подходящему обновившемуся оно не предлагается;
+  // ворота релиза остаются активными, чтобы не всплыло старое окно кампании 1.6.12. Остаётся только шторка бонусов → монеты (D195).
+  it('16.10 build: the release gate is active but the What\'s New modal is never offered (owner decision 15.10)', async () => {
     mockBuildId.mockReturnValue(132);
     expect(isReleaseNotesV2ReleaseActive()).toBe(true);
+    expect(RELEASE_NOTES_V2_MODAL_SHOWN).toBe(false);
     await AsyncStorage.multiSet([['onboarding_done', '1'], ['install_date', String(Date.UTC(2026, 8, 1))]]);
-    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(true);
+    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
     await dismissReleaseNotesV2ModalPermanently();
     await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
     storage.__reset();

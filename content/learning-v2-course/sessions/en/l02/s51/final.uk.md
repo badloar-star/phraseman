@@ -1,175 +1,138 @@
-# Англійська · Урок 2 · Заняття 51 — «Перепрошую, можна запитати?»
+# Англійська · Урок 2 · Заняття 51 — Порядок на складі
 
-**Сцена заняття.** У неділю ввечері ви з другом шукаєте станцію в Дубліні. Ви звертаєтеся до незнайомого перехожого, уточнюєте дорогу й звіряєтеся з картою. Перед тим як піти, хочете ще дізнатися, чи відкрита станція.
+**Ситуація.** Ви з Анною шукаєте матеріали для зустрічі клубу. Олег наклеїв однакові позначки на всі коробки, але потрібні речі знаходити швидше не стало. Коробка з книжками важка. Анна сумнівається, який спосіб сортування спробувати далі.
 
-**Як сказати:** ввічливий початок запитання з готовим звертанням `Excuse me`; `Sorry` для вибачення  
-**Нові слова:** excuse me  
-**Повертаються:** sorry, station, near, sure
+**Що ви опануєте:** сказати, що спосіб не дає потрібного результату, та повідомити про сумнів
+**Нові слова:** ineffective
 
 ---
 
 ## Інтро 1
 
-### Привернути увагу
+### Не допомагає досягти мети
 
-`Excuse me` — «Перепрошую», коли хочете привернути увагу. Це можна сказати, навіть якщо ви нічого не накоїли: вам просто треба почати розмову. Запам’ятайте обидва слова разом як готове звертання. Після нього можна поставити запитання, коли вас уже слухають.
+`ineffective` — «неефективний»: спосіб не дає потрібного результату. Однакові позначки не допомагають розрізняти коробки: `It is ineffective` — «Це неефективно». Наліпок побільшало, а знайти потрібне так само важко. Зайнятість рук ще не гарантує результату.
 
-**Ви хочете звернутися до перехожого, щоб запитати дорогу. Вимовте готове звертання «Перепрошую».**
+**Однакові позначки не допомагають знаходити потрібні речі. Скажіть повною фразою, що цей спосіб неефективний.**
 
-- ✅ **Excuse me.**
-- ❌ Excuse I. — *У готовому звертанні друге слово — `me`: `Excuse me`. Запам’ятовуємо його цілком.*
-- ❌ I am excuse me. — *Перед цим готовим звертанням не треба додавати `I am`. Досить `Excuse me`.*
+- ✅ **It is ineffective.**
+- ❌ It is effective. — *Це «ефективний». За умовою спосіб не допомагає досягти мети.*
+- ❌ It ineffective. — *Між `It` і `ineffective` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### Перепросити за незручність
+### Уточнити результат
 
-`Sorry` — «Вибачте», якщо ви завдали незручності. Можна сказати й `I am sorry` — «Я перепрошую». Тут ви визнаєте, що завадили. `Sorry` можна сказати й перед запитанням, наприклад коли перепрошуєте, що втрутилися. Тож орієнтуйтеся на ситуацію: тут `Excuse me` привертає увагу, а `Sorry` визнає завдану незручність.
+`Is it ineffective?` — «Це неефективно?» Відповідь `Yes, it is` підтверджує відсутність потрібного результату. `No, it is not` заперечує це. Порівняйте з `Is it effective?`: слово в запитанні змінює те, що саме ви підтверджуєте коротким «так».
 
-**Ви випадково перебили перехожого, поки він пояснював дорогу. Коротко перепросіть.**
+**Анна запитує «Is it ineffective?» про позначки, які не допомагають розрізняти коробки. Підтвердьте короткою відповіддю «так».**
 
-- ✅ **Sorry.**
-- ❌ Sure. — *Це «впевнений», а не вибачення. За те, що перебили, скажіть `Sorry`.*
-- ❌ Ready. — *Це «готовий». Зараз треба перепросити за незручність: `Sorry`.*
+- ✅ **Yes, it is.**
+- ❌ No, it is not. — *Це заперечує неефективність. За умовою спосіб не допомагає.*
+- ❌ Yes, it are. — *З `it` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Після звертання — запитання
+### Вага й сумнів
 
-`Excuse me. Where is the station?` — «Перепрошую. Де станція?» `station` — «станція». Спершу приверніть увагу, потім запитайте про місце. Ввічливий початок не змінює порядку слів у запитанні: після `Where` лишається `is`, далі `the station`. Самого «перепрошую» для пошуку станції замало.
+`heavy` — «важкий»: коробка з книжками багато важить, `It is heavy`. `uncertain` — «невпевнений»: Анна ще не вирішила, як сортувати речі, `She is uncertain`. Вагу коробки можна описати незалежно від її рішення. Сумнів Анни не робить книжки легшими.
 
-**Ви вже сказали перехожому `Excuse me.` Тепер запитайте, де станція.**
+**Анна поки сумнівається, який спосіб вибрати. Коротко скажіть, що вона не впевнена.**
 
-- ✅ **Where is the station?**
-- ❌ Where the station? — *Після `Where` зникло `is`. Звертання не замінює цього слова в запитанні.*
-- ❌ Who is the station? — *Вам потрібне місце, тому починаємо запитання з `Where`. Слово `Who` означає «хто».*
+- ✅ **She's uncertain.**
+- ❌ He's uncertain. — *Ви говорите про Анну: `She's`.*
+- ❌ It's heavy. — *Це про вагу коробки. Потрібно сказати про сумнів Анни.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка виразу — excuse me**
-<!-- interaction_id: en:lesson-02:session-51:i01; family: listen_choose -->
-Ціль: `excuse me`
+**1 · Однакові позначки не допомагають розрізняти коробки. Скажіть повною фразою, що спосіб неефективний**
+<!-- interaction_id: en:lesson-02:session-51:i01; family: phrase_builder -->
+Плитки: `ineffective` `is` `It` `are` → **It is ineffective.**
+*(плитка `are` зайва: тут потрібно `is` — `It is ineffective.`)*
 
-**2 · Послухайте й виберіть — яке звертання прозвучало**
+**2 · Послухайте фразу про коробку**
 <!-- interaction_id: en:lesson-02:session-51:i02; family: listen_choose -->
-Ціль: `Excuse me.`
-Варіанти: `Excuse me.` · `Excuse us.` · `Excuse you.`
-- Excuse us. — *Слово `us` починається з голосного звука: рот відкритий. У записі останнє слово починається зі звука «м» із зімкненими губами: `me`.*
-- Excuse you. — *У `you` початок як в українському слові «йод», потім губи округлюються. У записі звучить `me`: спочатку «м» із зімкненими губами.*
+🔊 *It is heavy.* → **It is heavy.** · It is effective. · It is ineffective.
+- It is effective. — *У записі останнє слово — `heavy`, а в цьому варіанті — `effective`.*
+- It is ineffective. — *У записі останнє слово — `heavy`, а в цьому варіанті — `ineffective`.*
 
+**3 · Уточніть, чи неефективний спосіб із позначками**
+<!-- interaction_id: en:lesson-02:session-51:i03; family: context_gap_grammar -->
+___ it ineffective? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it ineffective?`.*
 
-**3 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-51:i03:s01; family: scripted_repeat_compare -->
-Ціль: `Excuse me.`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-51:i04; family: speed_match -->
+ineffective — неефективний · effective — ефективний · heavy — важкий · uncertain — невпевнений
 
-**4 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-02:session-51:i03:s02; family: phrase_builder -->
-Ціль: `Is it far?`
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-51:i05; family: listen_build_dictation -->
+🔊 *No, she is not.* Плитки: `not` `is` `she` `No,` `Yes,` → **No, she is not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, she is not.`)*
 
-**5 · Вставте слово — перехожий пояснює дорогу; уточніть, чи станція близько**
-<!-- interaction_id: en:lesson-02:session-51:i04; family: context_gap_grammar -->
-Ціль: `Is it ___ ?`
-Варіанти: `near` · `ready` · `sorry`
-- ready — *Це «готово». Ви уточнюєте відстань до станції: `near`.*
-- sorry — *Це слово для вибачення. Зараз потрібне запитання про близькість станції: `Is it near?`*
-
-
-**6 · Послухайте й виберіть — яка репліка перехожого прозвучала у відповідь**
-<!-- interaction_id: en:lesson-02:session-51:i05; family: listen_choose -->
-Ціль: `It is near.`
-Варіанти: `It is near.` · `Is it near?` · `It is here.`
-- Is it near? — *Це запитання. У записі спочатку `It is`: перехожий повідомляє про відстань.*
-- It is here. — *Це «Це тут». Останнє слово в записі — `near`, «близько».*
-
-
-**7 · Складіть фразу — друг запитує, чи впевнені ви, що зрозуміли дорогу; ви сумніваєтеся, скажіть про це**
+**6 · Ви порівнюєте кілька способів сортування. Запитайте Анну, що неефективно**
 <!-- interaction_id: en:lesson-02:session-51:i06; family: phrase_builder -->
-Ціль: `I am not sure.`
+Плитки: `ineffective` `is` `What` `Where` → **What is ineffective?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is ineffective?`)*
 
-**8 · Вставте слово — друг пропонує повернути праворуч; уточніть, чи впевнений він у цьому**
-<!-- interaction_id: en:lesson-02:session-51:i07; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `sure` · `sorry` · `near`
-- sorry — *Так ви запитаєте, чи шкодує друг. Вам треба перевірити його впевненість: `sure`.*
-- near — *Це «близько». Ви запитуєте не про відстань до друга, а про його впевненість.*
+**7 · Позначки не допомагають знаходити речі швидше. Коротко повідомте, що спосіб неефективний**
+<!-- interaction_id: en:lesson-02:session-51:i07; family: scripted_repeat_compare -->
+🎙 **It's ineffective.**
 
+**8 · Коробка з книжками багато важить. На «Is it heavy?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-51:i08; family: context_gap_grammar -->
+Yes, it ___. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Відповідь — `Yes, it is`.*
 
-**9 · Складіть фразу — ви перебили перехожого, поки він уточнював поворот; скажіть повну фразу «Я перепрошую»**
-<!-- interaction_id: en:lesson-02:session-51:i08; family: phrase_builder -->
-Ціль: `I am sorry.`
+**9 · Послухайте фразу про Анну**
+<!-- interaction_id: en:lesson-02:session-51:i09; family: listen_choose -->
+🔊 *She is uncertain.* → **She is uncertain.** · She is patient. · She is polite.
+- She is patient. — *У записі останнє слово — `uncertain`, а в цьому варіанті — `patient`.*
+- She is polite. — *У записі останнє слово — `uncertain`, а в цьому варіанті — `polite`.*
 
-**10 · З’єднайте пари — слова для розмови про дорогу**
-<!-- interaction_id: en:lesson-02:session-51:i09; family: speed_match -->
-Пари: `sorry` — вибачте · `station` — станція · `near` — близько · `sure` — впевнений
-Ціль: `sorry · station · near · sure`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-51:i10; family: speed_match -->
+heavy — важкий · uncertain — невпевнений · effective — ефективний · ineffective — неефективний
 
-**11 · Вставте одну відповідь в одну фразу**
-<!-- interaction_id: en:lesson-02:session-51:i10:s01; family: context_gap_grammar -->
-Ціль: `___ .`
-Варіанти: `Excuse me` · `I am sure` · `We are ready`
-- I am sure — *Це «Я впевнений». Щоб привернути увагу, тут підходить готове звертання `Excuse me`.*
-- We are ready — *Це «Ми готові». Зараз ви починаєте звертання до перехожого: `Excuse me`.*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-51:i11; family: listen_build_dictation -->
+🔊 *It is not effective.* Плитки: `effective` `not` `is` `It` `are` → **It is not effective.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not effective.`)*
 
+**12 · Анна розглядає два плани сортування. Запитайте Олега, чи вона не впевнена у виборі**
+<!-- interaction_id: en:lesson-02:session-51:i12; family: phrase_builder -->
+Плитки: `uncertain` `she` `Is` `Are` → **Is she uncertain?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is she uncertain?`)*
 
-**12 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-51:i10:s02; family: scripted_repeat_compare -->
-Ціль: `Are you sure?`
+**13 · Ви оцінюєте вагу коробки з книжками: вона важка. Коротко повідомте про це**
+<!-- interaction_id: en:lesson-02:session-51:i13; family: scripted_repeat_compare -->
+🎙 **It's heavy.**
 
-**13 · Послухайте й виберіть — яка репліка друга прозвучала над картою**
-<!-- interaction_id: en:lesson-02:session-51:i11; family: listen_choose -->
-Ціль: `Where is the station?`
-Варіанти: `Where is the station?` · `What is the station?` · `Is the station near?`
-- What is the station? — *Так запитують, що це за станція. У записі запитання починається з `Where`: друг запитує про місце.*
-- Is the station near? — *Це запитання про відстань. У записі звучить запитання «Де станція?»*
+**14 · Анна ще не вирішила, який спосіб вибрати. Скажіть, що вона не впевнена**
+<!-- interaction_id: en:lesson-02:session-51:i14; family: context_gap_grammar -->
+She ___ uncertain. → **is** · am · are
+- am — *З `She` потрібно `is`.*
+- are — *Фраза — `She is uncertain`.*
 
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-51:i15; family: listen_choose -->
+🔊 *Is it ineffective?* → **Is it ineffective?** · Is it effective? · Is it heavy?
+- Is it effective? — *У записі останнє слово — `ineffective`, а в цьому варіанті — `effective`.*
+- Is it heavy? — *У записі останнє слово — `ineffective`, а в цьому варіанті — `heavy`.*
 
-**14 · Послухайте й складіть — перехожий показує місце станції на вашій карті**
-<!-- interaction_id: en:lesson-02:session-51:i12; family: listen_build_dictation -->
-Ціль: `The station is here.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-51:i16; family: speed_match -->
+uncertain — невпевнений · ineffective — неефективний · heavy — важкий · effective — ефективний
 
-**15 · Вставте слово — друг запитує, чи близько станція; з пояснення перехожого ви знаєте, що близько, дайте коротку відповідь «Так»**
-<!-- interaction_id: en:lesson-02:session-51:i13; family: context_gap_grammar -->
-Ціль: `Yes, it ___ .`
-Варіанти: `is` · `are` · `am`
-- are — *У цій короткій відповіді після `it` потрібна форма `is`: `Yes, it is`.*
-- am — *Форма `am` поєднується з `I`. Тут зберігаємо `it is`: `Yes, it is`.*
-
-
-**16 · Складіть фразу — ви підходите до перехожого, щоб уточнити дорогу**
-<!-- interaction_id: en:lesson-02:session-51:i14:s01; family: phrase_builder -->
-Ціль: `Excuse me.`
-
-**17 · Вставте одну відповідь в одну фразу**
-<!-- interaction_id: en:lesson-02:session-51:i14:s02; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `busy` · `station` · `name`
-- station — *Це «станція». Про зайнятість людини запитуємо зі словом `busy`.*
-- name — *Це «ім’я». Щоб дізнатися, чи зайнятий перехожий, потрібне `Are you busy?`*
-
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-51:i15; family: scripted_repeat_compare -->
-Ціль: `I am sure.`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-51:i16; family: scripted_repeat_compare -->
-Ціль: `We are ready.`
-
-**20 · Послухайте й складіть — перехожий готовий вислухати ваше запитання**
-<!-- interaction_id: en:lesson-02:session-51:i17:s01; family: listen_build_dictation -->
-Ціль: `Excuse me.`
-
-**21 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-02:session-51:i17:s02; family: phrase_builder -->
-Ціль: `Is the station open?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=scripted_repeat_compare, 4=phrase_builder, 5=context_gap_grammar, 6=listen_choose, 7=phrase_builder, 8=context_gap_grammar, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=scripted_repeat_compare, 13=listen_choose, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=context_gap_grammar, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=listen_build_dictation, 21=phrase_builder
+**17 · Олег повідомив, що інший спосіб теж випробували. Запитайте, чи він неефективний**
+<!-- interaction_id: en:lesson-02:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it ineffective?**
 

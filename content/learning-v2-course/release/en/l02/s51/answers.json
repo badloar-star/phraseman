@@ -1,107 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-51:i01",
-    "correctText": "excuse me",
+    "correctText": "It is ineffective.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i02",
-    "correctText": "Excuse me.",
+    "correctText": "It is heavy.",
     "correctResponseId": "en:lesson-02:session-51:i02:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-51:i03:s01",
-    "correctText": "Excuse me.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-51:i03:s02",
-    "correctText": "Is it far?",
-    "correctResponseId": null
+    "interactionId": "en:lesson-02:session-51:i03",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-51:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-51:i04",
-    "correctText": "near",
-    "correctResponseId": "en:lesson-02:session-51:i04:r1"
+    "correctText": "en:lesson-02:session-51:i04:p1=ineffective\nen:lesson-02:session-51:i04:p2=effective\nen:lesson-02:session-51:i04:p3=heavy\nen:lesson-02:session-51:i04:p4=uncertain",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i05",
-    "correctText": "It is near.",
-    "correctResponseId": "en:lesson-02:session-51:i05:r1"
+    "correctText": "No, she is not.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i06",
-    "correctText": "I am not sure.",
+    "correctText": "What is ineffective?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i07",
-    "correctText": "sure",
-    "correctResponseId": "en:lesson-02:session-51:i07:r1"
+    "correctText": "It's ineffective.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i08",
-    "correctText": "I am sorry.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-51:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-51:i09",
-    "correctText": "en:lesson-02:session-51:i09:p1=sorry\nen:lesson-02:session-51:i09:p2=station\nen:lesson-02:session-51:i09:p3=near\nen:lesson-02:session-51:i09:p4=sure",
-    "correctResponseId": null
+    "correctText": "She is uncertain.",
+    "correctResponseId": "en:lesson-02:session-51:i09:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-51:i10:s01",
-    "correctText": "Excuse me",
-    "correctResponseId": "en:lesson-02:session-51:i10:s01:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-51:i10:s02",
-    "correctText": "Are you sure?",
+    "interactionId": "en:lesson-02:session-51:i10",
+    "correctText": "en:lesson-02:session-51:i10:p1=heavy\nen:lesson-02:session-51:i10:p2=uncertain\nen:lesson-02:session-51:i10:p3=effective\nen:lesson-02:session-51:i10:p4=ineffective",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i11",
-    "correctText": "Where is the station?",
-    "correctResponseId": "en:lesson-02:session-51:i11:r1"
+    "correctText": "It is not effective.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i12",
-    "correctText": "The station is here.",
+    "correctText": "Is she uncertain?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i13",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-02:session-51:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-51:i14:s01",
-    "correctText": "Excuse me.",
+    "correctText": "It's heavy.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-51:i14:s02",
-    "correctText": "busy",
-    "correctResponseId": "en:lesson-02:session-51:i14:s02:r1"
+    "interactionId": "en:lesson-02:session-51:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-51:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-51:i15",
-    "correctText": "I am sure.",
-    "correctResponseId": null
+    "correctText": "Is it ineffective?",
+    "correctResponseId": "en:lesson-02:session-51:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-51:i16",
-    "correctText": "We are ready.",
+    "correctText": "en:lesson-02:session-51:i16:p1=uncertain\nen:lesson-02:session-51:i16:p2=ineffective\nen:lesson-02:session-51:i16:p3=heavy\nen:lesson-02:session-51:i16:p4=effective",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-51:i17:s01",
-    "correctText": "Excuse me.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-51:i17:s02",
-    "correctText": "Is the station open?",
+    "interactionId": "en:lesson-02:session-51:i17",
+    "correctText": "Is it ineffective?",
     "correctResponseId": null
   }
 ]

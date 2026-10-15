@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-38:intro1:r2": {
+          "ru": "Это «официальное». По условию расписание не утверждено.",
+          "uk": "Це «офіційний». За умовою розклад не затверджено."
+        },
+        "en:lesson-02:session-38:intro1:r3": {
+          "ru": "Между `It` и `unofficial` нужно `is`.",
+          "uk": "Між `It` і `unofficial` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-38:intro2:r2": {
+          "ru": "Это отрицает, что расписание неофициальное, а нужно подтвердить.",
+          "uk": "Це заперечує, що розклад неофіційний, а потрібно підтвердити."
+        },
+        "en:lesson-02:session-38:intro2:r3": {
+          "ru": "С `it` нужно `is`: `Yes, it is`.",
+          "uk": "З `it` потрібно `is`: `Yes, it is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-38:intro3:r2": {
+          "ru": "Это «Они слабы», а нужно сообщить о месте.",
+          "uk": "Це «Вони слабкі», а потрібно повідомити про місце."
+        },
+        "en:lesson-02:session-38:intro3:r3": {
+          "ru": "Здесь речь о нескольких организаторах: `They're`.",
+          "uk": "Тут ідеться про кількох організаторів: `They're`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f90a44edc94ba58782f13da6f49958d68365af02cd5cbfa5a934fb76dafacd3a"
+}

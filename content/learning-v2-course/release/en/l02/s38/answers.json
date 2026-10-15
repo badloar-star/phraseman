@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-38:i01",
-    "correctText": "manager",
+    "correctText": "It is unofficial.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i02",
-    "correctText": "manager",
+    "correctText": "She is weak.",
     "correctResponseId": "en:lesson-02:session-38:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-38:i03",
-    "correctText": "intern",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-38:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-38:i04",
-    "correctText": "intern",
-    "correctResponseId": "en:lesson-02:session-38:i04:r1"
+    "correctText": "en:lesson-02:session-38:i04:p1=unofficial\nen:lesson-02:session-38:i04:p2=official\nen:lesson-02:session-38:i04:p3=weak\nen:lesson-02:session-38:i04:p4=elsewhere",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i05",
-    "correctText": "Who is the manager?",
+    "correctText": "No, it is not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i06",
-    "correctText": "new",
-    "correctResponseId": "en:lesson-02:session-38:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-38:i07",
-    "correctText": "Who is the intern?",
-    "correctResponseId": "en:lesson-02:session-38:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-38:i08",
-    "correctText": "He is the manager.",
+    "correctText": "Where are they?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-38:i07",
+    "correctText": "It's unofficial.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-38:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-38:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-38:i09",
-    "correctText": "sure",
+    "correctText": "They are elsewhere.",
     "correctResponseId": "en:lesson-02:session-38:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-38:i10",
-    "correctText": "en:lesson-02:session-38:i10:p1=manager\nen:lesson-02:session-38:i10:p2=intern\nen:lesson-02:session-38:i10:p3=new\nen:lesson-02:session-38:i10:p4=sure",
+    "correctText": "en:lesson-02:session-38:i10:p1=elsewhere\nen:lesson-02:session-38:i10:p2=weak\nen:lesson-02:session-38:i10:p3=official\nen:lesson-02:session-38:i10:p4=unofficial",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i11",
-    "correctText": "The intern is here.",
+    "correctText": "It is not official.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i12",
-    "correctText": "Who",
-    "correctResponseId": "en:lesson-02:session-38:i12:r1"
+    "correctText": "Who is weak?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i13",
-    "correctText": "Is she here?",
+    "correctText": "She's weak.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i14",
-    "correctText": "I am not sure.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-38:i15",
-    "correctText": "Who is she?",
-    "correctResponseId": null
+    "correctText": "Is it unofficial?",
+    "correctResponseId": "en:lesson-02:session-38:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-38:i16",
-    "correctText": "Where is the manager?",
+    "correctText": "en:lesson-02:session-38:i16:p1=weak\nen:lesson-02:session-38:i16:p2=unofficial\nen:lesson-02:session-38:i16:p3=elsewhere\nen:lesson-02:session-38:i16:p4=official",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i17",
-    "correctText": "Who is the intern?",
+    "correctText": "Is it unofficial?",
     "correctResponseId": null
   }
 ]

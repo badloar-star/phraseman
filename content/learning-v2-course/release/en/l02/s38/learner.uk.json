@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-02:session-38:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — manager",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусід склав розклад від себе, без затвердження організаторами. Скажіть повною фразою, що він неофіційний",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-38:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — manager",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусід склав розклад від себе, без затвердження організаторами. Скажіть повною фразою, що він неофіційний",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-38:i01:audio",
-          "transcript": "manager"
+        "family": "phrase_builder",
+        "targetPhrase": "It is unofficial.",
+        "localizedMeaning": {
+          "ru": "Сосед составил расписание от себя, без утверждения организаторами. Скажите полной фразой, что оно неофициальное",
+          "uk": "Сусід склав розклад від себе, без затвердження організаторами. Скажіть повною фразою, що він неофіційний"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "unofficial"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-38:i01:r1",
-            "targetText": "manager",
-            "meaningByLocale": {
-              "ru": "«руководитель». Здесь — человек, который организует работу команды и отвечает за её результат.",
-              "uk": "«керівник». Тут це людина, яка організовує роботу команди й відповідає за її результат."
+            "responseId": "en:lesson-02:session-38:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусід склав розклад від себе, без затвердження організаторами. Скажіть повною фразою, що він неофіційний",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is unofficial.`",
+              "uk": "тут потрібно `is` — `It is unofficial.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "manager",
-          "definitionByLocale": {
-            "ru": "«руководитель». Здесь — человек, который организует работу команды и отвечает за её результат.",
-            "uk": "«керівник». Тут це людина, яка організовує роботу команди й відповідає за її результат."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово прозвучало",
+      "prompt": "Послухайте фразу про Анну",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-38:i02:r1",
-          "text": "manager"
+          "text": "She is weak."
         },
         {
           "responseId": "en:lesson-02:session-38:i02:r2",
-          "text": "messenger"
+          "text": "She is elsewhere."
         },
         {
           "responseId": "en:lesson-02:session-38:i02:r3",
-          "text": "passenger"
+          "text": "She is active."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово прозвучало",
+      "accessibilityLabel": "Послухайте фразу про Анну",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i02:audio",
-          "transcript": "manager"
+          "transcript": "She is weak."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-38:i02:r1",
-            "targetText": "manager",
+            "targetText": "She is weak.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i02:r2",
-            "targetText": "messenger",
+            "targetText": "She is elsewhere.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i02:r3",
-            "targetText": "passenger",
+            "targetText": "She is active.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-02:session-38:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово прозву",
+            "testedDimension": "Послухайте фразу про Анну",
             "feedbackByLocale": {
-              "ru": "Это «посыльный». Переслушайте первый слог: у `messenger` он другой, а в записи звучит `manager`.",
-              "uk": "Це «посланець». Прослухайте ще раз перший склад: у `messenger` він інший, а в записі звучить `manager`."
+              "ru": "В записи последнее слово — `weak`, а в этом варианте — `elsewhere`.",
+              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `elsewhere`."
             }
           },
           {
             "responseId": "en:lesson-02:session-38:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово прозву",
+            "testedDimension": "Послухайте фразу про Анну",
             "feedbackByLocale": {
-              "ru": "Это «пассажир». Переслушайте самый первый звук: `passenger` начинается иначе, а в записи звучит `manager`.",
-              "uk": "Це «пасажир». Прослухайте ще раз перший звук: `passenger` починається інакше, а в записі звучить `manager`."
+              "ru": "В записи последнее слово — `weak`, а в этом варианте — `active`.",
+              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `active`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-02:session-38:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — intern",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-38:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — intern",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-38:i03:audio",
-          "transcript": "intern"
+      "prompt": "Уточніть, чи цей розклад неофіційний",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i03:r1",
+          "text": "Is"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-02:session-38:i03:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i03:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, чи цей розклад неофіційний",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, неофициальное ли это расписание",
+          "uk": "Уточніть, чи цей розклад неофіційний"
+        },
+        "gappedTargetPhrase": "___ it unofficial?",
+        "gapOptions": [
           {
             "responseId": "en:lesson-02:session-38:i03:r1",
-            "targetText": "intern",
-            "meaningByLocale": {
-              "ru": "«стажёр». Человек, который проходит стажировку: выполняет рабочие задания и набирается опыта с помощью более опытных сотрудников.",
-              "uk": "«стажер». Людина, яка проходить стажування: виконує робочі завдання й набуває досвіду за підтримки досвідченіших працівників."
-            }
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i03:r3",
+            "text": "Are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "intern",
-          "definitionByLocale": {
-            "ru": "«стажёр». Человек, который проходит стажировку: выполняет рабочие задания и набирается опыта с помощью более опытных сотрудников.",
-            "uk": "«стажер». Людина, яка проходить стажування: виконує робочі завдання й набуває досвіду за підтримки досвідченіших працівників."
+        "testedDimension": "Уточніть, чи цей розклад неофіційний",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, чи цей розклад неофіційний",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, чи цей розклад неофіційний",
+            "feedbackByLocale": {
+              "ru": "Вопрос — `Is it unofficial?`.",
+              "uk": "Запитання — `Is it unofficial?`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,75 +196,72 @@
       "interactionId": "en:lesson-02:session-38:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово прозвучало",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-38:i04:r1",
-          "text": "intern"
-        },
-        {
-          "responseId": "en:lesson-02:session-38:i04:r2",
-          "text": "winter"
-        },
-        {
-          "responseId": "en:lesson-02:session-38:i04:r3",
-          "text": "return"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-38:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово прозвучало",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-38:i04:audio",
-          "transcript": "intern"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-38:i04:p1",
+            "target": "unofficial",
+            "meaningByLocale": {
+              "ru": "неофициальный",
+              "uk": "неофіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i04:p2",
+            "target": "official",
+            "meaningByLocale": {
+              "ru": "официальный",
+              "uk": "офіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i04:p3",
+            "target": "weak",
+            "meaningByLocale": {
+              "ru": "слабый",
+              "uk": "слабкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i04:p4",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "unofficial",
+          "official",
+          "weak",
+          "elsewhere"
+        ],
+        "rightColumn": [
+          "неофіційний",
+          "офіційний",
+          "слабкий",
+          "в іншому місці"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-38:i04:r1",
-            "targetText": "intern",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i04:r2",
-            "targetText": "winter",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i04:r3",
-            "targetText": "return",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-38:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово прозву",
-            "feedbackByLocale": {
-              "ru": "Это «зима». Переслушайте самый первый звук: у `winter` перед гласным слышится согласный, а слово в записи начинается сразу с гласного — `intern`.",
-              "uk": "Це «зима». Прослухайте ще раз перший звук: у `winter` перед голосним чути приголосний, а слово в записі починається одразу з голосного — `intern`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово прозву",
-            "feedbackByLocale": {
-              "ru": "Это «возвращаться». Переслушайте первый слог: у `return` он другой, а в записи звучит `intern`.",
-              "uk": "Це «повертатися». Прослухайте ще раз перший склад: у `return` він інший, а в записі звучить `intern`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -245,28 +269,47 @@
       "interactionId": "en:lesson-02:session-38:i05",
       "ordinal": 8,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — перед вами вся команда; дізнайтеся, хто її керівник",
+      "prompt": "Послухайте й складіть коротку відповідь",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — перед вами вся команда; дізнайтеся, хто її керівник",
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Who is the manager?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — перед вами вся команда; узнайте, кто её руководитель",
-          "uk": "Складіть фразу — перед вами вся команда; дізнайтеся, хто її керівник"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i05:audio",
+          "transcript": "No, it is not."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No, it is not.",
         "orderedTokens": [
-          "Who",
+          "No,",
+          "it",
           "is",
-          "the",
-          "manager"
+          "not"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, it is not.`",
+              "uk": "тут потрібно `No,` — `No, it is not.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -274,68 +317,43 @@
       "interactionId": "en:lesson-02:session-38:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — колега запитує про чоловіка, який уперше прийшов до вас працювати; скажіть: «Він новенький»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-38:i06:r1",
-          "text": "new"
-        },
-        {
-          "responseId": "en:lesson-02:session-38:i06:r2",
-          "text": "sure"
-        },
-        {
-          "responseId": "en:lesson-02:session-38:i06:r3",
-          "text": "here"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Організатори зараз в іншому місці. Запитайте Анну, де вони",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — колега запитує про чоловіка, який уперше прийшов до вас працювати; скажіть: «Він новенький»",
+      "accessibilityLabel": "Організатори зараз в іншому місці. Запитайте Анну, де вони",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — коллега спрашивает о мужчине, который впервые пришёл работать к вам; скажите: «Он новенький»",
-          "uk": "Вставте слово — колега запитує про чоловіка, який уперше прийшов до вас працювати; скажіть: «Він новенький»"
+        "family": "phrase_builder",
+        "targetPhrase": "Where are they?",
+        "localizedMeaning": {
+          "ru": "Организаторы сейчас в другом месте. Спросите Анну, где они",
+          "uk": "Організатори зараз в іншому місці. Запитайте Анну, де вони"
         },
-        "gappedTargetPhrase": "He is ___ .",
-        "gapOptions": [
+        "orderedTokens": [
+          "Where",
+          "are",
+          "they"
+        ],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-38:i06:r1",
-            "text": "new"
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i06:r2",
-            "text": "sure"
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i06:r3",
-            "text": "here"
+            "responseId": "en:lesson-02:session-38:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Організатори зараз в іншому місці. Запитайте Анну, де вони",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where are they?`",
+              "uk": "тут потрібно `Where` — `Where are they?`"
+            }
           }
         ],
-        "testedDimension": "Вставте слово — колега запитує про чолов",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-38:i06:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — колега запитує про чолов",
-            "feedbackByLocale": {
-              "ru": "Получится «Он уверен». Нужно сказать, что он недавно пришёл работать: `He is new`.",
-              "uk": "Вийде «Він упевнений». Треба сказати, що він недавно прийшов працювати: `He is new`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i06:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — колега запитує про чолов",
-            "feedbackByLocale": {
-              "ru": "Это «здесь». Вы сообщаете, что он новенький, поэтому нужно `new`.",
-              "uk": "Це «тут». Ви повідомляєте, що він новенький, тому потрібне `new`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -343,75 +361,32 @@
       "interactionId": "en:lesson-02:session-38:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — що колега запитав про стажера",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-38:i07:r1",
-          "text": "Who is the intern?"
-        },
-        {
-          "responseId": "en:lesson-02:session-38:i07:r2",
-          "text": "Where is the intern?"
-        },
-        {
-          "responseId": "en:lesson-02:session-38:i07:r3",
-          "text": "Who is the manager?"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви показуєте розклад сусіда. Коротко повідомте, що він неофіційний",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i07:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — що колега запитав про стажера",
+      "accessibilityLabel": "Ви показуєте розклад сусіда. Коротко повідомте, що він неофіційний",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i07:audio",
-          "transcript": "Who is the intern?"
+          "transcript": "It's unofficial."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-38:i07:r1",
-            "targetText": "Who is the intern?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i07:r2",
-            "targetText": "Where is the intern?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i07:r3",
-            "targetText": "Who is the manager?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-38:i07:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — що колега запита",
-            "feedbackByLocale": {
-              "ru": "Это «Где стажёр?». На записи вопрос начинается с `Who`: коллега хочет узнать, кто стажёр.",
-              "uk": "Це «Де стажер?». У записі запитання починається з `Who`: колега хоче дізнатися, хто стажер."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i07:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — що колега запита",
-            "feedbackByLocale": {
-              "ru": "Это вопрос о руководителе. На записи последнее слово — `intern`, «стажёр».",
-              "uk": "Це запитання про керівника. Останнє слово в записі — `intern`, «стажер»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "It's unofficial.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -419,28 +394,68 @@
       "interactionId": "en:lesson-02:session-38:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — колега запитує, хто керує командою; вкажіть на чоловіка й скажіть: «Він керівник»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Розклад неофіційний. На «Is it unofficial?» доповніть коротку відповідь «так»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i08:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — колега запитує, хто керує командою; вкажіть на чоловіка й скажіть: «Він керівник»",
+      "accessibilityLabel": "Розклад неофіційний. На «Is it unofficial?» доповніть коротку відповідь «так»",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is the manager.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — коллега спрашивает, кто руководит командой; укажите на мужчину и скажите: «Он руководитель»",
-          "uk": "Складіть фразу — колега запитує, хто керує командою; вкажіть на чоловіка й скажіть: «Він керівник»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расписание неофициальное. На «Is it unofficial?» дополните короткое «да»",
+          "uk": "Розклад неофіційний. На «Is it unofficial?» доповніть коротку відповідь «так»"
         },
-        "orderedTokens": [
-          "He",
-          "is",
-          "the",
-          "manager"
+        "gappedTargetPhrase": "Yes, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-38:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i08:r3",
+            "text": "are"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Розклад неофіційний. На «Is it unofficial?» доповніть коротку відповідь «так»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Розклад неофіційний. На «Is it unofficial?» доповніть коротку відповідь «так»",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Розклад неофіційний. На «Is it unofficial?» доповніть коротку відповідь «так»",
+            "feedbackByLocale": {
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -448,68 +463,75 @@
       "interactionId": "en:lesson-02:session-38:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви точно знаєте, хто керівник; підтвердьте колезі: «Я впевнений»",
+      "prompt": "Послухайте повідомлення про організаторів",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-38:i09:r1",
-          "text": "sure"
+          "text": "They are elsewhere."
         },
         {
           "responseId": "en:lesson-02:session-38:i09:r2",
-          "text": "new"
+          "text": "They are weak."
         },
         {
           "responseId": "en:lesson-02:session-38:i09:r3",
-          "text": "here"
+          "text": "They are away."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви точно знаєте, хто керівник; підтвердьте колезі: «Я впевнений»",
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про організаторів",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы точно знаете, кто руководитель; подтвердите коллеге: «Я уверен»",
-          "uk": "Вставте слово — ви точно знаєте, хто керівник; підтвердьте колезі: «Я впевнений»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i09:audio",
+          "transcript": "They are elsewhere."
         },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-38:i09:r1",
-            "text": "sure"
+            "targetText": "They are elsewhere.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i09:r2",
-            "text": "new"
+            "targetText": "They are weak.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-38:i09:r3",
-            "text": "here"
+            "targetText": "They are away.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставте слово — ви точно знаєте, хто кер",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-38:i09:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — ви точно знаєте, хто кер",
+            "testedDimension": "Послухайте повідомлення про організаторів",
             "feedbackByLocale": {
-              "ru": "Получится «Я новенький». Нужно подтвердить, что вы точно знаете ответ: `I am sure`.",
-              "uk": "Вийде «Я новенький». Треба підтвердити, що ви точно знаєте відповідь: `I am sure`."
+              "ru": "В записи последнее слово — `elsewhere`, а в этом варианте — `weak`.",
+              "uk": "У записі останнє слово — `elsewhere`, а в цьому варіанті — `weak`."
             }
           },
           {
             "responseId": "en:lesson-02:session-38:i09:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — ви точно знаєте, хто кер",
+            "testedDimension": "Послухайте повідомлення про організаторів",
             "feedbackByLocale": {
-              "ru": "Это «здесь». Для уверенности в ответе нужно слово `sure`.",
-              "uk": "Це «тут». Щоб висловити впевненість у відповіді, потрібне слово `sure`."
+              "ru": "В записи последнее слово — `elsewhere`, а в этом варианте — `away`.",
+              "uk": "У записі останнє слово — `elsewhere`, а в цьому варіанті — `away`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -519,58 +541,58 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте пари — слова зі знайомства з командою",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте пари — слова зі знайомства з командою",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-38:i10:p1",
-            "target": "manager",
+            "target": "elsewhere",
             "meaningByLocale": {
-              "ru": "руководитель",
-              "uk": "керівник"
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i10:p2",
-            "target": "intern",
+            "target": "weak",
             "meaningByLocale": {
-              "ru": "стажёр",
-              "uk": "стажер"
+              "ru": "слабый",
+              "uk": "слабкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i10:p3",
-            "target": "new",
+            "target": "official",
             "meaningByLocale": {
-              "ru": "новенький",
-              "uk": "новенький"
+              "ru": "официальный",
+              "uk": "офіційний"
             }
           },
           {
             "pairId": "en:lesson-02:session-38:i10:p4",
-            "target": "sure",
+            "target": "unofficial",
             "meaningByLocale": {
-              "ru": "уверен",
-              "uk": "впевнений"
+              "ru": "неофициальный",
+              "uk": "неофіційний"
             }
           }
         ],
         "leftColumn": [
-          "manager",
-          "intern",
-          "new",
-          "sure"
+          "elsewhere",
+          "weak",
+          "official",
+          "unofficial"
         ],
         "rightColumn": [
-          "руководитель",
-          "стажёр",
-          "новенький",
-          "уверен"
+          "в іншому місці",
+          "слабкий",
+          "офіційний",
+          "неофіційний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -590,28 +612,47 @@
       "interactionId": "en:lesson-02:session-38:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — колега шукає стажера; стажер підійшов до вас, повідомте: «Стажер тут»",
+      "prompt": "Послухайте й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — колега шукає стажера; стажер підійшов до вас, повідомте: «Стажер тут»",
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The intern is here.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — коллега ищет стажёра; стажёр подошёл к вам, сообщите: «Стажёр здесь»",
-          "uk": "Складіть фразу — колега шукає стажера; стажер підійшов до вас, повідомте: «Стажер тут»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i11:audio",
+          "transcript": "It is not official."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not official.",
         "orderedTokens": [
-          "The",
-          "intern",
+          "It",
           "is",
-          "here"
+          "not",
+          "official"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is not official.`",
+              "uk": "тут потрібно `is` — `It is not official.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -619,99 +660,76 @@
       "interactionId": "en:lesson-02:session-38:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — жінка розмовляє з керівником; запитайте колегу, хто вона",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-38:i12:r1",
-          "text": "Who"
-        },
-        {
-          "responseId": "en:lesson-02:session-38:i12:r2",
-          "text": "Whose"
-        },
-        {
-          "responseId": "en:lesson-02:session-38:i12:r3",
-          "text": "Where"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна отримала повідомлення про слабкість, але ви не бачите імені відправника. Запитайте Анну, хто відчуває слабкість",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — жінка розмовляє з керівником; запитайте колегу, хто вона",
+      "accessibilityLabel": "Анна отримала повідомлення про слабкість, але ви не бачите імені відправника. Запитайте Анну, хто відчуває слабкість",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — женщина разговаривает с руководителем; спросите коллегу, кто она",
-          "uk": "Вставте слово — жінка розмовляє з керівником; запитайте колегу, хто вона"
+        "family": "phrase_builder",
+        "targetPhrase": "Who is weak?",
+        "localizedMeaning": {
+          "ru": "Анна получила сообщение о слабости, но вы не видите имени отправителя. Спросите Анну, кто чувствует слабость",
+          "uk": "Анна отримала повідомлення про слабкість, але ви не бачите імені відправника. Запитайте Анну, хто відчуває слабкість"
         },
-        "gappedTargetPhrase": "___ is she?",
-        "gapOptions": [
+        "orderedTokens": [
+          "Who",
+          "is",
+          "weak"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-38:i12:r1",
-            "text": "Who"
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i12:r2",
-            "text": "Whose"
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i12:r3",
-            "text": "Where"
+            "responseId": "en:lesson-02:session-38:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна отримала повідомлення про слабкість, але ви не бачите імені відправника. Запитайте Анну, хто відчуває слабкість",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Who` — `Who is weak?`",
+              "uk": "тут потрібно `Who` — `Who is weak?`"
+            }
           }
         ],
-        "testedDimension": "Вставте слово — жінка розмовляє з керівн",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-38:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — жінка розмовляє з керівн",
-            "feedbackByLocale": {
-              "ru": "Это слово для вопроса «чей?». Вы узнаёте, кто эта женщина, поэтому нужно `Who`.",
-              "uk": "Це слово для запитання «чий?». Ви хочете дізнатися, хто ця жінка, тому потрібне `Who`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-38:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — жінка розмовляє з керівн",
-            "feedbackByLocale": {
-              "ru": "Получится «Где она?». Женщину вы видите; сейчас хотите узнать, кто она.",
-              "uk": "Вийде «Де вона?». Жінку ви бачите; зараз хочете дізнатися, хто вона."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-02:session-38:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — колега шукає жінку, з якою вас щойно познайомили",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна написала, що в неї немає сил. Коротко повідомте, що вона відчуває слабкість",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i13:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть — колега шукає жінку, з якою вас щойно познайомили",
+      "accessibilityLabel": "Анна написала, що в неї немає сил. Коротко повідомте, що вона відчуває слабкість",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i13:audio",
-          "transcript": "Is she here?"
+          "transcript": "She's weak."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is she here?",
-        "orderedTokens": [
-          "Is",
-          "she",
-          "here"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "targetPhrase": "She's weak.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -719,28 +737,68 @@
       "interactionId": "en:lesson-02:session-38:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — вас запитали, хто з двох новеньких стажер; ви поки не знаєте й визнаєте це",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Організатори вже повернулися до майданчика. Запереченням скажіть, що вони не в іншому місці",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i14:r3",
+          "text": "is"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — вас запитали, хто з двох новеньких стажер; ви поки не знаєте й визнаєте це",
+      "accessibilityLabel": "Організатори вже повернулися до майданчика. Запереченням скажіть, що вони не в іншому місці",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am not sure.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вас спросили, кто из двоих новеньких стажёр; вы пока не знаете и признаётесь в этом",
-          "uk": "Складіть фразу — вас запитали, хто з двох новеньких стажер; ви поки не знаєте й визнаєте це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Организаторы уже вернулись к площадке. Отрицанием скажите, что они не в другом месте",
+          "uk": "Організатори вже повернулися до майданчика. Запереченням скажіть, що вони не в іншому місці"
         },
-        "orderedTokens": [
-          "I",
-          "am",
-          "not",
-          "sure"
+        "gappedTargetPhrase": "They ___ not elsewhere.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-38:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i14:r3",
+            "text": "is"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Організатори вже повернулися до майданчика. Запереченням скажіть, що вони не в іншому місці",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i14:r2",
+            "correct": false,
+            "testedDimension": "Організатори вже повернулися до майданчика. Запереченням скажіть, що вони не в іншому місці",
+            "feedbackByLocale": {
+              "ru": "С `They` нужно `are`.",
+              "uk": "З `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i14:r3",
+            "correct": false,
+            "testedDimension": "Організатори вже повернулися до майданчика. Запереченням скажіть, що вони не в іншому місці",
+            "feedbackByLocale": {
+              "ru": "Фраза — `They are not elsewhere`.",
+              "uk": "Фраза — `They are not elsewhere`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -748,32 +806,75 @@
       "interactionId": "en:lesson-02:session-38:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i15:r1",
+          "text": "Is it unofficial?"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i15:r2",
+          "text": "Is it official?"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i15:r3",
+          "text": "Is it informal?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Послухайте запитання",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-38:i15:audio",
-          "transcript": "Who is she?"
+          "transcript": "Is it unofficial?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Who is she?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:i15:r1",
+            "targetText": "Is it unofficial?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i15:r2",
+            "targetText": "Is it official?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i15:r3",
+            "targetText": "Is it informal?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unofficial`, а в этом варианте — `official`.",
+              "uk": "У записі останнє слово — `unofficial`, а в цьому варіанті — `official`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unofficial`, а в этом варианте — `informal`.",
+              "uk": "У записі останнє слово — `unofficial`, а в цьому варіанті — `informal`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -781,31 +882,71 @@
       "interactionId": "en:lesson-02:session-38:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-38:i16:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-38:i16:audio",
-          "transcript": "Where is the manager?"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-38:i16:p1",
+            "target": "weak",
+            "meaningByLocale": {
+              "ru": "слабый",
+              "uk": "слабкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i16:p2",
+            "target": "unofficial",
+            "meaningByLocale": {
+              "ru": "неофициальный",
+              "uk": "неофіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i16:p3",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i16:p4",
+            "target": "official",
+            "meaningByLocale": {
+              "ru": "официальный",
+              "uk": "офіційний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "weak",
+          "unofficial",
+          "elsewhere",
+          "official"
+        ],
+        "rightColumn": [
+          "слабкий",
+          "неофіційний",
+          "в іншому місці",
+          "офіційний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Where is the manager?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -814,30 +955,40 @@
       "interactionId": "en:lesson-02:session-38:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — двоє новеньких стоять поруч; вам доручили допомогти стажеру, дізнайтеся в колеги, хто з них стажер",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам надіслали інший варіант розкладу. Запитайте, чи він неофіційний",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — двоє новеньких стоять поруч; вам доручили допомогти стажеру, дізнайтеся в колеги, хто з них стажер",
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Вам надіслали інший варіант розкладу. Запитайте, чи він неофіційний",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Who is the intern?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — двое новеньких стоят рядом; вам поручили помочь стажёру, узнайте у коллеги, кто из них стажёр",
-          "uk": "Складіть фразу — двоє новеньких стоять поруч; вам доручили допомогти стажеру, дізнайтеся в колеги, хто з них стажер"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i17:audio",
+          "transcript": "Is it unofficial?"
         },
-        "orderedTokens": [
-          "Who",
-          "is",
-          "the",
-          "intern"
-        ],
-        "authoredDistractorTokens": [
-          "Where"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it unofficial?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
@@ -848,5 +999,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "be7d46eebb820563d4c761a76ffe4ba82781337b0015f458bc91ce8cc17afc30"
+  "learnerFingerprint": "cc79ffe80c69d16fd56df18ccc9f99941ba1f883bc8f3729fe0f297fb85297ca"
 }

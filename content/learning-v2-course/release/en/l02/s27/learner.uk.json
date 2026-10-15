@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-02:session-27:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — prices",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна охоче пригощає всіх власним коштом. Скажіть повною фразою, що вона щедра",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — prices",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна охоче пригощає всіх власним коштом. Скажіть повною фразою, що вона щедра",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i01:audio",
-          "transcript": "prices"
+        "family": "phrase_builder",
+        "targetPhrase": "She is generous.",
+        "localizedMeaning": {
+          "ru": "Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая",
+          "uk": "Анна охоче пригощає всіх власним коштом. Скажіть повною фразою, що вона щедра"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "She",
+          "is",
+          "generous"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-27:i01:r1",
-            "targetText": "prices",
-            "meaningByLocale": {
-              "ru": "«цены». Цифры на ценниках. Одна — `price`, несколько — `prices`.",
-              "uk": "«ціни». Цифри на цінниках. Одна — `price`, кілька — `prices`."
+            "responseId": "en:lesson-02:session-27:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна охоче пригощає всіх власним коштом. Скажіть повною фразою, що вона щедра",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is generous.`",
+              "uk": "тут потрібно `is` — `She is generous.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "prices",
-          "definitionByLocale": {
-            "ru": "«цены». Цифры на ценниках. Одна — `price`, несколько — `prices`.",
-            "uk": "«ціни». Цифри на цінниках. Одна — `price`, кілька — `prices`."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
+      "prompt": "Послухайте фразу про Олега",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i02:r1",
-          "text": "prices"
+          "text": "He is asleep."
         },
         {
           "responseId": "en:lesson-02:session-27:i02:r2",
-          "text": "places"
+          "text": "He is awake."
         },
         {
           "responseId": "en:lesson-02:session-27:i02:r3",
-          "text": "pieces"
+          "text": "He is guilty."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть",
+      "accessibilityLabel": "Послухайте фразу про Олега",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-27:i02:audio",
-          "transcript": "prices"
+          "transcript": "He is asleep."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-27:i02:r1",
-            "targetText": "prices",
+            "targetText": "He is asleep.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-27:i02:r2",
-            "targetText": "places",
+            "targetText": "He is awake.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-27:i02:r3",
-            "targetText": "pieces",
+            "targetText": "He is guilty.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-02:session-27:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — prices",
+            "testedDimension": "Послухайте фразу про Олега",
             "feedbackByLocale": {
-              "ru": "«места», не «цены». Слушайте после «п»: тут `r`, а не `l`.",
-              "uk": "«місця», не «ціни». Слухайте другий звук: у `prices` — `r`, у `places` — `l`."
+              "ru": "В записи последнее слово — `asleep`, а в этом варианте — `awake`.",
+              "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `awake`."
             }
           },
           {
             "responseId": "en:lesson-02:session-27:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — prices",
+            "testedDimension": "Послухайте фразу про Олега",
             "feedbackByLocale": {
-              "ru": "«Кусочки», не «цены». Гласная в середине другая: у `prices` — «ай», у `pieces` — «и».",
-              "uk": "«Шматочки», не «ціни». Голосний усередині інший: у `prices` — «ай», у `pieces` — «і»."
+              "ru": "В записи последнее слово — `asleep`, а в этом варианте — `guilty`.",
+              "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `guilty`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-02:session-27:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — rules",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — rules",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i03:audio",
-          "transcript": "rules"
+      "prompt": "Ви запитуєте Олега про Анну: чи вона щедра?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-27:i03:r1",
+          "text": "Is"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-02:session-27:i03:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-27:i03:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви запитуєте Олега про Анну: чи вона щедра?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы спрашиваете Олега об Анне: щедрая ли она?",
+          "uk": "Ви запитуєте Олега про Анну: чи вона щедра?"
+        },
+        "gappedTargetPhrase": "___ she generous?",
+        "gapOptions": [
           {
             "responseId": "en:lesson-02:session-27:i03:r1",
-            "targetText": "rules",
-            "meaningByLocale": {
-              "ru": "«правила». Список у входа: что можно, чего нельзя.",
-              "uk": "«правила». Список біля входу: що можна, чого не можна."
-            }
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i03:r3",
+            "text": "Are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "rules",
-          "definitionByLocale": {
-            "ru": "«правила». Список у входа: что можно, чего нельзя.",
-            "uk": "«правила». Список біля входу: що можна, чого не можна."
+        "testedDimension": "Ви запитуєте Олега про Анну: чи вона щедра?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви запитуєте Олега про Анну: чи вона щедра?",
+            "feedbackByLocale": {
+              "ru": "С `she` нужно `Is`.",
+              "uk": "З `she` потрібно `Is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви запитуєте Олега про Анну: чи вона щедра?",
+            "feedbackByLocale": {
+              "ru": "Вопрос — `Is she generous?`.",
+              "uk": "Запитання — `Is she generous?`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,555 +196,60 @@
       "interactionId": "en:lesson-02:session-27:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-27:i04:r1",
-          "text": "rules"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i04:r2",
-          "text": "tools"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i04:r3",
-          "text": "schools"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте і виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i04:audio",
-          "transcript": "rules"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-27:i04:r1",
-            "targetText": "rules",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i04:r2",
-            "targetText": "tools",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i04:r3",
-            "targetText": "schools",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-27:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — rules",
-            "feedbackByLocale": {
-              "ru": "«инструменты», не «правила». Начало другое: `t`, а не `r`.",
-              "uk": "«інструменти», не «правила». Різниця тільки в першому звуці: `rules` — `r`, `tools` — `t`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте і виберіть — rules",
-            "feedbackByLocale": {
-              "ru": "«школы», не «правила». Начало длиннее: «ск».",
-              "uk": "«школи», не «правила». Початок довший: перед голосним там два звуки."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — перед вами купка незрозумілих речей",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — перед вами купка незрозумілих речей",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "What are these?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — перед вами горка непонятных вещей",
-          "uk": "Складіть фразу — перед вами купка незрозумілих речей"
-        },
-        "orderedTokens": [
-          "What",
-          "are",
-          "these"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — речей кілька, питаєте, що це",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-27:i06:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i06:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i06:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — речей кілька, питаєте, що це",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вещей несколько, спрашиваете, что это",
-          "uk": "Вставте слово — речей кілька, питаєте, що це"
-        },
-        "gappedTargetPhrase": "What ___ these?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-27:i06:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i06:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i06:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставте слово — речей кілька, питаєте, щ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-27:i06:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — речей кілька, питаєте, щ",
-            "feedbackByLocale": {
-              "ru": "`is` — про одну вещь. `these` значит «несколько», к нему идёт `are`.",
-              "uk": "`is` — про одну річ. `these` означає «кілька», до нього йде `are`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i06:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — речей кілька, питаєте, щ",
-            "feedbackByLocale": {
-              "ru": "`am` — форма для `I`. Про несколько вещей нужна `are`.",
-              "uk": "`am` — форма для `I`. Про кілька речей потрібна `are`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — вас здивували несподівано високі ціни на цінниках",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-27:i07:r1",
-          "text": "prices"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i07:r2",
-          "text": "price"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i07:r3",
-          "text": "rules"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — вас здивували несподівано високі ціни на цінниках",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вас удивили неожиданно высокие цены на ценниках",
-          "uk": "Вставте слово — вас здивували несподівано високі ціни на цінниках"
-        },
-        "gappedTargetPhrase": "What are these ___ ?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-27:i07:r1",
-            "text": "prices"
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i07:r2",
-            "text": "price"
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i07:r3",
-            "text": "rules"
-          }
-        ],
-        "testedDimension": "Вставте слово — вас здивували несподіван",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-27:i07:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — вас здивували несподіван",
-            "feedbackByLocale": {
-              "ru": "Одна цена. Ценников много — нужен хвост «-s»: `prices`.",
-              "uk": "Одна ціна. Цінників багато — потрібен хвостик «-s»: `prices`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i07:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — вас здивували несподіван",
-            "feedbackByLocale": {
-              "ru": "Это «правила». Цифры на ценниках — `prices`.",
-              "uk": "Це «правила». Цифри на цінниках — `prices`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "sound_contrast",
-      "inputMode": "single_choice",
-      "prompt": "Розрізніть звуки — яке з двох про «правила»?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-27:i08:r1",
-          "text": "rules"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i08:r2",
-          "text": "tools"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i08:audioA",
-        "en:lesson-02:session-27:i08:audioB"
-      ],
-      "accessibilityLabel": "Розрізніть звуки — яке з двох про «правила»?",
-      "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "rules",
-        "contrastB": "tools",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-02:session-27:i08:audioA",
-          "transcript": "rules"
-        },
-        "audioB": {
-          "audioTargetId": "en:lesson-02:session-27:i08:audioB",
-          "transcript": "tools"
-        },
-        "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «прави",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-27:i08:r2",
-            "correct": false,
-            "testedDimension": "Розрізніть звуки — яке з двох про «прави",
-            "feedbackByLocale": {
-              "ru": "Это «инструменты». Про список на доске говорят `rules`.",
-              "uk": "Це «інструменти». Про список на дошці кажуть `rules`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — на дошці біля входу список, і ви просите пояснити",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — на дошці біля входу список, і ви просите пояснити",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "What are these rules?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — на доске у входа список, и вы просите объяснить",
-          "uk": "Складіть фразу — на дошці біля входу список, і ви просите пояснити"
-        },
-        "orderedTokens": [
-          "What",
-          "are",
-          "these",
-          "rules"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — на прилавку одна річ, і ви про неї питаєте",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-27:i10:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i10:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i10:r3",
-          "text": "these"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — на прилавку одна річ, і ви про неї питаєте",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — на прилавке одна вещь, и вы про неё спрашиваете",
-          "uk": "Вставте слово — на прилавку одна річ, і ви про неї питаєте"
-        },
-        "gappedTargetPhrase": "What ___ this?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-27:i10:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i10:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i10:r3",
-            "text": "these"
-          }
-        ],
-        "testedDimension": "Вставте слово — на прилавку одна річ, і ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-27:i10:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — на прилавку одна річ, і ",
-            "feedbackByLocale": {
-              "ru": "`are` — когда вещей несколько. Тут она одна: `this` — `is`.",
-              "uk": "`are` — коли речей кілька. Тут вона одна: `this` — `is`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — на прилавку одна річ, і ",
-            "feedbackByLocale": {
-              "ru": "Это «эти», указание на несколько. Здесь пропуск на месте связки, а не указания.",
-              "uk": "Це «ці», вказівка на кілька. Тут пропуск на місці зв'язки, а не вказівки."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — реакція покупця на цінники",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте і складіть — реакція покупця на цінники",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i11:audio",
-          "transcript": "What are these prices?"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "What are these prices?",
-        "orderedTokens": [
-          "What",
-          "are",
-          "these",
-          "prices"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви обійшли ряд і здивувалися, як тут недорого",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-27:i12:r1",
-          "text": "cheap"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i12:r2",
-          "text": "these"
-        },
-        {
-          "responseId": "en:lesson-02:session-27:i12:r3",
-          "text": "rules"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви обійшли ряд і здивувалися, як тут недорого",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы обошли ряд и удивились, до чего тут недорого",
-          "uk": "Вставте слово — ви обійшли ряд і здивувалися, як тут недорого"
-        },
-        "gappedTargetPhrase": "The shops are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-02:session-27:i12:r1",
-            "text": "cheap"
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i12:r2",
-            "text": "these"
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i12:r3",
-            "text": "rules"
-          }
-        ],
-        "testedDimension": "Вставте слово — ви обійшли ряд і здивува",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-27:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — ви обійшли ряд і здивува",
-            "feedbackByLocale": {
-              "ru": "Это «эти», указание на вещи. А тут нужно слово про то, какие магазины.",
-              "uk": "Це «ці», вказівка на речі. А тут потрібне слово про те, які магазини."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-27:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — ви обійшли ряд і здивува",
-            "feedbackByLocale": {
-              "ru": "«Правила». Про низкие цены говорят `cheap`.",
-              "uk": "«Правила». Про низькі ціни кажуть `cheap`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте пари",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З'єднайте пари",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-02:session-27:i13:p1",
-            "target": "prices",
+            "pairId": "en:lesson-02:session-27:i04:p1",
+            "target": "generous",
             "meaningByLocale": {
-              "ru": "цены",
-              "uk": "ціни"
+              "ru": "щедрый",
+              "uk": "щедрий"
             }
           },
           {
-            "pairId": "en:lesson-02:session-27:i13:p2",
-            "target": "rules",
+            "pairId": "en:lesson-02:session-27:i04:p2",
+            "target": "awake",
             "meaningByLocale": {
-              "ru": "правила",
-              "uk": "правила"
+              "ru": "не спит",
+              "uk": "не спить"
             }
           },
           {
-            "pairId": "en:lesson-02:session-27:i13:p3",
-            "target": "cheap",
+            "pairId": "en:lesson-02:session-27:i04:p3",
+            "target": "asleep",
             "meaningByLocale": {
-              "ru": "дешёвый",
-              "uk": "дешевий"
+              "ru": "спит",
+              "uk": "спить"
             }
           },
           {
-            "pairId": "en:lesson-02:session-27:i13:p4",
-            "target": "shops",
+            "pairId": "en:lesson-02:session-27:i04:p4",
+            "target": "available",
             "meaningByLocale": {
-              "ru": "магазины",
-              "uk": "магазини"
+              "ru": "доступный, свободный",
+              "uk": "доступний, вільний"
             }
           }
         ],
         "leftColumn": [
-          "prices",
-          "rules",
-          "cheap",
-          "shops"
+          "generous",
+          "awake",
+          "asleep",
+          "available"
         ],
         "rightColumn": [
-          "цены",
-          "правила",
-          "дешёвый",
-          "магазины"
+          "щедрий",
+          "не спить",
+          "спить",
+          "доступний, вільний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -734,33 +266,538 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-27:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-02:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:i05:audio",
+          "transcript": "It is not available."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not available.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "available"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is not available.`",
+              "uk": "тут потрібно `is` — `It is not available.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — вас здивували дві високі ціни: «Що це за ціни?»",
+      "prompt": "Анна вийшла з їдальні. Запитайте, де вона",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — вас здивували дві високі ціни: «Що це за ціни?»",
+      "accessibilityLabel": "Анна вийшла з їдальні. Запитайте, де вона",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What are these prices?",
+        "targetPhrase": "Where is she?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вас удивили две высокие цены: «Что это за цены?»",
-          "uk": "Складіть фразу — вас здивували дві високі ціни: «Що це за ціни?»"
+          "ru": "Анна вышла из столовой. Спросите, где она",
+          "uk": "Анна вийшла з їдальні. Запитайте, де вона"
         },
         "orderedTokens": [
-          "What",
+          "Where",
+          "is",
+          "she"
+        ],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна вийшла з їдальні. Запитайте, де вона",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is she?`",
+              "uk": "тут потрібно `Where` — `Where is she?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Олег прокинувся й розмовляє з вами. Коротко скажіть, що він не спить",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Олег прокинувся й розмовляє з вами. Коротко скажіть, що він не спить",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:i07:audio",
+          "transcript": "He's awake."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He's awake.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Господар дозволив вам зайняти вільний стіл. На «Is it available?» доповніть коротку відповідь «так»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-27:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-27:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-27:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Господар дозволив вам зайняти вільний стіл. На «Is it available?» доповніть коротку відповідь «так»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хозяин разрешил вам занять свободный стол. На «Is it available?» дополните короткое «да»",
+          "uk": "Господар дозволив вам зайняти вільний стіл. На «Is it available?» доповніть коротку відповідь «так»"
+        },
+        "gappedTargetPhrase": "Yes, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-27:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Господар дозволив вам зайняти вільний стіл. На «Is it available?» доповніть коротку відповідь «так»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Господар дозволив вам зайняти вільний стіл. На «Is it available?» доповніть коротку відповідь «так»",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Господар дозволив вам зайняти вільний стіл. На «Is it available?» доповніть коротку відповідь «так»",
+            "feedbackByLocale": {
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-27:i09:r1",
+          "text": "Who is guilty?"
+        },
+        {
+          "responseId": "en:lesson-02:session-27:i09:r2",
+          "text": "Who is generous?"
+        },
+        {
+          "responseId": "en:lesson-02:session-27:i09:r3",
+          "text": "Who is awake?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:i09:audio",
+          "transcript": "Who is guilty?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-27:i09:r1",
+            "targetText": "Who is guilty?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i09:r2",
+            "targetText": "Who is generous?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i09:r3",
+            "targetText": "Who is awake?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `guilty`, а в этом варианте — `generous`.",
+              "uk": "У записі останнє слово — `guilty`, а в цьому варіанті — `generous`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `guilty`, а в этом варианте — `awake`.",
+              "uk": "У записі останнє слово — `guilty`, а в цьому варіанті — `awake`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-27:i10:p1",
+            "target": "guilty",
+            "meaningByLocale": {
+              "ru": "виноватый",
+              "uk": "винний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-27:i10:p2",
+            "target": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый",
+              "uk": "щедрий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-27:i10:p3",
+            "target": "available",
+            "meaningByLocale": {
+              "ru": "доступный, свободный",
+              "uk": "доступний, вільний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-27:i10:p4",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          }
+        ],
+        "leftColumn": [
+          "guilty",
+          "generous",
+          "available",
+          "asleep"
+        ],
+        "rightColumn": [
+          "винний",
+          "щедрий",
+          "доступний, вільний",
+          "спить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:i11:audio",
+          "transcript": "They are asleep."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are asleep.",
+        "orderedTokens": [
+          "They",
           "are",
-          "these",
-          "prices"
+          "asleep"
         ],
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-27:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are asleep.`",
+              "uk": "тут потрібно `are` — `They are asleep.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви без дозволу взяли чужий сніданок, хоча домовилися, що кожен бере свій. Визнайте повною фразою, що ви винні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви без дозволу взяли чужий сніданок, хоча домовилися, що кожен бере свій. Визнайте повною фразою, що ви винні",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am guilty.",
+        "localizedMeaning": {
+          "ru": "Вы без спроса взяли чужой завтрак, хотя договорились каждый брать свой. Признайте полной фразой, что вы виноваты",
+          "uk": "Ви без дозволу взяли чужий сніданок, хоча домовилися, що кожен бере свій. Визнайте повною фразою, що ви винні"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "guilty"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-27:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви без дозволу взяли чужий сніданок, хоча домовилися, що кожен бере свій. Визнайте повною фразою, що ви винні",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am guilty.`",
+              "uk": "тут потрібно `am` — `I am guilty.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна знову пропонує поділитися своїм сніданком. Коротко скажіть, що вона щедра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Анна знову пропонує поділитися своїм сніданком. Коротко скажіть, що вона щедра",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:i13:audio",
+          "transcript": "She's generous."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She's generous.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Олег прокинувся. На «Is he asleep?» доповніть коротку відповідь «ні»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-27:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-27:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-27:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег прокинувся. На «Is he asleep?» доповніть коротку відповідь «ні»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Олег проснулся. На «Is he asleep?» дополните короткое «нет»",
+          "uk": "Олег прокинувся. На «Is he asleep?» доповніть коротку відповідь «ні»"
+        },
+        "gappedTargetPhrase": "No, he ___ not.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-27:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Олег прокинувся. На «Is he asleep?» доповніть коротку відповідь «ні»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-27:i14:r2",
+            "correct": false,
+            "testedDimension": "Олег прокинувся. На «Is he asleep?» доповніть коротку відповідь «ні»",
+            "feedbackByLocale": {
+              "ru": "С `he` нужно `is`.",
+              "uk": "З `he` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i14:r3",
+            "correct": false,
+            "testedDimension": "Олег прокинувся. На «Is he asleep?» доповніть коротку відповідь «ні»",
+            "feedbackByLocale": {
+              "ru": "Ответ — `No, he is not`.",
+              "uk": "Відповідь — `No, he is not`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -768,227 +805,183 @@
       "interactionId": "en:lesson-02:session-27:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви кажете супутнику, що тут ціла вулиця недорогих крамниць",
+      "prompt": "Послухайте запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-27:i15:r1",
-          "text": "shops"
+          "text": "Is it available?"
         },
         {
           "responseId": "en:lesson-02:session-27:i15:r2",
-          "text": "rules"
+          "text": "Is it complete?"
         },
         {
           "responseId": "en:lesson-02:session-27:i15:r3",
-          "text": "streets"
+          "text": "Is it broken?"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви кажете супутнику, що тут ціла вулиця недорогих крамниць",
+      "audioTargetIds": [
+        "en:lesson-02:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы говорите спутнику, что тут целая улица недорогих лавок",
-          "uk": "Вставте слово — ви кажете супутнику, що тут ціла вулиця недорогих крамниць"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-27:i15:audio",
+          "transcript": "Is it available?"
         },
-        "gappedTargetPhrase": "These ___ are cheap.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-27:i15:r1",
-            "text": "shops"
+            "targetText": "Is it available?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-27:i15:r2",
-            "text": "rules"
+            "targetText": "Is it complete?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-27:i15:r3",
-            "text": "streets"
+            "targetText": "Is it broken?",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставте слово — ви кажете супутнику, що ",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-27:i15:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — ви кажете супутнику, що ",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "Это «правила». Речь о том, где продают, — `shops`.",
-              "uk": "Це «правила». Мова про те, де продають, — `shops`."
+              "ru": "В записи последнее слово — `available`, а в этом варианте — `complete`.",
+              "uk": "У записі останнє слово — `available`, а в цьому варіанті — `complete`."
             }
           },
           {
             "responseId": "en:lesson-02:session-27:i15:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — ви кажете супутнику, що ",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "Это «улицы». Продают в магазинах: `shops`.",
-              "uk": "Це «вулиці». Продають у магазинах: `shops`."
+              "ru": "В записи последнее слово — `available`, а в этом варианте — `broken`.",
+              "uk": "У записі останнє слово — `available`, а в цьому варіанті — `broken`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-27:i16:s01",
+      "interactionId": "en:lesson-02:session-27:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i16:s01:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i16:s01:audio",
-          "transcript": "What are these?"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-27:i16:p1",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-27:i16:p2",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-27:i16:p3",
+            "target": "guilty",
+            "meaningByLocale": {
+              "ru": "виноватый",
+              "uk": "винний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-27:i16:p4",
+            "target": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый",
+              "uk": "щедрий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awake",
+          "asleep",
+          "guilty",
+          "generous"
+        ],
+        "rightColumn": [
+          "не спить",
+          "спить",
+          "винний",
+          "щедрий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What are these?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-27:i16:s02",
+      "interactionId": "en:lesson-02:session-27:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "prompt": "Олег розповів, що один із гостей охоче купує сніданок для всіх. Ви не знаєте, про кого йдеться. Запитайте, хто щедрий",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-27:i16:s02:audio"
+        "en:lesson-02:session-27:i17:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Олег розповів, що один із гостей охоче купує сніданок для всіх. Ви не знаєте, про кого йдеться. Запитайте, хто щедрий",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i16:s02:audio",
-          "transcript": "What are these prices?"
+          "audioTargetId": "en:lesson-02:session-27:i17:audio",
+          "transcript": "Who is generous?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "What are these prices?",
+        "targetPhrase": "Who is generous?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i17:s01",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i17:s01:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i17:s01:audio",
-          "transcript": "What are these?"
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What are these?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i17:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i17:s02:audio",
-          "transcript": "What are these prices?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What are these prices?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-27:i17:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-27:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-27:i17:s03:audio",
-          "transcript": "What are these rules?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "What are these rules?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -999,11 +992,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4305f4e829865ce445e4fb1c4f34878dda2163b800139511779beaf8f0e1846c"
+  "learnerFingerprint": "fb946ed443680cec0effdfdffd632c726290aadc480fbd0824cc5a5c5eb42523"
 }

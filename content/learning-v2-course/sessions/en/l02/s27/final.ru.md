@@ -1,232 +1,138 @@
-# Английский · Урок 2 · Занятие 27 — «What are these?»
+# Английский · Урок 2 · Занятие 27 — Завтрак для всех
 
-**Сцена занятия.** Выходной в Дублине, вы у прилавка на рынке. Одна вещь — это одно дело, а тут перед вами целая горка чего-то непонятного, и продавец ждёт вопроса.
+**Ситуация.** Вы ночуете с друзьями в гостевом доме. Анна приготовила завтрак на всех, Олег ещё спит. Вы выясняете, кто уже проснулся и свободен ли большой стол.
 
-**Как сказать:** `What are these?`
-**Новые слова:** prices, rules
-**Возвращаются:** cheap, shops
+**Что вы освоите:** сказать о щедрости и повторить вопросы и короткие ответы
+**Новые слова:** generous
 
 ---
 
 ## Интро 1
 
-### Когда вещей несколько
+### Охотно делится
 
-`these` — «эти». Одна вещь — `this`, несколько — `these`.
+`generous` — «щедрый». Анна купила продукты на всех и с удовольствием угощает друзей: `She is generous`. Щедрость не измеряется размером кошелька. Отдать другу последний круассан тоже щедро. Особенно если вы ещё не завтракали.
 
-И меняется не только оно. Про одну вещь — `is`, про несколько — `are`: `What are these?`
+**Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая.**
 
-Рука тянется поставить `is` и туда, и туда. Но пары строгие: `this` идёт с `is`, `these` — с `are`.
-
-**Перед вами на прилавке горка непонятных штук. Спросите продавца, что это.**
-
-- ✅ **What are these?**
-- ❌ What is these? — *`these` — про несколько вещей, а `is` — про одну. Вместе они не идут.*
-- ❌ What these are? — *`are` уехало в конец. В вопросе оно стоит вторым, сразу за `what`.*
+- ✅ **She is generous.**
+- ❌ She generous. — *Между `She` и `generous` нужно `is`.*
+- ❌ She is not generous. — *Это отрицает щедрость. В условии Анна охотно делится.*
 
 ---
 
 ## Интро 2
 
-### prices
+### Спит или уже нет
 
-`prices` — «цены». Одна цена — `price`, несколько — `prices`, с «-s» на конце.
+`awake` — «не спит, проснулся», `asleep` — «спит». `Is he awake?` — «Он уже не спит?» Если Олег всё ещё спит, ответьте `No, he is not`. На вопрос `Is he asleep?` в той же ситуации ответ будет `Yes, he is`. Не выбирайте «да» или «нет», пока не дослушали вопрос.
 
-Хвост «-s» остаётся, даже когда рядом уже стоит `these`. Про несколько сказано трижды: `are`, `these` и «-s» — и каждое стоит на своём месте.
+**Олег ещё спит. Анна спрашивает: `Is he awake?` Ответьте коротким «нет».**
 
-**Цены втрое выше, чем вы ожидали. Спросите продавца с удивлением: «Что это за цены?»**
-
-- ✅ **What are these prices?**
-- ❌ What is these prices? — *Цен несколько, значит `are`. `is` остаётся для одной вещи.*
-- ❌ What are these price? — *Хвост потерялся. Несколько цен — `prices`, с «-s».*
+- ✅ **No, he is not.**
+- ❌ Yes, he is. — *Это подтвердит, что Олег не спит. По условию он спит.*
+- ❌ No, he are not. — *С `he` нужно `is`.*
 
 ---
 
 ## Интро 3
 
-### rules
+### Свободно ли место
 
-`rules` — «правила». Одно правило — `rule`, несколько — `rules`.
+`available` — «доступный, свободный». Про стол, которым можно воспользоваться: `It is available`. Спросить — `Is it available?`. А чтобы узнать, где Анна, нужен другой вопрос: `Where is she?`. Первый допускает ответ «да», второй спрашивает место.
 
-На слух легко уехать не туда: рядом живут `tools` — «инструменты» и `schools` — «школы». Слушайте начало: у `rules` там «р», у `tools` — «т».
+**Вы хотите сесть за большой стол, но не знаете, свободен ли он для вас. Спросите об этом.**
 
-Если правило одно, будет `What is this rule?`. Пара `this`/`is` работает и здесь.
-
-**У входа на рынок висит доска с текстом, и вы не понимаете, что там написано. Спросите продавца про правила.**
-
-- ✅ **What are these rules?**
-- ❌ What are this rules? — *`this` — про одну вещь. Про несколько — `these`.*
-- ❌ What are these rule? — *Хвост потерялся. Правил на доске несколько — `rules`.*
+- ✅ **Is it available?**
+- ❌ Where is it? — *Это «Где он?» Стол вы уже видите.*
+- ❌ It is available. — *Это сообщение. Чтобы спросить, поставьте `Is` перед `it`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — prices**
-<!-- interaction_id: en:lesson-02:session-27:i01; family: listen_choose -->
-Цель: `prices`
+**1 · Анна охотно угощает всех за свой счёт. Скажите полной фразой, что она щедрая**
+<!-- interaction_id: en:lesson-02:session-27:i01; family: phrase_builder -->
+Плитки: `generous` `is` `She` `are` → **She is generous.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is generous.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте фразу об Олеге**
 <!-- interaction_id: en:lesson-02:session-27:i02; family: listen_choose -->
-Цель: `prices`
-Варианты: `prices` · `places` · `pieces`
-- places — *«места», не «цены». Слушайте после «п»: тут `r`, а не `l`.*
-- pieces — *«Кусочки», не «цены». Гласная в середине другая: у `prices` — «ай», у `pieces` — «и».*
+🔊 *He is asleep.* → **He is asleep.** · He is awake. · He is guilty.
+- He is awake. — *В записи последнее слово — `asleep`, а в этом варианте — `awake`.*
+- He is guilty. — *В записи последнее слово — `asleep`, а в этом варианте — `guilty`.*
 
+**3 · Вы спрашиваете Олега об Анне: щедрая ли она?**
+<!-- interaction_id: en:lesson-02:session-27:i03; family: context_gap_grammar -->
+___ she generous? → **Is** · Am · Are
+- Am — *С `she` нужно `Is`.*
+- Are — *Вопрос — `Is she generous?`.*
 
-**3 · Карточка слова — rules**
-<!-- interaction_id: en:lesson-02:session-27:i03; family: listen_choose -->
-Цель: `rules`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-27:i04; family: speed_match -->
+generous — щедрый · awake — не спит · asleep — спит · available — доступный, свободный
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-27:i04; family: listen_choose -->
-Цель: `rules`
-Варианты: `rules` · `tools` · `schools`
-- tools — *«инструменты», не «правила». Начало другое: `t`, а не `r`.*
-- schools — *«школы», не «правила». Начало длиннее: «ск».*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-02:session-27:i05; family: listen_build_dictation -->
+🔊 *It is not available.* Плитки: `available` `not` `is` `It` `are` → **It is not available.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not available.`)*
 
+**6 · Анна вышла из столовой. Спросите, где она**
+<!-- interaction_id: en:lesson-02:session-27:i06; family: phrase_builder -->
+Плитки: `she` `is` `Where` `Who` → **Where is she?**
+*(плитка `Who` лишняя: здесь нужно `Where` — `Where is she?`)*
 
-**5 · Соберите фразу — перед вами горка непонятных вещей**
-<!-- interaction_id: en:lesson-02:session-27:i05; family: phrase_builder -->
-Цель: `What are these?`
+**7 · Олег проснулся и разговаривает с вами. Коротко скажите, что он не спит**
+<!-- interaction_id: en:lesson-02:session-27:i07; family: scripted_repeat_compare -->
+🎙 **He's awake.**
 
-**6 · Вставьте слово — вещей несколько, спрашиваете, что это**
-<!-- interaction_id: en:lesson-02:session-27:i06; family: context_gap_grammar -->
-Цель: `What ___ these?`
-Варианты: `are` · `is` · `am`
-- is — *`is` — про одну вещь. `these` значит «несколько», к нему идёт `are`.*
-- am — *`am` — форма для `I`. Про несколько вещей нужна `are`.*
+**8 · Хозяин разрешил вам занять свободный стол. На «Is it available?» дополните короткое «да»**
+<!-- interaction_id: en:lesson-02:session-27:i08; family: context_gap_grammar -->
+Yes, it ___. → **is** · am · are
+- am — *С `it` нужно `is`.*
+- are — *Ответ — `Yes, it is`.*
 
+**9 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-27:i09; family: listen_choose -->
+🔊 *Who is guilty?* → **Who is guilty?** · Who is generous? · Who is awake?
+- Who is generous? — *В записи последнее слово — `guilty`, а в этом варианте — `generous`.*
+- Who is awake? — *В записи последнее слово — `guilty`, а в этом варианте — `awake`.*
 
-**7 · Послушайте — Анна смотрит на несколько ценников в меню. Выберите, о чём она спрашивает**
-<!-- interaction_id: en:lesson-02:session-27:i07; family: listen_choose -->
-Цель: `What are these prices?`
-Варианты: `цены` · `правила` · `названия`
-- правила — *`Prices` — это цены. О правилах спрашивают с `rules`.*
-- названия — *`Prices` — цены, а не названия блюд.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-27:i10; family: speed_match -->
+guilty — виноватый · generous — щедрый · available — доступный, свободный · asleep — спит
 
-
-**8 · Различите звуки — какое из двух про «правила»?**
-<!-- interaction_id: en:lesson-02:session-27:i08; family: sound_contrast -->
-Варианты: `rules` · `tools`
-- tools — *Это «инструменты». Про список на доске говорят `rules`.*
-
-
-**9 · Соберите фразу — на доске у входа список, и вы просите объяснить**
-<!-- interaction_id: en:lesson-02:session-27:i09; family: phrase_builder -->
-Цель: `What are these rules?`
-
-**10 · Вставьте слово — на прилавке одна вещь, и вы про неё спрашиваете**
-<!-- interaction_id: en:lesson-02:session-27:i10; family: context_gap_grammar -->
-Цель: `What ___ this?`
-Варианты: `is` · `are` · `these`
-- are — *`are` — когда вещей несколько. Тут она одна: `this` — `is`.*
-- these — *Это «эти», указание на несколько. Здесь пропуск на месте связки, а не указания.*
-
-
-**11 · Послушайте и соберите — реакция покупателя на ценники**
+**11 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-27:i11; family: listen_build_dictation -->
-Цель: `What are these prices?`
-🔊 *What are these prices?* Плитки: `What` `are` `these` `prices` `is`
-*Плитка `is` лишняя: цен несколько — `prices`, поэтому в вопросе нужна форма `are`.*
+🔊 *They are asleep.* Плитки: `asleep` `are` `They` `is` → **They are asleep.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are asleep.`)*
 
-**12 · Вставьте слово — вы обошли ряд и удивились, до чего тут недорого**
-<!-- interaction_id: en:lesson-02:session-27:i12; family: context_gap_grammar -->
-Цель: `The shops are ___ .`
-Варианты: `cheap` · `these` · `rules`
-- these — *Это «эти», указание на вещи. А тут нужно слово про то, какие магазины.*
-- rules — *«Правила». Про низкие цены говорят `cheap`.*
+**12 · Вы без спроса взяли чужой завтрак, хотя договорились каждый брать свой. Признайте полной фразой, что вы виноваты**
+<!-- interaction_id: en:lesson-02:session-27:i12; family: phrase_builder -->
+Плитки: `guilty` `am` `I` `are` → **I am guilty.**
+*(плитка `are` лишняя: здесь нужно `am` — `I am guilty.`)*
 
+**13 · Анна снова предлагает поделиться своим завтраком. Коротко скажите, что она щедрая**
+<!-- interaction_id: en:lesson-02:session-27:i13; family: scripted_repeat_compare -->
+🎙 **She's generous.**
 
-**13 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-27:i13; family: speed_match -->
-Пары: `prices` — цены · `rules` — правила · `cheap` — дешёвый · `shops` — магазины
-Цель: `prices · rules · cheap · shops`
+**14 · Олег проснулся. На «Is he asleep?» дополните короткое «нет»**
+<!-- interaction_id: en:lesson-02:session-27:i14; family: context_gap_grammar -->
+No, he ___ not. → **is** · am · are
+- am — *С `he` нужно `is`.*
+- are — *Ответ — `No, he is not`.*
 
-**14 · Соберите фразу — вас удивили две высокие цены: «Что это за цены?»**
-<!-- interaction_id: en:lesson-02:session-27:i14; family: phrase_builder -->
-Цель: `What are these prices?`
-Плитки: `What` `are` `these` `prices` `is`
-*Плитка `is` лишняя: цен несколько — `prices`, поэтому нужна форма `are`.*
+**15 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-27:i15; family: listen_choose -->
+🔊 *Is it available?* → **Is it available?** · Is it complete? · Is it broken?
+- Is it complete? — *В записи последнее слово — `available`, а в этом варианте — `complete`.*
+- Is it broken? — *В записи последнее слово — `available`, а в этом варианте — `broken`.*
 
-**15 · Вставьте слово — вы говорите спутнику, что тут целая улица недорогих лавок**
-<!-- interaction_id: en:lesson-02:session-27:i15; family: context_gap_grammar -->
-Цель: `These ___ are cheap.`
-Варианты: `shops` · `rules` · `streets`
-- rules — *Это «правила». Речь о том, где продают, — `shops`.*
-- streets — *Это «улицы». Продают в магазинах: `shops`.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-27:i16; family: speed_match -->
+awake — не спит · asleep — спит · guilty — виноватый · generous — щедрый
 
+**17 · Олег рассказал, что один из гостей охотно покупает завтрак на всех. Вы не знаете, о ком речь. Спросите, кто щедрый**
+<!-- interaction_id: en:lesson-02:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Who is generous?**
 
-**16 · Послушайте — Лина показывает продавцу несколько предметов на прилавке. Выберите, о чём она спрашивает**
-<!-- interaction_id: en:lesson-02:session-27:i16:s01; family: listen_choose -->
-Цель: `What are these?`
-Варианты: `что это за предметы` · `сколько они стоят` · `где находится магазин`
-- сколько они стоят — *О цене спрашивают `What are these prices?`.*
-- где находится магазин — *Здесь спрашивают о предметах перед Линой, не о местоположении магазина.*
-
-
-**17 · Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах**
-<!-- interaction_id: en:lesson-02:session-27:i16:s02; family: context_gap_grammar -->
-Цель: `What are these ___ ?`
-Варианты: `prices` · `rules` · `shops`
-- rules — *`Rules` — правила. На товарах вы видите ценники, то есть `prices`.*
-- shops — *`Shops` — магазины. Речь о цифрах на товарах, то есть о `prices`.*
-
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-27:i17:s01; family: scripted_repeat_compare -->
-Цель: `What are these?`
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-27:i17:s02; family: scripted_repeat_compare -->
-Цель: `What are these prices?`
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-27:i17:s03; family: scripted_repeat_compare -->
-Цель: `What are these rules?`
-
-## Для сборщика
-
-new_words:
-prices — цены — «цены». Цифры на ценниках. Одна — `price`, несколько — `prices`.
-rules — правила — «правила». Список у входа: что можно, чего нельзя.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=sound_contrast, 9=phrase_builder, 10=context_gap_grammar, 11=listen_build_dictation, 12=context_gap_grammar, 13=speed_match, 14=phrase_builder, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова.**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| cheap | 12 (ответ), 13 (доска), 15 (в тексте фразы) | 12 |
-| shops | 12 (в тексте фразы), 13 (доска), 15 (ответ) | 15 |
-
-**2. Страницы интро.**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | What are these? | да — `these` и `What are these?` в тексте |
-| Интро 2 | What are these prices? | да — `prices` и `What are these prices?` в тексте |
-| Интро 3 | What are these rules? | да — `rules`, `this rule` в тексте |
-
-**3. Доска пар (задание 13).**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| prices | 1 | 2 (слух), 7 (пропуск), 11 (сборка) |
-| rules | 3 | 4 (слух), 8 (звуки), 9 (сборка) |
-| cheap | из прошлых занятий | 12 (пропуск, правильный ответ) |
-| shops | из прошлых занятий | 12 (в тексте фразы) |
-
-**4. Длина интро (знаки текста объяснения).**
-
-| страница | было | стало |
-|---|---|---|
-| Интро 1 | 342 | 288 |
-| Интро 2 | 352 | 285 |
-| Интро 3 | 362 | 283 |
-
----

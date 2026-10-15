@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-27:intro1:r2": {
+          "ru": "Между `She` и `generous` нужно `is`.",
+          "uk": "Між `She` і `generous` потрібно `is`."
+        },
+        "en:lesson-02:session-27:intro1:r3": {
+          "ru": "Это отрицает щедрость. В условии Анна охотно делится.",
+          "uk": "Це заперечує щедрість. За умовою Анна охоче ділиться."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-27:intro2:r2": {
+          "ru": "Это подтвердит, что Олег не спит. По условию он спит.",
+          "uk": "Це підтвердить, що Олег не спить. За умовою він спить."
+        },
+        "en:lesson-02:session-27:intro2:r3": {
+          "ru": "С `he` нужно `is`.",
+          "uk": "З `he` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-27:intro3:r2": {
+          "ru": "Это «Где он?» Стол вы уже видите.",
+          "uk": "Це «Де він?» Стіл ви вже бачите."
+        },
+        "en:lesson-02:session-27:intro3:r3": {
+          "ru": "Это сообщение. Чтобы спросить, поставьте `Is` перед `it`.",
+          "uk": "Це повідомлення. Щоб запитати, поставте `Is` перед `it`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "419a5dd3e7c38bff8b640d33822b0fb7f9690a8e7c50776dc3ca850204c8b1a8"
+}

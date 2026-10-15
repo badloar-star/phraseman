@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-27:i01",
-    "correctText": "prices",
+    "correctText": "She is generous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i02",
-    "correctText": "prices",
+    "correctText": "He is asleep.",
     "correctResponseId": "en:lesson-02:session-27:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-27:i03",
-    "correctText": "rules",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-27:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-27:i04",
-    "correctText": "rules",
-    "correctResponseId": "en:lesson-02:session-27:i04:r1"
+    "correctText": "en:lesson-02:session-27:i04:p1=generous\nen:lesson-02:session-27:i04:p2=awake\nen:lesson-02:session-27:i04:p3=asleep\nen:lesson-02:session-27:i04:p4=available",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i05",
-    "correctText": "What are these?",
+    "correctText": "It is not available.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i06",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-02:session-27:i06:r1"
+    "correctText": "Where is she?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i07",
-    "correctText": "prices",
-    "correctResponseId": "en:lesson-02:session-27:i07:r1"
+    "correctText": "He's awake.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i08",
-    "correctText": "rules",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-27:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-27:i09",
-    "correctText": "What are these rules?",
-    "correctResponseId": null
+    "correctText": "Who is guilty?",
+    "correctResponseId": "en:lesson-02:session-27:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-27:i10",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-02:session-27:i10:r1"
+    "correctText": "en:lesson-02:session-27:i10:p1=guilty\nen:lesson-02:session-27:i10:p2=generous\nen:lesson-02:session-27:i10:p3=available\nen:lesson-02:session-27:i10:p4=asleep",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i11",
-    "correctText": "What are these prices?",
+    "correctText": "They are asleep.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i12",
-    "correctText": "cheap",
-    "correctResponseId": "en:lesson-02:session-27:i12:r1"
+    "correctText": "I am guilty.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i13",
-    "correctText": "en:lesson-02:session-27:i13:p1=prices\nen:lesson-02:session-27:i13:p2=rules\nen:lesson-02:session-27:i13:p3=cheap\nen:lesson-02:session-27:i13:p4=shops",
+    "correctText": "She's generous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-27:i14",
-    "correctText": "What are these prices?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-27:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-27:i15",
-    "correctText": "shops",
+    "correctText": "Is it available?",
     "correctResponseId": "en:lesson-02:session-27:i15:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-27:i16:s01",
-    "correctText": "What are these?",
+    "interactionId": "en:lesson-02:session-27:i16",
+    "correctText": "en:lesson-02:session-27:i16:p1=awake\nen:lesson-02:session-27:i16:p2=asleep\nen:lesson-02:session-27:i16:p3=guilty\nen:lesson-02:session-27:i16:p4=generous",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-27:i16:s02",
-    "correctText": "What are these prices?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-27:i17:s01",
-    "correctText": "What are these?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-27:i17:s02",
-    "correctText": "What are these prices?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-27:i17:s03",
-    "correctText": "What are these rules?",
+    "interactionId": "en:lesson-02:session-27:i17",
+    "correctText": "Who is generous?",
     "correctResponseId": null
   }
 ]

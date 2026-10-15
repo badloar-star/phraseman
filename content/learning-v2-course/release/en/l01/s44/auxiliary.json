@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-44:intro1:r2": {
-          "ru": "Пропал значок `'`. Он стоит там, где выпала буква `a`.",
-          "uk": "Зник значок `'`. Він стоїть там, звідки випала літера `a`."
+          "ru": "После `I` нужно `am`: `I am curious`.",
+          "uk": "Після `I` потрібно `am`: `I am curious`."
         },
         "en:lesson-01:session-44:intro1:r3": {
-          "ru": "`am` уже спрятано внутри `I'm`. Второй раз оно не нужно.",
-          "uk": "`am` уже сховане всередині `I'm`. Удруге воно не потрібне."
+          "ru": "`sleepy` — «хочется спать». Здесь речь о любопытстве: `curious`.",
+          "uk": "`sleepy` — «хочеться спати». Тут ідеться про цікавість: `curious`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-44:intro2:r2": {
-          "ru": "Так говорят про человека. Бокал — это `it`.",
-          "uk": "Так кажуть про людину. Келих — це `it`."
+          "ru": "Это про него. Про Машу нужно `She`.",
+          "uk": "Це про нього. Про Машу потрібно `She`."
         },
         "en:lesson-01:session-44:intro2:r3": {
-          "ru": "Без значка `'` получается «его», а не «оно холодное».",
-          "uk": "Без значка `'` це `its` — «його». Виходить не «воно холодне», а «його холодне» — і фраза обривається."
+          "ru": "После `She` ставим `is`.",
+          "uk": "Після `She` ставимо `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-44:intro3:r2": {
-          "ru": "После `they` нужно `are`: полная форма `They are wrong`, короткая — `They're wrong`.",
-          "uk": "Після `they` потрібне `are`: повна форма `They are wrong`, коротка — `They're wrong`."
+          "ru": "Это про них. Вы включаете себя: `We are curious`.",
+          "uk": "Це про них. Ви включаєте себе: `We are curious`."
         },
         "en:lesson-01:session-44:intro3:r3": {
-          "ru": "`are` уже внутри `they're`. Второй раз его не ставят.",
-          "uk": "`are` уже всередині `they're`. Удруге його не ставлять."
+          "ru": "Это про желание спать. Сейчас нужно назвать любопытство: `curious`.",
+          "uk": "Це про бажання спати. Зараз треба назвати цікавість: `curious`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f38592f0d005ebef45041748e6b7ffecd5a0748adc8934e1e584e39542195250"
+  "auxiliaryFingerprint": "8559d27239b66a6415db3b96b7f1c1fdd8f73be774a689f1819bf6f06b12590a"
 }

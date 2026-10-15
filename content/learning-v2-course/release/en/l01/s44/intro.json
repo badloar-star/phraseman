@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-44",
   "learningOutcomeByLocale": {
-    "ru": "Услышите и скажете короткие формы `I'm`, `he's`, `it's` и `they're`.",
-    "uk": "Почуєте й скажете короткі форми `I'm`, `he's`, `it's` та `they're`."
+    "ru": "назвать любопытство человека и отличить его от желания спать",
+    "uk": "назвати допитливість людини й відрізнити її від бажання спати"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`I'm` — одно слово вместо двух",
-        "uk": "`I'm` — одне слово замість двох"
+        "ru": "Хочется узнать",
+        "uk": "Хочеться дізнатися"
       },
       "bodyByLocale": {
-        "ru": "`tired` — «устал». Полностью фраза выглядит как `I am tired`, но вслух её почти не произносят: два слова слипаются в одно — `I'm tired`.\n\nУхо новичка ловит только «айм» и решает, что это какое-то незнакомое слово. Никакое оно не незнакомое — это ваш старый добрый `I am`, просто на бегу.",
-        "uk": "`tired` — «втомлений». Повністю фраза виглядає як `I am tired`, але вголос її майже не вимовляють: два слова злипаються в одне — `I'm tired`.\n\nВухо новачка чує тільки «айм» і вирішує, що це якесь незнайоме слово. Ніяке воно не незнайоме — це ваше старе добре `I am`, просто на бігу."
+        "ru": "`curious` — «любопытный», «хочет узнать». `I am curious` — «Мне любопытно». Коротко: `I'm curious`. Здесь вы описываете человека, которому интересно разобраться. У Маши уже пять вопросов про одну машину. Машина молчит, зато экскурсовод пока держится.",
+        "uk": "`curious` — «допитливий», «хоче дізнатися». `I am curious` — «Мені цікаво». Коротко: `I'm curious`. Тут ви описуєте людину, якій цікаво розібратися. У Маші вже п’ять запитань про одну машину. Машина мовчить, зате екскурсовод поки тримається."
       },
       "question": {
         "interactionId": "en:lesson-01:session-44:intro1:q",
         "promptByLocale": {
-          "ru": "Друг у стойки спрашивает, почему вы зеваете. Ответьте коротко, как говорят вслух.",
-          "uk": "Друг біля шинкваса питає, чому ви позіхаєте. Дайте коротку відповідь, як кажуть уголос."
+          "ru": "Вы хотите узнать, зачем изобретению столько рычагов. Назовите своё любопытство.",
+          "uk": "Ви хочете дізнатися, навіщо винаходу стільки важелів. Назвіть свою цікавість."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-44:intro1:r1",
-              "text": "I'm tired."
+              "text": "I am curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro1:r2",
-              "text": "Im tired."
+              "text": "I curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro1:r3",
-              "text": "I'm am tired."
+              "text": "I am sleepy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-44:intro1:r1",
-              "text": "I'm tired."
+              "text": "I am curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro1:r2",
-              "text": "Im tired."
+              "text": "I curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro1:r3",
-              "text": "I'm am tired."
+              "text": "I am sleepy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг у стойки спрашивает, почему вы зеваете. Ответьте коротко, как говорят вслух.",
-          "uk": "Друг біля шинкваса питає, чому ви позіхаєте. Дайте коротку відповідь, як кажуть уголос."
+          "ru": "Вы хотите узнать, зачем изобретению столько рычагов. Назовите своё любопытство.",
+          "uk": "Ви хочете дізнатися, навіщо винаходу стільки важелів. Назвіть свою цікавість."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`he's` и `it's` различаются только началом",
-        "uk": "`he's` та `it's` різняться тільки початком"
+        "ru": "Любопытный человек",
+        "uk": "Допитлива людина"
       },
       "bodyByLocale": {
-        "ru": "`cold` — «холодно, замёрз». Про человека это `he is cold`, про пиво — `it is cold`. В громком месте обе фразы сжимаются: `he's cold`, `it's cold`.\n\nРазница между «про человека» и «про вещь» помещается в первое слово. Дальше идёт то, что вы про них говорите, — его тоже надо услышать.",
-        "uk": "`cold` — «холодно, змерз». Про людину це `he is cold`, про пиво — `it is cold`. У гучному місці обидві фрази стискаються: `he's cold`, `it's cold`.\n\nРізниця між «про людину» і «про річ» уміщається в перше слово. Далі йде те, що ви про них кажете, — його теж треба почути."
+        "ru": "Про Машу — `She is curious`, про Олега — `He is curious`. Человек может быть любопытным вообще или заинтересоваться чем-то сейчас. Короткие варианты `She's curious` и `He's curious` сохраняют тот же смысл.",
+        "uk": "Про Машу — `She is curious`, про Олега — `He is curious`. Людина може бути допитливою загалом або зацікавитися чимось зараз. Короткі варіанти `She's curious` і `He's curious` зберігають той самий зміст."
       },
       "question": {
         "interactionId": "en:lesson-01:session-44:intro2:q",
         "promptByLocale": {
-          "ru": "Друг спрашивает, нормальное ли пиво. Скажите про пиво: «оно холодное».",
-          "uk": "Друг питає, чи нормальне пиво. Скажіть про пиво: «воно холодне»."
+          "ru": "Маша хочет разобраться в устройстве машины. Назовите её любопытной.",
+          "uk": "Маша хоче розібратися в будові машини. Назвіть її допитливою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-44:intro2:r1",
-              "text": "It's cold."
+              "text": "She is curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro2:r2",
-              "text": "He's cold."
+              "text": "He is curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro2:r3",
-              "text": "Its cold."
+              "text": "She are curious."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-44:intro2:r1",
-              "text": "It's cold."
+              "text": "She is curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro2:r2",
-              "text": "He's cold."
+              "text": "He is curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro2:r3",
-              "text": "Its cold."
+              "text": "She are curious."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг спрашивает, нормальное ли пиво. Скажите про пиво: «оно холодное».",
-          "uk": "Друг питає, чи нормальне пиво. Скажіть про пиво: «воно холодне»."
+          "ru": "Маша хочет разобраться в устройстве машины. Назовите её любопытной.",
+          "uk": "Маша хоче розібратися в будові машини. Назвіть її допитливою."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`they're` — про нескольких сразу",
-        "uk": "`they're` — про кількох одразу"
+        "ru": "Любопытно, хотя хочется спать",
+        "uk": "Цікаво, хоча хочеться спати"
       },
       "bodyByLocale": {
-        "ru": "`wrong` — «не прав, ошибается». Про компанию за соседним столом это `they are wrong`, а вслух — `they're wrong`.\n\n`they're` — это `they are`, сжатое в одно слово. `are` никуда не делось, оно внутри, и второй раз его ставить не надо.",
-        "uk": "`wrong` — «не має рації, помиляється». Про компанію за сусіднім столом це `they are wrong`, а вголос — `they're wrong`.\n\n`they're` — це `they are`, стиснене в одне слово. `are` нікуди не поділося, воно всередині, і вдруге його ставити не треба."
+        "ru": "`sleepy` — «сонный», `curious` — «любопытный». Можно испытывать оба состояния сразу: Олег хочет спать, но ему интересно, как работает экспонат. `We are curious` — «Нам любопытно». Если отвечаете за себя и друзей, выбирайте `We`.",
+        "uk": "`sleepy` — «сонний», `curious` — «допитливий». Можна відчувати обидва стани одночасно: Олег хоче спати, але йому цікаво, як працює експонат. `We are curious` — «Нам цікаво». Якщо відповідаєте за себе й друзів, вибирайте `We`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-44:intro3:q",
         "promptByLocale": {
-          "ru": "За соседним столом спорят и явно говорят чушь. Скажите приятелю про них.",
-          "uk": "За сусіднім столом сперечаються і явно кажуть дурниці. Скажіть приятелеві про них."
+          "ru": "Вы и друзья хотите узнать, что находится внутри машины. Назовите ваш общий интерес.",
+          "uk": "Ви та друзі хочете дізнатися, що всередині машини. Назвіть вашу спільну цікавість."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-44:intro3:r1",
-              "text": "They're wrong."
+              "text": "We are curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro3:r2",
-              "text": "They wrong."
+              "text": "They are curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro3:r3",
-              "text": "They're are wrong."
+              "text": "We are sleepy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-44:intro3:r1",
-              "text": "They're wrong."
+              "text": "We are curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro3:r2",
-              "text": "They wrong."
+              "text": "They are curious."
             },
             {
               "responseId": "en:lesson-01:session-44:intro3:r3",
-              "text": "They're are wrong."
+              "text": "We are sleepy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За соседним столом спорят и явно говорят чушь. Скажите приятелю про них.",
-          "uk": "За сусіднім столом сперечаються і явно кажуть дурниці. Скажіть приятелеві про них."
+          "ru": "Вы и друзья хотите узнать, что находится внутри машины. Назовите ваш общий интерес.",
+          "uk": "Ви та друзі хочете дізнатися, що всередині машини. Назвіть вашу спільну цікавість."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e22a52a48c6adc3566b0b2155b48cdd890f430b45c8e50f9cd08c6251c5568ba"
+  "introFingerprint": "f1d4546e687461c0c5dddf31fb32323003bc3f2ee56c0c16f2b4b3c50b23ac25"
 }

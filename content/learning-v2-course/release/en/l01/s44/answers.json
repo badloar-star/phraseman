@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-44:i01",
-    "correctText": "I'm tired.",
-    "correctResponseId": "en:lesson-01:session-44:i01:r1"
+    "correctText": "I am curious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i02",
-    "correctText": "tired",
+    "correctText": "She is curious.",
     "correctResponseId": "en:lesson-01:session-44:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-44:i03",
-    "correctText": "He's cold.",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-44:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-44:i04",
-    "correctText": "It's cold.",
+    "correctText": "en:lesson-01:session-44:i04:p1=curious\nen:lesson-01:session-44:i04:p2=sleepy\nen:lesson-01:session-44:i04:p3=patient\nen:lesson-01:session-44:i04:p4=polite",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i05",
-    "correctText": "They're wrong.",
+    "correctText": "We're curious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i06",
-    "correctText": "wrong",
-    "correctResponseId": "en:lesson-01:session-44:i06:r1"
+    "correctText": "They are curious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i07",
-    "correctText": "cold",
-    "correctResponseId": "en:lesson-01:session-44:i07:r1"
+    "correctText": "I'm curious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i08",
-    "correctText": "free",
+    "correctText": "sleepy",
     "correctResponseId": "en:lesson-01:session-44:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-44:i09",
-    "correctText": "I'm free.",
-    "correctResponseId": null
+    "correctText": "I am sleepy.",
+    "correctResponseId": "en:lesson-01:session-44:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-44:i10",
-    "correctText": "It's cold.",
-    "correctResponseId": "en:lesson-01:session-44:i10:r1"
+    "correctText": "en:lesson-01:session-44:i10:p1=I'm\nen:lesson-01:session-44:i10:p2=He's\nen:lesson-01:session-44:i10:p3=She's\nen:lesson-01:session-44:i10:p4=You're",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i11",
-    "correctText": "en:lesson-01:session-44:i11:p1=tired\nen:lesson-01:session-44:i11:p2=cold\nen:lesson-01:session-44:i11:p3=wrong\nen:lesson-01:session-44:i11:p4=free",
+    "correctText": "She's curious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i12",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-44:i12:r1"
+    "correctText": "We are curious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-44:i13",
-    "correctText": "He's cold.",
+    "correctText": "You are curious.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-44:i14:s01",
-    "correctText": "I'm tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-44:i14:s02",
-    "correctText": "It's cold.",
-    "correctResponseId": null
+    "interactionId": "en:lesson-01:session-44:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-44:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-44:i15",
-    "correctText": "They're wrong.",
+    "correctText": "They're sleepy.",
+    "correctResponseId": "en:lesson-01:session-44:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-44:i16",
+    "correctText": "en:lesson-01:session-44:i16:p1=We're\nen:lesson-01:session-44:i16:p2=They're\nen:lesson-01:session-44:i16:p3=curious\nen:lesson-01:session-44:i16:p4=sleepy",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-44:i16:s01",
-    "correctText": "'s",
-    "correctResponseId": "en:lesson-01:session-44:i16:s01:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-44:i16:s02",
-    "correctText": "I'm tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-44:i16:s03",
-    "correctText": "They're wrong.",
+    "interactionId": "en:lesson-01:session-44:i17",
+    "correctText": "He is curious.",
     "correctResponseId": null
   }
 ]

@@ -1,124 +1,137 @@
-# Английский · Урок 4 · Занятие 13 — «Пустая стоянка»
+# Английский · Урок 4 · Занятие 13 — Такси после покупок
 
-**Сцена занятия.** Вы вышли к стоянке такси после объявления на вокзале. Машин почти не видно, и нужно спросить, есть ли одна машина или несколько.
-**Как сказать:** отличить вопросительный порядок `Is/Are there…?` от утверждения `There is/are…`.
-**Новое слово:** taxi
-**Возвращаются:** platform, station, building, street, near, tram, shop
+**Ситуация.** Вы с другом вышли из супермаркета с сумками и ищете такси. Пока ждёте машину, замечаете окно в соседнем здании и обсуждаете, открыт ли двор для всех.
+
+**Что вы освоите:** спросить о такси, назвать супермаркет и окно, объяснить общий доступ
+**Новые слова:** taxi
+
+---
 
 ## Интро 1
 
-### `taxi` — такси
+### Одно такси или несколько
 
-`taxi` — «такси», машина, за поездку в которой платят водителю. Одна машина — `a taxi`, несколько — `taxis`. Буква `s` в конце не украшение: она показывает, что машин больше одной. В вопросе `Are` выходит вперёд, будто первым подаёт сигнал на стоянке.
+`taxi` — «такси». Одна машина — `a taxi`, несколько — `taxis`. По-русски слово «такси» не меняется, а по-английски у нескольких машин появляется `s`. `Is there a taxi here?` — «Здесь есть такси?» `Are there taxis here?` — тот же вопрос о нескольких машинах. Даже если вы купили полмагазина, одна большая машина остаётся `a taxi`.
 
-**У пустой стоянки видна одна машина. Выберите, что это.**
+**Спросите, есть ли здесь одна машина такси.**
 
-- ✅ **a taxi**
-- ❌ a tram — *`A tram` — трамвай. На стоянке стоит машина `a taxi`.*
-- ❌ a platform — *`A platform` — платформа. Это место для поезда, не машина.*
+- ✅ **Is there a taxi here?**
+- ❌ Are there a taxi here? — *Одна машина — `a taxi`, поэтому `Is there`.*
+- ❌ Is there taxis here? — *`taxis` — несколько; с `Is there` нужно `a taxi`.*
+
+---
 
 ## Интро 2
 
-### Вопрос начинается с `Is`
+### Магазин и окно
 
-`There is a taxi.` — это сообщение: «Есть одно такси». Когда вы спрашиваете, есть ли оно, `is` переходит вперёд: `Is there a taxi?` Сначала стоит `Is`, затем `there`, потом само место или предмет. Вопросительный знак помогает, но порядок слов делает основную работу.
+`supermarket` — «супермаркет». `That is a supermarket` — «То здание — супермаркет». `window` — «окно». `There is a window here` — «Здесь есть окно». Когда называем дальнее здание, подходит `That is`; когда сообщаем, что в этом месте есть окно, — `There is`.
 
-**У пустой стоянки вы не уверены, есть ли одна машина. Задайте вопрос.**
+**Вы указываете на дальнее здание. Скажите «То здание — супермаркет».**
 
-- ✅ **Is there a taxi?**
-- ❌ There is a taxi? — *Это порядок сообщения. В вопросе `is` ставят перед `there`: `Is there a taxi?`.*
-- ❌ Is there taxi? — *Перед одним исчисляемым предметом нужен `a`: `Is there a taxi?`.*
+- ✅ **That is a supermarket.**
+- ❌ That are a supermarket. — *С `That` нужно `is`.*
+- ❌ Those are supermarkets. — *Здесь одно здание: `That is a supermarket`.*
+
+---
 
 ## Интро 3
 
-### Вопрос о нескольких машинах начинается с `Are`
+### Можно всем
 
-`There are taxis.` — сообщение о нескольких машинах. Вопрос строится так: `Are there taxis?` Форма `are` выходит вперёд, а `taxis` остаётся во множественном числе. Не меняйте местами весь ряд: переставляется только начало.
+`public` — «общественный, открытый для всех». Двор доступен всем посетителям, а не только жильцам или сотрудникам. О нём: `It is public` — «Он открыт для всех». Сокращённо: `It’s public`. Само слово не обещает, что там всё бесплатно: оно говорит об общем доступе.
 
-**На дальней стороне стоянки могут стоять несколько машин. Спросите об этом.**
+**Друг думает, что двор только для жильцов. Скажите с сокращением «Он открыт для всех».**
 
-- ✅ **Are there taxis?**
-- ❌ There are taxis? — *Это сообщение, а не обычный вопрос. Вопрос начинается с `Are`: `Are there taxis?`.*
-- ❌ Is there taxis? — *`Taxis` — несколько машин, поэтому нужна форма `Are`: `Are there taxis?`.*
+- ✅ **It's public.**
+- ❌ It's private. — *`private` — частный, не для общего доступа; здесь нужно `public`.*
+- ❌ It are public. — *С `It` нужно `is`: `It’s public`.*
 
-## Практика — по одной цели
+---
 
-**1 · Послушайте и выберите, что прозвучало**
-<!-- interaction_id: en:lesson-04:session-13:i01; family: listen_choose -->
-Цель: `taxi`
-🔊 *taxi*
-Значения вариантов: taxi — такси · tasty — вкусный · taxes — налоги
-→ **taxi** · tasty · taxes
-- tasty — *В `tasty` после первого звука слышно /eɪ/, а в `taxi` — /æ/.*
-- taxes — *`Taxes` начинается похоже, но в конце слышится дополнительный кусок /ɪz/. В записи было короткое `taxi`.*
+## Практика (17 заданий)
 
-**2 · Произнесите новое слово**
-<!-- interaction_id: en:lesson-04:session-13:i02; family: scripted_repeat_compare -->
-Цель: `taxi`
-🎙 **taxi**
+**1 · Вы заметили окно. Сообщите «Есть окно»**
+<!-- interaction_id: en:lesson-04:session-13:i01; family: phrase_builder -->
+Плитки: `window` `a` `is` `There` `are` → **There is a window.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a window.`)*
 
-**3 · Соедините названия с русскими значениями**
-<!-- interaction_id: en:lesson-04:session-13:i03; family: speed_match -->
-Пары: `taxi` — такси · `platform` — платформа · `station` — вокзал · `tram` — трамвай
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-04:session-13:i02; family: listen_choose -->
+🔊 *taxi* → **taxi** · tram · platform
+- tram — *В записи первое слово — `taxi`, а в этом варианте — `tram`.*
+- platform — *В записи первое слово — `taxi`, а в этом варианте — `platform`.*
 
-**4 · Послушайте вопрос и выберите его смысл**
-<!-- interaction_id: en:lesson-04:session-13:i04; family: listen_choose -->
-Цель: `Are there taxis near the station?`
-🔊 *Are there taxis near the station?*
-Значения вариантов: Are there taxis near the station? — Рядом с вокзалом есть несколько такси? · Is there a taxi near the station? — Рядом с вокзалом есть одно такси? · There are taxis near the station. — Рядом с вокзалом есть несколько такси.
-→ **Are there taxis near the station?** · Is there a taxi near the station? · There are taxis near the station.
-- Is there a taxi near the station? — *В записи вопрос о нескольких машинах: `taxis`, а не об одной `a taxi`.*
-- There are taxis near the station. — *В записи спрашивают `Are there…?`, а не сообщают `There are…`.*
+**3 · Назовите такси одним английским словом**
+<!-- interaction_id: en:lesson-04:session-13:i03; family: context_gap_grammar -->
+___ → **taxi** · tram · hotel
+- tram — *`tram` — трамвай; такси — `taxi`.*
+- hotel — *`hotel` — отель; такси — `taxi`.*
 
-**5 · Соберите вопрос о такси у вокзала**
-<!-- interaction_id: en:lesson-04:session-13:i05; family: phrase_builder -->
-Цель: `Is there a taxi near the station?`
-Плитки: `Is` · `there` · `a` · `taxi` · `near` · `the` · `station` · `Are`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-13:i04; family: speed_match -->
+taxi — такси · public — открытый для всех · window — окно · supermarket — супермаркет
 
-**6 · У здания вы проверяете, есть ли одна машина. Вставьте начало вопроса**
-<!-- interaction_id: en:lesson-04:session-13:i06; family: context_gap_grammar -->
-___ there a taxi near the building? → **Is** · Are · There
-- Are — *`A taxi` — одна машина, поэтому в начале вопроса нужна форма `Is`.*
-- There — *`There is a taxi` — порядок сообщения. Вопрос начинается с `Is`.*
+**5 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-13:i05; family: listen_build_dictation -->
+🔊 *Is there a taxi?* Плитки: `taxi` `a` `there` `Is` → **Is there a taxi?**
 
-**7 · Послушайте и соберите сообщение о нескольких машинах у магазина**
-<!-- interaction_id: en:lesson-04:session-13:i07; family: listen_build_dictation -->
-Цель: `There are taxis near the shop.`
-🔊 *There are taxis near the shop.*
-Плитки: `There` · `are` · `taxis` · `near` · `the` · `shop` · `Is`
+**6 · Назовите дальнее здание: «То здание — супермаркет»**
+<!-- interaction_id: en:lesson-04:session-13:i06; family: phrase_builder -->
+Плитки: `supermarket` `a` `is` `That` `are` → **That is a supermarket.**
+*(плитка `are` лишняя: здесь нужно `is` — `That is a supermarket.`)*
 
-**8 · Соберите сообщение об одной машине у магазина**
-<!-- interaction_id: en:lesson-04:session-13:i08; family: phrase_builder -->
-Цель: `There is a taxi near the shop.`
-Плитки: `There` · `is` · `a` · `taxi` · `near` · `the` · `shop` · `Are`
+**7 · Двор открыт всем посетителям. Скажите с сокращением «Он открыт для всех»**
+<!-- interaction_id: en:lesson-04:session-13:i07; family: scripted_repeat_compare -->
+🎙 **It's public.**
 
-**9 · Послушайте сообщение о машинах у здания и выберите смысл**
+**8 · Спросите о нескольких машинах такси здесь**
+<!-- interaction_id: en:lesson-04:session-13:i08; family: context_gap_grammar -->
+___ there taxis here? → **Are** · Is · Am
+- Is — *`taxis` — несколько машин: `Are there taxis here?`.*
+- Am — *Вопрос о нескольких машинах начинается с `Are there`.*
+
+**9 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-04:session-13:i09; family: listen_choose -->
-Цель: `There are taxis on the street near the building.`
-🔊 *There are taxis on the street near the building.*
-Значения вариантов: There are taxis on the street near the building. — На улице у здания есть несколько такси. · There is a taxi near the shop. — У магазина есть одно такси. · Are there two taxis near the platform? — У платформы есть два такси?
-→ **There are taxis on the street near the building.** · There is a taxi near the shop. · Are there two taxis near the platform?
-- There is a taxi near the shop. — *В записи `There are taxis`: несколько машин, а не одна.*
-- Are there two taxis near the platform? — *В записи сообщение `There are…`, а не вопрос `Are there…?`.*
+🔊 *Is there a window?* → **Is there a window?** · Is there a taxi? · Is there a supermarket?
+- Is there a taxi? — *В записи последнее слово — `window`, а в этом варианте — `taxi`.*
+- Is there a supermarket? — *В записи последнее слово — `window`, а в этом варианте — `supermarket`.*
 
-**10 · Соберите вопрос о двух машинах у платформы**
-<!-- interaction_id: en:lesson-04:session-13:i10; family: phrase_builder -->
-Цель: `Are there two taxis near the platform?`
-Плитки: `Are` · `there` · `two` · `taxis` · `near` · `the` · `platform` · `Is` · `There`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-13:i10; family: speed_match -->
+taxi — одна машина такси · taxis — несколько машин такси · window — окно · public — открытый для всех
 
-**11 · На дальней стороне стоянки отмечены две машины. Вставьте форму в сообщение**
-<!-- interaction_id: en:lesson-04:session-13:i11; family: context_gap_grammar -->
-There ___ two taxis on the street. → **are** · is · there
-- is — *`Two taxis` — несколько машин, поэтому сообщение начинается `There are`.*
-- there — *`There` уже стоит в начале. Здесь нужна форма `are`, согласованная с `two taxis`.*
+**11 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-04:session-13:i11; family: listen_build_dictation -->
+🔊 *There is a supermarket here.* Плитки: `here` `supermarket` `a` `is` `There` `are` → **There is a supermarket here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a supermarket here.`)*
 
-**12 · на стоянке нужно спросить, есть ли несколько машин у трамвая. Соберите вопрос**
+**12 · Вы нашли несколько машин. Сообщите «Здесь есть такси»**
 <!-- interaction_id: en:lesson-04:session-13:i12; family: phrase_builder -->
-Цель: `Are there taxis near the tram?`
-Плитки: `Are` · `there` · `taxis` · `near` · `the` · `tram` · `Is` · `There`
+Плитки: `here` `taxis` `are` `There` `is` → **There are taxis here.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are taxis here.`)*
 
-## Для сборщика
+**13 · Друг показывает участок стены на плане. Спросите «Здесь есть окно?»**
+<!-- interaction_id: en:lesson-04:session-13:i13; family: scripted_repeat_compare -->
+🎙 **Is there a window here?**
 
-atomic_practice: practice.atomic.json
-new_words: taxi — такси — Машина, которая перевозит пассажира за плату.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=speed_match, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=phrase_builder, 9=listen_choose, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder
+**14 · Спросите о наличии одного супермаркета**
+<!-- interaction_id: en:lesson-04:session-13:i14; family: context_gap_grammar -->
+Is there ___ supermarket here? → **a** · an · are
+- an — *Первый звук в `supermarket` согласный: `a supermarket`.*
+- are — *Перед одним супермаркетом нужно `a`: `a supermarket`.*
+
+**15 · Послушайте объяснение о доступе во двор**
+<!-- interaction_id: en:lesson-04:session-13:i15; family: listen_choose -->
+🔊 *It is public.* → **It is public.** · It is private. · It is urgent.
+- It is private. — *В записи последнее слово — `public`, а в этом варианте — `private`.*
+- It is urgent. — *В записи последнее слово — `public`, а в этом варианте — `urgent`.*
+
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-13:i16; family: speed_match -->
+taxi — такси · public — открытый для всех · window — окно · supermarket — супермаркет
+
+**17 · В другой день вы выходите из отеля с чемоданом. Спросите, есть ли здесь одна машина такси**
+<!-- interaction_id: en:lesson-04:session-13:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is there a taxi here?**
+

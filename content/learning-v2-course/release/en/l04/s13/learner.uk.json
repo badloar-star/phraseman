@@ -1,6 +1,5 @@
 {
   "schemaVersion": "learning_v2_course_session_learner_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-13",
   "targetLanguage": "en",
   "interactions": [
@@ -8,79 +7,115 @@
       "interactionId": "en:lesson-04:session-13:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви помітили вікно. Повідомте «Є вікно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви помітили вікно. Повідомте «Є вікно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a window.",
+        "localizedMeaning": {
+          "ru": "Вы заметили окно. Сообщите «Есть окно»",
+          "uk": "Ви помітили вікно. Повідомте «Є вікно»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "window"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-13:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви помітили вікно. Повідомте «Є вікно»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a window.`",
+              "uk": "тут потрібно `is` — `There is a window.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть, що прозвучало",
+      "prompt": "Послухайте й виберіть слово",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-13:i01:r1",
+          "responseId": "en:lesson-04:session-13:i02:r1",
           "text": "taxi"
         },
         {
-          "responseId": "en:lesson-04:session-13:i01:r2",
-          "text": "tasty"
+          "responseId": "en:lesson-04:session-13:i02:r2",
+          "text": "tram"
         },
         {
-          "responseId": "en:lesson-04:session-13:i01:r3",
-          "text": "taxes"
+          "responseId": "en:lesson-04:session-13:i02:r3",
+          "text": "platform"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-13:i01:audio"
+        "en:lesson-04:session-13:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й оберіть, що прозвучало",
+      "accessibilityLabel": "Послухайте й виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-13:i01:audio",
+          "audioTargetId": "en:lesson-04:session-13:i02:audio",
           "transcript": "taxi"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-13:i01:r1",
+            "responseId": "en:lesson-04:session-13:i02:r1",
             "targetText": "taxi",
-            "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
-            }
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-13:i01:r2",
-            "targetText": "tasty",
-            "meaningByLocale": {
-              "ru": "вкусный",
-              "uk": "смачний"
-            }
+            "responseId": "en:lesson-04:session-13:i02:r2",
+            "targetText": "tram",
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-13:i01:r3",
-            "targetText": "taxes",
-            "meaningByLocale": {
-              "ru": "налоги",
-              "uk": "податки"
-            }
+            "responseId": "en:lesson-04:session-13:i02:r3",
+            "targetText": "platform",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-13:i01:r2",
+            "responseId": "en:lesson-04:session-13:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й оберіть, що прозвучало",
+            "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В `tasty` после первого звука слышно /eɪ/, а в `taxi` — /æ/.",
-              "uk": "У `tasty` після першого звука чути /eɪ/, а в `taxi` — /æ/."
+              "ru": "В записи первое слово — `taxi`, а в этом варианте — `tram`.",
+              "uk": "У записі перше слово — `taxi`, а в цьому варіанті — `tram`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-13:i01:r3",
+            "responseId": "en:lesson-04:session-13:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й оберіть, що прозвучало",
+            "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Taxes` начинается похоже, но в конце слышится дополнительный кусок /ɪz/. В записи было короткое `taxi`.",
-              "uk": "`Taxes` починається схоже, але наприкінці чути додатковий шматок /ɪz/. У записі було коротке `taxi`."
+              "ru": "В записи первое слово — `taxi`, а в этом варианте — `platform`.",
+              "uk": "У записі перше слово — `taxi`, а в цьому варіанті — `platform`."
             }
           }
         ],
@@ -90,54 +125,90 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-13:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-04:session-13:i03",
+      "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Вимовте нове слово",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-13:i02:audio"
-      ],
-      "accessibilityLabel": "Вимовте нове слово",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-13:i02:audio",
-          "transcript": "taxi"
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть таксі одним англійським словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-13:i03:r1",
+          "text": "taxi"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "taxi",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-04:session-13:i03:r2",
+          "text": "tram"
+        },
+        {
+          "responseId": "en:lesson-04:session-13:i03:r3",
+          "text": "hotel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть таксі одним англійським словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите такси одним английским словом",
+          "uk": "Назвіть таксі одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-13:i03:r1",
+            "text": "taxi"
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i03:r2",
+            "text": "tram"
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i03:r3",
+            "text": "hotel"
+          }
+        ],
+        "testedDimension": "Назвіть таксі одним англійським словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть таксі одним англійським словом",
+            "feedbackByLocale": {
+              "ru": "`tram` — трамвай; такси — `taxi`.",
+              "uk": "`tram` — трамвай; таксі — `taxi`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть таксі одним англійським словом",
+            "feedbackByLocale": {
+              "ru": "`hotel` — отель; такси — `taxi`.",
+              "uk": "`hotel` — готель; таксі — `taxi`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-13:i03",
-      "ordinal": 6,
+      "interactionId": "en:lesson-04:session-13:i04",
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви з українськими значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви з українськими значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-13:i03:p1",
+            "pairId": "en:lesson-04:session-13:i04:p1",
             "target": "taxi",
             "meaningByLocale": {
               "ru": "такси",
@@ -145,41 +216,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-13:i03:p2",
-            "target": "platform",
+            "pairId": "en:lesson-04:session-13:i04:p2",
+            "target": "public",
             "meaningByLocale": {
-              "ru": "платформа",
-              "uk": "платформа"
+              "ru": "открытый для всех",
+              "uk": "відкритий для всіх"
             }
           },
           {
-            "pairId": "en:lesson-04:session-13:i03:p3",
-            "target": "station",
+            "pairId": "en:lesson-04:session-13:i04:p3",
+            "target": "window",
             "meaningByLocale": {
-              "ru": "вокзал",
-              "uk": "вокзал"
+              "ru": "окно",
+              "uk": "вікно"
             }
           },
           {
-            "pairId": "en:lesson-04:session-13:i03:p4",
-            "target": "tram",
+            "pairId": "en:lesson-04:session-13:i04:p4",
+            "target": "supermarket",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "супермаркет",
+              "uk": "супермаркет"
             }
           }
         ],
         "leftColumn": [
           "taxi",
-          "platform",
-          "station",
-          "tram"
+          "public",
+          "window",
+          "supermarket"
         ],
         "rightColumn": [
-          "такси",
-          "платформа",
-          "вокзал",
-          "трамвай"
+          "таксі",
+          "відкритий для всіх",
+          "вікно",
+          "супермаркет"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -196,190 +267,83 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-13:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте питання й оберіть його зміст",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-13:i04:r1",
-          "text": "Are there taxis near the station?"
-        },
-        {
-          "responseId": "en:lesson-04:session-13:i04:r2",
-          "text": "Is there a taxi near the station?"
-        },
-        {
-          "responseId": "en:lesson-04:session-13:i04:r3",
-          "text": "There are taxis near the station."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-13:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте питання й оберіть його зміст",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-13:i04:audio",
-          "transcript": "Are there taxis near the station?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-13:i04:r1",
-            "targetText": "Are there taxis near the station?",
-            "meaningByLocale": {
-              "ru": "Рядом с вокзалом есть несколько такси?",
-              "uk": "Біля вокзалу є кілька таксі?"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-13:i04:r2",
-            "targetText": "Is there a taxi near the station?",
-            "meaningByLocale": {
-              "ru": "Рядом с вокзалом есть одно такси?",
-              "uk": "Біля вокзалу є одне таксі?"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-13:i04:r3",
-            "targetText": "There are taxis near the station.",
-            "meaningByLocale": {
-              "ru": "Рядом с вокзалом есть несколько такси.",
-              "uk": "Біля вокзалу є кілька таксі."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-13:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте питання й оберіть його зміст",
-            "feedbackByLocale": {
-              "ru": "В записи вопрос о нескольких машинах: `taxis`, а не об одной `a taxi`.",
-              "uk": "У записі питання про кілька машин: `taxis`, а не про одну `a taxi`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-13:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте питання й оберіть його зміст",
-            "feedbackByLocale": {
-              "ru": "В записи спрашивают `Are there…?`, а не сообщают `There are…`.",
-              "uk": "У записі питають `Are there…?`, а не повідомляють `There are…`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-04:session-13:i05",
       "ordinal": 8,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть питання про таксі біля вокзалу",
+      "prompt": "Послухайте й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть питання про таксі біля вокзалу",
+      "audioTargetIds": [
+        "en:lesson-04:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is there a taxi near the station?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос о такси у вокзала",
-          "uk": "Складіть питання про таксі біля вокзалу"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-13:i05:audio",
+          "transcript": "Is there a taxi?"
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a taxi?",
         "orderedTokens": [
           "Is",
           "there",
           "a",
-          "taxi",
-          "near",
-          "the",
-          "station"
+          "taxi"
         ],
-        "authoredDistractorTokens": [
-          "Are"
-        ],
-        "slotFeedback": []
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-13:i06",
       "ordinal": 9,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Біля будівлі ви перевіряєте, чи є одна машина. Вставте початок питання",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-13:i06:r1",
-          "text": "Is"
-        },
-        {
-          "responseId": "en:lesson-04:session-13:i06:r2",
-          "text": "Are"
-        },
-        {
-          "responseId": "en:lesson-04:session-13:i06:r3",
-          "text": "There"
-        }
-      ],
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назвіть далеку будівлю: «Та будівля — супермаркет»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Біля будівлі ви перевіряєте, чи є одна машина. Вставте початок питання",
+      "accessibilityLabel": "Назвіть далеку будівлю: «Та будівля — супермаркет»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "У здания вы проверяете, есть ли одна машина. Вставьте начало вопроса",
-          "uk": "Біля будівлі ви перевіряєте, чи є одна машина. Вставте початок питання"
+        "family": "phrase_builder",
+        "targetPhrase": "That is a supermarket.",
+        "localizedMeaning": {
+          "ru": "Назовите дальнее здание: «То здание — супермаркет»",
+          "uk": "Назвіть далеку будівлю: «Та будівля — супермаркет»"
         },
-        "gappedTargetPhrase": "___ there a taxi near the building?",
-        "gapOptions": [
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "supermarket"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-13:i06:r1",
-            "text": "Is"
-          },
-          {
-            "responseId": "en:lesson-04:session-13:i06:r2",
-            "text": "Are"
-          },
-          {
-            "responseId": "en:lesson-04:session-13:i06:r3",
-            "text": "There"
+            "responseId": "en:lesson-04:session-13:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Назвіть далеку будівлю: «Та будівля — супермаркет»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `That is a supermarket.`",
+              "uk": "тут потрібно `is` — `That is a supermarket.`"
+            }
           }
         ],
-        "testedDimension": "Біля будівлі ви перевіряєте, чи є одна м",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-13:i06:r2",
-            "correct": false,
-            "testedDimension": "Біля будівлі ви перевіряєте, чи є одна м",
-            "feedbackByLocale": {
-              "ru": "`A taxi` — одна машина, поэтому в начале вопроса нужна форма `Is`.",
-              "uk": "`A taxi` — одна машина, тому на початку питання потрібна форма `Is`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-13:i06:r3",
-            "correct": false,
-            "testedDimension": "Біля будівлі ви перевіряєте, чи є одна м",
-            "feedbackByLocale": {
-              "ru": "`There is a taxi` — порядок сообщения. Вопрос начинается с `Is`.",
-              "uk": "`There is a taxi` — порядок повідомлення. Питання починається з `Is`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -387,35 +351,32 @@
       "interactionId": "en:lesson-04:session-13:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення про кілька машин біля магазину",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Двір відкритий усім відвідувачам. Скажіть зі скороченням «Він відкритий для всіх»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-13:i07:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення про кілька машин біля магазину",
+      "accessibilityLabel": "Двір відкритий усім відвідувачам. Скажіть зі скороченням «Він відкритий для всіх»",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-13:i07:audio",
-          "transcript": "There are taxis near the shop."
+          "transcript": "It's public."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There are taxis near the shop.",
-        "orderedTokens": [
-          "There",
-          "are",
-          "taxis",
-          "near",
-          "the",
-          "shop"
-        ],
-        "authoredDistractorTokens": [
-          "Is"
-        ],
-        "slotFeedback": []
+        "targetPhrase": "It's public.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -423,93 +384,119 @@
       "interactionId": "en:lesson-04:session-13:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть повідомлення про одну машину біля магазину",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про кілька машин таксі тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-13:i08:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-04:session-13:i08:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-04:session-13:i08:r3",
+          "text": "Am"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повідомлення про одну машину біля магазину",
+      "accessibilityLabel": "Запитайте про кілька машин таксі тут",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a taxi near the shop.",
-        "localizedMeaning": {
-          "ru": "Соберите сообщение об одной машине у магазина",
-          "uk": "Складіть повідомлення про одну машину біля магазину"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о нескольких машинах такси здесь",
+          "uk": "Запитайте про кілька машин таксі тут"
         },
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "taxi",
-          "near",
-          "the",
-          "shop"
+        "gappedTargetPhrase": "___ there taxis here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-13:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i08:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i08:r3",
+            "text": "Am"
+          }
         ],
-        "authoredDistractorTokens": [
-          "Are"
-        ],
-        "slotFeedback": []
+        "testedDimension": "Запитайте про кілька машин таксі тут",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про кілька машин таксі тут",
+            "feedbackByLocale": {
+              "ru": "`taxis` — несколько машин: `Are there taxis here?`.",
+              "uk": "`taxis` — кілька машин: `Are there taxis here?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про кілька машин таксі тут",
+            "feedbackByLocale": {
+              "ru": "Вопрос о нескольких машинах начинается с `Are there`.",
+              "uk": "Запитання про кілька машин починається з `Are there`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-13:i09",
       "ordinal": 12,
-      "purpose": "retrieval_practice",
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте повідомлення про машини біля будівлі й оберіть зміст",
+      "prompt": "Послухайте запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-13:i09:r1",
-          "text": "There are taxis on the street near the building."
+          "text": "Is there a window?"
         },
         {
           "responseId": "en:lesson-04:session-13:i09:r2",
-          "text": "There is a taxi near the shop."
+          "text": "Is there a taxi?"
         },
         {
           "responseId": "en:lesson-04:session-13:i09:r3",
-          "text": "Are there two taxis near the platform?"
+          "text": "Is there a supermarket?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-13:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте повідомлення про машини біля будівлі й оберіть зміст",
+      "accessibilityLabel": "Послухайте запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-13:i09:audio",
-          "transcript": "There are taxis on the street near the building."
+          "transcript": "Is there a window?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-04:session-13:i09:r1",
-            "targetText": "There are taxis on the street near the building.",
-            "meaningByLocale": {
-              "ru": "На улице у здания есть несколько такси.",
-              "uk": "На вулиці біля будівлі є кілька таксі."
-            }
+            "targetText": "Is there a window?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-04:session-13:i09:r2",
-            "targetText": "There is a taxi near the shop.",
-            "meaningByLocale": {
-              "ru": "У магазина есть одно такси.",
-              "uk": "Біля магазину є одне таксі."
-            }
+            "targetText": "Is there a taxi?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-04:session-13:i09:r3",
-            "targetText": "Are there two taxis near the platform?",
-            "meaningByLocale": {
-              "ru": "У платформы есть два такси?",
-              "uk": "Біля платформи є два таксі?"
-            }
+            "targetText": "Is there a supermarket?",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -517,19 +504,19 @@
           {
             "responseId": "en:lesson-04:session-13:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про машини біля ",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи `There are taxis`: несколько машин, а не одна.",
-              "uk": "У записі `There are taxis`: кілька машин, а не одна."
+              "ru": "В записи последнее слово — `window`, а в этом варианте — `taxi`.",
+              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `taxi`."
             }
           },
           {
             "responseId": "en:lesson-04:session-13:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про машини біля ",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи сообщение `There are…`, а не вопрос `Are there…?`.",
-              "uk": "У записі повідомлення `There are…`, а не питання `Are there…?`."
+              "ru": "В записи последнее слово — `window`, а в этом варианте — `supermarket`.",
+              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `supermarket`."
             }
           }
         ],
@@ -541,101 +528,266 @@
     {
       "interactionId": "en:lesson-04:session-13:i10",
       "ordinal": 13,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть питання про дві машини біля платформи",
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть питання про дві машини біля платформи",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Are there two taxis near the platform?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос о двух машинах у платформы",
-          "uk": "Складіть питання про дві машини біля платформи"
-        },
-        "orderedTokens": [
-          "Are",
-          "there",
-          "two",
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-13:i10:p1",
+            "target": "taxi",
+            "meaningByLocale": {
+              "ru": "одна машина такси",
+              "uk": "одна машина таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-13:i10:p2",
+            "target": "taxis",
+            "meaningByLocale": {
+              "ru": "несколько машин такси",
+              "uk": "кілька машин таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-13:i10:p3",
+            "target": "window",
+            "meaningByLocale": {
+              "ru": "окно",
+              "uk": "вікно"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-13:i10:p4",
+            "target": "public",
+            "meaningByLocale": {
+              "ru": "открытый для всех",
+              "uk": "відкритий для всіх"
+            }
+          }
+        ],
+        "leftColumn": [
+          "taxi",
           "taxis",
-          "near",
-          "the",
-          "platform"
+          "window",
+          "public"
         ],
-        "authoredDistractorTokens": [
-          "Is",
-          "There"
+        "rightColumn": [
+          "одна машина таксі",
+          "кілька машин таксі",
+          "вікно",
+          "відкритий для всіх"
         ],
-        "slotFeedback": []
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-13:i11",
       "ordinal": 14,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-13:i11:audio",
+          "transcript": "There is a supermarket here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a supermarket here.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "supermarket",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-13:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть повідомлення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a supermarket here.`",
+              "uk": "тут потрібно `is` — `There is a supermarket here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-13:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли кілька машин. Повідомте «Тут є таксі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли кілька машин. Повідомте «Тут є таксі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are taxis here.",
+        "localizedMeaning": {
+          "ru": "Вы нашли несколько машин. Сообщите «Здесь есть такси»",
+          "uk": "Ви знайшли кілька машин. Повідомте «Тут є таксі»"
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "taxis",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-13:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви знайшли кілька машин. Повідомте «Тут є таксі»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `There are taxis here.`",
+              "uk": "тут потрібно `are` — `There are taxis here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-13:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг показує ділянку стіни на плані. Запитайте «Тут є вікно?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Друг показує ділянку стіни на плані. Запитайте «Тут є вікно?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-13:i13:audio",
+          "transcript": "Is there a window here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a window here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-13:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На дальньому боці стоянки позначено дві машини. Вставте форму в повідомлення",
+      "prompt": "Запитайте про наявність одного супермаркету",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-13:i11:r1",
+          "responseId": "en:lesson-04:session-13:i14:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-13:i14:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-04:session-13:i14:r3",
           "text": "are"
-        },
-        {
-          "responseId": "en:lesson-04:session-13:i11:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-04:session-13:i11:r3",
-          "text": "there"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На дальньому боці стоянки позначено дві машини. Вставте форму в повідомлення",
+      "accessibilityLabel": "Запитайте про наявність одного супермаркету",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "На дальней стороне стоянки отмечены две машины. Вставьте форму в сообщение",
-          "uk": "На дальньому боці стоянки позначено дві машини. Вставте форму в повідомлення"
+          "ru": "Спросите о наличии одного супермаркета",
+          "uk": "Запитайте про наявність одного супермаркету"
         },
-        "gappedTargetPhrase": "There ___ two taxis on the street.",
+        "gappedTargetPhrase": "Is there ___ supermarket here?",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-13:i11:r1",
+            "responseId": "en:lesson-04:session-13:i14:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i14:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i14:r3",
             "text": "are"
-          },
-          {
-            "responseId": "en:lesson-04:session-13:i11:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-04:session-13:i11:r3",
-            "text": "there"
           }
         ],
-        "testedDimension": "На дальньому боці стоянки позначено дві ",
+        "testedDimension": "Запитайте про наявність одного супермаркету",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-13:i11:r2",
+            "responseId": "en:lesson-04:session-13:i14:r2",
             "correct": false,
-            "testedDimension": "На дальньому боці стоянки позначено дві ",
+            "testedDimension": "Запитайте про наявність одного супермаркету",
             "feedbackByLocale": {
-              "ru": "`Two taxis` — несколько машин, поэтому сообщение начинается `There are`.",
-              "uk": "`Two taxis` — кілька машин, тому повідомлення починається `There are`."
+              "ru": "Первый звук в `supermarket` согласный: `a supermarket`.",
+              "uk": "Перший звук у `supermarket` приголосний: `a supermarket`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-13:i11:r3",
+            "responseId": "en:lesson-04:session-13:i14:r3",
             "correct": false,
-            "testedDimension": "На дальньому боці стоянки позначено дві ",
+            "testedDimension": "Запитайте про наявність одного супермаркету",
             "feedbackByLocale": {
-              "ru": "`There` уже стоит в начале. Здесь нужна форма `are`, согласованная с `two taxis`.",
-              "uk": "`There` уже стоїть на початку. Тут потрібна форма `are`, узгоджена з `two taxis`."
+              "ru": "Перед одним супермаркетом нужно `a`: `a supermarket`.",
+              "uk": "Перед одним супермаркетом потрібне `a`: `a supermarket`."
             }
           }
         ]
@@ -643,45 +795,201 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-13:i12",
-      "ordinal": 15,
+      "interactionId": "en:lesson-04:session-13:i15",
+      "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Фінал — на стоянці потрібно запитати, чи є кілька машин біля трамвая. Складіть питання",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте пояснення про доступ до двору",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-13:i15:r1",
+          "text": "It is public."
+        },
+        {
+          "responseId": "en:lesson-04:session-13:i15:r2",
+          "text": "It is private."
+        },
+        {
+          "responseId": "en:lesson-04:session-13:i15:r3",
+          "text": "It is urgent."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте пояснення про доступ до двору",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-13:i15:audio",
+          "transcript": "It is public."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-13:i15:r1",
+            "targetText": "It is public.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i15:r2",
+            "targetText": "It is private.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i15:r3",
+            "targetText": "It is urgent.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-13:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте пояснення про доступ до двору",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `public`, а в этом варианте — `private`.",
+              "uk": "У записі останнє слово — `public`, а в цьому варіанті — `private`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-13:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте пояснення про доступ до двору",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `public`, а в этом варианте — `urgent`.",
+              "uk": "У записі останнє слово — `public`, а в цьому варіанті — `urgent`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-13:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Фінал — на стоянці потрібно запитати, чи є кілька машин біля трамвая. Складіть питання",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Are there taxis near the tram?",
-        "localizedMeaning": {
-          "ru": "Финал — на стоянке нужно спросить, есть ли несколько машин у трамвая. Соберите вопрос",
-          "uk": "Фінал — на стоянці потрібно запитати, чи є кілька машин біля трамвая. Складіть питання"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-13:i16:p1",
+            "target": "taxi",
+            "meaningByLocale": {
+              "ru": "такси",
+              "uk": "таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-13:i16:p2",
+            "target": "public",
+            "meaningByLocale": {
+              "ru": "открытый для всех",
+              "uk": "відкритий для всіх"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-13:i16:p3",
+            "target": "window",
+            "meaningByLocale": {
+              "ru": "окно",
+              "uk": "вікно"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-13:i16:p4",
+            "target": "supermarket",
+            "meaningByLocale": {
+              "ru": "супермаркет",
+              "uk": "супермаркет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "taxi",
+          "public",
+          "window",
+          "supermarket"
+        ],
+        "rightColumn": [
+          "таксі",
+          "відкритий для всіх",
+          "вікно",
+          "супермаркет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "orderedTokens": [
-          "Are",
-          "there",
-          "taxis",
-          "near",
-          "the",
-          "tram"
-        ],
-        "authoredDistractorTokens": [
-          "Is",
-          "There"
-        ],
-        "slotFeedback": []
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-13:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Іншого дня ви виходите з готелю з валізою. Запитайте, чи є тут одна машина таксі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Іншого дня ви виходите з готелю з валізою. Запитайте, чи є тут одна машина таксі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-13:i17:audio",
+          "transcript": "Is there a taxi here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a taxi here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 12,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "297367637df26fdfba485bb7f3ba8891af056797ef0b6c96b10fa9b7efdeb7f6"
+  "learnerFingerprint": "5667d9f31ae5bf108349552305efad914a35cdda752d2ee564cc56813630fb1f"
 }

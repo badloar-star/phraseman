@@ -21,7 +21,7 @@ Governance-ID: TG-511429E3B3B7
 `activation/`). Поэтому `learningV2CourseSourcesAbsentOnBuildServer` отвечает `course_sources_present`, и строгая сверка паритета
 падает без исходников → `eas-build-post-install` ОТКАЗ. Фикс: признак исходников — `content/learning-v2-course/sessions` (DEFAULT_SOURCE_ROOT гейта).
 Update 12:06 (координатор): `npm ci` не делаем. `node_modules` — junction на основное дерево, только чтение; lockfile тот же.
-Status: In progress
+Status: Done (15.10 12:21 — повтор на e9d9b445a зелёный: post-install, экспорт android; RC_ANDROID — секрет EAS)
 Owner: Ядро (сессия 1)
 Related: задача координатора 15.10 ~11:10 — «главный предохранитель перед завтрашней сборкой».
 

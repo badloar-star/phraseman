@@ -1,0 +1,259 @@
+--------- beginning of main
+10-15 23:27:41.617 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":555,"route":"/lesson_complete","heapMb":92,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:27:45.177 I/ReactNativeJS( 5230): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"lesson1","noop":false,"atMs":560451,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | run@213687:31 | anonymous@216256:33 | react-stack-bottom-frame@28676:26 | runWithFiberInDEV@20473:135"}'
+10-15 23:27:45.254 I/ReactNativeJS( 5230): [LESSON-GATE-FIRSTFRAME] boundary en:1: проверка доступа идёт — рисуем скелет урока
+10-15 23:27:45.256 I/ReactNativeJS( 5230): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#W1akNI*[(tabs)#rP1xAY,lesson1#ZLu2WQ*]","atMs":560531}'
+10-15 23:27:45.300 I/ReactNativeJS( 5230): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/lesson1 tab=/(tabs)/home routeIsTab=false"}
+10-15 23:27:45.303 I/ReactNativeJS( 5230): '[OVERLAY-ARB] handoff', '{"from":"lessonCompleteNotif","to":null,"fromNative":false,"toNative":false,"delayMs":0}'
+10-15 23:27:45.304 I/ReactNativeJS( 5230): '[OVERLAY-ARBITER] state', '{"active":"lessonCompleteNotif","waiting":[]}'
+10-15 23:27:45.311 I/ReactNativeJS( 5230): [LESSON-GATE-FIRSTFRAME] boundary en:1: проверка заняла 57 мс → available
+10-15 23:27:45.325 I/ReactNativeJS( 5230): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":62,"viewRenders":3,"keys":["lessons","dialogs","cards"]}'
+10-15 23:27:45.487 I/ReactNativeJS( 5230): '[FONT-SCALE] lesson1 panel', '{"fontSize":"medium","fontScale":1.15,"defaultScale":1.15,"uiScale":0.992,"fLabel":14,"toolLabel":13,"window":"411x914"}'
+10-15 23:27:45.497 I/ReactNativeJS( 5230): [LESSON-RESULT] новый проход lesson=1: сборщик id ошибок сброшен
+10-15 23:27:45.502 I/ReactNativeJS( 5230): [LESSON-RESULT] новый проход lesson=1: список ошибок прошлого прохода (0) забыт
+10-15 23:27:45.509 W/ReactNativeJS( 5230): '[ATTEMPTS-HYDRATE]', '{"sessionId":"lesson:en:1","outcome":"persist_skipped_untrusted","remaining":3,"phase":"active"}', { [Stack] name: 'Stack' }
+10-15 23:27:45.696 I/ReactNativeJS( 5230): '[ENERGY-GATE] lesson1 entry', '{"lessonId":1,"firstQuestionVisible":false,"energyReady":true,"lessonHydrated":false,"introGateReady":false,"introVisible":false,"hasPlayableRows":true,"remoteSourceReady":true,"screenEnergy":4,"screenBonus":0,"plusOrUnlimited":false,"op":"energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad"}'
+10-15 23:27:45.699 I/ReactNativeJS( 5230): [ENERGY-GATE] auto: wait screen=lesson1 op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad firstQuestionVisible=false
+10-15 23:27:45.703 I/ReactNativeJS( 5230): '[OVERLAY-QUEUE]', '{"holder":"никто","asking":[],"waiting":[],"wants":{"update":false,"authRecovery":false,"releaseNotes":null,"broadcast":null,"appMessageModal":null,"personalAdminMessage":null,"notifNudge":false},"onboarding":false}'
+10-15 23:27:45.704 I/ReactNativeJS( 5230): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто
+10-15 23:27:45.727 I/ReactNativeJS( 5230): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":63,"viewRenders":3,"keys":["lessons","dialogs","cards"]}'
+10-15 23:27:45.820 I/ReactNativeJS( 5230): [HOME-CONTINUE] выбор=legacy причина=только старый урок время: старый=1792103265700 V2=нет target=en
+10-15 23:27:45.991 W/ReactNativeJS( 5230): [NAV-PAINT] group=training route=/lesson1 ms=730
+10-15 23:27:45.996 I/ReactNativeJS( 5230): [SMART-REMINDER] record:skip kind=lesson reason=dedupe_30min sinceMs=158858
+10-15 23:27:46.029 I/ReactNativeJS( 5230): [INFO] practice_runes:hydrated: {"activity":"lesson","sessionKey":"lesson1_runes_en","settledCount":1,"awardPerItem":1,"pendingRunes":0,"restoredFinishedPass":true}
+10-15 23:27:46.032 I/ReactNativeJS( 5230): [HEARTS] ЧТЕНИЕ: найдено осталось=3/3 фаза=active ключ=session_attempts_state_v1:a2469b80-bd02-432e-8364-394689d6d0e3:lesson%3Aen%3A1
+10-15 23:27:46.035 I/ReactNativeJS( 5230): '[ENERGY-GATE] lesson1 entry', '{"lessonId":1,"firstQuestionVisible":false,"energyReady":true,"lessonHydrated":false,"introGateReady":true,"introVisible":false,"hasPlayableRows":true,"remoteSourceReady":true,"screenEnergy":4,"screenBonus":0,"plusOrUnlimited":false,"op":"energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad"}'
+10-15 23:27:46.560 I/ReactNativeJS( 5230): '[ENERGY-GATE] lesson1 entry', '{"lessonId":1,"firstQuestionVisible":true,"energyReady":true,"lessonHydrated":true,"introGateReady":true,"introVisible":false,"hasPlayableRows":true,"remoteSourceReady":true,"screenEnergy":4,"screenBonus":0,"plusOrUnlimited":false,"op":"energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad"}'
+10-15 23:27:46.562 I/ReactNativeJS( 5230): [ENERGY-GATE] auto: charge screen=lesson1 activity=classic_lesson op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad finalizeOn=first_answer
+10-15 23:27:46.567 I/ReactNativeJS( 5230): [ENERGY-GATE] charge: start op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad activity=classic_lesson screen=lesson1 subject=1
+10-15 23:27:46.683 I/ReactNativeJS( 5230): [INFO] practice_runes:stale_flush_complete: {"ownerStableId":"a2469b80-bd02-432e-8364-394689d6d0e3","synced":0,"pending":0}
+10-15 23:27:46.760 I/ReactNativeJS( 5230): [ENERGY-GATE] free_reentry: op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad key=classic_lesson:1 window_left_ms=559418 — nothing spent
+10-15 23:27:46.760 I/ReactNativeJS( 5230): [ENERGY-GATE] auto: result=unlimited screen=lesson1 op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad → markShown (no modal)
+10-15 23:27:46.777 I/ReactNativeJS( 5230): [ENERGY-GATE] shown: skip op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad reason=status-free_reentry
+10-15 23:27:46.781 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":561,"route":"/lesson1","heapMb":92,"gc":"32gc/311ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":10,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":2,"armMidnight <- anonymous":2,"tick <- apply (native)":1,"onResponderGrant <- executeDirectDispatch":1,"_deactivate <- _performTransitionSideEffects":1},"pendingTimeouts":4,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:27:46.849 W/ReactNativeJS( 5230): '[COIN-RECOVER] stored_ops', '{"totalMs":816,"scanMs":649,"readsMs":99,"verifyMs":68,"allKeys":157,"operations":1,"journal":1,"paidEnvelopes":0}'
+10-15 23:27:46.874 I/ReactNativeJS( 5230): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=[])
+10-15 23:27:46.877 W/ReactNativeJS( 5230): '[COIN-RECOVER] slow', '{"outcome":"ok","totalMs":884,"stages":{"account_lock_wait":42,"part_phone_state":749,"part_stored_ops":817,"phone_state_and_stored_ops":817,"phone_credit_fingerprints":0,"storage_lock_wait":1,"storage_reads":23,"prepared_fingerprints":0,"practice_journal_reads":0,"compute_projection":1,"compaction":0,"multi_set":0,"prepared_clear":0},"counts":{"phoneCredits":0,"storedOperations":1,"projectionBytes":707,"prepared":0,"projectionOperations":1,"compacted":0,"writes":0,"writeBytes":0,"skippedUnchanged":2}}'
+10-15 23:27:51.821 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":566,"route":"/lesson1","heapMb":92,"gc":"2gc/15ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":3,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:27:56.851 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":571,"route":"/lesson1","heapMb":92,"gc":"8gc/63ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":5,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGrant <- executeDirectDispatch":1,"_deactivate <- _performTransitionSideEffects":1,"anonymous <- onPress":1,"onPress <- _performTransitionSideEffects":1},"pendingTimeouts":1,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:01.240 I/ReactNativeJS( 5230): [ENERGY-GATE] answer: skip op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad reason=status-free_reentry
+10-15 23:28:01.244 I/ReactNativeJS( 5230): [INFO] practice_runes:answer_awarded: {"activity":"lesson","sessionKey":"lesson1_runes_en","itemId":"0","awarded":1,"pendingRunes":1}
+10-15 23:28:01.250 I/ReactNativeJS( 5230): '[ATTEMPTS-VERDICT]', '{"sessionId":"lesson:en:1","source":"live","answerAttemptId":"amva40hft-574724:0:1","verdict":"correct","phaseBefore":"active","phaseAfter":"active","remainingBefore":3,"remainingAfter":3,"duplicate":false,"effect":"none","mistakeChargeActive":false,"hydrated":true,"hydrationTrusted":true,"earlyExit":null}'
+10-15 23:28:01.380 I/ReactNativeJS( 5230): '[SFX-LAT] request', { eventId: 'pm.reward.rune_count_done',
+10-15 23:28:01.380 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:01.380 I/ReactNativeJS( 5230):   firstEverPlay: false,
+10-15 23:28:01.380 I/ReactNativeJS( 5230):   createPlayerMs: 0,
+10-15 23:28:01.380 I/ReactNativeJS( 5230):   cacheSize: 13,
+10-15 23:28:01.380 I/ReactNativeJS( 5230):   maxCacheSize: 16,
+10-15 23:28:01.380 I/ReactNativeJS( 5230):   isLoaded: false,
+10-15 23:28:01.380 I/ReactNativeJS( 5230):   exclusive: true,
+10-15 23:28:01.380 I/ReactNativeJS( 5230):   seekIsAsync: true }
+10-15 23:28:01.386 I/ReactNativeJS( 5230): [COMBO-MOMENT] кольцо: 0 → 1 без удара — «серия сброшена» не показана
+10-15 23:28:01.388 I/ReactNativeJS( 5230): [COMBO-MOMENT] слой: 0 → 1 без удара (нет порога) — монета не показана
+10-15 23:28:01.395 W/ReactNativeJS( 5230): '[WORD-AUDIO] speak:enter gen=1 text="we\'re calm"', { [Stack] name: 'Stack' }
+10-15 23:28:01.404 I/ReactNativeJS( 5230): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:a2469b80-bd02-432e-8364-394689d6d0e3:lesson%3Aen%3A1
+10-15 23:28:01.502 I/ReactNativeJS( 5230): '[SFX-LAT] request', { eventId: 'pm.coin.flight_start',
+10-15 23:28:01.502 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:01.502 I/ReactNativeJS( 5230):   firstEverPlay: false,
+10-15 23:28:01.502 I/ReactNativeJS( 5230):   createPlayerMs: 0,
+10-15 23:28:01.502 I/ReactNativeJS( 5230):   cacheSize: 13,
+10-15 23:28:01.502 I/ReactNativeJS( 5230):   maxCacheSize: 16,
+10-15 23:28:01.502 I/ReactNativeJS( 5230):   isLoaded: false,
+10-15 23:28:01.502 I/ReactNativeJS( 5230):   exclusive: false,
+10-15 23:28:01.502 I/ReactNativeJS( 5230):   seekIsAsync: true }
+10-15 23:28:01.535 I/ReactNativeJS( 5230): '[SFX-LAT] play', { eventId: 'pm.reward.rune_count_done',
+10-15 23:28:01.535 I/ReactNativeJS( 5230):   latencyMs: 160,
+10-15 23:28:01.535 I/ReactNativeJS( 5230):   waitedForSeek: true,
+10-15 23:28:01.535 I/ReactNativeJS( 5230):   seekTimedOut: 'maybe',
+10-15 23:28:01.535 I/ReactNativeJS( 5230):   isLoaded: true,
+10-15 23:28:01.535 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:01.535 I/ReactNativeJS( 5230):   firstEverPlay: false }
+10-15 23:28:01.664 I/ReactNativeJS( 5230): '[SFX-LAT] play', { eventId: 'pm.coin.flight_start',
+10-15 23:28:01.664 I/ReactNativeJS( 5230):   latencyMs: 134,
+10-15 23:28:01.664 I/ReactNativeJS( 5230):   waitedForSeek: true,
+10-15 23:28:01.664 I/ReactNativeJS( 5230):   seekTimedOut: 'maybe',
+10-15 23:28:01.664 I/ReactNativeJS( 5230):   isLoaded: false,
+10-15 23:28:01.664 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:01.664 I/ReactNativeJS( 5230):   firstEverPlay: false }
+10-15 23:28:01.693 I/ReactNativeJS( 5230): '[SFX-LAT] retry_after_load', { eventId: 'pm.coin.flight_start',
+10-15 23:28:01.693 I/ReactNativeJS( 5230):   latencyMs: 232,
+10-15 23:28:01.693 I/ReactNativeJS( 5230):   sinceFirstPlayMs: 98,
+10-15 23:28:01.693 I/ReactNativeJS( 5230):   firstEverPlay: false,
+10-15 23:28:01.693 I/ReactNativeJS( 5230):   cacheHit: true }
+10-15 23:28:01.904 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":576,"route":"/lesson1","heapMb":92,"gc":"7gc/58ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":14,"timeoutsByCaller":{"play <- execute":4,"onResponderGrant <- executeDirectDispatch":2,"_deactivate <- _performTransitionSideEffects":2,"tick <- apply (native)":1,"anonymous <- onPress":1},"pendingTimeouts":2,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:02.380 I/ReactNativeJS( 5230): '[SPEAK-MIC] audio-mode', '{"intent":"spoken","spokenLeases":1,"recordingLeases":0}'
+10-15 23:28:02.419 W/ReactNativeJS( 5230): [WORD-AUDIO] clip:onStart gen=1 fellBackAlready=false text="we're calm"
+10-15 23:28:03.504 I/ReactNativeJS( 5230): '[SPEAK-MIC] audio-mode', '{"intent":"ui","spokenLeases":0,"recordingLeases":0}'
+10-15 23:28:03.510 I/ReactNativeJS( 5230): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:a2469b80-bd02-432e-8364-394689d6d0e3:lesson%3Aen%3A1
+10-15 23:28:06.928 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":581,"route":"/lesson1","heapMb":92,"gc":"9gc/70ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":7,"timeoutsByCaller":{"tick <- apply (native)":1,"acquireAudioActivity <- anonymous":1,"?anon_0_ <- next (native)":1,"onResponderGrant <- executeDirectDispatch":1,"_deactivate <- _performTransitionSideEffects":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:11.951 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":586,"route":"/lesson1","heapMb":96,"gc":"8gc/59ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":5,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGrant <- executeDirectDispatch":1,"_deactivate <- _performTransitionSideEffects":1,"anonymous <- onPress":1,"onPress <- _performTransitionSideEffects":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:15.348 I/ReactNativeJS( 5230): [SUPPORT-DIAG] сброс журнала reason=timer_30s записано=2 отброшено=0 байт=4051 мс=16
+10-15 23:28:16.973 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":591,"route":"/lesson1","heapMb":96,"gc":"3gc/22ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":5,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGrant <- executeDirectDispatch":1,"_deactivate <- _performTransitionSideEffects":1,"anonymous <- onPress":1,"onPress <- _performTransitionSideEffects":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:17.956 I/ReactNativeJS( 5230): [ENERGY-GATE] answer: skip op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad reason=status-free_reentry
+10-15 23:28:17.959 I/ReactNativeJS( 5230): [INFO] practice_runes:answer_awarded: {"activity":"lesson","sessionKey":"lesson1_runes_en","itemId":"1","awarded":1,"pendingRunes":2}
+10-15 23:28:17.963 I/ReactNativeJS( 5230): '[ATTEMPTS-VERDICT]', '{"sessionId":"lesson:en:1","source":"live","answerAttemptId":"amva40hft-574724:1:2","verdict":"correct","phaseBefore":"active","phaseAfter":"active","remainingBefore":3,"remainingAfter":3,"duplicate":false,"effect":"none","mistakeChargeActive":false,"hydrated":true,"hydrationTrusted":true,"earlyExit":null}'
+10-15 23:28:18.121 I/ReactNativeJS( 5230): '[SFX-LAT] request', { eventId: 'pm.reward.rune_count_done',
+10-15 23:28:18.121 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:18.121 I/ReactNativeJS( 5230):   firstEverPlay: false,
+10-15 23:28:18.121 I/ReactNativeJS( 5230):   createPlayerMs: 0,
+10-15 23:28:18.121 I/ReactNativeJS( 5230):   cacheSize: 13,
+10-15 23:28:18.121 I/ReactNativeJS( 5230):   maxCacheSize: 16,
+10-15 23:28:18.121 I/ReactNativeJS( 5230):   isLoaded: false,
+10-15 23:28:18.121 I/ReactNativeJS( 5230):   exclusive: true,
+10-15 23:28:18.121 I/ReactNativeJS( 5230):   seekIsAsync: true }
+10-15 23:28:18.124 I/ReactNativeJS( 5230): [COMBO-MOMENT] кольцо: 1 → 2 без удара — «серия сброшена» не показана
+10-15 23:28:18.126 I/ReactNativeJS( 5230): [COMBO-MOMENT] слой: 1 → 2 без удара (нет порога) — монета не показана
+10-15 23:28:18.130 W/ReactNativeJS( 5230): '[WORD-AUDIO] speak:enter gen=3 text="we\'re safe"', { [Stack] name: 'Stack' }
+10-15 23:28:18.136 I/ReactNativeJS( 5230): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:a2469b80-bd02-432e-8364-394689d6d0e3:lesson%3Aen%3A1
+10-15 23:28:18.213 I/ReactNativeJS( 5230): '[SFX-LAT] request', { eventId: 'pm.coin.flight_start',
+10-15 23:28:18.213 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:18.213 I/ReactNativeJS( 5230):   firstEverPlay: false,
+10-15 23:28:18.213 I/ReactNativeJS( 5230):   createPlayerMs: 0,
+10-15 23:28:18.213 I/ReactNativeJS( 5230):   cacheSize: 13,
+10-15 23:28:18.213 I/ReactNativeJS( 5230):   maxCacheSize: 16,
+10-15 23:28:18.213 I/ReactNativeJS( 5230):   isLoaded: false,
+10-15 23:28:18.213 I/ReactNativeJS( 5230):   exclusive: false,
+10-15 23:28:18.213 I/ReactNativeJS( 5230):   seekIsAsync: true }
+10-15 23:28:18.219 I/ReactNativeJS( 5230): '[SFX-LAT] play', { eventId: 'pm.reward.rune_count_done',
+10-15 23:28:18.219 I/ReactNativeJS( 5230):   latencyMs: 168,
+10-15 23:28:18.219 I/ReactNativeJS( 5230):   waitedForSeek: true,
+10-15 23:28:18.219 I/ReactNativeJS( 5230):   seekTimedOut: 'maybe',
+10-15 23:28:18.219 I/ReactNativeJS( 5230):   isLoaded: true,
+10-15 23:28:18.219 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:18.219 I/ReactNativeJS( 5230):   firstEverPlay: false }
+10-15 23:28:18.311 I/ReactNativeJS( 5230): '[SFX-LAT] play', { eventId: 'pm.coin.flight_start',
+10-15 23:28:18.311 I/ReactNativeJS( 5230):   latencyMs: 48,
+10-15 23:28:18.311 I/ReactNativeJS( 5230):   waitedForSeek: true,
+10-15 23:28:18.311 I/ReactNativeJS( 5230):   seekTimedOut: 'maybe',
+10-15 23:28:18.311 I/ReactNativeJS( 5230):   isLoaded: true,
+10-15 23:28:18.311 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:18.311 I/ReactNativeJS( 5230):   firstEverPlay: false }
+10-15 23:28:18.929 I/ReactNativeJS( 5230): '[SPEAK-MIC] audio-mode', '{"intent":"spoken","spokenLeases":1,"recordingLeases":0}'
+10-15 23:28:18.999 W/ReactNativeJS( 5230): [WORD-AUDIO] clip:onStart gen=3 fellBackAlready=false text="we're safe"
+10-15 23:28:20.256 I/ReactNativeJS( 5230): '[SPEAK-MIC] audio-mode', '{"intent":"ui","spokenLeases":0,"recordingLeases":0}'
+10-15 23:28:20.261 I/ReactNativeJS( 5230): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:a2469b80-bd02-432e-8364-394689d6d0e3:lesson%3Aen%3A1
+10-15 23:28:21.995 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":596,"route":"/lesson1","heapMb":100,"gc":"13gc/185ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":17,"timeoutsByCaller":{"play <- execute":4,"onResponderGrant <- executeDirectDispatch":2,"_deactivate <- _performTransitionSideEffects":2,"tick <- apply (native)":1,"scheduleSupportDiagnosticFlush <- ?anon_0_":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:27.014 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":601,"route":"/lesson1","heapMb":100,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:32.031 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":606,"route":"/lesson1","heapMb":100,"gc":"9gc/70ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":5,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGrant <- executeDirectDispatch":1,"_deactivate <- _performTransitionSideEffects":1,"anonymous <- onPress":1,"onPress <- _performTransitionSideEffects":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:36.209 I/ReactNativeJS( 5230): [ENERGY-GATE] answer: skip op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad reason=status-free_reentry
+10-15 23:28:36.211 I/ReactNativeJS( 5230): [INFO] practice_runes:answer_awarded: {"activity":"lesson","sessionKey":"lesson1_runes_en","itemId":"2","awarded":1,"pendingRunes":3}
+10-15 23:28:36.216 I/ReactNativeJS( 5230): '[ATTEMPTS-VERDICT]', '{"sessionId":"lesson:en:1","source":"live","answerAttemptId":"amva40hft-574724:2:3","verdict":"correct","phaseBefore":"active","phaseAfter":"active","remainingBefore":3,"remainingAfter":3,"duplicate":false,"effect":"none","mistakeChargeActive":false,"hydrated":true,"hydrationTrusted":true,"earlyExit":null}'
+10-15 23:28:36.344 I/ReactNativeJS( 5230): '[SFX-LAT] request', { eventId: 'pm.reward.rune_count_done',
+10-15 23:28:36.344 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:36.344 I/ReactNativeJS( 5230):   firstEverPlay: false,
+10-15 23:28:36.344 I/ReactNativeJS( 5230):   createPlayerMs: 0,
+10-15 23:28:36.344 I/ReactNativeJS( 5230):   cacheSize: 13,
+10-15 23:28:36.344 I/ReactNativeJS( 5230):   maxCacheSize: 16,
+10-15 23:28:36.344 I/ReactNativeJS( 5230):   isLoaded: false,
+10-15 23:28:36.344 I/ReactNativeJS( 5230):   exclusive: true,
+10-15 23:28:36.344 I/ReactNativeJS( 5230):   seekIsAsync: true }
+10-15 23:28:36.352 I/ReactNativeJS( 5230): [MOMENT-m08] серия 2 → 3: удар «spark» reducedMotion=false
+10-15 23:28:36.356 I/ReactNativeJS( 5230): [COMBO-MOMENT] слой: 2 → 3 без удара (spark) — монета не показана
+10-15 23:28:36.361 W/ReactNativeJS( 5230): '[WORD-AUDIO] speak:enter gen=5 text="you\'re kind"', { [Stack] name: 'Stack' }
+10-15 23:28:36.372 I/ReactNativeJS( 5230): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:a2469b80-bd02-432e-8364-394689d6d0e3:lesson%3Aen%3A1
+10-15 23:28:36.507 I/ReactNativeJS( 5230): '[SFX-LAT] request', { eventId: 'pm.coin.flight_start',
+10-15 23:28:36.507 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:36.507 I/ReactNativeJS( 5230):   firstEverPlay: false,
+10-15 23:28:36.507 I/ReactNativeJS( 5230):   createPlayerMs: 0,
+10-15 23:28:36.507 I/ReactNativeJS( 5230):   cacheSize: 13,
+10-15 23:28:36.507 I/ReactNativeJS( 5230):   maxCacheSize: 16,
+10-15 23:28:36.507 I/ReactNativeJS( 5230):   isLoaded: false,
+10-15 23:28:36.507 I/ReactNativeJS( 5230):   exclusive: false,
+10-15 23:28:36.507 I/ReactNativeJS( 5230):   seekIsAsync: true }
+10-15 23:28:36.581 I/ReactNativeJS( 5230): '[SFX-LAT] play', { eventId: 'pm.reward.rune_count_done',
+10-15 23:28:36.581 I/ReactNativeJS( 5230):   latencyMs: 214,
+10-15 23:28:36.581 I/ReactNativeJS( 5230):   waitedForSeek: true,
+10-15 23:28:36.581 I/ReactNativeJS( 5230):   seekTimedOut: 'maybe',
+10-15 23:28:36.581 I/ReactNativeJS( 5230):   isLoaded: true,
+10-15 23:28:36.581 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:36.581 I/ReactNativeJS( 5230):   firstEverPlay: false }
+10-15 23:28:36.660 I/ReactNativeJS( 5230): '[SFX-LAT] play', { eventId: 'pm.coin.flight_start',
+10-15 23:28:36.660 I/ReactNativeJS( 5230):   latencyMs: 164,
+10-15 23:28:36.660 I/ReactNativeJS( 5230):   waitedForSeek: true,
+10-15 23:28:36.660 I/ReactNativeJS( 5230):   seekTimedOut: 'maybe',
+10-15 23:28:36.660 I/ReactNativeJS( 5230):   isLoaded: true,
+10-15 23:28:36.660 I/ReactNativeJS( 5230):   cacheHit: true,
+10-15 23:28:36.660 I/ReactNativeJS( 5230):   firstEverPlay: false }
+10-15 23:28:37.064 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":611,"route":"/lesson1","heapMb":100,"gc":"7gc/60ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":15,"timeoutsByCaller":{"play <- execute":4,"onResponderGrant <- executeDirectDispatch":2,"_deactivate <- _performTransitionSideEffects":2,"tick <- apply (native)":1,"anonymous <- onPress":1},"pendingTimeouts":2,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:37.669 I/ReactNativeJS( 5230): '[SPEAK-MIC] audio-mode', '{"intent":"spoken","spokenLeases":1,"recordingLeases":0}'
+10-15 23:28:37.702 W/ReactNativeJS( 5230): [WORD-AUDIO] clip:onStart gen=5 fellBackAlready=false text="you're kind"
+10-15 23:28:38.288 I/ReactNativeJS( 5230): '[LESSON-RESULT] back_during_completion', '{"lessonId":1,"from":"next"}'
+10-15 23:28:38.309 I/ReactNativeJS( 5230): [PREMIUM-GUARD] fast_no_cloud: «нет» без облака не кэшируем — полная проверка сходит в облако
+10-15 23:28:38.372 W/ReactNativeJS( 5230): '[WORD-AUDIO] speak:enter gen=6 text="you\'re kind"', { [Stack] name: 'Stack' }
+10-15 23:28:38.377 I/ReactNativeJS( 5230): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"lesson_complete","noop":false,"atMs":613651,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | run@213687:31 | anonymous@216256:33 | react-stack-bottom-frame@28676:26 | runWithFiberInDEV@20473:135"}'
+10-15 23:28:38.387 I/ReactNativeJS( 5230): [STREAK-RESULT] before:snapshot {days=1 counted=true day=2026-10-15} задачиДня=2026-10-15
+10-15 23:28:38.428 W/ReactNativeJS( 5230): '[LESSON-EXIT] unmount lessonId=1 cellIndex=2 status=result exitInFlight=false', { [Stack] name: 'Stack' }
+10-15 23:28:38.429 I/ReactNativeJS( 5230): [ENERGY-GATE] refund: skip op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad reason=unmounted_before_first_question:lesson1 why=status-free_reentry
+10-15 23:28:38.431 I/ReactNativeJS( 5230): [ENERGY-GATE] exit: free window opened op=energy:lesson:e885c439-129e-4df8-a709-ba188afd0fad key=classic_lesson:1 windowMs=600000
+10-15 23:28:38.447 I/ReactNativeJS( 5230): [NO-ENERGY-PLUS] unmount nothing_pending
+10-15 23:28:38.461 I/ReactNativeJS( 5230): '[MOMENT-m09] decision', '{"lessonId":1,"show":false,"reason":"итог ещё не посчитан"}'
+10-15 23:28:38.463 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT-SAVE]: gates +74мс lesson=1: results=false access=false xp=false → ждём «Сохраняю результат…»
+10-15 23:28:38.467 I/ReactNativeJS( 5230): '[DAILY-QUOTA] preview:in', '{"kind":"mistake_practice_starts","accessResolved":true,"hasPremiumAccess":false,"tokenPhase":"active","stableId":"a2469b80-bd02-432e-8364-394689d6d0e3"}'
+10-15 23:28:38.472 I/ReactNativeJS( 5230): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#W1akNI*[(tabs)#rP1xAY,lesson_complete#S8t0Y_*]","atMs":613744}'
+10-15 23:28:38.508 I/ReactNativeJS( 5230): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/lesson_complete tab=/(tabs)/home routeIsTab=false"}
+10-15 23:28:38.512 I/ReactNativeJS( 5230): '[OVERLAY-ARB] handoff', '{"from":null,"to":"lessonResultsSequence","fromNative":false,"toNative":false,"delayMs":0}'
+10-15 23:28:38.513 I/ReactNativeJS( 5230): '[OVERLAY-ARBITER] state', '{"active":null,"waiting":["lessonResultsSequence"]}'
+10-15 23:28:38.521 I/ReactNativeJS( 5230): '[SPEAK-MIC] audio-mode', '{"intent":"ui","spokenLeases":0,"recordingLeases":0}'
+10-15 23:28:38.527 I/ReactNativeJS( 5230): [HEARTS] ЗАПИСЬ: осталось=3/3 фаза=active ключ=session_attempts_state_v1:a2469b80-bd02-432e-8364-394689d6d0e3:lesson%3Aen%3A1
+10-15 23:28:38.530 I/ReactNativeJS( 5230): [TODAY-TASKS] event:no_change {"kind":"lesson","source":"lesson_complete","unitKey":"legacy:en:1","units":1,"dayKey":"2026-10-15","outcome":"not_in_today_set","progress":"0→0"}
+10-15 23:28:38.556 I/ReactNativeJS( 5230): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":64,"viewRenders":3,"keys":["lessons","dialogs","cards"]}'
+10-15 23:28:38.631 I/ReactNativeJS( 5230): '[DAILY-QUOTA] preview:in', '{"kind":"mistake_practice_starts","accessResolved":true,"hasPremiumAccess":false,"tokenPhase":"active","stableId":"a2469b80-bd02-432e-8364-394689d6d0e3"}'
+10-15 23:28:38.637 I/ReactNativeJS( 5230): '[OVERLAY-QUEUE]', '{"holder":"lessonResultsSequence","asking":[],"waiting":[],"wants":{"update":false,"authRecovery":false,"releaseNotes":null,"broadcast":null,"appMessageModal":null,"personalAdminMessage":null,"notifNudge":false},"onboarding":false}'
+10-15 23:28:38.640 I/ReactNativeJS( 5230): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=lessonResultsSequence
+10-15 23:28:38.644 I/ReactNativeJS( 5230): '[OVERLAY-ARBITER] state', '{"active":"lessonResultsSequence","waiting":[]}'
+10-15 23:28:38.704 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT]: {"lessonId":1,"source":"progress","firstTryMistakes":0,"firstTryCorrect":3,"finalCorrect":3,"missCount":0,"errorRows":0}
+10-15 23:28:38.729 W/ReactNativeJS( 5230): [NAV-PAINT] group=training route=/lesson_complete ms=252
+10-15 23:28:38.734 W/ReactNativeJS( 5230): [LESSON-SOFT-UPSELL] кандидат lesson=1 firstBonus=already_granted → нет scope=есть
+10-15 23:28:38.738 I/ReactNativeJS( 5230): [INFO] practice_runes:hydrated: {"activity":"lesson","sessionKey":"lesson1_runes_en","settledCount":1,"awardPerItem":1,"pendingRunes":3,"restoredFinishedPass":false}
+10-15 23:28:38.742 W/ReactNativeJS( 5230): [RUNE-SETTLE] скан пропущен: очередь была пуста 52с назад (порог 300с)
+10-15 23:28:38.744 I/ReactNativeJS( 5230): [PREMIUM-GUARD] fast_no_cloud: «нет» без облака не кэшируем — полная проверка сходит в облако
+10-15 23:28:38.752 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT-SAVE]: scan: lesson=1 ключей=32 multiGet=14мс разбор=0мс засчитано=0 идеальных=0 wasPerfect=false битых=0
+10-15 23:28:38.753 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT]: {"lessonId":1,"wasPerfect":false,"wasPerfectSource":"scanLessonProgress:legacy45","lessonCount":0,"perfectCount":0}
+10-15 23:28:38.759 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT-SAVE]: grantBonus: этапы lesson=1 первый бонус=209мс, сводка прохождения=20мс
+10-15 23:28:38.761 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT-SAVE]: grantBonus: готово lesson=1 всего=234мс (бонус+сводка+отзыв), wasPerfect=false eligibleReview=false
+10-15 23:28:38.766 I/ReactNativeJS( 5230): '[FC-TRAIN-ENTRY] bridge:available', '{"stableUid":"a2469b80-bd02-432e-8364-394689d6d0e3","lineage":1,"factType":"attempt","factKeys":0,"hadState":false}'
+10-15 23:28:38.897 I/ReactNativeJS( 5230): '[DAILY-QUOTA] preview:out', '{"status":"allowed","used":0,"limit":1,"extra":0,"period":"2026-10-15@Europe/London"}'
+10-15 23:28:38.902 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT]: ветка=ПРОГРЕСС_НАЙДЕН lesson=1 target=en ответов=3 верно=3 ошибок=0 из 3 score=5 → tier gold→gold новыйРекорд=false проходов=1
+10-15 23:28:38.907 I/ReactNativeJS( 5230): [ENSURE-LINK] authoritative_memo miss reason=expired
+10-15 23:28:38.912 I/ReactNativeJS( 5230): '[FC-TRAIN-ENTRY] bridge:available', '{"stableUid":"a2469b80-bd02-432e-8364-394689d6d0e3","lineage":1,"factType":"attempt","factKeys":0,"hadState":false}'
+10-15 23:28:39.021 I/ReactNativeJS( 5230): '[DAILY-QUOTA] preview:out', '{"status":"allowed","used":0,"limit":1,"extra":0,"period":"2026-10-15@Europe/London"}'
+10-15 23:28:39.027 I/ReactNativeJS( 5230): [LANG-SWITCH] notification_lang source=lesson_d1 stored=none resolved=ru via=device
+10-15 23:28:39.038 I/ReactNativeJS( 5230): [STREAK-RESULT] live:init из памяти стора {days=1 counted=true day=2026-10-15}
+10-15 23:28:39.102 I/ReactNativeJS( 5230): [STREAK-RESULT] live:subscribed +65мс было={days=1 counted=true day=2026-10-15} стало={days=1 counted=true day=2026-10-15} пропущенаЗапись=false
+10-15 23:28:39.103 I/ReactNativeJS( 5230): [STREAK-RESULT] row до={days=1 counted=true day=2026-10-15} после={days=1 counted=true day=2026-10-15} источник=живой стор → 1→1 засчитан=true (день уже был засчитан раньше (до=true))
+10-15 23:28:39.106 I/ReactNativeJS( 5230): [MOMENT-m10] старт: reducedMotion=false серия={день уже был засчитан раньше (до=true)} сегодня={нет строки: задачи «урок» нет в пуле дня}
+10-15 23:28:39.112 I/ReactNativeJS( 5230): [INFO] practice_runes:settle_start: {"activity":"lesson","sessionKey":"lesson1_runes_en","pendingRunes":3,"requestedOrdinal":2,"settledCount":1,"effectiveOrdinal":2}
+10-15 23:28:39.115 I/ReactNativeJS( 5230): '[MOMENT-m09] decision', '{"lessonId":1,"show":true,"reason":"идеал: верно=3 ошибок=0"}'
+10-15 23:28:39.116 I/ReactNativeJS( 5230): [MOMENT-m10] решение lesson=1: играем — цепочка: звёзды=3 верно=3 ошибок=0
+10-15 23:28:39.120 I/ReactNativeJS( 5230): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":true,"milestonePending":false}'
+10-15 23:28:39.123 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT-SAVE]: gates +733мс lesson=1: results=true access=true xp=true → экран итога открыт
+10-15 23:28:39.129 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT]: показ итога lesson=1 комбо=false: звёзды=3 (по проценту: score=5; медаль=gold) | верно/ошибок=3/0 | монеты=+3 (hydrating=false) | заметкаPlus=false | списокОшибок=0 | оценка=false | следующийОткрыт=false
+10-15 23:28:39.131 I/ReactNativeJS( 5230): [INFO] [LESSON-RESULT]: {"lessonId":1,"summary":"entry","firstTryCorrect":3,"mistakes":0,"total":3,"perfectShown":true,"coins":{"runes":3,"baseRunes":3,"awardPerItem":1,"creditedItems":3,"hydrating":false}}
+10-15 23:28:39.196 I/ReactNativeJS( 5230): [INFO] practice_runes:pending_marker_written: {"activity":"lesson","sessionKey":"lesson1_runes_en","effectiveOrdinal":2}
+10-15 23:28:39.197 I/ReactNativeJS( 5230): [INFO] practice_runes:settlement_enter: {"activity":"lesson","sessionKey":"lesson1_runes_en","completionOrdinal":2,"pendingRunes":3,"cloudSyncEnabled":true,"isExpoGo":false}
+10-15 23:28:39.220 I/ReactNativeJS( 5230): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=[])
+10-15 23:28:39.275 I/ReactNativeJS( 5230): [INFO] [COIN-DIVERGENCE] publish: {"owner":"a2469b80","snapshotStars":9,"snapshotSource":"local","nextStars":12,"serverBalance":9,"serverSeq":1,"operations":2,"unacknowledged":3,"unacknowledgedBySchema":{"client-practice-rune-operation.v1":{"count":1,"amount":3,"oldestAgeMin":0}},"dropToZero":false,"caller":"at ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:183380:24) <- at next (native) <- at asyncGeneratorStep (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98795:19)"}
+10-15 23:28:39.282 I/ReactNativeJS( 5230): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":65,"viewRenders":3,"keys":["lessons","dialogs","cards"]}'
+10-15 23:28:39.316 I/ReactNativeJS( 5230): '[COIN-PILL]', '{"screen":"home","source":"snapshot","shown":12,"value":12,"hydrated":true,"accountStableId":"a2469b80","generation":1}'
+10-15 23:28:39.319 I/ReactNativeJS( 5230): [INFO] practice_runes:local_commit_succeeded: {"operationId":"practice_rune:lesson_lesson1_runes_en_2","amount":3,"visibleBalance":12}
+10-15 23:28:39.320 I/ReactNativeJS( 5230): [INFO] practice_runes:grant_attempt: {"operationId":"practice_rune:lesson_lesson1_runes_en_2","attempt":1}
+10-15 23:28:39.999 I/ReactNativeJS( 5230): '[GUEST-SIGNIN-INVITE]', '{"lessonsDone":1,"shownBefore":true,"decision":"skip_shown_before"}'
+10-15 23:28:42.012 I/ReactNativeJS( 5230): [ERROR-JOURNAL-THROTTLE] upload target=en ушло=0 полная подтверждено=0
+10-15 23:28:42.030 I/ReactNativeJS( 5230): [ERROR-JOURNAL-THROTTLE] upload target=es ушло=0 полная подтверждено=0
+10-15 23:28:42.072 I/ReactNativeJS( 5230): [ERROR-JOURNAL-THROTTLE] upload target=fr ушло=0 полная подтверждено=0
+10-15 23:28:42.076 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":616,"route":"/lesson_complete","heapMb":100,"gc":"16gc/139ms","intervals":4,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1,"anonymous <- react-stack-bottom-frame":2},"timeoutsCreated":22,"timeoutsByCaller":{"_loop <- anonymous":8,"anonymous <- react-stack-bottom-frame":5,"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":2,"tick <- apply (native)":1,"acquireAudioActivity <- anonymous":1},"pendingTimeouts":3,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:42.092 I/ReactNativeJS( 5230): [ERROR-JOURNAL-THROTTLE] upload target=de ушло=0 полная подтверждено=0
+10-15 23:28:42.116 I/ReactNativeJS( 5230): [ERROR-JOURNAL-THROTTLE] upload target=it ушло=0 полная подтверждено=0
+10-15 23:28:43.825 I/ReactNativeJS( 5230): [STREAK] progress_event:mirror local=1@2026-10-15 server=1@2026-10-15 -> 1@2026-10-15
+10-15 23:28:44.277 I/ReactNativeJS( 5230): [MOMENT-m10] конец цепочки: доиграла
+10-15 23:28:44.334 I/ReactNativeJS( 5230): [LESSON-PERFECT] показ: 3 из 3, монеты=3 reduceMotion=false
+10-15 23:28:44.346 I/ReactNativeJS( 5230): [LESSON-PERFECT] показ key=1:en:mva3zlfr_l1hqu7n1 заданий=3 монет=3 ранг=0
+10-15 23:28:44.351 I/ReactNativeJS( 5230): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":false,"perfectPending":true,"milestonePending":false}'
+10-15 23:28:45.433 I/ReactNativeJS( 5230): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=[])
+10-15 23:28:45.450 I/ReactNativeJS( 5230): [INFO] practice_runes:grant_ack: {"operationId":"practice_rune:lesson_lesson1_runes_en_2","attempt":1,"replayed":false,"serverBalance":12,"visibleBalance":12}
+10-15 23:28:45.450 I/ReactNativeJS( 5230): [INFO] practice_runes:settle_server_result: {"activity":"lesson","sessionKey":"lesson1_runes_en","effectiveOrdinal":2,"locallyCommitted":true,"settled":true}
+10-15 23:28:45.481 I/ReactNativeJS( 5230): [INFO] practice_runes:local_counter_settled: {"activity":"lesson","sessionKey":"lesson1_runes_en","effectiveOrdinal":2,"locallyCommitted":true,"serverSettled":true,"displayedRunes":3}
+10-15 23:28:47.122 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":621,"route":"/lesson_complete","heapMb":100,"gc":"14gc/109ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":3,"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:48.034 I/ReactNativeJS( 5230): [SUPPORT-DIAG] сброс журнала reason=timer_30s записано=6 отброшено=0 байт=4824 мс=16
+10-15 23:28:52.175 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":626,"route":"/lesson_complete","heapMb":100,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'
+10-15 23:28:57.229 I/ReactNativeJS( 5230): '[MEM-TICK]', '{"tSec":631,"route":"/lesson_complete","heapMb":100,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"config|doc|?anon_0_ <- next (native)":{"pending":2},"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":5}}}'

@@ -48,3 +48,11 @@ describe('Тренировки 🟡 (15.10)', () => {
     expect(src.slice(src.indexOf('const restart = useCallback'), src.indexOf('const restart = useCallback') + 700)).toContain('practiceRunes.startNewCompletion();');
   });
 });
+
+describe('граница Free «50/50» (#11) — журнал и условие', () => {
+  it('лимит по языку набора, решение пишет [CARDS-LIMIT]', () => {
+    const src = read('app/flashcards_collection.tsx');
+    expect(src).toContain('savedCardsForPackLanguage.length >= FREE_SAVED_CARD_LIMIT');
+    expect(src).toContain('[CARDS-LIMIT]');
+  });
+});

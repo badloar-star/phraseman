@@ -1198,6 +1198,14 @@ export default function FlashcardsScreen() {
   // зачем (cards-v2 `savedLimit`, координатор 12.10): Free, упёршийся в 50 сохранённых, видит пилюлю «50/50» в шапке и «Безлимит с Plus» внизу
   // вместо секции «+N скрыто». Скрытые лимитом карточки по-прежнему скрыты (уже сохранённое не отбираем: открываются с Plus).
   const savedLimitReached = savedSurface && !isPremium && (hiddenByLimitCount > 0 || savedCardsForPackLanguage.length >= FREE_SAVED_CARD_LIMIT); // зачем (аудит кнопок Карточек #11, 15.10): лимит Free действует по языку набора, а «50/50» считал все языки
+  // зачем (граница доступа Free, координатор 15.10, сперва логи): какое число и по какому языку решило «лимит достигнут» — одна строка на смену значений
+  const limitLogKey = `${savedSurface}|${isPremium}|${hiddenByLimitCount}|${savedCardsForPackLanguage.length}|${packLanguage}|${savedLimitReached}`;
+  const limitLoggedRef = useRef('');
+  useEffect(() => {
+    if (!savedSurface || limitLoggedRef.current === limitLogKey) return;
+    limitLoggedRef.current = limitLogKey;
+    console.log(`[CARDS-LIMIT] ${JSON.stringify({ premium: isPremium, language: packLanguage, savedInLanguage: savedCardsForPackLanguage.length, savedAll: savedCards.length, hiddenByLimit: hiddenByLimitCount, limit: FREE_SAVED_CARD_LIMIT, reached: savedLimitReached })}`); // guard-ok: решение о границе доступа
+  }, [limitLogKey, savedSurface, isPremium, packLanguage, savedCardsForPackLanguage.length, savedCards.length, hiddenByLimitCount, savedLimitReached]);
   // зачем (владелец 04.10: «карточки открываются горизонтальными разворачивающимися»): тап по плитке раскрывает карточку по центру (ExpandedCardV2),
   // а не открывает стопку. «Сохранено» читается из общего хранилища сохранённых по английскому слову.
   const openedCard = useMemo(() => (openedCardId ? listCards.find((card) => card.id === openedCardId) ?? null : null), [openedCardId, listCards]);

@@ -135,7 +135,7 @@ describe('dev social states', () => {
     expect(getDevReferralApplyResult()).toBeNull();
     // подмена стоит ДО сервера, а ранние выходы не доходят до поиска владельца кода и заявки в друзья
     expect(read('components/referral_code_sheet.tsx')).toMatch(
-      /getDevReferralApplyResult\(\)[\s\S]*devResult === 'hold'[\s\S]*return;[\s\S]*setFeedback\(feedbackForStatus\(devResult, L\)\)[\s\S]*return;[\s\S]*applyManualReferralCode\(code\)[\s\S]*sendFriendRequest/,
+      /getDevReferralApplyResult\(\)[\s\S]*devResult === 'hold'[\s\S]*return;[\s\S]*setFeedback\(feedbackForStatus\(devResult, L\)\)[\s\S]*return;[\s\S]*applyManualReferralCode\(normalized\)[\s\S]*sendFriendRequest/, // зачем (15.10, overlays-campaigns-021): в сеть уходит нормализованный код
     );
   });
 });

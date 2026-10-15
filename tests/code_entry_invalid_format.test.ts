@@ -9,7 +9,9 @@ import path from 'path';
 import {
   hasEnteredCode,
   isPromoCodeFormatValid,
+  isReferralCodeCharsetValid,
   isReferralCodeLongEnough,
+  normalizeReferralCodeInput,
   PROMO_CODE_FORMAT,
   REFERRAL_CODE_MIN_LENGTH,
 } from '../app/code_entry_format';
@@ -38,6 +40,26 @@ describe('формат кодов (чистый модуль)', () => {
     [' anna42 ', true],
   ])('код друга %p достаточно длинный → %p', (raw, ok) => {
     expect(isReferralCodeLongEnough(raw)).toBe(ok);
+  });
+
+  // зачем (координатор 15.10, overlays-campaigns-021): двойники кириллицы и пробелы не должны превращать верный код в «не найден»
+  it.each([
+    ['сат4kp', 'CAT4KP'],
+    ['ABC DEF', 'ABCDEF'],
+    ['abc-def', 'ABCDEF'],
+    ['  мх7рт2 ', 'MX7PT2'],
+  ])('нормализация кода друга %p → %p', (raw, expected) => {
+    expect(normalizeReferralCodeInput(raw)).toBe(expected);
+  });
+
+  it.each([
+    ['ABCD42', true],
+    ['сат4kp', true],
+    ['AB!CD', false],
+    ['КОД_12', false],
+    ['ЖЖЖЖ', false],
+  ])('алфавит кода друга %p → %p', (raw, ok) => {
+    expect(isReferralCodeCharsetValid(raw)).toBe(ok);
   });
 
   it('кнопка активна при любом непустом вводе, пустое и пробелы — нет', () => {
@@ -71,6 +93,11 @@ describe('экраны: проверка формата до загрузки и
     expect(submit.indexOf('if (!isReferralCodeLongEnough(code)) {')).toBeLessThan(submit.indexOf('setBusy(true);'));
     expect(submit).toContain("setFeedback(feedbackForStatus('invalid', L));");
     expect(src).toContain("'Проверь код: он слишком короткий.'");
+    // символы вне латиницы/цифр — «не нашли такой код» без сети; в сеть и в поиск владельца уходит нормализованный код
+    expect(submit.indexOf('if (!isReferralCodeCharsetValid(code)) {')).toBeLessThan(submit.indexOf('setBusy(true);'));
+    expect(submit).toContain("setFeedback(feedbackForStatus('unknown_code', L));");
+    expect(submit).toContain('await applyManualReferralCode(normalized);');
+    expect(submit).toContain('await lookupUserByFriendCode(normalized);');
   });
 
   it('ответ сервера invalid-argument «bad_code» — «Проверь код», подмена promo=bad_code для съёмки', () => {

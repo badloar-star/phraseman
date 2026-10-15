@@ -20,7 +20,7 @@ import { sendFriendRequest } from '../app/firestore_friend_requests';
 import ReferralSheetShell from './referral_sheet_shell';
 import { DebugLogger } from '../app/debug-logger';
 import { getDevReferralApplyResult } from '../app/dev_social_state';
-import { hasEnteredCode, isReferralCodeLongEnough } from '../app/code_entry_format';
+import { hasEnteredCode, isReferralCodeCharsetValid, isReferralCodeLongEnough, normalizeReferralCodeInput } from '../app/code_entry_format';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -200,11 +200,20 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
   const submitLockRef = useRef(false);
   const submit = useCallback(async () => {
     if (!canSubmit) return;
+    // зачем (координатор 15.10, overlays-campaigns-021): двойники кириллицы → латиница, пробелы/«-» внутри убираем; дальше и в сеть идёт этот вид.
+    const normalized = normalizeReferralCodeInput(code);
     if (!isReferralCodeLongEnough(code)) {
-      console.log(`[REFERRAL-CODE] применение: код короче 4 знаков (${code.trim().length}) — сразу «слишком короткий», сеть не вызывается`); // guard-ok: ранний выход логируется
+      console.log(`[REFERRAL-CODE] применение: код короче 4 знаков (${normalized.length}) — сразу «слишком короткий», сеть не вызывается`); // guard-ok: ранний выход логируется
       setFeedback(feedbackForStatus('invalid', L));
       return;
     }
+    if (!isReferralCodeCharsetValid(code)) {
+      // Кода с такими символами не бывает: тот же ответ, что дал бы сервер («не нашли такой код»), но без сети. Новых состояний нет.
+      console.log(`[REFERRAL-CODE] применение: символы вне латиницы/цифр (длина ${normalized.length}) — сразу «не нашли такой код», сеть не вызывается`); // guard-ok: ранний выход логируется
+      setFeedback(feedbackForStatus('unknown_code', L));
+      return;
+    }
+    if (normalized !== code.trim().toUpperCase()) console.log(`[REFERRAL-CODE] применение: ввод нормализован (двойники/пробелы), длина ${normalized.length}`);
     if (submitLockRef.current) {
       console.warn('[REFERRAL-CODE] применение: повторный тап пропущен');
       return;
@@ -231,7 +240,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
     }
     const openGen = openGenRef.current;
     try {
-      const status = await applyManualReferralCode(code);
+      const status = await applyManualReferralCode(normalized);
       if (openGen !== openGenRef.current) {
         console.log(`[REFERRAL-CODE] ответ ${status} пришёл после закрытия шторки — в новое открытие не пишем`); // guard-ok: ранний выход логируется
         return;
@@ -246,7 +255,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       if (status === 'applied' || status === 'already') {
         void (async () => {
           try {
-            const owner = await lookupUserByFriendCode(code);
+            const owner = await lookupUserByFriendCode(normalized);
             if (owner) {
               const res = await sendFriendRequest(owner.uid);
               if ((res === 'sent' || res === 'already_sent') && openGen === openGenRef.current) setFriendRequested(true);

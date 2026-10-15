@@ -1,207 +1,138 @@
-# Англійська · Урок 3 · Заняття 41 — «Зайвий рядок у чеку»
+# Англійська · Урок 3 · Заняття 41 — Кухня в новому будинку
 
-**Сцена заняття.** Після оплати ви підходите до стійки обслуговування з надрукованим чеком; поруч стоїть касир, а в чеку є зайвий рядок. Треба пояснити помилку й не дати співрозмовникові подумати, ніби в другій фразі йдеться вже про інший чек, касира чи стійку.
+**Ситуація.** Ви з Анною оглядаєте будинок. Господар показує кухню й чесно розповідає про стан будинку. На схемі кімнати позначені точно. Телефон Анни лежить поруч, поки ви уточнюєте, де кухня.
 
-**Як сказати:** `a` уперше називає один предмет або професію; `the` повертає до того самого вже названого предмета чи людини.
-**Нові слова:** receipt, counter, cashier
-**Для повторення:** this, that, he, she, is, wrong, here, open
+**Що ви опануєте:** назвати кухню й потім повернутися до тієї самої кімнати з the
+**Нові слова:** kitchen
 
 ---
 
 ## Інтро 1
 
-### Спершу назвіть чек
+### Назвати кімнату
 
-`receipt` — «чек»: надрукований запис про оплату. `This is a receipt. The receipt is wrong.` — спочатку ви називаєте, що це за документ, потім говорите про той самий уже названий чек. Тут `a` вводить чек, а `the` не змінює його на інший.
+`kitchen` — «кухня», кімната, де готують їжу. `This is a kitchen` — «Це кухня»: ви називаєте, що це за кімната. Перед `kitchen` тут потрібне `a`: перший звук приголосний. Навіть якщо в кухні поки немає їжі, вона однаково `a kitchen`.
 
-**Ви вже сказали `This is a receipt.` Тепер повідомте про той самий чек: у ньому помилка.**
+**Назвіть кухню одним англійським словом.**
 
-- ✅ **The receipt is wrong.**
-- ❌ A receipt is wrong. — *Йдеться про той самий уже названий чек, тому потрібне `the receipt`, а не нове `a receipt`.*
-- ❌ Receipt is wrong. — *Коли один чек уже названо, перед `receipt` потрібне `the`.*
+- ✅ **kitchen**
+- ❌ room — *`room` — кімната загалом. Кухня — `kitchen`.*
+- ❌ window — *`window` — вікно. Кухня — `kitchen`.*
 
 ---
 
 ## Інтро 2
 
-### Спершу назвіть касира
+### Тепер та сама кухня
 
-`cashier` — «касир»: людина, яка приймає оплату. `She is a cashier. The cashier is here.` — ви називаєте її професію, потім повертаєтеся до тієї самої жінки біля стійки. Вона не стає іншим касиром між двома фразами.
+Ви вже показали кухню й сказали `This is a kitchen`. Тепер говорите про неї ж: `The kitchen is here` — «Кухня тут». `the kitchen` означає конкретну кухню: ви обоє розумієте, яку саме. `The` можна використовувати й без попередньої згадки, якщо із ситуації зрозуміло, яка кухня мається на увазі.
 
-**Ви вже сказали `She is a cashier.` Тепер повідомте про ту саму жінку: вона тут.**
+**Ви вже показали кухню. Укажіть місце тієї самої кімнати: «Кухня тут».**
 
-- ✅ **The cashier is here.**
-- ❌ A cashier is here. — *Потрібна та сама вже названа жінка: `the cashier`, а не нове `a cashier`.*
-- ❌ Cashier is here. — *Перед уже названою професією потрібне `the`: `The cashier is here`.*
+- ✅ **The kitchen is here.**
+- ❌ The kitchen are here. — *Кухня одна: потрібне `is`.*
+- ❌ The kitchens are here. — *Так говорять про кілька кухонь. Тут одна: `The kitchen is here`.*
 
 ---
 
 ## Інтро 3
 
-### Спершу назвіть стійку
+### Чесний господар і точна схема
 
-`counter` — «стійка»: місце обслуговування, біля якого ви зараз стоїте. `That is a counter. The counter is open.` — спочатку ви називаєте вид місця, потім говорите саме про цю стійку. `The` показує, що йдеться про ту саму вже названу стійку, а не про іншу.
+`honest` — «чесний»: господар не приховує недоліків будинку. `He is honest` — «Він чесний». `accurate` — «точний»: схема правильно показує розташування кімнат. Про неї: `It is accurate` — «Вона точна». Чесність тут стосується людини, точність — схеми. Про телефон Анни: `The phone is here` — «Телефон тут».
 
-**Ви вже сказали `That is a counter.` Тепер повідомте про ту саму стійку: вона відкрита.**
+**Схема правильно показує розташування кімнат. Скажіть про неї «Вона точна».**
 
-- ✅ **The counter is open.**
-- ❌ A counter is open. — *Це та сама вже названа стійка, тому потрібне `the counter`, а не нове `a counter`.*
-- ❌ Counter is open. — *Перед уже названою стійкою потрібне `the`: `The counter is open`.*
+- ✅ **It is accurate.**
+- ❌ It is honest. — *`honest` тут описує чесну людину. Про точну схему — `accurate`.*
+- ❌ It are accurate. — *Ідеться про одну схему: `It is accurate`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-41:i01; family: listen_choose -->
-Ціль: `receipt`
-Варіанти: `receipt`
+**1 · Анна шукає свій телефон. Він лежить поруч. Скажіть «Телефон тут»**
+<!-- interaction_id: en:lesson-03:session-41:i01; family: phrase_builder -->
+Плитки: `here` `is` `phone` `The` `are` → **The phone is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The phone is here.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-41:i03; family: scripted_repeat_compare -->
-Ціль: `counter`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-41:i02; family: listen_choose -->
+🔊 *kitchen* → **kitchen** · children · ticket
+- children — *У записі перше слово — `kitchen`, а в цьому варіанті — `children`.*
+- ticket — *У записі перше слово — `kitchen`, а в цьому варіанті — `ticket`.*
 
-**3 · Послухайте та виберіть працівника за стійкою**
-<!-- interaction_id: en:lesson-03:session-41:i05; family: listen_choose -->
-Ціль: `cashier`
-Варіанти: `cashier`
+**3 · Назвіть кімнату для приготування їжі одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-41:i03; family: context_gap_grammar -->
+___ → **kitchen** · room · window
+- room — *`room` — кімната загалом. Тут називаємо кухню: `kitchen`.*
+- window — *`window` — вікно. Кухня — `kitchen`.*
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-41:i02; family: scripted_repeat_compare -->
-Ціль: `receipt`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-41:i04; family: speed_match -->
+kitchen — кухня · honest — чесний · accurate — точний · phone — телефон
 
-**5 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-41:i04; family: listen_choose -->
-Ціль: `counter`
-Варіанти: `counter`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-41:i05; family: listen_build_dictation -->
+🔊 *This is a kitchen.* Плитки: `kitchen` `a` `is` `This` `are` → **This is a kitchen.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a kitchen.`)*
 
-**6 · Промовте слово — працівник стоїть за стійкою**
-<!-- interaction_id: en:lesson-03:session-41:i06; family: scripted_repeat_compare -->
-Ціль: `cashier`
+**6 · Ви вже показали кухню й тепер указуєте, де вона. Скажіть «Кухня тут»**
+<!-- interaction_id: en:lesson-03:session-41:i06; family: phrase_builder -->
+Плитки: `here` `is` `kitchen` `The` `are` → **The kitchen is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The kitchen is here.`)*
 
-**7 · З'єднайте слова зі значеннями — біля стійки обслуговування**
-<!-- interaction_id: en:lesson-03:session-41:i08:s01; family: speed_match -->
-Пари: `receipt` — чек · `counter` — стійка · `cashier` — касир · `sticker` — наліпка
-Ціль: `receipt · counter · cashier · sticker`
+**7 · Господар не приховує недоліків будинку. Скажіть «Він чесний» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-41:i07; family: scripted_repeat_compare -->
+🎙 **He's honest.**
 
-**8 · Послухайте та складіть одну фразу — стійка перед вами**
-<!-- interaction_id: en:lesson-03:session-41:i08:s02; family: listen_build_dictation -->
-Ціль: `This is a counter.`
+**8 · Ви називаєте, що це за кімната: кухня**
+<!-- interaction_id: en:lesson-03:session-41:i08; family: context_gap_grammar -->
+This is ___ kitchen. → **a** · an · are
+- an — *`kitchen` починається з приголосного звука: `a kitchen`.*
+- are — *Тут перед назвою кімнати потрібне `a`: `a kitchen`.*
 
-**9 · Промовте одну фразу — касир за стійкою**
-<!-- interaction_id: en:lesson-03:session-41:i09:s02; family: scripted_repeat_compare -->
-Ціль: `That is a cashier.`
+**9 · Послухайте опис схеми**
+<!-- interaction_id: en:lesson-03:session-41:i09; family: listen_choose -->
+🔊 *It is accurate.* → **It is accurate.** · It is relevant. · It is unusual.
+- It is relevant. — *У записі останнє слово — `accurate`, а в цьому варіанті — `relevant`.*
+- It is unusual. — *У записі останнє слово — `accurate`, а в цьому варіанті — `unusual`.*
 
-**10 · Складіть одну фразу — чек перед вами**
-<!-- interaction_id: en:lesson-03:session-41:i07; family: phrase_builder -->
-Ціль: `This is a receipt.`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-41:i10; family: speed_match -->
+kitchen — кухня · phone — телефон · here — тут · there — там
 
-**11 · Вставте одну відповідь в одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i09:s01; family: context_gap_grammar -->
-Ціль: `This is ___ receipt.`
-Варіанти: `a` · `the` · `an` · `без артикля`
-- the — *Перший чек ще не названо, тому потрібне `a`; у другій фразі це вже той самий чек, тому `The`.*
-- an — *`receipt` починається звуком /r/, тому перед ним `a`, а не `an`.*
-- без артикля — *Коли вперше називаємо один чек, потрібне `a`; для вже названого чека — `The`.*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-41:i11; family: listen_build_dictation -->
+🔊 *That phone is there.* Плитки: `there` `is` `phone` `That` `are` → **That phone is there.**
+*(плитка `are` зайва: тут потрібно `is` — `That phone is there.`)*
 
+**12 · Ви показуєте на кімнату далі коридором. Назвіть її: «Це кухня», зі словом для одного далі**
+<!-- interaction_id: en:lesson-03:session-41:i12; family: phrase_builder -->
+Плитки: `kitchen` `a` `is` `That` `are` → **That is a kitchen.**
+*(плитка `are` зайва: тут потрібно `is` — `That is a kitchen.`)*
 
-**12 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i10:s01; family: listen_build_dictation -->
-Ціль: `That is a receipt.`
+**13 · Схема відповідає розташуванню кімнат. Скажіть про неї «Вона точна» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-41:i13; family: scripted_repeat_compare -->
+🎙 **It's accurate.**
 
-**13 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i10:s02; family: scripted_repeat_compare -->
-Ціль: `The receipt is wrong.`
+**14 · Ви уточнюєте місце однієї вже знайомої кухні**
+<!-- interaction_id: en:lesson-03:session-41:i14; family: context_gap_grammar -->
+The kitchen ___ here. → **is** · are · am
+- are — *Кухня одна: `The kitchen is here`.*
+- am — *З `The kitchen` потрібне `is`.*
 
-**14 · Послухайте й виберіть точне значення фрази**
-<!-- interaction_id: en:lesson-03:session-41:i11; family: listen_choose -->
-Ціль: `The receipt is wrong.`
-Варіанти: `У цьому чеку помилка.` · `У якомусь чеку помилка.` · `У цій стійці помилка.` · `Цей касир помиляється.`
-- У якомусь чеку помилка. — *`the receipt` — уже названий конкретний чек, а не якийсь новий.*
-- У цій стійці помилка. — *У записі звучить `receipt` — «чек», а не `counter` — «стійка».*
-- Цей касир помиляється. — *Фраза говорить про чек, `receipt`, а не про касира, `cashier`.*
+**15 · Послухайте опис господаря**
+<!-- interaction_id: en:lesson-03:session-41:i15; family: listen_choose -->
+🔊 *He is honest.* → **He is honest.** · He is brave. · He is weak.
+- He is brave. — *У записі останнє слово — `honest`, а в цьому варіанті — `brave`.*
+- He is weak. — *У записі останнє слово — `honest`, а в цьому варіанті — `weak`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-41:i16; family: speed_match -->
+kitchen — кухня · honest — чесний · accurate — точний · phone — телефон
 
-**15 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i12:s01; family: phrase_builder -->
-Ціль: `She is a cashier.`
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i12:s02; family: scripted_repeat_compare -->
-Ціль: `The cashier is here.`
-
-**17 · Вставте одну відповідь в одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i13:s01; family: context_gap_grammar -->
-Ціль: `She is ___ cashier.`
-Варіанти: `a` · `the` · `an` · `без артикля`
-- the — *Спершу ви називаєте професію однієї жінки: `a cashier`; потім говорите про неї ж: `The cashier`.*
-- an — *`cashier` починається звуком /k/, тому потрібне `a`, а не `an`.*
-- без артикля — *Коли називаємо професію однієї людини, потрібне `a`; для вже названого касира — `The`.*
-
-
-**18 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i13:s02; family: phrase_builder -->
-Ціль: `The cashier is here.`
-
-**19 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i14:s01; family: listen_build_dictation -->
-Ціль: `He is a cashier.`
-
-**20 · Послухайте одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i14:s02; family: listen_choose -->
-Ціль: `The cashier is here.`
-Варіанти: `The cashier is here.` · `receipt` · `counter` · `cashier`
-- receipt — *У записі звучить `The cashier is here.`, а не `receipt`.*
-- counter — *У записі звучить `The cashier is here.`, а не `counter`.*
-- cashier — *У записі звучить `The cashier is here.`, а не `cashier`.*
-
-
-**21 · Вставте одну відповідь в одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i15:s01; family: context_gap_grammar -->
-Ціль: `That is ___ counter.`
-Варіанти: `a` · `the` · `an` · `без артикля`
-- the — *Спочатку ви лише називаєте стійку: `a counter`. У другій фразі це та сама стійка: `The counter`.*
-- an — *`counter` починається звуком /k/, тому перед ним потрібне `a`.*
-- без артикля — *Коли вперше називаємо одну стійку, потрібне `a`; для вже названої стійки — `The`.*
-
-
-**22 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i15:s02; family: scripted_repeat_compare -->
-Ціль: `The counter is open.`
-
-**23 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i16:s01; family: phrase_builder -->
-Ціль: `That is a counter.`
-
-**24 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i16:s02; family: listen_build_dictation -->
-Ціль: `The counter is open.`
-
-**25 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i17:s01; family: scripted_repeat_compare -->
-Ціль: `That is a receipt.`
-
-**26 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i17:s02; family: phrase_builder -->
-Ціль: `The receipt is wrong.`
-
-**27 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i17:s03; family: scripted_repeat_compare -->
-Ціль: `He is a cashier.`
-
-**28 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i17:s04; family: listen_build_dictation -->
-Ціль: `The cashier is here.`
-
-**29 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i17:s05; family: scripted_repeat_compare -->
-Ціль: `This is a counter.`
-
-**30 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-41:i17:s06; family: phrase_builder -->
-Ціль: `The counter is open.`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=scripted_repeat_compare, 14=listen_choose, 15=phrase_builder, 16=scripted_repeat_compare, 17=context_gap_grammar, 18=phrase_builder, 19=listen_build_dictation, 20=listen_choose, 21=context_gap_grammar, 22=scripted_repeat_compare, 23=phrase_builder, 24=listen_build_dictation, 25=scripted_repeat_compare, 26=phrase_builder, 27=scripted_repeat_compare, 28=listen_build_dictation, 29=scripted_repeat_compare, 30=phrase_builder
+**17 · В іншому будинку ви вже оглянули кухню разом із гостем. Тепер гість забув, де вона. Ви показуєте вдалину. Скажіть повним реченням «Кухня там», повертаючись до тієї самої кімнати**
+<!-- interaction_id: en:lesson-03:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The kitchen is there.**
 

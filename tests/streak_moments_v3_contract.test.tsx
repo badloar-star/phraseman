@@ -225,6 +225,8 @@ describe('рубежи серии — флаг, подключение, исхо
   const ALLOWED_IMPORTERS = [
     // зачем (15.10): экраны итога урока/разговора (commit 9c86f065d, окна m09/m17) читают только флаг moments_v3 (use_moments_v3_flag) — лёгкий хук, тяжёлые модули не тянут
     'app/dialogue_v2_completion.tsx', 'app/lesson_complete.tsx',
+    // зачем (15.10): день серии засчитан → streak_day_signal запоминает рубеж (isStreakMilestone) до показа на итогах; итоги карточек и «Моих ошибок» несут тот же ленивый хост
+    'app/streak_day_signal.ts', 'app/flashcards/SessionResultScreen.tsx', 'app/mistake_practice_session.tsx',
     'app/dev_moments_preview.tsx', 'app/lesson1.tsx', 'components/dialog_moments/FirstDialogMoment.tsx', 'components/home/v2/HomeV2TodayCard.tsx',
     'components/lesson_moments/LessonPerfectMoment.tsx', 'components/spire/SpireHomeScreen.tsx', 'components/spire/moments/MomentPromotionShort.tsx', 'components/spire/moments/SpireFloorMoment.tsx',
     'components/stories/StorySlides.tsx', 'modules/story_events/story_event_sources.ts',

@@ -10,6 +10,9 @@ import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, T
 import KitTouchable from '../components/KitTouchable';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { decidePerfectMoment, perfectMomentKey } from '../components/lesson_moments/perfect_moment_gate';
+import { useStreakMilestoneHold } from './streak_milestone_pending';
+// зачем (координатор 15.10): окно рубежа серии грузится лениво и только когда есть ожидающий или открытый рубеж при moments_v3; идёт ПЕРВЫМ, остальные окна экрана ждут
+const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
 import { captureDoneChainBefore, decideDoneChain, DONE_CHAIN_LOG, type DoneChainBefore } from '../components/completion/done_chain_gate';
 // зачем (координатор 15.10, m09 за флагом moments_v3): окно «Идеальный урок» грузится лениво и только когда решение сказало «показать»
 const LessonPerfectHost = lazy(() => import('../components/lesson_moments/LessonPerfectHost'));
@@ -774,7 +777,9 @@ export default function LessonComplete() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: решение пишется один раз, в момент показа итога
   }, [sequenceShowing]);
   // зачем (координатор 15.10, очередь показов): окно m09 «ИДЕАЛ» открывается ПОСЛЕ цепочки m10, а не поверх неё; без цепочки — как раньше, сразу
-  const perfectMomentOn = sequenceShowing && perfectDecision.show && (!doneChainOn || doneChainFinished);
+  const milestoneHoldRaw = useStreakMilestoneHold();
+  const milestoneHold = momentsV3 && milestoneHoldRaw;
+  const perfectMomentOn = sequenceShowing && perfectDecision.show && !milestoneHold && (!doneChainOn || doneChainFinished);
   // зачем (координатор 13.10, paywalls-009/010, макет embedded-plus-states.html экраны 2–3 — приказ владельца 11.10): карточка
   // «Первый урок — готово» / «Три урока — отличный старт» жила только в старом варианте итога (legacyCompletionSurfacesEnabled=false),
   // а seqDone ставит лишь старая секвенция — на экране 2.0 предложение Plus не показывалось НИКОГДА. Экран итога 2.0 сам и есть
@@ -1482,13 +1487,18 @@ export default function LessonComplete() {
               onClose={goBackFromComplete}
               chain={doneChainOn && doneChainBeforeRef.current ? { before: doneChainBeforeRef.current, onFinished: onDoneChainFinished } : undefined}
             />
+            {milestoneHold && sequenceShowing ? (
+              <Suspense fallback={null}>
+                <StreakMilestoneHost lang={lang} />
+              </Suspense>
+            ) : null}
             {perfectMomentOn && lessonCounts ? (
               <Suspense fallback={null}>
                 <LessonPerfectHost lang={lang} onceKey={perfectMomentKey(lessonId, studyTarget, completionAttemptId)} total={lessonCounts.correct + lessonCounts.wrong} coinsEarned={practiceRunes.runes} onOpenChange={setPerfectMomentOpen} />
               </Suspense>
             ) : null}
             <ReviewPromptModal
-              visible={showReview && !perfectMomentOpen}
+              visible={showReview && !perfectMomentOpen && !milestoneHold}
               context={reviewContext}
               lang={lang}
               onClose={goNext}

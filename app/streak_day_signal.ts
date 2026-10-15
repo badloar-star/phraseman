@@ -6,6 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { getLocalDayKey } from './local_date';
 import { recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
+import { isStreakMilestone } from '../components/streak/moments/streak_milestones';
+import { noteStreakMilestonePending } from './streak_milestone_pending';
 import { onAccountOwnerChanged } from './account_owner_change';
 
 /**
@@ -109,6 +111,8 @@ export function markStreakDayCounted(input: Readonly<{ wasCountedBefore: boolean
   }
   console.log(`[STREAK-DAY] counted:first source=${input.source} days=${input.days} day=${today}`);
   emitAppEvent('streak_day_counted', { days: input.days, dayKey: today, source: input.source });
+  // зачем (координатор 15.10): рубеж ждёт показа в памяти до экрана итога (урок/разговор), окно покажет StreakMilestoneHost за флагом moments_v3; на диск не пишется
+  if (isStreakMilestone(input.days)) noteStreakMilestonePending(input.days, today);
   void recordStreakMilestoneStory(input.days, today); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
 }
 

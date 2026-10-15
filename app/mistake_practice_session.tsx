@@ -13,7 +13,7 @@ import { actionToastTri, emitAppEvent } from './events';
 import { useAudioPlayer } from 'expo-audio';
 import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Pressable,
   ScrollView,
@@ -25,6 +25,10 @@ import {
 import { useScaledTextStyles } from '../hooks/useLineScale';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
+import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
+import { useStreakMilestoneHold } from './streak_milestone_pending';
+// зачем (координатор 15.10): рубеж серии на итоге «Моих ошибок» — тот же ленивый хост
+const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
 import { usePremium } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { SpeakingPanel, buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
@@ -444,6 +448,9 @@ function MistakePracticeSessionScreen() {
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения.
   const [complete, setComplete] = useState(devJumpToFinale);
+  const milestoneMomentsV3 = useMomentsV3Enabled();
+  const milestoneHoldRaw = useStreakMilestoneHold();
+  const milestoneHold = milestoneMomentsV3 && milestoneHoldRaw;
   // зачем (владелец, 2026-08-27): sessionId уникален на каждую сессию отработки
   // ошибок (новый набор актуальных ошибок каждый раз) — «повторное прохождение»
   // здесь концептуально не применимо, поэтому completionOrdinal фиксирован.
@@ -1357,6 +1364,11 @@ function MistakePracticeSessionScreen() {
           fixed={fixedNow}
           onDone={leavePractice}
         />
+        {milestoneHold ? (
+          <Suspense fallback={null}>
+            <StreakMilestoneHost lang={lang} />
+          </Suspense>
+        ) : null}
       </MistakePracticeScreenFrame>
     );
   }

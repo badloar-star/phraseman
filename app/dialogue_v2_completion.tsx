@@ -35,6 +35,9 @@ import { RowDivider } from '../components/v2/RowDivider';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { glassTone } from '../components/dialogs/glass/glassTone';
 import { isMomentsV3FlagOn, useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
+import { useStreakMilestoneHold } from './streak_milestone_pending';
+// зачем (координатор 15.10): окно рубежа серии — лениво и первым (см. lesson_complete)
+const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
 import { deriveDialogueReaction, dialoguePartnerName, DIALOGUE_CHAIN_LOG } from '../components/completion/dialogue_chain_gate';
 import { dialogueChainText } from '../components/completion/dialogue_chain_strings';
 // зачем (координатор 15.10, m17 за флагом moments_v3): окно «Первый разговор — есть!» грузится лениво и только когда итог готов
@@ -117,6 +120,8 @@ export default function DialogueV2CompletionRoute() {
   const [state, setState] = useState<State>({ kind: 'loading' });
   const [feedbackAllowed, setFeedbackAllowed] = useState(false);
   const momentsV3 = useMomentsV3Enabled();
+  const milestoneHoldRaw = useStreakMilestoneHold();
+  const milestoneHold = momentsV3 && milestoneHoldRaw;
   // зачем (координатор 15.10, m18 «думает… → реакция» за moments_v3): решение защёлкивается при входе — «думает…» ложится на ожидание итога из сети с первого кадра,
   // а флаг, пришедший позже, не переключает экран посреди показа. Модуль анимации грузится require'ом только при включённом флаге.
   const [dialogueChainOn] = useState(() => isMomentsV3FlagOn());
@@ -544,7 +549,12 @@ export default function DialogueV2CompletionRoute() {
         </>)}
       </SafeAreaView>
       {/* зачем (координатор 15.10, очередь показов): окно m17 открывается ПОСЛЕ цепочки m18, а не поверх неё; без цепочки — как раньше */}
-      {momentsV3 && state.kind === 'ready' && goalsTotal > 0 && (!DlgChain || dialogueChainFinished) ? (
+      {milestoneHold && state.kind === 'ready' ? (
+        <Suspense fallback={null}>
+          <StreakMilestoneHost lang={lang} />
+        </Suspense>
+      ) : null}
+      {momentsV3 && state.kind === 'ready' && goalsTotal > 0 && !milestoneHold && (!DlgChain || dialogueChainFinished) ? (
         <Suspense fallback={null}>
           <FirstDialogHost lang={lang} studyTarget={String(studyTarget)} scenarioId={scenarioId} endedBy={endedBy} turns={turns} goalsDone={goalsMet} goalsTotal={goalsTotal} onNext={close} />
         </Suspense>

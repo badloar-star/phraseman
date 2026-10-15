@@ -6,7 +6,11 @@
  * (CardsSessionResultV2), а не общий экран завершения. Здесь — логика: звук/хаптика финала,
  * недельный гейт оценки, подписи кнопок.
  */
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { useMomentsV3Enabled } from '../../components/streak/moments/use_moments_v3_flag';
+import { useStreakMilestoneHold } from '../streak_milestone_pending';
+// зачем (координатор 15.10): рубеж серии виден и тем, кто учит только карточки — тот же ленивый хост, что на итоге урока
+const StreakMilestoneHost = lazy(() => import('../../components/streak/moments/StreakMilestoneHost'));
 import { useLang } from '../../components/LangContext';
 import FeedbackRatingCard from '../../components/FeedbackRatingCard';
 import { triLang } from '../../constants/i18n';
@@ -79,6 +83,9 @@ function SessionResultScreenImpl({
   testID = 'fc-session-result',
 }: SessionResultScreenProps) {
   const { lang } = useLang();
+  const momentsV3 = useMomentsV3Enabled();
+  const milestoneHoldRaw = useStreakMilestoneHold();
+  const milestoneHold = momentsV3 && milestoneHoldRaw;
   // Время фиксируется один раз — в кадр появления итога, а не на каждый рендер.
   const [durationSec] = useState<number | null>(() => {
     if (typeof durationSecProp === 'number' && Number.isFinite(durationSecProp)) return Math.max(0, durationSecProp);
@@ -115,6 +122,7 @@ function SessionResultScreenImpl({
     : retryLabel;
   void accentColor; void scoreText; // зачем: прежние пропсы вызовов; в макете итога Карточек нет ни акцента режима, ни строки счёта (владелец 04.10 — только монеты)
   return (
+    <>
     <CardsSessionResultV2
       testID={testID}
       overline={overline}
@@ -155,6 +163,12 @@ function SessionResultScreenImpl({
           />
       ) : undefined}
     />
+    {milestoneHold ? (
+      <Suspense fallback={null}>
+        <StreakMilestoneHost lang={lang} />
+      </Suspense>
+    ) : null}
+    </>
   );
 }
 

@@ -1,243 +1,138 @@
-# Англійська · Урок 1 · Заняття 26 — «It is» про погоду й час
+# Англійська · Урок 1 · Заняття 26 — Очікування в аеропорту
 
-**Ситуація.** Лена вранці збирається на роботу. Перед виходом вона дивиться у вікно й на годинник, щоб вирішити, чи брати парасольку і чи вже час збиратися.
-**Як сказати:** `It is`, коли говорите про погоду або час.
-**Нові слова:** rainy, windy, early, late
-**Повертаються:** cold, warm, dark, quiet
+**Ситуація.** Ви з другом чекаєте на посадку. Час тягнеться, оголошення збивають із пантелику, а один із друзів поки не відповідає на дзвінки.
+
+**Що ви опануєте:** описати свій і чужий стан знайомими am, is, are
+**Нові слова:** bored, confused, worried
 
 ---
 
 ## Інтро 1
 
-### `rainy` — дощово
+### Мені нудно
 
-`rainy` — «дощово». Про погоду фраза починається з `it`: `It is rainy`.
+`bored` — «нудно». Ви вже пів години дивитеся на незмінне табло: `I am bored` — «Мені нудно». Годинник, здається, теж нікуди не поспішає. Про іншу людину скажемо `He is bored` або `She is bored`. Це стан людини, якій нецікаво.
 
-Українською вистачає одного слова: «дощово». Англійською перед ним потрібні ще два — `It is`.
+**Ви втомилися чекати без діла й нудьгуєте. Скажіть про свій стан.**
 
-У таких фразах `it` не називає предмет: це звичайний початок фрази про погоду.
-
-**Ранок, ви відсунули штору: по склу тече. Скажіть про погоду.**
-
-- ✅ **It is rainy.**
-- ❌ Is rainy. — *`It` зникло. Воно здається зайвим, але без нього фраза починається нізвідки.*
-- ❌ It rainy. — *Між `it` і словом потрібна форма `is`.*
+- ✅ **I am bored.**
+- ❌ I is bored. — *Після `I` потрібна форма `am`.*
+- ❌ He is bored. — *Це про нього. Про себе кажемо `I am bored`.*
 
 ---
 
 ## Інтро 2
 
-### `windy` — вітряно
+### Я заплутався
 
-`windy` — «вітряно». Вітер гне дерева, двері вириваються з рук — це `It is windy`.
+`confused` — «заплутався, не розумію». У квитку один вихід, на табло інший: `I am confused` — «Я заплутався». Якщо ви з другом обоє не розумієте, що відбувається: `We are confused`. Це не нудьга, а нерозуміння.
 
-`wind` — це сам вітер, а `windy` — опис погоди. Тому про погоду кажуть `It is windy`.
+**Ви з другом не розумієте, до якого виходу йти: інформація суперечлива. Скажіть за вас обох.**
 
-**Ви відчинили кватирку, і штору здуло на підлогу. Скажіть про погоду.**
-
-- ✅ **It is windy.**
-- ❌ It is wind. — *`wind` — сам вітер. Погода — `windy`, з хвостиком «-і».*
-- ❌ Is windy. — *Без `it` фраза починається нізвідки. Про погоду завжди `It is`.*
+- ✅ **We are confused.**
+- ❌ We are bored. — *`bored` — «нудно». Тут ви не розумієте інформацію: `confused`.*
+- ❌ We is confused. — *Після `We` потрібно `are`.*
 
 ---
 
 ## Інтро 3
 
-### `early` і `late` — годинник
+### Я хвилююся
 
-`early` — «рано». `late` — «пізно». Про годинник говорять тими самими двома словами, що й про погоду: `It is early`, `It is late`.
+`worried` — «хвилюється, тривожиться». Друг не відповідає, і ви боїтеся, що з ним щось сталося: `I am worried` — «Я хвилююся». Про сестру, яка тривожиться, скажемо `She is worried`.
 
-`I am late` означає «я запізнююсь», а `It is late` — «пізно». У першому випадку йдеться про людину, у другому — про час.
+**Сестра боїться, що загубила паспорт. Скажіть про її тривогу.**
 
-**Ви глянули на годинник: пів на сьому, виходити аж за годину. Скажіть про час.**
-
-- ✅ **It is early.**
-- ❌ I am early. — *Це «я прийшов рано» — про вас. А тут ви говорите про годинник: `It is early`.*
-- ❌ It early. — *Між `It` і словом потрібна форма `is`.*
+- ✅ **She is worried.**
+- ❌ She is confused. — *`confused` — «заплуталася». Тут треба назвати її тривогу: `worried`.*
+- ❌ She are worried. — *Після `She` потрібна форма `is`.*
 
 ---
 
-## Практика (18 завдань, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · Картка слова — rainy**
-<!-- interaction_id: en:lesson-01:session-26:i01; family: listen_choose -->
-> **rainy** — «дощово». Не злива і не потоп, а звичайна сіра мжичка, через яку беруть парасольку.
+**1 · Вам нудно чекати без діла. Складіть фразу про себе**
+<!-- interaction_id: en:lesson-01:session-26:i01; family: phrase_builder -->
+Плитки: `bored` `am` `I` `is` → **I am bored.**
+*(плитка `is` зайва: тут потрібно `am` — `I am bored.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-26:i02; family: listen_choose -->
-🔊 *rainy* → **rainy** · rain · ready
-- rainy — *У записі `rainy` після `rain` чути «і»: це прикметник про погоду, не `rain` і не `ready`.*
-- rain — *`rain` — «дощ». Щоб описати погоду, потрібне `rainy` — «дощово».*
-- ready — *`rainy` починається як українське «рейка». `ready` — коротко, «ре».*
+🔊 *They are worried.* → **They are worried.** · We are worried. · They are confused.
+- We are worried. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
+- They are confused. — *У записі останнє слово — `worried`, а в цьому варіанті — `confused`.*
 
-**3 · Картка слова — windy**
-<!-- interaction_id: en:lesson-01:session-26:i03; family: listen_choose -->
-> **windy** — «вітряно». Не легкий вітерець, а такий, коли грюкає кватирка і парасолька марна.
+**3 · Друг не розуміє суперечливих оголошень. Доповніть фразу про нього**
+<!-- interaction_id: en:lesson-01:session-26:i03; family: context_gap_grammar -->
+He ___ confused. → **is** · am · are
+- am — *Після `He` потрібно `is`.*
+- are — *Про друга кажемо `He is`.*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-26:i04; family: listen_choose -->
-🔊 *windy* → **windy** · wind · window
-- windy — *У записі `windy` після `wind` чути «і»: це погода, не `wind` і не `window`.*
-- wind — *`wind` — «вітер». Щоб описати погоду, потрібне `windy` — «вітряно».*
-- window — *«Вікно». Другий шматок інший: «-доу» проти «-ді».*
+**4 · З’єднайте слова та значення**
+<!-- interaction_id: en:lesson-01:session-26:i04; family: speed_match -->
+bored — нудьгує · confused — заплутався · worried — хвилюється · surprised — здивований
 
-**5 · Складіть фразу — за вікном гне дерева**
-<!-- interaction_id: en:lesson-01:session-26:i05; family: phrase_builder -->
-Плитки: `windy` `It` `is` `not` → **It is windy.**
-Зайва плитка `not`: дерева гне вітром, тому `It is windy`.
-*(плитка `not` зайва: `not` зайве: дерева гне вітром, тому `It is windy`.)*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-01:session-26:i05; family: listen_build_dictation -->
+🔊 *She is bored.* Плитки: `bored` `is` `She` `He` → **She is bored.**
+*(плитка `He` зайва: тут потрібно `She` — `She is bored.`)*
 
+**6 · Ви із сестрою тривожитеся за друга, який не відповідає. Складіть фразу за вас обох**
+<!-- interaction_id: en:lesson-01:session-26:i06; family: phrase_builder -->
+Плитки: `worried` `are` `We` `is` → **We are worried.**
+*(плитка `is` зайва: тут потрібно `are` — `We are worried.`)*
 
-**6 · Картка слова — early**
-<!-- interaction_id: en:lesson-01:session-26:i06; family: listen_choose -->
-> **early** — «рано». Годинник показує менше, ніж ви розраховували, і є час посидіти.
+**7 · Ви не розумієте, чому у квитку й на табло різні виходи. Скажіть працівникові: «Я заплутався»**
+<!-- interaction_id: en:lesson-01:session-26:i07; family: scripted_repeat_compare -->
+🎙 **I am confused.**
 
-**7 · Картка слова — late**
-<!-- interaction_id: en:lesson-01:session-26:i07; family: listen_choose -->
-> **late** — «пізно». Про час доби: годинник пішов далі, ніж хотілося б.
+**8 · Сестра каже, що боїться запізнитися. Назвіть її стан, звертаючись до неї**
+<!-- interaction_id: en:lesson-01:session-26:i08; family: context_gap_grammar -->
+You ___ worried. → **are** · am · is
+- am — *Після `You` потрібна форма `are`.*
+- is — *Ви звертаєтеся до неї: `You are`.*
 
-**8 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-26:i08; family: listen_choose -->
-🔊 *early* → **early** · ear · earn
-- early — *У записі `early` після «ер» чути `-ly`; це не `ear` і не `earn` із кінцем `-n`.*
-- ear — *«Вухо». Там голосна як українське «і», у `early` — глуха, ближча до «е» з натяком на «о».*
-- earn — *Початок той самий, «ер». Різниця в кінці: у `earn` там «н», у `early` — «-лі».*
+**9 · Послухайте й виберіть фразу**
+<!-- interaction_id: en:lesson-01:session-26:i09; family: listen_choose -->
+🔊 *We are confused.* → **We are confused.** · They are confused. · We are surprised.
+- They are confused. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
+- We are surprised. — *У записі останнє слово — `confused`, а в цьому варіанті — `surprised`.*
 
-**9 · Послухайте і складіть — «пізно»**
-<!-- interaction_id: en:lesson-01:session-26:i09; family: listen_build_dictation -->
-🔊 *It is late.* Плитки: `late` `is` `It` `early` → **It is late.**
-Зайва плитка `early`: у записі `It is late.` — «пізно».
-*(плитка `early` зайва: `early` зайве: у записі `It is late.` — «пізно».)*
+**10 · З’єднайте знайомі слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-26:i10; family: speed_match -->
+proud — пишається · ashamed — соромно · wrong — не має рації · early — рано
 
+**11 · Послухайте й складіть почуте**
+<!-- interaction_id: en:lesson-01:session-26:i11; family: listen_build_dictation -->
+🔊 *He is worried.* Плитки: `worried` `is` `He` `She` → **He is worried.**
+*(плитка `She` зайва: тут потрібно `He` — `He is worried.`)*
 
-**10 · Вставте слово — по склу тече, у дворі калюжі**
-<!-- interaction_id: en:lesson-01:session-26:i10; family: context_gap_grammar -->
-It is ___ . → **rainy** · windy · early
-- rainy — *По склу тече вода й у дворі калюжі, тому `rainy` — «дощово», не вітряно і не рано.*
-- windy — *Вітру немає, є вода. Про дощ — `rainy`.*
-- early — *Це про годинник, а ви дивитесь на погоду.*
+**12 · Двом друзям нічим зайнятися, їм нудно. Складіть фразу про них**
+<!-- interaction_id: en:lesson-01:session-26:i12; family: phrase_builder -->
+Плитки: `bored` `are` `They` `is` → **They are bored.**
+*(плитка `is` зайва: тут потрібно `are` — `They are bored.`)*
 
-**11 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-26:i11; family: speed_match -->
-rainy — дощово · windy — вітряно · early — рано · late — пізно
-
-**12 · Вставте слово — про погоду за вікном**
-<!-- interaction_id: en:lesson-01:session-26:i12; family: context_gap_grammar -->
-It ___ cold. → **is** · am · are
-- is — *Про погоду кажуть `It`, тому у `It is cold.` потрібна форма `is`.*
-- am — *`am` живе тільки поруч з `I`. Про погоду — `is`.*
-- are — *Теж не сюди. `It` бере тільки `is`.*
-
-**13 · Скажіть уголос — пів на сьому, виходити за годину**
+**13 · Ваш рейс виявився єдиним без затримки. Скажіть за вашу компанію: «Нам пощастило»**
 <!-- interaction_id: en:lesson-01:session-26:i13; family: scripted_repeat_compare -->
-🎙 **It is early.**
+🎙 **We are lucky.**
 
-**14 · Складіть фразу — вікно відчинене, а надворі зимно**
-<!-- interaction_id: en:lesson-01:session-26:i14; family: phrase_builder -->
-Плитки: `cold` `is` `It` `not` → **It is cold.**
-Зайва плитка `not`: надворі зимно, тому `It is cold`.
-*(плитка `not` зайва: `not` зайве: надворі зимно, тому `It is cold`.)*
+**14 · Сестра не розуміє, чому на двох табло різний час. Доповніть фразу про її нерозуміння**
+<!-- interaction_id: en:lesson-01:session-26:i14; family: context_gap_grammar -->
+She is ___ . → **confused** · bored · proud
+- bored — *`bored` — «нудьгує». Тут вона заплуталася: `confused`.*
+- proud — *`proud` — «пишається». Нерозуміння — `confused`.*
 
+**15 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-26:i15; family: listen_choose -->
+🔊 *You are surprised.* → **You are surprised.** · We are surprised. · You are worried.
+- We are surprised. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
+- You are worried. — *У записі останнє слово — `surprised`, а в цьому варіанті — `worried`.*
 
-**15 · Вставте слово — батарея гріє, у кімнаті добре**
-<!-- interaction_id: en:lesson-01:session-26:i15; family: context_gap_grammar -->
-It is ___ . → **warm** · cold · rainy
-- warm — *Батарея гріє, тому `warm` — «тепло», не холодно і не дощово.*
-- cold — *Рівно навпаки. Коли тепло — `warm`.*
-- rainy — *Це про вулицю і дощ, а ви говорите про кімнату.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-26:i16; family: speed_match -->
+lucky — везучий · bored — нудьгує · confused — заплутався · worried — хвилюється
 
-**16 · Послухайте і складіть — «тихо»**
-<!-- interaction_id: en:lesson-01:session-26:i16; family: listen_build_dictation -->
-🔊 *It is quiet.* Плитки: `quiet` `It` `is` `windy` → **It is quiet.**
-Зайва плитка `windy`: у записі `It is quiet.` — «тихо».
-*(плитка `windy` зайва: `windy` зайве: у записі `It is quiet.` — «тихо».)*
+**17 · Ваша кішка втекла з дому. Ви боїтеся, що вона потрапить під машину. Назвіть своє почуття однією фразою**
+<!-- interaction_id: en:lesson-01:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am worried.**
 
-
-**17 · Складіть фразу — у кімнаті натоплено**
-<!-- interaction_id: en:lesson-01:session-26:i17; family: phrase_builder -->
-Плитки: `warm` `It` `is` `am` → **It is warm.**
-Зайва плитка `am`: з `It` ставлять `is` — `It is warm`.
-*(плитка `am` зайва: `am` зайве: з `It` ставлять `is` — `It is warm`.)*
-
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-26:i18:s01; family: scripted_repeat_compare -->
-🎙 **It is quiet.**
-
-**19 · Складіть фразу — у кімнаті темно**
-<!-- interaction_id: en:lesson-01:session-26:i18:s02; family: phrase_builder -->
-Плитки: `dark` `It` `is` `are` → **It is dark.**
-Зайва плитка `are`: з `It` ставлять `is` — `It is dark`.
-*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is dark`.)*
-
-
-**20 · Послухайте і складіть — надворі вітряно**
-<!-- interaction_id: en:lesson-01:session-26:i18:s03; family: listen_build_dictation -->
-🔊 *It is windy.* Плитки: `windy` `It` `is` `are` → **It is windy.**
-Зайва плитка `are`: з `It` ставлять `is` — `It is windy`.
-*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is windy`.)*
-
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-26:i18:s04; family: scripted_repeat_compare -->
-🎙 **It is rainy.**
-
----
-
-## Для сборщика
-
-new_words:
-rainy — дощово — «дощово». Не злива і не потоп, а звичайна сіра мжичка, через яку беруть парасольку.
-windy — вітряно — «вітряно». Не легкий вітерець, а такий, коли грюкає кватирка і парасолька марна.
-early — рано — «рано». Годинник показує менше, ніж ви розраховували, і є час посидіти.
-late — пізно — «пізно». Про час доби: годинник пішов далі, ніж хотілося б.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=scripted_repeat_compare, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare, 19=phrase_builder, 20=listen_build_dictation, 21=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | дотики | де правильна відповідь |
-|---|---|---|
-| cold | 12, 14, 15 | 12 (`It is cold`), 14 (складання `It is cold`) |
-| warm | 15, 17 | 15, 17 (складання `It is warm`) |
-| dark | 13, 18 | 18 (фінал, `It is dark`) |
-| quiet | 16, 18 | 16 (складання `It is quiet`), 18 (фінал) |
-
-Усі чотири — щонайменше по два дотики, кожне хоч раз правильна відповідь.
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | пояснено вище за питання |
-|---|---|---|
-| Інтро 1 | rainy | так |
-| Інтро 2 | windy | так |
-| Інтро 3 | early | так |
-
-**3. Дошка пар (завдання 11)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| rainy | 1 | 2 (слух), 10 (правильна відповідь) |
-| windy | 3 | 4 (слух), 5 (складання) |
-| early | 6 | 8 (слух), 9 (пастка у складанні) |
-| late | 7 | 9 (слух + складання `It is late`) |
-
-Слів без відпрацювання немає.
-
-**4. Обманки на уважність:** три — завдання 5 і 14 (зайва `not`, розбір в обох), 17 (чужа скріпка `am`, розбір є). Плюс зайві плитки-слова в 9 і 16.
-
-**5. Механіки в другій половині:** 13 (пропуск) → 14 (складання) → 15 (пропуск) → 16 (слух+складання) → 17 (складання) → 18 (голос). Трьох однакових поспіль немає.
-
----
-
-## Итог
-
-- Исправил «двері виривається» → «двері вириваються»: в украинском это слово только во множественном числе.
-- Заменил во всех местах хвостик «-и» на «-і» — украинская буква «и» читается не так, и подсказка про звучание сбивала бы ученика.
-- Заодно поправил разбор слова `window` в задании 4, чтобы сравнение окончаний осталось согласованным.
-- Поменял опору для звучания `rainy`: вместо книжного «рейс» — привычное «рейка».
-- Остальное не трогал: английские слова, номера, типы заданий и блок для сборщика — как были.

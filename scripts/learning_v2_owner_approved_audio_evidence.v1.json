@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "learning_v2_owner_approved_audio_evidence_v1",
+  "decision": "одобрено владельцем 15.10 (через координатора): курс V2 s01–s15 выпускается; звук этих реплик есть и собирается (learning_v2_audio_coverage_gate PASS), нет только квитанции проверки звука",
+  "approvedAt": "2026-10-15",
+  "approvedBy": "owner",
+  "removeWhen": "Codex выложит квитанции проверки звука для этих реплик",
+  "targets": [
+    {
+      "interactionId": "en:lesson-01:session-06:i16",
+      "audioTargetId": "en:lesson-01:session-06:i16:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i19",
+      "audioTargetId": "en:lesson-01:session-06:i19:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i14",
+      "audioTargetId": "en:lesson-01:session-07:i14:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i16",
+      "audioTargetId": "en:lesson-01:session-07:i16:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i17:s02",
+      "audioTargetId": "en:lesson-01:session-08:i17:s02:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-09:i14",
+      "audioTargetId": "en:lesson-01:session-09:i14:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-09:i18:s02",
+      "audioTargetId": "en:lesson-01:session-09:i18:s02:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-09:i18:s04",
+      "audioTargetId": "en:lesson-01:session-09:i18:s04:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i12",
+      "audioTargetId": "en:lesson-01:session-10:i12:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:i18",
+      "audioTargetId": "en:lesson-01:session-10:i18:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i17",
+      "audioTargetId": "en:lesson-01:session-11:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i18",
+      "audioTargetId": "en:lesson-01:session-11:i18:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i08",
+      "audioTargetId": "en:lesson-01:session-12:i08:audioB"
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i16",
+      "audioTargetId": "en:lesson-01:session-12:i16:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i20",
+      "audioTargetId": "en:lesson-01:session-12:i20:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i18",
+      "audioTargetId": "en:lesson-01:session-13:i18:audio"
+    },
+    {
+      "interactionId": "en:lesson-01:session-14:i10",
+      "audioTargetId": "en:lesson-01:session-14:i10:audioB"
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i15",
+      "audioTargetId": "en:lesson-01:session-15:i15:audioB"
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i17:s02",
+      "audioTargetId": "en:lesson-01:session-15:i17:s02:audio"
+    }
+  ]
+}

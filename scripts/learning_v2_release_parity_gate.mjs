@@ -5,8 +5,24 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { readBundleCeiling } from "./learning_v2_plan_b_gates.mjs";
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+/**
+ * Звуки выпущенных занятий, одобренные владельцем без квитанции проверки (scripts/learning_v2_owner_approved_audio_evidence.v1.json).
+ * зачем: решение владельца 15.10 — курс V2 s01–s15 выпускается; 19 реплик s06–s15 имеют звук в бандле, но Codex ещё не выложил
+ * квитанции проверки. Список точечный (interactionId + audioTargetId); убрать, когда квитанции появятся.
+ */
+const OWNER_APPROVED_AUDIO_TARGETS = (() => {
+  try {
+    const raw = JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, "scripts", "learning_v2_owner_approved_audio_evidence.v1.json"), "utf8"));
+    return new Set((raw.targets ?? []).map((target) => String(target.audioTargetId)));
+  } catch (error) {
+    console.warn(`[V2-RELEASE-PARITY] список одобренных владельцем звуков не прочитан (${error instanceof Error ? error.message : String(error)}) — исключений нет`);
+    return new Set();
+  }
+})();
 const DEFAULT_SOURCE_ROOT = path.join(
   PROJECT_ROOT,
   "content",
@@ -86,6 +102,53 @@ export function expectedEnglishSessionIdentities() {
   ));
 }
 
+/**
+ * Проверять только ВЫПУЩЕННОЕ (≤ потолка бандла), как гейт озвучки №4.
+ * зачем (координатор 15.10, V2 показан в R1): гейт №3 сравнивал все 186 занятий, а в бандле выпущено 11 — невыпущенные
+ * s12+ (их и так нельзя открыть, material_null) держали красным выпуск. Теперь: замечание в выпущенном занятии — красное;
+ * в невыпущенном — справка, не блок; файл не про занятие (общий) — красное, как раньше. Потолок не прочитан — строго, всё.
+ */
+export function releasedSessionOrdinal(pathOrId) {
+  const value = String(pathOrId ?? "");
+  const byPath = /(?:^|\/)(l\d{2})\/(s\d{2})(?:\/|$)/u.exec(value);
+  const byId = /lesson-(\d{2}):session-(\d{2})/u.exec(value);
+  const identity = byPath ? `en/${byPath[1]}/${byPath[2]}` : byId ? `en/l${byId[1]}/s${byId[2]}` : null;
+  if (!identity) return null;
+  const index = expectedEnglishSessionIdentities().indexOf(identity);
+  return index >= 0 ? index + 1 : null;
+}
+
+export function splitByReleasedScope(issues, ceiling, keyOf = (issue) => issue.interactionId ?? issue.path) {
+  if (!Number.isInteger(ceiling) || ceiling < 0) return { blocking: issues, deferred: [] };
+  const blocking = [];
+  const deferred = [];
+  for (const issue of issues) {
+    const ordinal = releasedSessionOrdinal(keyOf(issue));
+    (ordinal !== null && ordinal > ceiling ? deferred : blocking).push(issue);
+  }
+  return { blocking, deferred };
+}
+
+export function releasedSessionScope(ceiling) {
+  const all = expectedEnglishSessionIdentities();
+  return Number.isInteger(ceiling) && ceiling >= 0 ? all.slice(0, ceiling) : all;
+}
+
+function readReleasedCeiling() {
+  try {
+    return readBundleCeiling(fs.readFileSync(path.join(PROJECT_ROOT, "app", "learning_v2_bundle_availability_v1.generated.ts"), "utf8"));
+  } catch (error) {
+    console.warn(`[V2-RELEASE-PARITY] потолок выпуска не прочитан (${error instanceof Error ? error.message : String(error)}) — сверка строгая, по всему курсу`);
+    return null;
+  }
+}
+
+function scoped(result, ceiling, label) {
+  const { blocking, deferred } = splitByReleasedScope(result.issues, ceiling);
+  if (deferred.length > 0) console.log(`[V2-RELEASE-PARITY] ${label}: за потолком ${ceiling} — ${deferred.length} (справка, не блок)`);
+  return { ...result, issues: blocking, ready: blocking.length === 0 };
+}
+
 export function sourceSessionScope(sourceRoot, language = "en") {
   if (!fs.existsSync(sourceRoot) || !fs.statSync(sourceRoot).isDirectory()) return [];
   const sessions = [];
@@ -152,15 +215,18 @@ export function runSourceReleaseSemanticParity({
   locales = ["ru", "uk"],
   checker = DEFAULT_SEMANTIC_CHECKER,
   cwd = PROJECT_ROOT,
+  // зачем: смысловая сверка и пауза фабрики — только по выпущенным занятиям (null — весь курс, как раньше)
+  releasedScope = null,
 } = {}) {
-  const scope = sourceSessionScope(sourceRoot, language);
+  const fullScope = sourceSessionScope(sourceRoot, language);
   const expected = expectedEnglishSessionIdentities();
   const sourceScopeIssues = identityDiffIssues(
-    scope,
+    fullScope,
     expected,
     "SOURCE_SESSION_MISSING",
     "SOURCE_SESSION_EXTRA",
   );
+  const scope = releasedScope ? fullScope.filter((identity) => releasedScope.includes(identity)) : fullScope;
   if (sourceScopeIssues.length > 0) {
     const detail = sourceScopeIssues.slice(0, 20)
       .map((issue) => `${issue.code}: ${issue.identity}`)
@@ -444,6 +510,9 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
         const evidence = resolveAudioEvidence(interaction, audioTargetId);
         if (evidence.verified) {
           verifiedAudioTargets += 1;
+        } else if (OWNER_APPROVED_AUDIO_TARGETS.has(audioTargetId)) {
+          // зачем: решение владельца 15.10 — звук есть и собирается (гейт озвучки PASS), нет только квитанции проверки; не блок
+          advisories.push({ code: "AUDIO_EVIDENCE_OWNER_APPROVED", path: relativePath, interactionId: interaction.interactionId, audioTargetId, detail: evidence.detail });
         } else {
           unverifiedAudioTargets += 1;
           issues.push({
@@ -581,10 +650,12 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       process.exitCode = 0;
     } else {
     console.log(`[V2-RELEASE-PARITY] строгая сверка (${buildServer.reason})`);
+    const ceiling = readReleasedCeiling();
+    console.log(`[V2-RELEASE-PARITY] выпущено занятий (потолок бандла): ${ceiling ?? "не прочитан — весь курс"}`);
     const scopeResult = validateEnglishReleaseScope();
-    const semanticResult = runSourceReleaseSemanticParity();
-    const qualityResult = validateReleaseQuality();
-    const copyResult = validateReleaseParity(DEFAULT_CANONICAL_ROOT, DEFAULT_APP_COPY_ROOT);
+    const semanticResult = runSourceReleaseSemanticParity({ releasedScope: ceiling === null ? null : releasedSessionScope(ceiling) });
+    const qualityResult = scoped(validateReleaseQuality(), ceiling, "качество");
+    const copyResult = scoped(validateReleaseParity(DEFAULT_CANONICAL_ROOT, DEFAULT_APP_COPY_ROOT), ceiling, "файлы канон ↔ копия");
     printScopeResult(scopeResult);
     printSemanticResult(semanticResult);
     printQualityResult(qualityResult);

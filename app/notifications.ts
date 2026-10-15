@@ -1787,6 +1787,29 @@ export const scheduleNotifications = async (
   }
 };
 
+/**
+ * R37 (Ревизор F02 15.10): «Защити серию» на 21:00 планируется раз за старт и не снималось, когда день уже засчитан —
+ * человек позанимался в 18:00, а в 21:00 получал «сбереги серию». Зовётся из сигнала «день засчитан» (streak_day_signal).
+ */
+export async function cancelStreakWarningForToday(reason: string): Promise<void> {
+  try {
+    const N = await getNotifications();
+    if (!N) {
+      console.log(`[STREAK-WARN] cancel:skip reason=${reason} — модуль уведомлений недоступен`); // guard-ok: ранний выход
+      return;
+    }
+    await cancelScheduledNotificationsByType(N, ['streak_warning']);
+    const warningId = await AsyncStorage.getItem(STREAK_WARNING_NOTIF_ID_KEY);
+    if (warningId) await N.cancelScheduledNotificationAsync(warningId).catch(swallowError('notifications:cancelStreakWarningForToday'));
+    // день засчитан — повторный план в этот день не нужен: отметка «уже запланировано» на сегодня
+    await AsyncStorage.setItem('streak_warning_scheduled', getLocalDayKey());
+    await AsyncStorage.removeItem(STREAK_WARNING_NOTIF_ID_KEY);
+    console.log(`[STREAK-WARN] cancel:done reason=${reason} hadId=${warningId ? 'yes' : 'no'}`); // guard-ok: итог
+  } catch (error) {
+    console.warn(`[STREAK-WARN] cancel:failed reason=${reason}`, error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+  }
+}
+
 // ── Авто-предупреждение о потере цепочки (планируется на вечер текущего дня) ──
 // Вызывается при старте приложения, если цепочка > 0 и урок сегодня ещё не пройден.
 // Персонализированные сообщения в зависимости от длины цепочки.

@@ -113,6 +113,10 @@ export function markStreakDayCounted(input: Readonly<{ wasCountedBefore: boolean
   }
   console.log(`[STREAK-DAY] counted:first source=${input.source} days=${input.days} day=${today}`);
   emitAppEvent('streak_day_counted', { days: input.days, dayKey: today, source: input.source });
+  // зачем (R37): вечернее «Защити серию» больше не нужно — снимаем (ленивый импорт: модуль уведомлений грузится поздно)
+  void import('./notifications')
+    .then(({ cancelStreakWarningForToday }) => cancelStreakWarningForToday(`day_counted:${input.source}`))
+    .catch((error: unknown) => console.warn('[STREAK-WARN] cancel:lazy_import_failed', error instanceof Error ? error.message : String(error)));
   // зачем (координатор 15.10): рубеж ждёт показа в памяти до экрана итога (урок/разговор), окно покажет StreakMilestoneHost за флагом moments_v3; на диск не пишется
   if (isStreakMilestone(input.days)) noteStreakMilestonePending(input.days, today);
   void recordStreakMilestoneStory(input.days, today); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.

@@ -27,6 +27,7 @@ import { peekCoinRank } from './coin_rank_state_v1';
 import { DebugLogger } from './debug-logger';
 import { getLocalDayKey } from './local_date';
 import { peekStableId } from './stable_id';
+import { onAccountOwnerChanged } from './account_owner_change';
 import { spireCurrentWeekKey } from '../components/spire/spire_tower_model';
 import {
   type SpireFlushResponse,
@@ -111,6 +112,15 @@ async function markSpireStreakDay(report: SpireStepReport): Promise<void> {
 const weekMemory = new Map<string, SpireWeekLocal>();
 const weekMemoryKey = (uid: string, lang: SpireLang): string => `${uid}|${lang}`;
 
+// зачем (R39, Ревизор F02): после выхода/смены аккаунта память процесса прошлого владельца не нужна — «день серии уже засчитан»
+// иначе не дал бы засчитать день новому владельцу, а неделя в памяти принадлежит прошлому. Очередь на диске не трогаем: она по uid
+// и уйдёт, когда тот владелец вернётся.
+onAccountOwnerChanged('spire_report_client', () => {
+  DebugLogger.info(LOG, `owner_changed: сброс памяти (день серии=${spireStreakDayMarked ?? 'нет'}, недель в памяти=${weekMemory.size})`);
+  spireStreakDayMarked = null;
+  weekMemory.clear();
+});
+
 /** Синхронно: локальная неделя ТЕКУЩЕЙ ISO-недели из памяти процесса или null (нет uid, не читали, неделя устарела). */
 export function peekSpireWeekLocal(lang: SpireLang): SpireWeekLocal | null {
   const uid = CLOUD_SYNC_ENABLED ? peekStableId() : null;
@@ -159,6 +169,13 @@ export async function spireFlushNow(
 ): Promise<SpireFlushOutcome | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
     DebugLogger.info(LOG, `flushNow: облако выключено (expoGo=${IS_EXPO_GO} cloudSync=${CLOUD_SYNC_ENABLED}) — очередь ждёт`);
+    return null;
+  }
+  // зачем (R39, Ревизор F02): досылка с личностью ПРОШЛОГО владельца (экран ещё держал ids A, уход с экрана после выхода) ушла бы
+  // от имени B. Сверяем с текущим владельцем процесса; очередь A остаётся на диске и уйдёт, когда A войдёт снова.
+  const owner = peekStableId();
+  if (owner !== input.stableId) {
+    DebugLogger.warn(LOG, `flushNow: личность не текущего владельца (trigger=${input.trigger}, владелец=${owner ? 'другой' : 'не известен'}) — очередь не отправляем`);
     return null;
   }
   try {

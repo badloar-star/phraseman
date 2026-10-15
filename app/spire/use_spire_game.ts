@@ -45,6 +45,7 @@ import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
 import { peekSpireRoom, spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
 import { publishSpirePositionFeed } from './spire_position_feed';
+import { useSpireOwnerEpoch } from './spire_owner_epoch';
 import type { SpireStepContext, SpireStepFinish } from './use_spire_step_runner';
 import { spireDismissWeekResult, spireLoadWeekResult, type SpireWeekResultView } from './spire_week_result_client';
 const LOG = '[SPIRE]';
@@ -106,19 +107,21 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
 
   // зачем (аудит §AUTH-0110, координатор 15.10): при смене изучаемого языка без перезапуска на экране оставались комната, друзья, итог недели и шаг СТАРОГО языка.
   // Сброс по lang (кроме первого монтирования) идёт ДО загрузчиков ниже, поздние ответы старого языка отсекает их флаг alive. Идентичность и идущий старт не трогаем.
-  const prevLangRef = useRef<SpireLang | null>(lang);
+  const ownerEpoch = useSpireOwnerEpoch(); // зачем (R39, Ревизор F02): выход/смена аккаунта сбрасывает всё, как язык, плюс личность — иначе B видел Пик A и досылал очередь с ids A
+  const prevLangRef = useRef<string>(`${lang}|${ownerEpoch}`);
   useEffect(() => {
     const before = prevLangRef.current;
-    if (before === lang) return;
-    prevLangRef.current = lang;
-    console.log('[SPIRE-TARGET] use_spire_game: язык', JSON.stringify({ from: before, to: lang, kept: { ids: ids !== null, starting: startingRef.current }, // guard-ok: трассировка сброса при смене изучаемого языка
+    if (before === `${lang}|${ownerEpoch}`) return;
+    prevLangRef.current = `${lang}|${ownerEpoch}`;
+    const ownerChanged = !before.endsWith(`|${ownerEpoch}`); if (ownerChanged) setIds(null);
+    console.log('[SPIRE-TARGET] use_spire_game: язык/владелец', JSON.stringify({ from: before, to: `${lang}|${ownerEpoch}`, ownerChanged, kept: { ids: !ownerChanged && ids !== null, starting: startingRef.current }, // guard-ok: трассировка сброса при смене изучаемого языка
       reset: { roomLoad: roomLoad?.status ?? null, friends: friends.length, weekResult: weekResult !== null, session: session !== null, pending: pending !== null, outcome: outcome?.kind ?? null, startBlock } }));
     setRoomLoad(null); setFriends([]); setWeekResult(null); setSession(null); setPending(null);
     prepIdRef.current = null;
     setOutcome(null); setStartBlock(null); setRejectNotice(false);
     lastReportRef.current = null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang]);
+  }, [lang, ownerEpoch]);
 
   // ── Идентичность: только за воротами (без ворот не нужен даже uid) ──
   useEffect(() => {
@@ -137,7 +140,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       if (peek) setRoomLoad({ status: 'cache', room: peek, reason: 'memory_peek' });
     })();
     return () => { alive = false; };
-  }, [gate, lang]);
+  }, [gate, lang, ownerEpoch]);
 
   // ── Вход на экран: комната (кэш 6 ч), друзья, итог прошлой недели ──
   useEffect(() => {

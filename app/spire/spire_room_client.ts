@@ -25,6 +25,7 @@ import { spireCohortDay, spireWeekStartMs } from '../../modules/spire/residents'
 import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
 import { peekCoinRank } from '../coin_rank_state_v1';
 import { DebugLogger } from '../debug-logger';
+import { onAccountOwnerChanged } from '../account_owner_change';
 import type { SpireLiveGate } from './spire_live_gate';
 import {
   spireCall,
@@ -53,6 +54,12 @@ type JoinResponse = Readonly<{ ok?: boolean; groupId?: unknown; weekId?: unknown
 
 const memory = new Map<string, SpireRoomSnapshot>();
 const inFlight = new Map<string, Promise<SpireRoomLoad>>();
+// зачем (R39): комната прошлого владельца не нужна в памяти после выхода/смены аккаунта (ключи по uid, но держать чужое незачем)
+onAccountOwnerChanged('spire_room_client', () => {
+  DebugLogger.info('[SPIRE]', `owner_changed: комнат в памяти сброшено=${memory.size}, запросов в полёте=${inFlight.size}`);
+  memory.clear();
+  inFlight.clear();
+});
 
 const cacheKey = (uid: string, lang: SpireLang) => `${CACHE_PREFIX}:${uid}:${lang}`;
 const participationKey = (uid: string, lang: SpireLang) => `${PARTICIPATION_PREFIX}:${uid}:${lang}`;

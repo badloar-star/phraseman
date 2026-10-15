@@ -2915,7 +2915,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 testID="learning-v2-intro-attempts"
               />
               {sessionAttempts.mistakeChargeActive ? null : <EnergyBar glass />}
-              {runeHud}
+              {/* зачем (координатор 15.10, макет learning-v2.html): в шапке ИНТРО только сердца и энергия — плашка монет отнимала место у подписи этапа («СМЫС»/«Л»). Монеты считаются как прежде (settleSessionRuneAward), видны в шапке заданий; без плашки не летит лишь декоративная монета. */}
               </View>
             }
           />

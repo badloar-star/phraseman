@@ -13,6 +13,19 @@ describe('интро занятия: подпись этапа не перено
     expect(src).toContain('pageCounter: { flexShrink: 0,');
   });
 
+  it('в шапке ИНТРО нет плашки монет (макет learning-v2.html: только сердца и энергия); в шапке заданий она остаётся', () => {
+    const player = fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_direct_session_player_v1.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    const start = player.indexOf('headerAccessory={');
+    const introAccessory = player.slice(start, player.indexOf('</View>', start));
+    expect(start).toBeGreaterThan(0);
+    expect(introAccessory).toContain('learning-v2-intro-attempts');
+    expect(introAccessory).toContain('<EnergyBar glass />');
+    expect(introAccessory).not.toContain('runeHud');
+    // шапка заданий: плашка монет на месте
+    const practiceHeader = player.slice(player.indexOf('<View style={styles.headerActions}>', start + 400));
+    expect(practiceHeader.slice(0, 1200)).toContain('{runeHud}');
+  });
+
   it('шрифт не ужимается по ширине', () => {
     expect(src).not.toContain('adjustsFontSizeToFit');
   });

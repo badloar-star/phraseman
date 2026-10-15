@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { accountOwnedStorageKeysFrom } from './cloud_sync';
 import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from './retired_account_local_keys';
 import { DebugLogger } from './debug-logger';
+import { classifyGuestCleanKey, describeGuestValueShape, type GuestCleanKind } from './guest_clean_classifier';
 import { identityErrorCode, identityTrace, redactStorageKey } from './identity_trace';
 import { LEARNING_LANGUAGE_TARGETS } from './learning_language_contour';
 import { languageProfileKey } from './study_languages';
@@ -75,9 +76,6 @@ export async function hasMeaningfulLocalAccountData(
  * interpreted as empty: this is the boundary preventing anonymous A data from
  * being observed or synchronized while authenticated as provider B.
  */
-/** Служебные ключи, значения которых безопасно печатать в журнал clean_proof (не персональные). */
-const CLEAN_PROOF_SERVICE_KEYS: ReadonlySet<string> = new Set(['user_avatar', 'user_frame', 'streak_count', 'active_days_v1', 'unlocked_lessons']);
-
 export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
   storage: LocalAccountStorage = AsyncStorage,
 ): Promise<boolean> {
@@ -109,19 +107,18 @@ export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
       .map(([key]) => key);
     if (dirtyKeys.length > 0) {
       identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof dirty', { count: dirtyKeys.length });
-      // зачем (Сверка 14.10: «свежий гость = 25 грязных ключей», список обрезался на 12): ВСЕ ключи частями по 8, а для служебных
-      // ключей — короткое значение, чтобы отличить значение по умолчанию от прогресса. Значения служебных ключей не персональные.
+      // зачем (координатор 15.10, «переустановил → окно смены аккаунта»): пачки по 8 обрезались журналом на ~100 знаках,
+      // полного списка «прогресса» свежего гостя не видели. Сперва логи: каждый ключ своей строкой с разметкой
+      // default|service|progress, длиной и формой (типы, поля, длины массивов); значения НЕ печатаются. Решение входа пока прежнее (шаг 2 — по фактам).
       const valueByKey = new Map(rows);
-      const describe = (key: string): string => {
+      const kindCounts: Record<GuestCleanKind, number> = { default: 0, service: 0, progress: 0 };
+      dirtyKeys.forEach((key, index) => {
         const raw = valueByKey.get(key) ?? '';
-        const service = CLEAN_PROOF_SERVICE_KEYS.has(key) || key.startsWith('legacy_free_');
-        return service ? `${redactStorageKey(key)}=${String(raw).slice(0, 24)}` : `${redactStorageKey(key)}(len=${String(raw).length})`;
-      };
-      for (let i = 0; i < dirtyKeys.length; i += 8) {
-        identityTrace('[AUTH-LINK-GOOGLE]', `clean_proof dirty_keys ${i / 8 + 1}/${Math.ceil(dirtyKeys.length / 8)}`, {
-          keys: dirtyKeys.slice(i, i + 8).map(describe).join(' '),
-        });
-      }
+        const kind = classifyGuestCleanKey(key, raw);
+        kindCounts[kind] += 1;
+        console.log(`[GUEST-CLEAN] ${index + 1}/${dirtyKeys.length} key=${redactStorageKey(key)} kind=${kind} len=${String(raw).length} shape=${describeGuestValueShape(raw)}`); // guard-ok: одна строка на ключ, только при входе
+      });
+      console.log(`[GUEST-CLEAN] summary dirty=${dirtyKeys.length} default=${kindCounts.default} service=${kindCounts.service} progress=${kindCounts.progress} wouldBeClean=${kindCounts.progress === 0} decision=not_clean`); // guard-ok: итог разметки
       return false;
     }
     identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof clean', { checked: rows.length });

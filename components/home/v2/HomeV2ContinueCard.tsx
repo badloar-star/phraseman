@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
+import React, { useCallback, useRef } from 'react';
+import { StyleSheet, Text, View, type ImageSourcePropType, type LayoutChangeEvent } from 'react-native';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
@@ -17,7 +17,10 @@ type Props = {
   art: ImageSourcePropType;
   /** Слой `.accent` (цвет темы) из того же resolveThemedArt; нет — один слой. */
   artAccent?: ImageSourcePropType | null;
-  /** зачем (ассеты 2.0, continue 1536×1024, предмет справа): заполнить блок с привязкой к правому краю, а не ужимать. */
+  /**
+   * зачем (владелец 15.10, скрин: «рисунок вылезает за рамки, плашка налезает на рисунок»; правило «не обрезается»): раньше `artWide` включал cover — арт
+   * резался и выходил за карточку. Теперь рисунок ВСЕГДА целиком (contain) внутри карточки с отступом, а плашка стоит под ним. Проп оставлен для вызова Главной, значение не влияет.
+   */
   artWide?: boolean;
   /** «Урок 4» — плашка поверх арта справа. */
   badge?: string;
@@ -45,6 +48,15 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
   const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): значок-плашка и стрелка — вложенные, с малой тенью вместо кромки
   const safeTotal = Math.max(1, total);
   const ratio = Math.max(0, Math.min(1, done / safeTotal));
+  // зачем (владелец 15.10, «сперва логи»): размеры карточки, колонки арта и плашки на экране — по одной строке на смену, чтобы видеть реальную геометрию на 360/393/430 и длинных языках
+  const layoutLogRef = useRef<Record<string, string>>({});
+  const logLayout = useCallback((node: string) => (e: LayoutChangeEvent) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    const line = JSON.stringify({ node, x: Math.round(x), y: Math.round(y), w: Math.round(width), h: Math.round(height) });
+    if (layoutLogRef.current[node] === line) return;
+    layoutLogRef.current[node] = line;
+    console.log('[HOME-CONTINUE-ART] layout', line, JSON.stringify({ pending, artWide, accent: artAccent !== null, badge: badge ?? null, artSize: badge ? ART_SIZE : ART_SIZE_SOLO })); // guard-ok: одна строка на смену геометрии
+  }, [artAccent, artWide, badge, pending]);
   return (
     <V2Pressable
       testID={pending ? 'home-continue-lesson-pending' : 'home-continue-lesson'}
@@ -57,11 +69,13 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
       onLongPress={pending ? undefined : onLongPress}
       scaleTo={0.98}
       style={[s.card, glass]}
+      onLayout={logLayout('card')}
     >
-      <View pointerEvents="none" style={[s.art, pending ? s.artPending : null]}>
-        <ThemedArtLayers source={art} accent={artAccent} style={s.artImage} contentFit={artWide ? 'cover' : 'contain'} contentPosition={artWide ? 'right' : 'center'} />
+      <View pointerEvents="none" onLayout={logLayout('artColumn')} style={[s.art, pending ? s.artPending : null]}>
+        <ThemedArtLayers source={art} accent={artAccent} style={badge && !pending ? s.artImage : s.artImageSolo} contentFit="contain" contentPosition="center" />
         {badge && !pending ? (
           <View
+            onLayout={logLayout('badge')}
             style={[s.badge, { backgroundColor: colorWithAlpha(p.control, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}
           >
             <Text style={[s.badgeText, { color: p.text }]}>{badge}</Text>
@@ -93,6 +107,9 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
   );
 }
 
+const ART_SIZE = 46;
+const ART_SIZE_SOLO = 64;
+
 const s = StyleSheet.create({
   card: {
     height: 80,
@@ -100,21 +117,23 @@ const s = StyleSheet.create({
     overflow: 'hidden',
     flexDirection: 'row',
   },
-  art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '32%', opacity: 0.95, alignItems: 'flex-end', justifyContent: 'center' },
-  // Арт вписан в высоту карточки (80): не вылезает и не режется.
-  artImage: { width: 96, height: 76, marginRight: 8 },
+  // зачем (владелец 15.10): колонка арта — рисунок (contain, целиком) и под ним плашка «Урок N», друг на друга не заходят: 46 + 3 + 22 = 71 из 80, по 4–5 сверху и снизу
+  art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '32%', opacity: 0.95, alignItems: 'center', justifyContent: 'center' },
+  artImage: { width: ART_SIZE, height: ART_SIZE },
+  // без плашки (нет последнего урока) рисунок может занять всю высоту с теми же отступами
+  artImageSolo: { width: ART_SIZE_SOLO, height: ART_SIZE_SOLO },
   artPending: { opacity: 0.35 },
   // Заготовки повторяют строки: заголовок 20, счётчик — в строке полосы.
   titleBar: { height: 14, width: '78%', borderRadius: 7, marginTop: 3, marginBottom: 3 },
   counterBar: { height: 12, width: 40, borderRadius: 6 },
+  // плашка в потоке под рисунком (не absolute): ширина по тексту, не шире колонки — «Pelajaran 12» / «Lección 12» не заходят на рисунок и на текст слева
   badge: {
-    position: 'absolute',
-    right: 12,
-    bottom: 10,
-    minHeight: 26,
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 13,
+    marginTop: 3,
+    maxWidth: '100%',
+    minHeight: 22,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 11,
     alignItems: 'center',
     justifyContent: 'center',
   },

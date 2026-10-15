@@ -30,7 +30,7 @@ test('V2 home identity and balance use one real coin-rank asset, never the hex a
 
 test('continue-learning card has no differently colored half-panel', () => {
   // зачем (01.10): заготовка первого кадра лишь приглушает арт (artPending), заливки-половинки нет.
-  assert.match(continueCard, /<View pointerEvents="none" style=\{\[s\.art, pending \? s\.artPending : null\]\}>/);
+  assert.match(continueCard, /<View pointerEvents="none" onLayout=\{logLayout\('artColumn'\)\} style=\{\[s\.art, pending \? s\.artPending : null\]\}>/); // зачем (15.10): на колонке арта журнал геометрии [HOME-CONTINUE-ART]
   assert.doesNotMatch(continueCard, /s\.art, \{ backgroundColor: p\.glassRaised \}/);
   assert.match(continueCard, /style=\{\[s\.card, glass\]\}/);
 });
@@ -46,7 +46,7 @@ test('continue-learning card receives the approved notepad art from the real pro
   assert.match(home, /const priorityCardImage = resolveThemedArt\(lastLessonCompleted \? 'today' : 'continue', homeArtTone\)\.base \?\? lastLessonImage;/);
   assert.match(home, /<HomeV2ContinueCard[\s\S]{0,900}art=\{priorityCardImage\}/);
   assert.match(continueCard, /<Image source=\{art\}/);
-  assert.match(continueCard, /style=\{s\.artImage\}/);
+  assert.match(continueCard, /style=\{badge && !pending \? s\.artImage : s\.artImageSolo\}/); // зачем (15.10): рисунок — contain, с плашкой 46, без неё 64
   assert.match(continueCard, /art: \{[^}]*right: 0/);
 });
 

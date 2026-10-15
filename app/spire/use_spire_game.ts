@@ -44,6 +44,7 @@ import { spireEstimateStepBudgetMs, spireRememberStepBudget } from './spire_step
 import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
 import { peekSpireRoom, spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
+import { publishSpirePositionFeed } from './spire_position_feed';
 import type { SpireStepContext, SpireStepFinish } from './use_spire_step_runner';
 import { spireDismissWeekResult, spireLoadWeekResult, type SpireWeekResultView } from './spire_week_result_client';
 const LOG = '[SPIRE]';
@@ -110,20 +111,11 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     const before = prevLangRef.current;
     if (before === lang) return;
     prevLangRef.current = lang;
-    console.log('[SPIRE-TARGET] use_spire_game: язык', JSON.stringify({ // guard-ok: трассировка сброса при смене изучаемого языка
-      from: before, to: lang,
-      reset: { roomLoad: roomLoad?.status ?? null, friends: friends.length, weekResult: weekResult !== null, session: session !== null, pending: pending !== null, outcome: outcome?.kind ?? null, startBlock },
-      kept: { ids: ids !== null, starting: startingRef.current },
-    }));
-    setRoomLoad(null);
-    setFriends([]);
-    setWeekResult(null);
-    setSession(null);
-    setPending(null);
+    console.log('[SPIRE-TARGET] use_spire_game: язык', JSON.stringify({ from: before, to: lang, kept: { ids: ids !== null, starting: startingRef.current }, // guard-ok: трассировка сброса при смене изучаемого языка
+      reset: { roomLoad: roomLoad?.status ?? null, friends: friends.length, weekResult: weekResult !== null, session: session !== null, pending: pending !== null, outcome: outcome?.kind ?? null, startBlock } }));
+    setRoomLoad(null); setFriends([]); setWeekResult(null); setSession(null); setPending(null);
     prepIdRef.current = null;
-    setOutcome(null);
-    setStartBlock(null);
-    setRejectNotice(false);
+    setOutcome(null); setStartBlock(null); setRejectNotice(false);
     lastReportRef.current = null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
@@ -221,18 +213,16 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     });
   }, [room, ids, config, week, rankBy, devRankBy]);
   const myPlace = rows ? spireMyPlace(rows) : null;
-  // зачем (владелец через координатора 13.10, «сперва логи»): на кадре у этажей нет соперников — что реально пришло: откуда комната,
-  // сколько живых/ботов, строки и соперники по этажам (без себя). console — журналы кадров Сверки снимают logcat, DebugLogger туда не идёт.
+  // зачем (13.10, «сперва логи»): что реально пришло в комнату — откуда, живые/боты, соперники по этажам (console: кадры Сверки снимают logcat).
+  // + m05 (координатор 15.10): позиция для окон Пика — в spire_position_feed (память, 0 чтений), её читает useSpirePositionMoments.
   useEffect(() => {
     const floors: Record<number, number> = {};
     for (const r of rows ?? []) if (!r.isMe) floors[spireFloorOfSteps(r.steps)] = (floors[spireFloorOfSteps(r.steps)] ?? 0) + 1;
     const me = rows?.find((r) => r.isMe);
-    console.log('[SPIRE-RIVALS]', JSON.stringify({ // guard-ok: одна строка на смену строк комнаты, только счётчики
-      source: roomLoad ? `${roomLoad.status}/${roomLoad.reason}` : 'нет загрузки', roomId: room?.groupId ?? null, live: room?.members?.length ?? null,
-      botFaces: room?.roster?.length ?? null, rows: rows?.length ?? null, rivalsByFloor: floors, myFloor: me ? spireFloorOfSteps(me.steps) : null,
-      why: rows ? 'ok' : !room ? 'комнаты нет' : !ids ? 'нет личности' : 'нет конфига',
-    }));
-  }, [rows, roomLoad, room, ids]);
+    console.log('[SPIRE-RIVALS]', JSON.stringify({ source: roomLoad ? `${roomLoad.status}/${roomLoad.reason}` : 'нет загрузки', roomId: room?.groupId ?? null, live: room?.members?.length ?? null, // guard-ok: одна строка на смену строк комнаты, только счётчики
+      botFaces: room?.roster?.length ?? null, rows: rows?.length ?? null, rivalsByFloor: floors, myFloor: me ? spireFloorOfSteps(me.steps) : null, why: rows ? 'ok' : !room ? 'комнаты нет' : !ids ? 'нет личности' : 'нет конфига' }));
+    publishSpirePositionFeed(rows && room && ids && lang ? { uid: ids.uid, lang, weekId: room.weekId, roomFetchedAtMs: room.fetchedAtMs, rows, rankBy } : null);
+  }, [rows, roomLoad, room, ids, lang, rankBy]);
   const tier = room?.tier ?? week?.tier ?? null;
 
   // ── Старт ступени (защита от двойного тапа: один старт за раз) ──

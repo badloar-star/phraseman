@@ -1,0 +1,173 @@
+--- a/scripts/learning_v2_release_parity_gate.mjs
++++ b/scripts/learning_v2_release_parity_gate.mjs
+@@ -5,6 +5,7 @@
+ import fs from "node:fs";
+ import path from "node:path";
+ import { fileURLToPath } from "node:url";
++import { readBundleCeiling } from "./learning_v2_plan_b_gates.mjs";
+ 
+ const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+ const DEFAULT_SOURCE_ROOT = path.join(
+@@ -86,6 +87,53 @@
+   ));
+ }
+ 
++/**
++ * Проверять только ВЫПУЩЕННОЕ (≤ потолка бандла), как гейт озвучки №4.
++ * зачем (координатор 15.10, V2 показан в R1): гейт №3 сравнивал все 186 занятий, а в бандле выпущено 11 — невыпущенные
++ * s12+ (их и так нельзя открыть, material_null) держали красным выпуск. Теперь: замечание в выпущенном занятии — красное;
++ * в невыпущенном — справка, не блок; файл не про занятие (общий) — красное, как раньше. Потолок не прочитан — строго, всё.
++ */
++export function releasedSessionOrdinal(pathOrId) {
++  const value = String(pathOrId ?? "");
++  const byPath = /(?:^|\/)(l\d{2})\/(s\d{2})(?:\/|$)/u.exec(value);
++  const byId = /lesson-(\d{2}):session-(\d{2})/u.exec(value);
++  const identity = byPath ? `en/${byPath[1]}/${byPath[2]}` : byId ? `en/l${byId[1]}/s${byId[2]}` : null;
++  if (!identity) return null;
++  const index = expectedEnglishSessionIdentities().indexOf(identity);
++  return index >= 0 ? index + 1 : null;
++}
++
++export function splitByReleasedScope(issues, ceiling, keyOf = (issue) => issue.interactionId ?? issue.path) {
++  if (!Number.isInteger(ceiling) || ceiling < 0) return { blocking: issues, deferred: [] };
++  const blocking = [];
++  const deferred = [];
++  for (const issue of issues) {
++    const ordinal = releasedSessionOrdinal(keyOf(issue));
++    (ordinal !== null && ordinal > ceiling ? deferred : blocking).push(issue);
++  }
++  return { blocking, deferred };
++}
++
++export function releasedSessionScope(ceiling) {
++  const all = expectedEnglishSessionIdentities();
++  return Number.isInteger(ceiling) && ceiling >= 0 ? all.slice(0, ceiling) : all;
++}
++
++function readReleasedCeiling() {
++  try {
++    return readBundleCeiling(fs.readFileSync(path.join(PROJECT_ROOT, "app", "learning_v2_bundle_availability_v1.generated.ts"), "utf8"));
++  } catch (error) {
++    console.warn(`[V2-RELEASE-PARITY] потолок выпуска не прочитан (${error instanceof Error ? error.message : String(error)}) — сверка строгая, по всему курсу`);
++    return null;
++  }
++}
++
++function scoped(result, ceiling, label) {
++  const { blocking, deferred } = splitByReleasedScope(result.issues, ceiling);
++  if (deferred.length > 0) console.log(`[V2-RELEASE-PARITY] ${label}: за потолком ${ceiling} — ${deferred.length} (справка, не блок)`);
++  return { ...result, issues: blocking, ready: blocking.length === 0 };
++}
++
+ export function sourceSessionScope(sourceRoot, language = "en") {
+   if (!fs.existsSync(sourceRoot) || !fs.statSync(sourceRoot).isDirectory()) return [];
+   const sessions = [];
+@@ -152,15 +200,18 @@
+   locales = ["ru", "uk"],
+   checker = DEFAULT_SEMANTIC_CHECKER,
+   cwd = PROJECT_ROOT,
++  // зачем: смысловая сверка и пауза фабрики — только по выпущенным занятиям (null — весь курс, как раньше)
++  releasedScope = null,
+ } = {}) {
+-  const scope = sourceSessionScope(sourceRoot, language);
++  const fullScope = sourceSessionScope(sourceRoot, language);
+   const expected = expectedEnglishSessionIdentities();
+   const sourceScopeIssues = identityDiffIssues(
+-    scope,
++    fullScope,
+     expected,
+     "SOURCE_SESSION_MISSING",
+     "SOURCE_SESSION_EXTRA",
+   );
++  const scope = releasedScope ? fullScope.filter((identity) => releasedScope.includes(identity)) : fullScope;
+   if (sourceScopeIssues.length > 0) {
+     const detail = sourceScopeIssues.slice(0, 20)
+       .map((issue) => `${issue.code}: ${issue.identity}`)
+@@ -581,10 +632,12 @@
+       process.exitCode = 0;
+     } else {
+     console.log(`[V2-RELEASE-PARITY] строгая сверка (${buildServer.reason})`);
++    const ceiling = readReleasedCeiling();
++    console.log(`[V2-RELEASE-PARITY] выпущено занятий (потолок бандла): ${ceiling ?? "не прочитан — весь курс"}`);
+     const scopeResult = validateEnglishReleaseScope();
+-    const semanticResult = runSourceReleaseSemanticParity();
+-    const qualityResult = validateReleaseQuality();
+-    const copyResult = validateReleaseParity(DEFAULT_CANONICAL_ROOT, DEFAULT_APP_COPY_ROOT);
++    const semanticResult = runSourceReleaseSemanticParity({ releasedScope: ceiling === null ? null : releasedSessionScope(ceiling) });
++    const qualityResult = scoped(validateReleaseQuality(), ceiling, "качество");
++    const copyResult = scoped(validateReleaseParity(DEFAULT_CANONICAL_ROOT, DEFAULT_APP_COPY_ROOT), ceiling, "файлы канон ↔ копия");
+     printScopeResult(scopeResult);
+     printSemanticResult(semanticResult);
+     printQualityResult(qualityResult);
+--- a/content/learning-v2-course/pipeline/build_release.mjs
++++ b/content/learning-v2-course/pipeline/build_release.mjs
+@@ -1563,8 +1563,25 @@
+   return auditFactoryIntroPractice({ sessionsRoot: path.join(root, "sessions", "en") });
+ }
+ 
+-async function holdForFactoryIntroPractice(context) {
+-  const report = await factoryIntroPracticeCourseReport();
++// зачем (координатор 15.10, V2 показан в R1): сверка выпуска (--check-source-release) проверяет только переданные занятия —
++// пауза фабрики тоже учитывает только их замечания; общий отчёт по курсу остаётся для сборки канона (без scope).
++function scopeFactoryReport(report, sessions) {
++  const set = new Set(sessions);
++  const findings = (report.findings ?? []).filter((item) => set.has(item.sessionIdentity));
++  return {
++    ...report,
++    verdict: findings.length === 0 ? "PASS" : report.verdict,
++    findingCount: findings.length,
++    findings,
++    perSession: (report.perSession ?? []).filter((item) => set.has(item.sessionIdentity)),
++    scopedTo: set.size,
++  };
++}
++
++async function holdForFactoryIntroPractice(context, scopeSessions = null) {
++  const full = await factoryIntroPracticeCourseReport();
++  const report = scopeSessions ? scopeFactoryReport(full, scopeSessions) : full;
++  if (scopeSessions) LOG(`factory_intro_practice: только переданные занятия (${scopeSessions.length}) — замечаний ${report.findingCount} из ${full.findingCount}`);
+   if (report.verdict === "PASS") return false;
+   WARN(`factory_intro_practice_course_hold:${context}:${JSON.stringify(report)}`);
+   process.exitCode = 1;
+@@ -1590,7 +1607,7 @@
+ async function main() {
+   if (!SESSION) { LOG("ранний выход: нужен --session en/l01/s04"); process.exit(2); }
+   if (CHECK_SOURCE_RELEASE) {
+-    if (await holdForFactoryIntroPractice("check_source_release")) return;
++    if (await holdForFactoryIntroPractice("check_source_release", String(SESSION).split(",").map((s) => s.trim()).filter(Boolean))) return;
+     const issues = sourceReleaseScopeIssues({ root: ROOT, scope: SESSION, locales: LOCALES });
+     for (const parityIssue of issues) WARN(parityIssue);
+     if (issues.length) {
+--- /dev/null
++++ b/tests/learning_v2_release_parity_released_scope.test.mjs
+@@ -0,0 +1,30 @@
++// Гейт №3 Learning V2 проверяет только ВЫПУЩЕННОЕ (≤ потолка бандла), как гейт озвучки №4 (координатор 15.10, V2 показан в R1).
++// зачем: невыпущенные занятия (их нельзя открыть) не держат выпуск красным, а замечание в выпущенном — по-прежнему красное.
++import assert from 'node:assert/strict';
++import test from 'node:test';
++import { releasedSessionOrdinal, releasedSessionScope, splitByReleasedScope } from '../scripts/learning_v2_release_parity_gate.mjs';
++
++test('номер занятия — из пути копии и из id задания', () => {
++  assert.equal(releasedSessionOrdinal('l01/s07/answers.json'), 7);
++  assert.equal(releasedSessionOrdinal('en:lesson-01:session-11:i17'), 11);
++  assert.equal(releasedSessionOrdinal('manifest.json'), null);
++});
++
++test('невыпущенное не влияет, выпущенное с замечанием — красное, общий файл — красное', () => {
++  const issues = [
++    { code: 'CONTENT_MISMATCH', path: 'l01/s12/intro.json' },
++    { code: 'AUDIO_EVIDENCE_UNVERIFIED', interactionId: 'en:lesson-01:session-30:i4' },
++  ];
++  assert.deepEqual(splitByReleasedScope(issues, 11).blocking, []);
++  const withReleased = [...issues, { code: 'AUDIO_EVIDENCE_UNVERIFIED', interactionId: 'en:lesson-01:session-09:i14' }, { code: 'ONLY_CANONICAL', path: 'index.json' }];
++  const split = splitByReleasedScope(withReleased, 11);
++  assert.equal(split.blocking.length, 2);
++  assert.equal(split.deferred.length, 2);
++});
++
++test('потолок не прочитан — строго, весь курс', () => {
++  const issues = [{ code: 'CONTENT_MISMATCH', path: 'l01/s40/learner.json' }];
++  assert.equal(splitByReleasedScope(issues, null).blocking.length, 1);
++  assert.equal(releasedSessionScope(null).length, releasedSessionScope(1000).length);
++  assert.deepEqual(releasedSessionScope(2), ['en/l01/s01', 'en/l01/s02']);
++});

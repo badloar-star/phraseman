@@ -87,6 +87,7 @@ import {
 import { recordHomeContinueLegacy } from './home_continue_mark';
 import { DebugLogger } from './debug-logger';
 import LessonMenuGateSkeleton from '../components/lessons/LessonMenuGateSkeleton'; // зачем (координатор 13.10): скелет вместо пустого первого кадра, пока идёт fail-closed проверка доступа
+import { captureAccountGeneration } from './account_generation'; // зачем: stableId в ключ подтверждения доступа (Ревизор 7d564d137)
 import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Начать/Продолжить» открывал два урока
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { useLineScale } from '../hooks/useLineScale';
@@ -418,6 +419,7 @@ function LessonMenu() {
   // зачем (R58 #26): тихая перепроверка доступа на возврате фокуса — экран не мигает скелетом, но запуск закрыт, пока проверка не закончилась
   const [lockRevalidating, setLockRevalidating] = useState(false);
   const lockConfirmedKeyRef = useRef<string | null>(null);
+  const lockGenerationRef = useRef(0);
   // зачем (координатор 13.10): сколько мс длится проверка доступа, пока на экране скелет, и чем она кончилась. Только журнал: решения гейта это не касается.
   const lockCheckStartedAtRef = useRef(Date.now());
   const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
@@ -567,7 +569,13 @@ function LessonMenu() {
     // зачем (аудит R58 #26, координатор 15.10): на каждом возврате фокуса меню сбрасывалось в скелет и теряло прокрутку. Для УЖЕ подтверждённого в этом заходе урока
     // экран остаётся как был, проверка идёт фоном, а запуск урока заблокирован (lockRevalidating) до её конца — fail-closed для действий сохраняется.
     // Новый урок/аккаунт (ключ другой) — прежний путь: скелет и закрытое состояние до подтверждения.
-    const lockKey = `${lessonId}|${String(studyTarget)}`;
+    // зачем (Ревизор 7d564d137): две проверки при быстром blur→focus шли внахлёст — ранняя снимала флаг и записывала устаревший результат. Поколение: результат и снятие флага — только у последней.
+    // stableId в ключе подтверждения: подтверждение одного аккаунта не переносится на другой.
+    const generation = ++lockGenerationRef.current;
+    const lockKey = `${captureAccountGeneration()?.stableId ?? 'anon'}|${lessonId}|${String(studyTarget)}`;
+    const gatedSetLocked = (value: boolean) => { if (lockGenerationRef.current === generation) setIsLessonLocked(value); };
+    const gatedSetReason = (value: 'premium' | 'level' | 'progress') => { if (lockGenerationRef.current === generation) setLockReason(value); };
+    const gatedSetInfo = (next: Awaited<ReturnType<typeof getLessonLockInfo>> | null) => { if (lockGenerationRef.current === generation) setLockInfoQuiet(next); };
     const silent = lockConfirmedKeyRef.current === lockKey;
     console.log(`[LESSON-MENU] lock:check ${JSON.stringify({ lessonId, studyTarget, silent })}`); // guard-ok: тихая ли перепроверка
     if (silent) {
@@ -593,9 +601,9 @@ function LessonMenu() {
         const noLimits = isAlwaysOpenLesson(lessonId) || await isTesterNoLimitsActive();
         if (noLimits) {
           console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: false, by: isAlwaysOpenLesson(lessonId) ? 'always_open_lesson' : 'tester_no_limits' })}`);
-          setIsLessonLocked(false);
-          setLockReason('progress');
-          setLockInfoQuiet(null);
+          gatedSetLocked(false);
+          gatedSetReason('progress');
+          gatedSetInfo(null);
           return;
         }
 
@@ -604,9 +612,9 @@ function LessonMenu() {
         const freeOrPurchased = await isLessonUnlockedByEarnedProgress(lessonId, studyTarget);
         if (freeOrPurchased) {
           console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: false, by: 'free_or_purchased' })}`);
-          setIsLessonLocked(false);
-          setLockReason('progress');
-          setLockInfoQuiet(null);
+          gatedSetLocked(false);
+          gatedSetReason('progress');
+          gatedSetInfo(null);
           return;
         }
 
@@ -614,18 +622,18 @@ function LessonMenu() {
 
         if (!premiumNow && requiresPremiumForLesson(lessonId)) {
           console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: 'premium_required', premiumNow })}`);
-          setIsLessonLocked(true);
-          setLockReason('premium');
-          setLockInfoQuiet(await getLessonLockInfo(lessonId, studyTarget));
+          gatedSetLocked(true);
+          gatedSetReason('premium');
+          gatedSetInfo(await getLessonLockInfo(lessonId, studyTarget));
           return;
         }
 
         if (premiumNow) {
           const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
           console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !premiumUnlocked, by: 'premium_course', premiumNow })}`);
-          setIsLessonLocked(!premiumUnlocked);
-          setLockReason('progress');
-          setLockInfoQuiet(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
+          gatedSetLocked(!premiumUnlocked);
+          gatedSetReason('progress');
+          gatedSetInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
           return;
         }
 
@@ -654,29 +662,33 @@ function LessonMenu() {
         }
 
         console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !unlocked, by: 'earned_progress' })}`);
-        setIsLessonLocked(!unlocked);
+        gatedSetLocked(!unlocked);
         if (!unlocked) {
-          setLockReason('progress');
+          gatedSetReason('progress');
           const info = await getLessonLockInfo(lessonId, studyTarget);
-          setLockInfoQuiet(info);
+          gatedSetInfo(info);
         } else {
-          setLockInfoQuiet(null);
+          gatedSetInfo(null);
         }
       } catch (error) {
         // Ошибка AsyncStorage/entitlement-проверки не является разрешением.
         console.warn(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: 'error_fail_closed', error: error instanceof Error ? error.message : String(error) })}`);
-        setIsLessonLocked(true);
-        setLockReason('progress');
-        setLockInfoQuiet(null);
+        gatedSetLocked(true);
+        gatedSetReason('progress');
+        gatedSetInfo(null);
         DebugLogger.error(
           'lesson_menu:access_gate',
           error instanceof Error ? error : new Error(String(error)),
           'warning',
         );
       } finally {
-        lockConfirmedKeyRef.current = lockKey;
-        setLockRevalidating(false);
-        setLockStateLoaded(true);
+        if (lockGenerationRef.current === generation) {
+          lockConfirmedKeyRef.current = lockKey;
+          setLockRevalidating(false);
+          setLockStateLoaded(true);
+        } else {
+          console.log(`[LESSON-MENU] lock:stale_result_dropped ${JSON.stringify({ lessonId, generation, latest: lockGenerationRef.current })}`); // guard-ok: устаревшая проверка отброшена
+        }
       }
     })();
   }, [lessonId, studyTarget]);

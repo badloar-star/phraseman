@@ -52,3 +52,13 @@ describe('#18 «Начать» V2: замер', () => {
     expect(src).toContain('tapToReadyMs: Date.now() - v2StartTapAtMs');
   });
 });
+
+describe('#26 меню урока: поколение проверки доступа (Ревизор 7d564d137)', () => {
+  it('результат и снятие флага — только у последней проверки; stableId в ключе подтверждения', () => {
+    const src = read('app/lesson_menu.tsx');
+    expect(src).toContain('const generation = ++lockGenerationRef.current;');
+    expect(src).toContain('lockGenerationRef.current === generation');
+    expect(src).toContain("captureAccountGeneration()?.stableId ?? 'anon'");
+    expect(src).toContain('lock:stale_result_dropped');
+  });
+});

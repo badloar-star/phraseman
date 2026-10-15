@@ -1,0 +1,33 @@
+10-15 21:58:51.335 I/ReactNativeJS(23508): [HEARTS] ЗАПИСЬ: осталось=2/3 фаза=active ключ=session_attempts_state_v1:06181aa7-bd77-4d33-8a64-0e2b609627ee:lesson%3Aen%3A1
+10-15 21:58:54.930 I/ReactNativeJS(23508): '[LESSON-RESULT] back_during_completion', '{"lessonId":1,"from":"next"}'
+10-15 21:58:54.974 I/ReactNativeJS(23508): [LESSON-RESULT] переход: ждали записи ошибок 1 шт. 0 мс
+10-15 21:58:55.148 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT-SAVE]: gates +70мс lesson=1: results=false access=false xp=false → ждём «Сохраняю результат…»
+10-15 21:58:55.223 I/ReactNativeJS(23508): [HEARTS] ЗАПИСЬ: осталось=2/3 фаза=active ключ=session_attempts_state_v1:06181aa7-bd77-4d33-8a64-0e2b609627ee:lesson%3Aen%3A1
+10-15 21:58:55.658 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT]: ветка=ПРОГРЕСС_НАЙДЕН lesson=1 target=en ответов=3 верно=3 ошибок=0 из 3 score=5 → tier none→gold новыйРекорд=true проходов=1
+10-15 21:58:55.681 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT-SAVE]: gates +602мс lesson=1: results=false access=true xp=false → ждём «Сохраняю результат…»
+10-15 21:58:55.803 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT-SAVE]: gates +725мс lesson=1: results=true access=true xp=false → ждём «Сохраняю результат…»
+10-15 21:58:55.819 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT-SAVE]: scan: lesson=1 ключей=32 multiGet=20мс разбор=0мс засчитано=0 идеальных=0 wasPerfect=false битых=0
+10-15 21:58:55.819 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT-SAVE]: grantBonus: этапы lesson=1 первый бонус=578мс, сводка прохождения=22мс
+10-15 21:58:55.819 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT-SAVE]: grantBonus: готово lesson=1 всего=600мс (бонус+сводка+отзыв), wasPerfect=false eligibleReview=false
+10-15 21:58:55.982 I/ReactNativeJS(23508): [INFO] [COIN-DIVERGENCE] publish: {"owner":"06181aa7","snapshotStars":0,"snapshotSource":"local","nextStars":50,"serverBalance":0,"serverSeq":0,"operations":1,"unacknowledged":50,"unacknowledgedBySchema":{"client-level-spin-star-operation.v1":{"count":1,"am
+10-15 21:58:55.988 I/ReactNativeJS(23508): [MOMENT-m10] старт: reducedMotion=false серия={день уже был засчитан раньше (до=true)} сегодня={задачу продвинул этот урок: 0/1 → 1/1}
+10-15 21:58:55.992 I/ReactNativeJS(23508): [MOMENT-m10] решение lesson=1: играем — цепочка: звёзды=3 верно=3 ошибок=0
+10-15 21:58:55.994 I/ReactNativeJS(23508): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":true,"milestonePending":true}'
+10-15 21:58:55.996 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT-SAVE]: gates +917мс lesson=1: results=true access=true xp=true → экран итога открыт
+10-15 21:58:55.998 I/ReactNativeJS(23508): [INFO] [LESSON-RESULT]: показ итога lesson=1 комбо=false: звёзды=3 (по проценту: score=5; медаль=gold) | верно/ошибок=3/0 | монеты=+9 (hydrating=false) | заметкаPlus=false | списокОшибо
+10-15 21:58:56.043 I/ReactNativeJS(23508): '[COIN-PILL]', '{"screen":"home","source":"snapshot","shown":50,"value":50,"hydrated":true,"accountStableId":"06181aa7","generation":1}'
+10-15 21:58:56.169 I/ReactNativeJS(23508): [STREAK-MILESTONE] shown:read key=1:2026-10-15 onDisk=false всего=0
+10-15 21:58:56.171 I/ReactNativeJS(23508): [STREAK-MILESTONE] gate: рубеж=1 день=2026-10-15 сегодня=2026-10-15 флаг=true решение=показать причина=рубеж 1 засчитан сегодня (2026-10-15)
+10-15 21:58:56.171 I/ReactNativeJS(23508): [STREAK-MILESTONE] open=1
+10-15 21:58:56.172 I/ReactNativeJS(23508): [STREAK-MILESTONE] pending:consumed key=1:2026-10-15
+10-15 21:58:56.172 I/ReactNativeJS(23508): [STREAK-MILESTONE] показ рубеж=1 вид=toast монета=0
+10-15 21:58:56.259 I/ReactNativeJS(23508): [STREAK-MILESTONE] shown:write key=1:2026-10-15 всего=1
+10-15 21:58:56.425 I/ReactNativeJS(23508): [INFO] [COIN-DIVERGENCE] publish: {"owner":"06181aa7","snapshotStars":50,"snapshotSource":"local","nextStars":59,"serverBalance":0,"serverSeq":0,"operations":2,"unacknowledged":59,"unacknowledgedBySchema":{"client-level-spin-star-operation.v1":{"count":1,"a
+10-15 21:58:56.518 I/ReactNativeJS(23508): '[COIN-PILL]', '{"screen":"home","source":"snapshot","shown":59,"value":59,"hydrated":true,"accountStableId":"06181aa7","generation":1}'
+10-15 21:58:57.787 I/ReactNativeJS(23508): [STREAK-MILESTONE-HOST] done: действие вызвано
+10-15 21:58:57.787 I/ReactNativeJS(23508): [STREAK-MILESTONE] закрыто рубеж=1
+10-15 21:58:57.787 I/ReactNativeJS(23508): [STREAK-MILESTONE] open=null
+10-15 21:58:57.911 I/ReactNativeJS(23508): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":true,"perfectPending":true,"milestonePending":false}'
+10-15 21:59:01.175 I/ReactNativeJS(23508): [MOMENT-m10] конец цепочки: доиграла
+10-15 21:59:01.219 I/ReactNativeJS(23508): '[LESSON-RESULT] slot_hold', '{"lessonId":1,"chainPending":false,"perfectPending":true,"milestonePending":false}'
+10-15 21:59:04.696 I/ReactNativeJS(23508): [INFO] [COIN-DIVERGENCE] basis:first_server_observation: {"path":"practice_ack","owner":"06181aa7","localBasisAfter":9,"serverBalance":9,"serverSeq":1,"chosen":"server","lift":0}

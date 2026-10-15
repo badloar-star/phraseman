@@ -2197,6 +2197,20 @@ export const scheduleStreakWarningIfNeeded = async (
       }));
     }
 
+    // зачем (Ревизор по R37 bf2886e77, гонка): «не занимался» прочитано в начале, а день мог засчитаться, пока собирали
+    // текст, — тогда отмена (cancelStreakWarningForToday) уже прошла, и пуш вставал ПОСЛЕ неё. Перепроверяем прямо перед
+    // постановкой (и ключ дня — около полуночи день мог смениться).
+    const isDayAlreadyCounted = async (): Promise<boolean> => {
+      const [lastActiveNow, scheduledNow] = await Promise.all([
+        AsyncStorage.getItem('last_active_date'),
+        AsyncStorage.getItem('streak_warning_scheduled'),
+      ]);
+      return isSameLocalOrUtcDay(lastActiveNow) || scheduledNow === getLocalDayKey() || getLocalDayKey() !== today;
+    };
+    if (await isDayAlreadyCounted()) {
+      console.log('[STREAK-WARN] schedule:skip — день засчитан или сменился, пока готовили текст'); // guard-ok: ранний выход
+      return;
+    }
     await cancelScheduledNotificationsByType(N, ['streak_warning']);
     const warningId = await N.scheduleNotificationAsync({
       content: {
@@ -2207,6 +2221,12 @@ export const scheduleStreakWarningIfNeeded = async (
       },
       trigger: triggerInterval(secondsUntil),
     });
+    if (await isDayAlreadyCounted()) {
+      // день засчитался во время постановки — снимаем только что поставленное
+      await N.cancelScheduledNotificationAsync(warningId).catch(swallowError('notifications:scheduleStreakWarningIfNeeded.race'));
+      console.log('[STREAK-WARN] schedule:cancelled_after_race — день засчитан во время постановки'); // guard-ok: итог гонки
+      return;
+    }
 
     await AsyncStorage.setItem('streak_warning_scheduled', today);
     await AsyncStorage.setItem(STREAK_WARNING_NOTIF_ID_KEY, warningId);

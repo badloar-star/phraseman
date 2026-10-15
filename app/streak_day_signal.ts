@@ -85,6 +85,8 @@ export function subscribeStreakDayState(listener: (next: StreakDayState) => void
 }
 
 function publish(next: StreakDayState): void {
+  // зачем (Сверка 15.10, «Серия — 0 дней / засчитан»): каждая запись стора с прежним значением — видно, кто и в каком порядке её менял
+  console.log(`[STREAK-RESULT] publish было=${state ? `{days=${state.days} counted=${String(state.counted)} day=${state.dayKey}}` : 'null'} стало={days=${next.days} counted=${String(next.counted)} day=${next.dayKey}} слушателей=${listeners.size}`);
   state = next;
   for (const listener of Array.from(listeners)) {
     try { listener(next); } catch (error: unknown) {

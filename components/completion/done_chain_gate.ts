@@ -83,7 +83,10 @@ function lessonProgressOf(state: TodayTasksDayState | null): number | null {
 
 export function captureDoneChainBefore(): DoneChainBefore {
   const tasks = peekTodayTasks();
-  return Object.freeze({ streak: peekStreakDayState(), lessonProgress: lessonProgressOf(tasks), dayKey: tasks?.dayKey ?? null });
+  const streak = peekStreakDayState();
+  // зачем (Сверка 15.10, «Серия — 0 дней»): снимок «до» берётся на первом кадре итога — видно, успела ли запись дня раньше него
+  console.log(`[STREAK-RESULT] before:snapshot ${streak ? `{days=${streak.days} counted=${String(streak.counted)} day=${streak.dayKey}}` : 'null(серия ещё не сверена)'} задачиДня=${tasks ? tasks.dayKey : 'null'}`); // guard-ok: единичный журнал снимка
+  return Object.freeze({ streak, lessonProgress: lessonProgressOf(tasks), dayKey: tasks?.dayKey ?? null });
 }
 
 /** «После» — состояние сторов серии и задач дня; в бою живое, в dev-превью — готовое. */

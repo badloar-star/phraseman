@@ -59,9 +59,33 @@ type ChainState = Readonly<{
 
 const ChainCtx = createContext<ChainState>({ revealed: T.beats, instant: true, streak: null, today: null, previewBalance: null });
 
+/** Строка серии для журнала: дни, засчитан ли день и ключ дня. */
+function streakLogText(v: StreakDayState | null): string {
+  return v ? `{days=${v.days} counted=${String(v.counted)} day=${v.dayKey}}` : 'null(not hydrated)';
+}
+
 function useLiveStreak(): StreakDayState | null {
-  const [v, setV] = useState<StreakDayState | null>(() => peekStreakDayState());
-  useEffect(() => subscribeStreakDayState(setV), []);
+  const mountedAtRef = useRef(Date.now());
+  const [v, setV] = useState<StreakDayState | null>(() => {
+    const initial = peekStreakDayState();
+    console.log(`[STREAK-RESULT] live:init из памяти стора ${streakLogText(initial)}`); // guard-ok: единичный журнал первого чтения
+    return initial;
+  });
+  useEffect(() => {
+    const unsubscribe = subscribeStreakDayState((next) => {
+      console.log(`[STREAK-RESULT] live:update +${Date.now() - mountedAtRef.current}мс после монтирования ${streakLogText(next)}`); // guard-ok: по одной строке на запись серии
+      setV(next);
+    });
+    // зачем (Сверка 15.10, «Серия — 0 дней» у свежего гостя): запись дня могла прийти МЕЖДУ первым чтением и подпиской — тогда
+    // строка навсегда оставалась на старом значении. Перечитываем стор сразу после подписки и пишем, было ли расхождение.
+    const afterSubscribe = peekStreakDayState();
+    setV((prev) => {
+      const missed = prev !== afterSubscribe;
+      console.log(`[STREAK-RESULT] live:subscribed +${Date.now() - mountedAtRef.current}мс было=${streakLogText(prev)} стало=${streakLogText(afterSubscribe)} пропущенаЗапись=${String(missed)}`); // guard-ok: единичный журнал подписки
+      return missed ? afterSubscribe : prev;
+    });
+    return unsubscribe;
+  }, []);
   return v;
 }
 
@@ -94,6 +118,10 @@ export const DoneChainProvider = memo(function DoneChainProvider({ before, lang,
   const liveStreak = previewAfter ? previewAfter.streak : streakFromStore;
   const liveToday = previewAfter ? previewAfter.today : todayFromStore;
   const streak = useMemo(() => deriveStreakRow(before.streak, liveStreak), [before.streak, liveStreak]);
+  useEffect(() => {
+    // зачем (Сверка 15.10): что строка «Серия» покажет и из чего — снимок «до» (первый кадр итога) и живой стор «после»
+    console.log(`[STREAK-RESULT] row до=${streakLogText(before.streak)} после=${streakLogText(liveStreak)} источник=${previewAfter ? 'dev-превью' : 'живой стор'} → ${streak ? `${streak.from.days}→${streak.to.days} засчитан=${String(streak.to.counted)} (${streak.reason})` : 'строки нет'}`); // guard-ok: по одной строке на смену данных серии
+  }, [before.streak, liveStreak, previewAfter, streak]);
   const todayBase = useMemo(() => deriveTodayRow(before, liveToday), [before, liveToday]);
   const todayTitle = useMemo(() => (liveToday ? todayTasksToView(liveToday, lang).find((t) => t.kind === 'lesson')?.title ?? null : null), [lang, liveToday]);
   const today = todayBase && todayTitle ? { ...todayBase, title: todayTitle } : null;

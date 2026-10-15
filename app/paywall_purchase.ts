@@ -275,7 +275,7 @@ export function paywallRestoreToast(kind: PaywallRestoreToastKind) {
       return actionToastTri('success', {
         ru: 'Покупка подтверждена',
         en: 'Purchase confirmed', uk: 'Покупку підтверджено', es: 'Compra confirmada', 'pt-BR': 'Compra confirmada',
-        vi: 'Đã xác nhận giao dịch', id: 'Pembelian terkonfirmasi', tr: 'Satın alma doğrulandı', pl: 'Zakup potwierdzony',
+        vi: 'Đã xác nhận giao dịch', id: 'Pembelian dikonfirmasi', tr: 'Satın alma doğrulandı', pl: 'Zakup potwierdzony',
       });
     case 'restored':
       return actionToastTri('success', {
@@ -295,11 +295,11 @@ export function paywallRestoreToast(kind: PaywallRestoreToastKind) {
         en: 'We can’t find the purchase yet. Tap “Restore purchases”.',
         uk: 'Покупку поки не знайдено. Натисни «Відновити покупки».',
         es: 'Aún no encontramos la compra. Toca «Restaurar compras».',
-        'pt-BR': 'Ainda não encontramos a compra. Toque em «Restaurar compras».',
-        vi: 'Chưa tìm thấy giao dịch. Hãy chạm «Khôi phục giao dịch».',
-        id: 'Pembelian belum ditemukan. Ketuk «Pulihkan pembelian».',
-        tr: 'Satın alma henüz bulunamadı. «Satın alımları geri yükle»ye dokun.',
-        pl: 'Nie znaleźliśmy jeszcze zakupu. Wybierz «Przywróć zakupy».',
+        'pt-BR': 'Ainda não encontramos a compra. Toque em “Restaurar compras”.',
+        vi: 'Chưa tìm thấy giao dịch. Hãy chạm “Khôi phục giao dịch”.',
+        id: 'Pembelian belum ditemukan. Ketuk “Pulihkan pembelian”.',
+        tr: 'Satın alma henüz bulunamadı. “Satın alımları geri yükle” düğmesine dokun.',
+        pl: 'Nie znaleźliśmy jeszcze zakupu. Dotknij „Przywróć zakupy”.',
       });
     case 'no_active_subscriptions':
       return actionToastTri('error', {

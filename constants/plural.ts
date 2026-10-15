@@ -28,7 +28,8 @@ export function pluralFormFor(lang: Lang, rawCount: number): keyof PluralForms {
   if (!SLAVIC.has(lang)) return count === 1 ? 'one' : 'many';
   const mod10 = count % 10;
   const mod100 = count % 100;
-  if (mod10 === 1 && mod100 !== 11) return 'one';
+  // зачем (переводчик 15.10): в польском форма «one» — только ровно 1; 21, 31, 101 берут «many» («21 monet», не «21 moneta»), в отличие от ru/uk.
+  if (lang === 'pl' ? count === 1 : mod10 === 1 && mod100 !== 11) return 'one';
   if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'few';
   return 'many';
 }

@@ -13,8 +13,8 @@ const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 
 
 const S = {
   overline: ['Первый диалог', 'Перший діалог', 'First dialogue', 'Primer diálogo', 'Primeiro diálogo', 'Cuộc đối thoại đầu tiên', 'Dialog pertama', 'İlk diyalog', 'Pierwszy dialog'],
-  title: ['Первый разговор {adv} — есть!', 'Перша розмова {adv} — є!', 'Your first conversation {adv} — done!', 'Primera conversación {adv}: ¡hecho!', 'Primeira conversa {adv} — feito!', 'Cuộc trò chuyện đầu tiên {adv} — xong!', 'Percakapan pertama {adv} — selesai!', 'İlk konuşma {adv} — tamam!', 'Pierwsza rozmowa {adv} — zrobione!'],
-  say: ['Получилось!', 'Вийшло!', 'You did it!', '¡Lo lograste!', 'Deu certo!', 'Được rồi!', 'Berhasil!', 'Başardık!', 'Udało się!'],
+  title: ['Первый разговор {adv} — есть!', 'Перша розмова {adv} — є!', 'Your first conversation {adv} — done!', 'Primera conversación {adv}: ¡hecho!', 'Primeira conversa {adv} — concluída!', 'Cuộc trò chuyện đầu tiên {adv} — xong!', 'Percakapan pertama {adv} — selesai!', 'İlk konuşma {adv} — tamam!', 'Pierwsza rozmowa {adv} — zaliczona!'],
+  say: ['Получилось!', 'Вийшло!', 'You did it!', '¡Lo lograste!', 'Deu certo!', 'Được rồi!', 'Berhasil!', 'Başardın!', 'Udało się!'],
   next: ['Следующий сценарий', 'Наступний сценарій', 'Next scenario', 'Siguiente escenario', 'Próximo cenário', 'Kịch bản tiếp theo', 'Skenario berikutnya', 'Sonraki senaryo', 'Następny scenariusz'],
 } as const satisfies Readonly<Record<string, Nine>>;
 
@@ -35,7 +35,7 @@ type Forms3 = readonly [string, string, string];
 const TURN_WORD: Readonly<Record<string, Forms3>> = {
   ru: ['реплика', 'реплики', 'реплик'], uk: ['репліка', 'репліки', 'реплік'], pl: ['wypowiedź', 'wypowiedzi', 'wypowiedzi'],
   en: ['turn', 'turns', 'turns'], es: ['intervención', 'intervenciones', 'intervenciones'], 'pt-BR': ['fala', 'falas', 'falas'],
-  vi: ['lượt nói', 'lượt nói', 'lượt nói'], id: ['giliran', 'giliran', 'giliran'], tr: ['konuşma', 'konuşma', 'konuşma'],
+  vi: ['lượt nói', 'lượt nói', 'lượt nói'], id: ['giliran', 'giliran', 'giliran'], tr: ['replik', 'replik', 'replik'],
 };
 const GOAL_WORD: Readonly<Record<string, Forms3>> = {
   ru: ['задание', 'задания', 'заданий'], uk: ['завдання', 'завдання', 'завдань'], pl: ['zadanie', 'zadania', 'zadań'],

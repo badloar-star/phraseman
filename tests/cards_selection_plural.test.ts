@@ -28,6 +28,8 @@ describe('склонение «карточка» в окне удаления �
     expect([1, 2, 5, 21, 22, 25].map((n) => pluralWithCount('uk', n, uk))).toEqual(['1 картку', '2 картки', '5 карток', '21 картку', '22 картки', '25 карток']);
     const pl = { one: 'kartę', few: 'karty', many: 'kart' };
     expect([1, 2, 5, 12, 22].map((n) => pluralWithCount('pl', n, pl))).toEqual(['1 kartę', '2 karty', '5 kart', '12 kart', '22 karty']);
+    // польский: 21/31/101 — форма «many», а не «one» (в отличие от ru/uk)
+    expect([21, 31, 101].map((n) => pluralWithCount('pl', n, pl))).toEqual(['21 kart', '31 kart', '101 kart']);
   });
 
   it('en/es/pt-BR — две формы (одна / много)', () => {

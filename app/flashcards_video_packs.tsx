@@ -45,6 +45,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { safeRouterBack } from './navigation_back';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { DebugLogger } from './debug-logger';
 import { isDevCardsFail } from './dev_cards_state';
 import { initialVideoCatalogLoadState, videoCatalogBranch, videoCatalogWaiting } from './video_packs_catalog_branch';
@@ -174,6 +175,8 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
   bottomPad?: number;
 } = {}) {
   const router = useRouter();
+  // зачем (аудит Карточек 🟡, 15.10): нижний край отдельного экрана «Видео» не учитывал жестовую полосу — последняя карточка садилась под неё
+  const standaloneInsets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { theme: t, liquidGlassThemeId, statusBarLight } = useTheme();
@@ -583,7 +586,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
                   keyExtractor={(item) => item.id}
                   renderItem={renderRow}
                   ItemSeparatorComponent={rowSeparator}
-                  contentContainerStyle={embedded ? [styles.listContent, styles.listContentEmbedded, { paddingBottom: bottomPad }] : styles.listContent}
+                  contentContainerStyle={embedded ? [styles.listContent, styles.listContentEmbedded, { paddingBottom: bottomPad }] : [styles.listContent, { paddingBottom: 32 + standaloneInsets.bottom }]}
                   showsVerticalScrollIndicator={false}
                   /** Превью — картинки из сети; окно держим узким, чтобы список не грел телефон. */
                   initialNumToRender={8}

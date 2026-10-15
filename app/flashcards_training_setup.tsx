@@ -177,7 +177,7 @@ export default function FlashcardsTrainingSetupScreen() {
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
   const reducedMotion = useReducedMotion();
-  const { accessResolved } = usePremium();
+  const { accessResolved, hasPremiumAccess } = usePremium();
   const quotaPreview = useFlashcardTrainingQuotaPreview();
   /**
    * зачем (владелец: «открывая раздел тренировки, экран отметить наборы моргает»):
@@ -748,7 +748,8 @@ export default function FlashcardsTrainingSetupScreen() {
   // зачем (решение координатора 12.10, макет «Лимит Free»): исчерпанный лимит — обычная настройка с пилюлей и «Безлимит с Plus», а не тупик
   const limitReached = quotaPreview.status === 'exhausted';
   // зачем (D174, cards-section-056): пилюля = «использовано/лимит» (30/30), как D166 «4/3» у энергии, а не «осталось/лимит» (0/30)
-  const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
+  // зачем (аудит #17, 15.10): у Plus лимита тренировок нет — пилюля «n/30» только у Free
+  const limitLabel = quotaPreview.status === 'waiting' || hasPremiumAccess ? null : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
   const openUpgrade = useCallback(() => {
     console.log('[FC-TRAIN-ENTRY] setup:upgrade-tap', JSON.stringify({ mode: mode ?? null, quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit }));
     router.push({ pathname: '/premium_modal', params: { context: 'flashcard_training', source: 'flashcards_training_setup' } } as never);

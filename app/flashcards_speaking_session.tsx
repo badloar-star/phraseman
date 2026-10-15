@@ -1398,8 +1398,9 @@ export default function FlashcardsSpeakingSession() {
         icon="close"
         glass={speakingGlass}
         color={t.textPrimary}
-        onPress={interactive ? leave : undefined}
-        testID={interactive ? 'fc-speak-back' : undefined}
+        // зачем (аудит #21, 15.10): на скелете загрузки (до 20 с) стрелка была без обработчика — из зависшего экрана нельзя выйти; выход есть во всех состояниях
+        onPress={leave}
+        testID="fc-speak-back"
         accessibilityLabel={labels.back}
       />
       </View>
@@ -1512,6 +1513,8 @@ RU: ${card.translation}`}
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }} testID="fc-speak-quota-unavailable">
           <ContentWrap>
+            {/* зачем (аудит #22, 15.10): «Тренировка не открылась» была без выхода — шапка с ✕ */}
+            {header(false)}
             {/* зачем (cards.html setupError): данные тренировки не открылись — плитка, сообщение,
                 одна кнопка; повтор прежний (retryQuotaStart). */}
             <PracticeStatePanel

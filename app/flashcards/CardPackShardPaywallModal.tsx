@@ -84,7 +84,8 @@ type Props = {
   purchasing: boolean;
   onClose: () => void;
   onConfirmPurchase: () => void | Promise<void>;
-  onGoToShards: () => void;
+  // зачем (аудит #6, 15.10; запрет владельца 24.08 «магазина монет нет»): «Пополнить» без обработчика вело в никуда — без обработчика кнопки нет, остаётся «Отмена»
+  onGoToShards?: () => void;
   /** Після «Не показывать» у ReportPackModal — оновити каталог на хабі. */
   onCommunityPackHiddenOnDevice?: (optimisticPackId?: string | null) => void | Promise<void>;
 };
@@ -1086,35 +1087,37 @@ export default function CardPackShardPaywallModal({
                     <View style={{ paddingHorizontal: 16, paddingTop: 4, paddingBottom: 6 }}>
                       {mode === 'insufficient' ? (
                         <>
-                          <View style={{ position: 'relative', marginBottom: 10 }}>
-                            <AnimatedLinearGradient
-                              colors={[paywallVisual.ctaGlowTop, EXEMPT_COLOR_1]}
-                              start={{ x: 0.5, y: 0 }}
-                              end={{ x: 0.5, y: 1 }}
-                              style={[
-                                { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, borderRadius: 16 },
-                                ctaGlowStyle,
-                              ]}
-                            />
-                            <DuoPressable
-                              onPress={() => {
-                                if (purchasing) return;
-                                void hapticMediumImpact();
-                                onGoToShards();
-                              }}
-                              disabled={purchasing}
-                              withHaptic={false}
-                              gradientColors={paywallVisual.goShopCta}
-                              style={{ minHeight: undefined, paddingVertical: 16, borderRadius: 16 }}
-                            >
-                              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
-                                <CurrencyMark size={26} />
-                                <Text style={{ color: paywallVisual.goShopForeground, fontSize: f.bodyLg, fontWeight: '900' }}>
-                                  {str.buyShards}
-                                </Text>
-                              </View>
-                            </DuoPressable>
-                          </View>
+                          {onGoToShards ? (
+                            <View style={{ position: 'relative', marginBottom: 10 }}>
+                              <AnimatedLinearGradient
+                                colors={[paywallVisual.ctaGlowTop, EXEMPT_COLOR_1]}
+                                start={{ x: 0.5, y: 0 }}
+                                end={{ x: 0.5, y: 1 }}
+                                style={[
+                                  { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, borderRadius: 16 },
+                                  ctaGlowStyle,
+                                ]}
+                              />
+                              <DuoPressable
+                                onPress={() => {
+                                  if (purchasing) return;
+                                  void hapticMediumImpact();
+                                  onGoToShards?.();
+                                }}
+                                disabled={purchasing}
+                                withHaptic={false}
+                                gradientColors={paywallVisual.goShopCta}
+                                style={{ minHeight: undefined, paddingVertical: 16, borderRadius: 16 }}
+                              >
+                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+                                  <CurrencyMark size={26} />
+                                  <Text style={{ color: paywallVisual.goShopForeground, fontSize: f.bodyLg, fontWeight: '900' }}>
+                                    {str.buyShards}
+                                  </Text>
+                                </View>
+                              </DuoPressable>
+                            </View>
+                          ) : null}
                           <PressableHybrid
                             onPress={handleClose}
                             hitSlop={8}

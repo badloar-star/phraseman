@@ -23,7 +23,9 @@ import YoutubeVideoPhrases from '../components/youtube/YoutubeVideoPhrases';
 import { normalizePackLanguage } from './flashcards/pack_languages';
 import FlashcardsVideoPacksScreen from './flashcards_video_packs';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from './video_phrase_set_packs';
-import { ALL_VIDEOS_PAGE_SIZE, useAllChannelVideos, type AllVideosItem } from './all_channel_videos_source';
+import { ALL_VIDEOS_PAGE_SIZE, allVideosPlaylistToSnapshot, useAllChannelVideos, type AllVideosItem } from './all_channel_videos_source';
+import { resolveVideoChannelForStudyTarget } from './video_language_contour';
+import type { LearningLanguageTarget } from './learning_language_contour';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -155,6 +157,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   // зачем (баг владельца 11.10): пилюля языка открывает шторку «Язык изучения» (PRF-23), а не язык интерфейса.
   const [studyLanguageSheetVisible, setStudyLanguageSheetVisible] = useState(false);
   const [loading, setLoading] = useState(!initialCatalog);
+  // зачем (аудит #26, 15.10; D132): в каталоге нет канала с тегом языка обучения — английским НЕ подменяем (как на Главной), показываем «На этом языке пока нет роликов»
+  const [noChannel, setNoChannel] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [issue, setIssue] = useState<'none' | 'offline' | 'error'>('none');
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
@@ -189,6 +193,28 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Repetir', vi: 'Thử lại', id: 'Ulangi', tr: 'Tekrar dene', pl: 'Ponów' }),
     unavailable: triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' }),
     tryAgain: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
+    // аудит #25/#26 (15.10): пустой каталог и язык без канала — честное состояние вместо вечного скелетона
+    noVideos: triLang(lang, {
+      ru: 'На этом языке пока нет роликов', uk: 'Цією мовою поки немає відео', en: 'No videos in this language yet', es: 'Aún no hay vídeos en este idioma',
+      'pt-BR': 'Ainda não há vídeos neste idioma', vi: 'Chưa có video cho ngôn ngữ này', id: 'Belum ada video untuk bahasa ini', tr: 'Bu dilde henüz video yok', pl: 'W tym języku nie ma jeszcze filmów',
+    }),
+    // аудит #27 (15.10): причины отказа напоминания о премьере — человеку называем, что делать (раньше откат был молчаливым, а «Settings» по-английски)
+    settingsLabel: triLang(lang, { ru: 'Настройки', uk: 'Налаштування', en: 'Settings', es: 'Ajustes', 'pt-BR': 'Ajustes', vi: 'Cài đặt', id: 'Pengaturan', tr: 'Ayarlar', pl: 'Ustawienia' }),
+    notifBlocked: triLang(lang, {
+      ru: 'Уведомления выключены. Включи их в настройках, чтобы получить напоминание.', uk: 'Сповіщення вимкнено. Увімкни їх у налаштуваннях, щоб отримати нагадування.',
+      en: 'Notifications are off. Turn them on in Settings to get the reminder.', es: 'Las notificaciones están desactivadas. Actívalas en Ajustes para recibir el recordatorio.',
+      'pt-BR': 'As notificações estão desativadas. Ative-as nos Ajustes para receber o lembrete.', vi: 'Thông báo đang tắt. Hãy bật trong Cài đặt để nhận lời nhắc.',
+      id: 'Notifikasi mati. Aktifkan di Pengaturan untuk mendapat pengingat.', tr: 'Bildirimler kapalı. Hatırlatma için Ayarlar’dan aç.', pl: 'Powiadomienia są wyłączone. Włącz je w Ustawieniach, aby dostać przypomnienie.',
+    }),
+    notifDenied: triLang(lang, {
+      ru: 'Без разрешения на уведомления напоминание не поставить.', uk: 'Без дозволу на сповіщення нагадування не поставити.', en: 'A reminder needs permission to send notifications.',
+      es: 'Para el recordatorio hace falta permiso de notificaciones.', 'pt-BR': 'O lembrete precisa de permissão para notificações.', vi: 'Cần cho phép thông báo để đặt lời nhắc.',
+      id: 'Pengingat butuh izin notifikasi.', tr: 'Hatırlatma için bildirim izni gerekiyor.', pl: 'Przypomnienie wymaga zgody na powiadomienia.',
+    }),
+    premiereStarted: triLang(lang, {
+      ru: 'Премьера уже началась.', uk: 'Прем’єра вже почалася.', en: 'The premiere has already started.', es: 'El estreno ya empezó.', 'pt-BR': 'A estreia já começou.',
+      vi: 'Buổi công chiếu đã bắt đầu.', id: 'Premier sudah dimulai.', tr: 'Prömiyer başladı.', pl: 'Premiera już się zaczęła.',
+    }),
     reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', en: 'Reminder set', es: 'Recordatorio activado', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
   }), [lang]);
 
@@ -257,6 +283,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       // зачем (владелец 01.10): канал = контур языка обучения; ручной выбор канала не применяется.
       const currentPreference: YoutubeChannelPreference = { mode: 'auto' };
       const resolution = resolvePreferredYoutubeChannel(manifest, studyTarget, currentPreference);
+      // зачем (аудит #26): resolvePreferredYoutubeChannel при отсутствии канала языка падает на канал по умолчанию (английский) — под плашкой FR/DE/IT показывался английский. Канал берём строго по тегу языка, как на Главной.
+      const strictChannel = resolveVideoChannelForStudyTarget(manifest.channels, studyTarget as LearningLanguageTarget);
       if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_resolved seq=${seq} studyTarget=${studyTarget} resolution=${JSON.stringify(resolution)} requested=${requestedChannelId ?? '-'} deepLink=${deepLinkedChannelId ?? '-'} manifestFrom=${manifestFrom} refresh=${refresh}`);
       if (resolution.clearedInvalidManual) {
         await setYoutubeChannelPreference({ mode: 'auto' }, token);
@@ -264,7 +292,18 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         setPreference({ mode: 'auto' });
       }
       const routeChannel = deepLinkedChannelId && manifest.channels.some((item) => item.id === deepLinkedChannelId) ? deepLinkedChannelId : '';
-      channelId = requestedChannelId || routeChannel || resolution.channelId;
+      channelId = requestedChannelId || routeChannel || strictChannel?.id || '';
+      if (!channelId) {
+        console.warn(`[VIDEO-TAB] no_channel_for_target studyTarget=${String(studyTarget)} channels=${JSON.stringify(manifest.channels.map((item) => ({ id: item.id, tags: item.languageTags })))} default=${resolution.channelId} → английским не подменяем`); // guard-ok: ранний выход называет причину
+        catalogRef.current = null;
+        setCatalog(null);
+        setPendingChannel(null);
+        setNoChannel(true);
+        setIssue('none');
+        setLoading(false);
+        return;
+      }
+      setNoChannel(false);
       // зачем (ревью R2): канал сменился — показываем его снимок из памяти сразу; без снимка — шапку по манифесту и
       // скелетон ленты, а не каталог прежнего языка. Снимок из памяти уходит в revalidate как previous: при той же
       // версии каталога это одно чтение манифеста вместо ~154.
@@ -437,6 +476,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const [pages, setPages] = useState(1);
   useEffect(() => { setPages(1); }, [catalog?.channel.id]);
   const allVideos = fullVideos ?? catalog?.videos ?? snapshot?.videos.map(legacyVideoSnapshot) ?? [];
+  // зачем (аудит #24, 15.10): снимок экрана видео обрезает плейлисты до 8 — пока полный список не пришёл, показываем снимок, потом все плейлисты канала
+  const playlistsForGrid = useMemo(
+    () => (allChannel.playlists.length > (catalog?.playlists.length ?? 0) ? allChannel.playlists.map(allVideosPlaylistToSnapshot) : catalog?.playlists ?? []),
+    [allChannel.playlists, catalog?.playlists],
+  );
   const favorites = useVideoFavorites();
   // зачем (Firebase-экономия): счётчики сохранений читаем только для показанных страниц, а не для всех 100 роликов.
   const shownVideoIds = useMemo(() => allVideos.slice(0, pages * ALL_VIDEOS_PAGE_SIZE).map((video) => video.id), [allVideos, pages]);
@@ -545,10 +589,15 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       if (result.ok) return;
       DebugLogger.warn('[VIDEO-TAB]', `напоминание не поставлено: reason=${result.reason}`);
       rollback();
+      // зачем (аудит #27): на каждую причину отказа — своё сообщение (раньше при permission_denied / invalid_or_past / schedule_failed откат был молчаливым)
       if (result.reason === 'permission_blocked') {
-        showGlassAlert(copy.error, undefined, [{ text: 'OK' }, { text: 'Settings', onPress: () => void openYoutubePremiereNotificationSettings() }]);
-      } else if (result.reason === 'master_disabled') {
-        showGlassAlert(copy.error);
+        showGlassAlert(copy.notifBlocked, undefined, [{ text: 'OK' }, { text: copy.settingsLabel, onPress: () => void openYoutubePremiereNotificationSettings() }]);
+      } else if (result.reason === 'permission_denied') {
+        showGlassAlert(copy.notifDenied);
+      } else if (result.reason === 'invalid_or_past') {
+        showGlassAlert(copy.premiereStarted);
+      } else {
+        showGlassAlert(copy.error); // master_disabled, schedule_failed
       }
     } catch (error) {
       DebugLogger.error('[VIDEO-TAB]:remind', error, 'warning');
@@ -648,6 +697,27 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       ))}
     </View>
   ));
+  // зачем (аудит #25, 15.10): 0 роликов / нет канала языка — не вечный скелетон, а плитка, текст и «Повторить» (тот же вид, что «Сейчас недоступно»)
+  const noVideosPanel = (
+    <ScrollView
+      testID="youtube-catalog-no-videos"
+      decelerationRate="fast"
+      refreshControl={<HybridRefreshControl refreshing={false} onRefresh={() => void loadCatalog(undefined, true)} />}
+      contentContainerStyle={styles.unavailable}
+    >
+      <View style={[styles.unavailableTile, { backgroundColor: g.opaqueControl }]}><Ionicons name="videocam-off-outline" size={24} color={g.text} /></View>
+      <Text accessibilityRole="header" style={[styles.unavailableTitle, { color: g.secondary }]}>{copy.noVideos}</Text>
+      <Pressable
+        testID="youtube-no-videos-retry"
+        accessibilityRole="button"
+        accessibilityLabel={copy.retry}
+        onPress={() => void loadCatalog(undefined, true)}
+        style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.cta, opacity: pressed ? 0.8 : 1 }]}
+      >
+        <Text style={[styles.unavailableActionLabel, { color: g.ctaInk }]}>{copy.retry}</Text>
+      </Pressable>
+    </ScrollView>
+  );
   const savedRow = !savedOnly && savedVideos.length > 0 ? (
     <TouchableOpacity
       testID="video-saved-row"
@@ -703,6 +773,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           // зачем (владелец 11.10, video-redesign #c1): вкладка «Наборы» показывает тот же список «Наборы из видео», что и
           // раздел «Карточки» (один экран данных, режим embedded); грузится только когда вкладку открыли.
           <FlashcardsVideoPacksScreen embedded bottomPad={inTab ? tabContentBottomPad : 24} />
+        ) : noChannel && !catalog ? (
+          noVideosPanel
         ) : catalogExhausted && !catalog && !snapshot ? (
           <ScrollView
             testID="youtube-catalog-unavailable"
@@ -726,12 +798,14 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           <View testID="youtube-catalog-loading" style={styles.gridSkeleton}>
             {renderGridSkeleton(gridSkeletonHeight)}
           </View>
+        ) : catalog && !refreshing && allVideos.length === 0 && allChannel.playlists.length === 0 ? (
+          noVideosPanel
         ) : allVideos.length === 0 && (catalog?.playlists.length ?? 0) === 0 ? (
           <ScrollView decelerationRate="fast" testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}>
             <View style={styles.gridSkeleton}>{renderGridSkeleton(gridSkeletonHeight)}</View>
           </ScrollView>
         ) : tab === 'playlists' ? (
-          catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={catalog.playlists} numColumns={2} keyExtractor={(item) => item.id} renderItem={renderPlaylist} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.gridList, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
+          catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={playlistsForGrid} numColumns={2} keyExtractor={(item) => item.id} renderItem={renderPlaylist} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.gridList, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
             : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}><View style={styles.gridSkeleton}>
               {renderGridSkeleton(gridSkeletonHeight)}
             </View></ScrollView>

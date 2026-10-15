@@ -9,7 +9,7 @@
  * Волна «от уровня звука» живёт в SpeakingPanel (VoiceEqualizer получает реальный volumechange) — здесь не дублируется.
  */
 import React, { memo, useCallback, useEffect } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, {
   Easing,
@@ -64,6 +64,8 @@ function SpeakMicButtonBase({
   const voiceGate = useVoiceAttemptGate({ surface: 'cards_speaking', source: 'flashcards_speak_hold' });
   const speechNa = useSpeechUnavailableOnDevice();
   const disabled = disabledProp || speechNa;
+  // зачем (координатор R43, 15.10): лимит на нуле в запасном режиме — пейвол не показан, ждём ответа о подписке ≤ 10 с; тап «ничего не делает» без отклика пугал. Пока ждём — на кнопке индикатор, кнопка занята.
+  const awaiting = voiceGate.awaitingAccess;
   // зачем: кольцо крутится только пока экран в фокусе и приложение на переднем плане (перф-контракт: вечные циклы под гардом)
   const runtimeActive = useRuntimeActive();
   const press = useSharedValue(0);
@@ -112,7 +114,13 @@ function SpeakMicButtonBase({
 
   const label = speechNa
     ? speechUnavailableOnDeviceText(lang)
-    : triLang(lang, {
+    : awaiting
+      ? triLang(lang, {
+        ru: 'Микрофон. Проверяем подписку', uk: 'Мікрофон. Перевіряємо підписку', en: 'Microphone. Checking your subscription',
+        es: 'Micrófono. Comprobando la suscripción', 'pt-BR': 'Microfone. Verificando a assinatura', vi: 'Micrô. Đang kiểm tra gói đăng ký',
+        id: 'Mikrofon. Memeriksa langganan', tr: 'Mikrofon. Abonelik kontrol ediliyor', pl: 'Mikrofon. Sprawdzamy subskrypcję',
+      })
+      : triLang(lang, {
       ru: 'Микрофон. Ответить устно', uk: 'Мікрофон. Відповісти вголос', en: 'Microphone. Answer aloud',
       es: 'Micrófono. Responder en voz alta', 'pt-BR': 'Microfone. Responder em voz alta', vi: 'Micrô. Trả lời thành tiếng',
       id: 'Mikrofon. Jawab dengan suara', tr: 'Mikrofon. Sesli yanıtla', pl: 'Mikrofon. Odpowiedz na głos',
@@ -137,7 +145,7 @@ function SpeakMicButtonBase({
         accessibilityRole="button"
         accessibilityLabel={label}
         accessibilityHint={hint}
-        accessibilityState={{ disabled, selected: listening }}
+        accessibilityState={{ disabled, selected: listening, busy: awaiting }}
         disabled={disabled}
         onPress={onPress}
         onPressIn={() => { press.value = reduceMotion ? withTiming(1, { duration: 50 }) : withSpring(1, PRESS_SPRING); }}
@@ -152,7 +160,11 @@ function SpeakMicButtonBase({
             btnStyle,
           ]}
         >
-          <Ionicons name={speechNa ? 'mic-off-outline' : 'mic'} size={28} color={disabled ? g.secondary : g.ctaFillInk} />
+          {awaiting ? (
+            <ActivityIndicator testID={`${testID}-awaiting`} size="small" color={g.ctaFillInk} />
+          ) : (
+            <Ionicons name={speechNa ? 'mic-off-outline' : 'mic'} size={28} color={disabled ? g.secondary : g.ctaFillInk} />
+          )}
         </Reanimated.View>
       </Pressable>
       {!speechNa ? <MicAllowanceBadge testID={`${testID}-allowance`} /> : null}

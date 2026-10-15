@@ -1244,7 +1244,7 @@ export default function FlashcardsScreen() {
       if (!snapshot) { unhidePackCard(card.id); failToast(); return; }
       const key = ++packUndoKeyRef.current;
       if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current);
-      setPackUndo({ key, snapshot });
+      setPackUndo({ key, snapshot, cardId: card.id }); // зачем (аудит #4, 15.10): id нужен «Вернуть», чтобы снять карточку со списка скрытых — иначе она не появлялась до перезахода
       packUndoTimerRef.current = setTimeout(() => setPackUndo((cur) => (cur?.key === key ? null : cur)), 5000);
       void loadAll();
     }).catch((error: unknown) => {
@@ -1306,8 +1306,9 @@ export default function FlashcardsScreen() {
     if (!entry.snapshot) return;
     const snapshot = entry.snapshot;
     void restoreCardToLocalPack(snapshot).then((ok) => {
-      console.log(`[PACK-CARD-DELETE] экран: возврат ok=${ok}`);
+      console.log(`[PACK-CARD-DELETE] экран: возврат ok=${ok} cardId=${entry.cardId ?? 'нет'}`);
       if (!ok) packCardRestoreFailToast();
+      else if (entry.cardId) unhidePackCard(entry.cardId); // зачем (аудит #4): удаление пометило карточку скрытой; вернули в набор — показываем сразу, не ждём перезахода
       void loadAll();
     }).catch((error: unknown) => {
       console.warn('[PACK-CARD-DELETE] экран: возврат не удался', error instanceof Error ? error.message : String(error));
@@ -1978,7 +1979,7 @@ export default function FlashcardsScreen() {
               );
             });
           }}
-          onGoToShards={() => { setPurchasePack(null); }}
+          // зачем (аудит #6, 15.10): магазина монет нет (запрет владельца), «Пополнить» только закрывало окно — кнопку не показываем, остаётся «Отмена»
         />
       ) : null}
 

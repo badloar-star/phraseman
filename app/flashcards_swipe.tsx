@@ -4291,6 +4291,16 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   // плитка 61, заголовок 20/700, текст 15; тексты и действия прежние.
   const renderQuickStart = () => (
     <View testID="flashcards-swipe-quickstart" style={[styles.quickStartWrap, { paddingHorizontal: ds.spacing.lg }]}>
+      {/* зачем (аудит #22, 15.10): «Готовим…» без выхода — при зависании не уйти; стрелка назад как на пустом состоянии */}
+      <View style={styles.noCardsBack}>
+        <PracticeBackButton
+          glass={swipeGlass}
+          color={t.textPrimary}
+          onPress={() => safeRouterBack(router, '/flashcards' as any)}
+          testID="flashcards-swipe-quickstart-back"
+          accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+        />
+      </View>
       <PracticeStatePanel
         glass={swipeGlass}
         icon="sparkles-outline"
@@ -4385,20 +4395,24 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       .filter((card) => (progressRef.current[card.trainingKey]?.wrong ?? 0) > 0)
       .map((card) => ({ id: card.trainingKey, en: card.en, translation: answerFor(card), packLanguage: card.packLanguage }));
     return (
-      <SessionResultScreen
-        correct={resultCorrect}
-        wrong={resultWrong}
-        runesGained={practiceRunes.runes}
-        learnLeft={0}
-        overline={resultOverline}
-        startedAtMs={roundStartedAtRef.current || undefined}
-        mistakes={resultMistakes}
-        onRetryWrong={() => { void startSession(); }}
-        onDone={exitFromResult}
-        retryLabel={text.nextRound}
-        scoreText={`${text.scoreLabel}: ${resultScore}`}
-        testID="flashcards-swipe-result"
-      />
+      <>
+        <SessionResultScreen
+          correct={resultCorrect}
+          wrong={resultWrong}
+          runesGained={practiceRunes.runes}
+          learnLeft={0}
+          overline={resultOverline}
+          startedAtMs={roundStartedAtRef.current || undefined}
+          mistakes={resultMistakes}
+          onRetryWrong={() => { void startSession(); }}
+          onDone={exitFromResult}
+          retryLabel={text.nextRound}
+          scoreText={`${text.scoreLabel}: ${resultScore}`}
+          testID="flashcards-swipe-result"
+        />
+        {/* зачем (аудит #20, 15.10): «Следующий раунд» при нуле энергии открывает NoEnergyModal, но в ветке итога окно не было смонтировано — тап «ничего не делал» */}
+        <NoEnergyModal variant="learn" visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} activity="flashcards" />
+      </>
     );
   }
 

@@ -150,7 +150,7 @@ export default function FlashcardsHubScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { accessResolved } = usePremium();
+  const { accessResolved, hasPremiumAccess } = usePremium();
   const quotaPreview = useFlashcardTrainingQuotaPreview();
   const insets = useStableSafeAreaInsets();
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -536,9 +536,11 @@ export default function FlashcardsHubScreen() {
     || quotaPreview.status === 'unavailable'
     || quotaPreview.status === 'stale_account');
   const trainingRemaining = Math.max(0, quotaPreview.limit - quotaPreview.used);
+  // зачем (аудит #16, 15.10): у Plus лимита тренировок нет — «N/30», «осталось N из 30» ему не показываем (тренировки считаются, но не ограничивают)
+  const trainingLimitShown = !hasPremiumAccess;
   const trainAccessibilityLabel = trainingLocked
     ? `${copy.train}. ${copy.trainA11yExhausted}`
-    : quotaPreview.status === 'allowed'
+    : quotaPreview.status === 'allowed' && trainingLimitShown
       ? `${copy.train}. ${copy.trainA11yLeft(trainingRemaining, quotaPreview.limit)}`
       : copy.train;
 
@@ -696,7 +698,7 @@ export default function FlashcardsHubScreen() {
   const topIpaText = topStoredIpa || topDictIpa;
   logHubTopCardOutcome(topCard?.en ?? null, trainingLocked, topStoredIpa ? 'stored' : topDictIpa ? 'dictionary' : 'none');
   // зачем (D174, cards-section-056): пилюля = «использовано/лимит» (30/30), как D166 «4/3» у энергии, а не «осталось/лимит» (0/30)
-  const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
+  const limitLabel = quotaPreview.status === 'waiting' || !trainingLimitShown ? null : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
   // зачем (макет: «Осталось 0 из 30 · до 1 ноября»): дата сброса — первое число следующего месяца на языке интерфейса.
   // зачем (аудит скорости R1, 12.10): toLocaleDateString создаёт Intl-форматтер на каждый вызов (десятки мс на Hermes/Android при первом использовании языка),
   // а хаб рендерится часто (квота, фокус, сеть). Дата сброса зависит только от языка и месяца — считаем один раз на язык.
@@ -706,7 +708,7 @@ export default function FlashcardsHubScreen() {
   }, [lang]);
   const trainLabel = trainingLocked
     ? triLang(lang, { ru: `Осталось 0 из ${quotaPreview.limit} · до ${resetDate}`, uk: `Залишилось 0 з ${quotaPreview.limit} · до ${resetDate}`, en: `0 of ${quotaPreview.limit} left · until ${resetDate}`, es: `Quedan 0 de ${quotaPreview.limit} · hasta el ${resetDate}`, 'pt-BR': `Restam 0 de ${quotaPreview.limit} · até ${resetDate}`, vi: `Còn 0 trong ${quotaPreview.limit} · đến ${resetDate}`, id: `Sisa 0 dari ${quotaPreview.limit} · sampai ${resetDate}`, tr: `${quotaPreview.limit} çalışmadan 0 kaldı · ${resetDate} tarihine kadar`, pl: `Zostało 0 z ${quotaPreview.limit} · do ${resetDate}` })
-    : quotaPreview.status === 'allowed'
+    : quotaPreview.status === 'allowed' && trainingLimitShown
       ? triLang(lang, { ru: `Тренироваться · осталось ${trainingRemaining} из ${quotaPreview.limit}`, uk: `Тренуватися · залишилось ${trainingRemaining} з ${quotaPreview.limit}`, en: `Practice · ${trainingRemaining} of ${quotaPreview.limit} left`, es: `Entrenar · quedan ${trainingRemaining} de ${quotaPreview.limit}`, 'pt-BR': `Treinar · restam ${trainingRemaining} de ${quotaPreview.limit}`, vi: `Luyện tập · còn ${trainingRemaining} trong ${quotaPreview.limit}`, id: `Latihan · sisa ${trainingRemaining} dari ${quotaPreview.limit}`, tr: `Çalış · ${quotaPreview.limit} içinden ${trainingRemaining} kaldı`, pl: `Ćwicz · zostało ${trainingRemaining} z ${quotaPreview.limit}` })
       : copy.train;
   // зачем (макет: «64», «4», «3 набора», «1 240»): число целиком с разделителем тысяч, без «1,2K»; у «Из видео» — число со словом «наборов» в нужной форме.

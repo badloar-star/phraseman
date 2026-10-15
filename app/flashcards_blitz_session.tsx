@@ -1313,6 +1313,16 @@ export default function FlashcardsBlitzSession() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }} testID="fc-blitz-quota-unavailable">
           <ContentWrap>
+            {/* зачем (аудит #22, 15.10): «Тренировка не открылась» была без выхода — стрелка назад как на скелете загрузки */}
+            <View style={styles.headerRow}>
+              <PracticeBackButton
+                glass={blitzGlass}
+                color={t.textPrimary}
+                onPress={leave}
+                testID="fc-blitz-back"
+                accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              />
+            </View>
             {/* зачем (cards.html setupError): данные тренировки не открылись — плитка, сообщение,
                 одна кнопка «Попробовать снова»; повтор тот же (retryQuotaStart). */}
             <PracticeStatePanel

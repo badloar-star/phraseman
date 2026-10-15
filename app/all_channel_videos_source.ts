@@ -14,7 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { YoutubeCatalogScreenSnapshot } from './youtube_catalog_cache';
-import type { YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
+import type { YoutubePlaylistSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
 import {
   fetchYoutubeCatalogManifestWithReader,
   fetchYoutubeChannelCatalogWithReader,
@@ -30,7 +30,37 @@ const STORAGE_PREFIX = 'all_channel_videos_v1';
 export type AllVideosItem = Readonly<Pick<YoutubeVideoSnapshot,
   'id' | 'channelId' | 'title' | 'thumbnailUrl' | 'watchUrl' | 'publishedAt' | 'viewCount' | 'durationSec' | 'state' | 'playlistIds'>>;
 
-export type AllVideosList = Readonly<{ channelId: string; version: string; fetchedAtMs: number; items: readonly AllVideosItem[] }>;
+/** Плейлист без описания — ради компактного кэша (аудит #24, 15.10: снимок экрана видео обрезал плейлисты до 8). */
+export type AllVideosPlaylist = Readonly<Pick<YoutubePlaylistSnapshot, 'id' | 'channelId' | 'title' | 'thumbnailUrl' | 'url' | 'itemCount' | 'order' | 'pageCount'>>;
+
+/**
+ * playlists — полный список плейлистов канала (≤ 50, потолок каталога). Нет поля — кэш записан до аудита #24 (до 15.10): список плейлистов неизвестен, полный каталог перечитывается
+ * один раз при ближайшем обновлении, даже если версия каталога прежняя.
+ */
+export type AllVideosList = Readonly<{ channelId: string; version: string; fetchedAtMs: number; items: readonly AllVideosItem[]; playlists?: readonly AllVideosPlaylist[] }>;
+
+function compactPlaylistItem(playlist: YoutubePlaylistSnapshot): AllVideosPlaylist {
+  return {
+    id: playlist.id,
+    channelId: playlist.channelId,
+    title: playlist.title.slice(0, 300),
+    ...(playlist.thumbnailUrl ? { thumbnailUrl: playlist.thumbnailUrl } : {}),
+    url: playlist.url,
+    itemCount: playlist.itemCount,
+    order: playlist.order,
+    pageCount: playlist.pageCount,
+  };
+}
+
+/** Элемент полного списка (без описания, ради компактного кэша) → снимок для карточки ролика. */
+export function allVideosItemToSnapshot(item: AllVideosItem): YoutubeVideoSnapshot {
+  return { ...item, description: '', playlistIds: [...item.playlistIds] };
+}
+
+/** Плейлист полного списка → снимок для карточки сетки плейлистов (описание не хранится). */
+export function allVideosPlaylistToSnapshot(item: AllVideosPlaylist): YoutubePlaylistSnapshot {
+  return { ...item, description: '' };
+}
 
 export type AllVideosSort = 'newest' | 'popular';
 export type AllVideosQuery = Readonly<{ sort?: AllVideosSort; search?: string; playlistId?: string | null }>;
@@ -173,7 +203,8 @@ export async function loadAllChannelVideos(options: LoadAllVideosOptions): Promi
       const reader = options.reader ?? await defaultReader();
       if (cached) {
         const manifest = await fetchYoutubeCatalogManifestWithReader(reader);
-        if (manifest.activeVersion === cached.version && manifest.channels.some((channel) => channel.id === options.channelId)) {
+        // зачем (аудит #24): кэш без списка плейлистов (записан до 15.10) шорткатом «версия та же» не освежаем — полный каталог читаем один раз, чтобы получить все плейлисты
+        if (cached.playlists && manifest.activeVersion === cached.version && manifest.channels.some((channel) => channel.id === options.channelId)) {
           const refreshed: AllVideosList = { ...cached, fetchedAtMs: nowMs };
           if (!isCurrentAccountGeneration(token)) return cached;
           memory.set(k, refreshed); // guard-ok: Map в памяти процесса, не Firestore
@@ -192,6 +223,7 @@ export async function loadAllChannelVideos(options: LoadAllVideosOptions): Promi
         version: catalog.version,
         fetchedAtMs: nowMs,
         items: catalog.videos.map(compactItem),
+        playlists: (catalog.playlists ?? []).map(compactPlaylistItem),
       };
       memory.set(k, list); // guard-ok: Map в памяти процесса, не Firestore
       void writeDisk(scope, list);
@@ -220,6 +252,8 @@ export type AllVideosState = Readonly<{
   items: readonly AllVideosItem[];
   /** Сколько роликов в канале всего (до фильтров). */
   total: number;
+  /** Полный список плейлистов канала (аудит #24); пока полного списка нет — плейлисты снимка экрана видео (до 8). */
+  playlists: readonly AllVideosPlaylist[];
   /** ready — полный список; partial — 20 из снимка экрана видео, полный грузится; loading — первый в жизни заход;
    *  unavailable — сети нет и кэша нет (экран показывает «Сейчас недоступно», D158). */
   status: AllVideosStatus;
@@ -276,8 +310,12 @@ export function useAllChannelVideos(
   ), [channelId, fallback]);
   const source = list?.items ?? fallbackItems ?? [];
   const items = useMemo(() => selectAllChannelVideos(source, query), [source, query]);
+  const fallbackPlaylists = useMemo(() => (
+    fallback && fallback.channel?.id === channelId ? fallback.playlists.map(compactPlaylistItem) : []
+  ), [channelId, fallback]);
+  const playlists = list?.playlists ?? fallbackPlaylists;
   const status: AllVideosStatus = list ? 'ready' : fallbackItems ? 'partial' : failed ? 'unavailable' : 'loading';
-  return { items, total: source.length, status, refreshing, refresh };
+  return { items, total: source.length, status, refreshing, refresh, playlists };
 }
 
 /** Только для тестов. */

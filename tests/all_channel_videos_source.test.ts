@@ -8,7 +8,8 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 
 const manifestVersion = { value: 'v1' };
 const fetchManifest = jest.fn(async () => ({ activeVersion: manifestVersion.value, channels: [{ id: 'ch1' }] }));
-const fetchChannel = jest.fn(async () => ({ version: manifestVersion.value, videos: VIDEOS }));
+const PLAYLISTS = [{ id: 'pl1', channelId: 'ch1', title: 'Плейлист 1', description: 'длинное описание', url: 'u', itemCount: 3, order: 0, pageCount: 1 }];
+const fetchChannel = jest.fn(async () => ({ version: manifestVersion.value, videos: VIDEOS, playlists: PLAYLISTS }));
 jest.mock('../app/youtube_catalog_client', () => ({
   fetchYoutubeCatalogManifestWithReader: () => fetchManifest(),
   fetchYoutubeChannelCatalogWithReader: () => fetchChannel(),
@@ -132,6 +133,26 @@ describe('loadAllChannelVideos', () => {
     const raw = Object.values(asyncStore)[0];
     expect(raw).not.toContain('"description"');
   });
+  // зачем (аудит #24, 15.10): снимок экрана видео обрезал плейлисты до 8 — полный список плейлистов канала лежит рядом с роликами, без описаний
+  it('полный список плейлистов сохраняется вместе с роликами (без описаний)', async () => {
+    const list = await loadAllChannelVideos({ channelId: 'ch1', token, reader, nowMs: 1_000 });
+    expect(list?.playlists).toEqual([{ id: 'pl1', channelId: 'ch1', title: 'Плейлист 1', url: 'u', itemCount: 3, order: 0, pageCount: 1 }]);
+  });
+
+  it('кэш, записанный до 15.10 (без плейлистов), версия та же — один раз перечитываем полный каталог', async () => {
+    await loadAllChannelVideos({ channelId: 'ch1', token, reader, nowMs: 1_000 });
+    const key = Object.keys(asyncStore)[0]!;
+    const old = JSON.parse(asyncStore[key]!);
+    delete old.playlists;
+    asyncStore[key] = JSON.stringify(old);
+    resetAllChannelVideosForTests();
+    fetchManifest.mockClear();
+    fetchChannel.mockClear();
+    const refreshed = await loadAllChannelVideos({ channelId: 'ch1', token, reader, nowMs: 1_000 + ALL_VIDEOS_REFRESH_MS + 1 });
+    expect(fetchChannel).toHaveBeenCalledTimes(1);
+    expect(refreshed?.playlists).toHaveLength(1);
+  });
+
   it('пустой channelId — ни сети, ни записи (экран ещё не знает канал)', async () => {
     await expect(loadAllChannelVideos({ channelId: '', token, reader, nowMs: 1_000 })).resolves.toBeNull();
     expect(fetchManifest).not.toHaveBeenCalled();

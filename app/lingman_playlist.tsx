@@ -17,6 +17,7 @@ import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { getTrustedLingmanYoutubeUrl } from './lingman_youtube';
 import { peekYoutubeCatalogScreenSnapshot, revalidateYoutubeChannelCatalog, type YoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
+import { allVideosItemToSnapshot, allVideosPlaylistToSnapshot, useAllChannelVideos } from './all_channel_videos_source';
 
 function trustedPlaylistUrl(rawUrl: string, playlistId: string): string | null {
   const trusted = getTrustedLingmanYoutubeUrl(rawUrl);
@@ -41,12 +42,29 @@ export default function LingmanPlaylistScreen() {
   const catalogRef = useRef(catalog);
   catalogRef.current = catalog;
   const [loading, setLoading] = useState(!catalog);
-  const playlist = catalog?.playlists.find((item) => item.id === playlistId);
-  const videos = useMemo(() => catalog?.videos.filter((video) => video.playlistIds.includes(playlistId)) ?? [], [catalog, playlistId]);
+  // зачем (аудит #23, 15.10): снимок экрана видео держит ≤ 20 роликов и ≤ 8 плейлистов — плейлист из «хвоста» каталога выходил пустым с вечным скелетоном. Ролики и плейлисты берём из полного списка
+  // канала («Все видео», тот же кэш: память → диск, сеть не чаще раза в 6 ч); снимок остаётся первым кадром.
+  const allChannel = useAllChannelVideos(channelId, { playlistId, sort: 'newest' }, catalog);
+  const allChannelRef = useRef(allChannel);
+  allChannelRef.current = allChannel;
+  const playlist = useMemo(() => {
+    const fromCatalog = catalog?.playlists.find((item) => item.id === playlistId);
+    if (fromCatalog) return fromCatalog;
+    const fromAll = allChannel.playlists.find((item) => item.id === playlistId);
+    return fromAll ? allVideosPlaylistToSnapshot(fromAll) : undefined;
+  }, [allChannel.playlists, catalog, playlistId]);
+  const videos = useMemo(() => allChannel.items.map(allVideosItemToSnapshot), [allChannel.items]);
+  // зачем (аудит #23): полный список пришёл и в плейлисте нет роликов (или сети и кэша нет) — честная пустота вместо вечного скелетона
+  const videosSettledEmpty = videos.length === 0 && (allChannel.status === 'ready' || allChannel.status === 'unavailable');
   const copy = {
     playAll: triLang(lang, { ru: 'Воспроизвести всё', uk: 'Відтворити все', en: 'Play all', es: 'Reproducir todo', 'pt-BR': 'Reproduzir tudo', vi: 'Phát tất cả', id: 'Putar semua', tr: 'Tümünü oynat', pl: 'Odtwórz wszystko' }),
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
     videos: triLang(lang, { ru: 'видео', uk: 'відео', en: 'videos', es: 'videos', 'pt-BR': 'vídeos', vi: 'video', id: 'video', tr: 'video', pl: 'filmów' }),
+    emptyPlaylist: triLang(lang, {
+      ru: 'В этом плейлисте пока нет роликов', uk: 'У цьому плейлисті поки немає відео', en: 'No videos in this playlist yet', es: 'Aún no hay vídeos en esta lista',
+      'pt-BR': 'Ainda não há vídeos nesta playlist', vi: 'Danh sách phát này chưa có video', id: 'Belum ada video di playlist ini', tr: 'Bu oynatma listesinde henüz video yok', pl: 'W tej playliście nie ma jeszcze filmów',
+    }),
+    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Repetir', vi: 'Thử lại', id: 'Ulangi', tr: 'Tekrar dene', pl: 'Ponów' }),
   };
 
   useEffect(() => {
@@ -54,7 +72,7 @@ export default function LingmanPlaylistScreen() {
     let cancelled = false;
     // зачем (владелец 01.10): нет экрана «видео недоступны» — при пустом результате
     // тихо повторяем до 5 раз с паузой 20 с, пока показан скелетон.
-    const hasPlaylist = () => !!catalogRef.current?.playlists.some((item) => item.id === playlistId);
+    const hasPlaylist = () => !!catalogRef.current?.playlists.some((item) => item.id === playlistId) || allChannelRef.current.playlists.some((item) => item.id === playlistId); // зачем (аудит #23): плейлист из полного списка тоже считается найденным — лишних сетевых повторов нет
     const run = async () => {
       for (let attempt = 1; attempt <= 5 && !cancelled; attempt += 1) {
         try {
@@ -94,7 +112,14 @@ export default function LingmanPlaylistScreen() {
         <View style={styles.topbar}>
           <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, '/lingman_videos' as any)} style={[styles.back, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}><Ionicons name="arrow-back" size={20} color={g.text} /></TouchableOpacity>
         </View>
-        {!playlist ? <View testID="youtube-playlist-skeleton" style={styles.loading}><SkeletonBlock width="70%" height={32} borderRadius={10} /><SkeletonBlock width="40%" height={18} borderRadius={8} /><SkeletonBlock width="100%" height={48} borderRadius={24} /><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View> : (
+        {!playlist && videosSettledEmpty ? (
+          <View testID="youtube-playlist-empty" style={styles.empty}>
+            <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.emptyPlaylist}</Text>
+            <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={allChannel.refresh} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
+              <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
+            </TouchableOpacity>
+          </View>
+        ) : !playlist ? <View testID="youtube-playlist-skeleton" style={styles.loading}><SkeletonBlock width="70%" height={32} borderRadius={10} /><SkeletonBlock width="40%" height={18} borderRadius={8} /><SkeletonBlock width="100%" height={48} borderRadius={24} /><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View> : (
           <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
             <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
             <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
@@ -107,7 +132,14 @@ export default function LingmanPlaylistScreen() {
                 compact
                 onWatch={() => openVideo(video)}
               />
-            )) : <View style={styles.loading}><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View>}</View>
+            )) : videosSettledEmpty ? (
+              <View testID="youtube-playlist-empty" style={styles.empty}>
+                <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.emptyPlaylist}</Text>
+                <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={allChannel.refresh} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
+                  <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
+                </TouchableOpacity>
+              </View>
+            ) : <View style={styles.loading}><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View>}</View>
           </ScrollView>
         )}
       </SafeAreaView>
@@ -128,4 +160,8 @@ const styles = StyleSheet.create({
   playAll: { minHeight: 48, marginTop: 18, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
   playAllText: { fontSize: 16, fontWeight: '700' },
   videoList: { marginTop: 20 },
+  empty: { alignItems: 'center', gap: 16, paddingVertical: 32 },
+  emptyText: { fontSize: 16, lineHeight: 22, fontWeight: '500', textAlign: 'center' },
+  retryBtn: { minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center' },
+  retryText: { fontSize: 16, fontWeight: '700' },
 });

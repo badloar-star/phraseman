@@ -202,6 +202,16 @@ export default function CollectionGalleryView({
   }, [onOpenCard, onToggleSelection, selectionMode]);
   const onSpeakTile = useCallback((id: string) => { const card = byId.get(id); if (card) onSpeak(card.en); }, [byId, onSpeak]);
   const pressedCard = pressedId ? byId.get(pressedId) ?? null : null;
+  // зачем (аудит #5, 15.10): долгое нажатие открывало шторку действий и у карточек, для которых строк нет (системные и нередактируемые чужие) — пустое окно, «мёртвый» контрол. Шторка открывается, только если в ней есть что нажать.
+  const onLongPressTile = useCallback((id: string) => {
+    const card = byId.get(id);
+    const hasRows = !!card && (isEditableCustomCard(card) || !card.isSystem);
+    if (!hasRows) {
+      console.log(`[CARDS-SHEET] долгое нажатие: у карточки нет действий — шторку не открываем card=${id} found=${card ? 'да' : 'нет'} system=${card ? String(card.isSystem) : '-'}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    setPressedId(id);
+  }, [byId, isEditableCustomCard]);
   // зачем (R1 cards-034, 12.10; журнал [CARDS-SHEET] rootWindowY=50 windowH=914): слой шторки сдвигается вверх на rootWindowY (чтобы встать в окно целиком), но значение измерялось ТОЛЬКО после тапа —
   // первый кадр шторки стоял на 50 dp ниже (rootWindowY=0), въезд (SlideInDown) стартовал оттуда, и «Удалить» оказывалось у самого края под жестовой полоской. Теперь корень меряется при раскладке:
   // к тапу значение уже известно, слой с первого кадра в нужном месте (замер при тапе остаётся как страховка).
@@ -265,7 +275,7 @@ export default function CollectionGalleryView({
               onOpen={onTile}
               onSpeak={onSpeakTile}
               speakLabel={copy.speak}
-              onLongPress={selectionMode ? undefined : setPressedId}
+              onLongPress={selectionMode ? undefined : onLongPressTile}
               moreLabel={zoomCopy.more}
               selectedIds={selectionMode ? selectedIds : undefined}
               highlight={searching ? searchQuery : undefined}

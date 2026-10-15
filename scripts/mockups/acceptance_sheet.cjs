@@ -18,8 +18,11 @@ const THEMES = [['aurora-dark', 0, 'grad_aurora:dark'], ['aurora-light', 1, 'gra
 const log = (...a) => console.log('[ACCEPT]', ...a);
 
 // ---------- строки кода: ключ → ru/uk (таблицы «Nine») ----------
-const STRING_FILES = ['components/spire/moments/moments_strings.ts', 'components/spire/moments/step_moment_strings.ts', 'components/streak/moments/streak_moments_strings.ts',
-  'components/stories/story_strings.ts', 'components/coin_rank_moments/coin_rank_strings.ts', 'modules/welcome_back/welcome_back_strings.ts'];
+// зачем (координатор 15.10: листы m05/m09/m17): строки моментов живут в *_strings.ts разных зон (spire, streak, stories, lesson_moments,
+// dialog_moments, coin_rank_moments, welcome_back…) — находим все такие файлы в components/ и modules/, а не держим ручной список.
+const STRING_FILES = [];
+(function walkS(d) { for (const e of fs.readdirSync(path.join(ROOT, d), { withFileTypes: true })) { const rel = d + '/' + e.name; if (e.isDirectory()) { if (!/node_modules|__tests__/.test(e.name)) walkS(rel); } else if (/_strings\.ts$/.test(e.name)) STRING_FILES.push(rel); } })('components');
+(function walkS(d) { for (const e of fs.readdirSync(path.join(ROOT, d), { withFileTypes: true })) { const rel = d + '/' + e.name; if (e.isDirectory()) { if (!/node_modules|__tests__/.test(e.name)) walkS(rel); } else if (/_strings\.ts$/.test(e.name)) STRING_FILES.push(rel); } })('modules');
 const STR = [];
 for (const f of STRING_FILES) {
   const p = path.join(ROOT, f); if (!fs.existsSync(p)) { log('нет файла строк', f); continue; }

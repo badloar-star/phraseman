@@ -19,7 +19,9 @@
 import { getDevVoices } from '../dev_cards_state';
 import { isTechnicalVoiceName, technicalVoiceDisplayName } from './voice_display_name';
 
-export type FcTtsLang = 'en' | 'uk' | 'ru' | 'es';
+// зачем (Ревизор 15.10, 🟡 к c105b10dd): все 5 языков обучения (en/es/fr/de/it) + языки перевода (uk/ru); было en/uk/ru/es —
+// fr/de/it карточек уходили в системный голос телефона без выбора и без своей цепочки голосов.
+export type FcTtsLang = 'en' | 'uk' | 'ru' | 'es' | 'fr' | 'de' | 'it';
 
 /** Подмножество Speech.Voice, достаточное для выбора (quality — enum или строка). */
 export type FcVoiceLike = {
@@ -49,6 +51,9 @@ const FALLBACK_CHAINS: Record<FcTtsLang, { lang: FcTtsLang; canonical: string; p
     { lang: 'ru', canonical: 'ru-RU', prefixes: ['ru'] },
   ],
   es: [{ lang: 'es', canonical: 'es-ES', prefixes: ['es-es', 'es'] }],
+  fr: [{ lang: 'fr', canonical: 'fr-FR', prefixes: ['fr-fr', 'fr'] }],
+  de: [{ lang: 'de', canonical: 'de-DE', prefixes: ['de-de', 'de'] }],
+  it: [{ lang: 'it', canonical: 'it-IT', prefixes: ['it-it', 'it'] }],
 };
 
 const normalizeTag = (tag: string): string => tag.trim().toLowerCase().replace(/_/g, '-');
@@ -59,6 +64,9 @@ export function ttsLangFromLocale(locale: string): FcTtsLang {
   if (x.startsWith('uk')) return 'uk';
   if (x.startsWith('ru')) return 'ru';
   if (x.startsWith('es')) return 'es';
+  if (x.startsWith('fr')) return 'fr';
+  if (x.startsWith('de')) return 'de';
+  if (x.startsWith('it')) return 'it';
   return 'en';
 }
 
@@ -181,17 +189,19 @@ export function getVoicesOnce(): Promise<FcVoiceLike[]> {
 export async function resolveVoiceForLang(lang: FcTtsLang): Promise<ResolvedVoice> {
   const voices = await getVoicesOnce();
   let preferred: string | null = null;
-  if (lang === 'en' || lang === 'es') {
+  if (lang === 'en' || lang === 'es' || lang === 'fr' || lang === 'de' || lang === 'it') {
     try {
       const { getVoiceIdForLang } = require('./voice_prefs') as typeof import('./voice_prefs');
-      // зачем (Ревизор 15.10): у испанского теперь тоже свой выбранный голос; английский — прежний voiceIdEn
+      // зачем (Ревизор 15.10): у каждого языка обучения свой выбранный голос; английский — прежний voiceIdEn
       preferred = await getVoiceIdForLang(lang);
     } catch (error) {
       console.warn(`[VOICE-PICK] чтение выбранного голоса ${lang} не удалось — системный`, error instanceof Error ? error.message : String(error)); // guard-ok: причина фолбэка
       preferred = null;
     }
   }
-  return pickVoiceForLang(voices, lang, preferred);
+  const resolved = pickVoiceForLang(voices, lang, preferred);
+  console.log('[FC-TTS]', JSON.stringify({ lang, voice: resolved.voiceId ?? null, source: preferred && resolved.voiceId === preferred ? 'chosen' : resolved.available ? (resolved.usedFallbackLang ? `fallback_${resolved.usedFallbackLang}` : 'best_device') : 'none', available: resolved.available })); // guard-ok: одна строка на выбор голоса
+  return resolved;
 }
 
 const voiceNameLogged = new Set<string>();

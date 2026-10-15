@@ -269,6 +269,8 @@ export function useAudio() {
     const cardLanguage: CardTtsLanguage | null = opts?.cardAudio ? cardTtsLanguageFromSpeechLocale(language) : null;
     if (opts?.cardAudio) {
       console.log('[PACK-AUDIO] speak:route', JSON.stringify({ language, cardLanguage, requestedVoice: requestedVoice || null, path: cardLanguage && !(cardLanguage === 'en' && requestedVoice) ? 'card_clip' : 'default_voice' }));
+      // Ревизор 15.10: чем реально звучит карточка — клип, выбранный голос языка или системный (одна строка на озвучку)
+      console.log('[FC-TTS]', JSON.stringify({ lang: language, voice: requestedVoice || null, source: cardLanguage && !(cardLanguage === 'en' && requestedVoice) ? 'card_clip' : requestedVoice ? (hasVoiceOverride ? 'caller' : 'chosen') : 'system' })); // guard-ok: одна строка на озвучку карточки
     }
     if (cardLanguage && !(cardLanguage === 'en' && requestedVoice)) {
       void playCardAudio(cardLanguage);

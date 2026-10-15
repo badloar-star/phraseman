@@ -41,7 +41,11 @@ describe('ttsLangFromLocale', () => {
     expect(ttsLangFromLocale('ru-RU')).toBe('ru');
     expect(ttsLangFromLocale('es-ES')).toBe('es');
     expect(ttsLangFromLocale('en-US')).toBe('en');
-    expect(ttsLangFromLocale('fr-FR')).toBe('en'); // незнакомое → en
+    // Ревизор 15.10: французский/немецкий/итальянский — свои языки, а не «незнакомое → en»
+    expect(ttsLangFromLocale('fr-FR')).toBe('fr');
+    expect(ttsLangFromLocale('de-DE')).toBe('de');
+    expect(ttsLangFromLocale('it_IT')).toBe('it');
+    expect(ttsLangFromLocale('pt-BR')).toBe('en'); // незнакомое → en
   });
 });
 
@@ -159,5 +163,20 @@ describe('resolveVoiceForLang (кэш)', () => {
     const [a, b] = await Promise.all([getVoicesOnce(), getVoicesOnce()]);
     expect(a).toBe(b);
     expect(Speech.getAvailableVoicesAsync).toHaveBeenCalledTimes(1);
+  });
+});
+
+// зачем (Ревизор 15.10): все 5 языков обучения — своя цепочка голосов и свой выбранный голос (fr/de/it больше не «системный без выбора»)
+describe('pickVoiceForLang: fr / de / it', () => {
+  it('picks the native voice of the study language', () => {
+    expect(pickVoiceForLang([v('ca', 'fr-CA'), v('fr', 'fr-FR')], 'fr').voiceId).toBe('fr');
+    expect(pickVoiceForLang([v('at', 'de-AT'), v('de', 'de-DE')], 'de').voiceId).toBe('de');
+    expect(pickVoiceForLang([v('it', 'it-IT'), v('us', 'en-US')], 'it')).toMatchObject({ available: true, voiceId: 'it', language: 'it-IT' });
+  });
+  it('a chosen voice wins when it is still on the phone', () => {
+    expect(pickVoiceForLang([v('fr1', 'fr-FR'), v('fr2', 'fr-FR')], 'fr', 'fr2').voiceId).toBe('fr2');
+  });
+  it('no voice of that language — no voicing, never an English voice', () => {
+    expect(pickVoiceForLang([v('us', 'en-US')], 'de')).toMatchObject({ available: false, language: 'de-DE' });
   });
 });

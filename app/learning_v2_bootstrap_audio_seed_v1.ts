@@ -15,6 +15,11 @@ type LearningV2BootstrapAudioEntryV1 = (typeof LEARNING_V2_BOOTSTRAP_AUDIO_ENTRI
 const entryByContentHash = new Map<string, LearningV2BootstrapAudioEntryV1>(
   LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry]),
 );
+// зачем (координатор 15.10, урок 1 целиком в сборку): в наборе теперь все занятия до потолка (до 1120 файлов),
+// а посев при запуске считает sha256 каждого тела в JS (~1 с на 140 файлов, профили Сверки 13.10). Сеем только
+// первые занятия (флаг launchSeed от генератора); остальные файлы занятие готовит само по запросу через
+// resolveLearningV2BootstrapAudioOfflineFileV1 — набор для поиска остаётся полным.
+const launchSeedEntries = LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.filter((entry) => entry.launchSeed);
 let assetPrewarm: Promise<void> | null = null;
 let durableSeed: Promise<void> | null = null;
 
@@ -80,7 +85,7 @@ export function preloadLearningV2BootstrapAudioAssetsV1(): Promise<void> {
   // озвучки на всё время жизни приложения. Срок на пачку больше, чем на файл.
   assetPrewarm = Promise.race([
     Asset.loadAsync(
-      LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => entry.assetModule),
+      launchSeedEntries.map((entry) => entry.assetModule),
     ).then(() => undefined),
     new Promise<never>((_, reject) => {
       setTimeout(
@@ -102,7 +107,7 @@ export function seedLearningV2BootstrapAudioCacheV1(): Promise<void> {
   durableSeed = preloadLearningV2BootstrapAudioAssetsV1()
     .then(async () => {
       const files = learningV2FactoryRemoteAudioFilesForContentHashesV1(
-        LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => entry.contentHash),
+        launchSeedEntries.map((entry) => entry.contentHash),
       );
       // зачем: раньше ЛЮБОЙ упавший файл рвал весь посев, и остальные записи
       // не попадали в кэш вовсе. С появлением сроков это стало бы обычным

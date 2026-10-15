@@ -1,5 +1,7 @@
 const bootstrapBytes = new Uint8Array([1, 2, 3, 4]);
 const bootstrapHash = "a".repeat(64);
+const laterHash = "c".repeat(64);
+const seededHashes = jest.fn((hashes: readonly string[]) => hashes);
 const bootstrapHandle = Object.freeze({ bootstrap: true });
 const assetDownload = jest.fn(async () => undefined);
 const assetLoad = jest.fn(async () => undefined);
@@ -16,7 +18,16 @@ jest.mock("../app/learning_v2_bootstrap_audio_assets_v1.generated", () => ({
       voiceId: "ash",
       contentHash: bootstrapHash,
       byteSize: bootstrapBytes.byteLength,
+      launchSeed: true,
       assetModule: 101,
+    }),
+    Object.freeze({
+      transcript: "later",
+      voiceId: "ash",
+      contentHash: laterHash,
+      byteSize: bootstrapBytes.byteLength,
+      launchSeed: false,
+      assetModule: 202,
     }),
   ]),
 }));
@@ -42,7 +53,7 @@ jest.mock("../modules/learning-v2/runtime/voice_audio_offline_cache_v1", () => (
   resolvePreparedLearningV2VoiceAudioOfflineFileV1: (identity: unknown) => resolvePrepared(identity),
 }));
 jest.mock("../app/learning_v2_factory_production_audio_v1", () => ({
-  learningV2FactoryRemoteAudioFilesForContentHashesV1: () => [Object.freeze({
+  learningV2FactoryRemoteAudioFilesForContentHashesV1: (hashes: readonly string[]) => seededHashes(hashes) && [Object.freeze({
     contentHash: bootstrapHash,
     byteSize: bootstrapBytes.byteLength,
   })],
@@ -67,23 +78,35 @@ describe("Learning V2 bundled bootstrap audio", () => {
     assetLoad.mockClear();
     prepareBytes.mockClear();
     resolvePrepared.mockClear();
+    seededHashes.mockClear();
   });
 
-  it("prewarms every bundled asset without network transport", async () => {
+  it("prewarms only launch-seed bundled assets without network transport", async () => {
     await preloadLearningV2BootstrapAudioAssetsV1();
+    // [101] целиком: файл позднего занятия (202) при запуске не грузится.
     expect(assetLoad).toHaveBeenCalledWith([101]);
   });
 
   it("seeds every bundled asset into the immutable durable cache at app boot", async () => {
     await seedLearningV2BootstrapAudioCacheV1();
-    expect(assetLoad).toHaveBeenCalledWith([101]);
+    // Прогрев ассетов уже закэширован предыдущим тестом (обещание живёт на процесс), поэтому сверяем,
+    // ЧТО сеется. зачем (15.10, урок 1 целиком в сборку): в сборке файлы всех занятий до потолка, а при
+    // запуске сеются только первые — иначе посев считал бы sha256 ~1120 тел на JS-потоке на каждом старте.
+    expect(seededHashes).toHaveBeenCalledWith([bootstrapHash]);
+    expect(prepareBytes).toHaveBeenCalledTimes(1);
+  });
+
+  it("resolves a later bundled file on demand although it is not seeded at boot", async () => {
+    await expect(resolveLearningV2BootstrapAudioOfflineFileV1({ ...identity, contentHash: laterHash } as never))
+      .resolves.toBe(bootstrapHandle);
     expect(prepareBytes).toHaveBeenCalledTimes(1);
   });
 
   it("materializes an exact bootstrap file through the immutable local cache", async () => {
     await expect(resolveLearningV2BootstrapAudioOfflineFileV1(identity as never))
       .resolves.toBe(bootstrapHandle);
-    expect(assetDownload).toHaveBeenCalledTimes(1);
+    // Встроенный ассет уже имеет localUri — скачивания нет, байты читаются с диска.
+    expect(assetDownload).not.toHaveBeenCalled();
     expect(prepareBytes).toHaveBeenCalledTimes(1);
   });
 

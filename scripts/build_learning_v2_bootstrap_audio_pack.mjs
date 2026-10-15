@@ -20,46 +20,66 @@ const check = process.argv.includes("--check");
  * догрузить следующие. Число согласовано с владельцем: «первые 5 сессий,
  * сессия 1 завершена — уже должна грузиться сессия 6».
  */
-const BOOTSTRAP_SESSION_COUNT = 5;
+const LAUNCH_SEED_SESSION_COUNT = 5;
 
-const releaseDirectory = path.join(root, "content/learning-v2-course/release/en/l01");
+/**
+ * Сколько занятий урока 1 едут озвученными в сборке = открытый потолок.
+ *
+ * зачем (координатор 15.10, урок 1 целиком в сборку 16.10): сети у озвучки нет (D47/PM-205), поэтому всё, чего
+ * нет в этом наборе, звучало голосом телефона — s06–s15 уже в релизе 15.10. Число не зашито: берётся из потолка,
+ * который сторож learning_v2_bundle_availability генерирует по реально собранным занятиям. Поднялся потолок —
+ * перегенерируй набор, `--check` упадёт, пока этого не сделали. Всё, что выше потолка, в сборку не едет
+ * (`.easignore` пропускает только эту папку). Посев при запуске по-прежнему только первых
+ * LAUNCH_SEED_SESSION_COUNT занятий: остальное занятие готовит само по запросу, без лишней работы на старте.
+ */
+const availabilityPath = path.join(root, "app/learning_v2_bundle_availability_v1.generated.ts");
+const ceilingMatch = /LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = (\d+);/u.exec(fs.readFileSync(availabilityPath, "utf8"));
+if (!ceilingMatch) throw new Error(`learning_v2_bootstrap_audio_ceiling_unreadable:${availabilityPath}`);
+const BOOTSTRAP_SESSION_COUNT = Math.max(LAUNCH_SEED_SESSION_COUNT, Number(ceilingMatch[1]));
+
+const audioIndexPath = path.join(root, "app/learning_v2_factory_lesson_audio_index_v1.generated.ts");
 const manifestPath = path.join(root, "assets/audio/learning-v2/factory-production-v1/manifest.json");
 const outputDirectory = path.join(root, "assets/audio/learning-v2-bootstrap-v1");
 const outputModule = path.join(root, "app/learning_v2_bootstrap_audio_assets_v1.generated.ts");
-const voices = ["ash", "onyx", "nova", "coral"];
+
+/**
+ * Файлы занятий урока 1 берём из ТАБЛИЦЫ ОЗВУЧКИ, которую читает само приложение
+ * (learning_v2_lesson_audio_pack_v1 → индекс → по contentHash сюда).
+ *
+ * зачем (15.10): прежде набор пересобирался из content/learning-v2-course/release, а тот меняется
+ * фабрикой независимо от сборки (14:27 в s04/s06/s08 появилась фраза без озвучки — генератор падал).
+ * Приложению нужны ровно те файлы, что в его таблице; лишнее — вес, недостающее — голос телефона.
+ */
+const indexText = fs.readFileSync(audioIndexPath, "utf8");
+const lessonStart = indexText.indexOf("\n  1: Object.freeze({ sessionCount");
+if (lessonStart < 0) throw new Error(`learning_v2_bootstrap_audio_index_lesson_missing:${audioIndexPath}`);
+const lessonEnd = indexText.indexOf("\n  2: Object.freeze({ sessionCount", lessonStart + 1);
+const lessonText = indexText.slice(lessonStart, lessonEnd > 0 ? lessonEnd : undefined);
+const hashesBySession = new Map();
+for (const match of lessonText.matchAll(/(\d+): Object\.freeze\(\{ contentHashes: Object\.freeze\(\[([^\]]*)\]/gu))
+  hashesBySession.set(Number(match[1]), [...match[2].matchAll(/"([0-9a-f]{64})"/gu)].map((hash) => hash[1]));
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-const transcripts = new Set();
-const visit = (value) => {
-  if (Array.isArray(value)) return value.forEach(visit);
-  if (!value || typeof value !== "object") return;
-  if (typeof value.audioTargetId === "string" && typeof value.transcript === "string")
-    transcripts.add(value.transcript);
-  Object.values(value).forEach(visit);
-};
+const byContentHash = new Map(manifest.entries.map((entry) => [entry.contentHash, entry]));
+const bundledHashes = new Set();
+const launchSeedHashes = new Set();
 for (let sessionOrdinal = 1; sessionOrdinal <= BOOTSTRAP_SESSION_COUNT; sessionOrdinal += 1) {
-  const learnerPath = path.join(
-    releaseDirectory,
-    `s${String(sessionOrdinal).padStart(2, "0")}`,
-    "learner.json",
-  );
+  const sessionHashes = hashesBySession.get(sessionOrdinal);
   // Немой пропуск запрещён: молча собранный неполный пак — это ровно тот баг,
-  // который чиним (занятие открывается у автора и падает у человека).
-  if (!fs.existsSync(learnerPath))
-    throw new Error(`learning_v2_bootstrap_audio_session_missing:${learnerPath}`);
-  visit(JSON.parse(fs.readFileSync(learnerPath, "utf8")).interactions);
+  // который чиним (занятие открывается у автора и звучит телефоном у человека).
+  if (!sessionHashes || sessionHashes.length === 0)
+    throw new Error(`learning_v2_bootstrap_audio_session_missing:l01:s${sessionOrdinal}`);
+  for (const contentHash of sessionHashes) {
+    bundledHashes.add(contentHash);
+    if (sessionOrdinal <= LAUNCH_SEED_SESSION_COUNT) launchSeedHashes.add(contentHash);
+  }
 }
 
-const byCoordinate = new Map(
-  manifest.entries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),
-);
 const entries = [];
-for (const transcript of transcripts) {
-  for (const voiceId of voices) {
-    const entry = byCoordinate.get(`${transcript}\u0000${voiceId}`);
-    if (!entry) throw new Error(`learning_v2_bootstrap_audio_missing:${transcript}:${voiceId}`);
-    entries.push(entry);
-  }
+for (const contentHash of bundledHashes) {
+  const entry = byContentHash.get(contentHash);
+  if (!entry) throw new Error(`learning_v2_bootstrap_audio_missing:${contentHash}`);
+  entries.push(entry);
 }
 entries.sort((left, right) => left.contentHash.localeCompare(right.contentHash));
 
@@ -68,9 +88,10 @@ const moduleText = [
   "export const LEARNING_V2_BOOTSTRAP_AUDIO_SCHEMA_V1 = \"learning-v2-bootstrap-audio.v1\" as const;",
   "export const LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1 = Object.freeze([",
   ...entries.map((entry) =>
-    `  Object.freeze({ transcript: ${JSON.stringify(entry.transcript)}, voiceId: ${JSON.stringify(entry.voiceId)} as const, contentHash: ${JSON.stringify(entry.contentHash)}, byteSize: ${entry.byteSize}, assetModule: require(\"../assets/audio/learning-v2-bootstrap-v1/${entry.contentHash}.mp3\") }),`),
+    `  Object.freeze({ transcript: ${JSON.stringify(entry.transcript)}, voiceId: ${JSON.stringify(entry.voiceId)} as const, contentHash: ${JSON.stringify(entry.contentHash)}, byteSize: ${entry.byteSize}, launchSeed: ${launchSeedHashes.has(entry.contentHash)}, assetModule: require(\"../assets/audio/learning-v2-bootstrap-v1/${entry.contentHash}.mp3\") }),`),
   "] as const);",
   `export const LEARNING_V2_BOOTSTRAP_AUDIO_TOTAL_BYTES_V1 = ${entries.reduce((sum, entry) => sum + entry.byteSize, 0)} as const;`,
+  `export const LEARNING_V2_BOOTSTRAP_AUDIO_SESSION_COUNT_V1 = ${BOOTSTRAP_SESSION_COUNT} as const;`,
   "",
 ].join("\n");
 

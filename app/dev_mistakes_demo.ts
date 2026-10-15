@@ -39,6 +39,44 @@ export async function setDevMistakesDemo(on: boolean): Promise<boolean> {
   return true;
 }
 
+// ── Финал тренировки «Ошибок» с исчерпанной попыткой дня (Сверка 15.10, evidence/more_n2_1015) ─────────────────────────────
+// зачем (координатор 15.10): кадр «Ещё N» с меткой Plus снять нельзя без двух настоящих тренировок подряд. Ссылка
+// `dev_state?mistakesFinale=1&wrong=2` (по умолчанию next=/mistake_practice_session) тратит НАСТОЯЩУЮ попытку дня одноразового
+// гостя тем же consumeRevenueDailyQuota, что и кнопка, — гейт честно «заперт», — и экран тренировки сразу рисует финал с N
+// неверными. Только память + попытка гостя; на настоящем аккаунте отказ; в стор-сборке недоступно. Лог: [DEV-STATE] mistakesFinale.
+let finaleWrong: number | null = null;
+
+export async function setDevMistakesFinale(wrong: number | null): Promise<boolean> {
+  if (!devAvailable()) {
+    console.warn('[DEV-STATE] mistakesFinale: отклонено — не dev-сборка', { wrong }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  if (wrong === null) {
+    finaleWrong = null;
+    console.log('[DEV-STATE] mistakesFinale: выключен'); // guard-ok: единичный лог на ссылку
+    return true;
+  }
+  const { assertDisposableGuest } = await import('./dev_state_account_guard');
+  assertDisposableGuest('mistakesFinale');
+  const { consumeRevenueDailyQuota, captureAccountGeneration } = await import('./revenue_daily_quota');
+  const result = await consumeRevenueDailyQuota({
+    kind: 'mistake_practice_starts',
+    token: captureAccountGeneration(),
+    accessResolved: true,
+    receiptId: `dev-mistakes-finale:${Date.now().toString(36)}`,
+    surface: 'mistake_finale_more',
+  });
+  finaleWrong = wrong;
+  // exhausted — попытка уже была потрачена раньше: замок и так стоит; allowed с used>=limit — потратили сейчас
+  console.log('[DEV-STATE] mistakesFinale: финал включён', JSON.stringify({ wrong, quota: result.status, used: result.used, limit: result.limit, bypass: result.bypass })); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+/** Число неверных для dev-финала или null. Экран тренировки читает один раз при входе. В стор-сборке всегда null. */
+export function peekDevMistakesFinale(): number | null {
+  return devAvailable() ? finaleWrong : null;
+}
+
 /** true — хаб рисует демо-снимок. В стор-сборке всегда false. */
 export function isDevMistakesDemoOn(): boolean {
   return devAvailable() && demoOn;

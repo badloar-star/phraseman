@@ -20,7 +20,7 @@ import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevRobotNoCloud } from './dev_robot_no_cloud';
 import { setDevSaveOfferOpen, setDevSaveOfferProgress } from './dev_save_offer_progress';
 import { DEV_UI_LANGS, setDevUiLang, type DevUiLangRequest } from './dev_ui_lang';
-import { setDevMistakesDemo } from './dev_mistakes_demo';
+import { setDevMistakesDemo, setDevMistakesFinale } from './dev_mistakes_demo';
 import { setDevFriendsDemo } from './dev_friends_demo';
 import { emitAppEvent } from './events';
 import { parseDevStreakJump, runDevStreakRestoreJump } from './dev_streak_restore_jump';
@@ -164,6 +164,8 @@ export type DevStateRequest = Readonly<{
   community?: 'reset' | 'added' | 'off';
   /** «Мои ошибки» с данными (app/dev_mistakes_demo.ts): demo — хаб рисует шесть демо-ошибок, off — выключить. Только память, только одноразовый гость. */
   mistakes?: 'demo' | 'off';
+  /** Финал тренировки «Ошибок» с потраченной попыткой дня (app/dev_mistakes_demo.ts): число неверных (wrong=, 1..20, по умолчанию 2) или off. Тратит настоящую попытку одноразового гостя. */
+  mistakesFinale?: number | 'off';
   /** Друзья со входящей заявкой (app/dev_friends_demo.ts): demo — одна заявка и один друг, off — выключить. Только память, только одноразовый гость, без подписок Firestore. */
   friends?: 'demo' | 'off';
   /** Окно решения модерации набора (Н-12): локальная постановка, без чтения почтового ящика продавца. */
@@ -535,6 +537,15 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.comments = pick('comments', [...DEV_COMMUNITY_COMMENTS, 'off'] as const);
   request.community = pick('community', ['reset', 'added', 'off'] as const);
   request.mistakes = pick('mistakes', ['demo', 'off'] as const);
+  // зачем (Сверка 15.10, evidence/more_n2_1015): mistakesFinale=1&wrong=N — финал тренировки с «Ещё N» за меткой Plus
+  const mistakesFinale = pick('mistakesFinale', ['1', 'off'] as const);
+  if (mistakesFinale === 'off') request.mistakesFinale = 'off';
+  else if (mistakesFinale === '1') {
+    const wrongRaw = one(params.wrong);
+    const wrong = wrongRaw === undefined ? 2 : Number(wrongRaw);
+    if (Number.isInteger(wrong) && wrong >= 1 && wrong <= 20) request.mistakesFinale = wrong;
+    else rejected.wrong = `ожидалось 1..20, пришло ${String(wrongRaw)}`;
+  }
   request.friends = pick('friends', ['demo', 'off'] as const);
   request.moderation = pick('moderation', ['approved', 'rejected', 'revision', 'removed'] as const);
   request.paywall = pick('paywall', ['loading', 'live', 'reference', 'failed', 'off'] as const);
@@ -611,6 +622,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   const next = Array.isArray(params.next) ? params.next[0] : params.next;
   if (typeof next === 'string' && next.startsWith('/')) request.next = next;
   else if (next !== undefined) rejected.next = `маршрут должен начинаться с «/», пришло ${String(next)}`;
+  // финал «Ошибок» без next — сразу экран тренировки (он и рисует dev-финал)
+  if (typeof request.mistakesFinale === 'number' && request.next === undefined) request.next = '/mistake_practice_session';
   return { request, rejected };
 }
 
@@ -1262,6 +1275,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.mistakes !== undefined) {
     await step('mistakes', request.mistakes, async () => setDevMistakesDemo(request.mistakes === 'demo'));
+  }
+  if (request.mistakesFinale !== undefined) {
+    await step('mistakesFinale', String(request.mistakesFinale), async () =>
+      setDevMistakesFinale(request.mistakesFinale === 'off' ? null : request.mistakesFinale as number));
   }
   if (request.friends !== undefined) {
     await step('friends', request.friends, async () => setDevFriendsDemo(request.friends === 'demo'));

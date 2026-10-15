@@ -79,7 +79,7 @@ import { commitPreparedMistakePracticeSession, prepareMistakePracticeSession } f
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { navOnce } from './nav_once';
-import { isDevMistakesDemoOn } from './dev_mistakes_demo';
+import { isDevMistakesDemoOn, peekDevMistakesFinale } from './dev_mistakes_demo';
 import {
   flushPendingMistakeCorrectionRewards,
   settleMistakePracticeAnswerRewards,
@@ -459,6 +459,8 @@ function MistakePracticeSessionScreen() {
   const quotaReceiptRef = useRef<string | null>(null);
   // зачем (Ревизор 2.76, координатор 15.10): «Ещё N» на финале — новая тренировка; раньше шла мимо дневной квоты, теперь через общий гейт
   const moreGate = useMistakePracticeStartGate('mistake_finale_more');
+  // зачем (Сверка 15.10, dev_state?mistakesFinale=1&wrong=N): dev-кадр финала с потраченной попыткой дня; читаем один раз при входе, в стор-сборке null
+  const devFinaleWrong = useMemo(() => peekDevMistakesFinale(), []);
   const quotaOwnerRef = useRef(`mps:${Date.now().toString(36)}:${Math.random().toString(36).slice(2, 8)}`);
   const routeQuotaReceipt = typeof params.quotaReceipt === 'string' && params.quotaReceipt ? params.quotaReceipt : null;
   useEffect(() => {
@@ -1375,6 +1377,30 @@ function MistakePracticeSessionScreen() {
       goOn();
     });
   }, [accountScope, hiddenUndo, persistSession, reviewPool, studyTarget]);
+
+  if (devFinaleWrong !== null) {
+    // dev-кадр: тот же финал и тот же гейт «Ещё N», что у настоящей тренировки; переход в новую тренировку не делаем — id ошибок выдуманы
+    const devMore = () => {
+      const opened = moreGate.tryStartSession(devFinaleWrong);
+      console.log('[DEV-STATE] mistakesFinale: тап «Ещё N»', JSON.stringify({ wrong: devFinaleWrong, locked: moreGate.locked, opened })); // guard-ok: dev-ветка
+    };
+    return (
+      <MistakePracticeScreenFrame>
+        <MistakeSessionFinale
+          lang={lang}
+          answered={devFinaleWrong + 3}
+          total={devFinaleWrong + 3}
+          wrong={devFinaleWrong}
+          fixed={[]}
+          onMore={devMore}
+          moreTrailing={moreGate.locked ? <PlusBadge themeMode={themeMode} size="xs" testID="mistake-finale-more-plus" /> : null}
+          runes={0}
+          onDone={leavePractice}
+        />
+        <NoEnergyModal variant="learn" visible={moreGate.noEnergy} activity="mistake_practice" onBeforeOpenPremium={moreGate.dismissNoEnergy} onClose={moreGate.dismissNoEnergy} />
+      </MistakePracticeScreenFrame>
+    );
+  }
 
   if (loading) {
     return <MistakePracticeScreenFrame><MistakePracticeLoadingSkeleton /></MistakePracticeScreenFrame>;

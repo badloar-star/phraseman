@@ -33,6 +33,7 @@ import SpireRankCoin from '../SpireRankCoin';
 import SpireTowerSvg from '../SpireTowerSvg';
 import { SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY } from '../spire_tower_model';
 import { useSpirePalette } from '../useSpirePalette';
+import { useSpireButtonFill } from '../useSpireButtonFill';
 import { useSpireScene } from '../useSpireScene';
 import { useSpireShadow } from '../useSpireShadow';
 import MomentFirework, { useMomentRumble } from './moments_effects';
@@ -125,6 +126,7 @@ export const LadderRow = memo(function LadderRow({ row, index, place, flicker, r
 
 function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bonusCoins, onPlay, testID = 'moment-promotion' }: MomentPromotionProps) {
   const p = useSpirePalette();
+  const buttonFill = useSpireButtonFill();
   const scene = useSpireScene();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
@@ -281,7 +283,8 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
         <Text
           accessibilityRole="button"
           onPress={() => jumpToEnd('skip')}
-          style={[s.skip, { color: p.textSecondary, backgroundColor: p.control, top: insets.top + 10 }]}
+          // зачем (координатор 15.10, аудит кнопок, правило владельца 13.10 «кнопки не сливаются»): «Пропустить» как в рубежах (Темы dc5e9c139, эталон m01 a59b0a989): заливка buttonFill, подпись p.text (13 · 700 уже в s.skip), форма та же
+          style={[s.skip, { color: p.text, backgroundColor: buttonFill, top: insets.top + 10 }]}
           testID={`${testID}-skip`}
         >
           {momentText(lang, 'skip')}
